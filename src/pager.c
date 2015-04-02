@@ -237,6 +237,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
+		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
+		    ways_seen++;
+		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) ) 
+		    ways_seen++;
 		if (Race_if(PM_VORTEX) && unsolid(mtmp->data))
 		    ways_seen++;
 		if (Race_if(PM_VORTEX) && nolimbs(mtmp->data))
@@ -309,6 +313,14 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Role_if(PM_PALADIN) && is_demon(mtmp->data)) {
 			Strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) ) {
+			Strcat(monbuf, "self-hybridization");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) ) {
+			Strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (Race_if(PM_VORTEX) && unsolid(mtmp->data)) {
@@ -866,6 +878,18 @@ do_look(quick)
 		    (void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
 		    found = 1;	/* we have something to look up */
 		}
+
+		/* mainly for batman and ladiesman: print info about monster's gender --Amy */
+
+		if (pm) {
+		    struct monst *mtmpX = m_at(cc.x, cc.y);
+		    if (mtmpX && humanoid(mtmpX->data)) {
+			Sprintf(temp_buf, " (%s)", mtmpX->female ? "female" : "male");
+			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
+
+		    }
+		}
+
 		if (monbuf[0]) {
 		    Sprintf(temp_buf, " [seen: %s]", monbuf);
 		    (void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);

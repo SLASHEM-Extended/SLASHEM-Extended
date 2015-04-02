@@ -295,6 +295,16 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 
 #define missingnoprotect	((Race_if(PM_MISSINGNO) || u.ughmemory) && flags.missing_safety)
 
+#define isangbander (Race_if(PM_ANGBANDER) || flags.hybridangbander)
+#define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)
+#define iscurser (Race_if(PM_CURSER) || flags.hybridcurser)
+#define ishaxor (Race_if(PM_HAXOR) || flags.hybridhaxor)
+#define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider)
+#define issuxxor (Race_if(PM_SUXXOR) || flags.hybridsuxxor)
+#define iswarper (Race_if(PM_WARPER) || flags.hybridwarper)
+
+#define isselfhybrid ( (Race_if(PM_ANGBANDER) && flags.hybridangbander) || (Race_if(PM_AQUATIC_MONSTER) && flags.hybridaquarian) || (Race_if(PM_CURSER) && flags.hybridcurser) || (Race_if(PM_HAXOR) && flags.hybridhaxor) || (Race_if(PM_HOMICIDER) && flags.hybridhomicider) || (Race_if(PM_SUXXOR) && flags.hybridsuxxor) || (Race_if(PM_WARPER) && flags.hybridwarper) )
+
 #define rn1(x,y)	(rn2(x)+(y))
 
 /* negative armor class is randomly weakened to prevent invulnerability */

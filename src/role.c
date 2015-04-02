@@ -4183,12 +4183,69 @@ int rolenum, gendnum, alignnum, pickhow;
     races_ok = rn2(races_ok);
     for (i = 0; i < SIZE(races)-1; i++) {
 	if (ok_race(rolenum, i, gendnum, alignnum)) {
-	    if (races_ok == 0)
+	    if (races_ok == 0) {
+
+		    if (!rn2(10)) {	/* hybrid races --Amy */
+
+			flags.hybridization++;
+			switch (rnd(7)) {
+
+				case 1:
+					flags.hybridangbander = 1; break;
+				case 2:
+					flags.hybridaquarian = 1; break;
+				case 3:
+					flags.hybridcurser = 1; break;
+				case 4:
+					flags.hybridhaxor = 1; break;
+				case 5:
+					flags.hybridhomicider = 1; break;
+				case 6:
+					flags.hybridsuxxor = 1; break;
+				case 7:
+					flags.hybridwarper = 1; break;
+
+			}
+
+			while ((rnd(7)) < 3) {
+
+				switch (rnd(7)) {
+	
+					case 1:
+						if (!flags.hybridangbander) {flags.hybridangbander = 1; flags.hybridization++; break;
+						}
+					case 2:
+						if (!flags.hybridaquarian) {flags.hybridaquarian = 1; flags.hybridization++; break;
+						}
+					case 3:
+						if (!flags.hybridcurser) {flags.hybridcurser = 1; flags.hybridization++; break;
+						}
+					case 4:
+						if (!flags.hybridhaxor) {flags.hybridhaxor = 1; flags.hybridization++; break;
+						}
+					case 5:
+						if (!flags.hybridhomicider) {flags.hybridhomicider = 1; flags.hybridization++; break;
+						}
+					case 6:
+						if (!flags.hybridsuxxor) {flags.hybridsuxxor = 1; flags.hybridization++; break;
+						}
+					case 7:
+						if (!flags.hybridwarper) {flags.hybridwarper = 1; flags.hybridization++; break;
+						}
+	
+				}
+			}
+
+		    }
+
 		return i;
+
+		}
 	    else
 		races_ok--;
 	}
     }
+
     return ROLE_NONE;
 }
 

@@ -377,6 +377,8 @@ struct toptenentry *tt;
                 SEP "align=%s",
                 tt->plrole, tt->plrace, tt->plgend, tt->plalign);
    
+  (void)fprintf(rfile, SEP "hybrid=%s", hybrid_strcode());
+
    munge_xlstring(buf, plname, DTHSZ + 1);
   (void)fprintf(rfile, SEP "name=%s", buf);
 

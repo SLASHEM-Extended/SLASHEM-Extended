@@ -951,7 +951,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 			/* angband has the infamous "it breathes" deaths --Amy */
 
-			if (Race_if(PM_ANGBANDER) && rn2(2) && (rnd( (int)mattk->damn * 10) > u.uhp )) {
+			if (isangbander && rn2(2) && (rnd( (int)mattk->damn * 10) > u.uhp )) {
 
 			pline("It breathes");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -964,7 +964,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			return(0);
 			}
 
-			if (Race_if(PM_ANGBANDER) && rn2(2) && (rnd( (int)mattk->damd * 10) > u.uhp )) {
+			if (isangbander && rn2(2) && (rnd( (int)mattk->damd * 10) > u.uhp )) {
 
 			pline("It breathes");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

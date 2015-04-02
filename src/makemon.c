@@ -251,11 +251,11 @@ register struct monst *mtmp;
 
 	if (!rn2(60)) (void) mongets(mtmp, SCR_HEALING);
 
-	if (!rn2(Race_if(PM_HAXOR) ? 200 : 400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-	if (!rn2(Race_if(PM_HAXOR) ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-	if (!rn2(Race_if(PM_HAXOR) ? 200 : 400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
-	if (!rn2(Race_if(PM_HAXOR) ? 1000 : 2000)) {
+	if (!rn2(ishaxor ? 1000 : 2000)) {
 	struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
 	otmpX->spe = 0;
 	otmpX->quan = 1;
@@ -266,7 +266,7 @@ register struct monst *mtmp;
 	(void) mpickobj(mtmp,otmpX);
 	}
 
-	if (!rn2(Race_if(PM_HAXOR) ? 250 : 500)) {
+	if (!rn2(ishaxor ? 250 : 500)) {
 
 	struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
 
@@ -314,7 +314,7 @@ register struct monst *mtmp;
 		if (rn2(2)) (void)mongets(mtmp, (mm != PM_ETTIN) ?
 				    BOULDER : CLUB);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -323,7 +323,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -410,7 +410,7 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  	m_initthrow(mtmp, BULLET, 30);
 
-				if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+				if (!rn2(ishaxor ? 10 : 20) ) {
 	
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
@@ -419,7 +419,7 @@ register struct monst *mtmp;
 				(void) mpickobj(mtmp, otmp);
 				}
 	
-				if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+				if (!rn2(ishaxor ? 50 : 100) ) {
 	
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
@@ -441,7 +441,7 @@ register struct monst *mtmp;
 			  	(void) mongets(mtmp, POT_SPEED);
 			  	(void) mongets(mtmp, WAN_CREATE_HORDE);
 
-				if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+				if (!rn2(ishaxor ? 10 : 20) ) {
 	
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
@@ -450,7 +450,7 @@ register struct monst *mtmp;
 				(void) mpickobj(mtmp, otmp);
 				}
 	
-				if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+				if (!rn2(ishaxor ? 50 : 100) ) {
 	
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
@@ -657,7 +657,7 @@ register struct monst *mtmp;
 				|| mm == PM_EVASIVE_SNIPER || mm == PM_EVASIVE_RIOT_BREAKER || mm == PM_EVASIVE_TANK_BREAKER
 		) {
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -666,7 +666,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -907,7 +907,7 @@ register struct monst *mtmp;
 		    if (w2) (void)mongets(mtmp, w2);
 		} else if (is_elf(ptr)) {
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -916,7 +916,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -975,7 +975,7 @@ register struct monst *mtmp;
 		} else /* enemy characters! */ /* They will always get stuff now. --Amy */
 		 if ((mm >= PM_ARCHEOLOGIST && mm <= PM_WIZARD /*&& rn2(4)*/) || (mm >= PM_UNDEAD_ARCHEOLOGIST && mm <= PM_UNDEAD_WIZARD) ) { 
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 25 : 50)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 25 : 50)) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -984,7 +984,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 25 : 50)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 25 : 50)) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -993,7 +993,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 50 : 100)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 50 : 100)) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -1002,7 +1002,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 125 : 250)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 125 : 250)) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -1011,7 +1011,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 250 : 500)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 250 : 500)) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -1020,7 +1020,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (mtmp->m_lev > rnd(Race_if(PM_HAXOR) ? 500 : 1000)) {
+			if (mtmp->m_lev > rnd(ishaxor ? 500 : 1000)) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -2994,7 +2994,7 @@ register struct monst *mtmp;
 		else if (ptr->msound == MS_PRIEST ||
 			quest_mon_represents_role(ptr,PM_PRIEST)) {
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3003,7 +3003,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3024,7 +3024,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SCIMITAR);
 			(void)mongets(mtmp, LEATHER_ARMOR);
 			(void)mongets(mtmp, HIGH_BOOTS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3033,7 +3033,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3053,7 +3053,7 @@ register struct monst *mtmp;
 		    otmp->spe = max(otmp->spe, spe2);
 		    (void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3062,7 +3062,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3076,7 +3076,7 @@ register struct monst *mtmp;
 
 			(void)mongets(mtmp, ELVEN_SPEAR);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3085,7 +3085,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3101,7 +3101,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SPEED_BOOTS);
 			(void)mongets(mtmp, WAN_BANISHMENT);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3110,7 +3110,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3124,7 +3124,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void)mongets(mtmp, DANCING_SHOES);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3133,7 +3133,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3147,7 +3147,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void)mongets(mtmp, PLASTEEL_BOOTS);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3156,7 +3156,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3170,7 +3170,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void)mongets(mtmp, FEMININE_PUMPS);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3179,7 +3179,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3193,7 +3193,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void)mongets(mtmp, ELVEN_BOOTS);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3202,7 +3202,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3216,7 +3216,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, STYGIAN_PIKE);
 			(void)mongets(mtmp, STONE_DRAGON_SCALE_MAIL);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3225,7 +3225,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3244,7 +3244,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3267,7 +3267,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3322,7 +3322,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3344,7 +3344,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3430,7 +3430,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_DANCING_GUY){
 			(void)mongets(mtmp, DANCING_SHOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3439,7 +3439,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3450,7 +3450,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_DANCING_GIRL){
 			(void)mongets(mtmp, DANCING_SHOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3459,7 +3459,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3471,7 +3471,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_DANCING_KING){
 			(void)mongets(mtmp, LACQUERED_DANCING_SHOE);
 			(void)mongets(mtmp, DANCING_SHOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3480,7 +3480,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3492,7 +3492,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_DANCING_QUEEN){
 			(void)mongets(mtmp, LACQUERED_DANCING_SHOE);
 			(void)mongets(mtmp, DANCING_SHOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3501,7 +3501,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3512,7 +3512,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_ASIAN_GIRL){
 			(void)mongets(mtmp, HUGGING_BOOT);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3521,7 +3521,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3532,7 +3532,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_ESTRELLA_GIRL){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3541,7 +3541,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3552,7 +3552,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_DARK_GIRL){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3561,7 +3561,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3573,7 +3573,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_DARK_WOMAN){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void)mongets(mtmp, DANCING_SHOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3582,7 +3582,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3594,7 +3594,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_DARK_LADY){
 			(void)mongets(mtmp, LACQUERED_DANCING_SHOE);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3603,7 +3603,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3615,7 +3615,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_REDGUARD_GIRL){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3624,7 +3624,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3637,7 +3637,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, WEDGE_SANDALS);
 			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3646,7 +3646,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3659,7 +3659,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS);
 			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3668,7 +3668,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3679,7 +3679,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_THIEVING_GIRL){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3688,7 +3688,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3700,7 +3700,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_THIEVING_WOMAN){
 			(void)mongets(mtmp, LACQUERED_DANCING_SHOE);
 			(void)mongets(mtmp, SOFT_SNEAKERS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3709,7 +3709,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3721,7 +3721,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_THIEVING_LADY){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3730,7 +3730,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3742,7 +3742,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_KICKBOXING_GIRL){
 			(void)mongets(mtmp, SOFT_SNEAKERS);
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3751,7 +3751,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3763,7 +3763,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_KICKBOXING_LADY){
 			(void)mongets(mtmp, SOFT_SNEAKERS);
 			(void)mongets(mtmp, WOODEN_GETA);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3772,7 +3772,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3784,7 +3784,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ELONA_GIRL){
 			(void)mongets(mtmp, SOFT_SNEAKERS);
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3793,7 +3793,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3805,7 +3805,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ELONA_LADY){
 			(void)mongets(mtmp, SOFT_SNEAKERS);
 			(void)mongets(mtmp, WOODEN_GETA);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3814,7 +3814,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3825,7 +3825,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_ESTRELLARINA){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3834,7 +3834,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3846,7 +3846,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_PROSTITUTE){
 			(void)mongets(mtmp, BULLWHIP);
 			(void)mongets(mtmp, HIPPIE_HEELS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3855,7 +3855,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3870,7 +3870,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SUBMACHINE_GUN);
 		  	m_initthrow(mtmp, BULLET, 50);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3879,7 +3879,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3894,7 +3894,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, ASSAULT_RIFLE);
 		  	m_initthrow(mtmp, BULLET, 50);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3903,7 +3903,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3915,7 +3915,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_THICK_PROSTITUTE){
 			(void)mongets(mtmp, BULLWHIP);
 			(void)mongets(mtmp, HIPPIE_HEELS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3924,7 +3924,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3937,7 +3937,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, FLY_SWATTER);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3946,7 +3946,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3959,7 +3959,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, FLY_SWATTER);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3968,7 +3968,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -3981,7 +3981,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, FLY_SWATTER);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -3990,7 +3990,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4003,7 +4003,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, KNIFE);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, ROBE);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4012,7 +4012,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4025,7 +4025,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, KNIFE);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, ROBE);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4034,7 +4034,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4047,7 +4047,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, KNIFE);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, ROBE);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4056,7 +4056,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4069,7 +4069,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, KNIFE);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 			(void)mongets(mtmp, ROBE);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4078,7 +4078,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4093,7 +4093,7 @@ register struct monst *mtmp;
 		  	m_initthrow(mtmp, BULLET, 50);
 			(void)mongets(mtmp, FEMININE_PUMPS);
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4102,7 +4102,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4113,7 +4113,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_STUDENT_ASSISTANT){
 			(void)mongets(mtmp, HIPPIE_HEELS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4122,7 +4122,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4138,7 +4138,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SCR_CREATE_MONSTER);
 			(void)mongets(mtmp, WAN_CREATE_HORDE);
 			(void)mongets(mtmp, WAN_SUMMON_UNDEAD);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4147,7 +4147,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4158,7 +4158,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_HIPPIE_LADY){
 			(void)mongets(mtmp, HIPPIE_HEELS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4167,7 +4167,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4178,7 +4178,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_HIPPIE_GUY){
 			(void)mongets(mtmp, HIPPIE_HEELS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4187,7 +4187,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4199,7 +4199,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_SWEET_WOMAN){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4208,7 +4208,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4220,7 +4220,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_PETTY_SWEET_WOMAN){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4229,7 +4229,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4240,7 +4240,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_LITTLE_GIRL){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4249,7 +4249,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4260,7 +4260,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_LITTLE_BOY){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4269,7 +4269,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4281,7 +4281,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ASIAN_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4290,7 +4290,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4302,7 +4302,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ASIAN_LADY){
 			(void)mongets(mtmp, WOODEN_GETA);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4311,7 +4311,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4323,7 +4323,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_YOUNG_ADULT_GIRL){
 			(void)mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 			(void)mongets(mtmp, WEDGE_SANDALS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4332,7 +4332,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4344,7 +4344,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_YOUNG_ADULT_BOY){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void)mongets(mtmp, WEDGE_SANDALS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4353,7 +4353,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4365,7 +4365,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_YOUNG_WOMAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
 			(void)mongets(mtmp, FEMININE_PUMPS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4374,7 +4374,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4386,7 +4386,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_YOUNG_MAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
 			(void)mongets(mtmp, WEDGE_SANDALS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4395,7 +4395,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4407,7 +4407,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ADULT_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4416,7 +4416,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4428,7 +4428,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_ADULT_GENTLEMAN){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4437,7 +4437,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4449,7 +4449,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_OLD_GRANNY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4458,7 +4458,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4470,7 +4470,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_OLD_GRANDPA){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4479,7 +4479,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4490,7 +4490,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_CHARMING_SCRATCHER){
 			(void)mongets(mtmp, FEMININE_PUMPS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4499,7 +4499,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4510,7 +4510,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_NICE_OLD_LADY){
 			(void)mongets(mtmp, FEMININE_PUMPS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4519,7 +4519,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4530,7 +4530,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_KUNG_FU_GIRL){
 			(void)mongets(mtmp, WEDGE_SANDALS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4539,7 +4539,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4550,7 +4550,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_NINJA_GIRL){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4559,7 +4559,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4570,7 +4570,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_NINJA_BOY){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4579,7 +4579,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4591,7 +4591,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_TAEKWONDO_GIRL){
 			(void)mongets(mtmp, WOODEN_GETA);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4600,7 +4600,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4612,7 +4612,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_BLACKBELT){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4621,7 +4621,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4632,7 +4632,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_KUNG_FU_GUY){
 			(void)mongets(mtmp, WEDGE_SANDALS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4641,7 +4641,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4652,7 +4652,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_FLYING_GIRL){
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4661,7 +4661,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4672,7 +4672,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_FLYING_GUY){
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4681,7 +4681,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4698,7 +4698,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4707,7 +4707,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4726,7 +4726,7 @@ register struct monst *mtmp;
 
 			if (!rn2(5)) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4735,7 +4735,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4754,7 +4754,7 @@ register struct monst *mtmp;
 			otmp->owt = weight(otmp);
 			(void) mpickobj(mtmp, otmp);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4763,7 +4763,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4774,7 +4774,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_MAYOR_CUMMERBUND){
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4783,7 +4783,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4821,7 +4821,7 @@ register struct monst *mtmp;
 #ifdef CONVICT
 		else if (mm == PM_MINER) {
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4830,7 +4830,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4873,7 +4873,7 @@ register struct monst *mtmp;
 		case S_GHOST:
 		if(mm == PM_BLACKBEARD_S_GHOST){
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4882,7 +4882,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4918,7 +4918,7 @@ register struct monst *mtmp;
 		    }
 		} else if (mm == PM_IMELDA_S_GHOST) {
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4927,7 +4927,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -4950,7 +4950,7 @@ register struct monst *mtmp;
 	    case S_ANGEL:
 		{
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -4959,7 +4959,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5020,7 +5020,7 @@ register struct monst *mtmp;
 
 	    case S_IMP:
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5029,7 +5029,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5172,7 +5172,7 @@ register struct monst *mtmp;
 
 			if(ptr == &mons[PM_RADIOACTIVE_GNOLL]) (void) mongets(mtmp, POT_RADIUM);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5181,7 +5181,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5249,7 +5249,7 @@ register struct monst *mtmp;
 		break;
 	    case S_HUMANOID:
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5258,7 +5258,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5373,7 +5373,7 @@ register struct monst *mtmp;
           /* Mind flayers get robes */
           case PM_MIND_FLAYER:
             if (!rn2(2)) (void)mongets(mtmp, ROBE);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5382,7 +5382,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5395,7 +5395,7 @@ register struct monst *mtmp;
             break;
           case PM_GITHYANKI_PIRATE:
             (void)mongets(mtmp, SCIMITAR);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5404,7 +5404,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5418,7 +5418,7 @@ register struct monst *mtmp;
           case PM_ANUBITE:
             (void)mongets(mtmp, TRIDENT);
             (void)mongets(mtmp, RING_MAIL);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5427,7 +5427,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5440,7 +5440,7 @@ register struct monst *mtmp;
             break;
           case PM_MASTER_MIND_FLAYER:
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5449,7 +5449,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5482,7 +5482,7 @@ register struct monst *mtmp;
 		if (!rn2(4)) m_initthrow(mtmp, CREAM_PIE, 2);
 		if (!rn2(3)) (void)mongets(mtmp,(rn2(2)) ? CLUB : RUBBER_HOSE);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5491,7 +5491,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5507,7 +5507,7 @@ register struct monst *mtmp;
 
 		if (ptr == &mons[PM_DEPRAVED_ORC]) (void) mongets(mtmp, WAN_CANCELLATION);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5516,7 +5516,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5577,7 +5577,7 @@ register struct monst *mtmp;
 		break;
 	    case S_OGRE:
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5586,7 +5586,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5611,7 +5611,7 @@ register struct monst *mtmp;
 			if(ptr == &mons[PM_KOBOLD_DIGGER]) (void) mongets(mtmp, WAN_DIGGING);
 			if(ptr == &mons[PM_KOBOLD_ALCHEMIST]) (void) mongets(mtmp, POT_CYANIDE);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5620,7 +5620,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5641,7 +5641,7 @@ register struct monst *mtmp;
 
 	    case S_CENTAUR:
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5650,7 +5650,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5681,7 +5681,7 @@ register struct monst *mtmp;
 	    case S_WRAITH:
 		(void)mongets(mtmp, KNIFE);
 		(void)mongets(mtmp, LONG_SWORD);
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5690,7 +5690,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5724,7 +5724,7 @@ register struct monst *mtmp;
 
 		if(ptr == &mons[PM_POLICE_OFFICER]) (void) mongets(mtmp, SCR_FIRE);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5733,7 +5733,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5770,7 +5770,7 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_WAR_TROLL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_TROLL_GIANT]) (void) mongets(mtmp, ROTATING_CHAIN);
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5779,7 +5779,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -5818,7 +5818,7 @@ register struct monst *mtmp;
 
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 10 : 20) ) {
+			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 				      TRUE, FALSE);
@@ -5827,7 +5827,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
-			if (!rn2(Race_if(PM_HAXOR) ? 50 : 100) ) {
+			if (!rn2(ishaxor ? 50 : 100) ) {
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
@@ -6091,7 +6091,7 @@ register struct	monst	*mtmp;
 					     CLOAK_OF_MAGIC_RESISTANCE);
 		}
 		if (mtmp->data == &mons[PM_WIZARD_OF_YENDOR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-		if (Race_if(PM_HAXOR) && mtmp->data == &mons[PM_WIZARD_OF_YENDOR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (ishaxor && mtmp->data == &mons[PM_WIZARD_OF_YENDOR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 		break;
 
@@ -6325,7 +6325,7 @@ register struct	monst	*mtmp;
 	        (void) mongets(mtmp, WOODEN_FLUTE);
 		}
 		if (mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-		if (Race_if(PM_HAXOR) && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if(!rn2(2)) (void) mongets(mtmp, MIRROR);
 		if(!rn2(/*2*/10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
 		if (ptr == &mons[PM_NYMPH_QUEEN]) {
@@ -6378,7 +6378,7 @@ register struct	monst	*mtmp;
 
           case S_RODENT:
 		if (mtmp->data == &mons[PM_THE_RAT_KING]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-		if (Race_if(PM_HAXOR) && mtmp->data == &mons[PM_THE_RAT_KING]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (ishaxor && mtmp->data == &mons[PM_THE_RAT_KING]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 		if (mtmp->data == &mons[PM_QUILL_RAT]) m_initthrow(mtmp, DART, 3);
 		if (mtmp->data == &mons[PM_PRICK_RAT]) m_initthrow(mtmp, DART, 3);
@@ -6592,7 +6592,7 @@ register struct	monst	*mtmp;
 	    case S_LICH:
 
 		if (ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-		if (Race_if(PM_HAXOR) && ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (ishaxor && ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_ORE_LICH]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
 
 		if (ptr == &mons[PM_MASTER_LICH] && !rn2(13))
@@ -6750,7 +6750,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_DEMOGORGON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_CTHULHU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (mtmp->data == &mons[PM_BAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_ZUGGTMOY]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_BAPHOMET]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -8895,7 +8895,7 @@ struct monst *mtmp, *victim;
 	mtmp->m_enmax += max_increase;
 	mtmp->m_en += cur_increase;
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 	mtmp->mhpmax += max_increase;
 	mtmp->mhp += cur_increase;
 

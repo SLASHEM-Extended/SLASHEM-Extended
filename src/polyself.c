@@ -644,7 +644,7 @@ int	mntmp;
 	u.mtimedone = u.mtimedone * 2;
 	}
 
-	if (Race_if(PM_HAXOR)) u.mtimedone *= 2;
+	if (ishaxor) u.mtimedone *= 2;
 	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
 
 

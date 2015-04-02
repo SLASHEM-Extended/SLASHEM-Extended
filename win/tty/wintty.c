@@ -411,7 +411,186 @@ give_up:	/* Quit */
 			}
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
+		if (yn("Use hybrid races?") == 'y') {
+			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
+
+			    if (!rn2(10)) {
+
+				switch (rnd(7)) {
+
+					case 1:
+						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
+						}
+						break;
+					case 2:
+						if (!Race_if(PM_AQUATIC_MONSTER)) {flags.hybridaquarian = 1; flags.hybridization++;
+						}
+						break;
+					case 3:
+						if (!Race_if(PM_CURSER)) {flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+					case 4:
+						if (!Race_if(PM_HAXOR)) {flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+					case 5:
+						if (!Race_if(PM_HOMICIDER)) {flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+					case 6:
+						if (!Race_if(PM_SUXXOR)) {flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+					case 7:
+						if (!Race_if(PM_WARPER)) {flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+
+				}
+
+				while ((rnd(7)) < 3) {
+
+					switch (rnd(7)) {
+	
+						case 1:
+							if (!flags.hybridangbander && !Race_if(PM_ANGBANDER)) {
+								flags.hybridangbander = 1; flags.hybridization++; break;
+							}
+						case 2:
+							if (!flags.hybridaquarian && !Race_if(PM_AQUATIC_MONSTER)) {
+								flags.hybridaquarian = 1; flags.hybridization++; break;
+							}
+						case 3:
+							if (!flags.hybridcurser && !Race_if(PM_CURSER)) {
+								flags.hybridcurser = 1; flags.hybridization++; break;
+							}
+						case 4:
+							if (!flags.hybridhaxor && !Race_if(PM_HAXOR)) {
+								flags.hybridhaxor = 1; flags.hybridization++; break;
+							}
+						case 5:
+							if (!flags.hybridhomicider && !Race_if(PM_HOMICIDER)) {
+								flags.hybridhomicider = 1; flags.hybridization++; break;
+							}
+						case 6:
+							if (!flags.hybridsuxxor && !Race_if(PM_SUXXOR)) {
+								flags.hybridsuxxor = 1; flags.hybridization++; break;
+							}
+						case 7:
+							if (!flags.hybridwarper && !Race_if(PM_WARPER)) {
+								flags.hybridwarper = 1; flags.hybridization++; break;
+							}
+	
+					}
+				}
+
+			    }
+
+			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
+
+				switch (rnd(7)) {
+
+					case 1:
+						if (!Race_if(PM_ANGBANDER)) {
+						flags.hybridangbander = 1; flags.hybridization++;
+						}
+						break;
+					case 2:
+						if (!Race_if(PM_AQUATIC_MONSTER)) {
+						flags.hybridaquarian = 1; flags.hybridization++;
+						}
+						break;
+					case 3:
+						if (!Race_if(PM_CURSER)) {
+						flags.hybridcurser = 1; flags.hybridization++;
+						}
+						break;
+					case 4:
+						if (!Race_if(PM_HAXOR)) {
+						flags.hybridhaxor = 1; flags.hybridization++;
+						}
+						break;
+					case 5:
+						if (!Race_if(PM_HOMICIDER)) {
+						flags.hybridhomicider = 1; flags.hybridization++;
+						}
+						break;
+					case 6:
+						if (!Race_if(PM_SUXXOR)) {
+						flags.hybridsuxxor = 1; flags.hybridization++;
+						}
+						break;
+					case 7:
+						if (!Race_if(PM_WARPER)) {
+						flags.hybridwarper = 1; flags.hybridization++;
+						}
+						break;
+
+				}
+
+				while ((rnd(7)) < 3) {
+
+					switch (rnd(7)) {
+	
+						case 1:
+							if (!flags.hybridangbander && !Race_if(PM_ANGBANDER)) {
+								flags.hybridangbander = 1; flags.hybridization++; break;
+							}
+						case 2:
+							if (!flags.hybridaquarian && !Race_if(PM_AQUATIC_MONSTER)) {
+								flags.hybridaquarian = 1; flags.hybridization++; break;
+							}
+						case 3:
+							if (!flags.hybridcurser && !Race_if(PM_CURSER)) {
+								flags.hybridcurser = 1; flags.hybridization++; break;
+							}
+						case 4:
+							if (!flags.hybridhaxor && !Race_if(PM_HAXOR)) {
+								flags.hybridhaxor = 1; flags.hybridization++; break;
+							}
+						case 5:
+							if (!flags.hybridhomicider && !Race_if(PM_HOMICIDER)) {
+								flags.hybridhomicider = 1; flags.hybridization++; break;
+							}
+						case 6:
+							if (!flags.hybridsuxxor && !Race_if(PM_SUXXOR)) {
+								flags.hybridsuxxor = 1; flags.hybridization++; break;
+							}
+						case 7:
+							if (!flags.hybridwarper && !Race_if(PM_WARPER)) {
+								flags.hybridwarper = 1; flags.hybridization++; break;
+							}
+	
+					}
+				}
+
+			} else {
+				if (!Race_if(PM_ANGBANDER)) {if (yn("Add the angbander hybrid race to your character?") == 'y')
+					{flags.hybridangbander = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_AQUATIC_MONSTER)) {if (yn("Add the aquarian hybrid race to your character?") == 'y')
+					{flags.hybridaquarian = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_CURSER)) {if (yn("Add the curser hybrid race to your character?") == 'y')
+					{flags.hybridcurser = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_HAXOR)) {if (yn("Add the haxor hybrid race to your character?") == 'y')
+					{flags.hybridhaxor = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_HOMICIDER)) {if (yn("Add the homicider hybrid race to your character?") == 'y')
+					{flags.hybridhomicider = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_SUXXOR)) {if (yn("Add the suxxor hybrid race to your character?") == 'y')
+					{flags.hybridsuxxor = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_WARPER)) {if (yn("Add the warper hybrid race to your character?") == 'y')
+					{flags.hybridwarper = 1; flags.hybridization++;}
+				}
+			}
+		}
 	    }
+
 	    (void)  root_plselection_prompt(plbuf, QBUFSZ - 1,
 			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
 	}

@@ -921,7 +921,7 @@ struct monst *mtmp;
 		       || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		how = WAN_TELEPORTATION;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 mon_tele:
@@ -949,7 +949,7 @@ mon_tele:
 	case MUSE_WAN_TELEPORTATION:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
 		mbhit(mtmp,rn1(8,6),mbhitm,bhito,otmp);
 		/* monster learns that teleportation isn't useful here */
@@ -965,7 +965,7 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_TELEPORTATION;
 		if (obj_is_cursed || mtmp->mconf) {
 			int nlev;
@@ -996,7 +996,7 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_TELE_LEVEL;
 
 			int nlev;
@@ -1027,7 +1027,7 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		if (u.uevent.udemigod) { (void) rloc(mtmp, FALSE); return 2; }
 		u_teleport_monB(mtmp, TRUE);
@@ -1039,7 +1039,7 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_ROOT_PASSWORD_DETECTION;
 
 			int nlev;
@@ -1070,7 +1070,7 @@ mon_tele:
 
 		m_flee(mtmp);
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (oseen) makeknown(WAN_DIGGING);
 		if (IS_FURNITURE(levl[mtmp->mx][mtmp->my].typ) ||
 		    IS_DRAWBRIDGE(levl[mtmp->mx][mtmp->my].typ) ||
@@ -1109,7 +1109,7 @@ mon_tele:
 		int cnt = 1;
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
 		cnt = rnd(4) + 10;
 		while(cnt--) {
@@ -1130,7 +1130,7 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
@@ -1168,7 +1168,7 @@ mon_tele:
 		else if (!objects[SCR_CREATE_MONSTER].oc_name_known
 			&& !objects[SCR_CREATE_MONSTER].oc_uname)
 		    docall(otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
 
@@ -1180,7 +1180,7 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		    switch (rn2(10)+1) {
 		    case 1:
@@ -1268,7 +1268,7 @@ mon_tele:
 		else if (!objects[SCR_SUMMON_UNDEAD].oc_name_known
 			&& !objects[SCR_SUMMON_UNDEAD].oc_uname)
 		    docall(otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
 
@@ -1392,7 +1392,7 @@ mon_tele:
 	/* [Tom] */
 	case MUSE_WAN_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		i = d(5,2) + 5 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -1403,7 +1403,7 @@ mon_tele:
 		return 2;
 	case MUSE_WAN_EXTRA_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		i = d(5,4) + 10 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -1414,7 +1414,7 @@ mon_tele:
 		return 2;
 	case MUSE_WAN_FULL_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		i = d(5,8) + 20 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -1427,7 +1427,7 @@ mon_tele:
 	case MUSE_SCR_HEALING:
 
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		if (!rn2(20)) i = mtmp->mhpmax;
 		else if (!rn2(5)) i = d(8, 8);
@@ -1456,7 +1456,7 @@ mon_tele:
 		}
 		if (vismon) pline("%s looks better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_HEALING);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_EXTRA_HEALING:
 		mquaffmsg(mtmp, otmp);
@@ -1471,7 +1471,7 @@ mon_tele:
 		}
 		if (vismon) pline("%s looks much better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_EXTRA_HEALING);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_FULL_HEALING:
 		mquaffmsg(mtmp, otmp);
@@ -1484,7 +1484,7 @@ mon_tele:
 		}
 		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
 		if (oseen) makeknown(otmp->otyp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_RIN_TIMELY_BACKUP:
 		rinspe = (otmp->spe);
@@ -1503,7 +1503,7 @@ mon_tele:
 		}
 		if (vismon) pline("%s used a backup, and is looking healthy again!", Monnam(mtmp));
 		if (oseen) makeknown(otmp->otyp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe -= 1;
+		if (rn2(2) || !ishaxor) otmp->spe -= 1;
 		return 2;
 	case MUSE_POT_VAMPIRE_BLOOD:
 		mquaffmsg(mtmp, otmp);
@@ -1516,7 +1516,7 @@ mon_tele:
 		else if (vismon)
 		    pline("%s discards the congealed blood in disgust.", Monnam(mtmp));
 		if (oseen) makeknown(POT_VAMPIRE_BLOOD);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_LIZARD_CORPSE:
 		/* not actually called for its unstoning effect */
@@ -2246,7 +2246,7 @@ struct monst *mtmp;
 	case MUSE_WAN_LIGHTNING:
 	case MUSE_WAN_MAGIC_MISSILE:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 /*WAC Handled later
@@ -2277,7 +2277,7 @@ struct monst *mtmp;
 			pline("%s plays a %s!", Monnam(mtmp), xname(otmp));
 		} else
 			You_hear("a horn being played.");
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
 		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
@@ -2295,7 +2295,7 @@ struct monst *mtmp;
 	case MUSE_WAN_CANCELLATION:  /* Lethe */
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
 		mbhit(mtmp,rn1(8,6),mbhitm,bhito,otmp);
 		m_using = FALSE;
@@ -2304,7 +2304,7 @@ struct monst *mtmp;
 	case MUSE_WAN_BANISHMENT:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
 		mbhitm(&youmonst,otmp);
 		m_using = FALSE;
@@ -2341,7 +2341,7 @@ struct monst *mtmp;
 		if (!rn2(128)) makerandomtrap();
 		if (!rn2(256)) makerandomtrap();
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2374,7 +2374,7 @@ struct monst *mtmp;
 			if (!stilldry && !Wwalking && !Flying && !Levitation)
 				drown();
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2402,7 +2402,7 @@ struct monst *mtmp;
 						"Wow, that's, like, TOTALLY HOT, dude!" :
 						"A stream of lava surges through the area!" );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2433,7 +2433,7 @@ struct monst *mtmp;
 						"You hear a grating that reminds you of Chinese water torture!" :
 						"You see dust particles flying around." );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2461,7 +2461,7 @@ struct monst *mtmp;
 						"Uh... everything is so... green!?" :
 						"You see trees growing out of the ground!" );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2489,7 +2489,7 @@ struct monst *mtmp;
 						"Damn, this is giving you the chills!" :
 						"The floor crackles with ice!" );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2500,7 +2500,7 @@ struct monst *mtmp;
 
 		badeffect();
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2528,7 +2528,7 @@ struct monst *mtmp;
 						"Wow! Floating clouds..." :
 						"Foggy clouds appear out of thin air!" );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
@@ -2556,14 +2556,14 @@ struct monst *mtmp;
 						"Aw shit, this feels like being in a jail!" :
 						"Iron bars shoot up from the ground!" );
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
 
 	case MUSE_WAN_TRAP_CREATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		makeknown(otmp->otyp);
 	      You_feel("endangered!!");
 		{
@@ -2600,7 +2600,7 @@ struct monst *mtmp;
 	case MUSE_WAN_BAD_EFFECT:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		badeffect();
 
@@ -2756,7 +2756,7 @@ struct monst *mtmp;
 		}
 	    xxx_noobj:
 
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 
 		return (mtmp->mhp <= 0) ? 1 : 2;
 	    }
@@ -2804,7 +2804,7 @@ struct monst *mtmp;
 			    }
 			}
 		}
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 
 		return 2;
 	      }
@@ -3157,7 +3157,7 @@ skipmsg:
 		}
 		if (vismon) pline("%s seems more experienced.", Monnam(mtmp));
 		if (oseen) makeknown(POT_GAIN_LEVEL);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		if (!grow_up(mtmp,(struct monst *)0)) return 1;
 			/* grew into genocided monster */
 		return 2;
@@ -3165,7 +3165,7 @@ skipmsg:
 	case MUSE_POT_INVISIBILITY:
 		if (otmp->otyp == WAN_MAKE_INVISIBLE) {
 		    mzapmsg(mtmp, otmp, TRUE);
-		    if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		    if (rn2(2) || !ishaxor) otmp->spe--;
 		} else
 		    mquaffmsg(mtmp, otmp);
 		/* format monster's name before altering its visibility */
@@ -3182,7 +3182,7 @@ skipmsg:
 		}
 		if (otmp->otyp == POT_INVISIBILITY) {
 		    if (otmp->cursed) you_aggravate(mtmp);
-		    if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		    if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 			return 2;
 		}
 		if (otmp->otyp == WAN_MAKE_INVISIBLE) {
@@ -3193,7 +3193,7 @@ skipmsg:
 	case MUSE_WAN_SPEED_MONSTER:
 	case MUSE_WAN_HASTE_MONSTER:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 		mon_adjust_speed(mtmp, 1, otmp);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
@@ -3204,11 +3204,11 @@ skipmsg:
 		   player's character becomes "very fast" temporarily;
 		   monster becomes "one stage faster" permanently */
 		mon_adjust_speed(mtmp, 1, otmp);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_WAN_POLYMORPH:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 #if 0
 		(void) newcham(mtmp, muse_newcham_mon(), TRUE, vismon);
 #else
@@ -3219,7 +3219,7 @@ skipmsg:
 		return 2;
 	case MUSE_WAN_CLONE_MONSTER:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !Race_if(PM_HAXOR)) otmp->spe--;
+		if (rn2(2) || !ishaxor) otmp->spe--;
 	    clone_mon(mtmp, 0, 0);
 		if (oseen) makeknown(WAN_CLONE_MONSTER);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -3233,7 +3233,7 @@ skipmsg:
 		(void) mon_poly(mtmp, FALSE, "%s suddenly mutates!");
 #endif
 		if (oseen) makeknown(POT_POLYMORPH);
-		if (rn2(2) || !Race_if(PM_HAXOR)) m_useup(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POLY_TRAP:
 		if (vismon)

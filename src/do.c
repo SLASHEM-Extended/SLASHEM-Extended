@@ -1216,7 +1216,7 @@ boolean at_stairs, falling, portal;
 		mklev();
 		new = TRUE;	/* made the level */
 
-		if (Race_if(PM_ANGBANDER)) { /* level feelings --Amy */
+		if (isangbander) { /* level feelings --Amy */
 
 			if (!rn2(Luck + 16)) {
 				pline("You have a terrible feeling about this level.");
@@ -1795,7 +1795,7 @@ boolean at_stairs, falling, portal;
 
 		/* very rarely, spawn a group of typed monsters --Amy */
 
-		if (!rn2(Race_if(PM_WARPER) ? 60 : 3000)) {
+		if (!rn2(iswarper ? 60 : 3000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -1958,7 +1958,7 @@ boolean at_stairs, falling, portal;
 			}
 		}
 
-		if (!rn2(Race_if(PM_WARPER) ? 60 : 3000)) {
+		if (!rn2(iswarper ? 60 : 3000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -1978,7 +1978,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (!rn2(Race_if(PM_WARPER) ? 60 : 3000)) {
+		if (!rn2(iswarper ? 60 : 3000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2012,17 +2012,17 @@ boolean at_stairs, falling, portal;
 		if (on_level(&u.uz, &valley_level))
 			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
 
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &earth_level))
+		if (ishaxor && on_level(&u.uz, &earth_level))
 			create_umplayers(rn1(2, 1), TRUE);
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &water_level))
+		if (ishaxor && on_level(&u.uz, &water_level))
 			create_umplayers(rn1(2, 1), TRUE);
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &air_level))
+		if (ishaxor && on_level(&u.uz, &air_level))
 			create_umplayers(rn1(2, 1), TRUE);
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &fire_level))
+		if (ishaxor && on_level(&u.uz, &fire_level))
 			create_umplayers(rn1(2, 1), TRUE);
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &sanctum_level))
+		if (ishaxor && on_level(&u.uz, &sanctum_level))
 			create_umplayers(rn1(2, 1), TRUE);
-		if (Race_if(PM_HAXOR) && on_level(&u.uz, &valley_level))
+		if (ishaxor && on_level(&u.uz, &valley_level))
 			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
 
 	} else {
@@ -2331,10 +2331,10 @@ final_level()
 	if (!rn2(5)) create_mplayers(rn1(4, 3), TRUE);
 	if (!rn2(5)) create_umplayers(rn1(2, 1), TRUE);
 
-	if (Race_if(PM_HAXOR)) create_mplayers(rn1(4, 3), TRUE);
-	if (Race_if(PM_HAXOR)) create_umplayers(rn1(2, 1), TRUE);
-	if (Race_if(PM_HAXOR) && !rn2(5)) create_mplayers(rn1(4, 3), TRUE);
-	if (Race_if(PM_HAXOR) && !rn2(5)) create_umplayers(rn1(2, 1), TRUE);
+	if (ishaxor) create_mplayers(rn1(4, 3), TRUE);
+	if (ishaxor) create_umplayers(rn1(2, 1), TRUE);
+	if (ishaxor && !rn2(5)) create_mplayers(rn1(4, 3), TRUE);
+	if (ishaxor && !rn2(5)) create_umplayers(rn1(2, 1), TRUE);
 
 	/* create a guardian angel next to player, if worthy */
 	if (Conflict) {

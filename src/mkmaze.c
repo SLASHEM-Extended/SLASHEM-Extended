@@ -907,13 +907,13 @@ register const char *s;
 	if (depth(&u.uz) > depth(&medusa_level)) {
 	for (x = rn2(3); x; x--) {
 		mazexy(&mm);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	for(x = rn1(5,7); x; x--) {
 		mazexy(&mm);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {
@@ -923,7 +923,7 @@ register const char *s;
 	for(x = rn1(6,7); x; x--)
 		mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 	for(x = rn1(8,16); x; x--) {
 		mazexy(&mm);
 		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
@@ -941,13 +941,13 @@ register const char *s;
 	if (depth(&u.uz) > depth(&medusa_level)) {
 	for (x = rn2(3); x; x--) {
 		mazexy(&mm);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	for(x = rn1(5,7); x; x--) {
 		mazexy(&mm);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {
@@ -963,22 +963,22 @@ register const char *s;
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 
 }
 

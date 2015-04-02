@@ -371,6 +371,42 @@ align_str(alignment)
     return "unknown";
 }
 
+const char *
+hybrid_str()
+{
+    char string[BUFSZ];
+    *string = '\0';
+	if (flags.hybridangbander) Sprintf(eos(string), "angbander ");
+	if (flags.hybridaquarian) Sprintf(eos(string), "aquarian ");
+	if (flags.hybridcurser) Sprintf(eos(string), "curser ");
+	if (flags.hybridhaxor) Sprintf(eos(string), "haxor ");
+	if (flags.hybridhomicider) Sprintf(eos(string), "homicider ");
+	if (flags.hybridsuxxor) Sprintf(eos(string), "suxxor ");
+	if (flags.hybridwarper) Sprintf(eos(string), "warper ");
+
+	if (!flags.hybridangbander && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian) Sprintf(eos(string), "none ");
+
+    return string;
+}
+
+const char *
+hybrid_strcode()
+{
+    char string[BUFSZ];
+    *string = '\0';
+	if (flags.hybridangbander) Sprintf(eos(string), "Agb");
+	if (flags.hybridaquarian) Sprintf(eos(string), "Aqu");
+	if (flags.hybridcurser) Sprintf(eos(string), "Cur");
+	if (flags.hybridhaxor) Sprintf(eos(string), "Hax");
+	if (flags.hybridhomicider) Sprintf(eos(string), "Hom");
+	if (flags.hybridsuxxor) Sprintf(eos(string), "Sux");
+	if (flags.hybridwarper) Sprintf(eos(string), "War");
+
+	if (!flags.hybridangbander && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian) Sprintf(eos(string), "none");
+
+    return string;
+}
+
 void
 mstatusline(mtmp)
 register struct monst *mtmp;

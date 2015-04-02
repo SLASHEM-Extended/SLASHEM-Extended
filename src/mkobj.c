@@ -171,19 +171,19 @@ struct obj *box;
 	box->cobj = (struct obj *) 0;
 
 	switch (box->otyp) {
-	case MEDICAL_KIT:	n = (Race_if(PM_HAXOR) ? 120 : 60);
+	case MEDICAL_KIT:	n = (ishaxor ? 120 : 60);
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
-	case ICE_BOX:		n = (Race_if(PM_HAXOR) ? 40 : 20); break;
-	case CHEST:		n = (Race_if(PM_HAXOR) ? 10 : 5); break;
-	case LARGE_BOX:		n = (Race_if(PM_HAXOR) ? 6 : 3); break;
+	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
+	case CHEST:		n = (ishaxor ? 10 : 5); break;
+	case LARGE_BOX:		n = (ishaxor ? 6 : 3); break;
 	case SACK:
 	case OILSKIN_SACK:
 				/* initial inventory: sack starts out empty */
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
 				/*else FALLTHRU*/
-	case BAG_OF_HOLDING:	n = (Race_if(PM_HAXOR) ? 2 : 1); break;
+	case BAG_OF_HOLDING:	n = (ishaxor ? 2 : 1); break;
 	case BAG_OF_DIGESTION:		/* makes sense, doesn't it ? */
 	default:		n = 0; break;
 	}
@@ -477,11 +477,11 @@ boolean artif;
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(10);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
-		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
+		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -576,11 +576,11 @@ boolean artif;
 		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) &&
 				!rn2(6)) otmp->quan = 2L;
 		else otmp->quan = 1L;
-		if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		if(!rn2(ishaxor ? 4 : 8)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 10)) {
+		} else if(!rn2(ishaxor ? 5 : 10)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -594,7 +594,7 @@ boolean artif;
 			otmp->spe = 1;
 					otmp->age = 20L * /* 400 or 200 */
 					      (long)objects[otmp->otyp].oc_cost;
-					if (Race_if(PM_HAXOR)) otmp->age *= 2;
+					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
 					      (long)(rn2(2) ? rn2(7) : 0);
@@ -602,7 +602,7 @@ boolean artif;
 					break;
 	        case TORCH:	        otmp->spe = 0;
 					otmp->age = (long) rn1(300,600);
-					if (Race_if(PM_HAXOR)) otmp->age *= 2;
+					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = rnd(3);
 					blessorcurse(otmp, 5);
@@ -611,7 +611,7 @@ boolean artif;
 		case OIL_LAMP:
 			otmp->spe = 1;
 					otmp->age = (long) rn1(500,1000);
-					if (Race_if(PM_HAXOR)) otmp->age *= 2;
+					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					blessorcurse(otmp, 5);
 					break;
@@ -636,13 +636,13 @@ boolean artif;
 		case RED_LIGHTSABER:
 			otmp->lamplit = 0;
 			otmp->age = (long) rn1(500,1000);
-			if (Race_if(PM_HAXOR)) otmp->age *= 2;
+			if (ishaxor) otmp->age *= 2;
 
-			if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
+			if(!rn2(ishaxor ? 3 : 6)) {
 				otmp->spe = rne(2);
 				if (rn2(2)) otmp->blessed = rn2(2);
 				 else	blessorcurse(otmp, 3);
-			} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+			} else if(!rn2(ishaxor ? 4 : 8)) {
 				if (rn2(10)) curse(otmp);
 				 else	blessorcurse(otmp, 3);
 				otmp->spe = -rne(2);
@@ -667,11 +667,11 @@ boolean artif;
 #endif
 		case TINNING_KIT:
 		case MAGIC_MARKER:
-			otmp->spe = rnd(Race_if(PM_HAXOR) ? 120 : 100);
+			otmp->spe = rnd(ishaxor ? 120 : 100);
 			blessorcurse(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
-			otmp->spe = rnd(Race_if(PM_HAXOR) ? 70 : 35);
+			otmp->spe = rnd(ishaxor ? 70 : 35);
 					blessorcurse(otmp, 10);
 					break;
 		/* KMH, balance patch -- removed to prevent abuse
@@ -692,7 +692,7 @@ boolean artif;
 			otmp->spe = rnd(30);
 			blessorcurse(otmp, 5);
 					break;
- 		case CHEMISTRY_SET:	otmp->spe = rnd(Race_if(PM_HAXOR) ? 40 : 20);
+ 		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 40 : 20);
  					blessorcurse(otmp,4);
  					break;
 		case FIGURINE:	{	int tryct2 = 0;
@@ -704,7 +704,7 @@ boolean artif;
 					break;
 				}
 		case BELL_OF_OPENING:
-			otmp->spe = (Race_if(PM_HAXOR) ? 6 : 3);
+			otmp->spe = (ishaxor ? 6 : 3);
 					break;
 		case MAGIC_FLUTE:
 		case MAGIC_HARP:
@@ -714,15 +714,15 @@ boolean artif;
 		/* KMH, balance patch -- removed
 		case PAN_PIPE_OF_SUMMONING:
 		case PAN_PIPE_OF_THE_SEWERS: */
-			otmp->spe = rnd(Race_if(PM_HAXOR) ? 30 : 15);
+			otmp->spe = rnd(ishaxor ? 30 : 15);
 			blessorcurse(otmp, 10);
 					break;
 		default: /* all the other tools --Amy */
-		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
+		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -745,11 +745,11 @@ boolean artif;
 		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
-		if(!rn2(Race_if(PM_HAXOR) ? 3 : 6)) {
+		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 4 : 8)) {
+		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
@@ -767,7 +767,7 @@ boolean artif;
 		break;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
-		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(Race_if(PM_HAXOR) ? 10 : 5); 
+		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(ishaxor ? 10 : 5); 
 		blessorcurse(otmp, 17);
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
@@ -781,11 +781,11 @@ boolean artif;
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
 		   otmp->otyp == GAUNTLETS_OF_FUMBLING ||
 		   otmp->otyp == ROBE_OF_WEAKNESS ||
-		   !rn2(Race_if(PM_HAXOR) ? 5 : 11))) {
+		   !rn2(ishaxor ? 5 : 11))) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
-		} else if(!rn2(Race_if(PM_HAXOR) ? 5 : 8)) {
+		} else if(!rn2(ishaxor ? 5 : 8)) {
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = rne(2);
@@ -807,20 +807,20 @@ boolean artif;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case WAND_CLASS:
 		if(otmp->otyp == WAN_WISHING) {                 
-			if (rn2(50)) otmp->spe = rnd(Race_if(PM_HAXOR) ? 3 : 2);
-			else otmp->spe = rnd(Race_if(PM_HAXOR) ? 4 : 3); /* if you get really lucky... --Amy */
+			if (rn2(50)) otmp->spe = rnd(ishaxor ? 3 : 2);
+			else otmp->spe = rnd(ishaxor ? 4 : 3); /* if you get really lucky... --Amy */
 #ifdef INVISIBLE_OBJECTS
 			if (Is_stronghold(&u.uz)) otmp->oinvis = 1;
 #endif
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
 		} else if(otmp->otyp == WAN_ACQUIREMENT) {                 
-			if (rn2(20)) otmp->spe = rnd(Race_if(PM_HAXOR) ? 6 : 5);
-			else otmp->spe = rnd(Race_if(PM_HAXOR) ? 10 : 8); /* sometimes you may get lucky --Amy */
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 6 : 5);
+			else otmp->spe = rnd(ishaxor ? 10 : 8); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(3)) otmp->recharged = 1;
 
-		} else if (rn2(10) && !Race_if(PM_HAXOR)) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
+		} else if (rn2(10) && !ishaxor) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
 			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 30 : 16); /* low chance for extra charges --Amy */
 		if (rn2(2)) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
 		blessorcurse(otmp, 17);
@@ -875,7 +875,7 @@ boolean artif;
 	}
 
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
-	if (Race_if(PM_CURSER) && rn2(5)) curse(otmp);
+	if (iscurser && rn2(5)) curse(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {

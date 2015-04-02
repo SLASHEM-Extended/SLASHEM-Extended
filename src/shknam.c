@@ -365,7 +365,7 @@ int sx, sy;
 		(void) mkobj_at(atype, sx, sy, TRUE);
 	}
 
-	if (Race_if(PM_HAXOR) && (rn2(100) >= depth(&u.uz)) ) {
+	if (ishaxor && (rn2(100) >= depth(&u.uz)) ) {
 
 	    atype = get_shop_item(shp - shtypes);
 	    if (atype < 0)

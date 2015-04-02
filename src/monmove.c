@@ -224,7 +224,7 @@ boolean digest_meal;
 
 	regenrate = (20 - (mon->m_lev / 3));
 	if (regenrate < 6) regenrate = 6;
-	if (Race_if(PM_HAXOR)) regenrate /= 2;
+	if (ishaxor) regenrate /= 2;
 
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
 	    (moves % /*20*/regenrate == 0 || regenerates(mon->data))) mon->mhp++;
@@ -613,7 +613,7 @@ toofar:
 	   && !Is_blackmarket(&u.uz)
 #endif
 	   ) ||
-	   (!mtmp->mcansee && !rn2(Race_if(PM_WARPER) ? 2 : 4)) || mtmp->mpeaceful) {
+	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 4)) || mtmp->mpeaceful) {
 		/* Possibly cast an undirected spell if not attacking you */
 		/* note that most of the time castmu() will pick a directed
 		   spell and do nothing, so the monster moves normally */

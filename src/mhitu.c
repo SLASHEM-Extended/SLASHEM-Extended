@@ -1282,7 +1282,7 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_MAGC:
-			if (!rn2(Race_if(PM_WARPER) ? 2 : 4)) /* yeah they need to be toned down a lot */{
+			if (!rn2(iswarper ? 2 : 4)) /* yeah they need to be toned down a lot */{
 
 			if (range2) {
 			    if (!blue_on_blue(mtmp))
@@ -4504,7 +4504,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (Antimagic) {
 			You("shudder momentarily...");
 		    } else {
-			You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
+			You(isangbander ? "have died." : "die...");
 			killer_format = KILLED_BY_AN;
 			killer = "gaze of death";
 			done(DIED);
@@ -4640,7 +4640,7 @@ register int n;
 	if (flags.showdmg) {
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
-		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(Race_if(PM_ANGBANDER) ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 
 	}
 #endif

@@ -358,7 +358,7 @@ rndtrap()
 	     case SPEED_TRAP: 
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
 	     case AUTOMATIC_SWITCHER:
-			if (rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+			if (rn2(ishaxor ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
 	     case RMB_LOSS_TRAP:
 			if (!Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) rtrap = ACID_POOL; break;
 	     case DISPLAY_TRAP:
@@ -408,7 +408,7 @@ randomtrap()
 
 		if (rtrap == MENU_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) rtrap = FIRE_TRAP;
 		if (rtrap == SPEED_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) rtrap = ICE_TRAP;
-		if (rtrap == AUTOMATIC_SWITCHER && rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
+		if (rtrap == AUTOMATIC_SWITCHER && rn2(ishaxor ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) rtrap = SHOCK_TRAP;
 
 		if (rtrap == AUTO_DESTRUCT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) rtrap = WATER_POOL;
 		if (rtrap == MEMORY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) rtrap = SCYTHING_BLADE;
@@ -677,28 +677,28 @@ boolean vault;
 
 	/* Allow rooms to be closer together. For warper race characters this will be the case even more often. --Amy */
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 7 : 19) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 13 : 91) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 19 : 464) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 29 : 2209) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
@@ -764,28 +764,28 @@ xchar	rtype, rlit;
 	boolean	vault = FALSE;
 	int	xlim = XLIM, ylim = YLIM;
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 7 : 19) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 13 : 91) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 19 : 464) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % (Race_if(PM_WARPER) ? 29 : 2209) )) {
+	if (!((moves + u.eeveelution) % (iswarper ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
@@ -1845,23 +1845,23 @@ schar ftyp, btyp;
 		if(ftyp != CORR || rn2(100)) {
 			crm->typ = ftyp;
 
-			if(/*nxcor && */!rn2(Race_if(PM_HAXOR) ? 38 : 75))
+			if(/*nxcor && */!rn2(ishaxor ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
-			else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 20 : 40))
+			else if(/*nxcor &&*/ !rn2(ishaxor ? 20 : 40))
 				(void) mkobj_at(0, xx, yy, TRUE);
-			else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 50 : 100)){ 
+			else if(/*nxcor &&*/ !rn2(ishaxor ? 50 : 100)){ 
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(xx, yy, mesg, 0L, MARK);
 			}
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
-		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 150 : 300)) 
+		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300)) 
 				(void) maketrap(xx, yy, rndtrap());
-		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 100 : 200)) {
-				if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
+		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
+				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
 				else makerandomtrap_at(xx, yy);
 				}
-		    else if(/*nxcor &&*/ !rn2(Race_if(PM_HAXOR) ? 10 : 20)) 
+		    else if(/*nxcor &&*/ !rn2(ishaxor ? 10 : 20)) 
 				(void) mkfeature(xx, yy);
 		} else {
 			crm->typ = SCORR;
@@ -2864,22 +2864,22 @@ dlb *fd;
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
 	return TRUE;
 }
@@ -3508,13 +3508,13 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, WET|DRY);
-		    if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
@@ -3533,7 +3533,7 @@ dlb *fd;
 		    (void) maketrap(mm.x, mm.y, trytrap);
 	    }
 
-		if (Race_if(PM_HAXOR)) {
+		if (ishaxor) {
 	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
 		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS,
@@ -3551,13 +3551,13 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
-		if (!Race_if(PM_HOMICIDER)) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, WET|DRY);
-		    if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
@@ -3583,22 +3583,22 @@ dlb *fd;
 	if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	}
 
-	if (Race_if(PM_AQUATIC_MONSTER) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
     return TRUE;
 }

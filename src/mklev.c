@@ -1053,89 +1053,89 @@ makelevel()
 
 
 	    /* courtrooms & barracks */
-	    if(depth(&u.uz) > 4 && (Race_if(PM_HAXOR) ? !rn2(6) : !rn2(12))) mkroom(COURT);
-		else if (depth(&u.uz) > 5 && (Race_if(PM_HAXOR) ? !rn2(4) : !rn2(8))) mkroom(LEPREHALL);
-	    else if(depth(&u.uz) > 14 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(16))) mkroom(GIANTCOURT);
-	    else if(depth(&u.uz) > 10 && (Race_if(PM_HAXOR) ? !rn2(5) : !rn2(10))) mkroom(BARRACKS);
-	else if (u_depth > 3 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(16))) mkroom(HUMANHALL);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TRAPROOM);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	    if(depth(&u.uz) > 4 && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
+		else if (depth(&u.uz) > 5 && (ishaxor ? !rn2(4) : !rn2(8))) mkroom(LEPREHALL);
+	    else if(depth(&u.uz) > 14 && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(GIANTCOURT);
+	    else if(depth(&u.uz) > 10 && (ishaxor ? !rn2(5) : !rn2(10))) mkroom(BARRACKS);
+	else if (u_depth > 3 && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(HUMANHALL);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TRAPROOM);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* hives */
-	    if(depth(&u.uz) > 5 && (Race_if(PM_HAXOR) ? !rn2(6) : !rn2(12))) mkroom(BEEHIVE);
-	else if (u_depth > 8 && (Race_if(PM_HAXOR) ? !rn2(4) : !rn2(8))) mkroom(ANTHOLE);
-	else if (u_depth > 3 && (Race_if(PM_HAXOR) ? !rn2(6) : !rn2(12))) mkroom(NYMPHHALL);
-	else if (u_depth > 2 && (Race_if(PM_HAXOR) ? !rn2(7) : !rn2(13))) mkroom(COINHALL);
-	else if (u_depth > 7 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(16))) mkroom(ARMORY);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(POOLROOM);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	    if(depth(&u.uz) > 5 && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(BEEHIVE);
+	else if (u_depth > 8 && (ishaxor ? !rn2(4) : !rn2(8))) mkroom(ANTHOLE);
+	else if (u_depth > 3 && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(NYMPHHALL);
+	else if (u_depth > 2 && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(COINHALL);
+	else if (u_depth > 7 && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(ARMORY);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(POOLROOM);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 
 	    /* zoos */
-	    if(depth(&u.uz) > 5 && (Race_if(PM_HAXOR) ? !rn2(6) : !rn2(12))) mkroom(ZOO);
+	    if(depth(&u.uz) > 5 && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(ZOO);
 	    /* fungus farms are rare... */
-	    else if (u_depth > 3 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(FUNGUSFARM);
-	    else if(depth(&u.uz) > 9 && (Race_if(PM_HAXOR) ? !rn2(9) : !rn2(18))) mkroom(REALZOO);
-	    else if(depth(&u.uz) > 9 && (Race_if(PM_HAXOR) ? !rn2(10) : !rn2(20))) mkroom(ELEMHALL);
-	    else if(depth(&u.uz) > 12 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(ANGELHALL);
-	    else if(depth(&u.uz) > 2 && (Race_if(PM_HAXOR) ? !rn2(9) : !rn2(17))) mkroom(MIMICHALL);
-	else if (u_depth > 3 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(15))) mkroom(SPIDERHALL);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(STATUEROOM);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	    else if (u_depth > 3 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(FUNGUSFARM);
+	    else if(depth(&u.uz) > 9 && (ishaxor ? !rn2(9) : !rn2(18))) mkroom(REALZOO);
+	    else if(depth(&u.uz) > 9 && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(ELEMHALL);
+	    else if(depth(&u.uz) > 12 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(ANGELHALL);
+	    else if(depth(&u.uz) > 2 && (ishaxor ? !rn2(9) : !rn2(17))) mkroom(MIMICHALL);
+	else if (u_depth > 3 && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(SPIDERHALL);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(STATUEROOM);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* neat rooms */
-	    if(depth(&u.uz) > 1 && (Race_if(PM_HAXOR) ? !rn2(7) : !rn2(13))) mkroom(TEMPLE);
-	    else if(depth(&u.uz) > 4 && (Race_if(PM_HAXOR) ? !rn2(7) : !rn2(14))) mkroom(MORGUE);
-	    else if(depth(&u.uz) > 1 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
-	    else if(depth(&u.uz) > 1 && (Race_if(PM_HAXOR) ? !rn2(4) : !rn2(7))) mkroom(SWAMP);
-        else if (depth(&u.uz) > 10 && (Race_if(PM_HAXOR) ? !rn2(20) : !rn2(40))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
-        else if (depth(&u.uz) > 3 && (Race_if(PM_HAXOR) ? !rn2(10) : !rn2(20))) mkroom(TERRORHALL);
-        else if (depth(&u.uz) > 10 && (Race_if(PM_HAXOR) ? !rn2(12) : !rn2(24))) mkroom(TROLLHALL);
- 	else if(depth(&u.uz) > 10 && (Race_if(PM_HAXOR) ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	    if(depth(&u.uz) > 1 && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(TEMPLE);
+	    else if(depth(&u.uz) > 4 && (ishaxor ? !rn2(7) : !rn2(14))) mkroom(MORGUE);
+	    else if(depth(&u.uz) > 1 && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
+	    else if(depth(&u.uz) > 1 && (ishaxor ? !rn2(4) : !rn2(7))) mkroom(SWAMP);
+        else if (depth(&u.uz) > 10 && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
+        else if (depth(&u.uz) > 3 && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(TERRORHALL);
+        else if (depth(&u.uz) > 10 && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(TROLLHALL);
+ 	else if(depth(&u.uz) > 10 && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* dangerous ones */
-	    if (u_depth > 10 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(COCKNEST);
-	    else if(depth(&u.uz) > 2 && (Race_if(PM_HAXOR) ? !rn2(12) : !rn2(24))) mkroom(DRAGONLAIR);
-	    else if (u_depth > 12 && (Race_if(PM_HAXOR) ? !rn2(15) : !rn2(30))) mkroom(MIGOHIVE);
+	    if (u_depth > 10 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(COCKNEST);
+	    else if(depth(&u.uz) > 2 && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(DRAGONLAIR);
+	    else if (u_depth > 12 && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(MIGOHIVE);
 	    /* [DS] the restriction of lemure pits to Gehennom means they're
 	     *      never going to show up randomly (no random room+corridor
 	     *      levels in Gehennom). Perhaps this should be removed? */
-	    else if (depth(&u.uz) > 5 && (Race_if(PM_HAXOR) ? !rn2(11) : !rn2(22))) mkroom(LEMUREPIT);
-	else if (u_depth > 3 && (Race_if(PM_HAXOR) ? !rn2(12) : !rn2(24))) mkroom(GOLEMHALL);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(GRUEROOM);
-	else if (u_depth > 1 && (Race_if(PM_HAXOR) ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > 1 && ( (Race_if(PM_HAXOR) && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (Race_if(PM_HAXOR) || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	    else if (depth(&u.uz) > 5 && (ishaxor ? !rn2(11) : !rn2(22))) mkroom(LEMUREPIT);
+	else if (u_depth > 3 && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(GOLEMHALL);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(GRUEROOM);
+	else if (u_depth > 1 && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
+	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* Underground rivers */
 	    if ( u_depth > 13 && !rn2(7)) mkrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
 
-		if (Race_if(PM_HAXOR)) {
+		if (ishaxor) {
 	    if ( u_depth > 13 && !rn2(7)) mkrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
 		}
 
-		if (Race_if(PM_AQUATIC_MONSTER)) mkrivers();
+		if (isaquarian) mkrivers();
 
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 
-		if (Race_if(PM_HAXOR)) {
+		if (ishaxor) {
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
 
-		if (Race_if(PM_AQUATIC_MONSTER)) mkrandrivers();
+		if (isaquarian) mkrandrivers();
 
 	/*}*/
 
@@ -1156,21 +1156,21 @@ skip0:
 		   we have to check for monsters on the stairs anyway. */
 		if(u.uhave.amulet || !rn2(3)) {
 		    x = somex(croom); y = somey(croom);
-		    if (!Race_if(PM_HOMICIDER)) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB);
 		    }
-		    if (Race_if(PM_HOMICIDER)) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y);
 		}
-		if(Race_if(PM_HAXOR) && (u.uhave.amulet || !rn2(3)) ) {
+		if(ishaxor && (u.uhave.amulet || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
-		    if (!Race_if(PM_HOMICIDER)) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB);
 		    }
-		    if (Race_if(PM_HOMICIDER)) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y);
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
@@ -1179,7 +1179,7 @@ skip0:
 		while (!rn2(x))
 		    mktrap(0,0,croom,(coord*)0);
 
-		if(Race_if(PM_HAXOR)) {while (!rn2(x))
+		if(ishaxor) {while (!rn2(x))
 		    mktrap(0,0,croom,(coord*)0); }
 
 		if (!goldseen && !rn2(3))
@@ -1189,15 +1189,15 @@ skip0:
 		if (x < 2) x = 2;
 		if(!rn2(x)) mkgrave(croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(x)) mkgrave(croom);
+		if(ishaxor && !rn2(x)) mkgrave(croom);
 
 		if(Is_rogue_level(&u.uz)) goto skip_nonrogue;
 #endif
 		if(!rn2(10)) mkfount(0,croom);
-		if(Race_if(PM_HAXOR) && !rn2(10)) mkfount(0,croom);
+		if(ishaxor && !rn2(10)) mkfount(0,croom);
 
 		if(!rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
-		if(Race_if(PM_HAXOR) && !rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
+		if(ishaxor && !rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 
 #ifdef SINKS
 		if(!rn2(60)) {
@@ -1205,7 +1205,7 @@ skip0:
 		    if(!rn2(3)) mktoilet(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(60)) {
+		if(ishaxor && !rn2(60)) {
 		    mksink(croom);
 		    if(!rn2(3)) mktoilet(croom);
 		}
@@ -1220,7 +1220,7 @@ skip0:
 		    if(!rn2(25)) mkstone(croom);
 		} 
 
-		if(Race_if(PM_HAXOR) && !rn2(50)) {
+		if(ishaxor && !rn2(50)) {
 		    mkstone(croom);
 		    if(!rn2(3)) mkstone(croom);
 		    if(!rn2(6)) mkstone(croom);
@@ -1233,8 +1233,8 @@ skip0:
 		if(!rn2(50)) mkstoneX(rnz(10),croom);
 		if(!rn2(250)) mkstoneX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(50)) mkstoneX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(250)) mkstoneX(rnz(25),croom);
+		if(ishaxor && !rn2(50)) mkstoneX(rnz(10),croom);
+		if(ishaxor && !rn2(250)) mkstoneX(rnz(25),croom);
 
 		if(!rn2(50)) {
 		    mkice(croom);
@@ -1246,7 +1246,7 @@ skip0:
 		    if(!rn2(25)) mkice(croom);
 		} 
 
-		if(Race_if(PM_HAXOR) && !rn2(50)) {
+		if(ishaxor && !rn2(50)) {
 		    mkice(croom);
 		    if(!rn2(3)) mkice(croom);
 		    if(!rn2(6)) mkice(croom);
@@ -1259,8 +1259,8 @@ skip0:
 		if(!rn2(50)) mkiceX(rnz(10),croom);
 		if(!rn2(250)) mkiceX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(50)) mkiceX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(250)) mkiceX(rnz(25),croom);
+		if(ishaxor && !rn2(50)) mkiceX(rnz(10),croom);
+		if(ishaxor && !rn2(250)) mkiceX(rnz(25),croom);
 
 /*		if(!rn2(50)) {
 		    mkdoor(croom);
@@ -1284,7 +1284,7 @@ skip0:
 		    if(!rn2(20)) mktree(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(100)) {
+		if(ishaxor && !rn2(100)) {
 		    mktree(croom);
 		    if(!rn2(2)) mktree(croom);
 		    if(!rn2(4)) mktree(croom);
@@ -1299,8 +1299,8 @@ skip0:
 		if(!rn2(100)) mktreeX(rnz(10),croom);
 		if(!rn2(500)) mktreeX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(100)) mktreeX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(500)) mktreeX(rnz(25),croom);
+		if(ishaxor && !rn2(100)) mktreeX(rnz(10),croom);
+		if(ishaxor && !rn2(500)) mktreeX(rnz(25),croom);
 
 		if(!rn2(200)) {
 		    mkpool(croom);
@@ -1313,7 +1313,7 @@ skip0:
 		    if(!rn2(128)) mkpool(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(200)) {
+		if(ishaxor && !rn2(200)) {
 		    mkpool(croom);
 		    if(!rn2(2)) mkpool(croom);
 		    if(!rn2(4)) mkpool(croom);
@@ -1327,8 +1327,8 @@ skip0:
 		if(!rn2(200)) mkpoolX(rnz(10),croom);
 		if(!rn2(1000)) mkpoolX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(200)) mkpoolX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(1000)) mkpoolX(rnz(25),croom);
+		if(ishaxor && !rn2(200)) mkpoolX(rnz(10),croom);
+		if(ishaxor && !rn2(1000)) mkpoolX(rnz(25),croom);
 
 		if(!rn2(200)) {
 		    mkcloud(croom);
@@ -1341,7 +1341,7 @@ skip0:
 		    if(!rn2(128)) mkcloud(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(200)) {
+		if(ishaxor && !rn2(200)) {
 		    mkcloud(croom);
 		    if(!rn2(2)) mkcloud(croom);
 		    if(!rn2(4)) mkcloud(croom);
@@ -1355,8 +1355,8 @@ skip0:
 		if(!rn2(200)) mkcloudX(rnz(10),croom);
 		if(!rn2(1000)) mkcloudX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(200)) mkcloudX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(1000)) mkcloudX(rnz(25),croom);
+		if(ishaxor && !rn2(200)) mkcloudX(rnz(10),croom);
+		if(ishaxor && !rn2(1000)) mkcloudX(rnz(25),croom);
 
 		if(!rn2(500)) {
 		    mklavapool(croom);
@@ -1369,7 +1369,7 @@ skip0:
 		    if(!rn2(128)) mklavapool(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(500)) {
+		if(ishaxor && !rn2(500)) {
 		    mklavapool(croom);
 		    if(!rn2(2)) mklavapool(croom);
 		    if(!rn2(4)) mklavapool(croom);
@@ -1383,8 +1383,8 @@ skip0:
 		if(!rn2(500)) mklavapoolX(rnz(10),croom);
 		if(!rn2(2500)) mklavapoolX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(500)) mklavapoolX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(2500)) mklavapoolX(rnz(25),croom);
+		if(ishaxor && !rn2(500)) mklavapoolX(rnz(10),croom);
+		if(ishaxor && !rn2(2500)) mklavapoolX(rnz(25),croom);
 
 		if(!rn2(1000)) {
 		    mkironbars(croom);
@@ -1394,7 +1394,7 @@ skip0:
 		    if(!rn2(81)) mkironbars(croom);
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(1000)) {
+		if(ishaxor && !rn2(1000)) {
 		    mkironbars(croom);
 		    if(!rn2(3)) mkironbars(croom);
 		    if(!rn2(9)) mkironbars(croom);
@@ -1405,18 +1405,18 @@ skip0:
 		if(!rn2(1000)) mkironbarsX(rnz(10),croom);
 		if(!rn2(5000)) mkironbarsX(rnz(25),croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(1000)) mkironbarsX(rnz(10),croom);
-		if(Race_if(PM_HAXOR) && !rn2(5000)) mkironbarsX(rnz(25),croom);
+		if(ishaxor && !rn2(1000)) mkironbarsX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkironbarsX(rnz(25),croom);
 
 		x = 80 - (depth(&u.uz) * 2);
 		if (x < 2) x = 2;
 		if(!rn2(x)) mkgrave(croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(x)) mkgrave(croom);
+		if(ishaxor && !rn2(x)) mkgrave(croom);
 
 		if(!rn2(60)) mkaltar(croom);
 
-		if(Race_if(PM_HAXOR) && !rn2(60)) mkaltar(croom);
+		if(ishaxor && !rn2(60)) mkaltar(croom);
 
 		/* put statues inside */
 		if(!rn2(20))
@@ -1463,7 +1463,7 @@ skip0:
 		    }
 		}
 
-		if(Race_if(PM_HAXOR) && !rn2(4)) {
+		if(ishaxor && !rn2(4)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -1501,292 +1501,292 @@ mineralize()
 			(levl[x][y].typ == MOAT && !rn2(30)))
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
 
-		if (!Race_if(PM_HOMICIDER)) {
+		if (!ishomicider) {
 
 		/* Random sea monsters if there is water. --Amy */
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)))
 	    	    makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ))
 	    	    makemon(&mons[PM_HUMAN_WEREPIRANHA], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ))
 	    	    makemon(&mons[PM_HUMAN_WEREEEL], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ))
 	    	    makemon(&mons[PM_HUMAN_WEREKRAKEN], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ))
 	    	    makemon(&mons[PM_SUBMARINE_GOBLIN], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ))
 	    	    makemon(&mons[PM_PUNT], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ))
 	    	    makemon(&mons[PM_SWIMMER_TROLL], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ))
 	    	    makemon(&mons[PM_DIVER_TROLL], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ))
 	    	    makemon(&mons[PM_WATER_TURRET], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ))
 	    	    makemon(&mons[PM_AQUA_TURRET], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
 	    	    makemon(&mons[PM_LUXURY_YACHT], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
 	    	    makemon(&mons[PM_MISTER_SUBMARINE], x, y, NO_MM_FLAGS);
 
 		/* More random monsters on other terrain, too. --Amy */
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 2000 : Race_if(PM_SUXXOR) ? 8000 : 4000) && level_difficulty() > 23 ) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 2000 : (issuxxor && !ishaxor) ? 8000 : 4000) && level_difficulty() > 23 ) )
 	    	    makemon(&mons[PM_HUMAN_WEREFLYFISH], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000) && level_difficulty() > 7 ) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000) && level_difficulty() > 7 ) )
 	    	    makemon(&mons[PM_CONCORDE__], x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == ROOM && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == CORR && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == ICE && !rn2( (Race_if(PM_HAXOR) ? 250 : Race_if(PM_SUXXOR) ? 1000 : 500) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == AIR && !rn2( (Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( (Race_if(PM_HAXOR) ? 200 : Race_if(PM_SUXXOR) ? 800 : 400) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000)) )
+		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
 			makemon(mkclass(S_WALLMONST,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000 )) )
+		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
 			makemon(mkclass(S_TURRET,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == TREE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 			makemon(mkclass(S_BAT,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_SNAKE,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_NYMPH,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_SPIDER,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_RUBMONST,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
 	    	    makemon(courtmon(), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_VORTEX,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_LIGHT,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_TRAPPER,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_ANGEL,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_HUMAN,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makemon(mkclass(S_NEMESE,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
 	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_PUDDING,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_BLOB,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_JELLY,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_FUNGUS,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_GRUE,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_LIZARD,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_PIERCER,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_RODENT,0), x, y, NO_MM_FLAGS);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_WORM,0), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == GRAVE && !rn2(Race_if(PM_HAXOR) ? 5 : Race_if(PM_SUXXOR) ? 20 : 10)) )
+		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
 	    	    makemon(morguemonX(), x, y, NO_MM_FLAGS);
 
-		if ((levl[x][y].typ == ALTAR && !rn2(Race_if(PM_HAXOR) ? 3 : Race_if(PM_SUXXOR) ? 10 : 5)) )
+		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
 		}
 
-		if (Race_if(PM_HOMICIDER)) {	/* idea by deepy - a race for which monsters don't spawn normally */
+		if (ishomicider) {	/* idea by deepy - a race for which monsters don't spawn normally */
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 4 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 9 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) && level_difficulty() > 19 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 17 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 10 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 20 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 12 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 25 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2(Race_if(PM_HAXOR) ? 8000 : Race_if(PM_SUXXOR) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 2000 : Race_if(PM_SUXXOR) ? 8000 : 4000) && level_difficulty() > 23 ) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 2000 : (issuxxor && !ishaxor) ? 8000 : 4000) && level_difficulty() > 23 ) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == LAVAPOOL && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000) && level_difficulty() > 7 ) )
+		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000) && level_difficulty() > 7 ) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ROOM && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CORR && !rn2( (Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ICE && !rn2( (Race_if(PM_HAXOR) ? 250 : Race_if(PM_SUXXOR) ? 1000 : 500) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == AIR && !rn2( (Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( (Race_if(PM_HAXOR) ? 200 : Race_if(PM_SUXXOR) ? 800 : 400) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000)) )
+		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CORR && !rn2(Race_if(PM_HAXOR) ? 1000 : Race_if(PM_SUXXOR) ? 4000 : 2000 )) )
+		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == TREE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
+		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == FOUNTAIN && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
-
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 10 : Race_if(PM_SUXXOR) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 50 : Race_if(PM_SUXXOR) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 500 : Race_if(PM_SUXXOR) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == THRONE && !rn2(Race_if(PM_HAXOR) ? 5000 : Race_if(PM_SUXXOR) ? 20000 : 10000)) )
+		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SINK && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == TOILET && !rn2(Race_if(PM_HAXOR) ? 30 : Race_if(PM_SUXXOR) ? 120 : 60)) )
+		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == GRAVE && !rn2(Race_if(PM_HAXOR) ? 5 : Race_if(PM_SUXXOR) ? 20 : 10)) )
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ALTAR && !rn2(Race_if(PM_HAXOR) ? 3 : Race_if(PM_SUXXOR) ? 10 : 5)) )
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
 			makerandomtrap_at(x, y);
 		}
 
@@ -1817,7 +1817,7 @@ mineralize()
 	    gemprob /= 6;
 	}
 
-	if (Race_if(PM_HAXOR)) {
+	if (ishaxor) {
 
 	goldprob *= 2;
 	gemprob *= 2;
@@ -2201,7 +2201,7 @@ coord *tm;
 		    case SPEED_TRAP: 
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) kind = ICE_TRAP;
 		    case AUTOMATIC_SWITCHER:
-			if (rn2(Race_if(PM_HAXOR) ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) kind = SHOCK_TRAP;
+			if (rn2(ishaxor ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) kind = SHOCK_TRAP;
 
 		    case RMB_LOSS_TRAP:
 			if (!Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) kind = ACID_POOL; break;

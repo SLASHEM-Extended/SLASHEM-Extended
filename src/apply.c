@@ -4162,7 +4162,7 @@ doapply()
 		if (!rn2(20)) {
 		    useup(obj);
 		    pline("Your god-o-meter explodes!");
-			if (!Race_if(PM_HAXOR)) u.ublesscnt += rn2(20);
+			if (!ishaxor) u.ublesscnt += rn2(20);
 			else u.ublesscnt += rn2(10);
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 0;
@@ -4172,7 +4172,7 @@ doapply()
 			pline("Being blind, you cannot see it.");
 		} else if (!obj->blessed) {
 			You("feel uncomfortable.");
-			if (!Race_if(PM_HAXOR)) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
+			if (!ishaxor) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
 			else u.ublesscnt += rn2((obj->cursed) ? 100 : 50);
 		} else {
 			You("see a%s flash from the device.",(u.ublesscnt>0) ? " black" : "n amber");

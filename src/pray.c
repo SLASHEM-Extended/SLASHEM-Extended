@@ -742,7 +742,7 @@ aligntyp resp_god;
 #ifdef NOARTIFACTWISH
 	u.usacrifice = 0;
 #endif
-	u.ublesscnt += rnz(Race_if(PM_HAXOR) ? 150 : 300);
+	u.ublesscnt += rnz(ishaxor ? 150 : 300);
 	return;
 }
 
@@ -1198,12 +1198,12 @@ pleased(g_align)
 	    break;
 	}
 
-	u.ublesscnt = rnz(Race_if(PM_HAXOR) ? 175 : 350);
+	u.ublesscnt = rnz(ishaxor ? 175 : 350);
 	kick_on_butt = u.uevent.udemigod ? 1 : 0;
 #ifdef ELBERETH
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 #endif
-	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(Race_if(PM_HAXOR) ? 500 : 1000);
+	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
 
 	return;
 }
@@ -1739,7 +1739,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 		    You("have a sudden sense of a new direction.");
 		    /* Beware, Conversion is costly */
 		    change_luck(-3);
-		    u.ublesscnt += (Race_if(PM_HAXOR) ? 150 : 300);
+		    u.ublesscnt += (ishaxor ? 150 : 300);
 		    adjalign((int)(u.ualignbase[A_ORIGINAL] * (ALIGNLIM / 2)));
 		} else {
 		    u.ugangr += 3;
@@ -1913,7 +1913,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 		    u.ugifts++;
 		    u.ublesscnt = rnz(300 + (50 * nartifacts));
-			if (Race_if(PM_HAXOR)) u.ublesscnt /= 2;
+			if (ishaxor) u.ublesscnt /= 2;
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
 		    unrestrict_weapon_skill(weapon_type(otmp));
@@ -2116,7 +2116,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     if (p_type == 0) {
 	if(on_altar() && u.ualign.type != alignment)
 	    (void) water_prayer(FALSE);
-	u.ublesscnt += rnz(Race_if(PM_HAXOR) ? 125 : 250);
+	u.ublesscnt += rnz(ishaxor ? 125 : 250);
 	change_luck(-rnd(3)); /* used to always be -3 --Amy */
 	gods_upset(u.ualign.type);
     } else if(p_type == 1) {
@@ -2126,7 +2126,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     } else if(p_type == 2) {
 	if(water_prayer(FALSE)) {
 	    /* attempted water prayer on a non-coaligned altar */
-	    u.ublesscnt += rnz(Race_if(PM_HAXOR) ? 125 : 250);
+	    u.ublesscnt += rnz(ishaxor ? 125 : 250);
 	    change_luck(-3);
 	    gods_upset(u.ualign.type);
 	} else pleased(alignment);

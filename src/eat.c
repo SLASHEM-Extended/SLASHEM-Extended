@@ -434,7 +434,7 @@ register struct obj *food;
 			You("choke over it.");
 			killer = "quick snack";
 		}
-		You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
+		You(isangbander ? "have died." : "die...");
 		done(CHOKING);
 	}
 }
@@ -4353,10 +4353,10 @@ boolean incr;
 				  "You still have the munchies." :
       "The munchies are interfering with your motor capabilities.");
 			else if (incr &&
-				(Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ||
+				(Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || ishaxor || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ||
 				 Role_if(PM_VALKYRIE)))
 			    pline("%s needs food, badly!", (!rn2(10)) ? urace.noun/*urole.name.m*/ :
-				  (Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
+				  (Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Race_if(PM_ASGARDIAN) || ishaxor || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
 				  urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf");
 			else
 			    You((!incr) ? "feel weak now." :

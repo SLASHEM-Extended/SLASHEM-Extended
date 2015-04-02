@@ -906,7 +906,7 @@ badeffect()
 		case 180:
 
 			pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
-			u.ublesscnt += rnz(Race_if(PM_HAXOR) ? 150 : 300);
+			u.ublesscnt += rnz(ishaxor ? 150 : 300);
 
 		break;
 

@@ -4045,7 +4045,7 @@ u_init()
 	u.ulevel = u.ulevelmax = 1;
 
 	init_uhunger();
-	u.ublesscnt = rnz(Race_if(PM_HAXOR) ? 150 : 300);			/* no prayers just yet */
+	u.ublesscnt = rnz(ishaxor ? 150 : 300);			/* no prayers just yet */
 	u.weakcheat = 0;	/* increases if a character wearing a stat lock ring grows weak to prevent them from restoring strength points they didn't lose in the first place --Amy */
 	u.stethocheat = 0;
 
@@ -5449,6 +5449,9 @@ u_init()
 	else genderbounus = rnd(5);
 
 	temp = 30 + rolebounus + racebounus + alignbounus + genderbounus; /* new algorithm --Amy */
+
+	temp -= (flags.hybridization * 3);
+
 	if (temp > maxbounus) temp = maxbounus; /* prevent value from randomly becoming too high */
 	/*temp = rn1(10,70);*/
 	init_attr(temp);		/* init attribute values */

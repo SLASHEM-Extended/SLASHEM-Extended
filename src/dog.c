@@ -680,7 +680,7 @@ long nmv;		/* number of moves */
 	}
 
 	/* recover lost hit points */
-	if (!regenerates(mtmp->data)) imv /= (Race_if(PM_HAXOR) ? 10 : 20);
+	if (!regenerates(mtmp->data)) imv /= (ishaxor ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;

@@ -1728,7 +1728,7 @@ int thrown;
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Race_if(PM_HAXOR) || Hallucination) && !rn2(5)) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5)) {
 
 			switch (rnd(197)) {
 	
@@ -2013,7 +2013,7 @@ int thrown;
 	} else if (destroyed) {
 		if (!already_killed) {
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || Race_if(PM_HAXOR) || Hallucination) && !rn2(5) && !thrown) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
 				switch (rnd(197)) {
 
@@ -2944,7 +2944,7 @@ register struct attack *mattk;
 			You("shudder momentarily...");
 			break;
 		    }
-		    You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
+		    You(isangbander ? "have died." : "die...");
 		    killer_format = KILLED_BY;
 		    killer = "a reflected gaze of death";
 		    done(DIED);
@@ -3315,7 +3315,7 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Race_if(PM_HAXOR) || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
 		switch (rnd(279)) {
 

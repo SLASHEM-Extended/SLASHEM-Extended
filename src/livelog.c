@@ -106,9 +106,10 @@ void livelog_achieve_update() {
 	}
 
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx\n",
 		plname, 
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+		hybrid_strcode(),
 		moves, 
 		achieve_int,
 		achieve_diff);
@@ -123,9 +124,10 @@ livelog_wish(item)
 char *item;
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:wish=%s\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:wish=%s\n",
 		plname,
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+		hybrid_strcode(),
 		moves,
 		item);
 	livelog_write_string(strbuf);
@@ -136,9 +138,10 @@ void
 livelog_avert_death()
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:message=%s\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:message=%s\n",
 		plname,
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+		hybrid_strcode(),
 		moves,
 		"averted death");
 	livelog_write_string(strbuf);
@@ -164,9 +167,10 @@ doshout()
 			*p = ' ';
 
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:shout=%s\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:shout=%s\n",
 		plname,
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+		hybrid_strcode(),
 		moves,
 		buf);
 	livelog_write_string(strbuf);
@@ -187,10 +191,11 @@ struct monst *mtmp;
 		/* $player killed the $bones_monst of $bones_killed the former 
 		 * $bones_rank on $turns on dungeon level $dlev! */ 
 		snprintf(strbuf, STRBUF_LEN, 
-				"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:dlev=%d:" 
+				"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:dlev=%d:" 
 				"bones_killed=%s:bones_rank=%s:bones_monst=%s\n", 
 				plname, 
 				urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+				hybrid_strcode(),
 				moves, 
 				depth(&u.uz), 
 				name, 
@@ -205,9 +210,10 @@ struct monst *mtmp;
 		char *n = noit_mon_nam(mtmp); 
 		/* $player killed a uniq monster */ 
 		snprintf(strbuf, STRBUF_LEN, 
-				"player=%s:role=%s:race=%s:gender=%s:align=%s:turns=%ld:killed_uniq=%s\n", 
+				"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:killed_uniq=%s\n", 
 				plname, 
 				urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+				hybrid_strcode(),
 				moves, 
 				n); 
 		livelog_write_string(strbuf); 

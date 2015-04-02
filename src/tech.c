@@ -2586,7 +2586,7 @@ int tech_no;
         }
         if (!can_limitbreak())
 	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/100);
-		if (Race_if(PM_HAXOR) && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
 	/*By default,  action should take a turn*/
 	return(1);

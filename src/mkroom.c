@@ -379,7 +379,7 @@ struct mkroom *sroom;
 		break;
 	}
 
-	moreorless = (rnd(Race_if(PM_HAXOR) ? 20 : Race_if(PM_SUXXOR) ? 5 : 10) + 1);
+	moreorless = (rnd((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 5 : 10) + 1);
 
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	    for(sy = sroom->ly; sy <= sroom->hy; sy++) {
@@ -474,13 +474,13 @@ struct mkroom *sroom;
 				mmm.y = sy;
 			    (void) tt_mname(&mmm, FALSE, 0);
 				}
-			if(Race_if(PM_HAXOR) && !rn2(5) && (level_difficulty() > 10+rnd(200) )) { /* real player ghosts --Amy */
+			if(ishaxor && !rn2(5) && (level_difficulty() > 10+rnd(200) )) { /* real player ghosts --Amy */
 				coord mmm;
 				mmm.x = sx;   
 				mmm.y = sy;
 			    (void) tt_mname(&mmm, FALSE, 0);
 				}
-			if(!rn2(Race_if(PM_HAXOR) ? 5 : 10))	/* lots of treasure buried with dead */
+			if(!rn2(ishaxor ? 5 : 10))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5))
@@ -516,7 +516,7 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BARRACKS:
-			if(!rn2(Race_if(PM_HAXOR) ? 10 : 20))	/* the payroll and some loot */
+			if(!rn2(ishaxor ? 10 : 20))	/* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
 			if (!rn2(5))
@@ -527,7 +527,7 @@ struct mkroom *sroom;
 			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
 			break;
 		    case GOLEMHALL:
-			if(!rn2(Race_if(PM_HAXOR) ? 10 : 20))
+			if(!rn2(ishaxor ? 10 : 20))
 			    (void) mkobj_at(CHAIN_CLASS, sx, sy, FALSE);
 			break;
 		    case SPIDERHALL:

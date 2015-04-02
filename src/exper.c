@@ -1135,17 +1135,21 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (!incr) You_feel("more experienced.");
 
-	if (!Race_if(PM_HOMICIDER) || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	if (!ishomicider || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
 	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
 
 	num = newhp();
+	num += rnz(2);
+	num -= flags.hybridization;
+	if (num < 0) num = 0;
 	u.uhpmax += num;
 	u.uhp += num;
-	u.uhpmax += rnz(2);
 
 	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
+	    num -= flags.hybridization;
+	    if (num < 0) num = 0;
 	    u.mhmax += num;
 	    u.mh += num;
 		if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.mh < u.mhmax)) u.mh = u.mhmax;
@@ -1157,9 +1161,11 @@ boolean incr;	/* true iff via incremental experience growth */
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
 			urole.enadv.hifix + urace.enadv.hifix);
 	num = enermod(num);	/* M. Stephenson */
+	num += (rn2(3) ? rnz(1) : rnz(2));
+	num -= flags.hybridization;
+	if (num < 0) num = 0;
 	u.uenmax += num;
 	u.uen += num;
-	u.uenmax += (rn2(3) ? rnz(1) : rnz(2));
 	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uen < u.uenmax)) u.uen = u.uenmax;
 
 	} /* homicider check */

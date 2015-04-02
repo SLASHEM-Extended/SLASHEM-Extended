@@ -368,8 +368,20 @@ bot1()
 	Sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
 	Sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
 	Sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
-	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha " :
-			(u.ualign.type == A_NEUTRAL) ? "Neu " : "Law ");
+	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
+			(u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
+
+	/* abbreviate hybridizations since we don't have infinite space on the status line --Amy */
+	if (flags.hybridization) {Sprintf(nb = eos(nb), "+");
+		if (flags.hybridcurser) Sprintf(nb = eos(nb), "C");
+		if (flags.hybridhaxor) Sprintf(nb = eos(nb), "H");
+		if (flags.hybridangbander) Sprintf(nb = eos(nb), "A");
+		if (flags.hybridhomicider) Sprintf(nb = eos(nb), "O");
+		if (flags.hybridsuxxor) Sprintf(nb = eos(nb), "S");
+		/* sorry but I just couldn't resist allowing the "CHAOS" string. :D */
+		if (flags.hybridaquarian) Sprintf(nb = eos(nb), "Q");
+		if (flags.hybridwarper) Sprintf(nb = eos(nb), "W");
+	}
 
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)

@@ -170,12 +170,13 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (monclock < 15) { monclock = 15; }
-			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) monclock /= 2;
+			if (ishaxor) monclock /= 2;
+			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
-			if (Race_if(PM_SUXXOR)) monclock *= 2;
+			if (issuxxor) monclock *= 2;
 
 			/* TODO: adj difficulty in makemon */
-			if (!rn2(monclock) && !Race_if(PM_HOMICIDER) ) {
+			if (!rn2(monclock) && !ishomicider ) {
 				if (u.uevent.udemigod && xupstair && rn2(10)) {
 					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
 				} else {
@@ -183,7 +184,7 @@ moveloop()
 				}
 			}
 
-			if (!rn2(monclock) && Race_if(PM_HOMICIDER) ) makerandomtrap();
+			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
 			xtraclock = 15000;
 			if (u.uevent.udemigod) {
@@ -199,9 +200,10 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 4500) { xtraclock = 4500; }
-			if (Race_if(PM_HAXOR) || Race_if(PM_LICH_WARRIOR) ) xtraclock /= 2;
+			if (ishaxor) xtraclock /= 2;
+			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
-			if (Race_if(PM_SUXXOR)) xtraclock *= 2;
+			if (issuxxor) xtraclock *= 2;
 
 			/* new group spawn system by Amy */
 			if (!rn2(xtraclock) && !rn2(2) ) {
@@ -417,7 +419,7 @@ moveloop()
 
 		    if(!rn2(u.uevent.udemigod ? 125 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340)) {
-			if (!Race_if(PM_HOMICIDER)) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 			else makerandomtrap();
 			}
 
@@ -965,7 +967,7 @@ moveloop()
 			}
 
 		    if(!u.uinvulnerable) {
-			if(Teleportation && (Race_if(PM_HAXOR) ? !rn2(150) : !rn2(250)) ) {
+			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
 				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
@@ -995,7 +997,7 @@ moveloop()
 			if ((change == 1 && !Polymorph) ||
 			    (change == 2 && u.ulycn == NON_PM))
 			    change = 0;
-			if(Polymorph && (Race_if(PM_HAXOR) ? !rn2(500) : !rn2(1000)) )
+			if(Polymorph && (ishaxor ? !rn2(500) : !rn2(1000)) )
 			    change = 1;
 	/* let's allow the moulds to stop sucking so much. Make them polymorph more often. --Amy */
 			else if(Polymorph && !rn2(200) && !Upolyd && (Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD)) )
@@ -1339,6 +1341,7 @@ welcome(new_game)
 boolean new_game;	/* false => restoring an old game */
 {
     char buf[BUFSZ];
+    char xtrabuf[BUFSZ];
     boolean currentgend = Upolyd ? u.mfemale : flags.female;
 
     /*
@@ -1357,17 +1360,26 @@ boolean new_game;	/* false => restoring an old game */
 	     currentgend != flags.initgend))
 	Sprintf(eos(buf), " %s", genders[currentgend].adj);
 
+    *xtrabuf = '\0';
+	if (flags.hybridangbander) Sprintf(eos(xtrabuf), "angbander ");
+	if (flags.hybridaquarian) Sprintf(eos(xtrabuf), "aquarian ");
+	if (flags.hybridcurser) Sprintf(eos(xtrabuf), "curser ");
+	if (flags.hybridhaxor) Sprintf(eos(xtrabuf), "haxor ");
+	if (flags.hybridhomicider) Sprintf(eos(xtrabuf), "homicider ");
+	if (flags.hybridsuxxor) Sprintf(eos(xtrabuf), "suxxor ");
+	if (flags.hybridwarper) Sprintf(eos(xtrabuf), "warper ");
+
 #if 0
-    pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s %s."
+    pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."
 		   : "%s %s, the%s %s %s, welcome back to NetHack!",
-	  Hello((struct monst *) 0), plname, buf, urace.adj,
+	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
 #endif
-    if (new_game) pline("%s %s, welcome to %s!  You are a%s %s %s.",
-	  Hello((struct monst *) 0), plname, DEF_GAME_NAME, buf, urace.adj,
+    if (new_game) pline("%s %s, welcome to %s!  You are a%s %s%s %s.",
+	  Hello((struct monst *) 0), plname, DEF_GAME_NAME, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
-    else pline("%s %s, the%s %s %s, welcome back to %s!",
-	  Hello((struct monst *) 0), plname, buf, urace.adj,
+    else pline("%s %s, the%s %s%s %s, welcome back to %s!",
+	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  DEF_GAME_NAME);
 

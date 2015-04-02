@@ -1871,6 +1871,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
 	if (Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
 	if (Race_if(PM_RODNEYAN) ) you_are("able to sense monsters possessing coveted objects");
+	if (isselfhybrid) you_are("aware of the presence of strong wanderers");
+	if (isselfhybrid) you_are("aware of the presence of monsters that are valid polymorph forms for monsters only");
 
 	if (Searching) you_have("automatic searching");
 
@@ -2141,6 +2143,25 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	return;
 }
 
+const char * const encx_stat[] = {
+	"",
+	"burdened",
+	"stressed",
+	"strained",
+	"overtaxed",
+	"overloaded"
+};
+
+const char *hux_stat[] = {
+	"satiated",
+	"        ",
+	"hungry  ",
+	"weak    ",
+	"fainting",
+	"fainted ",
+	"starved "
+};
+
 /*
  * Courtesy function for non-debug, non-explorer mode players
  * to help refresh them about who/what they are.
@@ -2149,6 +2170,55 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 STATIC_OVL boolean
 minimal_enlightenment()
 {
+
+	char statline[BUFSZ];
+
+	*statline = '\0';
+
+	if (!DisplayLoss) {
+		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
+		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
+
+		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+		Sprintf(eos(statline), " Current status effects: ");
+
+		if (Levitation) Sprintf(eos(statline), "levitation, ");
+		if (HeavyConfusion) Sprintf(eos(statline), "xtraconfusion, ");
+		else if (Confusion) Sprintf(eos(statline), "confusion, ");
+		if (Sick) {
+			if (u.usick_type & SICK_VOMITABLE) Sprintf(eos(statline), "food poisoning, ");
+			if (u.usick_type & SICK_NONVOMITABLE) Sprintf(eos(statline), "illness, ");
+		}
+		if (HeavyBlind) Sprintf(eos(statline), "xtrablindness, ");
+		else if (Blind) Sprintf(eos(statline), "blindness, ");
+		if(sengr_at("Elbereth", u.ux, u.uy)) Sprintf(eos(statline), "elbereth, ");
+		if (HeavyFeared) Sprintf(eos(statline), "xtrafear, ");
+		else if (Feared) Sprintf(eos(statline), "fear, ");
+		if (HeavyNumbed) Sprintf(eos(statline), "xtranumbness, ");
+		else if (Numbed) Sprintf(eos(statline), "numbness, ");
+		if (HeavyFrozen) Sprintf(eos(statline), "xtrafreeze, ");
+		else if (Frozen) Sprintf(eos(statline), "freeze, ");
+		if (HeavyBurned) Sprintf(eos(statline), "xtraburn, ");
+		else if (Burned) Sprintf(eos(statline), "burn, ");
+		if (HeavyStunned) Sprintf(eos(statline), "xtrastun, ");
+		else if (Stunned) Sprintf(eos(statline), "stun, ");
+		if (HeavyHallu) Sprintf(eos(statline), "xtrahallucination, ");
+		else if (Hallucination) Sprintf(eos(statline), "hallucination, ");
+		if (Slimed) Sprintf(eos(statline), "sliming, ");
+		if (Stoned) Sprintf(eos(statline), "petrification, ");
+		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
+		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
+		if(strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
+
+		Sprintf(eos(statline), ".");
+
+		pline(statline);
+
+	/*"You are %s, a %s %s %s%s%s%s%s%s%s%s %s. Current status effects: %s%s%s%s.", , Levitation ? "levitation " : "", Confusion ? (HeavyConfusion ? "xtraconfusion " : "confusion ") : "", );
+*/
+	}
+
 	winid tmpwin;
 	menu_item *selected;
 	anything any;
@@ -2184,6 +2254,14 @@ minimal_enlightenment()
 	/* Starting alignment */
 	Sprintf(buf, fmtstr, "alignment", align_str(u.ualignbase[A_ORIGINAL]));
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
+
+	/* Hybridization (if any) */
+	if (flags.hybridization) {
+
+	Sprintf(buf, fmtstr, "hybrid races", hybrid_str());
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
+
+	}
 
 	/* Current name, race, role, gender */
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, "", FALSE);

@@ -157,6 +157,17 @@ struct flag {
 	int	 initalign;	/* starting alignment (index into aligns[])  */
 	int	 randomall;	/* randomly assign everything not specified */
 	int	 pantheon;	/* deity selection for priest character */
+
+	int hybridization;	/* number of the player's hybrid races */
+	/* this needs to be set outside of you.h, since otherwise u_init would overwrite stuff! */
+	boolean hybridangbander;
+	boolean hybridaquarian;
+	boolean hybridcurser;
+	boolean hybridhaxor;
+	boolean hybridhomicider;
+	boolean hybridsuxxor;
+	boolean hybridwarper;
+
 	/* KMH, balance patch */
 	int      boot_count; /* boots from fishing pole */
 	int      cram_count; /* cram rations from fishing pole */

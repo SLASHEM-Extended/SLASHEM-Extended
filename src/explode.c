@@ -594,7 +594,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 #ifdef SHOW_DMG                
 		    if (flags.showdmg) pline("[-%d -> %d]", damu, (Upolyd ? u.mh : u.uhp) );
 
-			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(Race_if(PM_ANGBANDER) ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 #endif
 		}
 

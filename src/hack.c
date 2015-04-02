@@ -2975,11 +2975,11 @@ maybe_wail()
     if (moves <= wailmsg + 50) return;
 
     wailmsg = moves;
-    if (Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_RODNEYAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) {
+    if (Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_RODNEYAN) || ishaxor || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) {
 	const char *who;
 	int i, powercnt;
 
-	who = (!rn2(10)) ? urace.noun :(Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ASGARDIAN) || Race_if(PM_HAXOR) || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
+	who = (!rn2(10)) ? urace.noun :(Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ASGARDIAN) || ishaxor || Race_if(PM_HERETIC) || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
 		urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf";
 	if (u.uhp == 1) {
 	    pline("%s is about to die.", who);
@@ -3103,7 +3103,7 @@ int k_format; /* WAC k_format is an int */
 	else if (flags.showdmg && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
-		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(Race_if(PM_ANGBANDER) ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 
 
 	}
@@ -3129,7 +3129,7 @@ int k_format; /* WAC k_format is an int */
 	if(u.uhp < 1) {
 		killer_format = k_format;
 		killer = knam;		/* the thing that killed you */
-		You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
+		You(isangbander ? "have died." : "die...");
 		done(DIED);
 	} else if (n > 0 && u.uhp*10 < u.uhpmax) {
 		maybe_wail();

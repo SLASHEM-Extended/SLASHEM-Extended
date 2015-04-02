@@ -823,7 +823,7 @@ boolean	inc_or_dec;
 
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
-		AEXE(i) += (inc_or_dec) ? ( (rn2(19) > ACURR(i) ) || !rn2(10) ) : -rn2(2);
+		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && (flags.hybridization < rnd(10)) ) : -rn2(2);
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
 			(i == A_STR) ? "Str" : (i == A_WIS) ? "Wis" :
@@ -1000,7 +1000,7 @@ exerchk()
 		    }
 		}
 	    }
-	    u.next_check += (Race_if(PM_HAXOR) ? rnz(1000) : rnz(2000) ) ;
+	    u.next_check += (ishaxor ? rnz(1000) : rnz(2000) ) ;
 #ifdef DEBUG
 	    pline("exerchk: next check at %ld.", u.next_check);
 #endif

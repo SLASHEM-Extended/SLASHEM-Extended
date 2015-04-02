@@ -1793,15 +1793,15 @@ doengrave()
 
 	for (sp = ebuf; *sp; sp++) {
 	    if (isspace(*sp)) continue;
-	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD) && (Race_if(PM_HAXOR) ? !rn2(40) : !rn2(30) ) ) ||
-		    (Blind && (Race_if(PM_HAXOR) ? !rn2(35) : !rn2(25)) ) || 
-			(Confusion && (Race_if(PM_HAXOR) ? !rn2(30) : !rn2(20)) ) ||
-			(Burned && (Race_if(PM_HAXOR) ? !rn2(32) : !rn2(22)) ) ||
-			(Numbed && (Race_if(PM_HAXOR) ? !rn2(38) : !rn2(28)) ) ||
-			(Feared && (Race_if(PM_HAXOR) ? !rn2(40) : !rn2(30)) ) ||
-		    (Stunned && (Race_if(PM_HAXOR) ? !rn2(25) : !rn2(15)) ) ||
-			(Frozen && (Race_if(PM_HAXOR) ? !rn2(20) : !rn2(10)) ) ||
-			(Hallucination && (Race_if(PM_HAXOR) ? !rn2(28) : !rn2(18))) )
+	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD) && (ishaxor ? !rn2(40) : !rn2(30) ) ) ||
+		    (Blind && (ishaxor ? !rn2(35) : !rn2(25)) ) || 
+			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
+			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||
+			(Numbed && (ishaxor ? !rn2(38) : !rn2(28)) ) ||
+			(Feared && (ishaxor ? !rn2(40) : !rn2(30)) ) ||
+		    (Stunned && (ishaxor ? !rn2(25) : !rn2(15)) ) ||
+			(Frozen && (ishaxor ? !rn2(20) : !rn2(10)) ) ||
+			(Hallucination && (ishaxor ? !rn2(28) : !rn2(18))) )
 		*sp = ' ' + rnd(96 - 2);	/* ASCII '!' thru '~'
 						   (excludes ' ' and DEL) */
 	}

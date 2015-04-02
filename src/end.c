@@ -198,7 +198,7 @@ register struct monst *mtmp;
 	char buf[BUFSZ];
 	boolean distorted = (boolean)(Hallucination && canspotmon(mtmp));
 
-	You(Race_if(PM_ANGBANDER) ? "have died." : "die...");
+	You(isangbander ? "have died." : "die...");
 	/* for those wand o'death, touch o'death, poisoned spike times... */        
 	if (Instant_Death)
 	    You("were hosed!");
