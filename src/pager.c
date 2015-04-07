@@ -239,7 +239,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
 		    ways_seen++;
-		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) ) 
+		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || ((mtmp)->mhp % 2 != 0) ) ) 
 		    ways_seen++;
 		if (Race_if(PM_VORTEX) && unsolid(mtmp->data))
 		    ways_seen++;
@@ -319,7 +319,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) ) {
+		    if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || ((mtmp)->mhp % 2 != 0) )) {
 			Strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
