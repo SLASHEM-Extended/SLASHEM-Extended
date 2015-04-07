@@ -454,31 +454,31 @@ give_up:	/* Quit */
 					switch (rnd(7)) {
 	
 						case 1:
-							if (!flags.hybridangbander && !Race_if(PM_ANGBANDER)) {
+							if (!(flags.hybridangbander)) {
 								flags.hybridangbander = 1; flags.hybridization++; break;
 							}
 						case 2:
-							if (!flags.hybridaquarian && !Race_if(PM_AQUATIC_MONSTER)) {
+							if (!(flags.hybridaquarian)) {
 								flags.hybridaquarian = 1; flags.hybridization++; break;
 							}
 						case 3:
-							if (!flags.hybridcurser && !Race_if(PM_CURSER)) {
+							if (!(flags.hybridcurser)) {
 								flags.hybridcurser = 1; flags.hybridization++; break;
 							}
 						case 4:
-							if (!flags.hybridhaxor && !Race_if(PM_HAXOR)) {
+							if (!(flags.hybridhaxor)) {
 								flags.hybridhaxor = 1; flags.hybridization++; break;
 							}
 						case 5:
-							if (!flags.hybridhomicider && !Race_if(PM_HOMICIDER)) {
+							if (!(flags.hybridhomicider)) {
 								flags.hybridhomicider = 1; flags.hybridization++; break;
 							}
 						case 6:
-							if (!flags.hybridsuxxor && !Race_if(PM_SUXXOR)) {
+							if (!(flags.hybridsuxxor)) {
 								flags.hybridsuxxor = 1; flags.hybridization++; break;
 							}
 						case 7:
-							if (!flags.hybridwarper && !Race_if(PM_WARPER)) {
+							if (!(flags.hybridwarper)) {
 								flags.hybridwarper = 1; flags.hybridization++; break;
 							}
 	
@@ -534,31 +534,31 @@ give_up:	/* Quit */
 					switch (rnd(7)) {
 	
 						case 1:
-							if (!flags.hybridangbander && !Race_if(PM_ANGBANDER)) {
+							if (!(flags.hybridangbander)) {
 								flags.hybridangbander = 1; flags.hybridization++; break;
 							}
 						case 2:
-							if (!flags.hybridaquarian && !Race_if(PM_AQUATIC_MONSTER)) {
+							if (!(flags.hybridaquarian)) {
 								flags.hybridaquarian = 1; flags.hybridization++; break;
 							}
 						case 3:
-							if (!flags.hybridcurser && !Race_if(PM_CURSER)) {
+							if (!(flags.hybridcurser)) {
 								flags.hybridcurser = 1; flags.hybridization++; break;
 							}
 						case 4:
-							if (!flags.hybridhaxor && !Race_if(PM_HAXOR)) {
+							if (!(flags.hybridhaxor)) {
 								flags.hybridhaxor = 1; flags.hybridization++; break;
 							}
 						case 5:
-							if (!flags.hybridhomicider && !Race_if(PM_HOMICIDER)) {
+							if (!(flags.hybridhomicider)) {
 								flags.hybridhomicider = 1; flags.hybridization++; break;
 							}
 						case 6:
-							if (!flags.hybridsuxxor && !Race_if(PM_SUXXOR)) {
+							if (!(flags.hybridsuxxor)) {
 								flags.hybridsuxxor = 1; flags.hybridization++; break;
 							}
 						case 7:
-							if (!flags.hybridwarper && !Race_if(PM_WARPER)) {
+							if (!(flags.hybridwarper)) {
 								flags.hybridwarper = 1; flags.hybridization++; break;
 							}
 	

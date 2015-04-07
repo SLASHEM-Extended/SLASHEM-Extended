@@ -384,7 +384,7 @@ hybrid_str()
 	if (flags.hybridsuxxor) Sprintf(eos(string), "suxxor ");
 	if (flags.hybridwarper) Sprintf(eos(string), "warper ");
 
-	if (!flags.hybridangbander && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian) Sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper)) Sprintf(eos(string), "none ");
 
     return string;
 }
@@ -402,7 +402,7 @@ hybrid_strcode()
 	if (flags.hybridsuxxor) Sprintf(eos(string), "Sux");
 	if (flags.hybridwarper) Sprintf(eos(string), "War");
 
-	if (!flags.hybridangbander && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian && !flags.hybridaquarian) Sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper)) Sprintf(eos(string), "none");
 
     return string;
 }

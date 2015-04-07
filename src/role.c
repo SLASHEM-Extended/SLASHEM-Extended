@@ -4212,25 +4212,25 @@ int rolenum, gendnum, alignnum, pickhow;
 				switch (rnd(7)) {
 	
 					case 1:
-						if (!flags.hybridangbander) {flags.hybridangbander = 1; flags.hybridization++; break;
+						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
 						}
 					case 2:
-						if (!flags.hybridaquarian) {flags.hybridaquarian = 1; flags.hybridization++; break;
+						if (!(flags.hybridaquarian)) {flags.hybridaquarian = 1; flags.hybridization++; break;
 						}
 					case 3:
-						if (!flags.hybridcurser) {flags.hybridcurser = 1; flags.hybridization++; break;
+						if (!(flags.hybridcurser)) {flags.hybridcurser = 1; flags.hybridization++; break;
 						}
 					case 4:
-						if (!flags.hybridhaxor) {flags.hybridhaxor = 1; flags.hybridization++; break;
+						if (!(flags.hybridhaxor)) {flags.hybridhaxor = 1; flags.hybridization++; break;
 						}
 					case 5:
-						if (!flags.hybridhomicider) {flags.hybridhomicider = 1; flags.hybridization++; break;
+						if (!(flags.hybridhomicider)) {flags.hybridhomicider = 1; flags.hybridization++; break;
 						}
 					case 6:
-						if (!flags.hybridsuxxor) {flags.hybridsuxxor = 1; flags.hybridization++; break;
+						if (!(flags.hybridsuxxor)) {flags.hybridsuxxor = 1; flags.hybridization++; break;
 						}
 					case 7:
-						if (!flags.hybridwarper) {flags.hybridwarper = 1; flags.hybridization++; break;
+						if (!(flags.hybridwarper)) {flags.hybridwarper = 1; flags.hybridization++; break;
 						}
 	
 				}
