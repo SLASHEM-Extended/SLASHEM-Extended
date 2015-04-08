@@ -1633,13 +1633,14 @@ int thrown;
 		 */
 		if (((objects[otyp].oc_skill < P_NONE && 
 			objects[otyp].oc_skill > -P_BOOMERANG) ||
-			( objects[otyp].oc_skill == P_DAGGER && !obj->oartifact) ||
-			( objects[otyp].oc_skill == P_KNIFE && !obj->oartifact) ||
-			( objects[otyp].oc_skill == P_SPEAR && !obj->oartifact) ||
+			( objects[otyp].oc_skill == P_DAGGER && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_KNIFE && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_SPEAR && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_JAVELIN && (!obj->oartifact || !rn2(1000)) ) ||
 
 /* low chance for daggers, knives and spears to disappear --Amy */
 			(obj->oclass == GEM_CLASS && 
-			!objects[otyp].oc_magic))
+			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 # ifdef P_SPOON
 			|| (obj->oartifact == ART_HOUCHOU)
 # endif
@@ -1652,10 +1653,14 @@ int thrown;
 		     * but we need ammo to stay around longer on average.
 		     */
 		    int broken, chance;
-		    chance = 3 + greatest_erosion(obj) - obj->spe;
-		    if (chance > 1)
+		    chance = 2 + greatest_erosion(obj) - obj->spe;	/* base chance increased --Amy */
+		    if (chance > 1) {
+			if (chance == 3) chance = 2;
+			else if (chance == 4) chance = 3;
+			else if (chance == 5) chance = 3;
+			else if (chance > 5) chance /= 2;
 			broken = rn2(chance);
-		    else /* continue to survive longer with better enchantment --Amy */
+		    } else /* continue to survive longer with better enchantment --Amy */
 			broken = !rn2(/*4*/ 2 + obj->spe - greatest_erosion(obj) );
 		    if ( objects[otyp].oc_skill == P_DAGGER )
 			broken = !rn2(20);
@@ -1663,6 +1668,8 @@ int thrown;
 			broken = !rn2(100);
 		    if ( objects[otyp].oc_skill == P_KNIFE )
 			broken = !rn2(50);
+		    if ( objects[otyp].oc_skill == P_JAVELIN )
+			broken = !rn2(500);
 		    if (obj->blessed && !rnl(4))
 			broken = 0;
 			/* also save uncursed ones sometimes --Amy */
