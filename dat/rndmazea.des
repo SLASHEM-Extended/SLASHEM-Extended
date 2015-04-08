@@ -34,3 +34,90 @@ MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
+
+MAZE: "rndmazeb" , ' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random

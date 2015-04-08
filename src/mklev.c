@@ -944,7 +944,14 @@ makelevel()
 		    makemaz("");
 		    return;
 	    } else if (In_mines(&u.uz)) {
-		    makemaz("minefill");
+		    if (rn2(10)) makemaz("minefill");
+		    else switch (rnd(5)) {
+			case 1: makemaz("minefila"); break;
+			case 2: makemaz("minefilb"); break;
+			case 3: makemaz("minefilc"); break;
+			case 4: makemaz("minefild"); break;
+			case 5: makemaz("minefile"); break;
+		    }
 		    return;
 	    } else if (In_quest(&u.uz)) {
 		    char        fillname[16];

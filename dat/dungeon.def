@@ -92,9 +92,9 @@ LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
 #   "Unused 'cause they suck"?
-RNDLEVEL:	"stor" "S" @ (19, 21) 30 6
+RNDLEVEL:	"stor" "S" @ (19, 21) 30 9
 #   Rounding out the bottom levels
-LEVEL:		"guild" "G" @ (26, 14) 10
+RNDLEVEL:		"guild" "G" @ (26, 14) 10 7
 
 
 
@@ -118,7 +118,7 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
-RNDLEVEL:		"medusa" "none" @ (-5, 4) 7
+RNDLEVEL:		"medusa" "none" @ (-5, 4) 9
 LEVALIGN:		chaotic
 RNDLEVEL:			"castle" "none" @ (-1, 0) 7
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
@@ -149,54 +149,59 @@ BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -2
 # after.
 # made the Gehennom longer again and tried to apply the heck patch --Amy
 
-DUNGEON:        "Gehennom" "G" (25, 0)
+DUNGEON:        "Gehennom" "G" (32, 0)
 DESCRIPTION:    mazelike
 DESCRIPTION:    hellish
 ALIGNMENT:      noalign
-LEVEL:          "valley" "V" @ (1, 0)
-LEVEL:          "sanctum" "none" @ (-1, 0)
+RNDLEVEL:          "valley" "V" @ (1, 0) 2
+RNDLEVEL:          "sanct" "none" @ (-1, 0) 2
 # Tower before wiz, please
-BRANCH:         "Vlad's Tower" @ (3, 17) up -1
+BRANCH:         "Vlad's Tower" @ (3, 24) up -1
 # Dr. Frankenstein's Lab
-BRANCH:         "Frankenstein's Lab" @ (3, 17) up
+BRANCH:         "Frankenstein's Lab" @ (3, 24) up
 # Half-way down
-LEVEL:          "wizard1" "none" @ (10, 0)
+LEVEL:          "wizard1" "none" @ (15, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
 CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
-LEVEL:          "fakewiz1" "F" @ (15, 8)
-LEVEL:          "fakewiz2" "G" @ (15, 8)
+LEVEL:          "fakewiz1" "F" @ (20, 8)
+LEVEL:          "fakewiz2" "G" @ (20, 8)
 # The demon levels
-LEVEL:          "juiblex" "J" @ (2, 22) 95
-LEVEL:          "yeenoghu" "E" @ (2, 22) 95
-LEVEL:          "orcus" "O" @ (2, 22) 95
-LEVEL:          "demogorg" "D" @ (2, 22) 95
+LEVEL:          "juiblex" "J" @ (2, 29) 95
+LEVEL:          "yeenoghu" "E" @ (2, 29) 95
+RNDLEVEL:          "orcus" "O" @ (2, 29) 95 2
+LEVEL:          "demogorg" "D" @ (2, 29) 95
 # The devil levels
-LEVEL:          "baalz" "B" @ (2, 22) 95
-LEVEL:          "geryon" "R" @ (2, 22) 95
-LEVEL:          "dispater" "S" @ (2, 22) 95
-LEVEL:          "asmodeus" "A" @ (2, 22) 95
-RNDLEVEL:	"hellma" "H" @ (2, 22) 75 6
-BRANCH:         "Sheol" @ (3, 20) down
+RNDLEVEL:          "baalz" "B" @ (2, 29) 95 2
+LEVEL:          "geryon" "R" @ (2, 29) 95
+LEVEL:          "dispater" "S" @ (2, 29) 95
+RNDLEVEL:          "asmod" "A" @ (2, 29) 95 2
+RNDLEVEL:	"hellma" "H" @ (2, 29) 75 6
+BRANCH:         "Sheol" @ (3, 27) down
 
-RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 22) 90 87
-RNDLEVEL:		"school" "C" @ (2, 22) 20 5
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 22) 90 39
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
+
+LEVEL:	"rndmazeb" "K" @ (2, 29) 60
+RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)
 #
-DUNGEON:	"The Gnomish Mines" "M" (8, 2)
+DUNGEON:	"The Gnomish Mines" "M" (9, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"minetn" "T" @ (3, 2) 98 9
+RNDLEVEL:	"mintn" "T" @ (3, 2) 98 13
 LEVELDESC:	town
 RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
-LEVEL:		"mineking" "M" @ (-1, 0) 90
+RNDLEVEL:		"mking" "M" @ (-1, 0) 90 12
 
 
 ### The Quest Dungeon ###
@@ -205,7 +210,7 @@ LEVEL:		"mineking" "M" @ (-1, 0) 90
 #   Special "x-fila" and "x-filb" levels must be defined in the levels
 #   description file.  It will be used for all levels not defined explicitly
 #   below.
-DUNGEON:    "The Quest" "Q" (7, 1)
+DUNGEON:    "The Quest" "Q" (7, 0)
 LEVEL:  	"x-strt" "none" @ (1, 1)
 LEVEL:  	"x-loca" "L" @ (3, 3)
 LEVEL:  	"x-goal" "none" @ (-1, 0)
@@ -234,8 +239,8 @@ DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
 RNDLEVEL:		"soko1" "A" @ (1, 0) 95 34
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 30
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 14
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 31
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 15
 RNDLEVEL:		"soko4" "D" @ (4, 0) 95 13
 
 #
@@ -321,7 +326,7 @@ DESCRIPTION:    mazelike
 LEVEL:          "frnknstn" "L" @ (1, 0) 50
 
 
-DUNGEON:        "Sheol" "V" (6, 2)
+DUNGEON:        "Sheol" "V" (7, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
 LEVEL:          "sheolfil" "A" @ (1, 0) 95

@@ -598,14 +598,14 @@ struct level_map {
 	d_level *lev_spec;
 } level_map[] = {
 	{ "air",	&air_level },
-	{ "asmodeus",	&asmodeus_level },
+	{ "asmod",	&asmodeus_level },
 	{ "demogorg",   &demogorgon_level },
 	{ "geryon",     &geryon_level },
 	{ "dispater",   &dispater_level },
 	{ "yeenoghu",   &yeenoghu_level },
 	{ "astral",	&astral_level },
 	{ "baalz",	&baalzebub_level },
-	{ "bigroom",	&bigroom_level },
+	{ "bigrm",	&bigroom_level },
 	{ "castle",	&stronghold_level },
 	{ "earth",	&earth_level },
 	{ "fakewiz1",	&portal_level },
@@ -617,7 +617,6 @@ struct level_map {
 #endif /* BLACKMARKET */
 	{ "medusa",	&medusa_level },
 	{ "mtemple",	&mtemple_level },
-	{ "mine_end",   &mineend_level },        
 	{ "nymph",   &nymph_level },        
 	{ "forge",   &forge_level },        
 	{ "hitch",   &hitch_level },        
@@ -628,7 +627,7 @@ struct level_map {
 #ifdef REINCARNATION
 	{ "rogue",	&rogue_level },
 #endif
-	{ "sanctum",	&sanctum_level },
+	{ "sanct",	&sanctum_level },
 	{ "valley",	&valley_level },
 	{ "water",	&water_level },
 	{ "wizard1",	&wiz1_level },
@@ -1502,9 +1501,9 @@ level_difficulty()
 	int retvalue;
 
 	if (In_endgame(&u.uz))
-		retvalue = (100 + (u.ulevel/2) );
+		retvalue = (110 + (u.ulevel/2) );
 	else if (u.uhave.amulet)
-		retvalue = 100;
+		retvalue = 110;
 	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
 		retvalue = (depth(&u.uz) + rn2(u.ulevel) + 2 );
 	else
@@ -1534,6 +1533,8 @@ level_difficulty()
 /* Sadly, we cannot make the sanctum deeper than dlvl 65 thanks to the arbitrary limit of 127 dungeon levels.
  * And I don't want to remove any branches just to make room for more gehennom levels. So the deepest level
  * will always be 65, and we'll have to arbitrarily increase the level difficulty for the endgame. --Amy */
+
+/* edit - well, actually we can; I decided to max out the amount of possible levels and put the sanctum at 72. --Amy */
 
 xchar /* 127 or lower */
 monster_difficulty()

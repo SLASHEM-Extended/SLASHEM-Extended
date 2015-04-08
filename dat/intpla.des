@@ -324,3 +324,716 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+
+MAZE:"intplx-1",' '
+MESSAGE: "You appear in a sort of rocky terrain..."
+
+GEOMETRY:center,center
+MAP
+                                                                            
+  ...                 ............                                          
+ ....                ..          .                                          
+ .....             ...           .    ...                   ..              
+  ....              ....         .  ... .                    ...            
+   ....             ....         .  .   ....              ......      .     
+    ..           .... ..         .... .......             .   .      ..     
+    .            .                    ..  ...             .          .      
+    ...       .  .                   ..    .              .          ...    
+      .      ..  ..                  .    ...             ..........  ..    
+      .     ..   ...                      . .                      .   .    
+      ....  ...   ...                     .      .....        ......   .    
+     ..  .  . .. ...                      .     ..   ..       .        .    
+     .   ....  ....                       .......   ..        .        .    
+     .            .       ..                        .         .    ... .    
+     .            ....   ..                         ....................    
+  ....               .   .                                         ...      
+ ....                .....                                                  
+   ..                                                                       
+                                                                            
+ENDMAP
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE:"intplx-2",' '
+MESSAGE: "You appear to be in a cloudy realm..."
+GEOMETRY:center,center
+MAP
+AAAAAAAAAAAAAAAAAAAAAAAACCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+A.CAAAAAAAAAAAAAAAAAAAACCCCCCAAAAAAAACCCC.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC.A
+ACCAAAAAAAAAAAAAAAAA.CCA.CCCCC.AAAAACCCCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCA
+AAA.AAAAAAAAAAAAAAAAACCACCCCCCCAAAAACCCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.AAA
+AAAAAAAAAAAAAAAAAAAAAACCCCCCCCCCAAAAACCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAACCCCAAACCAAACCCC.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAA.CCCCAAAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAACCCCCCCAAAACCACCCCCC.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA.AAAAAAACCCCAAA.AAACCACAACCCCCAAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAA
+AAAAAAAAAAAAAACAAAAAAAAAA.AAAAAACCA.CCCCCCCCCAA.AAAAAAAAAAAAACAAAAAAAAAAAAAA
+AAAAAAAAAAAAAC.CAAAAAAAAAAAAAAAACAACCCC.AACCCCCCAAAAAAAAAAAAC.CAAAAAAAAAAAAA
+AAAAAAAAAAAAAACAAAAAAAAAAAAAAACACACCCCCAAACCCCCCCAAAAAAAAAAAACAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA.AAAAAAAAAAAAAACAACCCCCCCAAAACCCCCCC.AAAAAAAAAA.AAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACCCCCCCCAA.CCCCCCCCAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCCCCCCCCCAACCCCCCCCAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAACACCCCCCCCCCACCCCCCCCAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAA.AAAAAAAAAAAAAAAAAAAAAAAAACAACCCCCCCCCCCCCCCCAAAAAAAAAAAAAAAAAAAAAAAA.AAA
+ACCAAAAAAAAAAAAAAAAAAAAAAAAAA.CAACCCCCCAA.CCCCCAAAAAAAAAAAAAAAAAAAAAAAAAACCA
+A.CAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAACCA.AAAACCCCAAAAAAAAAAAAAAAAAAAAAAAAAAC.A
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ENDMAP
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE:"intplx-3",' '
+MESSAGE: "It's hot down here..."
+GEOMETRY:center,center
+MAP
+............................................................................
+....LLLLLLLL............L.......................LLL.........................
+...LL...................L......................LLLL................LL.......
+...L.............LLLL...LL....LL...............LLLLL.............LLL........
+.LLLL..............LL....L.....LLL..............LLLL..............LLLL......
+..........LLLL...LLLL...LLL....LLL......L........LLLL....LL........LLL......
+........LLLLLLL...LL.....L......L......LL.........LL......LL........LL...L..
+........LL..LLL..LL......LL......LLLL..L.........LL......LLL............LL..
+....L..LL....LLLLL.................LLLLLLL.......L......LL............LLLLLL
+....L..L.....LL.LLLL.......L............L........LLLLL.LL......LL.........LL
+....LL........L...LL......LL.............LLL.....L...LLL.......LLL.........L
+.....LLLLLL........L.......LLL.............L....LL...L.LLL......LLLLLLL.....
+..........LLLL............LL.L.............L....L...LL.........LLL..LLL.....
+...........................LLLLL...........LL...L...L........LLLL..LLLLLL...
+.....LLLL.............LL....LL.......LLL...LL.......L..LLL....LLLLLLL.......
+.......LLL.........LLLLLLLLLLL......LLLLL...L...........LL...LL...LL........
+.........LL.......LL.........LL.......LLL....L..LLL....LL.........LL........
+..........LLLLLLLLL...........LL....LLL.......LLLLL.....LL........LL........
+.................L.............LLLLLL............LL...LLLL.........LL.......
+.................................LL....................LL...................
+ENDMAP
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE:"intplx-4",' '
+MESSAGE: "You discover an underground lake!"
+GEOMETRY:center,center
+MAP
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W.IIIII..IIWWWW...WWWWWWW.IIWWIII.IIW..WWWWWWWWWW...WWWWWWWWWWWWWWWWWWWWWW.W
+WWWWWWIWWWIWWWW...WWWII.IIWIWIIWWWWII...WWWWWWWWW...WWWWWWWWWWWWWWWWWWWIIIIW
+WWWWWWIWWWIWIIIIIIIIIIWWWWWIIIWWWWWWWI..WWWWWWWWWWIIII...WWWWWWWW...WWWI..WW
+WWWW..IWWWIWIWWWWWW..IWWWWWWWWWWWWWWWIWWWWWWWWWWWWWWWI...WWWWWWWW...WWII..WW
+WWWW..IWWWI.I..WWWW..IWWWWWWWWWWWWWWWI..WWWWWWWWWWWWWIIIIIIIIIIIIIIIIIIWI..W
+WWWW..IWWWWWI..WWWW..IIIIIIIIIIIIIIIII..WWWWWWWWWWWWWWWWIWWWW...WWWWWWWWI..W
+WWWWWWIIWWWWI..WWWWWWWWWWWW...WWWWWWWI..WWWWWWWWWWWWWW..IWWWW...WWWWWWIII..W
+WWWWWWWIWW..IWWWWWWWWWWWWWW...WWWWWWWIWWWWWWWWWWWWWWWW..IWWWWWWWWWWWWW.WIWWW
+WWWWWWWIWW..IWWWWWWWWWWWWWWWWWWWWWWWWIIIIIIIIIIIIWWWWW..IIIIIIII.IIIIII..WWW
+WWWWW..IWW..WWWWWWWWWWWWWWWWWWWWWWWWWIWWW...WWWWIWWWWWWWWWWIWWWWWWWWWWWWWWWW
+WWWWW..IWWWWWWWWWWWWW...WWWWWWWWWWWWWIWWW...WWWWI..WWWWWWWWIWWWW...WW...WWWW
+WWWWW..IWWWWWWWWWWWWW...WWWWWWWWWWWWWIWWWWWWWW..I..WWWWWWWWIWWWW...WW...WWWW
+WWWWWWIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIWWWWWWWW..I..WWWWWWWWIIIIIIIIIIIIWWWWW
+WWWWWWIWWWWWWW...WWWWWWWWWWW.W...WW..IWWWWWWWW..IIIIIIIIIIIIWWW...WWWWIWWWWW
+WWWW..IWWWWWWW...WWWWWWWWWWWIW...WW..IWWWWWWWWWWWW...W...WWWWWW...WW..IWWWWW
+WWWW..IWWWWWWWWWWWWWWWWWWWWW.WWWWWW..I..WWWWWWWWWW...W...WWWWWWWWWWW..IWWWWW
+WWWW..IWWWWWWWWWWWWWWWWWWWWWIIIIIIIIII..WWWWWWWWWWWWWWWWWWWWWWWWWWWW..IWWWWW
+W.IIIIIWWWWWWWWWWWWWWWWWWWWWWW...WWWWW..WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWIIII.W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+ENDMAP
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"piranha",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"piranha",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE:"intplx-5",' '
+MESSAGE: "You stumble upon a mysterious temple complex!"
+GEOMETRY:center,center
+MAP
+                              ---------------                              
+                              |.............|                              
+                              |..---------..|                              
+                              |..|.......|..|                              
+---------------               |..|.......|..|               ---------------
+|.............|               |..|.......|..|               |.............|
+|..---------..-|   |-------|  |..|.......|..|  |-------|   |-..---------..|
+|..|.......|...-| |-.......-| |..|.......|..| |-.......-| |-...|.......|..|
+|..|.......|....-|-.........-||..----+----..||-.........-|-....|.......|..|
+|..|.......+.....+...........||.............||...........+.....+.......|..|
+|..|.......|....-|-.........-|--|.........|--|-.........-|-....|.......|..|
+|..|.......|...-| |-.......-|   -|---+---|-   |-.......-| |-...|.......|..|
+|..---------..-|   |---+---|    |-.......-|    |---+---|   |-..---------..|
+|.............|      |...|-----|-.........-|-----|...|      |.............|
+---------------      |.........|...........|.........|      ---------------
+                     -------...|-.........-|...-------                     
+                           |....|-.......-|....|                           
+                           ---...|---+---|...---                           
+                             |...............|                             
+                             -----------------                             
+ENDMAP
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+

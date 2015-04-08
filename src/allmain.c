@@ -1488,7 +1488,7 @@ boolean new_game;	/* false => restoring an old game */
 	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
 	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
 
-			        register int newlev = 64;
+			        register int newlev = 71;
 				d_level newlevel;
 				get_level(&newlevel, newlev);
 				goto_level(&newlevel, TRUE, FALSE, FALSE);

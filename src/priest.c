@@ -362,13 +362,19 @@ register int roomno;
 		}
 		msg2 = 0;
 		if(sanctum && Is_sanctum(&u.uz)) {
-		    if(priest->mpeaceful) {
+		    if(priest->mpeaceful) {	/* never the case in this game --Amy */
 			msg1 = "Infidel, you have entered Moloch's Sanctum!";
 			msg2 = "Be gone!";
 			priest->mpeaceful = 0;
 			set_malign(priest);
-		    } else
-			msg1 = "You desecrate this place by your presence!";
+		    } else {
+			if (rn2(2)) msg1 = "You desecrate this place by your presence!";
+			else {
+			msg1 = "Infidel, you have entered Moloch's Sanctum!";
+			msg2 = "Be gone!";
+			}
+			}
+
 		} else {
 		    Sprintf(buf, "Pilgrim, you enter a %s place!",
 			    !shrined ? "desecrated" : "sacred");
