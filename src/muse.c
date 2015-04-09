@@ -1100,7 +1100,7 @@ mon_tele:
 		/* we made sure that there is a level for mtmp to go to */
 		migrate_to_level(mtmp, ledger_no(&u.uz) + 1,
 				 MIGR_RANDOM, (coord *)0);
-		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/	/* segfaults possible... --Amy */
 		return 2;
 	    }
 	case MUSE_WAN_CREATE_HORDE:
