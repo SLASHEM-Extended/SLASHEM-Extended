@@ -167,6 +167,10 @@ struct flag {
 	boolean hybridhomicider;
 	boolean hybridsuxxor;
 	boolean hybridwarper;
+	boolean hybridrandomizer;
+	boolean hybridnullrace;
+
+	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 
 	/* KMH, balance patch */
 	int      boot_count; /* boots from fishing pole */

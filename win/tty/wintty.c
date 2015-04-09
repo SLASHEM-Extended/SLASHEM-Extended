@@ -416,7 +416,7 @@ give_up:	/* Quit */
 
 			    if (!rn2(10)) {
 
-				switch (rnd(7)) {
+				switch (rnd(9)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -431,19 +431,27 @@ give_up:	/* Quit */
 						}
 						break;
 					case 4:
-						if (!Race_if(PM_HAXOR)) {flags.hybridcurser = 1; flags.hybridization++;
+						if (!Race_if(PM_HAXOR)) {flags.hybridhaxor = 1; flags.hybridization++;
 						}
 						break;
 					case 5:
-						if (!Race_if(PM_HOMICIDER)) {flags.hybridcurser = 1; flags.hybridization++;
+						if (!Race_if(PM_HOMICIDER)) {flags.hybridhomicider = 1; flags.hybridization++;
 						}
 						break;
 					case 6:
-						if (!Race_if(PM_SUXXOR)) {flags.hybridcurser = 1; flags.hybridization++;
+						if (!Race_if(PM_SUXXOR)) {flags.hybridsuxxor = 1; flags.hybridization++;
 						}
 						break;
 					case 7:
-						if (!Race_if(PM_WARPER)) {flags.hybridcurser = 1; flags.hybridization++;
+						if (!Race_if(PM_WARPER)) {flags.hybridwarper = 1; flags.hybridization++;
+						}
+						break;
+					case 8:
+						if (!Race_if(PM_RANDOMIZER)) {flags.hybridrandomizer = 1; flags.hybridization++;
+						}
+						break;
+					case 9:
+						if (!Race_if(PM_NULL)) {flags.hybridnullrace = 1; flags.hybridization++;
 						}
 						break;
 
@@ -451,7 +459,7 @@ give_up:	/* Quit */
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(7)) {
+					switch (rnd(9)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -481,15 +489,25 @@ give_up:	/* Quit */
 							if (!(flags.hybridwarper)) {
 								flags.hybridwarper = 1; flags.hybridization++; break;
 							}
+						case 8:
+							if (!(flags.hybridrandomizer)) {
+								flags.hybridrandomizer = 1; flags.hybridization++; break;
+							}
+						case 9:
+							if (!(flags.hybridnullrace)) {
+								flags.hybridnullrace = 1; flags.hybridization++; break;
+							}
 	
 					}
 				}
 
 			    }
 
+			flags.hybridcancel = 1; /* don't give more than the player wanted */
+
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(7)) {
+				switch (rnd(9)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -526,12 +544,22 @@ give_up:	/* Quit */
 						flags.hybridwarper = 1; flags.hybridization++;
 						}
 						break;
+					case 8:
+						if (!Race_if(PM_RANDOMIZER)) {
+						flags.hybridrandomizer = 1; flags.hybridization++;
+						}
+						break;
+					case 9:
+						if (!Race_if(PM_NULL)) {
+						flags.hybridnullrace = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(7)) {
+					switch (rnd(9)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -561,9 +589,19 @@ give_up:	/* Quit */
 							if (!(flags.hybridwarper)) {
 								flags.hybridwarper = 1; flags.hybridization++; break;
 							}
+						case 8:
+							if (!(flags.hybridrandomizer)) {
+								flags.hybridrandomizer = 1; flags.hybridization++; break;
+							}
+						case 9:
+							if (!(flags.hybridnullrace)) {
+								flags.hybridnullrace = 1; flags.hybridization++; break;
+							}
 	
 					}
 				}
+
+			flags.hybridcancel = 1; /* don't give more than the player wanted */
 
 			} else {
 				if (!Race_if(PM_ANGBANDER)) {if (yn("Add the angbander hybrid race to your character?") == 'y')
@@ -587,8 +625,20 @@ give_up:	/* Quit */
 				if (!Race_if(PM_WARPER)) {if (yn("Add the warper hybrid race to your character?") == 'y')
 					{flags.hybridwarper = 1; flags.hybridization++;}
 				}
+				if (!Race_if(PM_RANDOMIZER)) {if (yn("Add the randomizer hybrid race to your character?") == 'y')
+					{flags.hybridrandomizer = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_NULL)) {if (yn("Add the null hybrid race to your character?") == 'y')
+					{flags.hybridnullrace = 1; flags.hybridization++;}
+				}
+
+			flags.hybridcancel = 1; /* don't give more than the player wanted */
+
 			}
+
 		}
+
+		else flags.hybridcancel = 1; /* player answered no to the "do you want hybridization" prompt */
 	    }
 
 	    (void)  root_plselection_prompt(plbuf, QBUFSZ - 1,

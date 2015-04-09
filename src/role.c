@@ -3417,6 +3417,19 @@ const struct Race races[] = {
 	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  3, 0,  2, 0,  1, 0 }		/* Energy */
 },
+{	"null", "null", "null", "Nul",
+	{0, 0},
+	PM_NULL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
 {	"nymph", "nymphian", "nymphhood", "Nym", /* suggestion by BellisColdwine */
 	{0, 0},
 	PM_NYMPH, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3480,6 +3493,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  8, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"randomizer", "randomized", "rng worship", "Ran",
+	{0, 0},
+	PM_RANDOMIZER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  3, 0 }		/* Energy */
 },
 {	"redguard", "redguardian", "redguardhood", "Red",
 	{0, 0},
@@ -4185,10 +4211,10 @@ int rolenum, gendnum, alignnum, pickhow;
 	if (ok_race(rolenum, i, gendnum, alignnum)) {
 	    if (races_ok == 0) {
 
-		    if (!rn2(10)) {	/* hybrid races --Amy */
+		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(7)) {
+			switch (rnd(9)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4204,12 +4230,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridsuxxor = 1; break;
 				case 7:
 					flags.hybridwarper = 1; break;
+				case 8:
+					flags.hybridrandomizer = 1; break;
+				case 9:
+					flags.hybridnullrace = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(7)) {
+				switch (rnd(9)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4231,6 +4261,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 7:
 						if (!(flags.hybridwarper)) {flags.hybridwarper = 1; flags.hybridization++; break;
+						}
+					case 8:
+						if (!(flags.hybridrandomizer)) {flags.hybridrandomizer = 1; flags.hybridization++; break;
+						}
+					case 9:
+						if (!(flags.hybridnullrace)) {flags.hybridnullrace = 1; flags.hybridization++; break;
 						}
 	
 				}

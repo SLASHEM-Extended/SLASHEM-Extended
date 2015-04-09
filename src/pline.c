@@ -383,8 +383,10 @@ hybrid_str()
 	if (flags.hybridhomicider) Sprintf(eos(string), "homicider ");
 	if (flags.hybridsuxxor) Sprintf(eos(string), "suxxor ");
 	if (flags.hybridwarper) Sprintf(eos(string), "warper ");
+	if (flags.hybridrandomizer) Sprintf(eos(string), "randomizer ");
+	if (flags.hybridnullrace) Sprintf(eos(string), "null ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper)) Sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace)) Sprintf(eos(string), "none ");
 
     return string;
 }
@@ -401,8 +403,10 @@ hybrid_strcode()
 	if (flags.hybridhomicider) Sprintf(eos(string), "Hom");
 	if (flags.hybridsuxxor) Sprintf(eos(string), "Sux");
 	if (flags.hybridwarper) Sprintf(eos(string), "War");
+	if (flags.hybridrandomizer) Sprintf(eos(string), "Ran");
+	if (flags.hybridnullrace) Sprintf(eos(string), "Nul");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper)) Sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace)) Sprintf(eos(string), "none");
 
     return string;
 }

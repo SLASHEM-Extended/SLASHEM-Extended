@@ -2500,6 +2500,7 @@ E int FDECL(weapon_dam_bonus, (struct obj *));
 E int FDECL(skill_bonus, (int));
 E void FDECL(skill_init, (const struct def_skill *));
 E void NDECL(practice_weapon);
+E void NDECL(xtraskillinit);
 
 /* ### were.c ### */
 

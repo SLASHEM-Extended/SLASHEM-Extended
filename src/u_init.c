@@ -4116,6 +4116,9 @@ u_init()
 	u.xray_range = -1;
 
 	/* Role-specific initializations */
+
+	if (!israndomizer && !isnullrace) {
+
 	switch (Role_switch) {
 	case PM_ARCHEOLOGIST:
 		switch (rnd(5)) {   
@@ -5034,6 +5037,1266 @@ u_init()
 	default:	/* impossible */
 		break;
 	}
+
+	} /* role switch for non-randomizer */
+
+	else { /* israndomizer */
+
+	switch (Role_switch) {
+	case PM_ARCHEOLOGIST:
+		skill_init(Skill_A);
+		break;
+
+	case PM_AUGURER:
+		skill_init(Skill_Aug);
+		break;
+
+	case PM_BARBARIAN:
+		skill_init(Skill_B);
+		break;
+
+	case PM_BINDER:
+		skill_init(Skill_Bin);
+		break;
+
+	case PM_POLITICIAN:
+		skill_init(Skill_Pol);
+		break;
+
+	case PM_BLEEDER:
+		skill_init(Skill_Ble);
+		break;
+
+	case PM_LIBRARIAN:
+		skill_init(Skill_Lib);
+		break;
+
+	case PM_SUPERMARKET_CASHIER:
+		skill_init(Skill_Sup);
+		break;
+
+	case PM_INTEL_SCRIBE:
+		skill_init(Skill_Scr);
+		break;
+
+	case PM_GAMER:
+		skill_init(Skill_Gam);
+		break;
+
+	case PM_ARTIST:
+		skill_init(Skill_Art);
+		break;
+
+	case PM_COOK:
+		skill_init(Skill_Coo);
+		break;
+
+	case PM_BARD:
+		skill_init(Skill_Bard);
+		break;
+
+	case PM_CAVEMAN:
+		skill_init(Skill_C);
+		break;
+
+	case PM_GANGSTER:
+		skill_init(Skill_Gan);
+		break;
+
+	case PM_GUNNER:
+		skill_init(Skill_Gun);
+		break;
+
+	case PM_DEATH_EATER:
+		skill_init(Skill_Dea);
+		break;
+
+	case PM_POKEMON:
+		skill_init(Skill_Pok);
+		break;
+
+	case PM_FLAME_MAGE:
+		skill_init(Skill_F);
+		break;
+
+	case PM_COURIER:
+            skill_init(Skill_Cou);
+		break;
+
+	case PM_SPACEWARS_FIGHTER:
+	      skill_init(Skill_Spa);
+		break;
+
+	case PM_ROCKER:
+            skill_init(Skill_Roc);
+		break;
+
+	case PM_ZYBORG:
+            skill_init(Skill_Zyb);
+		break;
+
+	case PM_LUNATIC:
+            skill_init(Skill_Lun);
+		break;
+
+#ifdef CONVICT
+	case PM_CONVICT:
+            skill_init(Skill_Con);
+            break;
+#endif	/* CONVICT */
+	case PM_HEALER:
+		skill_init(Skill_H);
+		break;
+
+	case PM_ICE_MAGE:
+		skill_init(Skill_I);
+		break;
+
+	case PM_ELECTRIC_MAGE:
+		skill_init(Skill_Ele);
+		break;
+
+	case PM_CRUEL_ABUSER:
+		skill_init(Skill_Abu);
+		break;
+
+	case PM_MYSTIC:
+		skill_init(Skill_Mys);
+		break;
+
+	case PM_JESTER:
+		skill_init(Skill_Jes);
+		break;
+
+	case PM_LADIESMAN:
+		skill_init(Skill_Lad);
+		break;
+
+	case PM_BLOODSEEKER:
+		skill_init(Skill_Blo);
+		break;
+
+	case PM_SLAVE_MASTER:
+		skill_init(Skill_Sla);
+		break;
+
+	case PM_ACID_MAGE:
+		skill_init(Skill_Aci);
+		break;
+
+	case PM_GEEK:
+		skill_init(Skill_G);
+		break;
+
+	case PM_GRADUATE:
+		skill_init(Skill_Gra);
+		break;
+
+	case PM_SCIENTIST:
+		skill_init(Skill_Sci);
+		break;
+
+#ifdef JEDI
+	case PM_JEDI:
+		skill_init(Skill_J);
+		break;
+#endif
+	case PM_KNIGHT:
+		skill_init(Skill_K);
+		break;
+
+	case PM_WANDKEEPER:
+		skill_init(Skill_Wan);
+		break;
+
+	case PM_FEAT_MASTER:
+		skill_init(Skill_Stu);
+		break;
+
+	case PM_FOXHOUND_AGENT:
+		skill_init(Skill_Fox);
+		break;
+
+	case PM_PALADIN:
+		skill_init(Skill_Pal);
+		break;
+
+	case PM_MONK:
+		skill_init(Skill_Mon);
+		break;
+
+	case PM_SAIYAN:
+		skill_init(Skill_Sai);
+		break;
+
+	case PM_PSION:
+		skill_init(Skill_Psi);
+		break;
+
+	case PM_NOBLEMAN:
+		skill_init(Skill_Nob);
+		break;
+
+	case PM_ACTIVISTOR:
+		skill_init(Skill_Act);
+		break;
+
+	case PM_PIRATE:
+		skill_init(Skill_Pir);
+		break;
+
+	case PM_KORSAIR:
+		skill_init(Skill_Kor);
+		break;
+
+	case PM_GLADIATOR:
+		skill_init(Skill_Gla);
+		break;
+
+	case PM_GOFF:
+		skill_init(Skill_Gof);
+		break;
+
+	case PM_AMAZON:
+		skill_init(Skill_Ama);
+		break;
+
+	case PM_ORDINATOR:
+		skill_init(Skill_Ord);
+		break;
+
+	case PM_THALMOR:
+		skill_init(Skill_Tha);
+		break;
+
+	case PM_ALTMER:
+		skill_init(Skill_Alt);
+		break;
+
+	case PM_BOSMER:
+		skill_init(Skill_Bos);
+		break;
+
+	case PM_DUNMER:
+		skill_init(Skill_Dun);
+		break;
+
+	case PM_DIVER:
+		skill_init(Skill_Div);
+		break;
+
+	case PM_NECROMANCER:
+		skill_init(Skill_N);
+		break;
+
+	case PM_WARRIOR:
+		skill_init(Skill_War);
+		break;
+
+	case PM_DOLL_MISTRESS:
+		skill_init(Skill_Dol);
+		break;
+
+	case PM_MAHOU_SHOUJO:
+		skill_init(Skill_Mah);
+		break;
+
+	case PM_PRIEST:
+		skill_init(Skill_P);
+		break;
+
+	case PM_CHEVALIER:
+		skill_init(Skill_Che);
+		break;
+
+	case PM_RANGER:
+		skill_init(Skill_Ran);
+		break;
+
+	case PM_ELPH:
+		skill_init(Skill_Elp);
+		break;
+
+	case PM_TRANSVESTITE:
+		skill_init(Skill_Tra);
+		break;
+
+	case PM_TOPMODEL:
+		skill_init(Skill_Top);
+		break;
+
+	case PM_BULLY:
+		skill_init(Skill_Bul);
+		break;
+
+	case PM_PICKPOCKET:
+		skill_init(Skill_Pic);
+		break;
+
+	case PM_ROGUE:
+		skill_init(Skill_R);
+		break;
+
+	case PM_ASSASSIN:
+		skill_init(Skill_Ass);
+		break;
+
+	case PM_NINJA:
+		skill_init(Skill_Nin);
+		break;
+
+	case PM_DRUNK:
+		skill_init(Skill_Dru);
+		break;
+
+	case PM_OFFICER:
+		skill_init(Skill_Off);
+		break;
+
+	case PM_UNDERTAKER:
+		skill_init(Skill_Unt);
+		break;
+
+	case PM_MUSICIAN:
+		skill_init(Skill_Mus);
+		break;
+
+	case PM_ZOOKEEPER:
+		skill_init(Skill_Zoo);
+		break;
+
+	case PM_FIREFIGHTER:
+		skill_init(Skill_Fir);
+		break;
+
+	case PM_LOCKSMITH:
+		skill_init(Skill_Loc);
+		break;
+
+	case PM_SAMURAI:
+		skill_init(Skill_S);
+		break;
+
+	case PM_OTAKU:
+		skill_init(Skill_Ota);
+		break;
+
+#ifdef TOURIST
+	case PM_TOURIST:
+		skill_init(Skill_T);
+		break;
+#endif /* TOURIST */
+	case PM_UNDEAD_SLAYER:
+		skill_init(Skill_U);
+		break;
+
+	case PM_VALKYRIE:
+		skill_init(Skill_V);
+		break;
+
+	case PM_WIZARD:
+		skill_init(Skill_W);
+		break;
+
+	case PM_SAGE:
+
+		skill_init(Skill_Sag);
+		break;
+
+#ifdef YEOMAN
+	case PM_YEOMAN:
+		skill_init(Skill_Y);
+		break;
+#endif
+
+	default:	/* impossible */
+		break;
+	}
+
+	if (!isnullrace) { /* randomizer only */
+
+	switch (rnd(90)) {
+	case 1:
+		switch (rnd(5)) {   
+		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
+		    case 2: Archeologist[A_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 3: Archeologist[A_BOOK].trotyp = SPE_LIGHT; break;
+		    case 4: Archeologist[A_BOOK].trotyp = SPE_KNOCK; break;
+		    case 5: Archeologist[A_BOOK].trotyp = SPE_WIZARD_LOCK; break;
+		    default: break;
+		}
+		ini_inv(Archeologist);
+		if(!rn2(4)) ini_inv(Blindfold);
+#ifdef TOURIST
+		else if(!rn2(4)) ini_inv(Towel);
+		if(!rn2(4)) ini_inv(Leash);
+#endif
+		if(!rn2(4)) ini_inv(Tinopener);
+		else if(!rn2(4))
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
+		if(!rn2(8)) ini_inv(Magicmarker);
+		knows_object(TOUCHSTONE);
+		knows_object(SACK);
+		break;
+
+	case 2:
+		switch (rnd(5)) {   
+		    case 1: Augurer[AUG_BOOK].trotyp = SPE_CAUSE_FEAR; break;
+		    case 2: Augurer[AUG_BOOK].trotyp = SPE_CONFUSE_MONSTER; break;
+		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT; break;
+		    case 4: Augurer[AUG_BOOK].trotyp = SPE_KNOCK; break;
+		    case 5: Augurer[AUG_BOOK].trotyp = (!rn2(3) ? SPE_SLEEP : !rn2(2) ? SPE_IDENTIFY : SPE_MAGIC_MAPPING); break;
+		    default: break;
+		}
+		ini_inv(Augurer);
+		if(!rn2(4)) ini_inv(Candle);
+		else if(!rn2(4)) ini_inv(Touchstone);
+		else if(!rn2(4)) ini_inv(Magicmarker);
+
+		break;
+
+	case 3:
+		if (rn2(100) >= 50) {   /* see Elf comment */
+		    Barbarian[B_MAJOR].trotyp = BATTLE_AXE;
+		    Barbarian[B_MINOR].trotyp = SHORT_SWORD;
+		}
+		ini_inv(Barbarian);
+		if(!rn2(6)) ini_inv(Torch);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 4:
+		ini_inv(Binder);
+	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
+		break;
+
+	case 5:
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = (3000 + rnd(2000));
+#else
+		u.umoney0 = (3000 + rnd(2000));
+#endif
+		ini_inv(Politician);
+		break;
+
+	case 6:
+		ini_inv(Bleeder);
+		break;
+	case 7:
+		ini_inv(Librarian);
+		break;
+	case 8:
+
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = 500;
+#else
+		u.umoney0 = 500;
+#endif
+
+		ini_inv(Supermarket);
+		if ((rnd(5)) > 2) ini_inv(SupermarketB);
+		if (!rn2(5)) ini_inv(SupermarketA);
+		break;
+	case 9:
+		ini_inv(Scribe);
+		break;
+	case 10:
+		ini_inv(Gamer);
+		break;
+	case 11:
+		ini_inv(Artist);
+		break;
+	case 12:
+		ini_inv(Cook);
+		break;
+	case 13:
+		if (rn2(100) >= 50) Bard[BARD_INSTR].trotyp = WOODEN_FLUTE;
+		if (rn2(100) >= 85) Bard[BARD_WHISTLE].trotyp = BELL;
+		Bard[BARD_BOOZE].trquan = rn1(2, 5);
+		ini_inv(Bard);
+		/* This depends on the order in objects.c */
+		for (i = TIN_WHISTLE; i <= DRUM_OF_EARTHQUAKE; i++)
+			knows_object(i);
+		/* Bards know about the enchantment spellbooks, though they don't know
+		   the spells */
+		knows_object(SPE_SLEEP);
+		knows_object(SPE_CONFUSE_MONSTER);
+		knows_object(SPE_SLOW_MONSTER);
+		knows_object(SPE_CAUSE_FEAR);
+		knows_object(SPE_CHARM_MONSTER);
+		/* Bards also know a lot about legendary & magical stuff. */
+		know_random_obj();
+		break;
+	case 14:
+		u.nv_range = 2;
+		Cave_man[C_AMMO].trquan = rn1(11, 10);	/* 10..20 */
+		ini_inv(Cave_man);
+		break;
+	case 15:
+		ini_inv(Gangster);
+		break;
+	case 16:
+		ini_inv(Gunner);
+		break;
+	case 17:
+		ini_inv(Death_Eater);
+		break;
+	case 18:
+		ini_inv(Pokemon);
+		break;
+	case 19:
+		switch (rnd(2)) {                
+			case 1: Flame_Mage[F_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+			case 2: Flame_Mage[F_BOOK].trotyp = SPE_LIGHT; break;
+			default: break;
+		}
+		ini_inv(Flame_Mage);
+		if(!rn2(5)) ini_inv(Lamp);
+		else if(!rn2(5)) ini_inv(Blindfold);
+		else if(!rn2(5)) ini_inv(Magicmarker);
+		break;
+	case 20:
+        ini_inv(Courier);
+		break;
+
+	case 21:
+        ini_inv(Spacewars_Fighter);
+
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = 1500;
+#else
+		u.umoney0 = 1500;
+#endif
+		break;
+
+	case 22:
+        ini_inv(Rocker);
+		break;
+
+	case 23:
+        ini_inv(Zyborg);
+		break;
+
+	case 24:
+        ini_inv(Lunatic);
+
+		if (!Race_if(PM_AK_THIEF_IS_DEAD_)) {
+		switch (rnd(7)) {
+		case 1: 	    u.ulycn = PM_WEREWOLF; break;
+		case 2: 	    u.ulycn = PM_WEREJACKAL; break;
+		case 3: 	    u.ulycn = PM_WERERAT; break;
+		case 4: 	    u.ulycn = PM_WEREPANTHER; break;
+		case 5: 	    u.ulycn = PM_WERETIGER; break;
+		case 6: 	    u.ulycn = PM_WERESNAKE; break;
+		case 7: 	    u.ulycn = PM_WERESPIDER; break;
+		default: 	    u.ulycn = PM_WEREWOLF; break;
+
+		}
+		}
+
+		break;
+
+	case 25:
+        ini_inv(Convict);
+        knows_object(SKELETON_KEY);
+        knows_object(GRAPPLING_HOOK);
+	  u.ualign.sins += 16; /* You have sinned */
+        u.uhunger = 200;  /* On the verge of hungry */
+    	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
+        u.ualign.type = A_CHAOTIC; Override racial alignment */
+        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
+        urace.lovemask = 0; /* Convicts are pariahs of their race */
+	    change_luck(-1); /* both their alignment and luck start out negative */
+        break;
+	case 26:
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rn1(1000, 1001);
+#else
+		u.umoney0 = rn1(1000, 1001);
+#endif
+		ini_inv(Healer);
+		knows_classX(POTION_CLASS); /* WAC - remove? */ /* edit by Amy - nope, but change to include magic ones */
+		knows_object(POT_SICKNESS);
+		knows_object(POT_BLINDNESS);
+		knows_object(POT_HALLUCINATION);
+		knows_object(POT_RESTORE_ABILITY);
+		knows_object(POT_FULL_HEALING);
+		knows_object(HEALTHSTONE);	/* KMH */
+		if(!rn2(5)) ini_inv(Lamp);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		if(!rn2(5)) ini_inv(Blindfold);
+		break;
+	case 27:
+		switch (rnd(2)) {                
+			case 1: Ice_Mage[I_BOOK].trotyp = SPE_CONFUSE_MONSTER; break;
+			case 2: Ice_Mage[I_BOOK].trotyp = SPE_SLOW_MONSTER; break;
+			default: break;
+		}
+		ini_inv(Ice_Mage);
+		if(!rn2(5)) ini_inv(Lamp);
+		else if(!rn2(5)) ini_inv(Blindfold);
+		else if(!rn2(5)) ini_inv(Magicmarker);
+		break;
+
+	case 28:
+		ini_inv(Electric_Mage);
+		if(!rn2(5)) ini_inv(Lamp);
+		else if(!rn2(5)) ini_inv(Blindfold);
+		else if(!rn2(5)) ini_inv(Magicmarker);
+		break;
+
+	case 29:
+		ini_inv(Abuser);
+		break;
+
+	case 30:
+		ini_inv(Mystic);
+		break;
+
+	case 31:
+		ini_inv(Jester);
+		break;
+
+	case 32:
+		ini_inv(Ladiesman);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = 300;
+#else
+		u.umoney0 = 300;
+#endif
+		break;
+
+	case 33:
+		ini_inv(Bloodseeker);
+		if ((rnd(10)) > 3) ini_inv(BloodseekerA);
+		break;
+
+	case 34:
+		ini_inv(SlaveMaster);
+		if ((rnd(10)) > 3) ini_inv(SlaveMasterA);
+		if (!rn2(2)) ini_inv(SlaveMasterB);
+		if ((rnd(100)) > 92) ini_inv(SlaveMasterC);
+		break;
+
+	case 35:
+		ini_inv(Acid_Mage);
+		if(!rn2(5)) ini_inv(Lamp);
+		else if(!rn2(5)) ini_inv(Blindfold);
+		else if(!rn2(5)) ini_inv(Magicmarker);
+		break;
+
+	case 36:
+		Geek[G_IC].trquan = rn2(7) + 1;
+		ini_inv(Geek);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		knows_object(PACK_OF_FLOPPIES);
+		knows_object(POT_JOLT_COLA);
+		knows_object(DIODE);
+		knows_object(TRANSISTOR);
+		knows_object(IC);
+		break;
+
+	case 37:
+		ini_inv(Graduate);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	case 38:
+		ini_inv(Scientist);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		knows_object(CHEMISTRY_SET);
+		knows_classX(POTION_CLASS);
+		break;
+
+	case 39:
+		ini_inv(Jedi);
+#ifdef D_SABER
+		switch(rnd(3)) {
+			case 1: ini_inv(RedSaber); break;
+			case 2: ini_inv(BlueSaber); break;
+			case 3: ini_inv(GreenSaber); break;
+			default: break;
+		}
+#else
+		switch(rnd(2)) {
+			case 1: ini_inv(RedSaber); break;
+			case 2: ini_inv(GreenSaber); break;
+			default: break;
+		}
+#endif
+		if(!rn2(2)) ini_inv(Blindfold);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 40:
+		ini_inv(Knight);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		/* give knights chess-like mobility
+		 * -- idea from wooledge@skybridge.scl.cwru.edu */
+		HJumping |= FROMOUTSIDE;
+		break;
+
+	case 41:
+		ini_inv(Wandkeeper);
+		knows_classX(WAND_CLASS);
+		break;
+
+	case 42:
+		ini_inv(StuntMaster);
+
+		HJumping |= FROMOUTSIDE;
+		break;
+
+	case 43:
+		ini_inv(FoxhoundAgent);
+
+		break;
+
+	case 44:
+		ini_inv(Paladin);
+
+		break;
+
+	case 45:
+		switch (rn2(90) / 30) {
+		case 0: Monk[M_BOOK].trotyp = SPE_HEALING; break;
+		case 1: Monk[M_BOOK].trotyp = SPE_PROTECTION; break;
+		case 2: Monk[M_BOOK].trotyp = SPE_SLEEP; break;
+		}
+		ini_inv(Monk);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		else if(!rn2(10)) ini_inv(Lamp);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 46:
+		ini_inv(Saiyan);
+		break;
+
+	case 47:
+		switch (rn2(90) / 30) {
+		case 0: Psion[M_BOOK].trotyp = SPE_KNOCK; break;
+		case 1: Psion[M_BOOK].trotyp = SPE_WIZARD_LOCK; break;
+		case 2: Psion[M_BOOK].trotyp = SPE_CHARM_MONSTER; break;
+		}
+		ini_inv(Psion);
+		if(!rn2(5)) ini_inv(Blindfold);
+		else if(!rn2(10)) ini_inv(Magicmarker);
+		knows_classX(SPBOOK_CLASS);
+		knows_classX(ARMOR_CLASS);
+		break;
+	case 48:
+		if(flags.female){
+			Noble[NOB_SHIRT].trotyp = VICTORIAN_UNDERWEAR;
+		}
+		ini_inv(Noble);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 49:
+		if(flags.female){
+			Activistor[ACT_SHIRT].trotyp = VICTORIAN_UNDERWEAR;
+		}
+		ini_inv(Activistor);
+		break;
+	case 50:
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(300);
+#else
+		u.umoney0 = rnd(300);
+#endif
+		Pirate[PIR_KNIVES].trquan = rn1(2, 2);
+		if(!rn2(4)) Pirate[PIR_SNACK].trotyp = KELP_FROND;
+		Pirate[PIR_SNACK].trquan += rn2(4);
+		if(rn2(100)<50)	Pirate[PIR_JEWELRY].trotyp = RIN_ADORNMENT;
+		if(rn2(100)<50)	Pirate[PIR_TOOL].trotyp = GRAPPLING_HOOK;
+		ini_inv(Pirate);
+		knows_object(OILSKIN_SACK);
+		knows_object(OILSKIN_CLOAK);
+		knows_object(GRAPPLING_HOOK);
+		break;
+	case 51:
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(300);
+#else
+		u.umoney0 = rnd(300);
+#endif
+		ini_inv(Korsair);
+		knows_object(OILSKIN_SACK);
+		knows_object(OILSKIN_CLOAK);
+		knows_object(GRAPPLING_HOOK);
+		break;
+	case 52:
+		ini_inv(Gladiator);
+		knows_class(ARMOR_CLASS);
+		knows_class(WEAPON_CLASS);
+		break;
+	case 53:
+		ini_inv(Goff);
+		break;
+	case 54:
+		ini_inv(Amazon);
+		knows_class(ARMOR_CLASS);
+		knows_class(WEAPON_CLASS);
+		break;
+	case 55:
+		ini_inv(Ordinator);
+		knows_class(ARMOR_CLASS);
+		knows_class(WEAPON_CLASS);
+		break;
+	case 56:
+		ini_inv(Thalmor);
+		knows_class(ARMOR_CLASS);
+		knows_class(WEAPON_CLASS);
+		break;
+	case 57:
+		ini_inv(Altmer);
+		knows_classX(SPBOOK_CLASS);
+	    knows_object(ELVEN_SHORT_SWORD);
+	    knows_object(ELVEN_ARROW);
+	    knows_object(ELVEN_BOW);
+	    knows_object(ELVEN_SPEAR);
+	    knows_object(ELVEN_DAGGER);
+	    knows_object(ELVEN_BROADSWORD);
+	    knows_object(ELVEN_MITHRIL_COAT);
+	    knows_object(ELVEN_LEATHER_HELM);
+	    knows_object(ELVEN_SHIELD);
+	    knows_object(ELVEN_BOOTS);
+	    knows_object(ELVEN_CLOAK);
+		break;
+	case 58:
+		ini_inv(Bosmer);
+	    knows_object(ELVEN_SHORT_SWORD);
+	    knows_object(ELVEN_ARROW);
+	    knows_object(ELVEN_BOW);
+	    knows_object(ELVEN_SPEAR);
+	    knows_object(ELVEN_DAGGER);
+	    knows_object(ELVEN_BROADSWORD);
+	    knows_object(ELVEN_MITHRIL_COAT);
+	    knows_object(ELVEN_LEATHER_HELM);
+	    knows_object(ELVEN_SHIELD);
+	    knows_object(ELVEN_BOOTS);
+	    knows_object(ELVEN_CLOAK);
+		break;
+	case 59:
+		ini_inv(Dunmer);
+	    knows_object(ELVEN_SHORT_SWORD);
+	    knows_object(ELVEN_ARROW);
+	    knows_object(ELVEN_BOW);
+	    knows_object(ELVEN_SPEAR);
+	    knows_object(ELVEN_DAGGER);
+	    knows_object(ELVEN_BROADSWORD);
+	    knows_object(ELVEN_MITHRIL_COAT);
+	    knows_object(ELVEN_LEATHER_HELM);
+	    knows_object(ELVEN_SHIELD);
+	    knows_object(ELVEN_BOOTS);
+	    knows_object(ELVEN_CLOAK);
+		break;
+	case 60:
+		ini_inv(Diver);
+		knows_object(OILSKIN_SACK);
+		knows_object(OILSKIN_CLOAK);
+		knows_object(GRAPPLING_HOOK);
+		break;
+	case 61:
+		switch (rnd(5)) {   
+                    case 1: Necromancer[N_BOOK].trotyp = SPE_FORCE_BOLT; break;
+                    case 2: Necromancer[N_BOOK].trotyp = SPE_KNOCK; break;
+                    case 3: Necromancer[N_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
+                    case 4: Necromancer[N_BOOK].trotyp = SPE_CREATE_MONSTER; break;
+                    case 5: Necromancer[N_BOOK].trotyp = SPE_WIZARD_LOCK; break;
+		    default: break;
+		}
+		ini_inv(Necromancer);
+		knows_classX(SPBOOK_CLASS);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		if(!rn2(5)) ini_inv(Blindfold);
+		break;
+	case 62:
+		switch (rnd(20)) {   
+                    case 1: ini_inv(WarXtrA); break;
+                    case 2: ini_inv(WarXtrB); break;
+                    case 3: ini_inv(WarXtrC); break;
+                    case 4: ini_inv(WarXtrD); break;
+                    case 5: ini_inv(WarXtrE); break;
+                    case 6: ini_inv(WarXtrF); break;
+                    case 7: ini_inv(WarXtrG); break;
+                    case 8: ini_inv(WarXtrH); break;
+                    case 9: ini_inv(WarXtrI); break;
+                    case 10: ini_inv(WarXtrJ); break;
+                    case 11: ini_inv(WarXtrK); break;
+                    case 12: ini_inv(WarXtrL); break;
+                    case 13: ini_inv(WarXtrM); break;
+                    case 14: ini_inv(WarXtrN); break;
+                    case 15: ini_inv(WarXtrO); break;
+                    case 16: ini_inv(WarXtrP); break;
+                    case 17: ini_inv(WarXtrQ); break;
+                    case 18: ini_inv(WarXtrR); break;
+                    case 19: ini_inv(WarXtrS); break;
+                    case 20: ini_inv(WarXtrT); break;
+		    default: break;
+		}
+		ini_inv(Warrior);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	case 63:
+		ini_inv(DollMistress);
+
+		break;
+
+	case 64:
+		ini_inv(MahouShoujo);
+
+		break;
+
+	case 65:
+		switch (rnd(9)) {   
+		    case 1: Priest[P_BOOK].trotyp = SPE_FORCE_BOLT; break;
+		    case 2: Priest[P_BOOK].trotyp = SPE_SLEEP; break;
+		    case 3: Priest[P_BOOK].trotyp = SPE_RESIST_POISON; break;
+		    case 4: Priest[P_BOOK].trotyp = SPE_RESIST_SLEEP; break;
+		    case 5: Priest[P_BOOK].trotyp = SPE_DETECT_FOOD; break;
+		    case 6: Priest[P_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 7: Priest[P_BOOK].trotyp = SPE_LIGHT; break;
+		    case 8: Priest[P_BOOK].trotyp = SPE_KNOCK; break;
+		    case 9: Priest[P_BOOK].trotyp = SPE_WIZARD_LOCK; break;
+		    default: break;
+		}
+		ini_inv(Priest);
+		if(!rn2(10)) ini_inv(Magicmarker);
+		else if(!rn2(10)) 
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
+		knows_object(POT_WATER);
+		spellbook_skill_raise(Skill_P, Priest[P_BOOK].trotyp);
+		/* KMH, conduct --
+		 * Some may claim that this isn't agnostic, since they
+		 * are literally "priests" and they have holy water.
+		 * But we don't count it as such.  Purists can always
+		 * avoid playing priests and/or confirm another player's
+		 * role in their YAAP.
+		 */
+		break;
+	case 66:
+		ini_inv(Chevalier);
+		if(!rn2(10)) ini_inv(Magicmarker);
+		else if(!rn2(10)) 
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
+		knows_object(POT_WATER);
+		break;
+	case 67:
+		Ranger[RAN_TWO_ARROWS].trquan = rn1(10, 50);
+		Ranger[RAN_ZERO_ARROWS].trquan = rn1(10, 30);
+		ini_inv(Ranger);
+		break;
+	case 68:
+		Elph[ELP_TWO_ARROWS].trquan = rn1(10, 50);
+		Elph[ELP_ZERO_ARROWS].trquan = rn1(10, 30);
+		ini_inv(Elph);
+
+	    /* Elves can recognize all elvish objects */
+	    knows_object(ELVEN_SHORT_SWORD);
+	    knows_object(ELVEN_ARROW);
+	    knows_object(ELVEN_BOW);
+	    knows_object(ELVEN_SPEAR);
+	    knows_object(ELVEN_DAGGER);
+	    knows_object(ELVEN_BROADSWORD);
+	    knows_object(ELVEN_MITHRIL_COAT);
+	    knows_object(ELVEN_LEATHER_HELM);
+	    knows_object(ELVEN_SHIELD);
+	    knows_object(ELVEN_BOOTS);
+	    knows_object(ELVEN_CLOAK);
+
+		break;
+	case 69:
+		ini_inv(Transvestite);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 70:
+		ini_inv(Topmodel);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+	      u.uhunger = 200;  /* They don't eat much --Amy */
+		break;
+
+	case 71:
+		ini_inv(Bully);
+
+		if (rn2(5)) ini_inv(BullyA);
+		if (rn2(2)) ini_inv(BullyB);
+		if (!rn2(20)) ini_inv(Candle);
+		if (!rn2(20)) ini_inv(BullyD);
+		if (!rn2(20)) ini_inv(BullyE);
+
+		break;
+
+	case 72:
+
+		ini_inv(Pickpocket);
+		knows_classX(GEM_CLASS);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = 200;
+#else
+		u.umoney0 = 200;
+#endif
+
+		break;
+
+	case 73:
+		Rogue[R_DAGGERS].trquan = rn1(10, 6);
+		Rogue[R_DARTS].trquan = rn1(10, 25);
+#ifdef FIREARMS
+		if (rn2(100) < 30) {
+			Rogue[R_DAGGERS].trotyp = PISTOL;
+			Rogue[R_DAGGERS].trquan = 1;
+			Rogue[R_DARTS].trotyp = BULLET;
+		}
+#endif
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rn1(500 ,1500);
+#else
+		u.umoney0 = rn1(500 ,1500);
+#endif
+		ini_inv(Rogue);
+		if(!rn2(5)) ini_inv(Blindfold);
+		knows_object(OILSKIN_SACK);
+		break;
+
+	case 74:
+
+		if (!rn2(20)) ini_inv(InvisibilityRing);
+		ini_inv(Assassin);
+		break;
+
+	case 75:
+		knows_class(WEAPON_CLASS);
+		ini_inv(Ninja);
+		break;
+
+	case 76:
+		ini_inv(Drunk);
+		break;
+
+	case 77:
+		ini_inv(Officer);
+		break;
+
+	case 78:
+		ini_inv(Undertaker);
+		break;
+
+	case 79:
+		ini_inv(Musician);
+		break;
+
+	case 80:
+		ini_inv(Zookeeper);
+		break;
+
+	case 81:
+		ini_inv(Firefighter);
+		break;
+
+	case 82:
+		ini_inv(Locksmith);
+		break;
+
+	case 83:
+		Samurai[S_ARROWS].trquan = rn1(20, 26);
+		ini_inv(Samurai);
+		if(!rn2(5)) ini_inv(Blindfold);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	case 84:
+		ini_inv(Otaku);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(500);
+#else
+		u.umoney0 = rnd(500);
+#endif
+
+		break;
+
+	case 85:
+		Tourist[T_DARTS].trquan = rn1(20, 21);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rn1(500,1000);
+#else
+		u.umoney0 = rn1(500,1000);
+#endif
+		ini_inv(Tourist);
+		if(!rn2(25)) ini_inv(Tinopener);
+		else if(!rn2(25)) ini_inv(Leash);
+		else if(!rn2(25)) ini_inv(Towel);
+		else if(!rn2(25)) ini_inv(Magicmarker);
+		break;
+	case 86:
+		switch (rn2(100) / 25) {
+		    case 0:	/* Pistol and silver bullets */
+#ifdef FIREARMS
+			UndeadSlayer[U_MINOR].trotyp = PISTOL;
+			UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
+			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
+			break;
+#endif
+		    case 1:	/* Crossbow and bolts */
+			UndeadSlayer[U_MINOR].trotyp = CROSSBOW;
+			UndeadSlayer[U_RANGE].trotyp = CROSSBOW_BOLT;
+			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
+			UndeadSlayer[U_MISC].trotyp = LOW_BOOTS;
+			UndeadSlayer[U_MISC].trspe = 1;
+			UndeadSlayer[U_ARMOR].trotyp = LEATHER_JACKET;
+			UndeadSlayer[U_ARMOR].trspe = 1;
+			/* helmet & armour are no longer candidates for
+			 * substitution for orcish versions so no extra
+			 * food should be given in compensation.
+			 */
+			if (Race_if(PM_ORC))
+			    no_extra_food = TRUE;
+		        break;
+		    case 2:	/* Whip and daggers */
+		        UndeadSlayer[U_MINOR].trotyp = BULLWHIP;
+		        UndeadSlayer[U_MINOR].trspe = 2;
+		        break;
+		    case 3:	/* Silver spear and daggers */
+			break;
+		}
+		ini_inv(UndeadSlayer);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		if(!rn2(6)) ini_inv(Lamp);
+		break;
+	case 87:
+		ini_inv(Valkyrie);
+		if(!rn2(6)) 
+		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+	case 88:
+		switch (rnd(2)) {                
+		    case 1: Wizard[W_BOOK1].trotyp = SPE_FORCE_BOLT; break;
+		    case 2: Wizard[W_BOOK1].trotyp = SPE_SLEEP; break;
+		    default: break;
+		}
+		switch (rnd(2)) {
+		    case 1: Wizard[W_BOOK2].trotyp = SPE_RESIST_POISON; break;
+		    case 2: Wizard[W_BOOK2].trotyp = SPE_RESIST_SLEEP; break;
+		    default: break;
+		}
+		switch (rnd(5)) {   
+		    case 1: Wizard[W_BOOK3].trotyp = SPE_DETECT_FOOD; break;
+		    case 2: Wizard[W_BOOK3].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 3: Wizard[W_BOOK3].trotyp = SPE_LIGHT; break;
+		    case 4: Wizard[W_BOOK3].trotyp = SPE_KNOCK; break;
+		    case 5: Wizard[W_BOOK3].trotyp = SPE_WIZARD_LOCK; break;
+		    default: break;
+		}
+		switch (rnd(9)) {
+		    case 1: Wizard[W_BOOK4].trotyp = SPE_MAGIC_MISSILE; break;
+		    case 2: Wizard[W_BOOK4].trotyp = SPE_CONFUSE_MONSTER; break;
+		    case 3: Wizard[W_BOOK4].trotyp = SPE_SLOW_MONSTER; break;
+		    case 4: Wizard[W_BOOK4].trotyp = SPE_CURE_BLINDNESS; break;
+		    case 5: Wizard[W_BOOK4].trotyp = SPE_ENDURE_HEAT; break;
+		    case 6: Wizard[W_BOOK4].trotyp = SPE_ENDURE_COLD; break;
+		    case 7: Wizard[W_BOOK4].trotyp = SPE_INSULATE; break;
+		    case 8: Wizard[W_BOOK4].trotyp = SPE_CREATE_MONSTER; break;
+		    case 9: Wizard[W_BOOK4].trotyp = SPE_HEALING; break;
+		    default: break;
+		}
+		ini_inv(Wizard);
+		knows_classX(SPBOOK_CLASS);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		if(!rn2(5)) ini_inv(Blindfold);
+		break;
+
+	case 89:
+
+		ini_inv(Sage);
+		if(!rn2(3)) ini_inv(Magicmarker);
+
+		break;
+
+	case 90:
+		ini_inv(Yeoman);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	default:	/* impossible */
+		break;
+	}
+
+	xtraskillinit();	/* so you actually get the skills of those objects --Amy */
+
+	} /* randomizer only */
+
+	if (isnullrace && israndomizer) { /* null would cancel out randomizer, so let's allow hybrids to start with some _very_ random stuff. --Amy */
+
+		while (rn2(5)) {
+
+			switch (rnd(32)) {
+
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					ini_inv(UberLostSoulItemC); break;
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+				case 10:
+					ini_inv(UberLostSoulItemD); break;
+				case 11:
+				case 12:
+					ini_inv(UberLostSoulItemE); break;
+				case 13:
+				case 14:
+				case 15:
+				case 16:
+					ini_inv(UberLostSoulItemF); break;
+				case 17:
+				case 18:
+					ini_inv(UberLostSoulItemG); break;
+				case 19:
+				case 20:
+					ini_inv(UberLostSoulItemH); break;
+				case 21:
+					ini_inv(UberLostSoulItemI); break;
+				case 22:
+				case 23:
+				case 24:
+					ini_inv(UberLostSoulItemJ); break;
+				case 25:
+				case 26:
+				case 27:
+				case 28:
+				case 29:
+					ini_inv(UberLostSoulItemK); break;
+				case 30:
+				case 31:
+					ini_inv(UberLostSoulItemL); break;
+				case 32:
+					ini_inv(UberLostSoulItemM); break;
+
+			}
+
+		}
+
+	xtraskillinit();	/* so you actually get the skills of those objects --Amy */
+
+	} /* null and randomizer */
+
+	} /* israndomizer */
 
 	/*** Race-specific initializations ***/
 	switch (Race_switch) {

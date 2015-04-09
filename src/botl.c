@@ -381,6 +381,8 @@ bot1()
 		/* sorry but I just couldn't resist allowing the "CHAOS" string. :D */
 		if (flags.hybridaquarian) Sprintf(nb = eos(nb), "Q");
 		if (flags.hybridwarper) Sprintf(nb = eos(nb), "W");
+		if (flags.hybridrandomizer) Sprintf(nb = eos(nb), "R");
+		if (flags.hybridnullrace) Sprintf(nb = eos(nb), "N");
 	}
 
 #ifdef SCORE_ON_BOTL
