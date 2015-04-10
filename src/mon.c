@@ -2753,7 +2753,7 @@ xkilled(mtmp, dest)
 	    /* might be mimic in wall or corpse in lava or on player's spot */
 	    redisp = TRUE;
 	    if(wasinside) spoteffects(TRUE);
-	} else if(x != u.ux || y != u.uy) {
+	} else if(x != u.ux || y != u.uy && !attacktype(mdat, AT_MULTIPLY) ) { /* multipliers could otherwise be farmed */
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
