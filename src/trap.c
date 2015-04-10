@@ -5373,11 +5373,13 @@ dountrap()	/* disarm a trap */
 	    return 0;
 	} else if (u.ustuck && sticks(youmonst.data)) {
 	    pline("You'll have to let go of %s first.", mon_nam(u.ustuck));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 	if (u.ustuck || (welded(uwep) && bimanual(uwep))) {
 	    Your("%s seem to be too busy for that.",
 		 makeplural(body_part(HAND)));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 	return untrap(FALSE);
