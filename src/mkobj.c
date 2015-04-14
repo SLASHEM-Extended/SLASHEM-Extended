@@ -133,7 +133,7 @@ mkobj(oclass, artif)
 char oclass;
 boolean artif;
 {
-	int tprob, i, prob = rnd(1000);
+	int tprob, i, prob = rnd(5000);
 
 	if(oclass == RANDOM_CLASS) {
 		const struct icp *iprobs =

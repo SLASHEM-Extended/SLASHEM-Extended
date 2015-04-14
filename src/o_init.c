@@ -160,7 +160,7 @@ register char oclass;
 	/* initialize object descriptions */
 	for (i = 0; i < NUM_OBJECTS; i++)
 		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;
-	/* init base; if probs given check that they add up to 1000,
+	/* init base; if probs given check that they add up to 5000,
 	   otherwise compute probs */
 	first = 0;
 	while( first < NUM_OBJECTS ) {
@@ -196,7 +196,7 @@ register char oclass;
 		for(i = first; i < last; i++) sum += objects[i].oc_prob;
 		if(sum == 0) {
 			for(i = first; i < last; i++)
-			    objects[i].oc_prob = (1000+i-first)/(last-first);
+			    objects[i].oc_prob = (5000+i-first)/(last-first);
 			goto check;
 		}
 		if(sum != sum)
