@@ -2181,6 +2181,11 @@ minimal_enlightenment()
 
 		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
+		if (!Upolyd) Sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
+		else Sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);
+
+		Sprintf(eos(statline), " Pw %d (max %d)", u.uen, u.uenmax);
+
 		Sprintf(eos(statline), " Current status effects: ");
 
 		if (Levitation) Sprintf(eos(statline), "levitation, ");
