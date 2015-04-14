@@ -411,6 +411,9 @@ give_up:	/* Quit */
 			}
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
+
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = 0;
+
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
