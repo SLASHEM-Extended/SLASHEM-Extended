@@ -592,7 +592,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			u.uhp -= damu;
 		    flags.botl = 1;
 #ifdef SHOW_DMG                
-		    if (flags.showdmg) pline("[-%d -> %d]", damu, (Upolyd ? u.mh : u.uhp) );
+		    if (flags.showdmg && !DisplayLoss) pline("[-%d -> %d]", damu, (Upolyd ? u.mh : u.uhp) );
 
 			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 #endif
