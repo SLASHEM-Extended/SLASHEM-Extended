@@ -943,7 +943,7 @@ makelevel()
 	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
 		    makemaz("");
 		    return;
-	    } else if (In_mines(&u.uz)) {
+	    } else if (In_mines(&u.uz) && rn2(iswarper ? 5 : 50)) {
 		    if (rn2(10)) makemaz("minefill");
 		    else switch (rnd(5)) {
 			case 1: makemaz("minefila"); break;
@@ -966,12 +966,375 @@ makelevel()
 		    makemaz(fillname);
 		    return;
 	    } else if( /*u.uz.dnum == wiz1_level.dnum || u.uz.dnum == (wiz1_level.dnum + 1) || u.uz.dnum == (wiz1_level.dnum + 2) ||*/ (In_V_tower(&u.uz)) || Invocation_lev(&u.uz) ||
-		 (In_hell(&u.uz) && (!rn2(2))  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
+		 (In_hell(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level))) {
 		    makemaz("");
 		    return;
 	    }
+	}
+
+	/* very random levels --Amy */
+
+	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(iswarper ? 10 : 100)) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) ) {
+
+
+	    switch (rnd(21)) {
+
+	    case 1:
+	    case 2:
+	    case 3:
+	    case 4:
+	    case 5:
+	    case 6:
+	    case 7:
+	    case 8:
+	    case 9:
+	    case 10:
+
+		switch (rnd(38)) {
+
+			case 1: makemaz("bigrm-1"); return;
+			case 2: makemaz("bigrm-2"); return;
+			case 3: makemaz("bigrm-3"); return;
+			case 4: makemaz("bigrm-4"); return;
+			case 5: makemaz("bigrm-5"); return;
+			case 6: makemaz("bigrm-6"); return;
+			case 7: makemaz("bigrm-7"); return;
+			case 8: makemaz("bigrm-8"); return;
+			case 9: makemaz("bigrm-9"); return;
+			case 10: makemaz("bigrm-10"); return;
+			case 11: makemaz("bigrm-11"); return;
+			case 12: makemaz("bigrm-12"); return;
+			case 13: makemaz("bigrm-13"); return;
+			case 14: makemaz("bigrm-14"); return;
+			case 15: makemaz("bigrm-15"); return;
+			case 16: makemaz("bigrm-16"); return;
+			case 17: makemaz("bigrm-17"); return;
+			case 18: makemaz("bigrm-18"); return;
+			case 19: makemaz("bigrm-19"); return;
+			case 20: makemaz("bigrm-20"); return;
+			case 21: makemaz("bigrm-21"); return;
+			case 22: makemaz("bigrm-22"); return;
+			case 23: makemaz("bigrm-23"); return;
+			case 24: makemaz("bigrm-24"); return;
+			case 25: makemaz("bigrm-25"); return;
+			case 26: makemaz("bigrm-26"); return;
+			case 27: makemaz("bigrm-27"); return;
+			case 28: makemaz("bigrm-28"); return;
+			case 29: makemaz("bigrm-29"); return;
+			case 30: makemaz("bigrm-30"); return;
+			case 31: makemaz("bigrm-31"); return;
+			case 32: makemaz("bigrm-32"); return;
+			case 33: makemaz("bigrm-33"); return;
+			case 34: makemaz("bigrm-34"); return;
+			case 35: makemaz("bigrm-35"); return;
+			case 36: makemaz("bigrm-36"); return;
+			case 37: makemaz("bigrm-37"); return;
+			case 38: makemaz("bigrm-38"); return;
+
+		}
+		break;
+
+	    case 11:
+	    case 12:
+	    case 13:
+	    case 14:
+	    case 15:
+	    case 16:
+	    case 17:
+	    case 18:
+	    case 19:
+	    case 20:
+
+		switch (rnd(87)) {
+
+			case 1: makemaz("unhck-1"); return;
+			case 2: makemaz("unhck-2"); return;
+			case 3: makemaz("unhck-3"); return;
+			case 4: makemaz("unhck-4"); return;
+			case 5: makemaz("unhck-5"); return;
+			case 6: makemaz("unhck-6"); return;
+			case 7: makemaz("unhck-7"); return;
+			case 8: makemaz("unhck-8"); return;
+			case 9: makemaz("unhck-9"); return;
+			case 10: makemaz("unhck-10"); return;
+			case 11: makemaz("unhck-11"); return;
+			case 12: makemaz("unhck-12"); return;
+			case 13: makemaz("unhck-13"); return;
+			case 14: makemaz("unhck-14"); return;
+			case 15: makemaz("unhck-15"); return;
+			case 16: makemaz("unhck-16"); return;
+			case 17: makemaz("unhck-17"); return;
+			case 18: makemaz("unhck-18"); return;
+			case 19: makemaz("unhck-19"); return;
+			case 20: makemaz("unhck-20"); return;
+			case 21: makemaz("unhck-21"); return;
+			case 22: makemaz("unhck-22"); return;
+			case 23: makemaz("unhck-23"); return;
+			case 24: makemaz("unhck-24"); return;
+			case 25: makemaz("unhck-25"); return;
+			case 26: makemaz("unhck-26"); return;
+			case 27: makemaz("unhck-27"); return;
+			case 28: makemaz("unhck-28"); return;
+			case 29: makemaz("unhck-29"); return;
+			case 30: makemaz("unhck-30"); return;
+			case 31: makemaz("unhck-31"); return;
+			case 32: makemaz("unhck-32"); return;
+			case 33: makemaz("unhck-33"); return;
+			case 34: makemaz("unhck-34"); return;
+			case 35: makemaz("unhck-35"); return;
+			case 36: makemaz("unhck-36"); return;
+			case 37: makemaz("unhck-37"); return;
+			case 38: makemaz("unhck-38"); return;
+			case 39: makemaz("unhck-39"); return;
+			case 40: makemaz("unhck-40"); return;
+			case 41: makemaz("unhck-41"); return;
+			case 42: makemaz("unhck-42"); return;
+			case 43: makemaz("unhck-43"); return;
+			case 44: makemaz("unhck-44"); return;
+			case 45: makemaz("unhck-45"); return;
+			case 46: makemaz("unhck-46"); return;
+			case 47: makemaz("unhck-47"); return;
+			case 48: makemaz("unhck-48"); return;
+			case 49: makemaz("unhck-49"); return;
+			case 50: makemaz("unhck-50"); return;
+			case 51: makemaz("unhck-51"); return;
+			case 52: makemaz("unhck-52"); return;
+			case 53: makemaz("unhck-53"); return;
+			case 54: makemaz("unhck-54"); return;
+			case 55: makemaz("unhck-55"); return;
+			case 56: makemaz("unhck-56"); return;
+			case 57: makemaz("unhck-57"); return;
+			case 58: makemaz("unhck-58"); return;
+			case 59: makemaz("unhck-59"); return;
+			case 60: makemaz("unhck-60"); return;
+			case 61: makemaz("unhck-61"); return;
+			case 62: makemaz("unhck-62"); return;
+			case 63: makemaz("unhck-63"); return;
+			case 64: makemaz("unhck-64"); return;
+			case 65: makemaz("unhck-65"); return;
+			case 66: makemaz("unhck-66"); return;
+			case 67: makemaz("unhck-67"); return;
+			case 68: makemaz("unhck-68"); return;
+			case 69: makemaz("unhck-69"); return;
+			case 70: makemaz("unhck-70"); return;
+			case 71: makemaz("unhck-71"); return;
+			case 72: makemaz("unhck-72"); return;
+			case 73: makemaz("unhck-73"); return;
+			case 74: makemaz("unhck-74"); return;
+			case 75: makemaz("unhck-75"); return;
+			case 76: makemaz("unhck-76"); return;
+			case 77: makemaz("unhck-77"); return;
+			case 78: makemaz("unhck-78"); return;
+			case 79: makemaz("unhck-79"); return;
+			case 80: makemaz("unhck-80"); return;
+			case 81: makemaz("unhck-81"); return;
+			case 82: makemaz("unhck-82"); return;
+			case 83: makemaz("unhck-83"); return;
+			case 84: makemaz("unhck-84"); return;
+			case 85: makemaz("unhck-85"); return;
+			case 86: makemaz("unhck-86"); return;
+			case 87: makemaz("unhck-87"); return;
+
+		}
+		break;
+
+	    case 21:
+
+		switch (rnd(5)) {
+
+			case 1: makemaz("intpla-1"); return;
+			case 2: makemaz("intpla-2"); return;
+			case 3: makemaz("intpla-3"); return;
+			case 4: makemaz("intpla-4"); return;
+			case 5: makemaz("intpla-5"); return;
+
+		}
+		break;
+
+          }
+
+	}
+
+	if ( (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_sheol(&u.uz) && !rn2(iswarper ? 2 : 5)) ) {
+
+	    switch (rnd(21)) {
+
+	    case 1:
+	    case 2:
+	    case 3:
+	    case 4:
+	    case 5:
+	    case 6:
+	    case 7:
+	    case 8:
+	    case 9:
+	    case 10:
+
+		switch (rnd(38)) {
+
+			case 1: makemaz("ghbgr-1"); return;
+			case 2: makemaz("ghbgr-2"); return;
+			case 3: makemaz("ghbgr-3"); return;
+			case 4: makemaz("ghbgr-4"); return;
+			case 5: makemaz("ghbgr-5"); return;
+			case 6: makemaz("ghbgr-6"); return;
+			case 7: makemaz("ghbgr-7"); return;
+			case 8: makemaz("ghbgr-8"); return;
+			case 9: makemaz("ghbgr-9"); return;
+			case 10: makemaz("ghbgr-10"); return;
+			case 11: makemaz("ghbgr-11"); return;
+			case 12: makemaz("ghbgr-12"); return;
+			case 13: makemaz("ghbgr-13"); return;
+			case 14: makemaz("ghbgr-14"); return;
+			case 15: makemaz("ghbgr-15"); return;
+			case 16: makemaz("ghbgr-16"); return;
+			case 17: makemaz("ghbgr-17"); return;
+			case 18: makemaz("ghbgr-18"); return;
+			case 19: makemaz("ghbgr-19"); return;
+			case 20: makemaz("ghbgr-20"); return;
+			case 21: makemaz("ghbgr-21"); return;
+			case 22: makemaz("ghbgr-22"); return;
+			case 23: makemaz("ghbgr-23"); return;
+			case 24: makemaz("ghbgr-24"); return;
+			case 25: makemaz("ghbgr-25"); return;
+			case 26: makemaz("ghbgr-26"); return;
+			case 27: makemaz("ghbgr-27"); return;
+			case 28: makemaz("ghbgr-28"); return;
+			case 29: makemaz("ghbgr-29"); return;
+			case 30: makemaz("ghbgr-30"); return;
+			case 31: makemaz("ghbgr-31"); return;
+			case 32: makemaz("ghbgr-32"); return;
+			case 33: makemaz("ghbgr-33"); return;
+			case 34: makemaz("ghbgr-34"); return;
+			case 35: makemaz("ghbgr-35"); return;
+			case 36: makemaz("ghbgr-36"); return;
+			case 37: makemaz("ghbgr-37"); return;
+			case 38: makemaz("ghbgr-38"); return;
+
+		}
+		break;
+
+	    case 11:
+	    case 12:
+	    case 13:
+	    case 14:
+	    case 15:
+	    case 16:
+	    case 17:
+	    case 18:
+	    case 19:
+	    case 20:
+
+		switch (rnd(87)) {
+
+			case 1: makemaz("heck-1"); return;
+			case 2: makemaz("heck-2"); return;
+			case 3: makemaz("heck-3"); return;
+			case 4: makemaz("heck-4"); return;
+			case 5: makemaz("heck-5"); return;
+			case 6: makemaz("heck-6"); return;
+			case 7: makemaz("heck-7"); return;
+			case 8: makemaz("heck-8"); return;
+			case 9: makemaz("heck-9"); return;
+			case 10: makemaz("heck-10"); return;
+			case 11: makemaz("heck-11"); return;
+			case 12: makemaz("heck-12"); return;
+			case 13: makemaz("heck-13"); return;
+			case 14: makemaz("heck-14"); return;
+			case 15: makemaz("heck-15"); return;
+			case 16: makemaz("heck-16"); return;
+			case 17: makemaz("heck-17"); return;
+			case 18: makemaz("heck-18"); return;
+			case 19: makemaz("heck-19"); return;
+			case 20: makemaz("heck-20"); return;
+			case 21: makemaz("heck-21"); return;
+			case 22: makemaz("heck-22"); return;
+			case 23: makemaz("heck-23"); return;
+			case 24: makemaz("heck-24"); return;
+			case 25: makemaz("heck-25"); return;
+			case 26: makemaz("heck-26"); return;
+			case 27: makemaz("heck-27"); return;
+			case 28: makemaz("heck-28"); return;
+			case 29: makemaz("heck-29"); return;
+			case 30: makemaz("heck-30"); return;
+			case 31: makemaz("heck-31"); return;
+			case 32: makemaz("heck-32"); return;
+			case 33: makemaz("heck-33"); return;
+			case 34: makemaz("heck-34"); return;
+			case 35: makemaz("heck-35"); return;
+			case 36: makemaz("heck-36"); return;
+			case 37: makemaz("heck-37"); return;
+			case 38: makemaz("heck-38"); return;
+			case 39: makemaz("heck-39"); return;
+			case 40: makemaz("heck-40"); return;
+			case 41: makemaz("heck-41"); return;
+			case 42: makemaz("heck-42"); return;
+			case 43: makemaz("heck-43"); return;
+			case 44: makemaz("heck-44"); return;
+			case 45: makemaz("heck-45"); return;
+			case 46: makemaz("heck-46"); return;
+			case 47: makemaz("heck-47"); return;
+			case 48: makemaz("heck-48"); return;
+			case 49: makemaz("heck-49"); return;
+			case 50: makemaz("heck-50"); return;
+			case 51: makemaz("heck-51"); return;
+			case 52: makemaz("heck-52"); return;
+			case 53: makemaz("heck-53"); return;
+			case 54: makemaz("heck-54"); return;
+			case 55: makemaz("heck-55"); return;
+			case 56: makemaz("heck-56"); return;
+			case 57: makemaz("heck-57"); return;
+			case 58: makemaz("heck-58"); return;
+			case 59: makemaz("heck-59"); return;
+			case 60: makemaz("heck-60"); return;
+			case 61: makemaz("heck-61"); return;
+			case 62: makemaz("heck-62"); return;
+			case 63: makemaz("heck-63"); return;
+			case 64: makemaz("heck-64"); return;
+			case 65: makemaz("heck-65"); return;
+			case 66: makemaz("heck-66"); return;
+			case 67: makemaz("heck-67"); return;
+			case 68: makemaz("heck-68"); return;
+			case 69: makemaz("heck-69"); return;
+			case 70: makemaz("heck-70"); return;
+			case 71: makemaz("heck-71"); return;
+			case 72: makemaz("heck-72"); return;
+			case 73: makemaz("heck-73"); return;
+			case 74: makemaz("heck-74"); return;
+			case 75: makemaz("heck-75"); return;
+			case 76: makemaz("heck-76"); return;
+			case 77: makemaz("heck-77"); return;
+			case 78: makemaz("heck-78"); return;
+			case 79: makemaz("heck-79"); return;
+			case 80: makemaz("heck-80"); return;
+			case 81: makemaz("heck-81"); return;
+			case 82: makemaz("heck-82"); return;
+			case 83: makemaz("heck-83"); return;
+			case 84: makemaz("heck-84"); return;
+			case 85: makemaz("heck-85"); return;
+			case 86: makemaz("heck-86"); return;
+			case 87: makemaz("heck-87"); return;
+
+		}
+		break;
+
+	    case 21:
+
+		switch (rnd(5)) {
+
+			case 1: makemaz("intplx-1"); return;
+			case 2: makemaz("intplx-2"); return;
+			case 3: makemaz("intplx-3"); return;
+			case 4: makemaz("intplx-4"); return;
+			case 5: makemaz("intplx-5"); return;
+
+		}
+		break;
+
+          }
+
 	}
 
 	/* otherwise, fall through - it's a "regular" level. */

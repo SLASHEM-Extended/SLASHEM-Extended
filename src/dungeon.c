@@ -894,6 +894,9 @@ init_dungeons()
 	sheol_dnum = dname_to_dnum("Sheol");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	tower_dnum = dname_to_dnum("Vlad's Tower");
+	dod_dnum = dname_to_dnum("The Dungeons of Doom");
+	town_dnum = dname_to_dnum("Town");
+	gehennom_dnum = dname_to_dnum("Gehennom");
 /*
 #ifdef BLACKMARKET
 	blackmarket_dnum = dname_to_dnum("The Black Market");
@@ -1320,6 +1323,27 @@ In_sheol(lev)	/* are you in the sheol dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == sheol_dnum));
+}
+
+boolean
+In_gehennom(lev)	/* are you in the gehennom dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == gehennom_dnum));
+}
+
+boolean
+In_towndungeon(lev)	/* are you in the town dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == town_dnum));
+}
+
+boolean
+In_dod(lev)	/* are you in the dungeons of doom? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == dod_dnum));
 }
 
 boolean
