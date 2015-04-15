@@ -2014,8 +2014,59 @@ fill_room(croom, prefilled)
 struct mkroom *croom;
 boolean prefilled;
 {
+
+	register int sx,sy,i,eelct=0;
+	int rtrap;
+	int randomnes = 0;
+	schar typ, typ2;
+
 	if (!croom || croom->rtype == OROOM)
 	    return;
+
+	if (croom->rtype == RANDOMROOM) {
+
+		switch (rnd(36)) {
+
+			case 1: croom->rtype = COURT; break;
+			case 2: croom->rtype = SWAMP; break;
+			case 3: croom->rtype = BEEHIVE; break;
+			case 4: croom->rtype = MORGUE; break;
+			case 5: croom->rtype = BARRACKS; break;
+			case 6: croom->rtype = ZOO; break;
+			case 7: croom->rtype = REALZOO; break;
+			case 8: croom->rtype = GIANTCOURT; break;
+			case 9: croom->rtype = LEPREHALL; break;
+			case 10: croom->rtype = DRAGONLAIR; break;
+			case 11: croom->rtype = BADFOODSHOP; break;
+			case 12: croom->rtype = COCKNEST; break;
+			case 13: croom->rtype = ANTHOLE; break;
+			case 14: croom->rtype = LEMUREPIT; break;
+			case 15: croom->rtype = MIGOHIVE; break;
+			case 16: croom->rtype = FUNGUSFARM; break;
+			case 17: croom->rtype = CLINIC; break;
+			case 18: croom->rtype = TERRORHALL; break;
+			case 19: croom->rtype = ELEMHALL; break;
+			case 20: croom->rtype = ANGELHALL; break;
+			case 21: croom->rtype = MIMICHALL; break;
+			case 22: croom->rtype = NYMPHHALL; break;
+			case 23: croom->rtype = SPIDERHALL; break;
+			case 24: croom->rtype = TROLLHALL; break;
+			case 25: croom->rtype = HUMANHALL; break;
+			case 26: croom->rtype = GOLEMHALL; break;
+			case 27: croom->rtype = COINHALL; break;
+			case 28: croom->rtype = DOUGROOM; break;
+			case 29: croom->rtype = ARMORY; break;
+			case 30: croom->rtype = TENSHALL; break;
+			case 31: croom->rtype = TRAPROOM; break;
+			case 32: croom->rtype = POOLROOM; break;
+			case 33: croom->rtype = STATUEROOM; break;
+			case 34: croom->rtype = INSIDEROOM; break;
+			case 35: croom->rtype = RIVERROOM; break;
+			case 36: croom->rtype = TEMPLE; break;
+
+		}
+
+	}
 
 	if (!prefilled) {
 	    int x,y;
@@ -2082,6 +2133,119 @@ boolean prefilled;
 		    break;
 	    }
 	}
+
+	if (croom->rtype == SWAMP) {
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+		    if((sx+sy)%2) {
+			levl[sx][sy].typ = POOL;
+			if(!eelct || !rn2(4)) {
+			    /* mkclass() won't do, as we might get kraken */
+/* comment by Amy - low-level players shouldn't move close to water anyway, so I will totally spawn everything here! */
+			    (void) makemon(rn2(3) ? mkclass(S_EEL,0)
+						  : rn2(5) ? &mons[PM_GIANT_EEL]
+						  : rn2(2) ? &mons[PM_PIRANHA]
+						  : &mons[PM_ELECTRIC_EEL],
+						sx, sy, NO_MM_FLAGS);
+			    eelct++;
+			}
+		    } else
+			if(!rn2(4))	/* swamps tend to be moldy */
+			    (void) makemon(mkclass(S_FUNGUS,0),
+						sx, sy, NO_MM_FLAGS);
+		}
+
+	}
+
+	if (croom->rtype == TRAPROOM) {
+
+		rtrap = randomtrap();
+
+		if (!rn2(4)) randomnes = 1;
+
+			for(sx = croom->lx; sx <= croom->hx; sx++)
+			for(sy = croom->ly; sy <= croom->hy; sy++)
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+			    if(rn2(5)) 
+					(void) maketrap(sx, sy, rtrap);
+				if (randomnes == 1) rtrap = randomtrap();
+			}
+
+	}
+
+	if (croom->rtype == POOLROOM) {
+
+	    typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+		    if(rn2(5)) 
+			levl[sx][sy].typ = typ;
+		}
+
+	}
+
+	if (croom->rtype == INSIDEROOM) {
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+
+    typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
+
+	typ2 = !rn2(4) ? TRAP_PERCENTS : !rn2(6) ? UNKNOWN_TRAP : !rn2(8) ? RMB_LOSS_TRAP : !rn2(7) ? DISPLAY_TRAP : !rn2(6) ? SPELL_LOSS_TRAP : !rn2(5) ? YELLOW_SPELL_TRAP : !rn2(5) ? MENU_TRAP : !rn2(4) ? AUTO_DESTRUCT_TRAP : !rn2(3) ? MEMORY_TRAP : !rn2(3) ? INVENTORY_TRAP : !rn2(2) ? SPEED_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
+
+
+		    if(rn2(3)) 
+			levl[sx][sy].typ = typ;
+			else if (!rn2(10))	(void) maketrap(sx, sy, typ2);
+
+			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
+		}
+
+	}
+
+	if (croom->rtype == RIVERROOM) {
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+
+	    typ = !rn2(3) ? POOL : !rn2(10) ? ICE : !rn2(10) ? FOUNTAIN : !rn2(3) ? STONE : !rn2(8) ? TREE : ROOM;
+
+		levl[sx][sy].typ = typ;
+		}
+
+	}
+
+	if (croom->rtype == STATUEROOM) {
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+		    if(rn2(2)) 
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP) );
+		}
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		    if(rn2(2)) 
+			{
+			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+
+			    if (sobj) {
+				for (i = rn2(5); i; i--)
+				    (void) add_to_container(sobj,
+						mkobj(RANDOM_CLASS, FALSE));
+				sobj->owt = weight(sobj);
+			    }
+			}
+
+	}
+
 	switch (croom->rtype) {
 	    case VAULT:
 		level.flags.has_vault = TRUE;

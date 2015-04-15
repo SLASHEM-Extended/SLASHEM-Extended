@@ -219,6 +219,7 @@ static struct {
 	{ "statueroom",  STATUEROOM },
 	{ "insideroom",  INSIDEROOM },
 	{ "riverroom",  RIVERROOM },
+	{ "randomroom",  RANDOMROOM },
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },
 	{ "scroll shop", SCROLLSHOP },

@@ -1486,6 +1486,9 @@ makelevel()
 	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > 1 && ( (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+		/* random rooms, which means a chance of getting several of the same type of room --Amy */
+		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
+
 	    /* Underground rivers */
 	    if ( u_depth > 13 && !rn2(7)) mkrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
@@ -1495,7 +1498,7 @@ makelevel()
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
 		}
 
-		if (isaquarian) mkrivers();
+		if (isaquarian && u_depth > 1) mkrivers();
 
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
@@ -1505,7 +1508,7 @@ makelevel()
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
 
-		if (isaquarian) mkrandrivers();
+		if (isaquarian && u_depth > 1) mkrandrivers();
 
 	/*}*/
 

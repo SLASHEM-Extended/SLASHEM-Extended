@@ -100,6 +100,53 @@ int	roomtype;
 	case INSIDEROOM: mkinsideroom(); break;
 	case RIVERROOM: mkriverroom(); break;
 	case ARMORY: mkzoo(ARMORY); break;
+
+	case RANDOMROOM: {
+
+		switch (rnd(36)) {
+
+			case 1: mkzoo(COURT); break;
+			case 2: mkswamp(); break;
+			case 3: mkzoo(BEEHIVE); break;
+			case 4: mkzoo(MORGUE); break;
+			case 5: mkzoo(BARRACKS); break;
+			case 6: mkzoo(ZOO); break;
+			case 7: mkzoo(REALZOO); break;
+			case 8: mkzoo(GIANTCOURT); break;
+			case 9: mkzoo(LEPREHALL); break;
+			case 10: mkzoo(DRAGONLAIR); break;
+			case 11: mkzoo(BADFOODSHOP); break;
+			case 12: mkzoo(COCKNEST); break;
+			case 13: mkzoo(ANTHOLE); break;
+			case 14: mkzoo(LEMUREPIT); break;
+			case 15: mkzoo(MIGOHIVE); break;
+			case 16: mkzoo(FUNGUSFARM); break;
+			case 17: mkzoo(CLINIC); break;
+			case 18: mkzoo(TERRORHALL); break;
+			case 19: mkzoo(ELEMHALL); break;
+			case 20: mkzoo(ANGELHALL); break;
+			case 21: mkzoo(MIMICHALL); break;
+			case 22: mkzoo(NYMPHHALL); break;
+			case 23: mkzoo(SPIDERHALL); break;
+			case 24: mkzoo(TROLLHALL); break;
+			case 25: mkzoo(HUMANHALL); break;
+			case 26: mkzoo(GOLEMHALL); break;
+			case 27: mkzoo(COINHALL); break;
+			case 28: mkzoo(DOUGROOM); break;
+			case 29: mkzoo(ARMORY); break;
+			case 30: mkzoo(TENSHALL); break;
+			case 31: mktraproom(); break;
+			case 32: mkpoolroom(); break;
+			case 33: mkstatueroom(); break;
+			case 34: mkinsideroom(); break;
+			case 35: mkriverroom(); break;
+			case 36: mktemple(); break;
+
+		}
+		break;
+
+	}
+
 	default:	impossible("Tried to make a room of type %d.", roomtype);
     }
 }
@@ -826,16 +873,14 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 
 	for(i=0; i<5; i++) {		/* turn up to 5 rooms swampy */
 		sroom = &rooms[rn2(nroom)];
-		if(sroom->hx < 0 || sroom->rtype != OROOM ||
-		   has_upstairs(sroom) || has_dnstairs(sroom))
+		if(sroom->hx < 0 || sroom->rtype != OROOM)
 			continue;
 
 		/* satisfied; make a swamp */
 		sroom->rtype = SWAMP;
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if((sx+sy)%2) {
 			levl[sx][sy].typ = POOL;
 			if(!eelct || !rn2(4)) {
@@ -1327,8 +1372,7 @@ mktraproom()
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
 				(void) maketrap(sx, sy, rtrap);
 			if (randomnes == 1) rtrap = randomtrap();
@@ -1345,15 +1389,14 @@ mkpoolroom()
 
     if (!(sroom = pick_room(TRUE))) return;
 
-	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+	if(sroom->rtype != OROOM) return;
 
     sroom->rtype = POOLROOM;
     typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
 			levl[sx][sy].typ = typ;
 		}
@@ -1371,15 +1414,14 @@ mkinsideroom()
 
     if (!(sroom = pick_room(TRUE))) return;
 
-	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+	if(sroom->rtype != OROOM) return;
 
     sroom->rtype = INSIDEROOM;
 
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 
     typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
 
@@ -1406,14 +1448,13 @@ mkriverroom()
 
     if (!(sroom = pick_room(TRUE))) return;
 
-	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+	if(sroom->rtype != OROOM) return;
 
     sroom->rtype = RIVERROOM;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 
 	    typ = !rn2(3) ? POOL : !rn2(10) ? ICE : !rn2(10) ? FOUNTAIN : !rn2(3) ? STONE : !rn2(8) ? TREE : ROOM;
 
@@ -1433,14 +1474,13 @@ mkstatueroom()
 
     if (!(sroom = pick_room(TRUE))) return;
 
-	if(sroom->rtype != OROOM || has_upstairs(sroom) || has_dnstairs(sroom)) return;
+	if(sroom->rtype != OROOM) return;
 
     sroom->rtype = STATUEROOM;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if(!OBJ_AT(sx, sy) &&
-		   !MON_AT(sx, sy) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(2)) 
 				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP) );
 		}
