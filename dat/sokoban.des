@@ -816,6 +816,71 @@ OBJECT:'/',random,random
 
 MONSTER:'m',random, random
 
+MAZE:"soko4-14",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center, center
+# Steve Melenchuk <smelenchuk@gmail.com>
+MAP
+-------------------| 
+|.|.....|..--......|
+|.|.....|...|......|
+|.|-.......--......|
+|.||....-..........|
+|.|---.--...|......|
+|.|  |.---.--......|
+|.|  |.---.--------|
+|.----.--....|
+|............|
+|..------....|
+----    |...--
+        ----- 
+ENDMAP
+BRANCH:(11,05,11,05),(0,0,0,0)
+STAIR:(01,01),up
+REGION:(00,00,13,12),lit,"ordinary"
+NON_DIGGABLE:(00,00,13,12)
+NON_PASSWALL:(00,00,13,12)
+
+REGION:(13,01,18,06),lit,"randomroom"
+
+# Boulders
+OBJECT:'`',"boulder",(04,02)
+OBJECT:'`',"boulder",(06,02)
+OBJECT:'`',"boulder",(07,02)
+OBJECT:'`',"boulder",(04,03)
+OBJECT:'`',"boulder",(09,03)
+OBJECT:'`',"boulder",(06,04)
+OBJECT:'`',"boulder",(10,05)
+OBJECT:'`',"boulder",(06,06)
+OBJECT:'`',"boulder",(08,09)
+OBJECT:'`',"boulder",(11,09)
+OBJECT:'`',"boulder",(11,10)
+OBJECT:'`',"boulder",random
+
+# Traps
+TRAP:"pit",(05,09)
+TRAP:"pit",(04,09)
+TRAP:"pit",(03,09)
+TRAP:"pit",(01,08)
+TRAP:"pit",(01,07)
+TRAP:"pit",(01,06)
+TRAP:"pit",(01,05)
+TRAP:"pit",(01,04)
+TRAP:"pit",(01,03)
+TRAP:"pit",(01,02)
+
+# A little help
+OBJECT:'?',"earth",(01,10)
+OBJECT:'?',"earth",(02,10)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
 
 ### Second level ###
 MAZE:"soko3-1",' '
@@ -1758,6 +1823,68 @@ DOOR:locked,(01,07)
 REGION:(00,00,21,09),lit,"ordinary"
 NON_DIGGABLE:(00,00,21,09)
 NON_PASSWALL:(00,00,21,09)
+
+OBJECT:'`',"boulder",(12,02)
+OBJECT:'`',"boulder",(18,03)
+OBJECT:'`',"boulder",(09,04)
+OBJECT:'`',"boulder",(13,04)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(18,04)
+OBJECT:'`',"boulder",(09,05)
+OBJECT:'`',"boulder",(12,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(18,05)
+OBJECT:'`',"boulder",(13,06)
+OBJECT:'`',"boulder",(12,08)
+OBJECT:'`',"boulder",(14,08)
+
+TRAP:"hole",(08,04)
+TRAP:"hole",(07,05)
+TRAP:"hole",(02,08)
+TRAP:"hole",(03,08)
+TRAP:"hole",(04,08)
+TRAP:"hole",(05,08)
+TRAP:"hole",(06,08)
+TRAP:"hole",(07,08)
+TRAP:"hole",(08,08)
+TRAP:"hole",(09,08)
+TRAP:"hole",(10,08)
+TRAP:"hole",(11,08)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+MAZE:"soko3-16",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+
+#12345678901234567890123456789012345678901234567890
+MAP
+-------   ----
+|.....|---|..|--------
+|.....|...|.......|..|
+|.....|...|.-.-|.....|
+|.....|-..|....|.....|
+|.....|........|.....|
+|.....|...|......||..|
+|+----------..-----.-|
+|....................|
+----------------------
+ENDMAP
+STAIR:(13,05),down
+STAIR:(03,02),up
+DOOR:locked,(01,07)
+REGION:(00,00,21,09),lit,"ordinary"
+NON_DIGGABLE:(00,00,21,09)
+NON_PASSWALL:(00,00,21,09)
+
+REGION:(01,01,05,06),lit,"randomroom"
 
 OBJECT:'`',"boulder",(12,02)
 OBJECT:'`',"boulder",(18,03)
@@ -3981,6 +4108,69 @@ DOOR:locked,(01,06)
 REGION:(00,00,24,08),lit,"ordinary"
 NON_DIGGABLE:(00,00,24,08)
 NON_PASSWALL:(00,00,24,08)
+
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(14,05)
+
+ENGRAVING:(14,04),burn,"XII"
+
+TRAP:"hole",(02,07)
+TRAP:"hole",(03,07)
+TRAP:"hole",(04,07)
+TRAP:"hole",(05,07)
+TRAP:"hole",(06,07)
+TRAP:"hole",(07,07)
+TRAP:"hole",(08,07)
+TRAP:"hole",(09,07)
+TRAP:"hole",(10,07)
+TRAP:"hole",(11,07)
+TRAP:"hole",(12,07)
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MAZE:"soko2-32",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+
+#12345678901234567890123456789012345678901234567890
+MAP
+                  ------      
+------------  -----....--     
+|..........| -|..||.....|     
+|..........--|......-.-.|     
+|..........|..........|.|     
+|..........|.....-......|     
+|+-----------|.....--...|     
+|...............|.......|     
+-------------------------
+ENDMAP
+STAIR:(17,07),down
+STAIR:(05,03),up
+DOOR:locked,(01,06)
+REGION:(00,00,24,08),lit,"ordinary"
+NON_DIGGABLE:(00,00,24,08)
+NON_PASSWALL:(00,00,24,08)
+
+REGION:(01,02,10,05),lit,"randomroom"
 
 OBJECT:'`',"boulder",(14,05)
 OBJECT:'`',"boulder",(14,05)
@@ -7149,3 +7339,130 @@ OBJECT:'"',"amulet of reflection",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
 MONSTER:'m',random, random
 MONSTER:'m',random, random
+
+MAZE:"soko1-35",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# Steve Melenchuk <smelenchuk@gmail.com>
+MAP
+  -----                     |.............FTLFTL|
+  |...------  -----   -------.......------FTLFTL|
+  |........----...| ---.............|TTTT|-----+|
+ --..--.--.--.....| |.+.....|--------T--T|TTTTTT|
+ |................| ---.....|--LLLLLLLT|.......T|
+--.....--.--....--- |.+.....+.F.......L|.......T|
+|...-----.-----.-   ---.....|.|.......L|.......T|
+|.....--..-----.--  |.+.....|.|.......L|.......T|
+--....---.---....|-----.....|.|.......L|.......T|
+ ---..---...-.........------|.|.......L|.......T|
+   |......-......|....|.....|.|.......L|.......T|
+   |..--...-.....|....|.....|.|.......L|.......T|
+---------..--------------.--|.|.......L|.......T|
+......................................L|.......T|
+.......-...-------------------TLLLLLLLT|TTTTTTTT|
+.......-----                 -------------------|
+ENDMAP
+
+RANDOM_PLACES: (21,03),(21,05),(21,07)
+STAIR:(08,07),down
+REGION:(00,00,30,15),lit,"ordinary"
+NON_DIGGABLE:(00,00,30,15)
+NON_PASSWALL:(00,00,30,15)
+
+REGION:(31,05,37,13),lit,"randomroom"
+
+REGION:(18,09,21,11),lit,"randomroom"
+
+REGION:(00,13,06,15),lit,"randomroom"
+
+REGION:(29,00,35,02),lit,"randomroom"
+
+REGION:(40,04,46,04),lit,"nymphhall"
+REGION:(40,05,46,13),lit,"anthole"
+
+TRAP:"superscroller",(37,00)
+TRAP:"black ng wall",(38,00)
+TRAP:"yellow spell",(39,00)
+TRAP:"inventory",(40,00)
+
+OBJECT:'/',"bugging",(37,00)
+OBJECT:'?',"amnesia",(38,00)
+OBJECT:'!',"Pan Galactic Gargle Blaster",(39,00)
+OBJECT:'(',"bag of digestion",(40,00)
+
+DOOR:locked,(47,02)
+
+OBJECT:random,random,(23,10)
+OBJECT:random,random,(24,10)
+OBJECT:random,random,(25,10)
+OBJECT:random,random,(26,10)
+OBJECT:random,random,(27,10)
+OBJECT:random,random,(23,11)
+OBJECT:random,random,(24,11)
+OBJECT:random,random,(25,11)
+OBJECT:random,random,(26,11)
+OBJECT:random,random,(27,11)
+
+# Boulders
+OBJECT:'`',"boulder",(04,02)
+OBJECT:'`',"boulder",(06,02)
+OBJECT:'`',"boulder",(08,02)
+OBJECT:'`',"boulder",(16,03)
+OBJECT:'`',"boulder",(03,04)
+OBJECT:'`',"boulder",(06,04)
+OBJECT:'`',"boulder",(12,04)
+OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(02,06)
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(15,07)
+OBJECT:'`',"boulder",(04,08)
+OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(15,08)
+OBJECT:'`',"boulder",(15,09)
+OBJECT:'`',"boulder",(05,10)
+OBJECT:'`',"boulder",(06,10)
+OBJECT:'`',"boulder",(12,10)
+OBJECT:'`',"boulder",(14,10)
+OBJECT:'`',"boulder",(15,10)
+
+# Traps
+TRAP:"hole",(11,13)
+TRAP:"hole",(12,13)
+TRAP:"hole",(13,13)
+TRAP:"hole",(14,13)
+TRAP:"hole",(15,13)
+TRAP:"hole",(16,13)
+TRAP:"hole",(17,13)
+TRAP:"hole",(18,13)
+TRAP:"hole",(19,13)
+TRAP:"hole",(20,13)
+TRAP:"hole",(21,13)
+TRAP:"hole",(22,13)
+TRAP:"hole",(23,13)
+TRAP:"hole",(24,13)
+TRAP:"hole",(25,13)
+TRAP:"hole",(26,13)
+TRAP:"hole",(27,13)
+TRAP:"hole",(28,13)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+OBJECT:'(',"bag of holding",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Rewards
+DOOR:locked,(28,05)
+DOOR:closed,(22,03)
+DOOR:closed,(22,05)
+DOOR:closed,(22,07)
+REGION:(23,02,27,08),lit,"randomroom",filled,true
+
+

@@ -1713,3 +1713,245 @@ REGION:(47,10,47,11),unlit,"ordinary"
 REGION:(06,06,12,06),lit,"ordinary"
 
 
+MAZE:"castle-8",random
+FLAGS: noteleport, lethe
+GEOMETRY:center,center
+
+#0         1         2   	   3	     4	       5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0......}}}}}}}}}}}}}}}}}}}}}}}}..................}}}}}}}}..}}...
+1....}}}}}----}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...----}}.
+2..|}}}}}}|..|-------------------------------------------|..|}}.
+3..|}}}}}}|..+...........................................+..|.}}
+4..|}}}}}}|..|---------------+---------------------------|..|.}}
+5....}}}}}|..|.......|....|.....F..........|......|......|..|.}}
+6..|.}}}}}|..|}}}}...|....+.....+..........|....-S-S-....|..|.}}
+7..|..}}}}----}}}}}}}|....F.....|----------|....|...|....|---}}.
+8..|...}}}}}}}}}}}}}}|----|................|------S------|.|}}}.
+9..|.......}}}}}}}}}}}}}}}|................|...............+.##.
+0..|........--.----}}}}}}}|----+------+------S------S----|.|.}}.
+1.------.....|....|-}}}}}}|.......|............|..S..S...|---}}.
+2.|....|--+--|....+.#####}|...{...|..........\.|..--|-...|..|.}}
+3.|....+...|......|-}}}}}}|.......|..........|-|....|....|..|.}}
+4.|....|----.|....|}}}}}}}|-------|..........|......|....|..|.}}
+5.|....+.....|-----}}}}}}.|.......|-----+----------------|..|}}.
+6.------}}}}}}}}}}}}}}}...|.......+......................+..|}}.
+7...}}}}}}}}}}}}}}}}}}....|----------------------------------}}.
+8}}}}}}}}}}}}}}}}}}}}.......................}}}}}}}}}}}}}}}}}}..
+ENDMAP
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+#0         1         2   	   3	     4	       5		 6	       7
+
+# Random registers initialisation
+RANDOM_OBJECTS:'[',')','*','%'
+RANDOM_PLACES:(10,06),(58,06),(58,12),(26,15)
+RANDOM_MONSTERS:'L','N','E','H','M','O','R','T','X','Z'
+
+TELEPORT_REGION:levregion(01,00,10,20),(10,02,59,17),down
+TELEPORT_REGION:levregion(69,00,79,20),(10,02,59,17),up
+STAIR:levregion(01,00,10,20),(0,0,62,16),up
+# Doors
+DOOR:closed,(06,13)
+DOOR:closed,(09,12)
+DOOR:locked,(12,03)
+DOOR:locked,(17,12)
+DOOR:locked,(25,06)
+DOOR:locked,(28,04)
+DOOR:locked,(30,10)
+DOOR:closed,(31,06)
+DOOR:closed,(33,16)
+DOOR:closed,(37,10)
+DOOR:closed,(39,15)
+DOOR:closed,(56,03)
+DOOR:closed,(56,16)
+DOOR:closed,(58,09)
+# The drawbridge
+DRAWBRIDGE:(24,12),east,closed
+# Storeroom number 1
+OBJECT:object[0],random,(43,05)
+OBJECT:object[0],random,(44,05)
+OBJECT:object[0],random,(45,05)
+OBJECT:object[0],random,(46,05)
+OBJECT:object[0],random,(47,05)
+OBJECT:object[0],random,(48,05)
+OBJECT:object[0],random,(43,06)
+OBJECT:object[0],random,(44,06)
+OBJECT:object[0],random,(45,06)
+OBJECT:object[0],random,(46,06)
+OBJECT:object[0],random,(43,07)
+OBJECT:object[0],random,(44,07)
+OBJECT:object[0],random,(45,07)
+OBJECT:object[0],random,(46,07)
+# Storeroom number 2
+OBJECT:object[1],random,(50,05)
+OBJECT:object[1],random,(51,05)
+OBJECT:object[1],random,(52,05)
+OBJECT:object[1],random,(53,05)
+OBJECT:object[1],random,(54,05)
+OBJECT:object[1],random,(55,05)
+OBJECT:object[1],random,(52,06)
+OBJECT:object[1],random,(53,06)
+OBJECT:object[1],random,(54,06)
+OBJECT:object[1],random,(55,06)
+OBJECT:object[1],random,(52,07)
+OBJECT:object[1],random,(53,07)
+OBJECT:object[1],random,(54,07)
+OBJECT:object[1],random,(55,07)
+# Storeroom number 3
+OBJECT:object[2],random,(47,11)
+OBJECT:object[2],random,(48,11)
+OBJECT:object[2],random,(47,12)
+OBJECT:object[2],random,(48,12)
+OBJECT:object[2],random,(47,13)
+OBJECT:object[2],random,(48,13)
+OBJECT:object[2],random,(49,13)
+OBJECT:object[2],random,(50,13)
+OBJECT:object[2],random,(45,14)
+OBJECT:object[2],random,(46,14)
+OBJECT:object[2],random,(47,14)
+OBJECT:object[2],random,(48,14)
+OBJECT:object[2],random,(49,14)
+OBJECT:object[2],random,(50,14)
+# Storeroom number 4
+OBJECT:object[3],random,(53,11)
+OBJECT:object[3],random,(54,11)
+OBJECT:object[3],random,(55,11)
+OBJECT:object[3],random,(53,12)
+OBJECT:object[3],random,(54,12)
+OBJECT:object[3],random,(55,12)
+OBJECT:object[3],random,(52,13)
+OBJECT:object[3],random,(53,13)
+OBJECT:object[3],random,(54,13)
+OBJECT:object[3],random,(55,13)
+OBJECT:object[3],random,(52,14)
+OBJECT:object[3],random,(53,14)
+OBJECT:object[3],random,(54,14)
+OBJECT:object[3],random,(55,14)
+# THE WAND OF WISHING in 1 of the 4 towers
+CONTAINER:'(',"chest",place[0]
+OBJECT:'/',"wishing",contained
+# Prevent monsters from eating it.  (@'s never eat objects)
+OBJECT:'?',"scare monster",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+# The treasure of the lord
+OBJECT:'(',"chest",(45,12)
+# Traps
+TRAP:"trap door",(46,09)
+TRAP:"trap door",(48,09)
+TRAP:"trap door",(50,09)
+TRAP:"trap door",(52,09)
+TRAP:"trap door",(55,09)
+# Soldiers guarding the entry hall
+MONSTER:'@',"soldier",(13,10)
+MONSTER:'@',"soldier",(13,14)
+MONSTER:'@',"soldier",(14,13)
+MONSTER:'@',"soldier",(29,11)
+MONSTER:'@',"soldier",(29,13)
+MONSTER:'@',"soldier",(26,11)
+MONSTER:'@',"soldier",(26,13)
+MONSTER:'@',"soldier",(26,12)
+MONSTER:'@',"lieutenant",(28,12)
+# Soldiers guarding the towers
+MONSTER:'@',"soldier",(10,02)
+MONSTER:'@',"soldier",(11,06)
+MONSTER:'@',"soldier",(57,04)
+MONSTER:'@',"soldier",(58,05)
+MONSTER:'@',"soldier",(27,16)
+MONSTER:'@',"soldier",(28,15)
+MONSTER:'@',"soldier",(57,14)
+MONSTER:'@',"soldier",(58,13)
+# The four dragons that are guarding the storerooms
+MONSTER:'D',random,(48,07)
+MONSTER:'D',random,(50,07)
+MONSTER:'D',random,(51,11)
+MONSTER:'D',random,(50,11)
+# Sea monsters in the moat
+MONSTER:';',"giant eel",(13,08)
+MONSTER:';',"giant eel",(06,03)
+MONSTER:';',"giant eel",(21,15)
+MONSTER:';',"giant eel",(13,17)
+MONSTER:';',"shark",(10,00)
+MONSTER:';',"shark",(10,18)
+MONSTER:';',"shark",(51,00)
+MONSTER:';',"shark",(57,18)
+# The throne room and the court monsters
+MONSTER:monster[0],random,(34,11)
+MONSTER:monster[1],random,(36,11)
+MONSTER:monster[2],random,(38,11)
+MONSTER:monster[3],random,(40,11)
+MONSTER:monster[4],random,(42,11)
+MONSTER:monster[5],random,(43,11)
+MONSTER:monster[2],random,(44,11)
+MONSTER:monster[1],random,(45,11)
+MONSTER:monster[6],random,(35,12)
+MONSTER:monster[7],random,(37,12)
+MONSTER:monster[8],random,(39,12)
+MONSTER:monster[5],random,(40,12)
+MONSTER:monster[9],random,(41,12)
+MONSTER:monster[0],random,(34,13)
+MONSTER:monster[1],random,(36,13)
+MONSTER:monster[2],random,(38,13)
+MONSTER:monster[3],random,(40,13)
+MONSTER:monster[4],random,(42,13)
+MONSTER:monster[6],random,(35,14)
+MONSTER:monster[7],random,(37,14)
+MONSTER:monster[8],random,(39,14)
+MONSTER:monster[9],random,(41,14)
+MONSTER:monster[0],random,(43,14)
+MONSTER:monster[3],random,(42,14)
+MONSTER:monster[4],random,(40,14)
+MONSTER:monster[5],random,(38,14)
+MONSTER:monster[6],random,(36,14)
+# MazeWalks
+MAZEWALK:(00,06),west
+MAZEWALK:(62,08),east
+# Non diggable walls
+NON_DIGGABLE:(00,00,62,18)
+# Subrooms:
+#   Entire castle area
+REGION:(00,00,62,18),unlit,"ordinary"
+#   Courtyards
+#REGION:(00,00,08,18),lit,"ordinary"
+#REGION:(00,00,09,18),lit,"ordinary"
+#REGION:(00,00,09,18),lit,"ordinary"
+#REGION:(00,09,24,18),lit,"ordinary"
+#REGION:(09,08,12,09),lit,"ordinary"
+#REGION:(13,05,19,18),lit,"ordinary"
+REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+
+REGION:(26,11,32,13),random,"randomroom"
+#   Throne room
+REGION:(34,11,45,14),lit,"throne",unfilled
+#   Antechambers
+REGION:(25,05,31,10),lit,"ordinary"
+REGION:(25,10,33,14),lit,"ordinary"
+REGION:(25,08,41,09),lit,"ordinary"
+#   Storerooms
+REGION:(43,05,48,05),random,"randomroom"
+REGION:(43,06,46,07),random,"randomroom"
+
+REGION:(50,05,55,05),random,"randomroom"
+REGION:(52,06,55,07),random,"randomroom"
+
+REGION:(53,11,55,14),random,"randomroom"
+REGION:(52,13,52,14),random,"randomroom"
+
+REGION:(47,11,48,14),random,"randomroom"
+REGION:(49,13,50,14),random,"randomroom"
+REGION:(45,14,46,14),random,"randomroom"
+
+#   Corners
+REGION:(16,15,32,16),lit,"ordinary"
+REGION:(57,12,58,16),random,"randomroom"
+REGION:(10,02,11,06),random,"randomroom"
+REGION:(57,02,58,06),random,"randomroom"
+#   Barracks
+REGION:(21,05,25,07),lit,"barracks"
+REGION:(31,05,41,06),lit,"barracks"
+#############################################################
+#   Hallways
+REGION:(13,03,55,03),random,"randomroom"
+REGION:(34,16,55,16),random,"randomroom"
+REGION:(43,09,57,09),unlit,"ordinary"
+REGION:(57,08,57,10),unlit,"ordinary"

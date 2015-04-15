@@ -86,7 +86,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 39
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 41
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 6
 LEVALIGN:		chaotic
 LEVELDESC:	town
@@ -94,7 +94,7 @@ LEVELDESC:	town
 #   "Unused 'cause they suck"?
 RNDLEVEL:	"stor" "S" @ (19, 21) 30 9
 #   Rounding out the bottom levels
-RNDLEVEL:		"guild" "G" @ (26, 14) 10 7
+RNDLEVEL:		"guild" "G" @ (26, 14) 10 8
 
 
 
@@ -118,9 +118,9 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
-RNDLEVEL:		"medusa" "none" @ (-5, 4) 9
+RNDLEVEL:		"medus" "none" @ (-5, 4) 11
 LEVALIGN:		chaotic
-RNDLEVEL:			"castle" "none" @ (-1, 0) 7
+RNDLEVEL:			"castle" "none" @ (-1, 0) 8
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
 
 
@@ -175,7 +175,7 @@ RNDLEVEL:          "baalz" "B" @ (2, 29) 95 2
 LEVEL:          "geryon" "R" @ (2, 29) 95
 LEVEL:          "dispater" "S" @ (2, 29) 95
 RNDLEVEL:          "asmod" "A" @ (2, 29) 95 2
-RNDLEVEL:	"hellma" "H" @ (2, 29) 75 6
+RNDLEVEL:	"hellma" "H" @ (2, 29) 75 7
 BRANCH:         "Sheol" @ (3, 27) down
 
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
@@ -185,9 +185,9 @@ RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 39
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 41
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 41
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 41
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
@@ -198,7 +198,7 @@ RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 DUNGEON:	"The Gnomish Mines" "M" (9, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"mintn" "T" @ (3, 2) 98 13
+RNDLEVEL:	"mintn" "T" @ (3, 2) 98 14
 LEVELDESC:	town
 RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
 RNDLEVEL:		"mking" "M" @ (-1, 0) 90 12
@@ -238,10 +238,10 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 34
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 31
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 15
-RNDLEVEL:		"soko4" "D" @ (4, 0) 95 13
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 35
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 32
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 16
+RNDLEVEL:		"soko4" "D" @ (4, 0) 95 14
 
 #
 #   The city of Angband
@@ -250,7 +250,7 @@ DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 2
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
-RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 21
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 41
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town

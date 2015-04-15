@@ -615,7 +615,7 @@ struct level_map {
 #ifdef BLACKMARKET        
 	{ "blkmar",     &blackmarket_level },
 #endif /* BLACKMARKET */
-	{ "medusa",	&medusa_level },
+	{ "medus",	&medusa_level },
 	{ "mtemple",	&mtemple_level },
 	{ "nymph",   &nymph_level },        
 	{ "forge",   &forge_level },        
