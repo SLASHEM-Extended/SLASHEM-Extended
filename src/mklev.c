@@ -55,6 +55,7 @@ STATIC_DCL void FDECL(mkironbarsX,(int,struct mkroom *));
 STATIC_DCL void FDECL(mkiceX,(int,struct mkroom *));
 STATIC_DCL void FDECL(mkcloudX,(int,struct mkroom *));
 
+STATIC_DCL int NDECL(findrandtype);
 
 STATIC_PTR int FDECL( CFDECLSPEC do_comp,(const genericptr,const genericptr));
 
@@ -95,6 +96,51 @@ const genericptr vy;
 	if(x->lx < y->lx) return(-1);
 	return(x->lx > y->lx);
 #endif /* LINT */
+}
+
+STATIC_OVL int
+findrandtype()
+{
+	switch (rnd(36)) {
+
+		case 1: return COURT;
+		case 2: return SWAMP;
+		case 3: return BEEHIVE;
+		case 4: return MORGUE;
+		case 5: return BARRACKS;
+		case 6: return ZOO;
+		case 7: return REALZOO;
+		case 8: return GIANTCOURT;
+		case 9: return LEPREHALL;
+		case 10: return DRAGONLAIR;
+		case 11: return BADFOODSHOP;
+		case 12: return COCKNEST;
+		case 13: return ANTHOLE;
+		case 14: return LEMUREPIT;
+		case 15: return MIGOHIVE;
+		case 16: return FUNGUSFARM;
+		case 17: return CLINIC;
+		case 18: return TERRORHALL;
+		case 19: return ELEMHALL;
+		case 20: return ANGELHALL;
+		case 21: return MIMICHALL;
+		case 22: return NYMPHHALL;
+		case 23: return SPIDERHALL;
+		case 24: return TROLLHALL;
+		case 25: return HUMANHALL;
+		case 26: return GOLEMHALL;
+		case 27: return COINHALL;
+		case 28: return DOUGROOM;
+		case 29: return ARMORY;
+		case 30: return TENSHALL;
+		case 31: return TRAPROOM;
+		case 32: return POOLROOM;
+		case 33: return STATUEROOM;
+		case 34: return INSIDEROOM;
+		case 35: return RIVERROOM;
+		case 36: return TEMPLE;
+	}
+
 }
 
 STATIC_OVL void
@@ -923,6 +969,7 @@ makelevel()
 	struct monst *tmonst;	/* always put a web with a spider */
 	branch *branchp;
 	int room_threshold;
+	schar randrmtyp;
 
 	if(wiz1_level.dlevel == 0) init_dungeons();
 	oinit();	/* assign level dependent obj probabilities */
@@ -1496,6 +1543,82 @@ makelevel()
 
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 437 : 837) )) {
+
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 1637 : 3237) )) {
+
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 6437 : 12837) )) {
+
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 25637 : 51237) )) {
+
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 439 : 839) )) {
+
+			randrmtyp = findrandtype();
+
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 1639 : 3239) )) {
+
+			randrmtyp = findrandtype();
+
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 6439 : 12839) )) {
+
+			randrmtyp = findrandtype();
+
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+
+		}
+
+		if (u_depth > 1 && !((moves + u.eeveelution) % (ishaxor ? 25639 : 51239) )) {
+
+			randrmtyp = findrandtype();
+
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+			mkroom(randrmtyp);
+
+		}
 
 	    /* Underground rivers */
 	    if ( u_depth > 13 && !rn2(7)) mkrivers();

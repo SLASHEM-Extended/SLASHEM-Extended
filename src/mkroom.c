@@ -322,13 +322,13 @@ int type;
 {
 	register struct mkroom *sroom;
 
-	if (type == BADFOODSHOP) {
+	/*if (type == BADFOODSHOP) {
 	   if ((sroom = pick_room(TRUE)) != 0) {
 		sroom->rtype = type;
 		fill_zoo(sroom);
 	   }
 	}
-	else if ((sroom = pick_room(FALSE)) != 0) {
+	else */if ((sroom = pick_room(FALSE)) != 0) {
 		sroom->rtype = type;
 		fill_zoo(sroom);
 	}
@@ -1363,7 +1363,7 @@ mktraproom()
 	int rtrap;
 	int randomnes = 0;
 
-    if(!(sroom = pick_room(TRUE))) return;
+    if(!(sroom = pick_room(FALSE))) return;
 
     sroom->rtype = TRAPROOM;
 	rtrap = randomtrap();
@@ -1387,7 +1387,7 @@ mkpoolroom()
     schar typ;
 	register int sx,sy = 0;
 
-    if (!(sroom = pick_room(TRUE))) return;
+    if (!(sroom = pick_room(FALSE))) return;
 
 	if(sroom->rtype != OROOM) return;
 
@@ -1412,7 +1412,7 @@ mkinsideroom()
     schar typ, typ2;
 	register int sx,sy = 0;
 
-    if (!(sroom = pick_room(TRUE))) return;
+    if (!(sroom = pick_room(FALSE))) return;
 
 	if(sroom->rtype != OROOM) return;
 
@@ -1446,7 +1446,7 @@ mkriverroom()
     schar typ;
 	register int sx,sy = 0;
 
-    if (!(sroom = pick_room(TRUE))) return;
+    if (!(sroom = pick_room(FALSE))) return;
 
 	if(sroom->rtype != OROOM) return;
 
@@ -1472,7 +1472,7 @@ mkstatueroom()
     schar typ;
 	register int sx,sy,i = 0;
 
-    if (!(sroom = pick_room(TRUE))) return;
+    if (!(sroom = pick_room(FALSE))) return;
 
 	if(sroom->rtype != OROOM) return;
 
