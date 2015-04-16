@@ -144,3 +144,144 @@ DOOR: false, closed, random, random
 #
 SUBROOM: "ordinary", lit, (60,12), (6,1), "town"
 DOOR: false, closed, north, random
+
+# variant with random shops --Amy
+# these may or may not be more useful than the pre-defined shops
+
+LEVEL: "town-3"
+MESSAGE: "You reach the surface.  You hear the sounds of civilization."
+ROOM: "ordinary", lit, random, random, (76,17)
+NAME: "town"
+STAIR: random, down
+FOUNTAIN: (55,9)
+FOUNTAIN: (22,8)
+ENGRAVING: random, mark, "Welcome to the city of Angband!"
+
+#
+#       The Town Watch.
+#
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+#
+#       Some distracting townspeople
+#
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "smirking sneak thief", random, hostile
+MONSTER:'@', "smirking sneak thief", random, hostile
+MONSTER:'r', "sewer rat", random, hostile
+MONSTER:'r', "sewer rat", random, hostile
+MONSTER:'f', "kitten", random, hostile
+
+
+#
+#       The Shops
+#
+SUBROOM: "random shop", lit, (7,5), (7,2), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (28,3), (3,3), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (44,5), (5,2), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (62,5), (7,2), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (13,11), (5,3), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (31,11), (4,3), "town"
+DOOR: false, closed, random, random
+
+SUBROOM: "random shop", lit, (46,12), (4,2), "town"
+CHANCE: 66
+DOOR: false, closed, random, random
+#
+# a shop for sale?
+#
+SUBROOM: "ordinary", lit, (60,12), (6,1), "town"
+DOOR: false, closed, north, random
+
+# variant with bigger shops --Amy
+# probably just makes shoplifting more useful, but oh well...
+
+LEVEL: "town-4"
+MESSAGE: "You step into the sunlight. You hear the sounds of civilization."
+ROOM: "ordinary", random, random, random, (76,17)
+NAME: "town"
+STAIR: random, down
+ENGRAVING: random, mark, "Welcome to the town of Angband!"
+FOUNTAIN: ( 6,12)
+FOUNTAIN: (39, 9)
+FOUNTAIN: (68, 3)
+
+#
+#       The Town Watch.
+#
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watchman", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+MONSTER:'@', "watch captain", random, peaceful
+#
+#       Some distracting townspeople
+#
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "mugger", random, hostile
+MONSTER:'@', "smirking sneak thief", random, hostile
+MONSTER:'@', "smirking sneak thief", random, hostile
+MONSTER:'r', "sewer rat", random, hostile
+MONSTER:'r', "sewer rat", random, hostile
+MONSTER:'d', "little dog", random, hostile
+
+#
+#       The Shops
+#
+SUBROOM: "armor shop", random, (10,4), (6,4), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "pet shop", random, (26,4), (6,4), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "tool shop", random, (44,2), (4,5), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "candle shop", random, (59,6), (4,4), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "shop", random, (16,12), (6,6), "town"
+DOOR: false, locked, random, random
+
+SUBROOM: "weapon shop", random, (30,13), (5,5), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "lightning shop", random, (48,11), (4,5), "town"
+CHANCE: 66
+DOOR: false, locked, random, random
+
+SUBROOM: "tin shop", random, (65,13), (10,4), "town"
+CHANCE: 66
+DOOR: false, locked, random, random

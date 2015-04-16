@@ -104,3 +104,105 @@ OBJECT: random, random, random
 TRAP: random, random
 
 RANDOM_CORRIDORS
+
+LEVEL: "mall-5"
+MESSAGE: "You hear the sounds of civilization."
+RANDOM_MONSTERS:'@','r'
+ROOM: "ordinary" , lit, random, random, (48,15)
+NAME: "town"
+FOUNTAIN: (20, 7)
+#
+#       The Town Watch.
+#
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "mugger", random, hostile
+MONSTER: '@', "mugger", random, hostile
+MONSTER: '@', "mugger", random, hostile
+MONSTER: '@', "mugger", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'f', "kitten", random, hostile
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+SUBROOM: "random shop" , lit, (2,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+
+SUBROOM: "random shop", lit, (2,9), (6,4), "town"
+CHANCE: 40
+DOOR: false, open, north, random
+
+SUBROOM: "random shop", unlit, (9,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+
+SUBROOM: "random shop", lit, (9,9), (6,4), "town"
+CHANCE: 30
+DOOR: false, open, north, random
+
+SUBROOM: "random shop", lit, (16,2), (4,3), "town"
+CHANCE: 12
+DOOR: false, open, south, random
+
+SUBROOM: "random shop", lit, (23,2), (6,3), "town"
+CHANCE: 33
+DOOR: false, open, south, random
+
+SUBROOM: "random shop", lit, (16,10), (4,3), "town"
+CHANCE: 12
+DOOR: false, open, east, random
+
+# WAC Changed chance from 20 to 100.  Should be at least 1 guaranteed shop
+SUBROOM: "random shop", lit, (23,9), (10,4), "town"
+#CHANCE: 20
+DOOR: false, open, north, random
+
+SUBROOM: "random shop", lit, (33,2), (3,3), "town"
+CHANCE: 17
+DOOR: false, open, west, random
+
+SUBROOM: "random shop", lit, (39,2), (7,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+
+SUBROOM: "random shop", unlit, (38,10), (7,3), "town"
+CHANCE: 22
+DOOR: false, open, north, random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+STAIR: random, down
+MONSTER: random, random, random
+MONSTER: 'n', random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+

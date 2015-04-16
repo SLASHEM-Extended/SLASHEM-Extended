@@ -877,3 +877,130 @@ OBJECT:'$',random,(05,09)
 OBJECT:'$',random,(05,10)
 OBJECT:'$',random,(06,09)
 OBJECT:'$',random,(06,10)
+
+LEVEL: "exmall-8"
+MESSAGE: "You appear to be in a busy town."
+ROOM: "ordinary" , unlit, random, random, (48,15)
+NAME: "town"
+FOUNTAIN: (22, 7)
+#
+#       The Town Watch.
+#
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'd', random, random, hostile
+MONSTER: 'm', random, random
+
+# from 2 to 48 across
+
+SUBROOM: "random shop", unlit, (2,2), (5,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (8,2), (4,4), "town"
+CHANCE: 12
+DOOR: false, open, south, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (15,3), (5,3), "town"
+CHANCE: 33
+DOOR: false, open, south, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (25,2), (6,4), "town"
+CHANCE: 22
+DOOR: false, open, south, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (32,2), (14,3), "town"
+CHANCE: 40
+DOOR: false, open, south, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (2,9), (6,4), "town"
+CHANCE: 20
+DOOR: false, open, north, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (9,9), (6,4), "town"
+CHANCE: 30
+DOOR: false, open, north, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop" , unlit, (19,10), (5,3), "town"
+CHANCE: 20
+DOOR: false, open, north, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (25,10), (4,3), "town"
+CHANCE: 12
+DOOR: false, open, north, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (33,9), (9,4), "town"
+CHANCE: 20
+DOOR: false, open, west, random
+MONSTER: 'm', random, random
+
+SUBROOM: "random shop", unlit, (43,10), (3,3), "town"
+CHANCE: 17
+DOOR: false, open, north, random
+MONSTER: 'm', random, random
+
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+STAIR: random, down
+MONSTER: random, random, random
+MONSTER: 'n', random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS

@@ -7050,3 +7050,171 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 
+MAZE: "ghbgr-42", ' '
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.................................................................|-------|
+|.................................................................|.......|
+|.................................................................|.......|
+|.................................................................+.......|
+|.................................................................|.......|
+|.................................................................|.......|
+|.................................................................|.......|
+|.................................................................|.......|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(01,01,73,16),lit,"ordinary"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+
+DOOR:closed,(66,12)
+REGION:(67,10,73,16),lit,"random shop"
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random

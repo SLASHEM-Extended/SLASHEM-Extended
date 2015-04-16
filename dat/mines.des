@@ -2004,6 +2004,114 @@ MONSTER: 'G', "gnome thief", random
 
 RANDOM_CORRIDORS
 
+LEVEL: "mintn-15"
+ROOM: "ordinary" , lit, (3,3), (center,center), (31,15)
+NAME: "town"
+FOUNTAIN: (17, 5)
+FOUNTAIN: (13, 8)
+#
+#	The Town Watch.
+#
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+SUBROOM: "ordinary", random, (2,0), (2,2), "town"
+DOOR: false, closed, west, random
+
+SUBROOM: "ordinary", unlit, (5,0), (2,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (8,0), (2,2), "town"
+DOOR: false, closed, east, random
+
+SUBROOM: "ordinary", lit, (16,0), (2,2), "town"
+DOOR: false, closed, west, random
+
+SUBROOM: "ordinary", unlit, (19,0), (2,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (22,0), (2,2), "town"
+DOOR: false, locked, south, random
+MONSTER: 'G', random, random, hostile
+
+SUBROOM: "ordinary", unlit, (25,0), (2,2), "town"
+DOOR: false, closed, east, random
+
+SUBROOM: "ordinary", lit, (2,5), (2,2), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", lit, (5,5), (2,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (8,5), (2,2), "town"
+DOOR: false, locked, north, random
+MONSTER: 'G', random, random, hostile
+
+SUBROOM: "random shop" , lit, (2,10), (4,3), "town"
+CHANCE: 90
+DOOR: false, closed, west, random
+
+SUBROOM: "random shop", lit, (23,10), (4,3), "town"
+CHANCE: 90
+DOOR: false, closed, east, random
+
+SUBROOM: "random shop", lit, (24,5), (3,4), "town"
+CHANCE: 90
+DOOR: false, closed, north, random
+
+SUBROOM: "random shop", lit, (11,10), (4,3), "town"
+DOOR: false, closed, east, random
+
+SUBROOM: "random shop", unlit, (7,10), (3,3), "town"
+DOOR: false, locked, north, random
+MONSTER: 'G', random, random, hostile
+
+SUBROOM: "temple", lit, (19,5), (4,4), "town"
+DOOR: false, closed, north, random
+ALTAR:(02,02),align[0],shrine
+MONSTER: 'G', "gnomish wizard", random
+MONSTER: 'G', "gnomish wizard", random
+
+SUBROOM: "random shop", lit, (18,10), (4,3), "town"
+DOOR: false, locked, west, random
+MONSTER: 'G', "gnome lord", random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', "dwarf thief", random
+MONSTER: 'h', "dwarf thief", random
+
+ROOM: "ordinary" , random, random, random, random
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', "gnome thief", random
+MONSTER: 'G', "gnome thief", random
+
+RANDOM_CORRIDORS
 
 # Mine end level variant 1
 # "Mimic of the Mines"
