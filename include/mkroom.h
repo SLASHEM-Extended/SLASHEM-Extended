@@ -119,7 +119,8 @@ extern NEARDATA struct door doors[DOORMAX];
 #define ROCKSSHOP       (SHOPBASE+18)
 #define WIERDSHOP       (SHOPBASE+19)
 #define ZORKSHOP       (SHOPBASE+20)
-#define UNIQUESHOP      (SHOPBASE+21)      /* shops here & above not randomly gen'd. */
+#define RANDOMSHOP       (SHOPBASE+21)
+#define UNIQUESHOP      (SHOPBASE+22)      /* shops here & above not randomly gen'd. */
 #define CANDLESHOP      (UNIQUESHOP)
 #ifdef BLACKMARKET
 #define BLACKSHOP       (UNIQUESHOP+1)

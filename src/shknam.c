@@ -304,6 +304,9 @@ const struct shclass shtypes[] = {
 	{"zorkmid store", RANDOM_CLASS, 1,
 	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
 
+	{"random store", RANDOM_CLASS, 0,
+	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
+
 	/* Shops below this point are "unique".  That is they must all have a
 	 * probability of zero.  They are only created via the special level
 	 * loader.

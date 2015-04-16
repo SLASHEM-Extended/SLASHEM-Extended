@@ -240,6 +240,8 @@ static struct {
 	{ "boulder shop",	 BOULDSHOP },
 	{ "rock shop",	 ROCKSSHOP },
 	{ "wierd shop",	 WIERDSHOP },
+	{ "zorkmid shop",	 ZORKSHOP },
+	{ "random shop",	 RANDOMSHOP },
 	{ "candle shop", CANDLESHOP },
 #ifdef BLACKMARKET
 	{ "black market", BLACKSHOP },
