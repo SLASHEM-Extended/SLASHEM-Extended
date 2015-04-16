@@ -9122,6 +9122,7 @@ int type;
 		case PM_COLBRAN: return 270;
 		case PM_MITHRIL_GOLEM: return 300;
 		case PM_EOG_GOLEM: return 340;
+		case PM_SILENT_WATCHER: return 350;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
