@@ -1186,6 +1186,14 @@ boolean incr;	/* true iff via incremental experience growth */
 	    reset_rndmonst(NON_PM);		/* new monster selection */
 	}
 
+		if (Race_if(PM_RODNEYAN) && u.ulevel > u.urmaxlvl) {
+
+		u.urmaxlvl = u.ulevel;
+
+		if (!rn2(2)) {ubookz = mkobj(SPBOOK_CLASS, FALSE); dropy(ubookz); pline("A book appeared at your feet!"); }
+
+		}
+
 		if (Race_if(PM_ASGARDIAN) && u.ulevel > u.urmaxlvl) {
 
 		u.urmaxlvl = u.ulevel;
