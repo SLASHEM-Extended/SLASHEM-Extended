@@ -3692,6 +3692,39 @@ common:
 		}
 		break;
 
+	    case AD_STON: /* mainly for jonadab's stoning sphere */
+
+			if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
+			{
+				Stoned = 7;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
+
+					/* "the" buffer may be reallocated */
+					Strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+			}
+
+		break;
+
+	    case AD_PLYS: /* for jonadab's paralyzing sphere */
+
+		    if (Free_action) {
+			You("momentarily stiffen.");            
+		    } else {
+			You("suddenly recognize an inability to move!");
+			nomovemsg = 0;	/* default: "you can move again" */
+			nomul(-tmp, "paralyzed by an explosion");
+			exercise(A_DEX, FALSE);
+		    }
+
+		break;
+
 	    case AD_RUST:
 
 		water_damage(invent, FALSE, FALSE);

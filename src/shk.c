@@ -3741,7 +3741,7 @@ register struct monst *shkp;
 	    remove_damage(shkp, FALSE);
 
 	if((udist = distu(omx,omy)) < 3 &&
-	   ((shkp->data != &mons[PM_GRID_BUG] && shkp->data != &mons[PM_GRID_XORN] ) || (omx==u.ux || omy==u.uy))) {
+	   ((shkp->data != &mons[PM_GRID_BUG] && shkp->data != &mons[PM_GRID_XORN] && shkp->data != &mons[PM_STONE_BUG] ) || (omx==u.ux || omy==u.uy))) {
 		if(ANGRY(shkp) ||
 		   (Conflict && !resist(shkp, RING_CLASS, 0, 0))) {
 			if(Displaced)

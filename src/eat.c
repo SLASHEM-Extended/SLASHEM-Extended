@@ -1429,6 +1429,18 @@ register int pm;
 		    You("feel clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
+	    case PM_STONING_SPHERE:
+	      You("feel that was a smart thing to do.");
+		pluslvl(FALSE);
+
+		break;
+
+	    case PM_STONE_BUG:
+		You("feel that was a bad idea.");
+		losexp("eating a stone bug corpse", FALSE);
+
+		break;
+
 	    case PM_WRAITH:
 	    case PM_TURBO_CHICKEN:
 	    case PM_GREATER_BASILISK:
@@ -1676,6 +1688,14 @@ register int pm;
 		else u.uhp = u.uhpmax;
 		flags.botl = 1;
 		break;
+	    case PM_HIDDEN_ENGULFITRICE:
+
+		if (!(HInvis & INTRINSIC)) You_feel("hidden!");
+		HInvis |= FROMOUTSIDE;
+		HSee_invisible |= FROMOUTSIDE;
+
+		break;
+
 	    case PM_STALKER:
 	    case PM_THE_HIDDEN:
 	    case PM_INVISIBLE_BADGUY:
@@ -1741,6 +1761,7 @@ register int pm;
 	    case PM_PORTER_MIMIC:
 	    case PM_STEALER_MIMIC:
 	    case PM_MIMIC_MUMMY:
+	    case PM_MIMIC_NYMPH:
 	    case PM_MIMICRY_RUBBER:
 	    case PM_CAMO_FISH:
 	    case PM_FLYING_CAMO_FISH:
@@ -1775,6 +1796,7 @@ register int pm;
 	    case PM_AMORPHOUS_FISH:
 	    case PM_GREATER_MIMIC:
 	    case PM_MASTER_MIMIC:
+	    case PM_FLOATING_MIMIC:
 	    case PM_OLOG_HAI_MIMIC:
 	    case PM_OLOG_HAI_PERMAMIMIC:
 	    case PM_VESTY:
@@ -1792,9 +1814,11 @@ register int pm;
 	    case PM_MIMIC_HIVEMIND:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
+	    case PM_GIANT_SPAWN_MIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_LARGE_MIMIC:
+	    case PM_LARGE_SPAWN_MIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_MIMIC:
@@ -1977,6 +2001,7 @@ register int pm;
 	    case PM_MASTER_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
+	    case PM_ARCH_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
 	    case PM_ILLITHID:

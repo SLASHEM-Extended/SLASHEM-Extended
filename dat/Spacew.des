@@ -665,6 +665,7 @@ MONSTER:'.',"nix",random,hostile
 MONSTER:'.',"%s-$$$-NIX",random,hostile
 MONSTER:'~',"ak Thief is dead!",random,hostile
 MONSTER:'~',"un in Protect mode",random,hostile
+MONSTER:'@',"Gunnhild's General Store",random,hostile
 
 # Traps
 TRAP:random,random

@@ -5818,6 +5818,25 @@ register struct monst *mtmp;
 
 			}
 
+			if (ptr == &mons[PM_STONE_DEMON]) { /* evil patch idea by jonadab */
+
+				if (rn2(2)) (void) mongets(mtmp, TSURUGI);
+
+				else {
+
+					struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
+
+					otmpY->spe = 0;
+					otmpY->quan = 1;
+					otmpY->owt = 30;
+					otmpY->corpsenm = PM_COCKATRICE;
+					start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
+					(void) mpickobj(mtmp,otmpY);
+
+				}
+
+			}
+
 			if (!rn2(ishaxor ? 10 : 20) ) {
 
 			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
@@ -6107,6 +6126,10 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SCROLL_MIMIC]) (void) mongets(mtmp, SCR_TELEPORTATION);
 		if (mtmp->data == &mons[PM_RING_MIMIC]) (void) mongets(mtmp, RIN_TIMELY_BACKUP);
 		if (mtmp->data == &mons[PM_CLOAKER]) (void) mongets(mtmp, ELVEN_CLOAK);
+
+		/* jonadab wants these things to spawn mumak; I'll just let them spawn random stuff with a scroll. --Amy */
+		if (mtmp->data == &mons[PM_LARGE_SPAWN_MIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (mtmp->data == &mons[PM_GIANT_SPAWN_MIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
 
 		break;
 
@@ -6878,6 +6901,11 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_TRAP_INSTALLING_DRAGON]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (ptr == &mons[PM_ARBITRATOR]) (void) mongets(mtmp, TIN_WHISTLE);
 
+		if (ptr == &mons[PM_LAVA_DRAGON]) { (void) mongets(mtmp, SCR_LAVA); (void) mongets(mtmp, SCR_LAVA); (void) mongets(mtmp, SCR_LAVA);
+		}
+		/* according to jonadab the lava dragon should turn floor tiles into lava with its breath, but
+		   since adding new breath types is difficult, let's just give them a few scrolls of lava. --Amy */
+
 		if (ptr == &mons[PM_CHINESE_WOMAN]) {(void) mongets(mtmp, WOODEN_GETA);
 		(void) mongets(mtmp, WEDGE_SANDALS);
 		}
@@ -7378,6 +7406,18 @@ register int	mmflags;
 		case S_TRAPPER:
 
 			if (mndx == PM_DECEPTIVE_SPRINGY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
+			break;
+
+		case S_RUSTMONST:
+
+			if (mndx == PM_SECRET_DISENCHANTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
+			break;
+
+		case S_RODENT:
+
+			if (mndx == PM_SOCK_MOLE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
@@ -8012,6 +8052,9 @@ register int	mmflags;
   			    mtmp->perminvis = TRUE;
   			    mtmp->minvis = TRUE;
 			}
+
+			if (mtmp->data == &mons[PM_MIMIC_NYMPH]) set_mimic_sym(mtmp);
+
 			break;
 		case S_DRAGON:
 			if (mndx == PM_KLIEAU_MANTICORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}

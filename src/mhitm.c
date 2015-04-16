@@ -250,7 +250,7 @@ mattackm(magr, mdef)
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
-    if ((pa == &mons[PM_GRID_BUG] || pa == &mons[PM_GRID_XORN])&& magr->mx != mdef->mx
+    if ((pa == &mons[PM_GRID_BUG] || pa == &mons[PM_GRID_XORN] || pa == &mons[PM_STONE_BUG])&& magr->mx != mdef->mx
 						&& magr->my != mdef->my)
 	return(MM_MISS);
 
