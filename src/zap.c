@@ -3256,7 +3256,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    You(!Hallucination? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");
 
-	if (youdefend ? (!youattack && Antimagic)
+	if (youdefend ? (!youattack && Antimagic && rn2(20) ) /* no longer complete protection --Amy */
 		      : resist(mdef, obj->oclass, 0, NOTELL))
 		return FALSE;	/* resisted cancellation */
 
