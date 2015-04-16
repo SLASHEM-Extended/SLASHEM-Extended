@@ -98,3 +98,105 @@ ROOM: "ordinary" , random, random, random, random
 MONSTER: random, random, random
 
 RANDOM_CORRIDORS
+
+# New town level by Khor
+
+MAZE:"mall-4",' '
+MESSAGE: "You hear the sounds of civilization."
+GEOMETRY:center,center
+###########1#########2#########3#########4#########5#########6#########7#####
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0}} }}}}}}}}}}}}.....................................T........ ..TTTTTTTTTTT
+1}}}}}}}}}}} }}}}}.T....-------------------.-----.........T.... ..TTTTTT...TT
+2}}}} }}}}}}}}}}}}......|...F.F..|.....|..|.|...|.----------... ..TTTT.....T
+3}}}}}}}}}-----}}}......|----.---|.....|..+.+...|.|K..S....|.... ..TTT.....T
+4} }}}}}---...---}}.T...|...F.F..|.....|---.|...|.|...|....|T.... ..TTT.....T
+5}}}}}}--.......--}}....|---|.---|--+---..+.-----.|...|-----...T. ..TTT...TT
+6}}}}}--.........--}....|...+.F..|T...T|..|.......--+--........... ..TTT.TTT
+7.}}} ||.........||}}...|...|.F..|.....----.............-----...... ..TT.TTT
+8.}}}--S----+-------}...-F-+------..{...................|...|TT....T ..T..TTT
+9.}}}|..|..........|}..................-----.....----...+...|....... ..T.TTTT
+0..}}|..|..........|}.................T|...|T...T|..|...|...|.T..........TTTT
+1..}}--S----+-------}}..-F-+-.---+---+--...+.....+..|...-----........ ..TTTT
+2T..}}||.........||}}}..|...|.|.....|..|...|T.{.T|----............T... ..TTTT
+3TT..}--.........--}}}}.|...|.|.....|..|----.....+...|................ ..TTT
+4TT..}}--...\...--}}}}}.-----.|.....|..|...|T.T.T|...|..T...T....-F-F-F ..TTT
+5TTT..}}---...---}}} }}}......----------...|-+---|...|...........F..... ..TT
+6TTT..}}}}-----}}}}}}}}}}}.T..|.....+.T|...|.....|---|.T.........|...... ..TT
+7TTTT..}}}}}} }}}}}}}}}}}}}...|.....|..--+--.....|.T.........T...+...... ..T
+8TTTTT..}}}}}}}}}}} }}}}}}}}..-------......-------...............|....... ..T
+9TTTTT..}}}} }}}}}}}}}}}} }}..........................T..........F....... ..
+ENDMAP
+REGION:(00,00,75,19),lit,"ordinary"
+STAIR:(72,3),up
+STAIR:(53,12,63,19), (62,16,63,18), down
+#GRAVEYARD
+REGION:(65,15,71,19),lit,"morgue"
+DOOR:locked,(64,17)
+#TOWN HOUSES AND SHOPS
+DOOR:locked,(41,03)
+DOOR:locked,(41,05)
+DOOR:locked,(43,03)
+DOOR:locked,(51,06)
+DOOR:locked,(53,03)
+DOOR:locked,(36,11)
+DOOR:locked,(40,17)
+DOOR:locked,(42,11)
+DOOR:locked,(48,11)
+DOOR:locked,(55,09)
+DOOR:closed,(26,11)
+DOOR:closed,(32,11)
+DOOR:closed,(35,05)
+DOOR:closed,(35,16)
+DOOR:closed,(44,15)
+DOOR:closed,(48,13)
+MONSTER:'@',"watchman",(25,13)
+MONSTER:'@',"watchman",(45,07)
+MONSTER:'@',"watchman",(56,17)
+MONSTER:'@',"watch captain",(16,09)
+REGION:(33,02,37,04),lit,"shop"
+REGION:(30,12,34,14),lit,"armor shop"
+REGION:(30,16,34,17),lit,"weapon shop"
+REGION:(43,16,47,17),lit,"food shop"
+REGION:(49,13,51,15),lit,"food shop"
+OBJECT:'(',"chest",(57,03)
+OBJECT:'(',"chest",(57,04)
+OBJECT:'(',"large box",(46,02)
+OBJECT:'(',"large box",(40,14)
+OBJECT:'(',"large box",(58,10)
+#JAIL
+DOOR:closed,(27,06) 
+DOOR:open,(26,08)
+MONSTER:'@',"prisoner",(24,02)
+MONSTER:'@',"prisoner",(24,04)
+MONSTER:'@',"prisoner",(31,04)
+MONSTER:'@',"prisoner",(31,07)
+MONSTER:'@',"watchman",(28,02)
+MONSTER:'@',"watchman",(24,06)
+#TEMPLE
+REGION:(10,05,10,05),lit,"temple",filled,true
+REGION:(07,12,15,16),lit,"throne",unfilled
+DRAWBRIDGE:(19,09),west,open
+DRAWBRIDGE:(19,10),west,open
+OBJECT:'`',"statue",(10,04),"Archon",1
+OBJECT:'`',"statue",(12,04),"Archon",1
+OBJECT:'`',"statue",(08,05),"Archon",1
+OBJECT:'`',"statue",(14,05),"Archon",1
+OBJECT:'`',"statue",(07,07),"Archon",1
+OBJECT:'`',"statue",(15,07),"Archon",1
+OBJECT:'`',"statue",(07,12),"Archon",1
+OBJECT:'`',"statue",(15,12),"Archon",1
+OBJECT:'`',"statue",(08,14),"Archon",1
+OBJECT:'`',"statue",(14,14),"Archon",1
+OBJECT:'`',"statue",(10,15),"Archon",1
+OBJECT:'`',"statue",(12,15),"Archon",1
+ALTAR:(11,05),align[0],shrine
+DOOR:closed,(11,08)
+DOOR:closed,(11,11)
+DOOR:closed,(06,08)
+DOOR:closed,(06,11)
+OBJECT:'$',random,(05,09)
+OBJECT:'$',random,(05,10)
+OBJECT:'$',random,(06,09)
+OBJECT:'$',random,(06,10)

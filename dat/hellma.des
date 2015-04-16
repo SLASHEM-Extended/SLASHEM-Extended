@@ -1056,3 +1056,162 @@ OBJECT: random, random, random
 TRAP: random, random
 
 RANDOM_CORRIDORS
+
+# New town level by Khor, adjusted by Amy
+
+MAZE:"hellma-8",' '
+MESSAGE: "This is Styx Town, the only source of shops and supplies in Gehennom."
+GEOMETRY:center,center
+###########1#########2#########3#########4#########5#########6#########7#####
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0LL LLLLLLLLLLLL.....................................T........ ..TTTTTTTTTTT
+1LLLLLLLLLLL LLLLL.T....-------------------.-----.........T.... ..TTTTTT...TT
+2LLLL LLLLLLLLLLLL......|...F.F..|.....|..|.|...|.----------... ..TTTT.....T
+3LLLLLLLLL-----LLL......|----.---|.....|..+.+...|.|K..S....|.... ..TTT.....T
+4L LLLLL---...---LL.T...|...F.F..|.....|---.|...|.|...|....|T.... ..TTT.....T
+5LLLLLL--.......--LL....|---|.---|--+---..+.-----.|...|-----...T. ..TTT...TT
+6LLLLL--.........--L....|...+.F..|T...T|..|.......--+--........... ..TTT.TTT
+7.LLL ||.........||LL...|...|.F..|.....----.............-----...... ..TT.TTT
+8.LLL--S----+-------L...-F-+------..{...................|...|TT....T ..T..TTT
+9.LLL|..|..........|L..................-----.....----...+...|....... ..T.TTTT
+0..LL|..|..........|L.................T|...|T...T|..|...|...|.T..........TTTT
+1..LL--S----+-------LL..-F-+-.---+---+--...+.....+..|...-----........ ..TTTT
+2T..LL||.........||LLL..|...|.|.....|..|...|T.{.T|----............T... ..TTTT
+3TT..L--.........--LLLL.|...|.|.....|..|----.....+...|................ ..TTT
+4TT..LL--...\...--LLLLL.-----.|.....|..|...|T.T.T|...|..T...T....-F-F-F ..TTT
+5TTT..LL---...---LLL LLL......----------...|-+---|...|...........F..... ..TT
+6TTT..LLLL-----LLLLLLLLLLL.T..|.....+.T|...|.....|---|.T.........|...... ..TT
+7TTTT..LLLLLL LLLLLLLLLLLLL...|.....|..--+--.....|.T.........T...+...... ..T
+8TTTTT..LLLLLLLLLLL LLLLLLLL..-------......-------...............|....... ..T
+9TTTTT..LLLL LLLLLLLLLLLL LL..........................T..........F....... ..
+ENDMAP
+REGION:(00,00,75,19),unlit,"ordinary"
+STAIR:(72,3),up
+STAIR:(53,12,63,19), (62,16,63,18), down
+#GRAVEYARD
+REGION:(65,15,71,19),unlit,"morgue"
+DOOR:locked,(64,17)
+#TOWN HOUSES AND SHOPS
+DOOR:locked,(41,03)
+DOOR:locked,(41,05)
+DOOR:locked,(43,03)
+DOOR:locked,(51,06)
+DOOR:locked,(53,03)
+DOOR:locked,(36,11)
+DOOR:locked,(40,17)
+DOOR:locked,(42,11)
+DOOR:locked,(48,11)
+DOOR:locked,(55,09)
+DOOR:closed,(26,11)
+DOOR:closed,(32,11)
+DOOR:closed,(35,05)
+DOOR:closed,(35,16)
+DOOR:closed,(44,15)
+DOOR:closed,(48,13)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'm', random, random
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+MONSTER: 'n', random, random, hostile
+
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: '@', "watch leader", random, peaceful
+MONSTER: '@', "watch leader", random, peaceful
+MONSTER: '@', "watch leader", random, peaceful
+
+MONSTER:'@',"watchman",(25,13)
+MONSTER:'@',"watchman",(45,07)
+MONSTER:'@',"watchman",(56,17)
+MONSTER:'@',"watch captain",(16,09)
+REGION:(33,02,37,04),unlit,"shop"
+REGION:(30,12,34,14),unlit,"armor shop"
+REGION:(30,16,34,17),unlit,"weapon shop"
+REGION:(43,16,47,17),unlit,"food shop"
+REGION:(49,13,51,15),unlit,"food shop"
+OBJECT:'(',"chest",(57,03)
+OBJECT:'(',"chest",(57,04)
+OBJECT:'(',"large box",(46,02)
+OBJECT:'(',"large box",(40,14)
+OBJECT:'(',"large box",(58,10)
+#JAIL
+DOOR:closed,(27,06) 
+DOOR:open,(26,08)
+MONSTER:'@',"prisoner",(24,02)
+MONSTER:'@',"prisoner",(24,04)
+MONSTER:'@',"prisoner",(31,04)
+MONSTER:'@',"prisoner",(31,07)
+MONSTER:'@',"watchman",(28,02)
+MONSTER:'@',"watchman",(24,06)
+#TEMPLE
+REGION:(10,05,10,05),unlit,"temple",filled,true
+REGION:(07,12,15,16),unlit,"throne",unfilled
+DRAWBRIDGE:(19,09),west,open
+DRAWBRIDGE:(19,10),west,open
+OBJECT:'`',"statue",(10,04),"Archon",1
+OBJECT:'`',"statue",(12,04),"Archon",1
+OBJECT:'`',"statue",(08,05),"Archon",1
+OBJECT:'`',"statue",(14,05),"Archon",1
+OBJECT:'`',"statue",(07,07),"Archon",1
+OBJECT:'`',"statue",(15,07),"Archon",1
+OBJECT:'`',"statue",(07,12),"Archon",1
+OBJECT:'`',"statue",(15,12),"Archon",1
+OBJECT:'`',"statue",(08,14),"Archon",1
+OBJECT:'`',"statue",(14,14),"Archon",1
+OBJECT:'`',"statue",(10,15),"Archon",1
+OBJECT:'`',"statue",(12,15),"Archon",1
+ALTAR:(11,05),align[0],shrine
+DOOR:closed,(11,08)
+DOOR:closed,(11,11)
+DOOR:closed,(06,08)
+DOOR:closed,(06,11)
+OBJECT:'$',random,(05,09)
+OBJECT:'$',random,(05,10)
+OBJECT:'$',random,(06,09)
+OBJECT:'$',random,(06,10)
+

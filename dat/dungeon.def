@@ -39,7 +39,7 @@ BRANCH:		"The Gnomish Mines" @ (2, 3)
 #   There shouldn't be any other special levels down to the Oracle.
 #   This allows a weak character to plunge to the Oracle, then return
 #   to the Mines.
-RNDLEVEL:	"mall" "T" @ (5, 2) 75 3
+RNDLEVEL:	"mall" "T" @ (5, 2) 75 4
 LEVALIGN:	lawful
 LEVELDESC:	town
 #
@@ -87,7 +87,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
 RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 41
-RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 6
+RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 7
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
@@ -175,7 +175,7 @@ RNDLEVEL:          "baalz" "B" @ (2, 29) 95 2
 LEVEL:          "geryon" "R" @ (2, 29) 95
 LEVEL:          "dispater" "S" @ (2, 29) 95
 RNDLEVEL:          "asmod" "A" @ (2, 29) 95 2
-RNDLEVEL:	"hellma" "H" @ (2, 29) 75 7
+RNDLEVEL:	"hellma" "H" @ (2, 29) 75 8
 BRANCH:         "Sheol" @ (3, 27) down
 
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
