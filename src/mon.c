@@ -1662,7 +1662,9 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	    /* KMH -- Added iron bars */
 	    if (ntyp == IRONBARS && !(flag & ALLOW_BARS)) continue;
 	    /* ALI -- Artifact doors (no passage unless open/openable) */
-	    if (IS_DOOR(ntyp) && rn2(200) ) 	/* let's allow monsters to bypass locked doors sometimes. --Amy */
+	    if (IS_DOOR(ntyp) && rn2( (!nolimbs(mdat) && !slithy(mdat) && mdat->msize >= MZ_HUMAN ) ? 50 : 200) ) 	/* let's allow monsters to bypass locked doors sometimes. --Amy */
+	/* with evil patch idea by jonadab that allows human-or-larger-sized monsters with legs to break them more easily */
+
 		if (artifact_door(nx, ny) ?
 		    levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)
 		      || levl[nx][ny].doormask & D_LOCKED :
