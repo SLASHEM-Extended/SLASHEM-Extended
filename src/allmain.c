@@ -604,7 +604,7 @@ moveloop()
 			    flags.botl = 1;
 			} else if (u.mh < 1)
 			    rehumanize();
-		    } else if (Upolyd && u.mh < u.mhmax) {
+		    } else if (Upolyd && u.mh < u.mhmax && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 
 			/* faster regeneration --Amy */
 			regenrate = (20 - (u.ulevel / 3));
@@ -618,8 +618,12 @@ moveloop()
 			    flags.botl = 1;
 			    if (!Burned) u.mh++;
 			}
+
+		/* evil patch idea by b_jonas: slower HP regeneration while standing on Elbereth
+               he actually proposes regeneration to be completely eliminated, but let's not be too cruel here... --Amy */
+
 		    } else if (u.uhp < u.uhpmax &&
-			 (wtcap < MOD_ENCUMBER || !u.umoved || Regeneration)) {
+			 (wtcap < MOD_ENCUMBER || !u.umoved || Regeneration) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 /*
  * KMH, balance patch -- New regeneration code
  * Healthstones have been added, which alter your effective
@@ -661,11 +665,11 @@ moveloop()
 			}
 		    }
 
-			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) ) {
+			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (u.ulevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			}
-			if (!Burned && Race_if(PM_HAXOR) && Upolyd && !rn2(20) ) {
+			if (!Burned && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (u.ulevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 			}
