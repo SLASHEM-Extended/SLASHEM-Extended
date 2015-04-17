@@ -896,6 +896,10 @@ register struct monst *mtmp;
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+
+			/* evil patch idea by jonadab: 5% chance for shopkeepers to be generated invisible */
+			  if (!rn2(20)) (void) mongets(mtmp, CLOAK_OF_INVISIBILITY);
+
 #endif
 			  /* Fallthrough */
 			default:
@@ -6096,8 +6100,11 @@ register struct	monst	*mtmp;
 		    }
 		} else if (ptr->msound == MS_PRIEST || mtmp->data == &mons[PM_UNALIGNED_PRIEST] ||
 			quest_mon_represents_role(ptr,PM_PRIEST)) {
+
+		    /* evil patch idea by jonadab: 5% chance for aligned priests to be generated invisible */
+
 		    (void) mongets(mtmp,
-			    rn2(7) ? rn1(ROBE_OF_WEAKNESS - ROBE + 1, ROBE) :
+			    !rn2(20) ? CLOAK_OF_INVISIBILITY : rn2(7) ? rn1(ROBE_OF_WEAKNESS - ROBE + 1, ROBE) :
 					     rn2(3) ? CLOAK_OF_PROTECTION :
 						 CLOAK_OF_MAGIC_RESISTANCE);
 		    (void) mongets(mtmp, SMALL_SHIELD);
