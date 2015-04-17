@@ -3853,3 +3853,88 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
+
+# evil patch idea by jonadab - bigroom where the player has to cross a big lake of water
+# players who can teleport will obviously have an easier time here... --Amy
+
+MAZE:"bigrm-44",' '
+GEOMETRY:center,center
+MAP
+---------------------------------------------------------------------------
+|.......}}.}}..}.}..}}..}}.}}}}.}}}}}}.}}}..}}}..}}}}}}.}.}}}.}}}}}.......|
+|........}}}}..}.}.}}}}}..}}}}}.}}.}}}}}}.}.}}.}.}}}}.}}}}.}}}.}..........|
+|.......}}.}.}}.}}}.}}}.}}}.}}}.}}.}}.}}}.}}}..}}}}}}}}.}}.}}}..}}}.......|
+|.......}}}.}}.}}}}}}}.}}}}.}}.}.}}}.}.}.}}.}.}.}}}}.}}}}}}.}}.}}}}.......|
+|.........}}.}}}.}.}}}.}.}}}}.}.}}}}}}.}}}}.}}}}}.}}}}.}}.}}.}}.}}........|
+|.......}}.}}....}}..}}}}}.}}.}}}.}}}.}.}.}}.....}..}}..}.}}}.}}.}}.......|
+|.......}}}..}}}}.}}}.}}.}}}.}.}}}}}}}}}}}}.}}}}}.}}.}.}.}.}}}.}.}}.......|
+|.........}}.}}}.}}}}}.}.}.}.}}.}.}.}}}.}.}.}...}.}.}.}}}}}}}}.}}.........|
+|.......}}.}.}}.}....}}}}}}}}..}}}}}}.}}.}.}.}}}}.}.}}.}.}....}.}.}.......|
+|.......}}}}}}.}}}}}}.}}...}}.}...}..}..}}.}}}}...}}}.}.}}}.}}..}.}.......|
+|........}}}.}}.}...}}..}}}.}}.}}}.}}.}}..}.}..}.}}.}.}}.}}..}}}}.........|
+|.......}.}.}}}.}}}}}}}}}.}}.}.}}.}}..}.}}.}}.}}}..}}.}.}}..}}...}}.......|
+|.......}}.}}}}..}}.}}.}.}.}.}}.}.}}.}}}.}..}}....}}..}}..}}}.}}}}}.......|
+|........}}..}}.}}}..}.}}}.}.}.}}}.}}.}.}}.}.}}}}}}}}}}.}}.}.}.}}}........|
+|.......}}}}}}}}}}}}.}.}.}}.}.}.}.}.}}}.}}}}..}.}..}.}}.}.}.}}}.}}}.......|
+|.......}.}}.}}..}...}.}.}..}}}.}}.}.}}}.}..}}...}}..}}}}.}}..}}}.}.......|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(01,01,73,16),lit,"ordinary"
+# Stairs
+STAIR:(00,00,05,16),(00,00,00,00),up
+STAIR:(68,00,73,16),(00,00,00,00),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random

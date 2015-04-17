@@ -2113,6 +2113,261 @@ MONSTER: 'G', "gnome thief", random
 
 RANDOM_CORRIDORS
 
+# evil patch idea by jonadab - guaranteed L in the mines.
+# He wants it to be a guaranteed *purple* L, but that would be too evil even for SLEX standards. --Amy
+#
+LEVEL: "mintn-16"
+ROOM: "ordinary" , lit, (3,3), (center,center), (30,15)
+NAME: "town"
+FOUNTAIN: (12, 07)
+FOUNTAIN: (11, 13)
+
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',"gnome lord",random
+MONSTER:'Y',"monkey",random
+MONSTER:'Y',"monkey",random
+MONSTER:'L',random,random,hostile
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+SUBROOM: "ordinary", random, (2,2), (4,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (7,2), (2,2), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", random, (7,5), (2,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", lit, (10,2), (3,4), "town"
+MONSTER:'G',random,random
+MONSTER:'Y',"monkey",random
+MONSTER:'Y',"monkey",random
+MONSTER:'Y',"monkey",random
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (14,2), (4,2), "town"
+DOOR: false, closed, south, 0
+MONSTER: 'n', random, random
+
+SUBROOM: "ordinary", random, (16,5), (2,2), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", unlit, (19,2), (2,2), "town"
+DOOR: false, locked, east, random
+MONSTER: 'G',"gnome king",random
+
+SUBROOM: "food shop", lit, (19,5), (2,3), "town"
+CHANCE: 50
+DOOR: false, closed, south, random
+
+SUBROOM: "ordinary", random, (2,7), (2,2), "town"
+DOOR: false, closed, east, random
+
+SUBROOM: "tool shop", lit, (2,10), (2,3), "town"
+CHANCE: 50
+DOOR: false, closed, south, random
+
+SUBROOM: "candle shop", lit, (5,10),(3,3), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", random, (11,10), (2,2), "town"
+DOOR: false, locked, west, random
+MONSTER: 'G',random,random
+
+SUBROOM: "shop", lit, (14,10), (2,3), "town"
+CHANCE: 60
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", random, (17,11), (4,2), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "ordinary", random, (22,11), (2,2), "town"
+DOOR: false, closed, south, random
+SINK: (00,00)
+
+SUBROOM: "food shop", lit, (25,11), (3,2), "town"
+CHANCE: 50
+DOOR: false, closed, east, random
+
+SUBROOM: "tool shop", lit, (25,2), (3,3), "town"
+CHANCE: 30
+DOOR: false, closed, west, random
+
+SUBROOM: "temple", lit, (24,6), (4,4), "town"
+DOOR: false, closed, west, random
+ALTAR:(02,01),align[0],shrine
+MONSTER: 'G', "gnomish wizard", random
+MONSTER: 'G', "gnomish wizard", random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', "dwarf thief", random
+MONSTER: 'h', "dwarf thief", random
+  
+ROOM: "ordinary" , random, random, random, random
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', "gnome thief", random
+MONSTER: 'G', "gnome thief", random
+
+RANDOM_CORRIDORS
+
+# evil patch idea by jonadab - guaranteed soldier ants and a polymorph trap in minetown
+#
+MAZE: "mintn-17",' '
+GEOMETRY:center,center
+MAP
+-----         ---------                                                    
+|...---  ------.......--    -------                       ---------------  
+|.....----.........--..|    |.....|          -------      |.............|  
+--..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+ --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
+  ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
+    ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
+       -----..|....-.....---- |.|    |..|.------......--................|  
+    ------ |..|.............---.--   ----.+..|-.......--..--------+--..--  
+    |....| --......---...........-----  |.|..|-...{....---|.........|..--  
+    |....|  |........-...-...........----.|..|--.......|  |.........|...|  
+    ---+--------....-------...---......--.-------....---- -----------...|  
+ ------.---...--...--..-..--...-..---...|.--..-...-....------- |.......--  
+ |..|-.........-..---..-..---.....--....|........---...-|....| |.-------   
+ |..+...............-+---+-----..--..........--....--...+....| |.|...S.    
+-----.....{....----...............-...........--...-...-|....| |.|...|     
+|..............-- --+--.---------.........--..-........------- |.--+-------
+-+-----.........| |...|.|....|  --.......------...|....---------.....|....|
+|...| --..------- |...|.+....|   ---...---    --..|...--......-...{..+..-+|
+|...|  ----       ------|....|     -----       -----.....----........|..|.|
+-----                   ------                     -------  ---------------
+ENDMAP
+
+STAIR:(01,01),up
+STAIR:(46,03),down
+FOUNTAIN:(50,09)
+FOUNTAIN:(10,15)
+FOUNTAIN:(66,18)
+
+REGION:(00,00,74,20),unlit,"ordinary"
+REGION:(09,13,11,17),lit,"ordinary"
+REGION:(08,14,12,16),lit,"ordinary"
+REGION:(49,07,51,11),lit,"ordinary"
+REGION:(48,08,52,10),lit,"ordinary"
+REGION:(64,17,68,19),lit,"ordinary"
+REGION:(37,13,39,17),lit,"ordinary"
+REGION:(36,14,40,17),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary"
+
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', "gnome lord", random
+MONSTER: 'G', "gnome lord", random
+MONSTER: 'G', "gnome thief", random
+MONSTER: 'G', "gnome thief", random
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', "dwarf thief", random
+MONSTER: 'h', "dwarf thief", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+MONSTER: 'a', "soldier ant", random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+TRAP:"polymorph",random
+
+# The shops
+REGION:(25,17,28,19),lit,"candle shop"
+DOOR:closed,(24,18)
+REGION:(59,9,67,10),lit,"shop"
+DOOR:closed,(66,08)
+REGION:(57,13,60,15),lit,"tool shop"
+DOOR:closed,(56,14)
+REGION:(05,09,08,10),lit,"food shop"
+DOOR:closed,(07,11)
+# Gnome homes
+DOOR:closed,(04,14)
+DOOR:locked,(01,17)
+MONSTER: 'G', "gnomish wizard", (02,19)
+DOOR:locked,(20,16)
+MONSTER: 'G', random, (20,18)
+DOOR:random,(21,14)
+DOOR:random,(25,14)
+DOOR:random,(42,08)
+DOOR:locked,(40,05)
+MONSTER: 'G', random, (38,07)
+DOOR:random,(59,03)
+DOOR:random,(58,06)
+DOOR:random,(63,03)
+DOOR:random,(63,05)
+DOOR:locked,(71,03)
+DOOR:locked,(71,06)
+DOOR:closed,(69,04)
+DOOR:closed,(67,16)
+MONSTER: 'G', "gnomish wizard", (67,14)
+OBJECT: '=', random, (70,14)
+DOOR:locked,(69,18)
+MONSTER: 'G', "gnome lord", (71,19)
+DOOR:locked,(73,18)
+OBJECT: '(', "chest", (73,19)
+DOOR:locked,(50,06)
+OBJECT: '(', random, (50,03)
+OBJECT: '`', "statue", (38,15), "gnome king", 1
+# Temple
+REGION:(29,02,33,04),lit,"temple"
+DOOR:closed,(31,05)
+ALTAR:(31,03),align[0],shrine
+
 # Mine end level variant 1
 # "Mimic of the Mines"
 #

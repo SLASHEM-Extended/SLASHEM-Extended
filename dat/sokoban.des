@@ -7702,3 +7702,207 @@ OBJECT:'`',"boulder",place[0]
 
 MONSTER:'m',random, random
 MONSTER:'m',random, random
+
+# evil patch idea by dtsund - a sokoban level that has rolling boulder traps
+MAZE:"soko1-38",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+  ------------------------
+  |......................|
+  |..-------------------.|
+----.|    -----        |.|
+|..|.--  --...|        |.|
+|.....|--|....|        |.|
+|.....|..|....|        |.|
+--....|......--        |.|
+ |.......|...|   ------|.|
+ |....|..|...| --|.....|.|
+ |....|--|...| |.+.....|.|
+ |.......|..-- |-|.....|.|
+ ----....|.--  |.+.....+.|
+    ---.--.|   |-|.....|--
+     |.....|   |.+.....|  
+     |..|..|   --|.....|  
+     -------     -------  
+ENDMAP
+RANDOM_PLACES:(16,10),(16,12),(16,14)
+STAIR:(06,15),down
+REGION:(00,00,25,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,25,16)
+NON_PASSWALL:(00,00,25,16)
+
+# Boulders
+OBJECT:'`',"boulder",(04,04)
+OBJECT:'`',"boulder",(02,06)
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(04,07)
+OBJECT:'`',"boulder",(05,07)
+OBJECT:'`',"boulder",(02,08)
+OBJECT:'`',"boulder",(05,08)
+OBJECT:'`',"boulder",(03,09)
+OBJECT:'`',"boulder",(04,09)
+OBJECT:'`',"boulder",(03,10)
+OBJECT:'`',"boulder",(05,10)
+OBJECT:'`',"boulder",(06,12)
+#
+OBJECT:'`',"boulder",(07,14)
+#
+OBJECT:'`',"boulder",(11,05)
+OBJECT:'`',"boulder",(12,06)
+OBJECT:'`',"boulder",(10,07)
+OBJECT:'`',"boulder",(11,07)
+OBJECT:'`',"boulder",(10,08)
+OBJECT:'`',"boulder",(12,09)
+OBJECT:'`',"boulder",(11,10)
+
+# Traps
+TRAP:"hole",(05,01)
+TRAP:"hole",(06,01)
+TRAP:"hole",(07,01)
+TRAP:"hole",(08,01)
+TRAP:"hole",(09,01)
+TRAP:"hole",(10,01)
+TRAP:"hole",(11,01)
+TRAP:"hole",(12,01)
+TRAP:"hole",(13,01)
+TRAP:"hole",(14,01)
+TRAP:"hole",(15,01)
+TRAP:"hole",(16,01)
+TRAP:"hole",(17,01)
+TRAP:"hole",(18,01)
+TRAP:"hole",(19,01)
+TRAP:"hole",(20,01)
+TRAP:"hole",(21,01)
+TRAP:"hole",(22,01)
+
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+# Rewards
+DOOR:locked,(23,12)
+DOOR:closed,(17,10)
+DOOR:closed,(17,12)
+DOOR:closed,(17,14)
+REGION:(18,09,22,15),lit,"throne",filled,true
+OBJECT:'"',"amulet of reflection",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+# evil patch idea by jonadab - guaranteed polymorph traps in the zoo
+MAZE:"soko1-39",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# Steve Melenchuk <smelenchuk@gmail.com>
+MAP
+  -----                        
+  |...------  -----   -------  
+  |........----...| ---.....|  
+ --..--.--.--.....| |.+.....|  
+ |................| ---.....|--
+--.....--.--....--- |.+.....+.|
+|...-----.-----.-   ---.....|.|
+|.....--..-----.--  |.+.....|.|
+--....---.---....|  ---.....|.|
+ ---..---...-....|    ------|.|
+   |......-......|          |.|
+   |..--...-.....|          |.|
+   ------..-----------------|.|
+       -......................|
+       -...--------------------
+       -----                   
+ENDMAP
+
+RANDOM_PLACES: (21,03),(21,05),(21,07)
+STAIR:(08,07),down
+REGION:(00,00,30,15),lit,"ordinary"
+NON_DIGGABLE:(00,00,30,15)
+NON_PASSWALL:(00,00,30,15)
+
+# Boulders
+OBJECT:'`',"boulder",(04,02)
+OBJECT:'`',"boulder",(06,02)
+OBJECT:'`',"boulder",(08,02)
+OBJECT:'`',"boulder",(16,03)
+OBJECT:'`',"boulder",(03,04)
+OBJECT:'`',"boulder",(06,04)
+OBJECT:'`',"boulder",(12,04)
+OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(02,06)
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(15,07)
+OBJECT:'`',"boulder",(04,08)
+OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(15,08)
+OBJECT:'`',"boulder",(15,09)
+OBJECT:'`',"boulder",(05,10)
+OBJECT:'`',"boulder",(06,10)
+OBJECT:'`',"boulder",(12,10)
+OBJECT:'`',"boulder",(14,10)
+OBJECT:'`',"boulder",(15,10)
+
+# Traps
+TRAP:"hole",(11,13)
+TRAP:"hole",(12,13)
+TRAP:"hole",(13,13)
+TRAP:"hole",(14,13)
+TRAP:"hole",(15,13)
+TRAP:"hole",(16,13)
+TRAP:"hole",(17,13)
+TRAP:"hole",(18,13)
+TRAP:"hole",(19,13)
+TRAP:"hole",(20,13)
+TRAP:"hole",(21,13)
+TRAP:"hole",(22,13)
+TRAP:"hole",(23,13)
+TRAP:"hole",(24,13)
+TRAP:"hole",(25,13)
+TRAP:"hole",(26,13)
+TRAP:"hole",(27,13)
+TRAP:"hole",(28,13)
+
+TRAP:"polymorph",(25,02)
+TRAP:"polymorph",(23,04)
+TRAP:"polymorph",(27,04)
+TRAP:"polymorph",(25,06)
+TRAP:"polymorph",(23,08)
+TRAP:"polymorph",(27,08)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+OBJECT:'(',"bag of holding",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Rewards
+DOOR:locked,(28,05)
+DOOR:closed,(22,03)
+DOOR:closed,(22,05)
+DOOR:closed,(22,07)
+REGION:(23,02,27,08),lit,"zoo",filled,true

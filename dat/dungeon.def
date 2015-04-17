@@ -86,7 +86,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 43
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 44
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 8
 LEVALIGN:		chaotic
 LEVELDESC:	town
@@ -185,9 +185,9 @@ RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 43
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 43
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 43
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
@@ -198,7 +198,7 @@ RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 DUNGEON:	"The Gnomish Mines" "M" (9, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"mintn" "T" @ (3, 2) 98 15
+RNDLEVEL:	"mintn" "T" @ (3, 2) 98 17
 LEVELDESC:	town
 RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
 RNDLEVEL:		"mking" "M" @ (-1, 0) 90 12
@@ -238,7 +238,7 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 37
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 39
 RNDLEVEL:		"soko2" "B" @ (2, 0) 95 32
 RNDLEVEL:		"soko3" "C" @ (3, 0) 95 17
 RNDLEVEL:		"soko4" "D" @ (4, 0) 95 14
@@ -250,7 +250,7 @@ DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
-RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 43
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 44
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town
