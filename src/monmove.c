@@ -192,6 +192,8 @@ struct monst *mtmp;
 		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER)
 		return(FALSE);
 
+	if (mtmp->mhp < 2) return FALSE;
+
 	/* the smallest monsters always respect Elbereth;
 	 * more powerful things less so */
 	/* also nerfed scare monster scrolls a bit */
@@ -348,8 +350,10 @@ int *inrange, *nearby, *scared;
 		seescaryx = u.ux;
 		seescaryy = u.uy;
 	}
-	*scared = (*nearby && (onscary(seescaryx, seescaryy, mtmp) && (rnd(20) > 1) ||
-			       (!mtmp->mpeaceful && (rnd(3) > 1) &&
+
+	/* "super bonus evil patch idea" by jonadab - monsters with only 1HP ignore Elbereth and similar scary stuff */
+	*scared = ( (mtmp->mhp > 1) && *nearby && (onscary(seescaryx, seescaryy, mtmp) && (rnd(20) > 1) ||
+			       (!mtmp->mpeaceful && (rnd(5) > 2) &&
 				    in_your_sanctuary(mtmp, 0, 0))));
 	/* note by Amy: I always felt permanent Elbereths were waaaaaaaay too strong.
 	It's much more interesting if Elbereth has a chance to fail, too.
