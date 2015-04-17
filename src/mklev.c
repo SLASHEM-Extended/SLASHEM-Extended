@@ -2392,7 +2392,12 @@ mklev()
 {
 	struct mkroom *croom;
 
-	if(getbones()) return;
+	if(getbones()) {
+
+		u.gottenbones = 1;
+		return;
+	}
+
 	in_mklev = TRUE;
 	makelevel();
 	bound_digging();

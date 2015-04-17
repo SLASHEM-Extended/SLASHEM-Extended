@@ -390,6 +390,8 @@ struct you {
 
 	int ughmemory;		/* set to 1 if you eat an ugh memory to create inventory window */
 
+	int gottenbones;		/* set to 1 if you encountered a bones level */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

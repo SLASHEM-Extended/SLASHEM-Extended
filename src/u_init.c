@@ -4069,6 +4069,8 @@ u_init()
 	else if (Race_if(PM_UNGENOMOLD)) u.youpolyamount = 100;
 	else if (Race_if(PM_MOULD)) u.youpolyamount = 250;
 
+	u.gottenbones = 0;
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;

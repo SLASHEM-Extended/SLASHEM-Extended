@@ -1216,6 +1216,20 @@ boolean at_stairs, falling, portal;
 		mklev();
 		new = TRUE;	/* made the level */
 
+		if (u.gottenbones) { /* evil patch idea by jonadab - spawn monsters if a bones file loads */
+
+			while (rn2(10 + (monster_difficulty() / 3)) && (enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) ) {
+				(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+				if (wizard) pline("made bones monster");
+				}
+
+			u.gottenbones = 0;
+
+		/* Actually, this is supposed to spawn more monsters the longer the deceased player has been dead already,
+		   but coding that to properly work would be hell... --Amy */
+
+		}
+
 		if (isangbander) { /* level feelings --Amy */
 
 			if (!rn2(Luck + 16)) {
