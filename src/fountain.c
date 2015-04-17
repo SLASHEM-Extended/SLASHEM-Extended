@@ -337,6 +337,19 @@ drinkfountain()
 		case 30: /* Gushing forth in this room */
 
 			dogushforth(TRUE);
+
+			/* evil patch idea by jonadab:
+			   fountains have a small percentage chance of killing you outright, flavored as drowning */
+
+			if (!Amphibious && !Swimming && !rn2(20) ) {
+
+				pline("You drown...");
+				    killer_format = KILLED_BY_AN;
+				    killer = "overflowing fountain";
+				    done(DROWNING);
+
+			}
+
 			break;
 
 		default:
