@@ -576,7 +576,7 @@ drinksink()
 		floating_above("sink");
 		return;
 	}
-	switch(rn2(20)) {
+	switch(rn2(21)) {
 		case 0: You("take a sip of very cold water.");
 			break;
 		case 1: You("take a sip of very warm water.");
@@ -652,6 +652,20 @@ drinksink()
 			break;
 		case 12: You_hear("snatches of song from among the sewers...");
 			break;
+
+		/* evil patch idea by jonadab - playing around with sinks can generate a green slime */
+		case 13: if (mvitals[PM_GREEN_SLIME].mvflags & G_GONE)
+				pline_The("sink seems extremely yucky...");
+			else {
+				mtmp = makemon(&mons[PM_GREEN_SLIME],
+						u.ux, u.uy, NO_MM_FLAGS);
+				if (mtmp) pline("Yuck!  There's %s in the sink!",
+					(Blind || !canspotmon(mtmp)) ?
+					"something slimy" :
+					a_monnam(mtmp));
+			}
+			break;
+
 		case 19: if (Hallucination) {
 		   pline("From the murky drain, a hand reaches up... --oops--");
 				break;
