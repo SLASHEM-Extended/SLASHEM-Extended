@@ -174,23 +174,26 @@ dosounds()
 			 (ROOM_INDEX(sroom) + ROOMOFFSET))
 #endif /* AZTEC_C_WORKAROUND */
 		    {
-			if (gold_in_vault && !level.flags.vault_is_aquarium)
+			if (gold_in_vault && !level.flags.vault_is_aquarium && !level.flags.vault_is_cursed)
 			    You_hear(!hallu ? "someone counting money." :
 				"the quarterback calling the play.");
 			else if (gold_in_vault && level.flags.vault_is_aquarium)
 			    You_hear(!hallu ? "soft splashing." :
 				"a swimmer divebomb into the water.");
+			else if (gold_in_vault && level.flags.vault_is_cursed)
+			    You_hear(!hallu ? "gutteral voices chanting." :
+				"drums beating ominously!");
 			else
-			    You_hear(level.flags.vault_is_aquarium ? "frenzied splashing." : "someone searching.");
+			    You_hear(level.flags.vault_is_aquarium ? "frenzied splashing." : level.flags.vault_is_cursed ? "someone scream: 'No! Stop! The Knife! Aaaaaahhhh!'" : "someone searching.");
 			break;
 		    }
 		    /* fall into... (yes, even for hallucination) */
 		}
 		case 0:
-		    You_hear(level.flags.vault_is_aquarium ? "gently lapping water." : "the footsteps of a guard on patrol.");
+		    You_hear(level.flags.vault_is_aquarium ? "gently lapping water." : level.flags.vault_is_cursed ? "somebody screaming for help!" : "the footsteps of a guard on patrol.");
 		    break;
 		case 2:
-		    You_hear(level.flags.vault_is_aquarium ? "the bubbling of an oxygen filter." : "Ebenezer Scrooge!");
+		    You_hear(level.flags.vault_is_aquarium ? "the bubbling of an oxygen filter." : level.flags.vault_is_cursed ? "somebody whisper: 'You've been detected by a security camera! Har har har!'" : "Ebenezer Scrooge!");
 		    break;
 	    }
 	return;

@@ -539,6 +539,7 @@ struct levelflags {
 	Bitfield(arboreal, 1);		/* Trees replace rock */
 	/* and where it is written "ad aquarium"... */
 	Bitfield(vault_is_aquarium,1);
+	Bitfield(vault_is_cursed,1);
 	Bitfield(spooky,1);		/* Spooky sounds (Tina Hall) */
 	Bitfield(lethe, 1);			/* All water on level causes amnesia */
 };

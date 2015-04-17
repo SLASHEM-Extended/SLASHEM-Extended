@@ -609,6 +609,8 @@ int trap_type;
 			if (trap_engravings[trap_type]) {
 				if (level.flags.vault_is_aquarium) {
 					make_engr_at(xx, yy-dy,"ad aquarium",0L, DUST);
+				} else if (level.flags.vault_is_cursed) {
+					make_engr_at(xx, yy-dy,"iter vehemens ad necem",0L, DUST);
 				} else {
 			    make_engr_at(xx, yy-dy, trap_engravings[trap_type], 0L, DUST);
 				}
@@ -901,6 +903,7 @@ clear_level_structures()
 	level.flags.has_shop = 0;
 	level.flags.has_vault = 0;
 	level.flags.vault_is_aquarium = 0;
+	level.flags.vault_is_cursed = 0;
 	level.flags.has_zoo = 0;
 	level.flags.has_court = 0;
 	level.flags.has_morgue = level.flags.graveyard = 0;

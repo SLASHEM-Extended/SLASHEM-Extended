@@ -2019,6 +2019,7 @@ boolean prefilled;
 	int rtrap;
 	int randomnes = 0;
 	schar typ, typ2;
+	struct monst *mtmp;
 
 	if (!croom || croom->rtype == OROOM)
 	    return;
@@ -2224,6 +2225,22 @@ boolean prefilled;
 					(void)makemon(mkclass(S_EEL,0),croom->hx,croom->hy,NO_MM_FLAGS);
 				}
 			}
+			else if (!rn2(100)) { /* evil patch idea by jonadab - cursed vaults filled with L */
+
+				level.flags.vault_is_cursed = TRUE;
+				mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->ly,NO_MM_FLAGS);
+				if (mtmp) mtmp->msleeping = 1;
+				mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->hy,NO_MM_FLAGS);
+				if (mtmp) mtmp->msleeping = 1;
+				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->ly,NO_MM_FLAGS);
+				if (mtmp) mtmp->msleeping = 1;
+				}
+				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->hy,NO_MM_FLAGS);
+				if (mtmp) mtmp->msleeping = 1;
+				}
+
+			}
+
 		    break;
 		case COURT:
 		case ZOO:
