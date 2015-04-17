@@ -123,6 +123,12 @@ MONSTER:'T',"rock troll",(02,17)
 MONSTER:'E',"earth elemental",(04,17),hostile
 MONSTER:'E',"earth elemental",(04,18),hostile
 
+MONSTER:'E',"thematic earth elemental",random,hostile
+MONSTER:'E',"thematic earth elemental",random,hostile
+MONSTER:'E',"thematic earth elemental",random,hostile
+MONSTER:'E',"thematic earth elemental",random,hostile
+MONSTER:'E',"thematic earth elemental",random,hostile
+
 MONSTER[50%]:':',"arch-newt",random,hostile
 
 OBJECT:'`',"boulder",random
@@ -227,6 +233,12 @@ MONSTER:'v',"steam vortex",random,hostile
 MONSTER:'v',"steam vortex",random,hostile
 MONSTER:'v',"steam vortex",random,hostile
 MONSTER:'v',"steam vortex",random,hostile
+
+MONSTER:'E',"thematic air elemental",random,hostile
+MONSTER:'E',"thematic air elemental",random,hostile
+MONSTER:'E',"thematic air elemental",random,hostile
+MONSTER:'E',"thematic air elemental",random,hostile
+MONSTER:'E',"thematic air elemental",random,hostile
 
 MONSTER[50%]:':',"arch-newt",random,hostile
 
@@ -376,6 +388,12 @@ MONSTER:'v',"steam vortex",random
 MONSTER:':',"salamander",random,hostile
 MONSTER:':',"salamander",random,hostile
 
+MONSTER:'E',"thematic fire elemental",random,hostile
+MONSTER:'E',"thematic fire elemental",random,hostile
+MONSTER:'E',"thematic fire elemental",random,hostile
+MONSTER:'E',"thematic fire elemental",random,hostile
+MONSTER:'E',"thematic fire elemental",random,hostile
+
 MONSTER[50%]:':',"arch-newt",random,hostile
 
 OBJECT:'`',"boulder",random
@@ -480,6 +498,12 @@ MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
+
+MONSTER:'E',"thematic water elemental",random,hostile
+MONSTER:'E',"thematic water elemental",random,hostile
+MONSTER:'E',"thematic water elemental",random,hostile
+MONSTER:'E',"thematic water elemental",random,hostile
+MONSTER:'E',"thematic water elemental",random,hostile
 
 MONSTER[50%]:':',"arch-newt",random,hostile
 
@@ -624,6 +648,40 @@ MONSTER:'V',random,random,hostile
 MONSTER:'D',random,random,hostile
 MONSTER:'D',random,random,hostile
 MONSTER:'D',random,random,hostile
+
+# astral elementals (new creation by Amy
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+MONSTER:'E',"astral elemental",random,hostile
+
+MONSTER:'E',"thematic astral elemental",random,hostile
+MONSTER:'E',"thematic astral elemental",random,hostile
+MONSTER:'E',"thematic astral elemental",random,hostile
+MONSTER:'E',"thematic astral elemental",random,hostile
+MONSTER:'E',"thematic astral elemental",random,hostile
+
 # 10 arch-lichens on Astral. DIE!
 MONSTER:'F',"arch-lichen",random,hostile
 MONSTER[90%]:'F',"arch-lichen",random,hostile

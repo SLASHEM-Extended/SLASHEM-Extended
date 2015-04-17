@@ -1350,7 +1350,9 @@ dosummon()
 	if (u.ulycn == PM_WEREGIANT) somanymana = 50;
 	if (u.ulycn == PM_WEREGHOST) somanymana = 30;
 	if (u.ulycn == PM_WERECOCKATRICE) somanymana = 60;
+	if (u.ulycn == PM_WERELICH) somanymana = 100;
 	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
+	if (u.ulycn == PM_WEREJABBERWOCK) somanymana = 200;
 	
 	if (u.uen < somanymana) {
 	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);

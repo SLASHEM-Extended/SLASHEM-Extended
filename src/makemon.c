@@ -54,6 +54,7 @@ register struct permonst *ptr;
 		case PM_FIRE_ELEMENTAL: return Is_firelevel(&u.uz);
 		case PM_EARTH_ELEMENTAL: return Is_earthlevel(&u.uz);
 		case PM_WATER_ELEMENTAL: return Is_waterlevel(&u.uz);
+		case PM_ASTRAL_ELEMENTAL: return Is_astralevel(&u.uz);
 	    }
 	return FALSE;
 }
@@ -6445,6 +6446,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_MINOTAUR]) {
 		    if (!rn2(3) || (in_mklev && Is_earthlevel(&u.uz)))
 			(void) mongets(mtmp, WAN_DIGGING);
+		} else if (ptr == &mons[PM_CHEATING_MINOTAUR]) { /* evil patch idea by jonadab */
+			if (!rn2(3)) (void) mongets(mtmp, WAN_LIGHTNING);
+			else if (!rn2(2)) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			else (void) mongets(mtmp, AMULET_OF_REFLECTION);
 		} else if (is_giant(ptr)) {
 		    for (cnt = rn2((int)(mtmp->m_lev / 2)); cnt; cnt--) {
 
@@ -6690,6 +6695,11 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_HEAVY_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 
+		/* evil patch idea by jonadab; he wants them to turn the tile a player is on into lava
+               I'll just give them an appropriate scroll instead. --Amy */
+		if (ptr == &mons[PM_THEMATIC_FIRE_ELEMENTAL]) (void) mongets(mtmp, SCR_LAVA);
+
+		if (ptr == &mons[PM_THEMATIC_ASTRAL_ELEMENTAL]) (void) mongets(mtmp, rn2(10) ? SCR_BAD_EFFECT : WAN_BAD_EFFECT);
 
 		break;	
 	    case S_VAMPIRE:

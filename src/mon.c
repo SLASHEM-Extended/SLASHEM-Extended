@@ -1614,7 +1614,7 @@ mfndpos(mon, poss, info, flag)
 	y = mon->my;
 	nowtyp = levl[x][y].typ;
 
-	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG]);
+	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG]);
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || is_clinger(mdat) ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
@@ -1935,7 +1935,7 @@ register int x,y;
 /* Is the square close enough for the monster to move or attack into? */
 {
 	register int distance = dist2(mon->mx, mon->my, x, y);
-	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG]) ) return 0;
+	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG]) ) return 0;
 	return((boolean)(distance < 3));
 }
 
@@ -2252,6 +2252,12 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREFLYFISH], -1);
 	else if (mtmp->data == &mons[PM_WEREKRAKEN])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREKRAKEN], -1);
+	else if (mtmp->data == &mons[PM_WERELICH])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERELICH], -1);
+	else if (mtmp->data == &mons[PM_WEREJABBERWOCK])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREJABBERWOCK], -1);
+	else if (mtmp->data == &mons[PM_WEREGRIDBUG])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGRIDBUG], -1);
 
 	/* if MAXMONNO monsters of a given type have died, and it
 	 * can be done, extinguish that monster.

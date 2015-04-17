@@ -2270,6 +2270,9 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREEEL) u.ulycn = PM_WEREEEL;
 			if (u.ulycn == PM_HUMAN_WEREFLYFISH) u.ulycn = PM_WEREFLYFISH;
 			if (u.ulycn == PM_HUMAN_WEREKRAKEN) u.ulycn = PM_WEREKRAKEN;
+			if (u.ulycn == PM_HUMAN_WERELICH) u.ulycn = PM_WERELICH;
+			if (u.ulycn == PM_HUMAN_WEREJABBERWOCK) u.ulycn = PM_WEREJABBERWOCK;
+			if (u.ulycn == PM_HUMAN_WEREGRIDBUG) u.ulycn = PM_WEREGRIDBUG;
 		    upermonst.mflags2 |= (M2_WERE);
 		}
 		break;

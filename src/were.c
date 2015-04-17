@@ -95,6 +95,12 @@ int pm;
 	    case PM_HUMAN_WEREFLYFISH: return(PM_WEREFLYFISH);
 	    case PM_WEREKRAKEN:       return(PM_HUMAN_WEREKRAKEN);
 	    case PM_HUMAN_WEREKRAKEN: return(PM_WEREKRAKEN);
+	    case PM_WERELICH:       return(PM_HUMAN_WERELICH);
+	    case PM_HUMAN_WERELICH: return(PM_WERELICH);
+	    case PM_WEREJABBERWOCK:       return(PM_HUMAN_WEREJABBERWOCK);
+	    case PM_HUMAN_WEREJABBERWOCK: return(PM_WEREJABBERWOCK);
+	    case PM_WEREGRIDBUG:       return(PM_HUMAN_WEREGRIDBUG);
+	    case PM_HUMAN_WEREGRIDBUG: return(PM_WEREGRIDBUG);
 	    default:		      return(0);
 	}
 }
@@ -281,6 +287,21 @@ char *genbuf;
 		case PM_HUMAN_WEREKRAKEN:
 			typ = rn2(5) ? PM_KRAKEN : PM_HENTAI_OCTOPUS ;
 			if (genbuf) Strcpy(genbuf, "kraken");
+			break;
+		case PM_WERELICH:
+		case PM_HUMAN_WERELICH:
+			typ = rn2(5) ? PM_LICH : PM_LICH_WARRIOR ;
+			if (genbuf) Strcpy(genbuf, "lich");
+			break;
+		case PM_WEREJABBERWOCK:
+		case PM_HUMAN_WEREJABBERWOCK:
+			typ = rn2(5) ? PM_JABBERWOCK : PM_VORPAL_JABBERWOCK ;
+			if (genbuf) Strcpy(genbuf, "jabberwock");
+			break;
+		case PM_WEREGRIDBUG:
+		case PM_HUMAN_WEREGRIDBUG:
+			typ = rn2(5) ? PM_GRID_BUG : PM_TRON_BUG ;
+			if (genbuf) Strcpy(genbuf, "grid bug");
 			break;
 		default:
 			continue;

@@ -259,7 +259,7 @@ struct permonst *mdat;
 	    for(i = first_col; i <= last_col; i++)
 		if (map[EPATHTO_XY(i, j)] == EPATHTO_TAIL(path_len)) {
 		    map[EPATHTO_XY(i, j)] = EPATHTO_DONE;
-		    ndirs = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG]) ? 4 : 8;
+		    ndirs = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG]) ? 4 : 8;
 		    for(dir = 0; dir < ndirs; dir++) {
 			xy = EPATHTO_XY(i, j) + dirs[dir];
 			if (map[xy] == EPATHTO_UNSEEN) {
