@@ -2559,6 +2559,27 @@ dozap()
 		exercise(A_STR, FALSE);
 		return(1);
 	}
+
+	/* evil patch idea by jonadab: eroded wands have a chance of exploding */
+	else if ( (obj->oeroded > 2 || obj->oeroded2 > 2) && !rn2(5) ) {
+		backfire(obj);  /* the wand blows up in your face! */
+		exercise(A_STR, FALSE);
+		return(1);
+
+	}
+	else if ( (obj->oeroded > 1 || obj->oeroded2 > 1) && !rn2(20) ) {
+		backfire(obj);  /* the wand blows up in your face! */
+		exercise(A_STR, FALSE);
+		return(1);
+
+	}
+	else if ( (obj->oeroded > 0 || obj->oeroded2 > 0) && !rn2(80) ) {
+		backfire(obj);  /* the wand blows up in your face! */
+		exercise(A_STR, FALSE);
+		return(1);
+
+	}
+
 	else if(obj->otyp == WAN_WONDER && !rn2(100)) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
