@@ -1039,7 +1039,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(42)) {
+		switch (rnd(43)) {
 
 			case 1: makemaz("bigrm-1"); return;
 			case 2: makemaz("bigrm-2"); return;
@@ -1083,6 +1083,7 @@ makelevel()
 			case 40: makemaz("bigrm-40"); return;
 			case 41: makemaz("bigrm-41"); return;
 			case 42: makemaz("bigrm-42"); return;
+			case 43: makemaz("bigrm-43"); return;
 
 		}
 		break;
@@ -1223,7 +1224,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(42)) {
+		switch (rnd(43)) {
 
 			case 1: makemaz("ghbgr-1"); return;
 			case 2: makemaz("ghbgr-2"); return;
@@ -1267,6 +1268,7 @@ makelevel()
 			case 40: makemaz("ghbgr-40"); return;
 			case 41: makemaz("ghbgr-41"); return;
 			case 42: makemaz("ghbgr-42"); return;
+			case 43: makemaz("ghbgr-42"); return;
 
 		}
 		break;
