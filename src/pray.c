@@ -1206,7 +1206,7 @@ pleased(g_align)
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
 
 	/* evil patch idea by jonadab: permaconverting yourself grants increased prayer timeout */
-	if (u.ualignbase[A_CURRENT] != original_alignment) u.ublesscnt += rnz(ishaxor ? 500 : 1000);
+	if (u.ualignbase[A_CURRENT] != u.ualignbase[A_ORIGINAL]) u.ublesscnt += rnz(ishaxor ? 500 : 1000);
 
 	return;
 }
