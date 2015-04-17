@@ -6352,6 +6352,9 @@ register struct	monst	*mtmp;
 		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if(!rn2(2)) (void) mongets(mtmp, MIRROR);
 		if(!rn2(/*2*/10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
+
+		/* evil patch idea by jonadab: levelwarping nymphs. To avoid annoying segfaults I'll have them do it via item. --Amy */
+		if(!rn2(200)) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_NYMPH_QUEEN]) {
 			struct obj *otmp = mksobj(SKELETON_KEY,TRUE,FALSE);
 			otmp = oname(otmp,artiname(ART_KEY_OF_ACCESS));
