@@ -1956,6 +1956,19 @@ register int pm;
 	    case PM_WARPER:
 	 /* case PM_SANDESTIN: */
 	    case PM_GIANT_CHAMELEON:
+
+		/* evil patch idea by jonadab: eating shapeshifters has a 5% chance of conveying polymorphitis */
+		if (!rn2(20)) {
+
+			if(!(HPolymorph & FROMOUTSIDE)) {
+				You_feel(Hallucination ?
+				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
+				    "unstable.");
+				HPolymorph  |= FROMOUTSIDE;
+			}
+
+		}
+
 		if (!Unchanging) {
 		    You_feel("a change coming over you.");
 		    polyself(FALSE);
