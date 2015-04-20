@@ -2005,6 +2005,81 @@ OBJECT:'/',random,random
 
 MONSTER:'m',random, random
 
+# evil patch idea by jonadab - peaceful gremlins plus fountains/pools
+MAZE:"soko3-18",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# "Joseph L Traub"
+MAP
+ }}}}} }}}} }}  } }    }
+ ..... }}}} }} ......} }
+ ..... .... ..  FF ..} }
+ ..... ........ ..F.   }
+ ..... ....  .. ..F.}}}}
+ .....  .......+..F. 
+  . .. }.       ..F. }}}
+  . ..  ....... ..F.}}}} 
+ .. ........... FF . }}}
+ ................... 
+ .....  . ..... } ..}}}} 
+ }}}}}  } }}}}} } } }}}} 
+ENDMAP
+STAIR:(8,10), down
+STAIR:(15,1), up
+REGION:(00,00,21,11),lit,"ordinary"
+NON_DIGGABLE:(00,00,21,11)
+NON_PASSWALL:(00,00,21,11)
+DOOR:locked,(15,5)
+OBJECT:'`',"boulder",(2,3)
+OBJECT:'`',"boulder",(10,3)
+OBJECT:'`',"boulder",(12,3)
+OBJECT:'`',"boulder",(3,4)
+OBJECT:'`',"boulder",(9,4)
+OBJECT:'`',"boulder",(2,5)
+OBJECT:'`',"boulder",(3,5)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(10,5)
+OBJECT:'`',"boulder",(4,8)
+OBJECT:'`',"boulder",(4,9)
+OBJECT:'`',"boulder",(5,9)
+TRAP:"hole",(16,1)
+TRAP:"hole",(17,1)
+TRAP:"hole",(18,1)
+TRAP:"hole",(19,3)
+TRAP:"hole",(19,4)
+TRAP:"hole",(19,5)
+TRAP:"hole",(19,6)
+TRAP:"hole",(19,7)
+TRAP:"hole",(19,8)
+TRAP:"hole",(15,9)
+TRAP:"hole",(16,9)
+TRAP:"hole",(17,9)
+
+FOUNTAIN: (8, 8)
+FOUNTAIN: (14, 8)
+FOUNTAIN: (16, 5)
+FOUNTAIN: (2, 2)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+MONSTER:'g',"gremlin", random, peaceful
+
 ### Third level ###
 MAZE:"soko2-1",' '
 FLAGS:noteleport
@@ -4292,6 +4367,90 @@ OBJECT:'%',random,random
 OBJECT:'%',random,random
 OBJECT:'=',random,random
 OBJECT:'/',random,random
+
+# evil patch idea by Amy - peaceful watchmen that will just get in your way all the time
+MAZE:"soko2-33",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# "Thinking Rabbit"
+MAP
+           ----
+  ---------|..|
+---...|...--..|---
+|.....|.......|..|
+|.|...|...--.....|
+|.|...|....|..--.|
+|.|.----.|.--F--.|---
+|.|..|--.|..|.|..|..|
+|.|..|....|.|.|.....|
+|.........|.|.--F--.--
+|.|..---.--.|..|..|..|
+|.----......F..F.....|
+|......-----|..|.-----
+--------    |.--..|
+            |.....|
+            |..----
+            ----
+ENDMAP
+STAIR:(12,1), down
+STAIR:(13,7), up
+REGION:(00,00,21,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,21,16)
+NON_PASSWALL:(00,00,21,16)
+OBJECT:'`',"boulder",(12,2)
+OBJECT:'`',"boulder",(3,3)
+OBJECT:'`',"boulder",(4,3)
+OBJECT:'`',"boulder",(12,3)
+OBJECT:'`',"boulder",(12,4)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(9,5)
+OBJECT:'`',"boulder",(3,7)
+OBJECT:'`',"boulder",(6,9)
+TRAP:"hole",(14,4)
+TRAP:"hole",(16,5)
+TRAP:"hole",(16,6)
+TRAP:"hole",(17,8)
+TRAP:"hole",(19,9)
+TRAP:"hole",(18,11)
+TRAP:"hole",(16,12)
+TRAP:"hole",(13,13)
+TRAP:"hole",(15,14)
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER[80%]: '@', "watchman", random, peaceful
+MONSTER[70%]: '@', "watchman", random, peaceful
+MONSTER[60%]: '@', "watchman", random, peaceful
+MONSTER[50%]: '@', "watchman", random, peaceful
+MONSTER[40%]: '@', "watchman", random, peaceful
+MONSTER[30%]: '@', "watchman", random, peaceful
+MONSTER[20%]: '@', "watchman", random, peaceful
+MONSTER[10%]: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER[50%]: '@', "watch captain", random, peaceful
+MONSTER[30%]: '@', "watch captain", random, peaceful
+MONSTER[20%]: '@', "watch captain", random, peaceful
+MONSTER[10%]: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER[20%]: '@', "watch lieutenant", random, peaceful
+MONSTER[20%]: '@', "watch lieutenant", random, peaceful
+MONSTER[20%]: '@', "watch lieutenant", random, peaceful
+MONSTER[20%]: '@', "watch lieutenant", random, peaceful
+MONSTER[10%]: '@', "watch leader", random, peaceful
+MONSTER[10%]: '@', "watch leader", random, peaceful
+MONSTER[10%]: '@', "watch leader", random, peaceful
 
 ### Top (last) level of Sokoban ###
 MAZE:"soko1-1",' '

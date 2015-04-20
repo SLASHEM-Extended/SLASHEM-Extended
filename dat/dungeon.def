@@ -239,8 +239,8 @@ DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
 RNDLEVEL:		"soko1" "A" @ (1, 0) 95 39
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 32
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 17
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 33
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 18
 RNDLEVEL:		"soko4" "D" @ (4, 0) 95 14
 
 #
