@@ -3328,6 +3328,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"mazewalker", "mazewalking", "mazemastership", "Maz",
+	{0, 0},
+	PM_MAZEWALKER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"missingno", "missing", "missing faction", "Mis",
 	{0, 0},
 	PM_MISSINGNO, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4214,7 +4227,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(9)) {
+			switch (rnd(10)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4234,12 +4247,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridrandomizer = 1; break;
 				case 9:
 					flags.hybridnullrace = 1; break;
+				case 10:
+					flags.hybridmazewalker = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(9)) {
+				switch (rnd(10)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4267,6 +4282,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 9:
 						if (!(flags.hybridnullrace)) {flags.hybridnullrace = 1; flags.hybridization++; break;
+						}
+					case 10:
+						if (!(flags.hybridmazewalker)) {flags.hybridmazewalker = 1; flags.hybridization++; break;
 						}
 	
 				}

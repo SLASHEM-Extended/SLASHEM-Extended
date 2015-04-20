@@ -1399,6 +1399,15 @@ makelevel()
 
 	}
 
+	/* mazewalker only gets mazes (evil patch idea by jonadab) */
+
+	if (ismazewalker && depth(&u.uz) > 1) {
+
+	    makemaz("");
+	    return;
+
+	}
+
 	/* otherwise, fall through - it's a "regular" level. */
 
 #ifdef REINCARNATION

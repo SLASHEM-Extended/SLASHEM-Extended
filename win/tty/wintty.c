@@ -412,14 +412,14 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = 0;
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = 0;
 
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
 			    if (!rn2(10)) {
 
-				switch (rnd(9)) {
+				switch (rnd(10)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -457,12 +457,15 @@ give_up:	/* Quit */
 						if (!Race_if(PM_NULL)) {flags.hybridnullrace = 1; flags.hybridization++;
 						}
 						break;
-
+					case 10:
+						if (!Race_if(PM_MAZEWALKER)) {flags.hybridmazewalker = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(9)) {
+					switch (rnd(10)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -500,7 +503,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridnullrace)) {
 								flags.hybridnullrace = 1; flags.hybridization++; break;
 							}
-	
+						case 10:
+							if (!(flags.hybridmazewalker)) {
+								flags.hybridmazewalker = 1; flags.hybridization++; break;
+							}	
 					}
 				}
 
@@ -510,7 +516,7 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(9)) {
+				switch (rnd(10)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -557,12 +563,17 @@ give_up:	/* Quit */
 						flags.hybridnullrace = 1; flags.hybridization++;
 						}
 						break;
+					case 10:
+						if (!Race_if(PM_MAZEWALKER)) {
+						flags.hybridmazewalker = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(9)) {
+					switch (rnd(10)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -600,6 +611,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridnullrace)) {
 								flags.hybridnullrace = 1; flags.hybridization++; break;
 							}
+						case 10:
+							if (!(flags.hybridmazewalker)) {
+								flags.hybridmazewalker = 1; flags.hybridization++; break;
+							}
 	
 					}
 				}
@@ -633,6 +648,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_NULL)) {if (yn("Add the null hybrid race to your character?") == 'y')
 					{flags.hybridnullrace = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_MAZEWALKER)) {if (yn("Add the mazewalker hybrid race to your character?") == 'y')
+					{flags.hybridmazewalker = 1; flags.hybridization++;}
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
