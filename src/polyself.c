@@ -1291,6 +1291,8 @@ dospinweb()
 		case FLOOD_TRAP:
 		case DISINTEGRATION_TRAP:
 		case DEATH_TRAP:
+		case PESTILENCE_TRAP:
+		case FAMINE_TRAP:
 		case DRAIN_TRAP:
 		case ITEM_TELEP_TRAP:
 		case GRAVITY_TRAP:

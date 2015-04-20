@@ -1819,6 +1819,8 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DROP_TRAP
 				&& ttmp->ttyp != DSTW_TRAP
 				&& ttmp->ttyp != STATUS_TRAP
+				&& ttmp->ttyp != PESTILENCE_TRAP
+				&& ttmp->ttyp != FAMINE_TRAP
 
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT

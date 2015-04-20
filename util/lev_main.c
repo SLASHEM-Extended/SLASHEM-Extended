@@ -198,6 +198,9 @@ static struct {
 	{ "dstw", DSTW_TRAP},
 	{ "status", STATUS_TRAP},
 
+	{ "pestilence", PESTILENCE_TRAP},
+	{ "famine", FAMINE_TRAP},
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

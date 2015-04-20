@@ -428,6 +428,11 @@ rndtrap()
 	     case STATUS_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) rtrap = SCYTHING_BLADE; break;
 
+	     case PESTILENCE_TRAP:
+			if (rn2(20)) rtrap = POISON_GAS_TRAP; break;
+	     case FAMINE_TRAP:
+			if (rn2(2)) rtrap = SLOW_GAS_TRAP; break;
+
 	    }
 	} while (rtrap == NO_TRAP);
 	return rtrap;
@@ -491,6 +496,9 @@ randomtrap()
 	      if (rtrap == DROP_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 80 )) rtrap = Role_if(PM_SPACEWARS_FIGHTER) ? NUPESELL_TRAP : POISON_GAS_TRAP;
 	      if (rtrap == DSTW_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) rtrap = SLOW_GAS_TRAP;
 	      if (rtrap == STATUS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) rtrap = SCYTHING_BLADE;
+
+	      if (rtrap == PESTILENCE_TRAP && rn2(20)) rtrap = POISON_GAS_TRAP;
+	      if (rtrap == FAMINE_TRAP && rn2(2)) rtrap = SLOW_GAS_TRAP;
 
 	} while (rtrap == NO_TRAP);
 	return rtrap;

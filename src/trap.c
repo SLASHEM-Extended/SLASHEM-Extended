@@ -1739,6 +1739,34 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		break;
 
+	    case PESTILENCE_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		if (Sick_resistance) {
+			You_feel("fever and chills for a moment, but you seem unharmed.");
+		} else {
+			You_feel("fever and chills...");
+			make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
+			"illness trap", TRUE, rn2(2) ? SICK_VOMITABLE : SICK_NONVOMITABLE);
+		}
+
+		break;
+
+	    case FAMINE_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		morehungry(rnz(40));
+
+		pline("Your body shrivels.");
+
+		morehungry(rnz(5 * (monster_difficulty() + 1)) );
+
+		break;
+
 	    case DISINTEGRATION_TRAP:
 
 		seetrap(trap);
@@ -4521,6 +4549,9 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case DROP_TRAP:
 		case DSTW_TRAP:
 		case STATUS_TRAP:
+
+		case PESTILENCE_TRAP:
+		case FAMINE_TRAP:
 
 			break;
 

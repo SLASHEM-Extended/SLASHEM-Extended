@@ -368,6 +368,9 @@ MONSTER:'m',"giant mimic",place[2],m_feature "fountain"
 MONSTER:'m',"giant mimic",place[3],m_feature "fountain"
 # The demon of the swamp
 MONSTER:'&',"Juiblex",(25,08)
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+TRAP:"pestilence", random
 OBJECT:'?',"root password detection",(25,08)
 # And a couple demons
 MONSTER:'i',"lemure",(43,08)
@@ -1348,6 +1351,13 @@ STAIR:(44,06),down
 # The fellow in residence
 MONSTER:'&',"Demogorgon",(06,06)
 OBJECT:'?',"root password detection",(06,06)
+TRAP:"famine", (06,06)
+TRAP:"famine", random
+TRAP:"famine", random
+TRAP:"famine", random
+TRAP:"famine", random
+TRAP:"famine", random
+
 # Some random weapons and armor.
 OBJECT:'*',random,random
 OBJECT:'!',random,random
