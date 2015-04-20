@@ -1249,7 +1249,7 @@ ask_about_trap(int x, int y)
 {
 
 	struct trap *traphere = t_at(x, y);
-	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !Confusion && !Stunned)  {
+	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !Confusion && !Stunned && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
 		/*if (traphere->ttyp == MAGIC_PORTAL) {
