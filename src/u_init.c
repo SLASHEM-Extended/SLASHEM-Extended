@@ -4064,6 +4064,10 @@ u_init()
 
 	u.ungenocidable = rnd(S_WORM_TAIL);
 
+	u.frequentmonster = rnd(S_WORM_TAIL - 1);
+	u.freqmonsterbonus = rne(9);
+	if (u.freqmonsterbonus > 20) u.freqmonsterbonus = 20; /* fail safe */
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;

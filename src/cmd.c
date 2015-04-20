@@ -1347,6 +1347,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The monster class that cannot be genocided ", "is ", "was ", monexplain[u.ungenocidable] );
 	}
 
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "generated more often: %s (frequency bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
+		enl_msg("The monster class that ", "is ", "was ", buf );
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " turn %d", u.next_check);
 		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
 	}

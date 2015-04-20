@@ -8704,6 +8704,9 @@ loopback:
 
 		if (ct > 0 && Role_if(PM_MYSTIC) && !flags.female) ct = 1;
 
+		/* evil patch - one monster class is always generated with a higher frequency (even for mystics) --Amy */
+		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
+
 		/*if (ct < 0 || ct > 127)
 		    panic("rndmonst: bad count [#%d: %d]", mndx, ct);*/
 		if (ct < 0) {pline("rndmonst: bad count [#%d: %d]", mndx, ct); ct = 0;}
