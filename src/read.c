@@ -3400,8 +3400,10 @@ do_class_genocide()
 		    if (class == 0 &&
 			    strstri(monexplain[(int)mons[i].mlet], buf) != 0)
 			class = mons[i].mlet;
+
 		    if (mons[i].mlet == class) {
 			if (!(mons[i].geno & G_GENO)) immunecnt++;
+			else if (mons[i].mlet == u.ungenocidable) immunecnt++;
 			else if(mvitals[i].mvflags & G_GENOD) gonecnt++;
 			else goodcnt++;
 		    }
@@ -3584,6 +3586,13 @@ int how;
 			continue;
 		}
 		ptr = &mons[mndx];
+
+		/* jonadab's idea is to have a monster glyph that cannot be genocided, which is rolled on game start. */
+		if (ptr->mlet == u.ungenocidable) {
+			pline("Tough luck! The RNG decided to make that monster ungenocidable.");
+			continue;
+		}
+
 		/* Although "genus" is Latin for race, the hero benefits
 		 * from both race and role; thus genocide affects either.
 		 */

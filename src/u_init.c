@@ -4062,6 +4062,8 @@ u_init()
 
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
+	u.ungenocidable = rnd(S_WORM_TAIL);
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;

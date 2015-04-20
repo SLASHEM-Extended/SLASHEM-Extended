@@ -392,6 +392,8 @@ struct you {
 
 	int gottenbones;		/* set to 1 if you encountered a bones level */
 
+	int ungenocidable;	/* evil patch idea by jonadab - monster class that can't be genocided at all */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif
