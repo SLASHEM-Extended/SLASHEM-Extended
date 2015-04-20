@@ -340,11 +340,13 @@ struct mkroom *sroom;
 {
 	struct monst *mon;
 	struct monst *randomon;
+	register struct obj *otmp;
 
 	register int sx,sy,i;
 	int sh, tx, ty, goldlim, type = sroom->rtype;
 	int rmno = (sroom - rooms) + ROOMOFFSET;
 	coord mm;
+	int gravetries;
 
 	int moreorless;
 
@@ -530,8 +532,20 @@ struct mkroom *sroom;
 			if(!rn2(ishaxor ? 5 : 10))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
-			if (!rn2(5))
+			if (!rn2(5)) {
 			    make_grave(sx, sy, (char *)0);
+
+				if (!rn2(3)) (void) mkgold(0L, sx, sy);
+				for (gravetries = rn2(5); gravetries; gravetries--) {
+				    otmp = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmp) return;
+				    curse(otmp);
+				    otmp->ox = sx;
+				    otmp->oy = sy;
+				    add_to_buried(otmp);
+				}
+
+			}
 			break;
 		    case BEEHIVE:
 			if(!rn2(3))
@@ -566,9 +580,22 @@ struct mkroom *sroom;
 			if(!rn2(ishaxor ? 10 : 20))	/* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
 					     sx, sy, TRUE, FALSE);
-			if (!rn2(5))
+			if (!rn2(5)) {
 			    make_grave(sx, sy, (char *)0);
+
+				if (!rn2(3)) (void) mkgold(0L, sx, sy);
+				for (gravetries = rn2(5); gravetries; gravetries--) {
+				    otmp = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmp) return;
+				    curse(otmp);
+				    otmp->ox = sx;
+				    otmp->oy = sy;
+				    add_to_buried(otmp);
+				}
+
+			}
 			break;
+
 		    case CLINIC:
 			if(!rn2(10))
 			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
