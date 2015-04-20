@@ -3938,3 +3938,306 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
+
+LEVEL: "bigrm-45"
+INIT_MAP: '.' , ' ' , false , false , random , false
+
+ROOM: "ordinary" , lit, random, random, (60,15)
+
+STAIR:random,up
+STAIR:random,down
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+RANDOM_CORRIDORS
+
+LEVEL: "bigrm-46"
+INIT_MAP: '.' , ' ' , false , false , random , false
+
+ROOM: "ordinary" , lit, random, random, (45,10)
+
+STAIR:random,up
+STAIR:random,down
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, (5,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (5,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (5,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+
+LEVEL: "bigrm-47"
+INIT_MAP: '.' , ' ' , false , false , random , true
+
+ROOM: "ordinary" , lit, random, random, (60,15)
+
+STAIR:random,up
+STAIR:random,down
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+RANDOM_CORRIDORS
+
+LEVEL: "bigrm-48"
+INIT_MAP: '.' , ' ' , false , false , random , true
+
+ROOM: "ordinary" , lit, random, random, (45,10)
+
+STAIR:random,up
+STAIR:random,down
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, (5,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (5,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,5)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (5,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,4)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (4,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+

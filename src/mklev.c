@@ -995,12 +995,13 @@ makelevel()
 		    return;
 	    } else if (In_mines(&u.uz) && rn2(iswarper ? 5 : 50)) {
 		    if (rn2(10)) makemaz("minefill");
-		    else switch (rnd(5)) {
+		    else switch (rnd(6)) {
 			case 1: makemaz("minefila"); break;
 			case 2: makemaz("minefilb"); break;
 			case 3: makemaz("minefilc"); break;
 			case 4: makemaz("minefild"); break;
 			case 5: makemaz("minefile"); break;
+			case 6: makemaz("minefilf"); break;
 		    }
 		    return;
 	    } else if (In_quest(&u.uz)) {
@@ -1042,7 +1043,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(44)) {
+		switch (rnd(48)) {
 
 			case 1: makemaz("bigrm-1"); return;
 			case 2: makemaz("bigrm-2"); return;
@@ -1088,6 +1089,10 @@ makelevel()
 			case 42: makemaz("bigrm-42"); return;
 			case 43: makemaz("bigrm-43"); return;
 			case 44: makemaz("bigrm-44"); return;
+			case 45: makemaz("bigrm-45"); return;
+			case 46: makemaz("bigrm-46"); return;
+			case 47: makemaz("bigrm-47"); return;
+			case 48: makemaz("bigrm-48"); return;
 
 		}
 		break;
@@ -1228,7 +1233,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(44)) {
+		switch (rnd(48)) {
 
 			case 1: makemaz("ghbgr-1"); return;
 			case 2: makemaz("ghbgr-2"); return;
@@ -1274,6 +1279,10 @@ makelevel()
 			case 42: makemaz("ghbgr-42"); return;
 			case 43: makemaz("ghbgr-43"); return;
 			case 44: makemaz("ghbgr-44"); return;
+			case 45: makemaz("ghbgr-45"); return;
+			case 46: makemaz("ghbgr-46"); return;
+			case 47: makemaz("ghbgr-47"); return;
+			case 48: makemaz("ghbgr-48"); return;
 
 		}
 		break;

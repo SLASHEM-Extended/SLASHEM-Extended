@@ -86,7 +86,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 44
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 48
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 8
 LEVALIGN:		chaotic
 LEVELDESC:	town
@@ -185,9 +185,9 @@ RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 44
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
@@ -250,7 +250,7 @@ DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
-RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 44
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 48
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town
