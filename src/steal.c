@@ -444,6 +444,11 @@ gotobj:
 
 	freeinv(otmp);
 	pline("%s stole %s.", named ? "It" : Monnam(mtmp), doname(otmp));
+
+	/* evil patch idea by jonadab - levelporting stealers
+         he wants them to always levelport if they manage to steal an artifact... */
+	if (!rn2(1000) || otmp->oartifact) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
 	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
