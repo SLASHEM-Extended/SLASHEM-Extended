@@ -1110,7 +1110,7 @@ pleased(g_align)
 	    u.uhp = u.uhpmax;
 	    if (Upolyd) u.mh = u.mhmax;
 	    ABASE(A_STR) = AMAX(A_STR);
-	    if (u.uhunger < 1200) init_uhunger();
+	    if (u.uhunger < 1500) init_uhunger();
 	    if (u.uluck < 0) change_luck(1); /* used to be set to 0, but now you'll have to work for it --Amy */
 	    make_blinded(0L,TRUE);
 	    flags.botl = 1;

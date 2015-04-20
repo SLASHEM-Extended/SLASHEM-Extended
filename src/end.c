@@ -463,8 +463,8 @@ int how;
 		u.uhp = u.uhpmax;
 	}
 	u.uhplast = u.uhp;
-	if (u.uhunger < 500) {
-	    u.uhunger = 500;
+	if (u.uhunger < 1000) {
+	    u.uhunger = 1000;
 	    newuhs(FALSE);
 	}
 	/* cure impending doom of sickness hero won't have time to fix */

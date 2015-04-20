@@ -245,7 +245,7 @@ newman()
 	}
 
 	redist_attr();
-	u.uhunger = rn1(500,500);
+	u.uhunger = rn1(750,750);
 	if (Sick) make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 	Sick = 0;
 	Stoned = 0;

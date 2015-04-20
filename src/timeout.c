@@ -242,7 +242,7 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 
-	if (WeaknessProblem && u.uhunger < 51) {
+	if (WeaknessProblem && u.uhunger < 201) {
 
 		if (!rn2(20)) {
 

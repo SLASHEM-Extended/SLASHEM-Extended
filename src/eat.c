@@ -165,7 +165,7 @@ register struct obj *obj;
 void
 init_uhunger()
 {
-	u.uhunger = 1200;
+	u.uhunger = 1500;
 	u.uhs = NOT_HUNGRY;
 }
 
@@ -2953,10 +2953,10 @@ struct obj *otmp;
 	switch(otmp->otyp) {
 
 	    case FOOD_RATION:
-		if(u.uhunger <= 200)
+		if(u.uhunger <= 500)
 		    pline(Hallucination ? "Oh wow, like, superior, man!" :
 			  "That food really hit the spot!");
-		else if(u.uhunger <= 700) pline("That satiated your %s!",
+		else if(u.uhunger <= 1200) pline("That satiated your %s!",
 						body_part(STOMACH));
 		break;
 	    case TRIPE_RATION:
@@ -4122,7 +4122,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 STATIC_OVL int
 bite()
 {
-	if(victual.canchoke && u.uhunger >= 3000) { /* allowing players to eat more --Amy */
+	if(victual.canchoke && u.uhunger >= 4000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);
 		return 1;
 	}
@@ -4217,7 +4217,7 @@ register int num;
 	debugpline("lesshungry(%d)", num);
 #endif
 	u.uhunger += num;
-	if(u.uhunger >= 3000) {
+	if(u.uhunger >= 4000) {
 	    if (!iseating || victual.canchoke) {
 		if (iseating) {
 		    choke(victual.piece);
@@ -4230,7 +4230,7 @@ register int num;
 	    /* Have lesshungry() report when you're nearly full so all eating
 	     * warns when you're about to choke.
 	     */
-	    if (u.uhunger >= 2500) {
+	    if (u.uhunger >= 3500) {
 		if (!victual.eating || (victual.eating && !victual.fullwarn)) {
 		    pline(Hallucination ? "You feel like taking the All-You-Can-Eat challenge." : "You're having a hard time getting all of it down.");
 		    nomovemsg = "You're finally finished.";
@@ -4301,9 +4301,9 @@ boolean incr;
 	static boolean saved_hs = FALSE;
 	int h = u.uhunger;
 
-	newhs = (h > 1500) ? SATIATED : /* used to be 1000 --Amy */
-		(h > 150) ? NOT_HUNGRY :
-		(h > 50) ? HUNGRY :
+	newhs = (h > 2000) ? SATIATED : /* used to be 1000 --Amy */
+		(h > 500) ? NOT_HUNGRY :
+		(h > 200) ? HUNGRY :
 		(h > 0) ? WEAK : FAINTING;
 
 	/* While you're eating, you may pass from WEAK to HUNGRY to NOT_HUNGRY.
@@ -4392,7 +4392,7 @@ boolean incr;
 				"are getting the munchies.");
 			} else
 			    You((!incr) ? "only feel hungry now." :
-				  (u.uhunger < 145) ? "feel hungry." :
+				  (u.uhunger < 495) ? "feel hungry." :
 				   "are beginning to feel hungry.");
 			if (incr && occupation &&
 			    (occupation != eatfood && occupation != opentin))
@@ -4411,7 +4411,7 @@ boolean incr;
 				  urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf");
 			else
 			    You((!incr) ? "feel weak now." :
-				  (u.uhunger < 45) ? "feel weak." :
+				  (u.uhunger < 195) ? "feel weak." :
 				   "are beginning to feel weak.");
 			if (incr && occupation &&
 			    (occupation != eatfood && occupation != opentin))

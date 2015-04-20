@@ -2683,7 +2683,8 @@ dopois:
 			Monnam(mtmp));
 		exercise(A_CON, FALSE);
 		if (!is_fainted() && rn2(10) ) morehungry(rnz(40));
-		morehungry(dmg); /* This attack was way too weak. --Amy */
+		if (!is_fainted() && rn2(10) ) morehungry(rnz(40));
+		morehungry(dmg); morehungry(dmg); /* This attack was way too weak. --Amy */
 		/* plus the normal damage */
 		break;
 	    case AD_CALM:	/* KMH -- koala attack */
@@ -3364,6 +3365,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		pline("You are being eaten!");
 		exercise(A_CON, FALSE);
 		if (!is_fainted()) morehungry(rnz(40));
+		if (!is_fainted()) morehungry(rnz(40));
+		morehungry(tmp);
 		morehungry(tmp);
 		/* plus the normal damage */
 		break;
@@ -4157,6 +4160,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its hungry eyes!",
 			Monnam(mtmp));
 		exercise(A_CON, FALSE);
+		if (!is_fainted()) {
+			morehungry(rnz(40));
+			if (!rn2(5)) morehungry(dmgplus);
+		}
 		if (!is_fainted()) {
 			morehungry(rnz(40));
 			if (!rn2(5)) morehungry(dmgplus);

@@ -3118,7 +3118,7 @@ register struct attack *mattk;
 
 	if(mdef->data->msize >= MZ_HUGE) return 0;
 
-	if(u.uhunger < 1500 && !u.uswallow) {
+	if(u.uhunger < 2000 && !u.uswallow) {
 	    for (otmp = mdef->minvent; otmp; otmp = otmp->nobj)
 		(void) snuff_lit(otmp);
 
@@ -4309,6 +4309,9 @@ uchar aatyp;
 		pline("Your body shrivels!");
 		exercise(A_CON, FALSE);
 		if (!is_fainted()) morehungry(rnz(40));
+		if (!is_fainted()) morehungry(rnz(40));
+		morehungry(tmp+2);
+		morehungry(tmp+2);
 		/* plus the normal damage */
 		break;
 	  case AD_SLIM:    
