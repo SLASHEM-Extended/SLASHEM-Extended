@@ -40,7 +40,7 @@
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
-#define Sleep_resistance	( !Race_if(PM_KOBOLT) && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || \
+#define Sleep_resistance	( !(Thirst && (u.uhunger > 1500 ) ) && !Race_if(PM_KOBOLT) && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || \
 				 resists_sleep(&youmonst) || is_sleep_resistant(youmonst.data)) )
 #define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -173,6 +173,22 @@
 #define InventoryLoss		u.uprops[INVENTORY_LOST].intrinsic
 #define BlackNgWalls		u.uprops[BLACK_NG_WALLS].intrinsic
 #define Superscroller		u.uprops[SUPERSCROLLER_ACTIVE].intrinsic
+
+#define FreeHandLoss		u.uprops[FREE_HAND_LOST].intrinsic
+#define Unidentify		u.uprops[UNIDENTIFY].intrinsic
+#define Thirst		u.uprops[THIRST].intrinsic
+#define LuckLoss		u.uprops[LUCK_LOSS].intrinsic
+#define ShadesOfGrey 		u.uprops[SHADES_OF_GREY].intrinsic
+#define IncreasedGravity		u.uprops[INCREASED_GRAVITY].intrinsic
+#define FaintActive		u.uprops[FAINT_ACTIVE].intrinsic
+#define Itemcursing		u.uprops[ITEMCURSING].intrinsic
+#define DifficultyIncreased		u.uprops[DIFFICULTY_INCREASED].intrinsic
+#define Deafness		u.uprops[DEAFNESS].intrinsic
+#define CasterProblem		u.uprops[CASTER_PROBLEM].intrinsic
+#define WeaknessProblem		u.uprops[WEAKNESS_PROBLEM].intrinsic
+#define RotThirteen		u.uprops[ROT_THIRTEEN].intrinsic
+#define BishopGridbug		u.uprops[BISHOP_GRIDBUG].intrinsic
+#define ConfusionProblem		u.uprops[CONFUSION_PROBLEM].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic

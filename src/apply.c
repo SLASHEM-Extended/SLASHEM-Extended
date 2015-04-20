@@ -3693,6 +3693,15 @@ doapply()
 	    return 1;	/* evading your grasp costs a turn; just be
 			   grateful that you don't drop it as well */
 
+	if (FreeHandLoss) {
+		if (!(uwep && uwep == obj)) {
+			pline("You must wield this item first if you want to apply it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "swing");
+			return 1;
+		}
+	}
+
 	if (obj->oclass == WAND_CLASS)
 	    return do_break_wand(obj);
 
@@ -4155,6 +4164,20 @@ doapply()
 		MenuBug = 0L;
 		SpeedBug = 0L;
 		Superscroller = 0L;
+		FreeHandLoss = 0L;
+		Unidentify = 0L;
+		Thirst = 0L;
+		LuckLoss = 0L;
+		ShadesOfGrey = 0L;
+		FaintActive = 0L;
+		Itemcursing = 0L;
+		DifficultyIncreased = 0L;
+		Deafness = 0L;
+		CasterProblem = 0L;
+		WeaknessProblem = 0L;
+		RotThirteen = 0L;
+		BishopGridbug = 0L;
+		ConfusionProblem = 0L;
 
 		break;
 	case GOD_O_METER:

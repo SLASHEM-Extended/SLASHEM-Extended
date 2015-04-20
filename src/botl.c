@@ -641,7 +641,7 @@ bot2str(char *newbot2)
 	}
 */
 
-	if(strcmp(hu_stat[u.uhs], "        "))
+	if(!Thirst && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(hu_stat[u.uhs], newbot2);
 #else
@@ -940,7 +940,7 @@ boolean reconfig;
 #endif
     if (flags.time)
 	*rv++ = reconfig ? "time" : (Sprintf(tim, "%ld", moves), tim);
-    *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
+    if (!Thirst) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
     *rv++ = reconfig ? "flags" : (Sprintf(flgs, "%lX",

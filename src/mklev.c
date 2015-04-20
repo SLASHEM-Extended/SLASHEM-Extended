@@ -574,6 +574,10 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 };
@@ -2756,6 +2760,51 @@ coord *tm;
 		    case SUPERSCROLLER_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) kind = WEB; break;
 		    case ACTIVE_SUPERSCROLLER_TRAP: kind = RUST_TRAP; break;
+
+		    case ITEM_TELEP_TRAP:
+			if (rn2(15)) kind = ANIMATION_TRAP; break;
+		    case LAVA_TRAP:
+			if (rn2(50)) kind = PIT; break;
+		    case FLOOD_TRAP:
+			if (rn2(20)) kind = ROCKTRAP; break;
+		    case DRAIN_TRAP:
+			if (rn2(3)) kind = FIRE_TRAP; break;
+		    case FREE_HAND_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) kind = SLP_GAS_TRAP; break;
+		    case DISINTEGRATION_TRAP:
+			if (rn2(20)) kind = ICE_TRAP; break;
+		    case UNIDENTIFY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) kind = MAGIC_TRAP; break;
+		    case THIRST_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) kind = ANTI_MAGIC; break;
+		    case SHADES_OF_GREY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = WEB; break;
+		    case LUCK_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) kind = STATUE_TRAP; break;
+		    case DEATH_TRAP:
+			if (rn2(100)) kind = SHOCK_TRAP; break;
+		    case STONE_TO_FLESH_TRAP:
+			if (rn2(100)) kind = ACID_POOL; break;
+		    case FAINT_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) kind = BOLT_TRAP; break;
+		    case CURSE_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) kind = ARROW_TRAP; break;
+		    case DIFFICULTY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) kind = DART_TRAP; break;
+		    case SOUND_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) kind = SQKY_BOARD; break;
+		    case CASTER_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) kind = LANDMINE; break;
+		    case WEAKNESS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) kind = BEAR_TRAP; break;
+		    case ROT_THIRTEEN_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) kind = RUST_TRAP; break;
+		    case BISHOP_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) kind = SPIKED_PIT; break;
+		    case CONFUSION_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) kind = SHIT_TRAP; break;
+
+
 		}
 		if (!rn2(12)) kind = STATUE_TRAP;
 

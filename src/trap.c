@@ -128,6 +128,72 @@ struct monst *victim;
 #undef burn_dmg
 }
 
+STATIC_PTR void
+do_lavafloode(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = LAVAPOOL;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_floode(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = POOL;
+		del_engr_at(x, y);
+		water_damage(level.objects[x][y], FALSE, TRUE);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
 
 /* Generic rust-armor function.  Returns TRUE if a message was printed;
  * "print", if set, means to print a message (and thus to return TRUE) even
@@ -1026,6 +1092,8 @@ unsigned trflags;
 	int randmnsx;
 	int i;
 
+	struct obj *otmpi, *otmpii;
+
 	nastytrapdur = (Role_if(PM_GRADUATE) ? 12 : Role_if(PM_GEEK) ? 25 : 50);
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
 
@@ -1060,7 +1128,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != BISHOP_TRAP && ttype != CONFUSION_TRAP &&
 		ttype != ANTI_MAGIC && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT) && is_clinger(youmonst.data)))) {
@@ -1488,6 +1556,222 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 	pline("es come to life!"); /* garbled string from Castle of the Winds. This trap summons random monsters. --Amy */
 
 		deltrap(trap); /* only triggers once */
+		break;
+
+	    case LAVA_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("The thin crust of rock gives way, revealing lava underneath!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepool = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_lavafloode, (genericptr_t)&madepool);
+
+		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE)
+			levl[u.ux][u.uy].typ = LAVAPOOL; /* don't fall in, that would be too evil. --Amy */
+
+		break;
+
+	    case FLOOD_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("The thin crust of rock gives way, revealing water underneath!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_floode, (genericptr_t)&madepoolX);
+
+		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE) {
+			levl[u.ux][u.uy].typ = POOL;
+			if (!Wwalking && !Flying && !Levitation) drown();
+		}
+		break;
+
+	    case QUICKSAND_TRAP:
+
+		if (Levitation || Flying) {
+
+			if (rn2(10)) break;
+			else pline("You are pulled downwards...");
+
+		}
+		else pline("Uh-oh, should have watched your step...");
+		pline("Suddenly, you're in quicksand! You frantically try to get out.");
+
+		/*
+		Unbreathing doesn't help; once you're completely buried there's nothing you can do.
+		Teleportitis doesn't help either; the quicksand prevents you from doing teleport incantations.
+		And if anyone still finds something that should protect you I'll make up similar reasons for it. :-) --Amy
+		*/
+
+		seetrap(trap);
+
+		int quicksanddamage;
+		quicksanddamage = 1;
+
+		while (rn2(2 + monster_difficulty() ) ) {
+
+			quicksanddamage++;
+
+			if (quicksanddamage == 5) pline("You still try pulling yourself out...");
+			if (quicksanddamage == 10) pline("Damn, this is some nasty stuff!");
+			if (quicksanddamage == 20) pline("It just keeps pulling you down! Help!");
+			if (quicksanddamage == 50) pline("Your whole body is stuck and being pulled underneath!");
+			if (quicksanddamage == 100) pline("Uh-oh, this might be the end...");
+
+		}
+
+		losehp(quicksanddamage,"being pulled into quicksand",KILLED_BY_AN);
+
+		pline("Wheeeew! At last you managed to pull yourself out of the quicksand.");
+
+		break;
+
+	    case ITEM_TELEP_TRAP:
+		seetrap(trap);
+		pline("A vivid purple glow surrounds you...");
+
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(5)) {
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+
+		break;
+
+	    case STONE_TO_FLESH_TRAP:
+
+		pline("You are momentarily illuminated by a flash of light!");
+
+		seetrap(trap);
+
+		    {
+		    struct obj *otemp, *onext;
+		    struct obj *pseudo;
+		    boolean didmerge;
+
+			/* pseudo is a temporary "false" object containing the spell stats. */
+			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, FALSE);
+			pseudo->blessed = pseudo->cursed = 0;
+			pseudo->quan = 20L;			/* do not let useup get it */
+
+		    if (u.umonnum == PM_STONE_GOLEM)
+			(void) polymon(PM_FLESH_GOLEM);
+		    if (Stoned) fix_petrification();	/* saved! */
+		    /* but at a cost.. */
+		    for (otemp = invent; otemp; otemp = onext) {
+			onext = otemp->nobj;
+			(void) bhito(otemp, pseudo);
+			}
+		    /*
+		     * It is possible that we can now merge some inventory.
+		     * Do a higly paranoid merge.  Restart from the beginning
+		     * until no merges.
+		     */
+		    do {
+			didmerge = FALSE;
+			for (otemp = invent; !didmerge && otemp; otemp = otemp->nobj)
+			    for (onext = otemp->nobj; onext; onext = onext->nobj)
+			    	if (merged(&otemp, &onext)) {
+			    		didmerge = TRUE;
+			    		break;
+			    		}
+		    } while (didmerge);
+
+			obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+		    }
+
+		break;
+
+	    case DRAIN_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		if (!Drain_resistance || !rn2(20) ) {
+			pline("A malevolent black glow suddenly surrounds you...");
+			losexp("life drainage", FALSE);
+		}
+		else {
+			pline("A dark black glow suddenly surrounds you.");
+			pline("It doesn't seem to harm you though.");
+		}
+
+		break;
+
+	    case DEATH_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		if (!is_undead(youmonst.data) ) {
+			pline("A definite, impenetrable black glow suddenly surrounds you...");
+
+			if (!rn2(20) && !Antimagic ) {
+				killer_format = KILLED_BY_AN;
+				killer = "instadeath trap";
+				done(DIED);}
+			else {
+
+		      int dmgnum = 0;
+		      dmgnum = d(2, 6) + rnd((monster_difficulty() * 2) + 1);
+			if (Antimagic || (Half_spell_damage && rn2(2)) ) dmgnum /= 2;
+			You("feel drained...");
+			u.uhpmax -= dmgnum/2;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(dmgnum,"death trap",KILLED_BY_AN);
+			}
+
+		}
+		else {
+			pline("You are surrounded by an apparently harmless black glow.");
+		}
+
+		break;
+
+	    case DISINTEGRATION_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		if (!Disint_resistance || !rn2(100) ) {
+			pline("You feel like you're falling apart!");
+
+			if (uarms) {
+			    /* destroy shield; other possessions are safe */
+			    (void) destroy_arm(uarms);
+			    break;
+			} else if (uarmc) {
+			    /* destroy cloak; other possessions are safe */
+			    (void) destroy_arm(uarmc);
+			    break;
+			} else if (uarm) {
+			    /* destroy suit */
+			    (void) destroy_arm(uarm);
+			    break;
+#ifdef TOURIST
+			} else if (uarmu) {
+			    /* destroy shirt */
+			    (void) destroy_arm(uarmu);
+			    break;
+#endif
+			} else done(DIED);
+
+		}
+		else {
+			pline("You seem unharmed.");
+		}
+
 		break;
 
 	    case GLYPH_OF_WARDING:
@@ -1953,6 +2237,10 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 break;
 
+		 case NUPESELL_TRAP: /* supposed to be impossible */
+
+		 break;
+
 		 case ACTIVE_SUPERSCROLLER_TRAP:
 
 			if (Superscroller) break;
@@ -1981,6 +2269,132 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			if (MenuBug) break;
 
 			MenuBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case FREE_HAND_TRAP:
+
+			if (FreeHandLoss) break;
+
+			FreeHandLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case UNIDENTIFY_TRAP:
+
+			if (Unidentify) break;
+
+			Unidentify = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case THIRST_TRAP:
+
+			if (Thirst) break;
+
+			Thirst = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case LUCK_TRAP:
+
+			if (LuckLoss) break;
+
+			LuckLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case SHADES_OF_GREY_TRAP:
+
+			if (ShadesOfGrey) break;
+
+			ShadesOfGrey = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case FAINT_TRAP:
+
+			if (FaintActive) break;
+
+			FaintActive = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case CURSE_TRAP:
+
+			if (Itemcursing) break;
+
+			Itemcursing = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DIFFICULTY_TRAP:
+
+			if (DifficultyIncreased) break;
+
+			DifficultyIncreased = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case SOUND_TRAP:
+
+			if (Deafness) break;
+
+			Deafness = rnz(nastytrapdur * (monster_difficulty() + 1));
+			flags.soundok = 0;
+
+		 break;
+
+		 case CASTER_TRAP:
+
+			if (CasterProblem) break;
+
+			CasterProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case WEAKNESS_TRAP:
+
+			if (WeaknessProblem) break;
+
+			WeaknessProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ROT_THIRTEEN_TRAP:
+
+			if (RotThirteen) break;
+
+			RotThirteen = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BISHOP_TRAP:
+
+			if (BishopGridbug) break;
+
+			BishopGridbug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case CONFUSION_TRAP:
+
+			if (ConfusionProblem) break;
+
+			ConfusionProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case GRAVITY_TRAP:
+
+			seetrap(trap);
+
+			pline("You stepped on a trigger!");
+
+			if (IncreasedGravity) pline("Your load feels even heavier!");
+			else pline("Your load feels heavier!");
+
+			IncreasedGravity += rnz(5 * (monster_difficulty() + 1));
 
 		 break;
 
@@ -2460,7 +2874,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || RotThirteen || BishopGridbug || ConfusionProblem ) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -2473,6 +2887,20 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			MenuBug = 0L;
 			SpeedBug = 0L;
 			Superscroller = 0L;
+			FreeHandLoss = 0L;
+			Unidentify = 0L;
+			Thirst = 0L;
+			LuckLoss = 0L;
+			ShadesOfGrey = 0L;
+			FaintActive = 0L;
+			Itemcursing = 0L;
+			DifficultyIncreased = 0L;
+			Deafness = 0L;
+			CasterProblem = 0L;
+			WeaknessProblem = 0L;
+			RotThirteen = 0L;
+			BishopGridbug = 0L;
+			ConfusionProblem = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -3784,6 +4212,63 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		if (!rn2(50)) deltrap(trap);
            break;
 
+           case DEATH_TRAP:
+
+		if (nonliving(mtmp->data) || is_demon(mtmp->data) || resists_death(mtmp) || mtmp->data->msound == MS_NEMESIS || resists_magm(mtmp)) break;
+
+		else {
+
+               if (in_sight) pline("%s is lit by a black glow...", Monnam(mtmp));
+
+               int num = d(5,4);
+               if (thitm(0, mtmp, (struct obj *)0, num, FALSE))
+                 trapkilled = TRUE;
+
+		}
+
+		if (see_it) seetrap(trap);
+		if (!rn2(50)) deltrap(trap);
+
+		break;
+
+           case DISINTEGRATION_TRAP:
+
+		if (resists_disint(mtmp)) break;
+
+		else {
+
+               if (in_sight) pline("%s is shaken heavily!", Monnam(mtmp));
+
+               int num = d(4,4);
+               if (thitm(0, mtmp, (struct obj *)0, num, FALSE))
+                 trapkilled = TRUE;
+
+		}
+
+		if (see_it) seetrap(trap);
+		if (!rn2(50)) deltrap(trap);
+
+		break;
+
+           case DRAIN_TRAP:
+
+		if (resists_drli(mtmp)) break;
+
+		else {
+
+               if (in_sight) pline("%s looks less powerful!", Monnam(mtmp));
+
+               int num = d(3,4);
+               if (thitm(0, mtmp, (struct obj *)0, num, FALSE))
+                 trapkilled = TRUE;
+
+		}
+
+		if (see_it) seetrap(trap);
+		if (!rn2(50)) deltrap(trap);
+
+		break;
+
            case WATER_POOL:
 
 		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data)) break;
@@ -3958,6 +4443,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case GLYPH_OF_WARDING:
 
 		case SUPERSCROLLER_TRAP:
+		case NUPESELL_TRAP:
 		case ACTIVE_SUPERSCROLLER_TRAP:
 		case RMB_LOSS_TRAP:
 		case DISPLAY_TRAP:
@@ -3975,6 +4461,27 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case HEEL_TRAP:
 		case VULN_TRAP:
 		case AUTOMATIC_SWITCHER:
+
+		case LAVA_TRAP:
+		case FLOOD_TRAP:
+		case FREE_HAND_TRAP:
+		case UNIDENTIFY_TRAP:
+		case THIRST_TRAP:
+		case LUCK_TRAP:
+		case SHADES_OF_GREY_TRAP:
+		case ITEM_TELEP_TRAP:
+		case GRAVITY_TRAP:
+		case STONE_TO_FLESH_TRAP:
+		case QUICKSAND_TRAP:
+		case FAINT_TRAP:
+		case CURSE_TRAP:
+		case DIFFICULTY_TRAP:
+		case SOUND_TRAP:
+		case CASTER_TRAP:
+		case WEAKNESS_TRAP:
+		case ROT_THIRTEEN_TRAP:
+		case BISHOP_TRAP:
+		case CONFUSION_TRAP:
 
 			break;
 

@@ -18,11 +18,22 @@
 STATIC_DCL void NDECL(do_positionbar);
 #endif
 
+STATIC_PTR int NDECL(unfaintX);
+
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id
 #define spellknow(spell)	spl_book[spell].sp_know
 
 #ifdef OVL0
+
+STATIC_PTR
+int
+unfaintX()
+{
+	(void) Hear_again();
+	stop_occupation();
+	return 0;
+}
 
 void
 moveloop()
@@ -54,6 +65,8 @@ moveloop()
     int past_clock;
 	/*u.monstertimeout = timeout_start;*/
 	/*u.monstertimefinish = clock_base;*/
+
+	struct obj *otmpi, *otmpii;
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
@@ -534,6 +547,48 @@ moveloop()
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
 		if (AutoDestruct) stop_occupation();
+
+		if (FaintActive && !rn2(100) && multi >= 0) {
+
+			pline("You faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from exertion");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (Itemcursing && !rn2(100) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (Deafness) flags.soundok = 0;
+
+		if (Unidentify) {
+
+			if (invent) {
+			    for (otmpi = invent; otmpi; otmpi = otmpii) {
+			      otmpii = otmpi->nobj;
+	
+				if (!rn2(100)) {
+					otmpi->bknown = FALSE;
+				}
+				if (!rn2(100)) {
+					otmpi->dknown = FALSE;
+				}
+				if (!rn2(100)) {
+					otmpi->rknown = FALSE;
+				}
+				if (!rn2(100)) {
+					otmpi->known = FALSE;
+				}
+			    }
+			}
+
+		}
 
 		if ((u.uhave.amulet || Clairvoyant) &&
 		    !In_endgame(&u.uz) && !BClairvoyant &&

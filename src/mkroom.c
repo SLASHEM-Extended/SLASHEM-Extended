@@ -1452,12 +1452,12 @@ mkinsideroom()
 
     typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
 
-	typ2 = !rn2(4) ? TRAP_PERCENTS : !rn2(6) ? UNKNOWN_TRAP : !rn2(8) ? RMB_LOSS_TRAP : !rn2(7) ? DISPLAY_TRAP : !rn2(6) ? SPELL_LOSS_TRAP : !rn2(5) ? YELLOW_SPELL_TRAP : !rn2(5) ? MENU_TRAP : !rn2(4) ? AUTO_DESTRUCT_TRAP : !rn2(3) ? MEMORY_TRAP : !rn2(3) ? INVENTORY_TRAP : !rn2(2) ? SPEED_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
+	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
 
 
 		    if(rn2(3)) 
 			levl[sx][sy].typ = typ;
-			else if (!rn2(10))			(void) maketrap(sx, sy, typ2);
+			/*else*/ if (!rn2(10))			(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
 		}

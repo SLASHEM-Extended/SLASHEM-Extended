@@ -1795,6 +1795,28 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != BLACK_NG_WALL_TRAP
 				&& ttmp->ttyp != UNKNOWN_TRAP
 				&& ttmp->ttyp != TRAP_PERCENTS
+				&& ttmp->ttyp != LAVA_TRAP
+				&& ttmp->ttyp != FLOOD_TRAP
+				&& ttmp->ttyp != FREE_HAND_TRAP
+				&& ttmp->ttyp != UNIDENTIFY_TRAP
+				&& ttmp->ttyp != THIRST_TRAP
+				&& ttmp->ttyp != LUCK_TRAP
+				&& ttmp->ttyp != SHADES_OF_GREY_TRAP
+				&& ttmp->ttyp != ITEM_TELEP_TRAP
+				&& ttmp->ttyp != GRAVITY_TRAP
+				&& ttmp->ttyp != STONE_TO_FLESH_TRAP
+				&& ttmp->ttyp != QUICKSAND_TRAP
+				&& ttmp->ttyp != FAINT_TRAP
+				&& ttmp->ttyp != CURSE_TRAP
+				&& ttmp->ttyp != DIFFICULTY_TRAP
+				&& ttmp->ttyp != SOUND_TRAP
+				&& ttmp->ttyp != CASTER_TRAP
+				&& ttmp->ttyp != WEAKNESS_TRAP
+				&& ttmp->ttyp != ROT_THIRTEEN_TRAP
+				&& ttmp->ttyp != BISHOP_TRAP
+				&& ttmp->ttyp != CONFUSION_TRAP
+				&& ttmp->ttyp != NUPESELL_TRAP
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != TRAPDOOR
@@ -1803,6 +1825,16 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && !is_floater(mdat)
 				    && !is_clinger(mdat))
 				      || In_sokoban(&u.uz))
+
+				&& (ttmp->ttyp != DEATH_TRAP ||
+				    (nonliving(mon->data) || is_demon(mon->data) || resists_death(mon) || mon->data->msound == MS_NEMESIS || resists_magm(mon)) )
+
+				&& (ttmp->ttyp != DISINTEGRATION_TRAP ||
+				    (!resists_disint(mon)) )
+
+				&& (ttmp->ttyp != DRAIN_TRAP ||
+				    (!resists_drli(mon)) )
+
 				&& (ttmp->ttyp != SLP_GAS_TRAP ||
 				    (!resists_sleep(mon) && !breathless(mdat)) )
 				&& (ttmp->ttyp != POISON_GAS_TRAP ||

@@ -1549,6 +1549,8 @@ level_difficulty()
 	if (moves > 500000 && retvalue < 100) retvalue = 100;
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
+	if (DifficultyIncreased) retvalue += 10;
+
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 

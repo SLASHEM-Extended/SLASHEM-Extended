@@ -67,6 +67,37 @@ pline VA_DECL(const char *, line)
 	    line = pbuf;
 	}
 
+        if ( RotThirteen && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+
+		line = replace(line,"a","N");
+		line = replace(line,"b","O");
+		line = replace(line,"c","P");
+		line = replace(line,"d","Q");
+		line = replace(line,"e","R");
+		line = replace(line,"f","S");
+		line = replace(line,"g","T");
+		line = replace(line,"h","U");
+		line = replace(line,"i","V");
+		line = replace(line,"j","W");
+		line = replace(line,"k","X");
+		line = replace(line,"l","Y");
+		line = replace(line,"m","Z");
+		line = replace(line,"n","A");
+		line = replace(line,"o","B");
+		line = replace(line,"p","C");
+		line = replace(line,"q","D");
+		line = replace(line,"r","E");
+		line = replace(line,"s","F");
+		line = replace(line,"t","G");
+		line = replace(line,"u","H");
+		line = replace(line,"v","I");
+		line = replace(line,"w","J");
+		line = replace(line,"x","K");
+		line = replace(line,"y","L");
+		line = replace(line,"z","M");
+
+	  }
+
 /*Intercept direct speach, inpossible() and very short or long Strings here*/
 /* to cut down unnecesary calls to the now slower replace */
 /* other checks like read must be done dynamically because */

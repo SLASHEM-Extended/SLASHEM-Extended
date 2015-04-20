@@ -133,6 +133,7 @@ MONSTER[50%]:':',"arch-newt",random,hostile
 
 OBJECT:'`',"boulder",random
 
+TRAP:"item teleporter", random
 
 MAZE:"air",' '
 FLAGS: noteleport,hardfloor,shortsighted
@@ -241,6 +242,9 @@ MONSTER:'E',"thematic air elemental",random,hostile
 MONSTER:'E',"thematic air elemental",random,hostile
 
 MONSTER[50%]:':',"arch-newt",random,hostile
+
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
 
 MAZE:"fire",' '
 FLAGS: noteleport,hardfloor,shortsighted
@@ -402,6 +406,9 @@ OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
 
 MAZE:"water",' '
 FLAGS: noteleport,hardfloor,shortsighted
@@ -506,6 +513,11 @@ MONSTER:'E',"thematic water elemental",random,hostile
 MONSTER:'E',"thematic water elemental",random,hostile
 
 MONSTER[50%]:':',"arch-newt",random,hostile
+
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
 
 MAZE:"astral",' '
 FLAGS: noteleport,hardfloor,nommap,shortsighted
@@ -695,3 +707,9 @@ MONSTER[20%]:'F',"arch-lichen",random,hostile
 MONSTER[10%]:'F',"arch-lichen",random,hostile
 
 MONSTER[50%]:'.',"%s-$$$-NIX",random,hostile
+
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random
+TRAP:"item teleporter", random

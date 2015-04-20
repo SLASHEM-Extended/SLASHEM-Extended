@@ -1592,6 +1592,16 @@ register struct obj	*sobj;
 
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
+
+	if (ConfusionProblem) {
+
+	    pline("Suddenly you're very confused!");
+	    make_confused(HConfusion + 2, FALSE);
+	    pline("You screw up while reading the scroll...");
+	    confused = 1;
+
+	}
+
 	switch(sobj->otyp) {
 #ifdef MAIL
 	case SCR_MAIL:

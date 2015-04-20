@@ -1287,6 +1287,15 @@ dospinweb()
 		case SHOCK_TRAP:
 		case HEEL_TRAP:
 		case VULN_TRAP:
+		case LAVA_TRAP:
+		case FLOOD_TRAP:
+		case DISINTEGRATION_TRAP:
+		case DEATH_TRAP:
+		case DRAIN_TRAP:
+		case ITEM_TELEP_TRAP:
+		case GRAVITY_TRAP:
+		case STONE_TO_FLESH_TRAP:
+		case QUICKSAND_TRAP:
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
@@ -1306,6 +1315,21 @@ dospinweb()
 		case BLACK_NG_WALL_TRAP:
 		case UNKNOWN_TRAP:
 		case TRAP_PERCENTS:
+		case FREE_HAND_TRAP:
+		case UNIDENTIFY_TRAP:
+		case THIRST_TRAP:
+		case LUCK_TRAP:
+		case SHADES_OF_GREY_TRAP:
+		case FAINT_TRAP:
+		case CURSE_TRAP:
+		case DIFFICULTY_TRAP:
+		case SOUND_TRAP:
+		case CASTER_TRAP:
+		case WEAKNESS_TRAP:
+		case ROT_THIRTEEN_TRAP:
+		case BISHOP_TRAP:
+		case CONFUSION_TRAP:
+		case NUPESELL_TRAP:
 			dotrap(ttmp, 0);
 			return(1);
 		default:

@@ -1656,6 +1656,12 @@ MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
 MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
+
+TRAP:"death trap", random
+TRAP:"drain trap", random
+TRAP:"disintegration", random
+TRAP:"item teleporter", random
+
 STAIR:(63,15),up
 
 MAZE:"sanct-2",' '
@@ -1805,6 +1811,11 @@ MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
 MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
+
+TRAP:"death trap", random
+TRAP:"drain trap", random
+TRAP:"disintegration", random
+TRAP:"item teleporter", random
 
 STAIR:(63,15),up
 

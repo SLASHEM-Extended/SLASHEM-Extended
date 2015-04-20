@@ -1552,6 +1552,82 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlackNgWalls);
 		you_have(buf);
 	}
+	if (FreeHandLoss) {
+		Sprintf(buf, "the following problem: Your free hand is less likely to be free.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FreeHandLoss);
+		you_have(buf);
+	}
+	if (Unidentify) {
+		Sprintf(buf, "the following problem: Your possessions sometimes unidentify themselves.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Unidentify);
+		you_have(buf);
+	}
+	if (Thirst) {
+		Sprintf(buf, "a strong sense of thirst.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Thirst);
+		you_have(buf);
+	}
+	if (LuckLoss) {
+		Sprintf(buf, "the following problem: You're shitting out of luck (SOL).");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LuckLoss);
+		you_have(buf);
+	}
+	if (ShadesOfGrey) {
+		Sprintf(buf, "the following problem: Everything displays in various shades of grey.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ShadesOfGrey);
+		you_have(buf);
+	}
+	if (FaintActive) {
+		Sprintf(buf, "the following problem: You randomly faint.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FaintActive);
+		you_have(buf);
+	}
+	if (Itemcursing) {
+		Sprintf(buf, "the following problem: Your inventory gradually fills up with cursed items.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
+		you_have(buf);
+	}
+	if (DifficultyIncreased) {
+		Sprintf(buf, "the following problem: The difficulty of the game was arbitrarily increased.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DifficultyIncreased);
+		you_have(buf);
+	}
+	if (Deafness) {
+		Sprintf(buf, "a hearing break.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Deafness);
+		you_have(buf);
+	}
+	if (CasterProblem) {
+		Sprintf(buf, "blood mana.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CasterProblem);
+		you_have(buf);
+	}
+	if (WeaknessProblem) {
+		Sprintf(buf, "the following problem: Being weak from hunger damages your health.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WeaknessProblem);
+		you_have(buf);
+	}
+	if (RotThirteen) {
+		Sprintf(buf, "the following problem: A rot13 cypher has been activated for lowercase letters.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RotThirteen);
+		you_have(buf);
+	}
+	if (BishopGridbug) {
+		Sprintf(buf, "the following problem: You cannot move diagonally.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BishopGridbug);
+		you_have(buf);
+	}
+	if (ConfusionProblem) {
+		Sprintf(buf, "a confusing problem.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ConfusionProblem);
+		you_have(buf);
+	}
+
+	if (IncreasedGravity) {
+		Sprintf(buf, "increased encumbrance due to a stronger gravity.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", IncreasedGravity);
+		you_have(buf);
+	}
 
 	if (NoFire_resistance) {
 		Sprintf(buf, "prevented from having fire resistance");
@@ -2223,7 +2299,7 @@ minimal_enlightenment()
 		if (Stoned) Sprintf(eos(statline), "petrification, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
-		if(strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
+		if(!Thirst && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
 
 		Sprintf(eos(statline), ".");
 
@@ -3591,7 +3667,7 @@ char sym;
 	u.dx = xdir[dp-sdp];
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
-	if (u.dx && u.dy && (u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ) {
+	if (u.dx && u.dy && (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ) {
 		u.dx = u.dy = 0;
 		return 0;
 	}
@@ -3712,14 +3788,14 @@ const char *msg;
 		putstr(win, 0, "");
 	    }
 	}
-	if (iflags.num_pad && (u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)) {
+	if (iflags.num_pad && (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)) {
 	    putstr(win, 0, "Valid direction keys in your current form (with number_pad on) are:");
 	    putstr(win, 0, "             8   ");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "          4- . -6");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "             2   ");
-	} else if (u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) {
+	} else if (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) {
 	    putstr(win, 0, "Valid direction keys in your current form are:");
 	    putstr(win, 0, "             k   ");
 	    putstr(win, 0, "             |   ");
@@ -3758,7 +3834,7 @@ const char *msg;
 void
 confdir()
 {
-	register int x = (u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ? 2*rn2(4) : rn2(8);
+	register int x = (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ? 2*rn2(4) : rn2(8);
 	u.dx = xdir[x];
 	u.dy = ydir[x];
 	return;

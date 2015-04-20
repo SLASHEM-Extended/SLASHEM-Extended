@@ -489,6 +489,9 @@ register struct obj *spellbook;
 		 case 7:
 			delay = -8 * objects[booktype].oc_delay;
 			break;
+		 case 8:
+			delay = -12 * objects[booktype].oc_delay;
+			break;
 		 default:
 			impossible("Unknown spellbook level %d, book %d;",
 				objects[booktype].oc_level, booktype);
@@ -1611,6 +1614,12 @@ int spell;
 	 * and no matter how able, learning is always required.
 	 */
 	chance = chance * (25-splcaster) / 10;
+
+	if (CasterProblem && chance > 0) {
+
+		chance = (chance / u.uhpmax * u.uhp);
+
+	}
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;

@@ -1144,7 +1144,7 @@ boolean guess;
 		int y = travelstepy[set][i];
 		static int ordered[] = { 0, 2, 4, 6, 1, 3, 5, 7 };
 		/* no diagonal movement for grid bugs */
-		int dirmax = (u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG )? 4 : 8;
+		int dirmax = (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG )? 4 : 8;
 
 		for (dir = 0; dir < dirmax; ++dir) {
 		    int nx = x+xdir[ordered[dir]];
@@ -1315,6 +1315,7 @@ domove()
 	register struct rm *tmpr;
 	register xchar x,y;
 	struct trap *trap;
+	struct trap *traphere = t_at(x, y);
 	int wtcap;
 	boolean on_ice;
 	xchar chainx, chainy, ballx, bally;	/* ball&chain new positions */
@@ -1734,6 +1735,17 @@ domove()
 	    flags.move = 0;
 	    nomul(0, 0);
 	    return;
+	}
+
+	if (t_at(x,y)) {
+
+	    traphere = t_at(x,y);
+	    if (traphere && traphere->ttyp == NUPESELL_TRAP) {
+		flags.move = 0;
+		nomul(0, 0);
+		return;
+	    }
+
 	}
 
 	/* warn player before walking into known traps */
@@ -2824,7 +2836,7 @@ lookaround()
 
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
-    if ((u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)&& u.dx && u.dy) {
+    if ((BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)&& u.dx && u.dy) {
 	nomul(0, 0);
 	return;
     }
@@ -2833,7 +2845,7 @@ lookaround()
     for(x = u.ux-1; x <= u.ux+1; x++) for(y = u.uy-1; y <= u.uy+1; y++) {
 	if(!isok(x,y)) continue;
 
-	if((u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) && x != u.ux && y != u.uy) continue;
+	if((BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) && x != u.ux && y != u.uy) continue;
 
 	if(x == u.ux && y == u.uy) continue;
 
@@ -3204,6 +3216,8 @@ inv_weight()
 			wt += otmp->owt;
 		otmp = otmp->nobj;
 	}
+	if (IncreasedGravity) wt += IncreasedGravity;
+
 	wc = weight_cap();
 	return (wt - wc);
 }

@@ -379,6 +379,49 @@ rndtrap()
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB; break;
 	     case ACTIVE_SUPERSCROLLER_TRAP: rtrap = RUST_TRAP; break;
 
+	     case ITEM_TELEP_TRAP:
+			if (rn2(15)) rtrap = ANIMATION_TRAP; break;
+	     case LAVA_TRAP:
+			if (rn2(50)) rtrap = PIT; break;
+	     case FLOOD_TRAP:
+			if (rn2(20)) rtrap = ROCKTRAP; break;
+	     case DRAIN_TRAP:
+			if (rn2(3)) rtrap = FIRE_TRAP; break;
+	     case FREE_HAND_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) rtrap = SLP_GAS_TRAP; break;
+	     case DISINTEGRATION_TRAP:
+			if (rn2(20)) rtrap = ICE_TRAP; break;
+	     case UNIDENTIFY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) rtrap = MAGIC_TRAP; break;
+	     case THIRST_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) rtrap = ANTI_MAGIC; break;
+	     case SHADES_OF_GREY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) rtrap = WEB; break;
+	     case LUCK_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) rtrap = STATUE_TRAP; break;
+	     case DEATH_TRAP:
+			if (rn2(100)) rtrap = SHOCK_TRAP; break;
+	     case STONE_TO_FLESH_TRAP:
+			if (rn2(100)) rtrap = ACID_POOL; break;
+	     case FAINT_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) rtrap = BOLT_TRAP; break;
+	     case CURSE_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) rtrap = ARROW_TRAP; break;
+	     case DIFFICULTY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) rtrap = DART_TRAP; break;
+	     case SOUND_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) rtrap = SQKY_BOARD; break;
+	     case CASTER_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) rtrap = LANDMINE; break;
+	     case WEAKNESS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) rtrap = BEAR_TRAP; break;
+	     case ROT_THIRTEEN_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) rtrap = RUST_TRAP; break;
+	     case BISHOP_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) rtrap = SPIKED_PIT; break;
+	     case CONFUSION_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) rtrap = SHIT_TRAP; break;
+
 	    }
 	} while (rtrap == NO_TRAP);
 	return rtrap;
@@ -416,6 +459,30 @@ randomtrap()
 		if (rtrap == BLACK_NG_WALL_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) rtrap = UNKNOWN_TRAP;
 		if (rtrap == SUPERSCROLLER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) rtrap = WEB;
 		if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = RUST_TRAP;
+
+	      if (rtrap == ITEM_TELEP_TRAP && rn2(15)) rtrap = ANIMATION_TRAP;
+
+	      if (rtrap == LAVA_TRAP && rn2(50)) rtrap = PIT;
+	      if (rtrap == FLOOD_TRAP && rn2(20)) rtrap = ROCKTRAP;
+	      if (rtrap == DRAIN_TRAP && rn2(3)) rtrap = FIRE_TRAP;
+	      if (rtrap == FREE_HAND_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) rtrap = SLP_GAS_TRAP;
+	      if (rtrap == DISINTEGRATION_TRAP && rn2(20)) rtrap = ICE_TRAP;
+	      if (rtrap == UNIDENTIFY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) rtrap = MAGIC_TRAP;
+	      if (rtrap == THIRST_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) rtrap = ANTI_MAGIC;
+	      if (rtrap == SHADES_OF_GREY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) rtrap = WEB;
+	      if (rtrap == LUCK_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) rtrap = STATUE_TRAP;
+	      if (rtrap == DEATH_TRAP && rn2(100)) rtrap = SHOCK_TRAP;
+	      if (rtrap == STONE_TO_FLESH_TRAP && rn2(100)) rtrap = ACID_POOL;
+	      if (rtrap == FAINT_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) rtrap = BOLT_TRAP;
+	      if (rtrap == CURSE_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) rtrap = ARROW_TRAP;
+	      if (rtrap == DIFFICULTY_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) rtrap = DART_TRAP;
+	      if (rtrap == SOUND_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) rtrap = SQKY_BOARD;
+	      if (rtrap == CASTER_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) rtrap = LANDMINE;
+	      if (rtrap == WEAKNESS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) rtrap = BEAR_TRAP;
+	      if (rtrap == ROT_THIRTEEN_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) rtrap = RUST_TRAP;
+	      if (rtrap == BISHOP_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) rtrap = SPIKED_PIT;
+	      if (rtrap == CONFUSION_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) rtrap = SHIT_TRAP;
+
 	} while (rtrap == NO_TRAP);
 	return rtrap;
 }
@@ -2342,12 +2409,11 @@ boolean prefilled;
 
     typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
 
-	typ2 = !rn2(4) ? TRAP_PERCENTS : !rn2(6) ? UNKNOWN_TRAP : !rn2(8) ? RMB_LOSS_TRAP : !rn2(7) ? DISPLAY_TRAP : !rn2(6) ? SPELL_LOSS_TRAP : !rn2(5) ? YELLOW_SPELL_TRAP : !rn2(5) ? MENU_TRAP : !rn2(4) ? AUTO_DESTRUCT_TRAP : !rn2(3) ? MEMORY_TRAP : !rn2(3) ? INVENTORY_TRAP : !rn2(2) ? SPEED_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
-
+	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
 
 		    if(rn2(3)) 
 			levl[sx][sy].typ = typ;
-			else if (!rn2(10))	(void) maketrap(sx, sy, typ2);
+			/*else*/ if (!rn2(10))	(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
 		}

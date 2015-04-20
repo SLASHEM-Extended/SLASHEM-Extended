@@ -242,6 +242,33 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 
+	if (WeaknessProblem && u.uhunger < 51) {
+
+		if (!rn2(20)) {
+
+			u.uhpmax -= 3;
+			if (u.uhp > u.uhpmax) u.uhp -= 3;
+			if (u.uhp < 1) {
+				pline("You pass away due to being too weak.");
+				killer_format = KILLED_BY_AN;
+				killer = "fatal weakness";
+				done(DIED);
+			}
+
+		} else {
+
+			u.uhp -= 3;
+			if (u.uhp < 1) {
+				pline("You pass away due to being too weak.");
+				killer_format = KILLED_BY_AN;
+				killer = "fatal weakness";
+				done(DIED);
+			}
+
+		}
+
+	}
+
 	if (!rn2(1000) && Role_if(PM_BLEEDER)) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;

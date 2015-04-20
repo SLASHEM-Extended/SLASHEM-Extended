@@ -1408,7 +1408,7 @@ dotalk()
 
     int result;
     boolean save_soundok = flags.soundok;
-    flags.soundok = 1;	/* always allow sounds while chatting */
+    if (!Deafness) flags.soundok = 1;	/* always allow sounds while chatting */
     result = dochat();
     flags.soundok = save_soundok;
     return result;

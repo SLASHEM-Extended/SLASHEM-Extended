@@ -103,8 +103,32 @@ extern struct trap *ftrap;
 #define UNKNOWN_TRAP		51
 #define HEEL_TRAP		52
 #define VULN_TRAP		53
-#define TRAP_PERCENTS		54
+#define LAVA_TRAP		54
+#define FLOOD_TRAP		55
+#define DRAIN_TRAP		56
+#define FREE_HAND_TRAP		57
+#define DISINTEGRATION_TRAP		58
+#define UNIDENTIFY_TRAP		59
+#define THIRST_TRAP		60
+#define LUCK_TRAP		61
+#define SHADES_OF_GREY_TRAP		62
+#define ITEM_TELEP_TRAP		63
+#define GRAVITY_TRAP		64
+#define DEATH_TRAP		65
+#define STONE_TO_FLESH_TRAP		66
+#define QUICKSAND_TRAP		67
+#define FAINT_TRAP		68
+#define CURSE_TRAP		69
+#define DIFFICULTY_TRAP		70
+#define SOUND_TRAP		71
+#define CASTER_TRAP		72
+#define WEAKNESS_TRAP		73
+#define ROT_THIRTEEN_TRAP		74
+#define BISHOP_TRAP		75
+#define CONFUSION_TRAP		76
+#define NUPESELL_TRAP		77
+#define TRAP_PERCENTS		78
 
-#define TRAPNUM 55
+#define TRAPNUM 79
 
 #endif /* TRAP_H */

@@ -26,10 +26,10 @@ int explcolors[] = {
 #ifdef TEXTCOLOR
 #define zap_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : zapcolors[n]) : NO_COLOR
 #define cmap_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : defsyms[n].color) : NO_COLOR
-#define obj_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : objects[n].oc_color) : NO_COLOR
-#define mon_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : mons[n].mcolor) : NO_COLOR
+#define obj_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : (ShadesOfGrey) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
+#define mon_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : (ShadesOfGrey && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
 #define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : mons[n].mcolor) : NO_COLOR
+#define pet_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : (ShadesOfGrey && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
 #define warn_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : def_warnsyms[n].color) : NO_COLOR
 #define explode_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : BlackNgWalls ? CLR_BLACK : explcolors[n]) : NO_COLOR
 # if defined(REINCARNATION) && defined(ASCIIGRAPH)
@@ -606,6 +606,28 @@ unsigned *ospecial;
 #endif
 	    if (color == NO_COLOR) cmap_color(offset);
 		if (BlackNgWalls) color = CLR_BLACK;
+		else if (ShadesOfGrey) {
+			switch (color) {
+				case CLR_RED:
+				case CLR_BROWN:
+				case CLR_BLUE:
+					color = CLR_BLACK;
+					break;
+				case CLR_GREEN:
+				case CLR_MAGENTA:
+				case CLR_CYAN:
+				case CLR_BRIGHT_BLUE:
+					color = CLR_GRAY;
+					break;
+				case CLR_YELLOW:
+				case CLR_ORANGE:
+				case CLR_BRIGHT_GREEN:
+				case CLR_BRIGHT_MAGENTA:
+				case CLR_BRIGHT_CYAN:
+					color = CLR_WHITE;
+					break;
+			}
+		}
 		if (Hallucination) color = rn2(15);
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
 	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;

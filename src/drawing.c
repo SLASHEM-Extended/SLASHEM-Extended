@@ -321,6 +321,32 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "an unknown trap", C(CLR_BRIGHT_GREEN)},	/* trap */
 	{'^', "heel trap", C(CLR_GREEN)},	/* trap */
 	{'^', "vulnerability trap", C(CLR_YELLOW)},	/* trap */
+
+	{'^', "lava trap", C(CLR_RED)},	/* trap */
+	{'^', "flood trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "drain trap", C(CLR_BLACK)},	/* trap */
+	{'^', "free hand trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "disintegration trap", C(CLR_BLACK)},	/* trap */
+	{'^', "unidentify trap", C(CLR_GREEN)},	/* trap */
+	{'^', "thirst trap", C(CLR_CYAN)},	/* trap */
+	{'^', "luck trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "shades of grey trap", C(CLR_GRAY)},	/* trap */
+	{'^', "item teleporter", C(CLR_MAGENTA)},	/* trap */
+	{'^', "gravity trap", C(CLR_GRAY)},	/* trap */
+	{'^', "death trap", C(CLR_BLACK)},	/* trap */
+	{'^', "stone to flesh trap", C(CLR_WHITE)},	/* trap */
+	{'^', "quicksand", C(CLR_BROWN)},	/* trap */
+	{'^', "faint trap", C(CLR_BLACK)},	/* trap */
+	{'^', "curse trap", C(CLR_GREEN)},	/* trap */
+	{'^', "difficulty trap", C(CLR_BLACK)},	/* trap */
+	{'^', "sound trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "caster trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "weakness trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "rot13 trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "bishop trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "confusion trap", C(CLR_CYAN)},	/* trap */
+	{'^', "super nupesell nix area", C(NO_COLOR)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -464,6 +490,32 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_unknown_trap),
 	g_FILLER(S_heel_trap),
 	g_FILLER(S_vuln_trap),
+
+	g_FILLER(S_lava_trap),
+	g_FILLER(S_flood_trap),
+	g_FILLER(S_drain_trap),
+	g_FILLER(S_free_hand_trap),
+	g_FILLER(S_disintegration_trap),
+	g_FILLER(S_unidentify_trap),
+	g_FILLER(S_thirst_trap),
+	g_FILLER(S_luck_trap),
+	g_FILLER(S_shades_of_grey_trap),
+	g_FILLER(S_item_telep_trap),
+	g_FILLER(S_gravity_trap),
+	g_FILLER(S_death_trap),
+	g_FILLER(S_stone_to_flesh_trap),
+	g_FILLER(S_quicksand_trap),
+	g_FILLER(S_faint_trap),
+	g_FILLER(S_curse_trap),
+	g_FILLER(S_difficulty_trap),
+	g_FILLER(S_sound_trap),
+	g_FILLER(S_caster_trap),
+	g_FILLER(S_weakness_trap),
+	g_FILLER(S_rot_thirteen_trap),
+	g_FILLER(S_bishop_trap),
+	g_FILLER(S_confusion_trap),
+	g_FILLER(S_nupesell_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -598,6 +650,32 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_unknown_trap),
 	g_FILLER(S_heel_trap),
 	g_FILLER(S_vuln_trap),
+
+	g_FILLER(S_lava_trap),
+	g_FILLER(S_flood_trap),
+	g_FILLER(S_drain_trap),
+	g_FILLER(S_free_hand_trap),
+	g_FILLER(S_disintegration_trap),
+	g_FILLER(S_unidentify_trap),
+	g_FILLER(S_thirst_trap),
+	g_FILLER(S_luck_trap),
+	g_FILLER(S_shades_of_grey_trap),
+	g_FILLER(S_item_telep_trap),
+	g_FILLER(S_gravity_trap),
+	g_FILLER(S_death_trap),
+	g_FILLER(S_stone_to_flesh_trap),
+	g_FILLER(S_quicksand_trap),
+	g_FILLER(S_faint_trap),
+	g_FILLER(S_curse_trap),
+	g_FILLER(S_difficulty_trap),
+	g_FILLER(S_sound_trap),
+	g_FILLER(S_caster_trap),
+	g_FILLER(S_weakness_trap),
+	g_FILLER(S_rot_thirteen_trap),
+	g_FILLER(S_bishop_trap),
+	g_FILLER(S_confusion_trap),
+	g_FILLER(S_nupesell_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -730,6 +808,32 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_unknown_trap),
 	g_FILLER(S_heel_trap),
 	g_FILLER(S_vuln_trap),
+
+	g_FILLER(S_lava_trap),
+	g_FILLER(S_flood_trap),
+	g_FILLER(S_drain_trap),
+	g_FILLER(S_free_hand_trap),
+	g_FILLER(S_disintegration_trap),
+	g_FILLER(S_unidentify_trap),
+	g_FILLER(S_thirst_trap),
+	g_FILLER(S_luck_trap),
+	g_FILLER(S_shades_of_grey_trap),
+	g_FILLER(S_item_telep_trap),
+	g_FILLER(S_gravity_trap),
+	g_FILLER(S_death_trap),
+	g_FILLER(S_stone_to_flesh_trap),
+	g_FILLER(S_quicksand_trap),
+	g_FILLER(S_faint_trap),
+	g_FILLER(S_curse_trap),
+	g_FILLER(S_difficulty_trap),
+	g_FILLER(S_sound_trap),
+	g_FILLER(S_caster_trap),
+	g_FILLER(S_weakness_trap),
+	g_FILLER(S_rot_thirteen_trap),
+	g_FILLER(S_bishop_trap),
+	g_FILLER(S_confusion_trap),
+	g_FILLER(S_nupesell_trap),
+
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
 	g_FILLER(S_hbeam),
@@ -1053,6 +1157,32 @@ boolean is_rlevel;
 	    showsyms[S_unknown_trap] = 0x04;
 	    showsyms[S_heel_trap] = 0x04;
 	    showsyms[S_vuln_trap] = 0x04;
+
+	    showsyms[S_lava_trap] = 0x04;
+	    showsyms[S_flood_trap] = 0x04;
+	    showsyms[S_drain_trap] = 0x04;
+	    showsyms[S_free_hand_trap] = 0x04;
+	    showsyms[S_disintegration_trap] = 0x04;
+	    showsyms[S_unidentify_trap] = 0x04;
+	    showsyms[S_thirst_trap] = 0x04;
+	    showsyms[S_luck_trap] = 0x04;
+	    showsyms[S_shades_of_grey_trap] = 0x04;
+	    showsyms[S_item_telep_trap] = 0x04;
+	    showsyms[S_gravity_trap] = 0x04;
+	    showsyms[S_death_trap] = 0x04;
+	    showsyms[S_stone_to_flesh_trap] = 0x04;
+	    showsyms[S_quicksand_trap] = 0x04;
+	    showsyms[S_faint_trap] = 0x04;
+	    showsyms[S_curse_trap] = 0x04;
+	    showsyms[S_difficulty_trap] = 0x04;
+	    showsyms[S_sound_trap] = 0x04;
+	    showsyms[S_caster_trap] = 0x04;
+	    showsyms[S_weakness_trap] = 0x04;
+	    showsyms[S_rot_thirteen_trap] = 0x04;
+	    showsyms[S_bishop_trap] = 0x04;
+	    showsyms[S_confusion_trap] = 0x04;
+	    showsyms[S_nupesell_trap] = 0x04;
+
 	    showsyms[S_trap_percents] = 0x04;
 #endif
 	}
