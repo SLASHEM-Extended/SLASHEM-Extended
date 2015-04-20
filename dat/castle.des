@@ -1955,3 +1955,273 @@ REGION:(13,03,55,03),random,"randomroom"
 REGION:(34,16,55,16),random,"randomroom"
 REGION:(43,09,57,09),unlit,"ordinary"
 REGION:(57,08,57,10),unlit,"ordinary"
+
+# idea by Khor - castle with a grid bug invasion. I'll make it spawn random x instead though. --Amy
+
+MAZE:"castle-9",random
+FLAGS: noteleport, lethe
+GEOMETRY:center,center
+#000000000111111111122222222223333333333444444444455555555556666666666777777
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+T...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}..}}...}}}}}}}}}}}}}....T.....}}}}...T..
+..}}}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.......}}}}}}}.....
+.}}..}}}----------------------------------------------}}}}}}}..---------S---
+}}}}}}}}F...-|.........|........|......S......+......|}}}}}}}}}| - - - - - -
+}}}}}}}}|....|.........+........|......--------......|}.}}}}}}}|------------
+}}}}.}}}|....+.........|........+......|......|......|}..}}}}}.S - - - - - -
+}}}.T.}}|....|----------........|......|......|-.....|}}}}}}}}.|------------
+}}}}..}}|----|.......|..........|......|......--FFFF--}}}}.....| - - - - - -
+}}}}}}}}|....|.LLLLL.|..........--FFFF-|......|}}}}}}}}}....T..|------------
+.}}}}}..|....S.LLLLL.S.\........S......+..{...|}...............| - - - - - -
+T.}}}.}.|....|.LLLLL.|..........--FFFF-|......|}}}}}}}}...}....|------------
+}.}}}}}}|----|.......|..........|......|......--FFFF--}}.}}}...| - - - - - -
+}}}}}}}}|....|----------........|......|......|-.....|}}}}}....|------------
+}}}}}.}}|....+.........|........+......|......|......|}}}}}}}..| - - - - - -
+}}}}....|....|.........+........|......--------......|}}}}}}}}.|------------
+}}}.....F...-|.........|........|......S......+......|}}....}}}| - - - - - -
+}}..}...----------------------------------------------}..}...}}|------------
+}}}}}......}}}}...}}}}}}}..}}......}}}}}}}}}}}}}}}}}}}}.....}}}S - - - - - -
+}}}}}}...}}}}}}}}...}}.}..}}}}.T.}}}}}}}}}...}}}}}.}}}}}}}...}}|------------
+}}}}}}}}}}}}}.}}}}}}}}}}.}}}}}}}..}}.}}}.......}}.}}...}}}}}}}.| - - - - - -
+}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}}}}}}.....T..}}}}}}}}.}}}}}}..-------------
+ENDMAP
+
+RANDOM_OBJECTS: '[',')' 
+RANDOM_PLACES: (09,08),(09,09),(09,10),(52,03),(52,15) 
+RANDOM_MONSTERS: 'L','N','E','V','M','O','R','T','X','Z' 
+
+TELEPORT_REGION:(64,03,75,20),(07,01,54,17),down
+TELEPORT_REGION:(01,01,07,18),(07,01,75,20),up
+
+STAIR:(66,05,75,20),(07,01,66,20), up
+
+# the inner courtyard
+FOUNTAIN:(42,09)
+DRAWBRIDGE:(47,09),west,closed
+DOOR:locked,(39,09)
+
+# doors leading to the dragon pens
+DOOR:locked,(39,03)
+DOOR:locked,(46,03)
+DOOR:locked,(39,15)
+DOOR:locked,(46,15)
+
+# doors to the throne room
+DOOR:locked,(32,05)
+DOOR:locked,(32,09)
+DOOR:locked,(32,13)
+
+# doors to the barracks
+DOOR:closed,(23,04)
+DOOR:closed,(23,14)
+
+# doors to the armouries
+DOOR:locked,(13,05)
+DOOR:locked,(13,13)
+
+TRAP:"trap door",(38,09)
+TRAP:"trap door",(36,09)
+TRAP:"trap door",(34,09)
+
+TRAP:"trap door",(41,03)
+TRAP:"trap door",(44,03)
+
+TRAP:"trap door",(41,15)
+TRAP:"trap door",(44,15)
+
+MAZEWALK:(63,09),east
+
+# only the inner walls of the maze are diggable
+NON_DIGGABLE:(00,00,63,20)
+NON_DIGGABLE:(63,00,75,02)
+
+# the maze is unlit
+REGION:(00,00,62,20),lit,"ordinary"
+REGION:(63,00,75,01),lit,"ordinary"
+
+# and the dragon pens are unlit
+REGION:(47,03,52,06),unlit,"ordinary"
+REGION:(47,12,52,15),unlit,"ordinary"
+
+REGION:(24,03,31,15),lit,"throne",unfilled,true
+
+REGION:(14,03,22,05),lit,"barracks"
+REGION:(14,13,22,15),lit,"barracks"
+
+# the armouries and the treasure room are unlit
+REGION:(09,03,12,15),unlit,"ordinary"
+
+# northern armoury
+OBJECT:object[0],random,(09,03)
+OBJECT:object[0],random,(10,03)
+OBJECT:object[0],random,(11,03)
+OBJECT:object[0],random,(09,04)
+OBJECT:object[0],random,(10,04)
+OBJECT:object[0],random,(11,04)
+OBJECT:object[0],random,(12,04)
+OBJECT:object[0],random,(09,05)
+OBJECT:object[0],random,(10,05)
+OBJECT:object[0],random,(11,05)
+OBJECT:object[0],random,(12,05)
+OBJECT:object[0],random,(09,06)
+OBJECT:object[0],random,(10,06)
+OBJECT:object[0],random,(11,06)
+OBJECT:object[0],random,(12,06)
+# southern armoury
+OBJECT:object[1],random,(09,12)
+OBJECT:object[1],random,(10,12)
+OBJECT:object[1],random,(11,12)
+OBJECT:object[1],random,(12,12)
+OBJECT:object[1],random,(09,13)
+OBJECT:object[1],random,(10,13)
+OBJECT:object[1],random,(11,13)
+OBJECT:object[1],random,(12,13)
+OBJECT:object[1],random,(09,14)
+OBJECT:object[1],random,(10,14)
+OBJECT:object[1],random,(11,14)
+OBJECT:object[1],random,(12,14)
+OBJECT:object[1],random,(09,15)
+OBJECT:object[1],random,(10,15)
+OBJECT:object[1],random,(11,15)
+
+# treasure room
+CONTAINER:'(',"chest",place[0]
+  OBJECT:'/',"wishing",contained
+ENGRAVING:place[0],burn,"Elbereth"
+
+CONTAINER:'(',"chest",place[1]
+  OBJECT:'?',random,contained
+  OBJECT:'?',random,contained
+  OBJECT:'+',random,contained
+  OBJECT:'*',random,contained
+  OBJECT:'*',random,contained
+
+CONTAINER:'(',"chest",place[2]
+  OBJECT:'/',random,contained
+  OBJECT:'"',random,contained
+  OBJECT:'*',random,contained
+  OBJECT:'*',random,contained
+
+CONTAINER:'(',"chest",place[3]
+  OBJECT:'?',random,contained
+  OBJECT:'?',random,contained
+  OBJECT:'+',random,contained
+  OBJECT:'*',random,contained
+  OBJECT:'*',random,contained
+  OBJECT:'!',random,contained
+
+OBJECT:'(',"chest",place[4]
+
+# statues behind the throne
+OBJECT:'`',"statue",(22,07)
+OBJECT:'`',"statue",(22,11)
+
+# the king (and his adviser[s])
+MONSTER:'H',"titan",(23,09),hostile,asleep
+MONSTER:'V',random,(23,09),asleep
+MONSTER:'V',random,(23,09),asleep
+
+# monsters in the water around the castle
+MONSTER:';',"shark",random
+MONSTER:';',"shark",random
+MONSTER:';',"shark",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"giant eel",random
+MONSTER:';',"electric eel",random
+MONSTER:';',"electric eel",random
+MONSTER:';',"electric eel",random
+
+# monsters in attendance in the throne room
+MONSTER:monster[0],random,(25,04)
+MONSTER:monster[1],random,(27,04)
+MONSTER:monster[2],random,(29,04)
+MONSTER:monster[3],random,(26,05)
+MONSTER:monster[4],random,(28,05)
+MONSTER:monster[5],random,(30,05)
+MONSTER:monster[6],random,(25,06)
+MONSTER:monster[7],random,(27,06)
+MONSTER:monster[8],random,(29,06)
+MONSTER:monster[0],random,(25,14)
+MONSTER:monster[1],random,(27,14)
+MONSTER:monster[2],random,(29,14)
+MONSTER:monster[3],random,(26,13)
+MONSTER:monster[4],random,(28,13)
+MONSTER:monster[5],random,(30,13)
+MONSTER:monster[6],random,(25,12)
+MONSTER:monster[7],random,(27,12)
+MONSTER:monster[8],random,(29,12)
+
+# welcoming committee
+MONSTER:'D',random,(48,06)
+MONSTER:'D',random,(50,05)
+MONSTER:'D',random,(51,13)
+MONSTER:'D',random,(52,14)
+
+# guardians in the antechamber of the treasure room
+MONSTER:'E',"fire elemental",(14,09)
+MONSTER:'E',"fire elemental",(17,09)
+MONSTER:'v',"fire vortex",(20,09)
+MONSTER:'v',"fire vortex",(18,09)
+
+# sharpshooters in the chambers next to the hallway
+MONSTER:'C',random,(35,06)
+MONSTER:'C',random,(36,04)
+MONSTER:'C',random,(35,11)
+MONSTER:'C',random,(36,12)
+MONSTER:'C',random,(37,13)
+
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
+MONSTER:'x',random,random
