@@ -572,7 +572,7 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			/* 14..16: trap door, teleport, level-teleport */
 			"Vlad was here", "ad aerarium", "ad aerarium",
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
-			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
@@ -2803,6 +2803,12 @@ coord *tm;
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) kind = SPIKED_PIT; break;
 		    case CONFUSION_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) kind = SHIT_TRAP; break;
+		    case DROP_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) kind = Role_if(PM_SPACEWARS_FIGHTER) ? NUPESELL_TRAP : POISON_GAS_TRAP; break;
+		    case DSTW_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) kind = SLOW_GAS_TRAP; break;
+		    case STATUS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) kind = SCYTHING_BLADE; break;
 
 
 		}

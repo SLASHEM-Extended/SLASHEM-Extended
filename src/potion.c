@@ -85,6 +85,7 @@ boolean talk;
 		pline(Hallucination ? "Huh? Who? Where? What? Is something going on?" : "You're badly confused!");
 		set_itimeout(&HeavyConfusion, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyConfusion, xtime);
 }
 
 void
@@ -116,6 +117,7 @@ boolean talk;
 		pline(Hallucination ? "It's all wobbly! The world keeps on turning and spinning around..." : "You're badly staggering!");
 		set_itimeout(&HeavyStunned, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyStunned, xtime);
 }
 
 void
@@ -142,6 +144,7 @@ boolean talk;
 		pline(Hallucination ? "You can't move! Okay, you can, but it's very difficult..." : "You feel badly numbed!");
 		set_itimeout(&HeavyNumbed, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyNumbed, xtime);
 }
 
 void
@@ -174,6 +177,7 @@ boolean talk;
 		pline(Hallucination ? "ARRRRRGH! HELP! THERE'S A CRAZY AXE-SWINGING MURDERER CHASING AFTER YOU! RUN!!!" : "You're trembling heavily!");
 		set_itimeout(&HeavyFeared, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyFeared, xtime);
 }
 
 void
@@ -201,6 +205,7 @@ boolean talk;
 		pline(Hallucination ? "So many ice-cream cones, and they're all supposed to belong to you... let's eat!" : "The ice is really freezing you rigid!");
 		set_itimeout(&HeavyFrozen, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyFrozen, xtime);
 }
 
 /* Burn and freezing cancel each other out. --Amy */
@@ -231,6 +236,7 @@ boolean talk;
 		pline(Hallucination ? "Uhh... the fire's getting a little bit too hot, even for your tastes!" : "You're badly burned!");
 		set_itimeout(&HeavyBurned, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyBurned, xtime);
 }
 
 void
@@ -373,6 +379,7 @@ boolean talk;
 		pline(Hallucination ? "Aww, even the images in your mind have disappeared!" : "The darkness seems definite and impenetrable!");
 		set_itimeout(&HeavyBlind, xtime);
 	}
+	if (xtime && StatusTrapProblem) set_itimeout(&HeavyBlind, xtime);
 
 	if (u_could_see ^ can_see_now) {  /* one or the other but not both */
 	    flags.botl = 1;
@@ -408,6 +415,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 			pline("Now that was some fucked up shit you did there, huh? But who cares? Let's enjoy the colors!");
 			set_itimeout(&HeavyHallu, xtime);
 		}
+		if (xtime && StatusTrapProblem) set_itimeout(&HeavyHallu, xtime);
 
 	    /* clearing temporary hallucination without toggling vision */
 	    if (!changed && !HHallucination && old && talk) {
@@ -1328,6 +1336,13 @@ peffects(otmp)
 	register struct obj	*otmp;
 {
 	register int i, ii, lim;
+
+	if (DSTWProblem && !rn2(5)) {
+
+		pline("The potion doesn't seem to work!"); /* DSTW = abbreviation for "doesn't seem to work" --Amy */
+		return(-1);
+
+	}
 
 	if (otmp->selfmade && !(5-rnl(6))) {
 		pline("That potion was bad!");

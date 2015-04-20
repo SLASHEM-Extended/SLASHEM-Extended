@@ -173,8 +173,11 @@
 #define ROT_THIRTEEN 159
 #define BISHOP_GRIDBUG 160
 #define CONFUSION_PROBLEM 161
+#define DROP_BUG 162
+#define DSTW_BUG 163
+#define STATUS_FAILURE 164
 
-#define SECOND_CHANCE		162
+#define SECOND_CHANCE		165
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

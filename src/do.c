@@ -38,6 +38,15 @@ static NEARDATA const char drop_types[] =
 int
 dodrop()
 {
+
+	if (NoDropProblem) {
+
+		pline("For some reason, you cannot drop items!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+
+	}
+
 #ifndef GOLDOBJ
 	int result, i = (invent || u.ugold) ? 0 : (SIZE(drop_types) - 1);
 #else
@@ -704,6 +713,15 @@ struct obj *obj;
 int
 doddrop()
 {
+
+	if (NoDropProblem) {
+
+		pline("For some reason, you cannot drop items!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+
+	}
+
 	int result = 0;
 
 	add_valid_menu_class(0); /* clear any classes already there */

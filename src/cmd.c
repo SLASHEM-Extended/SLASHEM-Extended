@@ -1622,6 +1622,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ConfusionProblem);
 		you_have(buf);
 	}
+	if (NoDropProblem) {
+		Sprintf(buf, "the following problem: You cannot drop items.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoDropProblem);
+		you_have(buf);
+	}
+	if (DSTWProblem) {
+		Sprintf(buf, "the following problem: Your potions don't always work.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DSTWProblem);
+		you_have(buf);
+	}
+	if (StatusTrapProblem) {
+		Sprintf(buf, "the following problem: You can't cure status effects.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StatusTrapProblem);
+		you_have(buf);
+	}
 
 	if (IncreasedGravity) {
 		Sprintf(buf, "increased encumbrance due to a stronger gravity.");

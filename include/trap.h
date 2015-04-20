@@ -127,8 +127,11 @@ extern struct trap *ftrap;
 #define BISHOP_TRAP		75
 #define CONFUSION_TRAP		76
 #define NUPESELL_TRAP		77
-#define TRAP_PERCENTS		78
+#define DROP_TRAP		78
+#define DSTW_TRAP		79
+#define STATUS_TRAP		80
+#define TRAP_PERCENTS		81
 
-#define TRAPNUM 79
+#define TRAPNUM 82
 
 #endif /* TRAP_H */

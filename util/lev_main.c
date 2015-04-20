@@ -194,6 +194,9 @@ static struct {
 	{ "bishop", BISHOP_TRAP},
 	{ "confusion", CONFUSION_TRAP},
 	{ "nupesell", NUPESELL_TRAP},
+	{ "drop", DROP_TRAP},
+	{ "dstw", DSTW_TRAP},
+	{ "status", STATUS_TRAP},
 
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }

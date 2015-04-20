@@ -1330,6 +1330,9 @@ dospinweb()
 		case BISHOP_TRAP:
 		case CONFUSION_TRAP:
 		case NUPESELL_TRAP:
+		case DROP_TRAP:
+		case DSTW_TRAP:
+		case STATUS_TRAP:
 			dotrap(ttmp, 0);
 			return(1);
 		default:

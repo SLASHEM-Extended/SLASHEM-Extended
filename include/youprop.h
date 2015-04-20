@@ -189,6 +189,9 @@
 #define RotThirteen		u.uprops[ROT_THIRTEEN].intrinsic
 #define BishopGridbug		u.uprops[BISHOP_GRIDBUG].intrinsic
 #define ConfusionProblem		u.uprops[CONFUSION_PROBLEM].intrinsic
+#define NoDropProblem		u.uprops[DROP_BUG].intrinsic
+#define DSTWProblem		u.uprops[DSTW_BUG].intrinsic
+#define StatusTrapProblem		u.uprops[STATUS_FAILURE].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic

@@ -4178,6 +4178,9 @@ doapply()
 		RotThirteen = 0L;
 		BishopGridbug = 0L;
 		ConfusionProblem = 0L;
+		NoDropProblem = 0L;
+		DSTWProblem = 0L;
+		StatusTrapProblem = 0L;
 
 		break;
 	case GOD_O_METER:

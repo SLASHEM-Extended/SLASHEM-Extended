@@ -346,6 +346,9 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "bishop trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "confusion trap", C(CLR_CYAN)},	/* trap */
 	{'^', "super nupesell nix area", C(NO_COLOR)},	/* trap */
+	{'^', "drop trap", C(CLR_BROWN)},	/* trap */
+	{'^', "DSTW trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "status trap", C(CLR_WHITE)},	/* trap */
 
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -515,6 +518,9 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_bishop_trap),
 	g_FILLER(S_confusion_trap),
 	g_FILLER(S_nupesell_trap),
+	g_FILLER(S_drop_trap),
+	g_FILLER(S_dstw_trap),
+	g_FILLER(S_status_trap),
 
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -675,6 +681,9 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_bishop_trap),
 	g_FILLER(S_confusion_trap),
 	g_FILLER(S_nupesell_trap),
+	g_FILLER(S_drop_trap),
+	g_FILLER(S_dstw_trap),
+	g_FILLER(S_status_trap),
 
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -833,6 +842,9 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_bishop_trap),
 	g_FILLER(S_confusion_trap),
 	g_FILLER(S_nupesell_trap),
+	g_FILLER(S_drop_trap),
+	g_FILLER(S_dstw_trap),
+	g_FILLER(S_status_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1182,6 +1194,9 @@ boolean is_rlevel;
 	    showsyms[S_bishop_trap] = 0x04;
 	    showsyms[S_confusion_trap] = 0x04;
 	    showsyms[S_nupesell_trap] = 0x04;
+	    showsyms[S_drop_trap] = 0x04;
+	    showsyms[S_dstw_trap] = 0x04;
+	    showsyms[S_status_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

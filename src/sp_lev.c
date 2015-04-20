@@ -421,6 +421,12 @@ rndtrap()
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) rtrap = SPIKED_PIT; break;
 	     case CONFUSION_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) rtrap = SHIT_TRAP; break;
+	     case DROP_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) rtrap = Role_if(PM_SPACEWARS_FIGHTER) ? NUPESELL_TRAP : POISON_GAS_TRAP; break;
+	     case DSTW_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) rtrap = SLOW_GAS_TRAP; break;
+	     case STATUS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) rtrap = SCYTHING_BLADE; break;
 
 	    }
 	} while (rtrap == NO_TRAP);
@@ -482,6 +488,9 @@ randomtrap()
 	      if (rtrap == ROT_THIRTEEN_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) rtrap = RUST_TRAP;
 	      if (rtrap == BISHOP_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) rtrap = SPIKED_PIT;
 	      if (rtrap == CONFUSION_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) rtrap = SHIT_TRAP;
+	      if (rtrap == DROP_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 80 )) rtrap = Role_if(PM_SPACEWARS_FIGHTER) ? NUPESELL_TRAP : POISON_GAS_TRAP;
+	      if (rtrap == DSTW_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) rtrap = SLOW_GAS_TRAP;
+	      if (rtrap == STATUS_TRAP && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) rtrap = SCYTHING_BLADE;
 
 	} while (rtrap == NO_TRAP);
 	return rtrap;
@@ -2409,7 +2418,7 @@ boolean prefilled;
 
     typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
 
-	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
+	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(9) ? DSTW_TRAP : !rn2(9) ? STATUS_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? DROP_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
 
 		    if(rn2(3)) 
 			levl[sx][sy].typ = typ;

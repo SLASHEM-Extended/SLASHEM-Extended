@@ -1128,7 +1128,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != BISHOP_TRAP && ttype != CONFUSION_TRAP &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != BISHOP_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != CONFUSION_TRAP &&
 		ttype != ANTI_MAGIC && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT) && is_clinger(youmonst.data)))) {
@@ -2237,6 +2237,39 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 break;
 
+		 case DROP_TRAP:
+
+			if (NoDropProblem) break;
+
+			NoDropProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DSTW_TRAP:
+
+			if (DSTWProblem) break;
+
+			DSTWProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case STATUS_TRAP:
+
+			if (StatusTrapProblem) break;
+
+			StatusTrapProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+			if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+			if (HStun) set_itimeout(&HeavyStunned, HStun);
+			if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+			if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+			if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+			if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+			if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+			if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+
+		 break;
+
 		 case NUPESELL_TRAP: /* supposed to be impossible */
 
 		 break;
@@ -2874,7 +2907,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || RotThirteen || BishopGridbug || ConfusionProblem ) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem ) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -2901,6 +2934,9 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			RotThirteen = 0L;
 			BishopGridbug = 0L;
 			ConfusionProblem = 0L;
+			NoDropProblem = 0L;
+			DSTWProblem = 0L;
+			StatusTrapProblem = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -4482,6 +4518,9 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ROT_THIRTEEN_TRAP:
 		case BISHOP_TRAP:
 		case CONFUSION_TRAP:
+		case DROP_TRAP:
+		case DSTW_TRAP:
+		case STATUS_TRAP:
 
 			break;
 
