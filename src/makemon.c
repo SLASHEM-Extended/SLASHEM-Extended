@@ -8266,7 +8266,7 @@ register int	mmflags;
 		m_initxtraitem(mtmp);
 
 		/* for an elemental, monsters get musable items more often --Amy */
-		if (Race_if(PM_ELEMENTAL) && (rnd(mtmp->data->mmove) > 5) && !rn2(10)) {
+		if (Race_if(PM_ELEMENTAL) && mtmp->data->mmove && (rnd(mtmp->data->mmove) > 5) && !rn2(10)) {
 
 			switch (rnd(10)) {
 	
