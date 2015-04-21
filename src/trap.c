@@ -1958,6 +1958,15 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		seetrap(trap);
 		tele_trap(trap);
 		break;
+
+	    case RELOCATION_TRAP:
+		seetrap(trap);
+		pline("You feel yourself yanked in a direction you didn't know existed!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	      (void) safe_teleds(FALSE);
+		deltrap(trap);
+		break;
+
 	    case LEVEL_TELEP:
 		seetrap(trap);
 		level_tele_trap(trap);
@@ -4424,6 +4433,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case MAGIC_PORTAL: /* no longer allows players to simply get rid of them --Amy */
+		case RELOCATION_TRAP:
 			rloc(mtmp, FALSE);
 			break;
 

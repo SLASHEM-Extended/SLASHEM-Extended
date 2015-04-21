@@ -353,6 +353,8 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "pestilence trap", C(CLR_BRIGHT_GREEN)},	/* trap */
 	{'^', "famine trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "relocation trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -528,6 +530,8 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
 
+	g_FILLER(S_relocation_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -694,6 +698,8 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
 
+	g_FILLER(S_relocation_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -857,6 +863,8 @@ static uchar mac_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
+
+	g_FILLER(S_relocation_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1212,6 +1220,8 @@ boolean is_rlevel;
 
 	    showsyms[S_pestilence_trap] = 0x04;
 	    showsyms[S_famine_trap] = 0x04;
+
+	    showsyms[S_relocation_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

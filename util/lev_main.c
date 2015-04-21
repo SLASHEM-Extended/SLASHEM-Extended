@@ -201,6 +201,8 @@ static struct {
 	{ "pestilence", PESTILENCE_TRAP},
 	{ "famine", FAMINE_TRAP},
 
+	{ "relocation", RELOCATION_TRAP},
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

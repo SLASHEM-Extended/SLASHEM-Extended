@@ -1298,6 +1298,7 @@ dospinweb()
 		case GRAVITY_TRAP:
 		case STONE_TO_FLESH_TRAP:
 		case QUICKSAND_TRAP:
+		case RELOCATION_TRAP:
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
