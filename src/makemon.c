@@ -39,6 +39,8 @@ extern const int monstr[];
 #define m_initsgrp(mtmp, x, y)	m_initgrp(mtmp, x, y, 3)
 #define m_initlgrp(mtmp, x, y)	m_initgrp(mtmp, x, y, 10)
 #define m_initvlgrp(mtmp, x, y)  m_initgrp(mtmp, x, y, 20)
+#define m_initxlgrp(mtmp, x, y)  m_initgrp(mtmp, x, y, 40)
+#define m_initxxlgrp(mtmp, x, y)  m_initgrp(mtmp, x, y, 100)
 #define toostrong(monindx, lev) (monstr[monindx] > lev)
 #define tooweak(monindx, lev)	(monstr[monindx] < lev)
 #define Qstats(x)	(quest_status.x)
@@ -8238,22 +8240,29 @@ register int	mmflags;
 	set_malign(mtmp);		/* having finished peaceful changes */
 	if(anymon) { /* everything that spawns in groups can spawn in bigger groups --Amy */
 	    if ((ptr->geno & G_SGROUP) && rn2(2)) {
-		if(!rn2(160))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		if (!rn2(5000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(800))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(160))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(30))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    } else if (ptr->geno & G_LGROUP && rn2(3) ) {
-		if(!rn2(40))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		if (!rn2(1000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(200))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(40))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))	    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    }
-	    else if(ptr->geno & G_VLGROUP && rn2(5) ) {
-			if(rn2(3))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
-			else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
-			else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
+	    } else if(ptr->geno & G_VLGROUP && rn2(5) ) {
+		if (!rn2(200))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(20))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(rn2(3))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
 	    else if (!rn2(500) && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) && !(ptr->geno & G_UNIQ) ) {
-		if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		if (!rn2(500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(4)) m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
