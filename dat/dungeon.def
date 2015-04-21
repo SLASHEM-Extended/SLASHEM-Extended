@@ -238,10 +238,10 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 39
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 33
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 18
-RNDLEVEL:		"soko4" "D" @ (4, 0) 95 14
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 42
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 37
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 23
+RNDLEVEL:		"soko4" "D" @ (4, 0) 95 18
 
 #
 #   The city of Angband

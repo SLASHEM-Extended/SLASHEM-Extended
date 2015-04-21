@@ -882,6 +882,272 @@ OBJECT:'/',random,random
 
 MONSTER:'m',random, random
 
+# "Boomerang Boulders"
+MAZE:"soko4-15",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+         ----    
+ ---------..---  
+ |............---
+ |.......|......|
+---------|......|
+|........|......|
+|..------|-.-----
+--.......|.....| 
+ |..|..........| 
+ ---|....|.....| 
+    ------------ 
+ENDMAP
+BRANCH:(07,08,07,08),(0,0,0,0)
+STAIR:(08,05),up
+REGION:(00,00,16,10),lit,"ordinary"
+NON_DIGGABLE:(00,00,16,10)
+NON_PASSWALL:(00,00,16,10)
+
+# Boulders
+OBJECT:'`',"boulder",(03,02)
+OBJECT:'`',"boulder",(05,02)
+#
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(10,03)
+OBJECT:'`',"boulder",(13,03)
+OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(13,05)
+#
+OBJECT:'`',"boulder",(11,07)
+OBJECT:'`',"boulder",(12,08)
+OBJECT:'`',"boulder",(13,08)
+#
+OBJECT:'`',"boulder",(06,07)
+OBJECT:'`',"boulder",(05,08)
+
+# Traps
+TRAP:"pit",(07,05)
+TRAP:"pit",(06,05)
+TRAP:"pit",(05,05)
+TRAP:"pit",(04,05)
+TRAP:"pit",(03,05)
+TRAP:"pit",(02,05)
+TRAP:"pit",(02,06)
+TRAP:"pit",(02,07)
+TRAP:"pit",(03,07)
+TRAP:"pit",(04,07)
+
+# A little help
+OBJECT:'?',"earth",(02,08)
+OBJECT:'?',"earth",(03,08)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Through the Cracks"
+MAZE:"soko4-16",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+ ----                 
+ |..------------------
+ |.................|.|
+ |........-........|.|
+--.---..---.--.....|.|
+|..--..---..--.-----.|
+|....................|
+-------------------..|
+                  ----
+ENDMAP
+BRANCH:(17,04,17,04),(0,0,0,0)
+STAIR:(20,02),up
+REGION:(00,00,21,08),lit,"ordinary"
+NON_DIGGABLE:(00,00,21,08)
+NON_PASSWALL:(00,00,21,08)
+
+# Boulders
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(04,03)
+OBJECT:'`',"boulder",(05,02)
+#
+OBJECT:'`',"boulder",(09,02)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(06,05)
+#
+OBJECT:'`',"boulder",(11,05)
+OBJECT:'`',"boulder",(13,03)
+OBJECT:'`',"boulder",(14,02)
+#
+OBJECT:'`',"boulder",(14,05)
+OBJECT:'`',"boulder",(15,04)
+OBJECT:'`',"boulder",(16,03)
+OBJECT:'`',"boulder",(17,02)
+
+# Traps
+TRAP:"pit",(14,06)
+TRAP:"pit",(15,06)
+TRAP:"pit",(16,06)
+TRAP:"pit",(17,06)
+TRAP:"pit",(18,06)
+TRAP:"pit",(19,06)
+TRAP:"pit",(20,06)
+TRAP:"pit",(20,05)
+TRAP:"pit",(20,04)
+TRAP:"pit",(20,03)
+
+# A little help
+OBJECT:'?',"earth",(19,07)
+OBJECT:'?',"earth",(20,07)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Easy Peasey"
+MAZE:"soko4-17",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+  ------   ---- 
+  |....-----..| 
+  |...........| 
+  |....------.| 
+  |.........|.| 
+ --.........|.| 
+ |..........|.| 
+ |....|.------- 
+ ------.|...|   
+  |.........|   
+  --....|...|   
+   ---..|...|   
+     --------   
+ENDMAP
+BRANCH:(03,07,03,07),(0,0,0,0)
+STAIR:(13,06),up
+REGION:(00,00,14,12),lit,"ordinary"
+NON_DIGGABLE:(00,00,14,12)
+NON_PASSWALL:(00,00,14,12)
+
+# Boulders
+OBJECT:'`',"boulder",(05,10)
+OBJECT:'`',"boulder",(10,10)
+#
+OBJECT:'`',"boulder",(05,06)
+OBJECT:'`',"boulder",(03,05)
+OBJECT:'`',"boulder",(04,04)
+OBJECT:'`',"boulder",(05,03)
+OBJECT:'`',"boulder",(06,02)
+#
+OBJECT:'`',"boulder",(07,04)
+OBJECT:'`',"boulder",(08,05)
+OBJECT:'`',"boulder",(10,04)
+OBJECT:'`',"boulder",(10,06)
+
+# Traps
+TRAP:"pit",(07,02)
+TRAP:"pit",(08,02)
+TRAP:"pit",(09,02)
+TRAP:"pit",(10,02)
+TRAP:"pit",(11,02)
+TRAP:"pit",(12,02)
+TRAP:"pit",(13,03)
+TRAP:"pit",(13,04)
+TRAP:"pit",(13,05)
+
+# A little help
+OBJECT:'?',"earth",(12,01)
+OBJECT:'?',"earth",(13,01)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+
+# "First Things First"
+MAZE:"soko4-18",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+---------------
+|.....|.....|.|
+|.....|.....|.|
+|.....|.....|.|
+|...........|.|
+|--.--|.....|.|
+|.....|.....|.|
+|.....-------.|
+|.............|
+-----...----..|
+    -----  ----
+ENDMAP
+BRANCH:(02,02,02,02),(0,0,0,0)
+STAIR:(13,01),up
+REGION:(00,00,14,10),lit,"ordinary"
+NON_DIGGABLE:(00,00,14,10)
+NON_PASSWALL:(00,00,14,10)
+
+# Boulders
+OBJECT:'`',"boulder",(02,08)
+OBJECT:'`',"boulder",(04,08)
+OBJECT:'`',"boulder",(04,06)
+#
+OBJECT:'`',"boulder",(02,04)
+OBJECT:'`',"boulder",(05,04)
+OBJECT:'`',"boulder",(05,02)
+#
+OBJECT:'`',"boulder",(07,03)
+OBJECT:'`',"boulder",(08,02)
+OBJECT:'`',"boulder",(09,03)
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(07,05)
+OBJECT:'`',"boulder",(10,05)
+
+# Traps
+TRAP:"pit",(09,08)
+TRAP:"pit",(10,08)
+TRAP:"pit",(11,08)
+TRAP:"pit",(12,08)
+TRAP:"pit",(13,07)
+TRAP:"pit",(13,06)
+TRAP:"pit",(13,05)
+TRAP:"pit",(13,04)
+TRAP:"pit",(13,03)
+TRAP:"pit",(13,02)
+
+# A little help
+OBJECT:'?',"earth",(12,09)
+OBJECT:'?',"earth",(13,09)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
 ### Second level ###
 MAZE:"soko3-1",' '
 FLAGS:noteleport
@@ -2079,6 +2345,382 @@ MONSTER:'g',"gremlin", random, peaceful
 MONSTER:'g',"gremlin", random, peaceful
 MONSTER:'g',"gremlin", random, peaceful
 MONSTER:'g',"gremlin", random, peaceful
+
+# Evil Variant 2a
+MAZE:"soko3-19",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+ ----          -----------
+-|..|-------   |.........|
+|..........|   |.........|
+|..-----.-.|   |.........|
+|..|...|...|   |.........|
+|.........-|   |.........|
+|.......|..|   |.........|
+|.----..--.|   |.........|
+|........|.--  |.........|
+|.---.-.....------------+|
+|...|...-................|
+|.........----------------
+----|..|..|               
+    -------               
+ENDMAP
+STAIR:(03,01),down
+STAIR:(20,04),up
+DOOR:locked,(24,09)
+REGION:(00,00,25,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,25,13)
+NON_PASSWALL:(00,00,25,13)
+
+# Boulders
+OBJECT:'`',"boulder",(02,03)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(09,04)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(04,05)
+OBJECT:'`',"boulder",(09,05)
+OBJECT:'`',"boulder",(02,06)
+OBJECT:'`',"boulder",(05,06)
+OBJECT:'`',"boulder",(06,07)
+OBJECT:'`',"boulder",(03,08)
+OBJECT:'`',"boulder",(07,08)
+OBJECT:'`',"boulder",(05,09)
+OBJECT:'`',"boulder",(10,09)
+OBJECT:'`',"boulder",(07,10)
+OBJECT:'`',"boulder",(03,11)
+
+# Traps
+TRAP:"hole",(10,10)
+TRAP:"hole",(11,09)
+TRAP:"hole",(11,10)
+TRAP:"hole",(12,10)
+TRAP:"hole",(13,10)
+TRAP:"hole",(14,10)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
+TRAP:"hole",(18,10)
+TRAP:"hole",(19,10)
+TRAP:"hole",(20,10)
+TRAP:"hole",(21,10)
+TRAP:"hole",(22,10)
+TRAP:"hole",(23,10)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# Evil Variant 2b
+MAZE:"soko3-20",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+ ----          -----------
+-|..|-------   |.........|
+|..........|   |.........|
+|..-----.-.|   |.........|
+|..|...|...|   |.........|
+|.........-|   |.........|
+|.......|..|   |.........|
+|.---...--.|   |.........|
+|........|.--  |.........|
+|.---.-.....------------+|
+|...|...-................|
+|.........----------------
+----|..|..|               
+    -------               
+ENDMAP
+STAIR:(03,01),down
+STAIR:(20,04),up
+DOOR:locked,(24,09)
+REGION:(00,00,25,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,25,13)
+NON_PASSWALL:(00,00,25,13)
+
+# Boulders
+OBJECT:'`',"boulder",(02,03)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(09,04)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(04,05)
+OBJECT:'`',"boulder",(09,05)
+OBJECT:'`',"boulder",(02,06)
+OBJECT:'`',"boulder",(05,06)
+OBJECT:'`',"boulder",(05,07)
+OBJECT:'`',"boulder",(06,07)
+OBJECT:'`',"boulder",(03,08)
+OBJECT:'`',"boulder",(07,08)
+OBJECT:'`',"boulder",(05,09)
+OBJECT:'`',"boulder",(09,09)
+OBJECT:'`',"boulder",(07,10)
+OBJECT:'`',"boulder",(03,11)
+
+# Traps
+TRAP:"hole",(10,10)
+TRAP:"hole",(11,09)
+TRAP:"hole",(11,10)
+TRAP:"hole",(12,10)
+TRAP:"hole",(13,10)
+TRAP:"hole",(14,10)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
+TRAP:"hole",(18,10)
+TRAP:"hole",(19,10)
+TRAP:"hole",(20,10)
+TRAP:"hole",(21,10)
+TRAP:"hole",(22,10)
+TRAP:"hole",(23,10)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Fly on the Wall"
+MAZE:"soko3-21",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+                      ---- 
+    -------------------..| 
+ ----....................--
+ |......--...----------...|
+ |...--.....--        |...|
+ |...--.....|         --|.|
+ |..........--  --------|+|
+ |...........|  |.........|
+ --.----------  |.........|
+  |..|          |.........|
+ --..-------    |.........|
+ |.........|    |.........|
+ |.........|    -----------
+ -----------               
+ENDMAP
+STAIR:(12,07),down
+STAIR:(21,09),up
+DOOR:locked,(25,06)
+REGION:(00,00,25,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,26,13)
+NON_PASSWALL:(00,00,26,13)
+
+# Boulders
+OBJECT:'`',"boulder",(03,11)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(07,11)
+#
+OBJECT:'`',"boulder",(03,08)
+#
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(03,04)
+OBJECT:'`',"boulder",(04,05)
+OBJECT:'`',"boulder",(04,06)
+#
+OBJECT:'`',"boulder",(08,07)
+OBJECT:'`',"boulder",(07,06)
+OBJECT:'`',"boulder",(07,05)
+OBJECT:'`',"boulder",(08,05)
+OBJECT:'`',"boulder",(09,04)
+OBJECT:'`',"boulder",(10,05)
+#
+OBJECT:'`',"boulder",(10,03)
+OBJECT:'`',"boulder",(11,03)
+
+# Traps
+TRAP:"hole",(13,02)
+TRAP:"hole",(14,02)
+TRAP:"hole",(15,02)
+TRAP:"hole",(16,02)
+TRAP:"hole",(17,02)
+TRAP:"hole",(18,02)
+TRAP:"hole",(19,02)
+TRAP:"hole",(20,02)
+TRAP:"hole",(21,02)
+TRAP:"hole",(22,02)
+TRAP:"hole",(23,02)
+TRAP:"hole",(24,02)
+TRAP:"hole",(24,03)
+TRAP:"hole",(25,04)
+TRAP:"hole",(25,05)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Boulder Halls of Zim"
+MAZE:"soko3-22",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+   ---------    -----------
+  --.......|    |.........|
+  |........--   |.........|
+  ---..---..|   |.........|
+    |..| |..|   |.........|
+ ----.----..|   |.........|
+ |.......|..|   |.........|
+ |.......|..|   |.........|
+ |..........|   |.........|
+ |..........-------------+|
+ --.....--................|
+  --.....------------------
+   ---.....|               
+     -------               
+ENDMAP
+STAIR:(07,12),down
+STAIR:(21,05),up
+DOOR:locked,(25,09)
+REGION:(00,00,26,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,26,13)
+NON_PASSWALL:(00,00,26,13)
+
+# Boulders
+OBJECT:'`',"boulder",(05,02)
+OBJECT:'`',"boulder",(07,02)
+OBJECT:'`',"boulder",(09,02)
+#
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(05,06)
+OBJECT:'`',"boulder",(07,06)
+#
+OBJECT:'`',"boulder",(03,09)
+OBJECT:'`',"boulder",(05,08)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(07,09)
+
+OBJECT:'`',"boulder",(09,09)
+OBJECT:'`',"boulder",(10,08)
+OBJECT:'`',"boulder",(11,08)
+OBJECT:'`',"boulder",(11,06)
+
+# Traps
+TRAP:"hole",(12,10)
+TRAP:"hole",(13,10)
+TRAP:"hole",(14,10)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
+TRAP:"hole",(18,10)
+TRAP:"hole",(19,10)
+TRAP:"hole",(20,10)
+TRAP:"hole",(21,10)
+TRAP:"hole",(22,10)
+TRAP:"hole",(23,10)
+TRAP:"hole",(24,10)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Two-Phase"
+MAZE:"soko3-23",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+  ---------------------    
+  |.............|.....-----
+  |....---......|.........|
+  -----|.|......|.........|
+ ----..|.|-.---.----.----.|
+ |.....|.|....-..| |......|
+ |..|..|.|.......---......|
+ --.|....|.....-..........|
+  |.|....|.---...---.------
+  |.|-----............|    
+  |..............------     
+  |..-------------         
+  ----                     
+ENDMAP
+STAIR:(05,02),down
+STAIR:(08,03),up
+REGION:(00,00,26,12),lit,"ordinary"
+NON_DIGGABLE:(00,00,26,12)
+NON_PASSWALL:(00,00,26,12)
+
+# Boulders
+OBJECT:'`',"boulder",(04,01)
+#
+OBJECT:'`',"boulder",(06,06)
+OBJECT:'`',"boulder",(07,07)
+#
+OBJECT:'`',"boulder",(11,09)
+OBJECT:'`',"boulder",(11,07)
+OBJECT:'`',"boulder",(15,06)
+#
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(11,03)
+OBJECT:'`',"boulder",(12,02)
+OBJECT:'`',"boulder",(13,03)
+OBJECT:'`',"boulder",(14,02)
+OBJECT:'`',"boulder",(15,03)
+#
+OBJECT:'`',"boulder",(18,03)
+OBJECT:'`',"boulder",(19,02)
+OBJECT:'`',"boulder",(21,02)
+OBJECT:'`',"boulder",(21,03)
+OBJECT:'`',"boulder",(24,03)
+#
+OBJECT:'`',"boulder",(22,05)
+OBJECT:'`',"boulder",(24,07)
+
+# Traps
+TRAP:"hole",(09,10)
+TRAP:"hole",(08,10)
+TRAP:"hole",(07,10)
+TRAP:"hole",(06,10)
+TRAP:"hole",(05,10)
+TRAP:"hole",(04,10)
+TRAP:"hole",(03,09)
+TRAP:"hole",(03,08)
+TRAP:"hole",(03,07)
+TRAP:"hole",(03,06)
+TRAP:"hole",(04,05)
+TRAP:"hole",(05,05)
+TRAP:"hole",(06,07)
+TRAP:"hole",(08,07)
+TRAP:"hole",(08,06)
+TRAP:"hole",(08,05)
+TRAP:"hole",(08,04)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
 
 ### Third level ###
 MAZE:"soko2-1",' '
@@ -4451,6 +5093,847 @@ MONSTER[20%]: '@', "watch lieutenant", random, peaceful
 MONSTER[10%]: '@', "watch leader", random, peaceful
 MONSTER[10%]: '@', "watch leader", random, peaceful
 MONSTER[10%]: '@', "watch leader", random, peaceful
+
+# evil patch idea by jonadab - full-screen-sized sokoban level
+MAZE:"soko2-34",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+
+#         1         2         3         4         5         6         7
+#12345678901234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+         ------    -------                      -----                 ----- 
+ ---------....------.....------------   ---------...-------------------...| 
+ |..................................-----...........|.....................| 
+ |.......|....------.--.--...--.--..................|.....................| 
+ |.......|....|    |.|...|-.-|...|..--.--.................................| 
+--.-----.|--.------|.|...|...|...|..|...|--.------.-----..................| 
+|........| |.......|.|...|...|...|..|...|....|.....|   |.....-------...---| 
+|........| |.......|.|...|...|...|..|...|....|.----|   |.....|     |...|..--
+|........| |.......|.|...|...................|.....---------------------...|
+---.----.|-|.......|.....................................................|.|
+  |.|  |.|.|..----------------------------------+-----------------------.|.|
+  |.|---.-+|......................................|...------------------.|.|
+  |.|......|..-------------------------------.....|........................|
+  |.|.........|  |.....|.........|......|...|.....|..------------------|..--
+  |.|......|..|  |...............|..........|.....|....................|..| 
+---.-----.---.---|.....|.........|..........|..|..|-------------------+|..| 
+|.......|........|.....|................|...+..|..|....................|..| 
+|.......|........|.....|.........|......|...|..|..----------------------..--
+|....|...........|.....|.........|......|...|..............................|
+|....|..----------------------------------------------------------------...|
+---------                                                              -----
+ENDMAP
+#         1         2         3         4         5         6         7
+#12345678901234567890123456789012345678901234567890123456789012345678901234567890
+STAIR:(2,7), down
+STAIR:(51,16), up
+REGION:(00,00,75,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+OBJECT:'`',"boulder",(3,3)
+OBJECT:'`',"boulder",(4,3)
+OBJECT:'`',"boulder",(5,3)
+OBJECT:'`',"boulder",(6,3)
+OBJECT:'`',"boulder",(2,4)
+OBJECT:'`',"boulder",(7,4)
+OBJECT:'`',"boulder",(8,2)
+OBJECT:'`',"boulder",(12,2)
+OBJECT:'`',"boulder",(13,2)
+OBJECT:'`',"boulder",(14,2)
+OBJECT:'`',"boulder",(12,3)
+OBJECT:'`',"boulder",(11,4)
+OBJECT:'`',"boulder",(21,2)
+OBJECT:'`',"boulder",(23,2)
+OBJECT:'`',"boulder",(25,2)
+OBJECT:'`',"boulder",(23,4)
+OBJECT:'`',"boulder",(22,5)
+OBJECT:'`',"boulder",(22,7)
+OBJECT:'`',"boulder",(24,7)
+OBJECT:'`',"boulder",(23,8)
+OBJECT:'`',"boulder",(26,6)
+OBJECT:'`',"boulder",(28,6)
+OBJECT:'`',"boulder",(27,7)
+OBJECT:'`',"boulder",(26,8)
+OBJECT:'`',"boulder",(29,8)
+OBJECT:'`',"boulder",(30,7)
+OBJECT:'`',"boulder",(32,7)
+OBJECT:'`',"boulder",(30,5)
+OBJECT:'`',"boulder",(32,5)
+OBJECT:'`',"boulder",(31,6)
+OBJECT:'`',"boulder",(36,8)
+OBJECT:'`',"boulder",(37,6)
+OBJECT:'`',"boulder",(38,7)
+OBJECT:'`',"boulder",(39,6)
+OBJECT:'`',"boulder",(40,8)
+OBJECT:'`',"boulder",(41,8)
+OBJECT:'`',"boulder",(42,6)
+OBJECT:'`',"boulder",(43,4)
+OBJECT:'`',"boulder",(43,7)
+OBJECT:'`',"boulder",(44,8)
+OBJECT:'`',"boulder",(48,9)
+OBJECT:'`',"boulder",(50,9)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(6,6)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(5,7)
+OBJECT:'`',"boulder",(6,8)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(7,12)
+OBJECT:'`',"boulder",(6,14)
+OBJECT:'`',"boulder",(9,14)
+OBJECT:'`',"boulder",(8,13)
+OBJECT:'`',"boulder",(2,16)
+OBJECT:'`',"boulder",(4,16)
+OBJECT:'`',"boulder",(3,17)
+OBJECT:'`',"boulder",(4,17)
+OBJECT:'`',"boulder",(2,18)
+OBJECT:'`',"boulder",(4,18)
+OBJECT:'`',"boulder",(7,18)
+OBJECT:'`',"boulder",(10,17)
+OBJECT:'`',"boulder",(11,16)
+OBJECT:'`',"boulder",(12,18)
+OBJECT:'`',"boulder",(13,16)
+OBJECT:'`',"boulder",(13,6)
+OBJECT:'`',"boulder",(14,7)
+OBJECT:'`',"boulder",(16,7)
+OBJECT:'`',"boulder",(14,8)
+OBJECT:'`',"boulder",(17,8)
+OBJECT:'`',"boulder",(13,9)
+OBJECT:'`',"boulder",(16,9)
+OBJECT:'`',"boulder",(13,10)
+OBJECT:'`',"boulder",(12,10)
+OBJECT:'`',"boulder",(13,11)
+OBJECT:'`',"boulder",(19,16)
+OBJECT:'`',"boulder",(19,15)
+OBJECT:'`',"boulder",(20,14)
+OBJECT:'`',"boulder",(21,14)
+OBJECT:'`',"boulder",(20,17)
+OBJECT:'`',"boulder",(21,16)
+OBJECT:'`',"boulder",(22,15)
+OBJECT:'`',"boulder",(22,17)
+OBJECT:'`',"boulder",(25,16)
+OBJECT:'`',"boulder",(26,15)
+OBJECT:'`',"boulder",(26,17)
+OBJECT:'`',"boulder",(27,17)
+OBJECT:'`',"boulder",(28,17)
+OBJECT:'`',"boulder",(29,17)
+OBJECT:'`',"boulder",(30,17)
+OBJECT:'`',"boulder",(31,17)
+OBJECT:'`',"boulder",(27,14)
+OBJECT:'`',"boulder",(28,14)
+OBJECT:'`',"boulder",(29,15)
+OBJECT:'`',"boulder",(30,14)
+OBJECT:'`',"boulder",(31,14)
+OBJECT:'`',"boulder",(32,15)
+OBJECT:'`',"boulder",(35,14)
+OBJECT:'`',"boulder",(35,15)
+OBJECT:'`',"boulder",(35,17)
+OBJECT:'`',"boulder",(36,15)
+OBJECT:'`',"boulder",(36,16)
+OBJECT:'`',"boulder",(37,14)
+OBJECT:'`',"boulder",(37,15)
+OBJECT:'`',"boulder",(37,17)
+OBJECT:'`',"boulder",(39,14)
+OBJECT:'`',"boulder",(39,15)
+OBJECT:'`',"boulder",(41,16)
+OBJECT:'`',"boulder",(42,15)
+OBJECT:'`',"boulder",(42,14)
+OBJECT:'`',"boulder",(43,15)
+OBJECT:'`',"boulder",(43,16)
+OBJECT:'`',"boulder",(43,17)
+OBJECT:'`',"boulder",(46,17)
+OBJECT:'`',"boulder",(45,14)
+OBJECT:'`',"boulder",(45,12)
+OBJECT:'`',"boulder",(46,11)
+OBJECT:'`',"boulder",(47,12)
+OBJECT:'`',"boulder",(48,13)
+OBJECT:'`',"boulder",(48,11)
+OBJECT:'`',"boulder",(49,12)
+
+MONSTER: '@', "boulder master", (49,15)
+MONSTER: '@', "boulder master", (49,18)
+MONSTER: '@', "boulder master", (48,17)
+MONSTER: '@', "boulder master", (72,18)
+
+MONSTER: '@', "boulder master", (51,02)
+MONSTER: '@', "boulder master", (51,04)
+MONSTER: '@', "boulder master", (54,02)
+MONSTER: '@', "boulder master", (55,03)
+MONSTER: '@', "boulder master", (56,04)
+MONSTER: '@', "boulder master", (56,06)
+MONSTER: '@', "boulder master", (57,03)
+MONSTER: '@', "boulder master", (57,05)
+MONSTER: '@', "boulder master", (58,02)
+MONSTER: '@', "boulder master", (58,04)
+MONSTER: '@', "boulder master", (59,03)
+MONSTER: '@', "boulder master", (59,06)
+MONSTER: '@', "boulder master", (60,05)
+MONSTER: '@', "boulder master", (61,04)
+MONSTER: '@', "boulder master", (62,03)
+MONSTER: '@', "boulder master", (62,05)
+MONSTER: '@', "boulder master", (63,02)
+MONSTER: '@', "boulder master", (63,04)
+MONSTER: '@', "boulder master", (64,03)
+MONSTER: '@', "boulder master", (65,02)
+MONSTER: '@', "boulder master", (67,05)
+MONSTER: '@', "boulder master", (68,04)
+MONSTER: '@', "boulder master", (69,03)
+MONSTER: '@', "boulder master", (69,06)
+MONSTER: '@', "boulder master", (70,02)
+MONSTER: '@', "boulder master", (70,05)
+MONSTER: '@', "boulder master", (71,04)
+MONSTER: '@', "boulder master", (72,03)
+
+TRAP:"hole",(3,9)
+TRAP:"hole",(3,10)
+TRAP:"hole",(3,11)
+TRAP:"hole",(3,12)
+TRAP:"hole",(3,13)
+TRAP:"hole",(3,14)
+TRAP:"hole",(3,15)
+TRAP:"hole",(15,2)
+TRAP:"hole",(16,2)
+TRAP:"hole",(17,2)
+TRAP:"hole",(18,2)
+TRAP:"hole",(19,2)
+TRAP:"hole",(20,3)
+TRAP:"hole",(20,4)
+TRAP:"hole",(20,5)
+TRAP:"hole",(20,6)
+TRAP:"hole",(20,7)
+TRAP:"hole",(20,8)
+TRAP:"hole",(36,3)
+TRAP:"hole",(37,3)
+TRAP:"hole",(38,3)
+TRAP:"hole",(39,3)
+TRAP:"hole",(40,3)
+TRAP:"hole",(36,9)
+TRAP:"hole",(37,9)
+TRAP:"hole",(38,9)
+TRAP:"hole",(39,9)
+TRAP:"hole",(40,9)
+TRAP:"hole",(41,9)
+TRAP:"hole",(42,9)
+TRAP:"hole",(43,9)
+TRAP:"hole",(44,9)
+TRAP:"hole",(45,9)
+TRAP:"hole",(51,9)
+TRAP:"hole",(52,9)
+TRAP:"hole",(53,9)
+TRAP:"hole",(54,9)
+TRAP:"hole",(55,9)
+TRAP:"hole",(56,9)
+TRAP:"hole",(57,9)
+TRAP:"hole",(58,9)
+TRAP:"hole",(59,9)
+TRAP:"hole",(60,9)
+TRAP:"hole",(61,9)
+TRAP:"hole",(62,9)
+TRAP:"hole",(63,9)
+TRAP:"hole",(64,9)
+TRAP:"hole",(65,9)
+TRAP:"hole",(66,9)
+TRAP:"hole",(67,9)
+TRAP:"hole",(68,9)
+TRAP:"hole",(69,9)
+TRAP:"hole",(70,9)
+TRAP:"hole",(71,9)
+TRAP:"hole",(72,9)
+TRAP:"hole",(72,10)
+TRAP:"hole",(72,11)
+TRAP:"hole",(72,12)
+TRAP:"hole",(52,12)
+TRAP:"hole",(53,12)
+TRAP:"hole",(54,12)
+TRAP:"hole",(55,12)
+TRAP:"hole",(56,12)
+TRAP:"hole",(57,12)
+TRAP:"hole",(58,12)
+TRAP:"hole",(59,12)
+TRAP:"hole",(60,12)
+TRAP:"hole",(61,12)
+TRAP:"hole",(62,12)
+TRAP:"hole",(63,12)
+TRAP:"hole",(64,12)
+TRAP:"hole",(65,12)
+TRAP:"hole",(66,12)
+TRAP:"hole",(67,12)
+TRAP:"hole",(68,12)
+TRAP:"hole",(69,12)
+TRAP:"hole",(70,12)
+TRAP:"hole",(71,12)
+TRAP:"hole",(52,13)
+TRAP:"hole",(52,14)
+TRAP:"hole",(53,14)
+TRAP:"hole",(54,14)
+TRAP:"hole",(55,14)
+TRAP:"hole",(56,14)
+TRAP:"hole",(57,14)
+TRAP:"hole",(58,14)
+TRAP:"hole",(59,14)
+TRAP:"hole",(60,14)
+TRAP:"hole",(61,14)
+TRAP:"hole",(62,14)
+TRAP:"hole",(63,14)
+TRAP:"hole",(64,14)
+TRAP:"hole",(65,14)
+TRAP:"hole",(66,14)
+TRAP:"hole",(67,14)
+TRAP:"hole",(68,14)
+TRAP:"hole",(69,14)
+
+MONSTER: '@', "hole master", (14,11)
+MONSTER: '@', "hole master", (15,11)
+MONSTER: '@', "hole master", (16,11)
+MONSTER: '@', "hole master", (17,11)
+MONSTER: '@', "hole master", (18,11)
+MONSTER: '@', "hole master", (19,11)
+MONSTER: '@', "hole master", (20,11)
+MONSTER: '@', "hole master", (21,11)
+MONSTER: '@', "hole master", (22,11)
+MONSTER: '@', "hole master", (23,11)
+MONSTER: '@', "hole master", (24,11)
+MONSTER: '@', "hole master", (25,11)
+MONSTER: '@', "hole master", (26,11)
+MONSTER: '@', "hole master", (27,11)
+MONSTER: '@', "hole master", (28,11)
+MONSTER: '@', "hole master", (29,11)
+MONSTER: '@', "hole master", (30,11)
+MONSTER: '@', "hole master", (31,11)
+MONSTER: '@', "hole master", (32,11)
+MONSTER: '@', "hole master", (33,11)
+MONSTER: '@', "hole master", (34,11)
+MONSTER: '@', "hole master", (35,11)
+MONSTER: '@', "hole master", (36,11)
+MONSTER: '@', "hole master", (37,11)
+MONSTER: '@', "hole master", (38,11)
+MONSTER: '@', "hole master", (39,11)
+MONSTER: '@', "hole master", (40,11)
+MONSTER: '@', "hole master", (41,11)
+MONSTER: '@', "hole master", (42,11)
+MONSTER: '@', "hole master", (43,11)
+MONSTER: '@', "hole master", (44,11)
+
+DOOR:locked,(10,11)
+DOOR:locked,(48,10)
+DOOR:locked,(70,15)
+DOOR:locked,(44,16)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+MAZE:"soko2-35",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+
+#         1         2         3         4         5         6         7
+#12345678901234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+.........------....-------......................-----.................-----.
+.-.-------....---.--.....------------...---------...----------.--------...|.
+.|..................................--.--...........|.....................|.
+.|.......|....------.--.--...--.--..................|.......................
+.|.......|....|....|.|...|-.-|...|..--.--.................................|.
+--.-----.|--.---.--|.|...|...|...|..|...|--.------.--.--..................|.
+|........|.|.......|.|...|...|...|..|...|....|.....|...|.....---.---...---|.
+|........|.........|.|...|...|...|..|...|....|.----|...|.....|.....|...|..--
+|........|.|.......|.|...|...................|.....---------------------...|
+---.----.|-|.......|.....................................................|.|
+..|....|.|.|..----------------------------------+-----------------------.|.|
+..|.|---.-+|......................................|...------------------.|.|
+....|......|..-------------------------------.....|........................|
+..|.|.........|..|.....|.........|......|...|.....|..------------------|..--
+..|.|......|..|..|...............|..........|.....|....................|..|.
+---.-----.---.--.|.....|.........|..........|..|..|-------------------+|....
+|.......|........|.....|................|...+..|..|....................|..|.
+|.......|........|.....|.........|......|...|..|..----------------------..--
+|....|...........|.....|.........|......|...|..............................|
+|....|..-------------------------------.--------------------------------...|
+---------..............................................................-----
+ENDMAP
+#         1         2         3         4         5         6         7
+#12345678901234567890123456789012345678901234567890123456789012345678901234567890
+STAIR:(2,7), down
+STAIR:(51,16), up
+REGION:(00,00,75,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+REGION:(00,00,00,04),random,"randomroom"
+REGION:(01,00,08,00),random,"randomroom"
+REGION:(15,00,18,00),random,"randomroom"
+REGION:(26,00,47,00),random,"randomroom"
+REGION:(37,01,39,01),random,"randomroom"
+REGION:(53,00,69,00),random,"randomroom"
+REGION:(75,00,75,07),random,"randomroom"
+REGION:(75,14,75,16),random,"randomroom"
+REGION:(09,20,70,20),random,"randomroom"
+REGION:(00,10,01,14),random,"randomroom"
+REGION:(15,04,18,04),random,"randomroom"
+REGION:(05,10,06,10),random,"randomroom"
+REGION:(52,06,54,07),random,"randomroom"
+REGION:(62,07,66,07),random,"randomroom"
+REGION:(15,13,16,14),random,"randomroom"
+REGION:(18,13,22,18),random,"randomroom"
+REGION:(10,06,10,08),random,"randomroom"
+REGION:(10,10,10,10),random,"randomroom"
+
+OBJECT:'`',"boulder",(3,3)
+OBJECT:'`',"boulder",(4,3)
+OBJECT:'`',"boulder",(5,3)
+OBJECT:'`',"boulder",(6,3)
+OBJECT:'`',"boulder",(2,4)
+OBJECT:'`',"boulder",(7,4)
+OBJECT:'`',"boulder",(8,2)
+OBJECT:'`',"boulder",(12,2)
+OBJECT:'`',"boulder",(13,2)
+OBJECT:'`',"boulder",(14,2)
+OBJECT:'`',"boulder",(12,3)
+OBJECT:'`',"boulder",(11,4)
+OBJECT:'`',"boulder",(21,2)
+OBJECT:'`',"boulder",(23,2)
+OBJECT:'`',"boulder",(25,2)
+OBJECT:'`',"boulder",(23,4)
+OBJECT:'`',"boulder",(22,5)
+OBJECT:'`',"boulder",(22,7)
+OBJECT:'`',"boulder",(24,7)
+OBJECT:'`',"boulder",(23,8)
+OBJECT:'`',"boulder",(26,6)
+OBJECT:'`',"boulder",(28,6)
+OBJECT:'`',"boulder",(27,7)
+OBJECT:'`',"boulder",(26,8)
+OBJECT:'`',"boulder",(29,8)
+OBJECT:'`',"boulder",(30,7)
+OBJECT:'`',"boulder",(32,7)
+OBJECT:'`',"boulder",(30,5)
+OBJECT:'`',"boulder",(32,5)
+OBJECT:'`',"boulder",(31,6)
+OBJECT:'`',"boulder",(36,8)
+OBJECT:'`',"boulder",(37,6)
+OBJECT:'`',"boulder",(38,7)
+OBJECT:'`',"boulder",(39,6)
+OBJECT:'`',"boulder",(40,8)
+OBJECT:'`',"boulder",(41,8)
+OBJECT:'`',"boulder",(42,6)
+OBJECT:'`',"boulder",(43,4)
+OBJECT:'`',"boulder",(43,7)
+OBJECT:'`',"boulder",(44,8)
+OBJECT:'`',"boulder",(48,9)
+OBJECT:'`',"boulder",(50,9)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(6,6)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(5,7)
+OBJECT:'`',"boulder",(6,8)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(7,12)
+OBJECT:'`',"boulder",(6,14)
+OBJECT:'`',"boulder",(9,14)
+OBJECT:'`',"boulder",(8,13)
+OBJECT:'`',"boulder",(2,16)
+OBJECT:'`',"boulder",(4,16)
+OBJECT:'`',"boulder",(3,17)
+OBJECT:'`',"boulder",(4,17)
+OBJECT:'`',"boulder",(2,18)
+OBJECT:'`',"boulder",(4,18)
+OBJECT:'`',"boulder",(7,18)
+OBJECT:'`',"boulder",(10,17)
+OBJECT:'`',"boulder",(11,16)
+OBJECT:'`',"boulder",(12,18)
+OBJECT:'`',"boulder",(13,16)
+OBJECT:'`',"boulder",(13,6)
+OBJECT:'`',"boulder",(14,7)
+OBJECT:'`',"boulder",(16,7)
+OBJECT:'`',"boulder",(14,8)
+OBJECT:'`',"boulder",(17,8)
+OBJECT:'`',"boulder",(13,9)
+OBJECT:'`',"boulder",(16,9)
+OBJECT:'`',"boulder",(13,10)
+OBJECT:'`',"boulder",(12,10)
+OBJECT:'`',"boulder",(13,11)
+OBJECT:'`',"boulder",(19,16)
+OBJECT:'`',"boulder",(19,15)
+OBJECT:'`',"boulder",(20,14)
+OBJECT:'`',"boulder",(21,14)
+OBJECT:'`',"boulder",(20,17)
+OBJECT:'`',"boulder",(21,16)
+OBJECT:'`',"boulder",(22,15)
+OBJECT:'`',"boulder",(22,17)
+OBJECT:'`',"boulder",(25,16)
+OBJECT:'`',"boulder",(26,15)
+OBJECT:'`',"boulder",(26,17)
+OBJECT:'`',"boulder",(27,17)
+OBJECT:'`',"boulder",(28,17)
+OBJECT:'`',"boulder",(29,17)
+OBJECT:'`',"boulder",(30,17)
+OBJECT:'`',"boulder",(31,17)
+OBJECT:'`',"boulder",(27,14)
+OBJECT:'`',"boulder",(28,14)
+OBJECT:'`',"boulder",(29,15)
+OBJECT:'`',"boulder",(30,14)
+OBJECT:'`',"boulder",(31,14)
+OBJECT:'`',"boulder",(32,15)
+OBJECT:'`',"boulder",(35,14)
+OBJECT:'`',"boulder",(35,15)
+OBJECT:'`',"boulder",(35,17)
+OBJECT:'`',"boulder",(36,15)
+OBJECT:'`',"boulder",(36,16)
+OBJECT:'`',"boulder",(37,14)
+OBJECT:'`',"boulder",(37,15)
+OBJECT:'`',"boulder",(37,17)
+OBJECT:'`',"boulder",(39,14)
+OBJECT:'`',"boulder",(39,15)
+OBJECT:'`',"boulder",(41,16)
+OBJECT:'`',"boulder",(42,15)
+OBJECT:'`',"boulder",(42,14)
+OBJECT:'`',"boulder",(43,15)
+OBJECT:'`',"boulder",(43,16)
+OBJECT:'`',"boulder",(43,17)
+OBJECT:'`',"boulder",(46,17)
+OBJECT:'`',"boulder",(45,14)
+OBJECT:'`',"boulder",(45,12)
+OBJECT:'`',"boulder",(46,11)
+OBJECT:'`',"boulder",(47,12)
+OBJECT:'`',"boulder",(48,13)
+OBJECT:'`',"boulder",(48,11)
+OBJECT:'`',"boulder",(49,12)
+
+MONSTER: '@', "boulder master", (49,15)
+MONSTER: '@', "boulder master", (49,18)
+MONSTER: '@', "boulder master", (48,17)
+MONSTER: '@', "boulder master", (72,18)
+
+MONSTER: '@', "boulder master", (51,02)
+MONSTER: '@', "boulder master", (51,04)
+MONSTER: '@', "boulder master", (54,02)
+MONSTER: '@', "boulder master", (55,03)
+MONSTER: '@', "boulder master", (56,04)
+MONSTER: '@', "boulder master", (56,06)
+MONSTER: '@', "boulder master", (57,03)
+MONSTER: '@', "boulder master", (57,05)
+MONSTER: '@', "boulder master", (58,02)
+MONSTER: '@', "boulder master", (58,04)
+MONSTER: '@', "boulder master", (59,03)
+MONSTER: '@', "boulder master", (59,06)
+MONSTER: '@', "boulder master", (60,05)
+MONSTER: '@', "boulder master", (61,04)
+MONSTER: '@', "boulder master", (62,03)
+MONSTER: '@', "boulder master", (62,05)
+MONSTER: '@', "boulder master", (63,02)
+MONSTER: '@', "boulder master", (63,04)
+MONSTER: '@', "boulder master", (64,03)
+MONSTER: '@', "boulder master", (65,02)
+MONSTER: '@', "boulder master", (67,05)
+MONSTER: '@', "boulder master", (68,04)
+MONSTER: '@', "boulder master", (69,03)
+MONSTER: '@', "boulder master", (69,06)
+MONSTER: '@', "boulder master", (70,02)
+MONSTER: '@', "boulder master", (70,05)
+MONSTER: '@', "boulder master", (71,04)
+MONSTER: '@', "boulder master", (72,03)
+
+TRAP:"hole",(3,9)
+TRAP:"hole",(3,10)
+TRAP:"hole",(3,11)
+TRAP:"hole",(3,12)
+TRAP:"hole",(3,13)
+TRAP:"hole",(3,14)
+TRAP:"hole",(3,15)
+TRAP:"hole",(15,2)
+TRAP:"hole",(16,2)
+TRAP:"hole",(17,2)
+TRAP:"hole",(18,2)
+TRAP:"hole",(19,2)
+TRAP:"hole",(20,3)
+TRAP:"hole",(20,4)
+TRAP:"hole",(20,5)
+TRAP:"hole",(20,6)
+TRAP:"hole",(20,7)
+TRAP:"hole",(20,8)
+TRAP:"hole",(36,3)
+TRAP:"hole",(37,3)
+TRAP:"hole",(38,3)
+TRAP:"hole",(39,3)
+TRAP:"hole",(40,3)
+TRAP:"hole",(36,9)
+TRAP:"hole",(37,9)
+TRAP:"hole",(38,9)
+TRAP:"hole",(39,9)
+TRAP:"hole",(40,9)
+TRAP:"hole",(41,9)
+TRAP:"hole",(42,9)
+TRAP:"hole",(43,9)
+TRAP:"hole",(44,9)
+TRAP:"hole",(45,9)
+TRAP:"hole",(51,9)
+TRAP:"hole",(52,9)
+TRAP:"hole",(53,9)
+TRAP:"hole",(54,9)
+TRAP:"hole",(55,9)
+TRAP:"hole",(56,9)
+TRAP:"hole",(57,9)
+TRAP:"hole",(58,9)
+TRAP:"hole",(59,9)
+TRAP:"hole",(60,9)
+TRAP:"hole",(61,9)
+TRAP:"hole",(62,9)
+TRAP:"hole",(63,9)
+TRAP:"hole",(64,9)
+TRAP:"hole",(65,9)
+TRAP:"hole",(66,9)
+TRAP:"hole",(67,9)
+TRAP:"hole",(68,9)
+TRAP:"hole",(69,9)
+TRAP:"hole",(70,9)
+TRAP:"hole",(71,9)
+TRAP:"hole",(72,9)
+TRAP:"hole",(72,10)
+TRAP:"hole",(72,11)
+TRAP:"hole",(72,12)
+TRAP:"hole",(52,12)
+TRAP:"hole",(53,12)
+TRAP:"hole",(54,12)
+TRAP:"hole",(55,12)
+TRAP:"hole",(56,12)
+TRAP:"hole",(57,12)
+TRAP:"hole",(58,12)
+TRAP:"hole",(59,12)
+TRAP:"hole",(60,12)
+TRAP:"hole",(61,12)
+TRAP:"hole",(62,12)
+TRAP:"hole",(63,12)
+TRAP:"hole",(64,12)
+TRAP:"hole",(65,12)
+TRAP:"hole",(66,12)
+TRAP:"hole",(67,12)
+TRAP:"hole",(68,12)
+TRAP:"hole",(69,12)
+TRAP:"hole",(70,12)
+TRAP:"hole",(71,12)
+TRAP:"hole",(52,13)
+TRAP:"hole",(52,14)
+TRAP:"hole",(53,14)
+TRAP:"hole",(54,14)
+TRAP:"hole",(55,14)
+TRAP:"hole",(56,14)
+TRAP:"hole",(57,14)
+TRAP:"hole",(58,14)
+TRAP:"hole",(59,14)
+TRAP:"hole",(60,14)
+TRAP:"hole",(61,14)
+TRAP:"hole",(62,14)
+TRAP:"hole",(63,14)
+TRAP:"hole",(64,14)
+TRAP:"hole",(65,14)
+TRAP:"hole",(66,14)
+TRAP:"hole",(67,14)
+TRAP:"hole",(68,14)
+TRAP:"hole",(69,14)
+
+MONSTER: '@', "hole master", (14,11)
+MONSTER: '@', "hole master", (15,11)
+MONSTER: '@', "hole master", (16,11)
+MONSTER: '@', "hole master", (17,11)
+MONSTER: '@', "hole master", (18,11)
+MONSTER: '@', "hole master", (19,11)
+MONSTER: '@', "hole master", (20,11)
+MONSTER: '@', "hole master", (21,11)
+MONSTER: '@', "hole master", (22,11)
+MONSTER: '@', "hole master", (23,11)
+MONSTER: '@', "hole master", (24,11)
+MONSTER: '@', "hole master", (25,11)
+MONSTER: '@', "hole master", (26,11)
+MONSTER: '@', "hole master", (27,11)
+MONSTER: '@', "hole master", (28,11)
+MONSTER: '@', "hole master", (29,11)
+MONSTER: '@', "hole master", (30,11)
+MONSTER: '@', "hole master", (31,11)
+MONSTER: '@', "hole master", (32,11)
+MONSTER: '@', "hole master", (33,11)
+MONSTER: '@', "hole master", (34,11)
+MONSTER: '@', "hole master", (35,11)
+MONSTER: '@', "hole master", (36,11)
+MONSTER: '@', "hole master", (37,11)
+MONSTER: '@', "hole master", (38,11)
+MONSTER: '@', "hole master", (39,11)
+MONSTER: '@', "hole master", (40,11)
+MONSTER: '@', "hole master", (41,11)
+MONSTER: '@', "hole master", (42,11)
+MONSTER: '@', "hole master", (43,11)
+MONSTER: '@', "hole master", (44,11)
+
+DOOR:locked,(10,11)
+DOOR:locked,(48,10)
+DOOR:locked,(70,15)
+DOOR:locked,(44,16)
+
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Bring 'em on Down"
+MAZE:"soko2-36",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+ ---------------   -----------
+ |.............|   |.........|
+ |.......|.....|   |.........|
+ |....----.....|   |.........|
+ |---..........|   |.........|
+ |.......|.....|   |.........|
+ |.......|.....|   |.........|
+ |.....---------   |.........|
+ |........|        |.........|
+ |........------------------+|
+ ----........................|
+    --------------------------
+ENDMAP
+STAIR:(07,10),down
+STAIR:(24,04),up
+DOOR:locked,(28,09)
+REGION:(00,00,29,11),lit,"ordinary"
+NON_DIGGABLE:(00,00,29,11)
+NON_PASSWALL:(00,00,29,11)
+
+# Boulders
+OBJECT:'`',"boulder",(03,03)
+OBJECT:'`',"boulder",(06,02)
+#
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(11,03)
+OBJECT:'`',"boulder",(13,02)
+OBJECT:'`',"boulder",(13,03)
+#
+OBJECT:'`',"boulder",(13,05)
+OBJECT:'`',"boulder",(12,05)
+OBJECT:'`',"boulder",(10,05)
+#
+OBJECT:'`',"boulder",(07,05)
+OBJECT:'`',"boulder",(03,06)
+OBJECT:'`',"boulder",(04,05)
+OBJECT:'`',"boulder",(05,07)
+#
+OBJECT:'`',"boulder",(03,08)
+OBJECT:'`',"boulder",(03,09)
+OBJECT:'`',"boulder",(05,09)
+OBJECT:'`',"boulder",(06,08)
+OBJECT:'`',"boulder",(07,09)
+OBJECT:'`',"boulder",(08,08)
+
+# Traps
+TRAP:"hole",(10,10)
+TRAP:"hole",(11,10)
+TRAP:"hole",(12,10)
+TRAP:"hole",(13,10)
+TRAP:"hole",(14,10)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
+TRAP:"hole",(18,10)
+TRAP:"hole",(19,10)
+TRAP:"hole",(20,10)
+TRAP:"hole",(21,10)
+TRAP:"hole",(22,10)
+TRAP:"hole",(23,10)
+TRAP:"hole",(24,10)
+TRAP:"hole",(25,10)
+TRAP:"hole",(26,10)
+TRAP:"hole",(27,10)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+
+# "Slot Machine"
+MAZE:"soko2-37",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+ --------------------
+ |..|.....|.|.......| 
+ |..|..|....|.......|
+ |..|..|..|.|.......|
+ |.....|..|.|.......|
+ --.|..|..|.|.......|
+  |.|.....|.|.......|
+  |.|.......|.......|
+  |.......---------.|
+  |.......|       |.|
+  --...------------+|
+   |................|
+   ------------------
+ENDMAP
+STAIR:(08,08),down
+STAIR:(16,04),up
+DOOR:locked,(19,10)
+REGION:(00,00,20,12),lit,"ordinary"
+NON_DIGGABLE:(00,00,20,12)
+NON_PASSWALL:(00,00,20,12)
+
+# Boulders
+OBJECT:'`',"boulder",(03,02)
+OBJECT:'`',"boulder",(03,05)
+#
+OBJECT:'`',"boulder",(06,03)
+OBJECT:'`',"boulder",(05,05)
+OBJECT:'`',"boulder",(06,07)
+OBJECT:'`',"boulder",(07,06)
+#
+OBJECT:'`',"boulder",(09,02)
+OBJECT:'`',"boulder",(08,04)
+OBJECT:'`',"boulder",(09,06)
+#
+OBJECT:'`',"boulder",(04,08)
+OBJECT:'`',"boulder",(04,10)
+OBJECT:'`',"boulder",(05,09)
+OBJECT:'`',"boulder",(06,10)
+OBJECT:'`',"boulder",(08,09)
+
+# Traps
+TRAP:"hole",(07,11)
+TRAP:"hole",(08,11)
+TRAP:"hole",(09,11)
+TRAP:"hole",(10,11)
+TRAP:"hole",(11,11)
+TRAP:"hole",(12,11)
+TRAP:"hole",(13,11)
+TRAP:"hole",(14,11)
+TRAP:"hole",(15,11)
+TRAP:"hole",(16,11)
+TRAP:"hole",(17,11)
+TRAP:"hole",(18,11)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
 
 ### Top (last) level of Sokoban ###
 MAZE:"soko1-1",' '
@@ -8065,3 +9548,337 @@ DOOR:closed,(22,03)
 DOOR:closed,(22,05)
 DOOR:closed,(22,07)
 REGION:(23,02,27,08),lit,"zoo",filled,true
+
+# "'Ring 'em Around"
+MAZE:"soko1-40",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+----         -------------     
+|..|----------.....|.....------
+|..|............--.|..........|
+|.........----.....|...--.....|
+|..|..-----  |........--......|
+|..----      ------|...----..--
+|.....|            |.........| 
+|....--      ------|......--.--
+|...--       |.|.|.|......|...|
+---.------- --+-+-+-----.---.--
+|....|....| |.......| |..| |.| 
+|....|....| |.......| |..| |.| 
+|...-----.| |.......| |..| |.| 
+|..--   |.| |.......| ---- |.| 
+|..|   --.| |.......|      |.--
+|..-----..------+-----------..|
+|..........|   |..............|
+|..-----...|   ----------------
+----   -----                   
+ENDMAP
+RANDOM_PLACES:(14,08),(16,08),(18,08)
+STAIR:(07,11),down
+REGION:(00,00,30,18),lit,"ordinary"
+NON_DIGGABLE:(00,00,30,18)
+NON_PASSWALL:(00,00,30,18)
+
+# Boulders
+OBJECT:'`',"boulder",(08,11)
+OBJECT:'`',"boulder",(09,16)
+#
+OBJECT:'`',"boulder",(01,16)
+OBJECT:'`',"boulder",(02,15)
+OBJECT:'`',"boulder",(02,10)
+#
+OBJECT:'`',"boulder",(02,08)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(02,02)
+#
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(13,02)
+#
+OBJECT:'`',"boulder",(15,04)
+OBJECT:'`',"boulder",(18,02)
+OBJECT:'`',"boulder",(19,04)
+#
+OBJECT:'`',"boulder",(20,07)
+OBJECT:'`',"boulder",(20,05)
+OBJECT:'`',"boulder",(20,02)
+#
+OBJECT:'`',"boulder",(22,02)
+OBJECT:'`',"boulder",(25,02)
+OBJECT:'`',"boulder",(28,02)
+OBJECT:'`',"boulder",(26,04)
+#
+OBJECT:'`',"boulder",(22,08)
+OBJECT:'`',"boulder",(24,08)
+OBJECT:'`',"boulder",(24,11)
+
+# Traps
+TRAP:"hole",(28,08)
+TRAP:"hole",(28,09)
+TRAP:"hole",(28,10)
+TRAP:"hole",(28,11)
+TRAP:"hole",(28,12)
+TRAP:"hole",(28,13)
+TRAP:"hole",(28,14)
+TRAP:"hole",(28,15)
+TRAP:"hole",(27,16)
+TRAP:"hole",(26,16)
+TRAP:"hole",(25,16)
+TRAP:"hole",(24,16)
+TRAP:"hole",(23,16)
+TRAP:"hole",(22,16)
+TRAP:"hole",(21,16)
+TRAP:"hole",(20,16)
+TRAP:"hole",(19,16)
+TRAP:"hole",(18,16)
+TRAP:"hole",(17,16)
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+# Rewards
+DOOR:locked,(16,15)
+DOOR:closed,(14,09)
+DOOR:closed,(16,09)
+DOOR:closed,(18,09)
+REGION:(13,10,19,14),lit,"zoo",filled,true
+OBJECT:'=',"polymorph control",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+# "'Ring 'em Around"
+MAZE:"soko1-41",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+----         -------------     
+|..|----------.....|.....------
+|..|............--.|..........|
+|.........----.....|...--.....|
+|..|..-----  |........--......|
+|..----      ------|...----..--
+|.....|            |.........| 
+|....--      ------|......--.--
+|...--       |.|.|.|......|...|
+---.------- --+-+-+-----.---.--
+|....|....| |.......| |..| |.| 
+|....|....| |.......| |..| |.| 
+|...-----.| |.......| |..| |.| 
+|..--   |.| |.......| ---- |.| 
+|..|   --.| |.......|      |.--
+|..-----..------+-----------..|
+|..........|   |..............|
+|..-----...|   ----------------
+----   -----                   
+ENDMAP
+RANDOM_PLACES:(14,08),(16,08),(18,08)
+STAIR:(07,11),down
+REGION:(00,00,30,18),lit,"ordinary"
+NON_DIGGABLE:(00,00,30,18)
+NON_PASSWALL:(00,00,30,18)
+
+# Boulders
+OBJECT:'`',"boulder",(08,11)
+OBJECT:'`',"boulder",(09,16)
+#
+OBJECT:'`',"boulder",(01,16)
+OBJECT:'`',"boulder",(02,15)
+OBJECT:'`',"boulder",(02,10)
+#
+OBJECT:'`',"boulder",(02,08)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(02,02)
+#
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(13,02)
+#
+OBJECT:'`',"boulder",(15,04)
+OBJECT:'`',"boulder",(18,02)
+OBJECT:'`',"boulder",(19,04)
+#
+OBJECT:'`',"boulder",(20,07)
+OBJECT:'`',"boulder",(20,05)
+OBJECT:'`',"boulder",(20,02)
+#
+OBJECT:'`',"boulder",(22,02)
+OBJECT:'`',"boulder",(25,02)
+OBJECT:'`',"boulder",(28,02)
+OBJECT:'`',"boulder",(26,04)
+#
+OBJECT:'`',"boulder",(22,08)
+OBJECT:'`',"boulder",(24,08)
+OBJECT:'`',"boulder",(24,11)
+
+# Traps
+TRAP:"hole",(28,08)
+TRAP:"hole",(28,09)
+TRAP:"hole",(28,10)
+TRAP:"hole",(28,11)
+TRAP:"hole",(28,12)
+TRAP:"hole",(28,13)
+TRAP:"hole",(28,14)
+TRAP:"hole",(28,15)
+TRAP:"hole",(27,16)
+TRAP:"hole",(26,16)
+TRAP:"hole",(25,16)
+TRAP:"hole",(24,16)
+TRAP:"hole",(23,16)
+TRAP:"hole",(22,16)
+TRAP:"hole",(21,16)
+TRAP:"hole",(20,16)
+TRAP:"hole",(19,16)
+TRAP:"hole",(18,16)
+TRAP:"hole",(17,16)
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+# Rewards
+DOOR:locked,(16,15)
+DOOR:closed,(14,09)
+DOOR:closed,(16,09)
+DOOR:closed,(18,09)
+REGION:(13,10,19,14),lit,"randomroom",filled,true
+OBJECT:'=',"polymorph control",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+# "'Ring 'em Around"
+MAZE:"soko1-42",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+#12345678901234567890123456789012345678901234567890
+MAP
+----         -------------     
+|..|----------.....|.....------
+|..|............--.|..........|
+|.........----.....|...--.....|
+|..|..---B-..|........--......|
+|..----......------|...----..--
+|.....|............|.........| 
+|....--......------|......--.--
+|...--.......|.|.|.|......|...|
+---.-------.--+-+-+-----.---.--
+|....|....|.|.......|.|..|.|.| 
+|....|....|.|.......|.|..|.|.| 
+|...--+--.|.|.......|.|..|.|.| 
+|..--...|.|.|.......|.----.|.| 
+|..|...--.|.|.......|......|.--
+|..-----..------+-------.---..|
+|..........|   |..............|
+|..-----...|   ----------------
+----   -----                   
+ENDMAP
+RANDOM_PLACES:(14,08),(16,08),(18,08)
+STAIR:(07,11),down
+REGION:(00,00,30,18),lit,"ordinary"
+NON_DIGGABLE:(00,00,30,18)
+NON_PASSWALL:(00,00,30,18)
+
+# Boulders
+OBJECT:'`',"boulder",(08,11)
+OBJECT:'`',"boulder",(09,16)
+#
+OBJECT:'`',"boulder",(01,16)
+OBJECT:'`',"boulder",(02,15)
+OBJECT:'`',"boulder",(02,10)
+#
+OBJECT:'`',"boulder",(02,08)
+OBJECT:'`',"boulder",(02,05)
+OBJECT:'`',"boulder",(02,02)
+#
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(13,02)
+#
+OBJECT:'`',"boulder",(15,04)
+OBJECT:'`',"boulder",(18,02)
+OBJECT:'`',"boulder",(19,04)
+#
+OBJECT:'`',"boulder",(20,07)
+OBJECT:'`',"boulder",(20,05)
+OBJECT:'`',"boulder",(20,02)
+#
+OBJECT:'`',"boulder",(22,02)
+OBJECT:'`',"boulder",(25,02)
+OBJECT:'`',"boulder",(28,02)
+OBJECT:'`',"boulder",(26,04)
+#
+OBJECT:'`',"boulder",(22,08)
+OBJECT:'`',"boulder",(24,08)
+OBJECT:'`',"boulder",(24,11)
+
+# Traps
+TRAP:"hole",(28,08)
+TRAP:"hole",(28,09)
+TRAP:"hole",(28,10)
+TRAP:"hole",(28,11)
+TRAP:"hole",(28,12)
+TRAP:"hole",(28,13)
+TRAP:"hole",(28,14)
+TRAP:"hole",(28,15)
+TRAP:"hole",(27,16)
+TRAP:"hole",(26,16)
+TRAP:"hole",(25,16)
+TRAP:"hole",(24,16)
+TRAP:"hole",(23,16)
+TRAP:"hole",(22,16)
+TRAP:"hole",(21,16)
+TRAP:"hole",(20,16)
+TRAP:"hole",(19,16)
+TRAP:"hole",(18,16)
+TRAP:"hole",(17,16)
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+MONSTER:random,random,(21,10)
+MONSTER:random,random,(21,11)
+MONSTER:random,random,(21,12)
+MONSTER:random,random,(21,13)
+MONSTER:random,random,(21,14)
+MONSTER:random,random,(22,14)
+MONSTER:random,random,(23,14)
+MONSTER:random,random,(24,14)
+MONSTER:random,random,(25,14)
+MONSTER:random,random,(26,10)
+MONSTER:random,random,(26,11)
+MONSTER:random,random,(26,12)
+MONSTER:random,random,(26,13)
+MONSTER:random,random,(26,14)
+
+# Random objects
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+# Rewards
+DOOR:locked,(16,15)
+DOOR:closed,(14,09)
+DOOR:closed,(16,09)
+DOOR:closed,(18,09)
+DOOR:locked,(06,12)
+REGION:(13,10,19,14),lit,"tenshall",filled,true
+OBJECT:'=',"polymorph control",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+REGION:(11,06,11,06),lit,"randomroom",filled,true
+REGION:(05,13,05,13),lit,"random shop",filled,true

@@ -14,7 +14,7 @@
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      3
+#define PATCHLEVEL      4
 /*
 #define EDITLEVEL	0
 #define FIXLEVEL        0

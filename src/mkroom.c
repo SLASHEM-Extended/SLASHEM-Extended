@@ -430,11 +430,14 @@ struct mkroom *sroom;
 
 	moreorless = (rnd((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 5 : 10) + 1);
 
+	if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+	if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	    for(sy = sroom->ly; sy <= sroom->hy; sy++) {
 		if(sroom->irregular) {
 		    if ((int) levl[sx][sy].roomno != rmno ||
-			  levl[sx][sy].edge /*||
+			  (levl[sx][sy].edge) /*||
 			  (sroom->doorct &&
 			   distmin(sx, sy, doors[sh].x, doors[sh].y) <= 1)*/)
 			continue;
@@ -907,6 +910,10 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 
 		/* satisfied; make a swamp */
 		sroom->rtype = SWAMP;
+
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
@@ -1399,6 +1406,9 @@ mktraproom()
 
 	if (!rn2(4)) randomnes = 1;
 
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
@@ -1422,6 +1432,9 @@ mkpoolroom()
 
     sroom->rtype = POOLROOM;
     typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
+
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
@@ -1447,6 +1460,8 @@ mkinsideroom()
 
     sroom->rtype = INSIDEROOM;
 
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
@@ -1481,6 +1496,9 @@ mkriverroom()
 
     sroom->rtype = RIVERROOM;
 
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
@@ -1506,6 +1524,9 @@ mkstatueroom()
 	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = STATUEROOM;
+
+		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
+		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)

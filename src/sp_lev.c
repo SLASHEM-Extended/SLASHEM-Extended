@@ -2366,6 +2366,9 @@ boolean prefilled;
 
 	if (croom->rtype == SWAMP) {
 
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
@@ -2395,6 +2398,9 @@ boolean prefilled;
 
 		if (!rn2(4)) randomnes = 1;
 
+			if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+			if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
 			for(sx = croom->lx; sx <= croom->hx; sx++)
 			for(sy = croom->ly; sy <= croom->hy; sy++)
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
@@ -2409,6 +2415,9 @@ boolean prefilled;
 
 	    typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
 
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
@@ -2419,6 +2428,9 @@ boolean prefilled;
 	}
 
 	if (croom->rtype == INSIDEROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
@@ -2439,6 +2451,9 @@ boolean prefilled;
 
 	if (croom->rtype == RIVERROOM) {
 
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
@@ -2451,6 +2466,9 @@ boolean prefilled;
 	}
 
 	if (croom->rtype == STATUEROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
