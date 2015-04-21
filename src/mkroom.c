@@ -302,7 +302,7 @@ register boolean strict;
 			return (struct mkroom *)0;
 		if(sroom->rtype != OROOM)	continue;
 		if(!strict) {
-		    if(has_upstairs(sroom) || (has_dnstairs(sroom) && rn2(3)))
+		    if( (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) || (has_dnstairs(sroom) && rn2(3)))
 			continue;
 		} else if(has_upstairs(sroom) || has_dnstairs(sroom))
 			continue;
@@ -900,8 +900,10 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 
 	for(i=0; i<5; i++) {		/* turn up to 5 rooms swampy */
 		sroom = &rooms[rn2(nroom)];
-		if(sroom->hx < 0 || sroom->rtype != OROOM)
+		if(sroom->hx < 0 || sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) )
 			continue;
+
+		if (!rn2(3)) continue; /* allow some randomness --Amy */
 
 		/* satisfied; make a swamp */
 		sroom->rtype = SWAMP;
@@ -1416,7 +1418,7 @@ mkpoolroom()
 
     if (!(sroom = pick_room(FALSE))) return;
 
-	if(sroom->rtype != OROOM) return;
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = POOLROOM;
     typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
@@ -1441,7 +1443,7 @@ mkinsideroom()
 
     if (!(sroom = pick_room(FALSE))) return;
 
-	if(sroom->rtype != OROOM) return;
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = INSIDEROOM;
 
@@ -1475,7 +1477,7 @@ mkriverroom()
 
     if (!(sroom = pick_room(FALSE))) return;
 
-	if(sroom->rtype != OROOM) return;
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = RIVERROOM;
 
@@ -1501,7 +1503,7 @@ mkstatueroom()
 
     if (!(sroom = pick_room(FALSE))) return;
 
-	if(sroom->rtype != OROOM) return;
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = STATUEROOM;
 
