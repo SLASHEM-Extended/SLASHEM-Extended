@@ -39,7 +39,7 @@ BRANCH:		"The Gnomish Mines" @ (2, 3)
 #   There shouldn't be any other special levels down to the Oracle.
 #   This allows a weak character to plunge to the Oracle, then return
 #   to the Mines.
-RNDLEVEL:	"mall" "T" @ (5, 2) 75 5
+RNDLEVEL:	"mall" "T" @ (5, 2) 75 6
 LEVALIGN:	lawful
 LEVELDESC:	town
 #
@@ -198,7 +198,7 @@ RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 DUNGEON:	"The Gnomish Mines" "M" (9, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"mintn" "T" @ (3, 2) 98 17
+RNDLEVEL:	"mintn" "T" @ (3, 2) 98 18
 LEVELDESC:	town
 RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
 RNDLEVEL:		"mking" "M" @ (-1, 0) 90 12
@@ -238,10 +238,10 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 42
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 37
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 23
-RNDLEVEL:		"soko4" "D" @ (4, 0) 95 18
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 43
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 39
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 26
+RNDLEVEL:		"soko4" "D" @ (4, 0) 95 22
 
 #
 #   The city of Angband

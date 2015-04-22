@@ -1000,13 +1000,14 @@ makelevel()
 		    return;
 	    } else if (In_mines(&u.uz) && rn2(iswarper ? 5 : 50)) {
 		    if (rn2(10)) makemaz("minefill");
-		    else switch (rnd(6)) {
+		    else switch (rnd(7)) {
 			case 1: makemaz("minefila"); break;
 			case 2: makemaz("minefilb"); break;
 			case 3: makemaz("minefilc"); break;
 			case 4: makemaz("minefild"); break;
 			case 5: makemaz("minefile"); break;
 			case 6: makemaz("minefilf"); break;
+			case 7: makemaz("minefilg"); break;
 		    }
 		    return;
 	    } else if (In_quest(&u.uz)) {

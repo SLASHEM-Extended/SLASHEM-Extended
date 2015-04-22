@@ -331,6 +331,53 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 
+MAZE: "minefilg" , ' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '(', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '(', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', "gnome lord", random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'h', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'h', random, random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
 # Minetown variant 1
 # "Frontier Town"
 #
@@ -2406,6 +2453,119 @@ OBJECT: '`', "statue", (38,15), "gnome king", 1
 REGION:(29,02,33,04),lit,"temple"
 DOOR:closed,(31,05)
 ALTAR:(31,03),align[0],shrine
+
+# nice patch idea by Amy - less annoying monsters, more items for the player to grab
+LEVEL: "mintn-18"
+
+ROOM: "ordinary" , lit, (3,3), (center,center), (31,15)
+NAME: "town"
+FOUNTAIN: (13, 7)
+FOUNTAIN: (20, 7)
+#
+#	The Town Watch.
+#
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+SUBROOM: "shop" , lit, (2,2), (3,4), "town"
+CHANCE: 90
+DOOR: false, closed, south, random
+
+SUBROOM: "tool shop", lit, (2,9), (3,4), "town"
+CHANCE: 90
+DOOR: false, closed, north, random
+
+SUBROOM: "random shop", lit, (6,2), (3,4), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "random shop", lit, (6,9), (3,4), "town"
+DOOR: false, closed, north, random
+
+SUBROOM: "food shop", lit, (10,2), (2,3), "town"
+CHANCE: 90
+DOOR: false, closed, south, random
+
+SUBROOM: "candle shop", lit, (22,2), (3,3), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "random shop", lit, (10,10), (2,3), "town"
+DOOR: false, locked, east, random
+
+SUBROOM: "random shop", lit, (19,2),  (2,3), "town"
+DOOR: false, locked, west, random
+
+SUBROOM: "temple", lit, (15,9), (4,4), "town"
+DOOR: false, closed, north, random
+ALTAR:(02,02),align[0],shrine
+MONSTER: 'G', "gnomish wizard", random
+MONSTER: 'G', "gnomish wizard", random
+
+SUBROOM: "random shop", lit, (22,10), (2,3), "town"
+DOOR: false, locked, west, random
+
+SUBROOM: "random shop", lit, (26,2), (3,3), "town"
+DOOR: false, closed, south, random
+
+SUBROOM: "random shop", lit, (25,10), (4,3), "town"
+DOOR: false, closed, north, random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: 'h', random, random, hostile
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+TRAP: random, random
+MONSTER: 'G', random, random, hostile
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+RANDOM_CORRIDORS
 
 # Mine end level variant 1
 # "Mimic of the Mines"
