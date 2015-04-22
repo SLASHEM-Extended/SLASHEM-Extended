@@ -7384,6 +7384,10 @@ register int	mmflags;
 
 	if (!rn2(Aggravate_monster ? 500 : 100) && !u.uhave.amulet) mtmp->msleeping = 1;
 
+	/* or an invisible one, based on an evil patch idea by jonadab */
+
+	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
 	if (ptr == &mons[PM_SCROLLER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
