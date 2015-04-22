@@ -723,14 +723,30 @@ moveloop()
 			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (u.ulevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
 			}
 			if (!Burned && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (u.ulevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
+				flags.botl = 1;
 			}
+
+			/* nice patch addition by Amy - sometimes regenerate more */
+			if (!Burned && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
+				u.uhp += rnz(2 + u.ulevel);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+			}
+			if (!Burned && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
+				u.mh += rnz(2 + u.ulevel);
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+				flags.botl = 1;
+			}
+
 			if (!Burned && Race_if(PM_HAXOR) && !rn2(20) ) {
 				u.uen += rnd(5 + (u.ulevel / 5));
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
+				flags.botl = 1;
 			}
 
 		    if (!u.uinvulnerable && u.uen > 0 && u.uhp < u.uhpmax &&
@@ -773,7 +789,23 @@ moveloop()
 			flags.botl = 1;
 		    }
 
-			if (Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+			/* nice patch addition by Amy - sometimes regenerate more */
+			if (!Burned && !rn2(250) && (u.uen < u.uenmax)) {
+
+				u.uen += rnz(2 + u.ulevel);
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+
+			}
+			if (!Burned && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
+
+				u.uen += rnz(2 + u.ulevel);
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+
+			}
+
+			if (!Burned && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
