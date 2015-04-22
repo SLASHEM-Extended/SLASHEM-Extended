@@ -874,6 +874,13 @@ boolean artif;
 		return (struct obj *)0;
 	}
 
+	/* nice patch idea by Amy - sometimes have items start out with partial identification */
+
+	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->rknown = TRUE;
+	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->known = TRUE;
+	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->dknown = TRUE;
+	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->bknown = TRUE;
+
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
 	if (iscurser && rn2(5)) curse(otmp);
 
