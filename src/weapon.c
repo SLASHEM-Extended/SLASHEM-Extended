@@ -2445,7 +2445,13 @@ const struct def_skill *class_skill;
 	}
 
 	/* Batman obviously has legendary boomerang abilities --Amy */
-	if (Race_if(PM_BATMAN)) P_MAX_SKILL(P_BOOMERANG) = P_GRAND_MASTER;
+	if (Race_if(PM_BATMAN)) {
+		if (P_RESTRICTED(P_BOOMERANG)) {	
+			P_SKILL(P_BOOMERANG) = P_UNSKILLED;
+			P_ADVANCE(P_BOOMERANG) = 0;
+		}
+		P_MAX_SKILL(P_BOOMERANG) = P_GRAND_MASTER;
+	}
 
 #if 0  /* This should all be handled above now... */
 	/* set skills for magic */
