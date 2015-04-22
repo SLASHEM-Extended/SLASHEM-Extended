@@ -3001,7 +3001,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			randmnst = (rn2(187) + 1);
+			randmnst = (rn2(192) + 1);
 			randmnsx = (rn2(100) + 1);
 
 				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
@@ -3151,6 +3151,8 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		 	    (void) makemon(mkclass(S_TURRET,0), 0, 0, NO_MM_FLAGS);
 			else if (randmnst < 187)
 		 	    (void) makemon(mkclass(S_FLYFISH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 192)
+		 	    (void) makemon(mkclass(S_TROVE,0), 0, 0, NO_MM_FLAGS);
 			else
 		 	    (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 

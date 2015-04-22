@@ -77,11 +77,12 @@
 #define S_ARCHFIEND     65
 #define S_TURRET     66
 #define S_FLYFISH     67
+#define S_TROVE	68
 
-#define S_WORM_TAIL     68
-#define S_MIMIC_DEF     69
+#define S_WORM_TAIL     69
+#define S_MIMIC_DEF     70
                         
-#define MAXMCLASSES 70  /* number of monster classes */
+#define MAXMCLASSES 71  /* number of monster classes */
 #define MISCMCLASSES 2  /* currently only wormtail and mimicdef*/
 
 #if 0	/* moved to decl.h so that makedefs.c won't see them */
@@ -159,6 +160,7 @@ extern uchar monsyms[MAXMCLASSES];		/* current class symbols */
 #define DEF_ARCHFIEND   '9'
 #define DEF_TURRET   '±'
 #define DEF_FLYFISH   'I'
+#define DEF_TROVE   '¯'
 
 /* #define DEF_NEMESE   '§'
 #define DEF_GRUE   '­.'

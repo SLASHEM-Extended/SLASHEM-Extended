@@ -883,6 +883,8 @@ register int after;	/* this is extra fast monster movement */
 			 (Role_if(PM_ACTIVISTOR) && mtmp2->data == &mons[PM_TOPMODEL]) || 
 	/* for Rodneyan race characters, the real Rodney is supposed to be their buddy so he doesn't get attacked */
 			 (mtmp2->data == &mons[PM_WIZARD_OF_YENDOR] && Race_if(PM_RODNEYAN)) ||
+	/* troves only drop their items if the player kills them, so keep pets away from them */
+			 (mtmp2->data->mlet == S_TROVE) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them */
 			 (mtmp2->isshk && !strncmpi(shkname(mtmp2), "Izchak", 6) ) ||
 			   (touch_petrifies(mtmp2->data) &&

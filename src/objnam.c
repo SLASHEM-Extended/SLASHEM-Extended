@@ -3022,7 +3022,8 @@ typfnd:
                                 ((wizard) ||
 # endif /* WIZARD */
                                 (!(mons[mntmp].geno & G_UNIQ) && rn2(2) && /* allow this wish to fail sometimes --Amy */
-                                !(mvitals[mntmp].mvflags & G_NOCORPSE))
+                                !(mons[mntmp].mlet == S_TROVE) && /* no wishing for exploitable troves --Amy */
+					  !(mvitals[mntmp].mvflags & G_NOCORPSE))
 # ifdef WIZARD
                                 )
 # endif /* WIZARD */
@@ -3042,7 +3043,7 @@ typfnd:
 # ifdef WIZARD
                                 ((wizard) ||
 # endif /* WIZARD */
-                                ((!(mons[mntmp].geno & G_UNIQ)
+                                ((!(mons[mntmp].geno & G_UNIQ) && !(mons[mntmp].mlet == S_TROVE)
 			    && !is_human(&mons[mntmp]) && rn2(2) /* allow wishes for solar figurines to randomly fail --Amy */
 # ifdef WIZARD
                                 )
@@ -3055,7 +3056,7 @@ typfnd:
 			break;
 		case EGG:
 			mntmp = can_be_hatched(mntmp);
-			if (mntmp != NON_PM && (wizard || rn2(2)) ) { /* sometimes fail --Amy */
+			if (mntmp != NON_PM && !(mons[mntmp].mlet == S_TROVE) && (wizard || rn2(2)) ) { /* sometimes fail --Amy */
 			    otmp->corpsenm = mntmp;
 			    if (!dead_species(mntmp, TRUE))
 				attach_egg_hatch_timeout(otmp);
@@ -3063,7 +3064,7 @@ typfnd:
 				kill_egg(otmp);
 			}
 			break;
-		case STATUE: if (wizard || !rn2(5)) otmp->corpsenm = mntmp;
+		case STATUE: if (wizard || (!rn2(5) && !(mons[mntmp].mlet == S_TROVE) ) ) otmp->corpsenm = mntmp;
 			/* otherwise, you could wish for a statue of Master Kaen and cast stone to flesh!
 			 * Well, you still can, but at least there's an 80% chance of the wish failing. --Amy */
 			if (Has_contents(otmp) && verysmall(&mons[mntmp]))

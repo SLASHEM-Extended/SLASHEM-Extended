@@ -1378,6 +1378,7 @@ register int pm;
 			lesshungry(400);
 		break;
 	    case PM_GORGON:
+	    case PM_ATTRACTIVE_TROVE:
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10)) {
 				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
@@ -1388,6 +1389,7 @@ register int pm;
 		break;
 
 	    case PM_DRACOLISK:
+	    case PM_CHARISMA_TROVE:
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			pline("You feel more %s!", flags.female ? "pretty" : "attractive");
 			(void) adjattrib(A_CHA, 1, FALSE);
@@ -1395,6 +1397,7 @@ register int pm;
 		break;
 
 	    case PM_STONING_MONSTER:
+	    case PM_TOUGH_TROVE:
 		if (ABASE(A_CON) < ATTRMAX(A_CON)) {
 			pline("You feel tougher!");
 			(void) adjattrib(A_CON, 1, FALSE);
@@ -1403,6 +1406,7 @@ register int pm;
 		break;
 
 	    case PM_NEWT:
+	    case PM_ENERGY_TROVE:
 	    case PM_GRAY_NEWT:
 	    case PM_ARCH_NEWT:
 	    case PM_REMORHAZ:
@@ -1426,10 +1430,12 @@ register int pm;
 		break;
 	    case PM_PETRO_MOLD:
 	    case PM_PETRO_FUNGUS:
+	    case PM_CLAIRVOYANT_TROVE:
 		    You("feel clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
 	    case PM_STONING_SPHERE:
+	    case PM_LEVELING_TROVE:
 	      You("feel that was a smart thing to do.");
 		pluslvl(FALSE);
 
@@ -1444,6 +1450,7 @@ register int pm;
 	    case PM_WRAITH:
 	    case PM_TURBO_CHICKEN:
 	    case PM_GREATER_BASILISK:
+	    case PM_ETHEREAL_TROVE:
 	    case PM_CENTAURTRICE:
 		switch(rnd(10)) {                
 		case 1:
@@ -1497,6 +1504,7 @@ register int pm;
 	    case PM_CREEPING___:
 	    case PM_PETRO_CENTIPEDE:
 	    case PM_PSEUDO_MEDUSA:
+	    case PM____TROVE:
 		pline("You feel appropriately 42!");
 		switch(rnd(10)) {                
 		case 1:
@@ -1696,12 +1704,14 @@ register int pm;
 		}
 		break;
 	    case PM_NURSE:
+	    case PM_HEALING_TROVE:
 	    case PM_GORGON_FLY:
 		if (Upolyd) u.mh = u.mhmax;
 		else u.uhp = u.uhpmax;
 		flags.botl = 1;
 		break;
 	    case PM_HIDDEN_ENGULFITRICE:
+	    case PM_HIDDEN_TROVE:
 
 		if (!(HInvis & INTRINSIC)) You_feel("hidden!");
 		HInvis |= FROMOUTSIDE;
@@ -1719,6 +1729,7 @@ register int pm;
 	    case PM_COCKTAUR:
 	    case PM_MIMIC_CHICKEN:
 	    case PM_PETRO_MIMIC:
+	    case PM_INVISO_TROVE:
 		if(!Invis) {
 			set_itimeout(&HInvis, (long)rn1(100, 50));
 			if (!Blind && !BInvis) self_invis_message();
@@ -1864,6 +1875,7 @@ register int pm;
 		break;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_GORGON_BEETLE:
+	    case PM_SPEED_TROVE:
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
 			HFast &= ~INTRINSIC;
@@ -1983,6 +1995,7 @@ register int pm;
 		break;
 
 	    case PM_OLOG_HAI_GORGON:
+	    case PM_BEAR_TROVE:
 	    case PM_MEDUSA_S_PET_FISH:
 		gainstr((struct obj *)0, 0);
 		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
@@ -2003,6 +2016,7 @@ register int pm;
 	    case PM_ABRA:
 	    case PM_KADABRA:
 	    case PM_ALAKAZAM:
+	    case PM_SMART_TROVE:
 	    case PM_CURSING_ORB: {
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
@@ -2024,6 +2038,7 @@ register int pm;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMINDFLAYER;
 		/* fall through */
 
+	    case PM_INTELLIGENT_TROVE:
 	    case PM_MASTER_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:

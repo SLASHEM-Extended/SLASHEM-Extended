@@ -162,6 +162,7 @@ const char def_monsyms[MAXMCLASSES] = {
 	DEF_ARCHFIEND,
 	DEF_TURRET,
 	DEF_FLYFISH,
+	DEF_TROVE,
 	DEF_WORM_TAIL,
 	DEF_MIMIC_DEF,
 };
@@ -199,7 +200,7 @@ const char * const monexplain[MAXMCLASSES] = {
 
     "human or elf",		"ghost",		"golem",
     "major demon",		"sea monster",		"lizard",
-    "piece of food",	"pile of coins", "nemese",		"grue",		"wall monster",		"rub monster",		"archfiend",			"turret",		"flying fish",
+    "piece of food",	"pile of coins", "nemese",		"grue",		"wall monster",		"rub monster",		"archfiend",	"turret",		"flying fish", 	"trove",
     "long worm tail",		"mimic"
 };
 

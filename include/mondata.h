@@ -100,7 +100,7 @@
 #define perceives(ptr)		(((ptr)->mflags1 & M1_SEE_INVIS) != 0L)
 #define can_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT) != 0L)
 #define control_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT_CNTRL) != 0L)
-#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_ACTIVE_EYE] || (ptr) == &mons[PM_NASTY_EYE] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_FLOATING_NYMPH]  || (ptr) == &mons[PM_FLOATING_MIMIC] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_LEVITATOR] || (ptr) == &mons[PM_UNDEAD_PSION] || \
+#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_ACTIVE_EYE] || (ptr) == &mons[PM_NASTY_EYE] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_FLOATING_NYMPH]  || (ptr) == &mons[PM_FLOATING_MIMIC] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_LEVITATOR] || (ptr) == &mons[PM_UNDEAD_PSION] || (ptr) == &mons[PM_TELEPATHIC_TROVE] || (ptr) == &mons[PM_BLIND_TROVE] || \
 				 is_mind_flayer(ptr))
 #define is_armed(ptr)		(attacktype(ptr, AT_WEAP) || (ptr) == &mons[PM_ANIMATED_WEDGE_SANDAL] || (ptr) == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || (ptr) == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || (ptr) == &mons[PM_ANIMATED_COMBAT_STILETTO])
 #define acidic(ptr)		(((ptr)->mflags1 & M1_ACID) != 0L)
@@ -319,6 +319,7 @@
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
 				 (ptr)->mlet == S_VORTEX || \
+				 (ptr)->mlet == S_TROVE || \
 				 (ptr) == &mons[PM_MANES] || (ptr) == &mons[PM_SPECTRAL_WARRIOR])
 
 #define touch_petrifies(ptr)	(ptr == &mons[PM_COCKATRICE] || \
@@ -406,6 +407,7 @@
 				 (ptr)->mlet == S_JELLY ||            \
 				 (ptr)->mlet == S_FUNGUS ||           \
 				 (ptr)->mlet == S_VORTEX ||           \
+				 (ptr)->mlet == S_TROVE ||           \
 				 (ptr)->mlet == S_LIGHT ||            \
 				 (ptr)->mlet == S_GRUE ||            \
 				((ptr)->mlet == S_ELEMENTAL &&        \

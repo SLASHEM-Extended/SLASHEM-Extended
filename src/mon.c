@@ -2851,6 +2851,222 @@ xkilled(mtmp, dest)
 		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE);
 		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE);
 
+		if (mdat == &mons[PM_SMALL_ITEM_TROVE]) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+
+		if (mdat == &mons[PM_ITEM_TROVE]) {
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_LARGE_ITEM_TROVE]) {
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_GIANT_ITEM_TROVE]) {
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_ENORMOUS_ITEM_TROVE]) {
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_POTION_TROVE]) otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_WEAPON_TROVE]) otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_ARMOR_TROVE]) otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_RING_TROVE]) otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_AMULET_TROVE]) otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_TOOL_TROVE]) otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_FOOD_TROVE]) otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_SCROLL_TROVE]) otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_SPELLBOOK_TROVE]) otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_WAND_TROVE]) otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_GEM_TROVE]) otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+
+		if (mdat == &mons[PM_LARGE_POTION_TROVE]) {
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_WEAPON_TROVE]) {
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_ARMOR_TROVE]) {
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_RING_TROVE]) {
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_AMULET_TROVE]) {
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_TOOL_TROVE]) {
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_FOOD_TROVE]) {
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_SCROLL_TROVE]) {
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_SPELLBOOK_TROVE]) {
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_WAND_TROVE]) {
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_GEM_TROVE]) {
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_BIG_POTION_TROVE]) {
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_WEAPON_TROVE]) {
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_ARMOR_TROVE]) {
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_RING_TROVE]) {
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_AMULET_TROVE]) {
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_TOOL_TROVE]) {
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_FOOD_TROVE]) {
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_SCROLL_TROVE]) {
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_SPELLBOOK_TROVE]) {
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_WAND_TROVE]) {
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_GEM_TROVE]) {
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+		}
+
+		if (mdat == &mons[PM_GIANT_POTION_TROVE]) {
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+			otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_WEAPON_TROVE]) {
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_ARMOR_TROVE]) {
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+			otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_RING_TROVE]) {
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RING_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_AMULET_TROVE]) {
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_TOOL_TROVE]) {
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_FOOD_TROVE]) {
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+			otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_SCROLL_TROVE]) {
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_SPELLBOOK_TROVE]) {
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+			otmp = mkobj_at(SPBOOK_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_WAND_TROVE]) {
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+			otmp = mkobj_at(WAND_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_GEM_TROVE]) {
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
+		}
 
 		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
 		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);

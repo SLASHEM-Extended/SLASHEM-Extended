@@ -404,7 +404,7 @@ struct mkroom *sroom;
 		case GRUEROOM:
 		    break;
 		case TENSHALL:
-			u.tensionmonster = (rn2(187) + 1);
+			u.tensionmonster = (rn2(192) + 1);
 			u.tensionmonsteX = (rn2(100) + 1);
 			u.tensionmonsterB = 0;
 			u.tensionmonsterspec = 0;
@@ -418,7 +418,7 @@ struct mkroom *sroom;
 				if (u.colormonsterB == CLR_BLUE) u.colormonsterB = 0;
 			}
 
-			if (!rn2(4)) u.tensionmonsterB = (rn2(187) + 1);
+			if (!rn2(4)) u.tensionmonsterB = (rn2(192) + 1);
 			if (!rn2(10)) {u.tensionmonsterspec = rndmonst();
 				if (!rn2(4)) u.tensionmonsterspecB = rndmonst();
 			}
@@ -1227,6 +1227,7 @@ tenshallmon()
 	}
 	else if (u.tensionmonster < 186) return (mkclass(S_TURRET,0));
 	else if (u.tensionmonster < 187) return (mkclass(S_FLYFISH,0));
+	else if (u.tensionmonster < 192) return (mkclass(S_TROVE,0));
 	else return ((struct permonst*)0);
 }
 
@@ -1303,6 +1304,7 @@ tenshallmonB()
 	}
 	else if (u.tensionmonsterB < 186) return (mkclass(S_TURRET,0));
 	else if (u.tensionmonsterB < 187) return (mkclass(S_FLYFISH,0));
+	else if (u.tensionmonsterB < 192) return (mkclass(S_TROVE,0));
 	else return ((struct permonst*)0);
 }
 

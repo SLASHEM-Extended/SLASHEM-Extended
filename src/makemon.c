@@ -6998,6 +6998,9 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	coord mm;
 	struct monst *m2;
 
+	if (mon->data->mlet == S_TROVE) /* way too much potential for abuse --Amy */
+	    return (struct monst *)0;
+
 	/* may be too weak or have been extinguished for population control */
 	if (mon->mhp <= 1 || (mvitals[monsndx(mon->data)].mvflags & G_EXTINCT))
 	    return (struct monst *)0;
@@ -8500,7 +8503,7 @@ rndmonst()
 	}
 	
 	if (!rn2(100)) { /* all monster "teams" have at least some chance of being selected --Amy */
-		randmnst = (rn2(187) + 1);
+		randmnst = (rn2(192) + 1);
 		randmnsx = (rn2(100) + 1);
 
 		if (randmnst < 6)
@@ -8643,6 +8646,8 @@ rndmonst()
 		    return(mkclass(S_TURRET,0));
 			else if (randmnst < 187)
 		    return(mkclass(S_FLYFISH,0));
+			else if (randmnst < 192)
+		    return(mkclass(S_TROVE,0));
 
 			/* otherwise, don't return */
 	}
