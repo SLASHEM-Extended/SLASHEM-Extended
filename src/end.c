@@ -588,6 +588,9 @@ int how;
 	boolean taken;
 	boolean goexplore = FALSE;
 	char kilbuf[BUFSZ], pbuf[BUFSZ];
+#ifdef EPITAPH
+	char ebuf[BUFSZ];
+#endif
 	winid endwin = WIN_ERR;
 	boolean bones_ok, have_windows = iflags.window_inited;
 	struct obj *corpse = (struct obj *)0;
@@ -927,6 +930,13 @@ die:
 			killer_format == NO_KILLER_PREFIX ? "" :
 			killed_by_prefix[how],
 			killer_format == KILLED_BY_AN ? an(killer) : killer);
+#ifdef EPITAPH
+		/* ask player if he wants a custom epitaph */
+		if ('y' == yn("Do you want to write your own epitaph?")) {
+			getlin("What do you want your epitaph to be?",ebuf);
+			Sprintf(pbuf, "Here lies %s. %s", plname, ebuf);
+		}
+#endif
 		make_grave(u.ux, u.uy, pbuf);
 	    }
 	}
