@@ -420,7 +420,7 @@ WINLIB = $(WINTTYLIB)
 LIBS =
 
 # make NetHack
-GAME     = slashem
+GAME     = slex
 # GAME     = slashem.prg
 
 # if you defined RANDOM in unixconf.h/tosconf.h since your system did not come

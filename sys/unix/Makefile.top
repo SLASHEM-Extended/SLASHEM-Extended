@@ -17,7 +17,7 @@ export VCS_DESCRIPTION := $(shell git describe --always)
 
 # make NetHack
 PREFIX   = /usr
-GAME     = slashem
+GAME     = slex
 # GAME     = slashem.prg
 GAMEUID  = games
 GAMEGRP  = bin
@@ -42,7 +42,7 @@ VARDIRPERM  = 0755
 # These must agree with the definitions in unixconf.h
 
 # Defs. for non file areas support.
-GAMEDIR  = $(PREFIX)/local/slashemdir
+GAMEDIR  = $(PREFIX)/local/slexdir
 VARDIR = $(GAMEDIR)
 FILE_AREA_VAR = $(VARDIR)
 FILE_AREA_SAVE = $(VARDIR)/save
