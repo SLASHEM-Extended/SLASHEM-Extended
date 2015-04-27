@@ -3888,7 +3888,13 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			badeffect();
 		} else pline("The food turns to stone as you try to eat it!");
 
-		if (carried(otmp)) useup(otmp);
+		if (otmp == uwep && otmp->quan == 1L) uwepgone();
+		if (otmp == uquiver && otmp->quan == 1L) uqwepgone();
+		if (otmp == uswapwep && otmp->quan == 1L) uswapwepgone();
+	
+		if (otmp == uball) unpunish();
+		if (otmp == uchain) unpunish(); /* but no useup() */
+		else if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return 1;
 	}
@@ -3907,7 +3913,13 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			badeffect();
 		} else pline("The petrified food appears to be manky as you try to eat it!");
 
-		if (carried(otmp)) useup(otmp);
+		if (otmp == uwep && otmp->quan == 1L) uwepgone();
+		if (otmp == uquiver && otmp->quan == 1L) uqwepgone();
+		if (otmp == uswapwep && otmp->quan == 1L) uswapwepgone();
+	
+		if (otmp == uball) unpunish();
+		if (otmp == uchain) unpunish(); /* but no useup() */
+		else if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return 1;
 	}
