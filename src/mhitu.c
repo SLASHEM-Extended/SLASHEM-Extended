@@ -2140,8 +2140,11 @@ dopois:
 		break;
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !sticks(youmonst.data))
+		if (uncancelled && !u.ustuck && !sticks(youmonst.data)) {
 			setustuck(mtmp);
+			pline("%s grabs you!", Monnam(mtmp));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
 		break;
 	    case AD_WRAP:
 		if ((!mtmp->mcan || u.ustuck == mtmp) && !sticks(youmonst.data)) {
@@ -3235,8 +3238,11 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !sticks(youmonst.data))
+		if (!u.ustuck && !sticks(youmonst.data)) {
 			setustuck(mtmp);
+			pline("%s grabs you!", Monnam(mtmp));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
 		break;
 	    case AD_SGLD:
 		    pline("It shakes you!");

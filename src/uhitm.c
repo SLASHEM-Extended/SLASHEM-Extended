@@ -4474,8 +4474,11 @@ uchar aatyp;
 	      break;
 	      case AD_STCK:
 	      case AD_WRAP:
-			if (malive && !u.ustuck && !sticks(youmonst.data))
+			if (malive && !u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mon);
+				pline("%s sticks to you!", Monnam(mon));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
 			break;
 	      case AD_SGLD:
 			if (!malive) break;
