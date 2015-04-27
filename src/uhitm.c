@@ -1730,7 +1730,7 @@ int thrown;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5)) {
 
-			switch (rnd(197)) {
+			switch (rnd(232)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -1929,6 +1929,42 @@ int thrown;
 			case 195: pline("You go berserk and hit!"); break;
 			case 196: pline("You hit %s through the armor!", mon_nam(mon)); break;
 			case 197: pline("You struck off a %s of %s.", mbodypart(mon,ARM), mon_nam(mon) ); break;
+			case 198: pline("You kick %s in the belly!", mon_nam(mon)); break;
+			case 199: pline("You head-butt %s.", mon_nam(mon)); break;
+			case 200: pline("You push %s over.", mon_nam(mon)); break;
+			case 201: pline("You broke %s's %s!", mon_nam(mon), mbodypart(mon,FINGER)); break;
+			case 202: pline("You broke %s's %s!", mon_nam(mon), mbodypart(mon,TOE)); break;
+			case 203: pline("You kick %s in the shins.", mon_nam(mon)); break;
+			case 204: pline("You stab %s in the %s.", mon_nam(mon), mbodypart(mon,ARM)); break;
+			case 205: pline("You stab %s in the %s.", mon_nam(mon), mbodypart(mon,LEG)); break;
+			case 206: pline("You hit %s over the %s.", mon_nam(mon), mbodypart(mon,HEAD)); break;
+			case 207: pline("You knee %s in the groin!", mon_nam(mon)); break;
+			case 208: pline("You aim a high kick at %s's %s.", mon_nam(mon), mbodypart(mon,HEAD)); break;
+			case 209: pline("You stab %s in the ribs.", mon_nam(mon)); break;
+			case 210: pline("You chop at %s's %s.", mon_nam(mon), mbodypart(mon,NECK)); break;
+			case 211: pline("You put a tight choke-hold on %s.", mon_nam(mon)); break;
+			case 212: pline("You attempt to topple %s over.", mon_nam(mon)); break;
+			case 213: pline("You punch %s.", mon_nam(mon)); break;
+			case 214: pline("You attempt to poke %s in the %s!", mon_nam(mon), mbodypart(mon,EYE)); break;
+			case 215: pline("You twist %s's %s.", mon_nam(mon), mbodypart(mon,LEG)); break;
+			case 216: pline("You twist %s's %s.", mon_nam(mon), mbodypart(mon,ARM)); break;
+			case 217: pline("You bend %s's %s.", mon_nam(mon), makeplural(mbodypart(mon,FINGER)) ); break;
+			case 218: pline("You punch %s in the kidneys!", mon_nam(mon)); break;
+			case 219: pline("You smash %s with your elbow.", mon_nam(mon)); break;
+			case 220: pline("You smash %s with your knee.", mon_nam(mon)); break;
+			case 221: pline("You scratch %s.", mon_nam(mon)); break;
+			case 222: pline("You give %s a nasty bruise.", mon_nam(mon)); break;
+			case 223: pline("You stub %s's %s.", mon_nam(mon), mbodypart(mon,TOE)); break;
+			case 224: pline("You jab %s in the ribs.", mon_nam(mon)); break;
+			case 225: pline("You made %s's %s bleed.", mon_nam(mon), mbodypart(mon,NOSE)); break;
+			case 226: pline("You slap %s.", mon_nam(mon)); break;
+			case 227: pline("%s slips and falls.", Monnam(mon)); break;
+			case 228: pline("You pull at %s's %s.", mon_nam(mon), mbodypart(mon,HAIR)); break;
+			case 229: pline("You punch %s in the %s.", mon_nam(mon), mbodypart(mon,NOSE)); break;
+			case 230: pline("You pull at %s's ear.", mon_nam(mon)); break;
+			case 231: pline("You scream an insult at %s.", mon_nam(mon)); break;
+			case 232: pline("You scowl at %s.", mon_nam(mon)); break;
+
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -2015,7 +2051,7 @@ int thrown;
 
 			if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
-				switch (rnd(197)) {
+				switch (rnd(231)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -2214,6 +2250,41 @@ int thrown;
 				case 195: pline("You ripped %s to pieces.", mon_nam(mon)); break;
 				case 196: pline("Your sword makes %s a %s shorter.", mon_nam(mon), mbodypart(mon,HEAD) ); break;
 				case 197: pline("You remove %s from this world.", mon_nam(mon)); break;
+				case 198: pline("You decapitate %s!", mon_nam(mon)); break;
+				case 199: pline("You impale %s on your weapon.", mon_nam(mon)); break;
+				case 200: pline("Your weapon almost slices %s in half!", mon_nam(mon)); break;
+				case 201: pline("%s's %s caves in!", Monnam(mon), mbodypart(mon,HEAD)); break;
+				case 202: pline("You broke %s's %s!", mon_nam(mon), mbodypart(mon,SPINE)); break;
+				case 203: pline("Your weapon slices into %s's heart!", mon_nam(mon)); break;
+				case 204: pline("You smashed %s's ribcage!", mon_nam(mon)); break;
+				case 205: pline("You stab %s in the %s.", mon_nam(mon), mbodypart(mon,STOMACH)); break;
+				case 206: pline("You cut off %s's %s.", mon_nam(mon), mbodypart(mon,HAND)); break;
+				case 207: pline("You chop down on %s's shins.", mon_nam(mon)); break;
+				case 208: pline("You gave %s a deep gash.", mon_nam(mon)); break;
+				case 209: pline("You gave %s a gigantic bruise.", mon_nam(mon)); break;
+				case 210: pline("You cut off %s's %s!", mon_nam(mon), mbodypart(mon,ARM)); break;
+				case 211: pline("You cut off %s's %s!", mon_nam(mon), mbodypart(mon,LEG)); break;
+				case 212: pline("You stab %s in the heart.", mon_nam(mon)); break;
+				case 213: pline("You slash at %s's %s.", mon_nam(mon), mbodypart(mon,FACE)); break;
+				case 214: pline("You throw %s down at the ground.", mon_nam(mon)); break;
+				case 215: pline("You attempt to strangle %s.", mon_nam(mon)); break;
+				case 216: pline("You grab %s's %s and twist it.", mon_nam(mon), mbodypart(mon,HEAD)); break;
+				case 217: pline("You knocked out several of %s's teeth!", mon_nam(mon)); break;
+				case 218: pline("You broke some of %s's ribs!", mon_nam(mon)); break;
+				case 219: pline("%s spins around dizzily after your blow.", Monnam(mon)); break;
+				case 220: pline("%s sputters at your tight, choking hold!", Monnam(mon)); break;
+				case 221: pline("%s grunts under the force of your blows.", Monnam(mon)); break;
+				case 222: pline("%s screams shrilly in fear.", Monnam(mon)); break;
+				case 223: pline("%s disintegrates into a fine mist!", Monnam(mon)); break;
+				case 224: pline("%s splatters all over the floor.", Monnam(mon)); break;
+				case 225: pline("%s explodes into tiny chunks.", Monnam(mon)); break;
+				case 226: pline("%s's bones are crushed at the force of your blow!", Monnam(mon)); break;
+				case 227: pline("You squash %s into a pancake!", mon_nam(mon)); break;
+				case 228: pline("Your weapons neatly slice %s into many little pieces.", mon_nam(mon)); break;
+				case 229: pline("You cleave %s in half.", mon_nam(mon)); break;
+				case 230: pline("%s's %s flies off in a wide trajectory.", Monnam(mon), mbodypart(mon,HEAD)); break;
+				case 231: pline("%s is driven several feet into the ground under your blow!", Monnam(mon)); break;
+
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -3317,7 +3388,7 @@ register int roll;
 		You("pretend to be friendly to %s.", mon_nam(mdef));
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(279)) {
+		switch (rnd(289)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -3598,6 +3669,17 @@ register int roll;
 		case 277: pline("%s barely escapes!", Monnam(mdef)); break;
 		case 278: pline("You fully hit the enemy's %sshield.", which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 279: pline("Your weapon passes through %s, with no effect.", mon_nam(mdef)); break;
+		case 280: pline("You almost poked your %s out while fighting %s!", body_part(EYE), mon_nam(mdef)); break;
+		case 281: pline("You almost slipped while fighting %s.", mon_nam(mdef)); break;
+		case 282: pline("%s doesn't even flinch!", Monnam(mdef)); break;
+		case 283: pline("You accidentally hurt yourself while fighting %s.", mon_nam(mdef)); break;
+		case 284: pline("%s laughs at your wild swings.", Monnam(mdef)); break;
+		case 285: pline("%s growls at you.", Monnam(mdef)); break;
+		case 286: pline("%s is very, very annoyed!", Monnam(mdef)); break;
+		case 287: pline("%s makes a nasty %s.", Monnam(mdef), mbodypart(mdef, FACE)); break;
+		case 288: pline("%s gnashes his teeth.", Monnam(mdef)); break;
+		case 289: pline("%s lets out a gurgling laugh.", Monnam(mdef)); break;
+
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
