@@ -399,6 +399,9 @@ boolean creation;
 		return;*/
 
 	m_dowear_type(mon, W_AMUL, creation, FALSE);
+
+	  if (is_animal(mon->data)) return;
+
 #ifdef TOURIST
 	/* can't put on shirt if already wearing suit */
 	if (!cantweararm(mon->data) || (mon->misc_worn_check & W_ARM))
