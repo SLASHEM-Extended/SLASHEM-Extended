@@ -154,7 +154,7 @@ in_trouble()
 	if(u.uhs >= WEAK) return(TROUBLE_STARVING);
 	if (Upolyd ? (u.mh <= 5 || u.mh*7 <= u.mhmax) :
 		(u.uhp <= 5 || u.uhp*7 <= u.uhpmax)) return(TROUBLE_HIT);
-	if(u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Role_if(PM_AK_THIEF_IS_DEAD_) )
+	if(u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) )
 		return(TROUBLE_LYCANTHROPE);
 
 	if(near_capacity() >= HVY_ENCUMBER && have_loadstone() )
@@ -1485,7 +1485,7 @@ dosacrifice()
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
 
 	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_RODNEYAN) && !Race_if(PM_INSECTOID) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AQUATIC_MONSTER) && !Race_if(PM_TROLLOR) && !Race_if(PM_VORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_WARPER) && !Race_if(PM_LEVITATOR) && !Race_if(PM_UNALIGNMENT_THING) ) {
-	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
+	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
 		You("find the idea very satisfying.");
 		exercise(A_WIS, TRUE);
 	    } else if (u.ualign.type != A_CHAOTIC) {
@@ -1943,7 +1943,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 	    }
 
 	    if (!rn2(3)) { change_luck((value * LUCKMAX) / (MAXVALUE * 2));
-	    if ((int)u.uluck < 0) u.uluck = 0;
+	    if ((int)u.uluck < 0) /*u.uluck = 0;*/change_luck(1);
 	    if (u.uluck != saved_luck) {
 		if (Blind)
 		    You("think %s brushed your %s.",something, body_part(FOOT));
