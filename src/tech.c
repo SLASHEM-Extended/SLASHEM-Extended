@@ -1900,13 +1900,17 @@ int tech_no;
 		set_occupation(tinker, "tinkering", 0);
 		break;
 	    case T_RAGE:     	
-		if (Upolyd) {
+		/*if (Upolyd) {
 			You("cannot focus your anger!");
 			return(0);
-		}
+		}*/
 	    	You("feel the anger inside you erupt!");
 		num = 50 + (4 * techlev(tech_no));
 	    	techt_inuse(tech_no) = num + 1;
+		if (Upolyd) {
+			u.mhmax += num;
+			u.mh += num;
+		}
 		u.uhpmax += num;
 		u.uhp += num;
 		t_timeout = rnz(1500);
@@ -2684,6 +2688,10 @@ tech_timeout()
 			/* Bleed but don't kill */
 			if (u.uhpmax > 1) u.uhpmax--;
 			if (u.uhp > 1) u.uhp--;
+			if (Upolyd) {
+				if (u.mhmax > 1) u.uhpmax--;
+				if (u.mh > 1) u.uhp--;
+			}
 			break;
 		    case T_POWER_SURGE:
 			/* Bleed off power.  Can go to zero as 0 power is not fatal */
@@ -3404,10 +3412,11 @@ blitz_power_surge()
 		return(0);
 	}
 
-	if (Upolyd) {
+	/* what the heck??? --Amy */
+	/*if (Upolyd) {
 		You("cannot tap into your full potential in this form.");
 		return(0);
-	}
+	}*/
     	You("tap into the full extent of your power!");
 	num = 50 + (2 * techlev(tech_no));
     	techt_inuse(tech_no) = num + 1;
