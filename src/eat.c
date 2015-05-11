@@ -150,6 +150,10 @@ register struct obj *obj;
 	/* [ALI] (fully) drained food is not presented as an option,
 	 * but partly eaten food is (even though you can't drain it).
 	 */
+
+	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_TROVE)
+		return (boolean)(obj->otyp == CORPSE && (!obj->odrained || obj->oeaten > drainlevel(obj)));
+
 	if (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) )
 		return (boolean)(obj->otyp == CORPSE &&
 		  has_blood(&mons[obj->corpsenm]) && (!obj->odrained ||
@@ -1145,7 +1149,8 @@ register struct permonst *ptr;
 		if(!(Acid_resistance & INTRINSIC)) {
 			You(Hallucination ? "wanna do more acid!" :
 			    "feel less afraid of corrosives.");
-			incr_itimeout(&HAcid_resistance, rn1(1000, 500));
+			if (rn2(100)) incr_itimeout(&HAcid_resistance, rn1(1000, 500));
+			else HAcid_resistance |= FROMOUTSIDE;
 		}
 		break;
 	    case STONE_RES:
@@ -1155,7 +1160,8 @@ register struct permonst *ptr;
 		if(!(HStone_resistance & INTRINSIC)) {
 			You(Hallucination ? "feel stony and groovy, man." :
 			    "feel rock solid.");
-			incr_itimeout(&HStone_resistance, rn1(1000, 500));
+			if (rn2(100)) incr_itimeout(&HStone_resistance, rn1(1000, 500));
+			else HStone_resistance |= FROMOUTSIDE;
 		}
 		break;
 	    case FIRE_RES:
@@ -2881,7 +2887,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	victual.reqtime = 3 + (mons[mnum].cwt >> 6);
 	if (otmp->odrained) victual.reqtime = rounddiv(victual.reqtime, 5);
 
-	if (!tp && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_LIZARD_KING && mnum != PM_EEL_LIZARD && mnum != PM_ROCK_LIZARD && mnum != PM_NIGHT_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_MIMIC_LIZARD  && mnum != PM_CLINGING_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON &&
+	if (!tp && mnum != PM_LIZARD && mnum != PM_CAVE_LIZARD && mnum != PM_CHAOS_LIZARD && mnum != PM_LIZARD_EEL && mnum != PM_LIZARD_MAN && mnum != PM_LIZARD_KING && mnum != PM_EEL_LIZARD && mnum != PM_ROCK_LIZARD && mnum != PM_NIGHT_LIZARD && mnum != PM_HIDDEN_LIZARD && mnum != PM_DEFORMED_LIZARD && mnum != PM_MIMIC_LIZARD  && mnum != PM_CLINGING_LIZARD && mnum != PM_ANTI_STONE_LIZARD && mnum != PM_LICHEN && mnum != PM_SQUIRREL && mnum != PM_GECKO && mnum != PM_GIANT_GECKO && mnum != PM_IGUANA && mnum != PM_BIG_IGUANA && mnum != PM_HUGE_LIZARD && mnum != PM_SAND_TIDE && mnum != PM_FBI_AGENT && mnum != PM_KARMIC_LIZARD && mnum != PM_MONSTER_LIZARD && mnum != PM_OWN_SMOKE && mnum != PM_GRANDPA && mnum != PM_FIRE_LIZARD && mnum != PM_ICE_LIZARD && mnum != PM_LIGHTNING_LIZARD && mnum != PM_GIANT_LIZARD && mnum != PM_HELPFUL_SQUIRREL && mnum != PM_RHAUMBUSUN && mnum != PM_BIG_RHAUMBUSUN && mnum != PM_SALAMANDER && mnum != PM_FROST_SALAMANDER && mnum != PM_KOMODO_DRAGON && mnum != PM_PETTY_KOMODO_DRAGON && mons[mnum].mlet != S_TROVE &&
 			(otmp->orotten || otmp->cursed || (!rn2(7) && !otmp->blessed)  )) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 	    if (rottenfood(otmp)) {
