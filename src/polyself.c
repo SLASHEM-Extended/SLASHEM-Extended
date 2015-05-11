@@ -599,6 +599,11 @@ int	mntmp;
 	    }
 	}
 	if (nohands(youmonst.data)) Glib = 0;
+	if (Passes_walls && u.utraptype == TT_PIT) {  
+		u.utraptype = 0;  
+		u.utrap = 0;  
+		vision_full_recalc = 1;  
+	}  
 
 	/*
 	mlvl = adj_lev(&mons[mntmp]);
