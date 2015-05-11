@@ -1885,6 +1885,75 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 
+	int shieldblockrate = 0;
+
+	if (uarms) {
+
+		switch (uarms->otyp) {
+
+		case SMALL_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case ELVEN_SHIELD:
+			shieldblockrate = 30;
+			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH)) shieldblockrate += 5;
+			break;
+		case URUK_HAI_SHIELD:
+			shieldblockrate = 32;
+			if (Race_if(PM_ORC)) shieldblockrate += 5;
+			break;
+		case ORCISH_SHIELD:
+			shieldblockrate = 28;
+			if (Race_if(PM_ORC)) shieldblockrate += 5;
+			break;
+		case DWARVISH_ROUNDSHIELD:
+			shieldblockrate = 34;
+			if (Race_if(PM_DWARF)) shieldblockrate += 5;
+			break;
+		case LARGE_SHIELD:
+			shieldblockrate = 35;
+			break;
+		case STEEL_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_REFLECTION:
+			shieldblockrate = 35;
+			break;
+		case FLAME_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case ICE_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case LIGHTNING_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case VENOM_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_LIGHT:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_MOBILITY:
+			shieldblockrate = 40;
+			break;
+		default: impossible("Unknown type of shield (%d)", uarms->otyp);
+
+		}
+
+		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
+
+		if (uarms->cursed) shieldblockrate /= 2;
+		if (uarms->blessed) shieldblockrate += 5;
+
+		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
+
+		if (shieldblockrate < 0) shieldblockrate = 0;
+
+		Sprintf(buf, "%d%%", shieldblockrate);
+		enl_msg("Your chance to block ", "is ", "was ", buf );
+	}
+
 	if (Fumbling) enl_msg("You fumble", "", "d", "");
 	if (Wounded_legs
 #ifdef STEED
