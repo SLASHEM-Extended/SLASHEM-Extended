@@ -599,6 +599,7 @@ struct monst *shkp;
 	    adjalign(-sgn(u.ualign.type));
 	    You("feel like an evil rogue.");
 		if(u.ualign.type < 0) u.ualign.sins++;
+		if(u.ualign.type < 0) u.alignlim--;
 	}
 
 	hot_pursuit(shkp);

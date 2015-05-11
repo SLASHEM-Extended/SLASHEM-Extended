@@ -332,6 +332,7 @@ struct you {
 			atemp,		/* used for temporary loss/gain */
 			atime;		/* used for loss/gain countdown */
 	align	ualign;			/* character alignment */
+	int alignlim;	/* used to be a define, but we want variation --Amy */
 #define CONVERT		2
 #define A_ORIGINAL	1
 #define A_CURRENT	0

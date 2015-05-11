@@ -265,6 +265,7 @@ struct monst *mtmp;
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
 		u.ualign.sins++;
+		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -275,6 +276,7 @@ struct monst *mtmp;
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
 		u.ualign.sins++;
+		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -285,6 +287,7 @@ struct monst *mtmp;
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
 		u.ualign.sins++;
+		u.alignlim--;
 	    You("crumple-horned snorkack!");
 	    adjalign(-5);
 		badeffect();
@@ -296,6 +299,7 @@ struct monst *mtmp;
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
 		u.ualign.sins++;
+		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -339,6 +343,7 @@ register struct monst *mtmp;
 	    u.ualign.record > -10) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
+		u.alignlim--;
 	    adjalign(-5);
 	}
 #ifdef JEDI
@@ -347,6 +352,7 @@ register struct monst *mtmp;
 	    u.ualign.record > -10) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
+		u.alignlim--;
 	    adjalign(-5);
 	}
 #endif
@@ -1543,6 +1549,7 @@ int thrown;
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
 		u.ualign.sins++;
+		u.alignlim--;
 	    } else if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && (u.ualign.record > -10)) {
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
@@ -1712,6 +1719,7 @@ int thrown;
 			0, TRUE, SICK_NONVOMITABLE); */
 		      (void) difeasemu(mon); /* hopefully stopping those annoying pudding farmers! */
 			u.ualign.sins++; /* adding even more punishment for lame farmers */
+			u.alignlim--;
 			hittxt = TRUE;
 		}
 	}

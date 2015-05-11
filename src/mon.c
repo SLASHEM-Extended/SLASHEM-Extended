@@ -2384,6 +2384,7 @@ register struct monst *mtmp;
 
 		change_luck(-10);
 		u.ualign.sins += 20; 
+		u.alignlim -= 20;
 		adjalign(-200);
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
 		prayer_done();
@@ -3188,7 +3189,8 @@ cleanup:
 
 	    You(Hallucination ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
 	    adjalign(-25);
-		u.ualign.sins += 1; 
+		u.ualign.sins++; 
+		u.alignlim--;
 		change_luck(-1);
 
 	}
@@ -3198,7 +3200,8 @@ cleanup:
 
 	    Hallucination ? You("feel very bad for killing your future %s.", flags.female ? "husband" : "wife") : You("feel very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
-		u.ualign.sins += 1; 
+		u.ualign.sins++; 
+		u.alignlim--;
 		change_luck(-1);
 
 	}
@@ -3214,12 +3217,14 @@ cleanup:
 
 		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
 			u.ualign.sins += 5; 
+			u.alignlim -= 5;
 			change_luck(-1);
 			adjalign(-50);
 		}
 
-		if(u.ualign.type == A_LAWFUL) u.ualign.sins += 3; /*fall through*/
+		if(u.ualign.type == A_LAWFUL) { u.ualign.sins += 3; u.alignlim -= 3;} /*fall through*/
 		u.ualign.sins += 2; 
+		u.alignlim -= 2;
 		if (Blind && !Blind_telepat)
 		    see_monsters(); /* Can't sense monsters any more. */
 		}
@@ -3237,6 +3242,7 @@ cleanup:
 		You_feel("guilty for killing an innocent girl.");
 		change_luck(-5);
 		u.ualign.sins += 10; 
+		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;
 		prayer_done();
@@ -3249,13 +3255,13 @@ cleanup:
 
 	/* adjust alignment points */
 	if (mtmp->m_id == quest_status.leader_m_id) {		/* REAL BAD! */
-	    adjalign(-(u.ualign.record+(int)ALIGNLIM/2));
+	    adjalign(-(u.ualign.record+u.alignlim/2));
 	    pline("That was %sa bad idea...",
 	    		u.uevent.qcompleted ? "probably " : "");
 	} else if (mdat->msound == MS_NEMESIS)	/* Real good! */
-	    adjalign((int)(ALIGNLIM/4));
+	    adjalign((u.alignlim/4));
 	else if (mdat->msound == MS_GUARDIAN) {	/* Bad */
-	    adjalign(-(int)(ALIGNLIM/8));
+	    adjalign(-(u.alignlim/8));
 	    if (!Hallucination) pline("That was probably a bad idea...");
 	    else pline("Whoopsie-daisy!");
 	} else if (mtmp->ispriest) {
@@ -3263,7 +3269,7 @@ cleanup:
 		/* cancel divine protection for killing your priest */
 		if (p_coaligned(mtmp)) u.ublessed = 0;
 		if (mdat->maligntyp == A_NONE)
-			adjalign((int)(ALIGNLIM / 4));		/* BIG bonus */
+			adjalign(u.alignlim / 4);		/* BIG bonus */
 	} else if (mtmp->mtame) {
 		adjalign(-50);	/* bad!! */
 		/* your god is mighty displeased... */

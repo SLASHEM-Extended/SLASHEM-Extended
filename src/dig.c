@@ -858,11 +858,13 @@ dig_up_grave()
 	if (Role_if(PM_ARCHEOLOGIST)) {
 	    adjalign(-sgn(u.ualign.type)*3);
 		u.ualign.sins++;
+		u.alignlim--;
 		adjalign(-5);
 	    You_feel("like a despicable grave-robber!");
 	} else if (Role_if(PM_SAMURAI)) {
 	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
 		u.ualign.sins++;
+		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	} else if ((u.ualign.type == A_LAWFUL) && (u.ualign.record > -10)) {

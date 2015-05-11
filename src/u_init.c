@@ -4184,6 +4184,7 @@ u_init()
 		ini_inv(Binder);
 		skill_init(Skill_Bin);
 	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	  u.alignlim -= 16;
 	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
 		break;
 
@@ -4342,6 +4343,7 @@ u_init()
         knows_object(GRAPPLING_HOOK);
         skill_init(Skill_Con);
 	  u.ualign.sins += 16; /* You have sinned */
+	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
     	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
         u.ualign.type = A_CHAOTIC; Override racial alignment */
@@ -5476,6 +5478,7 @@ u_init()
 	case 4:
 		ini_inv(Binder);
 	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	  u.alignlim -= 16;
 	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
 		break;
 
@@ -5610,6 +5613,7 @@ u_init()
         knows_object(SKELETON_KEY);
         knows_object(GRAPPLING_HOOK);
 	  u.ualign.sins += 16; /* You have sinned */
+	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
     	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
         u.ualign.type = A_CHAOTIC; Override racial alignment */
@@ -6447,6 +6451,7 @@ u_init()
 	    /* Vampires start off with gods not as pleased, luck penalty */
 	    adjalign(-5); 
 	    u.ualign.sins += 5;
+	    u.alignlim -= 5;
 	    change_luck(-1);
 		{
 		static int trotyp[] = {POT_BLOOD, POT_VAMPIRE_BLOOD};

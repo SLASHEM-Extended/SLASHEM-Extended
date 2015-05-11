@@ -1311,6 +1311,9 @@ newhp()
 	    /* Initialize alignment stuff */
 	    u.ualign.type = aligns[flags.initalign].value;
 	    u.ualign.record = urole.initrecord;
+	    u.alignlim = 10 - u.ualign.sins;
+
+	    if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
 		return hp;
 	} else {
 	    if (u.ulevel < urole.xlev) {
@@ -1430,8 +1433,8 @@ register int n;
 	} else
 		if (newalign > u.ualign.record) {
 			u.ualign.record = newalign;
-			if(u.ualign.record > ALIGNLIM)
-				u.ualign.record = ALIGNLIM;
+			if(u.ualign.record > u.alignlim)
+				u.ualign.record = u.alignlim;
 		}
 
 	if (Race_if(PM_UNALIGNMENT_THING) && n < 0) pline("You lost %d alignment points; your new value is %d.", abs(n), u.ualign.record);

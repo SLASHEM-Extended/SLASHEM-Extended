@@ -779,6 +779,7 @@ register int pm;
 		verbalize("How darest thou eat Cato's girlfriend!");
 		change_luck(-5);
 		u.ualign.sins += 10; 
+		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;
 		prayer_done();

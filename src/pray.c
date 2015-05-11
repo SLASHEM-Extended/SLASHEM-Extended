@@ -1612,7 +1612,7 @@ dosacrifice()
 	    } else if (u.ualign.type == altaralign) {
 		/* If different from altar, and altar is same as yours, */
 		/* it's a very good action */
-		if (u.ualign.record < ALIGNLIM)
+		if (u.ualign.record < u.alignlim)
 		    You_feel("appropriately %s.", align_str(u.ualign.type));
 		else You_feel("you are thoroughly on the right path.");
 		adjalign(5);
@@ -1743,7 +1743,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 		    /* Beware, Conversion is costly */
 		    change_luck(-3);
 		    u.ublesscnt += (ishaxor ? 150 : 300);
-		    adjalign((int)(u.ualignbase[A_ORIGINAL] * (ALIGNLIM / 2)));
+		    adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
 		} else {
 		    u.ugangr += 3;
 		    adjalign(-25);
@@ -1800,7 +1800,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 			      u.ualign.type ? NH_BLACK : (const char *)"gray"));
 
 		    if (rnl(u.ulevel) > 6 && u.ualign.record > 0 &&
-		       rnd(u.ualign.record) > (3*ALIGNLIM)/4) {
+		       rnd(u.ualign.record) > (3*u.alignlim)/4) {
 			summon_minion(altaralign, TRUE);
 			if (rn2(u.ulevel)) summon_minion(altaralign, TRUE); /* summon more --Amy */
 			if (!rn2(3)) summon_minion(altaralign, TRUE);
@@ -1823,7 +1823,7 @@ verbalize("In return for thy service, I grant thee the gift of Immortality!");
 #endif
 		    exercise(A_WIS, FALSE);
 		    if (rnl(u.ulevel) > 6 && u.ualign.record > 0 &&
-		       rnd(u.ualign.record) > (7*ALIGNLIM)/8) {
+		       rnd(u.ualign.record) > (7*u.alignlim)/8) {
 			summon_minion(altaralign, TRUE);
 			if (rn2(u.ulevel)) summon_minion(altaralign, TRUE); /* summon more --Amy */
 			if (!rn2(3)) summon_minion(altaralign, TRUE);

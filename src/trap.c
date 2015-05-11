@@ -985,6 +985,7 @@ int *fail_reason;
 		    You_feel("guilty that the historic statue is now gone.");
 		    adjalign(-10);
 			u.ualign.sins++;
+			u.alignlim--;
 	    }
 	} else if (cause == ANIMATE_SHATTER)
 	    pline("Instead of shattering, the statue suddenly %s!",

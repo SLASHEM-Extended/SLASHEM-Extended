@@ -14,7 +14,7 @@ typedef struct	align {		/* alignment & record */
 } align;
 
 /* bounds for "record" -- respect initial alignments of 10 */
-#define ALIGNLIM	(10L + (moves/200L) - u.ualign.sins)
+/*#define ALIGNLIM	(10L + (moves/200L) - u.ualign.sins)*/
 
 #define A_NONE	      (-128)	/* the value range of type */
 

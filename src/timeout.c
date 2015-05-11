@@ -231,6 +231,10 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
+
+	if (!rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && (u.alignlim < 20 || (rnd(u.alignlim) < 20) ) ) u.alignlim++;
+
 	/* Nymph race randomly gets punished --Amy */
 	if (!rn2(2000) && Race_if(PM_NYMPH)) {
 			punishx();

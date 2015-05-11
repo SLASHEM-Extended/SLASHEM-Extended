@@ -1312,7 +1312,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) { /* can randomly appear with enlightenment, always after death --Amy */
-		Sprintf(buf, " %d", (int) ALIGNLIM);
+		Sprintf(buf, " %d", u.alignlim);
 		enl_msg("Your max alignment ", "is", "was", buf);
 	}
 
