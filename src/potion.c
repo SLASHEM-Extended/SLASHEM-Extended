@@ -1525,7 +1525,7 @@ peffects(otmp)
 
 		/* Blessed amnesia makes you forget lycanthropy, sickness */
 		if (otmp->blessed) {
-		    if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Role_if(PM_AK_THIEF_IS_DEAD_) ) {
+		    if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 			You("forget your affinity to %s!",
 					makeplural(mons[u.ulycn].mname));
 			if (youmonst.data == &mons[u.ulycn])
@@ -1553,7 +1553,7 @@ peffects(otmp)
 		    if(otmp->blessed) {
 			pline("This burns like acid!");
 			exercise(A_CON, FALSE);
-			if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Role_if(PM_AK_THIEF_IS_DEAD_) ) {
+			if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 			    Your("affinity to %s disappears!",
 				 makeplural(mons[u.ulycn].mname));
 			    if (youmonst.data == &mons[u.ulycn])
@@ -1574,7 +1574,7 @@ peffects(otmp)
 			make_sick(0L, (char *) 0, TRUE, SICK_ALL);
 			exercise(A_WIS, TRUE);
 			exercise(A_CON, TRUE);
-			if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Role_if(PM_AK_THIEF_IS_DEAD_) ) {
+			if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 			    you_unwere(TRUE);	/* "Purified" */
 			}
 			/* make_confused(0L,TRUE); */
@@ -2259,7 +2259,7 @@ peffects(otmp)
 		make_confused(itimeout_incr(HConfusion, d(6,7)), FALSE);	/* 6d7 is max. 42 */
 
 		if (otmp->blessed || !rn2(4) || u.ulycn != -1) {
-			if (u.ulycn != -1 && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Role_if(PM_AK_THIEF_IS_DEAD_) ) {
+			if (u.ulycn != -1 && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 				You("feel purified.");
 				if (!Unchanging && (u.umonnum == u.ulycn) ) {
 					rehumanize();

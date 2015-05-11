@@ -3154,7 +3154,7 @@ struct obj *otmp;
 		    boolean bad_for_you;
  give_feedback:
 		    bad_for_you = otmp->cursed ||
-		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_)) &&
+		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_)) &&
 		      otmp->otyp == SPRIG_OF_WOLFSBANE);
 		    pline("This %s is %s", singular(otmp, xname),
 		      bad_for_you ? (Hallucination ? "grody!" : "terrible!") :

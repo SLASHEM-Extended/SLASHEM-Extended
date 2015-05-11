@@ -778,7 +778,7 @@ STATIC_OVL void
 break_armor()
 {
     register struct obj *otmp;
-    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
+    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if ((otmp = uarm) != 0) {

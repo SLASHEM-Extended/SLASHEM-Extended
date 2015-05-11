@@ -101,6 +101,8 @@ int pm;
 	    case PM_HUMAN_WEREJABBERWOCK: return(PM_WEREJABBERWOCK);
 	    case PM_WEREGRIDBUG:       return(PM_HUMAN_WEREGRIDBUG);
 	    case PM_HUMAN_WEREGRIDBUG: return(PM_WEREGRIDBUG);
+	    case PM_AK_THIEF_IS_DEAD_:       return(PM_UN_IN_PROTECT_MODE);
+	    case PM_UN_IN_PROTECT_MODE: return(PM_AK_THIEF_IS_DEAD_);
 	    default:		      return(0);
 	}
 }
@@ -339,7 +341,7 @@ boolean purify;
 	boolean in_wereform = (u.umonnum == u.ulycn);
 
 	if (purify) {
-	    if (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) ) {
+	    if (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 		/* An attempt to purify you has been made! */
 		if (in_wereform && Unchanging) {
 		    killer_format = NO_KILLER_PREFIX;

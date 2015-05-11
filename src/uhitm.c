@@ -3064,7 +3064,7 @@ register struct attack *mattk;
 		break;
 	}
 
-	if ( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Role_if(PM_AK_THIEF_IS_DEAD_) ) && Upolyd) tmp += rnd(u.ulevel); /* come on, werewolves need some love too! --Amy */
+	if ( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) && Upolyd) tmp += rnd(u.ulevel); /* come on, werewolves need some love too! --Amy */
 
 	mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
 	if (rn2(3) && tmp && noeffect && !DEADMONSTER(mdef)) {
