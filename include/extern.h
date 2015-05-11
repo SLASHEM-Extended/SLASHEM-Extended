@@ -113,6 +113,7 @@ E schar NDECL(acurrstr);
 E void FDECL(adjalign, (int));
 /* KMH, balance patch -- new function */
 E void NDECL(recalc_health);
+E int NDECL(recalc_mana);
 
 /* ### ball.c ### */
 
@@ -878,6 +879,10 @@ E struct obj *FDECL(sobj_at, (int,int,int));
 E struct obj *FDECL(carrying, (int));
 E boolean NDECL(have_lizard);
 E boolean NDECL(have_loadstone);
+E boolean NDECL(have_sleepstone);
+E boolean NDECL(have_magicresstone);
+E boolean NDECL(have_cursedmagicresstone);
+E boolean NDECL(have_loadboulder);
 E struct obj *FDECL(o_on, (unsigned int,struct obj *));
 E boolean FDECL(obj_here, (struct obj *,int,int));
 E boolean NDECL(wearing_armor);

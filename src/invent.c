@@ -540,7 +540,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 	    obj = addinv(obj);
 	    if (inv_cnt() > 52
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE) || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE) || !obj->cursed)
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -627,7 +627,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		}
 
 	    if ( inv_cnt() > 52
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE) || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE) || !obj->cursed)
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -734,7 +734,7 @@ struct obj *obj;
 		set_artifact_intrinsic(obj, 0, W_ART);
 	}
 
-	if (obj->otyp == LOADSTONE) {
+	if (obj->otyp == LOADSTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER) {
 		curse(obj);
 	} else if (confers_luck(obj)) {
 		set_moreluck();
@@ -922,6 +922,54 @@ have_loadstone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LOADSTONE && otmp->cursed)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_sleepstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SLEEPSTONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_magicresstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_MAGIC_RESISTANCE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_cursedmagicresstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_MAGIC_RESISTANCE  && otmp->cursed)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_loadboulder()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOADBOULDER && otmp->cursed)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -1530,7 +1578,7 @@ register const char *let,*word;
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
 		/* don't split a stack of cursed loadstones */
-		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE) && otmp->cursed)
+		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE) && otmp->cursed)
 		    /* kludge for canletgo()'s can't-drop-this message */
 		    otmp->corpsenm = (int) cnt;
 		else
@@ -1871,7 +1919,7 @@ nextclass:
 		    else {
 			sym = 'y';
 			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE) )) {
+			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE) )) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }
@@ -3905,6 +3953,8 @@ struct obj *obj;
 				pline("A lightweight cloak with medium magic cancellation and robust armor class."); break;
 			case CLOAK_OF_PROTECTION: 
 				pline("This cloak provides good armor class and maximum magic cancellation."); break;
+			case CLOAK_OF_FUMBLING: 
+				pline("A cloak that provides maximum magic cancellation, but also causes fumbling when worn."); break;
 			case POISONOUS_CLOAK: 
 				pline("Wearing this cloak without poison resistance can kill you. Other than that, it provides maximum magic cancellation."); break;
 			case CLOAK_OF_INVISIBILITY: 
@@ -3951,6 +4001,16 @@ struct obj *obj;
 				pline("If you put on this helmet, your alignment will be changed and you lose all divine protection that you might have."); break;
 			case HELM_OF_STEEL:
 				pline("A robust helmet that offers good armor class."); break;
+			case HELM_OF_DRAIN_RESISTANCE:
+				pline("You can get resistance to level drain by putting on this helm."); break;
+			case HELM_OF_FEAR:
+				pline("A helmet that grants good AC and magic cancellation, but you also get the 'fear' status effect while wearing it, causing you to miss a lot more often. It is usually generated cursed."); break;
+			case HELM_OF_HUNGER:
+				pline("A helmet that grants good AC and magic cancellation, but you also get the 'hunger' status effect while wearing it, causing you to burn nutrition at a faster rate. It is usually generated cursed."); break;
+			case HELM_OF_STORMS:
+				pline("The very powerful Helm of Storms grants its wearer control over the elements, which is to say, resistance to fire, cold and lightning. It also allows you to detect monsters until the helm is removed, but you can't eat, quaff potions, levelport, or control your teleports while wearing it. Monsters also respawn much faster for as long as you wear it. This helm autocurses if you put it on."); break;
+			case HELM_OF_DETECT_MONSTERS:
+				pline("When worn, this helm grants you the ability to detect monsters until removed. It also prevents you from eating or quaffing potions, and this helm autocurses every time it is put on."); break;
 			case HELM_OF_DISCOVERY:
 				pline("This helmet grants automatic searching if you wear it."); break;
 			case HELM_OF_TELEPATHY:
@@ -3961,8 +4021,14 @@ struct obj *obj;
 				pline("A standard pair of gloves that offers little protection."); break;
 			case GAUNTLETS_OF_FUMBLING:
 				pline("You will fumble if you put on this pair of gloves. They are usually generated cursed."); break;
+			case GAUNTLETS_OF_SLOWING:
+				pline("A pair of gloves that slows your movement speed when worn. They are usually generated cursed."); break;
+			case OILSKIN_GLOVES:
+				pline("This pair of gloves will cause you to drop your weapon, and you'll be unable to re-equip it. They provide some AC and maximum magic cancellation, but these gloves autocurse if you put them on."); break;
 			case GAUNTLETS_OF_POWER:
 				pline("A powerful pair of gauntlets that increases the wearer's strength."); break;
+			case GAUNTLETS_OF_REFLECTION:
+				pline("Wear this pair of gloves, and you'll be able to reflect beams and certain other attacks!"); break;
 			case GAUNTLETS_OF_TYPING:
 				pline("These gauntlets are nothing special, but they offer some points of armor class."); break;
 			case GAUNTLETS_OF_STEEL:
@@ -4033,12 +4099,16 @@ struct obj *obj;
 				pline("Wearing this pair of boots allows you to jump around."); break;
 			case FLYING_BOOTS:
 				pline("A funny pair of boots with wings that allows the wearer to fly like an eagle."); break;
+			case BOOTS_OF_ACID_RESISTANCE:
+				pline("Wearing these boots grats the otherwise hard-to-get acid resistance property, but unfortunately it won't protect your equipment."); break;
 			case ELVEN_BOOTS:
 				pline("Wearers of this pair of boots can walk very quietly."); break;
 			case KICKING_BOOTS:
 				pline("If you want to be a kung-fu fighter, wear these boots to power up your kicks."); break;
 			case FUMBLE_BOOTS:
 				pline("Wear this pair of boots if you want to fumble, which probably won't ever be the case. They are usually generated cursed."); break;
+			case FIRE_BOOTS:
+				pline("A pair of boots that grants great AC and magic cancellation but also burns you when worn. They are usually generated cursed."); break;
 			case ZIPPER_BOOTS:
 				pline("By watching these boots closely, you notice their zippers are trying to touch and damage your skin. They're sharp-edged too, so be careful."); break;
 			case LEVITATION_BOOTS:
@@ -4064,6 +4134,10 @@ struct obj *obj;
 				pline("You will drop your weapon if you wear this ring. It is usually generated cursed."); break;
 			case RIN_NUMBNESS: 
 				pline("Wearing this ring will numb your limbs, which is a Bad Thing (TM). It is usually generated cursed."); break;
+			case RIN_CURSE: 
+				pline("While wearing this ring, your items will sometimes get cursed. Putting this ring on causes it to autocurse."); break;
+			case RIN_HALLUCINATION: 
+				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
 			case RIN_MOOD: 
 				pline("A fairly useless ring that requires you to put it on, then read it to reveal a not-very-enlightening message."); break;
 			case RIN_PROTECTION: 
@@ -4523,6 +4597,12 @@ struct obj *obj;
 				pline("Drinking this potion will stun you. If it hits a monster, the monster will be stunned too."); break;
 			case POT_NUMBNESS:
 				pline("Your limbs will be numbed from quaffing this potion, so you're probably better off using it against a monster instead."); break;
+			case POT_URINE:
+				pline("Quaffing this potion is only fatal if it's more than 50 turns old."); break;
+			case POT_SLIME:
+				pline("You will slowly turn into a green slime if you quaff this potion."); break;
+			case POT_CANCELLATION:
+				pline("Similar to an amnesia potion, but this potion will cancel your items or remove your intrinsics."); break;
 			case POT_INVISIBILITY:
 				pline("This potion can make the one quaffing it invisible."); break;
 			case POT_MONSTER_DETECTION:
@@ -4682,6 +4762,8 @@ struct obj *obj;
 				pline("Builds a toilet on your square, but only if that square is in a room."); break;
 			case SCR_LAVA: 
 				pline("Reading this scroll turns some ordinary floor squares into lava."); break;
+			case SCR_STONING: 
+				pline("Read this scroll if you want to become a statue."); break;
 			case SCR_GROWTH: 
 				pline("You will create lots of trees if you read this scroll."); break;
 			case SCR_ICE: 
@@ -4737,6 +4819,8 @@ struct obj *obj;
 				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status."); break;
 			case SPE_CURE_STUN:
 				pline("By casting this spell, you can get rid of the stun condition."); break;
+			case SPE_GENOCIDE:
+				pline("Yes, this is not a joke. Casting this spell might allow you to genocide some monster. However, it often fails, and even on the off chance it doesn't, you will only be able to genocide a single monster species."); break;
 			case SPE_EXTRA_HEALING:
 				pline("A more powerful healing spell that can heal more hit points than the standard healing spell. Can be cast at yourself or at a monster."); break;
 			case SPE_FULL_HEALING:
@@ -4771,6 +4855,8 @@ struct obj *obj;
 				pline("According to the Sporkhack creator, this spell is supposed to be useless. But this is Slash'EM Extended, where it allows you to make enemies fall over unconscious by... well, just see it for yourself. :D"); break;
 			case SPE_CONFUSE_MONSTER:
 				pline("Your melee attacks can confuse monsters if you cast this spell."); break;
+			case SPE_FORBIDDEN_KNOWLEDGE:
+				pline("Learning this spell causes your deity to become very angry. Casting it angers your deity even more, but grants resistance to damage and spells for a while. The appearance and level of this book are random."); break;
 			case SPE_SLOW_MONSTER:
 				pline("This spell fires an invisible beam that slows targets."); break;
 			case SPE_CAUSE_FEAR:
@@ -4867,6 +4953,24 @@ struct obj *obj;
 				pline("This spellbook is blank. You may be able to write on it with a magic marker, turning it into another spellbook."); break;
 			case SPE_BOOK_OF_THE_DEAD:
 				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful."); break;
+			case SPE_DARKNESS:
+				pline("Cast this spell if you want to turn lit areas into unlit ones."); break;
+			case SPE_DETECT_ARMOR_ENCHANTMENT:
+				pline("This spell detects the enchantment value of all armor items in your main inventory."); break;
+			case SPE_CONFUSE_SELF:
+				pline("Want to confuse yourself? Cast this spell!"); break;
+			case SPE_STUN_SELF:
+				pline("You can cast this spell to be stunned on purpose, should you wish to do so for some weird reason."); break;
+			case SPE_BLIND_SELF:
+				pline("A spell that blinds you for a period of time. This is best used in conjunction with telepathy."); break;
+			case SPE_CORRODE_METAL:
+				pline("This spell corrodes metal items in your main inventory, causing them to degrade."); break;
+			case SPE_DISSOLVE_FOOD:
+				pline("Want to get rid of your food without eating it? Then cast this spell while having food in your main inventory!"); break;
+			case SPE_AGGRAVATE_MONSTER:
+				pline("This spell will aggravate monsters if you cast it."); break;
+			case SPE_REMOVE_BLESSING:
+				pline("A spell that turns all blessed items in your main inventory into uncursed ones."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -4986,6 +5090,26 @@ struct obj *obj;
 				pline("Zapping this wand in a direction releases an acid ray to do damage."); break;
 			case WAN_SOLAR_BEAM:
 				pline("A wand that sends rays of pure solar energy at your enemies."); break;
+			case WAN_STONING:
+				pline("A wand that fires invisible beams to turn monsters to stone.");
+			case WAN_CURSE_ITEMS:
+				pline("If anyone zaps this wand, your inventory items become cursed.");
+			case WAN_AMNESIA:
+				pline("You should prevent at all costs that anyone zaps this thing, for if it happens, you will suffer from amnesia!");
+			case WAN_BAD_LUCK:
+				pline("Every zap of this wand reduces your luck by one point, regardless of who zapped it.");
+			case WAN_REMOVE_RESISTANCE:
+				pline("Zapping this wand will remove random intrinsics.");
+			case WAN_CORROSION:
+				pline("A wand that corrodes some of your inventory if you zap it, and also if someone else zaps it.");
+			case WAN_FUMBLING:
+				pline("Zapping this wand will cause you to fumble. It doesn't matter who zapped it either.");
+			case WAN_STARVATION:
+				pline("This wand will reduce your nutrition if you, or anyone else, zaps it.");
+			case WAN_PARALYSIS:
+				pline("A wand that fires invisible beams to paralyze monsters.");
+			case WAN_DISINTEGRATION:
+				pline("For instances where a wand of death isn't good enough, use this to fire invisible disintegration beams.");
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -5070,6 +5194,14 @@ struct obj *obj;
 				pline("A very useless gray stone that has been added to the game just to re-obscure the identification of actually useful gray stones. The only thing you can do with it is to dip it into potions, and maybe you get a potion of salt water which is also next to useless."); break;
 			case WHETSTONE:
 				pline("This item is meant to be used in conjunction with things that can be sharpened, by rubbing them on it. However, it requires you to be near a source of water."); break;
+			case MANASTONE:
+				pline("Manastones are usually generated cursed, but if you carry around noncursed ones your energy regeneration will speed up."); break;
+			case SLEEPSTONE:
+				pline("A gray stone that is usually generated cursed. If you carry it in your open inventory, you will fall asleep even if you are sleep resistant. It also halves the chance of waking up from combat."); break;
+			case STONE_OF_MAGIC_RESISTANCE:
+				pline("Slotless magic resistance can be obtained by having this stone in your inventory. Beware: if the stone is cursed, you will take double damage from everything!"); break;
+			case LOADBOULDER:
+				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it; if you try to pick it up, you will always do so even if it would overburden you! It's okay to pick one up if you are a giant, though."); break;
 			case FLINT:
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
 			case ROCK:

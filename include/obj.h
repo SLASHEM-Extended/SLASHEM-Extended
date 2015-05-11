@@ -326,6 +326,9 @@ struct obj {
 || (otmp)->otyp == POT_ICE\
 || (otmp)->otyp == POT_STUNNING\
 || (otmp)->otyp == POT_NUMBNESS\
+|| (otmp)->otyp == POT_URINE\
+|| (otmp)->otyp == POT_CANCELLATION\
+|| (otmp)->otyp == POT_SLIME\
 || (otmp)->otyp == SCR_BAD_EFFECT\
 || (otmp)->otyp == WAN_BAD_EFFECT\
 || (otmp)->otyp == POT_FIRE\
@@ -340,6 +343,21 @@ struct obj {
 || (otmp)->otyp == WAN_SPEED_MONSTER\
 || (otmp)->otyp == POT_POLYMORPH\
 || (otmp)->otyp == WAN_CLONE_MONSTER\
+|| (otmp)->otyp == SCR_DESTROY_ARMOR\
+|| (otmp)->otyp == SCR_STONING\
+|| (otmp)->otyp == BAG_OF_TRICKS\
+|| (otmp)->otyp == WAN_STONING\
+|| (otmp)->otyp == WAN_DISINTEGRATION\
+|| (otmp)->otyp == WAN_PARALYSIS\
+|| (otmp)->otyp == WAN_CURSE_ITEMS\
+|| (otmp)->otyp == WAN_AMNESIA\
+|| (otmp)->otyp == WAN_BAD_LUCK\
+|| (otmp)->otyp == WAN_REMOVE_RESISTANCE\
+|| (otmp)->otyp == WAN_CORROSION\
+|| (otmp)->otyp == WAN_STARVATION\
+|| (otmp)->otyp == WAN_FUMBLING\
+|| (otmp)->otyp == WAN_PUNISHMENT\
+|| (otmp)->otyp == SCR_PUNISHMENT\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				
@@ -441,6 +459,10 @@ struct obj {
 				 (obj)->otyp == TOUCHSTONE || \
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
+				 (obj)->otyp == MANASTONE || \
+				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
+				 (obj)->otyp == LOADBOULDER || \
+				 (obj)->otyp == SLEEPSTONE || \
 				 (obj)->otyp == WHETSTONE)
 
 /* misc */

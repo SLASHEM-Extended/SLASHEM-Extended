@@ -1691,7 +1691,7 @@ arti_invoke(obj)
 	    break;
 	  }
 	case LEV_TELE:
-	      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
+	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 		else pline("You are disallowed to use this ability.");
 	    break;
 	case DRAGON_BREATH:
@@ -1828,7 +1828,7 @@ arti_invoke(obj)
 		(void)object_detect(obj, 0);
 		break;
 	case CREATE_PORTAL: 
-		if (flags.lostsoul || flags.uberlostsoul) break;
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) break;
 				{
 	    int i, num_ok_dungeons, last_ok_dungeon = 0;
 	    d_level newlev;

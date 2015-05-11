@@ -177,7 +177,9 @@
 #define DSTW_BUG 163
 #define STATUS_FAILURE 164
 
-#define SECOND_CHANCE		165
+#define STORM_HELM 165
+
+#define SECOND_CHANCE		166
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

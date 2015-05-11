@@ -426,6 +426,12 @@ giveback:
 	      case RIN_NUMBNESS:
 		    pline("The water flow stutters for a moment.");
 		    break;
+	      case RIN_CURSE:
+		    pline("A malignant aura seems to surround the sink...");
+		    break;
+	      case RIN_HALLUCINATION:
+		    pline("The sink flashes in wonderful rainbow colors!");
+		    break;
 		case RIN_INVISIBILITY:
 		    You("don't see anything happen to the sink.");
 		    break;
@@ -506,7 +512,7 @@ register const char *word;
 		return(FALSE);
 	}
 	/* KMH, balance patch -- removed stone of rotting */        
-	if ( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) {
+	if ( (obj->otyp == LOADSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) {
 		/* getobj() kludge sets corpsenm to user's specified count
 		   when refusing to split a stack of cursed loadstones */
 		if (*word) {
@@ -810,7 +816,7 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE) && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {

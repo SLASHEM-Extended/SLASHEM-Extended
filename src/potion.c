@@ -1236,7 +1236,7 @@ dodrink()
 		return 0;
 	}
 #ifdef JEDI
-	if (uarmh && uarmh->otyp == PLASTEEL_HELM){
+	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 		pline("The %s covers your whole face.", xname(uarmh));
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -1473,6 +1473,45 @@ peffects(otmp)
 
 		make_numbed(itimeout_incr(HNumbed,
 					    rn1(100, 200 - 75 * bcsign(otmp))), FALSE);
+		break;
+
+	case POT_CANCELLATION:
+
+		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+
+		unkn++;
+		break;
+
+	case POT_SLIME:
+
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		    You("don't feel very well.");
+		    Slimed = 100L;
+		    flags.botl = 1;
+		}
+		unkn++;
+
+		break;
+
+	case POT_URINE:
+
+		pline("Eek! This tastes indescibably bad...");
+
+		if ((monstermoves - otmp->age) < 51) {
+
+		exercise(A_WIS, FALSE);
+		make_vomiting(Vomiting + rnd(10) + 5,TRUE);
+		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		}
+		else {
+			make_sick(Sick ? Sick/2L + 1L : 10, "urine potion", TRUE, SICK_VOMITABLE);
+			losestr(rnd(10));
+			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY_AN);
+
+		}
+
+		unkn++;
+
 		break;
 
 	case POT_AMNESIA:
@@ -2444,6 +2483,7 @@ boolean your_fault;
 		}
 		break;
 	case POT_RADIUM:
+	case POT_SLIME:	/* too lazy to code something else :D --Amy */
 		if (!resist(mon,POTION_CLASS,0,NOTELL)) {
 			mon->mhp /= 4;
 			if (mon->mhp < 1) killed(mon);
@@ -2456,6 +2496,12 @@ boolean your_fault;
 			mon->mstun = TRUE;
 			if (canseemon(mon)) pline("%s trembles.",Monnam(mon));
 		}
+		break;
+
+	case POT_CANCELLATION:
+
+		(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+
 		break;
 
 	case POT_ICE: /* there's no frozen monster state, so we'll just slow down the monster --Amy */
@@ -2796,6 +2842,16 @@ register struct obj *obj;
 		}
 		You("feel very, very sick!");
 		break;
+	case POT_URINE:
+		if (u.uhp < 3) {
+			/* DEATH */
+			losehp(3,"a potion of urine",KILLED_BY);
+		} else {
+			u.uhp /= 3;
+			if (u.uhp < 1) u.uhp = 1;		/* be generous */
+		}
+		You("feel very poisoned!");
+		break;
 	case POT_RADIUM:
 		u.uhp /= 4;
 		if (u.uhp < 1) u.uhp = 1;		/* be generous */
@@ -2837,6 +2893,16 @@ register struct obj *obj;
 		if(!Numbed)
 			pline("You're feeling a little numb!");
 		make_numbed(itimeout_incr(HNumbed, rnd(30)), FALSE);
+		break;
+	case POT_CANCELLATION:
+	      (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
+		break;
+	case POT_SLIME:
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		    You("don't feel very well.");
+		    Slimed = 100L;
+		    flags.botl = 1;
+		}
 		break;
 
 	case POT_INVISIBILITY:
@@ -4049,7 +4115,7 @@ dodip()
 			if (get_wet(obj, FALSE))
 			    goto poof;
 		}
-	} else if (potion->otyp == POT_AMNESIA) {
+	} else if (potion->otyp == POT_AMNESIA || potion->otyp == POT_CANCELLATION) {
 	    if (potion == obj) {
 		obj->in_use = FALSE;
 		potion = splitobj(obj, 1L);

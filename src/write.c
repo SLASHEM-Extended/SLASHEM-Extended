@@ -52,6 +52,7 @@ register struct obj *otmp;
 		return(12);
 /*		break; */
 	case SCR_IDENTIFY:
+	case SCR_STONING:
 	case SCR_REVERSE_IDENTIFY:
 	case SCR_SCARE_MONSTER:
 		return(14);

@@ -122,6 +122,8 @@ Boots_on()
 	case JUMPING_BOOTS:
 	case FLYING_BOOTS:
 	case KICKING_BOOTS:
+	case FIRE_BOOTS:
+	case BOOTS_OF_ACID_RESISTANCE:
 		break;
 	case BOOTS_OF_MOLASSES:
 		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
@@ -237,6 +239,8 @@ Boots_off()
 	case HIGH_BOOTS:
 	case JUMPING_BOOTS:
 	case KICKING_BOOTS:
+	case FIRE_BOOTS:
+	case BOOTS_OF_ACID_RESISTANCE:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
 #endif
@@ -279,6 +283,10 @@ Cloak_on()
 	case PLASTEEL_CLOAK:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */               
+		break;
+	case CLOAK_OF_FUMBLING:
+		if (!oldprop && !(HFumbling & ~TIMEOUT))
+			incr_itimeout(&HFumbling, rnd(20));
 		break;
 	/* KMH, balance patch -- lab coat gives poison _and_ acid resistance */
 	case LAB_COAT:
@@ -355,6 +363,10 @@ Cloak_off()
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
+	case CLOAK_OF_FUMBLING:
+	    if (!oldprop && !(HFumbling & ~TIMEOUT))
+		HFumbling = EFumbling = 0;
+	    break;
 	/* KMH, balance patch -- lab coat gives poison _and_ acid resistance */
 	case LAB_COAT:
 		EAcid_resistance &= ~WORN_CLOAK;
@@ -410,6 +422,9 @@ Helmet_on()
 	case FIRE_HELMET: */
 	case HELM_OF_TELEPATHY:
 	case HELM_OF_DISCOVERY:
+	case HELM_OF_DRAIN_RESISTANCE:
+	case HELM_OF_FEAR:
+	case HELM_OF_HUNGER:
 		break;
 	case HELM_OF_BRILLIANCE:
 		adj_abon(uarmh, uarmh->spe);
@@ -451,6 +466,17 @@ Helmet_on()
 		    makeknown(HELM_OF_OPPOSITE_ALIGNMENT);
 		}
 		break;
+	case HELM_OF_STORMS:
+	case HELM_OF_DETECT_MONSTERS:
+		if (!uarmh->cursed) {
+		    if (Blind)
+			pline("%s for a moment.", Tobjnam(uarmh, "vibrate"));
+		    else
+			pline("%s %s for a moment.",
+			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
+		    curse(uarmh);
+		}
+		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
     }
     return 0;
@@ -477,6 +503,11 @@ Helmet_off()
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case ORCISH_HELM:
+	case HELM_OF_DRAIN_RESISTANCE:
+	case HELM_OF_FEAR:
+	case HELM_OF_HUNGER:
+	case HELM_OF_STORMS:
+	case HELM_OF_DETECT_MONSTERS:
 	/* KMH, balance patch -- removed
 	case FIRE_HELMET: */
 	case HELM_OF_DISCOVERY:
@@ -524,6 +555,18 @@ Gloves_on()
 	case LEATHER_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
+	case GAUNTLETS_OF_SLOWING:
+	case GAUNTLETS_OF_REFLECTION:
+		break;
+	case OILSKIN_GLOVES:
+		if (!uarmg->cursed) {
+		    if (Blind)
+			pline("%s for a moment.", Tobjnam(uarmg, "vibrate"));
+		    else
+			pline("%s %s for a moment.",
+			      Tobjnam(uarmg, "glow"), hcolor(NH_BLACK));
+		    curse(uarmg);
+		}
 		break;
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
@@ -561,8 +604,11 @@ Gloves_off()
 	case PLASTEEL_GLOVES:
 #endif
 	case LEATHER_GLOVES:
+	case OILSKIN_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
+	case GAUNTLETS_OF_REFLECTION:
+	case GAUNTLETS_OF_SLOWING:
 	    break;
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
@@ -996,6 +1042,20 @@ register struct obj *obj;
 	case RIN_SUSTAIN_ABILITY:
 	case MEAT_RING:
 		break;
+	case RIN_HALLUCINATION:
+	case RIN_CURSE:
+
+		if (!obj->cursed) {
+		    if (Blind)
+			pline("%s for a moment.", Tobjnam(obj, "vibrate"));
+		    else
+			pline("%s %s for a moment.",
+			      Tobjnam(obj, "glow"), hcolor(NH_BLACK));
+		    curse(obj);
+		}
+
+		break;
+
 	case RIN_SLEEPING:        
 		if Race_if(PM_KOBOLT) break;
 		HSleeping = rnd(1000);
@@ -1680,7 +1740,7 @@ boolean noisy;
 #ifdef JEDI
 	} else if (Upolyd && (youmonst.data == &mons[PM_MIND_FLAYER] ||
 			      youmonst.data == &mons[PM_MASTER_MIND_FLAYER]) &&
-			otmp->otyp == PLASTEEL_HELM){
+			(otmp->otyp == PLASTEEL_HELM || otmp->otyp == HELM_OF_STORMS || otmp->otyp == HELM_OF_DETECT_MONSTERS) ){
 		if (noisy)
 			pline_The("%s won't fit over your tentacles.", xname(otmp));
 		err++;
@@ -2010,7 +2070,7 @@ doputon()
 		if (otmp->oartifact && !touch_artifact(otmp, &youmonst))
 		    return 1;
 #ifdef JEDI
-		if (uarmh && uarmh->otyp == PLASTEEL_HELM){
+		if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 			pline("The %s covers your whole face. You need to remove it first.", xname(uarmh));
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
@@ -2168,7 +2228,7 @@ glibr()
 			makeplural(body_part(HAND)));
 		setuswapwep((struct obj *)0, FALSE);
 		xfl++;
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE) || !otmp->cursed)
 			dropx(otmp);
 	}
 	otmp = uwep;
@@ -2186,7 +2246,7 @@ glibr()
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0, FALSE);
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE) || !otmp->cursed)
 			dropx(otmp);
 	}
 }

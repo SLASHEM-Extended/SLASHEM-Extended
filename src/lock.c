@@ -1137,6 +1137,7 @@ int x, y;
 	    case WAN_OPENING:
 	    case SPE_KNOCK:
 	    case WAN_STRIKING:
+	    case WAN_DISINTEGRATION:
 	    case SPE_FORCE_BOLT:
 		if (key)	/* Artifact doors are revealed only */
 		    cvt_sdoor_to_door(door);
@@ -1231,6 +1232,7 @@ int x, y;
 	    } else res = FALSE;
 	    break;
 	case WAN_STRIKING:
+	case WAN_DISINTEGRATION:
 	case SPE_FORCE_BOLT:
 	case WAN_WIND:
 	    if (!key && door->doormask & (D_LOCKED | D_CLOSED)) {

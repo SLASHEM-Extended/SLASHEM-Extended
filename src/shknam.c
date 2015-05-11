@@ -720,7 +720,7 @@ register int sh;
       lastclp = clp;
       first = bases[*clp];
 /* this assumes that luckstone & loadstone comes just after the gems */
-      next = (*clp==GEM_CLASS) ? (LOADSTONE+1) : bases[(*clp)+1];
+      next = (*clp==GEM_CLASS) ? (FLINT+1) : bases[(*clp)+1];
       total += next-first;
     }
     if (total==0)  return;
@@ -734,7 +734,7 @@ register int sh;
 	clp++;
 	if (clp>lastclp)  clp = lastclp;
 	first = bases[*clp];
-	next = (*clp==GEM_CLASS) ? (LOADSTONE+1) : bases[(*clp)+1];
+	next = (*clp==GEM_CLASS) ? (FLINT+1) : bases[(*clp)+1];
 	partial += next-first;
       }
 

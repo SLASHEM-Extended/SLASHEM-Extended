@@ -201,7 +201,7 @@ DESCRIPTION:	mazelike
 RNDLEVEL:	"mintn" "T" @ (3, 2) 98 18
 LEVELDESC:	town
 RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
-RNDLEVEL:		"mking" "M" @ (-1, 0) 90 12
+RNDLEVEL:		"mking" "M" @ (-1, 0) 90 16
 
 
 ### The Quest Dungeon ###

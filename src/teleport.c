@@ -1225,7 +1225,7 @@ struct trap *trap;
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
-      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
+      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 	else pline("The trap doesn't seem to have any effect on you.");
 }
 

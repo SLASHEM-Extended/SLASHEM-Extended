@@ -1303,7 +1303,7 @@ mattacku(mtmp)
 	    if(flags.botl) bot();
 	/* give player a chance of waking up before dying -kaa */
 	    if(sum[i] == 1) {	    /* successful attack */
-		if (u.usleep && u.usleep < monstermoves && !rn2(10)) {
+		if (u.usleep && u.usleep < monstermoves && !rn2(have_sleepstone() ? 20 : 10)) {
 		    multi = -1;
 		    nomovemsg = "The combat suddenly awakens you.";
 		}
@@ -4673,6 +4673,7 @@ register int n;
 	}
 
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
+	if (have_cursedmagicresstone()) n = n * 2;
 
 	if (Invulnerable || (Stoned_chiller && Stoned)) n=0;
 	if (n == 0) {

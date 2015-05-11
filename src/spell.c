@@ -424,6 +424,11 @@ learn()
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
 			    splname);
+			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
+				u.ugangr += 15;
+				pline("You hear a thunderous growling and rumbling...");
+			}
+
 			makeknown((int)booktype);
 			break;
 		}
@@ -1037,6 +1042,7 @@ boolean atme;
 	case SPE_CANCELLATION:
 	case SPE_FINGER_OF_DEATH:
 	case SPE_LIGHT:
+	case SPE_DARKNESS:
 	case SPE_DETECT_UNSEEN:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
@@ -1082,8 +1088,10 @@ boolean atme;
 
 	case SPE_ENCHANT_WEAPON:                
 	case SPE_ENCHANT_ARMOR:
-		if (role_skill >= P_EXPERT) n = 8;
-		else if (role_skill >= P_SKILLED) n = 10;
+		if (role_skill >= P_GRAND_MASTER) n = 8;
+		else if (role_skill >= P_MASTER) n = 9;
+		else if (role_skill >= P_EXPERT) n = 10;
+		else if (role_skill >= P_SKILLED) n = 11;
 		else if (role_skill >= P_BASIC) n = 12;
 		else n = 14;	/* Unskilled or restricted */
 		if (!rn2(n)) {
@@ -1116,6 +1124,69 @@ boolean atme;
 	case SPE_CURE_BLINDNESS:
 		healup(0, 0, FALSE, TRUE);
 		break;
+	case SPE_AGGRAVATE_MONSTER:
+		You_feel("that monsters are aware of your presence.");
+		aggravate();
+		break;
+	case SPE_REMOVE_BLESSING:
+		{
+
+		    if (Hallucination)
+			You_feel("the power of the Force against you!");
+		    else
+			You_feel("like you need some help.");
+
+		    register struct obj *obj, *obj2;
+		    for (obj = invent; obj; obj = obj2) {
+		      obj2 = obj->nobj;
+			if (obj->blessed) unbless(obj);
+		    }
+		}
+
+		break;
+	case SPE_CORRODE_METAL:
+		{
+
+		    pline("You are covered by %s particles!",NH_GREEN);
+
+		    register struct obj *obj, *obj2;
+		    for (obj = invent; obj; obj = obj2) {
+		      obj2 = obj->nobj;
+			rust_dmg(obj, xname(obj), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+	case SPE_DETECT_ARMOR_ENCHANTMENT:
+		{
+
+		    pline("You detect the enchantment status of your armor!");
+
+		    register struct obj *obj, *obj2;
+		    for (obj = invent; obj; obj = obj2) {
+		      obj2 = obj->nobj;
+
+			if (obj->oclass == ARMOR_CLASS) obj->known = TRUE;
+
+		    }
+		}
+
+		break;
+	case SPE_DISSOLVE_FOOD:
+		{
+
+		    pline("Your food dissolves!");
+
+		    register struct obj *obj, *obj2;
+		    for (obj = invent; obj; obj = obj2) {
+		      obj2 = obj->nobj;
+
+			if (obj->oclass == FOOD_CLASS) useupall(obj);
+
+		    }
+		}
+
+		break;
 	case SPE_CHEMISTRY:
 		You("call upon your chemical knowledge. Nothing happens.");
 		break;
@@ -1136,6 +1207,21 @@ boolean atme;
 		break;
 	case SPE_CURE_STUN:
 		make_stunned(0L,TRUE);
+		break;
+	case SPE_STUN_SELF:
+		if(!Stunned)
+			pline("You stagger a bit...");
+		make_stunned(HStun + rnd(25), FALSE);
+		break;
+	case SPE_CONFUSE_SELF:
+		if(!Confusion)
+			You_feel("somewhat dizzy.");
+		make_confused(HConfusion + rnd(25), FALSE);
+		break;
+	case SPE_BLIND_SELF:
+		if (!Blind && !u.usleep) pline("It suddenly gets dark.");
+		make_blinded(Blinded + rnd(25), FALSE);
+		if (!Blind && !u.usleep) Your(vision_clears);
 		break;
 	case SPE_CREATE_FAMILIAR:
 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
@@ -1176,6 +1262,20 @@ boolean atme;
 				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
+	case SPE_GENOCIDE:
+
+		if (role_skill >= P_GRAND_MASTER) n = 15;
+		else if (role_skill >= P_MASTER) n = 16;
+		else if (role_skill >= P_EXPERT) n = 18;
+		else if (role_skill >= P_SKILLED) n = 20;
+		else if (role_skill >= P_BASIC) n = 22;
+		else n = 25;	/* Unskilled or restricted */
+		if (!rn2(n)) {
+			do_genocide(1);	/* REALLY, see do_genocide() */
+		} else
+		    Your("genocide failed!");
+		break;
+
 	case SPE_GODMODE:
 		incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
 		You_feel("invincible!");
@@ -1231,6 +1331,28 @@ boolean atme;
 				spell_damage_bonus(spellid(spell))*100);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
+
+	case SPE_FORBIDDEN_KNOWLEDGE:
+		if(!(HHalf_spell_damage & INTRINSIC)) {
+			if (Hallucination)
+				pline("Let the casting commence!");
+			else
+				You("feel a sense of spell knowledge.");
+			incr_itimeout(&HHalf_spell_damage, rn1(100, 50) +
+				spell_damage_bonus(spellid(spell))*10);
+		}
+		if(!(HHalf_physical_damage & INTRINSIC)) {
+			if (Hallucination)
+				pline("You feel like a tough motherfucker!");
+			else
+				You("are resistant to normal damage.");
+			incr_itimeout(&HHalf_physical_damage, rn1(100, 50) +
+				spell_damage_bonus(spellid(spell))*10);
+		}
+		u.ugangr++;
+
+		break;
+
 	case SPE_ENLIGHTEN: 
 		You("feel self-knowledgeable...");
 		display_nhwindow(WIN_MESSAGE, FALSE);

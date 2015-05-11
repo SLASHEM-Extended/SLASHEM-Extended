@@ -203,6 +203,10 @@ register char oclass;
 			error("init-prob error for class %d (%d%%)", oclass, sum);
 		first = last;
 	}
+
+	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
+	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_cost = (objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level * 100);
+
 	/* shuffle descriptions */
 	shuffle_all();
 #ifdef USE_TILES

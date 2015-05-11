@@ -1927,8 +1927,12 @@ register struct obj	*sobj;
 			}
 			if (sobj->blessed || wornmask ||
 			     obj->otyp == LOADSTONE ||
+			     obj->otyp == LOADBOULDER ||
 			     obj->otyp == LUCKSTONE ||
 			     obj->otyp == HEALTHSTONE ||
+			     obj->otyp == MANASTONE ||
+			     obj->otyp == SLEEPSTONE ||
+			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     (obj->otyp == LEASH && obj->leashmon)) {
 			    if(confused) blessorcurse(obj, 2);
 			    else uncurse(obj);
@@ -2340,6 +2344,28 @@ register struct obj	*sobj;
 
 	break;
 
+	case SCR_STONING:
+		known = TRUE;
+		if (confused) {
+
+			if (Stoned) fix_petrification();
+
+		} else {
+
+		    if (!Stone_resistance &&
+			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			if (!Stoned) { Stoned = 7;
+				pline("You start turning to stone!");
+			}
+			Sprintf(killer_buf, "reading a petrification scroll");
+			delayed_killer = killer_buf;
+		
+		    }
+
+		}
+
+	break;
+
 	case SCR_CLOUDS:
 		known = TRUE;
 		if (confused) {
@@ -2499,7 +2525,7 @@ register struct obj	*sobj;
 	case SCR_TELEPORTATION:
 		if(confused || sobj->cursed) 
 			{
-		      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
+		      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 			else pline("You try to teleport, but fail!");
 			}
 		else {
@@ -2517,7 +2543,7 @@ register struct obj	*sobj;
 		}
 		break;
 	case SCR_TELE_LEVEL:
-	      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
+	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 		else pline("Hmm... that level teleport scroll didn't do anything.");
 		known = TRUE;
 		break;
@@ -2525,7 +2551,7 @@ register struct obj	*sobj;
 		known = TRUE;
 		if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul) { 
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("You're unable to warp!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

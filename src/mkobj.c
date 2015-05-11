@@ -234,7 +234,7 @@ struct obj *box;
 
 		    otmp->owt = weight(otmp);
 		} else while (otmp->otyp == ROCK) {
-		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, LOADSTONE);
+		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, FLINT);
 		    if (otmp->quan > 2L) otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
 		}
@@ -568,12 +568,12 @@ boolean artif;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case GEM_CLASS:
 		/* KMH, balance patch -- healthstone replaces rotting/health */
-		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE)
+		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER)
 			{ curse(otmp); break;}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
 		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(4,4);
 	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
-		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) &&
+		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) && (otmp->otyp != STONE_OF_MAGIC_RESISTANCE) &&
 				!rn2(6)) otmp->quan = 2L;
 		else otmp->quan = 1L;
 		if(!rn2(ishaxor ? 4 : 8)) {
@@ -775,12 +775,20 @@ boolean artif;
 		if(rn2(10) && (otmp->otyp == FUMBLE_BOOTS ||
 		   otmp->otyp == LEVITATION_BOOTS ||
 		   otmp->otyp == ZIPPER_BOOTS ||
+		   otmp->otyp == FIRE_BOOTS ||
 		   otmp->otyp == BOOTS_OF_MOLASSES ||
 		   otmp->otyp == HIPPIE_HEELS ||
 		   otmp->otyp == CLOAK_OF_CONFUSION ||
+		   otmp->otyp == CLOAK_OF_FUMBLING ||
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
+		   otmp->otyp == HELM_OF_FEAR ||
+		   otmp->otyp == HELM_OF_HUNGER ||
+		   otmp->otyp == HELM_OF_STORMS ||
+		   otmp->otyp == HELM_OF_DETECT_MONSTERS ||
 		   otmp->otyp == GAUNTLETS_OF_FUMBLING ||
+		   otmp->otyp == GAUNTLETS_OF_SLOWING ||
 		   otmp->otyp == ROBE_OF_WEAKNESS ||
+		   otmp->otyp == OILSKIN_GLOVES ||
 		   !rn2(ishaxor ? 5 : 11))) {
 			if (rn2(10)) curse(otmp);
 			 else	blessorcurse(otmp, 3);
@@ -850,6 +858,8 @@ boolean artif;
 			  otmp->otyp == RIN_SLEEPING ||
 			  otmp->otyp == RIN_DISARMING ||
 			  otmp->otyp == RIN_NUMBNESS ||
+			  otmp->otyp == RIN_CURSE ||
+			  otmp->otyp == RIN_HALLUCINATION ||
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
 			curse(otmp);
 		}

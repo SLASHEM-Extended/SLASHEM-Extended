@@ -160,6 +160,9 @@ in_trouble()
 	if(near_capacity() >= HVY_ENCUMBER && have_loadstone() )
 		return(TROUBLE_LOADSTONE);
 
+	if(near_capacity() >= HVY_ENCUMBER && have_loadboulder() )
+		return(TROUBLE_LOADSTONE);
+
 	if(near_capacity() >= EXT_ENCUMBER && AMAX(A_STR)-ABASE(A_STR) > 3)
 		return(TROUBLE_COLLAPSING);
 
@@ -193,6 +196,8 @@ in_trouble()
 	 */
 	if(Punished) return(TROUBLE_PUNISHED);
 	if (Cursed_obj(uarmg, GAUNTLETS_OF_FUMBLING) ||
+		Cursed_obj(uarmg, CLOAK_OF_FUMBLING) ||
+		Cursed_obj(uarmg, AMULET_OF_FUMBLING) ||
 		Cursed_obj(uarmf, FUMBLE_BOOTS))
 	    return TROUBLE_FUMBLING;
 	if (worst_cursed_item()) return TROUBLE_CURSED_ITEMS;
@@ -233,6 +238,7 @@ worst_cursed_item()
     /* if strained or worse, check for loadstone first */
     if (near_capacity() >= HVY_ENCUMBER) {
 	for (otmp = invent; otmp; otmp = otmp->nobj)
+	    if (Cursed_obj(otmp, LOADBOULDER)) return otmp;
 	    if (Cursed_obj(otmp, LOADSTONE)) return otmp;
     }
     /* weapon takes precedence if it is interfering
@@ -276,7 +282,7 @@ worst_cursed_item()
     } else {
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
 	    if (!otmp->cursed) continue;
-	    if (otmp->otyp == LOADSTONE || otmp->otyp==HEALTHSTONE ||
+	    if (otmp->otyp == LOADSTONE || otmp->otyp == LOADBOULDER || otmp->otyp==HEALTHSTONE ||
 		    confers_luck(otmp))
 		break;
 	}
@@ -404,6 +410,10 @@ register int trouble;
 			otmp = uarmg;
 		    else if (Cursed_obj(uarmf, FUMBLE_BOOTS))
 			otmp = uarmf;
+		    else if (Cursed_obj(uarmc, CLOAK_OF_FUMBLING))
+			otmp = uarmc;
+		    else if (Cursed_obj(uamul, AMULET_OF_FUMBLING))
+			otmp = uamul;
 		    goto decurse;
 		    /*NOTREACHED*/
 		    break;

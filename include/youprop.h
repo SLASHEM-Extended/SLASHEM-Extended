@@ -28,19 +28,19 @@
 /* With intrinsics and extrinsics */
 #define HFire_resistance	u.uprops[FIRE_RES].intrinsic
 #define EFire_resistance	u.uprops[FIRE_RES].extrinsic
-#define Fire_resistance		((HFire_resistance || EFire_resistance || \
+#define Fire_resistance		((HFire_resistance || EFire_resistance || u.uprops[STORM_HELM].extrinsic || \
 				 resists_fire(&youmonst) || is_fire_resistant(youmonst.data)) && !Race_if(PM_TROLLOR) && !Role_if(PM_ALTMER) && !NoFire_resistance)
 #define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
-#define Cold_resistance		((HCold_resistance || ECold_resistance || \
+#define Cold_resistance		((HCold_resistance || ECold_resistance || u.uprops[STORM_HELM].extrinsic || \
 				 resists_cold(&youmonst) || is_cold_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoCold_resistance )
 #define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
-#define Sleep_resistance	( !(Thirst && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || \
+#define Sleep_resistance	( !(Thirst && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !have_sleepstone() && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || \
 				 resists_sleep(&youmonst) || is_sleep_resistant(youmonst.data)) )
 #define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -52,7 +52,7 @@
 
 #define HShock_resistance	u.uprops[SHOCK_RES].intrinsic
 #define EShock_resistance	u.uprops[SHOCK_RES].extrinsic
-#define Shock_resistance	((HShock_resistance || EShock_resistance || \
+#define Shock_resistance	((HShock_resistance || EShock_resistance || u.uprops[STORM_HELM].extrinsic || \
 				 resists_elec(&youmonst) || is_elec_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoShock_resistance )
 #define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -85,7 +85,7 @@
 /* Extrinsics only */
 #define HAntimagic		u.uprops[ANTIMAGIC].intrinsic
 #define EAntimagic		u.uprops[ANTIMAGIC].extrinsic
-#define Antimagic		((HAntimagic || EAntimagic || \
+#define Antimagic		((HAntimagic || EAntimagic || have_magicresstone() || \
 				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance)
 #define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -310,7 +310,7 @@
 
 #define HDetect_monsters	u.uprops[DETECT_MONSTERS].intrinsic
 #define EDetect_monsters	u.uprops[DETECT_MONSTERS].extrinsic
-#define Detect_monsters		((HDetect_monsters || EDetect_monsters) && !NoDetect_monsters)
+#define Detect_monsters		((HDetect_monsters || EDetect_monsters || u.uprops[STORM_HELM].extrinsic) && !NoDetect_monsters)
 #define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 
@@ -359,7 +359,7 @@
 #define HTeleport_control	u.uprops[TELEPORT_CONTROL].intrinsic
 #define ETeleport_control	u.uprops[TELEPORT_CONTROL].extrinsic
 #define Teleport_control	((HTeleport_control || ETeleport_control || \
-				 control_teleport(youmonst.data)) && !Race_if(PM_MAIA) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
+				 control_teleport(youmonst.data)) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
 #define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic

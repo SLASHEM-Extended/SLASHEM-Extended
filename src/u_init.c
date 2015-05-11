@@ -11025,6 +11025,12 @@ register struct trobj *trop;
             if (objX->otyp == LOADSTONE ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == LOADBOULDER ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == SLEEPSTONE ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == WAN_DEATH && (Role_if(PM_DEATH_EATER) || Race_if(PM_UNGENOMOLD) ) ) {
                 objX->cursed = TRUE;
             }
@@ -11072,6 +11078,12 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LOADSTONE ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == LOADBOULDER ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == SLEEPSTONE ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {

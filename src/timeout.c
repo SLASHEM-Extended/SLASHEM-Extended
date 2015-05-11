@@ -233,11 +233,17 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && (u.alignlim < 20 || (rnd(u.alignlim) < 20) ) ) u.alignlim++;
+	if (!rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+			u.alignlim++;
 
 	/* Nymph race randomly gets punished --Amy */
 	if (!rn2(2000) && Race_if(PM_NYMPH)) {
 			punishx();
+	}
+
+	if (have_sleepstone() && !rn2(200)) {
+	    fall_asleep(-rnd(10), TRUE);
+		pline("You fall asleep.");
 	}
 
 	/* special bleeder handling --Amy */
@@ -434,6 +440,14 @@ nh_timeout()
 		case STONE_RES:
 			if (!Stone_resistance)
 				You("feel a little less limber.");
+			break;
+		case HALF_PHDAM:
+			if (!Half_physical_damage)
+				You("feel less resistant to damage.");
+			break;
+		case HALF_SPDAM:
+			if (!Half_spell_damage)
+				You("feel less resistant to spells.");
 			break;
 		case SICK_RES:
 			if (!Sick_resistance)

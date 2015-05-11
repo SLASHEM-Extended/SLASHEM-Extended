@@ -524,7 +524,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(176)) {
+	switch(rnd(177)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 

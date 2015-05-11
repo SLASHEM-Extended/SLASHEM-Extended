@@ -1313,6 +1313,13 @@ doengrave()
 		    case WAN_ACQUIREMENT:
 		    case WAN_BUGGING:
 		    case WAN_CHARGING:
+		    case WAN_CURSE_ITEMS:
+		    case WAN_AMNESIA:
+		    case WAN_BAD_LUCK:
+		    case WAN_REMOVE_RESISTANCE:
+		    case WAN_CORROSION:
+		    case WAN_FUMBLING:
+		    case WAN_STARVATION:
 			zapnodir(otmp);
 			break;
 
@@ -1324,6 +1331,20 @@ doengrave()
 			Strcpy(post_engr_text,
 			"The wand unsuccessfully fights your attempt to write!"
 			);
+			break;
+		    case WAN_DISINTEGRATION:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s cease to exist!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_STONING:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s turn into gravel!",
+				   surface(u.ux, u.uy));
+			}
 			break;
 		    case WAN_ACID:
 			if (!Blind) {
@@ -1435,6 +1456,7 @@ doengrave()
 		    /* can't tell sleep from death - Eric Backus */
 		    case WAN_SLEEP:
 		    case WAN_DEATH:
+		    case WAN_PARALYSIS:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s stop moving!",

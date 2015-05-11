@@ -5569,6 +5569,10 @@ register boolean force, here;
 			if (level.flags.lethe && (obj->otyp == LUCKSTONE
 					|| obj->otyp == LOADSTONE
 					|| obj->otyp == HEALTHSTONE
+					|| obj->otyp == MANASTONE
+					|| obj->otyp == SLEEPSTONE
+					|| obj->otyp == LOADBOULDER
+					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
 					|| obj->otyp == TOUCHSTONE))
 			    obj->otyp = FLINT;
 			break;
@@ -5714,7 +5718,7 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE) && obj->cursed) ||
 			  obj == uamul || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||

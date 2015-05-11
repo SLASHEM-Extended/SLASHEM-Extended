@@ -3352,6 +3352,9 @@ wand_explode(obj, hero_broke)
 	/* we want this before the explosion instead of at the very end */
 	pline("A wall of force smashes down around you!");
 	dmg = d(1 + obj->spe,6);	/* normally 2d12 */
+    case WAN_DISINTEGRATION:
+	pline("A wall of force smashes down around you!");
+	dmg = d(1 + obj->spe,30);
     case WAN_CANCELLATION:
     case WAN_POLYMORPH:
     case WAN_UNDEAD_TURNING:
@@ -4071,6 +4074,10 @@ doapply()
 	case TOUCHSTONE:
 	case HEALTHSTONE:
 	case WHETSTONE:
+	case MANASTONE:
+	case LOADBOULDER:
+	case STONE_OF_MAGIC_RESISTANCE:
+	case SLEEPSTONE:
 	case SALT_CHUNK:
 		use_stone(obj);
 		break;

@@ -248,6 +248,82 @@ struct obj *otmp;
 	case SPE_CANCELLATION:
 		(void) cancel_monst(mtmp, otmp, TRUE, TRUE, FALSE);
 		break;
+	case WAN_PARALYSIS:
+		if (canseemon(mtmp) ) {
+			pline("%s is frozen by the beam.", Monnam(mtmp) );
+		}
+		mtmp->mcanmove = 0;
+		mtmp->mfrozen = rnz(20);
+		mtmp->mstrategy &= ~STRAT_WAITFORU;
+
+		break;
+	case WAN_DISINTEGRATION:
+		{
+
+			struct obj *otmpS;
+
+		    if (resists_disint(mtmp)) {
+
+			pline("%s is unharmed.", Monnam(mtmp) );
+
+		    } else if (mtmp->misc_worn_check & W_ARMS) {
+			    /* destroy shield; other possessions are safe */
+			    otmpS = which_armor(mtmp, W_ARMS);
+			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+			    m_useup(mtmp, otmpS);
+			    break;
+			} else if (mtmp->misc_worn_check & W_ARMC) {
+			    /* destroy cloak; other possessions are safe */
+			    otmpS = which_armor(mtmp, W_ARMC);
+			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+			    m_useup(mtmp, otmpS);
+			    break;
+			} else if (mtmp->misc_worn_check & W_ARM) {
+			    /* destroy suit */
+			    otmpS = which_armor(mtmp, W_ARM);
+			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+			    m_useup(mtmp, otmpS);
+			    break;
+#ifdef TOURIST
+			} else if (mtmp->misc_worn_check & W_ARMU) {
+			    /* destroy shirt */
+			    otmpS = which_armor(mtmp, W_ARMU);
+			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+			    m_useup(mtmp, otmpS);
+			    break;
+#endif
+			}
+		    else {
+
+			struct obj *otmpX, *otmpX2, *m_amulet = mlifesaver(mtmp);
+
+#define oresist_disintegration(obj) \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) || \
+		 obj == m_amulet)
+
+			pline("%s is disintegrated!", Monnam(mtmp) );
+
+			for (otmpX = mtmp->minvent; otmpX; otmpX = otmpX2) {
+			    otmpX2 = otmpX->nobj;
+			    if (!oresist_disintegration(otmpX)) {
+				if (Has_contents(otmpX)) delete_contents(otmpX);
+				obj_extract_self(otmpX);
+				obfree(otmpX, (struct obj *)0);
+			    }
+			}
+
+			xkilled(mtmp,2);
+
+		    }
+
+		}
+		break;
+	case WAN_STONING:
+		if (!munstone(mtmp, FALSE))
+		    minstapetrify(mtmp, FALSE);
+
+		break;
 	case WAN_TELEPORTATION:
 	case SPE_TELEPORT_AWAY:
 		reveal_invis = !u_teleport_mon(mtmp, TRUE);
@@ -1998,6 +2074,9 @@ struct obj *obj, *otmp;
 	case WAN_FULL_HEALING:
 	case SPE_FINGER:
 	case WAN_FEAR:
+	case WAN_STONING:
+	case WAN_PARALYSIS:
+	case WAN_DISINTEGRATION:
 	case WAN_FIREBALL:
 		res = 0;
 		break;
@@ -2216,6 +2295,69 @@ register struct obj *obj;
 
 		break;
 
+		case WAN_CURSE_ITEMS:
+
+			pline("A black glow surrounds you...");
+			rndcurse();
+			known = TRUE;
+
+		break;
+
+		case WAN_AMNESIA:
+
+			if (Hallucination)
+			    pline("Hakuna matata!");
+			else
+			    You_feel("your memories dissolve.");
+
+			forget( ALL_SPELLS | ALL_MAP);
+			known = TRUE;
+		    exercise(A_WIS, FALSE);
+
+		break;
+
+		case WAN_BAD_LUCK:
+
+			known = TRUE;
+			pline("You feel very unlucky.");
+			change_luck(-1);
+
+		break;
+
+		case WAN_REMOVE_RESISTANCE:
+
+			attrcurse();
+			while (rn2(3)) {
+				attrcurse();
+			}
+
+		break;
+
+		case WAN_CORROSION:
+
+		{
+
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+		case WAN_FUMBLING:
+
+			HFumbling = FROMOUTSIDE | rnd(100);
+
+		break;
+
+		case WAN_STARVATION:
+
+			morehungry(rnd(1000));
+
+		break;
+
 		case WAN_LIGHT:
 		case SPE_LIGHT:
 			litroom(TRUE,obj);
@@ -2369,6 +2511,7 @@ register struct obj *obj;
 			exercise(A_WIS, TRUE);
 			break;
 		case WAN_DARKNESS:
+		case SPE_DARKNESS:
 			if (!Blind) known = TRUE;
 			litroom(FALSE,obj);
 			break;
@@ -2898,6 +3041,62 @@ boolean ordinary;
 		case SPE_CANCELLATION:
 		    (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		    break;
+		case WAN_PARALYSIS:
+			makeknown(obj->otyp);
+			if (!Free_action) {
+			    pline("You are frozen in place!");
+			    nomul(-rnz(20), "frozen by their own wand");
+			    nomovemsg = You_can_move_again;
+			    exercise(A_DEX, FALSE);
+			} else You("stiffen momentarily.");
+
+		    break;
+		case WAN_DISINTEGRATION:
+
+			if (Disint_resistance && rn2(100)) {
+			    You("are not disintegrated.");
+			    break;
+	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+	                pline("You are unharmed!");
+	                break;
+			} else if (uarms) {
+			    /* destroy shield; other possessions are safe */
+			    (void) destroy_arm(uarms);
+			    break;
+			} else if (uarmc) {
+			    /* destroy cloak; other possessions are safe */
+			    (void) destroy_arm(uarmc);
+			    break;
+			} else if (uarm) {
+			    /* destroy suit */
+			    (void) destroy_arm(uarm);
+			    break;
+	#ifdef TOURIST
+			} else if (uarmu) {
+			    /* destroy shirt */
+			    (void) destroy_arm(uarmu);
+			    break;
+	#endif
+			}
+			killer_format = KILLED_BY;
+			killer = "self-disintegration";
+		      done(DIED);
+			return 0;
+
+		    break;
+		case WAN_STONING:
+
+		    if (!Stone_resistance &&
+			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			if (!Stoned) { Stoned = 7;
+				pline("You start turning to stone!");
+			}
+			Sprintf(killer_buf, "their own wand of stoning");
+			delayed_killer = killer_buf;
+		
+		    }
+
+		    break;
 		case WAN_DRAINING:	/* KMH */
 			makeknown(obj->otyp);
 		case SPE_DRAIN_LIFE:
@@ -3029,7 +3228,7 @@ boolean ordinary;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (flags.lostsoul || flags.uberlostsoul) {
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -3200,7 +3399,7 @@ struct obj *obj;	/* wand or spell */
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (u.uevent.udemigod) { pline("You shudder for a moment."); break;}
-			if (flags.lostsoul || flags.uberlostsoul) {
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -3241,6 +3440,9 @@ struct obj *obj;	/* wand or spell */
 		case WAN_OPENING:
 		case SPE_KNOCK:
 		case WAN_WIND:
+		case WAN_STONING:
+		case WAN_PARALYSIS:
+		case WAN_DISINTEGRATION:
 		    (void) bhitm(u.usteed, obj);
 		    steedhit = TRUE;
 		    break;

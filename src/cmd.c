@@ -1582,7 +1582,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FaintActive);
 		you_have(buf);
 	}
-	if (Itemcursing) {
+	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic) {
 		Sprintf(buf, "the following problem: Your inventory gradually fills up with cursed items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
 		you_have(buf);
@@ -1906,6 +1906,9 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Sleeping) enl_msg("You ", "fall", "fell", " asleep");
 	if (Hunger) enl_msg("You hunger", "", "ed", " rapidly");
 
+	if (have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
+	if (have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
+
 	/*** Vision and senses ***/
 	if (See_invisible) enl_msg(You_, "see", "saw", " invisible");
 	if (Blind_telepat) you_are("telepathic");
@@ -2167,6 +2170,19 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 #ifdef WIZARD
 	 else if (wizard) enl_msg("Your health bonus ", "is", "was", " zero");
+#endif
+
+	if (recalc_mana() )
+	{
+		Sprintf(buf, "%s mana", recalc_mana() > 0 ? "extra" :
+			"reduced");
+#ifdef WIZARD
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", recalc_mana() );
+#endif
+		you_have(buf);
+	}
+#ifdef WIZARD
+	 else if (wizard) enl_msg("Your mana bonus ", "is", "was", " zero");
 #endif
 
 	if (u.ugangr) {

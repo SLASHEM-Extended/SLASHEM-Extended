@@ -569,7 +569,7 @@ moverock()
 		    pline("With %s effort you move %s.",
 			  throws_rocks(youmonst.data) ? "little" : "great",
 			  the(xname(otmp)));
-		  exercise(A_STR, TRUE);
+		  if (!rn2(50)) exercise(A_STR, TRUE);
 #ifdef STEED
 		} else 
 		    pline("%s moves %s.",
@@ -3100,6 +3100,7 @@ int k_format; /* WAC k_format is an int */
 	}
 
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
+	if (have_cursedmagicresstone()) n = n * 2;
 
 	/* [max] Invulnerable no dmg */
 	if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -3207,7 +3208,7 @@ inv_weight()
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ
-		if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
+		if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || !throws_rocks(youmonst.data))
 #else
 		if (otmp->oclass == COIN_CLASS)
 			wt += (int)(((long)otmp->quan + 50L) / /*100L*/10000L);

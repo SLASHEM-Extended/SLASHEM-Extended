@@ -4933,3 +4933,709 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
+
+MAZE: "mking-13",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+ #     #     #     #######     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #######     #######     #     #     #######     #     #     #     #
+ #           #           #     #           #     #     #     #     # 
+ #           #           #     #     #     #     #     #######     #
+ #           #           #     #     #     #     #    -----+-----  #      
+ #     #######           #######     #     #     #    |....\....|  #    
+ #     #           #                 #     #     #    |.........|  #    
+ #     #           #                 #     #     #    |.........|  #    
+ #     #           #                 #     #     #    -----+-----  #    
+####################################################################### 
+ #     #                 #     #           #     #                      
+##    ##    ##    ########    ########    ##    ##    ##############    
+#    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ## 
+    ###   ##    ##    ##    ##    ##    #####       ##    ##    ##
+   ## #####    ##    ##    ##    ##    ##   #########    ##    ##
+ENDMAP
+STAIR:random,up
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (59,10)
+DOOR: closed, (59,06)
+# 40 random gems all around...
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',"loadboulder",random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+#Pickaxe in case of trappedness on Wine Cellar Mine's end
+OBJECT: '(',"pick-axe",random
+#20 bunches of gold all around...
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# throne room
+MONSTER: 'G', "Ruggo the Gnome King", (59,7), hostile
+OBJECT:'?',"root password detection",(59,7)
+OBJECT: ')',random,(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '[',random,(59,7)
+MONSTER: 'G', random, (55,7), hostile
+MONSTER: 'G', random, (56,7), hostile
+MONSTER: 'G', random, (57,7), hostile
+MONSTER: 'G', random, (58,7), hostile
+MONSTER: 'G', random, (60,7), hostile
+MONSTER: 'G', random, (61,7), hostile
+MONSTER: 'G', random, (62,7), hostile
+MONSTER: 'G', random, (63,7), hostile
+MONSTER: 'G', random, (55,8), hostile
+MONSTER: 'G', random, (56,8), hostile
+MONSTER: 'G', random, (57,8), hostile
+MONSTER: 'G', random, (58,8), hostile
+MONSTER: 'G', random, (59,8), hostile
+MONSTER: 'G', random, (60,8), hostile
+MONSTER: 'G', random, (61,8), hostile
+MONSTER: 'G', random, (62,8), hostile
+MONSTER: 'G', random, (63,8), hostile
+MONSTER: 'G', random, (55,9), hostile
+MONSTER: 'G', random, (56,9), hostile
+MONSTER: 'G', random, (57,9), hostile
+MONSTER: 'G', random, (58,9), hostile
+MONSTER: 'G', random, (59,9), hostile
+MONSTER: 'G', random, (60,9), hostile
+MONSTER: 'G', random, (61,9), hostile
+MONSTER: 'G', random, (62,9), hostile
+MONSTER: 'G', random, (63,9), hostile
+# the mine workers
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+
+MAZE: "mking-14",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     #
+ #     #     #     #     #     #     #     #     #     #     #     # 
+ #     #     #     #     #     #     #     #     #######     #######
+ #     #     #     #     #     #     #     #     #    -----------  #      
+ #     #     #     #     #     #     #     #     #    |....\....|  #    
+ #     #     #     #     #     #     #     #     #    |.........|  #    
+ #     #     #     #     #     #     #     #     #    |.........|  #    
+ #     #     #     #     #     #     #     #     #    -----+-----  #    
+####################################################################### 
+ #     #     #     #     #     #     #     #     #     #     #     #    
+##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    
+#    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ## 
+    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
+   ##    ##    ##    ##    ##    ##    ##    ##    ##    ##    ##
+ENDMAP
+STAIR:random,up
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (59,10)
+# 40 random gems all around...
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',"sleepstone",random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+#Pickaxe in case of trappedness on Wine Cellar Mine's end
+OBJECT: '(',"pick-axe",random
+#20 bunches of gold all around...
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# throne room
+MONSTER: 'G', "Ruggo the Gnome King", (59,7), hostile
+OBJECT:'?',"root password detection",(59,7)
+OBJECT: ')',random,(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '[',random,(59,7)
+MONSTER: 'G', random, (55,7), hostile
+MONSTER: 'G', random, (56,7), hostile
+MONSTER: 'G', random, (57,7), hostile
+MONSTER: 'G', random, (58,7), hostile
+MONSTER: 'G', random, (60,7), hostile
+MONSTER: 'G', random, (61,7), hostile
+MONSTER: 'G', random, (62,7), hostile
+MONSTER: 'G', random, (63,7), hostile
+MONSTER: 'G', random, (55,8), hostile
+MONSTER: 'G', random, (56,8), hostile
+MONSTER: 'G', random, (57,8), hostile
+MONSTER: 'G', random, (58,8), hostile
+MONSTER: 'G', random, (59,8), hostile
+MONSTER: 'G', random, (60,8), hostile
+MONSTER: 'G', random, (61,8), hostile
+MONSTER: 'G', random, (62,8), hostile
+MONSTER: 'G', random, (63,8), hostile
+MONSTER: 'G', random, (55,9), hostile
+MONSTER: 'G', random, (56,9), hostile
+MONSTER: 'G', random, (57,9), hostile
+MONSTER: 'G', random, (58,9), hostile
+MONSTER: 'G', random, (59,9), hostile
+MONSTER: 'G', random, (60,9), hostile
+MONSTER: 'G', random, (61,9), hostile
+MONSTER: 'G', random, (62,9), hostile
+MONSTER: 'G', random, (63,9), hostile
+# the mine workers
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+
+MAZE: "mking-15",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+
+                   #                      #                  #
+                  ##                    #####          #######
+                  #                         #          #     #
+    ###############  ###           ######   #      #####     ########
+    #             ####             #        #      #
+    #          ####      #####################    ##  -----------      ###
+  #########    #  ########         #         #     #  |....\....|      #
+         #     #              ######       ###     #  |.........|   ####
+        ##     #              #           ## #######  |.........|  ##  #
+        #      ####   #       ########    #  #     #  -----+-----      #
+               #      #########      #    #  #             #           #
+          #######          #  #  #####       ###############       #####
+          #  #       ########    #        #    #       #           #   #
+             #       #        ######     #########    ##############
+                     #     ####  #       #       #           #
+                           #                                 #
+ENDMAP
+RANDOM_PLACES:(19,1),(42,1),(61,1),(21,15),(41,15),(61,16)
+# only place[0] is currently used
+STAIR:(35,06),up
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (59,10)
+# 40 random gems all around...
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',"manastone",random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+#Pickaxe in case of trappedness on Wine Cellar Mine's end
+OBJECT: '(',"pick-axe",place[0]
+#20 bunches of gold all around...
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# throne room
+MONSTER: 'G', "Ruggo the Gnome King", (59,7), hostile
+OBJECT:'?',"root password detection",(59,7)
+OBJECT: ')',random,(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '[',random,(59,7)
+MONSTER: 'G', random, (55,7), hostile
+MONSTER: 'G', random, (56,7), hostile
+MONSTER: 'G', random, (57,7), hostile
+MONSTER: 'G', random, (58,7), hostile
+MONSTER: 'G', random, (60,7), hostile
+MONSTER: 'G', random, (61,7), hostile
+MONSTER: 'G', random, (62,7), hostile
+MONSTER: 'G', random, (63,7), hostile
+MONSTER: 'G', random, (55,8), hostile
+MONSTER: 'G', random, (56,8), hostile
+MONSTER: 'G', random, (57,8), hostile
+MONSTER: 'G', random, (58,8), hostile
+MONSTER: 'G', random, (59,8), hostile
+MONSTER: 'G', random, (60,8), hostile
+MONSTER: 'G', random, (61,8), hostile
+MONSTER: 'G', random, (62,8), hostile
+MONSTER: 'G', random, (63,8), hostile
+MONSTER: 'G', random, (55,9), hostile
+MONSTER: 'G', random, (56,9), hostile
+MONSTER: 'G', random, (57,9), hostile
+MONSTER: 'G', random, (58,9), hostile
+MONSTER: 'G', random, (59,9), hostile
+MONSTER: 'G', random, (60,9), hostile
+MONSTER: 'G', random, (61,9), hostile
+MONSTER: 'G', random, (62,9), hostile
+MONSTER: 'G', random, (63,9), hostile
+# the mine workers
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+
+MAZE: "mking-16",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+
+                       #     #            #                  #
+             ###       #######          ###### ### ###########
+             # #       #                  #  # # # #         #
+    ####     # ####  ###           ###### #  ### # #         ########
+    #        #    ####             #  #   #      # #                ####
+    #        # #     ##  ###          #  #####   ###  -----------      ###
+  #########  ######   #    #       ####      #     #  |....\....|     ##
+         #     #  #   ### ##########       #       #  |.........|   ### 
+        ####      #     # #   #           ##       #  |.........+####   
+        #  #    ####### ###   ########    #  #     #  -----+-----       
+   ##      #       #  #     ###      # ####  #     #       #            
+    ##    ###   #  #          #      # #     ###########      #    #### 
+     ##  ##     #  ######## #        # #  #            #      #    #  ##
+      ####  ##  #    #      # ###  ### # ######       ########## ###   
+         ####   ######     ####      #####    #              # # #
+            #####          #                  ################ ###
+ENDMAP
+RANDOM_PLACES:(19,1),(42,1),(61,1),(21,15),(41,15),(61,16)
+# only place[0] is currently used
+STAIR:random,up
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: locked, (59,10)
+DOOR: closed, (64,09)
+# 40 random gems all around...
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',"stone of magic resistance",random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+#Pickaxe in case of trappedness on Wine Cellar Mine's end
+OBJECT: '(',"pick-axe",place[0]
+#20 bunches of gold all around...
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# throne room
+MONSTER: 'G', "Ruggo the Gnome King", (59,7), hostile
+OBJECT:'?',"root password detection",(59,7)
+OBJECT: ')',random,(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '[',random,(59,7)
+MONSTER: 'G', random, (55,7), hostile
+MONSTER: 'G', random, (56,7), hostile
+MONSTER: 'G', random, (57,7), hostile
+MONSTER: 'G', random, (58,7), hostile
+MONSTER: 'G', random, (60,7), hostile
+MONSTER: 'G', random, (61,7), hostile
+MONSTER: 'G', random, (62,7), hostile
+MONSTER: 'G', random, (63,7), hostile
+MONSTER: 'G', random, (55,8), hostile
+MONSTER: 'G', random, (56,8), hostile
+MONSTER: 'G', random, (57,8), hostile
+MONSTER: 'G', random, (58,8), hostile
+MONSTER: 'G', random, (59,8), hostile
+MONSTER: 'G', random, (60,8), hostile
+MONSTER: 'G', random, (61,8), hostile
+MONSTER: 'G', random, (62,8), hostile
+MONSTER: 'G', random, (63,8), hostile
+MONSTER: 'G', random, (55,9), hostile
+MONSTER: 'G', random, (56,9), hostile
+MONSTER: 'G', random, (57,9), hostile
+MONSTER: 'G', random, (58,9), hostile
+MONSTER: 'G', random, (59,9), hostile
+MONSTER: 'G', random, (60,9), hostile
+MONSTER: 'G', random, (61,9), hostile
+MONSTER: 'G', random, (62,9), hostile
+MONSTER: 'G', random, (63,9), hostile
+# the mine workers
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+
+MONSTER: 'L', random, (59,11), hostile, asleep

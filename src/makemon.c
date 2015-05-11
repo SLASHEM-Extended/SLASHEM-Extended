@@ -6529,6 +6529,10 @@ register struct	monst	*mtmp;
 		  	(void) mongets(mtmp, SLING);
 		  	m_initthrow(mtmp, LOADSTONE, 5);
 		}
+		if (ptr == &mons[PM_GIGALOAD_TURRET]) {
+		  	(void) mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, LOADBOULDER, 5);
+		}
 		if (ptr == &mons[PM_GUN_TURRET]) {
 		  	(void) mongets(mtmp, PISTOL);
 		  	m_initthrow(mtmp, BULLET, 25);

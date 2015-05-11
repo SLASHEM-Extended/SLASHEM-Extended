@@ -772,6 +772,20 @@ recalc_health()
 	return;
 }
 
+int
+recalc_mana()
+
+{
+	register struct obj *otmp;
+	int manabonus = 0;
+
+	for(otmp = invent; otmp; otmp=otmp->nobj)
+	    if (otmp->otyp == MANASTONE)
+	    	manabonus += otmp->quan *
+	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
+	return manabonus;
+}
+
 
 #endif /* OVLB */
 #ifdef OVL1

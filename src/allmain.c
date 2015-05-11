@@ -170,7 +170,7 @@ moveloop()
 			  */
 
 			monclock = 70;
-			if (u.uevent.udemigod) {
+			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
 				monclock = 15;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -190,7 +190,7 @@ moveloop()
 
 			/* TODO: adj difficulty in makemon */
 			if (!rn2(monclock) && !ishomicider ) {
-				if (u.uevent.udemigod && xupstair && rn2(10)) {
+				if ( (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
 					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
 				} else {
 					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
@@ -200,7 +200,7 @@ moveloop()
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
 			xtraclock = 15000;
-			if (u.uevent.udemigod) {
+			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
 				xtraclock = 4500;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -451,7 +451,7 @@ moveloop()
 				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
 				}
 
-		    if(!rn2(u.uevent.udemigod ? 125 :
+		    if(!rn2( (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) ? 125 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 			else makerandomtrap();
@@ -580,6 +580,13 @@ moveloop()
 		}
 
 		if (Itemcursing && !rn2(100) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (u.uprops[ITEMCURSING].extrinsic && !rn2(100) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
@@ -794,7 +801,7 @@ moveloop()
 
 		    
 		    /* KMH -- OK to regenerate if you don't move */
-		    if (!Burned && (u.uen < u.uenmax) && 
+		    if (!Burned && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
 				((Energy_regeneration && !rn2(5)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
@@ -821,6 +828,14 @@ moveloop()
 			if (!Burned && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
 				u.uen += rnz(2 + u.ulevel);
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+
+			}
+
+			if (!Burned && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
+
+				u.uen += rnd(recalc_mana());
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
@@ -1100,7 +1115,7 @@ moveloop()
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 				else pline("You feel very disoriented but decide to move on.");
 
 			}
