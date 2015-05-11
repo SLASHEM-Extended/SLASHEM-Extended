@@ -530,6 +530,14 @@ struct monst *mon;
 		tmp -= greatest_erosion(otmp);
 		if (tmp < 1) tmp = 1;
 	}
+
+	if (!rn2(100 - (Luck*2))) { /* nice patch - critical hits --Amy */
+
+		pline("Critical hit!");
+		tmp *= 2;
+
+	}
+
 	if (tmp > 127) tmp = 127; /* sanity check --Amy */
 
 	return(tmp);
