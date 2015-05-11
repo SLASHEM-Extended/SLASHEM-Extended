@@ -538,6 +538,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HFire_resistance &= ~INTRINSIC;
 			You_feel("warmer.");
 		}
+		if (HFire_resistance & TIMEOUT) {
+			HFire_resistance &= ~TIMEOUT;
+			You_feel("warmer.");
+		}
 		break;
 	case 11 : 
 	case 12 : 
@@ -546,6 +550,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 15 : 
 	case 16 : if (HTeleportation & INTRINSIC) {
 			HTeleportation &= ~INTRINSIC;
+			You_feel("less jumpy.");
+		}
+		if (HTeleportation & TIMEOUT) {
+			HTeleportation &= ~TIMEOUT;
 			You_feel("less jumpy.");
 		}
 		break;
@@ -560,6 +568,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 25 : 
 	case 26 : if (HPoison_resistance & INTRINSIC) {
 			HPoison_resistance &= ~INTRINSIC;
+			You_feel("a little sick!");
+		}
+		if (HPoison_resistance & TIMEOUT) {
+			HPoison_resistance &= ~TIMEOUT;
 			You_feel("a little sick!");
 		}
 		break;
@@ -578,6 +590,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			    see_monsters();	/* Can't sense mons anymore! */
 			Your("senses fail!");
 		}
+		if (HTelepat & TIMEOUT) {
+			HTelepat &= ~TIMEOUT;
+			if (Blind && !Blind_telepat)
+			    see_monsters();	/* Can't sense mons anymore! */
+			Your("senses fail!");
+		}
 		break;
 	case 37 : 
 	case 38 : 
@@ -592,6 +610,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HCold_resistance &= ~INTRINSIC;
 			You_feel("cooler.");
 		}
+		if (HCold_resistance & TIMEOUT) {
+			HCold_resistance &= ~TIMEOUT;
+			You_feel("cooler.");
+		}
 		break;
 	case 47 : 
 	case 48 : 
@@ -604,6 +626,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 55 : 
 	case 56 : if (HInvis & INTRINSIC) {
 			HInvis &= ~INTRINSIC;
+			You_feel("paranoid.");
+		}
+		if (HInvis & TIMEOUT) {
+			HInvis &= ~TIMEOUT;
 			You_feel("paranoid.");
 		}
 		break;
@@ -621,6 +647,11 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			You("%s!", Hallucination ? "tawt you taw a puttie tat"
 						: "thought you saw something");
 		}
+		if (HSee_invisible & TIMEOUT) {
+			HSee_invisible &= ~TIMEOUT;
+			You("%s!", Hallucination ? "tawt you taw a puttie tat"
+						: "thought you saw something");
+		}
 		break;
 	case 67 : 
 	case 68 : 
@@ -633,6 +664,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 75 : 
 	case 76 : if (HFast & INTRINSIC) {
 			HFast &= ~INTRINSIC;
+			You_feel("slower.");
+		}
+		if (HFast & TIMEOUT) {
+			HFast &= ~TIMEOUT;
 			You_feel("slower.");
 		}
 		break;
@@ -649,9 +684,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HStealth &= ~INTRINSIC;
 			You_feel("clumsy.");
 		}
+		if (HStealth & TIMEOUT) {
+			HStealth &= ~TIMEOUT;
+			You_feel("clumsy.");
+		}
 		break;
 	case 87: if (HProtection & INTRINSIC) {
 			HProtection &= ~INTRINSIC;
+			You_feel("vulnerable.");
+		}
+		if (HProtection & TIMEOUT) {
+			HProtection &= ~TIMEOUT;
 			You_feel("vulnerable.");
 		}
 		break;
@@ -661,6 +704,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 91 : 
 	case 92: if (HAggravate_monster & INTRINSIC) {
 			HAggravate_monster &= ~INTRINSIC;
+			You_feel("less attractive.");
+		}
+		if (HAggravate_monster & TIMEOUT) {
+			HAggravate_monster &= ~TIMEOUT;
 			You_feel("less attractive.");
 		}
 		break;
@@ -677,6 +724,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HSleep_resistance &= ~INTRINSIC;
 			You_feel("tired all of a sudden.");
 		}
+		if (HSleep_resistance & TIMEOUT) {
+			HSleep_resistance &= ~TIMEOUT;
+			You_feel("tired all of a sudden.");
+		}
 		break;
 	case 103 : 
 	case 104 : 
@@ -689,6 +740,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 111 : 
 	case 112: if (HDisint_resistance & INTRINSIC) {
 			HDisint_resistance &= ~INTRINSIC;
+			You_feel("like you're going to break apart.");
+		}
+		if (HDisint_resistance & TIMEOUT) {
+			HDisint_resistance &= ~TIMEOUT;
 			You_feel("like you're going to break apart.");
 		}
 		break;
@@ -705,9 +760,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HShock_resistance &= ~INTRINSIC;
 			You_feel("like someone has zapped you.");
 		}
+		if (HShock_resistance & TIMEOUT) {
+			HShock_resistance &= ~TIMEOUT;
+			You_feel("like someone has zapped you.");
+		}
 		break;
 	case 123: if (HDrain_resistance & INTRINSIC) {
 			HDrain_resistance &= ~INTRINSIC;
+			You_feel("like someone is sucking out your life-force.");
+		}
+		if (HDrain_resistance & TIMEOUT) {
+			HDrain_resistance &= ~TIMEOUT;
 			You_feel("like someone is sucking out your life-force.");
 		}
 		break;
@@ -715,11 +778,19 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HSick_resistance &= ~INTRINSIC;
 			You_feel("no longer immune to diseases!");
 		}
+		if (HSick_resistance & TIMEOUT) {
+			HSick_resistance &= ~TIMEOUT;
+			You_feel("no longer immune to diseases!");
+		}
 		break;
 	case 125 : 
 	case 126 : 
 	case 127: if (HWarning & INTRINSIC) {
 			HWarning &= ~INTRINSIC;
+			You_feel("that your radar has just stopped working!");
+		}
+		if (HWarning & TIMEOUT) {
+			HWarning &= ~TIMEOUT;
 			You_feel("that your radar has just stopped working!");
 		}
 		break;
@@ -733,9 +804,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HSearching &= ~INTRINSIC;
 			You_feel("unable to find something you lost!");
 		}
+		if (HSearching & TIMEOUT) {
+			HSearching &= ~TIMEOUT;
+			You_feel("unable to find something you lost!");
+		}
 		break;
 	case 135: if (HClairvoyant & INTRINSIC) {
 			HClairvoyant &= ~INTRINSIC;
+			You_feel("a loss of mental capabilities!");
+		}
+		if (HClairvoyant & TIMEOUT) {
+			HClairvoyant &= ~TIMEOUT;
 			You_feel("a loss of mental capabilities!");
 		}
 		break;
@@ -743,14 +822,26 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HInfravision &= ~INTRINSIC;
 			You_feel("shrouded in darkness.");
 		}
+		if (HInfravision & TIMEOUT) {
+			HInfravision &= ~TIMEOUT;
+			You_feel("shrouded in darkness.");
+		}
 		break;
 	case 137: if (HDetect_monsters & INTRINSIC) {
 			HDetect_monsters &= ~INTRINSIC;
 			You_feel("that you can no longer sense monsters.");
 		}
+		if (HDetect_monsters & TIMEOUT) {
+			HDetect_monsters &= ~TIMEOUT;
+			You_feel("that you can no longer sense monsters.");
+		}
 		break;
 	case 138: if (HJumping & INTRINSIC) {
 			HJumping &= ~INTRINSIC;
+			You_feel("your legs shrinking.");
+		}
+		if (HJumping & TIMEOUT) {
+			HJumping &= ~TIMEOUT;
 			You_feel("your legs shrinking.");
 		}
 		break;
@@ -767,9 +858,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HTeleport_control &= ~INTRINSIC;
 			You_feel("unable to control where you're going.");
 		}
+		if (HTeleport_control & TIMEOUT) {
+			HTeleport_control &= ~TIMEOUT;
+			You_feel("unable to control where you're going.");
+		}
 		break;
 	case 149: if (HMagical_breathing & INTRINSIC) {
 			HMagical_breathing &= ~INTRINSIC;
+			You_feel("you suddenly need to breathe!");
+		}
+		if (HMagical_breathing & TIMEOUT) {
+			HMagical_breathing &= ~TIMEOUT;
 			You_feel("you suddenly need to breathe!");
 		}
 		break;
@@ -777,9 +876,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HRegeneration &= ~INTRINSIC;
 			You_feel("your wounds are healing slower!");
 		}
+		if (HRegeneration & TIMEOUT) {
+			HRegeneration &= ~TIMEOUT;
+			You_feel("your wounds are healing slower!");
+		}
 		break;
 	case 151: if (HEnergy_regeneration & INTRINSIC) {
 			HEnergy_regeneration &= ~INTRINSIC;
+			You_feel("a loss of mystic power!");
+		}
+		if (HEnergy_regeneration & TIMEOUT) {
+			HEnergy_regeneration &= ~TIMEOUT;
 			You_feel("a loss of mystic power!");
 		}
 		break;
@@ -787,9 +894,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HPolymorph &= ~INTRINSIC;
 			You_feel("unable to change form!");
 		}
+		if (HPolymorph & TIMEOUT) {
+			HPolymorph &= ~TIMEOUT;
+			You_feel("unable to change form!");
+		}
 		break;
 	case 153: if (HPolymorph_control & INTRINSIC) {
 			HPolymorph_control &= ~INTRINSIC;
+			You_feel("less control over your own body.");
+		}
+		if (HPolymorph_control & TIMEOUT) {
+			HPolymorph_control &= ~TIMEOUT;
 			You_feel("less control over your own body.");
 		}
 		break;
@@ -800,9 +915,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HAcid_resistance &= ~INTRINSIC;
 			You_feel("worried about corrosion!");
 		}
+		if (HAcid_resistance & TIMEOUT) {
+			HAcid_resistance &= ~TIMEOUT;
+			You_feel("worried about corrosion!");
+		}
 		break;
 	case 158: if (HFumbling & INTRINSIC) {
 			HFumbling &= ~INTRINSIC;
+			You_feel("less clumsy.");
+		}
+		if (HFumbling & TIMEOUT) {
+			HFumbling &= ~TIMEOUT;
 			You_feel("less clumsy.");
 		}
 		break;
@@ -810,9 +933,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HSleeping &= ~INTRINSIC;
 			You_feel("like you just had some coffee.");
 		}
+		if (HSleeping & TIMEOUT) {
+			HSleeping &= ~TIMEOUT;
+			You_feel("like you just had some coffee.");
+		}
 		break;
 	case 160: if (HHunger & INTRINSIC) {
 			HHunger &= ~INTRINSIC;
+			You_feel("like you just ate a chunk of meat.");
+		}
+		if (HHunger & TIMEOUT) {
+			HHunger &= ~TIMEOUT;
 			You_feel("like you just ate a chunk of meat.");
 		}
 		break;
@@ -820,9 +951,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HConflict &= ~INTRINSIC;
 			You_feel("more acceptable.");
 		}
+		if (HConflict & TIMEOUT) {
+			HConflict &= ~TIMEOUT;
+			You_feel("more acceptable.");
+		}
 		break;
 	case 162: if (HSlow_digestion & INTRINSIC) {
 			HSlow_digestion &= ~INTRINSIC;
+			You_feel("like you're burning calories faster.");
+		}
+		if (HSlow_digestion & TIMEOUT) {
+			HSlow_digestion &= ~TIMEOUT;
 			You_feel("like you're burning calories faster.");
 		}
 		break;
@@ -830,9 +969,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HFlying &= ~INTRINSIC;
 			You_feel("like you just lost your wings!");
 		}
+		if (HFlying & TIMEOUT) {
+			HFlying &= ~TIMEOUT;
+			You_feel("like you just lost your wings!");
+		}
 		break;
 	case 164: if (HPasses_walls & INTRINSIC) {
 			HPasses_walls &= ~INTRINSIC;
+			You_feel("less ethereal!");
+		}
+		if (HPasses_walls & TIMEOUT) {
+			HPasses_walls &= ~TIMEOUT;
 			You_feel("less ethereal!");
 		}
 		break;
@@ -840,9 +987,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HAntimagic &= ~INTRINSIC;
 			You_feel("less protected from magic!");
 		}
+		if (HAntimagic & TIMEOUT) {
+			HAntimagic &= ~TIMEOUT;
+			You_feel("less protected from magic!");
+		}
 		break;
 	case 166: if (HReflecting & INTRINSIC) {
 			HReflecting &= ~INTRINSIC;
+			You_feel("less reflexive!");
+		}
+		if (HReflecting & TIMEOUT) {
+			HReflecting &= ~TIMEOUT;
 			You_feel("less reflexive!");
 		}
 		break;
@@ -850,9 +1005,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			Blinded &= ~INTRINSIC;
 			You_feel("visually clear!");
 		}
+		if (Blinded & TIMEOUT) {
+			Blinded &= ~TIMEOUT;
+			You_feel("visually clear!");
+		}
 		break;
 	case 168: if (Glib & INTRINSIC) {
 			Glib &= ~INTRINSIC;
+			You_feel("heavy-handed!");
+		}
+		if (Glib & TIMEOUT) {
+			Glib &= ~TIMEOUT;
 			You_feel("heavy-handed!");
 		}
 		break;
@@ -860,9 +1023,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HSwimming &= ~INTRINSIC;
 			You_feel("less aquatic!");
 		}
+		if (HSwimming & TIMEOUT) {
+			HSwimming &= ~TIMEOUT;
+			You_feel("less aquatic!");
+		}
 		break;
 	case 170: if (HNumbed & INTRINSIC) {
 			HNumbed &= ~INTRINSIC;
+			You_feel("your body parts relax.");
+		}
+		if (HNumbed & TIMEOUT) {
+			HNumbed &= ~TIMEOUT;
 			You_feel("your body parts relax.");
 		}
 		break;
@@ -870,14 +1041,26 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			HFree_action &= ~INTRINSIC;
 			You_feel("a loss of freedom!");
 		}
+		if (HFree_action & TIMEOUT) {
+			HFree_action &= ~TIMEOUT;
+			You_feel("a loss of freedom!");
+		}
 		break;
 	case 172: if (HFeared & INTRINSIC) {
 			HFeared &= ~INTRINSIC;
 			You_feel("less afraid.");
 		}
+		if (HFeared & TIMEOUT) {
+			HFeared &= ~TIMEOUT;
+			You_feel("less afraid.");
+		}
 		break;
 	case 173: if (HFear_resistance & INTRINSIC) {
 			HFear_resistance &= ~INTRINSIC;
+			You_feel("a little anxious!");
+		}
+		if (HFear_resistance & TIMEOUT) {
+			HFear_resistance &= ~TIMEOUT;
 			You_feel("a little anxious!");
 		}
 		break;
