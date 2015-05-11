@@ -2245,6 +2245,12 @@ set_whetstone()
 		    Blind ? "  (Ow!)" : "");
 	    }
 	    makeknown(WHETSTONE);
+
+		if (!rn2(ows->blessed ? 50 : ows->cursed ? 10 : 30) ) {
+			pline("Your whetstone is too badly damaged and suddenly turns to dust.");
+			useup(ows);
+			return 0;
+		}
 	    reset_whetstone();
 	} else {
 	    if (Hallucination)
