@@ -531,6 +531,270 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
+	if (tmp > 127) tmp = 127; /* sanity check --Amy */
+
+	return(tmp);
+}
+
+int
+dmgvalX(otmp, mon)
+struct obj *otmp;
+struct monst *mon;
+{
+	int tmp = 0, otyp = otmp->otyp;
+	struct permonst *ptr = mon->data;
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
+
+	if (otyp == CREAM_PIE) return 0;
+
+# ifdef P_SPOON
+	if (otmp->oartifact == ART_HOUCHOU)
+	        return 9999;
+# endif /* P_SPOON */
+
+	if (bigmonst(ptr)) {
+	    if (objects[otyp].oc_wldam)
+		tmp = rnd(objects[otyp].oc_wldam);
+	    switch (otyp) {
+		case IRON_CHAIN:
+		case CROSSBOW_BOLT:
+		case DROVEN_BOLT:
+		case MORNING_STAR:
+		case JAGGED_STAR:
+		case DEVIL_STAR:
+		case PARTISAN:
+		case RUNESWORD:
+		case ELVEN_BROADSWORD:
+		case BROADSWORD:	tmp++; break;
+
+		case FLAIL:
+		case KNOUT:
+		case OBSID:
+		case RANSEUR:
+		case VOULGE:		tmp += rnd(4); break;
+
+		case ACID_VENOM:
+		case HALBERD:
+		case SPETUM:		tmp += rnd(6); break;
+
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6);
+ 						break;
+
+		case BATTLE_AXE:
+		case BARDICHE:
+		case STYGIAN_PIKE:
+		case TRIDENT:		tmp += d(2,4); break;
+
+		case TSURUGI:
+		case DWARVISH_MATTOCK:
+		case TWO_HANDED_SWORD:	tmp += d(2,6); break;
+
+		case SCIMITAR:
+			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
+
+#ifdef LIGHTSABERS
+		case GREEN_LIGHTSABER:  tmp +=13; break;
+#ifdef D_SABER
+		case BLUE_LIGHTSABER:   tmp +=12; break;
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
+#endif
+		case RED_DOUBLE_LIGHTSABER: 
+					if (otmp->altmode) tmp += rnd(11);
+					/* fallthrough */
+		case RED_LIGHTSABER:    tmp +=10; break;
+#endif
+	    }
+	} else {
+	    if (objects[otyp].oc_wsdam)
+		tmp = rnd(objects[otyp].oc_wsdam);
+	    switch (otyp) {
+		case IRON_CHAIN:
+		case CROSSBOW_BOLT:
+		case DROVEN_BOLT:
+		case MACE:
+		case SILVER_MACE:
+		case FLANGED_MACE:
+		case WAR_HAMMER:
+		case MALLET:
+		case FLAIL:
+		case KNOUT:
+		case OBSID:
+		case SPETUM:
+		case STYGIAN_PIKE:
+		case TRIDENT:		tmp++; break;
+
+		case BATTLE_AXE:
+		case BARDICHE:
+		case BILL_GUISARME:
+		case GUISARME:
+		case LUCERN_HAMMER:
+		case MORNING_STAR:
+		case JAGGED_STAR:
+		case DEVIL_STAR:
+		case RANSEUR:
+		case BROADSWORD:
+		case ELVEN_BROADSWORD:
+		case RUNESWORD:
+		case VOULGE:		tmp += rnd(4); break;
+
+#ifdef LIGHTSABERS
+		case GREEN_LIGHTSABER:  tmp +=9; break;
+#ifdef D_SABER
+		case BLUE_LIGHTSABER:   tmp +=8; break;
+#if 0
+		case VIOLET_LIGHTSABER:
+		case WHITE_LIGHTSABER:
+		case YELLOW_LIGHTSABER:
+#endif
+#endif
+		case RED_DOUBLE_LIGHTSABER:
+					if (otmp->altmode) tmp += rnd(9);
+					/* fallthrough */
+		case RED_LIGHTSABER: 	tmp +=6; break;
+#endif
+
+		case ACID_VENOM:	tmp += rnd(6); break;
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
+					break;
+		case SCIMITAR:
+			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
+	    }
+	}
+	if (Is_weapon) {
+		tmp += otmp->spe;
+		/* negative enchantment mustn't produce negative damage */
+		if (tmp < 0) tmp = 0;
+	}
+
+	if (objects[otyp].oc_material <= LEATHER && thick_skinned(ptr) && tmp > 0)
+		/* thick skinned/scaled creatures don't feel it */
+		tmp = 1;
+	if (ptr == &mons[PM_SHADE] && objects[otyp].oc_material != SILVER)
+		tmp = 0;
+
+	/* "very heavy iron ball"; weight increase is in increments of 300 */
+	if (otyp == HEAVY_IRON_BALL && tmp > 0) {
+	    int wt = (int)objects[HEAVY_IRON_BALL].oc_weight;
+
+	    if ((int)otmp->owt > wt) {
+		wt = ((int)otmp->owt - wt) / 300;
+		tmp += rnd(4 * wt);
+		if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
+	    }
+	}
+
+/*	Put weapon vs. monster type damage bonuses in below:	*/
+	if (Is_weapon || otmp->oclass == GEM_CLASS ||
+		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS) {
+	    int bonus = 0;
+
+	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
+		bonus += rnd(4);
+	    if (is_axe(otmp) && is_wooden(ptr))
+		bonus += rnd(4);
+	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
+		bonus += rnd(20);
+
+	    /* Ralf Engels - added more special cases*/
+	    /* You can kill a eye with a needle */
+	    /* WAC--currently disabled since spheres and gas spores are S_EYE too */
+	    /* Amy edit - re-enabled since floating eyes are annoying enough already if you're low-level */
+	    if((objects[otyp].oc_dir & (PIERCE) ) && (ptr->mlet == S_EYE))
+		  	bonus += 2;
+	    /* You cut worms */
+	    if((objects[otyp].oc_dir & (SLASH) ) && (ptr->mlet == S_WORM))
+			bonus += 2;
+	    /* You pierce blobs */
+	    if((objects[otyp].oc_dir & (PIERCE) ) && (ptr->mlet == S_BLOB))
+			bonus += 2;
+	    /* You slash jellies */
+	    if((objects[otyp].oc_dir & (SLASH) ) && (ptr->mlet == S_JELLY))
+			bonus += 2;
+	    /* concussion damage is better agains chitinous armour */
+	    if( (objects[otyp].oc_dir & (WHACK) ) &&
+	        (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+			bonus += 2; 
+	    /* flyers can better be reached with a polearm */
+	    if( (is_pole(otmp) || is_spear(otmp) ) && is_flyer(ptr) )
+			bonus += 2; 
+	    if (is_pick(otmp) && made_of_rock(ptr) ) 
+			bonus += 3;
+
+	    if (is_spear(otmp) && index(kebabable, ptr->mlet)) bonus += rnd(2) ;
+
+	    /* iron chains give bonus versus thick-skinned monsters --Amy */
+	    if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
+	    if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+	    if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+	    if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+
+	    /* KMH -- Paddles are effective against insects */
+	    if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(5);
+	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(12);
+
+	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
+	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
+
+	    /* trident is highly effective against swimmers */
+	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
+	    /* blunt weapons versus undead (Diablo 2) */
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
+
+	    /* as well as silver bullets */
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) bonus += 8;
+
+	    /* lances versus animals */
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) bonus += rnd(2);
+
+	    /* polearms versus golems */
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
+
+	    /* electric sword versus quantum mechanic */
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
+
+	    /* shotgun versus bears or other quadrupeds */
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+
+	    /* axes versus umber hulks */
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) bonus += rnd(2);
+
+	    /* whips for lashing people's asses :P */
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) bonus += 1;
+
+	    /* if the weapon is going to get a double damage bonus, adjust
+	       this bonus so that effectively it's added after the doubling */
+	    if (bonus > 1 && otmp->oartifact && spec_dbon(otmp, mon, 25) >= 25)
+		bonus = (bonus + 1) / 2;
+
+	    tmp += bonus;
+	}
+
+	if (tmp > 0) {
+		/* It's debateable whether a rusted blunt instrument
+		   should do less damage than a pristine one, since
+		   it will hit with essentially the same impact, but
+		   there ought to some penalty for using damaged gear
+		   so always subtract erosion even for blunt weapons. */
+		tmp -= greatest_erosion(otmp);
+		if (tmp < 1) tmp = 1;
+	}
+
 	if (!rn2(100 - (Luck*2))) { /* nice patch - critical hits --Amy */
 
 		pline("Critical hit!");

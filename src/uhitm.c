@@ -1104,7 +1104,7 @@ int thrown;
 			    tmp++;
 		   }
 		} else {
-		    tmp = dmgval(obj, mon);
+		    tmp = dmgvalX(obj, mon);
 		    /* a minimal hit doesn't exercise proficiency */
 		    valid_weapon_attack = (tmp > 0);
 #if 0
@@ -1198,7 +1198,7 @@ int thrown;
 			if (obj->oartifact == ART_HOUCHOU) {
 			    pline("There is a bright flash as it hits %s.",
 				the(mon_nam(mon)));
-			    tmp = dmgval(obj, mon);
+			    tmp = dmgvalX(obj, mon);
 			}
 #endif /* P_SPOON */
 			if (ammo_and_launcher(obj, launcher)) {
@@ -1304,7 +1304,7 @@ int thrown;
 		    case ROTATING_CHAIN:		/* 1d4+1 */
 		    case SCOURGE:		/* 1d4+1 */
 		    case NUNCHIAKU:		/* 1d4+1 */
-			tmp = dmgval(obj, mon);
+			tmp = dmgvalX(obj, mon);
 			break;
 		    case MIRROR:
 			if (breaktest(obj)) {
@@ -1467,7 +1467,7 @@ int thrown;
 				tmp = 0;
 			} else {
 				Your("venom burns %s!", mon_nam(mon));
-				tmp = dmgval(obj, mon);
+				tmp = dmgvalX(obj, mon);
 			}
 			if (thrown) obfree(obj, (struct obj *)0);
 			else useup(obj);

@@ -5982,6 +5982,13 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FIENDISH_WARLOCK]) (void) mongets(mtmp, SCR_BAD_EFFECT);
 		if (ptr == &mons[PM_OCCULT_WARLOCK]) (void) mongets(mtmp, WAN_BAD_EFFECT);
 
+		if (ptr == &mons[PM_STONER]) (void) mongets(mtmp, SCR_STONING);
+		if (ptr == &mons[PM_DESTROYER]) (void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		if (ptr == &mons[PM_REAL_PUNISHER]) (void) mongets(mtmp, SCR_PUNISHMENT);
+		if (ptr == &mons[PM_HEAVY_STONER]) (void) mongets(mtmp, WAN_STONING);
+		if (ptr == &mons[PM_MASTER_PUNISHER]) (void) mongets(mtmp, WAN_PUNISHMENT);
+		if (ptr == &mons[PM_MAUD_BADASS]) (void) mongets(mtmp, WAN_AMNESIA);
+
 		if(is_mercenary(ptr)
 #ifdef YEOMAN
 				|| ptr == &mons[PM_CHIEF_YEOMAN_WARDER]
@@ -6348,6 +6355,9 @@ register struct	monst	*mtmp;
 		break;
 	    case S_GNOME:
 
+		if (mtmp->data == &mons[PM_GNOME_BADASS]) (void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+		if (mtmp->data == &mons[PM_GNOMISH_SLIME_MAGE]) (void) mongets(mtmp, POT_SLIME);
+
 		if (!rn2(5)) { (void)mongets(mtmp, GNOMISH_HELM); }
 		if (!rn2(10)) { (void)mongets(mtmp, GNOMISH_BOOTS); }
 		if (!rn2(15)) { (void)mongets(mtmp, GNOMISH_SUIT); }
@@ -6358,6 +6368,8 @@ register struct	monst	*mtmp;
 	        (void) mongets(mtmp, WOODEN_FLUTE);
 		}
 		if (mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FILTHY_GUTTERSNIPE]) (void) mongets(mtmp, WAN_BAD_LUCK);
+		if (mtmp->data == &mons[PM_INCONTINENT_NYMPH]) (void) mongets(mtmp, POT_URINE);
 		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if(!rn2(2)) (void) mongets(mtmp, MIRROR);
 		if(!rn2(/*2*/10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
@@ -6409,6 +6421,93 @@ register struct	monst	*mtmp;
 			if (!rn2(3)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			if (!rn2(5)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 		}
+
+		break;
+
+	    case S_ANT:
+
+		if (mtmp->data == &mons[PM_GREAT_PARALYSATOR_FLY]) (void) mongets(mtmp, WAN_PARALYSIS);
+
+		break;
+
+	    case S_GHOST:
+
+		if (mtmp->data == &mons[PM_HAUNTED_SPIRIT]) (void) mongets(mtmp, WAN_CURSE_ITEMS);
+
+		break;
+
+	    case S_JABBERWOCK:
+
+		if (mtmp->data == &mons[PM_FUMBLING_MONSTER]) (void) mongets(mtmp, WAN_FUMBLING);
+
+		break;
+
+	    case S_UMBER:
+
+		if (mtmp->data == &mons[PM_GLUTTONOUS_HULK]) (void) mongets(mtmp, WAN_STARVATION);
+
+		break;
+
+	    case S_GREMLIN:
+
+		if (mtmp->data == &mons[PM_GREMGARGOYLE]) (void) mongets(mtmp, POT_CANCELLATION);
+
+		break;
+
+	    case S_BLOB:
+
+		if (ptr == &mons[PM_ONANOCTER__A]) {
+			 (void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, BULLET, 25);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__B]) {
+			 (void) mongets(mtmp, DAGGER);
+			 (void) mongets(mtmp, RIFLE);
+			 m_initthrow(mtmp, BULLET, 25);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__C]) {
+			 (void) mongets(mtmp, SHORT_SWORD);
+			 (void) mongets(mtmp, SUBMACHINE_GUN);
+			 m_initthrow(mtmp, BULLET, 50);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__D]) {
+			 (void) mongets(mtmp, BROADSWORD);
+			 (void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__E]) {
+			 (void) mongets(mtmp, JAGGED_STAR);
+			 (void) mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, BULLET, 75);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__F]) {
+			 (void) mongets(mtmp, STYGIAN_PIKE);
+			 (void) mongets(mtmp, AUTO_SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+			 (void) mongets(mtmp, SNIPER_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+		}
+
+		if (ptr == &mons[PM_ONANOCTER__G]) {
+			 (void) mongets(mtmp, MALLET);
+			 (void) mongets(mtmp, OBSID);
+			 (void) mongets(mtmp, HEAVY_MACHINE_GUN);
+			 m_initthrow(mtmp, BULLET, 200);
+			 (void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 3);
+		}
+
+		break;
+
+	    case S_RUSTMONST:
+
+		if (mtmp->data == &mons[PM_MASTER_DISINTEGRATOR]) (void) mongets(mtmp, WAN_DISINTEGRATION);
+		if (mtmp->data == &mons[PM_GREAT_ACID_MONSTER]) (void) mongets(mtmp, WAN_CORROSION);
 
 		break;
 
@@ -7439,6 +7538,12 @@ register int	mmflags;
 			if (mndx == PM_YASD_HORROR) set_mimic_sym(mtmp);
 			if (mndx == PM_NETHACKFOUR_HORROR) set_mimic_sym(mtmp);
 			if (mndx == PM_DEVTEAM_HORROR) set_mimic_sym(mtmp);
+
+			break;
+
+		case S_BLOB:
+
+			if (mndx == PM_ONANOCTER__G) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
