@@ -1637,6 +1637,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StatusTrapProblem);
 		you_have(buf);
 	}
+	if (AlignmentProblem) {
+		Sprintf(buf, "the following problem: Your maximum alignment will decrease over time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlignmentProblem);
+		you_have(buf);
+	}
 
 	if (IncreasedGravity) {
 		Sprintf(buf, "increased encumbrance due to a stronger gravity.");

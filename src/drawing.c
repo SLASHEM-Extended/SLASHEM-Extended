@@ -350,6 +350,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "drop trap", C(CLR_BROWN)},	/* trap */
 	{'^', "DSTW trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "status trap", C(CLR_WHITE)},	/* trap */
+	{'^', "alignment trap", C(CLR_BLACK)},	/* trap */
 
 	{'^', "pestilence trap", C(CLR_BRIGHT_GREEN)},	/* trap */
 	{'^', "famine trap", C(CLR_MAGENTA)},	/* trap */
@@ -527,6 +528,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_drop_trap),
 	g_FILLER(S_dstw_trap),
 	g_FILLER(S_status_trap),
+	g_FILLER(S_alignment_trap),
 
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
@@ -695,6 +697,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_drop_trap),
 	g_FILLER(S_dstw_trap),
 	g_FILLER(S_status_trap),
+	g_FILLER(S_alignment_trap),
 
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
@@ -861,6 +864,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_drop_trap),
 	g_FILLER(S_dstw_trap),
 	g_FILLER(S_status_trap),
+	g_FILLER(S_alignment_trap),
 
 	g_FILLER(S_pestilence_trap),
 	g_FILLER(S_famine_trap),
@@ -1218,6 +1222,7 @@ boolean is_rlevel;
 	    showsyms[S_drop_trap] = 0x04;
 	    showsyms[S_dstw_trap] = 0x04;
 	    showsyms[S_status_trap] = 0x04;
+	    showsyms[S_alignment_trap] = 0x04;
 
 	    showsyms[S_pestilence_trap] = 0x04;
 	    showsyms[S_famine_trap] = 0x04;

@@ -4194,6 +4194,7 @@ doapply()
 		NoDropProblem = 0L;
 		DSTWProblem = 0L;
 		StatusTrapProblem = 0L;
+		AlignmentProblem = 0L;
 
 		break;
 	case GOD_O_METER:

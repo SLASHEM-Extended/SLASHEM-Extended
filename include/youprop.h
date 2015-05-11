@@ -192,6 +192,7 @@
 #define NoDropProblem		u.uprops[DROP_BUG].intrinsic
 #define DSTWProblem		u.uprops[DSTW_BUG].intrinsic
 #define StatusTrapProblem		u.uprops[STATUS_FAILURE].intrinsic
+#define AlignmentProblem		u.uprops[ALIGNMENT_FAILURE].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic

@@ -130,13 +130,14 @@ extern struct trap *ftrap;
 #define DROP_TRAP		78
 #define DSTW_TRAP		79
 #define STATUS_TRAP		80
+#define ALIGNMENT_TRAP		81
 
-#define PESTILENCE_TRAP		81
-#define FAMINE_TRAP		82
-#define RELOCATION_TRAP		83
+#define PESTILENCE_TRAP		82
+#define FAMINE_TRAP		83
+#define RELOCATION_TRAP		84
 
-#define TRAP_PERCENTS		84
+#define TRAP_PERCENTS		85
 
-#define TRAPNUM 85
+#define TRAPNUM 86
 
 #endif /* TRAP_H */

@@ -176,10 +176,11 @@
 #define DROP_BUG 162
 #define DSTW_BUG 163
 #define STATUS_FAILURE 164
+#define ALIGNMENT_FAILURE 165
 
-#define STORM_HELM 165
+#define STORM_HELM 166
 
-#define SECOND_CHANCE		166
+#define SECOND_CHANCE		167
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

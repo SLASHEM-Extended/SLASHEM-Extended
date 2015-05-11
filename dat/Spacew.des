@@ -759,3 +759,4 @@ TRAP:"nupesell",random
 TRAP:"drop",random
 TRAP:"dstw",random
 TRAP:"status",random
+TRAP:"alignment",random
