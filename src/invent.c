@@ -4996,6 +4996,8 @@ struct obj *obj;
 				pline("If you zap this wand at something that can be locked, e.g. a door or chest, it will be locked. It can also transform broken doorways into fully functional locked doors."); break;
 			case WAN_MAKE_INVISIBLE: 
 				pline("Zap this wand at something to make that 'something' invisible!"); break;
+			case WAN_MAKE_VISIBLE: 
+				pline("A wand that can be zapped to remove invisibility from monsters and items."); break;
 			case WAN_IDENTIFY: 
 				pline("If you zap this wand, you may identify some of your inventory items."); break;
 			case WAN_REMOVE_CURSE: 

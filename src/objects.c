@@ -2010,7 +2010,8 @@ WAND("nothing",        "oak",      25, 500, 0, IMMEDIATE, WOOD,     HI_WOOD),
 WAND("enlightenment",  "crystal",  150, 500, 1, NODIR,     GLASS,    HI_GLASS),
 WAND("healing",        "bamboo",   250, 500, 1, IMMEDIATE, WOOD,     CLR_YELLOW),
 WAND("locking",        "aluminum", 125, 500, 1, IMMEDIATE, METAL,    HI_METAL),
-WAND("make invisible", "marble",   125, 500, 1, IMMEDIATE, MINERAL,  HI_MINERAL),
+WAND("make invisible", "marble",   100, 500, 1, IMMEDIATE, MINERAL,  HI_MINERAL),
+WAND("make visible", "interplanar",   25, 500, 1, IMMEDIATE, IRON,  CLR_YELLOW),
 WAND("identify",       "wedged",   25, 500, 1, NODIR,     WOOD,     CLR_BRIGHT_GREEN),
 WAND("remove curse",   "wiry",     25, 500, 1, NODIR,     METAL,    CLR_GRAY),
 WAND("punishment",     "edgy",     25, 500, 1, NODIR,     PAPER,    CLR_WHITE),
@@ -2166,6 +2167,7 @@ WAND((char *)0,        "sycamore",0, 500, 1, 0,         WOOD,    CLR_BROWN),
 WAND((char *)0,        "hickory",0, 500, 1, 0,         WOOD,    CLR_BLACK),
 WAND((char *)0,        "cast iron",0, 500, 1, 0,         IRON,    CLR_CYAN),
 WAND((char *)0,        "molybdenum",0, 500, 1, 0,         METAL,    CLR_GRAY),
+WAND((char *)0,        "planar",0, 500, 1, 0,         IRON,    CLR_WHITE),
 
 #undef WAND
 

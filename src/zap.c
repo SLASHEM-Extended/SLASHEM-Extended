@@ -346,6 +346,21 @@ struct obj *otmp;
 		}
 		break;
 	    }
+	case WAN_MAKE_VISIBLE:
+	    {
+		int oldinvis = mtmp->minvis;
+		char nambuf[BUFSZ];
+
+		mtmp->perminvis = 0;
+		mtmp->minvis = 0;
+		Strcpy(nambuf, Monnam(mtmp));
+		newsym(mtmp->mx, mtmp->my);		/* make it appear */
+		if (oldinvis) {
+		    pline("%s becomes visible!", nambuf);
+		    makeknown(otyp);
+		}
+		break;
+	    }
 	case WAN_NOTHING:
 	case WAN_LOCKING:
 	case SPE_WIZARD_LOCK:
@@ -2041,6 +2056,12 @@ struct obj *obj, *otmp;
 		}
 #endif
 		break;
+	case WAN_MAKE_VISIBLE:
+#ifdef INVISIBLE_OBJECTS
+		obj->oinvis = FALSE;
+		newsym(obj->ox,obj->oy);	/* make object appear */
+#endif
+		break;
 	case WAN_UNDEAD_TURNING:
 	case SPE_TURN_UNDEAD:
 		if (obj->otyp == EGG)
@@ -3131,6 +3152,21 @@ boolean ordinary;
 		    }
 		    break;
 		}
+		case WAN_MAKE_VISIBLE:
+
+			if (HInvis & INTRINSIC) {
+				HInvis &= ~INTRINSIC;
+				pline("You become more opaque.");
+				makeknown(WAN_MAKE_VISIBLE);
+				newsym(u.ux, u.uy);
+			}
+			if (HInvis & TIMEOUT) {
+				HInvis &= ~TIMEOUT;
+				pline("You become more opaque.");
+				makeknown(WAN_MAKE_VISIBLE);
+				newsym(u.ux, u.uy);
+			}
+		    break;
 		case WAN_SPEED_MONSTER:
 		    if (!(HFast & INTRINSIC)) {
 			if (!Fast)
@@ -3419,6 +3455,7 @@ struct obj *obj;	/* wand or spell */
 		/* Default processing via bhitm() for these */
 		case SPE_CURE_SICKNESS:
 		case WAN_MAKE_INVISIBLE:
+		case WAN_MAKE_VISIBLE:
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
 		case WAN_POLYMORPH:

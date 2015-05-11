@@ -6990,6 +6990,7 @@ register struct	monst	*mtmp;
  		break;
 	    case S_EYE:
 		if (ptr == &mons[PM_OAK_SAGE]) (void) mongets(mtmp, POT_FULL_HEALING);
+		if (ptr == &mons[PM_VISOR]) (void) mongets(mtmp, WAN_MAKE_VISIBLE);
 
  		break;
 	    case S_GRUE:

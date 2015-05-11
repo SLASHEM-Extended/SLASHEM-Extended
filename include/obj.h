@@ -358,6 +358,7 @@ struct obj {
 || (otmp)->otyp == WAN_FUMBLING\
 || (otmp)->otyp == WAN_PUNISHMENT\
 || (otmp)->otyp == SCR_PUNISHMENT\
+|| (otmp)->otyp == WAN_MAKE_VISIBLE\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				

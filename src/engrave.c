@@ -1398,6 +1398,13 @@ doengrave()
 				   surface(u.ux, u.uy));
 			}
 			break;
+		    case WAN_MAKE_VISIBLE:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s are clearly visible!",
+				   surface(u.ux, u.uy));
+			}
+			break;
 		    case WAN_POLYMORPH:
 			if(oep)  {
 			    if (!Blind) {

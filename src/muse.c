@@ -1698,6 +1698,7 @@ struct monst *mtmp;
 #define MUSE_WAN_STARVATION 60
 #define MUSE_WAN_PUNISHMENT 61
 #define MUSE_SCR_PUNISHMENT 62
+#define MUSE_WAN_MAKE_VISIBLE 63
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2064,6 +2065,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_PUNISHMENT;
 		}
+		nomore(MUSE_WAN_MAKE_VISIBLE);
+		if(obj->otyp == WAN_MAKE_VISIBLE && obj->spe > 0 && ((HInvis & INTRINSIC) || (HInvis & TIMEOUT)) ) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_MAKE_VISIBLE;
+		}
 	}
 	return((boolean)(!!m.has_offense));
 #undef nomore
@@ -2182,6 +2188,34 @@ register struct obj *otmp;
 		    mtmp->mcanmove = 0;
 		    mtmp->mfrozen = rnz(20);
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+
+		}
+
+		break;
+
+	case WAN_MAKE_VISIBLE:
+
+		if (mtmp == &youmonst) {
+
+			HInvis &= ~INTRINSIC;
+			HInvis &= ~TIMEOUT;
+			pline("You become more opaque.");
+			makeknown(WAN_MAKE_VISIBLE);
+			newsym(u.ux, u.uy);
+
+		} else {
+
+			int oldinvis = mtmp->minvis;
+			char nambuf[BUFSZ];
+	
+			mtmp->perminvis = 0;
+			mtmp->minvis = 0;
+			Strcpy(nambuf, Monnam(mtmp));
+			newsym(mtmp->mx, mtmp->my);		/* make it appear */
+			if (oldinvis) {
+			    pline("%s becomes visible!", nambuf);
+			    makeknown(WAN_MAKE_VISIBLE);
+			}
 
 		}
 
@@ -2560,6 +2594,7 @@ struct monst *mtmp;
 	case MUSE_WAN_CANCELLATION:  /* Lethe */
 	case MUSE_WAN_STONING:
 	case MUSE_WAN_PARALYSIS:
+	case MUSE_WAN_MAKE_VISIBLE:
 	case MUSE_WAN_DISINTEGRATION:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
@@ -3321,7 +3356,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) return 0;*/
-	switch (rn2(61)) {
+	switch (rn2(62)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -3384,6 +3419,7 @@ struct monst *mtmp;
 		case 58: return WAN_STARVATION;
 		case 59: return WAN_PUNISHMENT;
 		case 60: return SCR_PUNISHMENT;
+		case 61: return WAN_MAKE_VISIBLE;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -3901,6 +3937,7 @@ struct obj *obj;
 		    typ == WAN_STONING ||
 		    typ == WAN_DISINTEGRATION ||
 		    typ == WAN_PARALYSIS ||
+		    typ == WAN_MAKE_VISIBLE ||
 		    typ == WAN_CURSE_ITEMS ||
 		    typ == WAN_AMNESIA ||
 		    typ == WAN_BAD_LUCK ||
