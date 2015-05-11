@@ -2346,7 +2346,8 @@ register struct monst *mtmp;
 
 	}
 
-	if (mvitals[tmp].died < 255) mvitals[tmp].died++;
+	/* item masters and similar stuff shouldn't appear on the list so the player can't peek with ctrl-K! --Amy */
+	if (mvitals[tmp].died < 255 && tmp != PM_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER) mvitals[tmp].died++;
 
 	/* if it's a (possibly polymorphed) quest leader, mark him as dead */
 	if (mtmp->m_id == quest_status.leader_m_id)
