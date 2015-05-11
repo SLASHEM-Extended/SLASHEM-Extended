@@ -3888,7 +3888,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return (1);
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && rn2(2) ) {
+	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that food was petrified! You're unable to swallow it.");
@@ -3906,14 +3906,14 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return 1;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && rn2(2) ) {
+	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
 
 		pline("Ulch - that food was petrified!");
 		badeffect();
 
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && !rn2(4) ) {
+	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that petrified food had manky bits! You're unable to swallow it.");
@@ -3931,7 +3931,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return 1;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && !rn2(4) ) {
+	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
 
 		pline("Ulch - that petrified food had manky bits!");
 		badeffect();
