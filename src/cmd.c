@@ -2330,7 +2330,8 @@ minimal_enlightenment()
 		if (Stoned) Sprintf(eos(statline), "petrification, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
-		if(!Thirst && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
+		if (!Thirst && u.urealedibility && u.uhunger >= 3500) Sprintf(eos(statline), "oversatiated, ");
+		else if(!Thirst && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
 
 		Sprintf(eos(statline), ".");
 

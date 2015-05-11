@@ -641,7 +641,14 @@ bot2str(char *newbot2)
 	}
 */
 
-	if(!Thirst && strcmp(hu_stat[u.uhs], "        "))
+	if (!Thirst && u.urealedibility && u.uhunger >= 3500) 
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Oversatiated", newbot2);
+#else
+		Strcat(nb = eos(nb), " Oversatiated");
+#endif
+
+	else if(!Thirst && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(hu_stat[u.uhs], newbot2);
 #else

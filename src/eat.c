@@ -412,7 +412,7 @@ register struct obj *food;
 		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
 		if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {adjalign(-20);	/* overeating doesn't befit a topmodel */
 		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
-		morehungry(1000);	/* you just got *very* sick! */
+		morehungry(2000);	/* you just got *very* sick! */
 		nomovemsg = 0;
 		vomit();
 	} else {
