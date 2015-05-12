@@ -8945,6 +8945,8 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
+	int bonuslevel;
+	boolean calctype;
 
 	/*maxmlev = level_difficulty() >> 1;*/ /* what the heck? does that divide the actual result by 2?! --Amy */
 	  maxmlev = monster_difficulty();
@@ -8969,15 +8971,28 @@ int     spc;
 	    if (mons[first].mlet == class) break;
 	if (first == SPECIAL_PM) return (-1);
 
+	if (rn2(5)) calctype = 1;
+	else calctype = 0;
 
 	for (last = first;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])) {
 		/* consider it */
-		if(spc & MKC_ULIMIT && toostrong(last, 4 * maxmlev)) break;
-		if(num && (rn2(5) ? toostrong(last, maxmlev) : mons[last].mlevel > maxmlev) &&
-		   monstr[last] != monstr[last-1] && rn2(2)) break;
+		/*if(spc & MKC_ULIMIT && toostrong(last, 4 * maxmlev)) break;*/
+
+		bonuslevel = 0;
+		if (!rn2(5)) bonuslevel += rnd(5);
+		if (!rn2(20)) bonuslevel += rnd(7);
+		if (!rn2(100)) bonuslevel += rnd(10);
+		if (!rn2(500)) bonuslevel += rnd(15);
+		if (!rn2(2500)) bonuslevel += rnd(20);
+		if (!rn2(20000)) bonuslevel += rnd(30);
+		if (!rn2(50000)) bonuslevel += rnd(50);
+		if (!rn2(100000)) bonuslevel += rnd(100);
+
+		if(num && (calctype ? toostrong(last, (maxmlev + bonuslevel) ) : mons[last].mlevel > (maxmlev + bonuslevel) ) &&
+		   monstr[last] != monstr[last-1]) break;
 		num += mons[last].geno & G_FREQ;
 	    }
 
@@ -8991,11 +9006,13 @@ int     spc;
 					&& !is_placeholder(&mons[first])) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
-		if (num && adj_lev(&mons[first]) > (u.ulevel*2)) {
+		
+		/* or not, because seriously... what the heck??? --Amy */
+		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */
 		    /* but not when multiple monsters are same level */
-		    if (mons[first].mlevel != mons[first+1].mlevel)
+		    /* if (mons[first].mlevel != mons[first+1].mlevel)
 			num--;
-		}
+		} */
 	    }
 	first--; /* correct an off-by-one error */
 
