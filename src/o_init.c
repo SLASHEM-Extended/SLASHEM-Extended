@@ -232,6 +232,9 @@ shuffle_all()
 				oclass != TOOL_CLASS &&
 				oclass != WEAPON_CLASS &&
 				oclass != ARMOR_CLASS &&
+				oclass != BALL_CLASS &&
+				oclass != CHAIN_CLASS &&
+				oclass != VENOM_CLASS &&
 				oclass != GEM_CLASS) {
 			int j = last-1;
 
@@ -255,19 +258,19 @@ shuffle_all()
 	}
 
 	/* shuffle the helmets */
-	shuffle(HELMET, HELM_OF_TELEPATHY, FALSE);
+	shuffle(HELMET, HELM_OF_TELEPATHY, TRUE);
 
 	/* shuffle the gloves */
-	shuffle(LEATHER_GLOVES, GAUNTLETS_OF_DEXTERITY, FALSE);
+	shuffle(LEATHER_GLOVES, GAUNTLETS_OF_DEXTERITY, TRUE);
 
     /* shuffle the robes */
-    shuffle(ROBE, ROBE_OF_WEAKNESS, FALSE);
+    shuffle(ROBE, ROBE_OF_WEAKNESS, TRUE);
 
 	/* shuffle the cloaks */
-	shuffle(CLOAK_OF_PROTECTION, CLOAK_OF_DISPLACEMENT, FALSE);
+	shuffle(CLOAK_OF_PROTECTION, CLOAK_OF_DISPLACEMENT, TRUE);
 
 	/* shuffle the boots [if they change, update find_skates() below] */
-	shuffle(SPEED_BOOTS, LEVITATION_BOOTS, FALSE);
+	shuffle(SPEED_BOOTS, LEVITATION_BOOTS, TRUE);
 }
 
 /* find the object index for snow boots; used [once] by slippery ice code */
