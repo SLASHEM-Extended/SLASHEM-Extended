@@ -2314,6 +2314,20 @@ mineralize()
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
 			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
 
+		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
+			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
+			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+
+		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
+			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
+			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+
+
 		}
 
 		if (ishomicider) {	/* idea by deepy - a race for which monsters don't spawn normally */
@@ -2456,6 +2470,20 @@ mineralize()
 
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
 			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
+			makerandomtrap_at(x, y);
+
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+			makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
+			makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
+			makerandomtrap_at(x, y);
+
 		}
 
 		}
