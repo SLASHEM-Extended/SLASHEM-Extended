@@ -1843,6 +1843,10 @@ register int pm;
 	    case PM_MARSUPILAMI:
 	    case PM_MAELSTROM:
 	    case PM_MIMIC_HIVEMIND:
+
+	    case PM_LESSER_INTRINSIC_EATING_MIMIC:
+	    case PM_INTRINSIC_EATING_MIMIC:
+	    case PM_MASTER_INTRINSIC_EATING_MIMIC:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
 	    case PM_GIANT_SPAWN_MIMIC:
