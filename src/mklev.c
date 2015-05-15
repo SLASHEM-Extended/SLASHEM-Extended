@@ -2175,157 +2175,261 @@ mineralize()
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)))
-	    	    makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 4 ))
-	    	    makemon(&mons[PM_HUMAN_WEREPIRANHA], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_HUMAN_WEREPIRANHA], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 9 ))
-	    	    makemon(&mons[PM_HUMAN_WEREEEL], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_HUMAN_WEREEEL], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ))
-	    	    makemon(&mons[PM_HUMAN_WEREKRAKEN], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_HUMAN_WEREKRAKEN], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ))
-	    	    makemon(&mons[PM_SUBMARINE_GOBLIN], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_SUBMARINE_GOBLIN], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ))
-	    	    makemon(&mons[PM_PUNT], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_PUNT], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ))
-	    	    makemon(&mons[PM_SWIMMER_TROLL], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_SWIMMER_TROLL], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ))
-	    	    makemon(&mons[PM_DIVER_TROLL], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_DIVER_TROLL], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ))
-	    	    makemon(&mons[PM_WATER_TURRET], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_WATER_TURRET], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ))
-	    	    makemon(&mons[PM_AQUA_TURRET], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_AQUA_TURRET], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
-	    	    makemon(&mons[PM_LUXURY_YACHT], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_LUXURY_YACHT], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
-	    	    makemon(&mons[PM_MISTER_SUBMARINE], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_MISTER_SUBMARINE], x, y, MM_ADJACENTOK);
 
 		/* More random monsters on other terrain, too. --Amy */
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 2000 : (issuxxor && !ishaxor) ? 8000 : 4000) && level_difficulty() > 23 ) )
-	    	    makemon(&mons[PM_HUMAN_WEREFLYFISH], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_HUMAN_WEREFLYFISH], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000) && level_difficulty() > 7 ) )
-	    	    makemon(&mons[PM_CONCORDE__], x, y, NO_MM_FLAGS);
+	    	    makemon(&mons[PM_CONCORDE__], x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makemon(mkclass(S_WALLMONST,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_WALLMONST,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
-			makemon(mkclass(S_TURRET,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_TURRET,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-			makemon(mkclass(S_BAT,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_BAT,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_SNAKE,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_SNAKE,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_NYMPH,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_NYMPH,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_SPIDER,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_SPIDER,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_RUBMONST,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_RUBMONST,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makemon(courtmon(), x, y, NO_MM_FLAGS);
+	    	    makemon(courtmon(), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_VORTEX,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_VORTEX,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_LIGHT,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_LIGHT,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_TRAPPER,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_TRAPPER,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_ANGEL,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_ANGEL,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_HUMAN,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_HUMAN,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(mkclass(S_NEMESE,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_NEMESE,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_PUDDING,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_PUDDING,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_BLOB,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_BLOB,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_JELLY,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_JELLY,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_FUNGUS,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_FUNGUS,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_GRUE,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_GRUE,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_LIZARD,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_LIZARD,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_PIERCER,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_RODENT,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_RODENT,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_WORM,0), x, y, NO_MM_FLAGS);
+	    	    makemon(mkclass(S_WORM,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
-	    	    makemon(morguemonX(), x, y, NO_MM_FLAGS);
+	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makemon((struct permonst *)0, x, y, NO_MM_FLAGS);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
-			makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == POOL && !((moves + u.eeveelution) % 4339 ) && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) ||
+			(levl[x][y].typ == MOAT && !((moves + u.eeveelution) % 4339 ) && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+
+		/* More random monsters on other terrain, too. --Amy */
+
+		if ((levl[x][y].typ == LAVAPOOL && !((moves + u.eeveelution) % 4341 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == ROOM && !((moves + u.eeveelution) % 4343 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == ICE && !((moves + u.eeveelution) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == AIR && !((moves + u.eeveelution) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == CLOUD && !((moves + u.eeveelution) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+			makemon(mkclass(S_WALLMONST,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4355 )  && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200 )) )
+			makemon(mkclass(S_TURRET,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == TREE && !((moves + u.eeveelution) % 4357 ) && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+			makemon(mkclass(S_BAT,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4359 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_SNAKE,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4361 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4363 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_NYMPH,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4365 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_SPIDER,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4367 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_RUBMONST,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4369 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 4 : 2)) )
+	    	    makemon(courtmon(), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4371 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_VORTEX,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4373 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_LIGHT,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4375 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_TRAPPER,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4377 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_ANGEL,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4379 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4381 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_HUMAN,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4383 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(mkclass(S_NEMESE,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4385 ) && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
+	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4387 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_PUDDING,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4389 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_BLOB,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4391 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_JELLY,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4393 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_FUNGUS,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4395 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_GRUE,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4397 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_LIZARD,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4399 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4401 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4403 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_RODENT,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4405 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makemon(mkclass(S_WORM,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == GRAVE && !((moves + u.eeveelution) % 4407 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 3 : 2)) )
+	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == ALTAR && !((moves + u.eeveelution) % 4409 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 3 : 2)) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == STONE && !((moves + u.eeveelution) % 4411 ) && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.eeveelution) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == SDOOR && !((moves + u.eeveelution) % 4415 ) && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == SCORR && !((moves + u.eeveelution) % 4417 ) && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == DOOR && !((moves + u.eeveelution) % 4419 ) && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
 
 
 		}
@@ -2483,6 +2587,110 @@ mineralize()
 			makerandomtrap_at(x, y);
 		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
 			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !((moves + u.eeveelution) % 4339 ) && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) ||
+			(levl[x][y].typ == MOAT && !((moves + u.eeveelution) % 4339 ) && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+	    	    makerandomtrap_at(x, y);
+
+		/* More random monsters on other terrain, too. --Amy */
+
+		if ((levl[x][y].typ == LAVAPOOL && !((moves + u.eeveelution) % 4341 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ROOM && !((moves + u.eeveelution) % 4343 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ICE && !((moves + u.eeveelution) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == AIR && !((moves + u.eeveelution) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CLOUD && !((moves + u.eeveelution) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == CORR && !((moves + u.eeveelution) % 4355 )  && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200 )) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == TREE && !((moves + u.eeveelution) % 4357 ) && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+			makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4359 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4361 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4363 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4365 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == FOUNTAIN && !((moves + u.eeveelution) % 4367 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4369 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 4 : 2)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4371 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4373 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4375 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4377 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4379 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4381 ) && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4383 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == THRONE && !((moves + u.eeveelution) % 4385 ) && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4387 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4389 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4391 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4393 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SINK && !((moves + u.eeveelution) % 4395 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4397 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4399 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4401 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4403 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == TOILET && !((moves + u.eeveelution) % 4405 ) && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 12 : 6)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == GRAVE && !((moves + u.eeveelution) % 4407 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 3 : 2)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == ALTAR && !((moves + u.eeveelution) % 4409 ) && !rn2((ishaxor && !issuxxor) ? 1 : (issuxxor && !ishaxor) ? 3 : 2)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == STONE && !((moves + u.eeveelution) % 4411 ) && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
+	    	    makerandomtrap_at(x, y);
+
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.eeveelution) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == SDOOR && !((moves + u.eeveelution) % 4415 ) && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SCORR && !((moves + u.eeveelution) % 4417 ) && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == DOOR && !((moves + u.eeveelution) % 4419 ) && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
 
 		}
 
