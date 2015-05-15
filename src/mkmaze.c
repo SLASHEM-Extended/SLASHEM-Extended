@@ -997,13 +997,16 @@ int x,y;
 	int q, a, dir, pos;
 	int dirs[4];
 
+	int specialcorridor;
+	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+
 	pos = 1;
 	mazex[pos] = (char) x;
 	mazey[pos] = (char) y;
 	while (pos) {
 		x = (int) mazex[pos];
 		y = (int) mazey[pos];
-		if(!IS_DOOR(levl[x][y].typ)) {
+		if(!IS_DOOR(levl[x][y].typ) && !specialcorridor) {
 		    /* might still be on edge of MAP, so don't overwrite */
 #ifndef WALLIFIED_MAZE
 		    levl[x][y].typ = CORR;
@@ -1012,6 +1015,12 @@ int x,y;
 #endif
 		    levl[x][y].flags = 0;
 		}
+		if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
+
+		    levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+		    levl[x][y].flags = 0;
+		}
+
 		q = 0;
 		for (a = 0; a < 4; a++)
 			if(okay(x, y, a)) dirs[q++]= a;
@@ -1020,11 +1029,16 @@ int x,y;
 		else {
 			dir = dirs[rn2(q)];
 			move(&x, &y, dir);
+
+			if (!specialcorridor) {
 #ifndef WALLIFIED_MAZE
 			levl[x][y].typ = CORR;
 #else
 			levl[x][y].typ = ROOM;
 #endif
+			}
+			else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+
 			move(&x, &y, dir);
 			pos++;
 			if (pos > CELLS)
@@ -1043,13 +1057,21 @@ int x,y;
 	register int q,a,dir;
 	int dirs[4];
 
-	if(!IS_DOOR(levl[x][y].typ)) {
+	int specialcorridor;
+	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+
+	if(!IS_DOOR(levl[x][y].typ) && !specialcorridor) {
 	    /* might still be on edge of MAP, so don't overwrite */
 #ifndef WALLIFIED_MAZE
 	    levl[x][y].typ = CORR;
 #else
 	    levl[x][y].typ = ROOM;
 #endif
+	    levl[x][y].flags = 0;
+	}
+	if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
+
+	    levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
 	    levl[x][y].flags = 0;
 	}
 
@@ -1060,11 +1082,14 @@ int x,y;
 		if(!q) return;
 		dir = dirs[rn2(q)];
 		move(&x,&y,dir);
+		if (!specialcorridor) {
 #ifndef WALLIFIED_MAZE
 		levl[x][y].typ = CORR;
 #else
 		levl[x][y].typ = ROOM;
 #endif
+		}
+		else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
 		move(&x,&y,dir);
 		walkfrom(x,y);
 	}
@@ -1118,6 +1143,14 @@ mazexy(cc)	/* find random point in generated corridors,
 #endif
 			   ) return;
 		    }
+
+		for (x = 0; x < (x_maze_max>>1) - 1; x++)
+		    for (y = 0; y < (y_maze_max>>1) - 1; y++) {
+			cc->x = 3 + 2 * x;
+			cc->y = 3 + 2 * y;
+			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE)) return;
+		    }
+
 		panic("mazexy: can't find a place!");
 	}
 	return;

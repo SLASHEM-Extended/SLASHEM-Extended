@@ -3383,6 +3383,9 @@ dlb *fd;
     struct trap *badtrap;
     boolean has_bounds;
 
+    int specialcorridor;
+    if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+
     (void) memset((genericptr_t)&Map[0][0], 0, sizeof Map);
     load_common_data(fd, SP_LEV_MAZE);
 
@@ -3872,12 +3875,17 @@ dlb *fd;
 		default: panic("load_maze: bad MAZEWALK direction");
 	    }
 
-	    if(!IS_DOOR(levl[x][y].typ)) {
+	    if(!IS_DOOR(levl[x][y].typ) && !specialcorridor) {
 #ifndef WALLIFIED_MAZE
 		levl[x][y].typ = CORR;
 #else
 		levl[x][y].typ = ROOM;
 #endif
+		levl[x][y].flags = 0;
+	    }
+	    if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
+
+		levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
 		levl[x][y].flags = 0;
 	    }
 
@@ -3893,11 +3901,16 @@ dlb *fd;
 		    x--;
 
 		/* no need for IS_DOOR check; out of map bounds */
+
+		if (!specialcorridor) {
 #ifndef WALLIFIED_MAZE
 		levl[x][y].typ = CORR;
 #else
 		levl[x][y].typ = ROOM;
 #endif
+		}
+		else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+
 		levl[x][y].flags = 0;
 	    }
 
