@@ -2293,7 +2293,7 @@ nextclass:
 			    if (flags.sortpack && !classcount) {
 				any.a_void = 0;		/* zero */
 				add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
-				    let_to_name(*invlet, FALSE), MENU_UNSELECTED);
+				    let_to_name(*invlet, FALSE, FALSE), MENU_UNSELECTED);
 				classcount++;
 			    }
 			    any.a_char = ilet;
@@ -2446,7 +2446,7 @@ dounpaid()
 	    if (otmp->unpaid) {
 		if (!flags.sortpack || otmp->oclass == *invlet) {
 		    if (flags.sortpack && !classcount) {
-			putstr(win, 0, let_to_name(*invlet, TRUE));
+			putstr(win, 0, let_to_name(*invlet, TRUE, FALSE));
 			classcount++;
 		    }
 
@@ -2466,7 +2466,7 @@ dounpaid()
     if (count > num_so_far) {
 	/* something unpaid is contained */
 	if (flags.sortpack)
-	    putstr(win, 0, let_to_name(CONTAINED_SYM, TRUE));
+	    putstr(win, 0, let_to_name(CONTAINED_SYM, TRUE, FALSE));
 	/*
 	 * Search through the container objects in the inventory for
 	 * unpaid items.  The top level inventory items have already
@@ -3186,10 +3186,11 @@ static NEARDATA char *invbuf = (char *)0;
 static NEARDATA unsigned invbufsiz = 0;
 
 char *
-let_to_name(let,unpaid)
+let_to_name(let,unpaid,showsym)
 char let;
-boolean unpaid;
+boolean unpaid,showsym;
 {
+	static const char *ocsymformat = "%s('%c')";
 	const char *class_name;
 	const char *pos;
 	int oclass = (let >= 1 && let < MAXOCLASSES) ? let : 0;
@@ -3202,7 +3203,8 @@ boolean unpaid;
 	else
 	    class_name = names[0];
 
-	len = strlen(class_name) + (unpaid ? sizeof "unpaid_" : sizeof "");
+	len = strlen(class_name) + (unpaid ? sizeof "unpaid_" : sizeof "") +
+	    ((oclass && showsym) ? strlen(ocsymformat) : 0);
 	if (len > invbufsiz) {
 	    if (invbuf) free((genericptr_t)invbuf);
 	    invbufsiz = len + 10; /* add slop to reduce incremental realloc */
@@ -3212,6 +3214,9 @@ boolean unpaid;
 	    Strcat(strcpy(invbuf, "Unpaid "), class_name);
 	else
 	    Strcpy(invbuf, class_name);
+	if (oclass && showsym)
+	    Sprintf(eos(invbuf), ocsymformat,
+		    iflags.menu_tab_sep ? "\t" : "  ", def_oc_syms[let]);
 	return invbuf;
 }
 

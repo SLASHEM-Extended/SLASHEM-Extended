@@ -224,6 +224,7 @@ static struct Bool_Opt
 #else
 	{"showscore", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"showsym", &iflags.showsym, TRUE, SET_IN_GAME},
 /* WAC made the [ xx pts]  dmg display optional */
 #ifdef SHOW_DMG
 	{"showdmg", &flags.showdmg, TRUE, SET_IN_GAME},
