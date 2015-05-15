@@ -1351,6 +1351,7 @@ genericptr_t roomcnt;
 
 	/* Get rid of stone at x, y */
 	levl[x][y].typ = CORR;
+	unblock_point(x,y);
 	newsym(x,y);
 }
 
@@ -1376,6 +1377,7 @@ genericptr_t poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a wall at x, y */
 		levl[x][y].typ = STONE;
+		block_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -1401,6 +1403,7 @@ genericptr_t roomcnt;
 
 	/* Get rid of a lava pool at x, y */
 	levl[x][y].typ = ROOM;
+	unblock_point(x,y);
 	newsym(x,y);
 }
 
@@ -1424,6 +1427,7 @@ genericptr_t poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = TREE;
+		block_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -1495,8 +1499,9 @@ genericptr_t roomcnt;
 
 	(*(int *)roomcnt)++;
 
-	/* Get rid of a lava pool at x, y */
+	/* Get rid of a cloud at x, y */
 	levl[x][y].typ = ROOM;
+	unblock_point(x,y);
 	newsym(x,y);
 }
 
@@ -1520,6 +1525,7 @@ genericptr_t poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = CLOUD;
+		block_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -1543,8 +1549,9 @@ genericptr_t roomcnt;
 
 	(*(int *)roomcnt)++;
 
-	/* Get rid of a lava pool at x, y */
+	/* Get rid of bars at x, y */
 	levl[x][y].typ = ROOM;
+	unblock_point(x,y);
 	newsym(x,y);
 }
 
@@ -1568,6 +1575,7 @@ genericptr_t poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = IRONBARS;
+		block_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
