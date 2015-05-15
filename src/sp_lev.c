@@ -1208,7 +1208,7 @@ struct mkroom *broom;
 		    break;
 	} while (++trycnt <= 100);
 	if (trycnt > 100) {
-		impossible("create_door: Can't find a proper place!");
+		if (wizard) pline("create_door: Can't find a proper place!");
 		return;
 	}
 	i = add_door(x,y,broom);

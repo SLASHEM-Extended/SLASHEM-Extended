@@ -218,6 +218,29 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 	}
 
+	int wallifytypeB = STONE;
+	if (!rn2(iswarper ? 200 : 5000)) {
+
+		switch (rnd(7)) {
+
+			case 1:
+				wallifytypeB = TREE; break;
+			case 2:
+				wallifytypeB = MOAT; break;
+			case 3:
+				wallifytypeB = LAVAPOOL; break;
+			case 4:
+				wallifytypeB = IRONBARS; break;
+			case 5:
+				wallifytypeB = CORR; break;
+			case 6:
+				wallifytypeB = ICE; break;
+			case 7:
+				wallifytypeB = CLOUD; break;
+		}
+
+	}
+
 	croom->colouur = 0;
 	if (!special && rtype == OROOM) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
 	if (!special && rtype >= SHOPBASE) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
@@ -292,12 +315,12 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (!special) {
 	    for(x = lowx-1; x <= hix+1; x++)
 		for(y = lowy-1; y <= hiy+1; y += (hiy-lowy+2)) {
-		    levl[x][y].typ = HWALL;
+		    levl[x][y].typ = (wallifytypeB ? wallifytypeB : HWALL);
 		    levl[x][y].horizontal = 1;	/* For open/secret doors. */
 		}
 	    for(x = lowx-1; x <= hix+1; x += (hix-lowx+2))
 		for(y = lowy; y <= hiy; y++) {
-		    levl[x][y].typ = VWALL;
+		    levl[x][y].typ = (wallifytypeB ? wallifytypeB : VWALL);
 		    levl[x][y].horizontal = 0;	/* For open/secret doors. */
 		}
 	    for(x = lowx; x <= hix; x++) {
@@ -306,10 +329,10 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		    lev++->typ = ROOM;
 	    }
 	    if (is_room) {
-		levl[lowx-1][lowy-1].typ = TLCORNER;
-		levl[hix+1][lowy-1].typ = TRCORNER;
-		levl[lowx-1][hiy+1].typ = BLCORNER;
-		levl[hix+1][hiy+1].typ = BRCORNER;
+		levl[lowx-1][lowy-1].typ = (wallifytypeB ? wallifytypeB : TLCORNER);
+		levl[hix+1][lowy-1].typ = (wallifytypeB ? wallifytypeB : TRCORNER);
+		levl[lowx-1][hiy+1].typ = (wallifytypeB ? wallifytypeB : BLCORNER);
+		levl[hix+1][hiy+1].typ = (wallifytypeB ? wallifytypeB : BRCORNER);
 	    }
         if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ((rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
             int xcut = 0, ycut = 0;  
@@ -442,7 +465,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
             }  
           }  
 	    if (!is_room) {	/* a subroom */
-		wallification(lowx-1, lowy-1, hix+1, hiy+1, FALSE);
+		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2(iswarper ? 10 : 200) ? FALSE : TRUE);
 	    }
 	}
 }
