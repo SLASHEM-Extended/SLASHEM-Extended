@@ -997,7 +997,10 @@ int x,y;
 	int q, a, dir, pos;
 	int dirs[4];
 
-	int specialcorridor;
+	register int tryct = 0;
+	register struct obj *otmpX;
+
+	int specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
 
 	pos = 1;
@@ -1014,6 +1017,50 @@ int x,y;
 		    levl[x][y].typ = ROOM;
 #endif
 		    levl[x][y].flags = 0;
+
+			if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FOUNTAIN;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SINK;
+			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TOILET;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = GRAVE;
+	
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+	
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+				}
+			}
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TREE;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOAT;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = LAVAPOOL;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ICE;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CLOUD;
+
 		}
 		if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
 
@@ -1036,6 +1083,50 @@ int x,y;
 #else
 			levl[x][y].typ = ROOM;
 #endif
+
+			if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FOUNTAIN;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SINK;
+			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TOILET;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = GRAVE;
+	
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+	
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+				}
+			}
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TREE;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOAT;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = LAVAPOOL;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ICE;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CLOUD;
+
 			}
 			else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
 
@@ -1057,7 +1148,10 @@ int x,y;
 	register int q,a,dir;
 	int dirs[4];
 
-	int specialcorridor;
+	register int tryct = 0;
+	register struct obj *otmpX;
+
+	int specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
 
 	if(!IS_DOOR(levl[x][y].typ) && !specialcorridor) {
@@ -1068,6 +1162,49 @@ int x,y;
 	    levl[x][y].typ = ROOM;
 #endif
 	    levl[x][y].flags = 0;
+
+			if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FOUNTAIN;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SINK;
+			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TOILET;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = GRAVE;
+	
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+	
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+				}
+			}
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TREE;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOAT;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = LAVAPOOL;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ICE;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CLOUD;
 	}
 	if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
 
@@ -1088,6 +1225,49 @@ int x,y;
 #else
 		levl[x][y].typ = ROOM;
 #endif
+			if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FOUNTAIN;
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SINK;
+			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TOILET;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = GRAVE;
+	
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+	
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+				}
+			}
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TREE;
+			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOAT;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = LAVAPOOL;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ICE;
+			else if (!rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CLOUD;
+
 		}
 		else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
 		move(&x,&y,dir);
