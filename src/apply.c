@@ -1408,7 +1408,7 @@ dorub()
 	if (uwep->otyp == MAGIC_LAMP) {
 	    if (uwep->spe > 0 && !rn2(3)) {
 		check_unpaid_usage(uwep, TRUE);		/* unusual item use */
-		djinni_from_bottle(uwep);
+		djinni_from_bottle(uwep, rnd(4) );
 		makeknown(MAGIC_LAMP);
 		uwep->otyp = OIL_LAMP;
 		uwep->spe = 0; /* for safety */

@@ -1713,7 +1713,7 @@ E void FDECL(potionhit, (struct monst *,struct obj *,BOOLEAN_P));
 E void FDECL(potionbreathe, (struct obj *));
 E boolean FDECL(get_wet, (struct obj *, BOOLEAN_P));
 E int NDECL(dodip);
-E void FDECL(djinni_from_bottle, (struct obj *));
+E void FDECL(djinni_from_bottle, (struct obj *,int));
 /* KMH, balance patch -- new function */
 E int FDECL(upgrade_obj, (struct obj *));
 E struct monst *FDECL(split_mon, (struct monst *,struct monst *));

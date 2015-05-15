@@ -312,7 +312,7 @@ struct obj *obj;
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in potion.c */
 
 	    potion_descr = OBJ_DESCR(objects[obj->otyp]);
-	    if (potion_descr && !strcmp(potion_descr, "milky")) {
+	    if (potion_descr && (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "spiritual")) ) {
 	        if ( flags.ghost_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
 		    if (!enexto(&cc, mon->mx, mon->my, &mons[PM_GHOST])) return 0;
@@ -342,6 +342,90 @@ struct obj *obj;
 		mquaffmsg(mon, obj);
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_DJINNI], cc.x, cc.y, NO_MM_FLAGS);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!",
+							a_monnam(mtmp));
+		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
+		/* I suspect few players will be upset that monsters */
+		/* can't wish for wands of death here.... */
+		    if (rn2(2)) {
+			verbalize("You freed me!");
+			mtmp->mpeaceful = 1;
+			set_malign(mtmp);
+		    } else {
+			verbalize("It is about time.");
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    }
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "vapor") &&
+		    flags.dao_count < MAXMONNO &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_DAO])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(&mons[PM_DAO], cc.x, cc.y, NO_MM_FLAGS);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!",
+							a_monnam(mtmp));
+		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
+		/* I suspect few players will be upset that monsters */
+		/* can't wish for wands of death here.... */
+		    if (rn2(2)) {
+			verbalize("You freed me!");
+			mtmp->mpeaceful = 1;
+			set_malign(mtmp);
+		    } else {
+			verbalize("It is about time.");
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    }
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "fuming") &&
+		    flags.efreeti_count < MAXMONNO &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_EFREETI])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(&mons[PM_EFREETI], cc.x, cc.y, NO_MM_FLAGS);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!",
+							a_monnam(mtmp));
+		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
+		/* I suspect few players will be upset that monsters */
+		/* can't wish for wands of death here.... */
+		    if (rn2(2)) {
+			verbalize("You freed me!");
+			mtmp->mpeaceful = 1;
+			set_malign(mtmp);
+		    } else {
+			verbalize("It is about time.");
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    }
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "sizzling") &&
+		    flags.marid_count < MAXMONNO &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_MARID])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(&mons[PM_MARID], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
 		    if (vis) pline(empty);
 		} else {

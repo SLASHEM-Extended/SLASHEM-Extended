@@ -1279,7 +1279,7 @@ dodrink()
 
 	potion_descr = OBJ_DESCR(objects[otmp->otyp]);
 	if (potion_descr) {
-	    if (!strcmp(potion_descr, "milky") &&
+	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "spiritual")) &&
 		    flags.ghost_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
 		ghost_from_bottle();
@@ -1289,7 +1289,28 @@ dodrink()
 	    } else if (!strcmp(potion_descr, "smoky") &&
 		    (flags.djinni_count < MAXMONNO) &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
-		djinni_from_bottle(otmp);
+		djinni_from_bottle(otmp, 1);
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "vapor") &&
+		    (flags.dao_count < MAXMONNO) &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
+		djinni_from_bottle(otmp, 2);
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "fuming") &&
+		    (flags.efreeti_count < MAXMONNO) &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
+		djinni_from_bottle(otmp, 3);
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "sizzling") &&
+		    (flags.marid_count < MAXMONNO) &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
+		djinni_from_bottle(otmp, 4);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
@@ -4547,8 +4568,9 @@ dodip()
 
 
 void
-djinni_from_bottle(obj)
+djinni_from_bottle(obj, kind)
 register struct obj *obj;
+int kind;
 {
 	struct monst *mtmp;
 	int genie_type;        
@@ -4564,7 +4586,10 @@ register struct obj *obj;
 		case 3: genie_type = PM_DAO; break;
 	}
 #else
-	genie_type = PM_DJINNI;
+	if (kind == 1) genie_type = PM_DJINNI;
+	else if (kind == 2) genie_type = PM_DAO;
+	else if (kind == 3) genie_type = PM_EFREETI;
+	else genie_type = PM_MARID;
 #endif
 	if(!(mtmp = makemon(&mons[genie_type], u.ux, u.uy, NO_MM_FLAGS))){
 		pline("It turns out to be empty.");

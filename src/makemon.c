@@ -8274,6 +8274,12 @@ register int	mmflags;
 
 	} else if (mndx == PM_DJINNI) {
 		flags.djinni_count++;
+	} else if (mndx == PM_DAO) {
+		flags.dao_count++;
+	} else if (mndx == PM_EFREETI) {
+		flags.efreeti_count++;
+	} else if (mndx == PM_MARID) {
+		flags.marid_count++;
 	} else if (mndx == PM_GHOST) {
 		flags.ghost_count++;
 		if (!(mmflags & MM_NONAME))

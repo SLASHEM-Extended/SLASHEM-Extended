@@ -35999,12 +35999,12 @@ struct permonst _mons2[] = {
 	SIZ(1500, 400, 0, MS_DJINNI, MZ_HUMAN), MR_POISON|MR_STONE, 0,
 	M1_HUMANOID|M1_FLY|M1_POIS,
 	M2_NOPOLY|M2_STALK|M2_COLLECT, M3_INFRAVISIBLE, CLR_YELLOW),
-#if 0
 	/* KMH -- Redundant djinni types removed
 	 * These were causing problems with the djinni chances.  Since
 	 * they are basically different names for the same monster, why
 	 * should we keep them?
 	 */
+	/* Amy edit - for more random potion descriptions, of course! :P */
     MON("efreeti", S_DEMON, 
 	LVL(7, 12, 4, 30, 0), (G_NOGEN|G_NOCORPSE),
 	A(ATTK(AT_WEAP, AD_PHYS, 2, 8), NO_ATTK, NO_ATTK,
@@ -36027,7 +36027,6 @@ struct permonst _mons2[] = {
 	SIZ(1500, 400, 0, MS_DJINNI, MZ_HUMAN), MR_COLD|MR_POISON|MR_STONE, 0,
 	M1_HUMANOID|M1_FLY|M1_POIS,
 	M2_NOPOLY|M2_STALK|M2_COLLECT, 0, CLR_BRIGHT_BLUE),
-#endif
 
     MON("sandestin", S_DEMON,
 	LVL(13, 12, 4, 60, -5), (G_NOCORPSE|1),
