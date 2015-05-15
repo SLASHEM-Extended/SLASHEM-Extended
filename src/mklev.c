@@ -2208,11 +2208,63 @@ mineralize()
 	struct obj *otmp;
 	int goldprob, gemprob, objprob, x, y, cnt;
 
+	int otherwalltype = STONE;
+	boolean otherwallxtra = 0;
+	if (!rn2(iswarper ? 500 : 2500)) {
+
+		switch (rnd(7)) {
+
+			case 1:
+				otherwalltype = TREE; break;
+			case 2:
+				otherwalltype = MOAT; break;
+			case 3:
+				otherwalltype = LAVAPOOL; break;
+			case 4:
+				otherwalltype = IRONBARS; break;
+			case 5:
+				otherwalltype = CORR; break;
+			case 6:
+				otherwalltype = ICE; break;
+			case 7:
+				otherwalltype = CLOUD; break;
+		}
+
+		if (!rn2(50)) otherwallxtra = 1;
+
+	}
 
 	/* Place kelp, except on the plane of water */
 	if (In_endgame(&u.uz)) return;
 	for (x = 1; x < (COLNO); x++)
 	    for (y = 0; y < (ROWNO); y++) {
+
+		if ((levl[x][y].typ == STONE) && otherwalltype) {
+
+			if (otherwallxtra) {
+				switch (rnd(7)) {
+
+					case 1:
+						otherwalltype = TREE; break;
+					case 2:
+						otherwalltype = MOAT; break;
+					case 3:
+						otherwalltype = LAVAPOOL; break;
+					case 4:
+						otherwalltype = IRONBARS; break;
+					case 5:
+						otherwalltype = CORR; break;
+					case 6:
+						otherwalltype = ICE; break;
+					case 7:
+						otherwalltype = CLOUD; break;
+				}
+			}
+
+			levl[x][y].typ = otherwalltype;
+
+		}
+
 		if ((levl[x][y].typ == POOL && !rn2(10)) ||
 			(levl[x][y].typ == MOAT && !rn2(30)))
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
