@@ -4594,6 +4594,8 @@ struct obj *obj;
 				pline("A potion of mana that will also increase your maximum amount of mana. If the amount of mana restored exceeds the maximum, your maximum mana will go up even more."); break;
 			case POT_GAIN_HEALTH:
 				pline("This potion can be used for healing, but its main use is increasing your maximum health when quaffed."); break;
+			case POT_BANISHING_FEAR:
+				pline("A potion that will cure fear when quaffed."); break;
 			case POT_ICE:
 				pline("You will freeze solid if you quaff this potion, which is usually a bad thing. Better use it as a missile to slow down enemies."); break;
 			case POT_FEAR:
@@ -4978,6 +4980,23 @@ struct obj *obj;
 				pline("This spell will aggravate monsters if you cast it."); break;
 			case SPE_REMOVE_BLESSING:
 				pline("A spell that turns all blessed items in your main inventory into uncursed ones."); break;
+
+			case SPE_DISINTEGRATION:
+				pline("This very powerful spell will fire invisible disintegration beams that can be used to instakill monsters."); break;
+			case SPE_PETRIFY:
+				pline("Cast this spell at monsters to turn them to stone."); break;
+			case SPE_PARALYSIS:
+				pline("You can shoot paralysis beams by casting this spell."); break;
+			case SPE_LEVELPORT:
+				pline("If you cast this spell, you will teleport to a random dungeon level in your current branch unless there's something that prevents you from levelporting."); break;
+			case SPE_BANISHING_FEAR:
+				pline("A spell that cures the 'fear' status conditions. At higher spell levels it allows you to resist fear for a period of time."); break;
+			case SPE_CURE_FREEZE:
+				pline("Got hit by the 'freeze' status effect? Cast this spell and it will go away!"); break;
+			case SPE_CURE_BURN:
+				pline("This spell will cure you of burns."); break;
+			case SPE_CURE_NUMBNESS:
+				pline("A spell that can be cast to cure numbness."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

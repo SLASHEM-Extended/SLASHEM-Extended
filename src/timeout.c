@@ -415,6 +415,10 @@ nh_timeout()
 			if (!Fire_resistance)
 				You("feel a little warmer.");
 			break;
+		case FEAR_RES:
+			if (!Fear_resistance)
+				You("feel less resistant to fear.");
+			break;
 		case COLD_RES:
 			if (!Cold_resistance)
 				You("feel a little cooler.");

@@ -257,7 +257,17 @@ struct obj *otmp;
 		mtmp->mstrategy &= ~STRAT_WAITFORU;
 
 		break;
+	case SPE_PARALYSIS:
+		if (canseemon(mtmp) ) {
+			pline("%s is frozen by the beam.", Monnam(mtmp) );
+		}
+		mtmp->mcanmove = 0;
+		mtmp->mfrozen = rnz(7 + skilldmg);
+		mtmp->mstrategy &= ~STRAT_WAITFORU;
+
+		break;
 	case WAN_DISINTEGRATION:
+	case SPE_DISINTEGRATION:
 		{
 
 			struct obj *otmpS;
@@ -320,6 +330,7 @@ struct obj *otmp;
 		}
 		break;
 	case WAN_STONING:
+	case SPE_PETRIFY:
 		if (!munstone(mtmp, FALSE))
 		    minstapetrify(mtmp, FALSE);
 
@@ -2098,6 +2109,9 @@ struct obj *obj, *otmp;
 	case WAN_STONING:
 	case WAN_PARALYSIS:
 	case WAN_DISINTEGRATION:
+	case SPE_PETRIFY:
+	case SPE_PARALYSIS:
+	case SPE_DISINTEGRATION:
 	case WAN_FIREBALL:
 		res = 0;
 		break;
@@ -3072,7 +3086,18 @@ boolean ordinary;
 			} else You("stiffen momentarily.");
 
 		    break;
+		case SPE_PARALYSIS:
+			makeknown(obj->otyp);
+			if (!Free_action) {
+			    pline("You are frozen in place!");
+			    nomul(-rnz(20), "frozen by their own spell");
+			    nomovemsg = You_can_move_again;
+			    exercise(A_DEX, FALSE);
+			} else You("stiffen momentarily.");
+
+		    break;
 		case WAN_DISINTEGRATION:
+		case SPE_DISINTEGRATION:
 
 			if (Disint_resistance && rn2(100)) {
 			    You("are not disintegrated.");
@@ -3106,6 +3131,7 @@ boolean ordinary;
 
 		    break;
 		case WAN_STONING:
+		case SPE_PETRIFY:
 
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
@@ -3480,6 +3506,9 @@ struct obj *obj;	/* wand or spell */
 		case WAN_STONING:
 		case WAN_PARALYSIS:
 		case WAN_DISINTEGRATION:
+		case SPE_PETRIFY:
+		case SPE_PARALYSIS:
+		case SPE_DISINTEGRATION:
 		    (void) bhitm(u.usteed, obj);
 		    steedhit = TRUE;
 		    break;

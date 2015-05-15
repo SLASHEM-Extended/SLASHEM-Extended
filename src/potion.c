@@ -2085,6 +2085,20 @@ peffects(otmp)
 			exercise(A_WIS, TRUE);
 		}
 		break;
+	case POT_BANISHING_FEAR:
+	case SPE_BANISHING_FEAR:
+		{
+			if(otmp->cursed) {
+				make_feared(HFeared + rnd(100 + (monster_difficulty() * 5) ),TRUE);
+			} else {
+				if (HFeared) make_feared(0L, TRUE);
+				if (otmp->blessed) {
+					incr_itimeout(&HFear_resistance, rnd(250) );
+					if (Fear_resistance) pline("You feel more resistant to fear!");
+				}
+			}
+		}
+		break;
 	case POT_OIL:				/* P. Winner */
 		{
 			boolean good_for_you = FALSE;

@@ -1050,6 +1050,9 @@ boolean atme;
 	case SPE_DRAIN_LIFE:
 	case SPE_STONE_TO_FLESH:
 	case SPE_FINGER:
+	case SPE_DISINTEGRATION:
+	case SPE_PETRIFY:
+	case SPE_PARALYSIS:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;
 			else if (!getdir((char *)0)) {
@@ -1113,6 +1116,7 @@ boolean atme;
 	case SPE_DETECT_MONSTERS:
 	case SPE_LEVITATION:
 	case SPE_RESTORE_ABILITY:
+	case SPE_BANISHING_FEAR:
 #if 0
 		/* high skill yields effect equivalent to blessed potion */
 		if (role_skill >= P_SKILLED) pseudo->blessed = 1;
@@ -1207,6 +1211,20 @@ boolean atme;
 		break;
 	case SPE_CURE_STUN:
 		make_stunned(0L,TRUE);
+		break;
+	case SPE_CURE_BURN:
+		make_burned(0L,TRUE);
+		break;
+	case SPE_CURE_FREEZE:
+		make_frozen(0L,TRUE);
+		break;
+	case SPE_CURE_NUMBNESS:
+		make_numbed(0L,TRUE);
+		break;
+	case SPE_LEVELPORT:
+	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+		else pline("Hmm... that level teleport spell didn't do anything.");
+
 		break;
 	case SPE_STUN_SELF:
 		if(!Stunned)
