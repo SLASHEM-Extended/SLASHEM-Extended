@@ -764,28 +764,28 @@ boolean vault;
 
 	/* Allow rooms to be closer together. For warper race characters this will be the case even more often. --Amy */
 
-	if (!((moves + u.eeveelution) % (iswarper ? 7 : 19) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 13 : 91) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 19 : 464) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 29 : 2209) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
@@ -863,28 +863,28 @@ boolean canbeshaped;
 	boolean	vault = FALSE;
 	int	xlim = XLIM, ylim = YLIM;
 
-	if (!((moves + u.eeveelution) % (iswarper ? 7 : 19) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 7 : 19) )) {
 
 		xlim = xlim - 1;
 		ylim = ylim - 1;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 13 : 91) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 13 : 91) )) {
 
 		xlim = xlim - 2;
 		ylim = ylim - 2;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 19 : 464) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 19 : 464) )) {
 
 		xlim = xlim - 5;
 		ylim = ylim - 5;
 
 	}
 
-	if (!((moves + u.eeveelution) % (iswarper ? 29 : 2209) )) {
+	if (!((moves + u.monstertimefinish) % (iswarper ? 29 : 2209) )) {
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
