@@ -1791,6 +1791,7 @@ long timeout;
 #endif
 #endif
 	    case RED_LIGHTSABER:
+	    case LASER_SWATTER:
 	        /* Callback is checked every 5 turns - 
 	        	lightsaber automatically deactivates if not wielded */
 	        if ((obj->cursed && !rn2(50)) ||
@@ -1942,6 +1943,7 @@ begin_burn(obj, already_lit)
 	    	if (obj->altmode && obj->age > 1) 
 		    obj->age--; /* Double power usage */
 	    case RED_LIGHTSABER:
+	    case LASER_SWATTER:
 #ifdef D_SABER
 	    case BLUE_LIGHTSABER:
 #if 0

@@ -3849,6 +3849,7 @@ doapply()
 #endif
 #endif
 	case RED_LIGHTSABER:
+	case LASER_SWATTER:
 	case RED_DOUBLE_LIGHTSABER:
 		if (!(uswapwep == obj && u.twoweap))
 		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;

@@ -4394,6 +4394,8 @@ struct obj *obj;
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case RED_DOUBLE_LIGHTSABER: 
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving."); break;
+			case LASER_SWATTER: 
+				pline("A laser-based fly swatter that uses the paddle skill. If you turn it on, it will do great damage to small monsters."); break;
 			case EXPENSIVE_CAMERA: 
 				pline("A tool that can be used to photograph monsters."); break;
 			case MIRROR: 

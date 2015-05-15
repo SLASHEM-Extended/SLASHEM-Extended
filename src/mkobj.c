@@ -634,6 +634,7 @@ boolean artif;
 #endif
 #endif
 		case RED_LIGHTSABER:
+		case LASER_SWATTER:
 			otmp->lamplit = 0;
 			otmp->age = (long) rn1(500,1000);
 			if (ishaxor) otmp->age *= 2;

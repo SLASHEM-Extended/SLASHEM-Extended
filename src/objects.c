@@ -1073,7 +1073,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  50, 0,100, COPPER, CLR_YELLOW),
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 270,  0,  10, METAL, HI_METAL),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 260,  0,  10, METAL, HI_METAL),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 125,  0,  10, METAL, HI_METAL),
 /* "If tin whistles are made out of tin, what do they make foghorns out of?" */
 TOOL("wooden flute", "flute",   0, 0, 0, 0,  10,  0,  50, WOOD, HI_WOOD),
@@ -1148,6 +1148,10 @@ WEPTOOL("red lightsaber",  "lightsaber",
 	0, 0, 1, 0,  5, 24, 500, 9,  11, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
 WEPTOOL("red double lightsaber",  "double lightsaber",
 	0, 0, 1, 1,  5, 24,1000, 15, 20, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
+
+WEPTOOL("laser swatter",  (char *)0,
+	0, 0, 1, 0,  10, 24, 500, 40,  10, 5, WHACK, P_PADDLE, PLATINUM, CLR_BRIGHT_MAGENTA),
+
 # ifdef D_SABER
 #if 0 // just an idea...
 WEPTOOL("yellow lightsaber",  "lightsaber",

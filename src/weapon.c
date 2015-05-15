@@ -187,9 +187,12 @@ struct monst *mon;
 		tmp += 5;
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		tmp += 12;
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		tmp += 15;
 
 	if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
 	if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 50;
+	if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 75;
 
 	/* blunt weapons versus undead (Diablo 2) */
 	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
@@ -473,9 +476,12 @@ struct monst *mon;
 		bonus += rnd(5);
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
+	    if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += 15;
 
 	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
 	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
+	    if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(75);
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
@@ -737,9 +743,12 @@ struct monst *mon;
 		bonus += rnd(5);
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
+	    if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(15);
 
 	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
 	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
+	    if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(75);
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
@@ -1020,6 +1029,7 @@ static const NEARDATA short hwep[] = {
 	  TSURUGI, STYGIAN_PIKE, RUNESWORD, MALLET, HEAVY_HAMMER, 
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, TORPEDO,
 	  DWARVISH_MATTOCK, BENT_SABLE, 
+	  LASER_SWATTER,
 #ifdef LIGHTSABERS
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
 #ifdef D_SABER
@@ -2395,6 +2405,7 @@ struct obj *weapon;
 			case P_SKILLED: bonus +=2; break;
 			case P_BASIC: bonus += 1; break;
 			case P_UNSKILLED: break;
+			case P_ISRESTRICTED: break;
 			default: impossible("unknown lightsaber skill for a jedi"); break;
 		}
 	}

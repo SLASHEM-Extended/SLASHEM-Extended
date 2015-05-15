@@ -941,6 +941,7 @@ int curse_bless;
 #endif
 	    case RED_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
+	    case LASER_SWATTER:
 		if (is_cursed) {
 		    if (obj->lamplit) {
 			end_burn(obj, TRUE);
