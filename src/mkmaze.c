@@ -599,7 +599,7 @@ boolean lava,rndom;
 	else*/ if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = rnd(20);
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(20) : rnd(7));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
@@ -691,7 +691,7 @@ boolean lava,rndom;
 	if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = rnd(12);
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(12) : rnd(7));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
