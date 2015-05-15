@@ -359,15 +359,15 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		levl[hix+1][hiy+1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : BRCORNER);
 	    }
         if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ((rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
-            int xcut = 0, ycut = 0;  
-            boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE;  
-            switch (rnd(7)) {  
+            int xcmax = 0, ycmax = 0, xcut = 0, ycut = 0;  
+            boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE, docenter = FALSE;  
+            switch (rnd(9)) {  
             case 1:  
             case 2:  
             case 3:  
                 /* L-shaped */  
-                xcut = 1 + rnd(((hix - lowx) / 2) );  
-                ycut = 1 + rnd(((hiy - lowy) / 2) );  
+                xcmax = (hix - lowx) * 2 / 3;
+                ycmax = (hiy - lowy) * 2 / 3;
                 switch(rn2(4)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -386,8 +386,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
             case 4:  
             case 5:  
                 /* T-shaped */  
-                xcut = 1 + rnd(((hix - lowx) / 3));  
-                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                xcmax = (hix - lowx) * 2 / 5;
+                ycmax = (hiy - lowy) * 2 / 5;
                 switch(rn2(4)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -405,8 +405,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                 break;  
             case 6:  
                 /* S/Z shaped ("Tetris Piece") */  
-                xcut = 1 + rnd(((hix - lowx) / 3));  
-                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                xcmax = (hix - lowx) * 2 / 3;
+                ycmax = (hiy - lowy) * 2 / 3;
                 switch(rn2(2)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -418,19 +418,46 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                 break;  
             case 7:  
                 /* Plus Shaped */  
-                xcut = 1 + rnd(((hix - lowx) / 3));  
-                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                xcmax = (hix - lowx) * 2 / 5;
+                ycmax = (hiy - lowy) * 2 / 5;
                 dotr = TRUE;  
                 dotl = TRUE;  
                 dobr = TRUE;  
                 dobl = TRUE;  
                 break;  
-                /* TODO: O shaped (pillar in middle) */  
+            case 8:  
+                /* square-O shaped (pillar cut out of middle) */  
+                xcmax = (hix - lowx) / 2;  
+                ycmax = (hiy - lowy) / 2;  
+                docenter = TRUE;  
+                break;  
+            case 9:  
+                /* X-shaped */  
+                xcmax = (hix - lowx) / 3;  
+                ycmax = (hiy - lowy) / 3;  
+                dotr = TRUE;  
+                dotl = TRUE;  
+                dobr = TRUE;  
+                dobl = TRUE;  
+                docenter = TRUE;  
+                break;  
                 /* TODO: oval */  
             default:  
                 /* Rectangular -- nothing to do */  
                 break;  
             }  
+            if (dotr || dotl || dobr || dobl || docenter) {  
+                xcut = 1 + rn2(xcmax);  
+                ycut = 1 + rn2(ycmax);  
+                /* Sometimes, instead of a small cut, do a max cut.  
+                   This improves the probability of a larger cut,  
+                   without removing the possibility for small ones. */  
+                if ((xcut < (xcmax / 2)) && !rn2(3))  
+                    xcut = xcmax;  
+                if ((ycut < (ycmax / 2)) && !rn2(3))  
+                    ycut = ycmax;  
+            }  
+            /* Now do the actual cuts. */  
             if (dotr) {  
                 /* top-right cutout */  
                 for (y = 0; y < ycut; y++) {  
@@ -487,6 +514,34 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                 levl[lowx - 1][hiy + 1 - ycut].typ = (wallifytype ? (wallifyxtra ? randomwalltype() : wallifytype) : BLCORNER);
                 levl[lowx + xcut - 1][hiy + 1].typ = (wallifytype ? (wallifyxtra ? randomwalltype() : wallifytype) : BLCORNER);
             }  
+            if (docenter) {  
+                /* pillar in the middle */  
+                int xcenter = lowx + ((hix - lowx) / 2);  
+                int ycenter = lowy + ((hiy - lowy) / 2);  
+                int xparity = ((hix - lowx) % 2) ? 1 : 0;  
+                int yparity = ((hiy - lowy) % 2) ? 1 : 0;  
+                int xradius = (xcut + 1) / 2;  
+                int yradius = (ycut + 1) / 2;  
+                for (x = xcenter - xradius; x <= xcenter + xradius + xparity; x++) {  
+                    for (y = ycenter - yradius; y <= ycenter + yradius + yparity; y++) {  
+
+				if (wallifytype) levl[x][y].typ = wallifyxtra ? randomwalltype() : wallifytype;
+				else levl[x][y].typ =  
+                            ((x == xcenter - xradius) &&  
+                             (y == ycenter - yradius)) ? TLCORNER :  
+                            ((x == xcenter - xradius) &&  
+                             (y == ycenter + yradius + yparity)) ? BLCORNER :  
+                            ((x == xcenter + xradius + xparity) &&  
+                             (y == ycenter - yradius)) ? TRCORNER :  
+                            ((x == xcenter + xradius + xparity) &&  
+                             (y == ycenter + yradius + yparity)) ? BRCORNER :  
+                            ((x == xcenter - xradius) ||  
+                             (x == xcenter + xradius + xparity)) ? VWALL :  
+                            ((y == ycenter - yradius) ||  
+                             (y == ycenter + yradius + yparity)) ? HWALL : STONE;  
+                    }  
+                }  
+		}
           }  
 	    if (!is_room) {	/* a subroom */
 		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2(iswarper ? 10 : 200) ? FALSE : TRUE);
