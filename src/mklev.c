@@ -195,6 +195,29 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	register int x, y;
 	struct rm *lev;
 
+	int wallifytype = STONE;
+	if (!rn2(iswarper ? 100 : 5000)) {
+
+		switch (rnd(7)) {
+
+			case 1:
+				wallifytype = TREE; break;
+			case 2:
+				wallifytype = MOAT; break;
+			case 3:
+				wallifytype = LAVAPOOL; break;
+			case 4:
+				wallifytype = IRONBARS; break;
+			case 5:
+				wallifytype = CORR; break;
+			case 6:
+				wallifytype = ICE; break;
+			case 7:
+				wallifytype = CLOUD; break;
+		}
+
+	}
+
 	croom->colouur = 0;
 	if (!special && rtype == OROOM) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
 	if (!special && rtype >= SHOPBASE) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
@@ -365,57 +388,57 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                 /* top-right cutout */  
                 for (y = 0; y < ycut; y++) {  
                     for (x = 0; x < xcut; x++) {  
-				levl[hix + 1 - x][lowy + y - 1].typ = STONE;
+				levl[hix + 1 - x][lowy + y - 1].typ = wallifytype;
                     }  
-                    levl[hix + 1 - xcut][lowy + y - 1].typ = VWALL;  
+                    levl[hix + 1 - xcut][lowy + y - 1].typ = (wallifytype ? wallifytype : VWALL);
                 }  
                 for (x = 0; x < xcut; x++)  
-                    levl[hix + 1 - x][lowy + ycut - 1].typ = HWALL;  
-                levl[hix + 1 - xcut][lowy + ycut - 1].typ = BLCORNER;  
-                levl[hix + 1][lowy + ycut - 1].typ = TRCORNER;  
-                levl[hix + 1 - xcut][lowy - 1].typ = TRCORNER;  
+                    levl[hix + 1 - x][lowy + ycut - 1].typ = (wallifytype ? wallifytype : HWALL);
+                levl[hix + 1 - xcut][lowy + ycut - 1].typ = (wallifytype ? wallifytype : BLCORNER);
+                levl[hix + 1][lowy + ycut - 1].typ = (wallifytype ? wallifytype : TRCORNER);
+                levl[hix + 1 - xcut][lowy - 1].typ = (wallifytype ? wallifytype : TRCORNER);
             }  
             if (dobr) {  
                 /* bottom-right cutout */  
                 for (y = 0; y < ycut; y++) {  
                     for (x = 0; x < xcut; x++) {  
-                        levl[hix + 1 - x][hiy + 1 - y].typ = STONE;  
+                        levl[hix + 1 - x][hiy + 1 - y].typ = wallifytype;
                     }  
-                    levl[hix + 1 - xcut][hiy + 1 - y].typ = VWALL;  
+                    levl[hix + 1 - xcut][hiy + 1 - y].typ = (wallifytype ? wallifytype : VWALL);
                 }  
                 for (x = 0; x < xcut; x++)  
-                    levl[hix + 1 - x][hiy + 1 - ycut].typ = HWALL;  
-                levl[hix + 1 - xcut][hiy + 1 - ycut].typ = TLCORNER;  
-                levl[hix + 1][hiy + 1 - ycut].typ = BRCORNER;  
-                levl[hix + 1 - xcut][hiy + 1].typ = BRCORNER;  
+                    levl[hix + 1 - x][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : HWALL);
+                levl[hix + 1 - xcut][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : TLCORNER);
+                levl[hix + 1][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : BRCORNER);
+                levl[hix + 1 - xcut][hiy + 1].typ = (wallifytype ? wallifytype : BRCORNER);
             }  
             if (dotl) {  
                 /* top-left cutout */  
                 for (y = 0; y < ycut; y++) {  
                     for (x = 0; x < xcut; x++) {  
-                        levl[lowx + x - 1][lowy + y - 1].typ = STONE;  
+                        levl[lowx + x - 1][lowy + y - 1].typ = wallifytype;
                     }  
-                    levl[lowx + xcut - 1][lowy + y - 1].typ = VWALL;  
+                    levl[lowx + xcut - 1][lowy + y - 1].typ = (wallifytype ? wallifytype : VWALL);
                 }  
                 for (x = 0; x < xcut; x++)  
-                    levl[lowx + x - 1][lowy + ycut - 1].typ = HWALL;  
-                levl[lowx + xcut - 1][lowy + ycut - 1].typ = BRCORNER;  
-                levl[lowx - 1][lowy + ycut - 1].typ = TLCORNER;  
-                levl[lowx + xcut - 1][lowy - 1].typ = TLCORNER;  
+                    levl[lowx + x - 1][lowy + ycut - 1].typ = (wallifytype ? wallifytype : HWALL);
+                levl[lowx + xcut - 1][lowy + ycut - 1].typ = (wallifytype ? wallifytype : BRCORNER);
+                levl[lowx - 1][lowy + ycut - 1].typ = (wallifytype ? wallifytype : TLCORNER);
+                levl[lowx + xcut - 1][lowy - 1].typ = (wallifytype ? wallifytype : TLCORNER);
             }  
             if (dobl) {  
                 /* bottom-left cutout */  
                 for (y = 0; y < ycut; y++) {  
                     for (x = 0; x < xcut; x++) {  
-                        levl[lowx + x - 1][hiy + 1 - y].typ = STONE;  
+                        levl[lowx + x - 1][hiy + 1 - y].typ = wallifytype;
                     }  
-                    levl[lowx + xcut - 1][hiy + 1 - y].typ = VWALL;  
+                    levl[lowx + xcut - 1][hiy + 1 - y].typ = (wallifytype ? wallifytype : VWALL);
                 }  
                 for (x = 0; x < xcut; x++)  
-                    levl[lowx + x - 1][hiy + 1 - ycut].typ = HWALL;  
-                levl[lowx + xcut - 1][hiy + 1 - ycut].typ = TRCORNER;  
-                levl[lowx - 1][hiy + 1 - ycut].typ = BLCORNER;  
-                levl[lowx + xcut - 1][hiy + 1].typ = BLCORNER;  
+                    levl[lowx + x - 1][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : HWALL);
+                levl[lowx + xcut - 1][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : TRCORNER);
+                levl[lowx - 1][hiy + 1 - ycut].typ = (wallifytype ? wallifytype : BLCORNER);
+                levl[lowx + xcut - 1][hiy + 1].typ = (wallifytype ? wallifytype : BLCORNER);
             }  
           }  
 	    if (!is_room) {	/* a subroom */
