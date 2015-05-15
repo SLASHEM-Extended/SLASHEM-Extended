@@ -1014,7 +1014,9 @@ newdogpos:
 		/* insert a worm_move() if worms ever begin to eat things */
 		remove_monster(omx, omy);
 		place_monster(mtmp, nix, niy);
-		if (has_edog && !is_spell && cursemsg[chi] && (cansee(omx,omy) || cansee(nix,niy)))
+
+		/* evil patch idea by jonadab: 1% chance for pets to step on cursed items anyway */
+		if (has_edog && rn2(100) && !is_spell && cursemsg[chi] && (cansee(omx,omy) || cansee(nix,niy)))
 			pline("%s moves only reluctantly.", Monnam(mtmp));
 		for (j=MTSZ-1; j>0; j--) mtmp->mtrack[j] = mtmp->mtrack[j-1];
 		mtmp->mtrack[0].x = omx;
