@@ -288,10 +288,10 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		levl[lowx-1][hiy+1].typ = BLCORNER;
 		levl[hix+1][hiy+1].typ = BRCORNER;
 	    }
-        if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3)) {  
+        if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ((rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
             int xcut = 0, ycut = 0;  
             boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE;  
-            switch (rn2(10)) {  
+            switch (rnd(7)) {  
             case 1:  
             case 2:  
             case 3:  

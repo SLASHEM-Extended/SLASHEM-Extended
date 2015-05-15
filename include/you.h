@@ -398,6 +398,8 @@ struct you {
 	int frequentmonster;	/* evil patch idea by Amy - monster class that is generated more often */
 	int freqmonsterbonus;	/* amount that is added to said monster class's frequency */
 
+	int shaperoomchance;	/* to control the chance of irregular rooms */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

@@ -4062,6 +4062,8 @@ u_init()
 
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
+	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
+
 	u.ungenocidable = rnd(S_WORM_TAIL);
 
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
