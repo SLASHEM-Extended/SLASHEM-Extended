@@ -56,7 +56,7 @@ STATIC_DCL void FDECL(mkiceX,(int,struct mkroom *));
 STATIC_DCL void FDECL(mkcloudX,(int,struct mkroom *));
 
 STATIC_DCL int NDECL(findrandtype);
-STATIC_DCL int NDECL(randomwalltype);
+/*STATIC_DCL int NDECL(randomwalltype);*/
 
 STATIC_PTR int FDECL( CFDECLSPEC do_comp,(const genericptr,const genericptr));
 
@@ -144,7 +144,7 @@ findrandtype()
 
 }
 
-STATIC_OVL int
+int
 randomwalltype()
 {
 	switch (rnd(8)) {
@@ -567,6 +567,9 @@ boolean nxcor;
 	croom = &rooms[a];
 	troom = &rooms[b];
 
+	boolean specialcorridor = 0;
+	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+
 	/* find positions cc and tt for doors in croom and troom
 	   and direction for a corridor between them */
 
@@ -613,9 +616,15 @@ boolean nxcor;
 	dest.x = tx; dest.y = ty;
 
 	/* KMH -- Support for arboreal levels */
-	if (!dig_corridor(&org, &dest, nxcor,
-			level.flags.arboreal ? ROOM : CORR, STONE))
-	    return;
+
+	if (!specialcorridor) {
+		if (!dig_corridor(&org, &dest, nxcor,
+				level.flags.arboreal ? ROOM : CORR, STONE))
+		    return;
+	} else {
+		if (!dig_corridor(&org, &dest, nxcor, rn2(2) ? ICE : CLOUD, STONE))
+		    return;
+	}
 
 	/* we succeeded in digging the corridor */
 	if (okdoor(tt.x, tt.y) || !nxcor)

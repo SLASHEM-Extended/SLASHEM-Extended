@@ -1118,6 +1118,7 @@ E void FDECL(add_room, (int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(add_subroom, (struct mkroom *,int,int,int,int,
 			   BOOLEAN_P,SCHAR_P,BOOLEAN_P));
 E void NDECL(makecorridors);
+E int NDECL(randomwalltype);
 E int FDECL(add_door, (int,int,struct mkroom *));
 E void NDECL(mklev);
 #ifdef SPECIALIZATION

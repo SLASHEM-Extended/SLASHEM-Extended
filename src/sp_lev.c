@@ -2076,6 +2076,9 @@ corridor	*c;
 {
 	coord org, dest;
 
+	boolean specialcorridor = 0;
+	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+
 	if (c->src.room == -1) {
 		sort_rooms();
 		fix_stair_rooms();
@@ -2103,7 +2106,11 @@ corridor	*c;
 		      case W_WEST:  dest.x--; break;
 		      case W_EAST:  dest.x++; break;
 		}
-		(void) dig_corridor(&org, &dest, FALSE, CORR, STONE);
+		if (!specialcorridor) {
+			(void) dig_corridor(&org, &dest, FALSE, CORR, STONE);
+		} else {
+			(void) dig_corridor(&org, &dest, FALSE, rn2(2) ? ICE : CLOUD, STONE);
+		}
 	}
 }
 
