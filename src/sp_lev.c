@@ -838,12 +838,24 @@ chk:
  */
 
 boolean
-create_room(x,y,w,h,xal,yal,rtype,rlit)
+create_room(x,y,w,h,xal,yal,rtype,rlit, canbeshaped)
 xchar	x,y;
 xchar	w,h;
 xchar	xal,yal;
 xchar	rtype, rlit;
+boolean canbeshaped;
 {
+    /*  
+     * numeric args that are -1 mean random  
+     * x and y are position within the rectangle grid for the level  
+     *        I *think* these values range from 1 to 5.  
+     * w and h are size (width and height)  
+     * xal and yal are alignment (LEFT/TOP, CENTER, RIGHT/BOTTOM).  
+     * footmp is the current working value of foo; this is typically  
+     *        equal to foo, unless foo is -1 (random).  
+     * xabs and yabs are the actual x and y coordinates where the  
+     *        room will be placed on the level map.  
+     * */  
 	xchar	xabs, yabs;
 	int	wtmp, htmp, xaltmp, yaltmp, xtmp, ytmp;
 	NhRect	*r1 = 0, r2;
@@ -884,6 +896,7 @@ xchar	rtype, rlit;
 
 	if (rtype == VAULT) {
 		vault = TRUE;
+		canbeshaped = FALSE;
 		xlim++;
 		ylim++;
 	}
@@ -1056,7 +1069,7 @@ xchar	rtype, rlit;
 	if (!vault) {
 		smeq[nroom] = nroom;
 		add_room(xabs, yabs, xabs+wtmp-1, yabs+htmp-1,
-			 rlit, rtype, FALSE);
+			 rlit, rtype, FALSE, TRUE);
 	} else {
 		rooms[nroom].lx = xabs;
 		rooms[nroom].ly = yabs;
@@ -2676,7 +2689,7 @@ room *r, *pr;
 	} else {
 		aroom = &rooms[nroom];
 		okroom = create_room(r->x, r->y, r->w, r->h, r->xalign,
-				     r->yalign, rtype, r->rlit);
+				     r->yalign, rtype, r->rlit, FALSE);
 		r->mkr = aroom;
 	}
 
@@ -3615,13 +3628,13 @@ dlb *fd;
 		    flood_fill_rm(tmpregion.x1, tmpregion.y1,
 				  nroom+ROOMOFFSET, tmpregion.rlit, TRUE);
 		    add_room(min_rx, min_ry, max_rx, max_ry,
-			     FALSE, tmpregion.rtype, TRUE);
+			     FALSE, tmpregion.rtype, TRUE, FALSE);
 		    troom->rlit = tmpregion.rlit;
 		    troom->irregular = TRUE;
 		} else {
 		    add_room(tmpregion.x1, tmpregion.y1,
 			     tmpregion.x2, tmpregion.y2,
-			     tmpregion.rlit, tmpregion.rtype, TRUE);
+			     tmpregion.rlit, tmpregion.rtype, TRUE, FALSE);
 #ifdef SPECIALIZATION
 		    topologize(troom,FALSE);		/* set roomno */
 #else

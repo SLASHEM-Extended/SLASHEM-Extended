@@ -62,13 +62,13 @@ STATIC_PTR int FDECL( CFDECLSPEC do_comp,(const genericptr,const genericptr));
 STATIC_DCL void FDECL(dosdoor,(XCHAR_P,XCHAR_P,struct mkroom *,int));
 STATIC_DCL void FDECL(join,(int,int,BOOLEAN_P));
 STATIC_DCL void FDECL(do_room_or_subroom, (struct mkroom *,int,int,int,int,
-				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P));
+				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
 STATIC_DCL void NDECL(makerooms);
 STATIC_DCL void FDECL(finddpos,(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
 STATIC_DCL void FDECL(mkinvpos, (XCHAR_P,XCHAR_P,int));
 STATIC_DCL void FDECL(mk_knox_portal, (XCHAR_P,XCHAR_P));
 
-#define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE)
+#define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE, FALSE)
 #define init_vault()	vault_x = -1
 #define do_vault()	(vault_x != -1)
 static xchar		vault_x, vault_y;
@@ -182,7 +182,7 @@ sort_rooms()
 }
 
 STATIC_OVL void
-do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
+do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, canbeshaped)
     register struct mkroom *croom;
     int lowx, lowy;
     register int hix, hiy;
@@ -190,6 +190,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
     schar rtype;
     boolean special;
     boolean is_room;
+    boolean canbeshaped;
 {
 	register int x, y;
 	struct rm *lev;
@@ -286,7 +287,138 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
 		levl[hix+1][lowy-1].typ = TRCORNER;
 		levl[lowx-1][hiy+1].typ = BLCORNER;
 		levl[hix+1][hiy+1].typ = BRCORNER;
-	    } else {	/* a subroom */
+	    }
+        if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3)) {  
+            int xcut = 0, ycut = 0;  
+            boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE;  
+            switch (rn2(10)) {  
+            case 1:  
+            case 2:  
+            case 3:  
+                /* L-shaped */  
+                xcut = 1 + rnd(((hix - lowx) / 2) );  
+                ycut = 1 + rnd(((hiy - lowy) / 2) );  
+                switch(rn2(4)) {  
+                case 1:  
+                    dotr = TRUE;  
+                    break;  
+                case 2:  
+                    dobr = TRUE;  
+                    break;  
+                case 3:  
+                    dotl = TRUE;  
+                    break;  
+                default:  
+                    dobl = TRUE;  
+                    break;  
+                }  
+                break;  
+            case 4:  
+            case 5:  
+                /* T-shaped */  
+                xcut = 1 + rnd(((hix - lowx) / 3));  
+                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                switch(rn2(4)) {  
+                case 1:  
+                    dotr = TRUE;  
+                    dotl = TRUE;  
+                case 2:  
+                    dobr = TRUE;  
+                    dobl = TRUE;  
+                case 3:  
+                    dotr = TRUE;  
+                    dobr = TRUE;  
+                default:  
+                    dotl = TRUE;  
+                    dobl = TRUE;  
+                }  
+                break;  
+            case 6:  
+                /* S/Z shaped ("Tetris Piece") */  
+                xcut = 1 + rnd(((hix - lowx) / 3));  
+                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                switch(rn2(2)) {  
+                case 1:  
+                    dotr = TRUE;  
+                    dobl = TRUE;  
+                default:  
+                    dotl = TRUE;  
+                    dobr = TRUE;  
+                }  
+                break;  
+            case 7:  
+                /* Plus Shaped */  
+                xcut = 1 + rnd(((hix - lowx) / 3));  
+                ycut = 1 + rnd(((hiy - lowy) / 3));  
+                dotr = TRUE;  
+                dotl = TRUE;  
+                dobr = TRUE;  
+                dobl = TRUE;  
+                break;  
+                /* TODO: O shaped (pillar in middle) */  
+                /* TODO: oval */  
+            default:  
+                /* Rectangular -- nothing to do */  
+                break;  
+            }  
+            if (dotr) {  
+                /* top-right cutout */  
+                for (y = 0; y < ycut; y++) {  
+                    for (x = 0; x < xcut; x++) {  
+				levl[hix + 1 - x][lowy + y - 1].typ = STONE;
+                    }  
+                    levl[hix + 1 - xcut][lowy + y - 1].typ = VWALL;  
+                }  
+                for (x = 0; x < xcut; x++)  
+                    levl[hix + 1 - x][lowy + ycut - 1].typ = HWALL;  
+                levl[hix + 1 - xcut][lowy + ycut - 1].typ = BLCORNER;  
+                levl[hix + 1][lowy + ycut - 1].typ = TRCORNER;  
+                levl[hix + 1 - xcut][lowy - 1].typ = TRCORNER;  
+            }  
+            if (dobr) {  
+                /* bottom-right cutout */  
+                for (y = 0; y < ycut; y++) {  
+                    for (x = 0; x < xcut; x++) {  
+                        levl[hix + 1 - x][hiy + 1 - y].typ = STONE;  
+                    }  
+                    levl[hix + 1 - xcut][hiy + 1 - y].typ = VWALL;  
+                }  
+                for (x = 0; x < xcut; x++)  
+                    levl[hix + 1 - x][hiy + 1 - ycut].typ = HWALL;  
+                levl[hix + 1 - xcut][hiy + 1 - ycut].typ = TLCORNER;  
+                levl[hix + 1][hiy + 1 - ycut].typ = BRCORNER;  
+                levl[hix + 1 - xcut][hiy + 1].typ = BRCORNER;  
+            }  
+            if (dotl) {  
+                /* top-left cutout */  
+                for (y = 0; y < ycut; y++) {  
+                    for (x = 0; x < xcut; x++) {  
+                        levl[lowx + x - 1][lowy + y - 1].typ = STONE;  
+                    }  
+                    levl[lowx + xcut - 1][lowy + y - 1].typ = VWALL;  
+                }  
+                for (x = 0; x < xcut; x++)  
+                    levl[lowx + x - 1][lowy + ycut - 1].typ = HWALL;  
+                levl[lowx + xcut - 1][lowy + ycut - 1].typ = BRCORNER;  
+                levl[lowx - 1][lowy + ycut - 1].typ = TLCORNER;  
+                levl[lowx + xcut - 1][lowy - 1].typ = TLCORNER;  
+            }  
+            if (dobl) {  
+                /* bottom-left cutout */  
+                for (y = 0; y < ycut; y++) {  
+                    for (x = 0; x < xcut; x++) {  
+                        levl[lowx + x - 1][hiy + 1 - y].typ = STONE;  
+                    }  
+                    levl[lowx + xcut - 1][hiy + 1 - y].typ = VWALL;  
+                }  
+                for (x = 0; x < xcut; x++)  
+                    levl[lowx + x - 1][hiy + 1 - ycut].typ = HWALL;  
+                levl[lowx + xcut - 1][hiy + 1 - ycut].typ = TRCORNER;  
+                levl[lowx - 1][hiy + 1 - ycut].typ = BLCORNER;  
+                levl[lowx + xcut - 1][hiy + 1].typ = BLCORNER;  
+            }  
+          }  
+	    if (!is_room) {	/* a subroom */
 		wallification(lowx-1, lowy-1, hix+1, hiy+1, FALSE);
 	    }
 	}
@@ -294,17 +426,18 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room)
 
 
 void
-add_room(lowx, lowy, hix, hiy, lit, rtype, special)
+add_room(lowx, lowy, hix, hiy, lit, rtype, special, canbeshaped)
 register int lowx, lowy, hix, hiy;
 boolean lit;
 schar rtype;
 boolean special;
+boolean canbeshaped;
 {
 	register struct mkroom *croom;
 
 	croom = &rooms[nroom];
 	do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit,
-					    rtype, special, (boolean) TRUE);
+					    rtype, special, (boolean) TRUE, canbeshaped);
 	croom++;
 	croom->hx = -1;
 	nroom++;
@@ -322,7 +455,7 @@ boolean special;
 
 	croom = &subrooms[nsubroom];
 	do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit,
-					    rtype, special, (boolean) FALSE);
+					    rtype, special, (boolean) FALSE, (boolean) FALSE);
 	proom->sbrooms[proom->nsubrooms++] = croom;
 	croom++;
 	croom->hx = -1;
@@ -345,7 +478,7 @@ makerooms()
 				rooms[nroom].hx = -1;
 			}
 		} else
-		    if (!create_room(-1, -1, -1, -1, -1, -1, OROOM, -1) && !rn2(10) )
+		    if (!create_room(-1, -1, -1, -1, -1, -1, OROOM, -1, TRUE) && !rn2(10) )
 			return;
 	}
 	return;
@@ -1475,7 +1608,7 @@ makelevel()
 		if (check_room(&vault_x, &w, &vault_y, &h, TRUE)) {
 		    fill_vault:
 			add_room(vault_x, vault_y, vault_x+w,
-				 vault_y+h, TRUE, VAULT, FALSE);
+				 vault_y+h, TRUE, VAULT, FALSE, FALSE);
 			level.flags.has_vault = 1;
 			++room_threshold;
 			fill_room(&rooms[nroom - 1], FALSE);
