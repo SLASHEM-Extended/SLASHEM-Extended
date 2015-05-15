@@ -1091,6 +1091,15 @@ boolean	at_stairs;
 	if (at_stairs && u.ux == sstairs.sx && u.uy == sstairs.sy) {
 		/* Taking a down dungeon branch. */
 		goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
+
+		if (!rn2(ishaxor ? 250 : 500)) {
+
+			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
+			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			(void)nasty((struct monst *)0);
+
+		}
+
 	} else {
 		/* Going down a stairs or jump in a trap door. */
 		d_level	newlevel;
@@ -1098,6 +1107,15 @@ boolean	at_stairs;
 		newlevel.dnum = u.uz.dnum;
 		newlevel.dlevel = u.uz.dlevel + 1;
 		goto_level(&newlevel, at_stairs, !at_stairs, FALSE);
+
+		if (at_stairs && !rn2(ishaxor ? 250 : 500)) {
+
+			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
+			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			(void)nasty((struct monst *)0);
+
+		}
+
 	}
 }
 
@@ -1111,13 +1129,31 @@ boolean	at_stairs;
 		/* KMH -- Upwards branches are okay if not level 1 */
 		/* (Just make sure it doesn't go above depth 1) */
 		if(!u.uz.dnum && u.uz.dlevel == 1 && !u.uhave.amulet) done(ESCAPED);
-		else goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
+		else { 
+
+			goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
+			if (!rn2(ishaxor ? 50 : 100)) {
+
+				pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
+				NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+				(void)nasty((struct monst *)0);
+
+			}
+
+		}
 	} else {
 		/* Going up a stairs or rising through the ceiling. */
 		d_level	newlevel;
 		newlevel.dnum = u.uz.dnum;
 		newlevel.dlevel = u.uz.dlevel - 1;
 		goto_level(&newlevel, at_stairs, FALSE, FALSE);
+
+		if (at_stairs && !rn2(ishaxor ? 50 : 100)) {
+
+			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
+			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			(void)nasty((struct monst *)0);
+		}
 	}
 }
 

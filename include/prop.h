@@ -180,7 +180,9 @@
 
 #define STORM_HELM 166
 
-#define SECOND_CHANCE		167
+#define NO_STAIRCASE 167
+
+#define SECOND_CHANCE		168
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

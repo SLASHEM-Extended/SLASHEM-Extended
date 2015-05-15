@@ -862,6 +862,13 @@ dodown()
 		    (u.ux == sstairs.sx && u.uy == sstairs.sy && !sstairs.up)),
 		ladder_down = (u.ux == xdnladder && u.uy == ydnladder);
 
+	if (NoStaircase && (stairs_down || ladder_down) ) {
+
+		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
+		return(0);
+
+	}
+
 	if (Role_if(PM_GNOME) && on_level(&mineend_level,&u.uz)) {
 		pline("The staircase is filled with tons of rubble and debris.");
 		pline("Poor Ruggo!");
@@ -877,6 +884,7 @@ dodown()
 		return(0);
 	} else
 #endif
+
 	if (Levitation && !Race_if(PM_LEVITATOR) ) { /* levitators are hard enough already --Amy */
 	    if ((HLevitation & I_SPECIAL) || (ELevitation & W_ARTI)) {
 		/* end controlled levitation */
@@ -965,6 +973,15 @@ doup()
 		You_cant("go up here.");
 		return(0);
 	}
+
+	if (NoStaircase) {
+
+		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
+		return(0);
+
+	}
+
+
 #ifdef STEED
 	if (u.usteed && !u.usteed->mcanmove) {
 		pline("%s won't move!", Monnam(u.usteed));

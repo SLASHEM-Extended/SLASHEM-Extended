@@ -194,6 +194,8 @@
 #define StatusTrapProblem		u.uprops[STATUS_FAILURE].intrinsic
 #define AlignmentProblem		u.uprops[ALIGNMENT_FAILURE].intrinsic
 
+#define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
+
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic
 #define EHallucination		u.uprops[HALLUC].extrinsic
