@@ -1642,6 +1642,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlignmentProblem);
 		you_have(buf);
 	}
+	if (StairsProblem) {
+		Sprintf(buf, "the following problem: Stairs are always trapped.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StairsProblem);
+		you_have(buf);
+	}
 
 	if (IncreasedGravity) {
 		Sprintf(buf, "increased encumbrance due to a stronger gravity.");

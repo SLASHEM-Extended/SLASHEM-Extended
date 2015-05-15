@@ -760,3 +760,4 @@ TRAP:"drop",random
 TRAP:"dstw",random
 TRAP:"status",random
 TRAP:"alignment",random
+TRAP:"stairs",random

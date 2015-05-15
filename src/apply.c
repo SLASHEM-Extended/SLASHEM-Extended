@@ -4196,6 +4196,7 @@ doapply()
 		DSTWProblem = 0L;
 		StatusTrapProblem = 0L;
 		AlignmentProblem = 0L;
+		StairsProblem = 0L;
 
 		break;
 	case GOD_O_METER:

@@ -177,12 +177,13 @@
 #define DSTW_BUG 163
 #define STATUS_FAILURE 164
 #define ALIGNMENT_FAILURE 165
+#define STAIRSTRAP 166
 
-#define STORM_HELM 166
+#define STORM_HELM 167
 
-#define NO_STAIRCASE 167
+#define NO_STAIRCASE 168
 
-#define SECOND_CHANCE		168
+#define SECOND_CHANCE		169
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

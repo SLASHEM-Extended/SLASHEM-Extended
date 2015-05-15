@@ -1342,6 +1342,7 @@ dospinweb()
 		case DROP_TRAP:
 		case DSTW_TRAP:
 		case STATUS_TRAP:
+		case STAIRS_TRAP:
 			dotrap(ttmp, 0);
 			return(1);
 		default:

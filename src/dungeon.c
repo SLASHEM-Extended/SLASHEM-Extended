@@ -1092,7 +1092,7 @@ boolean	at_stairs;
 		/* Taking a down dungeon branch. */
 		goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
 
-		if (!rn2(ishaxor ? 250 : 500)) {
+		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
@@ -1108,7 +1108,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel + 1;
 		goto_level(&newlevel, at_stairs, !at_stairs, FALSE);
 
-		if (at_stairs && !rn2(ishaxor ? 250 : 500)) {
+		if (at_stairs && !rn2((!rn2(ishaxor ? 250 : 500)) || StairsProblem) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
@@ -1132,7 +1132,7 @@ boolean	at_stairs;
 		else { 
 
 			goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
-			if (!rn2(ishaxor ? 50 : 100)) {
+			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem) {
 
 				pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 				NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
@@ -1148,7 +1148,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel - 1;
 		goto_level(&newlevel, at_stairs, FALSE, FALSE);
 
-		if (at_stairs && !rn2(ishaxor ? 50 : 100)) {
+		if (at_stairs && !rn2((!rn2(ishaxor ? 50 : 100)) || StairsProblem) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));

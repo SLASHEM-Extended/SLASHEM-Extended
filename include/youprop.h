@@ -193,6 +193,7 @@
 #define DSTWProblem		u.uprops[DSTW_BUG].intrinsic
 #define StatusTrapProblem		u.uprops[STATUS_FAILURE].intrinsic
 #define AlignmentProblem		u.uprops[ALIGNMENT_FAILURE].intrinsic
+#define StairsProblem		u.uprops[STAIRSTRAP].intrinsic
 
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
