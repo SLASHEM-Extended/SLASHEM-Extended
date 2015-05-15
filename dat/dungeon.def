@@ -86,7 +86,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 48
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 49
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 8
 LEVALIGN:		chaotic
 LEVELDESC:	town
@@ -167,14 +167,14 @@ LEVEL:          "fakewiz1" "F" @ (20, 8)
 LEVEL:          "fakewiz2" "G" @ (20, 8)
 # The demon levels
 LEVEL:          "juiblex" "J" @ (2, 29) 95
-LEVEL:          "yeenoghu" "E" @ (2, 29) 95
-RNDLEVEL:          "orcus" "O" @ (2, 29) 95 2
+RNDLEVEL:          "yeeno" "E" @ (2, 29) 95 2
+RNDLEVEL:          "orcus" "O" @ (2, 29) 95 6
 LEVEL:          "demogorg" "D" @ (2, 29) 95
 # The devil levels
-RNDLEVEL:          "baalz" "B" @ (2, 29) 95 2
+RNDLEVEL:          "baalz" "B" @ (2, 29) 95 6
 LEVEL:          "geryon" "R" @ (2, 29) 95
-LEVEL:          "dispater" "S" @ (2, 29) 95
-RNDLEVEL:          "asmod" "A" @ (2, 29) 95 2
+RNDLEVEL:          "dispa" "S" @ (2, 29) 95 2
+RNDLEVEL:          "asmod" "A" @ (2, 29) 95 3
 RNDLEVEL:	"hellma" "H" @ (2, 29) 75 9
 BRANCH:         "Sheol" @ (3, 27) down
 
@@ -185,9 +185,9 @@ RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 48
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 49
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 49
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 49
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
@@ -238,10 +238,10 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 43
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 39
-RNDLEVEL:		"soko3" "C" @ (3, 0) 95 26
-RNDLEVEL:		"soko4" "D" @ (4, 0) 95 22
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 51
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 44
+RNDLEVEL:		"soko3" "C" @ (3, 0) 95 29
+RNDLEVEL:		"soko4" "D" @ (4, 0) 95 28
 
 #
 #   The city of Angband
@@ -250,7 +250,7 @@ DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
-RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 48
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 49
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town

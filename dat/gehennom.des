@@ -724,6 +724,618 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER: random,random,random
 
+MAZE:"orcus-3",random
+FLAGS: noteleport,shortsighted
+GEOMETRY:right,center
+#         1         2         3         4
+#12345678901234567890123456789012345678901234567
+MAP
+ -----------------------------------------------
+-|.|..............|............................|
+.|.|..............|............................|
+.|.|..............|.....--------------.........|
+.|.---+-------+---|.....|............|.........|
+..................|.....|............+.........|
+..................---+---...-----....|.........|
+.|....----+---..............|...|....----------|
+.|.|.........|..............|...+.......|......|
+.|.|.........|-----.........-----.......+......|
+.|.|..............|-----................|......|
+.|.|...|..........|....|.........----+---------|
+.|.--+-------.....+....|....{.............|....|
+.|............--+-|....+..................|....|
+.|.--+--..........|....|...------|........|....|
+.|.|...|---+---...------...|.....|--....----+--|
+.|.|...|......|............+.....|.............|
+.|.|...|......|............|.....|.............|
+.|.|...|......|............|.....|.............|
+------------------------------------------------
+ENDMAP
+#12345678901234567890123456789012345678901234567
+MAZEWALK:(00,06),west
+# Entire O-town area
+REGION:(01,01,46,17),unlit,"ordinary"
+STAIR:(44,13),down
+STAIR:levregion(01,00,11,20),levregion(19,01,69,20),up
+BRANCH:levregion(01,00,11,20),levregion(19,01,69,20)
+TELEPORT_REGION:levregion(01,00,11,20),levregion(19,01,69,20)
+# Wall "ruins"
+OBJECT:'`',"boulder",(03,13)
+OBJECT:'`',"boulder",(03,07)
+OBJECT:'`',"boulder",(04,07)
+OBJECT:'`',"boulder",(05,07)
+OBJECT:'`',"boulder",(07,08)
+OBJECT:'`',"boulder",(07,09)
+OBJECT:'`',"boulder",(07,10)
+OBJECT:'`',"boulder",(10,01)
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(10,03)
+OBJECT:'`',"boulder",(24,01)
+OBJECT:'`',"boulder",(24,02)
+OBJECT:'`',"boulder",(37,01)
+OBJECT:'`',"boulder",(37,02)
+OBJECT:'`',"boulder",(13,10)
+OBJECT:'`',"boulder",(13,11)
+OBJECT:'`',"boulder",(13,12)
+OBJECT:'`',"boulder",(13,13)
+OBJECT:'`',"boulder",(33,12)
+OBJECT:'`',"boulder",(33,13)
+OBJECT:'`',"boulder",(36,15)
+OBJECT:'`',"boulder",(37,15)
+OBJECT:'`',"boulder",(38,15)
+OBJECT:'`',"boulder",(39,15)
+# Doors
+DOOR:random,(06,04)
+DOOR:random,(14,04)
+DOOR:random,(21,06)
+DOOR:random,(37,05)
+DOOR:locked,(40,09)
+DOOR:random,(32,08)
+DOOR:random,(37,11)
+DOOR:locked,(44,15)
+DOOR:random,(27,16)
+DOOR:random,(23,13)
+DOOR:random,(18,12)
+DOOR:random,(16,13)
+DOOR:random,(11,15)
+DOOR:random,(05,14)
+DOOR:random,(05,12)
+DOOR:random,(10,07)
+# Special rooms
+ALTAR:(44,09),noalign,sanctum
+REGION:(34,12,41,14),unlit,"morgue"
+REGION:(04,08,06,11),lit,"shop"
+REGION:(19,01,23,05),lit,"shop"
+REGION:(29,07,31,08),lit,"shop"
+# Some traps.
+TRAP:"spiked pit", random
+TRAP:"sleep gas", random
+TRAP:"anti magic", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"magic", random
+TRAP:"magic", random
+# Some random objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'?',"wishing",random
+# The resident nasty
+MONSTER:'&',"Orcus",(44,13)
+OBJECT:'?',"root password detection",(44,13)
+# And its preferred companions
+MONSTER:'Z',random,(43,12)
+MONSTER:'8',"shade",(45,12)
+MONSTER:'8',"shade",(43,14)
+MONSTER:'V',"vampire lord",(42,16)
+MONSTER:'V',"vampire",(45,14)
+MONSTER:'V',random,(46,13)
+MONSTER:'V',random,(45,16)
+# Randomly placed companions
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire",random
+MONSTER:'V',"vampire lord",random
+MONSTER:'V',"vampire lord",random
+# A few more for the party
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#
+# The Orcus Level (Version C)
+# a.k.a. "Pudding Town"
+#
+MAZE:"orcus-4",random
+FLAGS: noteleport,shortsighted
+GEOMETRY:right,center
+#         1         2         3         4
+#1234567890123456789012345678901234567890123456
+MAP
+-----------------------------------------------
+|.|..............................|...|........|
+|.|..............................|...|........|
+|.|.......+.................{....--+-|........|
+|.|.......|....----------............|........|
+|.|-----.......|........|-------.....|........|
+|.|............+........|......+.....-........|
+|.|............|........|......|.......----+--|
+|.|......|.....|........|--...-|..............|
+|.|......|.....---------|......+..............|
+|.|......|........|.....S......|......|.......|
+|.----+---...{....+.....|-------......|.......|
+ .................|.....|....|........-----+--|
+..................|.....|....|.....|..........|
+|.---+-----+----..---...|....+.....|..........|
+|.|....|................|....|.....+..........|
+|.|....|................|....|.....|..........|
+|.|....|.......|........------.....|..........|
+|.|....|.......|...................|..........|
+-----------------------------------------------
+ENDMAP
+MAZEWALK:(01,12),west
+# Entire O-town area
+REGION:(01,01,45,17),unlit,"ordinary"
+STAIR:(40,03),down
+STAIR:levregion(01,00,11,20),levregion(19,01,69,20),up
+BRANCH:levregion(01,00,11,20),levregion(19,01,69,20)
+TELEPORT_REGION:levregion(01,00,11,20),levregion(19,01,69,20)
+# Wall "ruins"
+OBJECT:'`',"boulder",(10,01)
+OBJECT:'`',"boulder",(10,02)
+OBJECT:'`',"boulder",(08,05)
+OBJECT:'`',"boulder",(09,05)
+OBJECT:'`',"boulder",(10,05)
+OBJECT:'`',"boulder",(09,06)
+OBJECT:'`',"boulder",(09,07)
+OBJECT:'`',"boulder",(15,15)
+OBJECT:'`',"boulder",(15,16)
+OBJECT:'`',"boulder",(21,14)
+OBJECT:'`',"boulder",(22,14)
+OBJECT:'`',"boulder",(23,14)
+OBJECT:'`',"boulder",(27,08)
+OBJECT:'`',"boulder",(28,08)
+OBJECT:'`',"boulder",(29,08)
+OBJECT:'`',"boulder",(35,12)
+OBJECT:'`',"boulder",(36,12)
+OBJECT:'`',"boulder",(37,12)
+OBJECT:'`',"boulder",(38,06)
+OBJECT:'`',"boulder",(38,07)
+OBJECT:'`',"boulder",(38,08)
+OBJECT:'`',"boulder",(38,09)
+DOOR:random,(05,14)
+DOOR:random,(11,14)
+DOOR:random,(29,14)
+DOOR:random,(35,15)
+DOOR:random,(43,12)
+DOOR:locked,(43,07)
+DOOR:random,(35,03)
+DOOR:random,(31,06)
+DOOR:random,(31,09)
+DOOR:random,(18,11)
+DOOR:locked,(15,06)
+DOOR:random,(06,11)
+DOOR:random,(10,03)
+DOOR:locked,(24,10)
+# Special rooms
+ALTAR:(19,06),noalign,sanctum
+REGION:(03,01,09,04),unlit,"morgue"
+REGION:(08,15,14,17),lit,"shop"
+REGION:(25,09,30,10),lit,"shop"
+REGION:(34,01,36,02),lit,"shop"
+# Some traps.
+TRAP:"spiked pit", random
+TRAP:"sleep gas", random
+TRAP:"anti magic", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"fire", random
+TRAP:"magic", random
+TRAP:"magic", random
+# Some random objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'?',"wishing",random
+# The resident nasty
+MONSTER:'&',"Orcus",(40,03)
+OBJECT:'?',"root password detection",(40,03)
+# Placed companions
+MONSTER:'Z',random,(42,02)
+MONSTER:'8',"shade",(40,02)
+MONSTER:'8',"shade",(39,04)
+MONSTER:'V',"vampire lord",(42,04)
+MONSTER:'V',"vampire",(41,06)
+MONSTER:'V',random,(40,05)
+MONSTER:'V',random,(44,06)
+# Randomly placed companions
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"giant zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"ettin zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'P',"green slime",random
+MONSTER:'P',"green slime",random
+MONSTER:'P',"green slime",random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+
+#
+# The Orcus Level (Version D)
+#
+MAZE:"orcus-5",random
+FLAGS: noteleport,shortsighted
+GEOMETRY:right,center
+#         1         2         3         4
+#123456789012345678901234567890123456789012345
+MAP
+-----------------------------------------------
+|.|.......|.............................|.....|
+|.|.......+........................+....|.....|
+|.|.......|.......------...------.....--|.....|
+|.|--------.....................|.......|.....|
+|.|.......+.....+........|......+.......+.....|
+|.|.............|--------.......|.......|.....|
+|.|------.......|...........-----.....--------|
+|.|.............+..............|......|.......|
+|.|.......+.....|..............+......+.......|
+|.---------....----------|............|.......|
+...............S.........|----........|--...--|
+ ..............|--------.|............+.......|
+...............|.......|.|.......+....|.......|
+|.--------.....|.......|.|.......|....|---...-|
+|.|......|.....|.......|S---------....|.......|
+|.|......+.....+.......|..............+.......|
+|.|......|.....|.......|..............|.......|
+|.|......|.....|.......|..............|.......|
+-----------------------------------------------
+ENDMAP
+MAZEWALK:(01,12),west
+# Entire O-town area
+REGION:(01,01,45,17),unlit,"ordinary"
+STAIR:(43,02),down
+STAIR:levregion(01,00,11,20),levregion(19,01,69,20),up
+BRANCH:levregion(01,00,11,20),levregion(19,01,69,20)
+TELEPORT_REGION:levregion(01,00,11,20),levregion(19,01,69,20)
+# Wall "ruins"
+OBJECT:'`',"boulder",(09,07)
+OBJECT:'`',"boulder",(10,06)
+OBJECT:'`',"boulder",(10,07)
+OBJECT:'`',"boulder",(10,08)
+OBJECT:'`',"boulder",(16,03)
+OBJECT:'`',"boulder",(17,03)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(24,03)
+OBJECT:'`',"boulder",(25,03)
+OBJECT:'`',"boulder",(26,03)
+OBJECT:'`',"boulder",(25,04)
+OBJECT:'`',"boulder",(25,06)
+OBJECT:'`',"boulder",(25,07)
+OBJECT:'`',"boulder",(26,07)
+OBJECT:'`',"boulder",(27,07)
+OBJECT:'`',"boulder",(25,08)
+OBJECT:'`',"boulder",(25,09)
+OBJECT:'`',"boulder",(31,10)
+OBJECT:'`',"boulder",(30,11)
+OBJECT:'`',"boulder",(31,11)
+OBJECT:'`',"boulder",(32,11)
+OBJECT:'`',"boulder",(33,11)
+OBJECT:'`',"boulder",(33,12)
+OBJECT:'`',"boulder",(35,01)
+OBJECT:'`',"boulder",(35,03)
+OBJECT:'`',"boulder",(36,03)
+OBJECT:'`',"boulder",(37,03)
+OBJECT:'`',"boulder",(41,11)
+OBJECT:'`',"boulder",(42,11)
+OBJECT:'`',"boulder",(43,11)
+OBJECT:'`',"boulder",(42,14)
+OBJECT:'`',"boulder",(43,14)
+OBJECT:'`',"boulder",(44,14)
+# Doors:
+DOOR:random,(10,02)
+DOOR:random,(10,05)
+DOOR:random,(10,09)
+DOOR:locked,(09,16)
+DOOR:random,(15,16)
+DOOR:locked,(15,11)
+DOOR:random,(16,08)
+DOOR:random,(16,05)
+DOOR:locked,(24,15)
+DOOR:random,(33,13)
+DOOR:random,(31,09)
+DOOR:random,(32,05)
+DOOR:random,(35,02)
+DOOR:locked,(40,05)
+DOOR:random,(38,09)
+DOOR:random,(38,12)
+DOOR:random,(38,16)
+# Special rooms
+ALTAR:(05,17),noalign,sanctum
+REGION:(26,12,32,14),unlit,"morgue"
+REGION:(16,13,22,18),lit,"shop"
+REGION:(17,07,24,09),lit,"shop"
+# Some traps.
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+# Random objects:
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'?',"wishing",random
+# The resident nasty
+MONSTER:'&',"Orcus",(43,05)
+OBJECT:'?',"root password detection",(43,05)
+# Companions:
+MONSTER:'8',"shade",(41,02)
+MONSTER:'8',"shade",(44,03)
+MONSTER:'V',"vampire lord",(41,04)
+MONSTER:'V',"vampire",(45,04)
+MONSTER:'V',random,(43,01)
+MONSTER:'V',random,(41,06)
+# Randomly placed companions
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'J',random,random
+MONSTER:'X',random,random
+MONSTER:'X',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+
+MAZE:"orcus-6",random
+FLAGS: noteleport,shortsighted
+GEOMETRY:right,center
+#         1         2         3         4
+#123456789012345678901234567890123456789012345
+MAP
+-----------------------------------------------
+|.|.......|.............................|.....|
+|.|.......+........................+....|.....|
+|.|.......|.......------...------.....--|.....|
+|.|--------.....................|.......|.....|
+|.|.......+.....+........|......+.......+.....|
+|.|.............|--------.......|.......|.....|
+|.|------.......|...........-----.....--------|
+|.|.............+..............|......|.......|
+|.|.......+.....|..............+......+.......|
+|.---------....----------|............|.......|
+...............S.........|----........|--...--|
+ ..............|--------.|............+.......|
+...............|.......|.|.......+....|.......|
+|.--------.....|.......|.|.......|....|---...-|
+|.|......|.....|.......|S---------....|.......|
+|.|......+.....+.......|..............+.......|
+|.|......|.....|.......|..............|.......|
+|.|......|.....|.......|..............|.......|
+-----------------------------------------------
+ENDMAP
+MAZEWALK:(01,12),west
+# Entire O-town area
+REGION:(01,01,45,17),unlit,"ordinary"
+
+STAIR:(43,02),down
+STAIR:levregion(01,00,11,20),levregion(19,01,69,20),up
+BRANCH:levregion(01,00,11,20),levregion(19,01,69,20)
+TELEPORT_REGION:levregion(01,00,11,20),levregion(19,01,69,20)
+# Wall "ruins"
+OBJECT:'`',"boulder",(09,07)
+OBJECT:'`',"boulder",(10,06)
+OBJECT:'`',"boulder",(10,07)
+OBJECT:'`',"boulder",(10,08)
+OBJECT:'`',"boulder",(16,03)
+OBJECT:'`',"boulder",(17,03)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(24,03)
+OBJECT:'`',"boulder",(25,03)
+OBJECT:'`',"boulder",(26,03)
+OBJECT:'`',"boulder",(25,04)
+OBJECT:'`',"boulder",(25,06)
+OBJECT:'`',"boulder",(25,07)
+OBJECT:'`',"boulder",(26,07)
+OBJECT:'`',"boulder",(27,07)
+OBJECT:'`',"boulder",(25,08)
+OBJECT:'`',"boulder",(25,09)
+OBJECT:'`',"boulder",(31,10)
+OBJECT:'`',"boulder",(30,11)
+OBJECT:'`',"boulder",(31,11)
+OBJECT:'`',"boulder",(32,11)
+OBJECT:'`',"boulder",(33,11)
+OBJECT:'`',"boulder",(33,12)
+OBJECT:'`',"boulder",(35,01)
+OBJECT:'`',"boulder",(35,03)
+OBJECT:'`',"boulder",(36,03)
+OBJECT:'`',"boulder",(37,03)
+OBJECT:'`',"boulder",(41,11)
+OBJECT:'`',"boulder",(42,11)
+OBJECT:'`',"boulder",(43,11)
+OBJECT:'`',"boulder",(42,14)
+OBJECT:'`',"boulder",(43,14)
+OBJECT:'`',"boulder",(44,14)
+# Doors:
+DOOR:random,(10,02)
+DOOR:random,(10,05)
+DOOR:random,(10,09)
+DOOR:locked,(09,16)
+DOOR:random,(15,16)
+DOOR:locked,(15,11)
+DOOR:random,(16,08)
+DOOR:random,(16,05)
+DOOR:locked,(24,15)
+DOOR:random,(33,13)
+DOOR:random,(31,09)
+DOOR:random,(32,05)
+DOOR:random,(35,02)
+DOOR:locked,(40,05)
+DOOR:random,(38,09)
+DOOR:random,(38,12)
+DOOR:random,(38,16)
+# Special rooms
+ALTAR:(05,17),noalign,sanctum
+REGION:(26,12,32,14),unlit,"morgue"
+REGION:(16,13,22,18),lit,"shop"
+REGION:(17,07,24,09),lit,"shop"
+
+REGION:(03,01,09,03),unlit,"randomroom"
+REGION:(03,05,09,06),unlit,"randomroom"
+REGION:(03,08,09,09),unlit,"randomroom"
+REGION:(03,15,09,18),unlit,"randomroom"
+REGION:(17,04,24,05),unlit,"randomroom"
+REGION:(41,01,45,06),unlit,"randomroom"
+REGION:(39,08,45,10),unlit,"randomroom"
+REGION:(39,12,45,13),unlit,"randomroom"
+REGION:(39,15,45,18),unlit,"randomroom"
+
+# Some traps.
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+# Random objects:
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'?',"wishing",random
+# The resident nasty
+MONSTER:'&',"Orcus",(43,05)
+OBJECT:'?',"root password detection",(43,05)
+# Companions:
+MONSTER:'8',"shade",(41,02)
+MONSTER:'8',"shade",(44,03)
+MONSTER:'V',"vampire lord",(41,04)
+MONSTER:'V',"vampire",(45,04)
+MONSTER:'V',random,(43,01)
+MONSTER:'V',random,(41,06)
+# Randomly placed companions
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'Z',"skeleton",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'8',"shade",random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'J',random,random
+MONSTER:'X',random,random
+MONSTER:'X',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+
 #
 # The Asmodeus Level
 #
@@ -997,6 +1609,111 @@ OBJECT:'*',"loadstone",(65,18),cursed,0
 OBJECT:'"',"amulet of strangulation",(65,18),cursed,0
 
 #
+# Alternate Asmodeus Level
+# (Version B)
+#
+MAZE:"asmod-3",random
+FLAGS: noteleport
+# First part
+GEOMETRY:half-right,center
+MAP
+  ----------------
+  |......|...|...|
+  |......+...|...|
+  |......|...|--S|
+-------S-|-S-|...|
+.........|...|...|
+.........|.{.S...|
+---FFFF..S...|...|
+  |...S..|...|FFF|
+  |...|---FFF|...|
+  |...S..+...S...|
+  ----------------
+ENDMAP
+STAIR:(15,01),down
+STAIR:levregion(01,00,05,20),levregion(06,01,69,16),up
+BRANCH:levregion(01,00,05,20),levregion(06,01,69,16)
+TELEPORT_REGION:levregion(01,00,05,20),levregion(05,01,69,16)
+#
+DOOR:closed,(09,02)
+DOOR:locked,(07,04)
+DOOR:locked,(06,08)
+DOOR:locked,(06,10)
+DOOR:locked,(09,07)
+DOOR:closed,(09,10)
+DOOR:locked,(11,04)
+DOOR:locked,(13,06)
+DOOR:locked,(13,10)
+DOOR:locked,(16,03)
+#
+NON_DIGGABLE:(00,00,17,11)
+REGION:(01,01,17,10),unlit,"ordinary"
+MONSTER:'&',"Asmodeus",(15,02)
+OBJECT:'?',"root password detection",(15,02)
+MONSTER:'D',random,(03,08)
+MONSTER:'D',random,(04,09)
+MONSTER:'D',random,(05,10)
+MONSTER:'D',random,(10,10)
+MONSTER:'D',random,(11,10)
+MONSTER:'D',random,(12,10)
+MONSTER:'D',random,(14,09)
+MONSTER:'D',random,(15,09)
+MONSTER:'D',random,(16,09)
+#
+# Some assorted junk
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+# Some traps.
+TRAP:"spiked pit", random
+TRAP:"fire", random
+TRAP:"sleep gas", random
+TRAP:"anti magic", random
+TRAP:"fire", random
+TRAP:"magic", random
+TRAP:"magic", random
+# Random monsters.
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'L',random,random
+# Second part of that same level:
+GEOMETRY:center,center
+MAP
+----------------|.
+|........+......|.
+-+----+------S--|-
+....|...LLL.....+.
+....|....LLL....+.
+-+----+---L-----|F
+|........+......|.
+----------------|.
+ENDMAP
+MAZEWALK:(00,04),west
+NON_DIGGABLE:(00,00,17,07)
+DOOR:locked,(01,02)
+DOOR:locked,(01,05)
+DOOR:locked,(06,02)
+DOOR:locked,(06,05)
+DOOR:locked,(09,01)
+DOOR:locked,(09,06)
+DOOR:locked,(13,02)
+DOOR:locked,(16,03)
+DOOR:locked,(16,04)
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+
+#
 # The Baalzebub level
 #
 MAZE:"baalz-1",random
@@ -1173,10 +1890,517 @@ MONSTER:'P',random,random
 MONSTER:'P',random,random
 MONSTER:'P',random,random
 
+#
+# Alternate Baalzebub level
+# (Version B:  Baalzebub's Fortress)
+#
+MAZE:"baalz-3",random
+FLAGS: noteleport,nommap
+GEOMETRY:center,center
+MAP
+----------------------------------------------------------------------------
+|..+......|....+.......|...+.....|..+..|..+.....|...+.......|....+......|..|
+|..|......+....|.......+...|.....+..|..+..|.....+...|.......+....|......+..|
+|-+-----------------------------------------------------------------------+|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|+-|                                                                    |+-|
+|..+...                                .                                |..|
+|..|                                   .                                +..|
+|-+|                                                                    |-+|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|+-----------------------------------------------------------------------+-|
+|..+......|....+.......|...+.....|..+..|..+.....|...+.......|....+......|..|
+|..|......+....|.......+...|.....+..|..+..|.....+...|.......+....|......+..|
+----------------------------------------------------------------------------
+ENDMAP
+STAIR:(00,00,75,19),(03,03,72,16),up
+STAIR:(00,00,75,19),(03,03,72,16),down
+BRANCH:(00,00,75,19),(03,03,72,16)
+TELEPORT_REGION:(00,00,75,19),(03,03,72,16)
+#
+MAZEWALK:(72,10),west
+#
+DOOR:locked,(03,01)
+DOOR:locked,(10,02)
+DOOR:locked,(15,01)
+DOOR:locked,(23,02)
+DOOR:locked,(27,01)
+DOOR:locked,(33,02)
+DOOR:locked,(36,01)
+DOOR:locked,(39,02)
+DOOR:locked,(42,01)
+DOOR:locked,(48,02)
+DOOR:locked,(52,01)
+DOOR:locked,(60,02)
+DOOR:locked,(65,01)
+DOOR:locked,(72,02)
+#
+DOOR:locked,(02,03)
+DOOR:locked,(01,08)
+DOOR:locked,(03,09)
+DOOR:locked,(02,11)
+DOOR:locked,(01,16)
+#
+DOOR:locked,(03,17)
+DOOR:locked,(10,18)
+DOOR:locked,(15,17)
+DOOR:locked,(23,18)
+DOOR:locked,(27,17)
+DOOR:locked,(33,18)
+DOOR:locked,(36,17)
+DOOR:locked,(39,18)
+DOOR:locked,(42,17)
+DOOR:locked,(48,18)
+DOOR:locked,(52,17)
+DOOR:locked,(60,18)
+DOOR:locked,(65,17)
+DOOR:locked,(72,18)
+#
+DOOR:locked,(74,03)
+DOOR:locked,(73,08)
+DOOR:locked,(72,10)
+DOOR:locked,(74,11)
+DOOR:locked,(73,16)
+#
+MONSTER:'&',"Baalzebub",random
+OBJECT:'?',"root password detection",random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+#
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+MONSTER:'L',random,random
+MONSTER:'L',random,random
+MONSTER:'L',random,random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+# Some random junk:
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Some traps.
+TRAP:"fire", random
+TRAP:"sleep gas", random
+TRAP:"magic", random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+
+#
+# Alternate Baalzebub level
+# (Version C: Box of Baalzebub)
+#
+MAZE:"baalz-4",random
+FLAGS: noteleport
+GEOMETRY:center,center
+#1234567890123456789012
+MAP
+.........................
+.|.---------.---------.|.
+.|.|...|...+.+...|...|.|.
+.|.|...+...|.|...+...|.|.
+.|.|...|FFFFFFFFF|...|.|.
+.|.|...+.........+...|.|.
+...|---|.........|---|...
+.|.|...+.........+...|.|.
+.|.|...|FFFFFFFFF|...|.|.
+.|.|...+...|.|...+...|.|.
+.|.|...|...+.+...|...|.|.
+.|.---------.---------.|.
+.........................
+ENDMAP
+MAZEWALK:(24,06),east
+STAIR:(12,06),down
+STAIR:levregion(01,00,69,20),(00,00,24,12),up
+BRANCH:levregion(01,00,69,20),(00,00,24,12)
+TELEPORT_REGION:levregion(01,00,69,20),(00,00,24,12)
+NON_DIGGABLE:(01,01,23,11)
+#
+DOOR:locked,(07,03)
+DOOR:locked,(07,05)
+DOOR:locked,(07,07)
+DOOR:locked,(07,09)
+#
+DOOR:locked,(11,02)
+DOOR:locked,(13,02)
+DOOR:locked,(11,10)
+DOOR:locked,(13,10)
+#
+DOOR:locked,(17,03)
+DOOR:locked,(17,05)
+DOOR:locked,(17,07)
+DOOR:locked,(17,09)
+#
+REGION:(01,01,23,11),unlit,"ordinary"
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+MONSTER:'&',"Baalzebub",(12,06)
+OBJECT:'?',"root password detection",(12,06)
+#
+# Some random junk:
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Some traps.
+TRAP:"fire", random
+TRAP:"sleep gas", random
+TRAP:"magic", random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+#
+# And the inner room:
+REGION:(08,05,16,07),unlit,"ordinary"
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE:"baalz-5",random
+FLAGS: noteleport
+GEOMETRY:center,center
+#1234567890123456789012
+MAP
+.........................
+.|.---------.---------.|.
+.|.|...|...+.+...|...|.|.
+.|.|...+...|.|...+...|.|.
+.|.|...|FFFFFFFFF|...|.|.
+.|.|...+.........+...|.|.
+...|---|.........|---|...
+.|.|...+.........+...|.|.
+.|.|...|FFFFFFFFF|...|.|.
+.|.|...+...|.|...+...|.|.
+.|.|...|...+.+...|...|.|.
+.|.---------.---------.|.
+.........................
+ENDMAP
+MAZEWALK:(24,06),east
+STAIR:(12,06),down
+STAIR:levregion(01,00,69,20),(00,00,24,12),up
+BRANCH:levregion(01,00,69,20),(00,00,24,12)
+TELEPORT_REGION:levregion(01,00,69,20),(00,00,24,12)
+NON_DIGGABLE:(01,01,23,11)
+#
+DOOR:locked,(07,03)
+DOOR:locked,(07,05)
+DOOR:locked,(07,07)
+DOOR:locked,(07,09)
+#
+DOOR:locked,(11,02)
+DOOR:locked,(13,02)
+DOOR:locked,(11,10)
+DOOR:locked,(13,10)
+#
+DOOR:locked,(17,03)
+DOOR:locked,(17,05)
+DOOR:locked,(17,07)
+DOOR:locked,(17,09)
+#
+REGION:(01,01,23,11),unlit,"ordinary"
+
+REGION:(04,02,06,05),unlit,"randomroom"
+REGION:(04,07,06,10),unlit,"randomroom"
+REGION:(18,02,20,05),unlit,"randomroom"
+REGION:(18,07,20,10),unlit,"randomroom"
+
+REGION:(08,02,10,03),unlit,"randomroom"
+REGION:(14,02,16,03),unlit,"randomroom"
+REGION:(08,09,10,10),unlit,"randomroom"
+REGION:(14,09,16,10),unlit,"randomroom"
+
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+MONSTER:'&',"Baalzebub",(12,06)
+OBJECT:'?',"root password detection",(12,06)
+#
+# Some random junk:
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Some traps.
+TRAP:"fire", random
+TRAP:"sleep gas", random
+TRAP:"magic", random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+#
+# And the inner room:
+REGION:(08,05,16,07),unlit,"ordinary"
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE:"baalz-6",random
+FLAGS: noteleport,nommap
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..+......|....+.......|...+.....|..+..|..+.....|...+.......|....+......|..|
+|..|......+....|.......+...|.....+..|..+..|.....+...|.......+....|......+..|
+|-+-----------------------------------------------------------------------+|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|+-|                                                                    |+-|
+|..+...                                .                                |..|
+|..|                                   .                                +..|
+|-+|                                                                    |-+|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|..|                                                                    |..|
+|+-----------------------------------------------------------------------+-|
+|..+......|....+.......|...+.....|..+..|..+.....|...+.......|....+......|..|
+|..|......+....|.......+...|.....+..|..+..|.....+...|.......+....|......+..|
+----------------------------------------------------------------------------
+ENDMAP
+STAIR:(00,00,75,19),(03,03,72,16),up
+STAIR:(00,00,75,19),(03,03,72,16),down
+BRANCH:(00,00,75,19),(03,03,72,16)
+TELEPORT_REGION:(00,00,75,19),(03,03,72,16)
+#
+MAZEWALK:(72,10),west
+#
+
+REGION:(01,01,02,02),unlit,"randomroom"
+REGION:(04,01,09,02),unlit,"randomroom"
+REGION:(11,01,14,02),unlit,"randomroom"
+REGION:(16,01,22,02),unlit,"randomroom"
+REGION:(24,01,26,02),unlit,"randomroom"
+REGION:(28,01,32,02),unlit,"randomroom"
+REGION:(34,01,35,02),unlit,"randomroom"
+REGION:(37,01,38,02),unlit,"randomroom"
+REGION:(40,01,41,02),unlit,"randomroom"
+REGION:(43,01,47,02),unlit,"randomroom"
+REGION:(49,01,51,02),unlit,"randomroom"
+REGION:(53,01,59,02),unlit,"randomroom"
+REGION:(61,01,64,02),unlit,"randomroom"
+REGION:(66,01,71,02),unlit,"randomroom"
+REGION:(73,01,74,02),unlit,"randomroom"
+
+REGION:(01,17,02,18),unlit,"randomroom"
+REGION:(04,17,09,18),unlit,"randomroom"
+REGION:(11,17,14,18),unlit,"randomroom"
+REGION:(16,17,22,18),unlit,"randomroom"
+REGION:(24,17,26,18),unlit,"randomroom"
+REGION:(28,17,32,18),unlit,"randomroom"
+REGION:(34,17,35,18),unlit,"randomroom"
+REGION:(37,17,38,18),unlit,"randomroom"
+REGION:(40,17,41,18),unlit,"randomroom"
+REGION:(43,17,47,18),unlit,"randomroom"
+REGION:(49,17,51,18),unlit,"randomroom"
+REGION:(53,17,59,18),unlit,"randomroom"
+REGION:(61,17,64,18),unlit,"randomroom"
+REGION:(66,17,71,18),unlit,"randomroom"
+REGION:(73,17,74,18),unlit,"randomroom"
+
+REGION:(01,04,02,07),unlit,"randomroom"
+REGION:(01,09,02,10),unlit,"randomroom"
+REGION:(01,12,02,15),unlit,"randomroom"
+REGION:(73,04,74,07),unlit,"randomroom"
+REGION:(73,09,74,10),unlit,"randomroom"
+REGION:(73,12,74,15),unlit,"randomroom"
+
+REGION:(04,04,71,15),unlit,"randomroom"
+
+DOOR:locked,(03,01)
+DOOR:locked,(10,02)
+DOOR:locked,(15,01)
+DOOR:locked,(23,02)
+DOOR:locked,(27,01)
+DOOR:locked,(33,02)
+DOOR:locked,(36,01)
+DOOR:locked,(39,02)
+DOOR:locked,(42,01)
+DOOR:locked,(48,02)
+DOOR:locked,(52,01)
+DOOR:locked,(60,02)
+DOOR:locked,(65,01)
+DOOR:locked,(72,02)
+#
+DOOR:locked,(02,03)
+DOOR:locked,(01,08)
+DOOR:locked,(03,09)
+DOOR:locked,(02,11)
+DOOR:locked,(01,16)
+#
+DOOR:locked,(03,17)
+DOOR:locked,(10,18)
+DOOR:locked,(15,17)
+DOOR:locked,(23,18)
+DOOR:locked,(27,17)
+DOOR:locked,(33,18)
+DOOR:locked,(36,17)
+DOOR:locked,(39,18)
+DOOR:locked,(42,17)
+DOOR:locked,(48,18)
+DOOR:locked,(52,17)
+DOOR:locked,(60,18)
+DOOR:locked,(65,17)
+DOOR:locked,(72,18)
+#
+DOOR:locked,(74,03)
+DOOR:locked,(73,08)
+DOOR:locked,(72,10)
+DOOR:locked,(74,11)
+DOOR:locked,(73,16)
+#
+MONSTER:'&',"Baalzebub",random
+OBJECT:'?',"root password detection",random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+#
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+MONSTER:'V',random,random
+MONSTER:'L',random,random
+MONSTER:'L',random,random
+MONSTER:'L',random,random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+# Some random junk:
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Some traps.
+TRAP:"fire", random
+TRAP:"sleep gas", random
+TRAP:"magic", random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+
 # [Tom]
 # The Yeenoghu level
 #
-MAZE:"yeenoghu",random
+MAZE:"yeeno-1",random
 FLAGS: noteleport
 GEOMETRY:right,center
 MAP
@@ -1253,6 +2477,77 @@ MONSTER:'G',"gnoll",random
 MONSTER:'G',"gnoll",random
 MONSTER:'G',"gnoll",random
 MONSTER:'G',"gnoll",random
+
+#
+# Yeenoghu's Plaza, Version 1
+#
+MAZE:"yeeno-2",random
+FLAGS:noteleport
+GEOMETRY:center,center
+MAP
+--------------------------------
+|LLL.........| |LLLLL.....LLL| |
+|LL..........---LLLL.---.LLLL| |
+--..............LLLLL| |..LLL--|
+.|...---........LLLLL---...LLL||
+.+...| |.........LLLLL......LL||
+.|...---.......---LL.........L||
+.|L........LL..| |............--
+--..........LLL---......---....|
+|..---.......LLLL.......| |....|
+|..| |........LL........---...--
+--.---...---..................||
+ |.......| |................---|
+ |......L---....LL.---......| ||
+ |......LLL....LLLL| |......----
+ ---....LLL..---LLL---........|.
+ | |...LLL...| |.LLLLL........+.
+ ---..LLLL...---LLLLLLLLL.....--
+ |...LL---.LLLLLLLLLLLLLLL.....|
+ ------- --------LLLLLL---------
+--              --------      --
+ENDMAP
+#
+RANDOM_PLACES:(02,18),(24,01),(15,05),(29,09),(06,12),(11,16)
+#
+MAZEWALK:(01,06),west
+MAZEWALK:(30,15),east
+#
+STAIR:levregion(01,00,5,20),levregion(5,1,69,16),up
+BRANCH:levregion(01,00,69,20),(00,00,31,20)
+TELEPORT_REGION:levregion(01,00,5,20),levregion(5,1,69,16),down
+STAIR:levregion(60,00,69,20),levregion(01,00,59,20),down
+TELEPORT_REGION:levregion(60,00,69,20),levregion(01,00,59,20),up
+NON_DIGGABLE:(00,00,31,20)
+#
+DOOR:locked,(01,05)
+DOOR:locked,(30,16)
+MONSTER:'&',"Yeenoghu",place[0]
+OBJECT:'?',"root password detection",place[0]
+MONSTER:'&',random,place[1]
+MONSTER:'&',random,place[2]
+MONSTER:'&',random,place[3]
+MONSTER:'&',random,place[4]
+MONSTER:'&',random,place[5]
+#
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+#
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
 
 # [Tom]
 # The Geryon level
@@ -1411,7 +2706,7 @@ MONSTER:'&',"vrock",random
 # [Tom]
 # The Dispater level
 #
-MAZE:"dispater",random
+MAZE:"dispa-1",random
 FLAGS: noteleport
 GEOMETRY:right,center
 MAP
@@ -1536,6 +2831,117 @@ MONSTER:'&',"bone devil",random
 MONSTER:'&',"bone devil",random
 MONSTER:'&',"bone devil",random
 MONSTER:'&',"bone devil",random
+
+#
+# Dispater's Gauntlet, Version 1
+#
+MAZE:"dispa-2",random
+FLAGS: noteleport
+GEOMETRY:center,center
+MAP
+------------------------------
+                        ----- 
+ --- --- -------    -----F..| 
+ |.| |.| |.F...| ----.--.FFF--
+ |.| |.| |.F...| |..F.......L.
+--L---.---.FFFF---..F.--.--.--
++.............L..F..F.| ---.--
+|.|--.--.-F--.|---..F.| |....+
+|.| |.||.|..F.|  ----.-----L--
+--- |.||.|..F.|  |.....---|.| 
+    ------F--.----FFFF....|.| 
+ ----...........F....F..----- 
+ |..L.--.----F-.FFFFFF+-----  
+ ----.--F----.---......#...|  
+    |.............----.|----  
+    |.---.---L---.---|.|      
+    |.| |.| |.| |.||.S.|      
+    --- |.| |.|-----.---      
+        --- ---|...S.S.|      
+------------------------------
+------------------------------
+ENDMAP
+RANDOM_PLACES:(01,08),(05,09),(05,16),(02,12),(18,09),(15,12),(24,05),(17,16),(16,06),(27,10)
+RANDOM_MONSTERS:'N','D','N','D'
+MAZEWALK:(00,06),west
+MAZEWALK:(29,07),east
+NON_DIGGABLE:(00,00,29,20)
+REGION:(00,00,29,17),unlit,"ordinary"
+STAIR:levregion(01,00,5,20),levregion(5,1,69,16),up
+BRANCH:levregion(01,00,69,20),(00,00,29,20)
+TELEPORT_REGION:levregion(01,00,5,20),levregion(5,1,69,16),down
+STAIR:levregion(60,00,69,20),levregion(01,00,59,20),down
+TELEPORT_REGION:levregion(60,00,69,20),levregion(01,00,59,20),up
+DOOR:random,(00,06)
+DOOR:random,(29,07)
+DOOR:random,(22,12)
+DOOR:locked,(21,16)
+DOOR:locked,(19,18)
+DOOR:locked,(21,18)
+MONSTER:'&',"Dispater",place[0]
+OBJECT:'?',"root password detection",place[0]
+MONSTER:'&',random,place[1]
+MONSTER:'&',random,place[2]
+MONSTER:'&',random,place[3]
+MONSTER:'&',random,place[4]
+MONSTER:'&',random,place[5]
+MONSTER:'&',random,place[6]
+MONSTER:'&',random,place[7]
+MONSTER:'&',random,(02,03)
+MONSTER:'&',random,(06,03)
+MONSTER:'&',random,(10,03)
+MONSTER:'&',random,(22,16)
+MONSTER:monster[0],random,(26,02)
+MONSTER:'d',"hell hound",(27,02)
+MONSTER:monster[1],random,(13,03)
+MONSTER:monster[2],random,(12,04)
+MONSTER:monster[3],random,(14,04)
+MONSTER:monster[0],random,(18,04)
+MONSTER:monster[1],random,(19,04)
+MONSTER:monster[2],random,(10,09)
+MONSTER:monster[3],random,(11,08)
+MONSTER:''',"iron golem",(14,03)
+MONSTER:''',"iron golem",(19,11)
+MONSTER:monster[0],random,(19,07)
+MONSTER:monster[1],random,(20,11)
+MONSTER:'d',"hell hound",(13,04)
+MONSTER:monster[2],random,(18,05)
+MONSTER:'d',"hell hound",(18,06)
+MONSTER:':',"chameleon",random
+MONSTER:':',"chameleon",random
+MONSTER:':',"chameleon",random
+MONSTER:'&',random,(08,09)
+MONSTER:monster[3],random,(11,09)
+MONSTER:monster[0],random,(26,13)
+MONSTER:'&',random,(25,07)
+MONSTER:'&',random,(21,03)
+MONSTER:monster[1],random,(13,13)
+MONSTER:'d',"hell hound",(10,08)
+MONSTER:'d',"hell hound",(25,13)
+MONSTER:'&',random,(09,17)
+MONSTER:'&',random,(13,17)
+MONSTER:'&',random,(29,04)
+MONSTER:'d',"hell hound",(18,11)
+MONSTER:'&',random,(25,10)
+
+TRAP:random,(09,15)
+TRAP:"spiked pit",(21,06)
+TRAP:random,(27,06)
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,(20,16)
+OBJECT:random,random,(20,17)
+OBJECT:random,random,(20,18)
+OBJECT:'(',"chest",(16,18)
+OBJECT:'(',"chest",(22,18)
 
 #
 # The Sanctum Level

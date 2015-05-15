@@ -139,10 +139,10 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	tower?.lev valley-?.lev wizard?.lev ghbgr-?.lev ghbgr-??.lev\
 	astral.lev air.lev earth.lev fire.lev water.lev \
 	beholder.lev blkmar.lev cav2fill.lev medus-??.lev \
-	grund-?.lev demogorg.lev dispater.lev dragons.lev geryon.lev \
+	grund-?.lev demogorg.lev dispa-?.lev dragons.lev geryon.lev \
 	guild-?.lev kobold-?.lev lich.lev mall-?.lev mall.lev mking-?.lev \
 	mtemple.lev nymph-?.lev rats-?.lev sea.lev spiders.lev stor-?.lev \
-	tomb.lev yeenoghu.lev frnknstn.lev nightmar.lev
+	tomb.lev yeeno-?.lev frnknstn.lev nightmar.lev
 QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
 
 SHARE_DATNODLB = $(CNF_SHARE_DATND)
