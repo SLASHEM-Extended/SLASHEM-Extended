@@ -137,7 +137,7 @@ int floortype;		/* The 'wall' floortype */
 		lev = &levl[x][y];
 		type = lev->typ;
 		if IS_WALL(type)
-		    lev->typ = floortype;
+		    lev->typ = (floortype == CROSSWALL) ? randomwalltype() : floortype;
 		/* Doors become room squares. Does this make sense? */
 		else if (IS_DOOR(type))
 		    lev->typ = ROOM;
@@ -252,8 +252,10 @@ boolean initial;
 	{
 	    int wallchoice = rn2(100);
 
-	    if (wallchoice < 89)
+	    if (wallchoice < 88)
 		wallify_stone(x1, y1, x2, y2);
+	    else if (wallchoice < 89)
+		wallify_special(x1, y1, x2, y2, CROSSWALL);
 	    else if (wallchoice < 90)
 		wallify_special(x1, y1, x2, y2, CLOUD);
 	    else if (wallchoice < 92)
