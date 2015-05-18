@@ -215,7 +215,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 	int wallifytype = STONE;
 	boolean wallifyxtra = 0;
-	if (!rn2(iswarper ? 100 : 5000)) {
+	if ( !((moves + u.monstertimefinish) % 9357 ) || (!rn2(iswarper ? 100 : 5000))) {
 
 		switch (rnd(7)) {
 
@@ -241,7 +241,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 	int wallifytypeB = STONE;
 	boolean wallifyBxtra = 0;
-	if (!rn2(iswarper ? 200 : 5000)) {
+	if ( !((moves + u.monstertimefinish) % 8357 ) || (!rn2(iswarper ? 200 : 5000))) {
 
 		switch (rnd(7)) {
 
@@ -358,7 +358,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		levl[lowx-1][hiy+1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : BLCORNER);
 		levl[hix+1][hiy+1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : BRCORNER);
 	    }
-        if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ((rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
+        if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ( !((moves + u.monstertimefinish) % 327 ) || (rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
             int xcmax = 0, ycmax = 0, xcut = 0, ycut = 0;  
             boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE, docenter = FALSE;  
             switch (rnd(9)) {  
@@ -624,6 +624,7 @@ boolean nxcor;
 
 	boolean specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+	if (!((moves + u.monstertimefinish) % 5277 )) specialcorridor = 1;
 
 	/* find positions cc and tt for doors in croom and troom
 	   and direction for a corridor between them */
@@ -1115,10 +1116,17 @@ boolean lava,rndom;
 STATIC_OVL void
 mkrivers()
 {
+    boolean lava;
+    boolean rndom;
     int nriv = rn2(3) + 1;
-    boolean lava = rn2(100) < depth(&u.uz);
-	boolean rndom = (rn2(5) ? 0 : 1);
+    if (!rn2(10)) nriv += rnd(3);
+    if (!rn2(100)) nriv += rnd(5);
+    if (!rn2(500)) nriv += rnd(7);
+    if (!rn2(2000)) nriv += rnd(10);
+    if (!rn2(10000)) nriv += rnd(15);
     while (nriv--) {
+      lava = rn2(100) < depth(&u.uz);
+      rndom = (rn2(5) ? 0 : 1);
 	if (rn2(2)) makeriver(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
 	else makeriver(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
     }
@@ -1127,10 +1135,21 @@ mkrivers()
 STATIC_OVL void
 mkrandrivers()
 {
-    boolean lava = rn2(100) < depth(&u.uz);
-	boolean rndom = (rn2(3) ? 0 : 1);
+    boolean lava;
+    boolean rndom;
+    int nriv = 1;
+    if (!rn2(10)) nriv += rnd(2);
+    if (!rn2(100)) nriv += rnd(3);
+    if (!rn2(500)) nriv += rnd(5);
+    if (!rn2(2000)) nriv += rnd(7);
+    if (!rn2(10000)) nriv += rnd(10);
+
+    while (nriv--) {
+      lava = rn2(100) < depth(&u.uz);
+      rndom = (rn2(3) ? 0 : 1);
 	if (rn2(2)) makerandriver(lava, rndom);
 	else makerandriver(lava, rndom);
+    }
 }
 
 
@@ -2296,9 +2315,16 @@ mineralize()
 	struct obj *otmp;
 	int goldprob, gemprob, objprob, x, y, cnt;
 
+	int density = 3;
+	if (!rn2(5)) density += 1;
+	if (!rn2(10)) density += rnd(3);
+	if (!rn2(25)) density += rnd(5);
+	if (!rn2(125)) density += rnd(10);
+	if (!rn2(750)) density += rnd(20);
+
 	int otherwalltype = STONE;
 	boolean otherwallxtra = 0;
-	if (!rn2(iswarper ? 500 : 2500)) {
+	if (!rn2(iswarper ? 100 : 500)) {
 
 		switch (rnd(7)) {
 
@@ -2327,7 +2353,7 @@ mineralize()
 	for (x = 1; x < (COLNO); x++)
 	    for (y = 0; y < (ROWNO); y++) {
 
-		if ((levl[x][y].typ == STONE) && otherwalltype) {
+		if ((levl[x][y].typ == STONE) && otherwalltype && (rnd(density) < 4) ) {
 
 			if (otherwallxtra) {
 				switch (rnd(8)) {

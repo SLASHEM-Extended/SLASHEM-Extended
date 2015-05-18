@@ -1572,17 +1572,33 @@ level_difficulty()
 	if ( (!rn2(10) || Race_if(PM_GASTLY) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
 
 	/* later in the game, low-level monsters will be less common */
+	if (moves > 1000 && retvalue < 2 && rn2(2) ) retvalue = 2;
+	if (moves > 2000 && retvalue < 2) retvalue = 2;
+	if (moves > 3000 && retvalue < 3 && rn2(2) ) retvalue = 3;
+	if (moves > 4000 && retvalue < 3) retvalue = 3;
+	if (moves > 5000 && retvalue < 5 && rn2(2) ) retvalue = 5;
 	if (moves > 10000 && retvalue < 5) retvalue = 5;
+	if (moves > 15000 && retvalue < 10 && rn2(2) ) retvalue = 10;
 	if (moves > 20000 && retvalue < 10) retvalue = 10;
+	if (moves > 30000 && retvalue < 15 && rn2(2) ) retvalue = 15;
 	if (moves > 40000 && retvalue < 15) retvalue = 15;
+	if (moves > 50000 && retvalue < 20 && rn2(2) ) retvalue = 20;
 	if (moves > 60000 && retvalue < 20) retvalue = 20;
+	if (moves > 70000 && retvalue < 25 && rn2(2) ) retvalue = 25;
 	if (moves > 80000 && retvalue < 25) retvalue = 25;
+	if (moves > 100000 && retvalue < 30 && rn2(2) ) retvalue = 30;
 	if (moves > 120000 && retvalue < 30) retvalue = 30;
+	if (moves > 140000 && retvalue < 35 && rn2(2) ) retvalue = 35;
 	if (moves > 160000 && retvalue < 35) retvalue = 35;
+	if (moves > 180000 && retvalue < 40 && rn2(2) ) retvalue = 40;
 	if (moves > 200000 && retvalue < 40) retvalue = 40;
+	if (moves > 250000 && retvalue < 50 && rn2(2) ) retvalue = 50;
 	if (moves > 300000 && retvalue < 50) retvalue = 50;
+	if (moves > 350000 && retvalue < 75 && rn2(2) ) retvalue = 75;
 	if (moves > 400000 && retvalue < 75) retvalue = 75;
+	if (moves > 450000 && retvalue < 100 && rn2(2) ) retvalue = 100;
 	if (moves > 500000 && retvalue < 100) retvalue = 100;
+	if (moves > 750000 && retvalue < 125 && rn2(2) ) retvalue = 125;
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
 	if (DifficultyIncreased) retvalue += 10;

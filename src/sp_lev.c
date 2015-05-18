@@ -111,7 +111,7 @@ register int x, y;
 	register struct obj *otmp;
 
 	if (occupied(x, y)) return;
-	if (rn2(20)) return;
+	if (rn2( !((moves + u.monstertimefinish) % 3357 ) ? 5 : !((moves + u.monstertimefinish) % 357 ) ? 10 : 20)) return;
 
 	whatisit = rnd(200);
 
@@ -945,6 +945,12 @@ boolean canbeshaped;
 				dx = 2 + rn2((hx-lx > 28) ? 12 : 8);
 				dy = 2 + rn2(4);
 
+				if (!rn2(1000) && trycnt < 200) dx += rnd(80);
+				if (!rn2(1000) && trycnt < 200) dy += rnd(24);
+
+				if (!rn2(100) && trycnt < 200) dx += rnd(40);
+				if (!rn2(100) && trycnt < 200) dy += rnd(12);
+
 				if (!rn2(10) && trycnt < 200) dx += rnd(20);
 				if (!rn2(10) && trycnt < 200) dy += rnd(6);
 
@@ -999,6 +1005,12 @@ boolean canbeshaped;
 			if (wtmp < 0 || htmp < 0) { /* Size is RANDOM */
 				wtmp = rn1(15, 3);
 				htmp = rn1(8, 2);
+
+				if (!rn2(1000) && trycnt < 200) wtmp += rnd(80);
+				if (!rn2(1000) && trycnt < 200) htmp += rnd(24);
+
+				if (!rn2(100) && trycnt < 200) wtmp += rnd(40);
+				if (!rn2(100) && trycnt < 200) htmp += rnd(12);
 
 				if (!rn2(10) && trycnt < 200) wtmp += rnd(20);
 				if (!rn2(10) && trycnt < 200) htmp += rnd(6);
@@ -2078,6 +2090,7 @@ corridor	*c;
 
 	boolean specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+	if (!((moves + u.monstertimefinish) % 5337 )) specialcorridor = 1;
 
 	if (c->src.room == -1) {
 		sort_rooms();
@@ -3052,10 +3065,17 @@ boolean lava,rndom;
 STATIC_OVL void
 mkriversX()
 {
+    boolean lava;
+    boolean rndom;
     int nriv = rn2(3) + 1;
-    boolean lava = rn2(100) < depth(&u.uz);
-	boolean rndom = (rn2(5) ? 0 : 1);
+    if (!rn2(10)) nriv += rnd(3);
+    if (!rn2(100)) nriv += rnd(5);
+    if (!rn2(500)) nriv += rnd(7);
+    if (!rn2(2000)) nriv += rnd(10);
+    if (!rn2(10000)) nriv += rnd(15);
     while (nriv--) {
+      lava = rn2(100) < depth(&u.uz);
+      rndom = (rn2(5) ? 0 : 1);
 	if (rn2(2)) makeriverX(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
 	else makeriverX(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
     }
@@ -3064,10 +3084,21 @@ mkriversX()
 STATIC_OVL void
 mkrandriversX()
 {
-    boolean lava = rn2(100) < depth(&u.uz);
-	boolean rndom = (rn2(3) ? 0 : 1);
+    boolean lava;
+    boolean rndom;
+    int nriv = 1;
+    if (!rn2(10)) nriv += rnd(2);
+    if (!rn2(100)) nriv += rnd(3);
+    if (!rn2(500)) nriv += rnd(5);
+    if (!rn2(2000)) nriv += rnd(7);
+    if (!rn2(10000)) nriv += rnd(10);
+
+    while (nriv--) {
+      lava = rn2(100) < depth(&u.uz);
+      rndom = (rn2(3) ? 0 : 1);
 	if (rn2(2)) makerandriverX(lava, rndom);
 	else makerandriverX(lava, rndom);
+    }
 }
 
 /*
@@ -3385,6 +3416,7 @@ dlb *fd;
 
     int specialcorridor;
     if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+    if (!((moves + u.monstertimefinish) % 4257 )) specialcorridor = rnd(2);
 
     (void) memset((genericptr_t)&Map[0][0], 0, sizeof Map);
     load_common_data(fd, SP_LEV_MAZE);

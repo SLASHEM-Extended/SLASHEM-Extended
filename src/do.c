@@ -1273,7 +1273,241 @@ boolean at_stairs, falling, portal;
 
 		if (isangbander) { /* level feelings --Amy */
 
-			if (!rn2(Luck + 16)) {
+			if (!rn2( (Luck*5) + 200)) {
+				pline("This place seems like murder!");
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GREMLIN,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_NYMPH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_VORTEX,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_ANGEL,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(4)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(5)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_ELEMENTAL,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && !rn2(10)) (void) makemon(mkclass(S_NEMESE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && !rn2(50)) (void) makemon(mkclass(S_ARCHFIEND,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GRUE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GREMLIN,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_NYMPH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_VORTEX,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_ANGEL,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(4)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(5)) (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_ELEMENTAL,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(3)) (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && !rn2(10)) (void) makemon(mkclass(S_NEMESE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && !rn2(50)) (void) makemon(mkclass(S_ARCHFIEND,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_GRUE,0), 0, 0, NO_MM_FLAGS);
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
+
+		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
+
+				for (angbandtraps = 0; angbandtraps < 1000; angbandtraps++) {
+
+					angbandx = rn1(COLNO-3,2);
+					angbandy = rn2(ROWNO);
+
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+					rtrap = randomtrap();
+
+					(void) maketrap(angbandx, angbandy, rtrap);
+					}
+				}
+
+			}
+
+			else if (!rn2(Luck + 16)) {
 				pline("You have a terrible feeling about this level.");
 
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) angbandvar++;
@@ -1820,7 +2054,7 @@ boolean at_stairs, falling, portal;
 
 			}
 
-			else {
+			else if (rnd(Luck + 200) < 205) {
 				pline("You have a superb feeling about this level.");
 
 				for (angbandtraps = 0; angbandtraps < 250; angbandtraps++) {
@@ -1842,6 +2076,47 @@ boolean at_stairs, falling, portal;
 						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
 
 						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER);
+
+					}
+				}
+			}
+			else {
+				pline("You have an extremely superb feeling about this level.");
+
+				for (angbandtraps = 0; angbandtraps < 250; angbandtraps++) {
+
+					angbandx = rn1(COLNO-3,2);
+					angbandy = rn2(ROWNO);
+
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE);
+						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
+					      if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+					      if (!rn2(10)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+					      if (!rn2(25)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+					      if (!rn2(50)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+					      if (!rn2(100)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+
+						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER);
 
 					}
 				}
