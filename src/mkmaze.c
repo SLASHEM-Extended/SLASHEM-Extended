@@ -306,8 +306,8 @@ bad_location(x, y, lx, ly, hx, hy)
 {
     return((boolean)(occupied(x, y) ||
 	   within_bounded_area(x,y, lx,ly, hx,hy) ||
-	   !((levl[x][y].typ == CORR && level.flags.is_maze_lev) ||
-	       levl[x][y].typ == ROOM || levl[x][y].typ == AIR)));
+	   !((levl[x][y].typ == CORR /*&& level.flags.is_maze_lev*/) ||
+	       levl[x][y].typ == ROOM || levl[x][y].typ == AIR || levl[x][y].typ == CLOUD || levl[x][y].typ == ICE)));
 }
 
 /* pick a location in area (lx, ly, hx, hy) but not in (nlx, nly, nhx, nhy) */
