@@ -2941,6 +2941,9 @@ boolean lava,rndom;
     if (rndom) rndomizat = (rn2(5) ? 0 : 1);
     if (rndom) trynmbr = rnd(20);
 
+	register struct obj *otmpX;
+	register int tryct = 0;
+
     cx = x1;
     cy = y1;
 
@@ -2980,6 +2983,79 @@ boolean lava,rndom;
 		}
 		else 
 		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+
+		if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = THRONE;
+		else if (!((moves + u.monstertimefinish) % 857 ) && !rn2(ishaxor ? 1000 : 2000))
+			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 2500 : 5000)) {
+			levl[cx][cy].typ = FOUNTAIN;
+			level.flags.nfountains++;
+			}
+		else if (!((moves + u.monstertimefinish) % 859 ) && !rn2(ishaxor ? 250 : 500)) {
+			levl[cx][cy].typ = FOUNTAIN;
+			level.flags.nfountains++;
+			}
+		else if (!rn2(ishaxor ? 2500 : 5000)) {
+			levl[cx][cy].typ = SINK;
+			level.flags.nsinks++;
+			}
+		else if (!((moves + u.monstertimefinish) % 861 ) && !rn2(ishaxor ? 250 : 500)) {
+			levl[cx][cy].typ = SINK;
+			level.flags.nsinks++;
+			}
+		else if (!rn2(ishaxor ? 5000 : 10000))
+			levl[cx][cy].typ = TOILET;
+		else if (!((moves + u.monstertimefinish) % 863 ) && !rn2(ishaxor ? 500 : 1000))
+			levl[cx][cy].typ = TOILET;
+		else if (!rn2(ishaxor ? 1000 : 2000)) {
+			levl[cx][cy].typ = GRAVE;
+	
+			if (!rn2(3)) (void) mkgold(0L, cx, cy);
+			for (tryct = rn2(5); tryct; tryct--) {
+				    otmpX = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmpX) return;
+				    curse(otmpX);
+				    otmpX->ox = cx;
+				    otmpX->oy = cy;
+				    add_to_buried(otmpX);
+				}
+			}
+		else if (!((moves + u.monstertimefinish) % 865 ) && !rn2(ishaxor ? 100 : 200)) {
+			levl[cx][cy].typ = GRAVE;
+	
+			if (!rn2(3)) (void) mkgold(0L, cx, cy);
+			for (tryct = rn2(5); tryct; tryct--) {
+				    otmpX = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmpX) return;
+				    curse(otmpX);
+				    otmpX->ox = cx;
+				    otmpX->oy = cy;
+				    add_to_buried(otmpX);
+				}
+			}
+		else if (!rn2(ishaxor ? 10000 : 20000)) {
+			levl[cx][cy].typ = ALTAR;
+			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
+			else switch (rnd(3)) {
+	
+			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+			}
+		}
+		else if (!((moves + u.monstertimefinish) % 867 ) && !rn2(ishaxor ? 1000 : 2000)) {
+			levl[cx][cy].typ = ALTAR;
+			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
+			else switch (rnd(3)) {
+	
+			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+			}
+		}
 	}
 
 	if (cx == x2 && cy == y2) break;
@@ -3034,6 +3110,9 @@ boolean lava,rndom;
     if (rndom) rndomizat = (rn2(3) ? 0 : 1);
     if (rndom) trynmbr = rnd(12);
 
+	register int tryct = 0;
+	register struct obj *otmpX;
+
     while (count++ < ammount) {
 
       cx = rn2(COLNO);
@@ -3072,6 +3151,79 @@ boolean lava,rndom;
 		}
 		else 
 		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
+
+		if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = THRONE;
+		else if (!((moves + u.monstertimefinish) % 877 ) && !rn2(ishaxor ? 1000 : 2000))
+			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 2500 : 5000)) {
+			levl[cx][cy].typ = FOUNTAIN;
+			level.flags.nfountains++;
+			}
+		else if (!((moves + u.monstertimefinish) % 879 ) && !rn2(ishaxor ? 250 : 500)) {
+			levl[cx][cy].typ = FOUNTAIN;
+			level.flags.nfountains++;
+			}
+		else if (!rn2(ishaxor ? 2500 : 5000)) {
+			levl[cx][cy].typ = SINK;
+			level.flags.nsinks++;
+			}
+		else if (!((moves + u.monstertimefinish) % 881 ) && !rn2(ishaxor ? 250 : 500)) {
+			levl[cx][cy].typ = SINK;
+			level.flags.nsinks++;
+			}
+		else if (!rn2(ishaxor ? 5000 : 10000))
+			levl[cx][cy].typ = TOILET;
+		else if (!((moves + u.monstertimefinish) % 883 ) && !rn2(ishaxor ? 500 : 1000))
+			levl[cx][cy].typ = TOILET;
+		else if (!rn2(ishaxor ? 1000 : 2000)) {
+			levl[cx][cy].typ = GRAVE;
+	
+			if (!rn2(3)) (void) mkgold(0L, cx, cy);
+			for (tryct = rn2(5); tryct; tryct--) {
+				    otmpX = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmpX) return;
+				    curse(otmpX);
+				    otmpX->ox = cx;
+				    otmpX->oy = cy;
+				    add_to_buried(otmpX);
+				}
+			}
+		else if (!((moves + u.monstertimefinish) % 885 ) && !rn2(ishaxor ? 100 : 200)) {
+			levl[cx][cy].typ = GRAVE;
+	
+			if (!rn2(3)) (void) mkgold(0L, cx, cy);
+			for (tryct = rn2(5); tryct; tryct--) {
+				    otmpX = mkobj(RANDOM_CLASS, TRUE);
+				    if (!otmpX) return;
+				    curse(otmpX);
+				    otmpX->ox = cx;
+				    otmpX->oy = cy;
+				    add_to_buried(otmpX);
+				}
+			}
+		else if (!rn2(ishaxor ? 10000 : 20000)) {
+			levl[cx][cy].typ = ALTAR;
+			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
+			else switch (rnd(3)) {
+	
+			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+			}
+		}
+		else if (!((moves + u.monstertimefinish) % 887 ) && !rn2(ishaxor ? 1000 : 2000)) {
+			levl[cx][cy].typ = ALTAR;
+			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
+			else switch (rnd(3)) {
+	
+			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
+	
+			}
+		}
 	}
 
 	}
