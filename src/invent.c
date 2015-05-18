@@ -5119,25 +5119,25 @@ struct obj *obj;
 			case WAN_SOLAR_BEAM:
 				pline("A wand that sends rays of pure solar energy at your enemies."); break;
 			case WAN_STONING:
-				pline("A wand that fires invisible beams to turn monsters to stone.");
+				pline("A wand that fires invisible beams to turn monsters to stone."); break;
 			case WAN_CURSE_ITEMS:
-				pline("If anyone zaps this wand, your inventory items become cursed.");
+				pline("If anyone zaps this wand, your inventory items become cursed."); break;
 			case WAN_AMNESIA:
-				pline("You should prevent at all costs that anyone zaps this thing, for if it happens, you will suffer from amnesia!");
+				pline("You should prevent at all costs that anyone zaps this thing, for if it happens, you will suffer from amnesia!"); break;
 			case WAN_BAD_LUCK:
-				pline("Every zap of this wand reduces your luck by one point, regardless of who zapped it.");
+				pline("Every zap of this wand reduces your luck by one point, regardless of who zapped it."); break;
 			case WAN_REMOVE_RESISTANCE:
-				pline("Zapping this wand will remove random intrinsics.");
+				pline("Zapping this wand will remove random intrinsics."); break;
 			case WAN_CORROSION:
-				pline("A wand that corrodes some of your inventory if you zap it, and also if someone else zaps it.");
+				pline("A wand that corrodes some of your inventory if you zap it, and also if someone else zaps it."); break;
 			case WAN_FUMBLING:
-				pline("Zapping this wand will cause you to fumble. It doesn't matter who zapped it either.");
+				pline("Zapping this wand will cause you to fumble. It doesn't matter who zapped it either."); break;
 			case WAN_STARVATION:
-				pline("This wand will reduce your nutrition if you, or anyone else, zaps it.");
+				pline("This wand will reduce your nutrition if you, or anyone else, zaps it."); break;
 			case WAN_PARALYSIS:
-				pline("A wand that fires invisible beams to paralyze monsters.");
+				pline("A wand that fires invisible beams to paralyze monsters."); break;
 			case WAN_DISINTEGRATION:
-				pline("For instances where a wand of death isn't good enough, use this to fire invisible disintegration beams.");
+				pline("For instances where a wand of death isn't good enough, use this to fire invisible disintegration beams."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
