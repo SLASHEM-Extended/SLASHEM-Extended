@@ -215,7 +215,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 	int wallifytype = STONE;
 	boolean wallifyxtra = 0;
-	if ( !((moves + u.monstertimefinish) % 9357 ) || (!rn2(iswarper ? 100 : 5000))) {
+	if ( !((moves + u.monstertimefinish) % 9357 ) || (!(u.monstertimefinish % 77) && !rn2(iswarper ? 50 : 500)) || (!(u.monstertimefinish % 773) && !rn2(iswarper ? 10 : 100)) || (!rn2(iswarper ? 100 : 5000))) {
 
 		switch (rnd(7)) {
 
@@ -241,7 +241,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 	int wallifytypeB = STONE;
 	boolean wallifyBxtra = 0;
-	if ( !((moves + u.monstertimefinish) % 8357 ) || (!rn2(iswarper ? 200 : 5000))) {
+	if ( !((moves + u.monstertimefinish) % 8357 ) || (!(u.monstertimefinish % 73) && !rn2(iswarper ? 100 : 500)) || (!(u.monstertimefinish % 673) && !rn2(iswarper ? 20 : 100)) || (!rn2(iswarper ? 200 : 5000))) {
 
 		switch (rnd(7)) {
 
@@ -544,7 +544,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		}
           }  
 	    if (!is_room) {	/* a subroom */
-		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2(iswarper ? 10 : 200) ? FALSE : TRUE);
+		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2( !(u.monstertimefinish % 87) ? (iswarper ? 3 : 30) : (iswarper ? 10 : 200) ) ? FALSE : TRUE);
 	    }
 	}
 }
@@ -624,6 +624,9 @@ boolean nxcor;
 
 	boolean specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+
+	if (!(u.monstertimefinish % 337) && !rn2(iswarper ? 10 : 50)) specialcorridor = 1;
+
 	if (!((moves + u.monstertimefinish) % 5277 )) specialcorridor = 1;
 
 	/* find positions cc and tt for doors in croom and troom
@@ -1284,7 +1287,7 @@ makelevel()
 	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
 		    makemaz("");
 		    return;
-	    } else if (In_mines(&u.uz) && rn2(iswarper ? 5 : 50)) {
+	    } else if (In_mines(&u.uz) && rn2(!(u.monstertimefinish % 247) ? (iswarper ? 2 : 20) : (iswarper ? 5 : 50) )) {
 		    if (rn2(10)) makemaz("minefill");
 		    else switch (rnd(7)) {
 			case 1: makemaz("minefila"); break;
@@ -1319,7 +1322,7 @@ makelevel()
 
 	/* very random levels --Amy */
 
-	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(iswarper ? 10 : 100)) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) ) {
+	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) ) {
 
 
 	    switch (rnd(73)) {
@@ -2041,7 +2044,7 @@ makelevel()
 
 	}
 
-	if ( (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_sheol(&u.uz) && !rn2(iswarper ? 2 : 5)) ) {
+	if ( (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
 	    switch (rnd(73)) {
 
@@ -3371,6 +3374,8 @@ mineralize()
 	int goldprob, gemprob, objprob, x, y, cnt;
 
 	int density = 3;
+	if (!(u.monstertimefinish % 477)) density += rnd(5);
+	if (!(u.monstertimefinish % 1877)) density += rnd(10);
 	if (!rn2(5)) density += 1;
 	if (!rn2(10)) density += rnd(3);
 	if (!rn2(25)) density += rnd(5);
@@ -3379,7 +3384,7 @@ mineralize()
 
 	int otherwalltype = STONE;
 	boolean otherwallxtra = 0;
-	if (!rn2(iswarper ? 100 : 500)) {
+	if (!rn2(!(u.monstertimefinish % 1777) ? (iswarper ? 3 : 20) : !(u.monstertimefinish % 277) ? (iswarper ? 10 : 50) : (iswarper ? 100 : 500) )) {
 
 		switch (rnd(7)) {
 

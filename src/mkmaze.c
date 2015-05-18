@@ -128,6 +128,8 @@ int floortype;		/* The 'wall' floortype */
 	struct rm *lev;
 
 	int density = 3;
+	if (!(u.monstertimefinish % 479)) density += rnd(5);
+	if (!(u.monstertimefinish % 1879)) density += rnd(10);
 	if (!rn2(5)) density += 1;
 	if (!rn2(10)) density += rnd(3);
 	if (!rn2(25)) density += rnd(5);
@@ -260,6 +262,12 @@ boolean initial;
 	/* Put in the walls... */
 	{
 	    int wallchoice = rn2(100);
+
+	    if(!(u.monstertimefinish % 43)) wallchoice = (50 + rn2(50));
+
+	    if(!(u.monstertimefinish % 943)) wallchoice = (75 + rn2(25));
+
+	    if(!(u.monstertimefinish % 3943)) wallchoice = (85 + rn2(15));
 
 	    if (wallchoice < 88)
 		wallify_stone(x1, y1, x2, y2);
@@ -1031,6 +1039,7 @@ int x,y;
 
 	int specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+	if (!(u.monstertimefinish % 325) && !rn2(iswarper ? 10 : 50)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 857 ) && !rn2(iswarper ? 5 : 10)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 2457 ) && !rn2(iswarper ? 2 : 4)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 5857 )) specialcorridor = rnd(2);
@@ -1269,6 +1278,7 @@ int x,y;
 
 	int specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+	if (!(u.monstertimefinish % 325) && !rn2(iswarper ? 10 : 50)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 857 ) && !rn2(iswarper ? 5 : 10)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 2457 ) && !rn2(iswarper ? 2 : 4)) specialcorridor = rnd(2);
 	if (!((moves + u.monstertimefinish) % 5857 )) specialcorridor = rnd(2);

@@ -2090,6 +2090,9 @@ corridor	*c;
 
 	boolean specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
+
+	if (!(u.monstertimefinish % 327) && !rn2(iswarper ? 10 : 50)) specialcorridor = 1;
+
 	if (!((moves + u.monstertimefinish) % 5337 )) specialcorridor = 1;
 
 	if (c->src.room == -1) {
@@ -2416,7 +2419,7 @@ boolean prefilled;
 			if(!eelct || !rn2(4)) {
 			    /* mkclass() won't do, as we might get kraken */
 /* comment by Amy - low-level players shouldn't move close to water anyway, so I will totally spawn everything here! */
-			    (void) makemon(rn2(3) ? mkclass(S_EEL,0)
+			    (void) makemon(rn2(5) ? mkclass(S_EEL,0)
 						  : rn2(5) ? &mons[PM_GIANT_EEL]
 						  : rn2(2) ? &mons[PM_PIRANHA]
 						  : &mons[PM_ELECTRIC_EEL],
@@ -3416,6 +3419,7 @@ dlb *fd;
 
     int specialcorridor;
     if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
+    if (!(u.monstertimefinish % 347) && !rn2(iswarper ? 10 : 50)) specialcorridor = rnd(2);
     if (!((moves + u.monstertimefinish) % 4257 )) specialcorridor = rnd(2);
 
     (void) memset((genericptr_t)&Map[0][0], 0, sizeof Map);

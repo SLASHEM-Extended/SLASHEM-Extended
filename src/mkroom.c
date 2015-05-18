@@ -925,7 +925,7 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 			if(!eelct || !rn2(4)) {
 			    /* mkclass() won't do, as we might get kraken */
 /* comment by Amy - low-level players shouldn't move close to water anyway, so I will totally spawn everything here! */
-			    (void) makemon(rn2(3) ? mkclass(S_EEL,0)
+			    (void) makemon(rn2(5) ? mkclass(S_EEL,0)
 						  : rn2(5) ? &mons[PM_GIANT_EEL]
 						  : rn2(2) ? &mons[PM_PIRANHA]
 						  : &mons[PM_ELECTRIC_EEL],
