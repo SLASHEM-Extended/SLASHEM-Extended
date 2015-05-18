@@ -1063,14 +1063,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
-			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nsinks++;
+				}
+			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
 			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TOILET;
 			else if (!((moves + u.monstertimefinish) % 763 ) && !rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
@@ -1171,14 +1179,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))){
 				levl[x][y].typ = FOUNTAIN;
-			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))){
 				levl[x][y].typ = FOUNTAIN;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
-			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nsinks++;
+				}
+			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
 			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TOILET;
 			else if (!((moves + u.monstertimefinish) % 763 ) && !rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
@@ -1296,14 +1312,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
-			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nsinks++;
+				}
+			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
 			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TOILET;
 			else if (!((moves + u.monstertimefinish) % 763 ) && !rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
@@ -1401,14 +1425,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!((moves + u.monstertimefinish) % 759 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
-			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nfountains++;
+				}
+			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
-			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				level.flags.nsinks++;
+				}
+			else if (!((moves + u.monstertimefinish) % 761 ) && !rn2(ishaxor ? 250 : 500) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
 			else if (!rn2(ishaxor ? 5000 : 10000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TOILET;
 			else if (!((moves + u.monstertimefinish) % 763 ) && !rn2(ishaxor ? 500 : 1000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))

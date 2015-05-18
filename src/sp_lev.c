@@ -122,7 +122,7 @@ register int x, y;
 	case 3:
 	case 4:
 	case 5:
-	levl[x][y].typ = FOUNTAIN; break;
+	levl[x][y].typ = FOUNTAIN; level.flags.nfountains++; break;
 	case 6:
 	case 7:
 	case 8:
@@ -284,7 +284,7 @@ register int x, y;
 	case 138:
 	case 139:
 	case 140:
-	levl[x][y].typ = SINK; break;
+	levl[x][y].typ = SINK; level.flags.nsinks++; break;
 
 	case 141:
 	levl[x][y].typ = THRONE; break;
@@ -2463,8 +2463,13 @@ boolean prefilled;
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
-		    if(rn2(5)) 
+		    if(rn2(5)) {
 			levl[sx][sy].typ = typ;
+			if (typ == FOUNTAIN) 	level.flags.nfountains++;
+			if (typ == SINK) 	level.flags.nsinks++;
+
+			}
+
 		}
 
 	}
@@ -2482,8 +2487,13 @@ boolean prefilled;
 
 	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(11) ? ALIGNMENT_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(9) ? DSTW_TRAP : !rn2(9) ? STATUS_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? STAIRS_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? DROP_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : rn2(50) ? SUPERSCROLLER_TRAP : AUTOMATIC_SWITCHER;
 
-		    if(rn2(3)) 
+		    if(rn2(3)) {
 			levl[sx][sy].typ = typ;
+
+			if (typ == FOUNTAIN) 	level.flags.nfountains++;
+			if (typ == SINK) 	level.flags.nsinks++;
+			}
+
 			/*else*/ if (!rn2(10))	(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
@@ -2503,6 +2513,8 @@ boolean prefilled;
 	    typ = !rn2(3) ? POOL : !rn2(10) ? ICE : !rn2(10) ? FOUNTAIN : !rn2(3) ? STONE : !rn2(8) ? TREE : ROOM;
 
 		levl[sx][sy].typ = typ;
+		if (typ == FOUNTAIN) 	level.flags.nfountains++;
+		if (typ == SINK) 	level.flags.nsinks++;
 		}
 
 	}
