@@ -748,12 +748,7 @@ struct mkroom	*croom;
 	    get_room_loc(&try_x, &try_y, croom);
 	} while (levl[try_x][try_y].typ != ROOM && ++trycnt <= 100);
 
-	do {
-	    try_x = *x,  try_y = *y;
-	    get_room_loc(&try_x, &try_y, croom);
-	} while (levl[try_x][try_y].typ != ICE && levl[try_x][try_y].typ != CLOUD && levl[try_x][try_y].typ != CORR &&++trycnt <= 200);
-
-	if (trycnt > 200)
+	if (trycnt > 100)
 	    panic("get_free_room_loc:  can't find a place!");
 	*x = try_x,  *y = try_y;
 }
@@ -4131,3 +4126,4 @@ const char *name;
 
 
 /*sp_lev.c*/
+
