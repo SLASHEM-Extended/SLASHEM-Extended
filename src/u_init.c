@@ -1527,6 +1527,501 @@ static struct trobj UberLostSoulItemR[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj UberLostSoulItemC2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM2[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM3[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM4[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM5[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM6[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM7[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM8[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM9[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemC10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM10[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj GigantItem[] = {
 	{ BOULDER, 0, ROCK_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -6254,56 +6749,142 @@ u_init()
 
 	if (isnullrace && israndomizer) { /* null would cancel out randomizer, so let's allow hybrids to start with some _very_ random stuff. --Amy */
 
-		while (rn2(5)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM);
 
-			switch (rnd(32)) {
+		if (rn2(5)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC2);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD2);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE2);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF2);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG2);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH2);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI2);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ2);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK2);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL2);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM2);
+		}
 
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-					ini_inv(UberLostSoulItemC); break;
-				case 6:
-				case 7:
-				case 8:
-				case 9:
-				case 10:
-					ini_inv(UberLostSoulItemD); break;
-				case 11:
-				case 12:
-					ini_inv(UberLostSoulItemE); break;
-				case 13:
-				case 14:
-				case 15:
-				case 16:
-					ini_inv(UberLostSoulItemF); break;
-				case 17:
-				case 18:
-					ini_inv(UberLostSoulItemG); break;
-				case 19:
-				case 20:
-					ini_inv(UberLostSoulItemH); break;
-				case 21:
-					ini_inv(UberLostSoulItemI); break;
-				case 22:
-				case 23:
-				case 24:
-					ini_inv(UberLostSoulItemJ); break;
-				case 25:
-				case 26:
-				case 27:
-				case 28:
-				case 29:
-					ini_inv(UberLostSoulItemK); break;
-				case 30:
-				case 31:
-					ini_inv(UberLostSoulItemL); break;
-				case 32:
-					ini_inv(UberLostSoulItemM); break;
+		if (rn2(3)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC3);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD3);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE3);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF3);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG3);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH3);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI3);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ3);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK3);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL3);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM3);
+		}
 
-			}
+		if (rn2(2)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC4);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD4);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE4);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF4);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG4);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH4);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI4);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ4);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK4);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL4);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM4);
+		}
 
+		if (!rn2(3)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC5);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD5);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE5);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF5);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG5);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH5);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI5);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ5);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK5);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL5);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM5);
+		}
+
+		if (!rn2(5)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC6);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD6);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE6);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF6);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG6);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH6);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI6);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ6);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK6);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL6);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM6);
+		}
+
+		if (!rn2(7)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC7);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD7);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE7);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF7);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG7);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH7);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI7);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ7);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK7);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL7);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM7);
+		}
+
+		if (!rn2(10)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC8);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD8);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE8);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF8);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG8);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH8);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI8);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ8);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK8);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL8);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM8);
+		}
+
+		if (!rn2(20)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC9);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD9);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE9);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF9);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG9);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH9);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI9);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ9);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK9);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL9);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM9);
+		}
+
+		if (!rn2(50)) {
+		if (!rn2(5)) ini_inv(UberLostSoulItemC10);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD10);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE10);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF10);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG10);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH10);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI10);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ10);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK10);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL10);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM10);
 		}
 
 	xtraskillinit();	/* so you actually get the skills of those objects --Amy */
