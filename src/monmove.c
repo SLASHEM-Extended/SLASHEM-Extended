@@ -379,6 +379,16 @@ struct monst *mon;
 	return -1;
 }
 
+static NEARDATA const char practical[] = { 
+	WEAPON_CLASS, ARMOR_CLASS, GEM_CLASS, FOOD_CLASS, 0 };
+static NEARDATA const char magical[] = {
+	AMULET_CLASS, POTION_CLASS, SCROLL_CLASS, WAND_CLASS, RING_CLASS,
+	SPBOOK_CLASS, 0 };
+static NEARDATA const char indigestion[] = { BALL_CLASS, ROCK_CLASS, 0 };
+static NEARDATA const char boulder_class[] = { ROCK_CLASS, 0 };
+static NEARDATA const char gem_class[] = { GEM_CLASS, 0 };
+
+
 /* returns 1 if monster died moving, 0 otherwise */
 /* The whole dochugw/m_move/distfleeck/mfndpos section is serious spaghetti
  * code. --KAA
@@ -395,6 +405,9 @@ register struct monst *mtmp;
 #endif
 
 /*	Pre-movement adjustments	*/
+
+	boolean likegold=0, likegems=0, likeobjs=0, likemagic=0;
+	boolean uses_items=0, likerock=0;
 
 	mdat = mtmp->data;
 
@@ -424,6 +437,34 @@ register struct monst *mtmp;
 		if (Hallucination) newsym(mtmp->mx,mtmp->my);
 		return(0);
 	}
+
+      if(OBJ_AT(mtmp->mx, mtmp->my) && !mtmp->mpeaceful) {
+
+		register int pctload = (curr_mon_load(mtmp) * 100) / max_mon_load(mtmp);
+
+		likegold = (likes_gold(mtmp->data) && pctload < 95);
+		likegems = (likes_gems(mtmp->data) && pctload < 85);
+		uses_items = (pctload < 75);
+		likeobjs = (likes_objs(mtmp->data) && pctload < 75);
+		likemagic = (likes_magic(mtmp->data) && pctload < 85);
+		likerock = (throws_rocks(mtmp->data) && pctload < 50 && !In_sokoban(&u.uz));
+
+		if(g_at(mtmp->mx,mtmp->my) && likegold) mpickgold(mtmp);
+
+		if(!*in_rooms(mtmp->mx, mtmp->my, SHOPBASE) || !rn2(25)) {
+
+		    if(likeobjs) mpickstuff(mtmp, practical);
+		    if(likemagic) mpickstuff(mtmp, magical);
+		    if(likerock) mpickstuff(mtmp, boulder_class);
+		    if(likegems) mpickstuff(mtmp, gem_class);
+		    if(uses_items) mpickstuff(mtmp, (char *)0);
+		}
+
+		if(mtmp->minvis) {
+		    newsym(mtmp->mx, mtmp->my);
+		    if (mtmp->wormno) see_wsegs(mtmp);
+		}
+      }
 
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
@@ -852,15 +893,6 @@ toofar:
 
 	return(tmp == 2);
 }
-
-static NEARDATA const char practical[] = { 
-	WEAPON_CLASS, ARMOR_CLASS, GEM_CLASS, FOOD_CLASS, 0 };
-static NEARDATA const char magical[] = {
-	AMULET_CLASS, POTION_CLASS, SCROLL_CLASS, WAND_CLASS, RING_CLASS,
-	SPBOOK_CLASS, 0 };
-static NEARDATA const char indigestion[] = { BALL_CLASS, ROCK_CLASS, 0 };
-static NEARDATA const char boulder_class[] = { ROCK_CLASS, 0 };
-static NEARDATA const char gem_class[] = { GEM_CLASS, 0 };
 
 boolean
 itsstuck(mtmp)
