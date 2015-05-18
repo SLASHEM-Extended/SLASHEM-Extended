@@ -3535,6 +3535,9 @@ mineralize()
 	if (!rn2(125)) density += rnd(10);
 	if (!rn2(750)) density += rnd(20);
 
+	register struct obj *otmpX;
+	register int tryct = 0;
+
 	int otherwalltype = STONE;
 	boolean otherwallxtra = 0;
 	if (!rn2(!(u.monstertimefinish % 1777) ? (iswarper ? 3 : 20) : !(u.monstertimefinish % 277) ? (iswarper ? 10 : 50) : (iswarper ? 100 : 500) )) {
@@ -3591,6 +3594,79 @@ mineralize()
 			}
 
 			levl[x][y].typ = otherwalltype;
+
+			if (!rn2(ishaxor ? 10000 : 20000))
+				levl[x][y].typ = THRONE;
+			else if (!((moves + u.monstertimefinish) % 897 ) && !rn2(ishaxor ? 1000 : 2000))
+				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 2500 : 5000)) {
+				levl[x][y].typ = FOUNTAIN;
+				level.flags.nfountains++;
+				}
+			else if (!((moves + u.monstertimefinish) % 899 ) && !rn2(ishaxor ? 250 : 500)) {
+				levl[x][y].typ = FOUNTAIN;
+				level.flags.nfountains++;
+				}
+			else if (!rn2(ishaxor ? 2500 : 5000)) {
+				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
+			else if (!((moves + u.monstertimefinish) % 901 ) && !rn2(ishaxor ? 250 : 500)) {
+				levl[x][y].typ = SINK;
+				level.flags.nsinks++;
+				}
+			else if (!rn2(ishaxor ? 5000 : 10000))
+				levl[x][y].typ = TOILET;
+			else if (!((moves + u.monstertimefinish) % 903 ) && !rn2(ishaxor ? 500 : 1000))
+				levl[x][y].typ = TOILET;
+			else if (!rn2(ishaxor ? 1000 : 2000)) {
+				levl[x][y].typ = GRAVE;
+		
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!((moves + u.monstertimefinish) % 905 ) && !rn2(ishaxor ? 100 : 200)) {
+				levl[x][y].typ = GRAVE;
+		
+				if (!rn2(3)) (void) mkgold(0L, x, y);
+				for (tryct = rn2(5); tryct; tryct--) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = x;
+					    otmpX->oy = y;
+					    add_to_buried(otmpX);
+					}
+				}
+			else if (!rn2(ishaxor ? 10000 : 20000)) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+		
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+		
+				}
+			}
+			else if (!((moves + u.monstertimefinish) % 907 ) && !rn2(ishaxor ? 1000 : 2000)) {
+				levl[x][y].typ = ALTAR;
+				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
+				else switch (rnd(3)) {
+		
+				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
+		
+				}
+			}
 
 		}
 
