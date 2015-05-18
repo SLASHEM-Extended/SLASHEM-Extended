@@ -121,3 +121,294 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
+
+MAZE: "ecav2",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----------|    |---|
+                 |.........|    |...|         |---------|
+ -----------|    |.........|    |...|         |.........|
+ |..........|    |.........|    |...|         |.........|
+ |..........|   |----+------------+----------------+------|
+ |..........|   |.........................................|
+ |..........|   |.........................................|-----------|
+ |--|.......|   |----+------+----------------+-----------+|...........|
+    |---+--------.......|...........|....|......|    |................|
+    |...................|...........|....|......|    |................|
+    |...................|-----------|....|......|    |................|
+    |\..................S...........|....|......|    |................|
+    |...................|-------------+--|......|    |----------------|
+    |-------+-----------|......|................|
+        |...............|......|................|
+        |...............+......|................|
+        |...............|-----------------------|
+        |...............|
+        |---------------|
+ENDMAP
+#
+#
+STAIR:(34,02),up
+STAIR:random,down
+#
+DOOR: closed,(34,4)
+DOOR: closed,(21,4)
+DOOR: closed,(51,4)
+DOOR: closed,(57,7)
+DOOR: closed,(45,7)
+DOOR: closed,(28,7)
+DOOR: closed,(21,7)
+DOOR: closed,(8,8)
+DOOR: closed,(38,12)
+DOOR: closed,(12,13)
+DOOR: closed,(24,15)
+#
+# the king's hidden treasure
+OBJECT:'(',"chest",(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+# stuff scattered around
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+#
+#
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, (5,11), hostile
+OBJECT:'?',"root password detection",(5,11)
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "hcav2",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                 ----------|    |---|
+                 |.........|    |...|         |---------|
+ -----------|    |.........|    |...|         |.........|
+ |..........|    |.........|    |...|         |.........|
+ |..........|   |----+------------+----------------+------|
+ |..........|   |.........................................|
+ |..........|   |.........................................|-----------|
+ |--|.......|   |----+------+----------------+-----------+|...........|
+    |---+--------.......|...........|....|......|    |................|
+    |...................|...........|....|......|    |................|
+    |...................|-----------|....|......|    |................|
+    |\..................S...........|....|......|    |................|
+    |...................|-------------+--|......|    |----------------|
+    |-------+-----------|......|................|
+        |...............|......|................|
+        |...............+......|................|
+        |...............|-----------------------|
+        |...............|
+        |---------------|
+ENDMAP
+#
+#
+STAIR:(34,02),up
+STAIR:random,down
+#
+DOOR: closed,(34,4)
+DOOR: closed,(21,4)
+DOOR: closed,(51,4)
+DOOR: closed,(57,7)
+DOOR: closed,(45,7)
+DOOR: closed,(28,7)
+DOOR: closed,(21,7)
+DOOR: closed,(8,8)
+DOOR: closed,(38,12)
+DOOR: closed,(12,13)
+DOOR: closed,(24,15)
+#
+# the king's hidden treasure
+OBJECT:'(',"chest",(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+GOLD: random,(35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '*', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: '"', random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+OBJECT: random, random, (35,11)
+# stuff scattered around
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+#
+#
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', "giant", random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, random, hostile
+MONSTER: 'H', random, (5,11), hostile
+OBJECT:'?',"root password detection",(5,11)
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'O', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+MONSTER: 'T', random, random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+

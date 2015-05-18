@@ -91,3 +91,197 @@ MONSTER: ';',random,random,hostile
 MONSTER: ';',random,random,hostile
 ENGRAVING:(11,03),burn,"The lamp washed into the sea while I slept! Woe and damnnation!"
 OBJECT: random,random,(11,03)
+
+MAZE: "esea",' '
+MESSAGE:"You hear the roar of the sea. That can't be right...."
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            }}}}}}}}        }}}}}}}}}}             
+                       }}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}      
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}    
+   ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}}}   
+  ..............}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}
+    ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}
+   ............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}   
+     ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+       ........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} 
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}     }}}}}}}}}}}}}}}}}     
+         ....}}}}}}}}  }}}  }}}}}}}}}}}       }}}}}}}}}}}}}}}}     
+                             }}}}}}}              }}}}}}}          
+ENDMAP
+RANDOM_PLACES:(40,06),(49,05),(46,10),(30,07)
+RANDOM_MONSTERS: ';',':'
+REGION:(00,00,66,15),unlit,"ordinary"
+STAIR:(05,12),up
+STAIR:random,down
+# the treasure island!
+OBJECT:'(',"chest",(45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+# beach junk...
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+# the missing magic lamp!
+OBJECT:'(',"magic lamp",place[0]
+# the beach-combing committee
+MONSTER: ';',"giant crab",(10,6),hostile
+MONSTER: ';',"giant crab",(11,7),hostile
+MONSTER: ';',"giant crab",(10,8),hostile
+MONSTER: ';',"giant crab",(12,9),hostile
+MONSTER: ';',"giant crab",(10,11),hostile
+# lurking offshore...
+MONSTER: ';',"shark",(26,05),hostile
+MONSTER: ';',"shark",(28,05),hostile
+MONSTER: ';',"shark",(30,06),hostile
+MONSTER: ';',"shark",(27,07),hostile
+MONSTER: ';',"shark",(26,09),hostile
+MONSTER: ';',"shark",(30,09),hostile
+MONSTER: ';',"shark",(31,11),hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+ENGRAVING:(11,03),burn,"The lamp washed into the sea while I slept! Woe and damnnation!"
+OBJECT: random,random,(11,03)
+
+MAZE: "hsea",' '
+MESSAGE:"You hear the roar of the sea. That can't be right...."
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            }}}}}}}}        }}}}}}}}}}             
+                       }}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}      
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}    
+   ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+  .............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}}}   
+  ..............}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}
+    ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}
+   ............}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}   
+     ...........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+       ........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} 
+     ..........}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}  
+      .......}}}}}}}}}}}}}}}}}}}}}}}}}}}}     }}}}}}}}}}}}}}}}}     
+         ....}}}}}}}}  }}}  }}}}}}}}}}}       }}}}}}}}}}}}}}}}     
+                             }}}}}}}              }}}}}}}          
+ENDMAP
+RANDOM_PLACES:(40,06),(49,05),(46,10),(30,07)
+RANDOM_MONSTERS: ';',':'
+REGION:(00,00,66,15),unlit,"ordinary"
+STAIR:(05,12),up
+STAIR:random,down
+# the treasure island!
+OBJECT:'(',"chest",(45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: random, random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '/', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '"', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '=', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+OBJECT: '*', random, (45,6)
+# beach junk...
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+# the missing magic lamp!
+OBJECT:'(',"magic lamp",place[0]
+# the beach-combing committee
+MONSTER: ';',"giant crab",(10,6),hostile
+MONSTER: ';',"giant crab",(11,7),hostile
+MONSTER: ';',"giant crab",(10,8),hostile
+MONSTER: ';',"giant crab",(12,9),hostile
+MONSTER: ';',"giant crab",(10,11),hostile
+# lurking offshore...
+MONSTER: ';',"shark",(26,05),hostile
+MONSTER: ';',"shark",(28,05),hostile
+MONSTER: ';',"shark",(30,06),hostile
+MONSTER: ';',"shark",(27,07),hostile
+MONSTER: ';',"shark",(26,09),hostile
+MONSTER: ';',"shark",(30,09),hostile
+MONSTER: ';',"shark",(31,11),hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',"shark",random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+MONSTER: ';',random,random,hostile
+ENGRAVING:(11,03),burn,"The lamp washed into the sea while I slept! Woe and damnnation!"
+OBJECT: random,random,(11,03)
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+

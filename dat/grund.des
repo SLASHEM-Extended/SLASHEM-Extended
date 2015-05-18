@@ -1513,3 +1513,3117 @@ DOOR:locked,(12,11)
 DOOR:locked,(14,09)
 DOOR:locked,(14,11)
 DOOR:locked,(15,10)
+
+
+MAZE:"egrund-1",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+# (whatever it's called)
+MONSTER:'o',random,(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',random,(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',random,(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',random,(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',random,(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',random,(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',random,(36,01),hostile
+MONSTER[50%]:'d',random,(36,07),hostile
+MONSTER[50%]:'d',random,(36,12),hostile
+MONSTER:'d',random,(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',random,(18,12),hostile
+MONSTER[50%]:'o',random,(19,12),hostile
+MONSTER:'o',random,(20,12),hostile
+MONSTER[50%]:'o',random,(18,13),hostile
+MONSTER:'o',random,(19,13),hostile
+MONSTER:'o',random,(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',random,(18,17),hostile
+MONSTER:'o',random,(19,17),hostile
+MONSTER:'o',random,(20,17),hostile
+MONSTER:'o',random,(18,18),hostile
+MONSTER[50%]:'o',random,(19,18),hostile
+MONSTER:'o',random,(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',random,random,hostile
+MONSTER[40%]:'T',random,random,hostile
+MONSTER[20%]:'T',random,random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',random,(03,09),hostile
+MONSTER:'o',random,(03,11),hostile
+MONSTER[60%]:'o',random,(07,09),hostile
+MONSTER[60%]:'o',random,(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',random,(04,10),hostile
+MONSTER[50%]:'O',random,(06,10),hostile
+
+MONSTER[50%]:'O',random,(06,07),hostile
+MONSTER[50%]:'O',random,(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',random,(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet of magical breathing",contained
+OBJECT:'+',"haste self",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"gauntlets of power",contained,cursed,+1
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+#
+MAZE:"egrund-2",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+# (whatever it's called)
+MONSTER:'o',random,(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',random,(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',random,(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',random,(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',random,(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',random,(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',random,(36,01),hostile
+MONSTER[50%]:'d',random,(36,07),hostile
+MONSTER[50%]:'d',random,(36,12),hostile
+MONSTER:'d',random,(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',random,(18,12),hostile
+MONSTER[50%]:'o',random,(19,12),hostile
+MONSTER:'o',random,(20,12),hostile
+MONSTER[50%]:'o',random,(18,13),hostile
+MONSTER:'o',random,(19,13),hostile
+MONSTER:'o',random,(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',random,(18,17),hostile
+MONSTER:'o',random,(19,17),hostile
+MONSTER:'o',random,(20,17),hostile
+MONSTER:'o',random,(18,18),hostile
+MONSTER[50%]:'o',random,(19,18),hostile
+MONSTER:'o',random,(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',random,random,hostile
+MONSTER[40%]:'T',random,random,hostile
+MONSTER[20%]:'T',random,random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',random,(03,09),hostile
+MONSTER:'o',random,(03,11),hostile
+MONSTER[60%]:'o',random,(07,09),hostile
+MONSTER[60%]:'o',random,(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',random,(04,10),hostile
+MONSTER[50%]:'O',random,(06,10),hostile
+
+MONSTER[50%]:'O',random,(06,07),hostile
+MONSTER[50%]:'O',random,(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',random,(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet of drain resistance",contained
+OBJECT:'+',"acid stream",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"helm of telepathy",contained,blessed,+0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+#
+MAZE:"egrund-3",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+# (whatever it's called)
+MONSTER:'o',random,(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',random,(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',random,(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',random,(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',random,(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',random,(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',random,(36,01),hostile
+MONSTER[50%]:'d',random,(36,07),hostile
+MONSTER[50%]:'d',random,(36,12),hostile
+MONSTER:'d',random,(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',random,(18,12),hostile
+MONSTER[50%]:'o',random,(19,12),hostile
+MONSTER:'o',random,(20,12),hostile
+MONSTER[50%]:'o',random,(18,13),hostile
+MONSTER:'o',random,(19,13),hostile
+MONSTER:'o',random,(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',random,(18,17),hostile
+MONSTER:'o',random,(19,17),hostile
+MONSTER:'o',random,(20,17),hostile
+MONSTER:'o',random,(18,18),hostile
+MONSTER[50%]:'o',random,(19,18),hostile
+MONSTER:'o',random,(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',random,random,hostile
+MONSTER[40%]:'T',random,random,hostile
+MONSTER[20%]:'T',random,random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',random,(03,09),hostile
+MONSTER:'o',random,(03,11),hostile
+MONSTER[60%]:'o',random,(07,09),hostile
+MONSTER[60%]:'o',random,(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',random,(04,10),hostile
+MONSTER[50%]:'O',random,(06,10),hostile
+
+MONSTER[50%]:'O',random,(06,07),hostile
+MONSTER[50%]:'O',random,(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',random,(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet versus stone",contained
+OBJECT:'+',"create monster",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"oilskin cloak",contained,uncursed,+0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+MAZE:"hgrund-1",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+
+# (whatever it's called)
+MONSTER:'o',"war orc",(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',"war orc",(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',"war orc",(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',"war orc",(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',"war orc",(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',"war orc",(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',"hell hound",(36,01),hostile
+MONSTER[50%]:'d',"hell hound",(36,07),hostile
+MONSTER[50%]:'d',"hell hound",(36,12),hostile
+MONSTER:'d',"hell hound",(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',"snow orc",(18,12),hostile
+MONSTER[50%]:'o',"snow orc",(19,12),hostile
+MONSTER:'o',"snow orc",(20,12),hostile
+MONSTER[50%]:'o',"snow orc",(18,13),hostile
+MONSTER:'o',"snow orc",(19,13),hostile
+MONSTER:'o',"snow orc",(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',"great orc",(18,17),hostile
+MONSTER:'o',"great orc",(19,17),hostile
+MONSTER:'o',"great orc",(20,17),hostile
+MONSTER:'o',"great orc",(18,18),hostile
+MONSTER[50%]:'o',"great orc",(19,18),hostile
+MONSTER:'o',"great orc",(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',"rock troll",random,hostile
+MONSTER[40%]:'T',"two-headed troll",random,hostile
+MONSTER[20%]:'T',"black troll",random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',"demon orc",(03,09),hostile
+MONSTER:'o',"demon orc",(03,11),hostile
+MONSTER[60%]:'o',"demon orc",(07,09),hostile
+MONSTER[60%]:'o',"demon orc",(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',"ogre mage",(04,10),hostile
+MONSTER[50%]:'O',"ogre mage",(06,10),hostile
+
+MONSTER[50%]:'O',"shadow ogre",(06,07),hostile
+MONSTER[50%]:'O',"ogre lord",(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',"skeleton",(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet of magical breathing",contained
+OBJECT:'+',"haste self",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"gauntlets of power",contained,cursed,+1
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+#
+MAZE:"hgrund-2",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# (whatever it's called)
+MONSTER:'o',"war orc",(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',"war orc",(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',"war orc",(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',"war orc",(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',"war orc",(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',"war orc",(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',"hell hound",(36,01),hostile
+MONSTER[50%]:'d',"hell hound",(36,07),hostile
+MONSTER[50%]:'d',"hell hound",(36,12),hostile
+MONSTER:'d',"hell hound",(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',"snow orc",(18,12),hostile
+MONSTER[50%]:'o',"snow orc",(19,12),hostile
+MONSTER:'o',"snow orc",(20,12),hostile
+MONSTER[50%]:'o',"snow orc",(18,13),hostile
+MONSTER:'o',"snow orc",(19,13),hostile
+MONSTER:'o',"snow orc",(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',"great orc",(18,17),hostile
+MONSTER:'o',"great orc",(19,17),hostile
+MONSTER:'o',"great orc",(20,17),hostile
+MONSTER:'o',"great orc",(18,18),hostile
+MONSTER[50%]:'o',"great orc",(19,18),hostile
+MONSTER:'o',"great orc",(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',"rock troll",random,hostile
+MONSTER[40%]:'T',"two-headed troll",random,hostile
+MONSTER[20%]:'T',"black troll",random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',"demon orc",(03,09),hostile
+MONSTER:'o',"demon orc",(03,11),hostile
+MONSTER[60%]:'o',"demon orc",(07,09),hostile
+MONSTER[60%]:'o',"demon orc",(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',"ogre mage",(04,10),hostile
+MONSTER[50%]:'O',"ogre mage",(06,10),hostile
+
+MONSTER[50%]:'O',"shadow ogre",(06,07),hostile
+MONSTER[50%]:'O',"ogre lord",(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',"skeleton",(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet of drain resistance",contained
+OBJECT:'+',"acid stream",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"helm of telepathy",contained,blessed,+0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)
+
+#
+MAZE:"hgrund-3",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted
+INIT_MAP:' ',' ',false,false,lit,false
+GEOMETRY:right,center
+#12345678901234567890123456789012
+#0   i    1    i    2    i    3
+MAP
+........           .....         
+........         .........       
+.........      .............     
+.........     ......-F-......    
+..........   .....---.---.....   
+..........   ....--- . ---....   
+........... ....-----------....  
+........... ...--- - - - ---...  
+...............-------------.... 
+..............-- - - - - - --... 
+..............F..---------..F... 
+..............-- - - -.- - --... 
+...............-------------.... 
+........... ...--- - - - ---...  
+........... ....-----------....  
+..........   ....--- . ---....   
+..........   .....---.---.....   
+.........     ......-F-......    
+.........      .............     
+........         .........       
+........           .....         
+ENDMAP
+RANDOM_PLACES:(21,03),(14,10),(28,10),(21,17)
+DOOR:locked,place[0]
+STAIR:(18,07,24,13),(00,00,00,00),up
+STAIR:random,down
+TELEPORT_REGION:(18,07,24,13),(00,00,00,00)
+MAZEWALK:(22,11),east
+
+REGION:(00,00,32,20),lit,"ordinary"
+REGION:(15,04,27,16),unlit,"ordinary"
+REGION:(15,04,16,05),lit,"ordinary"
+REGION:(26,04,27,05),lit,"ordinary"
+REGION:(15,15,16,16),lit,"ordinary"
+REGION:(26,15,27,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,17,20)
+NON_DIGGABLE:(25,00,32,20)
+NON_DIGGABLE:(18,00,24,06)
+NON_DIGGABLE:(18,14,24,20)
+
+TRAP:"statue",(11,10)
+CONTAINER:'`',"statue",(11,10),"winged gargoyle",0
+
+# monsters (Fussvolk)
+MONSTER:'o',"orc-captain",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+MONSTER:'o',"orc",random,hostile
+
+MONSTER[60%]:'o',"orc-captain",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+MONSTER[60%]:'o',"orc",random,hostile
+
+# objects
+OBJECT[80%]:'/',"create monster",random
+OBJECT[40%]:'/',"create horde",random
+OBJECT[80%]:'/',"speed monster",random
+OBJECT[40%]:'/',"speed monster",random
+OBJECT[80%]:'/',"make invisible",random
+OBJECT[40%]:'/',"make invisible",random
+OBJECT[80%]:'!',"invisibility",random
+OBJECT[40%]:'!',"invisibility",random
+OBJECT[80%]:'!',"speed",random
+OBJECT[40%]:'!',"speed",random
+OBJECT[40%]:'!',"full healing",random
+OBJECT[20%]:'!',"full healing",random
+OBJECT[60%]:'!',"extra healing",random
+OBJECT[30%]:'!',"extra healing",random
+OBJECT[80%]:'!',"healing",random
+OBJECT[40%]:'!',"healing",random
+OBJECT[40%]:'!',"gain level",random
+OBJECT[20%]:'!',"gain level",random
+OBJECT[20%]:'!',"invulnerability",random
+OBJECT[10%]:'!',"invulnerability",random
+
+#traps
+TRAP[50%]:"rust",(00,01)
+TRAP[50%]:"rust",(00,03)
+TRAP[50%]:"rust",(00,05)
+TRAP[50%]:"rust",(00,07)
+TRAP[50%]:"rust",(00,09)
+TRAP[50%]:"rust",(00,11)
+TRAP[50%]:"rust",(00,13)
+TRAP[50%]:"rust",(00,15)
+TRAP[50%]:"rust",(00,17)
+TRAP[50%]:"rust",(00,19)
+
+TRAP[50%]:"arrow",(01,00)
+TRAP[50%]:"arrow",(02,01)
+TRAP[50%]:"arrow",(01,02)
+TRAP[50%]:"arrow",(02,03)
+TRAP[50%]:"arrow",(01,04)
+TRAP[50%]:"arrow",(02,05)
+TRAP[50%]:"arrow",(01,06)
+TRAP[50%]:"arrow",(02,07)
+TRAP[50%]:"arrow",(01,08)
+TRAP[50%]:"arrow",(02,09)
+TRAP[50%]:"arrow",(01,10)
+TRAP[50%]:"arrow",(02,11)
+TRAP[50%]:"arrow",(01,12)
+TRAP[50%]:"arrow",(02,13)
+TRAP[50%]:"arrow",(01,14)
+TRAP[50%]:"arrow",(02,15)
+TRAP[50%]:"arrow",(01,16)
+TRAP[50%]:"arrow",(02,17)
+TRAP[50%]:"arrow",(01,18)
+TRAP[50%]:"arrow",(02,19)
+TRAP[50%]:"arrow",(01,20)
+
+TRAP[50%]:"spiked pit",(03,00)
+TRAP[50%]:"spiked pit",(04,01)
+TRAP[50%]:"spiked pit",(03,02)
+TRAP[50%]:"spiked pit",(04,03)
+TRAP[50%]:"spiked pit",(03,04)
+TRAP[50%]:"spiked pit",(04,05)
+TRAP[50%]:"spiked pit",(03,06)
+TRAP[50%]:"spiked pit",(04,07)
+TRAP[50%]:"spiked pit",(03,08)
+TRAP[50%]:"spiked pit",(04,09)
+TRAP[50%]:"spiked pit",(03,10)
+TRAP[50%]:"spiked pit",(04,11)
+TRAP[50%]:"spiked pit",(03,12)
+TRAP[50%]:"spiked pit",(04,13)
+TRAP[50%]:"spiked pit",(03,14)
+TRAP[50%]:"spiked pit",(04,15)
+TRAP[50%]:"spiked pit",(03,16)
+TRAP[50%]:"spiked pit",(04,17)
+TRAP[50%]:"spiked pit",(03,18)
+TRAP[50%]:"spiked pit",(04,19)
+TRAP[50%]:"spiked pit",(03,20)
+
+TRAP:"rust",random
+TRAP:"rust",random
+TRAP[50%]:"rust",random
+TRAP[50%]:"rust",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP[50%]:"arrow",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+TRAP[50%]:"spiked pit",random
+
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+TRAP[50%]:"land mine",random
+
+TRAP[50%]:"level teleport",random
+TRAP[50%]:"level teleport",random
+
+MONSTER:'o',"hobgoblin",(10,11),hostile
+OBJECT:'/',"fire",random,cursed,1
+
+ENGRAVING:random,burn,"Us wanna no veeseetohs!"
+ENGRAVING:random,burn,"boogrr ohf! GRR!"
+ENGRAVING:random,burn,"keap Us ohr Gohld!!"
+ENGRAVING:random,burn,"Me Preeeteee!"
+ENGRAVING:random,burn,"dee no preeeteee"
+ENGRAVING:random,burn,"veesetoohs gohd eet!"
+
+GEOMETRY:left,center
+#12345678901234567890123456789012345678901
+#0   i    1    i    2    i    3    i    4
+MAP
+-----------------------------------------}
+-...SH.----..-----...---..--------.+.-..-}
+-...----..F..-..-....-.+..+.--..--.-.-..F}
+-...--....--+-.---..--.----.-...--.-.-..-}
+--S--......S#-.---..+..----.+....+.-.-.--}
+-##-.......---.---F----------....---.-..F}
+-#--.......-...---.-----..-----.----.-..-}
+##-.......--.----...+.-...-------..+.-..F}
+H--......---.-..-..--.--...---..-.--.-..-}
+H-......----S-S---..F.+..-.F....+.--.-..F}
+HS\........S...S.-------+---....----.-..-}
+H-......----S-S----..---..--+-.-----.-..F}
+H--......---.-..-....----....----..+.-..-}
+##-.......--.----.....+.--F----...--.-..F}
+-#--.......-...---...--.-..--...----.-..-}
+-##-.......---.---F----.--..+.---..+.-..F}
+--S--......S#-.---..---...+--F---+--.-.--}
+-...--....--+-.--....--------.-...--.-..-}
+-...----..F..-..-....+..-...+....---.-..F}
+-...SH.----..------.---...---....---.S..-}
+-----------------------------------------}
+ENDMAP
+RANDOM_PLACES:(16,02),(16,08),(16,12),(16,18),(31,07)
+REGION:(00,00,39,20),unlit,"ordinary"
+REGION:(41,00,41,20),lit,"ordinary"
+NON_DIGGABLE:(00,00,37,20)
+
+DRAWBRIDGE:(41,10),west,closed
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# (whatever it's called)
+MONSTER:'o',"war orc",(39,02),hostile
+OBJECT[80%]:'/',"sleep",(39,02)
+OBJECT:')',"orcish bow",(39,02),uncursed,+1
+OBJECT:')',"orcish arrow",(39,02),uncursed,+2
+
+MONSTER:'o',"war orc",(39,05),hostile
+OBJECT[40%]:'/',"fireball",(39,05)
+OBJECT:')',"orcish bow",(39,05),uncursed,+2
+OBJECT:')',"orcish arrow",(39,05),uncursed,+1
+
+MONSTER:'@',"soldier",(39,07),hostile
+OBJECT[40%]:'/',"cold",(39,07)
+OBJECT:')',"orcish bow",(39,07),uncursed,+1
+OBJECT:')',"orcish arrow",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+
+MONSTER:'o',"war orc",(39,09),hostile
+OBJECT[80%]:'/',"magic missile",(39,09)
+OBJECT:')',"orcish bow",(39,09),uncursed,+2
+OBJECT:')',"orcish arrow",(39,09),uncursed,+1
+
+MONSTER:'o',"war orc",(39,11),hostile
+OBJECT[80%]:'/',"striking",(39,11)
+OBJECT:')',"orcish bow",(39,11),uncursed,+2
+OBJECT:')',"orcish arrow",(39,11),uncursed,+3
+
+MONSTER:'@',"soldier",(39,13),hostile
+OBJECT[60%]:'/',"fire",(39,13)
+OBJECT:')',"orcish bow",(39,13),uncursed,+1
+OBJECT:')',"orcish arrow",(39,13),uncursed,+2
+OBJECT[40%]:')',"grenade launcher",(39,13),uncursed,+1
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+3
+OBJECT[40%]:')',"frag grenade",(39,13),uncursed,+2
+
+MONSTER:'o',"war orc",(39,15),hostile
+OBJECT[60%]:'/',"lightning",(39,15)
+OBJECT:')',"orcish bow",(39,15),uncursed,+2
+OBJECT:')',"orcish arrow",(39,15),uncursed,+2
+
+MONSTER:'o',"war orc",(39,18),hostile
+OBJECT[40%]:'/',"draining",(39,18)
+OBJECT:')',"orcish bow",(39,18),uncursed,+3
+OBJECT:')',"orcish arrow",(39,18),uncursed,+3
+
+#
+MONSTER:'d',"hell hound",(36,01),hostile
+MONSTER[50%]:'d',"hell hound",(36,07),hostile
+MONSTER[50%]:'d',"hell hound",(36,12),hostile
+MONSTER:'d',"hell hound",(36,15),asleep,hostile
+
+# caves
+
+MONSTER[50%]:'o',"Uruk-hai",(18,02),hostile
+MONSTER:'o',"Uruk-hai",(19,02),hostile
+MONSTER:'o',"Uruk-hai",(20,02),hostile
+MONSTER:'o',"Uruk-hai",(18,03),hostile
+MONSTER:'o',"Uruk-hai",(19,03),hostile
+
+MONSTER:'o',"orc shaman",(24,02),hostile
+MONSTER[50%]:'o',"orc shaman",(24,02),hostile
+
+MONSTER:'H',"stone giant",(30,04),hostile
+MONSTER[50%]:'H',"stone giant",(31,03),hostile
+
+MONSTER:'@',"rogue",(18,07),hostile
+OBJECT:')',"rapier",(18,07),uncursed,+1
+OBJECT[50%]:'!',"sickness",(18,07)
+OBJECT[50%]:'(',"sack",(18,07)
+MONSTER:'@',"mugger",(18,08),hostile
+OBJECT:')',"club",(18,08),uncursed,+2
+OBJECT[40%]:')',"crossbow",(18,08),uncursed,+3
+OBJECT[40%]:')',"crossbow bolt",(18,08),uncursed,+1
+OBJECT[50%]:'!',"paralysis",(18,08)
+MONSTER:'@',"soldier",(18,09),hostile
+OBJECT[50%]:'!',"booze",(18,09)
+
+MONSTER:'O',"ogre",(24,07),hostile
+MONSTER:'O',"ogre",(25,07),hostile
+MONSTER[50%]:'O',"ogre",(24,08),hostile
+MONSTER:'O',"ogre",(25,08),hostile
+
+MONSTER:'o',"hill orc",(29,09),hostile
+MONSTER:'o',"hill orc",(30,09),hostile
+MONSTER[50%]:'o',"hill orc",(31,09),hostile
+MONSTER:'o',"hill orc",(29,10),hostile
+MONSTER[50%]:'o',"hill orc",(30,10),hostile
+MONSTER:'o',"hill orc",(31,10),hostile
+
+MONSTER:'o',"snow orc",(18,12),hostile
+MONSTER[50%]:'o',"snow orc",(19,12),hostile
+MONSTER:'o',"snow orc",(20,12),hostile
+MONSTER[50%]:'o',"snow orc",(18,13),hostile
+MONSTER:'o',"snow orc",(19,13),hostile
+MONSTER:'o',"snow orc",(20,13),hostile
+
+MONSTER:'o',"orc shaman",(25,14),hostile
+MONSTER[50%]:'o',"orc shaman",(27,15),hostile
+
+MONSTER[50%]:'o',"great orc",(18,17),hostile
+MONSTER:'o',"great orc",(19,17),hostile
+MONSTER:'o',"great orc",(20,17),hostile
+MONSTER:'o',"great orc",(18,18),hostile
+MONSTER[50%]:'o',"great orc",(19,18),hostile
+MONSTER:'o',"great orc",(20,18),hostile
+
+MONSTER:'o',"Mordor orc",(18,17),hostile
+MONSTER[50%]:'o',"Mordor orc",(19,17),hostile
+MONSTER:'o',"Mordor orc",(18,18),hostile
+MONSTER:'o',"Mordor orc",(19,18),hostile
+
+MONSTER[80%]:'T',"troll",random,hostile
+MONSTER[60%]:'T',"rock troll",random,hostile
+MONSTER[40%]:'T',"two-headed troll",random,hostile
+MONSTER[20%]:'T',"black troll",random,hostile
+
+# slaves
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+MONSTER[50%]:'o',"goblin",random,random
+
+#
+TRAP:"statue",(16,10)
+CONTAINER:'`',"statue",(16,10),"harpy",0
+
+# throneroom
+MONSTER:'o',random,(02,10),hostile
+OBJECT:'?',"root password detection",(02,10)
+OBJECT:'/',random,(02,10)
+OBJECT:'"',random,(02,10)
+OBJECT:'[',random,(02,10)
+
+MONSTER:'o',"demon orc",(03,09),hostile
+MONSTER:'o',"demon orc",(03,11),hostile
+MONSTER[60%]:'o',"demon orc",(07,09),hostile
+MONSTER[60%]:'o',"demon orc",(07,11),hostile
+
+MONSTER:'o',"orc shaman",(04,08),hostile
+MONSTER:'o',"orc shaman",(04,12),hostile
+
+MONSTER:'O',"ogre mage",(04,10),hostile
+MONSTER[50%]:'O',"ogre mage",(06,10),hostile
+
+MONSTER[50%]:'O',"shadow ogre",(06,07),hostile
+MONSTER[50%]:'O',"ogre lord",(06,13),hostile
+
+MONSTER:'Z',"orc zombie",(07,04),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,06),asleep,hostile
+MONSTER:'M',"orc mummy",(08,05),asleep,hostile
+
+MONSTER:'Z',"orc zombie",(07,16),asleep,hostile
+MONSTER:'Z',"orc zombie",(09,14),asleep,hostile
+MONSTER:'M',"orc mummy",(08,15),asleep,hostile
+
+# prisons
+MONSTER:'Z',"skeleton",(11,01),random
+MONSTER[40%]:'@',"nurse",(12,02),peaceful
+MONSTER[10%]:'@',"gypsy",(12,18),peaceful
+MONSTER:'8',"ghost",(11,19),peaceful
+OBJECT:'%',"corpse",(11,19),"human",0
+
+# treasury
+OBJECT:'(',"chest",(02,02)
+MONSTER:'s',"giant spider",(02,03),asleep,hostile
+MONSTER:'s',"giant spider",(03,01),asleep,hostile
+GOLD:1200,(02,02)
+GOLD:random,(02,02)
+
+CONTAINER:'(',"chest",(06,01)
+OBJECT:'"',"amulet versus stone",contained
+OBJECT:'+',"create monster",contained,blessed,+4
+OBJECT[20%]:'(',"magic marker",contained,cursed,34
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+OBJECT[50%]:'!',"enlightenment",contained,blessed,0
+
+GOLD:8700,(06,01)
+GOLD:random,(06,01)
+
+# arms storage
+OBJECT:'(',"chest",(02,18)
+MONSTER:'o',"orc",(03,19),asleep,hostile
+OBJECT[40%]:'!',"booze",(02,19)
+
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'[',"oilskin cloak",contained,uncursed,+0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+OBJECT[50%]:'%',"tin",contained,"spinach",0
+
+#traps
+TRAP[90%]:"land mine",(08,10)
+TRAP[90%]:"board",(09,10)
+TRAP[90%]:"anti magic",(10,10)
+
+TRAP:"falling rock",random
+TRAP[50%]:"falling rock",random
+
+TRAP:"web",random
+TRAP[50%]:"web",random
+
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP[50%]:"dart",random
+TRAP[50%]:"dart",random
+
+# goodies for the monsters:
+OBJECT:'!',"speed",random
+OBJECT:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT[50%]:'!',"speed",random
+OBJECT:'!',"invisibility",random
+OBJECT:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT[50%]:'!',"invisibility",random
+OBJECT:'/',"healing",random
+OBJECT[50%]:'/',"healing",random
+OBJECT:'/',"create monster",random
+OBJECT[20%]:'/',"create horde",random
+OBJECT[20%]:'/',"polymorph",random
+OBJECT:'?',"create monster",random
+OBJECT[40%]:'?',"create monster",random,cursed,0
+
+# doors
+
+DOOR:locked,place[0]
+DOOR:locked,place[1]
+
+DOOR:random,(35,01)
+DOOR:random,(23,02)
+DOOR:random,(26,02)
+DOOR:random,(20,04)
+DOOR:random,(28,04)
+DOOR:random,(33,04)
+DOOR:random,(20,07)
+DOOR:random,(35,07)
+DOOR:random,(22,09)
+DOOR:random,(32,09)
+DOOR:random,(24,10)
+DOOR:random,(28,11)
+DOOR:random,(35,12)
+DOOR:random,(22,13)
+DOOR:random,(28,15)
+DOOR:random,(35,15)
+DOOR:random,(26,16)
+DOOR:random,(33,16)
+DOOR:random,(21,18)
+DOOR:random,(28,18)
+
+DOOR:locked,(02,04)
+DOOR:locked,(02,16)
+
+DOOR:locked,(12,03)
+DOOR:locked,(12,17)
+
+DOOR:locked,(11,04)
+DOOR:locked,(11,16)
+
+DOOR:locked,(01,10)
+DOOR:locked,(04,01)
+DOOR:locked,(04,19)
+
+DOOR:locked,(11,10)
+DOOR:locked,(12,09)
+DOOR:locked,(12,11)
+DOOR:locked,(14,09)
+DOOR:locked,(14,11)
+DOOR:locked,(15,10)

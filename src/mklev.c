@@ -1322,7 +1322,7 @@ makelevel()
 	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(iswarper ? 10 : 100)) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) ) {
 
 
-	    switch (rnd(21)) {
+	    switch (rnd(73)) {
 
 	    case 1:
 	    case 2:
@@ -1507,13 +1507,543 @@ makelevel()
 		}
 		break;
 
+	    case 22:
+	    case 23:
+	    case 24:
+
+		switch (rnd(14)) {
+
+			case 1: makemaz("minefill"); return;
+			case 2: makemaz("minefila"); return;
+			case 3: makemaz("minefilb"); return;
+			case 4: makemaz("minefilc"); return;
+			case 5: makemaz("minefild"); return;
+			case 6: makemaz("minefile"); return;
+			case 7: makemaz("minefilf"); return;
+			case 8: makemaz("minefilg"); return;
+			case 9: makemaz("minefill"); return;
+			case 10: makemaz("minefill"); return;
+			case 11: makemaz("minefill"); return;
+			case 12: makemaz("minefill"); return;
+			case 13: makemaz("minefill"); return;
+			case 14: makemaz("minefill"); return;
+
+		}
+		break;
+
+	    case 25:
+	    case 26:
+	    case 27:
+	    case 28:
+	    case 29:
+
+		switch (rnd(18)) {
+
+			case 1: makemaz("mintn-1"); return;
+			case 2: makemaz("mintn-2"); return;
+			case 3: makemaz("mintn-3"); return;
+			case 4: makemaz("mintn-4"); return;
+			case 5: makemaz("mintn-5"); return;
+			case 6: makemaz("mintn-6"); return;
+			case 7: makemaz("mintn-7"); return;
+			case 8: makemaz("mintn-8"); return;
+			case 9: makemaz("mintn-9"); return;
+			case 10: makemaz("mintn-10"); return;
+			case 11: makemaz("mintn-11"); return;
+			case 12: makemaz("mintn-12"); return;
+			case 13: makemaz("mintn-13"); return;
+			case 14: makemaz("mintn-14"); return;
+			case 15: makemaz("mintn-15"); return;
+			case 16: makemaz("mintn-16"); return;
+			case 17: makemaz("mintn-17"); return;
+			case 18: makemaz("mintn-18"); return;
+
+		}
+		break;
+
+	    case 30:
+	    case 31:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("minend-1"); return;
+			case 2: makemaz("minend-2"); return;
+			case 3: makemaz("minend-3"); return;
+
+		}
+		break;
+
+	    case 32:
+	    case 33:
+
+		switch (rnd(16)) {
+
+			case 1: makemaz("eking-1"); return;
+			case 2: makemaz("eking-2"); return;
+			case 3: makemaz("eking-3"); return;
+			case 4: makemaz("eking-4"); return;
+			case 5: makemaz("eking-5"); return;
+			case 6: makemaz("eking-6"); return;
+			case 7: makemaz("eking-7"); return;
+			case 8: makemaz("eking-8"); return;
+			case 9: makemaz("eking-9"); return;
+			case 10: makemaz("eking-10"); return;
+			case 11: makemaz("eking-11"); return;
+			case 12: makemaz("eking-12"); return;
+			case 13: makemaz("eking-13"); return;
+			case 14: makemaz("eking-14"); return;
+			case 15: makemaz("eking-15"); return;
+			case 16: makemaz("eking-16"); return;
+
+		}
+		break;
+
+	    case 34:
+	    case 35:
+	    case 36:
+	    case 37:
+	    case 38:
+	    case 39:
+	    case 40:
+	    case 41:
+	    case 42:
+	    case 43:
+
+		switch (rnd(152)) {
+
+			case 1: makemaz("soko2-1"); return;
+			case 2: makemaz("soko2-2"); return;
+			case 3: makemaz("soko2-3"); return;
+			case 4: makemaz("soko2-4"); return;
+			case 5: makemaz("soko2-5"); return;
+			case 6: makemaz("soko2-6"); return;
+			case 7: makemaz("soko2-7"); return;
+			case 8: makemaz("soko2-8"); return;
+			case 9: makemaz("soko2-9"); return;
+			case 10: makemaz("soko2-10"); return;
+			case 11: makemaz("soko2-11"); return;
+			case 12: makemaz("soko2-12"); return;
+			case 13: makemaz("soko2-13"); return;
+			case 14: makemaz("soko2-14"); return;
+			case 15: makemaz("soko2-15"); return;
+			case 16: makemaz("soko2-16"); return;
+			case 17: makemaz("soko2-17"); return;
+			case 18: makemaz("soko2-18"); return;
+			case 19: makemaz("soko2-19"); return;
+			case 20: makemaz("soko2-20"); return;
+			case 21: makemaz("soko2-21"); return;
+			case 22: makemaz("soko2-22"); return;
+			case 23: makemaz("soko2-23"); return;
+			case 24: makemaz("soko2-24"); return;
+			case 25: makemaz("soko2-25"); return;
+			case 26: makemaz("soko2-26"); return;
+			case 27: makemaz("soko2-27"); return;
+			case 28: makemaz("soko2-28"); return;
+			case 29: makemaz("soko2-29"); return;
+			case 30: makemaz("soko2-30"); return;
+			case 31: makemaz("soko2-31"); return;
+			case 32: makemaz("soko2-32"); return;
+			case 33: makemaz("soko2-33"); return;
+			case 34: makemaz("soko2-34"); return;
+			case 35: makemaz("soko2-35"); return;
+			case 36: makemaz("soko2-36"); return;
+			case 37: makemaz("soko2-37"); return;
+			case 38: makemaz("soko2-38"); return;
+			case 39: makemaz("soko2-39"); return;
+			case 40: makemaz("soko2-40"); return;
+			case 41: makemaz("soko2-41"); return;
+			case 42: makemaz("soko2-42"); return;
+			case 43: makemaz("soko2-43"); return;
+			case 44: makemaz("soko2-44"); return;
+
+			case 45: makemaz("soko3-1"); return;
+			case 46: makemaz("soko3-2"); return;
+			case 47: makemaz("soko3-3"); return;
+			case 48: makemaz("soko3-4"); return;
+			case 49: makemaz("soko3-5"); return;
+			case 50: makemaz("soko3-6"); return;
+			case 51: makemaz("soko3-7"); return;
+			case 52: makemaz("soko3-8"); return;
+			case 53: makemaz("soko3-9"); return;
+			case 54: makemaz("soko3-10"); return;
+			case 55: makemaz("soko3-11"); return;
+			case 56: makemaz("soko3-12"); return;
+			case 57: makemaz("soko3-13"); return;
+			case 58: makemaz("soko3-14"); return;
+			case 59: makemaz("soko3-15"); return;
+			case 60: makemaz("soko3-16"); return;
+			case 61: makemaz("soko3-17"); return;
+			case 62: makemaz("soko3-18"); return;
+			case 63: makemaz("soko3-19"); return;
+			case 64: makemaz("soko3-20"); return;
+			case 65: makemaz("soko3-21"); return;
+			case 66: makemaz("soko3-22"); return;
+			case 67: makemaz("soko3-23"); return;
+			case 68: makemaz("soko3-24"); return;
+			case 69: makemaz("soko3-25"); return;
+			case 70: makemaz("soko3-26"); return;
+			case 71: makemaz("soko3-27"); return;
+			case 72: makemaz("soko3-28"); return;
+			case 73: makemaz("soko3-29"); return;
+
+			case 74: makemaz("soko5-1"); return;
+			case 75: makemaz("soko5-2"); return;
+			case 76: makemaz("soko5-3"); return;
+			case 77: makemaz("soko5-4"); return;
+			case 78: makemaz("soko5-5"); return;
+			case 79: makemaz("soko5-6"); return;
+			case 80: makemaz("soko5-7"); return;
+			case 81: makemaz("soko5-8"); return;
+			case 82: makemaz("soko5-9"); return;
+			case 83: makemaz("soko5-10"); return;
+			case 84: makemaz("soko5-11"); return;
+			case 85: makemaz("soko5-12"); return;
+			case 86: makemaz("soko5-13"); return;
+			case 87: makemaz("soko5-14"); return;
+			case 88: makemaz("soko5-15"); return;
+			case 89: makemaz("soko5-16"); return;
+			case 90: makemaz("soko5-17"); return;
+			case 91: makemaz("soko5-18"); return;
+			case 92: makemaz("soko5-19"); return;
+			case 93: makemaz("soko5-20"); return;
+			case 94: makemaz("soko5-21"); return;
+			case 95: makemaz("soko5-22"); return;
+			case 96: makemaz("soko5-23"); return;
+			case 97: makemaz("soko5-24"); return;
+			case 98: makemaz("soko5-25"); return;
+			case 99: makemaz("soko5-26"); return;
+			case 100: makemaz("soko5-27"); return;
+			case 101: makemaz("soko5-28"); return;
+
+			case 102: makemaz("soko6-1"); return;
+			case 103: makemaz("soko6-2"); return;
+			case 104: makemaz("soko6-3"); return;
+			case 105: makemaz("soko6-4"); return;
+			case 106: makemaz("soko6-5"); return;
+			case 107: makemaz("soko6-6"); return;
+			case 108: makemaz("soko6-7"); return;
+			case 109: makemaz("soko6-8"); return;
+			case 110: makemaz("soko6-9"); return;
+			case 111: makemaz("soko6-10"); return;
+			case 112: makemaz("soko6-11"); return;
+			case 113: makemaz("soko6-12"); return;
+			case 114: makemaz("soko6-13"); return;
+			case 115: makemaz("soko6-14"); return;
+			case 116: makemaz("soko6-15"); return;
+			case 117: makemaz("soko6-16"); return;
+			case 118: makemaz("soko6-17"); return;
+			case 119: makemaz("soko6-18"); return;
+			case 120: makemaz("soko6-19"); return;
+			case 121: makemaz("soko6-20"); return;
+			case 122: makemaz("soko6-21"); return;
+			case 123: makemaz("soko6-22"); return;
+			case 124: makemaz("soko6-23"); return;
+			case 125: makemaz("soko6-24"); return;
+			case 126: makemaz("soko6-25"); return;
+			case 127: makemaz("soko6-26"); return;
+			case 128: makemaz("soko6-27"); return;
+			case 129: makemaz("soko6-28"); return;
+			case 130: makemaz("soko6-29"); return;
+			case 131: makemaz("soko6-30"); return;
+			case 132: makemaz("soko6-31"); return;
+			case 133: makemaz("soko6-32"); return;
+			case 134: makemaz("soko6-33"); return;
+			case 135: makemaz("soko6-34"); return;
+			case 136: makemaz("soko6-35"); return;
+			case 137: makemaz("soko6-36"); return;
+			case 138: makemaz("soko6-37"); return;
+			case 139: makemaz("soko6-38"); return;
+			case 140: makemaz("soko6-39"); return;
+			case 141: makemaz("soko6-40"); return;
+			case 142: makemaz("soko6-41"); return;
+			case 143: makemaz("soko6-42"); return;
+			case 144: makemaz("soko6-43"); return;
+			case 145: makemaz("soko6-44"); return;
+			case 146: makemaz("soko6-45"); return;
+			case 147: makemaz("soko6-46"); return;
+			case 148: makemaz("soko6-47"); return;
+			case 149: makemaz("soko6-48"); return;
+			case 150: makemaz("soko6-49"); return;
+			case 151: makemaz("soko6-50"); return;
+			case 152: makemaz("soko6-51"); return;
+
+		}
+		break;
+
+	    case 44:
+	    case 45:
+
+		switch (rnd(14)) {
+
+			case 1: makemaz("mall-1"); return;
+			case 2: makemaz("mall-2"); return;
+			case 3: makemaz("mall-3"); return;
+			case 4: makemaz("mall-4"); return;
+			case 5: makemaz("mall-5"); return;
+			case 6: makemaz("mall-6"); return;
+			case 7: makemaz("exmall-1"); return;
+			case 8: makemaz("exmall-2"); return;
+			case 9: makemaz("exmall-3"); return;
+			case 10: makemaz("exmall-4"); return;
+			case 11: makemaz("exmall-5"); return;
+			case 12: makemaz("exmall-6"); return;
+			case 13: makemaz("exmall-7"); return;
+			case 14: makemaz("exmall-8"); return;
+
+		}
+		break;
+
+	    case 46:
+
+		makemaz("oracleX"); return;
+		break;
+
+	    case 47:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("erats-1"); return;
+			case 2: makemaz("erats-2"); return;
+			case 3: makemaz("erats-3"); return;
+
+		}
+		break;
+
+	    case 48:
+
+		switch (rnd(6)) {
+
+			case 1: makemaz("ekobol-1"); return;
+			case 2: makemaz("ekobol-2"); return;
+			case 3: makemaz("ekobol-3"); return;
+			case 4: makemaz("ekobol-4"); return;
+			case 5: makemaz("ekobol-5"); return;
+			case 6: makemaz("ekobol-6"); return;
+
+		}
+		break;
+
+	    case 49:
+
+		switch (rnd(5)) {
+
+			case 1: makemaz("enymp-1"); return;
+			case 2: makemaz("enymp-2"); return;
+			case 3: makemaz("enymp-3"); return;
+			case 4: makemaz("enymp-4"); return;
+			case 5: makemaz("enymp-5"); return;
+
+		}
+		break;
+
+	    case 50:
+
+		switch (rnd(9)) {
+
+			case 1: makemaz("stor-1"); return;
+			case 2: makemaz("stor-2"); return;
+			case 3: makemaz("stor-3"); return;
+			case 4: makemaz("stor-4"); return;
+			case 5: makemaz("stor-5"); return;
+			case 6: makemaz("stor-6"); return;
+			case 7: makemaz("stor-7"); return;
+			case 8: makemaz("stor-8"); return;
+			case 9: makemaz("stor-9"); return;
+
+		}
+		break;
+
+	    case 51:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("guild-1"); return;
+			case 2: makemaz("guild-2"); return;
+			case 3: makemaz("guild-3"); return;
+			case 4: makemaz("guild-4"); return;
+			case 5: makemaz("guild-5"); return;
+			case 6: makemaz("guild-6"); return;
+			case 7: makemaz("guild-7"); return;
+			case 8: makemaz("guild-8"); return;
+
+		}
+		break;
+
+	    case 52:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("forge"); return;
+			case 2: makemaz("hitchE"); return;
+			case 3: makemaz("compuE"); return;
+			case 4: makemaz("keyE"); return;
+
+		}
+		break;
+
+	    case 53:
+	    case 54:
+
+		switch (rnd(11)) {
+
+			case 1: makemaz("emedu-1"); return;
+			case 2: makemaz("emedu-2"); return;
+			case 3: makemaz("emedu-3"); return;
+			case 4: makemaz("emedu-4"); return;
+			case 5: makemaz("emedu-5"); return;
+			case 6: makemaz("emedu-6"); return;
+			case 7: makemaz("emedu-7"); return;
+			case 8: makemaz("emedu-8"); return;
+			case 9: makemaz("emedu-9"); return;
+			case 10: makemaz("emedu-10"); return;
+			case 11: makemaz("emedu-11"); return;
+
+		}
+		break;
+
+	    case 55:
+	    case 56:
+
+		switch (rnd(9)) {
+
+			case 1: makemaz("ecastl-1"); return;
+			case 2: makemaz("ecastl-2"); return;
+			case 3: makemaz("ecastl-3"); return;
+			case 4: makemaz("ecastl-4"); return;
+			case 5: makemaz("ecastl-5"); return;
+			case 6: makemaz("ecastl-6"); return;
+			case 7: makemaz("ecastl-7"); return;
+			case 8: makemaz("ecastl-8"); return;
+			case 9: makemaz("ecastl-9"); return;
+
+		}
+		break;
+
+	    case 57:
+	    case 58:
+	    case 59:
+	    case 60:
+	    case 61:
+
+		switch (rnd(26)) {
+
+			case 1: makemaz("egehn-1"); return;
+			case 2: makemaz("egehn-2"); return;
+			case 3: makemaz("egehn-3"); return;
+			case 4: makemaz("egehn-4"); return;
+			case 5: makemaz("egehn-5"); return;
+			case 6: makemaz("egehn-6"); return;
+			case 7: makemaz("egehn-7"); return;
+			case 8: makemaz("egehn-8"); return;
+			case 9: makemaz("egehn-9"); return;
+			case 10: makemaz("egehn-10"); return;
+			case 11: makemaz("egehn-11"); return;
+			case 12: makemaz("egehn-12"); return;
+			case 13: makemaz("egehn-13"); return;
+			case 14: makemaz("egehn-14"); return;
+			case 15: makemaz("egehn-15"); return;
+			case 16: makemaz("egehn-16"); return;
+			case 17: makemaz("egehn-17"); return;
+			case 18: makemaz("egehn-18"); return;
+			case 19: makemaz("egehn-19"); return;
+			case 20: makemaz("egehn-20"); return;
+			case 21: makemaz("egehn-21"); return;
+			case 22: makemaz("egehn-22"); return;
+			case 23: makemaz("egehn-23"); return;
+			case 24: makemaz("egehn-24"); return;
+			case 25: makemaz("egehn-25"); return;
+			case 26: makemaz("egehn-26"); return;
+
+		}
+		break;
+
+	    case 62:
+
+		makemaz("schoolX"); return;
+		break;
+
+	    case 63:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("etown-1"); return;
+			case 2: makemaz("etown-2"); return;
+			case 3: makemaz("etown-3"); return;
+			case 4: makemaz("etown-4"); return;
+
+		}
+		break;
+
+	    case 64:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("egrund-1"); return;
+			case 2: makemaz("egrund-2"); return;
+			case 3: makemaz("egrund-3"); return;
+
+		}
+		break;
+
+	    case 65:
+
+		makemaz("eknox"); return;
+		break;
+
+	    case 66:
+
+		makemaz("dragons"); return;
+		break;
+
+	    case 67:
+
+		makemaz("etomb"); return;
+		break;
+
+	    case 68:
+
+		makemaz("espiders"); return;
+		break;
+
+	    case 69:
+
+		makemaz("esea"); return;
+		break;
+
+	    case 70:
+
+		makemaz("emtemple"); return;
+		break;
+
+	    case 71:
+
+		makemaz("ecav2"); return;
+		break;
+
+	    case 72:
+
+		makemaz("efrnk"); return;
+		break;
+
+	    case 73:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("esheo-1"); return;
+			case 2: makemaz("esheo-2"); return;
+			case 3: makemaz("esheo-3"); return;
+			case 4: makemaz("esheo-4"); return;
+
+		}
+		break;
+
           }
 
 	}
 
 	if ( (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_sheol(&u.uz) && !rn2(iswarper ? 2 : 5)) ) {
 
-	    switch (rnd(21)) {
+	    switch (rnd(73)) {
 
 	    case 1:
 	    case 2:
@@ -1694,6 +2224,531 @@ makelevel()
 			case 3: makemaz("intplx-3"); return;
 			case 4: makemaz("intplx-4"); return;
 			case 5: makemaz("intplx-5"); return;
+
+		}
+		break;
+
+	    case 22:
+	    case 23:
+	    case 24:
+
+		switch (rnd(14)) {
+
+			case 1: makemaz("hellfill"); return;
+			case 2: makemaz("hellfila"); return;
+			case 3: makemaz("hellfilb"); return;
+			case 4: makemaz("hellfilc"); return;
+			case 5: makemaz("hellfild"); return;
+			case 6: makemaz("hellfile"); return;
+			case 7: makemaz("hellfilf"); return;
+			case 8: makemaz("hellfilg"); return;
+			case 9: makemaz("hellfill"); return;
+			case 10: makemaz("hellfill"); return;
+			case 11: makemaz("hellfill"); return;
+			case 12: makemaz("hellfill"); return;
+			case 13: makemaz("hellfill"); return;
+			case 14: makemaz("hellfill"); return;
+
+		}
+		break;
+
+	    case 25:
+	    case 26:
+	    case 27:
+	    case 28:
+	    case 29:
+
+		switch (rnd(18)) {
+
+			case 1: makemaz("hmint-1"); return;
+			case 2: makemaz("hmint-2"); return;
+			case 3: makemaz("hmint-3"); return;
+			case 4: makemaz("hmint-4"); return;
+			case 5: makemaz("hmint-5"); return;
+			case 6: makemaz("hmint-6"); return;
+			case 7: makemaz("hmint-7"); return;
+			case 8: makemaz("hmint-8"); return;
+			case 9: makemaz("hmint-9"); return;
+			case 10: makemaz("hmint-10"); return;
+			case 11: makemaz("hmint-11"); return;
+			case 12: makemaz("hmint-12"); return;
+			case 13: makemaz("hmint-13"); return;
+			case 14: makemaz("hmint-14"); return;
+			case 15: makemaz("hmint-15"); return;
+			case 16: makemaz("hmint-16"); return;
+			case 17: makemaz("hmint-17"); return;
+			case 18: makemaz("hmint-18"); return;
+
+		}
+		break;
+
+	    case 30:
+	    case 31:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("hminen-1"); return;
+			case 2: makemaz("hminen-2"); return;
+			case 3: makemaz("hminen-3"); return;
+
+		}
+		break;
+
+	    case 32:
+	    case 33:
+
+		switch (rnd(16)) {
+
+			case 1: makemaz("hking-1"); return;
+			case 2: makemaz("hking-2"); return;
+			case 3: makemaz("hking-3"); return;
+			case 4: makemaz("hking-4"); return;
+			case 5: makemaz("hking-5"); return;
+			case 6: makemaz("hking-6"); return;
+			case 7: makemaz("hking-7"); return;
+			case 8: makemaz("hking-8"); return;
+			case 9: makemaz("hking-9"); return;
+			case 10: makemaz("hking-10"); return;
+			case 11: makemaz("hking-11"); return;
+			case 12: makemaz("hking-12"); return;
+			case 13: makemaz("hking-13"); return;
+			case 14: makemaz("hking-14"); return;
+			case 15: makemaz("hking-15"); return;
+			case 16: makemaz("hking-16"); return;
+
+		}
+		break;
+
+	    case 34:
+	    case 35:
+	    case 36:
+	    case 37:
+	    case 38:
+	    case 39:
+	    case 40:
+	    case 41:
+	    case 42:
+	    case 43:
+
+		switch (rnd(152)) {
+
+			case 1: makemaz("soko8-1"); return;
+			case 2: makemaz("soko8-2"); return;
+			case 3: makemaz("soko8-3"); return;
+			case 4: makemaz("soko8-4"); return;
+			case 5: makemaz("soko8-5"); return;
+			case 6: makemaz("soko8-6"); return;
+			case 7: makemaz("soko8-7"); return;
+			case 8: makemaz("soko8-8"); return;
+			case 9: makemaz("soko8-9"); return;
+			case 10: makemaz("soko8-10"); return;
+			case 11: makemaz("soko8-11"); return;
+			case 12: makemaz("soko8-12"); return;
+			case 13: makemaz("soko8-13"); return;
+			case 14: makemaz("soko8-14"); return;
+			case 15: makemaz("soko8-15"); return;
+			case 16: makemaz("soko8-16"); return;
+			case 17: makemaz("soko8-17"); return;
+			case 18: makemaz("soko8-18"); return;
+			case 19: makemaz("soko8-19"); return;
+			case 20: makemaz("soko8-20"); return;
+			case 21: makemaz("soko8-21"); return;
+			case 22: makemaz("soko8-22"); return;
+			case 23: makemaz("soko8-23"); return;
+			case 24: makemaz("soko8-24"); return;
+			case 25: makemaz("soko8-25"); return;
+			case 26: makemaz("soko8-26"); return;
+			case 27: makemaz("soko8-27"); return;
+			case 28: makemaz("soko8-28"); return;
+			case 29: makemaz("soko8-29"); return;
+			case 30: makemaz("soko8-30"); return;
+			case 31: makemaz("soko8-31"); return;
+			case 32: makemaz("soko8-32"); return;
+			case 33: makemaz("soko8-33"); return;
+			case 34: makemaz("soko8-34"); return;
+			case 35: makemaz("soko8-35"); return;
+			case 36: makemaz("soko8-36"); return;
+			case 37: makemaz("soko8-37"); return;
+			case 38: makemaz("soko8-38"); return;
+			case 39: makemaz("soko8-39"); return;
+			case 40: makemaz("soko8-40"); return;
+			case 41: makemaz("soko8-41"); return;
+			case 42: makemaz("soko8-42"); return;
+			case 43: makemaz("soko8-43"); return;
+			case 44: makemaz("soko8-44"); return;
+
+			case 45: makemaz("soko7-1"); return;
+			case 46: makemaz("soko7-2"); return;
+			case 47: makemaz("soko7-3"); return;
+			case 48: makemaz("soko7-4"); return;
+			case 49: makemaz("soko7-5"); return;
+			case 50: makemaz("soko7-6"); return;
+			case 51: makemaz("soko7-7"); return;
+			case 52: makemaz("soko7-8"); return;
+			case 53: makemaz("soko7-9"); return;
+			case 54: makemaz("soko7-10"); return;
+			case 55: makemaz("soko7-11"); return;
+			case 56: makemaz("soko7-12"); return;
+			case 57: makemaz("soko7-13"); return;
+			case 58: makemaz("soko7-14"); return;
+			case 59: makemaz("soko7-15"); return;
+			case 60: makemaz("soko7-16"); return;
+			case 61: makemaz("soko7-17"); return;
+			case 62: makemaz("soko7-18"); return;
+			case 63: makemaz("soko7-19"); return;
+			case 64: makemaz("soko7-20"); return;
+			case 65: makemaz("soko7-21"); return;
+			case 66: makemaz("soko7-22"); return;
+			case 67: makemaz("soko7-23"); return;
+			case 68: makemaz("soko7-24"); return;
+			case 69: makemaz("soko7-25"); return;
+			case 70: makemaz("soko7-26"); return;
+			case 71: makemaz("soko7-27"); return;
+			case 72: makemaz("soko7-28"); return;
+			case 73: makemaz("soko7-29"); return;
+
+			case 74: makemaz("soko9-1"); return;
+			case 75: makemaz("soko9-2"); return;
+			case 76: makemaz("soko9-3"); return;
+			case 77: makemaz("soko9-4"); return;
+			case 78: makemaz("soko9-5"); return;
+			case 79: makemaz("soko9-6"); return;
+			case 80: makemaz("soko9-7"); return;
+			case 81: makemaz("soko9-8"); return;
+			case 82: makemaz("soko9-9"); return;
+			case 83: makemaz("soko9-10"); return;
+			case 84: makemaz("soko9-11"); return;
+			case 85: makemaz("soko9-12"); return;
+			case 86: makemaz("soko9-13"); return;
+			case 87: makemaz("soko9-14"); return;
+			case 88: makemaz("soko9-15"); return;
+			case 89: makemaz("soko9-16"); return;
+			case 90: makemaz("soko9-17"); return;
+			case 91: makemaz("soko9-18"); return;
+			case 92: makemaz("soko9-19"); return;
+			case 93: makemaz("soko9-20"); return;
+			case 94: makemaz("soko9-21"); return;
+			case 95: makemaz("soko9-22"); return;
+			case 96: makemaz("soko9-23"); return;
+			case 97: makemaz("soko9-24"); return;
+			case 98: makemaz("soko9-25"); return;
+			case 99: makemaz("soko9-26"); return;
+			case 100: makemaz("soko9-27"); return;
+			case 101: makemaz("soko9-28"); return;
+
+			case 102: makemaz("soko0-1"); return;
+			case 103: makemaz("soko0-2"); return;
+			case 104: makemaz("soko0-3"); return;
+			case 105: makemaz("soko0-4"); return;
+			case 106: makemaz("soko0-5"); return;
+			case 107: makemaz("soko0-6"); return;
+			case 108: makemaz("soko0-7"); return;
+			case 109: makemaz("soko0-8"); return;
+			case 110: makemaz("soko0-9"); return;
+			case 111: makemaz("soko0-10"); return;
+			case 112: makemaz("soko0-11"); return;
+			case 113: makemaz("soko0-12"); return;
+			case 114: makemaz("soko0-13"); return;
+			case 115: makemaz("soko0-14"); return;
+			case 116: makemaz("soko0-15"); return;
+			case 117: makemaz("soko0-16"); return;
+			case 118: makemaz("soko0-17"); return;
+			case 119: makemaz("soko0-18"); return;
+			case 120: makemaz("soko0-19"); return;
+			case 121: makemaz("soko0-20"); return;
+			case 122: makemaz("soko0-21"); return;
+			case 123: makemaz("soko0-22"); return;
+			case 124: makemaz("soko0-23"); return;
+			case 125: makemaz("soko0-24"); return;
+			case 126: makemaz("soko0-25"); return;
+			case 127: makemaz("soko0-26"); return;
+			case 128: makemaz("soko0-27"); return;
+			case 129: makemaz("soko0-28"); return;
+			case 130: makemaz("soko0-29"); return;
+			case 131: makemaz("soko0-30"); return;
+			case 132: makemaz("soko0-31"); return;
+			case 133: makemaz("soko0-32"); return;
+			case 134: makemaz("soko0-33"); return;
+			case 135: makemaz("soko0-34"); return;
+			case 136: makemaz("soko0-35"); return;
+			case 137: makemaz("soko0-36"); return;
+			case 138: makemaz("soko0-37"); return;
+			case 139: makemaz("soko0-38"); return;
+			case 140: makemaz("soko0-39"); return;
+			case 141: makemaz("soko0-40"); return;
+			case 142: makemaz("soko0-41"); return;
+			case 143: makemaz("soko0-42"); return;
+			case 144: makemaz("soko0-43"); return;
+			case 145: makemaz("soko0-44"); return;
+			case 146: makemaz("soko0-45"); return;
+			case 147: makemaz("soko0-46"); return;
+			case 148: makemaz("soko0-47"); return;
+			case 149: makemaz("soko0-48"); return;
+			case 150: makemaz("soko0-49"); return;
+			case 151: makemaz("soko0-50"); return;
+			case 152: makemaz("soko0-51"); return;
+
+		}
+		break;
+
+	    case 44:
+	    case 45:
+
+		switch (rnd(9)) {
+
+			case 1: makemaz("hellma-1"); return;
+			case 2: makemaz("hellma-2"); return;
+			case 3: makemaz("hellma-3"); return;
+			case 4: makemaz("hellma-4"); return;
+			case 5: makemaz("hellma-5"); return;
+			case 6: makemaz("hellma-6"); return;
+			case 7: makemaz("hellma-7"); return;
+			case 8: makemaz("hellma-8"); return;
+			case 9: makemaz("hellma-9"); return;
+
+		}
+		break;
+
+	    case 46:
+
+		makemaz("oracleX"); return;
+		break;
+
+	    case 47:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("hrats-1"); return;
+			case 2: makemaz("hrats-2"); return;
+			case 3: makemaz("hrats-3"); return;
+
+		}
+		break;
+
+	    case 48:
+
+		switch (rnd(6)) {
+
+			case 1: makemaz("hkobol-1"); return;
+			case 2: makemaz("hkobol-2"); return;
+			case 3: makemaz("hkobol-3"); return;
+			case 4: makemaz("hkobol-4"); return;
+			case 5: makemaz("hkobol-5"); return;
+			case 6: makemaz("hkobol-6"); return;
+
+		}
+		break;
+
+	    case 49:
+
+		switch (rnd(5)) {
+
+			case 1: makemaz("hnymp-1"); return;
+			case 2: makemaz("hnymp-2"); return;
+			case 3: makemaz("hnymp-3"); return;
+			case 4: makemaz("hnymp-4"); return;
+			case 5: makemaz("hnymp-5"); return;
+
+		}
+		break;
+
+	    case 50:
+
+		switch (rnd(9)) {
+
+			case 1: makemaz("hstor-1"); return;
+			case 2: makemaz("hstor-2"); return;
+			case 3: makemaz("hstor-3"); return;
+			case 4: makemaz("hstor-4"); return;
+			case 5: makemaz("hstor-5"); return;
+			case 6: makemaz("hstor-6"); return;
+			case 7: makemaz("hstor-7"); return;
+			case 8: makemaz("hstor-8"); return;
+			case 9: makemaz("hstor-9"); return;
+
+		}
+		break;
+
+	    case 51:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("guild-1"); return;
+			case 2: makemaz("guild-2"); return;
+			case 3: makemaz("guild-3"); return;
+			case 4: makemaz("guild-4"); return;
+			case 5: makemaz("guild-5"); return;
+			case 6: makemaz("guild-6"); return;
+			case 7: makemaz("guild-7"); return;
+			case 8: makemaz("guild-8"); return;
+
+		}
+		break;
+
+	    case 52:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("forgeX"); return;
+			case 2: makemaz("hitchX"); return;
+			case 3: makemaz("compuX"); return;
+			case 4: makemaz("keyX"); return;
+
+		}
+		break;
+
+	    case 53:
+	    case 54:
+
+		switch (rnd(11)) {
+
+			case 1: makemaz("hmedu-1"); return;
+			case 2: makemaz("hmedu-2"); return;
+			case 3: makemaz("hmedu-3"); return;
+			case 4: makemaz("hmedu-4"); return;
+			case 5: makemaz("hmedu-5"); return;
+			case 6: makemaz("hmedu-6"); return;
+			case 7: makemaz("hmedu-7"); return;
+			case 8: makemaz("hmedu-8"); return;
+			case 9: makemaz("hmedu-9"); return;
+			case 10: makemaz("hmedu-10"); return;
+			case 11: makemaz("hmedu-11"); return;
+
+		}
+		break;
+
+	    case 55:
+	    case 56:
+
+		switch (rnd(9)) {
+
+			case 1: makemaz("hcastl-1"); return;
+			case 2: makemaz("hcastl-2"); return;
+			case 3: makemaz("hcastl-3"); return;
+			case 4: makemaz("hcastl-4"); return;
+			case 5: makemaz("hcastl-5"); return;
+			case 6: makemaz("hcastl-6"); return;
+			case 7: makemaz("hcastl-7"); return;
+			case 8: makemaz("hcastl-8"); return;
+			case 9: makemaz("hcastl-9"); return;
+
+		}
+		break;
+
+	    case 57:
+	    case 58:
+	    case 59:
+	    case 60:
+	    case 61:
+
+		switch (rnd(26)) {
+
+			case 1: makemaz("hgehn-1"); return;
+			case 2: makemaz("hgehn-2"); return;
+			case 3: makemaz("hgehn-3"); return;
+			case 4: makemaz("hgehn-4"); return;
+			case 5: makemaz("hgehn-5"); return;
+			case 6: makemaz("hgehn-6"); return;
+			case 7: makemaz("hgehn-7"); return;
+			case 8: makemaz("hgehn-8"); return;
+			case 9: makemaz("hgehn-9"); return;
+			case 10: makemaz("hgehn-10"); return;
+			case 11: makemaz("hgehn-11"); return;
+			case 12: makemaz("hgehn-12"); return;
+			case 13: makemaz("hgehn-13"); return;
+			case 14: makemaz("hgehn-14"); return;
+			case 15: makemaz("hgehn-15"); return;
+			case 16: makemaz("hgehn-16"); return;
+			case 17: makemaz("hgehn-17"); return;
+			case 18: makemaz("hgehn-18"); return;
+			case 19: makemaz("hgehn-19"); return;
+			case 20: makemaz("hgehn-20"); return;
+			case 21: makemaz("hgehn-21"); return;
+			case 22: makemaz("hgehn-22"); return;
+			case 23: makemaz("hgehn-23"); return;
+			case 24: makemaz("hgehn-24"); return;
+			case 25: makemaz("hgehn-25"); return;
+			case 26: makemaz("hgehn-26"); return;
+
+		}
+		break;
+
+	    case 62:
+
+		makemaz("schoolX"); return;
+		break;
+
+	    case 63:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("htown-1"); return;
+			case 2: makemaz("htown-2"); return;
+			case 3: makemaz("htown-3"); return;
+			case 4: makemaz("htown-4"); return;
+
+		}
+		break;
+
+	    case 64:
+
+		switch (rnd(3)) {
+
+			case 1: makemaz("hgrund-1"); return;
+			case 2: makemaz("hgrund-2"); return;
+			case 3: makemaz("hgrund-3"); return;
+
+		}
+		break;
+
+	    case 65:
+
+		makemaz("hknox"); return;
+		break;
+
+	    case 66:
+
+		makemaz("hdragons"); return;
+		break;
+
+	    case 67:
+
+		makemaz("htomb"); return;
+		break;
+
+	    case 68:
+
+		makemaz("hspiders"); return;
+		break;
+
+	    case 69:
+
+		makemaz("hsea"); return;
+		break;
+
+	    case 70:
+
+		makemaz("hmtemple"); return;
+		break;
+
+	    case 71:
+
+		makemaz("hcav2"); return;
+		break;
+
+	    case 72:
+
+		makemaz("hfrnk"); return;
+		break;
+
+	    case 73:
+
+		switch (rnd(4)) {
+
+			case 1: makemaz("hsheo-1"); return;
+			case 2: makemaz("hsheo-2"); return;
+			case 3: makemaz("hsheo-3"); return;
+			case 4: makemaz("hsheo-4"); return;
 
 		}
 		break;

@@ -186,3 +186,394 @@ TRAP: "web", random
 TRAP: "web", random
 TRAP: "web", random
 TRAP: "web", random
+
+
+MAZE: "espiders" , ' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            -----               -----
+                         ----...-               |...|------
+            ------    ----.....--               ---.......|
+            -....------.....----                 -----..---
+            ----.........----       |-------------.....--
+              -...----......----|----..............-----
+              -.---  ------....--.......-----|------     -------
+              -.-  --------..................|-------- ---.....-
+      |------ ---  -........---...----|..............---...-----
+      |.....-- ---------.---- |...|   |------|...........----- 
+      |----..---.........-    |...|          -----------.....--------
+       |.........-------.-    |...|-|                  -------......-
+       -----------     ---|---|.....|             --------......-----
+                 ---------|.........---------------.........-----
+           ------|.............|-|....................-----.....----
+        ---|..................---|...-----------.....---  -----....-
+        |....----|.-----------|......|         ----....-----  ------
+        |----|   |..--      |-|...|--|            ---......-
+                 -|..| -----|...|--                 ---..---
+                  ---- |.......|-                     -.--
+                       |-------|                      ---
+ENDMAP
+RANDOM_MONSTERS: 's','s'
+STAIR:(32,10),up
+STAIR:random,down
+#
+# the stuff to find here
+OBJECT: '!',"invulnerability",random
+OBJECT: '!',"invulnerability",random
+OBJECT: '/',"make invisible",random
+OBJECT: '"',"amulet versus poison",random
+OBJECT: '[',"speed boots",random
+OBJECT: '=',"conflict",random
+OBJECT: '/',"death",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+#
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+#
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+
+
+MAZE: "hspiders" , ' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            -----               -----
+                         ----...-               |...|------
+            ------    ----.....--               ---.......|
+            -....------.....----                 -----..---
+            ----.........----       |-------------.....--
+              -...----......----|----..............-----
+              -.---  ------....--.......-----|------     -------
+              -.-  --------..................|-------- ---.....-
+      |------ ---  -........---...----|..............---...-----
+      |.....-- ---------.---- |...|   |------|...........----- 
+      |----..---.........-    |...|          -----------.....--------
+       |.........-------.-    |...|-|                  -------......-
+       -----------     ---|---|.....|             --------......-----
+                 ---------|.........---------------.........-----
+           ------|.............|-|....................-----.....----
+        ---|..................---|...-----------.....---  -----....-
+        |....----|.-----------|......|         ----....-----  ------
+        |----|   |..--      |-|...|--|            ---......-
+                 -|..| -----|...|--                 ---..---
+                  ---- |.......|-                     -.--
+                       |-------|                      ---
+ENDMAP
+RANDOM_MONSTERS: 's','s'
+STAIR:(32,10),up
+STAIR:random,down
+#
+# the stuff to find here
+OBJECT: '!',"invulnerability",random
+OBJECT: '!',"invulnerability",random
+OBJECT: '/',"make invisible",random
+OBJECT: '"',"amulet versus poison",random
+OBJECT: '[',"speed boots",random
+OBJECT: '=',"conflict",random
+OBJECT: '/',"death",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+OBJECT: '%',"egg",random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+#
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+#
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+

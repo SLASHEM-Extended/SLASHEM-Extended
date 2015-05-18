@@ -74,3 +74,185 @@ MONSTER:'n',"nymph queen",(64,09),hostile,awake
 TRAP:"board",(62,12)
 TRAP:"board",(63,12)
 
+MAZE: "keyE", ' '
+# we cannot use noteleport - this would prevent the nymphs and leprechauns
+# from teleporting, too.
+FLAGS: nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7 
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..S...+}....S.......|}|.|L.....IIIPPPCCCAAAAAAAAA.....S...................|
+|---...|}....|..|-S--|}|.|L..............AAAAAAAAA.....|-----------------|.|
+|......|}.|..|-S-....S}|.|L.....IIIP......AAAAAAAA.....|.................|.|
+|---S---}.|..|II|..---}|.|L.....IIIPPP...AAAAAAAAA.....|.|-------------|.|.|
+|}}}.}}}}.|..|CC|..|}}}|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.............|.|.|
+|.........|..|AA|..|}|-|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|---------|.|.|.|
+|----------------S--}|...|L.....IIIPPPCCCA...AAAAA.....|.|.|.........|.|.|.|
+|}}}}}}}}}}}}}}}}}.}}|...|L.....IIIPPPCCCAA..AAAAA.....|.|.|.|-----|.|.|.|.|
+|-----------------.--|...|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|................|.|.....|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|.|..|..|..|.....S.|.....|L.....IIIP..CCCAAA....AA.....|.|.|.|S----|.|.|.|.|
+|.|--|--|--|-----|-|.....|L.....IIIP.PCCCAA....AAA.....|.|.|.|.......|.|.|.|
+|........................|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|-------|.|.|.|
+|-----------------------.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|...........|.|.|
+|...S..................S.|L.....IIIPPPCCCA....AAAA.....|.|.------------|.|.|
+|...---------------------|L.....IIIPPPCCCAAAAAAAAA.....|.|...............|.|
+|........................|L.....IIIPPPCCCAAAAA.........|.|---------------|.|
+|........................S......IIIPPPCCCAAAAAAAAA.....|...................|
+|--------------------------------------------------------------------------|
+ENDMAP
+
+RANDOM_MONSTERS: 'l', 'n'
+REGION:(00,00,75,19),unlit,"ordinary"
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:(01,01),up
+STAIR:(01,06),down		
+
+DOOR:locked,(03,01)
+DOOR:open,(07,01)
+DOOR:locked,(04,04)
+DOOR:locked,(13,01)
+DOOR:locked,(15,03)
+DOOR:locked,(21,03)
+DOOR:locked,(17,07)
+DOOR:locked,(17,11)
+DOOR:locked,(25,18)
+DOOR:locked,(18,02)
+DOOR:locked,(04,15)
+DOOR:locked,(23,15)
+DOOR:locked,(62,11)
+DOOR:locked,(62,11)
+
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,(64,09),hostile,awake
+
+TRAP:"board",(62,12)
+TRAP:"board",(63,12)
+
+
+MAZE: "keyX", ' '
+# we cannot use noteleport - this would prevent the nymphs and leprechauns
+# from teleporting, too.
+FLAGS: nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7 
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..S...+}....S.......|}|.|L.....IIIPPPCCCAAAAAAAAA.....S...................|
+|---...|}....|..|-S--|}|.|L..............AAAAAAAAA.....|-----------------|.|
+|......|}.|..|-S-....S}|.|L.....IIIP......AAAAAAAA.....|.................|.|
+|---S---}.|..|II|..---}|.|L.....IIIPPP...AAAAAAAAA.....|.|-------------|.|.|
+|}}}.}}}}.|..|CC|..|}}}|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.............|.|.|
+|.........|..|AA|..|}|-|.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|---------|.|.|.|
+|----------------S--}|...|L.....IIIPPPCCCA...AAAAA.....|.|.|.........|.|.|.|
+|}}}}}}}}}}}}}}}}}.}}|...|L.....IIIPPPCCCAA..AAAAA.....|.|.|.|-----|.|.|.|.|
+|-----------------.--|...|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|................|.|.....|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|.....|.|.|.|.|
+|.|..|..|..|.....S.|.....|L.....IIIP..CCCAAA....AA.....|.|.|.|S----|.|.|.|.|
+|.|--|--|--|-----|-|.....|L.....IIIP.PCCCAA....AAA.....|.|.|.|.......|.|.|.|
+|........................|L.....IIIPPPCCCAAAAAAAAA.....|.|.|.|-------|.|.|.|
+|-----------------------.|L.....IIIPPPCCCAAAAAAAAA.....|.|.|...........|.|.|
+|...S..................S.|L.....IIIPPPCCCA....AAAA.....|.|.------------|.|.|
+|...---------------------|L.....IIIPPPCCCAAAAAAAAA.....|.|...............|.|
+|........................|L.....IIIPPPCCCAAAAA.........|.|---------------|.|
+|........................S......IIIPPPCCCAAAAAAAAA.....|...................|
+|--------------------------------------------------------------------------|
+ENDMAP
+
+RANDOM_MONSTERS: 'l', 'n'
+REGION:(00,00,75,19),unlit,"ordinary"
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:(01,01),up
+STAIR:(01,06),down		
+
+DOOR:locked,(03,01)
+DOOR:open,(07,01)
+DOOR:locked,(04,04)
+DOOR:locked,(13,01)
+DOOR:locked,(15,03)
+DOOR:locked,(21,03)
+DOOR:locked,(17,07)
+DOOR:locked,(17,11)
+DOOR:locked,(25,18)
+DOOR:locked,(18,02)
+DOOR:locked,(04,15)
+DOOR:locked,(23,15)
+DOOR:locked,(62,11)
+DOOR:locked,(62,11)
+
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'l',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,random,awake
+MONSTER:'n',random,(64,09),hostile,awake
+
+TRAP:"board",(62,12)
+TRAP:"board",(63,12)
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+

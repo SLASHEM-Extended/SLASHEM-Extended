@@ -134,10 +134,21 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	rndmaze.lev rndmazea.lev school-?.lev schoolX.lev sheolfil.lev \
 	sheolmid.lev soko?-??.lev town-?.lev unhck-?.lev unhck-??.lev \
 	juiblex.lev knox.lev medus-?.lev minend-?.lev minefil?.lev \
-	mking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
+	hellfil?.lev hmint-?.lev hmint-??.lev hminen-?.lev hking-?.lev \
+	hking-??.lev oracleX.lev erats-?.lev hrats-?.lev hstor-?.lev \
+	mking-??.lev eking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
 	mintn-?.lev oracle.lev orcus-?.lev sanct-?.lev soko?-?.lev \
-	tower?.lev valley-?.lev wizard?.lev ghbgr-?.lev ghbgr-??.lev\
+	tower?.lev valley-?.lev wizard?.lev ghbgr-?.lev ghbgr-??.lev \
 	astral.lev air.lev earth.lev fire.lev water.lev \
+	esheo-?.lev hsheo-?.lev \
+	emtemple.lev hmtemple.lev ecav2.lev hcav2.lev efrnk.lev hfrnk.lev \
+	etomb.lev htomb.lev espiders.lev hspiders.lev esea.lev hsea.lev \
+	egrund-?.lev hgrund-?.lev eknox.lev hknox.lev hdragons.lev \
+	forgeX.lev hitchX.lev compuX.lev keyX.lev etown-?.lev htown-?.lev \
+	egehn-?.lev egehn-??.lev hgehn-?.lev hgehn-??.lev \
+	hitchE.lev compuE.lev keyE.lev emedu-?.lev emedu-??.lev \
+	hmedu-?.lev hmedu-??.lev ecastl-?.lev hcastl-?.lev \
+	ekobol-?.lev hkobol-?.lev enymp-?.lev hnymp-?.lev \
 	beholder.lev blkmar.lev cav2fill.lev medus-??.lev \
 	grund-?.lev demogorg.lev dispa-?.lev dragons.lev geryon.lev \
 	guild-?.lev kobold-?.lev lich.lev mall-?.lev mall.lev mking-?.lev \

@@ -75,3 +75,186 @@ MONSTER: ';',"babelfish",random,hostile,awake
 MONSTER: ';',"babelfish",random,hostile,awake
 MONSTER: ';',"babelfish",random,hostile,awake
 
+MAZE: "hitchE", ' '
+FLAGS: nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7 
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|..............|.........................|--------|........................|
+|..............|.......................--|........|--......................|
+|..............|.....................--|............|--....................|
+|..............|.....................|................|-.............|.....|
+|..............|......|................................|.............-.....|
+|..............|......|................................|...........-|.|-...|
+|..............|......|...............................-|..........-|...|-..|
+|..............|......|..............................-|...........|.....|..|
+|..............|......|............................--|...........----+----.|
+|..............|------|-------...................--|.............|||...|||.|
+|................PPPPP|.......................---|................|.....|..|
+|................PPPPP|....................---|...................|.....|..|
+|.....................|.............|------|......................|.....|..|
+|.....................|.............|......................................|
+|-------..............|.............|-----------------------...............|
+|......|...................................................................|
+|......+...................................................................|
+|--------------------------------------------------------------------------|
+ENDMAP
+
+REGION: (00,00,75,19),unlit,"ordinary"
+
+STAIR:(15,01),up
+STAIR:(37,15),down
+
+MONSTER: 'A',random,(22,05),hostile,asleep
+MONSTER: '@',random,(16,10),hostile,asleep
+MONSTER: '@',random,(17,10),hostile,asleep
+MONSTER: '@',random,(18,10),hostile,awake
+
+MONSTER: 'a', random,random,hostile,awake
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'x', "microscopic space fleet",random
+MONSTER: 'f', random,random
+MONSTER: 'f', random,random,hostile,asleep
+
+# The Vogon Headquarter
+DOOR: locked, (07,18)
+MONSTER: 'V',random,(01,17),hostile,asleep
+MONSTER: 'V',random,(01,18),hostile,asleep
+MONSTER: 'V',"vogon",(02,17),hostile,asleep
+MONSTER: 'V',random,(02,18),hostile,asleep
+MONSTER: 'V',"vogon",(03,17),hostile,asleep
+MONSTER: 'V',"vogon",(03,18),hostile,asleep
+MONSTER: 'V',"vogon",(04,17),hostile,asleep
+MONSTER: 'V',"vogon",(04,18),hostile,asleep
+MONSTER: 'V',random,(05,17),hostile,asleep
+MONSTER: 'V',"vogon",(05,18),hostile,asleep
+MONSTER: 'V',"vogon",(06,17),hostile,asleep
+MONSTER: 'V',random,(06,18),hostile,asleep
+
+# The Heart Of Gold
+DOOR: closed, (69,10)
+MONSTER: 'Y',random,(69,07),hostile,awake
+MONSTER: 'x',random,(67,09),hostile,awake
+MONSTER: 'x',random,(71,09),hostile,awake
+MONSTER: 'X',random,(69,08),hostile,asleep
+
+# The Aquarium
+# (random for ; will find water positions)
+MONSTER: ';',"babelfish",random,hostile,awake
+MONSTER: ';',"babelfish",random,hostile,awake
+MONSTER: ';',"babelfish",random,hostile,awake
+
+
+MAZE: "hitchX", ' '
+FLAGS: nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7 
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|..............|.........................|--------|........................|
+|..............|.......................--|........|--......................|
+|..............|.....................--|............|--....................|
+|..............|.....................|................|-.............|.....|
+|..............|......|................................|.............-.....|
+|..............|......|................................|...........-|.|-...|
+|..............|......|...............................-|..........-|...|-..|
+|..............|......|..............................-|...........|.....|..|
+|..............|......|............................--|...........----+----.|
+|..............|------|-------...................--|.............|||...|||.|
+|................PPPPP|.......................---|................|.....|..|
+|................PPPPP|....................---|...................|.....|..|
+|.....................|.............|------|......................|.....|..|
+|.....................|.............|......................................|
+|-------..............|.............|-----------------------...............|
+|......|...................................................................|
+|......+...................................................................|
+|--------------------------------------------------------------------------|
+ENDMAP
+
+REGION: (00,00,75,19),unlit,"ordinary"
+
+STAIR:(15,01),up
+STAIR:(37,15),down
+
+MONSTER: 'A',random,(22,05),hostile,asleep
+MONSTER: '@',random,(16,10),hostile,asleep
+MONSTER: '@',random,(17,10),hostile,asleep
+MONSTER: '@',random,(18,10),hostile,awake
+
+MONSTER: 'a', "Ravenous Bugblatter Beast Of Traal",random,hostile,awake
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'Z', "creeping 42",random
+MONSTER: 'x', "microscopic space fleet",random
+MONSTER: 'f', "algolian suntiger",random
+MONSTER: 'f', "algolian suntiger",random,hostile,asleep
+
+# The Vogon Headquarter
+DOOR: locked, (07,18)
+MONSTER: 'V',random,(01,17),hostile,asleep
+MONSTER: 'V',"vogon lord",(01,18),hostile,asleep
+MONSTER: 'V',"vogon",(02,17),hostile,asleep
+MONSTER: 'V',"vogon lord",(02,18),hostile,asleep
+MONSTER: 'V',"vogon",(03,17),hostile,asleep
+MONSTER: 'V',"vogon",(03,18),hostile,asleep
+MONSTER: 'V',"vogon",(04,17),hostile,asleep
+MONSTER: 'V',"vogon",(04,18),hostile,asleep
+MONSTER: 'V',"vogon lord",(05,17),hostile,asleep
+MONSTER: 'V',"vogon",(05,18),hostile,asleep
+MONSTER: 'V',"vogon",(06,17),hostile,asleep
+MONSTER: 'V',"vogon lord",(06,18),hostile,asleep
+
+# The Heart Of Gold
+DOOR: closed, (69,10)
+MONSTER: 'Y',random,(69,07),hostile,awake
+MONSTER: 'x',random,(67,09),hostile,awake
+MONSTER: 'x',random,(71,09),hostile,awake
+MONSTER: 'X',random,(69,08),hostile,asleep
+
+# The Aquarium
+# (random for ; will find water positions)
+MONSTER: ';',"babelfish",random,hostile,awake
+MONSTER: ';',"babelfish",random,hostile,awake
+MONSTER: ';',"babelfish",random,hostile,awake
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
