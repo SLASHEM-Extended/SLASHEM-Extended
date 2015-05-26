@@ -209,7 +209,7 @@ SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
  mtemple.des newmall.des nightmar.des nymph.des oracle.des rats.des	\
  rndmaze.des rndmazea.des sea.des sheol.des sokoban.des spiders.des	\
  stor-1.des stor-2.des stor-3.des tomb.des tower.des town.des		\
- unheck.des yendor.des ghbigrm.des gehenX.des kwests.des
+ unheck.des yendor.des ghbigrm.des gehenX.des kwests.des mazes.des
 
 ALL_DES = $(QUEST_DES) $(SPEC_DES)
 ALL_TAG = $(ALL_DES:%.des=dat/%.tag)

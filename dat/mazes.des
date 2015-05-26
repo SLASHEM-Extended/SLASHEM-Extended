@@ -1,0 +1,1048 @@
+#       SCCS Id: @(#)mall-2.des  3.4     1993/02/23
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+
+MAZE: "mazes-1" , random
+GEOMETRY:center,center
+MAP
+-------
+|.....|
+|.....|
+.......
+|.....|
+|.....|
+-------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZE: "mazes-2" , random
+GEOMETRY:center,center
+MAP
+-------
+|.....|
+|.....|
++.....+
+|.....|
+|.....|
+-------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+REGION:(01,01,05,05),lit,"randomroom",filled,true
+
+DOOR:closed,(00,03)
+DOOR:closed,(06,03)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZE: "mazes-3" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
+.......                  .......
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZE: "mazes-4" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....+                  +.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom",filled,true
+
+REGION:(26,01,30,05),lit,"randomroom",filled,true
+
+DOOR:closed,(00,03)
+DOOR:closed,(06,03)
+
+DOOR:closed,(25,03)
+DOOR:closed,(31,03)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZE: "mazes-5" , random
+GEOMETRY:center,center
+MAP
+-------                  -------                  -------
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
+.......                  .......                  .......
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
+-------                  -------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZEWALK:(50,03),west
+MAZEWALK:(56,03),east
+
+MAZE: "mazes-6" , random
+GEOMETRY:center,center
+MAP
+-------                  -------                  -------
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
++.....+                  +.....+                  +.....+
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
+-------                  -------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom",filled,true
+
+REGION:(26,01,30,05),lit,"randomroom",filled,true
+
+REGION:(51,01,55,05),lit,"randomroom",filled,true
+
+DOOR:closed,(00,03)
+DOOR:closed,(06,03)
+
+DOOR:closed,(25,03)
+DOOR:closed,(31,03)
+
+DOOR:closed,(50,03)
+DOOR:closed,(56,03)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZEWALK:(50,03),west
+MAZEWALK:(56,03),east
+
+MAZE: "mazes-7" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
+.......                  .......
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+
+
+
+
+
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
+.......                  .......
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZEWALK:(00,15),west
+MAZEWALK:(06,15),east
+
+MAZEWALK:(25,15),west
+MAZEWALK:(31,15),east
+
+MAZE: "mazes-8" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....+                  +.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+
+
+
+
+
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....+                  +.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom",filled,true
+
+REGION:(26,01,30,05),lit,"randomroom",filled,true
+
+REGION:(01,13,05,17),lit,"randomroom",filled,true
+
+REGION:(26,13,30,17),lit,"randomroom",filled,true
+
+DOOR:closed,(00,03)
+DOOR:closed,(06,03)
+
+DOOR:closed,(25,03)
+DOOR:closed,(31,03)
+
+DOOR:closed,(00,15)
+DOOR:closed,(06,15)
+
+DOOR:closed,(25,15)
+DOOR:closed,(31,15)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(25,03),west
+MAZEWALK:(31,03),east
+
+MAZEWALK:(00,15),west
+MAZEWALK:(06,15),east
+
+MAZEWALK:(25,15),west
+MAZEWALK:(31,15),east
+
+MAZE: "mazes-9" , random
+GEOMETRY:center,center
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
+.......                                    .......
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------               -------              -------
+                      |.....|
+                      |.....|
+                      .......
+                      |.....|
+                      |.....|
+-------               -------              -------
+|.....|                                    |.....|
+|.....|                                    |.....|
+.......                                    .......
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(43,03),west
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+MAZEWALK:(06,15),east
+
+MAZEWALK:(43,15),west
+MAZEWALK:(49,15),east
+
+MAZEWALK:(22,09),west
+MAZEWALK:(28,09),east
+
+MAZE: "mazes-10" , random
+GEOMETRY:center,center
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....+                                    +.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------               -------              -------
+                      |.....|
+                      |.....|
+                      +.....+
+                      |.....|
+                      |.....|
+-------               -------              -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....+                                    +.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom",filled,true
+
+REGION:(44,01,48,05),lit,"randomroom",filled,true
+
+REGION:(01,13,05,17),lit,"randomroom",filled,true
+
+REGION:(44,13,48,17),lit,"randomroom",filled,true
+
+REGION:(23,07,27,11),lit,"randomroom",filled,true
+
+DOOR:closed,(00,03)
+DOOR:closed,(06,03)
+
+DOOR:closed,(43,03)
+DOOR:closed,(49,03)
+
+DOOR:closed,(00,15)
+DOOR:closed,(06,15)
+
+DOOR:closed,(43,15)
+DOOR:closed,(49,15)
+
+DOOR:closed,(22,09)
+DOOR:closed,(28,09)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+MAZEWALK:(43,03),west
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+MAZEWALK:(06,15),east
+
+MAZEWALK:(43,15),west
+MAZEWALK:(49,15),east
+
+MAZEWALK:(22,09),west
+MAZEWALK:(28,09),east
+
+MAZE: "mazes-11" , random
+GEOMETRY:center,center
+MAP
+-------
+|.....|
+|.....|
+|.....+
+|.....|
+|.....|
+-------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+REGION:(01,01,05,05),lit,"random shop"
+
+DOOR:closed,(06,03)
+
+MAZEWALK:(06,03),east
+
+MAZE: "mazes-12" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"random shop"
+
+REGION:(26,01,30,05),lit,"random shop"
+
+DOOR:closed,(00,03)
+DOOR:closed,(31,03)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(31,03),east
+
+MAZE: "mazes-13" , random
+GEOMETRY:center,center
+MAP
+-------                  -------                  -------
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
++.....|                  +.....|                  |.....+
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
+-------                  -------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"random shop"
+
+REGION:(26,01,30,05),lit,"random shop"
+
+REGION:(51,01,55,05),lit,"random shop"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(25,03)
+
+DOOR:closed,(56,03)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(25,03),west
+
+MAZEWALK:(56,03),east
+
+MAZE: "mazes-14" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+
+
+
+
+
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"random shop"
+
+REGION:(26,01,30,05),lit,"random shop"
+
+REGION:(01,13,05,17),lit,"random shop"
+
+REGION:(26,13,30,17),lit,"random shop"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(31,03)
+
+DOOR:closed,(00,15)
+
+DOOR:closed,(31,15)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(31,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(31,15),east
+
+MAZE: "mazes-15" , random
+GEOMETRY:center,center
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------               -------              -------
+                      |.....|
+                      |.....|
+                      +.....|
+                      |.....|
+                      |.....|
+-------               -------              -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"random shop"
+
+REGION:(44,01,48,05),lit,"random shop"
+
+REGION:(01,13,05,17),lit,"random shop"
+
+REGION:(44,13,48,17),lit,"random shop"
+
+REGION:(23,07,27,11),lit,"random shop"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(49,03)
+
+DOOR:closed,(00,15)
+
+DOOR:closed,(49,15)
+
+DOOR:closed,(22,09)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(49,15),east
+
+MAZEWALK:(22,09),west
+
+MAZE: "mazes-16" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"random shop"
+
+REGION:(26,01,30,05),lit,"randomroom"
+
+DOOR:closed,(00,03)
+DOOR:closed,(31,03)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(31,03),east
+
+MAZE: "mazes-17" , random
+GEOMETRY:center,center
+MAP
+-------                  -------                  -------
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
++.....|                  +.....|                  |.....+
+|.....|                  |.....|                  |.....|
+|.....|                  |.....|                  |.....|
+-------                  -------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(26,01,30,05),lit,"randomroom"
+
+REGION:(51,01,55,05),lit,"random shop"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(25,03)
+
+DOOR:closed,(56,03)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(25,03),west
+
+MAZEWALK:(56,03),east
+
+MAZE: "mazes-18" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+
+
+
+
+
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(26,01,30,05),lit,"randomroom"
+
+REGION:(01,13,05,17),lit,"random shop"
+
+REGION:(26,13,30,17),lit,"randomroom"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(31,03)
+
+DOOR:closed,(00,15)
+
+DOOR:closed,(31,15)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(31,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(31,15),east
+
+MAZE: "mazes-19" , random
+GEOMETRY:center,center
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------               -------              -------
+                      |.....|
+                      |.....|
+                      +.....|
+                      |.....|
+                      |.....|
+-------               -------              -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(44,01,48,05),lit,"randomroom"
+
+REGION:(01,13,05,17),lit,"randomroom"
+
+REGION:(44,13,48,17),lit,"randomroom"
+
+REGION:(23,07,27,11),lit,"random shop"
+
+DOOR:closed,(00,03)
+
+DOOR:closed,(49,03)
+
+DOOR:closed,(00,15)
+
+DOOR:closed,(49,15)
+
+DOOR:closed,(22,09)
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(49,15),east
+
+MAZEWALK:(22,09),west
+
+MAZE: "mazes-20" , random
+GEOMETRY:center,center
+MAP
+----------
+|........|
+|........|
+|........|
+..........
+|........|
+|........|
+|........|
+|........|
+----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,04),west
+MAZEWALK:(09,04),east
+
+MAZE: "mazes-21" , random
+GEOMETRY:center,center
+MAP
+----------
+|........|
+|........|
+|........|
++........+
+|........|
+|........|
+|........|
+|........|
+----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,08,08),lit,"randomroom",filled,true
+
+DOOR:closed,(00,04)
+DOOR:closed,(09,04)
+
+MAZEWALK:(00,04),west
+MAZEWALK:(09,04),east
+
+MAZE: "mazes-22" , random
+GEOMETRY:center,center
+MAP
+----------                                      ----------
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+..........                                      ..........
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+----------                                      ----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,04),west
+MAZEWALK:(09,04),east
+
+MAZEWALK:(48,04),west
+MAZEWALK:(57,04),east
+
+MAZE: "mazes-23" , random
+GEOMETRY:center,center
+MAP
+----------                                      ----------
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
++........+                                      +........+
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+----------                                      ----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,04),west
+MAZEWALK:(09,04),east
+
+MAZEWALK:(48,04),west
+MAZEWALK:(57,04),east
+
+REGION:(01,01,08,08),lit,"randomroom",filled,true
+
+REGION:(49,01,56,08),lit,"randomroom",filled,true
+
+DOOR:closed,(48,04)
+DOOR:closed,(57,04)
+
+DOOR:closed,(00,04)
+DOOR:closed,(09,04)
+
+MAZE: "mazes-24" , random
+GEOMETRY:center,center
+MAP
+----------
+|........|
+|........|
+|........|
++........|
+|........|
+|........|
+|........|
+|........|
+----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,08,08),lit,"random shop"
+
+DOOR:closed,(00,04)
+
+MAZEWALK:(00,04),west
+
+MAZE: "mazes-25" , random
+GEOMETRY:center,center
+MAP
+----------                                      ----------
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
++........|                                      +........+
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+|........|                                      |........|
+----------                                      ----------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+MAZEWALK:(00,04),west
+
+MAZEWALK:(48,04),west
+MAZEWALK:(57,04),east
+
+REGION:(01,01,08,08),lit,"random shop"
+
+REGION:(49,01,56,08),lit,"randomroom",filled,true
+
+DOOR:closed,(48,04)
+DOOR:closed,(57,04)
+
+DOOR:closed,(00,04)
+
+MAZE: "mazes-26" , random
+GEOMETRY:center,center
+MAP
+-------------------------
+|.......................|
+|.......................|
+|.......................|
+|.......................|
+|.......................|
++.......................+
+|.......................|
+|.......................|
+|.......................|
+|.......................|
+|.......................|
+|.......................|
+-------------------------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,23,12),lit,"randomroom",filled,true
+
+DOOR:closed,(00,06)
+DOOR:closed,(24,06)
+
+MAZEWALK:(00,06),west
+MAZEWALK:(24,06),east
+
+MAZE: "mazes-27" , random
+GEOMETRY:center,center
+MAP
+-------------------------
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
++...........|...........+
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+-------------------------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,10,12),lit,"randomroom",filled,true
+REGION:(13,01,23,12),lit,"random shop"
+
+DOOR:closed,(00,06)
+DOOR:closed,(24,06)
+
+MAZEWALK:(00,06),west
+MAZEWALK:(24,06),east
+
+MAZE: "mazes-28" , random
+GEOMETRY:center,center
+MAP
+-------------------------
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
++...........+...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+-------------------------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,10,12),lit,"randomroom",filled,true
+REGION:(13,01,23,12),lit,"random shop"
+
+DOOR:closed,(00,06)
+DOOR:closed,(12,06)
+
+MAZEWALK:(00,06),west
+
+MAZE: "mazes-29" , random
+GEOMETRY:center,center
+MAP
+      -------
+   ----.....----
+ |--...........--|
+|-...............-|
++.................+
+|-...............-|
+ |--...........--|
+   ----.....----
+      -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+REGION:(09,04,09,04),lit,"randomroom",filled,true
+
+DOOR:closed,(00,04)
+DOOR:closed,(18,04)
+
+MAZEWALK:(00,04),west
+MAZEWALK:(18,04),east
+
+MAZE: "mazes-30" , random
+GEOMETRY:center,center
+MAP
+      -------
+   ----.....----
+ |--...........--|
+|-...............-|
++.................|
+|-...............-|
+ |--...........--|
+   ----.....----
+      -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+REGION:(09,04,09,04),lit,"random shop"
+
+DOOR:closed,(00,04)
+
+MAZEWALK:(00,04),west
+

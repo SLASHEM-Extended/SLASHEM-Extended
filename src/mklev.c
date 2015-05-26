@@ -1463,8 +1463,47 @@ makelevel()
 		    makemaz(slev->proto);
 		    return;
 	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
-		    makemaz("");
+
+		    if (rn2(3)) {
+
+			switch (rnd(30)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+
+			}
+
+		    } else makemaz("");
 		    return;
+
 	    } else if (In_mines(&u.uz) && rn2(!(u.monstertimefinish % 247) ? (iswarper ? 2 : 20) : (iswarper ? 5 : 50) )) {
 		    if (rn2(10)) makemaz("minefill");
 		    else switch (rnd(7)) {
@@ -1496,8 +1535,47 @@ makelevel()
 		 (In_hell(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level))) {
-		    makemaz("");
+
+		    if (rn2(3)) {
+
+			switch (rnd(30)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+
+			}
+
+		    } else makemaz("");
 		    return;
+
 	    }
 	}
 
@@ -1506,7 +1584,7 @@ makelevel()
 	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) ) {
 
 
-	    switch (rnd(93)) {
+	    switch (rnd(100)) {
 
 	    case 1:
 	    case 2:
@@ -2698,13 +2776,57 @@ makelevel()
 		}
 		break;
 
+		case 94:
+		case 95:
+		case 96:
+		case 97:
+		case 98:
+		case 99:
+		case 100:
+
+		switch (rnd(30)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+
+		}
+		break;
+
           }
 
 	}
 
 	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
-	    switch (rnd(93)) {
+	    switch (rnd(100)) {
 
 	    case 1:
 	    case 2:
@@ -3891,6 +4013,50 @@ makelevel()
 		}
 		break;
 
+		case 94:
+		case 95:
+		case 96:
+		case 97:
+		case 98:
+		case 99:
+		case 100:
+
+		switch (rnd(30)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+
+		}
+		break;
+
           }
 
 	}
@@ -3899,7 +4065,44 @@ makelevel()
 
 	if (ismazewalker && depth(&u.uz) > 1) {
 
-	    makemaz("");
+	    if (rn2(3)) {
+
+		switch (rnd(30)) {
+
+		case 1: makemaz("mazes-1"); return;
+		case 2: makemaz("mazes-2"); return;
+		case 3: makemaz("mazes-3"); return;
+		case 4: makemaz("mazes-4"); return;
+		case 5: makemaz("mazes-5"); return;
+		case 6: makemaz("mazes-6"); return;
+		case 7: makemaz("mazes-7"); return;
+		case 8: makemaz("mazes-8"); return;
+		case 9: makemaz("mazes-9"); return;
+		case 10: makemaz("mazes-10"); return;
+		case 11: makemaz("mazes-11"); return;
+		case 12: makemaz("mazes-12"); return;
+		case 13: makemaz("mazes-13"); return;
+		case 14: makemaz("mazes-14"); return;
+		case 15: makemaz("mazes-15"); return;
+		case 16: makemaz("mazes-16"); return;
+		case 17: makemaz("mazes-17"); return;
+		case 18: makemaz("mazes-18"); return;
+		case 19: makemaz("mazes-19"); return;
+		case 20: makemaz("mazes-20"); return;
+		case 21: makemaz("mazes-21"); return;
+		case 22: makemaz("mazes-22"); return;
+		case 23: makemaz("mazes-23"); return;
+		case 24: makemaz("mazes-24"); return;
+		case 25: makemaz("mazes-25"); return;
+		case 26: makemaz("mazes-26"); return;
+		case 27: makemaz("mazes-27"); return;
+		case 28: makemaz("mazes-28"); return;
+		case 29: makemaz("mazes-29"); return;
+		case 30: makemaz("mazes-30"); return;
+
+		}
+
+	    } else makemaz("");
 	    return;
 
 	}
