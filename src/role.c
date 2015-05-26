@@ -3033,6 +3033,18 @@ const struct Race races[] = {
 	{  2, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"fiend", "fiendish", "fiendly", "Fie",
+	{0, 0},
+	PM_SUCKING_FIEND, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_VAMPIRE | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_VAMPIRE, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  4, 0,  4, 0,  3, 0 }		/* Energy */
+},
 {	"gastly", "ghast", "ghasthood", "Gha",
 	{0, 0},
 	PM_GASTLY, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3709,6 +3721,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
+},
+{	"vamgoyle", "vamgoyle", "vamgoylehood", "Vgo",
+	{0, 0},
+	PM_VAMGOYLE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_VAMPIRE | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_VAMPIRE, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  3, 0 }		/* Energy */
 },
 {	"vampire", "vampiric", "vampirehood", "Vam",
 	{0, 0},

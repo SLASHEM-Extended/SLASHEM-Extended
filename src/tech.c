@@ -2840,6 +2840,8 @@ race_tech()
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
 		case PM_HUMAN_MONKEY:	return (hmo_tech);
 		case PM_VAMPIRE:	return (vam_tech);
+		case PM_SUCKING_FIEND:	return (vam_tech);
+		case PM_VAMGOYLE:	return (vam_tech);
 		case PM_LEVITATOR:	return (lev_tech);
 		case PM_HERBALIST:		return (hrb_tech);
 		case PM_ALCHEMIST: 		return (alc_tech);

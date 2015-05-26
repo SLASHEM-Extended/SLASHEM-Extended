@@ -63,7 +63,7 @@ char msgbuf[BUFSZ];
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || \
 Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || \
  Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON))
+ Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON))
 
 #ifndef OVLB
 
@@ -151,13 +151,16 @@ register struct obj *obj;
 	 * but partly eaten food is (even though you can't drain it).
 	 */
 
-	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_TROVE)
+	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_TROVE && (!Race_if(PM_VAMGOYLE) || Upolyd) )
 		return (boolean)(obj->otyp == CORPSE && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
-	if (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) )
+	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && (!Race_if(PM_VAMGOYLE) || Upolyd) )
 		return (boolean)(obj->otyp == CORPSE &&
 		  has_blood(&mons[obj->corpsenm]) && (!obj->odrained ||
 		  obj->oeaten > drainlevel(obj)));
+
+	if (Race_if(PM_VAMGOYLE) && !Upolyd)
+		return (boolean)(obj->oclass == FOOD_CLASS && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
      /* return((boolean)(!!index(comestibles, obj->oclass))); */
 	return (boolean)(obj->oclass == FOOD_CLASS);

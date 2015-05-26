@@ -422,10 +422,8 @@
 				((ptr)->mlet == S_PUDDING &&         \
 				 (ptr) != &mons[PM_BLACK_PUDDING]))
 /* For vampires */
-#define has_blood(ptr)		(!vegetarian(ptr) && \
+#define has_blood(ptr)		( (!vegetarian(ptr) || Race_if(PM_SUCKING_FIEND) ) && \
 				   (ptr)->mlet != S_GOLEM && \
-				  ((ptr)->mlet != S_BAD_FOOD || \
-				   (ptr) == &mons[PM_KILLER_TRIPE_RATION]) && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
 
 #define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \

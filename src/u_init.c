@@ -2308,6 +2308,10 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
 	 { PM_GNOME, LEATHER_ARMOR, GNOMISH_SUIT },
     { PM_VAMPIRE,	POT_FRUIT_JUICE,	POT_BLOOD	      },
     { PM_VAMPIRE,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
+    { PM_SUCKING_FIEND,	POT_FRUIT_JUICE,	POT_BLOOD	      },
+    { PM_SUCKING_FIEND,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
+    { PM_VAMGOYLE,	POT_FRUIT_JUICE,	POT_BLOOD	      },
+    { PM_VAMGOYLE,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
     { PM_GASTLY,	FOOD_RATION,		CORPSE     },
     { PM_PHANTOM_GHOST,	FOOD_RATION,		CORPSE     },
     { NON_PM,	STRANGE_OBJECT,		STRANGE_OBJECT	      }
@@ -7112,6 +7116,19 @@ u_init()
 		Xtra_fopod[0].trotyp = trotyp[rn2(SIZE(trotyp))];
 		ini_inv(Xtra_fopod);
 	    }
+	    break;
+	case PM_VAMGOYLE:
+	    adjalign(-5); 
+	    u.ualign.sins += 5;
+	    u.alignlim -= 5;
+	    change_luck(-1);
+
+	case PM_SUCKING_FIEND:
+	    adjalign(-5); 
+	    u.ualign.sins += 5;
+	    u.alignlim -= 5;
+	    change_luck(-1);
+
 	    break;
 	case PM_ALIEN: /* this is the harder than hard race, combine it with convict role for maximum torture */
 	    adjalign(-20); 

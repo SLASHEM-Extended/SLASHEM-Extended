@@ -2759,7 +2759,7 @@ register struct attack *mattk;
 			int xtmp = d(2,6);
 			if (mdef->mhp < xtmp) xtmp = mdef->mhp;
 			if (maybe_polyd(is_vampire(youmonst.data), 
-			    Race_if(PM_VAMPIRE)) && mattk->aatyp == AT_BITE &&
+			    (Race_if(PM_VAMPIRE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_VAMGOYLE)) ) && mattk->aatyp == AT_BITE &&
 			    has_blood(pd) && (yn_function("Drink blood?", ynchars, 'y') == 'y') ) {
 				/* fixing stupid overeating issues --Amy */
 				/* For the life of a creature is in the blood

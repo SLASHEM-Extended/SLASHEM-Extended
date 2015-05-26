@@ -296,7 +296,7 @@ boolean forcecontrol;
 				uarm->otyp >= GRAY_DRAGON_SCALE_MAIL &&
 				uarm->otyp <= YELLOW_DRAGON_SCALES);
 	boolean iswere = (u.ulycn >= LOW_PM || is_were(youmonst.data));
-	boolean isvamp = (is_vampire(youmonst.data));
+	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) );
 	boolean was_floating = (Levitation || Flying);
 
 	/* [Tom] I made the chance of dying from Con check only possible for
