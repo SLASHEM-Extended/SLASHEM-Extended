@@ -452,12 +452,12 @@
 #define HRegeneration		u.uprops[REGENERATION].intrinsic
 #define ERegeneration		u.uprops[REGENERATION].extrinsic
 #define Regeneration		((HRegeneration || ERegeneration || \
-				 regenerates(youmonst.data)) && !NoRegeneration)
+				 regenerates(youmonst.data)) && !NoRegeneration && !Race_if(PM_SYLPH) )
 #define NoRegeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REGENERATION].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HEnergy_regeneration	u.uprops[ENERGY_REGENERATION].intrinsic
 #define EEnergy_regeneration	u.uprops[ENERGY_REGENERATION].extrinsic
-#define Energy_regeneration	((HEnergy_regeneration || EEnergy_regeneration || Race_if(PM_REDGUARD) ) && !NoEnergy_regeneration)
+#define Energy_regeneration	((HEnergy_regeneration || EEnergy_regeneration || Race_if(PM_REDGUARD) ) && !NoEnergy_regeneration && !Race_if(PM_SYLPH) )
 #define NoEnergy_regeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ENERGY_REGENERATION].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HProtection		u.uprops[PROTECTION].intrinsic

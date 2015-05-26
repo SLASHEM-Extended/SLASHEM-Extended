@@ -3610,6 +3610,18 @@ const struct Race races[] = {
 	{  6, 0,  0, 6,  6, 0 },	/* Hit points */
 	{  6, 0,  6, 0,  6, 0 }		/* Energy */
 },
+{	"sylph", "sylph", "sylphood", "Syl",
+	{0,0},
+	PM_SYLPH, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/* Str Int Wis Dex Con Cha */
+	{3, 3, 3, 3, 3, 3},
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	{2, 0, 1, 1, 1, 1},        /* Hit points */
+	{2, 0, 3, 0, 2, 2} /* Energy */
+},
 {	"transformer", "transformer", "transferhood", "Tra",
 	{0, 0},
 	PM_TRANSFORMER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,

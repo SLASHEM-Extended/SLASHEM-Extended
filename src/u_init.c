@@ -2096,6 +2096,13 @@ static struct trobj Tinopener[] = {
 	{ TIN_OPENER, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
+
+static struct trobj SylphStuff[] = {
+    {POT_GAIN_ENERGY, 0, POTION_CLASS, 1, UNDEF_BLESS},
+    {POT_HEALING, 0, POTION_CLASS, 1, UNDEF_BLESS},
+    {0, 0, 0, 0, 0}
+};
+
 static struct trobj XtraRing[] = {
 	{ UNDEF_TYP, 0, RING_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -7195,6 +7202,10 @@ u_init()
 
 	case PM_BATMAN:
           ini_inv(BatmanItem);		
+		break;
+
+	case PM_SYLPH:
+          ini_inv(SylphStuff);
 		break;
 
 	case PM_VENTURE_CAPITALIST:	/* idea by deepy */

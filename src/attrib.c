@@ -466,6 +466,12 @@ const struct innate {
 		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
 		     {   0, 0, 0, 0 } },
 
+	syl_abil[] = { {1,  &(HHunger), "", ""},
+		    {	1,  &(HSee_invisible), "", ""},
+		    { 4,  &(HStealth), "stealthy", "obvious"},
+		    { 6,  &(HInfravision), "perceptive", "half blind"},
+		    {18, &(HDetect_monsters), "perceptive", "dull"},
+		    {0, 0, 0, 0} },
 
 	gno_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
 		     {   9, &(HFast), "quick", "slow" },
@@ -1240,6 +1246,7 @@ int oldlevel, newlevel;
 	case PM_FENEK:	rabil = fen_abil;	break;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
+	case PM_SYLPH:	rabil = syl_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
