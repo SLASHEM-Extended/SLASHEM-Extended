@@ -5284,6 +5284,21 @@ struct obj *obj;
 			case HEAVY_ELYSIUM_BALL: 
 				pline("A ball made of unbreakable material. It does tons of damage on a successful hit, and it uses the flail skill."); break;
 
+			case HEAVY_CLAY_BALL: 
+				pline("A very heavy mineral ball that uses the flail skill."); break;
+			case HEAVY_GRANITE_BALL: 
+				pline("This ball weighs a ton and a half, and is made of stone. If you use it as a weapon, you will exercise the flail skill."); break;
+			case HEAVY_CONUNDRUM_BALL: 
+				pline("A ball that is nearly unbreakable and does tons of damage. It uses the flail skill."); break;
+			case HEAVY_CONCRETE_BALL: 
+				pline("It uses the flail skill, is made of stone and does enormous amounts of damage."); break;
+			case IMPOSSIBLY_HEAVY_GLASS_BALL: 
+				pline("Good luck getting rid of this thing! It's breakable, but it weighs so much that you probably can't do anything other than drop it to the floor..."); break;
+			case IMPOSSIBLY_HEAVY_MINERAL_BALL: 
+				pline("If you're a lithivore, you can eat this ball; otherwise you probably have to drop it due to its sheer weight."); break;
+			case IMPOSSIBLY_HEAVY_ELYSIUM_BALL: 
+				pline("This ball cannot be damaged in any way and will prevent you from doing anything as long as it's in your inventory."); break;
+
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
 			}
