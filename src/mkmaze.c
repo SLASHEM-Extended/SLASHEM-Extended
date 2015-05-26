@@ -1009,14 +1009,43 @@ register const char *s;
 
 	if (rn2(2)) level.flags.is_maze_lev = TRUE;
 
+	    int wallchoice = rn2(100);
+	    int walltyp = STONE;
+
+	    if(!(u.monstertimefinish % 41)) wallchoice = (50 + rn2(50));
+
+	    if(!(u.monstertimefinish % 941)) wallchoice = (75 + rn2(25));
+
+	    if(!(u.monstertimefinish % 3941)) wallchoice = (85 + rn2(15));
+
+	    if (wallchoice < 88)
+		walltyp = STONE;
+	    else if (wallchoice < 89)
+		walltyp = CROSSWALL;
+	    else if (wallchoice < 90)
+		walltyp = CLOUD;
+	    else if (wallchoice < 92)
+		walltyp = MOAT;
+	    else if (wallchoice < 94)
+		walltyp = ICE;
+	    else if (wallchoice < 96)
+		walltyp = LAVAPOOL;
+	    else if (wallchoice < 97)
+		walltyp = TREE;
+	    else
+		walltyp = IRONBARS;
+
 #ifndef WALLIFIED_MAZE
 	for(x = 2; x < x_maze_max; x++)
-		for(y = 2; y < y_maze_max; y++)
-			levl[x][y].typ = STONE;
+		for(y = 2; y < y_maze_max; y++) {
+
+			if (walltyp == CROSSWALL) levl[x][y].typ = randomwalltype();
+			else levl[x][y].typ = walltyp;
+		}
 #else
 	for(x = 2; x <= x_maze_max; x++)
 		for(y = 2; y <= y_maze_max; y++)
-			levl[x][y].typ = ((x % 2) && (y % 2)) ? STONE : HWALL;
+			levl[x][y].typ = ((x % 2) && (y % 2)) ? (walltyp == CROSSWALL ? randomwalltype() : walltyp) : HWALL;
 #endif
 
 	maze0xy(&mm);

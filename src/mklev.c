@@ -1536,7 +1536,7 @@ makelevel()
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level))) {
 
-		    if (rn2(3)) {
+		    if (rn2(3) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) ) {
 
 			switch (rnd(30)) {
 
