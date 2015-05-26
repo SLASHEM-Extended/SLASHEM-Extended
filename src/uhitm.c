@@ -1300,6 +1300,11 @@ int thrown;
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */
 		    case EXTREMELY_HEAVY_IRON_BALL:	/* 1d25 */
 		    case QUITE_HEAVY_IRON_BALL:	/* 1d25 */
+		    case IMPOSSIBLY_HEAVY_IRON_BALL:	/* 1d25 */
+		    case HEAVY_STONE_BALL:	/* 1d25 */
+		    case HEAVY_GLASS_BALL:	/* 1d25 */
+		    case HEAVY_GOLD_BALL:	/* 1d25 */
+		    case HEAVY_ELYSIUM_BALL:	/* 1d25 */
 		    case IRON_CHAIN:		/* 1d4+1 */
 		    case ROTATING_CHAIN:		/* 1d4+1 */
 		    case SCOURGE:		/* 1d4+1 */

@@ -5272,6 +5272,17 @@ struct obj *obj;
 				pline("Rarely found, this flail-class weapon weighs really much but does a ton of damage."); break;
 			case EXTREMELY_HEAVY_IRON_BALL: 
 				pline("The single most damaging weapon in the entire game. Provided you're capable of lifting and wielding it, this extremely heavy flail-class weapon will smack the living daylights out of your enemies."); break;
+			case IMPOSSIBLY_HEAVY_IRON_BALL: 
+				pline("You probably won't be able to lift this ball. It seems you somehow managed to get it into your inventory, but now you're probably overburdened and cannot move unless you drop it."); break;
+
+			case HEAVY_STONE_BALL: 
+				pline("This ball is made of stone. It uses the flail skill."); break;
+			case HEAVY_GLASS_BALL: 
+				pline("A breakable ball of glass, which you can swing at enemies to deal good damage. This uses the flail skill."); break;
+			case HEAVY_GOLD_BALL: 
+				pline("With this very heavy ball, you can do great damage to monsters if you use it as a melee or thrown weapon. The flail skill is used to determine the damage and chance to hit."); break;
+			case HEAVY_ELYSIUM_BALL: 
+				pline("A ball made of unbreakable material. It does tons of damage on a successful hit, and it uses the flail skill."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

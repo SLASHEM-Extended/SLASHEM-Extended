@@ -2008,6 +2008,8 @@ boolean from_invent;
 		}
 	    }
 	}
+	if (obj == uball) unpunish();
+	if (obj == uchain) unpunish();
 	delobj(obj);
 }
 
