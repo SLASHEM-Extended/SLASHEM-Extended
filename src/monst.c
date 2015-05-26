@@ -33930,6 +33930,15 @@ struct permonst _mons2[] = {
 	M1_BREATHLESS|M1_HUMANOID|M1_HIDE|M1_SEE_INVIS,
 	M2_UNDEAD|M2_HOSTILE, M3_INFRAVISION, CLR_BROWN),
 
+    MON("phantom ghost", S_GHOST, /* idea by Soviet5lo - ghast race that can commit cannibalism but doesn't start with corpses */
+	LVL(4, 6, 10, 0, -2), (G_GENO|G_NOCORPSE|1),
+	A(ATTK(AT_WEAP, AD_PLYS, 1, 2), ATTK(AT_WEAP, AD_PHYS, 1, 1),
+	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
+	SIZ(400, 50, 0, MS_SILENT, MZ_SMALL),
+	MR_COLD|MR_SLEEP|MR_POISON, 0,
+	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID|M1_POIS|M1_CARNIVORE|M1_OVIPAROUS,
+	M2_UNDEAD|M2_STALK|M2_HOSTILE|M2_NOPOLY, 0, CLR_WHITE),
+
     MON("green glutton ghost", S_GHOST,
 	LVL(5, 14, 5, 10, -5), (G_NOCORPSE|1),
 	A(ATTK(AT_TUCH, AD_FAMN, 1, 1),

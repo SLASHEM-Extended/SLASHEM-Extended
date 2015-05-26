@@ -1569,7 +1569,7 @@ level_difficulty()
 	else
 		retvalue = depth(&u.uz);
 
-	if ( (!rn2(10) || Race_if(PM_GASTLY) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
+	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
 
 	/* later in the game, low-level monsters will be less common */
 	if (moves > 1000 && retvalue < 2 && rn2(2) ) retvalue = 2;
@@ -1602,6 +1602,7 @@ level_difficulty()
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
 	if (DifficultyIncreased) retvalue += 10;
+	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;

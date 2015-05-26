@@ -891,7 +891,7 @@ register struct obj *obj;
 		 || is_rider(fptr) || fptr->mlet == S_TROVE )) /* troves are meant for the player --Amy */
 		    return TABU;
 	    /* Ghouls only eat old corpses... yum! */
-	    if (mon->data == &mons[PM_GHOUL] || mon->data == &mons[PM_GHAST] || mon->data == &mons[PM_GASTLY]
+	    if (mon->data == &mons[PM_GHOUL] || mon->data == &mons[PM_GHAST] || mon->data == &mons[PM_GASTLY] || mon->data == &mons[PM_PHANTOM_GHOST]
 		|| mon->data == &mons[PM_HAUNTER] || mon->data == &mons[PM_GENGAR]) {
 		return (obj->otyp == CORPSE && obj->corpsenm != PM_ACID_BLOB &&
 		  peek_at_iced_corpse_age(obj) + 5*rn1(20,10) <= monstermoves) ?

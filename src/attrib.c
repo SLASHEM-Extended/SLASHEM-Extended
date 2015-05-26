@@ -1230,6 +1230,7 @@ int oldlevel, newlevel;
 	case PM_INSECTOID:            rabil = ins_abil;	break;
 	case PM_UNGENOMOLD:            rabil = ung_abil;	break;
 	case PM_GASTLY:            rabil = gas_abil;	break;
+	case PM_PHANTOM_GHOST:            rabil = gas_abil;	break;
 	case PM_MUMMY:            rabil = mum_abil;	break;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;

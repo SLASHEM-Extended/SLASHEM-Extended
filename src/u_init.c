@@ -2309,6 +2309,7 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_VAMPIRE,	POT_FRUIT_JUICE,	POT_BLOOD	      },
     { PM_VAMPIRE,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
     { PM_GASTLY,	FOOD_RATION,		CORPSE     },
+    { PM_PHANTOM_GHOST,	FOOD_RATION,		CORPSE     },
     { NON_PM,	STRANGE_OBJECT,		STRANGE_OBJECT	      }
 };
 
