@@ -1498,6 +1498,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridrandomizer) Sprintf(eos(xtrabuf), "randomizer ");
 	if (flags.hybridnullrace) Sprintf(eos(xtrabuf), "null ");
 	if (flags.hybridmazewalker) Sprintf(eos(xtrabuf), "mazewalker ");
+	if (flags.hybridsoviet) Sprintf(eos(xtrabuf), "soviet ");
 
 #if 0
     pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."

@@ -170,6 +170,7 @@ struct flag {
 	boolean hybridrandomizer;
 	boolean hybridnullrace;
 	boolean hybridmazewalker;
+	boolean hybridsoviet;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 

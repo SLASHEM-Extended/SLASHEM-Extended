@@ -9387,7 +9387,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ) return FALSE; /* albae are hated by all other races --Amy */
+	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 

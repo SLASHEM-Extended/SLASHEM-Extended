@@ -3571,6 +3571,19 @@ const struct Race races[] = {
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"soviet", "soviet", "soviet union", "Sov",
+	{0, 0},
+	PM_SOVIET, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ 16, 16, 16, 16, 16, 16 },	/* in Soviet Russia, races don't automatically have a max of 25 for every attribute */
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
 {	"spiderman", "spider", "spiderhood", "Spi",
 	{0, 0},
 	PM_SPIDERMAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4239,7 +4252,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(10)) {
+			switch (rnd(11)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4261,12 +4274,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridnullrace = 1; break;
 				case 10:
 					flags.hybridmazewalker = 1; break;
+				case 11:
+					flags.hybridsoviet = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(10)) {
+				switch (rnd(11)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4297,6 +4312,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 10:
 						if (!(flags.hybridmazewalker)) {flags.hybridmazewalker = 1; flags.hybridization++; break;
+						}
+					case 11:
+						if (!(flags.hybridsoviet)) {flags.hybridsoviet = 1; flags.hybridization++; break;
 						}
 	
 				}
