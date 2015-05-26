@@ -9,13 +9,13 @@ GEOMETRY:half-left,center
 MAP
   --- --- ---  
   |.| |.| |.|  
----S---S---S---
-|.......+.+...|
----+-+---.-----
+---S---S---S-----
+|.......+.+...+.|
+---+-+---.-------
   |....\|.+.|  
----+-+---.-----
-|.......+.+...|
----S---S---S---
+---+-+---.-------
+|.......+.+...+.|
+---S---S---S-----
   |.| |.| |.|  
   --- --- ---  
 ENDMAP
@@ -39,6 +39,13 @@ DOOR:locked,(08,07),"The Key of Law"
 DOOR:locked,(10,07)
 DOOR:locked,(03,06),"The Key of Chaos"
 DOOR:locked,(05,06),"The Key of Neutrality"
+
+DOOR:locked,(14,03),"The Master Key of Thievery"
+DOOR:locked,(14,07),"Nocturnal Key"
+
+OBJECT:'*',"stone of magic resistance",(15,03)
+OBJECT:'+',"passwall",(15,07)
+
 # treasures
 OBJECT:'(',"chest",(07,05)
 OBJECT:'(',"chest",(03,09)
@@ -104,9 +111,9 @@ MAP
   |.S.........S.|  
 -----.........-----
 |...|.........+...|
-|.---.........---.|
-|.|.S.........S.|.|
-|.---S---S---S---.|
+|.---.........---.|--
+|.|.S.........S.|.+.|
+|.---S---S---S---.|--
 |...|.|.|.|.|.|...|
 ---.---.---.---.---
   |.............|  
@@ -119,6 +126,10 @@ BRANCH:(02,05,02,05),(00,00,00,00)
 LADDER:(05,07),up
 # Entry door is, of course, locked
 DOOR:locked,(14,05)
+
+DOOR:locked,(18,07),"The Key Of Access"
+OBJECT:'+',"godmode",(19,07)
+
 # Let's put a dragon behind the door, just for the fun...
 MONSTER:'D',random,(13,05)
 MONSTER:random,random,(12,04)
