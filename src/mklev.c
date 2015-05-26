@@ -522,6 +522,10 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                 int yparity = ((hiy - lowy) % 2) ? 1 : 0;  
                 int xradius = (xcut + 1) / 2;  
                 int yradius = (ycut + 1) / 2;  
+                int vcorrmin = xcenter - xradius + 1;  
+                int vcorrmax = xcenter + xradius + xparity - 1;  
+                int hcorrmin = ycenter - yradius + 1;  
+                int hcorrmax = ycenter + yradius + yparity - 1;  
                 for (x = xcenter - xradius; x <= xcenter + xradius + xparity; x++) {  
                     for (y = ycenter - yradius; y <= ycenter + yradius + yparity; y++) {  
 
@@ -539,6 +543,25 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                              (x == xcenter + xradius + xparity)) ? VWALL :  
                             ((y == ycenter - yradius) ||  
                              (y == ycenter + yradius + yparity)) ? HWALL : STONE;  
+                    }  
+                }  
+                if ((vcorrmax - vcorrmin) > 1 && rn2(3)) {  
+                    x = vcorrmin + rn2(vcorrmax - vcorrmin);  
+                    for (y = ycenter - yradius; y <= ycenter + yradius + yparity; y++) {  
+                        levl[x][y].typ =  
+                            ((y == ycenter - yradius) ||  
+                             (y == ycenter + yradius + yparity)) ? SDOOR : SCORR;  
+                        if (levl[x][y].typ == SDOOR) {  
+                            levl[x][y].horizontal = 1;  
+                        }  
+                    }  
+                }  
+                if ((hcorrmax - hcorrmin) > 1 && rn2(3)) {  
+                    y = hcorrmin + rn2(hcorrmax - hcorrmin);  
+                    for (x = xcenter - xradius; x <= xcenter + xradius + xparity; x++) {  
+                        levl[x][y].typ =  
+                            ((x == xcenter - xradius) ||  
+                             (x == xcenter + xradius + xparity)) ? SDOOR : SCORR;  
                     }  
                 }  
 		}
