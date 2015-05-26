@@ -1527,6 +1527,61 @@ static struct trobj UberLostSoulItemR[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj UberLostSoulItemC1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemD1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemE1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemF1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemG1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemH1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemI1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemJ1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemK1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemL1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj UberLostSoulItemM1[] = {
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj UberLostSoulItemC2[] = {
 	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
@@ -6749,17 +6804,17 @@ u_init()
 
 	if (isnullrace && israndomizer) { /* null would cancel out randomizer, so let's allow hybrids to start with some _very_ random stuff. --Amy */
 
-		if (!rn2(5)) ini_inv(UberLostSoulItemC);
-		if (!rn2(5)) ini_inv(UberLostSoulItemD);
-		if (!rn2(10)) ini_inv(UberLostSoulItemE);
-		if (!rn2(6)) ini_inv(UberLostSoulItemF);
-		if (!rn2(10)) ini_inv(UberLostSoulItemG);
-		if (!rn2(10)) ini_inv(UberLostSoulItemH);
-		if (!rn2(20)) ini_inv(UberLostSoulItemI);
-		if (!rn2(8)) ini_inv(UberLostSoulItemJ);
-		if (!rn2(5)) ini_inv(UberLostSoulItemK);
-		if (!rn2(10)) ini_inv(UberLostSoulItemL);
-		if (!rn2(20)) ini_inv(UberLostSoulItemM);
+		if (!rn2(5)) ini_inv(UberLostSoulItemC1);
+		if (!rn2(5)) ini_inv(UberLostSoulItemD1);
+		if (!rn2(10)) ini_inv(UberLostSoulItemE1);
+		if (!rn2(6)) ini_inv(UberLostSoulItemF1);
+		if (!rn2(10)) ini_inv(UberLostSoulItemG1);
+		if (!rn2(10)) ini_inv(UberLostSoulItemH1);
+		if (!rn2(20)) ini_inv(UberLostSoulItemI1);
+		if (!rn2(8)) ini_inv(UberLostSoulItemJ1);
+		if (!rn2(5)) ini_inv(UberLostSoulItemK1);
+		if (!rn2(10)) ini_inv(UberLostSoulItemL1);
+		if (!rn2(20)) ini_inv(UberLostSoulItemM1);
 
 		if (rn2(5)) {
 		if (!rn2(5)) ini_inv(UberLostSoulItemC2);
