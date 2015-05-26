@@ -885,7 +885,7 @@ int spellnum;
 	    You_feel("momentarily weakened.");
 	} else {
 	    You("suddenly feel weaker!");
-	    dmg = mtmp->m_lev - 6;
+	    dmg = rnd(mtmp->m_lev - 5);	/* nerf by Amy - why did this always do the maximum amount??? */
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    losestr(rnd(dmg));
 	    if (u.uhp < 1)
