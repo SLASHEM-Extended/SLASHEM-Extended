@@ -585,6 +585,10 @@ boolean artif;
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
 		} else	blessorcurse(otmp, 10);
+
+	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
+		if (issoviet) otmp->spe = 0;
+
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case TOOL_CLASS:
@@ -755,6 +759,9 @@ boolean artif;
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
 		} else	blessorcurse(otmp, 10);
+
+		if (issoviet) otmp->spe = 0;
+
 		break;
 	case POTION_CLASS:
 		if (otmp->otyp == POT_OIL)
@@ -831,7 +838,9 @@ boolean artif;
 
 		} else if (rn2(10) && !ishaxor) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
 			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 30 : 16); /* low chance for extra charges --Amy */
-		if (rn2(2)) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
+		if (rn2(2) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
+		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
+
 		blessorcurse(otmp, 17);
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */

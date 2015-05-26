@@ -1586,7 +1586,10 @@ int *spell_no;
 			(spellknow(i) > 1000) ? " " : (spellknow(i) ? "!" : "*"),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			100 - percent_success(i),
-			(spellknow(i) * 100 + (KEEN-1)) / KEEN);
+
+	/* "Spell memory percentage no longer shows up in menu - Very little reason to have this considering the timeout is so long to begin with, and spellbooks are much more common." In Soviet Russia, people aren't a fan of games with good interfaces, and rather like it if there's as little information conveyed to the player as possible. The next things they'll remove are those obsolete things displayed on the bottom status line, like HP, AC and experience level; there's very little reason to display them either. Ah wait, they might just borrow the spell loss trap and display loss trap code from Slash'EM Extended and make their effect permanent - that gets rid of all the useless information displays at once, and players will be forever grateful! --Amy */
+
+			issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
 		if (flags.menu_style == MENU_TRADITIONAL)
 			Sprintf(eos(buf), iflags.menu_tab_sep ?
 				"\t%c" : "%4c ", spellet(i) ? spellet(i) : ' ');
@@ -1763,7 +1766,7 @@ int spell;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
-	if (chance < 10) chance = 10; /* used to be 0, but that was just stupid in my opinion --Amy */
+	if (chance < (issoviet ? 0 : 10) ) chance = (issoviet ? 0 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;
 }

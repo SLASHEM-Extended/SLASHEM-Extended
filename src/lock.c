@@ -563,10 +563,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 			/* artifact keys shouldn't be overpowered --Amy */
 
-		    if (!key && pick->oartifact) {
+		    if (!key && pick->oartifact && !issoviet) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
 		    }
+
+	/* "Artifact key/locking tools work properly again. There is next to no reason for this, especially considering keys/lock picks/etc can break in this game." In Soviet Russia, people will tell you that there's no reason for something, and then proceed to tell you the EXACT reason for the same thing but pretend that it's the reason why the "something" shouldn't be! Can you believe that? To clarify: keys being able to break is the exact reason why I'm not allowing artifact keys to unlock everything, cause otherwise that would render the point of breakable keys completely moot. Once you got your artifact key, it just doesn't matter anymore since you're not going to use normal keys. And what *I* want is that it freaking *MATTERS* if you get lucky finding enough keys. The threat of running out should be present for the entire game, not just until you beat the way-too-easy neutral quest! */
 
 	    }
 	}

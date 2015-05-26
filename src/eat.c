@@ -388,7 +388,10 @@ register struct obj *food;
 		return;
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
-	} else if(!rn2(200) && !Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
+
+	/* "No longer possible to get slimed from eating food. Wayyyyyy too evil" In Soviet Russia, people don't know that scrolls of fire, wands of fireball, fire traps and prayer exist! Out of general paranoia, they have to remove the incredibly low chance of getting slimed, even though it basically never happened anyway. Chances are they just looked at the code and decided that it must be evil because it's in there. Come on! It has to pass the !rn2(200) chance AND all the "else if"s above, so it's bloody unlikely for it to happen, and even on the off chance it does, that's why you have scrolls of fire/cure! --Amy */
+
+	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -1117,6 +1120,8 @@ register struct permonst *ptr;
 	debugpline("Attempting to give intrinsic %d", type);
 #endif
 	/* some intrinsics are easier to get than others */
+
+	if (!issoviet) {
 	switch (type) {
 		/* case POISON_RES:
 			if ((ptr == &mons[PM_KILLER_BEE] ||
@@ -1137,6 +1142,32 @@ register struct permonst *ptr;
 		default:
 			chance = (Race_if(PM_ILLITHID) ? 105 : 35); /*much lower chance now --Amy */
 			break;
+	}
+	} else {
+
+	/* "Re-adjust probs for intrinsic gain from corpses." Because in Soviet Russia people want to be fully kitted out with all the possible intrinsics at dlvl10, otherwise the game would be too hard for them. They also disregard the fact that poison instakills are a lot less likely in Slash'EM Extended. --Amy */
+	switch (type) {
+		case POISON_RES:
+			if ((ptr == &mons[PM_KILLER_BEE] ||
+					ptr == &mons[PM_SCORPION]) && !rn2(4))
+				chance = 1;
+			else
+				chance = 15;
+			break;
+		case TELEPORT:
+			chance = 10;
+			break;
+		case TELEPORT_CONTROL:
+			chance = 12;
+			break;
+		case TELEPAT:
+			chance = 1;
+			break;
+		default:
+			chance = (Race_if(PM_ILLITHID) ? 35 : 15);
+			break;
+	}
+
 	}
 
 	if (ptr->mlevel <= rn2(chance) || !rn2(4) )
@@ -2249,7 +2280,7 @@ gluttonous()
 		return;
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
-	} else if(!rn2(200) && !Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
+	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -2334,7 +2365,7 @@ violated_vegetarian()
 		return;
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
-	} else if(!rn2(200) && !Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
+	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -2710,7 +2741,7 @@ struct obj *obj;
 		return(1);
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
-	} else if(!rn2(200) && !Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
+	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) { /* This chance should be even lower. --Amy */
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;

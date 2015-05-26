@@ -7142,7 +7142,9 @@ u_init()
 
 		break;
 	case PM_GASTLY:
-          ini_inv(GhastFood);		
+
+	/* "Ghast characters no longer start with corpses. ...unless the role they're playing as starts with food rations." In Soviet Russia, ghasts are somehow the only race that's actually MORE difficult to play. The starting food is actually supposed to be helpful, since they have a hard time trying to fight starvation, so I'll have ghasts keep it unless they choose the soviet hybrid race. --Amy */
+          if (!issoviet) ini_inv(GhastFood);		
 		break;
 	case PM_INSECTOID:
           ini_inv(InsectoidItem);		
@@ -7280,7 +7282,8 @@ u_init()
 	/* Even if you actually get most of these items (by being lucky or savescumming), your level 1 character probably
 	 * won't stand a chance on dlvl 64 with no means of levelporting or branchporting, so this is still fair. --Amy */
 
-	knows_class(VENOM_CLASS);
+	if (!issoviet) knows_class(VENOM_CLASS);
+	/* "Also venom class isn't discovered by default anymore." In Soviet Russia, people like to make changes to games because they can, not because they want to actually have the effect of their changes in the game. Case in point: venoms being discovered makes sure that the game won't say "you are hit by a splash of venom" if it's e.g. tail spikes or a faerie floss rhing, but that depends on the player knowing what the object is, so if they aren't discovered it doesn't work right! So, dear other people who happen to stumble upon this piece of code: Remove it, and you'll remove messages like "you are hit by a faerie floss rhing", which you hopefully don't want so by the love of whatever god you believe in, don't remove it! --Amy */
 
 	if (discover)
 		ini_inv(Wishing);
@@ -7374,6 +7377,7 @@ u_init()
 	else genderbounus = rnd(5);
 
 	temp = 30 + rolebounus + racebounus + alignbounus + genderbounus; /* new algorithm --Amy */
+	if (issoviet) temp = 75;
 
 	temp -= (flags.hybridization * 3);
 
@@ -11658,17 +11662,20 @@ register struct trobj *trop;
             if (objX->otyp == STRIPED_SHIRT ) {
                 objX->cursed = TRUE;
             }
+
+	/* "Shirts for roles shouldn't be cursed in init. The only shirt that should be cursed is the striped shirt." In Soviet Russia, tourists want to be able to take off their shirt because they got kind of annoyed at shopkeepers overcharging them. Apparently, they always want things to be as easy as they can be. All the other tourists will have to find another way to deal with the shirt though. --Amy */
+
 #endif /* CONVICT */
-            if (objX->otyp == VICTORIAN_UNDERWEAR ) {
+            if (objX->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
                 objX->cursed = TRUE;
             }
-            if (objX->otyp == T_SHIRT ) {
+            if (objX->otyp == T_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
-            if (objX->otyp == HAWAIIAN_SHIRT ) {
+            if (objX->otyp == HAWAIIAN_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
-            if (objX->otyp == RUFFLED_SHIRT ) {
+            if (objX->otyp == RUFFLED_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
             if (objX->otyp == LOADSTONE ) {
@@ -11714,16 +11721,16 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
 #endif /* CONVICT */
-            if (obj->otyp == VICTORIAN_UNDERWEAR ) {
+            if (obj->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
                 obj->cursed = TRUE;
             }
-            if (obj->otyp == T_SHIRT ) {
+            if (obj->otyp == T_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
-            if (obj->otyp == HAWAIIAN_SHIRT ) {
+            if (obj->otyp == HAWAIIAN_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
-            if (obj->otyp == RUFFLED_SHIRT ) {
+            if (obj->otyp == RUFFLED_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LOADSTONE ) {

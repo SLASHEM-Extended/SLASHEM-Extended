@@ -513,25 +513,28 @@ register int x, y, typ;
 		}
 		statue->owt = weight(statue);
 		if (!rn2(5)) statue->oinvis = 1; /* player needs see invisible to detect this thing --Amy */
-		else if (!rn2(10)) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
-		else if (!rn2(10)) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
-		else if (!rn2(10)) (void) mkobj_at(0, x, y, TRUE); /* hidden underneath a random item */
-		else if (!rn2(12)) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
-		else if (!rn2(7)) {
+
+	/* "Stop Fungi/Objects from hiding statue traps. It's a bit of a balance issue and created clutter, and had a good chance of spawning out of depth monsters." In Soviet Russia, people want to be able to see that statue of a slimy vortex in advance. They don't like games being difficult, and they don't want any nasty surprises, so they make sure that statue traps are never obscured by anything. I wonder if the next thing they'll do is to remove all the other traps because you can't see them in advance, or even make sure all of them are visible before you trigger them, too? Completely missing the point of traps, but oh well... --Amy */
+
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
+		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(0, x, y, TRUE); /* hidden underneath a random item */
+		else if (!rn2(12) && !issoviet) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
+		else if (!rn2(7) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {
 					sessilemnum = pm_mkclass(S_FUNGUS, 0);
 					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a fungus */
 		}
-		else if (!rn2(10)) {
+		else if (!rn2(10) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 10; sessileattempts++) {
 					sessilemnum = pm_mkclass(S_JELLY, 0);
 					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a jelly */
 		}
-		else if (!rn2(15)) {
+		else if (!rn2(15) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 					sessilemnum = rndmonnum();
 					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;

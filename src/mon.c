@@ -909,10 +909,13 @@ register struct monst *mtmp;
 	}
     } /*else {*/
 	/* but eels have a difficult time outside */
-	/*if (mtmp->data->mlet == S_EEL && !Is_waterlevel(&u.uz)) {
+	if (mtmp->data->mlet == S_EEL && issoviet && !Is_waterlevel(&u.uz)) {
+
+	/* "S_EEL monsters are horribly weak on land again." In Soviet Russia, people got kind of annoyed that they couldn't punch out kraken with a single hit of their bare fists, even though being capable of doing so makes the game way too easy. Other races though, will have to contend with eels in fair combat, water or no water. Who the heck decided to skew the odds in favor of the player anyway? Isn't Nethack supposed to be a difficult game??? --Amy */
+
 	    if(mtmp->mhp > 1) mtmp->mhp--;
 	    monflee(mtmp, 2, FALSE, FALSE);
-	}*/
+	}
 
 	/* commented out - would just make the game easier, and we don't want that --Amy */
     /*}*/

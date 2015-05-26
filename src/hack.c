@@ -2472,39 +2472,42 @@ register boolean newlev;
 		 * Besides, I _like_ ambient level messages! They can be anything from soothing to terrifying!
 		 * There's no reason to get rid of them if you enter a room, and it's OK to get a message every time, too. */
 	    switch (rt) {
+
+		/* "Special Room monster change. Entering a special room will no longer awaken all monsters inside of the room, making the behavior the same as Vanilla Nethack and Slash'EM. Removed wake_nearby, gets really annoying" In Soviet Russia, players want to be able to mindlessly slaughter all the denizens of special rooms, because they're somehow unable to handle a game posing an actual challenge. They don't view it as too easy if they can hack up one monster after the other without the remaining ones even reacting or doing anything. But of course we all know that this is not the way it's supposed to be, so for all the other races the monsters will wake up. --Amy */
+
 		case ZOO:
 		    pline(Hallucination ? "Welcome to our Theme Park!" : "Welcome to David's treasure zoo!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case SWAMP:
 		    pline("It %s rather %s down here.",
 			  Blind ? "feels" : "looks",
 			  Blind ? "humid" : "muddy");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case COURT:
 		    You(Hallucination ? "enter the Queen's chambers!" : "enter an opulent throne room!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case REALZOO:
 		    You(Hallucination ? "feel that some extinct species might still live here!" : "enter a smelly zoo!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case GIANTCOURT:
 		    You(Hallucination ? "enter a real huge hall!" : "enter a giant throne room!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case DRAGONLAIR:
 		    You(Hallucination ? "enter a fairy lair!" : "enter a dragon lair...");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case BADFOODSHOP:
 		    You(Hallucination ? "enter some sort of market! Perhaps you can buy some weed here?" : "enter an abandoned store...");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case LEPREHALL:
 		    You(Hallucination ? "encounter a Stonehenge replica!" : "enter a leprechaun hall!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case MORGUE:
 		    if(midnight()) {
@@ -2512,79 +2515,79 @@ register boolean newlev;
 			pline("%s away!  %s away!", run, run);
 		    } else
 			{ You("have an uncanny feeling..."); }
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case BEEHIVE:
 		    You(Hallucination ? "enter a tracker jacker nest! RUN AWAY!!!" : "enter a giant beehive!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case LEMUREPIT:
 		    You(Hallucination ? "enter the Devil's Lair!" : "enter a pit of screaming lemures!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case MIGOHIVE:
 		    You(Hallucination ? "enter some futuristic alien structure!" : "enter a strange hive!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case FUNGUSFARM:
 		    You(Hallucination ? "enter a sticky, slimy room..." : "enter a room full of fungi!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case COCKNEST:
 		    You(Hallucination ? "sense the well-known smell of weed as you enter this room!" : "enter a disgusting nest!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case ANTHOLE:
 		    You(Hallucination ? "enter a room filled with bugs!" : "enter an anthole!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
             case CLINIC:
                 You(Hallucination ? "feel reminded of 'Emergency Room' as you enter this area!" : "enter a modern hospital.");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
             case ANGELHALL:
                 You(Hallucination ? "see the gods as you enter! WOW! So that's what they look like..." : "enter a radiating hall of Angels!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case TERRORHALL:
                 You(Hallucination ? "feel like you just got detected by a tripwire!" : "enter a terrifying hall.");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case TENSHALL:
                 You(Hallucination ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case ELEMHALL:
                 You(Hallucination ? "get a vision of Mother Nature as you enter!" : "enter a room full of elementals!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case NYMPHHALL:
                 You(Hallucination ? "see a picture on the wall of this room. It shows the most beautiful woman you ever saw..." : "enter a beautiful garden!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
             case ARMORY:
                 You(Hallucination ? "enter some old weapon storage chamber! Let's see what weapons are left!" : "enter a dilapidated armory.");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case COINHALL:
                 You(Hallucination ? "enter a room full of treasure, and it's all going to be yours! YEAH!" : "enter a room filled with money!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case TROLLHALL:
                 You(Hallucination ? "feel that this room smells like a public toilet!" : "enter a room full of stinking trolls...");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case HUMANHALL:
                 You(Hallucination ? "encounter a party room! Let's invite some hot girls!" : "encounter a living room!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case SPIDERHALL:
                 You(Hallucination ? "notice spiders of all forms and sizes in this room sitting everywhere!" : "stumble into a nest of spiders...");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case GOLEMHALL:
                 You(Hallucination ? "encounter some warmeches!" : "enter a room full of golems!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case TRAPROOM:
                 if (wizard) You("enter a trapped room!");
@@ -2597,11 +2600,11 @@ register boolean newlev;
                 break;
 	      case INSIDEROOM:
                 You(Hallucination ? "enter a normal-looking room." : "enter a weird-looking room...");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case RIVERROOM:
                 You(Hallucination ? "encounter an underground mountain! Wait, what? This makes no sense!" : "encounter an underground river!");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 	      case GRUEROOM:
                 pline(Hallucination ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
@@ -2609,7 +2612,7 @@ register boolean newlev;
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
 		15, set_litX, (genericptr_t)((char *)0));
 		/* IMHO grue rooms may remove light every time you enter them. --Amy */
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
                 break;
 		case BARRACKS:
 		    if(monstinroom(&mons[PM_SOLDIER], roomno) ||
@@ -2620,17 +2623,17 @@ register boolean newlev;
 			You("enter a military barracks!");
 		    else
 			{ You("enter an abandoned barracks."); }
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case DELPHI:
 		    if(monstinroom(&mons[PM_ORACLE], roomno))
 			verbalize("%s, %s, welcome to Delphi!",
 					Hello((struct monst *) 0), plname);
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case DOUGROOM:
 		    You("feel 42.");
-		    wake_nearby();
+		    if (!issoviet) wake_nearby();
 		    break;
 		case TEMPLE:
 		    intemple(roomno + ROOMOFFSET);

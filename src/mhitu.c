@@ -56,10 +56,14 @@ register struct attack *mattk;
 	              "smiles at", compat == 2 ? "engagingly" :
 	              "seductively");
 	} /*else*/ switch (mattk->aatyp) {
+
+	/* "Reduce chances of some special effects. These happened way too often.  It's not fun being level drained by a rat
+on the first floor, especially when you're playing as something with drain resistance." Well they are already reduced (they used to happen EVERY time :P), but sure, in Soviet Russia they may be reduced by more. I'm not really happy about that but at least for all the other races the chances will stay the same. --Amy */
+
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
-			if (flags.female && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if (flags.female && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
 				pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -72,7 +76,7 @@ register struct attack *mattk;
 		case AT_BITE:
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
-			if (!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && ((rn2(3) >= armproX) || !rn2(20)) ) {
+			if (!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
 			if (!Drain_resistance || !rn2(20)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
 		      losexp("life drainage", FALSE);
@@ -83,7 +87,7 @@ register struct attack *mattk;
 			pline("%s kicks you%c", Monnam(mtmp),
 				    thick_skinned(youmonst.data) ? '.' : '!');
 
-			if (!flags.female && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if (!flags.female && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
 				pline("%s's kick painfully slams into your nuts!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -94,14 +98,14 @@ register struct attack *mattk;
 			}
 
 			struct obj *footwear = which_armor(mtmp, W_ARMF);
-			if (!rn2(3) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL]) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s sandals against your shins! It hurts!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(1,monsterlev), "sandal to the shin bone", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (footwear && footwear->otyp == DANCING_SHOES) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s dancing shoes against your shins! You stagger...", Monnam(mtmp), mhis(mtmp) );
@@ -109,14 +113,14 @@ register struct attack *mattk;
 				losehp(1, "soft dancing shoe", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slides %s mocassins over your %ss, opening your arteries and squirting %s everywhere!", Monnam(mtmp), mhis(mtmp), body_part(HAND), body_part(BLOOD) );
 				    incr_itimeout(&Glib, monsterlev);
 			}
 
-			if (!rn2(3) && (footwear && footwear->otyp == SOFT_SNEAKERS) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SOFT_SNEAKERS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s hits your %s with %s sneakers!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
@@ -124,7 +128,7 @@ register struct attack *mattk;
 				losehp(d(1,monsterlev), "soft sneaker to the hand", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (footwear && footwear->otyp == HIPPIE_HEELS) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIPPIE_HEELS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(15);
@@ -241,7 +245,7 @@ register struct attack *mattk;
 
 			}
 
-			if (!rn2(3) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE]) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s leather peep-toes against your shins!", Monnam(mtmp), mhis(mtmp) );
@@ -264,7 +268,7 @@ register struct attack *mattk;
 				}
 			}
 
-			if (!rn2(3) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s scratches up and down your %ss with %s heels!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
@@ -292,7 +296,7 @@ register struct attack *mattk;
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 			}
-			if (!rn2(3) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO]) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
@@ -304,7 +308,7 @@ register struct attack *mattk;
 			break;
 		case AT_STNG:
 			pline("%s stings you!", Monnam(mtmp));
-			if (!rn2((u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) {
+			if ((!rn2((u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) && (!issoviet || !rn2(5)) ) {
 			pline("You are bleeding out from your stinging injury!");
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -318,7 +322,7 @@ register struct attack *mattk;
 		case AT_BUTT:
 			pline("%s butts you!", Monnam(mtmp));
 
-			if (multi >= 0 && !rn2((u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
+			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
 			    if (Free_action) {
 				You("feel a slight shaking.");            
 			    } else {
@@ -337,7 +341,7 @@ register struct attack *mattk;
 			break;
 		case AT_SCRA:
 			pline("%s scratches you!", Monnam(mtmp));
-			if (!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 125)) {
+			if ((!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 125)) && (!issoviet || !rn2(5)) ) {
 			pline("One of your arteries bursts open! You suffer from %s loss!", body_part(BLOOD));
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -350,7 +354,7 @@ register struct attack *mattk;
 			break;
 		case AT_LASH:
 			pline("%s lashes you!", Monnam(mtmp));
-			if (!rn2((u.ualign.type == A_LAWFUL) ? 15 : (u.ualign.type == A_NEUTRAL) ? 20 : 10)) {
+			if ((!rn2((u.ualign.type == A_LAWFUL) ? 15 : (u.ualign.type == A_NEUTRAL) ? 20 : 10)) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("Your %s spins in confusion.", body_part(HEAD));
@@ -361,7 +365,7 @@ register struct attack *mattk;
 			break;
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
-			if (!rn2(5)) {
+			if (!rn2(5) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("You can't think straight as your every muscle is aching!");
@@ -371,7 +375,7 @@ register struct attack *mattk;
 			break;
 		case AT_TUCH:
 			pline("%s touches you!", Monnam(mtmp));
-			losehp(1, "icy touch", KILLED_BY_AN);
+			if (!issoviet || !rn2(5)) losehp(1, "icy touch", KILLED_BY_AN);
 
 			if (mtmp->data == &mons[PM_BLACK_DEATH]) { /* lose one maximum HP --Amy */
 
@@ -384,10 +388,12 @@ register struct attack *mattk;
 		case AT_TENT:
 			pline("%s tentacles suck you!",
 				        s_suffix(Monnam(mtmp)));
+			if (!issoviet || !rn2(5)) {
 			monsterlev = ((mtmp->m_lev) + 1);
 			monsterlev /= 5;
 			if (monsterlev <= 0) monsterlev = 1;
 			losehp((monsterlev), "sucking tentacle attack", KILLED_BY_AN);
+			}
 			break;
 		case AT_EXPL:
 		case AT_BOOM:
@@ -1132,11 +1138,11 @@ mattacku(mtmp)
 				    hittmp = hitval(otmp, &youmonst);
 				    tmp += hittmp;
 				    mswings(mtmp, otmp);
-					if (!rn2(3) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL) {
 					pline("The massive wedge heel thunders painfully on your %s!", body_part(HEAD));
 					losehp(rnd(4),"a wedged little-girl sandal",KILLED_BY);
 					}
-					if (!rn2(3) && otmp->otyp == SOFT_GIRL_SNEAKER) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER) {
 					pline("The soft leather sneaker actually feels quite soothing.");
 
 					if (Upolyd) u.mh++; /* heal one hit point */
@@ -1145,12 +1151,12 @@ mattacku(mtmp)
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
-					if (!rn2(3) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS) {
 					pline("The unyielding plateau boot bonks your %s!", body_part(HEAD));
 					losehp(rnd(10),"a sturdy plateau boot for girls",KILLED_BY);
 					}
 
-					if (!rn2(3) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT) {
 
 					if (flags.female) {
 						pline("The massive heel hits your %s. Wow, this feels soothing and lovely!", body_part(HEAD));
@@ -1178,7 +1184,7 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && otmp->otyp == HUGGING_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT) {
 					pline("Uff! Your %s got hit hard!", body_part(HEAD));
 					losehp(rnd(12),"a hugging boot",KILLED_BY);
 						if (Upolyd) u.mhmax--; /* lose one hit point */
@@ -1187,7 +1193,7 @@ mattacku(mtmp)
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
 
-					if (!rn2(3) && otmp->otyp == WOODEN_GETA) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA) {
 					pline("Argh! The unyielding piece of wood painfully lands on your %s!", body_part(HEAD));
 					losehp(rnd(15),"a wooden Japanese sandal",KILLED_BY);
 
@@ -1203,7 +1209,7 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && otmp->otyp == LACQUERED_DANCING_SHOE) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE) {
 
 					if (Role_if(PM_COURIER)) pline("The lacquered dancing shoe harmlessly scratches you.");
 					else {pline("The lacquered dancing shoe scratches your %s!", body_part(HEAD));
@@ -1252,15 +1258,15 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && otmp->otyp == HIGH_HEELED_SANDAL) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL) {
 					pline("Your %s is hit painfully by the high heel!", body_part(HEAD));
 					losehp(rnd(12),"a high-heeled sandal",KILLED_BY);
 					}
-					if (!rn2(3) && otmp->otyp == SEXY_LEATHER_PUMP) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP) {
 					pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
 					losehp(rnd(20),"a sexy leather pump",KILLED_BY);
 					}
-					if (!rn2(3) && otmp->otyp == SPIKED_BATTLE_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT) {
 					pline("Ouch! The spiked boot soles bore themselves into your skin!");
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
@@ -5002,8 +5008,13 @@ register struct monst *mon;
 		adjalign(1);
 
 	/* yay graphical descriptions! --Amy */
+
+	if (!issoviet) {
 	if (!flags.female) pline("%s starts to gently pull down your pants with her soft, fleecy hands...", Monnam(mon));
 	else pline("%s softly caresses your fleecy bra, and gently pulls it off to reveal your breasts...", Monnam(mon));
+	}
+
+	/* "Remove a stupid line of dialogue. This is not an adult visual novel.  The rest of the dialogue scattered around the source files like this will be cleaned up in due time." In Soviet Russia, people are filthy heretics who don't fully appreciate the beauty of Slash'EM Extended, which causes them to pick the best features of the game and remove them. :( --Amy */
 
 	if (rnd(ACURR(A_CHA)) < 3) { /* random chance of being betrayed by your love interest... */
 
@@ -5150,7 +5161,9 @@ register struct monst *mon;
 #endif
 	}
 
-	if (!rn2(50)) {
+	/* "Disable Pregnancy via foocubus/seducing encounters - Let's not do this, shall we?" In Soviet Russia, people aren't being conceived by sexual intercourse. Rather, they just spawn because God decided to create them from thin air. They're also inexplicably prude, which probably is the reason why they don't want pregnancy in their video games either. I guess they won't touch Elona with a ten-foot pole... --Amy */
+
+	if (!rn2(50) && !issoviet) {
 
 	/* Yes, real-life pregnancy doesn't work like this. But I want to avoid having to make complicated functions,
 	   so the player will just get an egg that immediately hatches and may be tame. --Amy */

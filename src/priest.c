@@ -495,12 +495,14 @@ register struct monst *priest;
 	} else {
 	    long offer;
 
+	/* "Revert temple/priest prices to vanilla values." In Soviet Russia, the protection racket is a legal thing to do, just like ransom extortion, russian roulette and jaywalking. And so, tons of promising level 1 characters will die trying to get to the Minetown priest again. All the other races got enough of that bullshit mechanism and will enjoy fixed prices instead, which makes much more sense and gives players an incentive to actually level up. --Amy */
+
 	    pline("%s asks you for a contribution for the temple.",
 			Monnam(priest));
 	    if((offer = bribe(priest)) == 0) {
 		verbalize("Thou shalt regret thine action!");
 		if(coaligned) adjalign(-1);
-	    } else if(offer < /*(u.ulevel * 200)*/2000) {
+	    } else if(offer < (issoviet ? (u.ulevel * 200) : 2000) ) {
 #ifndef GOLDOBJ
 		if(u.ugold > (offer * 2L)) verbalize("Cheapskate.");
 #else
@@ -511,7 +513,7 @@ register struct monst *priest;
 		    /*  give player some token  */
 		    exercise(A_WIS, TRUE);
 		}
-	    } else if(offer < /*(u.ulevel * 400)*/4000) {
+	    } else if(offer < (issoviet ? (u.ulevel * 400) : 4000) ) {
 		verbalize("Thou art indeed a pious individual.");
 #ifndef GOLDOBJ
 		if(u.ugold < (offer * 2L)) {
@@ -524,7 +526,7 @@ register struct monst *priest;
 		    /* KMH, intrinsic patch */
 		    incr_itimeout(&HClairvoyant, rn1(500,500));
 		}
-	    } else if(offer < /*(u.ulevel * 600)*/6000 &&
+	    } else if(offer < (issoviet ? (u.ulevel * 600) : 6000) &&
 		      u.ublessed < 20 &&
 		      (u.ublessed < 9 || !rn2(u.ublessed))) {
 		verbalize("Thy devotion has been rewarded.");

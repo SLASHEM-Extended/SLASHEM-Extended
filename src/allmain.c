@@ -219,7 +219,7 @@ moveloop()
 			if (issuxxor) xtraclock *= 2;
 
 			/* new group spawn system by Amy */
-			if (!rn2(xtraclock) && !rn2(2) ) {
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -384,7 +384,9 @@ moveloop()
 				}
 			}
 
-			if (!rn2(ishaxor ? 1500 : 3000)) {
+	/* "Put AmyBSOD's extra spawn system into a define. Because some people aren't a fan of having liches on dlvl1." In Soviet Russia, some people aren't a fan of games where the player can actually lose. They want to win all the time, so they go through the entirety of the game's code and remove every little bit of possible difficulty. --Amy */
+
+			if (!rn2(ishaxor ? 1500 : 3000) && !issoviet) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -403,7 +405,7 @@ moveloop()
 
 			}
 
-			if (!rn2(xtraclock) && !rn2(2) ) { /* group of one single monster species --Amy */
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -423,7 +425,7 @@ moveloop()
 
 			}
 
-			if (!rn2(xtraclock) && !rn2(2) ) { /* group of colored monster species --Amy */
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of colored monster species --Amy */
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -476,6 +478,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
+				moveamt /= 2;
+
+			if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1) /* And soviets, since they get enough features that make the game easier than it's supposed to be. */
 				moveamt /= 2;
 
 			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* Cockatrices even more. */

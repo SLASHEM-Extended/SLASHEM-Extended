@@ -7460,7 +7460,7 @@ register int	mmflags;
 	mtmp->mtraitor  = FALSE;
 
 	/* Everything that can hide under an object will now do so. --Amy */
-      if(x && y && (hides_under(ptr) || !rn2(100) ) ) /* low chance of getting an object even if nonhiding, too */
+      if(x && y && !issoviet && (hides_under(ptr) || !rn2(100) ) ) /* low chance of getting an object even if nonhiding, too */
 	  (void) mkobj_at(0, x, y, TRUE);
 
 		/* and even lower chance to get extra objects */
@@ -9461,7 +9461,7 @@ register struct permonst *ptr;
 
 	/* minions are hostile to players that have strayed at all */
 	/* and they can also be hostile to players with good alignment --Amy */
-	if (is_minion(ptr) && u.ualign.record < 0) return FALSE; /*return((boolean)(u.ualign.record >= 0));*/ 
+	if (is_minion(ptr) && u.ualign.record < 0 && !issoviet) return FALSE; /*return((boolean)(u.ualign.record >= 0));*/ 
 
 	/* Last case:  a chance of a co-aligned monster being
 	 * hostile.  This chance is greater if the player has strayed
@@ -9470,9 +9470,12 @@ register struct permonst *ptr;
 	 */
 	/*return((boolean)(!!rn2(16 + (u.ualign.record < -15 ? -15 : u.ualign.record)) &&
 		!!rn2(2 + abs(mal))));*/
-	if (u.ualign.record < 0 && rn2(100)) return FALSE;
-	if (u.ualign.record == 0 && rn2(50)) return FALSE;
-	if (u.ualign.record >= 1 && rnd(u.ualign.record) < (5 + rnd(20)) && rn2(33) ) return FALSE;
+
+	/* "Coaligned minions/mons shouldn't be hostile often. Reverted the chances of coaligned minions and creatures being hostile back to their original values. - makemon.c" In Soviet Russia, people got annoyed about the fact they still occasionally had to battle archons as a lawful character. They thought that this was making the game too hard, even though the vanilla behavior basically gives lawful characters a free pass to most non-predetermined angel encounters, which IMHO borders on the other extreme: too easy! What's the use of peaceful monsters, anyway? They just serve to get in your way and reduce the amount of monsters that you can fight. --Amy */
+
+	if (u.ualign.record < 0 && rn2(100) && !issoviet) return FALSE;
+	if (u.ualign.record == 0 && rn2(50) && !issoviet) return FALSE;
+	if (u.ualign.record >= 1 && rnd(u.ualign.record) < (5 + rnd(20)) && rn2(33) && !issoviet ) return FALSE;
 	if (!rn2(5 + abs(mal))) return FALSE;
 	else return TRUE;
 }

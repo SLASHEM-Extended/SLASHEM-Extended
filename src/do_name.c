@@ -3851,10 +3851,19 @@ rndmonnam()
 	int name;
 
 	/*do {*/
-	    name = rn1(NUMMONS + SIZE(bogusmons) - LOW_PM, LOW_PM);
+	    if (!issoviet) name = rn1(NUMMONS + SIZE(bogusmons) - LOW_PM, LOW_PM);
 	/*} while (name < NUMMONS &&
 	    (type_is_pname(&mons[name]) || (mons[name].geno & G_NOGEN)));*/
 /* All monster names should be possible, even unique and genocided ones. This adds more variety. --Amy */
+
+	else {
+		do {
+		    name = rn1(NUMMONS + SIZE(bogusmons) - LOW_PM, LOW_PM);
+		} while (name < NUMMONS && (type_is_pname(&mons[name]) || (mons[name].geno & G_NOGEN)));
+
+	}
+
+	/* "Revert hallucination monster name changes. This should disable genocided and unique monsters from appearing in the list of monsters." In Soviet Russia, people HATE variety with a fiery passion. Sure, it doesn't really make sense to have genocided monsters appear, but... why the heck disable unique ones??? They exist outside of hallucination too, and hallucination is supposed to make the player think the monster is some other monster, so why shouldn't the player's sub-conscious (or whatever's responsible for that) try to tell them that the monster in front of them is Demogorgon or something like that? --Amy */
 
 	if (name >= NUMMONS) return bogusmons[name - NUMMONS];
 	return mons[name].mname;

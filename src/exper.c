@@ -27,6 +27,9 @@ int lev;
 	if (lev == 5)  return (1200L); */
 
 	/* completely overhauled by Amy */
+
+	if (!issoviet) {
+
 	if (lev == 1)  return (20L);     /* need 20           */
 	if (lev == 2)  return (40L);    /* need 20           */
 	if (lev == 3)  return (80L);    /* need 40          */
@@ -57,6 +60,41 @@ int lev;
 	if (lev == 28) return (930000L); /* need 70000       */
 	if (lev == 29) return (1000000L); /* need 70000      */
 	return (1500000L);
+
+	} else {
+
+	if (lev == 1)  return (40L);
+	if (lev == 2)  return (80L);
+	if (lev == 3)  return (160L);
+	if (lev == 4)  return (320L);
+	if (lev == 5)  return (640L);
+	if (lev == 6)  return (1280L);
+	if (lev == 7)  return (2560L);
+	if (lev == 8)  return (5120L);
+	if (lev == 9)  return (10000L);
+	if (lev == 10) return (20000L);
+	if (lev == 11) return (40000L);
+	if (lev == 12) return (80000L);
+	if (lev == 13) return (150000L);
+	if (lev == 14) return (250000L);
+	if (lev == 15) return (300000L);
+	if (lev == 16) return (350000L);
+	if (lev == 17) return (400000L);
+	if (lev == 18) return (450000L);
+	if (lev == 19) return (500000L);
+	if (lev == 20) return (550000L);
+	if (lev == 21) return (600000L);
+	if (lev == 22) return (650000L);
+	if (lev == 23) return (700000L);
+	if (lev == 24) return (750000L);
+	if (lev == 25) return (800000L);
+	if (lev == 26) return (850000L);
+	if (lev == 27) return (900000L);
+	if (lev == 28) return (950000L);
+	if (lev == 29) return (1000000L);
+	return (1500000L);
+
+	}
 
 }
 

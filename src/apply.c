@@ -1906,7 +1906,10 @@ struct obj *obj;
 		break;
 	    default:
 		if (idx >= 0 && idx < A_MAX) {
-		    if (rn2(3))
+
+	/* "Unihorns no longer permanently remove attributes. A bit too cruel, perhaps?" In Soviet Russia, people want stat-draining effects to be irrelevant, and the restore ability potion/spell to be useless. Therefore they make sure that you can easily restore everything for as many times as you like, so as soon as you have a unicorn horn, basically you've won already. And you're never gonna need that restore ability spell. This is obviously not what I had in mind, so I won't allow such cheese for any other races. --Amy */
+
+		    if (rn2(3) || issoviet)
 		    { ABASE(idx) += 1;
 		    did_attr++;}
                 else

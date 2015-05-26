@@ -230,6 +230,10 @@ makedog()
 	if (preferred_pet == 'n') return((struct monst *) 0);
 
 	pettype = pet_type();
+
+	/* In Soviet Russia, people don't like exotic pets. Even interesting ones like Green-elves or animated wedge sandals they despise for some reason, and want them to be "normalized" into being dogs or cats. Of course, for other races there's no such communist normalization, so they will get their actual pets. --Amy */
+	if (issoviet) pettype = rn2(2) ? PM_LITTLE_DOG : PM_KITTEN;
+
 	petsym = mons[pettype].mlet;
 	if (pettype == PM_WINTER_WOLF_CUB || pettype == PM_WOLF)
 		petname = wolfname;

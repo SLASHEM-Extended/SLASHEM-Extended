@@ -36,6 +36,7 @@ struct Jitem {
 
 STATIC_DCL struct Jitem Japanese_items[];
 STATIC_OVL struct Jitem Pirate_items[];
+STATIC_OVL struct Jitem Soviet_items[];
 
 #else /* OVLB */
 
@@ -165,6 +166,224 @@ STATIC_OVL struct Jitem Pirate_items[] = {
 	{0, "" }
 };
 
+STATIC_OVL struct Jitem Soviet_items[] = {
+	{ ASSAULT_RIFLE, "shturmovaya vintovka" },
+	{ AUTO_SHOTGUN, "avto ruzh'ye" },
+	{ AXE, "topor" },
+	{ BAG_OF_HOLDING, "meshok provedeniye" },
+	{ BANDAGE, "perevyazochnyy material" },
+	{ BASEBALL_BAT, "beysbol'naya bita" },
+	{ BATTLE_AXE, "boyevoy topor" },
+	{ BLINDFOLD, "s zavyazannymi glazami" },
+	{ BOW, "luk" }, /* Nethack-- */
+	{ BRASS_LANTERN, "latun' fonar'" },
+	{ BROADSWORD, "palash" },
+	{ BRONZE_PLATE_MAIL, "bronza laty" },
+	{ BULLET, "pulya" },
+	{ BULLWHIP, "byk knut" },
+	{ CHEST, "yashchik" },
+	{ CLOVE_OF_GARLIC, "zubok chesnoka" },
+	{ CLUB, "dubina" },
+	{ CRAM_RATION, "davka" },
+	{ CROSSBOW, "samostrel" },
+	{ CROSSBOW_BOLT, "zadvizhka" },
+	{ CRYSTAL_PLATE_MAIL, "kristall laty" },
+	{ DAGGER, "kinzhal" },
+	{ DART, "strela" },
+	{ DENTED_POT, "prolomlennyy gorshok" },
+	{ DWARVISH_MATTOCK, "gnomov motyga" },
+	{ EGG, "yaytso" },
+	{ FLAIL, "tsep" },
+	{ FLY_SWATTER, "mukhoboyka" },
+	{ FRAG_GRENADE, "oskolochnaya granata" },
+	{ FUMBLE_BOOTS, "sharit' sapogi" },
+	{ FOOD_RATION, "ratsion pitaniya" },
+	{ GAUNTLETS_OF_FUMBLING, "rukavitsy sharit'" },
+	{ GAUNTLETS_OF_POWER, "rukavitsy vlasti" },
+	{ GLAIVE, "brosat' kop'ye" },
+	{ GRAPPLING_HOOK, "kryuk" },
+	{ GRENADE_LAUNCHER, "granatomet" },
+	{ GUISARME, "drevkom" },
+	{ HALBERD, "alebarda" },
+	{ HACKER_S_FOOD, "khakery yeda" },
+	{ HEAVY_MACHINE_GUN, "tyazhelyy pulemet" },
+	{ HELMET, "shlem" },
+	{ INSECT_SQUASHER, "obzhimnyy nasekomykh" },
+	{ IRON_CHAIN, "zheleznaya tsep'" },
+	{ JAVELIN, "drotik" },
+	{ KNIFE, "nozh" },
+	{ LANCE, "ostroga" },
+	{ LARGE_BOX, "bol'shaya korobka" },
+	{ LEATHER_JACKET, "kozhanyy pidzhak" },
+	{ LEATHER_CLOAK, "kozhanyy plashch" },
+	{ LEATHER_GLOVES, "kozhanyye perchatki" },
+	{ LEMBAS_WAFER, "el'fiyskiy vafel'nyye" },
+	{ LOCK_PICK, "otmychka" },
+	{ LONG_SWORD, "dlinnyy mech" },
+	{ LUCERN_HAMMER, "lyutserny molotok" },
+	{ MORNING_STAR, "utrennyaya zvezda" },
+	{ PANCAKE, "blin" },
+	{ PHIAL, "puzyrek" },
+	{ PICK_AXE, "kirka" },
+	{ PISTOL, "oruzhiye" },
+	{ PLATE_MAIL, "laty" },
+	{ POT_BOOZE, "vodka" },
+	{ QUARTERSTAFF, "dubina s zheleznym nakonechnikom" },
+	{ RIFLE, "vintovka" },
+	{ ROBE, "khalat" },
+	{ ROCK, "kamen'" },
+	{ ROCKET, "vechernitsa" },
+	{ ROCKET_LAUNCHER, "puskovaya ustanovka" },
+	{ RUNESWORD, "runa mech" },
+	{ SACK, "meshok" },
+	{ SCALPEL, "nozhnitsy" },
+	{ SCIMITAR, "yatagan" },
+	{ SHORT_SWORD, "korotkiy mech" },
+	{ SHOTGUN, "drobovik" },
+	{ SHOTGUN_SHELL, "ruzh'ye obolochki" },
+	{ SHURIKEN, "metaniye zvezdy" },
+	{ SILVER_DAGGER, "serebryanyy kinzhal" },
+	{ SILVER_SPEAR, "serebro kop'ye" },
+	{ SMALL_SHIELD, "nebol'shoy shchit" },
+	{ SNIPER_RIFLE, "snayperskaya vintovka" },
+	{ SPEAR, "kop'ye" },
+	{ SPLINT_MAIL, "shina pochty" },
+	{ SPRIG_OF_WOLFSBANE, "vetochka volkov otrava" },
+	{ STEEL_WHIP, "stal' knut" },
+	{ STETHOSCOPE, "zond" },
+	{ STILETTO, "koroche kinzhal" },
+	{ SUBMACHINE_GUN, "pistolet-pulemet" },
+	{ TALLOW_CANDLE, "sal'naya svecha" },
+	{ TORPEDO, "gangster-telokhranitel'" },
+	{ TRIDENT, "trezubets" },
+	{ T_SHIRT, "rubashka" },
+	{ TWO_HANDED_SWORD, "dvuruchnyy mech" },
+	{ UNICORN_HORN, "rog yedinoroga" },
+	{ WAR_HAMMER, "voyna molotok" },
+	{ WAX_CANDLE, "voskovaya svecha" },
+	{ WATER_WALKING_BOOTS, "voda khod'be sapogi" },
+	{ WEDGE_SANDALS, "klin sandalii" },
+	{ WOODEN_FLUTE, "fleyta" },
+	{ WOODEN_STAKE, "derevyannyy kol" },
+	{ WOODEN_HARP, "arfa" },
+	{ WHETSTONE, "tochil'nyy kamen'" },
+	{ VICTORIAN_UNDERWEAR, "viktorianskiy bel'ye" },
+
+	{ WORM_TOOTH, "cherv' zub" },
+	{ CRYSKNIFE, "kristall nozh" },
+	{ KATANA, "samurayskiy mech" },
+	{ ELECTRIC_SWORD, "elektricheskiy mech" },
+	{ TSURUGI, "dolgo samurayskiy mech" },
+	{ SILVER_SABER, "serebro sabli" },
+	{ GOLDEN_SABER, "zolotoy sabley" },
+	{ MACE, "bulava" },
+	{ SILVER_MACE, "serebro bulava" },
+	{ FLANGED_MACE, "flantsevoye bulava" },
+	{ JAGGED_STAR, "zubchatyye zvezdy" },
+	{ DEVIL_STAR, "d'yavol zvezda" },
+	{ MALLET, "kolotushka" },
+	{ WEDGED_LITTLE_GIRL_SANDAL, "vklinivayetsya malo devushka sandalii" },
+	{ SOFT_GIRL_SNEAKER, "myagkaya devushka krossovok" },
+	{ STURDY_PLATEAU_BOOT_FOR_GIRLS, "nadezhnoye zagruzki plato dlya devochek" },
+	{ HUGGING_BOOT, "obnimat' zagruzki" },
+	{ BLOCK_HEELED_COMBAT_BOOT, "blok kablukakh voyennyye botinki" },
+	{ WOODEN_GETA, "derevyannyy geta" },
+	{ LACQUERED_DANCING_SHOE, "lakirovannyy tantsy obuvi" },
+	{ HIGH_HEELED_SANDAL, "na vysokikh kablukakh sandalii" },
+	{ SEXY_LEATHER_PUMP, "seksual'naya kozha nasos" },
+	{ SPIKED_BATTLE_BOOT, "shipami bitva zagruzki" },
+	{ BATTLE_STAFF, "bitva personal" },
+	{ PARTISAN, "storonnik" },
+	{ SPETUM, "bol'shaya sekira" },
+	{ RANSEUR, "protazan" },
+	{ BARDICHE, "berdysh" },
+	{ VOULGE, "zemlya rytsar' kop'ye" },
+	{ FAUCHARD, "kosa" },
+	{ BILL_GUISARME, "narusheniye bar" },
+	{ BEC_DE_CORBIN, "gigant kosa" },
+	{ SPIRIT_THROWER, "dukh metatel'" },
+	{ STYGIAN_PIKE, "stigiyskiy shchuka" },
+	{ SLING, "remen'" },
+	{ RUBBER_HOSE, "rezinovyy shlang" },
+	{ STRIPED_SHIRT, "polosatoy rubashke" },
+	{ RUFFLED_SHIRT, "trepal rubashke" },
+	{ PLASTEEL_ARMOR, "plastikovyye dospekhi" },
+	{ MUMMY_WRAPPING, "mumiya obertyvaniya" },
+	{ LAB_COAT, "laboratornyy khalat" },
+	{ POISONOUS_CLOAK, "yadovity plashch" },
+	{ FEDORA, "myagkaya fetrovaya shlyapa" },
+	{ DUNCE_CAP, "duratskiy kolpak" },
+	{ HELM_OF_OPPOSITE_ALIGNMENT, "shlem protivopolozhnogo vyravnivaniya" },
+	{ STEEL_SHIELD, "stal'noy shchit" },
+	{ SHIELD_OF_REFLECTION, "otrazhayushchiye shchit" },
+	{ SHIELD_OF_MOBILITY, "besplatno shchit deystviye" },
+	{ DANCING_SHOES, "tantseval'naya obuv'" },
+	{ SWEET_MOCASSINS, "sladkiye mokasiny" },
+	{ SOFT_SNEAKERS, "myagkiye krossovki" },
+	{ FEMININE_PUMPS, "zhenskiye nasosy" },
+	{ LEATHER_PEEP_TOES, "kozha pip-pal'tsy" },
+	{ HIPPIE_HEELS, "khippi kabluki" },
+	{ COMBAT_STILETTOS, "boyevyye stilety" },
+	{ FIRE_BOOTS, "sapogi na ogne" },
+	{ ZIPPER_BOOTS, "sadistskiye sapogi" },
+	{ BAG_OF_TRICKS, "slozhno meshok" },
+	{ BUGLE, "gorn" },
+	{ LAND_MINE, "fugas" },
+	{ BEARTRAP, "medved' lovushka" },
+	{ SPOON, "lozhka" },
+	{ TORCH, "gorelka" },
+	{ LASER_SWATTER, "lazernaya mukhoboyka" },
+	{ EXPENSIVE_CAMERA, "dorogaya kamera" },
+	{ MIRROR, "zerkalo" },
+	{ CRYSTAL_BALL, "khrustal'nyy shar" },
+	{ LENSES, "linzy" },
+	{ TOWEL, "polotentse" },
+	{ SADDLE, "sedlovina" },
+	{ LEASH, "privyaz'" },
+	{ TINNING_KIT, "luzheniya komplekt" },
+	{ MEDICAL_KIT, "aptechka" },
+	{ TIN_OPENER, "otkryvashka" },
+	{ CAN_OF_GREASE, "mozhet smazki" },
+	{ MAGIC_MARKER, "volshebnaya ruchka" },
+	{ SWITCHER, "pereklyuchatel'" },
+	{ TRIPE_RATION, "rubets ratsion" },
+	{ CORPSE, "trup" },
+	{ KELP_FROND, "laminariya vetv'" },
+	{ EUCALYPTUS_LEAF, "evkalipta list'yev" },
+	{ APPLE, "yabloko" },
+	{ CARROT, "morkov'" },
+	{ PEAR, "grusha" },
+	{ ASIAN_PEAR, "rossii grusha" },
+	{ LEMON, "negodnaya veshch'" },
+	{ ORANGE, "oranzhevyy" },
+	{ MUSHROOM, "grib" },
+	{ MELON, "dynya" },
+	{ LUMP_OF_ROYAL_JELLY, "matochnoye molochko" },
+	{ CREAM_PIE, "kremovyy pirog" },
+	{ SANDWICH, "buterbrod" },
+	{ CANDY_BAR, "monoblok" },
+	{ FORTUNE_COOKIE, "pechen'ye" },
+	{ CHEESE, "syr" },
+	{ HOLY_WAFER, "svyatoy vafel'nyye" },
+	{ TIN, "olovo" },
+	{ DILITHIUM_CRYSTAL, "dilitiyevaya kristall" },
+	{ DIAMOND, "almaz" },
+	{ LOADSTONE, "ochen' tyazhelyy kamen'" },
+	{ SALT_CHUNK, "sol' kusok" },
+	{ FLINT, "kremen' kamen'" },
+	{ BOULDER, "valun" },
+	{ LOADBOULDER, "tyazhelyy valun" },
+	{ STATUE, "izvayaniye" },
+	{ FIGURINE, "opisaniye" },
+	{ HEAVY_IRON_BALL, "tyazhelyy shar zheleza" },
+	{ ROTATING_CHAIN, "vrashchayushchiyesya tsepi" },
+	{ TAIL_SPIKES, "khvost shipy" },
+	{ FAERIE_FLOSS_RHING, "feya muline" },
+	
+
+	{0, "" }
+};
+
 #endif /* OVLB */
 
 STATIC_DCL const char *FDECL(Alternate_item_name,(int i, struct Jitem * ));
@@ -218,8 +437,10 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
-	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && Alternate_item_name(otyp,Pirate_items))
+	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
+	if ( issoviet && Alternate_item_name(otyp,Soviet_items))
+		actualn = Alternate_item_name(otyp,Soviet_items);
 	switch(ocl->oc_class) {
 	case COIN_CLASS:
 		Strcpy(buf, "coin");
@@ -372,8 +593,10 @@ register struct obj *obj;
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
-	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && Alternate_item_name(typ,Pirate_items))
+	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);
+	if (issoviet && Alternate_item_name(typ,Soviet_items))
+		actualn = Alternate_item_name(typ,Soviet_items);
 
 	buf[0] = '\0';
 	/*
@@ -2658,7 +2881,7 @@ srch:
 		i++;
 	}
 	if (actualn) {
-		struct Jitem *j[] = {Japanese_items,Pirate_items};
+		struct Jitem *j[] = {Japanese_items,Pirate_items,Soviet_items};
 		for(i=0;i<sizeof(j)/sizeof(j[0]);i++)
 		{
 		while(j[i]->item) {
