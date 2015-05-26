@@ -1514,6 +1514,25 @@ struct permonst *ptr;
 /*	For very fast monsters */
 	n += (ptr->mmove >= 18);
 
+/*	Amy edit - that didn't make any difference, so let's make monster speed actually matter. */
+	n += (ptr->mmove >= 16);
+	n += (ptr->mmove >= 18);
+	n += (ptr->mmove >= 20);
+	n += (ptr->mmove >= 22);
+	n += (ptr->mmove >= 24);
+	n += (ptr->mmove >= 27);
+	n += (ptr->mmove >= 30);
+	n += (ptr->mmove >= 33);
+	n += (ptr->mmove >= 36);
+	n += (ptr->mmove >= 39);
+	n += (ptr->mmove >= 42);
+	n += (ptr->mmove >= 45);
+	n += (ptr->mmove >= 48);
+	n += (ptr->mmove >= 51);
+	n += (ptr->mmove >= 54);
+	n += (ptr->mmove >= 57);
+	n += (ptr->mmove >= 60);
+
 /*	For each attack and "special" attack */
 	for(i = 0; i < NATTK; i++) {
 
