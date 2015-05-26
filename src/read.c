@@ -3170,7 +3170,9 @@ revid_end:
 		levl[u.ux][u.uy].typ = ALTAR;
 		levl[u.ux][u.uy].altarmask = Align2amask(al);
 		x = (al == ual) ? 1 : ((al == A_NONE) ? -3 : -1);
-		y = -rn2(x * 100);
+
+		if (x < 0) y = rnd(abs(x)*100);
+		else y = -(rnd(100));
 		u.ualign.record += x;
 		u.ublesscnt += y;
 		if (u.ublesscnt < 0) u.ublesscnt = 0;
