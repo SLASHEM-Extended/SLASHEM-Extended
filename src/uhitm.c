@@ -1729,7 +1729,7 @@ int thrown;
 			pline("%s divides as you hit it!", Monnam(mon));
 			/* make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
 			0, TRUE, SICK_NONVOMITABLE); */
-		      (void) difeasemu(mon); /* hopefully stopping those annoying pudding farmers! */
+		      (void) difeasemu(mon->data); /* hopefully stopping those annoying pudding farmers! */
 			u.ualign.sins++; /* adding even more punishment for lame farmers */
 			u.alignlim--;
 			hittxt = TRUE;
@@ -4454,7 +4454,7 @@ uchar aatyp;
 		if (rn2(2)) break; /* 50% chance if AD_DISE, 100% if AD_PEST --Amy */
         case AD_PEST:
 		  pline("You got hit by botox spores!");
-		  (void) difeasemu(mon); /* plus the normal damage */
+		  (void) difeasemu(mon->data); /* plus the normal damage */
 	        break;
 	  default:
 	    break;
