@@ -159,7 +159,7 @@ struct monst {
 	Bitfield(egotype_flying,1);
 	Bitfield(egotype_hide,1);
 	Bitfield(egotype_regeneration,1);
-	Bitfield(egotype_undead,1);
+	Bitfield(egotype_undead,1);	/* This makes the monster mindless and unbreathing too. --Amy */
 	Bitfield(egotype_domestic,1);
 	Bitfield(egotype_covetous,1);
 	Bitfield(egotype_avoider,1);
@@ -178,6 +178,17 @@ struct monst {
 	Bitfield(egotype_push,1);
 	Bitfield(egotype_arcane,1);
 	Bitfield(egotype_clerical,1);
+
+	Bitfield(egotype_armorer,1);
+	Bitfield(egotype_tank,1);
+	Bitfield(egotype_speedster,1);
+	Bitfield(egotype_racer,1);
+
+	Bitfield(egotype_randomizer,1);
+	Bitfield(egotype_blaster,1); /* drains intelligence */
+	Bitfield(egotype_multiplicator,1);
+
+	Bitfield(egotype_gator,1);
 
 	struct obj *mw;
 	long misc_worn_check;

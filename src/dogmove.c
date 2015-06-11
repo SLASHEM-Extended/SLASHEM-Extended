@@ -80,7 +80,7 @@ int x, y;
 	for(otmp = level.objects[x][y]; otmp; otmp = otmp->nexthere)
 		/* [Tom] demons & undead don't care, though */
 		/* [ALI] demons & undead avoid blessed items instead */
-		if ((is_demon(mtmp->data) || is_undead(mtmp->data)) ?
+		if ((is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) ?
 		    otmp->blessed : otmp->cursed)
 	{
 #ifdef DEBUG
@@ -367,8 +367,8 @@ int udist;
 		/* [Tom] demonic & undead pets don't mind cursed items */                
 		if(can_carry(mtmp, obj) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
-		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data)) &&
-		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data)))) {
+		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
+		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
 		    if(rn2(20) < edog->apport+3) {
 			if (rn2(udist) || !rn2(edog->apport)) {
 			    if ((!nohands(mtmp->data)) ||
@@ -756,7 +756,7 @@ register int after;	/* this is extra fast monster movement */
 	if (appr == -2) return(0);
 
 	allowflags = ALLOW_M | ALLOW_TRAPS | ALLOW_SSM | ALLOW_SANCT;
-	if (passes_walls(mtmp->data)) allowflags |= (ALLOW_ROCK | ALLOW_WALL);
+	if (passes_walls(mtmp->data) || mtmp->egotype_wallwalk) allowflags |= (ALLOW_ROCK | ALLOW_WALL);
 	if (passes_bars(mtmp->data) && !In_sokoban(&u.uz))
 	    allowflags |= ALLOW_BARS;
 	if (throws_rocks(mtmp->data)) allowflags |= ALLOW_ROCK;
@@ -937,9 +937,9 @@ register int after;	/* this is extra fast monster movement */
 		if (has_edog && !is_spell) {
 		for (obj = level.objects[nx][ny]; obj; obj = obj->nexthere) {
 		    if ((obj->cursed) && has_edog && !is_demon(mtmp->data) 
-		    && !is_undead(mtmp->data)) cursemsg[i] = TRUE;
+		    && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ) cursemsg[i] = TRUE;
 		    if (obj->blessed && has_edog && (is_demon(mtmp->data) 
-		    || is_undead(mtmp->data))) cursemsg[i] = TRUE;
+		    || is_undead(mtmp->data) || mtmp->egotype_undead)) cursemsg[i] = TRUE;
 		    else if ((otyp = dogfood(mtmp, obj)) < MANFOOD &&
 			     (otyp < ACCFOOD || edog->hungrytime <= monstermoves)) {
 			/* Note: our dog likes the food so much that he
@@ -1100,7 +1100,7 @@ xchar mx, my, fx, fy;
 		continue;
 	    if (dist2(i, j, fx, fy) >= dist)
 		continue;
-	    if (IS_ROCK(levl[i][j].typ) && !passes_walls(mon->data) &&
+	    if (IS_ROCK(levl[i][j].typ) && !passes_walls(mon->data) && (!mon->egotype_wallwalk) &&
 				    (!may_dig(i,j) || !tunnels(mon->data)))
 		continue;
 	    if (IS_DOOR(levl[i][j].typ) &&

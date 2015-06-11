@@ -34,7 +34,7 @@ struct monst *mon;
 	    dtype = (!rn2(50)) ? dprince(atyp) :
 				 (!rn2(20)) ? dlord(atyp) : ndemon(atyp);
 	    cnt = (!rn2(4) && is_ndemon(&mons[dtype])) ? 2 : 1;
-	} else if (is_ndemon(ptr)) {
+	} else if (is_ndemon(ptr) || mon->egotype_gator) {
 	    dtype = (!rn2(250)) ? dprince(atyp) : (!rn2(20)) ? dlord(atyp) :
 				 (!rn2(6)) ? ndemon(atyp) : monsndx(ptr);
 	    cnt = 1;

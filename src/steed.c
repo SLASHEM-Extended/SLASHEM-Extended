@@ -573,7 +573,7 @@ dismount_steed(reason)
 		struct permonst *mdat = mtmp->data;
 
 		/* The steed may drop into water/lava */
-		if (!is_flyer(mdat) && !is_floater(mdat) && !is_clinger(mdat)) {
+		if (!is_flyer(mdat) && (!mtmp->egotype_flying) && !is_floater(mdat) && !is_clinger(mdat)) {
 		    if (is_pool(u.ux, u.uy)) {
 			if (!Underwater)
 			    pline("%s falls into the %s!", Monnam(mtmp),

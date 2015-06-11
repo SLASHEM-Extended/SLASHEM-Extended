@@ -3409,7 +3409,7 @@ struct obj *otmp;
 			steedhit = TRUE;
 			break;
 		case SLP_GAS_TRAP:
-		    if (!resists_sleep(mtmp) && !breathless(mptr) &&
+		    if (!resists_sleep(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) &&
 				!mtmp->msleeping && mtmp->mcanmove) {
 			    mtmp->mcanmove = 0;
 			    mtmp->mfrozen = rnd(25);
@@ -3422,7 +3422,7 @@ struct obj *otmp;
 			break;
 
 		case SLOW_GAS_TRAP:
-		    if (!breathless(mptr)) {
+		    if (!breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
 				pline("%s inhales a cloud of foggy gas!", Monnam(mtmp));
@@ -3433,7 +3433,7 @@ struct obj *otmp;
 			break;
 
 		case POISON_GAS_TRAP:
-		    if (!resists_poison(mtmp) && !breathless(mptr) ) {
+		    if (!resists_poison(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
 				pline("%s inhales a cloud of poison gas!", Monnam(mtmp));
@@ -4035,7 +4035,7 @@ register struct monst *mtmp;
 			break;
 
 		case SQKY_BOARD:
-			if(is_flyer(mptr)) break;
+			if(is_flyer(mptr) || mtmp->egotype_flying) break;
 			/* stepped on a squeaky board */
 			if (in_sight) {
 			    pline("A board beneath %s squeaks loudly.", mon_nam(mtmp));
@@ -4048,7 +4048,7 @@ register struct monst *mtmp;
 
 		case BEAR_TRAP:
 			if(mptr->msize > MZ_SMALL &&
-				!amorphous(mptr) && !is_flyer(mptr) &&
+				!amorphous(mptr) && !is_flyer(mptr) && (!mtmp->egotype_flying) &&
 				!is_whirly(mptr) && !unsolid(mptr)) {
 			    mtmp->mtrapped = 1;
 			    if(in_sight) {
@@ -4065,7 +4065,7 @@ register struct monst *mtmp;
 			break;
 
 		case SLP_GAS_TRAP:
-		    if (!resists_sleep(mtmp) && !breathless(mptr) &&
+		    if (!resists_sleep(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) &&
 				!mtmp->msleeping && mtmp->mcanmove) {
 			    mtmp->mcanmove = 0;
 			    mtmp->mfrozen = rnd(25);
@@ -4079,7 +4079,7 @@ register struct monst *mtmp;
 			break;
 
 		case POISON_GAS_TRAP:
-		    if (!resists_poison(mtmp) && !breathless(mptr) ) {
+		    if (!resists_poison(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
 				pline("%s inhales a cloud of poison gas!", Monnam(mtmp));
@@ -4095,7 +4095,7 @@ register struct monst *mtmp;
 			break;
 
 		case SLOW_GAS_TRAP:
-		    if (!breathless(mptr)) {
+		    if (!breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
 				pline("%s inhales a cloud of foggy gas!", Monnam(mtmp));
@@ -4289,7 +4289,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case ACID_POOL:
 
-		if (is_floater(mtmp->data) || is_flyer(mtmp->data)) break;
+		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying) break;
 
            if (in_sight)
              pline("%s is sprayed with acid!", Monnam(mtmp));
@@ -4368,7 +4368,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case WATER_POOL:
 
-		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data)) break;
+		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data) || mtmp->egotype_undead ) break;
 
            if (in_sight)
              pline("%s falls into a pool of water!", Monnam(mtmp));
@@ -4385,7 +4385,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case SHIT_TRAP:
 
-		if(is_flyer(mptr) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) ) break; /* since this is a ground-based trap */
+		if( (is_flyer(mptr) || mtmp->egotype_flying) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) ) break; /* since this is a ground-based trap */
 		/* The spacewars fighter nemeses somehow have affinity to this type of trap. */
 
            if (in_sight)
@@ -4402,13 +4402,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case PIT:
 		case SPIKED_PIT:
 			fallverb = "falls";
-			if (is_flyer(mptr) || is_floater(mptr) ||
+			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
 				(mtmp->wormno && count_wsegs(mtmp) > 5) ||
 				is_clinger(mptr)) {
 			    if (!inescapable) break;	/* avoids trap */
 			    fallverb = "is dragged";	/* sokoban pit */
 			}
-			if (!passes_walls(mptr))
+			if (!passes_walls(mptr) && (!mtmp->egotype_wallwalk) )
 			    mtmp->mtrapped = 1;
 			if(in_sight) {
 			    pline("%s %s into %s pit!",
@@ -4431,7 +4431,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				    defsyms[trap_to_defsym(tt)].explanation);
 			    break;	/* don't activate it after all */
 			}
-			if (is_flyer(mptr) || is_floater(mptr) ||
+			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
 				mptr == &mons[PM_WUMPUS] ||
 				(mtmp->wormno && count_wsegs(mtmp) > 5) ||
 				mptr->msize >= MZ_HUGE) {
@@ -4625,7 +4625,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case LANDMINE:
 			if(rn2(3))
 				break; /* monsters usually don't set it off */
-			if(is_flyer(mptr)) {
+			if(is_flyer(mptr) || mtmp->egotype_flying) {
 				boolean already_seen = trap->tseen;
 				if (in_sight && !already_seen) {
 	pline("A trigger appears in a pile of soil below %s.", mon_nam(mtmp));
@@ -4684,7 +4684,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		    break;
 
 		case ROLLING_BOULDER_TRAP:
-		    if (!is_flyer(mptr)) {
+		    if (!is_flyer(mptr) && (!mtmp->egotype_flying) ) {
 			int style = ROLL | (in_sight ? 0 : LAUNCH_UNSEEN);
 
 		        newsym(mtmp->mx,mtmp->my);
@@ -4725,7 +4725,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				if (in_sight) {
 					pline("It passes right through %s!",mon_nam(mtmp));
 				}
-			} else if (is_flyer(mptr)) {
+			} else if (is_flyer(mptr) || mtmp->egotype_flying) {
 				if (in_sight) {
 					pline("The spear isn't long enough to reach %s.",mon_nam(mtmp));
 				}
@@ -4936,7 +4936,7 @@ float_up()
 		You("start to float in the air!");
 #ifdef STEED
 	if (u.usteed && !is_floater(u.usteed->data) &&
-						!is_flyer(u.usteed->data)) {
+						!is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) ) {
 	    if (Lev_at_will)
 	    	pline("%s magically floats up!", Monnam(u.usteed));
 	    else {
@@ -5669,6 +5669,8 @@ register boolean force, here;
 			{
 			    
 				pline("One of your objects was destroyed by rust!");
+				if (obj == uball) unpunish;
+				if (obj == uchain) unpunish;
 				delobj(obj);
 				update_inventory();
 			    

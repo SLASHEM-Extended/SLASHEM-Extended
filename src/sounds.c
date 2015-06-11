@@ -1592,7 +1592,7 @@ dochat()
     }
 
     if (Race_if(PM_MUMMY) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) &&
-     !mtmp->mtame && is_undead(mtmp->data) && u.uhunger > 500) {
+     !mtmp->mtame && (is_undead(mtmp->data) || mtmp->egotype_undead) && u.uhunger > 500) {
 
 		if (yn("Try to tame this undead monster?") == 'y') {
 

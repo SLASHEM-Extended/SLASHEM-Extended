@@ -127,7 +127,7 @@ register struct monst *mtmp;
 	/* STEPHEN WHITE'S NEW CODE */
 	} else if(Undead_warning && !rd && !mtmp->mpeaceful &&
 		  (dd = distu(mtmp->mx,mtmp->my)) < distu(x,y) &&
-		   dd < 100 && !canseemon(mtmp) && is_undead(mdat)) {
+		   dd < 100 && !canseemon(mtmp) && (is_undead(mdat) || mtmp->egotype_undead) ) {
 			/* 
 			 * The value of warnlevel coresponds to the 8 
 			 * cardinal directions, see mon.c.
@@ -229,7 +229,7 @@ boolean digest_meal;
 	if (ishaxor) regenrate /= 2;
 
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
-	    (moves % /*20*/regenrate == 0 || regenerates(mon->data))) mon->mhp++;
+	    (moves % /*20*/regenrate == 0 || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 	if (mon->m_en < mon->m_enmax && 
 	    (moves % /*20*/regenrate == 0 || (rn2(mon->m_lev + 5) > 15))) {
 	    	mon->m_en += rn1((mon->m_lev % 10 + 1),1);
@@ -397,7 +397,7 @@ int
 dochug(mtmp)
 register struct monst *mtmp;
 {
-	register struct permonst *mdat;
+	register struct permonst *mdat, *mdat2;
 	register int tmp=0;
 	int inrange, nearby, scared;
 #ifdef GOLDOBJ
@@ -501,7 +501,7 @@ register struct monst *mtmp;
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if(is_covetous(mdat) && !rn2(10)) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous) && !rn2(10)) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -595,7 +595,7 @@ register struct monst *mtmp;
 			nmon = m2->nmon;
 			if (DEADMONSTER(m2)) continue;
 			if (m2->mpeaceful == mtmp->mpeaceful) continue;
-			if (mindless(m2->data)) continue;
+			if (mindless(m2->data) || m2->egotype_undead) continue;
 			if (m2 == mtmp) continue;
 			if ((telepathic(m2->data) &&
 			    (rn2(2) || m2->mblinded)) || !rn2(10)) {
@@ -667,7 +667,7 @@ toofar:
 		/* arbitrary distance restriction to keep monster far away
 		   from you from having cast dozens of sticks-to-snakes
 		   or similar spells by the time you reach it */
-		if (dist2(mtmp->mx, mtmp->my, u.ux, u.uy) <= 49 && !mtmp->mspec_used) {
+		if (dist2(mtmp->mx, mtmp->my, u.ux, u.uy) <= 49 && !mtmp->mspec_used && !rn2(iswarper ? 2 : 4) ) {
 		    struct attack *a;
 
 		    for (a = &mdat->mattk[0]; a < &mdat->mattk[NATTK]; a++) {
@@ -677,6 +677,20 @@ toofar:
 				break;
 			    }
 			}
+		    }
+		    if (mtmp->egotype_arcane) {
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[0];
+			if (castmu(mtmp, a, FALSE, FALSE)) {
+				tmp = 3;
+			    }
+		    }
+		    if (mtmp->egotype_clerical) {
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[1];
+			if (castmu(mtmp, a, FALSE, FALSE)) {
+				tmp = 3;
+			    }
 		    }
 		}
 
@@ -723,7 +737,8 @@ toofar:
 		&& !Is_blackmarket(&u.uz)
 #endif
 	)) {
-	    if(/*inrange && */!noattacks(mdat) && u.uhp > 0 && !scared && tmp != 3)
+	    if(/*inrange && */ /* !noattacks(mdat) && */ u.uhp > 0 && !scared && tmp != 3)
+		/* noattacks check removed, since now there's things like egotype shriekers... --Amy */
 		if(mattacku(mtmp)) return(1); /* monster died (e.g. exploded) */
 
 	    if(mtmp->wormno) wormhitu(mtmp);
@@ -993,7 +1008,7 @@ register int after;
 	}
 
 	/* and the acquisitive monsters get special treatment */
-	if(is_covetous(ptr) && !rn2(10)) {
+	if( (is_covetous(ptr) || mtmp->egotype_covetous) && !rn2(10)) {
 	    xchar tx = STRAT_GOALX(mtmp->mstrategy),
 		  ty = STRAT_GOALY(mtmp->mstrategy);
 	    struct monst *intruder = m_at(tx, ty);
@@ -1029,7 +1044,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER]) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
@@ -1227,12 +1242,12 @@ not_special:
 	if (is_minion(ptr) || is_rider(ptr)) flag |= ALLOW_SANCT;
 	/* unicorn may not be able to avoid hero on a noteleport level */
 	if (is_unicorn(ptr) && !level.flags.noteleport) flag |= NOTONL;
-	if (passes_walls(ptr)) flag |= (ALLOW_WALL | ALLOW_ROCK);
+	if (passes_walls(ptr) || mtmp->egotype_wallwalk ) flag |= (ALLOW_WALL | ALLOW_ROCK);
 	if (passes_bars(ptr) && !In_sokoban(&u.uz)) flag |= ALLOW_BARS;
 	if (can_tunnel) flag |= ALLOW_DIG;
 	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR]) flag |= ALLOW_SSM;
-	if (is_undead(ptr) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
-	if (throws_rocks(ptr) || passes_walls(ptr) || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
+	if ( (is_undead(ptr) || mtmp->egotype_undead) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
+	if (throws_rocks(ptr) || passes_walls(ptr) || mtmp->egotype_wallwalk || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
 				verysmall(ptr) || slithy(ptr) || ptr == &mons[PM_BLACK_MARKETEER]) flag |= ALLOW_ROCK;
 /* Boulder forts will be a lot less effective at holding dangerous monsters at bay. --Amy */
 	if (can_open) flag |= OPENDOOR;
@@ -1262,7 +1277,7 @@ not_special:
 		for(i = 0; i < cnt; i++)
 		    if(!(info[i] & NOTONL)) avoid=TRUE;
 	    }
-		if (avoid_player(ptr)) avoid=TRUE; /* making this into a monster flag --Amy */
+		if (avoid_player(ptr) || mtmp->egotype_avoider ) avoid=TRUE; /* making this into a monster flag --Amy */
 
 	    for(i=0; i < cnt; i++) {
 		if (avoid && (info[i] & NOTONL)) continue;
@@ -1396,7 +1411,7 @@ postmov:
 
 		/* open a door, or crash through it, if you can */
 		if(IS_DOOR(levl[mtmp->mx][mtmp->my].typ)
-			&& !passes_walls(ptr) /* doesn't need to open doors */
+			&& !passes_walls(ptr) && (!mtmp->egotype_wallwalk) /* doesn't need to open doors */
 			&& !can_tunnel /* taken care of below */
 		      ) {
 		    struct rm *here = &levl[mtmp->mx][mtmp->my];
@@ -1651,7 +1666,7 @@ register struct monst *mtmp;
 	    } while (!isok(mx,my)
 		  || (disp != 2 && mx == mtmp->mx && my == mtmp->my)
 		  || ((mx != u.ux || my != u.uy) &&
-		      !passes_walls(mtmp->data) &&
+		      !passes_walls(mtmp->data) && (!mtmp->egotype_wallwalk) &&
 		      (!ACCESSIBLE(levl[mx][my].typ) ||
 		       (closed_door(mx, my) && !can_ooze(mtmp))))
 		  || !couldsee(mx, my));

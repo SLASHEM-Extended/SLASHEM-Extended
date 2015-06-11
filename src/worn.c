@@ -356,6 +356,9 @@ register struct monst *mon;
 	int base = mon->data->ac;
 	long mwflags = mon->misc_worn_check;
 
+	if (mon->egotype_armorer) base -= 5;
+	if (mon->egotype_tank) base -= 10;
+
 	for (obj = mon->minvent; obj; obj = obj->nobj) {
 	    if (obj->owornmask & mwflags)
 		base -= ARM_BONUS(obj);

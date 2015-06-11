@@ -1741,7 +1741,8 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (befriend_with_obj(mon->data, obj) ||
+	} else if (befriend_with_obj(mon->data, obj) || (obj->oclass == FOOD_CLASS && mon->egotype_domestic) ||
+		(otyp == KELP_FROND && mon->egotype_petty) ||
 		   (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
 	    if (tamedog(mon, obj, FALSE))
 		return 1;           	/* obj is gone */

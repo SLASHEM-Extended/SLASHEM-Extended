@@ -2983,6 +2983,9 @@ tty_print_glyph(window, x, y, glyph)
     } 
 #endif 
 
+    if (!reverse_on && (special & (MG_EGOTYPE)))
+		    term_start_bgcolor(CLR_YELLOW); /* Amy edit - I want the color to be bright and easily recognizable. */
+
 #if defined(USE_TILES) && defined(MSDOS)
     if (iflags.grmode && iflags.tile_view)
       xputg(glyph,ch,special);
@@ -3007,6 +3010,11 @@ tty_print_glyph(window, x, y, glyph)
 	    term_end_color(); 
     } 
 #endif 
+
+    if (!reverse_on && (special & (MG_EGOTYPE))) { 
+	    term_end_bgcolor(); 
+	    term_end_color(); 
+    } 
 
     wins[window]->curx++;	/* one character over */
     ttyDisplay->curx++;		/* the real cursor moved too */

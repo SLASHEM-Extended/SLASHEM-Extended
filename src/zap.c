@@ -202,7 +202,7 @@ struct obj *otmp;
 	case WAN_UNDEAD_TURNING:
 		wake = FALSE;
 		if (unturn_dead(mtmp)) wake = TRUE;
-		if (is_undead(mtmp->data)) {
+		if (is_undead(mtmp->data) || mtmp->egotype_undead) {
 			reveal_invis = TRUE;
 			wake = TRUE;
 			dmg = rnd(8);
@@ -379,7 +379,7 @@ struct obj *otmp;
 		reveal_invis = TRUE;
 		break;
 	case WAN_FEAR:
-		if (!is_undead(mtmp->data) &&
+		if (!is_undead(mtmp->data) && (!mtmp->egotype_undead) &&
 		    !resist(mtmp, otmp->oclass, 0, NOTELL) &&
 		    (!mtmp->mflee || mtmp->mfleetim)) {
 		     if (canseemon(mtmp))
@@ -3625,6 +3625,9 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    }
 	} else {
 	    mdef->mcan = TRUE;
+
+		/* successfully cancelling a monster removes all egotypes --Amy */
+		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = 0;
 
 	    if (is_were(mdef->data) && mdef->data->mlet != S_HUMAN)
 		were_change(mdef);

@@ -224,7 +224,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Detect_monsters)
 		    ways_seen++;
-		if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mtmp->data) ))		    ways_seen++;
+		if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mtmp->data) || mtmp->egotype_undead) ))		    ways_seen++;
 		if (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL] )
 		    ways_seen++;
 		if (Role_if(PM_ACTIVISTOR) && type_is_pname(mtmp->data) && uwep && is_quest_artifact(uwep) )
@@ -233,7 +233,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mtmp->data))
 		    ways_seen++;
-		if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mtmp->data))
+		if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
@@ -251,7 +251,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0)
 		    ways_seen++;
-		if (Numbopathy && Numbed && avoid_player(mtmp->data) )
+		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
@@ -259,7 +259,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
 		    ways_seen++;
-		if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) )
+		if (Race_if(PM_LEVITATOR) && (is_flyer(mtmp->data) || mtmp->egotype_flying) )
 		    ways_seen++;
 
 		if (ways_seen > 1 || !normal) {
@@ -307,7 +307,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "warned of monsters that are the same race as you");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mtmp->data)) {
+		    if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
 			Strcat(monbuf, "warned of covetous monsters");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
@@ -331,7 +331,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "warned of creatures without limbs");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (Race_if(PM_LEVITATOR) && is_flyer(mtmp->data) ) {
+		    if (Race_if(PM_LEVITATOR) && (is_flyer(mtmp->data) || mtmp->egotype_flying) ) {
 			Strcat(monbuf, "warned of flying monsters");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
@@ -348,7 +348,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "stunnopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (Numbopathy && Numbed && avoid_player(mtmp->data) ) {
+		    if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
 			Strcat(monbuf, "numbopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
@@ -365,7 +365,7 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 
-		    if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mtmp->data) )) {
+		    if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mtmp->data) || mtmp->egotype_undead) )) {
 		    	char wbuf[BUFSZ];
 			if (Hallucination)
 				Strcat(monbuf, "paranoid delusion");

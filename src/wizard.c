@@ -245,7 +245,7 @@ strategy(mtmp)
 {
 	long strat, dstrat;
 
-	if (!is_covetous(mtmp->data) ||
+	if ( (!is_covetous(mtmp->data) && (!mtmp->egotype_covetous) ) ||
 		/* perhaps a shopkeeper has been polymorphed into a master
 		   lich; we don't want it teleporting to the stairs to heal
 		   because that will leave its shop untended */

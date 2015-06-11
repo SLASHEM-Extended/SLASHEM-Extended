@@ -62,7 +62,7 @@ mkcavepos(x, y, dist, waslit, rockit)
 	if(IS_ROCK(lev->typ)) return;
 	if(t_at(x, y)) return; /* don't cover the portal */
 	if ((mtmp = m_at(x, y)) != 0)	/* make sure crucial monsters survive */
-	    if(!passes_walls(mtmp->data)) (void) rloc(mtmp, FALSE);
+	    if(!passes_walls(mtmp->data) && (!mtmp->egotype_wallwalk)) (void) rloc(mtmp, FALSE);
     } else if(lev->typ == ROOM) return;
 
     unblock_point(x,y);	/* make sure vision knows this location is open */
@@ -630,7 +630,7 @@ int ttyp;
 		if (oldobjs != newobjs)	/* something unearthed */
 			(void) pickup(1);	/* detects pit */
 	    } else if(mtmp) {
-		if(is_flyer(mtmp->data) || is_floater(mtmp->data)) {
+		if(is_flyer(mtmp->data) || mtmp->egotype_flying || is_floater(mtmp->data)) {
 		    if(canseemon(mtmp))
 			pline("%s %s over the pit.", Monnam(mtmp),
 						     (is_flyer(mtmp->data)) ?
@@ -696,7 +696,7 @@ int ttyp;
 		    impact_drop((struct obj *)0, x, y, 0);
 		if (mtmp) {
 		     /*[don't we need special sokoban handling here?]*/
-		    if (is_flyer(mtmp->data) || is_floater(mtmp->data) ||
+		    if (is_flyer(mtmp->data) || mtmp->egotype_flying || is_floater(mtmp->data) ||
 		        mtmp->data == &mons[PM_WUMPUS] ||
 			(mtmp->wormno && count_wsegs(mtmp) > 5) ||
 			mtmp->data->msize >= MZ_HUGE) return;
@@ -1647,7 +1647,7 @@ struct monst *mtmp;
 	pline("bury_monst: %s", mon_nam(mtmp));
 #endif
 	if(canseemon(mtmp)) {
-	    if(is_flyer(mtmp->data) || is_floater(mtmp->data)) {
+	    if(is_flyer(mtmp->data) || mtmp->egotype_flying || is_floater(mtmp->data)) {
 		pline_The("%s opens up, but %s is not swallowed!",
 			surface(mtmp->mx, mtmp->my), mon_nam(mtmp));
 		return;

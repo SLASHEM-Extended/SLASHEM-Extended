@@ -55,6 +55,7 @@
 #define MG_RIDDEN	0x10
 #define MG_STAIRS	0x20
 #define MG_OBJPILE	0x40
+#define MG_EGOTYPE	0x80
 
 /* sellobj_state() states */
 #define SELL_NORMAL	(0)

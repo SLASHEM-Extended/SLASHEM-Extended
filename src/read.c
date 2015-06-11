@@ -2505,7 +2505,7 @@ register struct obj	*sobj;
 	case SPE_COMMAND_UNDEAD:
 		if (confused) break;
 		if (u.uswallow) {
-		    if (is_undead(u.ustuck->data)) maybe_tame(u.ustuck, sobj);
+		    if (is_undead(u.ustuck->data) || u.ustuck->egotype_undead) maybe_tame(u.ustuck, sobj);
 		} else {
 		    int i, j, bd = confused ? 5 : 1;
 		    struct monst *mtmp;
@@ -2513,7 +2513,7 @@ register struct obj	*sobj;
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
-				is_undead(mtmp->data))
+				(is_undead(mtmp->data) || mtmp->egotype_undead) )
 			    maybe_tame(mtmp, sobj);
 		    }
 		}
@@ -2851,7 +2851,7 @@ register struct obj	*sobj;
 
 	    	    	    /* Find the monster here (won't be player) */
 	    	    	    mtmp = m_at(x, y);
-	    	    	    if (mtmp && !amorphous(mtmp->data) &&
+	    	    	    if (mtmp && !amorphous(mtmp->data) && (!mtmp->egotype_wallwalk) &&
 	    	    	    		!passes_walls(mtmp->data) &&
 	    	    	    		!noncorporeal(mtmp->data) &&
 	    	    	    		!unsolid(mtmp->data)) {

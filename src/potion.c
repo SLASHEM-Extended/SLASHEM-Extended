@@ -2548,7 +2548,7 @@ boolean your_fault;
 		break;
 
 	case POT_FEAR: /* monster flees --Amy */
-		if(!is_undead(mon->data) && !resist(mon, POTION_CLASS, 0, NOTELL))  {
+		if(!is_undead(mon->data) && (!mon->egotype_undead) && !resist(mon, POTION_CLASS, 0, NOTELL))  {
 		     monflee(mon, 0, FALSE, TRUE);
 			if (canseemon(mon)) pline("%s is panicking!",Monnam(mon));
 		}

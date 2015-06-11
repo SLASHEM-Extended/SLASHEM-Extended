@@ -875,7 +875,7 @@ struct monst *mon;
 register xchar x,y;
 {
 	struct permonst *mdat = mon->data;
-	boolean passwall = mon == &youmonst ? Passes_walls : passes_walls(mdat);
+	boolean passwall = mon == &youmonst ? Passes_walls : ( passes_walls(mdat) || mon->egotype_wallwalk);
 	return((boolean) ((In_sokoban(&u.uz) && sobj_at(BOULDER,x,y)) ||
 	       (IS_ROCK(levl[x][y].typ)
 		    && (!tunnels(mdat) || needspick(mdat) || !may_dig(x,y))
@@ -1868,7 +1868,7 @@ domove()
 	 * Ceiling-hiding pets are skipped by this section of code, to
 	 * be caught by the normal falling-monster code.
 	 */
-	if (is_safepet(mtmp) && !(is_hider(mtmp->data) && mtmp->mundetected)) {
+	if (is_safepet(mtmp) && !( (is_hider(mtmp->data) || mtmp->egotype_hide) && mtmp->mundetected)) {
 	    /* if trapped, there's a chance the pet goes wild */
 	    if (mtmp->mtrapped) {
 		if (!rn2(mtmp->mtame)) {
@@ -2154,7 +2154,7 @@ stillinwater:;
 	    /* limit recursive calls through teleds() */
 	    if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
 #ifdef STEED
-		if (u.usteed && !is_flyer(u.usteed->data) &&
+		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
 			!is_floater(u.usteed->data) &&
 			!is_clinger(u.usteed->data)) {
 		    dismount_steed(Underwater ?
@@ -2971,7 +2971,7 @@ monster_nearby()
 		   mtmp->m_ap_type != M_AP_FURNITURE &&
 		   mtmp->m_ap_type != M_AP_OBJECT &&
 		   (!mtmp->mpeaceful || Hallucination) &&
-		   (!is_hider(mtmp->data) || !mtmp->mundetected) &&
+		   ( (!is_hider(mtmp->data) && (!mtmp->egotype_hide) ) || !mtmp->mundetected) &&
 		   !noattacks(mtmp->data) &&
 		   mtmp->mcanmove && !mtmp->msleeping &&  /* aplvax!jcn */
 		   !onscary(u.ux, u.uy, mtmp) &&

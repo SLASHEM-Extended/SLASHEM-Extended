@@ -1478,7 +1478,7 @@ physical:
 		    else if (magr->mtame && !vis)
 			You(brief_feeling, "peculiarly sad");
 		    return MM_AGR_DIED;
-		} else if (is_undead(mdef->data)) {
+		} else if (is_undead(mdef->data) || mdef->egotype_undead) {
 		    /* Still does normal damage */
 		    if (vis) pline("Something didn't work...");
 		    break;
@@ -1745,7 +1745,7 @@ physical:
 		    break;
 		}
 		if (vis) pline("%s brain is eaten!", s_suffix(Monnam(mdef)));
-		if (mindless(pd)) {
+		if (mindless(pd) || mdef->egotype_undead ) {
 		    if (vis) pline("%s doesn't notice.", Monnam(mdef));
 		    break;
 		}

@@ -2253,7 +2253,7 @@ int tech_no;
 
 			{
 
-				if (is_petty(mtmp->data))
+				if (is_petty(mtmp->data) || mtmp->egotype_petty)
 
 				{
 			      /*maybe_tameX(mtmp);*/
@@ -2263,7 +2263,7 @@ int tech_no;
 				t_timeout = rnz(1000);
 				}
 
-			else if ( (mtmp->m_lev > (2 * techlev(tech_no)) || rn2(4) ) && mtmp->m_lev > techlev(tech_no) && caught == 0 && (!is_pokemon(mtmp->data) || rn2(2) ) )
+			else if ( (mtmp->m_lev > (2 * techlev(tech_no)) || rn2(4) ) && mtmp->m_lev > techlev(tech_no) && caught == 0 && ( (!is_pokemon(mtmp->data) && (!mtmp->egotype_pokemon) ) || rn2(2) ) )
 				{
 				pline("You missed the Pokemon!");
 				}
@@ -2275,7 +2275,7 @@ int tech_no;
 
 				catchrate = (60 + mtmp->m_lev - techlev(tech_no));
 				if (!rn2(4)) catchrate -= techlev(tech_no);
-				if (is_pokemon(mtmp->data)) catchrate = (catchrate / 2);
+				if (is_pokemon(mtmp->data) || mtmp->egotype_pokemon) catchrate = (catchrate / 2);
 				if (catchrate < 3) catchrate = 3;
 				if (rnd(100) < catchrate) pline("Oh, no! The Pokemon broke free!");
 				else if (rnd(100) < catchrate) pline("Aww! It appeared to be caught!");
@@ -3356,7 +3356,7 @@ blitz_g_slam()
 	
 	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT);
 	if (chasm) {
-	    if (!is_flyer(mtmp->data) && !is_clinger(mtmp->data))
+	    if (!is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_clinger(mtmp->data))
 		mtmp->mtrapped = 1;
 	    chasm->tseen = 1;
 	    levl[u.ux + u.dx][u.uy + u.dy].doormask = 0;

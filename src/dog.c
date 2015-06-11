@@ -648,7 +648,7 @@ long nmv;		/* number of moves */
 			*/
  
 			if ((is_animal(mtmp->data) || mindless(mtmp->data) ||
-			    is_demon(mtmp->data)  || is_undead(mtmp->data) ||
+			    is_demon(mtmp->data)  || is_undead(mtmp->data) || mtmp->egotype_undead ||
 			    is_were(mtmp->data)) && (monstermoves + 5000) > edog->hungrytime) { 
 				/* reduce tameness for every 
 				 * 150 moves you are away 
@@ -684,7 +684,7 @@ long nmv;		/* number of moves */
 	}
 
 	/* recover lost hit points */
-	if (!regenerates(mtmp->data)) imv /= (ishaxor ? 10 : 20);
+	if (!regenerates(mtmp->data) && (!mtmp->egotype_regeneration) ) imv /= (ishaxor ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;
@@ -873,7 +873,7 @@ struct monst *mon;
 register struct obj *obj;
 {
 	boolean carni = carnivorous(mon->data);
-	boolean herbi = herbivorous(mon->data);
+	boolean herbi = (herbivorous(mon->data) || mon->egotype_petty);
 	struct permonst *fptr = &mons[obj->corpsenm];
 	boolean starving;
 
@@ -978,7 +978,7 @@ register struct obj *obj;
 			return (herbi ? CADAVER : MANFOOD);
 		    else return (carni ? CADAVER : MANFOOD);
 		case CLOVE_OF_GARLIC:
-		    return (is_undead(mon->data) ? TABU :
+		    return ( (is_undead(mon->data) || mon->egotype_undead) ? TABU :
 			    ((herbi || starving) ? ACCFOOD : MANFOOD));
 		case TIN:
 		    return (metallivorous(mon->data) ? ACCFOOD : MANFOOD);

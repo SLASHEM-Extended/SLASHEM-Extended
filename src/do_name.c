@@ -770,35 +770,46 @@ boolean called;
 	if (!do_hallu && mtmp->isegotype) {
 
 	    if (mtmp->egotype_thief) Sprintf(eos(buf), " Thief");
-	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_disenchant) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_rust) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_corrosion) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_decay) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_wither) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_grab) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_flying) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_hide) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_regeneration) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_undead) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_domestic) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_covetous) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_avoider) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_petty) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_pokemon) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_slows) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_vampire) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_teleportself) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_teleportyou) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_wrap) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_disease) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_slime) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_engrave) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_dark) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_luck) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_push) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_arcane) Sprintf(eos(buf), " ");
-	    if (mtmp->egotype_clerical) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " Phazer");
+	    if (mtmp->egotype_disenchant) Sprintf(eos(buf), " Disenchanter");
+	    if (mtmp->egotype_rust) Sprintf(eos(buf), " Ruster");
+	    if (mtmp->egotype_corrosion) Sprintf(eos(buf), " Corroder");
+	    if (mtmp->egotype_decay) Sprintf(eos(buf), " Decayer");
+	    if (mtmp->egotype_wither) Sprintf(eos(buf), " Witherer");
+	    if (mtmp->egotype_grab) Sprintf(eos(buf), " Grabber");
+	    if (mtmp->egotype_flying) Sprintf(eos(buf), " Flyer");
+	    if (mtmp->egotype_hide) Sprintf(eos(buf), " Hider");
+	    if (mtmp->egotype_regeneration) Sprintf(eos(buf), " Regenerator");
+	    if (mtmp->egotype_undead) Sprintf(eos(buf), " Undead");
+	    if (mtmp->egotype_domestic) Sprintf(eos(buf), " Pet-type");
+	    if (mtmp->egotype_covetous) Sprintf(eos(buf), " Covenant");
+	    if (mtmp->egotype_avoider) Sprintf(eos(buf), " Avoider");
+	    if (mtmp->egotype_petty) Sprintf(eos(buf), " Petty Monster");
+	    if (mtmp->egotype_pokemon) Sprintf(eos(buf), " Pokemon");
+	    if (mtmp->egotype_slows) Sprintf(eos(buf), " Slower");
+	    if (mtmp->egotype_vampire) Sprintf(eos(buf), " Vampire");
+	    if (mtmp->egotype_teleportself) Sprintf(eos(buf), " Teleporter");
+	    if (mtmp->egotype_teleportyou) Sprintf(eos(buf), " Warper");
+	    if (mtmp->egotype_wrap) Sprintf(eos(buf), " Wrapper");
+	    if (mtmp->egotype_disease) Sprintf(eos(buf), " Inficator");
+	    if (mtmp->egotype_slime) Sprintf(eos(buf), " Slimer");
+	    if (mtmp->egotype_engrave) Sprintf(eos(buf), " Rubber");
+	    if (mtmp->egotype_dark) Sprintf(eos(buf), " Endarker");
+	    if (mtmp->egotype_luck) Sprintf(eos(buf), " Luck-sucker");
+	    if (mtmp->egotype_push) Sprintf(eos(buf), " Pusher");
+	    if (mtmp->egotype_arcane) Sprintf(eos(buf), " Shaman");
+	    if (mtmp->egotype_clerical) Sprintf(eos(buf), " Cleric");
+
+	    if (mtmp->egotype_armorer) Sprintf(eos(buf), " Armorer");
+	    if (mtmp->egotype_tank) Sprintf(eos(buf), " Tank");
+	    if (mtmp->egotype_speedster) Sprintf(eos(buf), " Speedster");
+	    if (mtmp->egotype_racer) Sprintf(eos(buf), " Racer");
+
+	    if (mtmp->egotype_randomizer) Sprintf(eos(buf), " Randomizer");
+	    if (mtmp->egotype_blaster) Sprintf(eos(buf), " Blaster");
+	    if (mtmp->egotype_multiplicator) Sprintf(eos(buf), " Multiplicator");
+
+	    if (mtmp->egotype_gator) Sprintf(eos(buf), " Gator");
 
 	}
 

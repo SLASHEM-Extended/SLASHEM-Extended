@@ -235,7 +235,7 @@ int force;
 	for (x=start_x; x<=end_x; x++) for (y=start_y; y<=end_y; y++) {
 	    if ((mtmp = m_at(x,y)) != 0) {
 		wakeup(mtmp);	/* peaceful monster will become hostile */
-		if (mtmp->mundetected && is_hider(mtmp->data)) {
+		if (mtmp->mundetected && (is_hider(mtmp->data) || mtmp->egotype_hide) ) {
 		    mtmp->mundetected = 0;
 		    if (cansee(x,y))
 			pline("%s is shaken loose from the ceiling!",
@@ -302,7 +302,7 @@ do_pit:		    chasm = maketrap(x,y,PIT);
 		       falls in a chasm... */
 
 		    if (mtmp) {
-			if(!is_flyer(mtmp->data) && !is_clinger(mtmp->data)) {
+			if(!is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_clinger(mtmp->data)) {
 			    mtmp->mtrapped = 1;
 			    if(cansee(x,y))
 				pline("%s falls into a chasm!", Monnam(mtmp));

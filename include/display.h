@@ -26,7 +26,7 @@
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
       (mon)->mhp % 3 != 0 && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
-	(!mindless((mon)->data)) &&	/* 1. the monster has a brain to sense AND  */\
+	(!mindless((mon)->data) && (!mon->egotype_undead) ) &&	/* 1. the monster has a brain to sense AND  */\
       ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
 				/* 2b. hero is using a telepathy inducing   */\
 				/*	 object and in range		    */\
@@ -34,7 +34,7 @@
 	(distu((mon)->mx, (mon)->my) <= (BOLT_LIM * BOLT_LIM))))		      \
 )
 
-#define sensemon(mon) (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && is_undead(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && is_covetous(mon->data) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || (Numbopathy && Numbed && avoid_player(mon->data) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (Burnopathy && Burned && infravision(mon->data) ) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && is_flyer(mon->data) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  )
+#define sensemon(mon) (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (Burnopathy && Burned && infravision(mon->data) ) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  )
 
 /*
  * mon_warning() is used to warn of any dangerous monsters in your

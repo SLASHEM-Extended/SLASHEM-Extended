@@ -957,7 +957,7 @@ genericptr_t p2;
 	mtmp = (struct monst *) p2;
 
 	/* Non living and non breathing monsters are not concerned */
-	if (!nonliving(mtmp->data) && !breathless(mtmp->data)) {
+	if (!nonliving(mtmp->data) && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
 	    if (cansee(mtmp->mx, mtmp->my))
 		pline("%s coughs!", Monnam(mtmp));
 	    if (heros_fault(reg))

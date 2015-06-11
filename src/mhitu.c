@@ -732,8 +732,10 @@ mattacku(mtmp)
 	register struct monst *mtmp;
 {
 	struct	attack	*mattk, alt_attk;
+      struct attack *a;
 	int	i, j, tmp, sum[NATTK];
 	struct	permonst *mdat = mtmp->data;
+	struct permonst *mdat2;
 	boolean ranged = (distu(mtmp->mx, mtmp->my) > 3);
 		/* Is it near you?  Affects your actions */
 	boolean range2 = !monnear(mtmp, mtmp->mux, mtmp->muy);
@@ -915,7 +917,7 @@ mattacku(mtmp)
 	}
 
 /*	Special demon handling code */
-	if(!mtmp->cham && is_demon(mdat) && !range2
+	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && !range2
 	   && mtmp->data != &mons[PM_BALROG]
 	   && mtmp->data != &mons[PM_SUCCUBUS]
 	   && mtmp->data != &mons[PM_INCUBUS]
@@ -1276,9 +1278,10 @@ mattacku(mtmp)
 /* The gnome swings her spiked battle boot! Ouch! The spiked boot soles bore themselves into your skin! The spikes were poisoned! The poison was deadly... Do you want your possessions identified? */
 
 				}
-				if(tmp > (j = dieroll = rnd(20+i)))
+				if(tmp > (j = dieroll = rnd(20+i))) {
 				    sum[i] = hitmu(mtmp, mattk);
 					if (!rn2(75)) pushplayer();
+				}
 				else
 				    missmu(mtmp, tmp , j, mattk);
 				/* KMH -- Don't accumulate to-hit bonuses */
@@ -1318,6 +1321,483 @@ mattacku(mtmp)
 	    if(sum[i] == 3) break;  /* attacker teleported, no more attacks */
 	    /* sum[i] == 0: unsuccessful attack */
 	}
+
+	if (mtmp->egotype_arcane && !rn2(iswarper ? 2 : 4) && !range2) {
+
+	    if (foundyou) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[0];
+		castmu(mtmp, a, TRUE, TRUE);
+		}
+	    else {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[0];
+		castmu(mtmp, a, TRUE, FALSE);
+		}
+
+	}
+
+	if (mtmp->egotype_clerical && !rn2(iswarper ? 2 : 4) && !range2) {
+
+	    if (foundyou) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[1];
+		castmu(mtmp, a, TRUE, TRUE);
+		}
+	    else {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[1];
+		castmu(mtmp, a, TRUE, FALSE);
+		}
+
+	}
+
+	if (mtmp->egotype_thief ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SITM;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_disenchant ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ENCH;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_rust ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RUST;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_corrosion ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_CORR;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_decay ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DCAY;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_wither ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_WTHR;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_grab ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_STCK;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_slows ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SLOW;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_vampire ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DRLI;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_teleportyou ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TLPT;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_wrap ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_WRAP;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_disease ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DISE;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_slime ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SLIM;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_engrave ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_NGRA;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_dark ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DARK;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_luck ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_LUCK;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_push ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DISP;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_randomizer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RBRE;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_blaster) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TENT;
+		a->adtyp = AD_DRIN;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_multiplicator) {
+
+		if (!range2 && (!rn2(5)) ) {
+		    pline("%s multiplies!",Monnam(mtmp) );
+		    clone_mon(mtmp, 0, 0);
+		}
+
+	}
+
 	return(0);
 }
 
@@ -1620,7 +2100,7 @@ hitmu(mtmp, mattk)
 
 /*	First determine the base damage done */
 	dmg = d((int)mattk->damn, (int)mattk->damd);
-	if(is_undead(mdat) && midnight())
+	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 /*	Next a cancellation factor	*/
 
@@ -2237,6 +2717,7 @@ dopois:
 			    done(DROWNING);
 			} /*else*/ if(mattk->aatyp == AT_HUGS)
 			    You("are being crushed.");
+			    else You("are being wrapped.");
 		    } else {
 			dmg = 0;
 			if(flags.verbose)

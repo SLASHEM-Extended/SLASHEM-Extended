@@ -499,7 +499,7 @@ register struct monst *mtmp;
 		    }
 
 		if (inshop || foo ||
-			(IS_ROCK(levl[u.ux][u.uy].typ) &&
+			(IS_ROCK(levl[u.ux][u.uy].typ) && (!mtmp->egotype_wallwalk) &&
 					!passes_walls(mtmp->data))) {
 		    char buf[BUFSZ];
 
@@ -1426,7 +1426,7 @@ int thrown;
 #undef useup_eggs
 		      }
 		    case CLOVE_OF_GARLIC:	/* no effect against demons */
-			if (is_undead(mdat)) {
+			if (is_undead(mdat) || mon->egotype_undead) {
 			    monflee(mon, d(2, 4), FALSE, TRUE);
 			}
 			tmp = 1;
@@ -2607,7 +2607,7 @@ register struct attack *mattk;
 		    }
 		} else if(mattk->aatyp == AT_HUGS &&
 			u.umonnum == PM_ROPE_GOLEM) {
-		    if (breathless(mdef->data)) tmp = (tmp + 1) / 2;
+		    if (breathless(mdef->data) || mdef->egotype_undead ) tmp = (tmp + 1) / 2;
 		}
 
 		break;
@@ -2872,7 +2872,7 @@ register struct attack *mattk;
 		    u.uconduct.unvegan++;
 		if (!vegetarian(mdef->data))
 		    violated_vegetarian();
-		if (mindless(mdef->data)) {
+		if (mindless(mdef->data) || mdef->egotype_undead) {
 		    pline("%s doesn't notice.", Monnam(mdef));
 		    break;
 		}
@@ -3039,7 +3039,7 @@ register struct attack *mattk;
 		    killer_format = KILLED_BY;
 		    killer = "a reflected gaze of death";
 		    done(DIED);
-		} else if (is_undead(mdef->data)) {
+		} else if (is_undead(mdef->data) || mdef->egotype_undead) {
 		    /* Still does normal damage */
 		    if (!Blind) pline("Something didn't work...");
 		    break;

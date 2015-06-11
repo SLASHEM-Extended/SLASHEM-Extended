@@ -723,7 +723,7 @@ register struct monst *mtmp;
 		break;
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
-		if ((mvitals[mndx].mvflags & G_NOCORPSE) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) ) )
+		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) ) )
 		    return (struct obj *)0;
 		else	/* preserve the unique traits of some creatures */
 		    obj = mkcorpstat(CORPSE, KEEPTRAITS(mtmp) ? mtmp : 0,
@@ -778,7 +778,7 @@ warn_effects()
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (!canseemon(mtmp) && !(mtmp->mpeaceful) && !(mtmp->mtame)) {
 			if (Warning && (!spec_ability(uwep,SPFX_WARN) || !spec_dbon(uwep,mtmp,1))) num_mon++;
-			else if (Undead_warning && is_undead(mtmp->data)) num_mon++;
+			else if (Undead_warning && (is_undead(mtmp->data) || mtmp->egotype_undead) ) num_mon++;
 			else if (spec_ability(uwep,SPFX_WARN) && spec_dbon(uwep,mtmp,1)) num_mon++;
 	    }
 	}
@@ -791,7 +791,7 @@ warn_effects()
 	do {
 		if (!canseemon(mtmp) && !(mtmp->mpeaceful) && !(mtmp->mtame)) {
 			if (Warning && (!spec_ability(uwep,SPFX_WARN) || !spec_dbon(uwep,mtmp,1))) num_mon--;
-			else if (Undead_warning && is_undead(mtmp->data)) num_mon--;
+			else if (Undead_warning && (is_undead(mtmp->data) || mtmp->egotype_undead) ) num_mon--;
 			else if (spec_ability(uwep,SPFX_WARN) && spec_dbon(uwep,mtmp,1)) num_mon--;
 		}
 		if (num_mon > 0) mtmp = mtmp->nmon;
@@ -812,9 +812,9 @@ register struct monst *mtmp;
     boolean inpool, inlava, infountain;
 
     inpool = is_pool(mtmp->mx,mtmp->my) &&
-	     !is_flyer(mtmp->data) && !is_floater(mtmp->data);
+	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     inlava = is_lava(mtmp->mx,mtmp->my) &&
-	     !is_flyer(mtmp->data) && !is_floater(mtmp->data);
+	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     infountain = IS_FOUNTAIN(levl[mtmp->mx][mtmp->my].typ);
 
 #ifdef STEED
@@ -946,6 +946,9 @@ struct monst *mon;
     }
 #endif
 
+    if (mon->egotype_speedster) mmove += 6;
+    if (mon->egotype_racer) mmove += 12;
+
     return mmove;
 }
 
@@ -1035,7 +1038,7 @@ movemon()
 
 	if (minliquid(mtmp)) continue;
 
-	if (is_hider(mtmp->data)) {
+	if (is_hider(mtmp->data) || mtmp->egotype_hide) {
 	    /* unwatched mimics and piercers may hide again  [MRS] */
 	    if(restrap(mtmp))   continue;
 	    if(mtmp->m_ap_type == M_AP_FURNITURE ||
@@ -1619,12 +1622,12 @@ mfndpos(mon, poss, info, flag)
 
 	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG]);
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
-	poolok = (is_flyer(mdat) || is_clinger(mdat) ||
+	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
-	lavaok = is_flyer(mdat) || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
+	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = is_flyer(mdat); /* flying monsters, but not flying players, can pass over trees --Amy */
+	treeok = is_flyer(mdat) || mon->egotype_flying; /* flying monsters, but not flying players, can pass over trees --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
 
@@ -1644,7 +1647,7 @@ mfndpos(mon, poss, info, flag)
 	    }
 	    thrudoor |= rockok || treeok;
 	}
-	if (is_flyer(mdat)) treeok = TRUE; /* fail safe */
+	if (is_flyer(mdat) || mon->egotype_flying) treeok = TRUE; /* fail safe */
 
 nexttry:	/* eels prefer the water, but if there is no water nearby,
 		   they will crawl over land */
@@ -1831,7 +1834,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
-				      || (!is_flyer(mdat)
+				      || (!is_flyer(mdat) && (!mon->egotype_flying) 
 				    && !is_floater(mdat)
 				    && !is_clinger(mdat))
 				      || In_sokoban(&u.uz))
@@ -1846,23 +1849,23 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    (!resists_drli(mon)) )
 
 				&& (ttmp->ttyp != SLP_GAS_TRAP ||
-				    (!resists_sleep(mon) && !breathless(mdat)) )
+				    (!resists_sleep(mon) && !breathless(mdat) && (!mon->egotype_undead) ) )
 				&& (ttmp->ttyp != POISON_GAS_TRAP ||
-				    (!resists_poison(mon) && !breathless(mdat)) )
+				    (!resists_poison(mon) && !breathless(mdat) && (!mon->egotype_undead) ) )
 				&& (ttmp->ttyp != SLOW_GAS_TRAP ||
-				    !breathless(mdat) )
+				    (!breathless(mdat) && (!mon->egotype_undead) ) )
 				&& (ttmp->ttyp != BEAR_TRAP ||
 				    (mdat->msize > MZ_SMALL &&
-				     !amorphous(mdat) && !is_flyer(mdat)))
+				     !amorphous(mdat) && !is_flyer(mdat) && (!mon->egotype_flying) ))
 				&& (ttmp->ttyp != FIRE_TRAP ||
 				    !resists_fire(mon))
 				&& (ttmp->ttyp != SHOCK_TRAP ||
 				    !resists_elec(mon))
 				&& (ttmp->ttyp != ICE_TRAP ||
 				    !resists_cold(mon))
-				&& (ttmp->ttyp != SQKY_BOARD || !is_flyer(mdat))
-				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(mdat) && !is_floater(mdat) && !resists_acid(mon)) )
-				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(mdat) && !is_floater(mdat) && !is_swimmer(mdat) && !amphibious(mdat) && !breathless(mdat)) )
+				&& (ttmp->ttyp != SQKY_BOARD || (!is_flyer(mdat) && (!mon->egotype_flying) ))
+				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !resists_acid(mon)) )
+				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !is_swimmer(mdat) && !amphibious(mdat) && !breathless(mdat) && (!mon->egotype_undead) ) )
 				&& (ttmp->ttyp != WEB || (!amorphous(mdat) &&
 				    !webmaker(mdat)))
 			) {
@@ -2836,7 +2839,7 @@ xkilled(mtmp, dest)
 	    /* might be mimic in wall or corpse in lava or on player's spot */
 	    redisp = TRUE;
 	    if(wasinside) spoteffects(TRUE);
-	} else if(x != u.ux || y != u.uy && !attacktype(mdat, AT_MULTIPLY) ) { /* multipliers could otherwise be farmed */
+	} else if(x != u.ux || y != u.uy && !attacktype(mdat, AT_MULTIPLY) && (!mtmp->egotype_multiplicator) && mdat != &mons[PM_GREMLIN] ) { /* multipliers could otherwise be farmed */
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */

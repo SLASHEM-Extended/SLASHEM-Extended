@@ -3616,7 +3616,7 @@ boolean catchup;	/* restoring a level */
 		    return(0);
 	    if (x == shkp->mx && y == shkp->my)
 		return(0);
-	    if ((mtmp = m_at(x, y)) && (!passes_walls(mtmp->data)))
+	    if ((mtmp = m_at(x, y)) && (!mtmp->egotype_wallwalk) && (!passes_walls(mtmp->data)))
 		return(0);
 	}
 	if ((ttmp = t_at(x, y)) != 0) {

@@ -737,7 +737,7 @@ struct monst *mtmp;
 		if ((xx==x && yy==y) || !level.monsters[xx][yy])
 		if ((t = t_at(xx,yy)) != 0)
 		if ((verysmall(mtmp->data) || throws_rocks(mtmp->data) ||
-		     passes_walls(mtmp->data)) || !sobj_at(BOULDER, xx, yy))
+		     passes_walls(mtmp->data) || mtmp->egotype_wallwalk) || !sobj_at(BOULDER, xx, yy))
 		if (!onscary(xx,yy,mtmp)) {
 			if ((t->ttyp == TRAPDOOR || t->ttyp == HOLE)
 				&& !is_floater(mtmp->data)
@@ -2116,7 +2116,7 @@ struct monst *mtmp;
 		if (obj->otyp == SCR_EARTH
 		       && ((helmet && is_metallic(helmet)) ||
 				mtmp->mconf || amorphous(mtmp->data) ||
-				passes_walls(mtmp->data) ||
+				passes_walls(mtmp->data) || mtmp->egotype_wallwalk ||
 				noncorporeal(mtmp->data) ||
 				unsolid(mtmp->data) || !rn2(10))
 		       && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= 2
@@ -2507,7 +2507,7 @@ register struct obj *otmp;
 			break;
 		} else {
 
-			if (!is_undead(mtmp->data) &&
+			if (!is_undead(mtmp->data) && (!mtmp->egotype_undead) &&
 			    !resist(mtmp, otmp->oclass, 0, NOTELL) &&
 			    (!mtmp->mflee || mtmp->mfleetim)) {
 			     if (canseemon(mtmp))
@@ -3251,7 +3251,7 @@ struct monst *mtmp;
 	    	    	    /* Find the monster here (might be same as mtmp) */
 	    	    	    mtmp2 = m_at(x, y);
 	    	    	    if (mtmp2 && !amorphous(mtmp2->data) &&
-	    	    	    		!passes_walls(mtmp2->data) &&
+	    	    	    		!passes_walls(mtmp2->data) && (!mtmp2->egotype_wallwalk) &&
 	    	    	    		!noncorporeal(mtmp2->data) &&
 	    	    	    		!unsolid(mtmp2->data)) {
 				struct obj *helmet = which_armor(mtmp2, W_ARMH);
@@ -3454,7 +3454,7 @@ struct monst *mtmp;
 		case 0: {
 		    struct obj *helmet = which_armor(mtmp, W_ARMH);
 
-		    if ((helmet && is_metallic(helmet)) || amorphous(pm) || passes_walls(pm) || noncorporeal(pm) || unsolid(pm))
+		    if ((helmet && is_metallic(helmet)) || amorphous(pm) || passes_walls(pm) || mtmp->egotype_wallwalk || noncorporeal(pm) || unsolid(pm))
 			return SCR_EARTH;
 		} /* fall through */
 		case 1: return WAN_STRIKING;
@@ -3599,7 +3599,7 @@ struct monst *mtmp;
 
 	if (!stuck && !immobile && !mtmp->cham && monstr[monsndx(mdat)] < 6) {
 	  boolean ignore_boulders = (verysmall(mdat) ||
-				     throws_rocks(mdat) ||
+				     throws_rocks(mdat) || mtmp->egotype_wallwalk ||
 				     passes_walls(mdat));
 	  for(xx = x-1; xx <= x+1; xx++)
 	    for(yy = y-1; yy <= y+1; yy++)

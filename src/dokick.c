@@ -195,7 +195,7 @@ register xchar x, y;
 	    return;
 	}
 
-	if(Levitation && !rn2(3) && verysmall(mon->data) &&
+	if(Levitation && !rn2(3) && verysmall(mon->data) && (!mon->egotype_flying) &&
 	   !is_flyer(mon->data)) {
 		pline(Hallucination ? "Your legs seem to have a mind of their own!" : "Floating in the air, you miss wildly!");
 		exercise(A_DEX, FALSE);

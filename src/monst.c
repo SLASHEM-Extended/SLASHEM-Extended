@@ -42212,6 +42212,13 @@ struct permonst _mons2[] = {
 	SIZ(0, 0, 0, MS_SILENT, MZ_SMALL), 0, 0,
 	0, M2_HOSTILE|M2_NOPOLY, 0, CLR_BRIGHT_GREEN),
 
+    MON("cast dummy", S_WORM_TAIL, 
+	LVL(15, 6, 0, 0, 0), (G_NOGEN|G_NOCORPSE|G_UNIQ),
+	A(ATTK(AT_MAGC, AD_SPEL, 1, 1), ATTK(AT_MAGC, AD_CLRC, 1, 1), NO_ATTK,
+	  NO_ATTK, NO_ATTK, NO_ATTK),
+	SIZ(0, 0, 0, MS_SILENT, MZ_SMALL), 0, 0,
+	0, M2_HOSTILE|M2_NOPOLY, 0, CLR_BRIGHT_GREEN),
+
 	/* Note:
 	 * Worm tail must be between the normal monsters and the special
 	 * quest & pseudo-character ones because an optimization in the
