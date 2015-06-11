@@ -808,6 +808,8 @@ register struct obj *obj;
 	if (uleft && uleft == obj) remove_worn_item(obj, TRUE);
 	if (uright && uright == obj) remove_worn_item(obj, TRUE);
 	if (ublindf && ublindf == obj) remove_worn_item(obj, TRUE);
+	if (uball && uball == obj) unpunish();
+	if (uchain && uchain == obj) unpunish();
 
 	update_map = (obj->where == OBJ_FLOOR || Has_contents(obj) &&
 		(obj->where == OBJ_INVENT || obj->where == OBJ_MINVENT));
