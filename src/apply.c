@@ -3370,6 +3370,7 @@ wand_explode(obj, hero_broke)
 	dmg = d(1 + obj->spe,30);
     case WAN_CANCELLATION:
     case WAN_POLYMORPH:
+    case WAN_MUTATION:
     case WAN_UNDEAD_TURNING:
     case WAN_WIND:
     case WAN_DRAINING:	/* KMH */

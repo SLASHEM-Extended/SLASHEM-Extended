@@ -340,9 +340,11 @@ struct obj {
 || (otmp)->otyp == WAN_MAKE_INVISIBLE\
 || (otmp)->otyp == POT_INVISIBILITY\
 || (otmp)->otyp == WAN_POLYMORPH\
+|| (otmp)->otyp == WAN_MUTATION\
 || (otmp)->otyp == POT_SPEED\
 || (otmp)->otyp == WAN_SPEED_MONSTER\
 || (otmp)->otyp == POT_POLYMORPH\
+|| (otmp)->otyp == POT_MUTATION\
 || (otmp)->otyp == WAN_CLONE_MONSTER\
 || (otmp)->otyp == SCR_DESTROY_ARMOR\
 || (otmp)->otyp == SCR_STONING\

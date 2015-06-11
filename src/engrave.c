@@ -1410,6 +1410,7 @@ doengrave()
 			}
 			break;
 		    case WAN_POLYMORPH:
+		    case WAN_MUTATION:
 			if(oep)  {
 			    if (!Blind) {
 				type = (xchar)0;	/* random */

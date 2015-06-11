@@ -3069,7 +3069,7 @@ revid_end:
 		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
 		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
-	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_ACQUIREMENT)
+	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 		acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
 	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);

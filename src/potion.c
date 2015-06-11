@@ -2136,6 +2136,7 @@ peffects(otmp)
 		unkn++; /* holy/unholy water can burn like acid too */
 		break;
 	case POT_POLYMORPH:
+	case POT_MUTATION:
 		You_feel("a little %s.", Hallucination ? "normal" : "strange");
 		if (!Unchanging) polyself(FALSE);
 		break;
@@ -2434,6 +2435,7 @@ boolean your_fault;
 		    splatter_burning_oil(u.ux, u.uy);
 		break;
 	case POT_POLYMORPH:
+	case POT_MUTATION:
 		You_feel("a little %s.", Hallucination ? "normal" : "strange");
 		if (!Unchanging && !Antimagic) polyself(FALSE);
 		break;
@@ -2591,6 +2593,74 @@ boolean your_fault;
                 if (!Hallucination && canspotmon (mon))
                                 makeknown (POT_POLYMORPH);
 	    }
+  		break;
+	case POT_MUTATION:
+
+		mon->isegotype = 1;
+		switch (rnd(61)) {
+			case 1:
+			case 2:
+			case 3: mon->egotype_thief = 1; break;
+			case 4: mon->egotype_wallwalk = 1; break;
+			case 5: mon->egotype_disenchant = 1; break;
+			case 6:
+			case 7: mon->egotype_rust = 1; break;
+			case 8: 
+			case 9: mon->egotype_corrosion = 1; break;
+			case 10: 
+			case 11: mon->egotype_decay = 1; break;
+			case 12: mon->egotype_wither = 1; break;
+			case 13: 
+			case 14: 
+			case 15: mon->egotype_grab = 1; break;
+			case 16: 
+			case 17: mon->egotype_flying = 1; break;
+			case 18: 
+			case 19: mon->egotype_hide = 1; break;
+			case 20: 
+			case 21: 
+			case 22: mon->egotype_regeneration = 1; break;
+			case 23: 
+			case 24: 
+			case 25: mon->egotype_undead = 1; break;
+			case 26: mon->egotype_domestic = 1; break;
+			case 27: mon->egotype_covetous = 1; break;
+			case 28: 
+			case 29: mon->egotype_avoider = 1; break;
+			case 30: mon->egotype_petty = 1; break;
+			case 31: mon->egotype_pokemon = 1; break;
+			case 32: mon->egotype_slows = 1; break;
+			case 33: mon->egotype_vampire = 1; break;
+			case 34: mon->egotype_teleportself = 1; break;
+			case 35: mon->egotype_teleportyou = 1; break;
+			case 36: 
+			case 37: mon->egotype_wrap = 1; break;
+			case 38: mon->egotype_disease = 1; break;
+			case 39: mon->egotype_slime = 1; break;
+			case 40: 
+			case 41: 
+			case 42: 
+			case 43: mon->egotype_engrave = 1; break;
+			case 44: 
+			case 45: mon->egotype_dark = 1; break;
+			case 46: mon->egotype_luck = 1; break;
+			case 47: 
+			case 48: 
+			case 49: mon->egotype_push = 1; break;
+			case 50: mon->egotype_arcane = 1; break;
+			case 51: mon->egotype_clerical = 1; break;
+			case 52: 
+			case 53: mon->egotype_armorer = 1; break;
+			case 54: mon->egotype_tank = 1; break;
+			case 55: 
+			case 56: mon->egotype_speedster = 1; break;
+			case 57: mon->egotype_racer = 1; break;
+			case 58: mon->egotype_randomizer = 1; break;
+			case 59: mon->egotype_blaster = 1; break;
+			case 60: mon->egotype_multiplicator = 1; break;
+			case 61: mon->egotype_gator = 1; break;
+		}
+
   		break;
 	case POT_INVISIBILITY:
 		angermon = FALSE;
@@ -3008,6 +3078,7 @@ register struct obj *obj;
 	case POT_ACID:
 		if (Stoned) fix_petrification();
 	case POT_POLYMORPH:
+	case POT_MUTATION:
 		exercise(A_CON, FALSE);
 		break;
 	case POT_BLOOD:
@@ -4183,14 +4254,16 @@ dodip()
 		return(1);
 	    }
 	    /* no return here, go for Interesting... message */
-	} else if (obj->otyp == POT_POLYMORPH ||
-		potion->otyp == POT_POLYMORPH) {
+	} else if (obj->otyp == POT_POLYMORPH || obj->otyp == POT_MUTATION ||
+		potion->otyp == POT_POLYMORPH || potion->otyp == POT_MUTATION) {
 	    /* some objects can't be polymorphed */
 	    if (obj->otyp == potion->otyp ||	/* both POT_POLY */
 		    obj->otyp == WAN_POLYMORPH ||
+		    obj->otyp == WAN_MUTATION ||
 		    obj->otyp == SPE_POLYMORPH ||
+		    obj->otyp == SPE_MUTATION ||
 		    obj == uball || obj == uskin ||
-		    obj_resists(obj->otyp == POT_POLYMORPH ?
+		    obj_resists( (obj->otyp == POT_POLYMORPH || obj->otyp == POT_MUTATION) ?
 				potion : obj, 5, 95)) {
 		pline(nothing_happens);
 	    } else {
@@ -4210,7 +4283,10 @@ dodip()
 		else if (was_quiver) setuqwep(obj);
 
 		if (obj->otyp != save_otyp) {
-			makeknown(POT_POLYMORPH);
+			if (obj->otyp == POT_POLYMORPH) makeknown(POT_POLYMORPH);
+			if (obj->otyp == POT_MUTATION) makeknown(POT_MUTATION);
+			if (potion->otyp == POT_POLYMORPH) makeknown(POT_POLYMORPH);
+			if (potion->otyp == POT_MUTATION) makeknown(POT_MUTATION);
 			useup(potion);
 			prinv((char *)0, obj, 0L);
 			return 1;

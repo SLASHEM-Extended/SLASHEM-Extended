@@ -1593,6 +1593,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_TELEPORT_AWAY].oc_name = "teleportirovat'sya";
 	obj_descr[SPE_PASSWALL].oc_name = "prokhod stena";
 	obj_descr[SPE_POLYMORPH].oc_name = "prevrashchat'";
+	obj_descr[SPE_MUTATION].oc_name = "mutatsiya";
 	obj_descr[SPE_LEVELPORT].oc_name = "uroven' siyayushcheye";
 	obj_descr[SPE_KNOCK].oc_name = "stuchat'";
 	obj_descr[SPE_FLAME_SPHERE].oc_name = "sfera plameni";

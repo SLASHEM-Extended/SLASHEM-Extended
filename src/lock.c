@@ -1066,7 +1066,9 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 		obj->obroken = 0;
 	    break;
 	case WAN_POLYMORPH:
+	case WAN_MUTATION:
 	case SPE_POLYMORPH:
+	case SPE_MUTATION:
 	    /* maybe start unlocking chest, get interrupted, then zap it;
 	       we must avoid any attempt to resume unlocking it */
 	    if (xlock.box == obj)

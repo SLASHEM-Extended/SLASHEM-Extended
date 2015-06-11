@@ -1146,6 +1146,7 @@ boolean atme;
 	case SPE_DIG:
 	case SPE_TURN_UNDEAD:
 	case SPE_POLYMORPH:
+	case SPE_MUTATION:
 	case SPE_TELEPORT_AWAY:
 	case SPE_CANCELLATION:
 	case SPE_FINGER_OF_DEATH:

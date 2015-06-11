@@ -4628,6 +4628,8 @@ struct obj *obj;
 				pline("When quaffed, this potion causes you to levitate for a period of time."); break;
 			case POT_POLYMORPH:
 				pline("Quaffing this potion will polymorph you into a random monster, which may be a good or bad thing. You may also want to use this as a throwing 'weapon' in order to polymorph monsters."); break;
+			case POT_MUTATION:
+				pline("Quaffing this potion will polymorph you into a random monster, which may be a good or bad thing. If monsters quaff or get hit by it, they will gain mutations."); break;
 			case POT_SPEED:
 				pline("When quaffed, this potion makes you move much faster for a period of time."); break;
 			case POT_ACID:
@@ -4922,6 +4924,8 @@ struct obj *obj;
 				pline("Casting this spell allows you to walk through walls for a limited amount of time. Beware, certain special levels have walls that resist this ability."); break;
 			case SPE_POLYMORPH:
 				pline("A spell that can be cast at stuff to polymorph it."); break;
+			case SPE_MUTATION:
+				pline("A spell that has several uses. Zapping it at yourself will polymorph you, zapping it at objects will polymorph them, and if you zap a monster, it will gain mutations."); break;
 			case SPE_KNOCK:
 				pline("This spell opens things like locked doors or chests."); break;
 			case SPE_FLAME_SPHERE:
@@ -5090,6 +5094,8 @@ struct obj *obj;
 				pline("A wand that creates a powerful wind to push monsters and objects out of your way."); break;
 			case WAN_POLYMORPH:
 				pline("Zapping this wand at monsters, objects or yourself will polymorph whatever it hits. Be aware of the fact that polymorphing monsters and objects is temporary."); break;
+			case WAN_MUTATION:
+				pline("Zapping this wand will add mutations if the invisible beam hits a monster. Hitting yourself or an item will polymorph it."); break;
 			case WAN_TELEPORTATION:
 				pline("This wand can be zapped at monsters and objects to teleport them to a random empty location on the current dungeon level. Zapping yourself is also possible, but only if you're not on a no-teleport level, so in the case of doubt don't zap yourself, but zap the monster attacking you!"); break;
 			case WAN_BANISHMENT:

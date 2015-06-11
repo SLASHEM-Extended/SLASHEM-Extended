@@ -6563,6 +6563,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SHADOW_BEAST]) (void) mongets(mtmp, WEDGE_SANDALS);
 		if (mtmp->data == &mons[PM_BONE_GASHER]) (void) mongets(mtmp, HIPPIE_HEELS);
 
+		if (ptr == &mons[PM_MUTATED_BATTLE_BUNNY]) (void) mongets(mtmp, rn2(10) ? POT_MUTATION : WAN_MUTATION);
+
 		break;
 
           case S_SNAKE:
@@ -6818,11 +6820,12 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_CODE_EDITOR) m_initthrow(mtmp, FRAG_GRENADE, 10);
 
 		break;
-       case S_ZRUTY:
-      if (ptr == &mons[PM_BANNIK] && !rn2(5))
-        mongets(mtmp, TOWEL);
-      else if (ptr == &mons[PM_LESHY])
-        mongets(mtmp, APPLE);
+       case S_ZRUTY: /* case S_ZOUTHERN: */
+	      if (ptr == &mons[PM_BANNIK] && !rn2(5)) mongets(mtmp, TOWEL);
+	      if (ptr == &mons[PM_LESHY]) mongets(mtmp, APPLE);
+
+		if (ptr == &mons[PM_MUTATED_UNDEAD_POTATO]) (void) mongets(mtmp, rn2(10) ? POT_MUTATION : WAN_MUTATION);
+
       break;
 	    case S_ELEMENTAL:        
   /*            if(ptr == &mons[PM_WATER_WEIRD]){
@@ -7012,6 +7015,7 @@ register struct	monst	*mtmp;
 		}
 
  		break;
+
 	    case S_EYE:
 		if (ptr == &mons[PM_OAK_SAGE]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (ptr == &mons[PM_VISOR]) (void) mongets(mtmp, WAN_MAKE_VISIBLE);
