@@ -330,7 +330,7 @@ gotobj:
 	    else
 		ostuck = (otmp->cursed && otmp->owornmask);
 
-	    if (ostuck || !can_carry(mtmp, otmp)) {
+	    if ((ostuck || !can_carry(mtmp, otmp)) && rn2(5)) {
 		static const char * const how[] = { "steal","snatch","grab","take" };
  cant_take:
 		pline("%s tries to %s your %s but gives up.",
