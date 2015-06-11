@@ -1213,10 +1213,10 @@ register struct monst *mtmp;
 	    return FALSE;
 
 	/* Only rock, trees, and walls fall through to this point. */
-	if ((here->wall_info & W_NONDIGGABLE) != 0) {
-	    /*impossible*/pline("mdig_tunnel:  %s at (%d,%d) is undiggable",
+	if ((here->wall_info & W_NONDIGGABLE) != 0) { /* This is not a bug. So let's get rid of the message. --Amy */
+	    /*impossible*//*pline("mdig_tunnel:  %s at (%d,%d) is undiggable",
 		       (IS_WALL(here->typ) ? "wall" : "stone"),
-		       (int) mtmp->mx, (int) mtmp->my);
+		       (int) mtmp->mx, (int) mtmp->my);*/
 	    return FALSE;	/* still alive */
 	}
 
