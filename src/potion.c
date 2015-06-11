@@ -2119,6 +2119,7 @@ peffects(otmp)
 			exercise(A_WIS, good_for_you);
 		}
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 500;
+		if (Race_if(PM_CLOCKWORK_AUTOMATON)) exercise(A_WIS, TRUE);
 		break;
 	case POT_ACID:
 		if (Acid_resistance)
