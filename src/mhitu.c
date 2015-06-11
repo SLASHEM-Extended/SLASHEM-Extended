@@ -4713,9 +4713,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3)) {
-			pline("You feel a tug on your knapsack"); break;
-		}
+		if (!rn2(3) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+
 	      if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) )
