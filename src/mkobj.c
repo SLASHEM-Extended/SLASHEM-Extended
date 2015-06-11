@@ -906,6 +906,8 @@ boolean artif;
 	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->dknown = TRUE;
 	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->bknown = TRUE;
 
+	if (otmp && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
+
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
 	if (iscurser && rn2(5)) curse(otmp);
 
