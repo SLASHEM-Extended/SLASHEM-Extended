@@ -1256,6 +1256,11 @@ static struct trobj InsectoidItem[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj TrapperItem[] = {
+	{ WAN_TRAP_CREATION, 0, WAND_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj BloodseekerA[] = {
 	{ SCR_TELEPORTATION, 0, SCROLL_CLASS, 1, UNDEF_SPE },
 	{ 0, 0, 0, 0, 0 }
@@ -7166,6 +7171,9 @@ u_init()
 		break;
 	case PM_INSECTOID:
           ini_inv(InsectoidItem);		
+		break;
+	case PM_WEAPON_TRAPPER:
+          ini_inv(TrapperItem);		
 		break;
 	case PM_NAVI:
           ini_inv(NaviItem);		

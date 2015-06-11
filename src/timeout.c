@@ -213,6 +213,8 @@ nh_timeout()
 	int sleeptime;
 	int m_idx;
 	int baseluck = (flags.moonphase == FULL_MOON) ? 1 : 0;
+	int nastytrapdur;
+	int blackngdur;
 
 	if (flags.friday13) baseluck -= 1;
 
@@ -229,6 +231,84 @@ nh_timeout()
 	if (!rn2(1000) && Role_if(PM_ACTIVISTOR) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 	    attrcurse();
+	}
+
+	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (!rn2(1000) && !t->tseen) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (!rn2(1000) && Race_if(PM_WEAPON_TRAPPER)) { /* Harder than hard race that gets random nasty trap effects. --Amy */
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(31)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+
+		}
+
 	}
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
