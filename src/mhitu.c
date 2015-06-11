@@ -2289,6 +2289,9 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (youmonst.data->mlet == mdat->mlet) break;
 		if(mtmp->mcan) break;
+		if (!rn2(3)) {
+			pline("You feel a tug on your purse"); break;
+		}
 		if (rn2(10)) {stealgold(mtmp);
 		break;
 		}
@@ -2308,7 +2311,7 @@ dopois:
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
 		    "brags about the goods some dungeon explorer provided" :
 		    "makes some remarks about how difficult theft is lately");
-			if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+			if (!rn2(4) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 			return 3;
 		} else if (mtmp->mcan) {
 		    if (!Blind) {
@@ -2325,10 +2328,14 @@ dopois:
 			    do_charm ? "unaffected" : "uninterested");
 		    }
 		    if(rn2(3)) {
-			if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+			if (!rn2(4) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 			return 3;
 		    }
 		    break;
+		}
+
+		if (!rn2(3)) {
+			pline("You feel a tug on your knapsack"); break;
 		}
 
 		if (!rn2(25)) { /* Nymphs want to have some fun! :-) --Amy */
@@ -2349,7 +2356,7 @@ dopois:
 		  case 0:
 			break;
 		  default:
-			if (!is_animal(mtmp->data) && !tele_restrict(mtmp))
+			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && !rn2(4))
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
 			    if (canseemon(mtmp))
@@ -3252,6 +3259,11 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 	    case AD_SGLD:
 		    pline("It shakes you!");
+
+		if (!rn2(3)) {
+			pline("You feel a tug on your purse"); break;
+		}
+
 		if (rn2(10)) {stealgold(mtmp);
 		break;
 		}
@@ -3261,6 +3273,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	    case AD_SEDU:
 	    case AD_SSEX:
 		    pline("It thrusts you!");
+
+		if (!rn2(3)) {
+			pline("You feel a tug on your knapsack"); break;
+		}
 
 			buf[0] = '\0';
 		if ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
@@ -3272,7 +3288,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp))
+			if ( !tele_restrict(mtmp) && !rn2(4) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, 0, FALSE, FALSE);
 			return 3;
@@ -4188,6 +4204,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 			pline("%s uses a telepathic gaze!", Monnam(mtmp));
+			if (!rn2(3)) {
+				pline("You feel a tug on your purse"); break;
+			}
 			if (rn2(10)) stealgold(mtmp);
 			else if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
@@ -4200,7 +4219,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			  case 0:
 				break;
 			  default:
-				if ( !tele_restrict(mtmp))
+				if ( !tele_restrict(mtmp) && !rn2(4))
 				    (void) rloc(mtmp, FALSE);
 				monflee(mtmp, 0, FALSE, FALSE);
 				return 3;
@@ -4213,6 +4232,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
+		if (!rn2(3)) {
+			pline("You feel a tug on your knapsack"); break;
+		}
 	      if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) )
@@ -4227,7 +4249,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp))
+			if ( !tele_restrict(mtmp) && !rn2(4))
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, 0, FALSE, FALSE);
 			return 3;
