@@ -61,7 +61,7 @@ register struct monst *mtmp;
 	    if ( !metallivorous(mtmp->data) && rn2(20) )
 		mtmp->mgold += tmp;
 /* Gold bugs are metallivores, so they're supposed to EAT the gold they steal. --Amy */
-	if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+	if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
 	    mtmp->mavenge = 1;
 	    monflee(mtmp, 0, FALSE, FALSE);
 	    flags.botl = 1;
@@ -133,7 +133,7 @@ register struct monst *mtmp;
             freeinv(ygold);
             add_to_minv(mtmp, ygold);
 	    Your("purse feels lighter.");
-	    if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+	    if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
 	    monflee(mtmp, 0, FALSE, FALSE);
 	    flags.botl = 1;
 	}
@@ -165,7 +165,7 @@ stealarm()
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
 			monflee(mtmp, 0, FALSE, FALSE);
-			if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+			if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
 		        break;
 		    }
 		}
