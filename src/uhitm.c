@@ -3429,7 +3429,7 @@ register int roll;
 		case 17: pline("%s dodges your attack!", Monnam(mdef)); break;
 		case 18: pline("%s narrowly escapes your slashing attack.", Monnam(mdef)); break;
 		case 19: pline("You strike sparks from %s's %sarmor.", mon_nam(mdef), which_armor(mdef, W_ARM) ? "" : "nonexistant "); break;
-		case 20: pline("Your swing goes wide!");
+		case 20: pline("Your swing goes wide!"); break;
 		case 21: pline("%s dodges your swing!", Monnam(mdef)); break;
 		case 22: pline("%s barely deflects your strike.", Monnam(mdef)); break;
 		case 23: pline("You smash into %s's %sshield, sending splinters flying.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
