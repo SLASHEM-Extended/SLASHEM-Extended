@@ -310,6 +310,14 @@ nothing_to_steal:
 		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 		return(0);
 	}
+	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
+		return(0);
+	}
+	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
+		return(0);
+	}
 
 gotobj:
 	if(otmp->o_id == stealoid) return(0);
