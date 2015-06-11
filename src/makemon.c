@@ -5957,6 +5957,30 @@ register struct	monst	*mtmp;
  *	Soldiers get armour & rations - armour approximates their ac.
  *	Nymphs may get mirror or potion of object detection.
  */
+
+	/* Sometimes, monsters might be generated with eggs. --Amy */
+
+	if (!rn2(lays_eggs(mtmp->data) ? 500 : 1000) ) {
+	struct obj *otmpB = mksobj(EGG,TRUE,FALSE);
+	otmpB->spe = 0;
+	otmpB->quan = 1;
+	while (!rn2(5)) otmpB->quan += 1;
+	otmpB->owt = weight(otmpB);
+	otmpB->corpsenm = egg_type_from_parent(mtmp->mnum, FALSE);
+	attach_egg_hatch_timeout(otmpB);
+	mpickobj(mtmp,otmpB);
+	}
+
+	if (!rn2(5000)) {
+	struct obj *otmpC = mksobj(EGG,TRUE,FALSE);
+	otmpC->spe = 0;
+	otmpC->quan = 1;
+	while (!rn2(25)) otmpC->quan += 1;
+	otmpC->owt = weight(otmpC);
+	attach_egg_hatch_timeout(otmpC);
+	mpickobj(mtmp,otmpC);
+	}
+
 	switch(ptr->mlet) {
 	    case S_HUMAN:
 		if (monsndx(ptr) == PM_FORD_PERFECT || monsndx(ptr) == PM_ARTHUR_DENT) {
