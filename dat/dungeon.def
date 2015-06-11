@@ -156,7 +156,6 @@ ALIGNMENT:      noalign
 RNDLEVEL:          "valley" "V" @ (1, 0) 2
 RNDLEVEL:          "sanct" "none" @ (-1, 0) 2
 # Tower before wiz, please
-BRANCH:         "Vlad's Tower" @ (3, 24) up -1
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (3, 24) up
 # Half-way down
@@ -329,6 +328,7 @@ LEVEL:          "frnknstn" "L" @ (1, 0) 50
 DUNGEON:        "Sheol" "V" (7, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
+BRANCH:         "Vlad's Tower" @ (2, 6) up -1
 LEVEL:          "sheolfil" "A" @ (1, 0) 95
 LEVEL:          "sheolmid" "H" @ (2, 0) 95
 LEVEL:          "sheolfil" "B" @ (3, 0) 95
