@@ -1025,13 +1025,10 @@ register struct obj *obj;
 			break;
 		}
 
-		if (UninformationProblem) {
+		if (dn && UninformationProblem)
 			Strcat(buf, dn);
-			break;
-		}
-
-		if(nn)	Strcat(buf, actualn);
-		else if(un) {
+		else if(nn)	Strcat(buf, actualn);
+		else if(un && !UninformationProblem) {
 			if(is_boots(obj))
 				Strcat(buf,"boots");
 			else if(is_gloves(obj))
