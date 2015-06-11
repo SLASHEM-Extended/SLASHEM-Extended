@@ -183,7 +183,9 @@
 
 #define NO_STAIRCASE 168
 
-#define SECOND_CHANCE		169
+#define TIME_STOPPED 169
+
+#define SECOND_CHANCE		170
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

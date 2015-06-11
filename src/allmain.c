@@ -1617,6 +1617,8 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_ACID_STREAM].oc_name = "potok kisloty";
 	obj_descr[SPE_SOLAR_BEAM].oc_name = "solnechnaya luch";
 	obj_descr[SPE_BLANK_PAPER].oc_name = "chistyy list bumagi";
+	obj_descr[SPE_STINKING_CLOUD].oc_name = "vonyuchiy oblako";
+	obj_descr[SPE_TIME_STOP].oc_name = "vremya ostanovki";
 	}
 
 	if ((Role_if(PM_ACTIVISTOR) || Role_if(PM_MYSTIC)) && new_game) {

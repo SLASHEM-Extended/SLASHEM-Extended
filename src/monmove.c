@@ -411,6 +411,8 @@ register struct monst *mtmp;
 
 	mdat = mtmp->data;
 
+	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
+
 	if (mtmp->mstrategy & STRAT_ARRIVE) {
 	    int res = m_arrival(mtmp);
 	    if (res >= 0) return res;

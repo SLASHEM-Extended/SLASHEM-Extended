@@ -1329,6 +1329,28 @@ boolean atme;
 	case SPE_CURE_NUMBNESS:
 		make_numbed(0L,TRUE);
 		break;
+	case SPE_STINKING_CLOUD:
+	      {  coord cc;
+		pline("Where do you want to center the cloud?");
+		cc.x = u.ux;
+		cc.y = u.uy;
+		if (getpos(&cc, TRUE, "the desired position") < 0) {
+		    pline(Never_mind);
+		    return;
+		}
+		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
+		    You("smell rotten eggs.");
+		    return;
+		}
+		(void) create_gas_cloud(cc.x, cc.y, 3, 8);
+		break;
+		}
+		break;
+	case SPE_TIME_STOP:
+		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		if (rn2(3)) TimeStopped += (rnd(3) + 1);
+		else TimeStopped += rnd(3 + spell_damage_bonus(spellid(spell)) );
+		break;
 	case SPE_LEVELPORT:
 	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 		else pline("Hmm... that level teleport spell didn't do anything.");

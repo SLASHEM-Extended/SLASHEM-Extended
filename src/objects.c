@@ -1895,13 +1895,14 @@ SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 140, 300, CLR
 		SPBOOK_CLASS, prob, delay, \
 		0, level*100, 0, 0, 0, level, 20, color )
 /* Attack spells */
-SPELL("force bolt",      "red",         P_ATTACK_SPELL, 120,  2, 1, 1, IMMEDIATE, CLR_RED),
+SPELL("force bolt",      "red",         P_ATTACK_SPELL, 115,  2, 1, 1, IMMEDIATE, CLR_RED),
 SPELL("create monster",  "turquoise",   P_ATTACK_SPELL, 100,  3, 2, 1, NODIR,     CLR_BRIGHT_CYAN),
 SPELL("drain life",      "velvet",      P_ATTACK_SPELL, 50,  4, 3, 1, IMMEDIATE, CLR_MAGENTA),
   /* NEEDS TILE */ /* WAC -- probs from force bolt and extra healing */
 SPELL("command undead",  "dark",        P_ATTACK_SPELL, 50,  7, 5, 1, IMMEDIATE, CLR_BLACK),
 SPELL("summon undead",   "black",       P_ATTACK_SPELL, 50,  7, 5, 1, IMMEDIATE, CLR_BLACK),
 
+SPELL("stinking cloud",      "vaporized",  P_ATTACK_SPELL, 5,  10, 7, 1, NODIR, CLR_BRIGHT_GREEN),
 SPELL("disintegration",      "solid",      P_ATTACK_SPELL, 5,  30, 8, 1, IMMEDIATE, CLR_BLACK),
 
 /* Healing spells */
@@ -1958,12 +1959,13 @@ SPELL("endure heat",     "spotted",     P_PROTECTION_SPELL, 50,  3, 2, 1, NODIR,
 SPELL("insulate",        "long",        P_PROTECTION_SPELL, 50,  3, 2, 1, NODIR,     HI_PAPER),
 SPELL("remove curse",    "wrinkled",    P_PROTECTION_SPELL, 120,  5, 5, 1, NODIR,     HI_PAPER),
 SPELL("remove blessing",    "light cyan",    P_PROTECTION_SPELL, 5,  5, 5, 1, NODIR,     CLR_BRIGHT_CYAN),
-SPELL("turn undead",     "copper",      P_PROTECTION_SPELL, 75,  8, 6, 1, IMMEDIATE, HI_COPPER),
+SPELL("turn undead",     "copper",      P_PROTECTION_SPELL, 70,  8, 6, 1, IMMEDIATE, HI_COPPER),
 SPELL("anti disintegration",        "doorstopping",        P_PROTECTION_SPELL, 25,  6, 6, 1, NODIR,     CLR_GREEN),
 SPELL("botox resist",        "leafy",   P_PROTECTION_SPELL, 25,  6, 6, 1, NODIR,     CLR_BRIGHT_GREEN),
 SPELL("acidshield",        "acidic",   P_PROTECTION_SPELL, 25,  6, 6, 1, NODIR,     CLR_BRIGHT_GREEN),
 SPELL("godmode",        "heavenly",   P_PROTECTION_SPELL, 25,  10, 8, 1, NODIR,     CLR_BRIGHT_CYAN),
 SPELL("resist petrification",        "rocky",   P_PROTECTION_SPELL, 25,  8, 7, 1, NODIR,     CLR_GRAY),
+SPELL("time stop",     "continued",      P_PROTECTION_SPELL, 5,  20, 8, 1, NODIR, CLR_GRAY),
 /* Body spells */
 SPELL("jumping",         "torn",        P_BODY_SPELL, 70,  3, 1, 1, IMMEDIATE, HI_PAPER),
 SPELL("haste self",      "purple",      P_BODY_SPELL, 25,  4, 3, 1, NODIR,     CLR_MAGENTA),
@@ -2027,7 +2029,7 @@ OBJECT(OBJ("Book of the Dead", "papyrus"),
 #define WAND(name,typ,prob,cost,mgc,dir,metal,color) OBJECT( \
 		OBJ(name,typ), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,0,metal), 0, \
 		WAND_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 30, color )
-WAND("light",          "glass",    170, 500, 1, NODIR,     GLASS,    HI_GLASS),
+WAND("light",          "glass",    150, 500, 1, NODIR,     GLASS,    HI_GLASS),
 WAND("nothing",        "oak",      25, 500, 0, IMMEDIATE, WOOD,     HI_WOOD),
 WAND("enlightenment",  "crystal",  150, 500, 1, NODIR,     GLASS,    HI_GLASS),
 WAND("healing",        "bamboo",   250, 500, 1, IMMEDIATE, WOOD,     CLR_YELLOW),
@@ -2043,6 +2045,10 @@ WAND("secret door detection", "balsa",
                                    75, 500, 1, NODIR,     WOOD,     HI_WOOD),
 WAND("trap disarming", "elysium",
                                    25, 500, 1, NODIR,     GOLD,     CLR_YELLOW),
+WAND("stinking cloud",          "distorted",    5, 500, 1, NODIR,     VEGGY,    CLR_GREEN),
+WAND("time stop",          "untouchable",    5, 500, 1, NODIR,     MITHRIL,    CLR_WHITE),
+WAND("tele level",          "irregular",    5, 500, 1, NODIR,     GOLD,    CLR_MAGENTA),
+WAND("genocide",          "omnipotent",    5, 500, 1, NODIR,     SILVER,    CLR_MAGENTA),
 WAND("entrapping",   "blasted", 25, 500, 1, NODIR,     MITHRIL,  CLR_BRIGHT_MAGENTA),
 WAND("trap creation",   "weird", 25, 500, 1, NODIR,     BONE,  CLR_WHITE),
 WAND("darkness",   "obscure", 25, 500, 1, NODIR,     SILVER,  CLR_BLACK),

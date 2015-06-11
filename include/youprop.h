@@ -197,6 +197,8 @@
 
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
+#define TimeStopped		u.uprops[TIME_STOPPED].intrinsic
+
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic
 #define EHallucination		u.uprops[HALLUC].extrinsic

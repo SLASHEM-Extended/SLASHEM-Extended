@@ -605,6 +605,10 @@ nh_timeout()
 			see_monsters();
 			break;
 
+		case TIME_STOPPED:
+			pline("Time is no longer stopped.");
+			break;
+
 		case DEAC_FIRE_RES:
 			pline("You are no longer prevented from having fire resistance.");
 			break;

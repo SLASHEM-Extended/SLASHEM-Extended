@@ -4999,6 +4999,10 @@ struct obj *obj;
 				pline("This spell will cure you of burns."); break;
 			case SPE_CURE_NUMBNESS:
 				pline("A spell that can be cast to cure numbness."); break;
+			case SPE_TIME_STOP:
+				pline("This very powerful spell will stop the flow of time for a brief period."); break;
+			case SPE_STINKING_CLOUD:
+				pline("Casting this spell allows you to place a stinking cloud on a nearby visible location."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -5042,6 +5046,14 @@ struct obj *obj;
 				pline("Zap this wand if you want to get rid of traps on your square and the eight squares surrounding you."); break;
 			case WAN_ENTRAPPING: 
 				pline("A wand that allows you to detect traps."); break;
+			case WAN_TELE_LEVEL: 
+				pline("Zap this wand to land on another dungeon level!"); break;
+			case WAN_TIME_STOP: 
+				pline("This powerful wand is capable of stopping monsters from moving around."); break;
+			case WAN_GENOCIDE: 
+				pline("You can zap this wand to genocide a species of monsters."); break;
+			case WAN_STINKING_CLOUD: 
+				pline("With every zap of this wand, you can place a stinking cloud on a nearby visible square."); break;
 			case WAN_TRAP_CREATION: 
 				pline("Zapping this wand will surround you with randomly generated traps."); break;
 			case WAN_DARKNESS: 

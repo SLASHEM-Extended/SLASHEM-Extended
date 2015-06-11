@@ -2555,6 +2555,38 @@ register struct obj *obj;
 			pline("You grasp some bits from the current map!");
 			do_mappingX();
 			break;
+		case WAN_STINKING_CLOUD:
+		      {  coord cc;
+
+			pline("You may place a stinking cloud on the map.");
+			known = TRUE;
+			pline("Where do you want to center the cloud?");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			if (getpos(&cc, TRUE, "the desired position") < 0) {
+			    pline(Never_mind);
+			    return;
+			}
+			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
+			    You("smell rotten eggs.");
+			    return;
+			}
+			(void) create_gas_cloud(cc.x, cc.y, 3, 8);
+			break;
+			}
+		case WAN_TELE_LEVEL:
+		      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			else pline("Hmm... that level teleport wand didn't do anything.");
+			known = TRUE;
+			break;
+		case WAN_GENOCIDE:
+			do_genocide(1);	/* REALLY, see do_genocide() */
+			break;
+		case WAN_TIME_STOP:
+			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+			TimeStopped += (3 + rnd(5));
+			break;
+
 		case WAN_ENTRAPPING:
 			known = TRUE;
 			trap_detect((struct obj *)0);

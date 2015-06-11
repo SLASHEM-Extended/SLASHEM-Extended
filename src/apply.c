@@ -3314,6 +3314,10 @@ wand_explode(obj, hero_broke)
     case WAN_PROBING:
     case WAN_ENLIGHTENMENT:
     case WAN_ENTRAPPING:
+    case WAN_TELE_LEVEL:
+    case WAN_GENOCIDE:
+    case WAN_STINKING_CLOUD:
+    case WAN_TIME_STOP:
     case WAN_MAGIC_MAPPING:
     case WAN_DARKNESS:
     case WAN_TRAP_CREATION:

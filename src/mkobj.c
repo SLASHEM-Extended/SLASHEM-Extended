@@ -830,6 +830,11 @@ boolean artif;
 #endif
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
+		} else if(otmp->otyp == WAN_GENOCIDE) {                 
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 4 : 3);
+			else otmp->spe = rnd(ishaxor ? 6 : 4); /* sometimes you may get lucky --Amy */
+			otmp->recharged = 0;
+			if(!rn2(3)) otmp->recharged = rnd(7);
 		} else if(otmp->otyp == WAN_ACQUIREMENT) {                 
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 6 : 5);
 			else otmp->spe = rnd(ishaxor ? 10 : 8); /* sometimes you may get lucky --Amy */
@@ -842,7 +847,7 @@ boolean artif;
 		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
 
 		blessorcurse(otmp, 17);
-		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT) otmp->recharged = 0; /* used to control recharging */
+		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 		break;
 	case RING_CLASS:

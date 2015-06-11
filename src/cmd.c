@@ -1660,6 +1660,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if (TimeStopped) {
+		Sprintf(buf, "stopped the flow of time.");
+	      Sprintf(eos(buf), " (%d)", TimeStopped);
+		you_have(buf);
+	}
+
 	if (NoFire_resistance) {
 		Sprintf(buf, "prevented from having fire resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FIRE_RES].intrinsic);

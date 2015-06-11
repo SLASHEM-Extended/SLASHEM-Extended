@@ -577,6 +577,7 @@ struct obj *otmp;
 #define MUSE_SCR_HEALING 30
 #define MUSE_SCR_WARPING 31
 #define MUSE_BAG_OF_TRICKS 32
+#define MUSE_WAN_TELE_LEVEL 33
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -854,6 +855,14 @@ struct monst *mtmp;
 			m.has_defense = MUSE_SCR_TELE_LEVEL;
 		}
 
+		nomore(MUSE_WAN_TELE_LEVEL);
+		if(obj->otyp == WAN_TELE_LEVEL && obj->spe > 0
+		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !mtmp->isgd && !mtmp->ispriest)) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_TELE_LEVEL;
+		}
+
 		nomore(MUSE_SCR_WARPING);
 		if(obj->otyp == SCR_WARPING
 		   && (!(mtmp->isshk && inhishop(mtmp))
@@ -1118,6 +1127,36 @@ mon_tele:
 
 		return 2;
 	    }
+	case MUSE_WAN_TELE_LEVEL:
+		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
+		m_flee(mtmp);
+		mzapmsg(mtmp, otmp, TRUE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		how = WAN_TELE_LEVEL;
+			int nlev;
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+			    if (vismon)
+				pline("%s seems very disoriented for a moment.",
+					Monnam(mtmp));
+			    return 2;
+			}
+			nlev = random_teleport_level();
+			if (nlev == depth(&u.uz)) {
+			    if (vismon)
+				pline("%s shudders for a moment.",
+								Monnam(mtmp));
+			    return 2;
+			}
+			get_level(&flev, nlev);
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM,
+				(coord *)0);
+			if (oseen) makeknown(SCR_TELE_LEVEL);
+
+		return 2;
+
 	case MUSE_SCR_WARPING:
 	    {
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
@@ -1695,7 +1734,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(23)) {
+	switch (rn2(24)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -1720,6 +1759,7 @@ struct monst *mtmp;
 		case 20: return SCR_HEALING;
 		case 21: return SCR_WARPING;
 		case 22: return BAG_OF_TRICKS;
+		case 23: return WAN_TELE_LEVEL;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -4036,6 +4076,7 @@ struct obj *obj;
 		    typ == WAN_FUMBLING ||
 		    typ == WAN_STARVATION ||
 		    typ == WAN_PUNISHMENT ||
+		    typ == WAN_TELE_LEVEL ||
 		    typ == WAN_CANCELLATION)
 		return TRUE;
 	    break;

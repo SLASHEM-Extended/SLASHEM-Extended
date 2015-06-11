@@ -282,6 +282,7 @@ struct obj {
 || (otmp)->otyp == POT_VAMPIRE_BLOOD\
 || (otmp)->otyp == WAN_FULL_HEALING\
 || (otmp)->otyp == SCR_TELE_LEVEL\
+|| (otmp)->otyp == WAN_TELE_LEVEL\
 || (otmp)->otyp == SCR_ROOT_PASSWORD_DETECTION\
 || (otmp)->otyp == RIN_TIMELY_BACKUP\
 || (otmp)->otyp == SCR_SUMMON_UNDEAD\
