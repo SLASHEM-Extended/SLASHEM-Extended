@@ -4068,7 +4068,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_STONING || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION)
+	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_STONING || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE)
 		return TRUE;
 	    break;
 	case AMULET_CLASS:
