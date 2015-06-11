@@ -928,6 +928,8 @@ struct monst *mon;
 {
     int mmove = mon->data->mmove;
 
+    if (mmove == 0) mmove++;	/* allowing stationary monsters to occasionally get turns --Amy */
+
     /* Note: MSLOW's `+ 1' prevents slowed speed 1 getting reduced to 0;
      *	     MFAST's `+ 2' prevents hasted speed 1 from becoming a no-op;
      *	     both adjustments have negligible effect on higher speeds.
