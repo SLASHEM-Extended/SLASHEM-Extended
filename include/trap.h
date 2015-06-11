@@ -137,8 +137,10 @@ extern struct trap *ftrap;
 #define FAMINE_TRAP		84
 #define RELOCATION_TRAP		85
 
-#define TRAP_PERCENTS		86
+#define UNINFORMATION_TRAP		86
 
-#define TRAPNUM 87
+#define TRAP_PERCENTS		87
+
+#define TRAPNUM 88
 
 #endif /* TRAP_H */

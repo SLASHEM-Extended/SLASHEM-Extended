@@ -34795,6 +34795,7 @@ TRAP:"dstw",random
 TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
+TRAP:"uninformation",random
 
 #	SCCS Id: @(#)Yeoman.des	3.4	1998/09/10
 #	Copyright (c) 1998 by Kevin Hugo
@@ -97179,7 +97180,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
@@ -97253,6 +97253,7 @@ TRAP:"dstw",random
 TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
+TRAP:"uninformation",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random

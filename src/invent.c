@@ -3547,6 +3547,14 @@ struct obj *obj;
 	return 0;
 	}
 
+	if (UninformationProblem) {
+
+	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
+
+	return 0;
+
+	}
+
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
 	register int nn = ocl->oc_name_known;

@@ -1336,6 +1336,7 @@ dospinweb()
 		case WEAKNESS_TRAP:
 		case ROT_THIRTEEN_TRAP:
 		case BISHOP_TRAP:
+		case UNINFORMATION_TRAP:
 		case ALIGNMENT_TRAP:
 		case CONFUSION_TRAP:
 		case NUPESELL_TRAP:

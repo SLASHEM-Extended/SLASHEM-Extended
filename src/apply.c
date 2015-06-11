@@ -4207,6 +4207,7 @@ doapply()
 		StatusTrapProblem = 0L;
 		AlignmentProblem = 0L;
 		StairsProblem = 0L;
+		UninformationProblem = 0L;
 
 		break;
 	case GOD_O_METER:

@@ -761,3 +761,4 @@ TRAP:"dstw",random
 TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
+TRAP:"uninformation",random

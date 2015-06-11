@@ -197,11 +197,15 @@ static struct {
 	{ "drop", DROP_TRAP},
 	{ "dstw", DSTW_TRAP},
 	{ "status", STATUS_TRAP},
+	{ "alignment", ALIGNMENT_TRAP},
+	{ "stairs", STAIRS_TRAP},
 
 	{ "pestilence", PESTILENCE_TRAP},
 	{ "famine", FAMINE_TRAP},
 
 	{ "relocation", RELOCATION_TRAP},
+
+	{ "uninformation", UNINFORMATION_TRAP},
 
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }

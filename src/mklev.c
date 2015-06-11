@@ -867,7 +867,7 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0,
 			/* 14..16: trap door, teleport, level-teleport */
 			"Vlad was here", "ad aerarium", "ad aerarium",
-			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
@@ -5875,6 +5875,8 @@ coord *tm;
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) kind = ANTI_MAGIC; break;
 		    case STAIRS_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) kind = GLYPH_OF_WARDING; break;
+		    case UNINFORMATION_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) kind = STATUE_TRAP; break;
 
 		    case PESTILENCE_TRAP:
 			if (rn2(20)) kind = POISON_GAS_TRAP; break;

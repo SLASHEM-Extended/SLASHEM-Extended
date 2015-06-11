@@ -185,7 +185,9 @@
 
 #define TIME_STOPPED 169
 
-#define SECOND_CHANCE		170
+#define UNINFORMATION 170
+
+#define SECOND_CHANCE		171
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

@@ -954,6 +954,7 @@ register struct obj *obj;
 	 * printed for the object is tied to the combination of the two
 	 * and printing the wrong article gives away information.
 	 */
+
 	if (!nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
 #ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = TRUE;
@@ -970,7 +971,7 @@ register struct obj *obj;
 	    goto nameit;
 	switch (obj->oclass) {
 	    case AMULET_CLASS:
-		if (!obj->dknown)
+		if (!obj->dknown || UninformationProblem)
 			Strcpy(buf, "amulet");
 		else if (typ == AMULET_OF_YENDOR ||
 			 typ == FAKE_AMULET_OF_YENDOR)
@@ -989,7 +990,7 @@ register struct obj *obj;
 		if (typ == LENSES)
 			Strcpy(buf, "pair of ");
 
-		if (!obj->dknown)
+		if (!obj->dknown || UninformationProblem)
 			Strcat(buf, dn ? dn : actualn);
 		else if (nn)
 			Strcat(buf, actualn);
@@ -1001,7 +1002,7 @@ register struct obj *obj;
 			Strcat(buf, dn ? dn : actualn);
 		/* If we use an() here we'd have to remember never to use */
 		/* it whenever calling doname() or xname(). */
-		if (typ == FIGURINE)
+		if (typ == FIGURINE && !UninformationProblem)
 		    Sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
@@ -1021,6 +1022,11 @@ register struct obj *obj;
 		}
 		if(obj->otyp == SHIELD_OF_REFLECTION && !obj->dknown) {
 			Strcpy(buf, "smooth shield");
+			break;
+		}
+
+		if (UninformationProblem) {
+			Strcat(buf, dn);
 			break;
 		}
 
@@ -1057,7 +1063,7 @@ register struct obj *obj;
 		}
 
 		Strcpy(buf, actualn);
-		if (typ == TIN && obj->known) {
+		if (typ == TIN && obj->known && !UninformationProblem) {
 		    if(obj->spe > 0)
 			Strcat(buf, " of spinach");
 		    else if (obj->corpsenm == NON_PM)
@@ -1073,7 +1079,7 @@ register struct obj *obj;
 		Strcpy(buf, actualn);
 		break;
 	    case ROCK_CLASS:
-		if (typ == STATUE)
+		if (typ == STATUE && !UninformationProblem)
 		    Sprintf(buf, "%s%s of %s%s",
 			(Role_if(PM_ARCHEOLOGIST) && (obj->spe & STATUE_HISTORIC)) ? "historic " : "" ,
 			actualn,
@@ -1094,11 +1100,11 @@ register struct obj *obj;
 		else Strcpy(buf, actualn);
 		break;
 	    case POTION_CLASS:
-		if (obj->dknown && obj->odiluted)
+		if (obj->dknown && obj->odiluted && !UninformationProblem)
 			Strcpy(buf, "diluted ");
-		if(nn || un || !obj->dknown) {
+		if(nn || un || !obj->dknown || UninformationProblem) {
 			Strcat(buf, "potion");
-			if(!obj->dknown) break;
+			if(!obj->dknown || UninformationProblem) break;
 			if(nn) {
 			    Strcat(buf, " of ");
 			    if (typ == POT_WATER &&
@@ -1117,7 +1123,7 @@ register struct obj *obj;
 		break;
 	case SCROLL_CLASS:
 		Strcpy(buf, "scroll");
-		if(!obj->dknown) break;
+		if(!obj->dknown || UninformationProblem) break;
 		if(nn) {
 			Strcat(buf, " of ");
 			Strcat(buf, actualn);
@@ -1133,7 +1139,7 @@ register struct obj *obj;
 		}
 		break;
 	case WAND_CLASS:
-		if(!obj->dknown)
+		if(!obj->dknown || UninformationProblem)
 			Strcpy(buf, "wand");
 		else if(nn)
 			Sprintf(buf, "wand of %s", actualn);
@@ -1143,7 +1149,7 @@ register struct obj *obj;
 			Sprintf(buf, "%s wand", dn);
 		break;
 	case SPBOOK_CLASS:
-		if (!obj->dknown) {
+		if (!obj->dknown || UninformationProblem) {
 			Strcpy(buf, "spellbook");
 		} else if (nn) {
 			if (typ != SPE_BOOK_OF_THE_DEAD)
@@ -1155,7 +1161,7 @@ register struct obj *obj;
 			Sprintf(buf, "%s spellbook", dn);
 		break;
 	case RING_CLASS:
-		if(!obj->dknown)
+		if(!obj->dknown || UninformationProblem)
 			Strcpy(buf, "ring");
 		else if(nn) {
 			/* KMH -- "mood ring" instead of "ring of mood" */
@@ -1172,7 +1178,7 @@ register struct obj *obj;
 	    {
 		const char *rock =
 			    (ocl->oc_material == MINERAL) ? "stone" : "gem";
-		if (!obj->dknown) {
+		if (!obj->dknown || UninformationProblem) {
 		    Strcpy(buf, rock);
 		} else if (!nn) {
 		    if (un) Sprintf(buf,"%s called %s", rock, un);
@@ -1186,9 +1192,9 @@ register struct obj *obj;
 	default:
 		Sprintf(buf,"glorkum %d %d %d", obj->oclass, typ, obj->spe);
 	}
-	if (obj->quan != 1L) Strcpy(buf, makeplural(buf));
+	if ((obj->quan != 1L) && !UninformationProblem) Strcpy(buf, makeplural(buf));
 
-	if (obj->onamelth && obj->dknown) {
+	if (obj->onamelth && obj->dknown && !UninformationProblem) {
 		Strcat(buf, " named ");
 nameit:
 		Strcat(buf, ONAME(obj));
@@ -1327,20 +1333,20 @@ register struct obj *obj;
 		Strcpy(prefix, "the ");
 	} else Strcpy(prefix, "a ");
 
-	if (obj->selfmade) {
+	if (obj->selfmade && !UninformationProblem) {
 		Strcat(prefix,"selfmade ");
 	}
 
 #ifdef INVISIBLE_OBJECTS
-	if (obj->oinvis) Strcat(prefix,"invisible ");
+	if (obj->oinvis && !UninformationProblem) Strcat(prefix,"invisible ");
 #endif
 #if defined(WIZARD) && defined(UNPOLYPILE)
-	if (/*wizard && */is_hazy(obj)) Strcat(prefix,"hazy ");
+	if (/*wizard && */is_hazy(obj) && !UninformationProblem) Strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
 #endif
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
-	    obj->bknown &&
+	    obj->bknown && !UninformationProblem &&
 	    obj->oclass != COIN_CLASS &&
 	    (obj->otyp != POT_WATER || !objects[POT_WATER].oc_name_known
 		|| (!obj->cursed && !obj->blessed) || Hallucination)) {
@@ -1374,19 +1380,19 @@ register struct obj *obj;
 		Strcat(prefix, "uncursed ");*/
 	}
 
-	if (Hallucination ? !rn2(100) : obj->greased) Strcat(prefix, "greased ");
+	if (Hallucination ? !rn2(100) : (obj->greased && !UninformationProblem) ) Strcat(prefix, "greased ");
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:
-		add_erosion_words(obj, prefix);
+		if (!UninformationProblem) add_erosion_words(obj, prefix);
 		break;
 	case AMULET_CLASS:
-		add_erosion_words(obj, prefix);
+		if (!UninformationProblem) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
 			Strcat(bp, " (being worn)");
 		break;
 	case WEAPON_CLASS:
-		if(ispoisoned)
+		if(ispoisoned && !UninformationProblem)
 			Strcat(prefix, "poisoned ");
 plus:
 		add_erosion_words(obj, prefix);
@@ -1513,7 +1519,7 @@ ring:
 		break;
 	case FOOD_CLASS:
 		add_erosion_words(obj, prefix);
-		if (obj->otyp == CORPSE && obj->odrained) {
+		if (obj->otyp == CORPSE && obj->odrained && !UninformationProblem) {
 #ifdef WIZARD
 		    if (wizard && obj->oeaten < drainlevel(obj))
 			Strcpy(tmpbuf, "over-drained ");
@@ -1522,12 +1528,12 @@ ring:
 		    Sprintf(tmpbuf, "%sdrained ",
 		      (obj->oeaten > drainlevel(obj)) ? "partly " : "");
 		}
-		else if (obj->oeaten)
+		else if (obj->oeaten && !UninformationProblem)
 		    Strcpy(tmpbuf, "partly eaten ");
 		else
 		    tmpbuf[0] = '\0';
 		Strcat(prefix, tmpbuf);
-		if (obj->otyp == CORPSE && !Hallucination) {
+		if (obj->otyp == CORPSE && !Hallucination && !UninformationProblem) {
 		    if (mons[obj->corpsenm].geno & G_UNIQ) {
 			Sprintf(prefix, "%s%s ",
 				(type_is_pname(&mons[obj->corpsenm]) ?
@@ -1538,7 +1544,7 @@ ring:
 			Strcat(prefix, mons[obj->corpsenm].mname);
 			Strcat(prefix, " ");
 		    }
-		} else if (obj->otyp == EGG) {
+		} else if (obj->otyp == EGG && !UninformationProblem) {
 #if 0	/* corpses don't tell if they're stale either */
 		    if (obj->known && stale_egg(obj))
 			Strcat(prefix, "stale ");

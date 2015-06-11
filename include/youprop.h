@@ -194,6 +194,7 @@
 #define StatusTrapProblem		u.uprops[STATUS_FAILURE].intrinsic
 #define AlignmentProblem		u.uprops[ALIGNMENT_FAILURE].intrinsic
 #define StairsProblem		u.uprops[STAIRSTRAP].intrinsic
+#define UninformationProblem		u.uprops[UNINFORMATION].intrinsic
 
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
