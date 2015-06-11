@@ -147,6 +147,38 @@ struct monst {
 #endif
 	struct obj *minvent;
 
+	Bitfield(isegotype,1);	/* monster has egotypes */
+	Bitfield(egotype_thief,1);
+	Bitfield(egotype_wallwalk,1);
+	Bitfield(egotype_disenchant,1);
+	Bitfield(egotype_rust,1);
+	Bitfield(egotype_corrosion,1);
+	Bitfield(egotype_decay,1);
+	Bitfield(egotype_wither,1);
+	Bitfield(egotype_grab,1);
+	Bitfield(egotype_flying,1);
+	Bitfield(egotype_hide,1);
+	Bitfield(egotype_regeneration,1);
+	Bitfield(egotype_undead,1);
+	Bitfield(egotype_domestic,1);
+	Bitfield(egotype_covetous,1);
+	Bitfield(egotype_avoider,1);
+	Bitfield(egotype_petty,1);
+	Bitfield(egotype_pokemon,1);
+	Bitfield(egotype_slows,1);
+	Bitfield(egotype_vampire,1);
+	Bitfield(egotype_teleportself,1);
+	Bitfield(egotype_teleportyou,1);
+	Bitfield(egotype_wrap,1);
+	Bitfield(egotype_disease,1);
+	Bitfield(egotype_slime,1);
+	Bitfield(egotype_engrave,1);
+	Bitfield(egotype_dark,1);
+	Bitfield(egotype_luck,1);
+	Bitfield(egotype_push,1);
+	Bitfield(egotype_arcane,1);
+	Bitfield(egotype_clerical,1);
+
 	struct obj *mw;
 	long misc_worn_check;
 	xchar weapon_check;

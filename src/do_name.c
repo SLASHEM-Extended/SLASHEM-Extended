@@ -767,6 +767,41 @@ boolean called;
 	    article = ARTICLE_THE;
 	}
 
+	if (!do_hallu && mtmp->isegotype) {
+
+	    if (mtmp->egotype_thief) Sprintf(eos(buf), " Thief");
+	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_disenchant) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_rust) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_corrosion) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_decay) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_wither) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_grab) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_flying) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_hide) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_regeneration) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_undead) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_domestic) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_covetous) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_avoider) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_petty) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_pokemon) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_slows) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_vampire) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_teleportself) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_teleportyou) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_wrap) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_disease) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_slime) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_engrave) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_dark) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_luck) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_push) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_arcane) Sprintf(eos(buf), " ");
+	    if (mtmp->egotype_clerical) Sprintf(eos(buf), " ");
+
+	}
+
 	{
 	    char buf2[BUFSZ];
 
