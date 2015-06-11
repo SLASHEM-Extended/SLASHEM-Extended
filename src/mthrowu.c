@@ -104,8 +104,14 @@ const char *name;	/* if null, then format `obj' */
 
 		}
 
+		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
+
 		if (uarms->cursed) shieldblockrate /= 2;
 		if (uarms->blessed) shieldblockrate += 5;
+
+		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
+
+		if (shieldblockrate < 0) shieldblockrate = 0;
 
 	}
 
