@@ -1307,6 +1307,8 @@ doengrave()
 		    case WAN_MAGIC_MAPPING:
 		    case WAN_DARKNESS:
 		    case WAN_TRAP_CREATION:
+		    case WAN_MANA:
+		    case WAN_GAIN_LEVEL:
 		    case WAN_BAD_EFFECT:
 		    case WAN_DETECT_MONSTERS:
 		    case WAN_OBJECTION:

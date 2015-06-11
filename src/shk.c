@@ -5655,7 +5655,7 @@ shk_charge(slang, shkp)
 			** Premier: recharge() will have given 5-10, say.
 			** Add a few more still. Note by Amy: but only if the player uses premier charging.
 			*/
-			if (obj->spe < 120) obj->spe += (obj->otyp == WAN_GENOCIDE ? rnd(2) : rnd(5));
+			if (obj->spe < 120) obj->spe += (obj->otyp == WAN_GENOCIDE ? rnd(2) : obj->otyp == WAN_GAIN_LEVEL ? rnd(3) : rnd(5));
 			/*else if (obj->spe < 20) obj->spe += 1;*/
 		}
 	}

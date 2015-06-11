@@ -1425,6 +1425,47 @@ boolean atme;
 		    Your("genocide failed!");
 		break;
 
+	case SPE_GAIN_LEVEL:
+
+		if (role_skill >= P_GRAND_MASTER) n = 40;
+		else if (role_skill >= P_MASTER) n = 42;
+		else if (role_skill >= P_EXPERT) n = 44;
+		else if (role_skill >= P_SKILLED) n = 46;
+		else if (role_skill >= P_BASIC) n = 48;
+		else n = 50;	/* Unskilled or restricted */
+		if (!rn2(n)) {
+			pluslvl(FALSE);
+		} else
+		    pline("Too bad - it didn't work!");
+		break;
+
+	case SPE_MAP_LEVEL:
+
+		if (role_skill >= P_GRAND_MASTER) n = 5;
+		else if (role_skill >= P_MASTER) n = 6;
+		else if (role_skill >= P_EXPERT) n = 7;
+		else if (role_skill >= P_SKILLED) n = 8;
+		else if (role_skill >= P_BASIC) n = 9;
+		else n = 10;	/* Unskilled or restricted */
+		if (!rn2(n)) {
+		    struct trap *t;
+		    long save_Hconf = HConfusion,
+			 save_Hhallu = HHallucination;
+	
+		    HConfusion = HHallucination = 0L;
+		    for (t = ftrap; t != 0; t = t->ntrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		    }
+		    do_mapping();
+		    HConfusion = save_Hconf;
+		    HHallucination = save_Hhallu;
+		    pline("You feel knowledgable!");
+		    object_detect((struct obj *)0, 0);
+		} else
+		    pline("The map refuses to reveal its secrets.");
+		break;
+
 	case SPE_GODMODE:
 		incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
 		You_feel("invincible!");

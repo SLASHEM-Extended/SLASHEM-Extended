@@ -5007,6 +5007,10 @@ struct obj *obj;
 				pline("This very powerful spell will stop the flow of time for a brief period."); break;
 			case SPE_STINKING_CLOUD:
 				pline("Casting this spell allows you to place a stinking cloud on a nearby visible location."); break;
+			case SPE_GAIN_LEVEL:
+				pline("An absurdly powerful spell that may increase your character level. However, it often fails."); break;
+			case SPE_MAP_LEVEL:
+				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level and show all objects as well as all traps."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -5158,6 +5162,10 @@ struct obj *obj;
 				pline("A wand that fires invisible beams to paralyze monsters."); break;
 			case WAN_DISINTEGRATION:
 				pline("For instances where a wand of death isn't good enough, use this to fire invisible disintegration beams."); break;
+			case WAN_GAIN_LEVEL:
+				pline("This wand is very powerful - every zap will increase your character level by 1."); break;
+			case WAN_MANA:
+				pline("Zapping this wand will restore some of your mana."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

@@ -337,6 +337,7 @@ struct obj {
 || (otmp)->otyp == WAN_FEAR\
 || (otmp)->otyp == POT_FEAR\
 || (otmp)->otyp == POT_GAIN_LEVEL\
+|| (otmp)->otyp == WAN_GAIN_LEVEL\
 || (otmp)->otyp == WAN_MAKE_INVISIBLE\
 || (otmp)->otyp == POT_INVISIBILITY\
 || (otmp)->otyp == WAN_POLYMORPH\

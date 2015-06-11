@@ -2404,6 +2404,12 @@ register struct obj *obj;
 
 		break;
 
+		case WAN_GAIN_LEVEL:
+
+			pluslvl(FALSE);
+
+		break;
+
 		case WAN_CURSE_ITEMS:
 
 			pline("A black glow surrounds you...");
@@ -2674,6 +2680,14 @@ register struct obj *obj;
 			    identify_pack(rn2(5));
 			}
 			exercise(A_WIS, TRUE);
+			break;
+		case WAN_MANA:
+			known = TRUE;
+			You("feel full of mystic power!");
+			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
+			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
+			else u.uen += (d(5,6) + rnz(u.ulevel));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			break;
 		case WAN_REMOVE_CURSE:
 			known = TRUE;

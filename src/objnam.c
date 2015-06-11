@@ -656,6 +656,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_BLANK_PAPER, "chistyy list bumagi" },
 	{ SPE_STINKING_CLOUD, "vonyuchiy oblako" },
 	{ SPE_TIME_STOP, "vremya ostanovki" },
+	{ SPE_MAP_LEVEL, "uroven' otobrazheniye" },
+	{ SPE_GAIN_LEVEL, "uroven' povyshen" },
 	{ WAN_LIGHT, "svet" },
 	{ WAN_NOTHING, "nichego" },
 	{ WAN_ENLIGHTENMENT, "prosveshcheniye" },
@@ -725,6 +727,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ WAN_FIREBALL, "ognennyy shar" },
 	{ WAN_ACID, "kislota" },
 	{ WAN_SOLAR_BEAM, "solnechnaya luch" },
+	{ WAN_MANA, "volshebnaya sila" },
+	{ WAN_GAIN_LEVEL, "uroven' povyshen" },
 
 	{0, "" }
 };

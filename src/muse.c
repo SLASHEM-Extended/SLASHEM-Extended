@@ -3569,6 +3569,7 @@ struct monst *mtmp;
 #define MUSE_WAN_HASTE_MONSTER 11
 #define MUSE_POT_MUTATION 12
 #define MUSE_WAN_MUTATION 13
+#define MUSE_WAN_GAIN_LEVEL 14
 
 boolean
 find_misc(mtmp)
@@ -3703,6 +3704,11 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_MUTATION;
 		}
+		nomore(MUSE_WAN_GAIN_LEVEL);
+		if(obj->otyp == WAN_GAIN_LEVEL && obj->spe > 0) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_GAIN_LEVEL;
+		}
 	}
 	return((boolean)(!!m.has_misc));
 #undef nomore
@@ -3817,6 +3823,20 @@ skipmsg:
 		mon_adjust_speed(mtmp, 1, otmp);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
+
+	case MUSE_WAN_GAIN_LEVEL:
+
+		mzapmsg(mtmp, otmp, TRUE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		if (vismon) pline("%s seems more experienced.", Monnam(mtmp));
+		if (oseen) makeknown(WAN_GAIN_LEVEL);
+		if (!grow_up(mtmp,(struct monst *)0)) return 1;
+			/* grew into genocided monster */
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_POT_SPEED:
 		mquaffmsg(mtmp, otmp);
 		/* note difference in potion effect due to substantially
@@ -4162,7 +4182,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(12)) {
+	switch (rn2(13)) {
 
 		case 0: return POT_GAIN_LEVEL;
 		case 1: return WAN_MAKE_INVISIBLE;
@@ -4176,6 +4196,7 @@ struct monst *mtmp;
 		case 9: return WAN_HASTE_MONSTER;
 		case 10: return POT_MUTATION;
 		case 11: return WAN_MUTATION;
+		case 12: return WAN_GAIN_LEVEL;
 
 	}
 	/*NOTREACHED*/
@@ -4237,6 +4258,7 @@ struct obj *obj;
 		    typ == WAN_STARVATION ||
 		    typ == WAN_PUNISHMENT ||
 		    typ == WAN_TELE_LEVEL ||
+		    typ == WAN_GAIN_LEVEL ||
 		    typ == WAN_CANCELLATION)
 		return TRUE;
 	    break;
