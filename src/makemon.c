@@ -7543,7 +7543,7 @@ register int	mmflags;
 
 	}
 
-	if ((!rn2(Race_if(PM_RACE_X) ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(Race_if(PM_RACE_X) ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(Race_if(PM_RACE_X) ? 4 : 15) ) ) {
+	if ((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) {
 
 		mtmp->isegotype = 1;
 		switch (rnd(61)) {

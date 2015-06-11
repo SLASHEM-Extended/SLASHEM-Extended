@@ -135,7 +135,7 @@ register int x;
 	while (tmp < utmp && !rn2(x))
 		tmp++;
 
-	if (Race_if(PM_RACE_X)) {	/* x-race is the "rng-changing race", which affects rne and thus rnz too --Amy */
+	if (isxrace) {	/* x-race is the "rng-changing race", which affects rne and thus rnz too --Amy */
 
 		while (tmp < utmp && !rn2(x) && !rn2(2) )
 			tmp++;

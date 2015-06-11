@@ -4289,7 +4289,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(11)) {
+			switch (rnd(12)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4313,12 +4313,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridmazewalker = 1; break;
 				case 11:
 					flags.hybridsoviet = 1; break;
+				case 12:
+					flags.hybridxrace = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(11)) {
+				switch (rnd(12)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4352,6 +4354,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 11:
 						if (!(flags.hybridsoviet)) {flags.hybridsoviet = 1; flags.hybridization++; break;
+						}
+					case 12:
+						if (!(flags.hybridxrace)) {flags.hybridxrace = 1; flags.hybridization++; break;
 						}
 	
 				}

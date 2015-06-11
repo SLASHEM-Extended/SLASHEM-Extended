@@ -418,8 +418,9 @@ hybrid_str()
 	if (flags.hybridnullrace) Sprintf(eos(string), "null ");
 	if (flags.hybridmazewalker) Sprintf(eos(string), "mazewalker ");
 	if (flags.hybridsoviet) Sprintf(eos(string), "soviet ");
+	if (flags.hybridxrace) Sprintf(eos(string), "x-race ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet)) Sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace)) Sprintf(eos(string), "none ");
 
     return string;
 }
@@ -440,8 +441,9 @@ hybrid_strcode()
 	if (flags.hybridnullrace) Sprintf(eos(string), "Nul");
 	if (flags.hybridmazewalker) Sprintf(eos(string), "Maz");
 	if (flags.hybridsoviet) Sprintf(eos(string), "Sov");
+	if (flags.hybridxrace) Sprintf(eos(string), "Xra");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet)) Sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace)) Sprintf(eos(string), "none");
 
     return string;
 }

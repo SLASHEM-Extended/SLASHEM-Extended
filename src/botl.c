@@ -385,6 +385,7 @@ bot1()
 		if (flags.hybridnullrace) Sprintf(nb = eos(nb), "N");
 		if (flags.hybridmazewalker) Sprintf(nb = eos(nb), "M");
 		if (flags.hybridsoviet) Sprintf(nb = eos(nb), "V");
+		if (flags.hybridxrace) Sprintf(nb = eos(nb), "X");
 	}
 
 #ifdef SCORE_ON_BOTL
