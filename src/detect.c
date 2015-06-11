@@ -347,9 +347,10 @@ register struct obj	*sobj;
 		strange_feeling(sobj, buf);
 		flags.beginner = savebeginner;
 		u.urealedibility += 1;
-	    } else
+	    } else {
 		u.urealedibility += 1;
 		strange_feeling(sobj, buf);
+	    }
 	}
 	return !stale;
     } else if (!ct) {
