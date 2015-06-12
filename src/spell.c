@@ -1337,11 +1337,11 @@ boolean atme;
 		cc.y = u.uy;
 		if (getpos(&cc, TRUE, "the desired position") < 0) {
 		    pline(Never_mind);
-		    return;
+		    return 0;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
 		    You("smell rotten eggs.");
-		    return;
+		    return 0;
 		}
 		(void) create_gas_cloud(cc.x, cc.y, 3, 8);
 		break;
