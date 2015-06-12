@@ -2677,7 +2677,7 @@ no_opener:
 int
 Hear_again()		/* called when waking up after fainting */
 {
-	flags.soundok = 1;
+	if (!Deafness) flags.soundok = 1;
 	return 0;
 }
 
