@@ -1738,7 +1738,12 @@ struct obj *obj;
 	int chance;	/* KMH */
 
 	/* higher chance for vaporizing the horn as a centaur --Amy */
-	if (!rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	if (!obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	    useup(obj);
+	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+		return;
+		}
+	if (obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 		return;
