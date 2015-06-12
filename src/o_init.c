@@ -429,6 +429,11 @@ dodiscovered()				/* free after Robert Viduya */
     anything any;
     menu_item *selected;
 
+    if (UninformationProblem) {
+	    pline("You've discovered absolutely everything, yet you still don't know what do to with it.");
+	    return 0;
+    }
+
     tmpwin = create_nhwindow(NHW_MENU);
     /*
      * Use the add_menu() interface so that eg., GTK windowing port
