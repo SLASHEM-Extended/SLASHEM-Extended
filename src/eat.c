@@ -702,7 +702,12 @@ boolean allowmsg;
 		    You("cannibal!  You will regret this!");
 		}
 		HAggravate_monster |= FROMOUTSIDE;
-		change_luck(-rn1(4,2));		/* -5..-2 */
+		if (u.ualign.type == A_LAWFUL && !rn2(3) ) change_luck(-rnd(5));		/* -5..-1 */
+		else if (u.ualign.type == A_LAWFUL) change_luck(-rnd(4));		/* -4..-1 */
+		else if (u.ualign.type == A_NEUTRAL && !rn2(3) ) change_luck(-rnd(4));		/* -4..-1 */
+		else if (u.ualign.type == A_NEUTRAL) change_luck(-rnd(3));		/* -4..-1 */
+		else if (u.ualign.type == A_CHAOTIC && !rn2(3) ) change_luck(-rnd(3));		/* -3..-1 */
+		else if (u.ualign.type == A_CHAOTIC && rn2(2) ) change_luck(-rnd(2));		/* -2..-1 */
 	    } else if (Role_if(PM_CAVEMAN)) {
 		adjalign(sgn(u.ualign.type));
 		You("honour the dead.");
