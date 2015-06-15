@@ -762,3 +762,10 @@ TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
 TRAP:"uninformation",random
+TRAP:"intrinsic loss",random
+TRAP:"blood loss",random
+TRAP:"bad effect",random
+TRAP:"multiply",random
+TRAP:"auto vulnerability",random
+TRAP:"tele items",random
+TRAP:"nastiness",random

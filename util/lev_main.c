@@ -207,6 +207,15 @@ static struct {
 
 	{ "uninformation", UNINFORMATION_TRAP},
 
+	{ "intrinsic loss", INTRINSIC_LOSS_TRAP},
+	{ "blood loss", BLOOD_LOSS_TRAP},
+	{ "bad effect", BAD_EFFECT_TRAP},
+	{ "multiply", MULTIPLY_TRAP},
+	{ "auto vulnerability", AUTO_VULN_TRAP},
+	{ "tele items", TELE_ITEMS_TRAP},
+	{ "nastiness", NASTINESS_TRAP},
+
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

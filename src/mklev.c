@@ -2270,6 +2270,7 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 };
@@ -7293,6 +7294,21 @@ coord *tm;
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) kind = GLYPH_OF_WARDING; break;
 		    case UNINFORMATION_TRAP:
 			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) kind = STATUE_TRAP; break;
+
+		    case INTRINSIC_LOSS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) kind = SQKY_BOARD; break;
+		    case BLOOD_LOSS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) kind = FIRE_TRAP; break;
+		    case BAD_EFFECT_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) kind = UNKNOWN_TRAP; break;
+		    case MULTIPLY_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) kind = ROLLING_BOULDER_TRAP; break;
+		    case AUTO_VULN_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) kind = SLP_GAS_TRAP; break;
+		    case TELE_ITEMS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = ROLLING_BOULDER_TRAP; break;
+		    case NASTINESS_TRAP:
+			if (rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) kind = SPIKED_PIT; break;
 
 		    case PESTILENCE_TRAP:
 			if (rn2(20)) kind = POISON_GAS_TRAP; break;

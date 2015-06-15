@@ -139,8 +139,16 @@ extern struct trap *ftrap;
 
 #define UNINFORMATION_TRAP		86
 
-#define TRAP_PERCENTS		87
+#define INTRINSIC_LOSS_TRAP	87
+#define BLOOD_LOSS_TRAP	88
+#define BAD_EFFECT_TRAP	89
+#define MULTIPLY_TRAP	90
+#define AUTO_VULN_TRAP	91
+#define TELE_ITEMS_TRAP	92
+#define NASTINESS_TRAP	93
 
-#define TRAPNUM 88
+#define TRAP_PERCENTS		94
+
+#define TRAPNUM 95
 
 #endif /* TRAP_H */

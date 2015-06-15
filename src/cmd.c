@@ -1655,6 +1655,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem || have_intrinsiclossstone() ) {
 		Sprintf(buf, "a case of random intrinsic loss.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", IntrinsicLossProblem);
 		you_have(buf);
 	}
 	if (u.uprops[TRAP_REVEALING].extrinsic) {
@@ -1663,18 +1664,22 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 	if (u.uprops[BLOOD_LOSS].extrinsic || BloodLossProblem || have_bloodlossstone() ) {
 		Sprintf(buf, "bleeding out");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BloodLossProblem);
 		you_are(buf);
 	}
 	if (u.uprops[NASTINESS_EFFECTS].extrinsic || NastinessProblem || have_nastystone() ) {
 		Sprintf(buf, "subjected to random nasty trap effects");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NastinessProblem);
 		you_are(buf);
 	}
 	if (u.uprops[BAD_EFFECTS].extrinsic || BadEffectProblem || have_badeffectstone() ) {
 		Sprintf(buf, "subjected to random bad effects");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BadEffectProblem);
 		you_are(buf);
 	}
 	if (u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic || TrapCreationProblem || have_trapcreationstone() ) {
 		Sprintf(buf, "more likely to encounter traps");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TrapCreationProblem);
 		you_are(buf);
 	}
 	if (u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
@@ -1683,10 +1688,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 	if (u.uprops[REPEATING_VULNERABILITY].extrinsic || AutomaticVulnerabilitiy || have_vulnerabilitystone() ) {
 		Sprintf(buf, "the risk of temporarily losing intrinsics");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutomaticVulnerabilitiy);
 		you_have(buf);
 	}
 	if (u.uprops[TELEPORTING_ITEMS].extrinsic || TeleportingItems || have_itemportstone() ) {
 		Sprintf(buf, "teleporting items");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TeleportingItems);
 		you_have(buf);
 	}
 	if (u.uprops[RANDOM_RUMORS].extrinsic) {

@@ -360,6 +360,14 @@ const struct symdef defsyms[MAXPCHARS] = {
 
 	{'^', "uninformation trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 
+	{'^', "intrinsic loss trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "blood loss trap", C(CLR_RED)},	/* trap */
+	{'^', "bad effect trap", C(CLR_BROWN)},	/* trap */
+	{'^', "multiplicator trap", C(CLR_WHITE)},	/* trap */
+	{'^', "automatic vulnerability trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "teleporting items trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "nastiness trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -541,6 +549,14 @@ static uchar ibm_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_uninformation_trap),
 
+	g_FILLER(S_intrinsic_loss_trap),
+	g_FILLER(S_blood_loss_trap),
+	g_FILLER(S_bad_effect_trap),
+	g_FILLER(S_multiplying_trap),
+	g_FILLER(S_auto_vuln_trap),
+	g_FILLER(S_tele_items_trap),
+	g_FILLER(S_nastiness_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -713,6 +729,14 @@ static uchar dec_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_uninformation_trap),
 
+	g_FILLER(S_intrinsic_loss_trap),
+	g_FILLER(S_blood_loss_trap),
+	g_FILLER(S_bad_effect_trap),
+	g_FILLER(S_multiplying_trap),
+	g_FILLER(S_auto_vuln_trap),
+	g_FILLER(S_tele_items_trap),
+	g_FILLER(S_nastiness_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -882,6 +906,14 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_relocation_trap),
 
 	g_FILLER(S_uninformation_trap),
+
+	g_FILLER(S_intrinsic_loss_trap),
+	g_FILLER(S_blood_loss_trap),
+	g_FILLER(S_bad_effect_trap),
+	g_FILLER(S_multiplying_trap),
+	g_FILLER(S_auto_vuln_trap),
+	g_FILLER(S_tele_items_trap),
+	g_FILLER(S_nastiness_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1243,6 +1275,14 @@ boolean is_rlevel;
 	    showsyms[S_relocation_trap] = 0x04;
 
 	    showsyms[S_uninformation_trap] = 0x04;
+
+	    showsyms[S_intrinsic_loss_trap] = 0x04;
+	    showsyms[S_blood_loss_trap] = 0x04;
+	    showsyms[S_bad_effect_trap] = 0x04;
+	    showsyms[S_multiplying_trap] = 0x04;
+	    showsyms[S_auto_vuln_trap] = 0x04;
+	    showsyms[S_tele_items_trap] = 0x04;
+	    showsyms[S_nastiness_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

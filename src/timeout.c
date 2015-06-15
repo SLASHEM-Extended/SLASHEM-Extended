@@ -1358,7 +1358,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(31)) {
+		switch (rnd(38)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1409,6 +1409,13 @@ nh_timeout()
 				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
 				break;
 			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

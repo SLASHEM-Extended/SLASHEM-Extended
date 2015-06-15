@@ -1344,6 +1344,13 @@ dospinweb()
 		case DSTW_TRAP:
 		case STATUS_TRAP:
 		case STAIRS_TRAP:
+		case INTRINSIC_LOSS_TRAP:
+		case BLOOD_LOSS_TRAP:
+		case BAD_EFFECT_TRAP:
+		case MULTIPLY_TRAP:
+		case AUTO_VULN_TRAP:
+		case TELE_ITEMS_TRAP:
+		case NASTINESS_TRAP:
 			dotrap(ttmp, 0);
 			return(1);
 		default:

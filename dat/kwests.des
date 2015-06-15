@@ -34796,6 +34796,13 @@ TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
 TRAP:"uninformation",random
+TRAP:"intrinsic loss",random
+TRAP:"blood loss",random
+TRAP:"bad effect",random
+TRAP:"multiply",random
+TRAP:"auto vulnerability",random
+TRAP:"tele items",random
+TRAP:"nastiness",random
 
 #	SCCS Id: @(#)Yeoman.des	3.4	1998/09/10
 #	Copyright (c) 1998 by Kevin Hugo
@@ -97173,13 +97180,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
@@ -97254,6 +97254,13 @@ TRAP:"status",random
 TRAP:"alignment",random
 TRAP:"stairs",random
 TRAP:"uninformation",random
+TRAP:"intrinsic loss",random
+TRAP:"blood loss",random
+TRAP:"bad effect",random
+TRAP:"multiply",random
+TRAP:"auto vulnerability",random
+TRAP:"tele items",random
+TRAP:"nastiness",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random

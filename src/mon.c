@@ -1832,6 +1832,13 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != ALIGNMENT_TRAP
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
+				&& ttmp->ttyp != INTRINSIC_LOSS_TRAP
+				&& ttmp->ttyp != BLOOD_LOSS_TRAP
+				&& ttmp->ttyp != BAD_EFFECT_TRAP
+				&& ttmp->ttyp != MULTIPLY_TRAP
+				&& ttmp->ttyp != AUTO_VULN_TRAP
+				&& ttmp->ttyp != TELE_ITEMS_TRAP
+				&& ttmp->ttyp != NASTINESS_TRAP
 
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
