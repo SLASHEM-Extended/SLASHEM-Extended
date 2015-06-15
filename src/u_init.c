@@ -4714,6 +4714,7 @@ u_init()
 	 */
 	u.nv_range   =  1;
 	u.xray_range = -1;
+	u.artifactprotection = 0;
 
 	/* Role-specific initializations */
 

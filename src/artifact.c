@@ -596,11 +596,13 @@ long wp_mask;
 	}
 	if (spfx & SPFX_PROTEC) {
 	    if (on) {
-		u.ublessed += 2;
-		HProtection |= FROMOUTSIDE;
+		/*u.ublessed += 2;
+		HProtection |= FROMOUTSIDE;*/
+		u.artifactprotection = 1;
 	    } else {
-	    	u.ublessed -= 2;
-		if (u.ublessed <= 0) HProtection &= ~FROMOUTSIDE;
+	    	/*u.ublessed -= 2;
+		if (u.ublessed <= 0) HProtection &= ~FROMOUTSIDE;*/
+		u.artifactprotection = 0;
 	    }
 	}
 	if (spfx & SPFX_XRAY) {

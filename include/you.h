@@ -401,6 +401,8 @@ struct you {
 
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
+	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif
