@@ -822,6 +822,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ITEM_TELEPORTING_STONE, "punkt pereseleniye kamen'" },
 	{ NASTY_STONE, "zlobnost' kamen'" },
 
+	{ RIN_INFRAVISION, "infravideniye" },
+
 	{0, "" }
 };
 
@@ -1470,6 +1472,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ STONE_OF_VULNERABILITY, "zaiflik tosh" },
 	{ ITEM_TELEPORTING_STONE, "xabar xavfli ekanini tosh" },
 	{ NASTY_STONE, "iflos ishlar tosh" },
+
+	{ RIN_INFRAVISION, "infraqizil ko'rish" },
 
 	{0, "" }
 };
