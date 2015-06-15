@@ -1964,6 +1964,13 @@ register struct obj	*sobj;
 	     * monsters are not visible
 	     */
 	    break;
+
+	case SCR_CREATE_FAMILIAR:
+		known = TRUE;
+		if (confused) create_critters(rn1(7,6), (struct permonst *)0);
+		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		break;
+
 	case SPE_SUMMON_UNDEAD:        
 		if (confused) break;
 	case SCR_SUMMON_UNDEAD:        

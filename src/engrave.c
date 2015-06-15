@@ -1296,6 +1296,7 @@ doengrave()
 		    case WAN_SECRET_DOOR_DETECTION:
 		    case WAN_TRAP_DISARMING:
 		    case WAN_CREATE_MONSTER:
+		    case WAN_CREATE_FAMILIAR:
 		    case WAN_SUMMON_UNDEAD:
 		    case WAN_CREATE_HORDE:
 		    case WAN_ENLIGHTENMENT:

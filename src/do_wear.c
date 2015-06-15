@@ -137,6 +137,18 @@ Boots_on()
 		else pline("You're dressed like a frickin' hardrocker!");
 	    if (!uarmf->cursed) {curse(uarmf); pline("The highly erotic boots weld themselves to your feet!");}
 		break;
+
+	case AUTODESTRUCT_DE_VICE_BOOTS:
+	case SPEEDBUG_BOOTS:
+	case SENTIENT_HIGH_HEELED_SHOES:
+	case BOOTS_OF_FAINTING:
+	case DIFFICULT_BOOTS:
+	case BOOTS_OF_WEAKNESS:
+	case GRIDBUG_CONDUCT_BOOTS:
+	case STAIRWELL_STOMPING_BOOTS:
+		if (!uarmf->cursed) curse(uarmf);
+		break;
+
 	case WATER_WALKING_BOOTS:
 		if (u.uinwater) spoteffects(TRUE);
 		break;
@@ -240,6 +252,14 @@ Boots_off()
 	case JUMPING_BOOTS:
 	case KICKING_BOOTS:
 	case FIRE_BOOTS:
+	case AUTODESTRUCT_DE_VICE_BOOTS:
+	case SPEEDBUG_BOOTS:
+	case SENTIENT_HIGH_HEELED_SHOES:
+	case BOOTS_OF_FAINTING:
+	case DIFFICULT_BOOTS:
+	case BOOTS_OF_WEAKNESS:
+	case GRIDBUG_CONDUCT_BOOTS:
+	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
@@ -319,6 +339,18 @@ Cloak_on()
 		    poisoned("cloak",A_STR,"poisonous cloak",3);
 		}
 		break;
+
+	case CLOAK_OF_UNSPELLING:
+	case ANTI_CASTER_CLOAK:
+	case HEAVY_STATUS_CLOAK:
+	case CLOAK_OF_LUCK_NEGATION:
+	case YELLOW_SPELL_CLOAK:
+	case VULNERABILITY_CLOAK:
+	case CLOAK_OF_INVENTORYLESSNESS:
+
+		if (!uarmc->cursed) curse(uarmc);
+		break;
+
 	case OILSKIN_CLOAK:
 		pline("%s very tightly.", Tobjnam(uarmc, "fit"));
 		break;
@@ -360,6 +392,13 @@ Cloak_off()
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
+	case CLOAK_OF_UNSPELLING:
+	case ANTI_CASTER_CLOAK:
+	case HEAVY_STATUS_CLOAK:
+	case CLOAK_OF_LUCK_NEGATION:
+	case YELLOW_SPELL_CLOAK:
+	case VULNERABILITY_CLOAK:
+	case CLOAK_OF_INVENTORYLESSNESS:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
@@ -477,6 +516,19 @@ Helmet_on()
 		    curse(uarmh);
 		}
 		break;
+
+	case HELM_OF_OBSCURED_DISPLAY:
+	case HELM_OF_LOSE_IDENTIFICATION:
+	case HELM_OF_THIRST:
+	case BLACKY_HELMET:
+	case ANTI_DRINKER_HELMET:
+	case WHISPERING_HELMET:
+	case CYPHER_HELM:
+	case HELM_OF_BAD_ALIGNMENT:
+	case SOUNDPROOF_HELMET:
+	case OUT_OF_MEMORY_HELMET:
+		if (!uarmh->cursed) curse(uarmh);
+		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
     }
     return 0;
@@ -508,6 +560,16 @@ Helmet_off()
 	case HELM_OF_HUNGER:
 	case HELM_OF_STORMS:
 	case HELM_OF_DETECT_MONSTERS:
+	case HELM_OF_OBSCURED_DISPLAY:
+	case HELM_OF_LOSE_IDENTIFICATION:
+	case HELM_OF_THIRST:
+	case BLACKY_HELMET:
+	case ANTI_DRINKER_HELMET:
+	case WHISPERING_HELMET:
+	case CYPHER_HELM:
+	case HELM_OF_BAD_ALIGNMENT:
+	case SOUNDPROOF_HELMET:
+	case OUT_OF_MEMORY_HELMET:
 	/* KMH, balance patch -- removed
 	case FIRE_HELMET: */
 	case HELM_OF_DISCOVERY:
@@ -568,6 +630,16 @@ Gloves_on()
 		    curse(uarmg);
 		}
 		break;
+	case MENU_NOSE_GLOVES:
+	case UNWIELDY_GLOVES:
+	case CONFUSING_GLOVES:
+	case UNDROPPABLE_GLOVES:
+	case GLOVES_OF_MISSING_INFORMATION:
+	case GLOVES_OF_TRAP_CREATION:
+	case SADO_MASO_GLOVES:
+		if (!uarmg->cursed) curse(uarmg);
+		break;
+
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
 		   pline(Hallucination ? "Suddenly, you're floating! Whee!" : "Hey! You can swim!");
@@ -609,6 +681,13 @@ Gloves_off()
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_REFLECTION:
 	case GAUNTLETS_OF_SLOWING:
+	case MENU_NOSE_GLOVES:
+	case UNWIELDY_GLOVES:
+	case CONFUSING_GLOVES:
+	case UNDROPPABLE_GLOVES:
+	case GLOVES_OF_MISSING_INFORMATION:
+	case GLOVES_OF_TRAP_CREATION:
+	case SADO_MASO_GLOVES:
 	    break;
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
@@ -837,6 +916,13 @@ Amulet_on()
 	case AMULET_OF_UNDEAD_WARNING:
 		break;
 
+	case AMULET_OF_RMB_LOSS:
+	case AMULET_OF_ITEM_TELEPORTATION:
+
+		if (uamul && !uamul->cursed) curse(uamul);
+
+		break;
+
 	case AMULET_OF_UNCHANGING:
 		if (Slimed) {
 		    Slimed = 0;
@@ -1053,6 +1139,16 @@ register struct obj *obj;
 			      Tobjnam(obj, "glow"), hcolor(NH_BLACK));
 		    curse(obj);
 		}
+
+		break;
+
+	case RIN_INTRINSIC_LOSS:
+	case RIN_BLOOD_LOSS:
+	case RIN_NASTINESS:
+	case RIN_BAD_EFFECT:
+	case RIN_SUPERSCROLLING:
+
+		if (!obj->cursed) curse(obj);
 
 		break;
 

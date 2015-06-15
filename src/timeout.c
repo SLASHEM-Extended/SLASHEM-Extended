@@ -750,7 +750,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000)) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}

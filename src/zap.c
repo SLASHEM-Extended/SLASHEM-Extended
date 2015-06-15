@@ -2508,6 +2508,10 @@ register struct obj *obj;
 			known = create_critters(rn2(23) ? 1 : rn1(7,2),
 					(struct permonst *)0);
 			break;
+		case WAN_CREATE_FAMILIAR:
+			known = TRUE;
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+			break;
 		case WAN_SUMMON_UNDEAD:
 			known = TRUE;
 			coord mm;   

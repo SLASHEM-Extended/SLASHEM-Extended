@@ -1653,7 +1653,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
-	if (u.uprops[INTRINSIC_LOSS].extrinsic) {
+	if (u.uprops[INTRINSIC_LOSS].extrinsic || u.uprops[INTRINSIC_LOSS].intrinsic) {
 		Sprintf(buf, "a case of random intrinsic loss.");
 		you_have(buf);
 	}
@@ -1661,15 +1661,15 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		Sprintf(buf, "randomly revealing traps");
 		you_are(buf);
 	}
-	if (u.uprops[BLOOD_LOSS].extrinsic) {
+	if (u.uprops[BLOOD_LOSS].extrinsic || u.uprops[BLOOD_LOSS].intrinsic) {
 		Sprintf(buf, "bleeding out");
 		you_are(buf);
 	}
-	if (u.uprops[NASTINESS_EFFECTS].extrinsic) {
+	if (u.uprops[NASTINESS_EFFECTS].extrinsic || u.uprops[NASTINESS_EFFECTS].intrinsic) {
 		Sprintf(buf, "subjected to random nasty trap effects");
 		you_are(buf);
 	}
-	if (u.uprops[BAD_EFFECTS].extrinsic) {
+	if (u.uprops[BAD_EFFECTS].extrinsic || u.uprops[BAD_EFFECTS].intrinsic) {
 		Sprintf(buf, "subjected to random bad effects");
 		you_are(buf);
 	}

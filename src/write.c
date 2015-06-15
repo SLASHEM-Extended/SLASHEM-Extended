@@ -87,6 +87,7 @@ register struct obj *otmp;
 /*		break; */
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
+	case SCR_CREATE_FAMILIAR:
 		return(40);
 /*		break; */
 	case SCR_CONSECRATION:

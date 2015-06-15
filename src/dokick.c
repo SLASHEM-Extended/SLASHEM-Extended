@@ -45,6 +45,9 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == WEDGE_SANDALS)
 	    dmg += 2;
 
+	if (uarmf && uarmf->otyp == STAIRWELL_STOMPING_BOOTS)
+	    dmg += 2;
+
 	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
 	    dmg += 5;
 

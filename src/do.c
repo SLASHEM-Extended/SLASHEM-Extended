@@ -425,11 +425,29 @@ giveback:
 	      case RIN_DISARMING:
 		    pline("The water flow pauses for a moment.");
 		    break;
+	      case RIN_NASTINESS:
+		    pline("The water looks extremely disgusting for a moment.");
+		    break;
+	      case RIN_BAD_EFFECT:
+		    pline("The water looks really icky for a moment.");
+		    break;
+	      case RIN_SUPERSCROLLING:
+		    pline("The water flow seems to be stuck in an infinite loop.");
+		    break;
 	      case RIN_NUMBNESS:
 		    pline("The water flow stutters for a moment.");
 		    break;
 	      case RIN_CURSE:
 		    pline("A malignant aura seems to surround the sink...");
+		    break;
+	      case RIN_BLOOD_LOSS:
+		    pline("The sink looks like it's crying...");
+		    break;
+	      case RIN_INTRINSIC_LOSS:
+		    pline("Some parts of the sink seem missing...");
+		    break;
+	      case RIN_TRAP_REVEALING:
+		    You("realize more details of the sink's architecture!");
 		    break;
 	      case RIN_HALLUCINATION:
 		    pline("The sink flashes in wonderful rainbow colors!");

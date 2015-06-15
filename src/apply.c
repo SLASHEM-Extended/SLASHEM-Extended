@@ -3341,6 +3341,7 @@ wand_explode(obj, hero_broke)
     case WAN_SUMMON_UNDEAD:
     case WAN_SECRET_DOOR_DETECTION:
     case WAN_TRAP_DISARMING:
+    case WAN_CREATE_FAMILIAR:
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
     case WAN_DEATH:

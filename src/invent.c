@@ -4358,6 +4358,22 @@ struct obj *obj;
 				pline("Wearing this cloak grants cold resistance and maximum magic cancellation."); break;
 			case CLOAK_OF_GROUNDING: 
 				pline("Wearing this cloak grants shock resistance and medium magic cancellation."); break;
+
+			case CLOAK_OF_UNSPELLING: 
+				pline("This cloak causes spell loss. It grants good armor class and maximum magic cancellation."); break;
+			case ANTI_CASTER_CLOAK: 
+				pline("This cloak causes casting problems. It grants very good armor class and maximum magic cancellation."); break;
+			case HEAVY_STATUS_CLOAK: 
+				pline("This cloak causes heavy status effects. It grants extremely good armor class and maximum magic cancellation."); break;
+			case CLOAK_OF_LUCK_NEGATION: 
+				pline("This cloak causes bad luck. It grants extremely good armor class and maximum magic cancellation."); break;
+			case YELLOW_SPELL_CLOAK: 
+				pline("This cloak causes yellow spells. It grants great armor class and maximum magic cancellation."); break;
+			case VULNERABILITY_CLOAK: 
+				pline("This cloak causes vulnerability. It grants good armor class and maximum magic cancellation."); break;
+			case CLOAK_OF_INVENTORYLESSNESS: 
+				pline("This cloak causes inventory loss. It grants incredibly great armor class and maximum magic cancellation."); break;
+
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and maximum magic cancellation."); break;
 			case CLOAK_OF_DISPLACEMENT: 
@@ -4382,6 +4398,26 @@ struct obj *obj;
 				pline("Good protection and maximum magic cancellation, but this helmet prevents you from performing certain actions."); break;
 			case HELMET:
 				pline("A standard helmet that can be worn for protection."); break;
+			case HELM_OF_OBSCURED_DISPLAY:
+				pline("This helmet causes display loss. It has good AC and medium magic cancellation."); break;
+			case HELM_OF_LOSE_IDENTIFICATION:
+				pline("This helmet causes unidentification. It has moderately good AC and maximum magic cancellation."); break;
+			case HELM_OF_THIRST:
+				pline("This helmet causes thirst. It has mediocre AC and maximum magic cancellation."); break;
+			case BLACKY_HELMET:
+				pline("This helmet summons Blacky. It has great AC and maximum magic cancellation."); break;
+			case ANTI_DRINKER_HELMET:
+				pline("This helmet affects potions. It has good AC and low magic cancellation."); break;
+			case WHISPERING_HELMET:
+				pline("This helmet displays random rumors. It has low AC and low magic cancellation."); break;
+			case CYPHER_HELM:
+				pline("This helmet initiates a cipher. It has very good AC and maximum magic cancellation."); break;
+			case HELM_OF_BAD_ALIGNMENT:
+				pline("This helmet causes alignment failures. It has good AC and maximum magic cancellation."); break;
+			case SOUNDPROOF_HELMET:
+				pline("This helmet causes deafness. It has mediocre AC and medium magic cancellation."); break;
+			case OUT_OF_MEMORY_HELMET:
+				pline("This helmet causes memory loss. It has great AC and maximum magic cancellation."); break;
 			case HELM_OF_BRILLIANCE:
 				pline("This helmet can be worn to increase your intelligence."); break;
 			case HELM_OF_OPPOSITE_ALIGNMENT:
@@ -4412,6 +4448,22 @@ struct obj *obj;
 				pline("A pair of gloves that slows your movement speed when worn. They are usually generated cursed."); break;
 			case OILSKIN_GLOVES:
 				pline("This pair of gloves will cause you to drop your weapon, and you'll be unable to re-equip it. They provide some AC and maximum magic cancellation, but these gloves autocurse if you put them on."); break;
+
+			case MENU_NOSE_GLOVES:
+				pline("This pair of gloves causes menu bugs. They provide moderately good AC and medium magic cancellation."); break;
+			case UNWIELDY_GLOVES:
+				pline("This pair of gloves causes the free hand to be full. They provide good AC and maximum magic cancellation."); break;
+			case CONFUSING_GLOVES:
+				pline("This pair of gloves causes confusing problems. They provide extremely good AC."); break;
+			case UNDROPPABLE_GLOVES:
+				pline("This pair of gloves causes drop bugs. They provide moderately good AC and maximum magic cancellation."); break;
+			case GLOVES_OF_MISSING_INFORMATION:
+				pline("This pair of gloves causes a lack of feedback. They provide good AC and maximum magic cancellation."); break;
+			case GLOVES_OF_TRAP_CREATION:
+				pline("This pair of gloves causes traps to be generated. They provide good AC and medium magic cancellation."); break;
+			case SADO_MASO_GLOVES:
+				pline("This pair of gloves causes fifty shades of grey. They provide low AC and low magic cancellation."); break;
+
 			case GAUNTLETS_OF_POWER:
 				pline("A powerful pair of gauntlets that increases the wearer's strength."); break;
 			case GAUNTLETS_OF_REFLECTION:
@@ -4472,6 +4524,24 @@ struct obj *obj;
 				pline("These high heels look incredibly lovely and tender. You will surely look great if you wear them."); break;
 			case LEATHER_PEEP_TOES:
 				pline("A pair of asian footwear with plateau soles and stiletto heels. They are made of beautifully soft black leather."); break;
+
+			case AUTODESTRUCT_DE_VICE_BOOTS:
+				pline("This footwear causes auto-destruct mechanisms to be initiated. They provide good AC and medium magic cancellation."); break;
+			case SPEEDBUG_BOOTS:
+				pline("This footwear causes the speed bug. They provide good AC and low magic cancellation."); break;
+			case SENTIENT_HIGH_HEELED_SHOES:
+				pline("This high-heeled footwear randomly tries to hurt the wearer. They provide very good AC and maximum magic cancellation."); break;
+			case BOOTS_OF_FAINTING:
+				pline("This footwear causes fainting. They provide very good AC."); break;
+			case DIFFICULT_BOOTS:
+				pline("This footwear causes increased difficulty. They provide mediocre AC and medium magic cancellation."); break;
+			case BOOTS_OF_WEAKNESS:
+				pline("This footwear causes weakness. They provide good AC and medium magic cancellation."); break;
+			case GRIDBUG_CONDUCT_BOOTS:
+				pline("This footwear forces its wearer to adhere to the grid bug conduct. They provide extremely good AC and maximum magic cancellation."); break;
+			case STAIRWELL_STOMPING_BOOTS:
+				pline("This footwear causes stairwells to be trapped. They provide very good AC and maximum magic cancellation."); break;
+
 			case HIPPIE_HEELS:
 				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation? :-)"); break;
 			case COMBAT_STILETTOS:
@@ -4525,6 +4595,18 @@ struct obj *obj;
 				pline("While wearing this ring, your items will sometimes get cursed. Putting this ring on causes it to autocurse."); break;
 			case RIN_HALLUCINATION: 
 				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
+			case RIN_INTRINSIC_LOSS: 
+				pline("This ring can cause intrinsic loss."); break;
+			case RIN_TRAP_REVEALING: 
+				pline("A very rare ring that grants its wearer the ability to randomly detect traps on the current dungeon level."); break;
+			case RIN_BLOOD_LOSS: 
+				pline("This ring causes bleedout."); break;
+			case RIN_NASTINESS: 
+				pline("This ring has nasty effects."); break;
+			case RIN_BAD_EFFECT: 
+				pline("This ring has bad effects."); break;
+			case RIN_SUPERSCROLLING: 
+				pline("This ring causes the superscroller effect."); break;
 			case RIN_MOOD: 
 				pline("A fairly useless ring that requires you to put it on, then read it to reveal a not-very-enlightening message."); break;
 			case RIN_PROTECTION: 
@@ -4657,6 +4739,10 @@ struct obj *obj;
 				pline("You will be immune to sickness as long as you wear this amulet."); break;
 			case AMULET_OF_SWIMMING:
 				pline("Wear this amulet if you want to be able to swim in water."); break;
+			case AMULET_OF_RMB_LOSS:
+				pline("This amulet causes your right mouse button to stop working."); break;
+			case AMULET_OF_ITEM_TELEPORTATION:
+				pline("This amulet causes items to teleport out of your inventory."); break;
 			case AMULET_OF_DISINTEGRATION_RESIS:
 				pline("This amulet grants disintegration resistance while worn."); break;
 			case AMULET_OF_ACID_RESISTANCE:
@@ -5063,6 +5149,8 @@ struct obj *obj;
 
 			case SCR_CREATE_MONSTER: 
 				pline("Reading this scroll summons some monsters for you to fight."); break;
+			case SCR_CREATE_FAMILIAR: 
+				pline("Reading this scroll summons a tame monster that will help you out."); break;
 			case SCR_SUMMON_UNDEAD: 
 				pline("This scroll summons undead monsters if read."); break;
 			case SCR_TAMING: 
@@ -5468,6 +5556,8 @@ struct obj *obj;
 				pline("Cancels whatever you zap it at. Monsters lose their ability to use certain types of special attacks while objects will lose their enchantments."); break;
 			case WAN_CREATE_MONSTER:
 				pline("Zapping this wand summons monsters."); break;
+			case WAN_CREATE_FAMILIAR:
+				pline("Zapping this wand summons a tame monster."); break;
 			case WAN_BAD_EFFECT:
 				pline("This wand will subject you to a random bad effect if it is zapped. It doesn't matter WHO zaps it, it's always you who will suffer from its effect. Think that's unfair? Well, suck it up, this game was never designed to be fair in the first place!"); break;
 			case WAN_SUMMON_UNDEAD:
