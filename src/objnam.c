@@ -2635,7 +2635,7 @@ struct alt_spellings {
 	{ "lantern", BRASS_LANTERN },
 	{ "mattock", DWARVISH_MATTOCK },
 	{ "amulet of poison resistance", AMULET_VERSUS_POISON },
-	{ "stone", ROCK },
+	/*{ "stone", ROCK },*/
 	{ "can", TIN },
 	{ "can opener", TIN_OPENER },
 	{ "kelp", KELP_FROND },
@@ -3171,12 +3171,12 @@ boolean from_user;
 		goto typfnd;
 	    }
 
-	if (!BSTRCMPI(bp, p-6, " stone")) {
+	/*if (!BSTRCMPI(bp, p-6, " stone")) {
 		p[-6] = 0;
 		oclass = GEM_CLASS;
 		dn = actualn = bp;
 		goto srch;
-	} else if (!strcmpi(bp, "looking glass")) {
+	} else */ if (!strcmpi(bp, "looking glass")) {
 		;	/* avoid false hit on "* glass" */
 	} else if (!BSTRCMPI(bp, p-6, " glass") || !strcmpi(bp, "glass")) {
 		register char *g = bp;
