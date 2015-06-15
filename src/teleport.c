@@ -76,7 +76,8 @@ unsigned gpflags;
 		    return (is_flyer(mdat) || mtmp->egotype_flying || likes_lava(mdat)) ?
 			    is_badpos : -1;
 	    }
-	    if ( (passes_walls(mdat) || mtmp->egotype_wallwalk) && may_passwall(x,y)) return is_badpos;
+	    if (passes_walls(mdat) && may_passwall(x,y)) return is_badpos;
+	    /*if ( (mtmp != &youmonst) && mtmp->egotype_wallwalk && may_passwall(x,y)) return is_badpos;*/
 	}
 	if (!ACCESSIBLE(levl[x][y].typ)) {
 		if (!(is_pool(x,y) && ignorewater)) return -1;

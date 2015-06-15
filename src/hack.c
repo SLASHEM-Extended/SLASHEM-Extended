@@ -875,7 +875,7 @@ struct monst *mon;
 register xchar x,y;
 {
 	struct permonst *mdat = mon->data;
-	boolean passwall = mon == &youmonst ? Passes_walls : ( passes_walls(mdat) || mon->egotype_wallwalk);
+	boolean passwall = mon == &youmonst ? Passes_walls : ( passes_walls(mdat) || (mon->egotype_wallwalk) );
 	return((boolean) ((In_sokoban(&u.uz) && sobj_at(BOULDER,x,y)) ||
 	       (IS_ROCK(levl[x][y].typ)
 		    && (!tunnels(mdat) || needspick(mdat) || !may_dig(x,y))

@@ -1245,12 +1245,12 @@ not_special:
 	if (is_minion(ptr) || is_rider(ptr)) flag |= ALLOW_SANCT;
 	/* unicorn may not be able to avoid hero on a noteleport level */
 	if (is_unicorn(ptr) && !level.flags.noteleport) flag |= NOTONL;
-	if (passes_walls(ptr) || mtmp->egotype_wallwalk ) flag |= (ALLOW_WALL | ALLOW_ROCK);
+	if (passes_walls(ptr) || (mtmp->egotype_wallwalk) ) flag |= (ALLOW_WALL | ALLOW_ROCK);
 	if (passes_bars(ptr) && !In_sokoban(&u.uz)) flag |= ALLOW_BARS;
 	if (can_tunnel) flag |= ALLOW_DIG;
 	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR]) flag |= ALLOW_SSM;
 	if ( (is_undead(ptr) || mtmp->egotype_undead) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
-	if (throws_rocks(ptr) || passes_walls(ptr) || mtmp->egotype_wallwalk || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
+	if (throws_rocks(ptr) || passes_walls(ptr) || (mtmp->egotype_wallwalk) || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
 				verysmall(ptr) || slithy(ptr) || ptr == &mons[PM_BLACK_MARKETEER]) flag |= ALLOW_ROCK;
 /* Boulder forts will be a lot less effective at holding dangerous monsters at bay. --Amy */
 	if (can_open) flag |= OPENDOOR;

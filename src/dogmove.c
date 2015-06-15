@@ -756,7 +756,7 @@ register int after;	/* this is extra fast monster movement */
 	if (appr == -2) return(0);
 
 	allowflags = ALLOW_M | ALLOW_TRAPS | ALLOW_SSM | ALLOW_SANCT;
-	if (passes_walls(mtmp->data) || mtmp->egotype_wallwalk) allowflags |= (ALLOW_ROCK | ALLOW_WALL);
+	if (passes_walls(mtmp->data) || (mtmp->egotype_wallwalk) ) allowflags |= (ALLOW_ROCK | ALLOW_WALL);
 	if (passes_bars(mtmp->data) && !In_sokoban(&u.uz))
 	    allowflags |= ALLOW_BARS;
 	if (throws_rocks(mtmp->data)) allowflags |= ALLOW_ROCK;
