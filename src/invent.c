@@ -4025,7 +4025,7 @@ struct obj *obj;
 
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
-	register int nn = ocl->oc_name_known;
+	register int nn = (ocl->oc_name_known && obj->dknown);
 
 	switch (obj->oclass) {
 
