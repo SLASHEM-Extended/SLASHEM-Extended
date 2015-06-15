@@ -2972,7 +2972,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem ) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -3005,6 +3005,13 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			AlignmentProblem = 0L;
 			StairsProblem = 0L;
 			UninformationProblem = 0L;
+			IntrinsicLossProblem = 0L;
+			BloodLossProblem = 0L;
+			BadEffectProblem = 0L;
+			TrapCreationProblem = 0L;
+			AutomaticVulnerabilitiy = 0L;
+			TeleportingItems = 0L;
+			NastinessProblem = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}

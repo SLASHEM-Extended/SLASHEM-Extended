@@ -4247,6 +4247,13 @@ doapply()
 		AlignmentProblem = 0L;
 		StairsProblem = 0L;
 		UninformationProblem = 0L;
+		IntrinsicLossProblem = 0L;
+		BloodLossProblem = 0L;
+		BadEffectProblem = 0L;
+		TrapCreationProblem = 0L;
+		AutomaticVulnerabilitiy = 0L;
+		TeleportingItems = 0L;
+		NastinessProblem = 0L;
 
 		break;
 	case GOD_O_METER:
