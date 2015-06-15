@@ -196,6 +196,15 @@
 #define StairsProblem		u.uprops[STAIRSTRAP].intrinsic
 #define UninformationProblem		u.uprops[UNINFORMATION].intrinsic
 
+#define IntrinsicLossProblem		u.uprops[INTRINSIC_LOSS].intrinsic
+#define BloodLossProblem		u.uprops[BLOOD_LOSS].intrinsic
+#define BadEffectProblem		u.uprops[BAD_EFFECTS].intrinsic
+#define TrapCreationProblem		u.uprops[AUTOMATIC_TRAP_CREATION].intrinsic
+#define AutomaticVulnerabilitiy		u.uprops[REPEATING_VULNERABILITY].intrinsic
+#define TeleportingItems		u.uprops[TELEPORTING_ITEMS].intrinsic
+
+#define NastinessProblem		u.uprops[NASTINESS_EFFECTS].intrinsic
+
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
 #define TimeStopped		u.uprops[TIME_STOPPED].intrinsic
