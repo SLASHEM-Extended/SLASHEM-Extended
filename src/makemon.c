@@ -7678,6 +7678,141 @@ register int	mmflags;
 
 	}
 
+	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
+
+		mtmp->isegotype = 1;
+		switch (rnd(61)) {
+			case 1:
+			case 2:
+			case 3: mtmp->egotype_thief = 1; break;
+			case 4: mtmp->egotype_wallwalk = 1; break;
+			case 5: mtmp->egotype_disenchant = 1; break;
+			case 6:
+			case 7: mtmp->egotype_rust = 1; break;
+			case 8: 
+			case 9: mtmp->egotype_corrosion = 1; break;
+			case 10: 
+			case 11: mtmp->egotype_decay = 1; break;
+			case 12: mtmp->egotype_wither = 1; break;
+			case 13: 
+			case 14: 
+			case 15: mtmp->egotype_grab = 1; break;
+			case 16: 
+			case 17: mtmp->egotype_flying = 1; break;
+			case 18: 
+			case 19: mtmp->egotype_hide = 1; break;
+			case 20: 
+			case 21: 
+			case 22: mtmp->egotype_regeneration = 1; break;
+			case 23: 
+			case 24: 
+			case 25: mtmp->egotype_undead = 1; break;
+			case 26: mtmp->egotype_domestic = 1; break;
+			case 27: mtmp->egotype_covetous = 1; break;
+			case 28: 
+			case 29: mtmp->egotype_avoider = 1; break;
+			case 30: mtmp->egotype_petty = 1; break;
+			case 31: mtmp->egotype_pokemon = 1; break;
+			case 32: mtmp->egotype_slows = 1; break;
+			case 33: mtmp->egotype_vampire = 1; break;
+			case 34: mtmp->egotype_teleportself = 1; break;
+			case 35: mtmp->egotype_teleportyou = 1; break;
+			case 36: 
+			case 37: mtmp->egotype_wrap = 1; break;
+			case 38: mtmp->egotype_disease = 1; break;
+			case 39: mtmp->egotype_slime = 1; break;
+			case 40: 
+			case 41: 
+			case 42: 
+			case 43: mtmp->egotype_engrave = 1; break;
+			case 44: 
+			case 45: mtmp->egotype_dark = 1; break;
+			case 46: mtmp->egotype_luck = 1; break;
+			case 47: 
+			case 48: 
+			case 49: mtmp->egotype_push = 1; break;
+			case 50: mtmp->egotype_arcane = 1; break;
+			case 51: mtmp->egotype_clerical = 1; break;
+			case 52: 
+			case 53: mtmp->egotype_armorer = 1; break;
+			case 54: mtmp->egotype_tank = 1; break;
+			case 55: 
+			case 56: mtmp->egotype_speedster = 1; break;
+			case 57: mtmp->egotype_racer = 1; break;
+			case 58: mtmp->egotype_randomizer = 1; break;
+			case 59: mtmp->egotype_blaster = 1; break;
+			case 60: mtmp->egotype_multiplicator = 1; break;
+			case 61: mtmp->egotype_gator = 1; break;
+		}
+
+		while (!rn2(iswarper ? 4 : 10)) {
+		switch (rnd(61)) {
+			case 1:
+			case 2:
+			case 3: mtmp->egotype_thief = 1; break;
+			case 4: mtmp->egotype_wallwalk = 1; break;
+			case 5: mtmp->egotype_disenchant = 1; break;
+			case 6:
+			case 7: mtmp->egotype_rust = 1; break;
+			case 8: 
+			case 9: mtmp->egotype_corrosion = 1; break;
+			case 10: 
+			case 11: mtmp->egotype_decay = 1; break;
+			case 12: mtmp->egotype_wither = 1; break;
+			case 13: 
+			case 14: 
+			case 15: mtmp->egotype_grab = 1; break;
+			case 16: 
+			case 17: mtmp->egotype_flying = 1; break;
+			case 18: 
+			case 19: mtmp->egotype_hide = 1; break;
+			case 20: 
+			case 21: 
+			case 22: mtmp->egotype_regeneration = 1; break;
+			case 23: 
+			case 24: 
+			case 25: mtmp->egotype_undead = 1; break;
+			case 26: mtmp->egotype_domestic = 1; break;
+			case 27: mtmp->egotype_covetous = 1; break;
+			case 28: 
+			case 29: mtmp->egotype_avoider = 1; break;
+			case 30: mtmp->egotype_petty = 1; break;
+			case 31: mtmp->egotype_pokemon = 1; break;
+			case 32: mtmp->egotype_slows = 1; break;
+			case 33: mtmp->egotype_vampire = 1; break;
+			case 34: mtmp->egotype_teleportself = 1; break;
+			case 35: mtmp->egotype_teleportyou = 1; break;
+			case 36: 
+			case 37: mtmp->egotype_wrap = 1; break;
+			case 38: mtmp->egotype_disease = 1; break;
+			case 39: mtmp->egotype_slime = 1; break;
+			case 40: 
+			case 41: 
+			case 42: 
+			case 43: mtmp->egotype_engrave = 1; break;
+			case 44: 
+			case 45: mtmp->egotype_dark = 1; break;
+			case 46: mtmp->egotype_luck = 1; break;
+			case 47: 
+			case 48: 
+			case 49: mtmp->egotype_push = 1; break;
+			case 50: mtmp->egotype_arcane = 1; break;
+			case 51: mtmp->egotype_clerical = 1; break;
+			case 52: 
+			case 53: mtmp->egotype_armorer = 1; break;
+			case 54: mtmp->egotype_tank = 1; break;
+			case 55: 
+			case 56: mtmp->egotype_speedster = 1; break;
+			case 57: mtmp->egotype_racer = 1; break;
+			case 58: mtmp->egotype_randomizer = 1; break;
+			case 59: mtmp->egotype_blaster = 1; break;
+			case 60: mtmp->egotype_multiplicator = 1; break;
+			case 61: mtmp->egotype_gator = 1; break;
+		}
+		}
+
+	}
+
 	if(/*in_mklev && */hides_under(ptr) && OBJ_AT(x, y))
 	  mtmp->mundetected = TRUE;
 
