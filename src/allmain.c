@@ -1712,6 +1712,111 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (!issoviet && Race_if(PM_ANCIENT)) {
+
+	obj_descr[SPE_FORCE_BOLT].oc_name = "kuch murvat";
+	obj_descr[SPE_CREATE_MONSTER].oc_name = "hayvon yaratish";
+	obj_descr[SPE_DRAIN_LIFE].oc_name = "drenaj hayot";
+	obj_descr[SPE_COMMAND_UNDEAD].oc_name = "buyruq bo'lmagan o'lik";
+	obj_descr[SPE_SUMMON_UNDEAD].oc_name = "bo'lmagan-o'lik chaqirish";
+	obj_descr[SPE_DISINTEGRATION].oc_name = "parchalanish";
+	obj_descr[SPE_STONE_TO_FLESH].oc_name = "go'sht uchun tosh";
+	obj_descr[SPE_HEALING].oc_name = "davolash";
+	obj_descr[SPE_CURE_BLINDNESS].oc_name = "qattiqlashishi ko'rlik";
+	obj_descr[SPE_CURE_NUMBNESS].oc_name = "qattiqlashishi qattiq uyqu";
+	obj_descr[SPE_BLIND_SELF].oc_name = "ko'r o'zini o'zi";
+	obj_descr[SPE_CURE_SICKNESS].oc_name = "qattiqlashishi kasallik";
+	obj_descr[SPE_CURE_HALLUCINATION].oc_name = "qattiqlashishi gallutsinatsiya";
+	obj_descr[SPE_CURE_CONFUSION].oc_name = "qattiqlashishi tartibsizlik";
+	obj_descr[SPE_CURE_BURN].oc_name = "qattiqlashishi kuygan";
+	obj_descr[SPE_CONFUSE_SELF].oc_name = "o'zini o'zi aralashtirmang";
+	obj_descr[SPE_CURE_STUN].oc_name = "qattiqlashishi bayiltici";
+	obj_descr[SPE_STUN_SELF].oc_name = "bayiltici o'zini o'zi";
+	obj_descr[SPE_EXTRA_HEALING].oc_name = "qo'shimcha davolash";
+	obj_descr[SPE_FULL_HEALING].oc_name = "to'liq shifo";
+	obj_descr[SPE_RESTORE_ABILITY].oc_name = "qobiliyatini tiklash";
+	obj_descr[SPE_BANISHING_FEAR].oc_name = "voz kechishning qo'rquv";
+	obj_descr[SPE_CURE_FREEZE].oc_name = "qattiqlashishi ishga solmay";
+	obj_descr[SPE_CREATE_FAMILIAR].oc_name = "tanish yaratish";
+	obj_descr[SPE_LIGHT].oc_name = "engil";
+	obj_descr[SPE_DARKNESS].oc_name = "qorong'ilik";
+	obj_descr[SPE_DETECT_MONSTERS].oc_name = "hayvonlar aniqlash";
+	obj_descr[SPE_DETECT_FOOD].oc_name = "oziq-ovqat aniqlash";
+	obj_descr[SPE_DISSOLVE_FOOD].oc_name = "oziq-ovqat tarqatib";
+	obj_descr[SPE_DETECT_ARMOR_ENCHANTMENT].oc_name = "zirh sehr aniqlash";
+	obj_descr[SPE_CLAIRVOYANCE].oc_name = "oldindan bilish";
+	obj_descr[SPE_DETECT_UNSEEN].oc_name = "g'aybni aniqlash";
+	obj_descr[SPE_IDENTIFY].oc_name = "aniqlash";
+	obj_descr[SPE_DETECT_TREASURE].oc_name = "xazina aniqlash";
+	obj_descr[SPE_MAGIC_MAPPING].oc_name = "sehrli xaritalash";
+	obj_descr[SPE_ENTRAPPING].oc_name = "kabarciklarinin";
+	obj_descr[SPE_FINGER].oc_name = "barmoq";
+	obj_descr[SPE_CHEMISTRY].oc_name = "kimyo";
+	obj_descr[SPE_DETECT_FOOT].oc_name = "oyoq aniqlash";
+	obj_descr[SPE_FORBIDDEN_KNOWLEDGE].oc_name = "man ilm";
+	obj_descr[SPE_CONFUSE_MONSTER].oc_name = "hayvon aralashtirmang";
+	obj_descr[SPE_SLOW_MONSTER].oc_name = "sekin hayvon";
+	obj_descr[SPE_CAUSE_FEAR].oc_name = "sabab qo'rquv";
+	obj_descr[SPE_CHARM_MONSTER].oc_name = "jozibasi hayvon";
+	obj_descr[SPE_ENCHANT_WEAPON].oc_name = "qurol sehrlamoq";
+	obj_descr[SPE_ENCHANT_ARMOR].oc_name = "sovuti sehrlamoq";
+	obj_descr[SPE_CHARGING].oc_name = "zaryad";
+	obj_descr[SPE_GENOCIDE].oc_name = "irqiy qirg'inchilikni";
+	obj_descr[SPE_PROTECTION].oc_name = "himoya";
+	obj_descr[SPE_RESIST_POISON].oc_name = "zahar qarshilik";
+	obj_descr[SPE_RESIST_SLEEP].oc_name = "uyqu qarshilik";
+	obj_descr[SPE_ENDURE_COLD].oc_name = "sovuq sabr-toqat";
+	obj_descr[SPE_ENDURE_HEAT].oc_name = "issiqlik bardosh";
+	obj_descr[SPE_INSULATE].oc_name = "yakkalamoq";
+	obj_descr[SPE_REMOVE_CURSE].oc_name = "la'natni olib tashlash";
+	obj_descr[SPE_REMOVE_BLESSING].oc_name = "ne'matini olib tashlash";
+	obj_descr[SPE_TURN_UNDEAD].oc_name = "bo'lmagan-o'lik o'girib";
+	obj_descr[SPE_ANTI_DISINTEGRATION].oc_name = "piyodalarga parchalanish";
+	obj_descr[SPE_BOTOX_RESIST].oc_name = "Oziq-ovqat zaharlanishi qarshilik";
+	obj_descr[SPE_ACIDSHIELD].oc_name = "kislota qalqon";
+	obj_descr[SPE_GODMODE].oc_name = "alloh xil";
+	obj_descr[SPE_RESIST_PETRIFICATION].oc_name = "toshbo'ron qarshilik";
+	obj_descr[SPE_JUMPING].oc_name = "o'tish";
+	obj_descr[SPE_HASTE_SELF].oc_name = "shoshilish o'zini o'zi";
+	obj_descr[SPE_ENLIGHTEN].oc_name = "ma'lumotlar";
+	obj_descr[SPE_INVISIBILITY].oc_name = "ko'rinmas";
+	obj_descr[SPE_AGGRAVATE_MONSTER].oc_name = "hayvon og'irlashtiradigan";
+	obj_descr[SPE_LEVITATION].oc_name = "ko'rib ularni";
+	obj_descr[SPE_TELEPORT_AWAY].oc_name = "nur uzoqda";
+	obj_descr[SPE_PASSWALL].oc_name = "o'tkazgan devor";
+	obj_descr[SPE_POLYMORPH].oc_name = "bir polimorfunun";
+	obj_descr[SPE_MUTATION].oc_name = "o'zgarish";
+	obj_descr[SPE_LEVELPORT].oc_name = "seminarlar darajasi";
+	obj_descr[SPE_KNOCK].oc_name = "taqillatmoq";
+	obj_descr[SPE_FLAME_SPHERE].oc_name = "olov shar";
+	obj_descr[SPE_FREEZE_SPHERE].oc_name = "ishga solmay soha";
+	obj_descr[SPE_SHOCKING_SPHERE].oc_name = "yomon soha";
+	obj_descr[SPE_ACID_SPHERE].oc_name = "kislota soha";
+	obj_descr[SPE_WIZARD_LOCK].oc_name = "ustasi qulf";
+	obj_descr[SPE_DIG].oc_name = "chopmoq";
+	obj_descr[SPE_CANCELLATION].oc_name = "bekor qilish";
+	obj_descr[SPE_REFLECTION].oc_name = "aks";
+	obj_descr[SPE_PARALYSIS].oc_name = "falaj";
+	obj_descr[SPE_REPAIR_ARMOR].oc_name = "ta'mirlash zirh";
+	obj_descr[SPE_CORRODE_METAL].oc_name = "metall yemoq";
+	obj_descr[SPE_PETRIFY].oc_name = "toshga aylanmoq";
+	obj_descr[SPE_MAGIC_MISSILE].oc_name = "sehrli raketa";
+	obj_descr[SPE_FIREBALL].oc_name = "yong'in to'p";
+	obj_descr[SPE_CONE_OF_COLD].oc_name = "sovuq konusning";
+	obj_descr[SPE_SLEEP].oc_name = "uyqu";
+	obj_descr[SPE_FINGER_OF_DEATH].oc_name = "o'lim nuridir";
+	obj_descr[SPE_LIGHTNING].oc_name = "chaqmoq";
+	obj_descr[SPE_POISON_BLAST].oc_name = "zahar portlash";
+	obj_descr[SPE_ACID_STREAM].oc_name = "kislota oqimi";
+	obj_descr[SPE_SOLAR_BEAM].oc_name = "quyosh nur";
+	obj_descr[SPE_BLANK_PAPER].oc_name = "bo'sh qog'oz";
+	obj_descr[SPE_STINKING_CLOUD].oc_name = "titilgan bulut";
+	obj_descr[SPE_TIME_STOP].oc_name = "vaqt to'xtatish";
+	obj_descr[SPE_MAP_LEVEL].oc_name = "xarita darajasi";
+	obj_descr[SPE_GAIN_LEVEL].oc_name = "daromad darajasi";
+
+	}
+
 	if ((Role_if(PM_ACTIVISTOR) || Role_if(PM_MYSTIC)) && new_game) {
 
 		int ammount;

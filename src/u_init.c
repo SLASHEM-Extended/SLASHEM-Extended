@@ -7164,6 +7164,260 @@ u_init()
 	    change_luck(-2);
           ini_inv(AlienItem); break; /* yeah its a lodestone, good luck getting rid of it! */
 
+	case PM_ANCIENT: /* random technique --Amy */
+
+		switch (rnd(142)) {
+
+			case 1: 
+			case 2: 
+			case 3: 
+				if (!tech_known(T_BERSERK)) learntech(T_BERSERK, FROMOUTSIDE, 1);
+				break;
+			case 4: 
+			case 5: 
+			case 6: 
+				if (!tech_known(T_KIII)) learntech(T_KIII, FROMOUTSIDE, 1);
+				break;
+			case 7: 
+			case 8: 
+			case 9: 
+				if (!tech_known(T_RESEARCH)) learntech(T_RESEARCH, FROMOUTSIDE, 1);
+				break;
+			case 10: 
+			case 11: 
+			case 12: 
+				if (!tech_known(T_SURGERY)) learntech(T_SURGERY, FROMOUTSIDE, 1);
+				break;
+			case 13: 
+			case 14: 
+			case 15: 
+				if (!tech_known(T_REINFORCE)) learntech(T_REINFORCE, FROMOUTSIDE, 1);
+				break;
+			case 16: 
+			case 17:
+			case 18: 
+				if (!tech_known(T_FLURRY)) learntech(T_FLURRY, FROMOUTSIDE, 1);
+				break;
+			case 19: 
+			case 20: 
+			case 21: 
+				if (!tech_known(T_PRACTICE)) learntech(T_PRACTICE, FROMOUTSIDE, 1);
+				break;
+			case 22: 
+			case 23: 
+			case 24: 
+				if (!tech_known(T_EVISCERATE)) learntech(T_EVISCERATE, FROMOUTSIDE, 1);
+				break;
+			case 25: 
+			case 26: 
+			case 27: 
+				if (!tech_known(T_HEAL_HANDS)) learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
+				break;
+			case 28: 
+			case 29: 
+			case 30: 
+				if (!tech_known(T_CALM_STEED)) learntech(T_CALM_STEED, FROMOUTSIDE, 1);
+				break;
+			case 31: 
+			case 32: 
+			case 33: 
+				if (!tech_known(T_TURN_UNDEAD)) learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
+				break;
+			case 34: 
+			case 35: 
+			case 36: 
+				if (!tech_known(T_VANISH)) learntech(T_VANISH, FROMOUTSIDE, 1);
+				break;
+			case 37: 
+			case 38: 
+			case 39: 
+				if (!tech_known(T_CUTTHROAT)) learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
+				break;
+			case 40: 
+			case 41: 
+				if (!tech_known(T_BLESSING)) learntech(T_BLESSING, FROMOUTSIDE, 1);
+				break;
+			case 42: 
+			case 43: 
+			case 44: 
+				if (!tech_known(T_E_FIST)) learntech(T_E_FIST, FROMOUTSIDE, 1);
+				break;
+			case 45: 
+			case 46: 
+			case 47: 
+				if (!tech_known(T_PRIMAL_ROAR)) learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
+				break;
+			case 48: 
+			case 49: 
+				if (!tech_known(T_LIQUID_LEAP)) learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
+				break;
+			case 50: 
+			case 51: 
+			case 52: 
+				if (!tech_known(T_CRIT_STRIKE)) learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
+				break;
+			case 53: 
+			case 54: 
+			case 55: 
+				if (!tech_known(T_SIGIL_CONTROL)) learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
+				break;
+			case 56: 
+			case 57: 
+			case 58: 
+				if (!tech_known(T_SIGIL_TEMPEST)) learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
+				break;
+			case 59: 
+			case 60: 
+			case 61: 
+				if (!tech_known(T_SIGIL_DISCHARGE)) learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+				break;
+			case 62: 
+			case 63: 
+			case 64: 
+				if (!tech_known(T_RAISE_ZOMBIES)) learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
+				break;
+			case 65: 
+				if (!tech_known(T_REVIVE)) learntech(T_REVIVE, FROMOUTSIDE, 1);
+				break;
+			case 66: 
+			case 67: 
+			case 68: 
+				if (!tech_known(T_WARD_FIRE)) learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
+				break;
+			case 69: 
+			case 70: 
+			case 71: 
+				if (!tech_known(T_WARD_COLD)) learntech(T_WARD_COLD, FROMOUTSIDE, 1);
+				break;
+			case 72: 
+			case 73: 
+			case 74: 
+				if (!tech_known(T_WARD_ELEC)) learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
+				break;
+			case 75: 
+			case 76: 
+			case 77: 
+				if (!tech_known(T_TINKER)) learntech(T_TINKER, FROMOUTSIDE, 1);
+				break;
+			case 78: 
+			case 79: 
+			case 80: 
+				if (!tech_known(T_RAGE)) learntech(T_RAGE, FROMOUTSIDE, 1);
+				break;
+			case 81: 
+			case 82: 
+			case 83: 
+				if (!tech_known(T_BLINK)) learntech(T_BLINK, FROMOUTSIDE, 1);
+				break;
+			case 84: 
+			case 85: 
+			case 86: 
+				if (!tech_known(T_CHI_STRIKE)) learntech(T_CHI_STRIKE, FROMOUTSIDE, 1);
+				break;
+			case 87: 
+			case 88: 
+			case 89: 
+				if (!tech_known(T_DRAW_ENERGY)) learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
+				break;
+			case 90: 
+			case 91: 
+			case 92: 
+				if (!tech_known(T_CHI_HEALING)) learntech(T_CHI_HEALING, FROMOUTSIDE, 1);
+				break;
+			case 93: 
+			case 94: 
+			case 95: 
+				if (!tech_known(T_DAZZLE)) learntech(T_DAZZLE, FROMOUTSIDE, 1);
+				break;
+			case 96: 
+			case 97: 
+			case 98: 
+				if (!tech_known(T_BLITZ)) learntech(T_BLITZ, FROMOUTSIDE, 1);
+				break;
+			case 99: 
+			case 100: 
+			case 101: 
+				if (!tech_known(T_PUMMEL)) learntech(T_PUMMEL, FROMOUTSIDE, 1);
+				break;
+			case 102: 
+			case 103: 
+			case 104: 
+				if (!tech_known(T_G_SLAM)) learntech(T_G_SLAM, FROMOUTSIDE, 1);
+				break;
+			case 105: 
+			case 106: 
+			case 107: 
+				if (!tech_known(T_DASH)) learntech(T_DASH, FROMOUTSIDE, 1);
+				break;
+			case 108: 
+			case 109: 
+			case 110: 
+				if (!tech_known(T_POWER_SURGE)) learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
+				break;
+			case 111: 
+			case 112: 
+			case 113: 
+				if (!tech_known(T_SPIRIT_BOMB)) learntech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
+				break;
+			case 114: 
+			case 115: 
+			case 116: 
+				if (!tech_known(T_DRAW_BLOOD)) learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
+				break;
+			case 117: 
+				if (!tech_known(T_WORLD_FALL)) learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
+				break;
+			case 118: 
+			case 119: 
+			case 120: 
+				if (!tech_known(T_CREATE_AMMO)) learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+				break;
+			case 121: 
+			case 122: 
+			case 123: 
+				if (!tech_known(T_POKE_BALL)) learntech(T_POKE_BALL, FROMOUTSIDE, 1);
+				break;
+			case 124: 
+			case 125: 
+			case 126: 
+				if (!tech_known(T_ATTIRE_CHARM)) learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
+				break;
+			case 127: 
+			case 128: 
+			case 129: 
+				if (!tech_known(T_SUMMON_TEAM_ANT)) learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
+				break;
+			case 130: 
+			case 131: 
+			case 132: 
+				if (!tech_known(T_JEDI_JUMP)) learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
+				break;
+			case 133: 
+			case 134: 
+			case 135: 
+				if (!tech_known(T_CHARGE_SABER)) learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
+				break;
+			case 136: 
+			case 137: 
+			case 138: 
+				if (!tech_known(T_TELEKINESIS)) learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
+				break;
+			case 139: 
+				if (!tech_known(T_EGG_BOMB)) learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
+				break;
+			case 140: 
+			case 141: 
+			case 142: 
+				if (!tech_known(T_BOOZE)) learntech(T_BOOZE, FROMOUTSIDE, 1);
+				break;
+
+			default:
+				break;
+
+		    }
+
+	    break;
+
 	case PM_KOP:
           ini_inv(KopItemA); ini_inv(KopItemB); break;
 
