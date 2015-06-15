@@ -981,7 +981,9 @@ boolean atme;
                 if (iflags.usealleg) alleg_aura(u.ux, u.uy, P_ATTACK_SPELL-1);
 #endif
 
-		u.uen -= (energy / 2);
+		/* Higher spellcasting skills mean failure takes less mana. --Amy */
+
+		u.uen -= ((energy * 50 / ((role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1) ;
 		flags.botl = 1;
 		return(1);
 	}
