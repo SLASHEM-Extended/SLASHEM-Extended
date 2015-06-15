@@ -457,8 +457,8 @@ Helmet_on()
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case ORCISH_HELM:
-	/* KMH, balance patch -- removed
-	case FIRE_HELMET: */
+	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
+	case FIRE_HELMET:
 	case HELM_OF_TELEPATHY:
 	case HELM_OF_DISCOVERY:
 	case HELM_OF_DRAIN_RESISTANCE:
@@ -570,8 +570,8 @@ Helmet_off()
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
-	/* KMH, balance patch -- removed
-	case FIRE_HELMET: */
+	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
+	case FIRE_HELMET:
 	case HELM_OF_DISCOVERY:
 	    break;
 	case DUNCE_CAP:
@@ -1179,6 +1179,10 @@ register struct obj *obj;
 		    makeknown(RIN_SEE_INVISIBLE);
 		}
 		break;
+	case RIN_INFRAVISION:
+		see_monsters();
+
+		break;
 	case RIN_TIMELY_BACKUP:
 		You("feel absolutely safe.");
 		break;
@@ -1331,6 +1335,10 @@ boolean gone;
 		    pline("Suddenly you cannot see yourself.");
 		    makeknown(RIN_SEE_INVISIBLE);
 		}
+		break;
+	case RIN_INFRAVISION:
+		see_monsters();
+
 		break;
 	case RIN_INVISIBILITY:
 		if (!Invis && !BInvis && !Blind) {

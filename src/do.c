@@ -464,6 +464,9 @@ giveback:
 		case RIN_SEE_INVISIBLE:
 		    You("see some air in the sink.");
 		    break;
+		case RIN_INFRAVISION:
+		    pline("The sink seems to glow red for a moment!");
+		    break;
 		case RIN_STEALTH:
 		pline_The("sink seems to blend into the floor for a moment.");
 		    break;

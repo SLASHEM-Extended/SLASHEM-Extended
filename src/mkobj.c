@@ -567,6 +567,9 @@ boolean artif;
 
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case GEM_CLASS:
+
+		if (otmp->otyp == WONDER_STONE) otmp->oinvis = 1;
+
 		/* KMH, balance patch -- healthstone replaces rotting/health */
 		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER)
 			{ curse(otmp); break;}

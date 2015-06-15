@@ -4476,6 +4476,8 @@ struct obj *obj;
 				pline("Wearing this cloak grants displacement and medium magic cancellation."); break;
 			case ELVEN_LEATHER_HELM:
 				pline("A light helmet that grants good armor class."); break;
+			case FIRE_HELMET:
+				pline("This helmet conveys fire resistance when worn."); break;
 			case GNOMISH_HELM:
 				pline("This headgear is a total waste of your time."); break;
 			case ORCISH_HELM:
@@ -4747,6 +4749,8 @@ struct obj *obj;
 				pline("A ring that grants poison resistance when worn."); break;
 			case RIN_SEE_INVISIBLE: 
 				pline("If something is invisible, wear this ring and you can see it."); break;
+			case RIN_INFRAVISION: 
+				pline("You get the ability to see warm-blooded monsters in the dark while wearing this ring."); break;
 			case RIN_SHOCK_RESISTANCE: 
 				pline("You can resist shock if you wear this ring."); break;
 			case RIN_SICKNESS_RESISTANCE: 
@@ -5762,12 +5766,44 @@ struct obj *obj;
 
 			case DILITHIUM_CRYSTAL:
 				pline("A white gem with a mohs hardness of 5, worth 4500 zorkmids."); break;
+			case WONDER_STONE:
+				pline("An invisible gem with a mohs hardness of 13, worth 5000 zorkmids."); break;
 			case DIAMOND:
 				pline("A white gem with a mohs hardness of 10, worth 4000 zorkmids."); break;
+			case CYAN_STONE:
+				pline("A teal gem with a mohs hardness of 8, worth 600 zorkmids."); break;
+			case MOONSTONE:
+				pline("A white gem with a mohs hardness of 6, worth 500 zorkmids."); break;
+			case DISTHENE:
+				pline("A teal gem with a mohs hardness of 7, worth 400 zorkmids."); break;
+			case PERIDOT:
+				pline("A radiant gem with a mohs hardness of 7, worth 1200 zorkmids."); break;
+			case PREHNITE:
+				pline("A radiant gem with a mohs hardness of 6, worth 500 zorkmids."); break;
+			case CHALCEDON:
+				pline("A cyan gem with a mohs hardness of 7, worth 800 zorkmids."); break;
+			case CHRYSOCOLLA:
+				pline("A cyan gem with a mohs hardness of 3, worth 800 zorkmids."); break;
+			case APOPHYLLITE:
+				pline("A teal gem with a mohs hardness of 5, worth 400 zorkmids."); break;
+			case ANDALUSITE:
+				pline("A radiant gem with a mohs hardness of 7, worth 1500 zorkmids."); break;
+			case EPIDOTE:
+				pline("A green gem with a mohs hardness of 7, worth 900 zorkmids."); break;
+			case CHAROITE:
+				pline("A violet gem with a mohs hardness of 6, worth 1200 zorkmids."); break;
+			case DIOPTASE:
+				pline("A radiant gem with a mohs hardness of 5, worth 2500 zorkmids."); break;
 			case RUBY:
 				pline("A red gem with a mohs hardness of 9, worth 3500 zorkmids."); break;
 			case JACINTH:
 				pline("An orange gem with a mohs hardness of 9, worth 3250 zorkmids."); break;
+			case ANHYDRITE:
+				pline("A teal gem with a mohs hardness of 4, worth 200 zorkmids."); break;
+			case HALITE:
+				pline("A white gem with a mohs hardness of 2, worth 200 zorkmids."); break;
+			case MARBLE:
+				pline("A white gem with a mohs hardness of 3, worth 200 zorkmids."); break;
 			case SAPPHIRE:
 				pline("A blue gem with a mohs hardness of 9, worth 3000 zorkmids."); break;
 			case BLACK_OPAL:
@@ -5776,12 +5812,20 @@ struct obj *obj;
 				pline("A green gem with a mohs hardness of 8, worth 2500 zorkmids."); break;
 			case TURQUOISE:
 				pline("A green gem with a mohs hardness of 6, worth 1500 zorkmids."); break;
+			case AMAZONITE:
+				pline("A cyan gem with a mohs hardness of 6, worth 1000 zorkmids."); break;
+			case SODALITH:
+				pline("A blue gem with a mohs hardness of 6, worth 1000 zorkmids."); break;
+			case VIVIANITE:
+				pline("A cyan gem with a mohs hardness of 2, worth 900 zorkmids."); break;
 			case CITRINE:
 				pline("A yellow gem with a mohs hardness of 6, worth 1500 zorkmids."); break;
 			case AQUAMARINE:
 				pline("A green gem with a mohs hardness of 8, worth 1500 zorkmids."); break;
 			case AMBER:
 				pline("A yellowish brown gem with a mohs hardness of 2, worth 1000 zorkmids."); break;
+			case LAPIS_LAZULI:
+				pline("A blue gem with a mohs hardness of 5, worth 600 zorkmids."); break;
 			case TOPAZ:
 				pline("A yellowish brown gem with a mohs hardness of 8, worth 900 zorkmids."); break;
 			case JET:
@@ -5792,12 +5836,28 @@ struct obj *obj;
 				pline("A yellow gem with a mohs hardness of 5, worth 700 zorkmids."); break;
 			case GARNET:
 				pline("A red gem with a mohs hardness of 7, worth 700 zorkmids."); break;
+			case SPINEL:
+				pline("A pink gem with a mohs hardness of 8, worth 600 zorkmids."); break;
 			case AMETHYST:
 				pline("A violet gem with a mohs hardness of 7, worth 600 zorkmids."); break;
 			case JASPER:
 				pline("A red gem with a mohs hardness of 7, worth 500 zorkmids."); break;
+			case MALACHITE:
+				pline("A green gem with a mohs hardness of 4, worth 800 zorkmids."); break;
+			case COVELLINE:
+				pline("A black gem with a mohs hardness of 2, worth 700 zorkmids."); break;
 			case FLUORITE:
 				pline("A violet gem with a mohs hardness of 4, worth 400 zorkmids."); break;
+			case MORGANITE:
+				pline("A pink gem with a mohs hardness of 8, worth 2000 zorkmids."); break;
+			case ORTHOCLASE:
+				pline("A yellow gem with a mohs hardness of 6, worth 2000 zorkmids."); break;
+			case ROSE_QUARTZ:
+				pline("A pink gem with a mohs hardness of 7, worth 700 zorkmids."); break;
+			case TOURMALINE:
+				pline("A red gem with a mohs hardness of 7, worth 200 zorkmids."); break;
+			case RHODOCHROSITE:
+				pline("A red gem with a mohs hardness of 4, worth 200 zorkmids."); break;
 			case OBSIDIAN:
 				pline("A black gem with a mohs hardness of 6, worth 200 zorkmids."); break;
 			case AGATE:

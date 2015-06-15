@@ -97,8 +97,8 @@ d_level *dlev;
 	    }
 
 	for (j = first; j <= LAST_GEM; j++)
-		/* KMH, balance patch -- valuable gems now sum to 171 */
-		objects[j].oc_prob = (171+j-first)/(LAST_GEM+1-first);
+		/* KMH, balance patch -- valuable gems now sum to 315 */
+		objects[j].oc_prob = (315+j-first)/(LAST_GEM+1-first);
 }
 
 /* shuffle descriptions on objects o_low to o_high */
@@ -178,6 +178,33 @@ register char oclass;
 			if (rn2(2)) { /* change aquamarine from green to blue? */
 			    COPY_OBJ_DESCR(objects[AQUAMARINE],objects[SAPPHIRE]);
 			}
+			if (rn2(2)) { /* change epidote from green to red? */
+			    COPY_OBJ_DESCR(objects[EPIDOTE],objects[RUBY]);
+			}
+			if (rn2(2)) { /* change rhodochrosite from red to pink? */
+			    COPY_OBJ_DESCR(objects[RHODOCHROSITE],objects[ROSE_QUARTZ]);
+			}
+			if (rn2(2)) { /* change amazonite from cyan to green? */
+			    COPY_OBJ_DESCR(objects[AMAZONITE],objects[EMERALD]);
+			}
+			if (rn2(2)) { /* change covelline from black to blue? */
+			    COPY_OBJ_DESCR(objects[COVELLINE],objects[SAPPHIRE]);
+			}
+			if (rn2(2)) { /* change chrysocolla from cyan to teal? */
+			    COPY_OBJ_DESCR(objects[CHRYSOCOLLA],objects[CYAN_STONE]);
+			}
+			if (rn2(2)) { /* change peridot from radiant to cyan? */
+			    COPY_OBJ_DESCR(objects[PERIDOT],objects[CHALCEDON]);
+			}
+			if (rn2(2)) { /* change anhydrite from teal to cyan? */
+			    COPY_OBJ_DESCR(objects[ANHYDRITE],objects[CHALCEDON]);
+			}
+			if (rn2(2)) { /* change marble from white to black? */
+			    COPY_OBJ_DESCR(objects[MARBLE],objects[JET]);
+			}
+			if (rn2(2)) { /* change moonstone from white to yellow? */
+			    COPY_OBJ_DESCR(objects[MOONSTONE],objects[CHRYSOBERYL]);
+			}
 			switch (rn2(4)) { /* change fluorite from violet? */
 			    case 0:  break;
 			    case 1:	/* blue */
@@ -188,6 +215,87 @@ register char oclass;
 				break;
 			    case 3:	/* green */
 				COPY_OBJ_DESCR(objects[FLUORITE],objects[EMERALD]);
+				break;
+			}
+			switch (rn2(4)) { /* change tourmaline from red? */
+			    case 0:  break;
+			    case 1:	/* red */
+				COPY_OBJ_DESCR(objects[TOURMALINE],objects[RUBY]);
+				break;
+			    case 2:	/* magenta */
+				COPY_OBJ_DESCR(objects[TOURMALINE],objects[AMETHYST]);
+				break;
+			    case 3:	/* green */
+				COPY_OBJ_DESCR(objects[TOURMALINE],objects[EMERALD]);
+				break;
+			}
+			switch (rn2(4)) { /* change apophyllite from teal? */
+			    case 0:  break;
+			    case 1:	/* cyan */
+				COPY_OBJ_DESCR(objects[APOPHYLLITE],objects[CHALCEDON]);
+				break;
+			    case 2:	/* radiant */
+				COPY_OBJ_DESCR(objects[APOPHYLLITE],objects[PREHNITE]);
+				break;
+			    case 3:	/* green */
+				COPY_OBJ_DESCR(objects[APOPHYLLITE],objects[EMERALD]);
+				break;
+			}
+			switch (rn2(3)) { /* change spinel from pink? */
+			    case 0:  break;
+			    case 1:	/* red */
+				COPY_OBJ_DESCR(objects[SPINEL],objects[RUBY]);
+				break;
+			    case 2:	/* magenta */
+				COPY_OBJ_DESCR(objects[SPINEL],objects[AMETHYST]);
+				break;
+			}
+			switch (rn2(3)) { /* change vivianite from cyan? */
+			    case 0:  break;
+			    case 1:	/* black */
+				COPY_OBJ_DESCR(objects[VIVIANITE],objects[JET]);
+				break;
+			    case 2:	/* blue */
+				COPY_OBJ_DESCR(objects[VIVIANITE],objects[SAPPHIRE]);
+				break;
+			}
+			switch (rn2(13)) { /* change wonder stone from magenta? */
+			    case 0:  break;
+			    case 1:	/* black */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[JET]);
+				break;
+			    case 2:	/* blue */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[SAPPHIRE]);
+				break;
+			    case 3:	/* red */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[RUBY]);
+				break;
+			    case 4:	/* radiant */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[PREHNITE]);
+				break;
+			    case 5:	/* green */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[EMERALD]);
+				break;
+			    case 6:	/* white */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[DIAMOND]);
+				break;
+			    case 7:	/* brown */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[TOPAZ]);
+				break;
+			    case 8:	/* yellow */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[CHRYSOBERYL]);
+				break;
+			    case 9:	/* pink */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[ROSE_QUARTZ]);
+				break;
+			    case 10:	/* orange */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[AGATE]);
+				break;
+			    case 11:	/* cyan */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[CHALCEDON]);
+				break;
+			    case 12:	/* teal */
+				COPY_OBJ_DESCR(objects[WONDER_STONE],objects[CYAN_STONE]);
 				break;
 			}
 		}

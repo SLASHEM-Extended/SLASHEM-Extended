@@ -492,7 +492,7 @@ struct mkroom *sroom;
 		      (sx == tx && sy == ty? &mons[PM_MIGO_QUEEN] :
 	              (rn2(2)? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
-		    (type == REALZOO) ? (rn2(5) ? realzoomon() : mkclass(S_QUADRUPED,0) ) :
+		    (type == REALZOO) ? (rn2(5) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
 		    (struct permonst *) 0,
 		   sx, sy, NO_MM_FLAGS);
@@ -1333,7 +1333,8 @@ realzoomon()
 	else if (i > 115)       return(&mons[PM_MASTODON]);
 	else if (i > 85)        return(&mons[PM_PYTHON]);
 	else if (i > 70)        return(&mons[PM_MUMAK]);
-	else if (i > 55)        return(&mons[PM_TIGER]);
+	else if (i > 60)        return(&mons[PM_TIGER]);
+	else if (i > 55)        return(&mons[PM_LYNX]);
 	else if (i > 45)        return(&mons[PM_PANTHER]);
 	else if (i > 25)        return(&mons[PM_JAGUAR]);
 	else if (i > 15)        return(&mons[PM_APE]);

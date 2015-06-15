@@ -30,6 +30,14 @@ struct Jitem {
 			  (typ != DILITHIUM_CRYSTAL && typ != RUBY &&	\
 			   typ != DIAMOND && typ != SAPPHIRE &&		\
 			   typ != BLACK_OPAL && 	\
+			   typ != MALACHITE && 	\
+			   typ != SPINEL && 	\
+			   typ != LAPIS_LAZULI && 	\
+			   typ != TOURMALINE && 	\
+			   typ != PERIDOT && 	\
+			   typ != MOONSTONE && 	\
+			   typ != WONDER_STONE && 	\
+			   typ != CYAN_STONE && 	\
 			   typ != EMERALD && typ != OPAL)))
 
 #ifndef OVLB
