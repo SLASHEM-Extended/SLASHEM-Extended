@@ -460,7 +460,10 @@ dodiscovered()				/* free after Robert Viduya */
 	    ++ct;
 	}
     /* display any known artifacts as another pseudo-class */
-    ct += disp_artifact_discoveries(tmpwin);
+
+	/* temporarily disabled by Amy because of crashiness. Will be re-enabled if I figure out why artifacts with
+	 * an ID number greater than 127 are segfaulting here, but for the time being, please use an artifact spoiler. */
+    /*ct += disp_artifact_discoveries(tmpwin);*/
 
     /* several classes are omitted from packorder; one is of interest here */
     Strcpy(classes, flags.inv_order);
