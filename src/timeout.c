@@ -313,10 +313,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !have_alignmentstone() && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if (AlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || have_alignmentstone() ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;
@@ -338,7 +338,7 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 
-	if (WeaknessProblem && u.uhunger < 201) {
+	if ( (WeaknessProblem || have_weaknessstone() ) && u.uhunger < 201) {
 
 		if (!rn2(20)) {
 

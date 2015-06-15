@@ -718,7 +718,7 @@ int how;
 		}
 	}
 
-	if (MenuBug && how < GENOCIDED) {
+	if ( (MenuBug || have_menubugstone()) && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 
 		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {

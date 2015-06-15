@@ -761,7 +761,7 @@ newsym(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
-	if (Superscroller && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (Superscroller || have_superscrollerstone() ) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
     if (u.uswallow) {
@@ -1459,7 +1459,7 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if (RMBLoss && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	if ( (RMBLoss || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
 	return;
 
     if (glyph >= MAX_GLYPH) {
@@ -1535,7 +1535,7 @@ void
 cls()
 {
 
-	if (YellowSpells) return;
+	if (YellowSpells || have_yellowspellstone()) return;
 
     display_nhwindow(WIN_MESSAGE, FALSE); /* flush messages */
     flags.botlx = 1;		/* force update of botl window */

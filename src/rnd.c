@@ -70,7 +70,7 @@ register int x;	/* good luck approaches 0, bad luck approaches (x-1) */
 	    else if (i >= x) i = x-1;
 	}
 
-	if (LuckLoss) change_luck(-1);
+	if (LuckLoss || have_unluckystone() ) change_luck(-1);
 
 	return i;
 }

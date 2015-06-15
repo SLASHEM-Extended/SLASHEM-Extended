@@ -458,6 +458,38 @@ struct obj {
 				|| (otmp)->otyp == POT_OIL)
 
 /* special stones */
+#define is_nastygraystone(obj)	((obj)->otyp == RIGHT_MOUSE_BUTTON_STONE || \
+				 (obj)->otyp == DISPLAY_LOSS_STONE || \
+				 (obj)->otyp == SPELL_LOSS_STONE || \
+				 (obj)->otyp == YELLOW_SPELL_STONE || \
+				 (obj)->otyp == AUTO_DESTRUCT_STONE || \
+				 (obj)->otyp == MEMORY_LOSS_STONE || \
+				 (obj)->otyp == INVENTORY_LOSS_STONE || \
+				 (obj)->otyp == BLACKY_STONE || \
+				 (obj)->otyp == MENU_BUG_STONE || \
+				 (obj)->otyp == SPEEDBUG_STONE || \
+				 (obj)->otyp == SUPERSCROLLER_STONE || \
+				 (obj)->otyp == FREE_HAND_BUG_STONE || \
+				 (obj)->otyp == UNIDENTIFY_STONE || \
+				 (obj)->otyp == STONE_OF_THIRST || \
+				 (obj)->otyp == UNLUCKY_STONE || \
+				 (obj)->otyp == SHADES_OF_GREY_STONE || \
+				 (obj)->otyp == STONE_OF_FAINTING || \
+				 (obj)->otyp == STONE_OF_CURSING || \
+				 (obj)->otyp == STONE_OF_DIFFICULTY || \
+				 (obj)->otyp == DEAFNESS_STONE || \
+				 (obj)->otyp == ANTIMAGIC_STONE || \
+				 (obj)->otyp == WEAKNESS_STONE || \
+				 (obj)->otyp == ROT_THIRTEEN_STONE || \
+				 (obj)->otyp == BISHOP_STONE || \
+				 (obj)->otyp == CONFUSION_STONE || \
+				 (obj)->otyp == DROPBUG_STONE || \
+				 (obj)->otyp == DSTW_STONE || \
+				 (obj)->otyp == STATUS_STONE || \
+				 (obj)->otyp == ALIGNMENT_STONE || \
+				 (obj)->otyp == STAIRSTRAP_STONE || \
+				 (obj)->otyp == UNINFORMATION_STONE )
+
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \
 				 (obj)->otyp == FLINT     || \
@@ -468,7 +500,8 @@ struct obj {
 				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
 				 (obj)->otyp == LOADBOULDER || \
 				 (obj)->otyp == SLEEPSTONE || \
-				 (obj)->otyp == WHETSTONE)
+				 (obj)->otyp == WHETSTONE || is_nastygraystone(obj) )
+
 
 /* misc */
 #ifdef KOPS

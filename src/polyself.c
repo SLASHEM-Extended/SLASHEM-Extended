@@ -950,11 +950,11 @@ int alone;
 			   	u.twoweap ? "s" : "");
 	    otmp2 = u.twoweap ? uswapwep : 0;
 	    uwepgone();
-	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STONE_OF_MAGIC_RESISTANCE) )
+	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) ) )
 		dropx(otmp);
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE) )
+		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) ) )
 		    dropx(otmp2);
 	    }
 	    untwoweapon();

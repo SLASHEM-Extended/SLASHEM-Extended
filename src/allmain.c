@@ -50,6 +50,7 @@ moveloop()
 	int randsp;
 	int randmnst;
 	struct permonst *randmonstforspawn;
+	int blackngdur;
 	int monstercolor;
 	int randmnsx;
 	int i;
@@ -502,19 +503,19 @@ moveloop()
 				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
 
-			if (SpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+			if ( (SpeedBug || have_speedbugstone()) && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
 				if (rn2(5)) moveamt *= rnd(5);
 				moveamt /= rnd(6);
 				if (!rn2(5)) moveamt /= 2;
 			}
 
 			/* speed bug reverses speed effects --Amy */
-			if (Very_fast && SpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
+			if (Very_fast && (SpeedBug || have_speedbugstone()) && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
 			    /* average movement is 0.5625 times normal */
 
 				moveamt /= 2;
 
-			} else if (Fast && SpeedBug && !rn2(4) && moveamt > 1 ) {
+			} else if (Fast && (SpeedBug || have_speedbugstone()) && !rn2(4) && moveamt > 1 ) {
 			    /* average movement is 0.75 times normal */
 
 				moveamt /= 2;
@@ -522,11 +523,11 @@ moveloop()
 
 			if (moveamt < 0) moveamt = 0;
 
-			if (Very_fast && !SpeedBug) {	/* speed boots or potion */
+			if (Very_fast && !SpeedBug && !have_speedbugstone()) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
 			    moveamt += NORMAL_SPEED / 2;
 			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
-			} else if (Fast && !SpeedBug) {
+			} else if (Fast && !SpeedBug && !have_speedbugstone()) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
@@ -572,9 +573,9 @@ moveloop()
 
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
-		if (AutoDestruct) stop_occupation();
+		if (AutoDestruct || have_autodestructstone()) stop_occupation();
 
-		if (FaintActive && !rn2(100) && multi >= 0) {
+		if ((FaintActive || have_faintingstone() ) && !rn2(100) && multi >= 0) {
 
 			pline("You faint from exertion.");
 			flags.soundok = 0;
@@ -584,7 +585,7 @@ moveloop()
 
 		}
 
-		if (Itemcursing && !rn2(100) ) {
+		if ( (Itemcursing || have_cursingstone()) && !rn2(100) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
@@ -598,9 +599,19 @@ moveloop()
 
 		}
 
-		if (Deafness) flags.soundok = 0;
+		if (have_blackystone() && !BlackNgWalls && !rn2(10) ) {
 
-		if (Unidentify) {
+			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+			BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+			(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+			break;
+		}
+
+		if (Deafness || have_deafnessstone() ) flags.soundok = 0;
+
+		if (Unidentify || have_unidentifystone() ) {
 
 			if (invent) {
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {

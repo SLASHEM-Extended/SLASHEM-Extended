@@ -540,7 +540,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 	    obj = addinv(obj);
 	    if (inv_cnt() > 52
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE) || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -627,7 +627,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		}
 
 	    if ( inv_cnt() > 52
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE) || !obj->cursed)
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -734,7 +734,7 @@ struct obj *obj;
 		set_artifact_intrinsic(obj, 0, W_ART);
 	}
 
-	if (obj->otyp == LOADSTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER) {
+	if (obj->otyp == LOADSTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || is_nastygraystone(obj) ) {
 		curse(obj);
 	} else if (confers_luck(obj)) {
 		set_moreluck();
@@ -972,6 +972,378 @@ have_loadboulder()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LOADBOULDER && otmp->cursed)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_rmbstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_displaystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DISPLAY_LOSS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_yellowspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == YELLOW_SPELL_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_spelllossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SPELL_LOSS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_autodestructstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AUTO_DESTRUCT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_memorylossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MEMORY_LOSS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_inventorylossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INVENTORY_LOSS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_blackystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BLACKY_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_menubugstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MENU_BUG_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_speedbugstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SPEEDBUG_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_superscrollerstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SUPERSCROLLER_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_freehandbugstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FREE_HAND_BUG_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_unidentifystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UNIDENTIFY_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_thirststone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_THIRST)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_unluckystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UNLUCKY_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_shadesofgreystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SHADES_OF_GREY_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_faintingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_FAINTING)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_cursingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_CURSING)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_difficultystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_DIFFICULTY)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_deafnessstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DEAFNESS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_weaknessstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == WEAKNESS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_antimagicstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTIMAGIC_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_rotthirteenstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ROT_THIRTEEN_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_bishopstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BISHOP_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_confusionstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CONFUSION_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_dropbugstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DROPBUG_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_dstwstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DSTW_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_statusstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STATUS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_alignmentstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ALIGNMENT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_stairstrapstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STAIRSTRAP_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_uninformationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UNINFORMATION_STONE)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -1580,7 +1952,7 @@ register const char *let,*word;
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
 		/* don't split a stack of cursed loadstones */
-		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE) && otmp->cursed)
+		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed)
 		    /* kludge for canletgo()'s can't-drop-this message */
 		    otmp->corpsenm = (int) cnt;
 		else
@@ -1921,7 +2293,7 @@ nextclass:
 		    else {
 			sym = 'y';
 			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE) )) {
+			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) )) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }
@@ -2233,7 +2605,7 @@ long* out_cnt;
 	} else
 	    win = WIN_INVEN;
 
-	if (InventoryLoss && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -2342,7 +2714,7 @@ display_inventory(lets, want_reply)
 register const char *lets;
 boolean want_reply;
 {
-	if (InventoryLoss && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -3547,7 +3919,7 @@ struct obj *obj;
 	return 0;
 	}
 
-	if (UninformationProblem) {
+	if (UninformationProblem || have_uninformationstone() ) {
 
 	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
 
@@ -5270,6 +5642,68 @@ struct obj *obj;
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
 			case ROCK:
 				pline("This is a basic rock that can be thrown, but firing it with a sling does more damage."); break;
+			case RIGHT_MOUSE_BUTTON_STONE:
+				pline("A stone that curses itself and causes the right mouse button to stop working."); break;
+		 	case DISPLAY_LOSS_STONE:
+				pline("A stone that curses itself and causes the display to fail."); break;
+		 	case SPELL_LOSS_STONE:
+				pline("A stone that curses itself and causes spell loss."); break;
+		 	case YELLOW_SPELL_STONE:
+				pline("A stone that curses itself and causes yellow spells."); break;
+		 	case AUTO_DESTRUCT_STONE:
+				pline("A stone that curses itself and causes an auto destruct mechanism to be initiated."); break;
+		 	case MEMORY_LOSS_STONE:
+				pline("A stone that curses itself and causes low local memory."); break;
+		 	case INVENTORY_LOSS_STONE:
+				pline("A stone that curses itself and causes the memory used for displaying an inventory window to run out. You cannot view this message in-game because you can't open your inventory while having this stone in there, so you gotta be peeking at the source! --Amy"); break;
+		 	case BLACKY_STONE:
+				pline("A stone that curses itself and causes Blacky to close in on you with his NG walls."); break;
+		 	case MENU_BUG_STONE:
+				pline("A stone that curses itself and causes the menu bug."); break;
+		 	case SPEEDBUG_STONE:
+				pline("A stone that curses itself and causes the speed bug."); break;
+		 	case SUPERSCROLLER_STONE:
+				pline("A stone that curses itself and causes the superscroller effect."); break;
+		 	case FREE_HAND_BUG_STONE:
+				pline("A stone that curses itself and causes your free hand to be free less often."); break;
+		 	case UNIDENTIFY_STONE:
+				pline("A stone that curses itself and causes your possessions to unidentify themselves."); break;
+		 	case STONE_OF_THIRST:
+				pline("A stone that curses itself and causes a strong sense of thirst."); break;
+		 	case UNLUCKY_STONE:
+				pline("A stone that curses itself and causes you to be shitting out of luck (SOL)."); break;
+		 	case SHADES_OF_GREY_STONE:
+				pline("A stone that curses itself and causes everything to display in various shades of grey."); break;
+		 	case STONE_OF_FAINTING:
+				pline("A stone that curses itself and causes random fainting."); break;
+		 	case STONE_OF_CURSING:
+				pline("A stone that curses itself and causes your inventory to fill up with cursed items."); break;
+		 	case STONE_OF_DIFFICULTY:
+				pline("A stone that curses itself and causes an arbitrary increase of the game's difficulty."); break;
+		 	case DEAFNESS_STONE:
+				pline("A stone that curses itself and causes a hearing break."); break;
+		 	case ANTIMAGIC_STONE:
+				pline("A stone that curses itself and causes blood mana."); break;
+		 	case WEAKNESS_STONE:
+				pline("A stone that curses itself and causes weakness to damage your health."); break;
+ 			case ROT_THIRTEEN_STONE:
+				pline("A stone that curses itself and causes this message, as well as all others, to display in rot13."); break;
+		 	case BISHOP_STONE:
+				pline("A stone that curses itself and causes you to be unable to move diagonally."); break;
+		 	case CONFUSION_STONE:
+				pline("A stone that curses itself and causes a confusing problem."); break;
+		 	case DROPBUG_STONE:
+				pline("A stone that curses itself and causes you to be unable to drop items."); break;
+ 			case DSTW_STONE:
+				pline("A stone that curses itself and causes potions to sometimes not work."); break;
+ 			case STATUS_STONE:
+				pline("A stone that curses itself and causes status effects to be impossible to cure."); break;
+		 	case ALIGNMENT_STONE:
+				pline("A stone that curses itself and causes your maximum alignment to decrease over time."); break;
+		 	case STAIRSTRAP_STONE:
+				pline("A stone that curses itself and causes stairs to be always trapped."); break;
+			case UNINFORMATION_STONE:
+				pline("A stone that curses itself and causes insufficient amounts of information. This message should never appear on the screen because you can only see it if the stone is in your inventory, and the stone prevents this kind of message from being displayed!"); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

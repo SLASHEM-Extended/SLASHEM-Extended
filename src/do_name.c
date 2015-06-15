@@ -767,7 +767,7 @@ boolean called;
 	    article = ARTICLE_THE;
 	}
 
-	if (!do_hallu && mtmp->isegotype && !UninformationProblem) {
+	if (!do_hallu && mtmp->isegotype && !UninformationProblem && !have_uninformationstone() ) {
 
 	    if (mtmp->egotype_thief) Sprintf(eos(buf), " Thief");
 	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " Phazer");

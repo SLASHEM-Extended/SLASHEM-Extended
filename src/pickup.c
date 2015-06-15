@@ -729,7 +729,7 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	anything any;
 	boolean printed_type_name;
 
-	if (InventoryLoss && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -1405,10 +1405,13 @@ boolean telekinesis;	/* not picking it up directly by hand */
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE)
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
 	    obj = splitobj(obj, count);
 
 	obj = pick_obj(obj);
+
+	/* evil patch addition: Nasty gray stones aren't usually generated cursed, but they autocurse if you pick them up. BUC testing won't save you! --Amy */
+	if (is_nastygraystone(obj)) curse(obj);
 
 	if (uwep && uwep == obj) mrg_to_wielded = TRUE;
 	nearload = near_capacity();
@@ -1570,7 +1573,7 @@ int
 doloot()	/* loot a container on the floor or loot saddle from mon. */
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The loot command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -1974,7 +1977,7 @@ boolean invobj;
 		Norep("You cannot %s %s you are wearing.",
 			Icebox ? "refrigerate" : "stash", something);
 		return 0;
-	} else if ((obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE) && obj->cursed) {
+	} else if ((obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) {
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
@@ -2213,7 +2216,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE)
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */

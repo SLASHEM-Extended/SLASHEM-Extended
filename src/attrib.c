@@ -720,8 +720,8 @@ change_luck(n)
 {
 	u.uluck += n;
 	if (u.uluck < 0 && u.uluck < LUCKMIN)	u.uluck = LUCKMIN;
-	if (!LuckLoss && u.uluck > 0 && u.uluck > LUCKMAX)	u.uluck = LUCKMAX;
-	if (LuckLoss && u.uluck > 0 && u.uluck > LUCKMAX) {
+	if (!LuckLoss && !have_unluckystone() && u.uluck > 0 && u.uluck > LUCKMAX)	u.uluck = LUCKMAX;
+	if ( (LuckLoss || have_unluckystone()) && u.uluck > 0 && u.uluck > LUCKMAX) {
 		u.uluck = LUCKMIN;
 		pline("You feel something turning around..."); /* extra vague message (evil patch idea by jonadab) */
 	}

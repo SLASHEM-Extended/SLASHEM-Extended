@@ -123,7 +123,7 @@ int
 dosit()
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The sit command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

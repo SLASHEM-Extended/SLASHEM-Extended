@@ -39,7 +39,7 @@ int
 dodrop()
 {
 
-	if (NoDropProblem) {
+	if (NoDropProblem || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -514,7 +514,7 @@ register const char *word;
 		return(FALSE);
 	}
 	/* KMH, balance patch -- removed stone of rotting */        
-	if ( (obj->otyp == LOADSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE) && obj->cursed) {
+	if ( (obj->otyp == LOADSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || is_nastygraystone(obj)) && obj->cursed) {
 		/* getobj() kludge sets corpsenm to user's specified count
 		   when refusing to split a stack of cursed loadstones */
 		if (*word) {
@@ -722,7 +722,7 @@ int
 doddrop()
 {
 
-	if (NoDropProblem) {
+	if (NoDropProblem || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -818,7 +818,7 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE) && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {
@@ -3044,7 +3044,7 @@ int
 dowipe()
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The wipe command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

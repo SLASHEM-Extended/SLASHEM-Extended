@@ -11713,6 +11713,10 @@ register struct trobj *trop;
             if (objX->otyp == SLEEPSTONE ) {
                 objX->cursed = TRUE;
             }
+            if (is_nastygraystone(objX) ) {
+                objX->cursed = TRUE;
+            }
+
             if (objX->otyp == WAN_DEATH && (Role_if(PM_DEATH_EATER) || Race_if(PM_UNGENOMOLD) ) ) {
                 objX->cursed = TRUE;
             }
@@ -11768,6 +11772,10 @@ register struct trobj *trop;
             if (obj->otyp == SLEEPSTONE ) {
                 obj->cursed = TRUE;
             }
+            if (is_nastygraystone(obj) ) {
+                obj->cursed = TRUE;
+            }
+
             if (obj->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {
                 obj->cursed = TRUE;
             }

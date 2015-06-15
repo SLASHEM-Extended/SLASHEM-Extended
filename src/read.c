@@ -1602,7 +1602,7 @@ register struct obj	*sobj;
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
 
-	if (ConfusionProblem) {
+	if (ConfusionProblem || have_confusionstone() ) {
 
 	    pline("Suddenly you're very confused!");
 	    make_confused(HConfusion + 2, FALSE);
@@ -1942,6 +1942,7 @@ register struct obj	*sobj;
 			     obj->otyp == MANASTONE ||
 			     obj->otyp == SLEEPSTONE ||
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
+			     is_nastygraystone(obj) ||
 			     (obj->otyp == LEASH && obj->leashmon)) {
 			    if(confused) blessorcurse(obj, 2);
 			    else uncurse(obj);
@@ -2703,6 +2704,7 @@ register struct obj	*sobj;
 		    known = TRUE;
 		    break;
 	case SCR_MAGIC_MAPPING:
+		if (confused) break;
 		if (level.flags.nommap) {
 		    Your("mind is filled with crazy lines!");
 		    if (Hallucination)

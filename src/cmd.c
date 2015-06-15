@@ -202,7 +202,7 @@ STATIC_PTR int
 doprev_message()
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The previous message command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -566,7 +566,7 @@ STATIC_PTR int
 playersteal()
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The borrow command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -1497,157 +1497,157 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 		Sprintf(buf, "the menu bug.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MenuBug);
 		you_have(buf);
 	}
-	if (SpeedBug) {
+	if (SpeedBug || have_speedbugstone()) {
 		Sprintf(buf, "the speed bug.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SpeedBug);
 		you_have(buf);
 	}
-	if (Superscroller) {
+	if (Superscroller || have_superscrollerstone()) {
 		Sprintf(buf, "the superscroller.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Superscroller);
 		you_have(buf);
 	}
-	if (RMBLoss) {
+	if (RMBLoss || have_rmbstone()) {
 		Sprintf(buf, "the following problem: Your right mouse button failed.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RMBLoss);
 		you_have(buf);
 	}
-	if (DisplayLoss) {
+	if (DisplayLoss || have_displaystone()) {
 		Sprintf(buf, "the following problem: Your display failed.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DisplayLoss);
 		you_have(buf);
 	}
-	if (SpellLoss) {
+	if (SpellLoss || have_spelllossstone()) {
 		Sprintf(buf, "the following problem: You lost spells.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SpellLoss);
 		you_have(buf);
 	}
-	if (YellowSpells) {
+	if (YellowSpells || have_yellowspellstone()) {
 		Sprintf(buf, "the following problem: Your spells became yellow.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", YellowSpells);
 		you_have(buf);
 	}
-	if (AutoDestruct) {
+	if (AutoDestruct || have_autodestructstone()) {
 		Sprintf(buf, "the following problem: An auto destruct mechanism was initiated.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutoDestruct);
 		you_have(buf);
 	}
-	if (MemoryLoss) {
+	if (MemoryLoss || have_memorylossstone()) {
 		Sprintf(buf, "the following problem: There is low local memory.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MemoryLoss);
 		you_have(buf);
 	}
-	if (InventoryLoss) {
+	if (InventoryLoss || have_inventorylossstone()) {
 		Sprintf(buf, "the following problem: There is not enough memory to create an inventory window.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", InventoryLoss);
 		you_have(buf);
 	}
-	if (BlackNgWalls) {
+	if (BlackNgWalls || have_blackystone()) {
 		Sprintf(buf, "the following problem: Blacky and his NG walls are closing in.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlackNgWalls);
 		you_have(buf);
 	}
-	if (FreeHandLoss) {
+	if (FreeHandLoss || have_freehandbugstone()) {
 		Sprintf(buf, "the following problem: Your free hand is less likely to be free.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FreeHandLoss);
 		you_have(buf);
 	}
-	if (Unidentify) {
+	if (Unidentify || have_unidentifystone()) {
 		Sprintf(buf, "the following problem: Your possessions sometimes unidentify themselves.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Unidentify);
 		you_have(buf);
 	}
-	if (Thirst) {
+	if (Thirst || have_thirststone()) {
 		Sprintf(buf, "a strong sense of thirst.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Thirst);
 		you_have(buf);
 	}
-	if (LuckLoss) {
+	if (LuckLoss || have_unluckystone()) {
 		Sprintf(buf, "the following problem: You're shitting out of luck (SOL).");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LuckLoss);
 		you_have(buf);
 	}
-	if (ShadesOfGrey) {
+	if (ShadesOfGrey || have_shadesofgreystone()) {
 		Sprintf(buf, "the following problem: Everything displays in various shades of grey.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ShadesOfGrey);
 		you_have(buf);
 	}
-	if (FaintActive) {
+	if (FaintActive || have_faintingstone()) {
 		Sprintf(buf, "the following problem: You randomly faint.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FaintActive);
 		you_have(buf);
 	}
-	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic) {
+	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic  || have_cursingstone()) {
 		Sprintf(buf, "the following problem: Your inventory gradually fills up with cursed items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
 		you_have(buf);
 	}
-	if (DifficultyIncreased) {
+	if (DifficultyIncreased || have_difficultystone()) {
 		Sprintf(buf, "the following problem: The difficulty of the game was arbitrarily increased.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DifficultyIncreased);
 		you_have(buf);
 	}
-	if (Deafness) {
+	if (Deafness || have_deafnessstone()) {
 		Sprintf(buf, "a hearing break.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Deafness);
 		you_have(buf);
 	}
-	if (CasterProblem) {
+	if (CasterProblem || have_antimagicstone()) {
 		Sprintf(buf, "blood mana.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CasterProblem);
 		you_have(buf);
 	}
-	if (WeaknessProblem) {
+	if (WeaknessProblem || have_weaknessstone()) {
 		Sprintf(buf, "the following problem: Being weak from hunger damages your health.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WeaknessProblem);
 		you_have(buf);
 	}
-	if (RotThirteen) {
+	if (RotThirteen || have_rotthirteenstone()) {
 		Sprintf(buf, "the following problem: A rot13 cypher has been activated for lowercase letters.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RotThirteen);
 		you_have(buf);
 	}
-	if (BishopGridbug) {
+	if (BishopGridbug || have_bishopstone()) {
 		Sprintf(buf, "the following problem: You cannot move diagonally.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BishopGridbug);
 		you_have(buf);
 	}
-	if (ConfusionProblem) {
+	if (ConfusionProblem || have_confusionstone()) {
 		Sprintf(buf, "a confusing problem.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ConfusionProblem);
 		you_have(buf);
 	}
-	if (NoDropProblem) {
+	if (NoDropProblem || have_dropbugstone()) {
 		Sprintf(buf, "the following problem: You cannot drop items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoDropProblem);
 		you_have(buf);
 	}
-	if (DSTWProblem) {
+	if (DSTWProblem || have_dstwstone()) {
 		Sprintf(buf, "the following problem: Your potions don't always work.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DSTWProblem);
 		you_have(buf);
 	}
-	if (StatusTrapProblem) {
+	if (StatusTrapProblem || have_statusstone()) {
 		Sprintf(buf, "the following problem: You can't cure status effects.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StatusTrapProblem);
 		you_have(buf);
 	}
-	if (AlignmentProblem) {
+	if (AlignmentProblem || have_alignmentstone()) {
 		Sprintf(buf, "the following problem: Your maximum alignment will decrease over time.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlignmentProblem);
 		you_have(buf);
 	}
-	if (StairsProblem) {
+	if (StairsProblem || have_stairstrapstone()) {
 		Sprintf(buf, "the following problem: Stairs are always trapped.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StairsProblem);
 		you_have(buf);
 	}
-	if (UninformationProblem) {
+	if (UninformationProblem || have_uninformationstone()) {
 		Sprintf(buf, "the following problem: The game gives insufficient amounts of information.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", UninformationProblem);
 		you_have(buf);
@@ -2205,10 +2205,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    you_are(buf);
 	}
 	if (Unchanging) you_can("not change from your current form");
-	if (Fast && !SpeedBug) you_are(Very_fast ? "very fast" : "fast");
-	if (Fast && SpeedBug) you_are(Very_fast ? "very slow" : "slow");
-	if (!Fast && Very_fast && !SpeedBug) you_are("very fast");
-	if (!Fast && Very_fast && SpeedBug) you_are("very slow");
+	if (Fast && !SpeedBug && !have_speedbugstone()) you_are(Very_fast ? "very fast" : "fast");
+	if (Fast && (SpeedBug || have_speedbugstone()) ) you_are(Very_fast ? "very slow" : "slow");
+	if (!Fast && Very_fast && !SpeedBug && !have_speedbugstone()) you_are("very fast");
+	if (!Fast && Very_fast && (SpeedBug || have_speedbugstone()) ) you_are("very slow");
 	if (Reflecting) you_have("reflection");
 	if (Free_action) you_have("free action");
 	if (Fixed_abil) you_have("fixed abilities");
@@ -2387,7 +2387,7 @@ minimal_enlightenment()
 
 	*statline = '\0';
 
-	if (!DisplayLoss) {
+	if (!DisplayLoss && !have_displaystone() ) {
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
@@ -2426,8 +2426,8 @@ minimal_enlightenment()
 		if (Stoned) Sprintf(eos(statline), "petrification, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
-		if (!Thirst && u.urealedibility && u.uhunger >= 3500) Sprintf(eos(statline), "oversatiated, ");
-		else if(!Thirst && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
+		if (!Thirst && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) Sprintf(eos(statline), "oversatiated, ");
+		else if(!Thirst && !have_thirststone() && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
 
 		Sprintf(eos(statline), ".");
 
@@ -3795,7 +3795,7 @@ char sym;
 	u.dx = xdir[dp-sdp];
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
-	if (u.dx && u.dy && (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ) {
+	if (u.dx && u.dy && (BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ) {
 		u.dx = u.dy = 0;
 		return 0;
 	}
@@ -3916,14 +3916,14 @@ const char *msg;
 		putstr(win, 0, "");
 	    }
 	}
-	if (iflags.num_pad && (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)) {
+	if (iflags.num_pad && (BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)) {
 	    putstr(win, 0, "Valid direction keys in your current form (with number_pad on) are:");
 	    putstr(win, 0, "             8   ");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "          4- . -6");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "             2   ");
-	} else if (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) {
+	} else if (BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) {
 	    putstr(win, 0, "Valid direction keys in your current form are:");
 	    putstr(win, 0, "             k   ");
 	    putstr(win, 0, "             |   ");
@@ -3962,7 +3962,7 @@ const char *msg;
 void
 confdir()
 {
-	register int x = (BishopGridbug || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ? 2*rn2(4) : rn2(8);
+	register int x = (BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) ? 2*rn2(4) : rn2(8);
 	u.dx = xdir[x];
 	u.dy = ydir[x];
 	return;
@@ -4255,7 +4255,7 @@ STATIC_PTR int
 dotravel()
 {
 
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The travel command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

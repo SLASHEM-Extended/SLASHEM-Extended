@@ -643,14 +643,14 @@ bot2str(char *newbot2)
 	}
 */
 
-	if (!Thirst && u.urealedibility && u.uhunger >= 3500) 
+	if (!Thirst && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text("Oversatiated", newbot2);
 #else
 		Strcat(nb = eos(nb), " Oversatiated");
 #endif
 
-	else if(!Thirst && strcmp(hu_stat[u.uhs], "        "))
+	else if(!Thirst && !have_thirststone() && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(hu_stat[u.uhs], newbot2);
 #else
@@ -949,7 +949,7 @@ boolean reconfig;
 #endif
     if (flags.time)
 	*rv++ = reconfig ? "time" : (Sprintf(tim, "%ld", moves), tim);
-    if (!Thirst) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
+    if (!Thirst && !have_thirststone()) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
     *rv++ = reconfig ? "flags" : (Sprintf(flgs, "%lX",
@@ -999,8 +999,8 @@ bot()
 	if (raw_handler)
 		bot_raw(FALSE);
 	else {
-	if (!DisplayLoss) bot1();
-	if (!DisplayLoss) bot2();
+	if (!DisplayLoss && !have_displaystone()) bot1();
+	if (!DisplayLoss && !have_displaystone()) bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }

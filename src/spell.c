@@ -798,7 +798,7 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu(YellowSpells ? "Your spells are yellow." : "Choose which spell to cast",
+	return dospellmenu( (YellowSpells || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
 			   SPELLMENU_CAST, spell_no);
 }
 
@@ -998,7 +998,7 @@ boolean atme;
 	    Your("knowledge of this spell is growing faint.");
 	}
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
-	if (YellowSpells) energy *= 2;
+	if (YellowSpells || have_yellowspellstone()) energy *= 2;
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
@@ -1704,10 +1704,10 @@ dovspell()
 	if (spellid(0) == NO_SPELL)
 	    You("don't know any spells right now.");
 	else {
-	    while (dospellmenu(YellowSpells ? "Your spells are yellow." : "Currently known spells",
+	    while (dospellmenu( (YellowSpells || have_yellowspellstone() ) ? "Your spells are yellow." : "Currently known spells",
 			       SPELLMENU_VIEW, &splnum)) {
 		Sprintf(qbuf, "Reordering spells; swap '%s' with",
-			SpellLoss ? "spell" : spellname(splnum));
+			(SpellLoss || have_spelllossstone()) ? "spell" : spellname(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum)) break;
 
 		spl_tmp = spl_book[splnum];
@@ -1750,7 +1750,7 @@ int *spell_no;
 	if (flags.menu_style == MENU_TRADITIONAL)
 		Strcat(buf, iflags.menu_tab_sep ? "\tKey" : "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
-	if (!SpellLoss) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+	if (!SpellLoss && !have_spelllossstone()) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		Sprintf(buf, iflags.menu_tab_sep ?
 			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-12s %3d%%"
 			"   %3d%%",
@@ -1930,7 +1930,7 @@ int spell;
 	 */
 	chance = chance * (25-splcaster) / 10;
 
-	if (CasterProblem && chance > 0) {
+	if ( (CasterProblem || have_antimagicstone() ) && chance > 0) {
 
 		chance = (chance / u.uhpmax * u.uhp);
 

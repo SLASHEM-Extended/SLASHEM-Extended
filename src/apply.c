@@ -1383,7 +1383,7 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
-	if (MenuBug) {
+	if (MenuBug || have_menubugstone()) {
 	pline("The rub command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -3717,7 +3717,7 @@ doapply()
 	    return 1;	/* evading your grasp costs a turn; just be
 			   grateful that you don't drop it as well */
 
-	if (FreeHandLoss) {
+	if (FreeHandLoss || have_freehandbugstone() ) {
 		if (!(uwep && uwep == obj)) {
 			pline("You must wield this item first if you want to apply it!"); 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4100,6 +4100,39 @@ doapply()
 	case LOADBOULDER:
 	case STONE_OF_MAGIC_RESISTANCE:
 	case SLEEPSTONE:
+
+	case RIGHT_MOUSE_BUTTON_STONE:
+ 	case DISPLAY_LOSS_STONE:
+ 	case SPELL_LOSS_STONE:
+ 	case YELLOW_SPELL_STONE:
+ 	case AUTO_DESTRUCT_STONE:
+ 	case MEMORY_LOSS_STONE:
+ 	case INVENTORY_LOSS_STONE:
+ 	case BLACKY_STONE:
+ 	case MENU_BUG_STONE:
+ 	case SPEEDBUG_STONE:
+ 	case SUPERSCROLLER_STONE:
+ 	case FREE_HAND_BUG_STONE:
+ 	case UNIDENTIFY_STONE:
+ 	case STONE_OF_THIRST:
+ 	case UNLUCKY_STONE:
+ 	case SHADES_OF_GREY_STONE:
+ 	case STONE_OF_FAINTING:
+ 	case STONE_OF_CURSING:
+ 	case STONE_OF_DIFFICULTY:
+ 	case DEAFNESS_STONE:
+ 	case ANTIMAGIC_STONE:
+ 	case WEAKNESS_STONE:
+ 	case ROT_THIRTEEN_STONE:
+ 	case BISHOP_STONE:
+ 	case CONFUSION_STONE:
+ 	case DROPBUG_STONE:
+ 	case DSTW_STONE:
+ 	case STATUS_STONE:
+ 	case ALIGNMENT_STONE:
+ 	case STAIRSTRAP_STONE:
+	case UNINFORMATION_STONE:
+
 	case SALT_CHUNK:
 		use_stone(obj);
 		break;
