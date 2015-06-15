@@ -805,6 +805,15 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ BOOTS_OF_WEAKNESS, "sapogi slabosti" },
 	{ GRIDBUG_CONDUCT_BOOTS, "setka oshibka provodit' sapogi" },
 	{ STAIRWELL_STOMPING_BOOTS, "lestnichnaya kletka topat' sapogi" },
+
+	{ STONE_OF_INTRINSIC_LOSS, "vnutrennyaya poterya kamen'" },
+	{ BLOOD_LOSS_STONE, "poterya krovi kamen'" },
+	{ BAD_EFFECT_STONE, "plokhoye vliyaniye kamen'" },
+	{ TRAP_CREATION_STONE, "sozdayut lovushki kamen'" },
+	{ STONE_OF_VULNERABILITY, "uyazvimost' kamen'" },
+	{ ITEM_TELEPORTING_STONE, "punkt pereseleniye kamen'" },
+	{ NASTY_STONE, "zlobnost' kamen'" },
+
 	{0, "" }
 };
 
@@ -1445,6 +1454,14 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ STAIRWELL_STOMPING_BOOTS, "shirin oyoq osti chizilmasin" },
 	{ GLOVES_OF_MISSING_INFORMATION, "etishmayotgan ma'lumotlar sportchisi" },
 	{ WHISPERING_HELMET, "pichirlardi zarbdan" },
+
+	{ STONE_OF_INTRINSIC_LOSS, "ichki zarar tosh" },
+	{ BLOOD_LOSS_STONE, "qon yo'qotish tosh" },
+	{ BAD_EFFECT_STONE, "yomon ta'sir tosh" },
+	{ TRAP_CREATION_STONE, "makr yaratish tosh" },
+	{ STONE_OF_VULNERABILITY, "zaiflik tosh" },
+	{ ITEM_TELEPORTING_STONE, "xabar xavfli ekanini tosh" },
+	{ NASTY_STONE, "iflos ishlar tosh" },
 
 	{0, "" }
 };

@@ -1653,7 +1653,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
-	if (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem) {
+	if (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem || have_intrinsiclossstone() ) {
 		Sprintf(buf, "a case of random intrinsic loss.");
 		you_have(buf);
 	}
@@ -1661,19 +1661,19 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		Sprintf(buf, "randomly revealing traps");
 		you_are(buf);
 	}
-	if (u.uprops[BLOOD_LOSS].extrinsic || BloodLossProblem) {
+	if (u.uprops[BLOOD_LOSS].extrinsic || BloodLossProblem || have_bloodlossstone() ) {
 		Sprintf(buf, "bleeding out");
 		you_are(buf);
 	}
-	if (u.uprops[NASTINESS_EFFECTS].extrinsic || NastinessProblem) {
+	if (u.uprops[NASTINESS_EFFECTS].extrinsic || NastinessProblem || have_nastystone() ) {
 		Sprintf(buf, "subjected to random nasty trap effects");
 		you_are(buf);
 	}
-	if (u.uprops[BAD_EFFECTS].extrinsic || BadEffectProblem) {
+	if (u.uprops[BAD_EFFECTS].extrinsic || BadEffectProblem || have_badeffectstone() ) {
 		Sprintf(buf, "subjected to random bad effects");
 		you_are(buf);
 	}
-	if (u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic || TrapCreationProblem) {
+	if (u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic || TrapCreationProblem || have_trapcreationstone() ) {
 		Sprintf(buf, "more likely to encounter traps");
 		you_are(buf);
 	}
@@ -1681,11 +1681,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		Sprintf(buf, "wearing sentient high heels");
 		you_are(buf);
 	}
-	if (u.uprops[REPEATING_VULNERABILITY].extrinsic || AutomaticVulnerabilitiy) {
+	if (u.uprops[REPEATING_VULNERABILITY].extrinsic || AutomaticVulnerabilitiy || have_vulnerabilitystone() ) {
 		Sprintf(buf, "the risk of temporarily losing intrinsics");
 		you_have(buf);
 	}
-	if (u.uprops[TELEPORTING_ITEMS].extrinsic || TeleportingItems) {
+	if (u.uprops[TELEPORTING_ITEMS].extrinsic || TeleportingItems || have_itemportstone() ) {
 		Sprintf(buf, "teleporting items");
 		you_have(buf);
 	}

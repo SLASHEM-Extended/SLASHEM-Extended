@@ -227,7 +227,7 @@ nh_timeout()
 	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
 	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
 
-	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !BloodLossProblem && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && Role_if(PM_ACTIVISTOR) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -240,6 +240,11 @@ nh_timeout()
 	}
 
 	if (!rn2(1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+		You_hear("maniacal laughter!");
+	    attrcurse();
+	}
+
+	if (!rn2(1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 	    attrcurse();
 	}
@@ -260,6 +265,8 @@ nh_timeout()
 	if (!rn2(200) && u.uprops[BAD_EFFECTS].extrinsic) badeffect();
 
 	if (!rn2(200) && BadEffectProblem) badeffect();
+
+	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {
 		const char *line;
@@ -282,6 +289,12 @@ nh_timeout()
 
 	}
 
+	if (!rn2(200) && have_trapcreationstone() ) {
+
+		makerandomtrap();
+
+	}
+
 	if (!rn2(2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
@@ -290,6 +303,13 @@ nh_timeout()
 	}
 
 	if (!rn2(2000) && TrapCreationProblem) {
+
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+
+	}
+
+	if (!rn2(2000) && have_trapcreationstone() ) {
 
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
@@ -1017,13 +1037,267 @@ nh_timeout()
 			}
 	}
 
+	if (!rn2(250) && have_vulnerabilitystone() ) {
+
+		switch (rnd(109)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				u.uprops[DEAC_FIRE_RES].intrinsic += rnz(200);
+				pline("You are prevented from having fire resistance!");
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				u.uprops[DEAC_COLD_RES].intrinsic += rnz(200);
+				pline("You are prevented from having cold resistance!");
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(200);
+				pline("You are prevented from having sleep resistance!");
+				break;
+			case 16:
+			case 17:
+				u.uprops[DEAC_DISINT_RES].intrinsic += rnz(200);
+				pline("You are prevented from having disintegration resistance!");
+				break;
+			case 18:
+			case 19:
+			case 20:
+			case 21:
+			case 22:
+				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz(200);
+				pline("You are prevented from having shock resistance!");
+				break;
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+				u.uprops[DEAC_POISON_RES].intrinsic += rnz(200);
+				pline("You are prevented from having poison resistance!");
+				break;
+			case 28:
+			case 29:
+			case 30:
+				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz(200);
+				pline("You are prevented from having drain resistance!");
+				break;
+			case 31:
+			case 32:
+				u.uprops[DEAC_SICK_RES].intrinsic += rnz(200);
+				pline("You are prevented from having sickness resistance!");
+				break;
+			case 33:
+			case 34:
+				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz(200);
+				pline("You are prevented from having magic resistance!");
+				break;
+			case 35:
+			case 36:
+			case 37:
+			case 38:
+				u.uprops[DEAC_ACID_RES].intrinsic += rnz(200);
+				pline("You are prevented from having acid resistance!");
+				break;
+			case 39:
+			case 40:
+				u.uprops[DEAC_STONE_RES].intrinsic += rnz(200);
+				pline("You are prevented from having petrification resistance!");
+				break;
+			case 41:
+				u.uprops[DEAC_FEAR_RES].intrinsic += rnz(200);
+				pline("You are prevented from having fear resistance!");
+				break;
+			case 42:
+			case 43:
+			case 44:
+				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz(200);
+				pline("You are prevented from having see invisible!");
+				break;
+			case 45:
+			case 46:
+			case 47:
+				u.uprops[DEAC_TELEPAT].intrinsic += rnz(200);
+				pline("You are prevented from having telepathy!");
+				break;
+			case 48:
+			case 49:
+			case 50:
+				u.uprops[DEAC_WARNING].intrinsic += rnz(200);
+				pline("You are prevented from having warning!");
+				break;
+			case 51:
+			case 52:
+			case 53:
+				u.uprops[DEAC_SEARCHING].intrinsic += rnz(200);
+				pline("You are prevented from having automatic searching!");
+				break;
+			case 54:
+				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz(200);
+				pline("You are prevented from having clairvoyance!");
+				break;
+			case 55:
+			case 56:
+			case 57:
+			case 58:
+			case 59:
+				u.uprops[DEAC_INFRAVISION].intrinsic += rnz(200);
+				pline("You are prevented from having infravision!");
+				break;
+			case 60:
+				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz(200);
+				pline("You are prevented from having detect monsters!");
+				break;
+			case 61:
+			case 62:
+			case 63:
+				u.uprops[DEAC_INVIS].intrinsic += rnz(200);
+				pline("You are prevented from having invisibility!");
+				break;
+			case 64:
+				u.uprops[DEAC_DISPLACED].intrinsic += rnz(200);
+				pline("You are prevented from having displacement!");
+				break;
+			case 65:
+			case 66:
+			case 67:
+				u.uprops[DEAC_STEALTH].intrinsic += rnz(200);
+				pline("You are prevented from having stealth!");
+				break;
+			case 68:
+				u.uprops[DEAC_JUMPING].intrinsic += rnz(200);
+				pline("You are prevented from having jumping!");
+				break;
+			case 69:
+			case 70:
+			case 71:
+				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz(200);
+				pline("You are prevented from having teleport control!");
+				break;
+			case 72:
+				u.uprops[DEAC_FLYING].intrinsic += rnz(200);
+				pline("You are prevented from having flying!");
+				break;
+			case 73:
+				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz(200);
+				pline("You are prevented from having magical breathing!");
+				break;
+			case 74:
+				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz(200);
+				pline("You are prevented from having phasing!");
+				break;
+			case 75:
+			case 76:
+				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz(200);
+				pline("You are prevented from having slow digestion!");
+				break;
+			case 77:
+				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz(200);
+				pline("You are prevented from having half spell damage!");
+				break;
+			case 78:
+				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz(200);
+				pline("You are prevented from having half physical damage!");
+				break;
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+			case 83:
+				u.uprops[DEAC_REGENERATION].intrinsic += rnz(200);
+				pline("You are prevented from having regeneration!");
+				break;
+			case 84:
+			case 85:
+				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz(200);
+				pline("You are prevented from having mana regeneration!");
+				break;
+			case 86:
+			case 87:
+			case 88:
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz(200);
+				pline("You are prevented from having polymorph control!");
+				break;
+			case 89:
+			case 90:
+			case 91:
+			case 92:
+			case 93:
+				u.uprops[DEAC_FAST].intrinsic += rnz(200);
+				pline("You are prevented from having speed!");
+				break;
+			case 94:
+			case 95:
+			case 96:
+				u.uprops[DEAC_REFLECTING].intrinsic += rnz(200);
+				pline("You are prevented from having reflection!");
+				break;
+			case 97:
+			case 98:
+			case 99:
+				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(200);
+				pline("You are prevented from having free action!");
+				break;
+			case 100:
+				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz(200);
+				pline("You are prevented from hallu partying!");
+				break;
+			case 101:
+				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz(200);
+				pline("You are prevented from drunken boxing!");
+				break;
+			case 102:
+				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having stunnopathy!");
+				break;
+			case 103:
+				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having numbopathy!");
+				break;
+			case 104:
+				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having freezopathy!");
+				break;
+			case 105:
+				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz(200);
+				pline("You are prevented from being a stoned chiller!");
+				break;
+			case 106:
+				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz(200);
+				pline("You are prevented from having corrosivity!");
+				break;
+			case 107:
+				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz(200);
+				pline("You are prevented from having an increased fear factor!");
+				break;
+			case 108:
+				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having burnopathy!");
+				break;
+			case 109:
+				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having sickopathy!");
+				break;
+			}
+	}
+
 	if (u.uprops[TELEPORTING_ITEMS].extrinsic) {
 
 		if (invent) {
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
@@ -1038,7 +1312,22 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+
+	}
+
+	if (have_itemportstone() ) {
+
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
@@ -1134,7 +1423,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(31)) {
+		switch (rnd(38)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1185,6 +1474,157 @@ nh_timeout()
 				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
 				break;
 			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+		}
+
+	}
+
+	if (!rn2(1000) && NastinessProblem) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(38)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+		}
+
+	}
+
+	if (!rn2(1000) && have_nastystone() ) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(38)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1221,6 +1661,10 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 	if (!rn2(200) && BloodLossProblem) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+	if (!rn2(200) && have_bloodlossstone() ) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
@@ -1278,6 +1722,15 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
 
+	if (!rn2(1000) && have_bloodlossstone() ) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+
 	if (!rn2(3000) && Role_if(PM_BLEEDER)) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
@@ -1288,6 +1741,10 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(3000) && BloodLossProblem) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(3000) && have_bloodlossstone() ) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

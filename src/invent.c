@@ -1361,6 +1361,90 @@ have_uninformationstone()
 	return(FALSE);
 }
 
+boolean
+have_intrinsiclossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_bloodlossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BLOOD_LOSS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_badeffectstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BAD_EFFECT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_trapcreationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TRAP_CREATION_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_vulnerabilitystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_VULNERABILITY)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_itemportstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ITEM_TELEPORTING_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_nastystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NASTY_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -5806,6 +5890,21 @@ struct obj *obj;
 				pline("A stone that curses itself and causes stairs to be always trapped."); break;
 			case UNINFORMATION_STONE:
 				pline("A stone that curses itself and causes insufficient amounts of information. This message should never appear on the screen because you can only see it if the stone is in your inventory, and the stone prevents this kind of message from being displayed!"); break;
+
+			case STONE_OF_INTRINSIC_LOSS:
+				pline("A stone that curses itself and causes intrinsic loss."); break;
+			case BLOOD_LOSS_STONE:
+				pline("A stone that curses itself and causes bleedout."); break;
+			case BAD_EFFECT_STONE:
+				pline("A stone that curses itself and causes bad effects."); break;
+			case TRAP_CREATION_STONE:
+				pline("A stone that curses itself and causes traps to be generated."); break;
+			case STONE_OF_VULNERABILITY:
+				pline("A stone that curses itself and causes vulnerability."); break;
+			case ITEM_TELEPORTING_STONE:
+				pline("A stone that curses itself and causes item teleportation."); break;
+			case NASTY_STONE:
+				pline("A stone that curses itself and causes nasty effects."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

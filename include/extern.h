@@ -916,6 +916,14 @@ E boolean NDECL(have_alignmentstone);
 E boolean NDECL(have_stairstrapstone);
 E boolean NDECL(have_uninformationstone);
 
+E boolean NDECL(have_intrinsiclossstone);
+E boolean NDECL(have_bloodlossstone);
+E boolean NDECL(have_badeffectstone);
+E boolean NDECL(have_trapcreationstone);
+E boolean NDECL(have_vulnerabilitystone);
+E boolean NDECL(have_itemportstone);
+E boolean NDECL(have_nastystone);
+
 E boolean NDECL(have_mothrelay);
 
 E struct obj *FDECL(o_on, (unsigned int,struct obj *));

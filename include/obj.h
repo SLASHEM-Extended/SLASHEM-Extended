@@ -488,6 +488,13 @@ struct obj {
 				 (obj)->otyp == STATUS_STONE || \
 				 (obj)->otyp == ALIGNMENT_STONE || \
 				 (obj)->otyp == STAIRSTRAP_STONE || \
+				 (obj)->otyp == STONE_OF_INTRINSIC_LOSS || \
+				 (obj)->otyp == BLOOD_LOSS_STONE || \
+				 (obj)->otyp == BAD_EFFECT_STONE || \
+				 (obj)->otyp == TRAP_CREATION_STONE || \
+				 (obj)->otyp == STONE_OF_VULNERABILITY || \
+				 (obj)->otyp == ITEM_TELEPORTING_STONE || \
+				 (obj)->otyp == NASTY_STONE || \
 				 (obj)->otyp == UNINFORMATION_STONE )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \

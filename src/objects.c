@@ -2349,15 +2349,15 @@ GEM("obsidian", "black",               9,  0,  200, 15,  6, GEMSTONE, CLR_BLACK)
 GEM("agate", "orange",                 10,  0,  200, 15,  6, GEMSTONE, CLR_ORANGE),
 GEM("jade", "green",                   10,  0,  300, 15,  6, GEMSTONE, CLR_GREEN),
 GEM("worthless piece of white glass", "white",   276, 0, 0, 6, 5, GLASS, CLR_WHITE),
-GEM("worthless piece of blue glass", "blue",     277, 0, 0, 6, 5, GLASS, CLR_BRIGHT_BLUE),
-GEM("worthless piece of red glass", "red",       276, 0, 0, 6, 5, GLASS, CLR_RED),
+GEM("worthless piece of blue glass", "blue",     275, 0, 0, 6, 5, GLASS, CLR_BRIGHT_BLUE),
+GEM("worthless piece of red glass", "red",       275, 0, 0, 6, 5, GLASS, CLR_RED),
 GEM("worthless piece of yellowish brown glass", "yellowish brown",
 												 277, 0, 0, 6, 5, GLASS, CLR_BROWN),
 GEM("worthless piece of orange glass", "orange", 276, 0, 0, 6, 5, GLASS, CLR_ORANGE),
-GEM("worthless piece of yellow glass", "yellow", 277, 0, 0, 6, 5, GLASS, CLR_YELLOW),
-GEM("worthless piece of black glass",  "black",  277, 0, 0, 6, 5, GLASS, CLR_BLACK),
-GEM("worthless piece of green glass", "green",   276, 0, 0, 6, 5, GLASS, CLR_GREEN),
-GEM("worthless piece of violet glass", "violet", 277, 0, 0, 6, 5, GLASS, CLR_MAGENTA),
+GEM("worthless piece of yellow glass", "yellow", 276, 0, 0, 6, 5, GLASS, CLR_YELLOW),
+GEM("worthless piece of black glass",  "black",  276, 0, 0, 6, 5, GLASS, CLR_BLACK),
+GEM("worthless piece of green glass", "green",   275, 0, 0, 6, 5, GLASS, CLR_GREEN),
+GEM("worthless piece of violet glass", "violet", 276, 0, 0, 6, 5, GLASS, CLR_MAGENTA),
 
 /* Placement note: there is a wishable subrange for   
  * "gray stones" in the o_ranges[] array in objnam.c  
@@ -2403,6 +2403,14 @@ ROCK("status stone", "gray",			0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GR
 ROCK("alignment stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("stairstrap stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("uninformation stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+
+ROCK("stone of intrinsic loss", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("blood loss stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("bad effect stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("trap creation stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("stone of vulnerability", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("item-teleporting stone", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+ROCK("nasty stone", "gray",			0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 
 ROCK("salt chunk", "gray", 		   	0, 25,  0,   60, 17, 17, 0, 10, 2, MINERAL, CLR_GRAY),
 ROCK("whetstone", "gray",			0, 10,  0,   60, 15, 15, 1, 10, 7, MINERAL, CLR_GRAY),
