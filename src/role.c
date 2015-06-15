@@ -4828,7 +4828,6 @@ plnamesuffix()
 	}
 }
 
-
 /*
  *	Special setup modifications here:
  *
@@ -4926,11 +4925,17 @@ role_init()
 	    urole.ngod = roles[flags.pantheon].ngod;
 	    urole.cgod = roles[flags.pantheon].cgod;
 	}
-	if (Race_if(PM_HERETIC) ) {
+	/*if (Race_if(PM_HERETIC) ) {
 	    urole.lgod = roles[u.uhereticgodlawful].lgod;
 	    urole.ngod = roles[u.uhereticgodneutral].ngod;
 	    urole.cgod = roles[u.uhereticgodchaotic].cgod;
-	}
+
+	    u.uhereticlawfulnew = u.uhereticneutralnew = u.uhereticchaoticnew = 0;
+
+	    if (!rn2(3)) { urole.lgod = hereticgods[rn2(SIZE(hereticgods))]; u.uhereticlawfulnew = 1; }
+	    if (!rn2(3)) { urole.ngod = hereticgods[rn2(SIZE(hereticgods))]; u.uhereticneutralnew = 1; }
+	    if (!rn2(3)) { urole.cgod = hereticgods[rn2(SIZE(hereticgods))]; u.uhereticchaoticnew = 1; }
+	}*/
 
 #if 0 /* Now in polyself.c, init_uasmon() */
 	/* Fix up infravision */

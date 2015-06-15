@@ -2324,9 +2324,9 @@ aligntyp alignment;
 
     switch (alignment) {
      case A_NONE:	gnam = Moloch; break;
-     case A_LAWFUL:	gnam = roles[u.uhereticgodlawful].lgod; break;
-     case A_NEUTRAL:	gnam = roles[u.uhereticgodneutral].ngod; break;
-     case A_CHAOTIC:	gnam = roles[u.uhereticgodchaotic].cgod; break;
+     case A_LAWFUL:	gnam = u.hereticlgod; break;
+     case A_NEUTRAL:	gnam = u.hereticngod; break;
+     case A_CHAOTIC:	gnam = u.hereticcgod; break;
      default:		impossible("unknown alignment.");
 			gnam = "someone"; break;
 	    }
@@ -2382,9 +2382,9 @@ aligntyp alignment;
 	if (Race_if(PM_HERETIC)) {
 
     switch (alignment) {
-     case A_LAWFUL:	gnam = roles[u.uhereticgodlawful].lgod; break;
-     case A_NEUTRAL:	gnam = roles[u.uhereticgodneutral].ngod; break;
-     case A_CHAOTIC:	gnam = roles[u.uhereticgodchaotic].cgod; break;
+     case A_LAWFUL:	gnam = u.hereticlgod; break;
+     case A_NEUTRAL:	gnam = u.hereticngod; break;
+     case A_CHAOTIC:	gnam = u.hereticcgod; break;
      default:		gnam = 0; break;
 	    }
 

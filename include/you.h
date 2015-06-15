@@ -382,6 +382,7 @@ struct you {
 	int uhereticgodlawful;
 	int uhereticgodneutral;
 	int uhereticgodchaotic;
+	const char *hereticlgod, *hereticngod, *hereticcgod; /* god names (from pray.c) */
 	int urealedibility;	/* no longer a boolean --Amy */
 	int wormpolymorph;	/* for worm that walks race */
 
