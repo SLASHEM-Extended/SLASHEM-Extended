@@ -2711,7 +2711,6 @@ register struct obj	*sobj;
 		    known = TRUE;
 		    break;
 	case SCR_MAGIC_MAPPING:
-		if (confused) break;
 		if (level.flags.nommap) {
 		    Your("mind is filled with crazy lines!");
 		    if (Hallucination)
@@ -2732,6 +2731,7 @@ register struct obj	*sobj;
 		}
 		known = TRUE;
 	case SPE_MAGIC_MAPPING:
+		if (confused && sobj->otyp == SPE_MAGIC_MAPPING) break;
 		if (level.flags.nommap) {
 		    Your("%s spins as %s blocks the spell!", body_part(HEAD), something);
 		    make_confused(HConfusion + rnd(30), FALSE);
