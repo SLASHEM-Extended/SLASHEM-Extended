@@ -308,8 +308,9 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define ismazewalker (Race_if(PM_MAZEWALKER) || flags.hybridmazewalker)
 #define issoviet (Race_if(PM_SOVIET) || flags.hybridsoviet)
 #define isxrace (Race_if(PM_RACE_X) || flags.hybridxrace)
+#define isheretic (Race_if(PM_HERETIC) || flags.hybridheretic)
 
-#define isselfhybrid ( (Race_if(PM_ANGBANDER) && flags.hybridangbander) || (Race_if(PM_AQUATIC_MONSTER) && flags.hybridaquarian) || (Race_if(PM_CURSER) && flags.hybridcurser) || (Race_if(PM_HAXOR) && flags.hybridhaxor) || (Race_if(PM_HOMICIDER) && flags.hybridhomicider) || (Race_if(PM_SUXXOR) && flags.hybridsuxxor) || (Race_if(PM_WARPER) && flags.hybridwarper) || (Race_if(PM_RANDOMIZER) && flags.hybridrandomizer) || (Race_if(PM_NULL) && flags.hybridnullrace) || (Race_if(PM_MAZEWALKER) && flags.hybridmazewalker) || (Race_if(PM_SOVIET) && flags.hybridsoviet) || (Race_if(PM_RACE_X) && flags.hybridxrace) )
+#define isselfhybrid ( (Race_if(PM_ANGBANDER) && flags.hybridangbander) || (Race_if(PM_AQUATIC_MONSTER) && flags.hybridaquarian) || (Race_if(PM_CURSER) && flags.hybridcurser) || (Race_if(PM_HAXOR) && flags.hybridhaxor) || (Race_if(PM_HOMICIDER) && flags.hybridhomicider) || (Race_if(PM_SUXXOR) && flags.hybridsuxxor) || (Race_if(PM_WARPER) && flags.hybridwarper) || (Race_if(PM_RANDOMIZER) && flags.hybridrandomizer) || (Race_if(PM_NULL) && flags.hybridnullrace) || (Race_if(PM_MAZEWALKER) && flags.hybridmazewalker) || (Race_if(PM_SOVIET) && flags.hybridsoviet) || (Race_if(PM_RACE_X) && flags.hybridxrace) || (Race_if(PM_HERETIC) && flags.hybridheretic) )
 
 #define rn1(x,y)	(rn2(x)+(y))
 

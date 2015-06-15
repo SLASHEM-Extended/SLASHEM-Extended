@@ -4302,7 +4302,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(12)) {
+			switch (rnd(13)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4328,12 +4328,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridsoviet = 1; break;
 				case 12:
 					flags.hybridxrace = 1; break;
+				case 13:
+					flags.hybridheretic = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(12)) {
+				switch (rnd(13)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4370,6 +4372,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 12:
 						if (!(flags.hybridxrace)) {flags.hybridxrace = 1; flags.hybridization++; break;
+						}
+					case 13:
+						if (!(flags.hybridheretic)) {flags.hybridheretic = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -4920,7 +4925,7 @@ role_init()
 		    while (!roles[flags.pantheon].lgod)	/* unless they're missing */
 			flags.pantheon = randrole();
 	}
-	if (!urole.lgod && !Race_if(PM_HERETIC) ) {
+	if (!urole.lgod && !isheretic ) {
 	    urole.lgod = roles[flags.pantheon].lgod;
 	    urole.ngod = roles[flags.pantheon].ngod;
 	    urole.cgod = roles[flags.pantheon].cgod;

@@ -412,14 +412,14 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = 0;
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = 0;
 
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
 			    if (!rn2(10)) {
 
-				switch (rnd(12)) {
+				switch (rnd(13)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -469,11 +469,15 @@ give_up:	/* Quit */
 						if (!Race_if(PM_RACE_X)) {flags.hybridxrace = 1; flags.hybridization++;
 						}
 						break;
+					case 13:
+						if (!Race_if(PM_HERETIC)) {flags.hybridheretic = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(12)) {
+					switch (rnd(13)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -523,6 +527,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridxrace)) {
 								flags.hybridxrace = 1; flags.hybridization++; break;
 							}	
+						case 13:
+							if (!(flags.hybridheretic)) {
+								flags.hybridheretic = 1; flags.hybridization++; break;
+							}	
 					}
 				}
 
@@ -532,7 +540,7 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(12)) {
+				switch (rnd(13)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -594,12 +602,17 @@ give_up:	/* Quit */
 						flags.hybridxrace = 1; flags.hybridization++;
 						}
 						break;
+					case 13:
+						if (!Race_if(PM_HERETIC)) {
+						flags.hybridheretic = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(12)) {
+					switch (rnd(13)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -649,6 +662,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridxrace)) {
 								flags.hybridxrace = 1; flags.hybridization++; break;
 							}
+						case 13:
+							if (!(flags.hybridheretic)) {
+								flags.hybridheretic = 1; flags.hybridization++; break;
+							}
 	
 					}
 				}
@@ -691,6 +708,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_RACE_X)) {if (yn("Add the x-race hybrid race to your character?") == 'y')
 					{flags.hybridxrace = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_HERETIC)) {if (yn("Add the heretic hybrid race to your character?") == 'y')
+					{flags.hybridheretic = 1; flags.hybridization++;}
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */

@@ -2320,7 +2320,7 @@ aligntyp alignment;
 	    return gnam;
 	}
 
-	if (Race_if(PM_HERETIC)) {
+	if (isheretic) {
 
     switch (alignment) {
      case A_NONE:	gnam = Moloch; break;
@@ -2379,7 +2379,7 @@ aligntyp alignment;
     const char *gnam, *result = "god";
 
 
-	if (Race_if(PM_HERETIC)) {
+	if (isheretic) {
 
     switch (alignment) {
      case A_LAWFUL:	gnam = u.hereticlgod; break;

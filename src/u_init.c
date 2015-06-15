@@ -4679,22 +4679,22 @@ u_init()
 	u.uhereticgodlawful = randrole(); /* for heretic race */
 		    while (!roles[u.uhereticgodlawful].lgod)	/* unless they're missing */
 			u.uhereticgodlawful = randrole(); /* for heretic race */
-	if (Race_if(PM_HERETIC)) u.hereticlgod = roles[u.uhereticgodlawful].lgod;
-	if (Race_if(PM_HERETIC) && !rn2(3) ) {
+	if (isheretic) u.hereticlgod = roles[u.uhereticgodlawful].lgod;
+	if (isheretic && !rn2(3) ) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 	u.uhereticgodneutral = randrole(); /* for heretic race */
 		    while (!roles[u.uhereticgodneutral].lgod)	/* unless they're missing */
 			u.uhereticgodneutral = randrole(); /* for heretic race */
-	if (Race_if(PM_HERETIC)) u.hereticngod = roles[u.uhereticgodneutral].ngod;
-	if (Race_if(PM_HERETIC) && !rn2(3) ) {
+	if (isheretic) u.hereticngod = roles[u.uhereticgodneutral].ngod;
+	if (isheretic && !rn2(3) ) {
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 	u.uhereticgodchaotic = randrole(); /* for heretic race */
 		    while (!roles[u.uhereticgodchaotic].lgod)	/* unless they're missing */
 			u.uhereticgodchaotic = randrole(); /* for heretic race */
-	if (Race_if(PM_HERETIC)) u.hereticcgod = roles[u.uhereticgodchaotic].cgod;
-	if (Race_if(PM_HERETIC) && !rn2(3) ) {
+	if (isheretic) u.hereticcgod = roles[u.uhereticgodchaotic].cgod;
+	if (isheretic && !rn2(3) ) {
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
