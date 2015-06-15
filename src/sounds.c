@@ -1400,7 +1400,7 @@ int
 dotalk()
 {
 
-	if (MenuBug || have_menubugstone()) {
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The chat command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -1408,7 +1408,7 @@ dotalk()
 
     int result;
     boolean save_soundok = flags.soundok;
-    if (!Deafness && !have_deafnessstone() ) flags.soundok = 1;	/* always allow sounds while chatting */
+    if (!Deafness && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;	/* always allow sounds while chatting */
     result = dochat();
     flags.soundok = save_soundok;
     return result;

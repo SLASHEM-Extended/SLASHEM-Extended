@@ -2605,7 +2605,7 @@ long* out_cnt;
 	} else
 	    win = WIN_INVEN;
 
-	if ( (InventoryLoss || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -2714,7 +2714,7 @@ display_inventory(lets, want_reply)
 register const char *lets;
 boolean want_reply;
 {
-	if ( (InventoryLoss || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -3919,7 +3919,7 @@ struct obj *obj;
 	return 0;
 	}
 
-	if (UninformationProblem || have_uninformationstone() ) {
+	if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) {
 
 	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
 

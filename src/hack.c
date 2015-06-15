@@ -1144,7 +1144,7 @@ boolean guess;
 		int y = travelstepy[set][i];
 		static int ordered[] = { 0, 2, 4, 6, 1, 3, 5, 7 };
 		/* no diagonal movement for grid bugs */
-		int dirmax = (BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG )? 4 : 8;
+		int dirmax = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG )? 4 : 8;
 
 		for (dir = 0; dir < dirmax; ++dir) {
 		    int nx = x+xdir[ordered[dir]];
@@ -2840,7 +2840,7 @@ lookaround()
 
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
-    if ((BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)&& u.dx && u.dy) {
+    if ((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG)&& u.dx && u.dy) {
 	nomul(0, 0);
 	return;
     }
@@ -2849,7 +2849,7 @@ lookaround()
     for(x = u.ux-1; x <= u.ux+1; x++) for(y = u.uy-1; y <= u.uy+1; y++) {
 	if(!isok(x,y)) continue;
 
-	if((BishopGridbug || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) && x != u.ux && y != u.uy) continue;
+	if((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG) && x != u.ux && y != u.uy) continue;
 
 	if(x == u.ux && y == u.uy) continue;
 
@@ -3117,7 +3117,7 @@ int k_format; /* WAC k_format is an int */
 
 
 #ifdef SHOW_DMG                
-	else if (flags.showdmg && !DisplayLoss && !have_displaystone() && n > 0) { 
+	else if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");

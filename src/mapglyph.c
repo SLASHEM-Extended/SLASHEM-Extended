@@ -24,14 +24,14 @@ int explcolors[] = {
 #endif
 
 #ifdef TEXTCOLOR
-#define zap_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : zapcolors[n]) : NO_COLOR
-#define cmap_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : defsyms[n].color) : NO_COLOR
-#define obj_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : (ShadesOfGrey || have_shadesofgreystone()) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
-#define mon_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : ( (ShadesOfGrey || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
+#define zap_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : zapcolors[n]) : NO_COLOR
+#define cmap_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : defsyms[n].color) : NO_COLOR
+#define obj_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
+#define mon_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : ( (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
 #define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : ( (ShadesOfGrey || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
-#define warn_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : def_warnsyms[n].color) : NO_COLOR
-#define explode_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() ) ? CLR_BLACK : explcolors[n]) : NO_COLOR
+#define pet_color(n)  color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : ( (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : mons[n].mcolor) : NO_COLOR
+#define warn_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : def_warnsyms[n].color) : NO_COLOR
+#define explode_color(n) color = iflags.use_color ? (Hallucination ? rn2(15) : (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : explcolors[n]) : NO_COLOR
 # if defined(REINCARNATION) && defined(ASCIIGRAPH)
 #  define ROGUE_COLOR
 # endif
@@ -605,8 +605,8 @@ unsigned *ospecial;
 		else
 #endif
 	    if (color == NO_COLOR) cmap_color(offset);
-		if (BlackNgWalls || have_blackystone() ) color = CLR_BLACK;
-		else if (ShadesOfGrey || have_shadesofgreystone() ) {
+		if (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+		else if (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() ) {
 			switch (color) {
 				case CLR_RED:
 				case CLR_BROWN:
@@ -729,7 +729,7 @@ unsigned *ospecial;
 	ch = monsyms[(int)mons[glyph].mlet];
 
 		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !UninformationProblem && !have_uninformationstone() ) special |= MG_EGOTYPE;
+		if (mtmp && mtmp->isegotype && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) special |= MG_EGOTYPE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
 	    if (x == u.ux && y == u.uy)

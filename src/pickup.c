@@ -729,7 +729,7 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	anything any;
 	boolean printed_type_name;
 
-	if ( (InventoryLoss || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -1573,7 +1573,7 @@ int
 doloot()	/* loot a container on the floor or loot saddle from mon. */
 {
 
-	if (MenuBug || have_menubugstone()) {
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The loot command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

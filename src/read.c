@@ -1602,7 +1602,7 @@ register struct obj	*sobj;
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
 
-	if (ConfusionProblem || have_confusionstone() ) {
+	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || have_confusionstone() ) {
 
 	    pline("Suddenly you're very confused!");
 	    make_confused(HConfusion + 2, FALSE);

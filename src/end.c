@@ -718,7 +718,7 @@ int how;
 		}
 	}
 
-	if ( (MenuBug || have_menubugstone()) && how < GENOCIDED) {
+	if ( (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 
 		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {

@@ -53,7 +53,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
-	if ( (MemoryLoss || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 
 /* buildfix by EternalEye: sinfo.exiting only exists on win32 */
 #if defined(WIN32)
@@ -67,7 +67,7 @@ pline VA_DECL(const char *, line)
 	    line = pbuf;
 	}
 
-        if ( (RotThirteen || have_rotthirteenstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+        if ( (RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
 		line = replace(line,"a","N");
 		line = replace(line,"b","O");

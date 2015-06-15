@@ -1383,7 +1383,7 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
-	if (MenuBug || have_menubugstone()) {
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The rub command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
@@ -3717,7 +3717,7 @@ doapply()
 	    return 1;	/* evading your grasp costs a turn; just be
 			   grateful that you don't drop it as well */
 
-	if (FreeHandLoss || have_freehandbugstone() ) {
+	if (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || have_freehandbugstone() ) {
 		if (!(uwep && uwep == obj)) {
 			pline("You must wield this item first if you want to apply it!"); 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

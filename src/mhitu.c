@@ -5195,7 +5195,7 @@ register int n;
 	}
 
 #ifdef SHOW_DMG
-	if (flags.showdmg && !DisplayLoss && !have_displaystone() ) {
+	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() ) {
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");

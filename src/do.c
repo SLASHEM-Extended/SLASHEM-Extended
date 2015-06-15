@@ -39,7 +39,7 @@ int
 dodrop()
 {
 
-	if (NoDropProblem || have_dropbugstone() ) {
+	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -722,7 +722,7 @@ int
 doddrop()
 {
 
-	if (NoDropProblem || have_dropbugstone() ) {
+	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3044,7 +3044,7 @@ int
 dowipe()
 {
 
-	if (MenuBug || have_menubugstone()) {
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The wipe command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

@@ -798,12 +798,12 @@ register int fd;
 	 * Side effect of this is that you don't see this message until after the
 	 * all the levels are loaded
 	 */
-	if (!DisplayLoss && !have_displaystone() ) {You("return to level %d in %s%s.",
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() ) {You("return to level %d in %s%s.",
 		depth(&u.uz), dungeons[u.uz.dnum].dname,
 		flags.debug ? " while in debug mode" :
 		flags.explore ? " while in explore mode" : "");
 	}
-	if (DisplayLoss || have_displaystone() ) pline("You return to the game with your underwear intact, but can't remember exactly where you are.");
+	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() ) pline("You return to the game with your underwear intact, but can't remember exactly where you are.");
 
 #ifdef MFLOPPY
 	gameDiskPrompt();

@@ -916,7 +916,7 @@ do_look(quick)
 	}
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !have_rmbstone()) {
+	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !have_rmbstone()) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -935,7 +935,7 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !have_rmbstone()) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);

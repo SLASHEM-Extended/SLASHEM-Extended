@@ -2677,7 +2677,7 @@ no_opener:
 int
 Hear_again()		/* called when waking up after fainting */
 {
-	if (!Deafness && !have_deafnessstone() ) flags.soundok = 1;
+	if (!Deafness && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
 	return 0;
 }
 
