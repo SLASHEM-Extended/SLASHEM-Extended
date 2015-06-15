@@ -2276,6 +2276,7 @@ find_ac()
 	if (Race_if(PM_GNOME) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
 
 	if (u.artifactprotection) uac -= 2;
+	if (have_mothrelay() ) uac -= 2;
 
 	if(uac != u.uac){
 		u.uac = uac;

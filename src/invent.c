@@ -930,6 +930,18 @@ have_loadstone()
 }
 
 boolean
+have_mothrelay()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if( (otmp->otyp == RELAY) && otmp->oartifact )
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_sleepstone()
 {
 	register struct obj *otmp;

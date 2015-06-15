@@ -916,6 +916,8 @@ E boolean NDECL(have_alignmentstone);
 E boolean NDECL(have_stairstrapstone);
 E boolean NDECL(have_uninformationstone);
 
+E boolean NDECL(have_mothrelay);
+
 E struct obj *FDECL(o_on, (unsigned int,struct obj *));
 E boolean FDECL(obj_here, (struct obj *,int,int));
 E boolean NDECL(wearing_armor);
