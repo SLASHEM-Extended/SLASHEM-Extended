@@ -1115,6 +1115,11 @@ dobreathe()
 
 	/* and make instakill breath attacks even more expensive to tone down abuse potential */
 	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
+	if (!mattk)
+	    impossible("bad breath attack?");   /* mouthwash needed... */
+
+	if ((mattk->adtyp != AD_MAGM) && (mattk->adtyp != AD_RBRE) && (mattk->adtyp != AD_FIRE) && (mattk->adtyp != AD_COLD) && (mattk->adtyp != AD_SLEE) && (mattk->adtyp != AD_DISN) && (mattk->adtyp != AD_ELEC) && (mattk->adtyp != AD_DRST) && (mattk->adtyp != AD_ACID) && (mattk->adtyp != AD_LITE)  ) energy = 30;
+
 	if (mattk->adtyp == AD_DISN) energy = 100;
 	else if (mattk->adtyp == AD_RBRE) energy = 30; /* can randomly be a disintegration beam */
 
@@ -1137,6 +1142,9 @@ dobreathe()
 	     * golem. */
 	    uchar adtyp;
 	    adtyp = mattk->adtyp == AD_RBRE ? rnd(AD_LITE) : mattk->adtyp;
+
+	if ((mattk->adtyp != AD_MAGM) && (mattk->adtyp != AD_RBRE) && (mattk->adtyp != AD_FIRE) && (mattk->adtyp != AD_COLD) && (mattk->adtyp != AD_SLEE) && (mattk->adtyp != AD_DISN) && (mattk->adtyp != AD_ELEC) && (mattk->adtyp != AD_DRST) && (mattk->adtyp != AD_ACID) && (mattk->adtyp != AD_LITE)  ) adtyp = rnd(AD_LITE);
+
 	    buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 		u.ux, u.uy, u.dx, u.dy);
 	}
