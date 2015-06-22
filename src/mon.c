@@ -535,6 +535,16 @@ register struct monst *mtmp;
 	    case PM_FUNGOID_MOLD:
 	    case PM_UNDEAD_FUNGUS:
 	    case PM_MOLDY_FUNGUS:
+	    case PM_UNDEAD_STALK:
+	    case PM_MOLDY_STALK:
+	    case PM_UNDEAD_GROWTH:
+	    case PM_FUNGOID_GROWTH:
+	    case PM_UNDEAD_SPORE:
+	    case PM_MOLDY_SPORE:
+	    case PM_UNDEAD_MUSHROOM:
+	    case PM_MOLDY_MUSHROOM:
+	    case PM_UNDEAD_COLONY:
+	    case PM_MOLDY_COLONY:
 	    case PM_MUTATED_UNDEAD_POTATO:
 		obj = mkcorpstat(CORPSE, (struct monst *)0, &mons[mndx], x, y, TRUE);
 		obj->age -= 100;                /* this is an *OLD* corpse */
@@ -3656,7 +3666,7 @@ register struct monst *mtmp;
 {
 
 	/* can't uncover certain types of monsters --Amy */
-	if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE] || mtmp->data == &mons[PM_MARSUPILAMI] || mtmp->data == &mons[PM_MAELSTROM] ) return;
+	if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HIDDEN_STALK] || mtmp->data == &mons[PM_SECLUDED_STALK] || mtmp->data == &mons[PM_HIDDEN_SPORE] || mtmp->data == &mons[PM_SECLUDED_SPORE] || mtmp->data == &mons[PM_HIDDEN_MUSHROOM] || mtmp->data == &mons[PM_SECLUDED_MUSHROOM] || mtmp->data == &mons[PM_HIDDEN_GROWTH] || mtmp->data == &mons[PM_SECLUDED_GROWTH] || mtmp->data == &mons[PM_HIDDEN_COLONY] || mtmp->data == &mons[PM_SECLUDED_COLONY] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE] || mtmp->data == &mons[PM_MARSUPILAMI] || mtmp->data == &mons[PM_MAELSTROM] ) return;
 
 	unsigned old_app = mtmp->mappearance;
 	uchar old_ap_type = mtmp->m_ap_type;
@@ -3685,7 +3695,7 @@ rescham()
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
-		if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE]|| mtmp->data == &mons[PM_MARSUPILAMI]  || mtmp->data == &mons[PM_MAELSTROM]  ) continue;
+		if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HIDDEN_STALK] || mtmp->data == &mons[PM_SECLUDED_STALK] || mtmp->data == &mons[PM_HIDDEN_SPORE] || mtmp->data == &mons[PM_SECLUDED_SPORE] || mtmp->data == &mons[PM_HIDDEN_MUSHROOM] || mtmp->data == &mons[PM_SECLUDED_MUSHROOM] || mtmp->data == &mons[PM_HIDDEN_GROWTH] || mtmp->data == &mons[PM_SECLUDED_GROWTH] || mtmp->data == &mons[PM_HIDDEN_COLONY] || mtmp->data == &mons[PM_SECLUDED_COLONY] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE]|| mtmp->data == &mons[PM_MARSUPILAMI]  || mtmp->data == &mons[PM_MAELSTROM]  ) continue;
 		mcham = (int) mtmp->cham;
 		if (mcham) {
 			mtmp->cham = CHAM_ORDINARY;

@@ -447,8 +447,18 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_GROWTH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));

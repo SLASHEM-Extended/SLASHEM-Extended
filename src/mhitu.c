@@ -2918,6 +2918,9 @@ dopois:
 		not_affected |= Blind ||
 			(u.umonnum == PM_BLACK_LIGHT ||
 			 u.umonnum == PM_VIOLET_FUNGUS ||
+			 u.umonnum == PM_VIOLET_STALK ||
+			 u.umonnum == PM_VIOLET_SPORE ||
+			 u.umonnum == PM_VIOLET_COLONY ||
 			 dmgtype(youmonst.data, AD_STUN));
 		if (!not_affected && rn2(2) ) {
 		    boolean chg;
@@ -4331,6 +4334,9 @@ common:
 		not_affected |= (Blind && rn2(2)) ||
 			(u.umonnum == PM_BLACK_LIGHT ||
 			 u.umonnum == PM_VIOLET_FUNGUS ||
+			 u.umonnum == PM_VIOLET_STALK ||
+			 u.umonnum == PM_VIOLET_SPORE ||
+			 u.umonnum == PM_VIOLET_COLONY ||
 			 dmgtype(youmonst.data, AD_STUN));
 		if (!not_affected) {
 		    boolean chg;

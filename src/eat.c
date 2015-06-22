@@ -1476,6 +1476,11 @@ register int pm;
 		break;
 	    case PM_PETRO_MOLD:
 	    case PM_PETRO_FUNGUS:
+	    case PM_PETRO_STALK:
+	    case PM_PETRO_SPORE:
+	    case PM_PETRO_MUSHROOM:
+	    case PM_PETRO_GROWTH:
+	    case PM_PETRO_COLONY:
 	    case PM_CLAIRVOYANT_TROVE:
 		    You("feel clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
@@ -1879,6 +1884,16 @@ register int pm;
 	    case PM_SECLUDED_MOLD:
 	    case PM_HIDDEN_FUNGUS:
 	    case PM_SECLUDED_FUNGUS:
+	    case PM_HIDDEN_STALK:
+	    case PM_SECLUDED_STALK:
+	    case PM_HIDDEN_SPORE:
+	    case PM_SECLUDED_SPORE:
+	    case PM_HIDDEN_MUSHROOM:
+	    case PM_SECLUDED_MUSHROOM:
+	    case PM_HIDDEN_GROWTH:
+	    case PM_SECLUDED_GROWTH:
+	    case PM_HIDDEN_COLONY:
+	    case PM_SECLUDED_COLONY:
 	    case PM_MARSUPILAMI:
 	    case PM_MAELSTROM:
 	    case PM_MIMIC_HIVEMIND:
@@ -2130,7 +2145,7 @@ register int pm;
 		int i, count;
 
 		if (dmgtype(ptr, AD_STUN) || dmgtype(ptr, AD_HALU) ||
-		    pm == PM_VIOLET_FUNGUS) {
+		    pm == PM_VIOLET_FUNGUS || pm == PM_VIOLET_SPORE || pm == PM_VIOLET_STALK || pm == PM_VIOLET_COLONY) {
 			pline ("Oh wow!  Great stuff!");
 			make_hallucinated(HHallucination + rnz(200),FALSE,0L);
 		}
@@ -3786,7 +3801,7 @@ struct obj *otmp;
 	}
 
 	if (dmgtype(&mons[mnum], AD_STUN) || dmgtype(&mons[mnum], AD_HALU) || 
-		    mnum == PM_VIOLET_FUNGUS) { 
+		    mnum == PM_VIOLET_FUNGUS || mnum == PM_VIOLET_STALK || mnum == PM_VIOLET_SPORE || mnum == PM_VIOLET_COLONY) { 
 		Sprintf(buf, "%s like %s may be %s! %s", 
 			foodsmell, it_or_they, 
 			Hallucination ? "some real hard stuff" 
