@@ -623,6 +623,14 @@ boolean message;
 
 	}
 
+	if(victual.piece->otyp == CORPSE && victual.piece->odrained && Race_if(PM_HEMOPHAGE) ) {
+
+		pline(Hallucination ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
+		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
+		exercise(A_CON, TRUE);
+
+	}
+
 	if(Race_if(PM_WORM_THAT_WALKS)) { /* code by Amy */
 
 		/* If eating a corpse, or other item that has "corpsenm" data:

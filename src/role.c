@@ -3096,6 +3096,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"grid bug", "gridbug", "gridbughood", "Grd",
+	{0, 0},
+	PM_WEAPON_BUG, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_DWARF|MH_HUMAN|MH_ELF|MH_HOBBIT,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  5, 0,  0, 7,  9, 0 },	/* Hit points */
+	{  5, 0,  7, 0,  9, 0 }		/* Energy */
+},
 {	"haxor", "haxorish", "haxorhood", "Hax",
 	{0, 0},
 	PM_HAXOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3120,6 +3133,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  7, 0,  5, 0,  5, 0 }		/* Energy */
+},
+{	"hemophage", "hemophage", "hemophagehood", "Hep",
+	{0, 0},
+	PM_HEMOPHAGE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  4, 0 }		/* Energy */
 },
 {	"herbalist", "herbalist", "herbalism", "Hrb",
 	{0, 0},

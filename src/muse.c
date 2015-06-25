@@ -733,7 +733,7 @@ struct monst *mtmp;
 		for(xx = x-1; xx <= x+1; xx++) for(yy = y-1; yy <= y+1; yy++)
 		if (isok(xx,yy))
 		if (xx != u.ux && yy != u.uy)
-		if ((mtmp->data != &mons[PM_GRID_BUG] && mtmp->data != &mons[PM_WEREGRIDBUG] && mtmp->data != &mons[PM_GRID_XORN] && mtmp->data != &mons[PM_STONE_BUG]) || xx == x || yy == y)
+		if ((mtmp->data != &mons[PM_GRID_BUG] && mtmp->data != &mons[PM_WEREGRIDBUG] && mtmp->data != &mons[PM_GRID_XORN] && mtmp->data != &mons[PM_STONE_BUG] && mtmp->data != &mons[PM_WEAPON_BUG]) || xx == x || yy == y)
 		if ((xx==x && yy==y) || !level.monsters[xx][yy])
 		if ((t = t_at(xx,yy)) != 0)
 		if ((verysmall(mtmp->data) || throws_rocks(mtmp->data) ||
@@ -3607,7 +3607,7 @@ struct monst *mtmp;
 	  for(xx = x-1; xx <= x+1; xx++)
 	    for(yy = y-1; yy <= y+1; yy++)
 		if (isok(xx,yy) && (xx != u.ux || yy != u.uy))
-		    if ((mdat != &mons[PM_GRID_BUG] && mdat != &mons[PM_WEREGRIDBUG] && mdat != &mons[PM_GRID_XORN] && mdat != &mons[PM_STONE_BUG] ) || xx == x || yy == y)
+		    if ((mdat != &mons[PM_GRID_BUG] && mdat != &mons[PM_WEREGRIDBUG] && mdat != &mons[PM_GRID_XORN] && mdat != &mons[PM_STONE_BUG] && mdat != &mons[PM_WEAPON_BUG]) || xx == x || yy == y)
 			if (/* (xx==x && yy==y) || */ !level.monsters[xx][yy])
 			    if ((t = t_at(xx, yy)) != 0 &&
 			      (ignore_boulders || !sobj_at(BOULDER, xx, yy))

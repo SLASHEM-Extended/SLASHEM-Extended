@@ -2801,6 +2801,12 @@ register struct attack *mattk;
 					healup(d(5,5) + rnz(u.ulevel), 0, FALSE, FALSE);
 					exercise(A_CON, TRUE);
 				}
+				if (Race_if(PM_HEMOPHAGE)) { /* Hemophages too */
+
+					pline("This tastes good.");
+					healup(d(5,5) + rnz(u.ulevel), 0, FALSE, FALSE);
+					exercise(A_CON, TRUE);
+				}
 			}
 			pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= xtmp;

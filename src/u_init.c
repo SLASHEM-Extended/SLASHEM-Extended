@@ -4640,6 +4640,7 @@ u_init()
       u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
       u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
 	u.legscratching = (Role_if(PM_BLEEDER) ? 3 : 1); /*must also be set here; this may increase over time*/
+	if (Race_if(PM_HEMOPHAGE)) u.legscratching += 2; /* racial version of the bleeder role */
 	u.next_check = rnz(600); /* it used to be exactly 600 at the start of every game */
 
 	u.statuetrapname = rn2(NUMMONS);

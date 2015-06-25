@@ -2159,6 +2159,14 @@ peffects(otmp)
 
 		}
 
+		if (Race_if(PM_HEMOPHAGE) && !otmp->cursed) {
+
+		pline(Hallucination ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
+		if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
+		u.uhp = u.uhpmax;
+
+		}
+
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 		    violated_vegetarian();
 		    if (otmp->cursed)

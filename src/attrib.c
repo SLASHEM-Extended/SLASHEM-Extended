@@ -486,6 +486,10 @@ const struct innate {
 		     {	15, &(HWarning), "sensitive", "careless" },
 		     {	 0, 0, 0, 0 } },
 
+	grd_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+		     {	 1, &(HShock_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	bat_abil[] = { {  1, &(HFlying), "", "" },
 		     {  1, &(HDrain_resistance), "", "" },
 		     {  1, &(HFear_resistance), "", "" },
@@ -1241,6 +1245,7 @@ int oldlevel, newlevel;
 	case PM_GNOME:		rabil = gno_abil;	break;
 	case PM_BATMAN:		rabil = bat_abil;	break;
 	case PM_HERBALIST:         rabil = hrb_abil;	break;
+	case PM_WEAPON_BUG:         rabil = grd_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
 	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;

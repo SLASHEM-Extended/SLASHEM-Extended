@@ -227,7 +227,7 @@ nh_timeout()
 	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
 	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
 
-	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && Role_if(PM_ACTIVISTOR) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -1663,6 +1663,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(200) && Race_if(PM_HEMOPHAGE)) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 	if (!rn2(200) && u.uprops[BLOOD_LOSS].extrinsic) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
@@ -1711,6 +1715,14 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
+	if (!rn2(1000) && Race_if(PM_HEMOPHAGE)) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 
 	if (!rn2(1000) && u.uprops[BLOOD_LOSS].extrinsic) {
 		You("are losing lots of blood!");
@@ -1739,6 +1751,10 @@ nh_timeout()
 	}
 
 	if (!rn2(3000) && Role_if(PM_BLEEDER)) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(3000) && Race_if(PM_HEMOPHAGE)) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}
