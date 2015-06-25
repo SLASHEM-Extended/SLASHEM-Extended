@@ -524,6 +524,7 @@ boolean artif;
 			break;
 		    }
 		}
+		if (!rn2(200)) otmp->spe = 2;
 		blessorcurse(otmp, 8);
 		break;
 	    case TIN:

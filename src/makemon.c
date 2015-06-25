@@ -5963,6 +5963,7 @@ register struct	monst	*mtmp;
 	if (!rn2(lays_eggs(mtmp->data) ? 500 : 1000) ) {
 	struct obj *otmpB = mksobj(EGG,TRUE,FALSE);
 	otmpB->spe = 0;
+	if (!rn2(200)) otmpB->spe = 2;
 	otmpB->quan = 1;
 	while (!rn2(5)) otmpB->quan += 1;
 	otmpB->owt = weight(otmpB);
@@ -5974,6 +5975,7 @@ register struct	monst	*mtmp;
 	if (!rn2(5000)) {
 	struct obj *otmpC = mksobj(EGG,TRUE,FALSE);
 	otmpC->spe = 0;
+	if (!rn2(200)) otmpC->spe = 2;
 	otmpC->quan = 1;
 	while (!rn2(25)) otmpC->quan += 1;
 	otmpC->owt = weight(otmpC);
