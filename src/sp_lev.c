@@ -3702,7 +3702,7 @@ boolean prefilled;
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(36)) {
+		switch (rnd(37)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3740,6 +3740,7 @@ boolean prefilled;
 			case 34: croom->rtype = INSIDEROOM; break;
 			case 35: croom->rtype = RIVERROOM; break;
 			case 36: croom->rtype = TEMPLE; break;
+			case 37: croom->rtype = EMPTYNEST; break;
 
 		}
 
@@ -3802,6 +3803,7 @@ boolean prefilled;
 		case DRAGONLAIR:
 		case ANTHOLE:
 		case COCKNEST:
+		case EMPTYNEST:
 		case LEPREHALL:
 		case BARRACKS:
 		case HUMANHALL:

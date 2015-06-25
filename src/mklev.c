@@ -1497,7 +1497,7 @@ const genericptr vy;
 STATIC_OVL int
 findrandtype()
 {
-	switch (rnd(36)) {
+	switch (rnd(37)) {
 
 		case 1: return COURT;
 		case 2: return SWAMP;
@@ -1535,6 +1535,7 @@ findrandtype()
 		case 34: return INSIDEROOM;
 		case 35: return RIVERROOM;
 		case 36: return TEMPLE;
+		case 37: return EMPTYNEST;
 	}
 
 }
@@ -1698,6 +1699,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (!special && rtype == TENSHALL) croom->colouur = 20;
 	if (!special && rtype == INSIDEROOM) croom->colouur = 20;
 	if (!special && rtype == POOLROOM) croom->colouur = CLR_BRIGHT_BLUE;
+	if (!special && rtype == EMPTYNEST) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
 
 	/* locations might bump level edges in wall-less rooms */
 	/* add/subtract 1 to allow for edge locations */
@@ -5646,6 +5648,7 @@ makelevel()
 	    else if(depth(&u.uz) > (issoviet ? 13 : 1) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(4) : !rn2(7))) mkroom(SWAMP);
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
+        else if (depth(&u.uz) > (issoviet ? 5 : 1) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(EMPTYNEST);
         else if (depth(&u.uz) > (issoviet ? 30 : 3) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(TERRORHALL);
         else if (depth(&u.uz) > (issoviet ? 22 : 10) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(TROLLHALL);
  	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);

@@ -100,10 +100,11 @@ int	roomtype;
 	case INSIDEROOM: mkinsideroom(); break;
 	case RIVERROOM: mkriverroom(); break;
 	case ARMORY: mkzoo(ARMORY); break;
+	case EMPTYNEST: mkzoo(EMPTYNEST); break;
 
 	case RANDOMROOM: {
 
-		switch (rnd(36)) {
+		switch (rnd(37)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -141,6 +142,7 @@ int	roomtype;
 			case 34: mkinsideroom(); break;
 			case 35: mkriverroom(); break;
 			case 36: mktemple(); break;
+			case 37: mkzoo(EMPTYNEST); break;
 
 		}
 		break;
@@ -455,7 +457,7 @@ struct mkroom *sroom;
 		if(type == COURT && IS_THRONE(levl[sx][sy].typ))
 		    continue;
                /* armories don't contain as many monsters */
-		if ( (type != ARMORY && rn2(moreorless) ) || rn2(2)) mon = makemon(
+		if (( (type != ARMORY && rn2(moreorless) ) || rn2(2)) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 		    (type == BARRACKS) ? squadmon() :
 			(type == CLINIC) ? &mons[PM_NURSE] :
@@ -613,6 +615,9 @@ struct mkroom *sroom;
 		    case SPIDERHALL:
 			if(!rn2(3))
 			    (void) mksobj_at(EGG,sx,sy,TRUE,FALSE);
+			break;
+		    case EMPTYNEST:
+		      (void) mksobj_at(EGG,sx,sy,TRUE,FALSE);
 			break;
 		    case COCKNEST:
 			if(!rn2(3)) {
