@@ -1929,7 +1929,7 @@ arti_invoke(obj)
 		if (!Punished) {
 		    setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
 		    setworn(obj, W_BALL);
-		    uball->spe = 1;
+		    /*uball->spe = 1;*/
 		    if (!u.uswallow) {
 			placebc();
 			if (Blind) set_bc(1);	/* set up ball and chain variables */

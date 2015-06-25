@@ -1511,7 +1511,7 @@ newgame()
        if (Role_if(PM_CONVICT) || Race_if(PM_NYMPH) ) {
               setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
               setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
-              uball->spe = 1;
+              /*uball->spe = 1;*/
               placebc();
               newsym(u.ux,u.uy);
        }

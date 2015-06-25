@@ -3835,7 +3835,7 @@ register struct obj	*sobj;
 #else
 	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
 #endif /* CONVICT */
-	uball->spe = 1;		/* special ball (see save) */
+	/*uball->spe = 1;*/		/* special ball (see save) */
 
 	/*
 	 *  Place ball & chain if not swallowed.  If swallowed, the ball &
@@ -3882,7 +3882,7 @@ punishx()
 #else
 	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
 #endif /* CONVICT */
-	uball->spe = 1;		/* special ball (see save) */
+	/*uball->spe = 1;*/		/* special ball (see save) */
 
 	/*
 	 *  Place ball & chain if not swallowed.  If swallowed, the ball &
@@ -3904,7 +3904,7 @@ unpunish()
 	newsym(uchain->ox,uchain->oy);
 	setworn((struct obj *)0, W_CHAIN);
 	dealloc_obj(savechain);
-	uball->spe = 0;
+	/*uball->spe = 0;*/
 	setworn((struct obj *)0, W_BALL);
 	if (!rn2(5)) mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE); /* maybe make a chain, since the original one disappeared --Amy */
 
