@@ -811,6 +811,9 @@ boolean called;
 
 	    if (mtmp->egotype_gator) Sprintf(eos(buf), " Gator");
 
+	    if (mtmp->egotype_reflecting) Sprintf(eos(buf), " Reflector");
+	    if (mtmp->egotype_hugger) Sprintf(eos(buf), " Hugger");
+
 	}
 
 	{

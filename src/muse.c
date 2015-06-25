@@ -3879,7 +3879,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -3941,6 +3941,8 @@ skipmsg:
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -3952,7 +3954,7 @@ skipmsg:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -4014,6 +4016,8 @@ skipmsg:
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
@@ -4406,7 +4410,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT]) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || (mon->egotype_reflecting) ) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");

@@ -7548,7 +7548,7 @@ register int	mmflags;
 	if ((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7610,10 +7610,12 @@ register int	mmflags;
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7675,6 +7677,8 @@ register int	mmflags;
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 		}
 
@@ -7683,7 +7687,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7745,10 +7749,12 @@ register int	mmflags;
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(61)) {
+		switch (rnd(63)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7810,6 +7816,8 @@ register int	mmflags;
 			case 59: mtmp->egotype_blaster = 1; break;
 			case 60: mtmp->egotype_multiplicator = 1; break;
 			case 61: mtmp->egotype_gator = 1; break;
+			case 62: mtmp->egotype_reflecting = 1; break;
+			case 63: mtmp->egotype_hugger = 1; break;
 		}
 		}
 

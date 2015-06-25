@@ -1016,8 +1016,8 @@ mattacku(mtmp)
 		case AT_TUCH:
 		case AT_BUTT:
 		case AT_TENT:
-			if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
-					!touch_petrifies(youmonst.data))) {
+			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) ) {
 			    if (foundyou) {
 				if(tmp > (j = rnd(20+i))) {
 				    if (mattk->aatyp != AT_KICK ||
@@ -1115,6 +1115,10 @@ mattacku(mtmp)
 				}
 			break;
 		case AT_WEAP:
+
+			if (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) )
+			hitmu(mtmp, mattk);
+
 			if(range2) {
 #ifdef REINCARNATION
 				if (!Is_rogue_level(&u.uz))

@@ -190,6 +190,9 @@ struct monst {
 
 	Bitfield(egotype_gator,1);
 
+	Bitfield(egotype_reflecting,1);
+	Bitfield(egotype_hugger,1);
+
 	struct obj *mw;
 	long misc_worn_check;
 	xchar weapon_check;
