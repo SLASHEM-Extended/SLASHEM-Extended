@@ -2501,15 +2501,46 @@ OBJECT(OBJ("impossibly heavy elysium ball", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0
 		BALL_CLASS,  20, 0,  12000, 10, 75, 75, 0, 0,  200, CLR_MAGENTA),
 
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
-		CHAIN_CLASS, 4445, 0,  120,  0,  4,  4, 0, 0,  200, HI_METAL),
+		CHAIN_CLASS, 3735, 0,  120,  0,  4,  4, 0, 0,  200, HI_METAL),
 						/* +1 both l & s */
+
+OBJECT(OBJ("stone chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
+		CHAIN_CLASS, 200, 0,  120,  0,  4,  4, 0, 0,  200, CLR_WHITE),
+OBJECT(OBJ("glass chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,GLASS), 0,
+		CHAIN_CLASS, 100, 0,  120,  0,  4,  4, 0, 0,  200, CLR_BRIGHT_BLUE),
+
 OBJECT(OBJ("rotating chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
 		CHAIN_CLASS, 500, 0,  240,  0,  8,  8, 0, 0,  200, CLR_BRIGHT_BLUE),
+OBJECT(OBJ("gold chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,GOLD), 0,
+		CHAIN_CLASS, 100, 0,  240,  0,  8,  8, 0, 0,  200, CLR_YELLOW),
+OBJECT(OBJ("clay chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
+		CHAIN_CLASS, 100, 0,  240,  0,  8,  8, 0, 0,  200, CLR_BROWN),
+
 OBJECT(OBJ("scourge", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
 		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_MAGENTA),
+OBJECT(OBJ("elysium scourge", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
+		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_CYAN),
+OBJECT(OBJ("granite scourge", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
+		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_GREEN),
+
 OBJECT(OBJ("nunchiaku", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
 /* spelled wrong on purpose, as the samurai has another item with that name --Amy */
 		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_BRIGHT_GREEN),
+
+OBJECT(OBJ("conundrum nunchiaku", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
+		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_RED),
+OBJECT(OBJ("concrete nunchiaku", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
+		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_ORANGE),
+
+OBJECT(OBJ("hostage chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
+		CHAIN_CLASS, 40, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_BLACK),
+OBJECT(OBJ("glass hostage chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,GLASS), 0,
+		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_BRIGHT_BLUE),
+OBJECT(OBJ("mineral hostage chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
+		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_WHITE),
+OBJECT(OBJ("elysium hostage chain", (char *)0), BITS(1,0,0,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
+		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_MAGENTA),
+
 /* extra balls and chains for convict mainly (he can advance flail skill by swinging them) --Amy */
 
 OBJECT(OBJ("blinding venom", "splash of venom"),

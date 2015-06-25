@@ -6044,12 +6044,36 @@ struct obj *obj;
 
 			case IRON_CHAIN: 
 				pline("A basic iron chain that doesn't do much damage."); break;
+			case STONE_CHAIN: 
+				pline("A basic stone chain that doesn't do much damage."); break;
+			case GLASS_CHAIN: 
+				pline("A basic glass chain that doesn't do much damage."); break;
 			case ROTATING_CHAIN: 
 				pline("This iron chain is relatively heavy but does moderate damage in melee."); break;
+			case GOLD_CHAIN: 
+				pline("This gold chain is relatively heavy but does moderate damage in melee."); break;
+			case CLAY_CHAIN: 
+				pline("This mineral chain is relatively heavy but does moderate damage in melee."); break;
 			case SCOURGE: 
 				pline("A powerful iron chain that also has a considerable weight."); break;
+			case ELYSIUM_SCOURGE: 
+				pline("A powerful unbreakable chain that also has a considerable weight."); break;
+			case GRANITE_SCOURGE: 
+				pline("A powerful mineral chain that also has a considerable weight."); break;
 			case NUNCHIAKU: 
-				pline("This is the strongest iron chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+				pline("This is the second-strongest iron chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case CONUNDRUM_NUNCHIAKU: 
+				pline("This is the second-strongest unbreakable chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case CONCRETE_NUNCHIAKU: 
+				pline("This is the second-strongest mineral chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case HOSTAGE_CHAIN: 
+				pline("An iron chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case GLASS_HOSTAGE_CHAIN: 
+				pline("A glass chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case MINERAL_HOSTAGE_CHAIN: 
+				pline("A mineral chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case ELYSIUM_HOSTAGE_CHAIN: 
+				pline("An unbreakable chain that weighs the same as a heavy iron ball, yet does more damage."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

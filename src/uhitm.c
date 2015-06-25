@@ -1313,9 +1313,21 @@ int thrown;
 		    case IMPOSSIBLY_HEAVY_ELYSIUM_BALL:
 		    case IMPOSSIBLY_HEAVY_MINERAL_BALL:
 		    case IRON_CHAIN:		/* 1d4+1 */
+		    case STONE_CHAIN:		/* 1d4+1 */
+		    case GLASS_CHAIN:		/* 1d4+1 */
 		    case ROTATING_CHAIN:		/* 1d4+1 */
+		    case GOLD_CHAIN:		/* 1d4+1 */
+		    case CLAY_CHAIN:		/* 1d4+1 */
 		    case SCOURGE:		/* 1d4+1 */
+		    case ELYSIUM_SCOURGE:		/* 1d4+1 */
+		    case GRANITE_SCOURGE:		/* 1d4+1 */
 		    case NUNCHIAKU:		/* 1d4+1 */
+		    case CONUNDRUM_NUNCHIAKU:		/* 1d4+1 */
+		    case CONCRETE_NUNCHIAKU:		/* 1d4+1 */
+		    case HOSTAGE_CHAIN:		/* 1d4+1 */
+		    case GLASS_HOSTAGE_CHAIN:		/* 1d4+1 */
+		    case MINERAL_HOSTAGE_CHAIN:		/* 1d4+1 */
+		    case ELYSIUM_HOSTAGE_CHAIN:		/* 1d4+1 */
 			tmp = dmgvalX(obj, mon);
 			break;
 		    case MIRROR:
