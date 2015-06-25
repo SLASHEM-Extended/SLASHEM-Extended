@@ -2553,8 +2553,8 @@ boolean was_swallowed;			/* digestion */
 		   || is_umplayer(mdat)
 		   || is_rider(mdat))
 		return TRUE;
-	return (boolean) (!rn2((int)
-		(2 + ((int)(mdat->geno & G_FREQ)<2) + verysmall(mdat))));
+	return (boolean) (!rn2((int) /* why the heck does frequency matter for this??? --Amy */
+		(2 /*+ ((int)(mdat->geno & G_FREQ)<2)*/ + verysmall(mdat))));
 }
 
 /* drop (perhaps) a cadaver and remove monster */
