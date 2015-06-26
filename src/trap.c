@@ -530,14 +530,14 @@ register int x, y, typ;
 		else if (!rn2(10) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 10; sessileattempts++) {
 					sessilemnum = pm_mkclass(S_JELLY, 0);
-					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 10;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a jelly */
 		}
 		else if (!rn2(15) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 					sessilemnum = rndmonnum();
-					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
 					}
 		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a monster */
 		}
