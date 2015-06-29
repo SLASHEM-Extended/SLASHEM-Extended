@@ -1868,7 +1868,7 @@ domove()
 	 * Ceiling-hiding pets are skipped by this section of code, to
 	 * be caught by the normal falling-monster code.
 	 */
-	if (is_safepet(mtmp) && !( (is_hider(mtmp->data) || mtmp->egotype_hide) && mtmp->mundetected)) {
+	if (is_safepet(mtmp) && !( (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && mtmp->mundetected)) {
 	    /* if trapped, there's a chance the pet goes wild */
 	    if (mtmp->mtrapped) {
 		if (!rn2(mtmp->mtame)) {
@@ -2971,7 +2971,7 @@ monster_nearby()
 		   mtmp->m_ap_type != M_AP_FURNITURE &&
 		   mtmp->m_ap_type != M_AP_OBJECT &&
 		   (!mtmp->mpeaceful || Hallucination) &&
-		   ( (!is_hider(mtmp->data) && (!mtmp->egotype_hide) ) || !mtmp->mundetected) &&
+		   ( (!is_hider(mtmp->data) && (!mtmp->egotype_hide) && (!mtmp->egotype_mimic) ) || !mtmp->mundetected) &&
 		   !noattacks(mtmp->data) &&
 		   mtmp->mcanmove && !mtmp->msleeping &&  /* aplvax!jcn */
 		   !onscary(u.ux, u.uy, mtmp) &&

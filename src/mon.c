@@ -1069,7 +1069,7 @@ movemon()
 
 	if (minliquid(mtmp)) continue;
 
-	if (is_hider(mtmp->data) || mtmp->egotype_hide) {
+	if (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) {
 	    /* unwatched mimics and piercers may hide again  [MRS] */
 	    if(restrap(mtmp))   continue;
 	    if(mtmp->m_ap_type == M_AP_FURNITURE ||

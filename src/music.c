@@ -235,7 +235,7 @@ int force;
 	for (x=start_x; x<=end_x; x++) for (y=start_y; y<=end_y; y++) {
 	    if ((mtmp = m_at(x,y)) != 0) {
 		wakeup(mtmp);	/* peaceful monster will become hostile */
-		if (mtmp->mundetected && (is_hider(mtmp->data) || mtmp->egotype_hide) ) {
+		if (mtmp->mundetected && (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) ) {
 		    mtmp->mundetected = 0;
 		    if (cansee(x,y))
 			pline("%s is shaken loose from the ceiling!",

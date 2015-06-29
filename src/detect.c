@@ -1220,7 +1220,7 @@ genericptr_t num;
 			(*(int*)num)++;
 		}
 		if (mtmp->mundetected &&
-		    (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->data->mlet == S_EEL)) {
+		    (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic || mtmp->data->mlet == S_EEL)) {
 			mtmp->mundetected = 0;
 			newsym(zx, zy);
 			(*(int*)num)++;
@@ -1431,7 +1431,7 @@ register int aflag;
 			    }
 			    if(!canspotmon(mtmp)) {
 				if (mtmp->mundetected &&
-				   (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->data->mlet == S_EEL))
+				   (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic || mtmp->data->mlet == S_EEL))
 					mtmp->mundetected = 0;
 				newsym(x,y);
 				goto find;
