@@ -12677,7 +12677,7 @@ register struct trobj *trop;
 	int otyp, i;
 
 	while (trop->trclass) {
-		if (trop->trotyp != UNDEF_TYP) {
+		if (trop->trotyp != UNDEF_TYP && !Race_if(PM_UNDEFINED_CREATURE) ) {
 			otyp = (int)trop->trotyp;
 			if (urace.malenum != PM_HUMAN) {
 			    /* substitute specific items for generic ones */
@@ -12781,7 +12781,7 @@ register struct trobj *trop;
 			if (obj->opoisoned && u.ualign.type != A_CHAOTIC)
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
-				obj->oclass == TOOL_CLASS) {
+				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    obj->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
@@ -12910,7 +12910,7 @@ register struct trobj *trop;
 			if (obj->opoisoned && u.ualign.type != A_CHAOTIC)
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
-				obj->oclass == TOOL_CLASS) {
+				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    obj->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
@@ -12928,7 +12928,7 @@ register struct trobj *trop;
 			if (objX->opoisoned && u.ualign.type != A_CHAOTIC)
 			    objX->opoisoned = 0;
 			if (objX->oclass == WEAPON_CLASS ||
-				objX->oclass == TOOL_CLASS) {
+				objX->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    objX->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (objX->oclass == GEM_CLASS &&
