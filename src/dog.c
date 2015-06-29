@@ -931,44 +931,7 @@ register struct obj *obj;
 			return (starving && carni ? ACCFOOD : TABU);
 		    else
 		    if ((peek_at_iced_corpse_age(obj) + 50L <= monstermoves
-					    && obj->corpsenm != PM_LIZARD
-					    && obj->corpsenm != PM_CAVE_LIZARD
-					    && obj->corpsenm != PM_CHAOS_LIZARD
-					    && obj->corpsenm != PM_LIZARD_KING
-					    && obj->corpsenm != PM_LIZARD_EEL
-					    && obj->corpsenm != PM_EEL_LIZARD
-					    && obj->corpsenm != PM_SQUIRREL
-					    && obj->corpsenm != PM_IGUANA
-					    && obj->corpsenm != PM_BIG_IGUANA
-					    && obj->corpsenm != PM_HUGE_LIZARD
-					    && obj->corpsenm != PM_SAND_TIDE
-					    && obj->corpsenm != PM_FBI_AGENT
-					    && obj->corpsenm != PM_OWN_SMOKE
-					    && obj->corpsenm != PM_GRANDPA
-					    && obj->corpsenm != PM_LIZARD_MAN
-					    && obj->corpsenm != PM_KARMIC_LIZARD
-					    && obj->corpsenm != PM_MONSTER_LIZARD
-					    && obj->corpsenm != PM_FIRE_LIZARD
-					    && obj->corpsenm != PM_LIGHTNING_LIZARD
-					    && obj->corpsenm != PM_ICE_LIZARD
-					    && obj->corpsenm != PM_GIANT_LIZARD
-					    && obj->corpsenm != PM_ANTI_STONE_LIZARD
-					    && obj->corpsenm != PM_ROCK_LIZARD
-					    && obj->corpsenm != PM_NIGHT_LIZARD
-					    && obj->corpsenm != PM_DEFORMED_LIZARD
-					    && obj->corpsenm != PM_CLINGING_LIZARD
-					    && obj->corpsenm != PM_MIMIC_LIZARD
-					    && obj->corpsenm != PM_HIDDEN_LIZARD
-					    && obj->corpsenm != PM_HELPFUL_SQUIRREL
-					    && obj->corpsenm != PM_RHAUMBUSUN
-					    && obj->corpsenm != PM_BIG_RHAUMBUSUN
-					    && obj->corpsenm != PM_SALAMANDER
-					    && obj->corpsenm != PM_FROST_SALAMANDER
-					    && obj->corpsenm != PM_KOMODO_DRAGON
-					    && obj->corpsenm != PM_PETTY_KOMODO_DRAGON
-					    && obj->corpsenm != PM_GECKO
-					    && obj->corpsenm != PM_GIANT_GECKO
-					    && obj->corpsenm != PM_LICHEN
+					    && !nocorpsedecay(&mons[obj->corpsenm])
 					    && mon->data->mlet != S_FUNGUS) ||
 			(acidic(&mons[obj->corpsenm]) && !resists_acid(mon)) ||
 			(poisonous(&mons[obj->corpsenm]) &&

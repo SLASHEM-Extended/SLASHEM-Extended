@@ -57,7 +57,7 @@ struct permonst {
 	uchar		mconveys;		/* conveyed by eating */
 	unsigned long	mflags1,		/* boolean bitflags */
 			mflags2;		/* more boolean bitflags */
-	unsigned short		mflags3;		/* yet more boolean bitflags */
+	unsigned long		mflags3;		/* yet more boolean bitflags */
  /* who the heck set this to short, and why does the game crash if it's long? --Amy */
 # ifdef TEXTCOLOR
 	uchar		mcolor;			/* color to use */

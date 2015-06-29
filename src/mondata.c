@@ -313,12 +313,17 @@ struct permonst *ptr;
     case PM_WHITE_UNICORN:
     case PM_GRAY_UNICORN:
     case PM_BLACK_UNICORN:
+    case PM_PURE_WHITE_UNICORN:
+    case PM_HANDSOME_GRAY_UNICORN:
+    case PM_PORTER_BLACK_UNICORN:
     case PM_PURPLE_UNICORN:
+    case PM_RAINBOW_UNICORN:
     case PM_BIG_PURPLE_UNICORN:
     case PM_BIG_WHITE_UNICORN:
     case PM_BIG_GRAY_UNICORN:
     case PM_BIG_BLACK_UNICORN:
     case PM_UNDEAD_UNICORN:
+    case PM_DISGUISED_UNDEAD_UNICORN:
     case PM_KI_RIN:
 	return 1;
     default:

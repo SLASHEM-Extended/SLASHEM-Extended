@@ -134,6 +134,8 @@ int mndx;
 	case PM_ETTIN_ZOMBIE:
 	case PM_ETTIN_MUMMY:	mndx = PM_ETTIN;  break;
 	case PM_TROLL_ZOMBIE:
+	case PM_EGO_TROLL_MUMMY:
+	case PM_TROLL_PERMAMIMIC_MUMMY:
 	case PM_TROLL_MUMMY:    mndx = PM_TROLL;  break;
 	case PM_MIMIC_MUMMY:    mndx = PM_GIANT_MIMIC;  break;
 	case PM_TASMANIAN_ZOMBIE:    mndx = PM_TASMANIAN_DEVIL;  break;
@@ -326,6 +328,8 @@ register struct monst *mtmp;
 	    case PM_GIANT_MUMMY:
 	    case PM_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:            
+	    case PM_EGO_TROLL_MUMMY:            
+	    case PM_TROLL_PERMAMIMIC_MUMMY:
 	    case PM_TROLL_ZOMBIE:            
 	    case PM_KOBOLD_ZOMBIE:
 	    case PM_OGRE_ZOMBIE:
@@ -423,6 +427,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_OLOG_HAI_AMBUSHER:
 	    case PM_UNDEAD_ANT:
 	    case PM_UNDEAD_COCKATRICE:
+	    case PM_MUTATED_UNDEAD_COCKATRICE:
 	    case PM_SKELETAL_HOUND:
 	    case PM_CORPSE_HOUND:
 	    case PM_REAL_CORPSE_HOUND:
@@ -436,6 +441,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_GNASHER_SCORPION:
 	    case PM_UNDEAD_HORSE:
 	    case PM_UNDEAD_UNICORN: /* too decayed to leave a working horn, so we just don't leave one at all :D --Amy */
+	    case PM_DISGUISED_UNDEAD_UNICORN:
 	    case PM_UNDEAD_CENTAUR:
 	    case PM_FLYING_UNDEAD_CENTAUR:
 	    case PM_UNDEAD_KOP:
@@ -446,6 +452,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KCHIEF:
 	    case PM_UNDEAD_KATCHER:
 	    case PM_UNDEAD_SNAKE:
+	    case PM_UNDEAD_EGO_SNAKE:
 	    case PM_UNDEAD_NAGA:
 	    case PM_UNDEAD_NAGA_HATCHLING:
 	    case PM_UNDEAD_YETI:
@@ -3679,7 +3686,7 @@ register struct monst *mtmp;
 {
 
 	/* can't uncover certain types of monsters --Amy */
-	if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HIDDEN_STALK] || mtmp->data == &mons[PM_SECLUDED_STALK] || mtmp->data == &mons[PM_HIDDEN_SPORE] || mtmp->data == &mons[PM_SECLUDED_SPORE] || mtmp->data == &mons[PM_HIDDEN_MUSHROOM] || mtmp->data == &mons[PM_SECLUDED_MUSHROOM] || mtmp->data == &mons[PM_HIDDEN_GROWTH] || mtmp->data == &mons[PM_SECLUDED_GROWTH] || mtmp->data == &mons[PM_HIDDEN_COLONY] || mtmp->data == &mons[PM_SECLUDED_COLONY] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE] || mtmp->data == &mons[PM_MARSUPILAMI] || mtmp->data == &mons[PM_MAELSTROM] ) return;
+	if (permamimic(mtmp->data) ) return;
 
 	unsigned old_app = mtmp->mappearance;
 	uchar old_ap_type = mtmp->m_ap_type;
@@ -3708,7 +3715,7 @@ rescham()
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
-		if (mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_KEYSTONE_INSPECTOR] || mtmp->data == &mons[PM_INSPECTOR_SERGEANT] || mtmp->data == &mons[PM_MAIDENHACK_HORROR] || mtmp->data == &mons[PM_YASD_HORROR] || mtmp->data == &mons[PM_DEFORMED_LIZARD] || mtmp->data == &mons[PM_GRATING_CHICKEN] || mtmp->data == &mons[PM_INSPECTOR_LIEUTENANT] || mtmp->data == &mons[PM_INSPECTOR_KAPTAIN] || mtmp->data == &mons[PM_INSPECTOR_KOMMISSIONER] || mtmp->data == &mons[PM_INSPECTOR_KCHIEF] || mtmp->data == &mons[PM_INSPECTOR_KATCHER] || mtmp->data == &mons[PM_OLOG_HAI_PERMAMIMIC] || mtmp->data == &mons[PM_VESTY] || mtmp->data == &mons[PM_CAMO_RUBBER] || mtmp->data == &mons[PM_WIPER_RUBBER] || mtmp->data == &mons[PM_DRONING_UFO_PART] || mtmp->data == &mons[PM_GNOSIS_SEPHIRAH] || mtmp->data == &mons[PM_HIDDEN_MOLD] || mtmp->data == &mons[PM_SECLUDED_MOLD] || mtmp->data == &mons[PM_HIDDEN_FUNGUS] || mtmp->data == &mons[PM_SECLUDED_FUNGUS] || mtmp->data == &mons[PM_HIDDEN_STALK] || mtmp->data == &mons[PM_SECLUDED_STALK] || mtmp->data == &mons[PM_HIDDEN_SPORE] || mtmp->data == &mons[PM_SECLUDED_SPORE] || mtmp->data == &mons[PM_HIDDEN_MUSHROOM] || mtmp->data == &mons[PM_SECLUDED_MUSHROOM] || mtmp->data == &mons[PM_HIDDEN_GROWTH] || mtmp->data == &mons[PM_SECLUDED_GROWTH] || mtmp->data == &mons[PM_HIDDEN_COLONY] || mtmp->data == &mons[PM_SECLUDED_COLONY] || mtmp->data == &mons[PM_HALLUCINATION_IMAGE]|| mtmp->data == &mons[PM_MARSUPILAMI]  || mtmp->data == &mons[PM_MAELSTROM]  ) continue;
+		if (permamimic(mtmp->data) ) continue;
 		mcham = (int) mtmp->cham;
 		if (mcham) {
 			mtmp->cham = CHAM_ORDINARY;
@@ -3735,7 +3742,7 @@ restartcham()
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		mtmp->cham = pm_to_cham(monsndx(mtmp->data));
-		if((mtmp->data->mlet == S_MIMIC || mtmp->data == &mons[PM_XEROC] || mtmp->data == &mons[PM_NETZAH_SEPHIRAH] || mtmp->data == &mons[PM_MIMIC_MUMMY] || mtmp->data == &mons[PM_MIMIC_NYMPH] || mtmp->data == &mons[PM_OLOG_HAI_MIMIC] || mtmp->data == &mons[PM_CAMO_FISH] || mtmp->data == &mons[PM_FLYING_CAMO_FISH] || mtmp->data == &mons[PM_HUMAN_WEREMIMIC] || mtmp->data == &mons[PM_FATA_MORGANA] || mtmp->data == &mons[PM_CURSED_SPIRIT] || mtmp->data == &mons[PM_DEVILISH_SPIRIT] || mtmp->data == &mons[PM_ALIENATED_UFO_PART] || mtmp->data == &mons[PM_VAMPIRE_SHADOWCLOAK] || mtmp->data == &mons[PM_MULTI_HUED_NAGA] || mtmp->data == &mons[PM_KEYSTONE_WARDER] || mtmp->data == &mons[PM_WARDER_SERGEANT] || mtmp->data == &mons[PM_WARDER_LIEUTENANT] || mtmp->data == &mons[PM_MIMIC_CHICKEN] || mtmp->data == &mons[PM_NETHACKFOUR_HORROR] || mtmp->data == &mons[PM_DEVTEAM_HORROR] || mtmp->data == &mons[PM_MIMIC_LIZARD] || mtmp->data == &mons[PM_WARDER_KAPTAIN] || mtmp->data == &mons[PM_WARDER_KOMMISSIONER] || mtmp->data == &mons[PM_WARDER_KCHIEF] || mtmp->data == &mons[PM_WARDER_KATCHER] || mtmp->data == &mons[PM_MIMIC_VORTEX] || mtmp->data == &mons[PM_VOLTORB] || mtmp->data == &mons[PM_OSCILLATOR] || mtmp->data == &mons[PM_ELECTRODE] || mtmp->data == &mons[PM_HEHEHE_HE_GUY] || mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT] || mtmp->data == &mons[PM_MIMICRY_RUBBER] || mtmp->data == &mons[PM_AMORPHOUS_FISH]) && mtmp->msleeping &&
+		if((mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) ) && mtmp->msleeping &&
 				cansee(mtmp->mx, mtmp->my)) {
 			set_mimic_sym(mtmp);
 			newsym(mtmp->mx,mtmp->my);
@@ -3775,7 +3782,7 @@ register struct monst *mtmp;
 	   (sensemon(mtmp) && distu(mtmp->mx, mtmp->my) <= 2))
 		return(FALSE);
 
-	if(mtmp->data->mlet == S_MIMIC || mtmp->data == &mons[PM_XEROC] || mtmp->data == &mons[PM_NETZAH_SEPHIRAH] || mtmp->data == &mons[PM_MIMIC_MUMMY] || mtmp->data == &mons[PM_MIMIC_NYMPH] || mtmp->data == &mons[PM_OLOG_HAI_MIMIC] || mtmp->data == &mons[PM_CAMO_FISH] || mtmp->data == &mons[PM_FLYING_CAMO_FISH] || mtmp->data == &mons[PM_HUMAN_WEREMIMIC] || mtmp->data == &mons[PM_FATA_MORGANA] || mtmp->data == &mons[PM_CURSED_SPIRIT] || mtmp->data == &mons[PM_DEVILISH_SPIRIT] || mtmp->data == &mons[PM_ALIENATED_UFO_PART] || mtmp->data == &mons[PM_VAMPIRE_SHADOWCLOAK] || mtmp->data == &mons[PM_MULTI_HUED_NAGA] || mtmp->data == &mons[PM_KEYSTONE_WARDER] || mtmp->data == &mons[PM_WARDER_SERGEANT] || mtmp->data == &mons[PM_WARDER_LIEUTENANT] || mtmp->data == &mons[PM_NETHACKFOUR_HORROR] || mtmp->data == &mons[PM_DEVTEAM_HORROR] || mtmp->data == &mons[PM_MIMIC_CHICKEN] || mtmp->data == &mons[PM_MIMIC_LIZARD] || mtmp->data == &mons[PM_WARDER_KAPTAIN] || mtmp->data == &mons[PM_WARDER_KOMMISSIONER] || mtmp->data == &mons[PM_WARDER_KCHIEF] || mtmp->data == &mons[PM_WARDER_KATCHER] || mtmp->data == &mons[PM_MIMIC_VORTEX] || mtmp->data == &mons[PM_VOLTORB] || mtmp->data == &mons[PM_OSCILLATOR] || mtmp->data == &mons[PM_HEHEHE_HE_GUY] || mtmp->data == &mons[PM_ELECTRODE] || mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT] || mtmp->data == &mons[PM_MIMICRY_RUBBER] || mtmp->data == &mons[PM_AMORPHOUS_FISH]) {
+	if(mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) ) {
 		set_mimic_sym(mtmp);
 		return(TRUE);
 	} else /* allow piercers and suchlike to hide on all terrain types --Amy */

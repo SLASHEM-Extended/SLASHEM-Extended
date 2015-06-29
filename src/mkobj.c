@@ -954,7 +954,7 @@ start_corpse_timeout(body)
 #define ROT_AGE (250L)		/* age when corpses rot away */
 
 	/* lizards and lichen don't rot or revive */
-	if (body->corpsenm == PM_LIZARD || body->corpsenm == PM_CAVE_LIZARD || body->corpsenm == PM_CHAOS_LIZARD || body->corpsenm == PM_LIZARD_EEL || body->corpsenm == PM_EEL_LIZARD || body->corpsenm == PM_HIDDEN_LIZARD || body->corpsenm == PM_DEFORMED_LIZARD || body->corpsenm == PM_MIMIC_LIZARD || body->corpsenm == PM_ROCK_LIZARD || body->corpsenm == PM_NIGHT_LIZARD || body->corpsenm == PM_CLINGING_LIZARD || body->corpsenm == PM_LIZARD_MAN || body->corpsenm == PM_LIZARD_KING || body->corpsenm == PM_ANTI_STONE_LIZARD || body->corpsenm == PM_LICHEN || body->corpsenm == PM_GECKO || body->corpsenm == PM_GIANT_GECKO || body->corpsenm == PM_SQUIRREL || body->corpsenm == PM_IGUANA || body->corpsenm == PM_BIG_IGUANA || body->corpsenm == PM_HUGE_LIZARD || body->corpsenm == PM_SAND_TIDE || body->corpsenm == PM_FBI_AGENT || body->corpsenm == PM_OWN_SMOKE || body->corpsenm == PM_GRANDPA || body->corpsenm == PM_KARMIC_LIZARD || body->corpsenm == PM_MONSTER_LIZARD || body->corpsenm == PM_FIRE_LIZARD || body->corpsenm == PM_LIGHTNING_LIZARD || body->corpsenm == PM_ICE_LIZARD || body->corpsenm == PM_GIANT_LIZARD || body->corpsenm == PM_KATNISS || body->corpsenm == PM_HELPFUL_SQUIRREL || body->corpsenm == PM_RHAUMBUSUN || body->corpsenm == PM_BIG_RHAUMBUSUN || body->corpsenm == PM_SALAMANDER || body->corpsenm == PM_FROST_SALAMANDER || body->corpsenm == PM_KOMODO_DRAGON || body->corpsenm == PM_PETTY_KOMODO_DRAGON) return;
+	if ( nocorpsedecay(&mons[body->corpsenm]) ) return;
 
 	action = ROT_CORPSE;		/* default action: rot away */
 	rot_adjust = in_mklev ? 25 : 10;	/* give some variation */
@@ -1242,45 +1242,8 @@ int x, y;
 /* return TRUE if the corpse has special timing */
 /* special timing is a timing that is not rotting or molding */
 
-#define special_corpse(num)  (((num) == PM_LIZARD)		\
-				|| ((num) == PM_LICHEN)		\
-				|| ((num) == PM_LIZARD_EEL)		\
-				|| ((num) == PM_LIZARD_MAN)		\
-				|| ((num) == PM_LIZARD_KING)		\
-				|| ((num) == PM_EEL_LIZARD)		\
-				|| ((num) == PM_SQUIRREL)		\
-				|| ((num) == PM_HUGE_LIZARD)		\
-				|| ((num) == PM_ROCK_LIZARD)		\
-				|| ((num) == PM_NIGHT_LIZARD)		\
-				|| ((num) == PM_SAND_TIDE)		\
-				|| ((num) == PM_FBI_AGENT)		\
-				|| ((num) == PM_OWN_SMOKE)		\
-				|| ((num) == PM_GRANDPA)		\
-				|| ((num) == PM_KARMIC_LIZARD)		\
-				|| ((num) == PM_MONSTER_LIZARD)		\
-				|| ((num) == PM_FIRE_LIZARD)		\
-				|| ((num) == PM_LIGHTNING_LIZARD)		\
-				|| ((num) == PM_ICE_LIZARD)		\
-				|| ((num) == PM_GIANT_LIZARD)		\
-				|| ((num) == PM_KATNISS)		\
-				|| ((num) == PM_IGUANA)		\
-				|| ((num) == PM_CAVE_LIZARD)		\
-				|| ((num) == PM_CHAOS_LIZARD)		\
-				|| ((num) == PM_HIDDEN_LIZARD)		\
-				|| ((num) == PM_MIMIC_LIZARD)		\
-				|| ((num) == PM_DEFORMED_LIZARD)		\
-				|| ((num) == PM_CLINGING_LIZARD)		\
-				|| ((num) == PM_GECKO)		\
-				|| ((num) == PM_GIANT_GECKO)		\
-				|| ((num) == PM_BIG_IGUANA)		\
-				|| ((num) == PM_HELPFUL_SQUIRREL)		\
-				|| ((num) == PM_RHAUMBUSUN)		\
-				|| ((num) == PM_BIG_RHAUMBUSUN)		\
-				|| ((num) == PM_ANTI_STONE_LIZARD)		\
-				|| ((num) == PM_SALAMANDER)		\
-				|| ((num) == PM_FROST_SALAMANDER)		\
-				|| ((num) == PM_KOMODO_DRAGON)		\
-				|| ((num) == PM_PETTY_KOMODO_DRAGON)		\
+#define special_corpse(num)  (((num) == PM_KATNISS)		\
+				|| (nocorpsedecay(&mons[num]))	\
 				|| (is_rider(&mons[num]))	\
 				|| (mons[num].mlet == S_FUNGUS) \
 				|| (mons[num].mlet == S_TROLL))

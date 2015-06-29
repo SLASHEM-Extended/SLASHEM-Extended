@@ -7545,7 +7545,7 @@ register int	mmflags;
 
 	}
 
-	if ((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) {
+	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
 		switch (rnd(63)) {
@@ -7833,6 +7833,25 @@ register int	mmflags;
 		case S_TROLL:
 			if (mndx == PM_OLOG_HAI_MIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_OLOG_HAI_PERMAMIMIC) set_mimic_sym(mtmp);
+			if (mndx == PM_TROLL_PERMAMIMIC_MUMMY) set_mimic_sym(mtmp);
+
+			break;
+		case S_GREMLIN:
+			if (mndx == PM_DEFORMED_GALLTRIT) set_mimic_sym(mtmp);
+
+			break;
+		case S_GIANT:
+			if (mndx == PM_EVIL_PATCH_MINOTAUR) set_mimic_sym(mtmp);
+
+			break;
+		case S_LICH:
+			if (mndx == PM_MIMIC_LICH) set_mimic_sym(mtmp);
+			if (mndx == PM_DEMILICH_PERMAMIMIC) set_mimic_sym(mtmp);
+
+			break;
+		case S_IMP:
+			if (mndx == PM_COCOON_IMP) set_mimic_sym(mtmp);
+			if (mndx == PM_HIDDEN_RUTTERKIN) set_mimic_sym(mtmp);
 
 			break;
 		case S_LIZARD:
@@ -7847,6 +7866,7 @@ register int	mmflags;
 			if (mndx == PM_YASD_HORROR) set_mimic_sym(mtmp);
 			if (mndx == PM_NETHACKFOUR_HORROR) set_mimic_sym(mtmp);
 			if (mndx == PM_DEVTEAM_HORROR) set_mimic_sym(mtmp);
+			if (mndx == PM_UMBER_MIMIC) set_mimic_sym(mtmp);
 
 			break;
 
@@ -7865,6 +7885,7 @@ register int	mmflags;
 		case S_RUSTMONST:
 
 			if (mndx == PM_SECRET_DISENCHANTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_CAMO_RUST_MONSTER) set_mimic_sym(mtmp);
 
 			break;
 
@@ -7887,6 +7908,7 @@ register int	mmflags;
 
 			if (mndx == PM_CLEAR_MUSHROOM_PATCH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CORPSER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_ROTTEN_FOOD_RATION]) set_mimic_sym(mtmp);
 
 			break;
 
@@ -7936,6 +7958,7 @@ register int	mmflags;
 			break;
 		case S_XORN:
 			if (mtmp->data == &mons[PM_XEROC]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_PORTER_XORN_PERMAMIMIC]) set_mimic_sym(mtmp);
 			break;
 		case S_BAD_COINS:
 			if (mtmp->data == &mons[PM_FATA_MORGANA]) set_mimic_sym(mtmp);
@@ -7951,9 +7974,12 @@ register int	mmflags;
 
 		case S_FELINE:
 			if (rn2(2) && mndx == PM_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEFORMED_CAT) set_mimic_sym(mtmp);
 			break;
 
 		case S_KOBOLD:
+
+			if (mndx == PM_UNIDENTIFIED_KOBOLD_SHAMAN) set_mimic_sym(mtmp);
 
 			if (mtmp->data == &mons[PM_FALLEN_SHAMAN]) {
 				(void) makemon(&mons[PM_FALLEN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -8249,6 +8275,9 @@ register int	mmflags;
 				if (!rn2(5)) (void) makemon(&mons[PM_BULL], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
 
+			if (mndx == PM_CAMO_DWARF) set_mimic_sym(mtmp);
+			if (mndx == PM_DWARF_KING_PERMAMIMIC) set_mimic_sym(mtmp);
+
 			break;
 
 		case S_MUMMY:
@@ -8332,6 +8361,7 @@ register int	mmflags;
 			break;
 		case S_RUBMONST:
 			if (mtmp->data == &mons[PM_MIMICRY_RUBBER]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_DSCHIIM_RUBBER]) set_mimic_sym(mtmp);
 			if (mndx == PM_CAMO_RUBBER) set_mimic_sym(mtmp);
 			if (mndx == PM_WIPER_RUBBER) set_mimic_sym(mtmp);
 
@@ -8342,6 +8372,9 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_CURSED_SPIRIT]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_DEVILISH_SPIRIT]) set_mimic_sym(mtmp);
 			break;
+		case S_QUADRUPED:
+			if (mtmp->data == &mons[PM_BLENDING_TITANOTHERE]) set_mimic_sym(mtmp);
+			break;
 		case S_VORTEX:
 			if (mtmp->data == &mons[PM_MIMIC_VORTEX]) set_mimic_sym(mtmp);
 			if (mndx == PM_MAELSTROM) set_mimic_sym(mtmp);
@@ -8350,6 +8383,7 @@ register int	mmflags;
 			break;
 		case S_ANT:
 			if (mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_MIMIC_ANT]) set_mimic_sym(mtmp);
 			break;
 		case S_HUMAN:
 			if (is_pool(x, y) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
@@ -8372,6 +8406,10 @@ register int	mmflags;
 		case S_SPIDER:
 		case S_SNAKE:
 
+			if (mtmp->data == &mons[PM_UPGRADED_SECRET_CAR]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_EXPENSIVE_SECRET_CAR]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_RUNNING_COBRA]) set_mimic_sym(mtmp);
+
 			if (mndx == PM_CLEAR_CENTIPEDE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			/* if(in_mklev)
@@ -8382,12 +8420,13 @@ register int	mmflags;
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
+			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
 
 			if (mndx == PM_HALLUCINATION_IMAGE) set_mimic_sym(mtmp);
+			if (mndx == PM_CHEATING_BLACK_LIGHT) set_mimic_sym(mtmp);
 
 			break;
 		case S_FUNGUS:
@@ -8544,8 +8583,11 @@ register int	mmflags;
 			break;
 		case S_DRAGON:
 			if (mndx == PM_KLIEAU_MANTICORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_ARTILLERY_DRAGON]) set_mimic_sym(mtmp);
 			break;
 		case S_ORC:
+
+			if (mndx == PM_DECEPTIVE_ORC) set_mimic_sym(mtmp);
 
 			if (mtmp->data == &mons[PM_ALIEN_FROM_MARS]) {
 				(void) makemon(&mons[PM_MAN_FROM_MARS], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -8566,6 +8608,7 @@ register int	mmflags;
 		case S_UNICORN:
 
 			if (mndx == PM_THESTRAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DISGUISED_UNDEAD_UNICORN) set_mimic_sym(mtmp);
 
 			if (is_unicorn(ptr) &&
 					sgn(u.ualign.type) == sgn(ptr->maligntyp))
@@ -8574,6 +8617,7 @@ register int	mmflags;
 		case S_BAT:
 
 			if (mndx == PM_INVISIBLE_CC) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_UNIDENTIFIED_RAVEN]) set_mimic_sym(mtmp);
 
 			if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && is_bat(ptr))
 			    mon_adjust_speed(mtmp, 2, (struct obj *)0);

@@ -178,33 +178,44 @@
 #define M2_MAGIC	0x80000000L	/* picks up magic items */
 #endif
 
-#define M3_WANTSAMUL	0x0001L		/* would like to steal the amulet */
-#define M3_WANTSBELL	0x0002L		/* wants the bell */
-#define M3_WANTSBOOK	0x0004L		/* wants the book */
-#define M3_WANTSCAND	0x0008L		/* wants the candelabrum */
-#define M3_WANTSARTI	0x0010L		/* wants the quest artifact */
-#define M3_WANTSALL	0x001fL		/* wants any major artifact */
-#define M3_WAITFORU	0x0040L		/* waits to see you or get attacked */
-#define M3_CLOSE		0x0080L		/* lets you close unless attacked */
+#define M3_WANTSAMUL	0x00000001L		/* would like to steal the amulet */
+#define M3_WANTSBELL	0x00000002L		/* wants the bell */
+#define M3_WANTSBOOK	0x00000004L		/* wants the book */
+#define M3_WANTSCAND	0x00000008L		/* wants the candelabrum */
+#define M3_WANTSARTI	0x00000010L		/* wants the quest artifact */
+#define M3_WANTSALL	0x0000001fL		/* wants any major artifact */
+#define M3_WAITFORU	0x00000040L		/* waits to see you or get attacked */
+#define M3_CLOSE		0x00000080L		/* lets you close unless attacked */
 
-#define M3_COVETOUS	0x001fL		/* wants something */
-#define M3_WAITMASK	0x00c0L		/* waiting... */
+#define M3_COVETOUS	0x0000001fL		/* wants something */
+#define M3_WAITMASK	0x000000c0L		/* waiting... */
 
 /* Infravision is currently implemented for players only */
-#define M3_INFRAVISION	0x0100L		/* has infravision */
-#define M3_INFRAVISIBLE 0x0200L		/* visible by infravision */
+#define M3_INFRAVISION	0x00000100L		/* has infravision */
+#define M3_INFRAVISIBLE 0x00000200L		/* visible by infravision */
 
 /* [DS] Lethe */
-#define M3_TRAITOR	0x0400L			/* Capable of treachery */
-#define M3_NOTAME		0x0800L			/* Cannot be tamed */
+#define M3_TRAITOR	0x00000400L			/* Capable of treachery */
+#define M3_NOTAME		0x00000800L			/* Cannot be tamed */
 
 /* more stuff --Amy */
-#define M3_AVOIDER	0x1000L			/* Avoids player */
-#define M3_LITHIVORE	0x2000L			/* can eat bone, glass, gems and minerals */
-#define M3_PETTY		0x4000L			/* kelp frond and poke ball can tame them */
-#define M3_POKEMON	0x8000L			/* poke ball has an increased chance of catching one of these */
+#define M3_AVOIDER	0x00001000L			/* Avoids player */
+#define M3_LITHIVORE	0x00002000L			/* can eat bone, glass, gems and minerals */
+#define M3_PETTY		0x00004000L			/* kelp frond and poke ball can tame them */
+#define M3_POKEMON	0x00008000L			/* poke ball has an increased chance of catching one of these */
 
-/*#define M3_NOPLRPOLY	0x00010000L*/			/* monsters may poly into it, players can't */
+#define M3_NOPLRPOLY	0x00010000L			/* monsters may poly into it, players can't */
+#define M3_NONMOVING	0x00020000L			/* does not move around, but can attack */
+#define M3_EGOTYPE	0x00040000L			/* always generated with at least one egotype */
+#define M3_TELEPATHIC	0x00080000L			/* floating eye, mind flayer etc. */
+#define M3_SPIDER		0x00100000L			/* can walk on webs without being trapped */
+#define M3_PETRIFIES	0x00200000L			/* touch petrifies */
+#define M3_IS_MIND_FLAYER	0x00400000L			/* is a mind flayer */
+#define M3_NO_DECAY	0x00800000L			/* corpse won't decay - lizard, lichen etc. */
+#define M3_MIMIC		0x01000000L			/* non-m-class-monster that mimics stuff */
+#define M3_PERMAMIMIC	0x02000000L			/* non-m-class-monster that mimics stuff and keeps doing so when hit */
+
+#define M3_MIND_FLAYER	0x00480000L			/* generates "faint wave of psychic energy" message, telepathic */
 
 
 #define MZ_TINY		0		/* < 2' */
