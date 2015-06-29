@@ -1482,6 +1482,60 @@ register int pm;
 		    }
 		}
 		break;
+	    case PM_POWER_TROVE:
+	      {int old_uen = u.uen;
+		if (rn2(3)) {
+		    u.uen += rnd(3);
+		    if (!rn2(3)) u.uenmax++;
+		}
+		if (rn2(3)) {
+		    u.uen += rnd(3);
+		    if (!rn2(3)) u.uenmax++;
+		}
+		if (rn2(3)) {
+		    u.uen += rnd(3);
+		    if (!rn2(3)) u.uenmax++;
+		}
+		if (old_uen != u.uen) {
+		    You_feel("a mild buzz.");
+		    flags.botl = 1;
+		}
+		}
+		break;
+	    case PM_TWEN:
+	    case PM_HEALTH_TROVE:
+	    case PM_GRAY_TWEN:
+	    case PM_DEMITWEN:
+	    case PM_MASTER_TWEN:
+	    case PM_YELDUD_TWEN:
+		if (Upolyd) {
+			u.mh++;
+			u.mhmax++;
+		} else {
+			u.uhp++;
+			u.uhpmax++;
+		}
+		    You_feel("vitalized.");
+		    flags.botl = 1;
+		break;
+	    case PM_VITALITY_TROVE:
+		if (Upolyd) {
+			u.mh++;
+			u.mh += rnd(2);
+			u.mhmax++;
+			u.mhmax += rnd(2);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		} else {
+			u.uhp++;
+			u.uhp += rnd(2);
+			u.uhpmax++;
+			u.uhpmax += rnd(2);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		    You_feel("vitalized.");
+		    flags.botl = 1;
+		break;
+
 	    case PM_PETRO_MOLD:
 	    case PM_PETRO_FUNGUS:
 	    case PM_PETRO_STALK:
