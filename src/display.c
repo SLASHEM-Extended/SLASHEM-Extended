@@ -459,7 +459,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
 {
     register boolean mon_mimic = (mon->m_ap_type != M_AP_NOTHING);
     register int sensed = mon_mimic &&
-	( (Protection_from_shape_changers && !permamimic(mon->data) ) || sensemon(mon));
+	( (Protection_from_shape_changers && !permamimic(mon->data) && !(mon->egotype_permamimic) ) || sensemon(mon));
     /*
      * We must do the mimic check first.  If the mimic is mimicing something,
      * and the location is in sight, we have to change the hero's memory

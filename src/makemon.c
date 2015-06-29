@@ -7548,7 +7548,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7612,10 +7612,12 @@ register int	mmflags;
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7679,6 +7681,8 @@ register int	mmflags;
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 		}
 
@@ -7687,7 +7691,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7751,10 +7755,12 @@ register int	mmflags;
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7818,6 +7824,8 @@ register int	mmflags;
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 		}
 
@@ -8634,6 +8642,8 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_VAMPIRE_SHADOWCLOAK]) set_mimic_sym(mtmp);
 			break;
 	}
+	if (mtmp->egotype_mimic || mtmp->egotype_permamimic) set_mimic_sym(mtmp);
+
 	if ((ct = emits_light(mtmp->data)) > 0)
 		new_light_source(mtmp->mx, mtmp->my, ct,
 				 LS_MONSTER, (genericptr_t)mtmp);

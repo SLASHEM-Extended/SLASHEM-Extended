@@ -3686,7 +3686,7 @@ register struct monst *mtmp;
 {
 
 	/* can't uncover certain types of monsters --Amy */
-	if (permamimic(mtmp->data) ) return;
+	if (permamimic(mtmp->data) || mtmp->egotype_permamimic ) return;
 
 	unsigned old_app = mtmp->mappearance;
 	uchar old_ap_type = mtmp->m_ap_type;
@@ -3715,7 +3715,7 @@ rescham()
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
-		if (permamimic(mtmp->data) ) continue;
+		if (permamimic(mtmp->data) || mtmp->egotype_permamimic ) continue;
 		mcham = (int) mtmp->cham;
 		if (mcham) {
 			mtmp->cham = CHAM_ORDINARY;
@@ -3742,7 +3742,7 @@ restartcham()
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		mtmp->cham = pm_to_cham(monsndx(mtmp->data));
-		if((mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) ) && mtmp->msleeping &&
+		if((mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) || mtmp->egotype_mimic ) && mtmp->msleeping &&
 				cansee(mtmp->mx, mtmp->my)) {
 			set_mimic_sym(mtmp);
 			newsym(mtmp->mx,mtmp->my);
@@ -3782,7 +3782,7 @@ register struct monst *mtmp;
 	   (sensemon(mtmp) && distu(mtmp->mx, mtmp->my) <= 2))
 		return(FALSE);
 
-	if(mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) ) {
+	if(mtmp->data->mlet == S_MIMIC || standardmimic(mtmp->data) || mtmp->egotype_mimic ) {
 		set_mimic_sym(mtmp);
 		return(TRUE);
 	} else /* allow piercers and suchlike to hide on all terrain types --Amy */

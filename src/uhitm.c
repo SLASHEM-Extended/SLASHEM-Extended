@@ -221,7 +221,7 @@ boolean barehanded;
 	    mtmp->mundetected = 0;
 	    wakeup(mtmp);
 	}
-	if (permamimic(mtmp->data) ) {
+	if (permamimic(mtmp->data) || mtmp->egotype_permamimic ) {
 	    /*mtmp->mundetected = 0;*/
 	    wakeup(mtmp);
 	}

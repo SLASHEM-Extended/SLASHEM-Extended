@@ -193,6 +193,9 @@ struct monst {
 	Bitfield(egotype_reflecting,1);
 	Bitfield(egotype_hugger,1);
 
+	Bitfield(egotype_mimic,1);
+	Bitfield(egotype_permamimic,1);
+
 	struct obj *mw;
 	long misc_worn_check;
 	xchar weapon_check;

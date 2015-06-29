@@ -3940,7 +3940,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -4004,6 +4004,8 @@ skipmsg:
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -4015,7 +4017,7 @@ skipmsg:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(63)) {
+		switch (rnd(65)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -4079,6 +4081,8 @@ skipmsg:
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
+			case 64: mtmp->egotype_mimic = 1; break;
+			case 65: mtmp->egotype_permamimic = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
