@@ -2939,14 +2939,15 @@ const struct def_skill *class_skill;
 	    /* Really high potential in the skill
 	     * Right now only used for H to H skills
 	     */
-	    if (P_MAX_SKILL(skill) > P_EXPERT) P_SKILL(skill) = P_BASIC;
+	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) ) P_SKILL(skill) = P_BASIC;
 	}
 
 	/* Set skill for all objects in inventory to be basic */
-	if(!Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN)) for (obj = invent; obj; obj = obj->nobj) {
+	if(!Role_if(PM_POLITICIAN)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
-		P_SKILL(skill) = P_BASIC;
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;
+		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
@@ -3016,10 +3017,11 @@ xtraskillinit()
 	int skill;
 
 	/* Set skill for all objects in inventory to be basic */
-	if(!Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN)) for (obj = invent; obj; obj = obj->nobj) {
+	if (!Role_if(PM_POLITICIAN) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
-		P_SKILL(skill) = P_BASIC;
+		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;
+		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			P_MAX_SKILL(skill) = P_EXPERT;
