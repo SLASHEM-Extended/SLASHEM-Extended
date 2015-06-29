@@ -97,3 +97,4 @@ src/utility.tag
 dat/Verknüpfung mit dat.lnk
 dat/template.des
 src/Makefile.bcc-orig
+src/Makefile.gcc-orig
