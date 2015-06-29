@@ -100,7 +100,7 @@
 #define perceives(ptr)		(((ptr)->mflags1 & M1_SEE_INVIS) != 0L)
 #define can_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT) != 0L)
 #define control_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT_CNTRL) != 0L)
-#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_ACTIVE_EYE] || (ptr) == &mons[PM_NASTY_EYE] || (ptr) == &mons[PM_VISOR] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_FLOATING_NYMPH]  || (ptr) == &mons[PM_FLOATING_MIMIC] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_LEVITATOR] || (ptr) == &mons[PM_UNDEAD_PSION] || (ptr) == &mons[PM_TELEPATHIC_TROVE] || (ptr) == &mons[PM_BLIND_TROVE] || \
+#define telepathic(ptr)		((ptr) == &mons[PM_FLOATING_EYE] || (ptr) == &mons[PM_SWEEPING_EYE] || (ptr) == &mons[PM_PORTER_FLOATING_EYE] || (ptr) == &mons[PM_ACTIVE_EYE] || (ptr) == &mons[PM_NASTY_EYE] || (ptr) == &mons[PM_VISOR] || (ptr) == &mons[PM_FLOATING_MERMAN] || (ptr) == &mons[PM_FLOATING_NYMPH]  || (ptr) == &mons[PM_FLOATING_MIMIC] || (ptr) == &mons[PM_TELEPATHIC_EYE] || (ptr) == &mons[PM_PSION] || (ptr) == &mons[PM_LEVITATOR] || (ptr) == &mons[PM_UNDEAD_PSION] || (ptr) == &mons[PM_TELEPATHIC_TROVE] || (ptr) == &mons[PM_BLIND_TROVE] || \
 				 is_mind_flayer(ptr))
 #define is_armed(ptr)		(attacktype(ptr, AT_WEAP) || (ptr) == &mons[PM_ANIMATED_WEDGE_SANDAL] || (ptr) == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || (ptr) == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || (ptr) == &mons[PM_ANIMATED_COMBAT_STILETTO])
 #define acidic(ptr)		(((ptr)->mflags1 & M1_ACID) != 0L)
@@ -177,12 +177,16 @@
 #define likes_magic(ptr)	(((ptr)->mflags2 & M2_MAGIC) != 0L)
 #define webmaker(ptr)		((ptr) == &mons[PM_CAVE_SPIDER] || \
 				 (ptr) == &mons[PM_RECLUSE_SPIDER] || \
+				 (ptr) == &mons[PM_EVASIVE_RECLUSE_SPIDER] || \
+				 (ptr) == &mons[PM_HEALTHY_CAVE_SPIDER] || \
 				 (ptr) == &mons[PM_LAND_SPIDER] || \
 				 (ptr) == &mons[PM_MUD_SPIDER] || \
 				 (ptr) == &mons[PM_SHADOW_RECLUSE] || \
 				 (ptr) == &mons[PM_TUNNEL_QUEEN] || \
 				 (ptr) == &mons[PM_LARGE_SPIDER] || \
 				 (ptr) == &mons[PM_SPIDER] || \
+				 (ptr) == &mons[PM_GIANT_PHASING_SPIDER] || \
+				 (ptr) == &mons[PM_PORTER_SPIDER] || \
 				 (ptr) == &mons[PM_ARACHNID] || \
 				 (ptr) == &mons[PM_CAVE_FISHER] || \
 				 (ptr) == &mons[PM_WEB_MISTRESS] || \
@@ -190,6 +194,8 @@
 				 (ptr) == &mons[PM_WIDOW_OF_DEATH] || \
 				 (ptr) == &mons[PM_CHAOS_SPIDER] || \
 				 (ptr) == &mons[PM_PHASE_SPIDER] || \
+				 (ptr) == &mons[PM_HIDDEN_TRAPDOOR_SPIDER] || \
+				 (ptr) == &mons[PM_ACTUAL_PHASE_SPIDER] || \
 				 (ptr) == &mons[PM_WERESPIDER] || \
 				 (ptr) == &mons[PM_CAMPER_ASSHOLE] || \
 				 (ptr) == &mons[PM_ISLANDER] || \
@@ -279,6 +285,7 @@
 				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD])
 #define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LIGHT] || \
+				 (ptr) == &mons[PM_FORCE_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LASER] || \
 				 (ptr) == &mons[PM_THE_HIDDEN] || \
 				 (ptr) == &mons[PM_INVISIBLE_BADGUY] || \
@@ -297,10 +304,14 @@
 
 #ifdef CONVICT
 # define is_rat(ptr)		((ptr) == &mons[PM_SEWER_RAT] || \
+				 (ptr) == &mons[PM_EVASIVE_SEWER_RAT] || \
+				 (ptr) == &mons[PM_VISOR_SEWER_RAT] || \
 				 (ptr) == &mons[PM_GIANT_RAT] || \
+				 (ptr) == &mons[PM_GIANT_GARBAGE_RAT] || \
 				 (ptr) == &mons[PM_PACK_RAT] || \
 				 (ptr) == &mons[PM_PACKER_RAT] || \
 				 (ptr) == &mons[PM_RABBIT] || \
+				 (ptr) == &mons[PM_PACK_RABBIT] || \
 				 (ptr) == &mons[PM_RABID_RABBIT] || \
 				 (ptr) == &mons[PM_RABID_RAT] || \
 				 (ptr) == &mons[PM_HELLRAT] || \
@@ -353,6 +364,7 @@
 				 ptr == &mons[PM_PETRO_VORTEX] || \
 				 ptr == &mons[PM_GORGON] || \
 				 ptr == &mons[PM_RUBBER_CHICKEN] || \
+				 ptr == &mons[PM_PORTER_RUBBER_CHICKEN] || \
 				 ptr == &mons[PM_MIMIC_CHICKEN] || \
 				 ptr == &mons[PM_GRATING_CHICKEN] || \
 				 ptr == &mons[PM_OLOG_HAI_GORGON] || \
@@ -368,6 +380,7 @@
 				 ptr == &mons[PM_TURBO_CHICKEN])
 
 #define is_mind_flayer(ptr)	((ptr) == &mons[PM_MIND_FLAYER] || \
+				 (ptr) == &mons[PM_REGENERATING_MIND_FLAYER] || \
 				 (ptr) == &mons[PM_PETTY_MIND_FLAYER] || \
 				 (ptr) == &mons[PM_KERRISIN] || \
 				 (ptr) == &mons[PM_ICKY_FACE] || \
@@ -438,7 +451,7 @@
 		    (ptr) == &mons[PM_SEWER_RAT] || \
 		    (ptr) == &mons[PM_BLACK_RAT] || \
 		    (ptr) == &mons[PM_PACK_RAT]) || \
-		(obj)->otyp == CARROT && ((ptr) == &mons[PM_RABBIT] || \
+		(obj)->otyp == CARROT && ((ptr) == &mons[PM_RABBIT] || (ptr) == &mons[PM_PACK_RABBIT] || \
 		    (ptr) == &mons[PM_RABID_RABBIT]) || \
 		( (ptr)->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON)) || \
 		(obj)->otyp == KELP_FROND && (ptr->mflags3 & M3_PETTY) || \

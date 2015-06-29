@@ -161,7 +161,7 @@ lookat(x, y, buf, monbuf)
 	    char *name, monnambuf[BUFSZ];
 	    boolean accurate = !Hallucination;
 
-	    if (mtmp->data == &mons[PM_COYOTE] && accurate)
+	    if ( (mtmp->data == &mons[PM_COYOTE] || mtmp->data == &mons[PM_STALKING_COYOTE]) && accurate)
 		name = coyotename(mtmp, monnambuf);
 	    else
 		name = distant_monnam(mtmp, ARTICLE_NONE, monnambuf);

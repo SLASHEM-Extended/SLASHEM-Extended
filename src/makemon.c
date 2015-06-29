@@ -7878,6 +7878,8 @@ register int	mmflags;
 
 			if (mndx == PM_CLEAR_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ETHEREAL_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_REAL_CLEAR_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_REAL_ETHEREAL_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
@@ -8226,6 +8228,27 @@ register int	mmflags;
 				if (!rn2(5)) (void) makemon(&mons[PM_GIANT_PYGMY_BLOWDART], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
 
+			if (mtmp->data == &mons[PM_WOLF_MAN_PACKLEADER]) {
+				(void) makemon(&mons[PM_GRAY_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_GRAY_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_GRAY_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_GRAY_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
+			if (mtmp->data == &mons[PM_BEAR_MAN_PACKLEADER]) {
+				(void) makemon(&mons[PM_BROWN_BEAR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_BROWN_BEAR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_BROWN_BEAR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_BROWN_BEAR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
+			if (mtmp->data == &mons[PM_DWARVEN_BULL_MAN_PACKLEADER]) {
+				(void) makemon(&mons[PM_BULL], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_BULL], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_BULL], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_BULL], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			break;
 
 		case S_MUMMY:
@@ -8359,7 +8382,7 @@ register int	mmflags;
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
+			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}

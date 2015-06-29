@@ -1003,6 +1003,8 @@ register struct obj *obj;
 		return(TABU);
 		/* KMH -- Taz likes organics, too! */
 	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
+		mon->data == &mons[PM_FLYING_GELATINOUS_CUBE] ||
+		mon->data == &mons[PM_STOUT_GELATINOUS_CUBE] ||
 		mon->data == &mons[PM_AMUSING_TYPE] ||
 		mon->data == &mons[PM_SHOGGOTH] ||
 		mon->data == &mons[PM_GIANT_SHOGGOTH] ||

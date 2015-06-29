@@ -131,7 +131,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if ((u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if ((u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -1508,6 +1508,7 @@ register int pm;
 	    case PM_DEMITWEN:
 	    case PM_MASTER_TWEN:
 	    case PM_YELDUD_TWEN:
+	    case PM_PORTER_RUBBER_CHICKEN:
 		if (Upolyd) {
 			u.mh++;
 			u.mhmax++;
@@ -1561,6 +1562,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_NASTY_WRAITH:
 	    case PM_TURBO_CHICKEN:
 	    case PM_GREATER_BASILISK:
 	    case PM_ETHEREAL_TROVE:
@@ -1833,6 +1835,7 @@ register int pm;
 		break;
 
 	    case PM_STALKER:
+	    case PM_FORCE_STALKER:
 	    case PM_THE_HIDDEN:
 	    case PM_INVISIBLE_BADGUY:
 	    case PM_UNSEEN_POTATO:
@@ -1933,6 +1936,7 @@ register int pm;
 	    case PM_AMORPHOUS_FISH:
 	    case PM_GREATER_MIMIC:
 	    case PM_MASTER_MIMIC:
+	    case PM_UNDEAD_SWARM_MIMIC:
 	    case PM_FLOATING_MIMIC:
 	    case PM_OLOG_HAI_MIMIC:
 	    case PM_OLOG_HAI_PERMAMIMIC:
@@ -1965,15 +1969,19 @@ register int pm;
 	    case PM_MASTER_INTRINSIC_EATING_MIMIC:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
+	    case PM_GIANT_GROUP_MIMIC:
 	    case PM_GIANT_SPAWN_MIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_LARGE_MIMIC:
+	    case PM_LARGE_PHASING_MIMIC:
 	    case PM_LARGE_SPAWN_MIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_MIMIC:
 	    case PM_SMALL_MIMIC:
+	    case PM_SMALL_HEALING_MIMIC:
+	    case PM_SMALL_FLYING_MIMIC:
 		tmp += 10;
 		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
 		    char buf[BUFSZ];
@@ -2181,6 +2189,7 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_MIND_SUCKER:
 		case PM_KERRISIN:
+		case PM_REGENERATING_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 #if 0
 		int     temp;

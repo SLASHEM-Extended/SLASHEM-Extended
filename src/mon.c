@@ -276,9 +276,13 @@ register struct monst *mtmp;
 		if (rn2(2)) goto default_1;
 		/* fall through */
 	    case PM_WHITE_UNICORN:
+	    case PM_PURE_WHITE_UNICORN:
 	    case PM_GRAY_UNICORN:
+	    case PM_HANDSOME_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
+	    case PM_PORTER_BLACK_UNICORN:
 	    case PM_PURPLE_UNICORN:
+	    case PM_RAINBOW_UNICORN:
 	    case PM_BIG_PURPLE_UNICORN:
 	    case PM_BIG_WHITE_UNICORN:
 	    case PM_BIG_GRAY_UNICORN:
@@ -390,9 +394,13 @@ register struct monst *mtmp;
 	    case PM_SUBWAY_WIGHT:
 	    case PM_CRYPT_WIGHT:
 	    case PM_BARROW_WIGHT:
+	    case PM_HIDDEN_BARROW_WIGHT:
 	    case PM_TUNNEL_WIGHT:
+	    case PM_TUNNEL_FORCE_WIGHT:
+	    case PM_PORTER_WIGHT:
 	    case PM_TRAILER:
 	    case PM_UNDEAD_BAT:
+	    case PM_UNDEAD_SWARM_BAT:
 	    case PM_PETTY_TUNNEL_WIGHT:
 	    case PM_CASTLE_WIGHT:
 	    case PM_GRAVE_WARRIOR:
@@ -405,6 +413,7 @@ register struct monst *mtmp;
 	    case PM_CREEPING___:
 	    case PM_FRANKENSTEIN_S_MONSTER:
 	    case PM_UNDEAD_MIMIC:
+	    case PM_UNDEAD_SWARM_MIMIC:
 	    case PM_UNDEAD_KANGAROO:
 	    case PM_RIBBON_FISH:
 	    case PM_SKELETON_FISH:
@@ -416,6 +425,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_COCKATRICE:
 	    case PM_SKELETAL_HOUND:
 	    case PM_CORPSE_HOUND:
+	    case PM_REAL_CORPSE_HOUND:
 	    case PM_ZOMBOCAT:
 	    case PM_HAUNTED_TIGER:
 	    case PM_UNDEAD_MIND_FLAYER:
@@ -423,9 +433,11 @@ register struct monst *mtmp;
 	    case PM_SKELETTOCROTTA:
 	    case PM_UNDEAD_RAT:
 	    case PM_UNDEAD_SCORPION:
+	    case PM_UNDEAD_GNASHER_SCORPION:
 	    case PM_UNDEAD_HORSE:
 	    case PM_UNDEAD_UNICORN: /* too decayed to leave a working horn, so we just don't leave one at all :D --Amy */
 	    case PM_UNDEAD_CENTAUR:
+	    case PM_FLYING_UNDEAD_CENTAUR:
 	    case PM_UNDEAD_KOP:
 	    case PM_UNDEAD_SERGEANT:
 	    case PM_UNDEAD_LIEUTENANT:
