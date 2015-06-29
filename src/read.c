@@ -706,6 +706,14 @@ struct obj *obj;
 	return FALSE; /* why are weapons/armor considered charged anyway? */
 }
 
+boolean
+is_enchantable(obj)
+struct obj *obj;
+{
+	if (obj->oclass == ARMOR_CLASS || obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == GEM_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj)) return TRUE;
+	return FALSE;
+}
+
 /*
  * recharge an object; curse_bless is -1 if the recharging implement
  * was cursed, +1 if blessed, 0 otherwise.
@@ -1018,6 +1026,58 @@ int curse_bless;
 	}
 }
 
+void
+randomenchant(obj, curse_bless, confused)
+struct obj *obj;
+int curse_bless;
+boolean confused;
+{
+	register int n, positive;
+	boolean is_cursed, is_blessed;
+
+	is_cursed = curse_bless < 0;
+	is_blessed = curse_bless > 0;
+
+	if (!is_enchantable(obj)) {
+
+		pline("You have a feeling of loss.");
+		return;
+	}
+
+	n = 0;
+	positive = rn2(2) ? 0 : 1;
+	if (obj->spe < 1) n = obj->spe;
+	if (is_cursed) n--;
+	if (is_blessed) n++;
+	if (positive) {
+		n++;
+		n += rne(2);
+	} else {
+		n--;
+		n -= rne(2);
+	}
+
+	if (confused) {
+		positive = rn2(2) ? 0 : 1;
+		if (positive) {
+			n++;
+			n += rne(2);
+		} else {
+			n--;
+			n -= rne(2);
+		}
+	}
+
+	if (n < -127) n = -127;
+	if (n > 127) n = 127;
+	obj->spe = n;
+	if (is_cursed) {
+		curse(obj);
+		pline("Your %s is surrounded by a black aura.", xname(obj));
+	} else if (!confused) pline("Your %s is surrounded by a gray aura.", xname(obj));
+	else pline("Your %s is surrounded by a sparkly aura.", xname(obj));
+
+}
 
 /* Forget known information about this object class. */
 static void
@@ -1631,7 +1691,10 @@ register struct obj	*sobj;
 		boolean special_armor;
 		boolean same_color;
 
-		otmp = some_armor(&youmonst);
+		pline("You may enchant a worn piece of armor.");
+		otmp = getobj(all_count, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
+
 		if(!otmp) {
 			strange_feeling(sobj,
 					!Blind ? "Your skin glows then fades." :
@@ -1640,6 +1703,12 @@ register struct obj	*sobj;
 			exercise(A_STR, !sobj->cursed);
 			return(1);
 		}
+		if (!(otmp->owornmask & W_ARMOR) ) {
+
+			pline("You have a feeling of loss.");
+			return(1);
+		}
+
 		if(confused) {
 			otmp->oerodeproof = !(sobj->cursed);
 			if(Blind) {
@@ -2559,6 +2628,16 @@ register struct obj	*sobj;
 				known = TRUE;
 		}
 		break;
+	case SCR_PHASE_DOOR:
+		known = TRUE;
+		if(confused) 
+			{
+			phase_door(1);
+			}
+		else {
+			phase_door(0);
+		}
+		break;
 	case SCR_TELE_LEVEL:
 	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 		else pline("Hmm... that level teleport scroll didn't do anything.");
@@ -2701,6 +2780,21 @@ register struct obj	*sobj;
 		if (!otmp) break;
 		recharge(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0));
 		break;
+
+	case SCR_RANDOM_ENCHANTMENT:
+		known = TRUE;
+		pline("You may randomly enchant an object.");
+		if (confused) {
+			otmp = getobj(all_count, "randomly enchant");
+			if (!otmp) break;
+			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 1);
+		} else {
+			otmp = getobj(all_count, "randomly enchant");
+			if (!otmp) break;
+			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 0);
+		}
+		break;
+
 	case SCR_GAIN_MANA:
 		    You_feel("full of mystic power!");
 		    if (u.uen < u.uenmax)

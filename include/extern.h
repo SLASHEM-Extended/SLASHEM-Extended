@@ -1843,7 +1843,9 @@ E long NDECL(random);
 
 E int NDECL(doread);
 E boolean FDECL(is_chargeable, (struct obj *));
+E boolean FDECL(is_enchantable, (struct obj *));
 E void FDECL(recharge, (struct obj *,int));
+E void FDECL(randomenchant, (struct obj *,int,BOOLEAN_P));
 E void FDECL(forget, (int));
 E void FDECL(forget_objects, (int));
 E void FDECL(forget_levels, (int));
@@ -2185,8 +2187,10 @@ E int FDECL(epathto, (coord *,int,XCHAR_P,XCHAR_P,struct permonst *));
 E void FDECL(xpathto, (int,XCHAR_P,XCHAR_P,int (*)(genericptr_t,int,int),void *));
 E void FDECL(teleds, (int,int,BOOLEAN_P));
 E boolean FDECL(safe_teleds, (BOOLEAN_P));
+E boolean FDECL(safe_teledsPD, (BOOLEAN_P));
 E boolean FDECL(teleport_pet, (struct monst *,BOOLEAN_P));
 E void NDECL(tele);
+E void FDECL(phase_door, (BOOLEAN_P));
 E int NDECL(dotele);
 E void NDECL(level_tele);
 E void FDECL(domagicportal, (struct trap *));
@@ -2659,6 +2663,7 @@ E struct monst *FDECL(revive, (struct obj *));
 E int FDECL(unturn_dead, (struct monst *));
 E void FDECL(cancel_item, (struct obj *));
 E boolean FDECL(drain_item, (struct obj *));	/* KMH */
+E boolean FDECL(drain_item_negative, (struct obj *));	/* KMH */
 E boolean FDECL(obj_resists, (struct obj *,int,int));
 E boolean FDECL(obj_shudders, (struct obj *));
 E void FDECL(do_osshock, (struct obj *));

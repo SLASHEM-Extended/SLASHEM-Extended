@@ -1392,6 +1392,7 @@ doengrave()
 		    case WAN_HEALING:
 		    case WAN_EXTRA_HEALING:
 		    case WAN_FULL_HEALING:
+		    case WAN_INCREASE_MAX_HITPOINTS:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s look healthier!",
@@ -1423,6 +1424,7 @@ doengrave()
 			}
 			break;
 		    case WAN_DRAINING:	/* KMH */
+		    case WAN_REDUCE_MAX_HITPOINTS:
 			if (oep) {
 			    /*
 			     * [ALI] Wand of draining give messages like

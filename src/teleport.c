@@ -6,6 +6,8 @@
 
 STATIC_DCL boolean FDECL(tele_jump_ok, (int,int,int,int));
 STATIC_DCL boolean FDECL(teleok, (int,int,BOOLEAN_P));
+STATIC_DCL boolean FDECL(teleokX, (int,int,BOOLEAN_P));
+STATIC_DCL boolean FDECL(teleokXconfused, (int,int,BOOLEAN_P));
 STATIC_DCL void NDECL(vault_tele);
 STATIC_DCL boolean FDECL(rloc_pos_ok, (int,int,struct monst *));
 STATIC_DCL void FDECL(mvault_tele, (struct monst *));
@@ -487,6 +489,40 @@ boolean trapok;
 	return TRUE;
 }
 
+STATIC_OVL boolean
+teleokX(x, y, trapok)
+register int x, y;
+boolean trapok;
+{
+	int udist = distu(x,y);
+
+	if (!trapok && t_at(x, y)) return FALSE;
+	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
+	if (!in_out_region(x, y)) return FALSE;
+	if (udist < 3) return FALSE;
+	if (udist > 100) return FALSE;
+
+	return TRUE;
+}
+
+STATIC_OVL boolean
+teleokXconfused(x, y, trapok)
+register int x, y;
+boolean trapok;
+{
+	int udist = distu(x,y);
+
+	if (!trapok && t_at(x, y)) return FALSE;
+	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
+	if (!in_out_region(x, y)) return FALSE;
+	if (udist < 3) return FALSE;
+	if (udist > 200) return FALSE;
+
+	return TRUE;
+}
+
 void
 teleds(nux, nuy, allow_drag)
 register int nux,nuy;
@@ -607,6 +643,28 @@ boolean allow_drag;
 
 	if (tcnt <= 400) {
 		teleds(nux, nuy, allow_drag);
+		return TRUE;
+	} else
+		return FALSE;
+}
+
+boolean
+safe_teledsPD(confused)
+boolean confused;
+{
+	register int nux, nuy, tcnt, udist, goodspot = 0;
+
+	if (confused) do {
+		nux = rnd(COLNO-1);
+		nuy = rn2(ROWNO);
+	} while (!teleokXconfused(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 2000 );
+	else do {
+		nux = rnd(COLNO-1);
+		nuy = rn2(ROWNO);
+	} while (!teleokX(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 2000 );
+
+	if (tcnt <= 2000) {
+		teleds(nux, nuy, 0);
 		return TRUE;
 	} else
 		return FALSE;
@@ -749,6 +807,29 @@ teleX()
 	    return;
 	}
 	(void) safe_teleds(FALSE);
+}
+
+void
+phase_door(confused)
+boolean confused;
+{
+	/* Disable teleportation in stronghold && Vlad's Tower */
+	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+		    pline("A mysterious force prevents you from phasing!");
+		    return;
+	}
+
+	if
+        (u.uhave.amulet || On_W_tower_level(&u.uz)
+#ifdef STEED
+	|| (u.usteed && mon_has_amulet(u.usteed))
+#endif
+	)
+	{
+	    You_feel("disoriented for a moment.");
+	    return;
+	}
+	(void) safe_teledsPD(confused);
 }
 
 int

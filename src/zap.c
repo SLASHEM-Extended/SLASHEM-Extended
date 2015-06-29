@@ -605,6 +605,29 @@ struct obj *otmp;
 		}
 		makeknown(otyp);
 		break;
+	case WAN_REDUCE_MAX_HITPOINTS:
+		dmg = rnd(8);
+		if (mtmp->mhp > 0) {
+			mtmp->mhp -= dmg;
+			mtmp->mhpmax -= dmg;
+		}
+		if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
+			xkilled(mtmp, 1);
+		else {
+			if (canseemon(mtmp))
+				pline("%s suddenly seems weaker!", Monnam(mtmp));
+		}
+		break;
+	case WAN_INCREASE_MAX_HITPOINTS:
+		wake = FALSE;		/* wakeup() makes the target angry */
+		dmg = rnd(8);
+		if (mtmp->mhp > 0) {
+			mtmp->mhp += dmg;
+			mtmp->mhpmax += dmg;
+		}
+		if (canseemon(mtmp))
+			pline("%s suddenly seems stronger!", Monnam(mtmp));
+		break;
 	case WAN_WIND: /* from Sporkhack */
 		/* Actually distance, not damage */
 		dmg = rnd(2) + (bigmonst(mtmp->data) ? 0 : rnd(3));	
@@ -1201,7 +1224,7 @@ register struct obj *obj;
 #ifdef MAIL
 obj->otyp == SCR_MAIL || 
 #endif
-obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID) break;
+obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_PHASE_DOOR) break;
 		costly_cancel(obj);
 		obj->otyp = SCR_BLANK_PAPER;
 		obj->spe = 0;
@@ -1253,6 +1276,9 @@ register struct obj *obj;
 	/* Is this a charged/enchanted object? */
 	if (!obj || (!objects[obj->otyp].oc_charged &&
 			obj->oclass != WEAPON_CLASS &&
+			obj->oclass != BALL_CLASS &&
+			obj->oclass != CHAIN_CLASS &&
+			obj->oclass != GEM_CLASS &&
 			obj->oclass != ARMOR_CLASS && !is_weptool(obj)) ||
 			obj->spe <= 0)
 	    return (FALSE);
@@ -1308,6 +1334,81 @@ register struct obj *obj;
 	case GAUNTLETS_OF_POWER:
 	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
 	    	ABON(A_STR)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_PROTECTION:
+	    flags.botl = 1;
+	    break;
+	}
+	if (carried(obj)) update_inventory();
+	return (TRUE);
+}
+
+boolean
+drain_item_negative(obj)
+register struct obj *obj;
+{
+	boolean u_ring;
+
+	/* Is this a charged/enchanted object? */
+	if (!obj || (!objects[obj->otyp].oc_charged &&
+			obj->oclass != WEAPON_CLASS &&
+			obj->oclass != BALL_CLASS &&
+			obj->oclass != CHAIN_CLASS &&
+			obj->oclass != GEM_CLASS &&
+			obj->oclass != ARMOR_CLASS && !is_weptool(obj)) ||
+			obj->spe >= 0)
+	    return (FALSE);
+	if (obj_resists(obj, 10, 90))
+	    return (FALSE);
+
+	/* Drain the object and any implied effects */
+	obj->spe++;
+	u_ring = (obj == uleft) || (obj == uright);
+	switch(obj->otyp) {
+	case RIN_GAIN_STRENGTH:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_STR)++;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_GAIN_CONSTITUTION:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CON)++;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_ADORNMENT:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CHA)++;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_INCREASE_ACCURACY:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.uhitinc++;
+	    break;
+	case RIN_INCREASE_DAMAGE:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.udaminc++;
+	    break;
+	case HELM_OF_BRILLIANCE:
+	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
+	    	ABON(A_INT)++;
+	    	ABON(A_WIS)++;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case GAUNTLETS_OF_DEXTERITY:
+	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+	    	ABON(A_DEX)++;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case GAUNTLETS_OF_POWER:
+	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+	    	ABON(A_STR)++;
 	    	flags.botl = 1;
 	    }
 	    break;
@@ -1388,7 +1489,7 @@ polyuse(objhdr, mat, minwt)
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
-	if (otmp->otyp == SCR_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_CURE) continue;
+	if (otmp->otyp == SCR_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_CURE || otmp->otyp == SCR_PHASE_DOOR) continue;
 
 	if (((int) objects[otmp->otyp].oc_material == mat) ==
 		(rn2(minwt + 1) != 0)) {
@@ -1514,7 +1615,7 @@ struct obj *obj;
 #ifdef MAIL
 	if (obj->otyp == SCR_MAIL) return;
 #endif
-	if (obj->otyp == SCR_HEALING || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_MANA || obj->otyp == SCR_CURE) return;
+	if (obj->otyp == SCR_HEALING || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_MANA || obj->otyp == SCR_CURE || obj->otyp == SCR_PHASE_DOOR) return;
 
 	obj_zapped = TRUE;
 
@@ -1694,6 +1795,12 @@ poly_obj(obj, id)
 	
 	if (obj->otyp == SCR_CURE) {
 		otmp->otyp = SCR_CURE;
+#ifdef UNPOLYPILE
+		unpoly = FALSE;	/* WAC -- no change! */
+#endif
+	}
+	if (obj->otyp == SCR_PHASE_DOOR) {
+		otmp->otyp = SCR_PHASE_DOOR;
 #ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
 #endif
@@ -2128,7 +2235,11 @@ struct obj *obj, *otmp;
 		break;
 	case SPE_DRAIN_LIFE:
 	case WAN_DRAINING:	/* KMH */
+	case WAN_REDUCE_MAX_HITPOINTS:
 		(void) drain_item(obj);
+		break;
+	case WAN_INCREASE_MAX_HITPOINTS:
+		(void) drain_item_negative(obj);
 		break;
 	case WAN_TELEPORTATION:
 	case WAN_BANISHMENT:
@@ -3288,6 +3399,20 @@ boolean ordinary;
 			}
 			damage = 0;	/* No additional damage */
 			break;
+		case WAN_REDUCE_MAX_HITPOINTS:
+			pline("You feel drained...");
+				if (Upolyd) u.mhmax -= rnd(5);
+				else u.uhpmax -= rnd(5);
+				if (u.mhmax < 1) u.mhmax = 1;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			break;
+		case WAN_INCREASE_MAX_HITPOINTS:
+			pline("You feel powered up!");
+				if (Upolyd) u.mhmax += rnd(5);
+				else u.uhpmax += rnd(5);
+			break;
 		case WAN_MAKE_INVISIBLE: {
 		    /* have to test before changing HInvis but must change
 		     * HInvis before doing newsym().
@@ -3634,6 +3759,8 @@ struct obj *obj;	/* wand or spell */
 		case WAN_EXTRA_HEALING:
 		case WAN_FULL_HEALING:
 		case WAN_DRAINING:
+		case WAN_INCREASE_MAX_HITPOINTS:
+		case WAN_REDUCE_MAX_HITPOINTS:
 		case SPE_DRAIN_LIFE:
 		case WAN_OPENING:
 		case SPE_KNOCK:

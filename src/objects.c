@@ -1547,12 +1547,13 @@ SCROLL("gain mana",         "DAMN IT",            P_DIVINATION_SPELL, 1,  25, 30
 /* Enchantment */
 SCROLL("confuse monster",       "NR 9",                 P_ENCHANTMENT_SPELL,  1,  90, 300, CLR_MAGENTA),
 SCROLL("scare monster",         "XIXAXA XOXAXA XUXAXA", P_ENCHANTMENT_SPELL,  1,  175, 300, CLR_BRIGHT_BLUE),
-SCROLL("enchant weapon",        "DAIYEN FOOELS",        P_ENCHANTMENT_SPELL,  1,  465, 300, CLR_RED),
-SCROLL("enchant armor",         "ZELGO MER",            P_ENCHANTMENT_SPELL,  1,  315, 300, CLR_GREEN),
+SCROLL("enchant weapon",        "DAIYEN FOOELS",        P_ENCHANTMENT_SPELL,  1,  450, 300, CLR_RED),
+SCROLL("enchant armor",         "ZELGO MER",            P_ENCHANTMENT_SPELL,  1,  305, 300, CLR_GREEN),
+SCROLL("random enchantment",         "GODFATHER OF ALL ROGUELIKES",            P_ENCHANTMENT_SPELL,  1,  25, 300, CLR_RED),
 /* Protection */
 SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1, 300, 300, CLR_BRIGHT_MAGENTA),
 /* Body */
-SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  295, 300, CLR_BROWN),
+SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  290, 300, CLR_BROWN),
 SCROLL("tele level",         "GON GET YA",      P_BODY_SPELL, 1,  25, 300, CLR_BRIGHT_CYAN),
 SCROLL("warping",         "MY SPUTA WILL FLOW DOWN",      P_BODY_SPELL, 1,  25, 300, CLR_BRIGHT_CYAN),
 /* Matter */
@@ -1565,6 +1566,7 @@ SCROLL("bad effect",               "LITTLE STRAWBERRY ME BABY",           P_NONE
 SCROLL("healing",               "LIFE RESTORATION",           P_NONE, 1,   5, 300, CLR_BRIGHT_CYAN),
 SCROLL("mana",               "I WANT TO SEE URANUS TOO",           P_NONE, 1,   5, 300, CLR_BRIGHT_BLUE),
 SCROLL("cure",               "SPARKLING EDWARD CULLEN",           P_NONE, 1,   5, 300, CLR_BRIGHT_BLUE),
+SCROLL("phase door",               "LESBIANISM FOR EVERYONE",           P_NONE, 1,   5, 300, CLR_CYAN),
 SCROLL("trap disarming",               "CHRISTIAN GREY KILLED ALL HIS SUBS",    P_NONE, 1,   25, 300, CLR_BRIGHT_MAGENTA),
 SCROLL("standard id",               "WHAT THE FUCK IS THIS",           P_NONE, 1,   5, 300, CLR_ORANGE),
 SCROLL("charging",              "HACKEM MUCHE",         P_NONE, 1,  145, 300, CLR_GREEN),
@@ -2174,8 +2176,10 @@ WAND("paralysis",       "automatic",   5, 500, 1, IMMEDIATE, MINERAL,     CLR_BR
 WAND("disintegration",  "stable",   5, 500, 1, IMMEDIATE, DRAGON_HIDE,     CLR_BLACK),
 WAND("stoning", "petrified",     5, 500, 1, IMMEDIATE,     MINERAL,     CLR_GRAY),
 WAND("undead turning", "copper",  225, 500, 1, IMMEDIATE, COPPER,   HI_COPPER),
-WAND("draining",       "ceramic", 120, 500, 1, IMMEDIATE, MINERAL,  HI_MINERAL),
+WAND("draining",       "ceramic", 110, 500, 1, IMMEDIATE, MINERAL,  HI_MINERAL),
 		/* KMH -- 15/1000 probability from light */
+WAND("reduce max hitpoints",       "noticeable", 5, 500, 1, IMMEDIATE, DRAGON_HIDE,  CLR_BRIGHT_BLUE),
+WAND("increase max hitpoints",       "vanishing", 5, 500, 1, IMMEDIATE, PLASTIC,  CLR_YELLOW),
 WAND("cancellation",   "platinum", 175, 500, 1, IMMEDIATE, PLATINUM, CLR_WHITE),
 WAND("create monster", "maple",    120, 500, 1, NODIR,     WOOD,     HI_WOOD),
 WAND("create familiar", "wormwood",    5, 500, 1, NODIR,     WOOD,     CLR_GREEN),

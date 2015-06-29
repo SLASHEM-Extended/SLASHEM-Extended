@@ -1829,6 +1829,7 @@ struct monst *mtmp;
 #define MUSE_WAN_PUNISHMENT 61
 #define MUSE_SCR_PUNISHMENT 62
 #define MUSE_WAN_MAKE_VISIBLE 63
+#define MUSE_WAN_REDUCE_MAX_HITPOINTS 64
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2200,6 +2201,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_MAKE_VISIBLE;
 		}
+		nomore(MUSE_WAN_REDUCE_MAX_HITPOINTS);
+		if(obj->otyp == WAN_REDUCE_MAX_HITPOINTS && obj->spe > 0 && (u.uhpmax > 1 || (Upolyd && u.mhmax > 1) ) ) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_REDUCE_MAX_HITPOINTS;
+		}
 	}
 	return((boolean)(!!m.has_offense));
 #undef nomore
@@ -2500,6 +2506,38 @@ register struct obj *otmp;
 		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 			makeknown(WAN_DRAINING);
 		break;
+	case WAN_REDUCE_MAX_HITPOINTS:	/* evil patch idea by jonadab */
+
+	/* he wanted it to be a wand of halve max hitpoints, but that would be too evil even for this game. --Amy */
+
+		if (mtmp == &youmonst) {
+			pline("You feel drained...");
+				if (Upolyd) u.mhmax -= rnd(5);
+				else u.uhpmax -= rnd(5);
+				if (u.mhmax < 1) u.mhmax = 1;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			if (zap_oseen)
+				makeknown(WAN_REDUCE_MAX_HITPOINTS);
+			stop_occupation();
+			nomul(0, 0);
+			break;
+		} else {
+			mtmp->mhpmax -= rnd(8);
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+			if (mtmp->mhpmax <= 0 || mtmp->m_lev <= 0)
+				monkilled(mtmp, "", AD_DRLI);
+			else {
+				if (canseemon(mtmp)) {
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+				}
+			}
+		}
+		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
+			makeknown(WAN_REDUCE_MAX_HITPOINTS);
+
+		break;
 	case WAN_FEAR:
 		if (mtmp == &youmonst) {
 			You("suddenly panic!");
@@ -2723,6 +2761,7 @@ struct monst *mtmp;
 	case MUSE_WAN_DRAINING:	/* KMH */
 	case MUSE_WAN_CANCELLATION:  /* Lethe */
 	case MUSE_WAN_STONING:
+	case MUSE_WAN_REDUCE_MAX_HITPOINTS:
 	case MUSE_WAN_PARALYSIS:
 	case MUSE_WAN_MAKE_VISIBLE:
 	case MUSE_WAN_DISINTEGRATION:
@@ -3486,7 +3525,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(62)) {
+	switch (rn2(63)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -3550,6 +3589,7 @@ struct monst *mtmp;
 		case 59: return WAN_PUNISHMENT;
 		case 60: return SCR_PUNISHMENT;
 		case 61: return WAN_MAKE_VISIBLE;
+		case 62: return WAN_REDUCE_MAX_HITPOINTS;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -3570,6 +3610,7 @@ struct monst *mtmp;
 #define MUSE_POT_MUTATION 12
 #define MUSE_WAN_MUTATION 13
 #define MUSE_WAN_GAIN_LEVEL 14
+#define MUSE_WAN_INCREASE_MAX_HITPOINTS 15
 
 boolean
 find_misc(mtmp)
@@ -3709,6 +3750,11 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_GAIN_LEVEL;
 		}
+		nomore(MUSE_WAN_INCREASE_MAX_HITPOINTS);
+		if(obj->otyp == WAN_INCREASE_MAX_HITPOINTS && obj->spe > 0) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_INCREASE_MAX_HITPOINTS;
+		}
 	}
 	return((boolean)(!!m.has_misc));
 #undef nomore
@@ -3833,6 +3879,21 @@ skipmsg:
 		if (oseen) makeknown(WAN_GAIN_LEVEL);
 		if (!grow_up(mtmp,(struct monst *)0)) return 1;
 			/* grew into genocided monster */
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_INCREASE_MAX_HITPOINTS:
+
+		mzapmsg(mtmp, otmp, TRUE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		if (vismon) pline("%s seems stronger.", Monnam(mtmp));
+		if (oseen) makeknown(WAN_INCREASE_MAX_HITPOINTS);
+
+		mtmp->mhp += rnd(8);
+		mtmp->mhpmax += rnd(8);
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
@@ -4186,7 +4247,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(13)) {
+	switch (rn2(14)) {
 
 		case 0: return POT_GAIN_LEVEL;
 		case 1: return WAN_MAKE_INVISIBLE;
@@ -4201,6 +4262,7 @@ struct monst *mtmp;
 		case 10: return POT_MUTATION;
 		case 11: return WAN_MUTATION;
 		case 12: return WAN_GAIN_LEVEL;
+		case 13: return WAN_INCREASE_MAX_HITPOINTS;
 
 	}
 	/*NOTREACHED*/
@@ -4241,6 +4303,8 @@ struct obj *obj;
 		    typ == WAN_TRAP_CREATION ||
 		    typ == WAN_CREATE_HORDE ||
 		    typ == WAN_DRAINING	||
+		    typ == WAN_REDUCE_MAX_HITPOINTS	||
+		    typ == WAN_INCREASE_MAX_HITPOINTS	||
 		    typ == WAN_SLOW_MONSTER	||
 		    typ == WAN_FEAR	||
 		    typ == WAN_HEALING ||

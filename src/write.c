@@ -49,6 +49,7 @@ register struct obj *otmp;
 		return(10);
 /*		break; */
 	case SCR_CONFUSE_MONSTER:
+	case SCR_PHASE_DOOR:
 		return(12);
 /*		break; */
 	case SCR_IDENTIFY:
@@ -70,6 +71,7 @@ register struct obj *otmp;
 	case SCR_MASS_MURDER:
 	case SCR_TRAP_CREATION:
 	case SCR_UNDO_GENOCIDE:
+	case SCR_RANDOM_ENCHANTMENT:
 		return(20);
 /*		break; */
 	/* KMH, balance patch -- more useful scrolls cost more */

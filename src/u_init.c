@@ -1403,12 +1403,17 @@ static struct trobj AlwaysStartItemB[] = {
 };
 
 static struct trobj AlwaysStartItemC[] = {
-	{ SCR_MANA, 0, SCROLL_CLASS, 1, 0 },
+	{ SCR_MANA, 0, SCROLL_CLASS, 4, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj AlwaysStartItemD[] = {
 	{ SCR_CURE, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AlwaysStartItemE[] = {
+	{ SCR_PHASE_DOOR, 0, SCROLL_CLASS, 3, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -8382,8 +8387,9 @@ u_init()
 
 		/* Players will start with a few healing and identify items now. --Amy */
           ini_inv(AlwaysStartItem);
-          ini_inv(AlwaysStartItemB);
-          ini_inv(AlwaysStartItemC); /* and one that restores mana */
+          ini_inv(AlwaysStartItemC); /* and some that restore mana */
+          ini_inv(AlwaysStartItemE); /* phase door for emergency escapes */
+          ini_inv(AlwaysStartItemB); /* standard id to facilitate the identification game */
           ini_inv(AlwaysStartItemD); /* and a curing scroll for those pesky delayed instadeaths */
 
 	if (flags.lostsoul && !flags.uberlostsoul) { 

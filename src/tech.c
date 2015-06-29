@@ -94,6 +94,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"booze",
 	"invoke deity",
 	"double trouble",
+	"phase door",
 #ifdef JEDI
 	"jedi jump",
 	"charge saber",
@@ -387,6 +388,7 @@ static const struct innate_tech
 	lun_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 #ifdef YEOMAN
@@ -406,37 +408,45 @@ static const struct innate_tech
 	/* Races */
 	arg_tech[] = { {   1, T_HEAL_HANDS, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	coc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	dop_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	dwa_tech[] = { {   1, T_RAGE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	cur_tech[] = { /* Put Tech here */
 		       {   1, T_BLESSING, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	elf_tech[] = { /* Put Tech here */
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	gno_tech[] = { {   1, T_VANISH, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   7, T_TINKER, 1},
 		       {   0, 0, 0} },
 	clk_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_VANISH, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BOOZE, 1},
 		       {   5, T_TINKER, 1},
@@ -448,6 +458,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ogr_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_BERSERK, 1},
 		       {   15, T_PRIMAL_ROAR, 1},
@@ -456,6 +467,7 @@ static const struct innate_tech
 	alc_tech[] = { {   1, T_RESEARCH, 1},
 		       {   1, T_TINKER, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_SURGERY, 1},
 		       {   20, T_SUMMON_TEAM_ANT, 1},
@@ -465,6 +477,7 @@ static const struct innate_tech
 
 	ung_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_POKE_BALL, 1},
 		       {   1, T_RESEARCH, 1},
@@ -477,11 +490,13 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 
 	fen_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_VANISH, 1},
 		       {   0, 0, 0} },
@@ -489,6 +504,7 @@ static const struct innate_tech
 	alb_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_CHARGE_SABER, 1},
 		       {   10, T_CRIT_STRIKE, 1},
@@ -499,33 +515,40 @@ static const struct innate_tech
 
 	nor_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_RAGE, 1},
 		       {   0, 0, 0} },
 
 	ins_tech[] = { {   1, T_SUMMON_TEAM_ANT, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	kob_tech[] = { {   10, T_TINKER, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	kha_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	hmo_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	lyc_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 	vam_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   0, 0, 0} },
@@ -533,6 +556,7 @@ static const struct innate_tech
 		       {   1, T_VANISH, 1},
 		       {   1, T_TELEKINESIS, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_ATTIRE_CHARM, 1},
 		       {   10, T_BLINK, 1},
@@ -543,19 +567,23 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ang_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	hrb_tech[] = { {   1, T_SURGERY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {  20, T_REVIVE, 1},
 		       {   0, 0, 0} },
 	mum_tech[] = { {   1, T_RAISE_ZOMBIES, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	vor_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_VANISH, 1},
 		       {   10, T_TELEKINESIS, 1},
@@ -563,17 +591,20 @@ static const struct innate_tech
 		       {   20, T_WORLD_FALL, 1},
 		       {   0, 0, 0} },
 	bat_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   0, 0, 0} },
 	rod_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
 		       {   0, 0, 0} },
 
 	tur_tech[] = { {   1, T_PUMMEL, 1},
 			 {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DASH, 1},
 		       {   1, T_BLITZ, 1},
@@ -590,6 +621,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
+		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} };
 	/* Orc */
@@ -984,6 +1016,10 @@ dotech()
 			pline("This technique allows you to determine the enchantment value of your currently wielded weapon. If you use it while wielding a non-weapon (e.g. a wand), the timeout of this technique will be much longer.");
 			break;
 
+		case T_PHASE_DOOR:
+			pline("If you need to get out of trouble, you can use this tech for a short-range teleport. It will teleport you over an euclidean distance of at least 3 but no more than 100.");
+			break;
+
 		case T_PRACTICE:
 			pline("With this technique, you can practice with your currently wielded weapon, sometimes determining the enchantment value. Also, it gets you closer to increasing your skill level, but monsters may interrupt you.");
 			break;
@@ -1364,6 +1400,12 @@ int tech_no;
                 t_timeout = rnz(200);
 		}
 		break;
+
+            case T_PHASE_DOOR:
+			phase_door(0);
+                t_timeout = rnz(1000);
+		break;
+
             case T_PRACTICE:
                 if(!uwep || (weapon_type(uwep) == P_NONE)) {
 		    You("are not wielding a weapon!");

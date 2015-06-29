@@ -3102,6 +3102,7 @@ xkilled(mtmp, dest)
 		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
 
 		if (!rn2(500)) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
+		if (!rn2(250)) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 		if (!rn2(100)) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
 		if (!rn2(100)) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
 		if (!rn2(40)) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);

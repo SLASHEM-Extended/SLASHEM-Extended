@@ -1652,7 +1652,9 @@ struct obj *otmp;
 		|| (!strcmp(word, "untrap with") &&
 		    (otmp->oclass == TOOL_CLASS && otyp != CAN_OF_GREASE))
 		|| (!strcmp(word, "charge") && !is_chargeable(otmp))
+		|| (!strcmp(word, "randomly enchant") && !is_enchantable(otmp))
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
+		|| (!strcmp(word, "magically enchant") && !(otmp->owornmask & W_ARMOR) )
 		|| ((!strcmp(word, "draw blood with") ||
 			!strcmp(word, "bandage your wounds with")) &&
 		    (otmp->oclass == TOOL_CLASS && otyp != MEDICAL_KIT))
@@ -5278,7 +5280,7 @@ struct obj *obj;
 			case SCR_ENCHANT_WEAPON: 
 				pline("Your wielded weapon's enchantment goes up if you read this scroll. Beware, if the weapon's enchantment is +6 or higher, the weapon may blow up."); break;
 			case SCR_ENCHANT_ARMOR: 
-				pline("Randomly selects one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
+				pline("You may select one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
 			case SCR_REMOVE_CURSE: 
 				pline("This scroll can uncurse some of the items in your inventory if you read it."); break;
 			case SCR_TELEPORTATION: 
@@ -5303,12 +5305,16 @@ struct obj *obj;
 				pline("A standard mana scroll that behaves similar to mana potions in other role-playing games by restoring some of your mana."); break;
 			case SCR_CURE: 
 				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear and hallucination."); break;
+			case SCR_PHASE_DOOR: 
+				pline("Using this scroll will teleport you over a short distance."); break;
 			case SCR_TRAP_DISARMING: 
 				pline("If you read this scroll, all traps in a 3x3 radius centered on you will be removed."); break;
 			case SCR_STANDARD_ID: 
 				pline("Reading this scroll allows you to identify exactly one item in your main inventory."); break;
 			case SCR_CHARGING: 
 				pline("This scroll can be read to charge an object, which must be in your main inventory and of an item type that can be charged, e.g. a wand. Be careful, recharging an item too many times may cause it to explode."); break;
+			case SCR_RANDOM_ENCHANTMENT: 
+				pline("Using this scroll will allow you to pick an item that you want to have randomly enchanted. The item in question might get a positive or negative enchantment. However, if the item had a positive enchantment before it will first be set to +0 and get enchanted afterwards, so it's probably better to use it on items that are already +0 or worse."); break;
 			case SCR_GENOCIDE: 
 				pline("A powerful magic scroll that can be read to permanently get rid of a monster type and also prevent any more of them to spawn. Not all monster types can be genocided though."); break;
 			case SCR_PUNISHMENT: 
@@ -5447,7 +5453,7 @@ struct obj *obj;
 			case SPE_ENCHANT_WEAPON:
 				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up."); break;
 			case SPE_ENCHANT_ARMOR:
-				pline("This spell rarely works, but if it does, it tries to enchant a randomly selected worn piece of armor. Beware, if the armor in question already has a very high enchantment, it might blow up."); break;
+				pline("This spell rarely works, but if it does, it tries to enchant a user-selected worn piece of armor. Beware, if the armor in question already has a very high enchantment, it might blow up."); break;
 			case SPE_CHARGING:
 				pline("Cast this spell if you want to recharge your objects."); break;
 			case SPE_PROTECTION:
@@ -5652,6 +5658,10 @@ struct obj *obj;
 				pline("This wand can be zapped at living undead monsters to make them flee, or you can zap corpses with it to reanimate them. Unfortunately you can't zap yourself after you die."); break;
 			case WAN_DRAINING:
 				pline("A wand that can be zapped at monsters and objects to drain their level."); break;
+			case WAN_REDUCE_MAX_HITPOINTS:
+				pline("A wand that can be zapped at monsters to reduce their maximum amount of hit points. Zapping it at objects drains their enchantment."); break;
+			case WAN_INCREASE_MAX_HITPOINTS:
+				pline("A wand that can be zapped at monsters or yourself to increase their maximum amount of hit points. Zapping it at objects drains their negative enchantment, bringing it closer to +0."); break;
 			case WAN_CANCELLATION:
 				pline("Cancels whatever you zap it at. Monsters lose their ability to use certain types of special attacks while objects will lose their enchantments."); break;
 			case WAN_CREATE_MONSTER:

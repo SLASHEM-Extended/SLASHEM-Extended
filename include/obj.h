@@ -306,6 +306,8 @@ struct obj {
 || (otmp)->otyp == FROST_HORN\
 || (otmp)->otyp == FIRE_HORN\
 || (otmp)->otyp == WAN_DRAINING\
+|| (otmp)->otyp == WAN_INCREASE_MAX_HITPOINTS\
+|| (otmp)->otyp == WAN_REDUCE_MAX_HITPOINTS\
 || (otmp)->otyp == SCR_EARTH\
 || (otmp)->otyp == POT_AMNESIA\
 || (otmp)->otyp == WAN_CANCELLATION\

@@ -3382,6 +3382,8 @@ wand_explode(obj, hero_broke)
     case WAN_UNDEAD_TURNING:
     case WAN_WIND:
     case WAN_DRAINING:	/* KMH */
+    case WAN_REDUCE_MAX_HITPOINTS:
+    case WAN_INCREASE_MAX_HITPOINTS:
 	affects_objects = TRUE;
 	break;
     case WAN_TELEPORTATION:
