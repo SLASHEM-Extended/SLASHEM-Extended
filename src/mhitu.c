@@ -3221,8 +3221,7 @@ dopois:
 		if (flaming(youmonst.data)) {
 		    pline_The("slime burns away!");
 		    dmg = 0;
-		} else if (Unchanging ||
-				youmonst.data == &mons[PM_GREEN_SLIME]) {
+		} else if (Unchanging || slime_on_touch(youmonst.data)) {
 		    You("are unaffected.");
 		    dmg = 0;
 		} else if (!Slimed) {
@@ -3892,8 +3891,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (flaming(youmonst.data)) {
 		    pline_The("slime burns away!");
 		    tmp = 0;
-		} else if (Unchanging ||
-				youmonst.data == &mons[PM_GREEN_SLIME]) {
+		} else if (Unchanging || slime_on_touch(youmonst.data) ) {
 		    You("are unaffected.");
 		    tmp = 0;
 		} else if (!Slimed) {
@@ -4613,8 +4611,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if (flaming(youmonst.data)) {
 		    pline_The("slime burns away!");
-		} else if (Unchanging ||
-				youmonst.data == &mons[PM_GREEN_SLIME]) {
+		} else if (Unchanging || slime_on_touch(youmonst.data) ) {
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");

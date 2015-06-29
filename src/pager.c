@@ -1242,6 +1242,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (touch_petrifies(ptr)) {
 		strcat(description, " It can turn you to stone if you touch it.");
 	}
+	if (slime_on_touch(ptr)) {
+		strcat(description, " It can turn you to slime if you touch it.");
+	}
 	if (eating_is_fatal(ptr)) {
 		strcat(description, " Eating its corpse is instantly fatal.");
 	}

@@ -214,6 +214,7 @@
 #define M3_NO_DECAY	0x00800000L			/* corpse won't decay - lizard, lichen etc. */
 #define M3_MIMIC		0x01000000L			/* non-m-class-monster that mimics stuff */
 #define M3_PERMAMIMIC	0x02000000L			/* non-m-class-monster that mimics stuff and keeps doing so when hit */
+#define M3_SLIME		0x04000000L			/* coming into contact with this monster causes sliming */
 
 #define M3_MIND_FLAYER	0x00480000L			/* generates "faint wave of psychic energy" message, telepathic */
 

@@ -592,7 +592,7 @@ int	mntmp;
 		pline_The("slime burns away!");
 		Slimed = 0L;
 		flags.botl = 1;
-	    } else if (mntmp == PM_GREEN_SLIME) {
+	    } else if (slime_on_touch(&mons[mntmp]) ) {
 		/* do it silently */
 		Slimed = 0L;
 		flags.botl = 1;

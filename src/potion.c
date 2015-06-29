@@ -634,7 +634,7 @@ badeffect()
 		break;
 
 		case 77:
-		if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -1505,7 +1505,7 @@ peffects(otmp)
 
 	case POT_SLIME:
 
-		if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
@@ -3014,7 +3014,7 @@ register struct obj *obj;
 	      (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		break;
 	case POT_SLIME:
-		if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;

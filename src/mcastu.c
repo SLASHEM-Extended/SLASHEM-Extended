@@ -1032,7 +1032,7 @@ int spellnum;
 	case 30:
 
 		/* sliming - similar to green slime attack --Amy */
-		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME])
+		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) )
 		 {You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;}

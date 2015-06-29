@@ -214,6 +214,8 @@
 #define standardmimic(ptr)		((ptr)->mflags3 & M3_MIMIC)
 #define permamimic(ptr)		((ptr)->mflags3 & M3_PERMAMIMIC)
 
+#define slime_on_touch(ptr)		((ptr)->mflags3 & M3_SLIME)
+
 #define always_egotype(ptr)		((ptr)->mflags3 & M3_EGOTYPE)
 
 /* return TRUE if the monster tends to revive */

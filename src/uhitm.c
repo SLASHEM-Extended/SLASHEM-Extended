@@ -2862,7 +2862,7 @@ register struct attack *mattk;
 		if (notonhead || !has_head(mdef->data)) {
 		    pline("%s doesn't seem harmed.", Monnam(mdef));
 		    tmp = 0;
-		    if (!Unchanging && mdef->data == &mons[PM_GREEN_SLIME]) {
+		    if (!Unchanging && slime_on_touch(mdef->data) ) {
 			if (!Slimed) {
 			    You("suck in some slime and don't feel very well.");
 			    Slimed = 100L;
@@ -2978,8 +2978,7 @@ register struct attack *mattk;
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
 		if (negated || (rn2(100) < mdef->data->mr) ) break;	/* physical damage only */
-		if (!rn2(400) && !flaming(mdef->data) &&
-				mdef->data != &mons[PM_GREEN_SLIME]) {
+		if (!rn2(400) && !flaming(mdef->data) && !slime_on_touch(mdef->data) ) {
 		    You("turn %s into slime.", mon_nam(mdef));
 		    (void) newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, !Blind);
 		    tmp = 0;
@@ -3294,7 +3293,7 @@ register struct attack *mattk;
 				nomul(-tmp, "digesting a monster");
 				nomovemsg = msgbuf;
 			    } else pline("%s", msgbuf);
-			    if (mdef->data == &mons[PM_GREEN_SLIME]) {
+			    if (slime_on_touch(mdef->data)) {
 				Sprintf(msgbuf, "%s isn't sitting well with you.",
 					The(mdef->data->mname));
 				if (!Unchanging) {
@@ -3917,8 +3916,7 @@ use_weapon:
 			   monsters if doing so would be fatal */
 			if ((uwep || u.twoweap && uswapwep) &&
 				is_vampire(youmonst.data) &&
-				(is_rider(mon->data) ||
-				 mon->data == &mons[PM_GREEN_SLIME]))
+				(is_rider(mon->data) || slime_on_touch(mon->data) ))
 			    break;
 		case AT_STNG:
 		case AT_TUCH:
@@ -4435,7 +4433,7 @@ uchar aatyp;
 		/* plus the normal damage */
 		break;
 	  case AD_SLIM:    
-		if (!flaming(youmonst.data) && !Unchanging && youmonst.data != &mons[PM_GREEN_SLIME]) {
+		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 
 		 if (!Slimed) {
 		    You("don't feel very well.");

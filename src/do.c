@@ -672,7 +672,7 @@ register struct obj *obj;
 		if (obj->otyp == CORPSE) {
 		    could_petrify = touch_petrifies(&mons[obj->corpsenm]);
 		    could_poly = polyfodder(obj);
-		    could_slime = (obj->corpsenm == PM_GREEN_SLIME);
+		    could_slime = slime_on_touch(&mons[obj->corpsenm]);
 		    could_grow = (obj->corpsenm == PM_WRAITH);
 		    could_heal = (obj->corpsenm == PM_NURSE);
 		}

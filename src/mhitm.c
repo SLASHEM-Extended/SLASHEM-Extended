@@ -1761,7 +1761,7 @@ physical:
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
 		if (cancelled || (rn2(100) < mdef->data->mr) ) break;   /* physical damage only */
 		if (!rn2(400) && !flaming(mdef->data) &&
-				mdef->data != &mons[PM_GREEN_SLIME]) {
+				!slime_on_touch(mdef->data) ) {
 		    if (newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis)) {
 			mdef->oldmonnm = PM_GREEN_SLIME;
 			(void) stop_timer(UNPOLY_MON, (genericptr_t) mdef);
