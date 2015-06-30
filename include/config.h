@@ -522,6 +522,10 @@ typedef unsigned char	uchar;
 
 #define STATUS_COLORS
 
+#ifndef PUBLIC_SERVER
+#define EXTENDED_INFO /* potential fix for the "phantom crash bug" by Soviet5lo */
+#endif
+
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 #define AUTOPICKUP_EXCEPTIONS /* exceptions to autopickup */
 #define EPITAPH		/* 'write your own epitaph' patch */
