@@ -32,11 +32,11 @@ STATIC_DCL void FDECL(kill_eggs, (struct obj *));
 #ifdef REINCARNATION
 #define LEVEL_SPECIFIC_NOCORPSE(mdat) \
 	 (Is_rogue_level(&u.uz) || \
-	   ( (level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
+	   ( (level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
 	    mdat != &mons[PM_VECNA] && rn2(3)))
 #else
 #define LEVEL_SPECIFIC_NOCORPSE(mdat) \
-	   ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
+	   ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
 	    mdat != &mons[PM_VECNA] && rn2(3))
 #endif
 
