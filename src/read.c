@@ -1858,7 +1858,9 @@ register struct obj	*sobj;
 
 	case SCR_PROOF_ARMOR: /*scroll added by Amy*/
 	      {
-		otmp = some_armor(&youmonst);
+		pline("You may enchant a worn piece of armor.");
+		otmp = getobj(all_count, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
 			if(!otmp) {
 				strange_feeling(sobj,"Some weird things are happening to your equipment!");
 				exercise(A_STR, FALSE);
