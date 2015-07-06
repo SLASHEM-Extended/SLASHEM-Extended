@@ -657,7 +657,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 	}
 
 	/* put kept objects back */
-	while (otmp && (otmp = keepobj) != (struct obj *)0) {
+	while ((otmp = keepobj) != (struct obj *)0) {
 	    keepobj = otmp->nobj;
 	    (void) add_to_minv(mtmp, otmp);
 	}
