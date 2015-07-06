@@ -5828,6 +5828,10 @@ struct obj *obj;
 				pline("A blue gem with a mohs hardness of 6, worth 1000 zorkmids."); break;
 			case VIVIANITE:
 				pline("A cyan gem with a mohs hardness of 2, worth 900 zorkmids."); break;
+			case KUNZITE:
+				pline("A pink gem with a mohs hardness of 7, worth 600 zorkmids."); break;
+			case CIRMOCLINE:
+				pline("A pink gem with a mohs hardness of 11, worth 4000 zorkmids."); break;
 			case CITRINE:
 				pline("A yellow gem with a mohs hardness of 6, worth 1500 zorkmids."); break;
 			case AQUAMARINE:

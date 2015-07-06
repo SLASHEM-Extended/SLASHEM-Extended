@@ -97,8 +97,8 @@ d_level *dlev;
 	    }
 
 	for (j = first; j <= LAST_GEM; j++)
-		/* KMH, balance patch -- valuable gems now sum to 315 */
-		objects[j].oc_prob = (315+j-first)/(LAST_GEM+1-first);
+		/* KMH, balance patch -- valuable gems now sum to 325 */
+		objects[j].oc_prob = (325+j-first)/(LAST_GEM+1-first);
 }
 
 /* shuffle descriptions on objects o_low to o_high */
