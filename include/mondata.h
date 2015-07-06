@@ -318,6 +318,8 @@
 				 noncorporeal(ptr))
 #define vegetarian(ptr)		(vegan(ptr) || \
 				 (ptr)->mlet == S_RUBMONST ||            \
+				 (ptr)->mlet == S_EEL ||            \
+				 (ptr)->mlet == S_FLYFISH ||            \
 				((ptr)->mlet == S_PUDDING &&         \
 				 (ptr) != &mons[PM_BLACK_PUDDING]))
 /* For vampires */
