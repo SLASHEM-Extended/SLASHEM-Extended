@@ -1258,6 +1258,8 @@ ask_about_trap(int x, int y)
 
 		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz)) /* traps on this level do wind damage */
 			return TRUE;
+		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz))
+			return TRUE;
 
 		if (Levitation || Flying) {
 			if (!In_sokoban(&u.uz) && traphere->ttyp == PIT) {
@@ -1295,6 +1297,7 @@ ask_about_water(int x, int y)
 	if (is_pool(x, y) && !Levitation && !Flying && !Confusion && !Stunned && levl[x][y].seenv) return TRUE; 
 
 	if (is_pool(x, y) && !Confusion && !Stunned && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
+	if (is_pool(x, y) && !Confusion && !Stunned && levl[x][y].seenv && Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) return TRUE; 
 
 	return FALSE;
 }
@@ -1771,6 +1774,13 @@ domove()
 			return;
 			}
 		}
+		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) {
+		if (yn("There is a strong wind above the water. It seems dangerous. Really step there?") != 'y') {
+			nomul(0, 0);
+			flags.move = 0;
+			return;
+			}
+		}
 
 		else {
 		if (yn("This is a water tile that can cause you to drown. Really step on it?") != 'y') {
@@ -2095,7 +2105,7 @@ boolean pick;
 {
 	register struct monst *mtmp;
 
-	if  (is_pool(u.ux, u.uy) && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
+	if  (is_pool(u.ux, u.uy) && (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) && Is_qlocate(&u.uz) ) {
 
 	/* strong winds over the Grand Canyon. Please don't ask me how they can continue working underwater. :-) --Amy */
 
@@ -2108,7 +2118,7 @@ boolean pick;
 		u.legscratching++;
 	}
 
-	if (t_at(u.ux, u.uy) && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) {
+	if (t_at(u.ux, u.uy) && (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) && Is_qlocate(&u.uz) ) {
 
 	/* every trap on the Grand Canyon level also has a lesser wind effect. --Amy */
 

@@ -3881,6 +3881,25 @@ static const char * const bogusmons[] = {
 	"Jesuitic Studies PhD",
 	"Marriage Counseling Professor",
 	"Queen Serenity", "Angel Aphrodite", "Queen Beryl", /* perhaps an anime or manga? */
+	"Looser",
+	"Failure",
+	"Bum",
+	"Torn Person",
+	"Chainsmoker",
+	"Walking Beer Bottle",
+	"Limping Tramp",
+	"Luckless Individual",
+	"Choosy Beggar",
+	"Knife Killer",
+	"Dangerous Criminal",
+	"Mean Contract",
+	"Serial Killer",
+	"Cold-Blooded Gangster",
+	"Silent Assassin",
+	"Master Hitman",     "Master Hitwoman",
+	"Professional Cutter",
+	"Bane of all innocent people",
+	"Falis", "_Marfa", "Falaris",	/* Record of Lodoss War */
 
 	/* more random names... */
 

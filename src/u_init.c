@@ -321,6 +321,46 @@ static struct trobj Convict[] = {
 };
 #endif  /* CONVICT */
 
+static struct trobj Murderer[] = {
+#define M_ITEM_ONE          6
+#define M_ITEM_TWO          7
+#define M_ITEM_THREE        8
+#define M_ITEM_FOUR         9
+	{ SNIPER_RIFLE, -9, WEAPON_CLASS, 1, 0 },
+	{ SHOTGUN_SHELL, 10, WEAPON_CLASS, 5, 0 },
+	{ ROCK, -6, GEM_CLASS, 1, 0 },
+	{ KNIFE, -4, WEAPON_CLASS, 20, 1 },
+	{ STRIPED_SHIRT, -5, ARMOR_CLASS, 1, 0 },
+	{ CYAN_DRAGON_SCALE_MAIL, -10, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, -20, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, 1, TOOL_CLASS, 1, 0 },
+	{ CLOAK_OF_LUCK_NEGATION, 0, ARMOR_CLASS, 1, 0 },
+	{ BOOTS_OF_WEAKNESS, 5, ARMOR_CLASS, 1, 0 },
+	{ HEALTHSTONE, -10, GEM_CLASS, 1, 0 },
+	{ AMULET_OF_POISON_WARNING, 0, AMULET_CLASS, 1, 0 },
+	{ RIN_SUSTAIN_ABILITY, 0, RING_CLASS, 1, 0 },
+	{ RIN_GAIN_INTELLIGENCE, UNDEF_SPE, RING_CLASS, 1, 0 },
+	{ SPE_DARKNESS, 20, SPBOOK_CLASS, 1, 0 },
+	{ SPE_AGGRAVATE_MONSTER, 20, SPBOOK_CLASS, 1, 0 },
+	{ SPE_STUN_SELF, 20, SPBOOK_CLASS, 1, 0 },
+	{ WAN_REMOVE_RESISTANCE, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ WAN_AMNESIA, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ WAN_STARVATION, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ SCR_FLOOD, 0, SCROLL_CLASS, 1, 0 },
+	{ SCR_LAVA, 0, SCROLL_CLASS, 1, 0 },
+	{ SCR_GROWTH, 0, SCROLL_CLASS, 1, 0 },
+	{ SCR_BARRHING, 0, SCROLL_CLASS, 1, 0 },
+	{ SCR_LOCKOUT, 0, SCROLL_CLASS, 1, 0 },
+	{ POT_URINE, 0, POTION_CLASS, 3, 0 },
+	{ FORTUNE_COOKIE, 0, FOOD_CLASS, 5, 0 },
+	{ CORPSE, 0, FOOD_CLASS, 5, 0 },
+	{ TIN_WHISTLE, 0, TOOL_CLASS, 1, 0 },
+	{ MIRROR, 0, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj Courier[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, 0 },
 	{ BULLET, 0, WEAPON_CLASS, 20, 0 },
@@ -977,6 +1017,13 @@ static struct trobj Topmodel[] = {
 	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_PEEP_TOES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Failed_Existence[] = {
+	{ KNIFE, -6, WEAPON_CLASS, 1, 0 },
+	{ BULLET, -4, WEAPON_CLASS, 7, 0 },
+	{ SENTIENT_HIGH_HEELED_SHOES, 12, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -2992,6 +3039,21 @@ static const struct def_skill Skill_Con[] = {
 };
 #endif  /* CONVICT */
 
+static const struct def_skill Skill_Mur[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
+    { P_HAMMER, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
+    { P_CLUB, P_EXPERT },		    { P_MACE, P_EXPERT },
+    { P_DART, P_EXPERT },		    { P_FLAIL, P_GRAND_MASTER },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_SLING, P_EXPERT },
+#ifdef FIREARMS
+    { P_FIREARM, P_EXPERT },
+#endif
+    { P_ATTACK_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_EXPERT },
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Sla[] = {
 
     { P_SABER, P_EXPERT },		{ P_UNICORN_HORN,  P_EXPERT },
@@ -3081,6 +3143,27 @@ static const struct def_skill Skill_Top[] = {
     { P_BODY_SPELL, P_EXPERT },	{ P_MATTER_SPELL, P_EXPERT },
     { P_MARTIAL_ARTS, P_MASTER },
     { P_RIDING, P_GRAND_MASTER },
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Fai[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_AXE, P_EXPERT },		    { P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_PADDLE, P_EXPERT },
+    { P_FLAIL, P_EXPERT },		{ P_QUARTERSTAFF, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_SPEAR, P_EXPERT },
+    { P_JAVELIN, P_EXPERT },		{ P_TRIDENT, P_EXPERT },
+    { P_LANCE, P_EXPERT },		{ P_SLING, P_EXPERT },
+    { P_CROSSBOW, P_EXPERT },		{ P_WHIP, P_EXPERT },
+	{ P_LIGHTSABER, P_EXPERT },
+#ifdef FIREARMS
+    { P_FIREARM, P_EXPERT },
+#endif
+    { P_HEALING_SPELL, P_EXPERT },	{ P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },	{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_BODY_SPELL, P_EXPERT },	{ P_MATTER_SPELL, P_EXPERT },
+    { P_MARTIAL_ARTS, P_MASTER },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -4435,7 +4518,7 @@ static const char * const hereticgods[] = {
 
 "_JoJo", "_Jyllia", "_Sabrina", "_Sabine", "_Yvara", "_Lenka", "_Evita", "_Liebea", "_Isolde", "_Elli", "_Vilja", "_Sunija", "_Rhea", "_Jasmin", "_Erosina", "_Irmina", "_Melirija", "_Larissa", "_Sysette", "_Miss Haskill", "_Elenya", "_Golden Mary", "_Lara", "_Sandrina", "_Tonilia", "_Claire", "_Lumia", "_Lahira", "_Estrella", "_Maricia", "_Sontaire", "_Marje", "_Jill", "_Trycja", "_Kersey", "_Sally", "_Hannya", "_Svantje", "_Jynnifyr", "_Elke", "_Rinka", "_Nicoletta", "_Betti", "_Ina", "_Heikipa", "_Jora", "_Maitine", "_Esruth", "_Verene", "_Lousie", "_Irinella", "_Amandina", "_Lillie", "_Leodoch", "_Mirella", "_Fisoa", "_Suesska", "_Ann", "_Nurisha", "_Desiree", "_Birgit", "_Elsbeth", "_Lamy", "_Lissie", "_Arabella", "_Anastasia", "_Henrietta", "_Katrin", "_Jana", "_Aniya", "_Yasni", "_Almina", "_Xeni", "_Mirri", "_Eleanor", "_Kirja", "_Inge", "_Helli", "_Lucia", "_Viktorija", "_Simona", "_Natalyana", "_Krista", "_Nellina", "_Raidara", "_Vera", "_Noko", "_Jasajeen", "_Marika", "_Merbek", "_Marianna", "_Sinja", "_Rodotha", "_Natinya", "_Aline", "_Michaela", "_Mare", "_Noenoe", "_Tschulia", "_Lea", "_Sarah", "_Iris", "_Charravalga", "_Fridrika", "_Great Jaguar Claw", "_Lynette", "_Celina", "_Irya", "_Mariya", "_Wendy", "_Katia", "_Tanja", "_Vanessa", "_Anne", "_Lena", "_Jeanetta", "_Rungud", "_Melissa", "_Everella", "_Madeleine", "_Anita", "_Nina", "_Natascha", "_Manola", "_Litta", "_Kiwi", "_Maja", "_Natalje", "_Little Marie", "_Ronja", "_Roswitha", "_Sing", "_Johanetta", "_Julia", "_Julchen", "_Yvonne", "_Magdalena", "_Eveline", "_Bea", "_Beatriz", "_Corina", "_Elif", "_Nadja", "_Sunali", "_Solvejg", "_Thai", "_Meltem", "_Susanne", "_Rita", "_Kati", "_Katinka", "_Mailie", "_Marie", "_Klara", "_Sandra", "_Antonia", "_Chaska", "_Ludgera", "_Laura", "_Eva", "_Maurah", "_Sophie", "_Marian", "_Jil", "_Patricia", "_Kerstin", "_Hanh", "_Antje", "_Jennifer", "_Karin", "_Nicole", "_Bettina", "_Heike", "_Dora", "_Maite", "_Ruth", "_Verena", "_Lou", "_Danielle", "_Amandine", "_Lily", "_Leonie", "_Mira", "_Sofia", "_Christiane", "_Ann Kathrin", "_Njusha", "_Elisabeth", "_Conny", "_Constanze", "_Lisa", "_Anja", "_Yasaman", "_Almut", "_Ksenia", "_Miriam", "_Elena", "_Katharina", "_Helen", "_Victoria", "_Simone", "_Nataliya", "_Kristin", "_Nelly", "_Rejda", "_Nora", "_Jasieen", "_Yacine", "_Marike", "_Merle", "_Marianne", "_Sina", "_Dorothea", "_Tinanya", "_Noemi", "_Giulia", "_Charlotte", "_Friederike", "_Sophia", "_Sue Lyn", "_Juen", "_Ruea", "_Gudrun", "_Ella", "_Manuela", "_Tilla", "_Greta", "_Jane", "_Celia", "_Boese", "_Bad", "_Eliane", "_O'Neill", "_Fenja", "_Silvana", "_Vanasil", "_Sarina", "_Alexia", "_Vida", "_Isis", "_Ilse", "_Melanie", "_Lareena", "_Janina", "_Jannie", "_Micha", "_Chirin", "_Ingrid", "_Tonja", "_Tapia", "_Ligasa", "_Andrea", "_Mia", "_Annemarie", "_Caro", "_Mandarina", "_Ariane", "_Carina", "_Denise", "_Kira", "_Nadine", "_Franzi", "_Amelie", "_Annika", "_Barbara", "_Elsa", "_Isabel", "_Bianca", "_Carmen", "_Hilda", "_Johanna", "_Julietta", "_Linda", "_Petra", "_Sonja", "_Stella", "_Ismella", "_Teresa", "_Sagarah", "_Rosy",
 
-"Cerberus", "Kroo the Kobold King", "_Aphrodite", "Grund the Orc King", "Jumbo the Elephant", "Catoblepas", "The Rat King", "_Girtab", "_Shelob", "Pegasus", "Deep Thought", "Eddie", "Douglas Adams", "Ruggo the Gnome King", "The Largest Giant", "Father Dagon", "_Mother Hydra", "Doctor Frankenstein", "Vlad the Impaler", "Prostetnik Vogon Jeltz", "Marvin", "Zaphod Breeblebrox", "Frankenstein's Monster", "Sizzle", "_Katniss", "Ford Prefect", "Arthur Dent", "Mr. Prosser", "_Medusa", "The Wizard of Yendor", "Croesus", "Charon", "UNIX Kernel", "Juiblex", "Jubilex", "_Fierna", "_Shami-Amourae", "Bael", "_Zuggtmoy", "Baphomet", "_Daughter Lilith", "Mammon", "_Xinivrae", "_Malcanthet", "_Mother Lilith", "Belial", "_Crone Lilith", "_Lynkhab", "Leviathan", "Mephistopheles", "_Baalphegor", "Yeenoghu", "Orcus", "_Shaktari", "Graz'zt", "Geryon", "Dispater", "Baalzebub", "_Pale Night", "Verier", "Asmodeus", "Demogorgon", "Cthulhu", "Death", "Pestilence", "Famine", "War", "_Nightmare", "Beholder", "Vecna", "Lord Carnarvon", "Pelias", "the strange corpse", "Fwagglebrapo", "Vlad the Skewerer", "the diseased heir", "Acidsnort", "Rockin Roller", "Christian Gray", "Pindar", "Shaman Karnov", "Driud the Druid", "Andy Stahl", "Smokey", "Master of Locks", "Harry the Cowboy", "Robert the Lifer", "Master Shifter", "Thorin", "Earendil", "_Elwing", "Sinderion", "Glarthir", "Vivec", "_Elenwen", "High Flame Mage", "The Dev Team", "Top Gunner", "Upper Graduate", "Gordon Freeman", "Snap and Loopin", "Hippocrates", "_Bellatrix Lestrange", "_Celeste", "_Madam Tequila the Clubhouse Owner", "Dave", "The Angry Video Game Nerd", "Guitar Hero", "Mister Mulberry", "Yes Man", "Crowned Drag Queen", "Camp Porter", "Activist Speaker", "Erec", "Dr. Wusiji", "Bilbo Baggins", "High Ice Mage", "King Arthur", "King Chester", "Sir Lancelot", "High Lycanthrope", "_the old Gypsy woman", "Grand Master", "Psi Master", "Dark Lord", "Arch Priest", "Paladin Colvin", "Mayor Cummerbund", "Master Caster", "Blackbeard", "Jacques Cousteau", "Orion", "Tutor", "Master of Thieves", "Master of Assassins", "Lord Sato", "_Tenshi and Meiling", "Senior Otaku", "Master Roshi", "Cato", "Ken Hayabusa", "Marc", "Stunt Double", "Otacon", "Principal Clark", "Mustached Nightshift Supermarket Manager", "Master Librarian", "some guy called Shade", "Commissioner Hunter", "Slave Emperor", "Paintmaster", "_Ajela", "Master Zookeeper", "Upper Augurer", "Master Bookkeeper", "Ancient Sage", "Twoflower", "Van Helsing", "King K. Rool", "_Norn", "_Neferet the Green", "Chief Yeoman Warder", "_The Queen", "The Jedi Master", "Minion of Huhetotl", "Thoth Amon", "Acererak", "_Aglaope", "Chromatic Dragon", "_Warden Arianna", "Transmuter", "Smaug", "Goblin King", "Water Mage", "Lareth", "_Bloody Beauties", "Colin Moriarty", "Esbern", "Eddie the Pyro", "Burglar Ed", "Draco the Sharpshooter", "Mannimarco", "Jaquio", "Grandpa Tank Breaker", "_Seducer Saint", "fearful triceratops", "Bill Gates", "Student Leader", "_Tara Gilesbie", "Harry Potter", "Cyclops", "Gollum", "Earth Mage", "Ixoth", "Sir Lorimar", "Rebel Ringleader", "Master Kaen", "_Master Sabrina", "The Champion of Pompeji", "_Archnemesis", "_Master Brain", "Maugneshaagar", "Blackbeard's Ghost", "Spearathan", "Moby Dick", "Nalzok", "Scorpius", "Master Assassin", "Ashikaga Takauji", "some random guy", "Activist Leader", "Elvis Presley", "_Imelda's Ghost", "Alduin", "Death Metal Orchestra Leader", "Lightningrod", "Amy Bluescreenofdeath", "Dagoth Ur", "Jyggalag", "_Else God-Hater", "Nihilanth", "Ho-oh", "Count Dracula", "Lord Surtur", "Buffy the Vampire Slayer", "Dark One", "Colonel Blood", "Lord Sidious", "_Anastasia Steele", "Dark Goku", "BNP Leader", "Donkey Kong", "Estormo", "Rodney's Twin", "Crabbe and Goyle", "Yet Another Gun Nut", "_Dana Dynamite Beauty Miss", "Bragging Vandal", "Bowser", "_Flandre Scarlet", "Ron Weasley", "Oberon Principal", "Ventos Effigil", "Mysterious Necromancer", "Plaster Blaster", "Joe the Greaser", "The Local Health Inspector", "Rincewind", "Yeldud Twen", "mailer daemon", "Mr. Uncool", "_Lady Elly", "Don Rio the Master Thief", "Pettler", "Farmer Maggot",
+"Cerberus", "Kroo the Kobold King", "_Aphrodite", "Grund the Orc King", "Jumbo the Elephant", "Catoblepas", "The Rat King", "_Girtab", "_Shelob", "Pegasus", "Deep Thought", "Eddie", "Douglas Adams", "Ruggo the Gnome King", "The Largest Giant", "Father Dagon", "_Mother Hydra", "Doctor Frankenstein", "Vlad the Impaler", "Prostetnik Vogon Jeltz", "Marvin", "Zaphod Breeblebrox", "Frankenstein's Monster", "Sizzle", "_Katniss", "Ford Prefect", "Arthur Dent", "Mr. Prosser", "_Medusa", "The Wizard of Yendor", "Croesus", "Charon", "UNIX Kernel", "Juiblex", "Jubilex", "_Fierna", "_Shami-Amourae", "Bael", "_Zuggtmoy", "Baphomet", "_Daughter Lilith", "Mammon", "_Xinivrae", "_Malcanthet", "_Mother Lilith", "Belial", "_Crone Lilith", "_Lynkhab", "Leviathan", "Mephistopheles", "_Baalphegor", "Yeenoghu", "Orcus", "_Shaktari", "Graz'zt", "Geryon", "Dispater", "Baalzebub", "_Pale Night", "Verier", "Asmodeus", "Demogorgon", "Cthulhu", "Death", "Pestilence", "Famine", "War", "_Nightmare", "Beholder", "Vecna", "Lord Carnarvon", "Pelias", "the strange corpse", "Fwagglebrapo", "Vlad the Skewerer", "the diseased heir", "Acidsnort", "Rockin Roller", "Christian Gray", "Pindar", "Shaman Karnov", "Driud the Druid", "Andy Stahl", "Smokey", "Master of Locks", "Harry the Cowboy", "Robert the Lifer", "Master Shifter", "Thorin", "Earendil", "_Elwing", "Sinderion", "Glarthir", "Vivec", "_Elenwen", "High Flame Mage", "The Dev Team", "Top Gunner", "Upper Graduate", "Gordon Freeman", "Snap and Loopin", "Hippocrates", "_Bellatrix Lestrange", "_Celeste", "_Madam Tequila the Clubhouse Owner", "Dave", "The Angry Video Game Nerd", "Guitar Hero", "Mister Mulberry", "Yes Man", "Crowned Drag Queen", "Camp Porter", "Activist Speaker", "Erec", "Dr. Wusiji", "Bilbo Baggins", "High Ice Mage", "King Arthur", "King Chester", "Sir Lancelot", "High Lycanthrope", "_the old Gypsy woman", "Grand Master", "Psi Master", "Dark Lord", "Arch Priest", "Paladin Colvin", "Mayor Cummerbund", "Master Caster", "Blackbeard", "Jacques Cousteau", "Orion", "Tutor", "Master of Thieves", "Master of Assassins", "Lord Sato", "_Tenshi and Meiling", "Senior Otaku", "Master Roshi", "Cato", "Ken Hayabusa", "Marc", "Stunt Double", "Otacon", "Principal Clark", "Mustached Nightshift Supermarket Manager", "Master Librarian", "some guy called Shade", "Commissioner Hunter", "Slave Emperor", "Paintmaster", "_Ajela", "Master Zookeeper", "Upper Augurer", "Master Bookkeeper", "Ancient Sage", "Twoflower", "Van Helsing", "King K. Rool", "_Norn", "_Neferet the Green", "Chief Yeoman Warder", "_The Queen", "The Jedi Master", "Minion of Huhetotl", "Thoth Amon", "Acererak", "_Aglaope", "Chromatic Dragon", "_Warden Arianna", "Transmuter", "Smaug", "Goblin King", "Water Mage", "Lareth", "_Bloody Beauties", "Colin Moriarty", "Esbern", "Eddie the Pyro", "Burglar Ed", "Draco the Sharpshooter", "Mannimarco", "Jaquio", "Grandpa Tank Breaker", "_Seducer Saint", "fearful triceratops", "Bill Gates", "Student Leader", "_Tara Gilesbie", "Harry Potter", "Cyclops", "Gollum", "Earth Mage", "Ixoth", "Sir Lorimar", "Rebel Ringleader", "Master Kaen", "_Master Sabrina", "The Champion of Pompeji", "_Archnemesis", "_Master Brain", "Maugneshaagar", "Blackbeard's Ghost", "Spearathan", "Moby Dick", "Nalzok", "Scorpius", "Master Assassin", "Ashikaga Takauji", "some random guy", "Activist Leader", "Elvis Presley", "_Imelda's Ghost", "Alduin", "Death Metal Orchestra Leader", "Lightningrod", "Amy Bluescreenofdeath", "Dagoth Ur", "Jyggalag", "_Else God-Hater", "Nihilanth", "Ho-oh", "Count Dracula", "Lord Surtur", "Buffy the Vampire Slayer", "Dark One", "Colonel Blood", "Lord Sidious", "_Anastasia Steele", "Dark Goku", "BNP Leader", "Donkey Kong", "Estormo", "Rodney's Twin", "Crabbe and Goyle", "Yet Another Gun Nut", "_Dana Dynamite Beauty Miss", "Bragging Vandal", "Bowser", "_Flandre Scarlet", "Ron Weasley", "Oberon Principal", "Ventos Effigil", "Mysterious Necromancer", "Plaster Blaster", "Joe the Greaser", "The Local Health Inspector", "Rincewind", "Yeldud Twen", "mailer daemon", "Mr. Uncool", "_Lady Elly", "Don Rio the Master Thief", "Pettler", "Farmer Maggot", "Killed Bill", "Upper Bull", "Gruff Co-Worker", "Irina", 
 
 };
 
@@ -4714,6 +4797,12 @@ u_init()
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
+	if (Role_if(PM_FAILED_EXISTENCE)) {
+		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
+		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
+		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
+	}
+
 /* In order to make the game even more interesting for lost souls, they cannot level teleport or branchport at all. */
 
 	u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] = u.ualign.type =
@@ -4961,6 +5050,55 @@ u_init()
 	    change_luck(-1); /* both their alignment and luck start out negative */
         break;
 #endif	/* CONVICT */
+
+	case PM_MURDERER:
+
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_ONE].trotyp = HELM_OF_THIRST; Murderer[M_ITEM_ONE].trspe = 3; break;
+			case 2: Murderer[M_ITEM_ONE].trotyp = HELM_OF_BAD_ALIGNMENT; Murderer[M_ITEM_ONE].trspe = 0; break;
+			default: break;
+		}
+
+		switch (rnd(5)) {                
+			case 1: Murderer[M_ITEM_TWO].trotyp = GLOVES_OF_TRAP_CREATION; Murderer[M_ITEM_TWO].trspe = 0; break;
+			case 2: 
+			case 3:
+			case 4:
+			case 5: Murderer[M_ITEM_TWO].trotyp = UNDROPPABLE_GLOVES; Murderer[M_ITEM_TWO].trspe = 2; break;
+			default: break;
+		}
+
+		switch (rnd(11)) {                
+			case 1: Murderer[M_ITEM_THREE].trotyp = STONE_OF_MAGIC_RESISTANCE; break;
+			case 2: Murderer[M_ITEM_THREE].trotyp = SHADES_OF_GREY_STONE; break;
+			case 3: Murderer[M_ITEM_THREE].trotyp = DSTW_STONE; break;
+			case 4: Murderer[M_ITEM_THREE].trotyp = CONFUSION_STONE; break;
+			case 5: Murderer[M_ITEM_THREE].trotyp = STONE_OF_INTRINSIC_LOSS; break;
+			case 6: Murderer[M_ITEM_THREE].trotyp = ALIGNMENT_STONE; break;
+			case 7: Murderer[M_ITEM_THREE].trotyp = TRAP_CREATION_STONE; break;
+			case 8: Murderer[M_ITEM_THREE].trotyp = STONE_OF_VULNERABILITY; break;
+			case 9: Murderer[M_ITEM_THREE].trotyp = STONE_OF_CURSING; break;
+			case 10: Murderer[M_ITEM_THREE].trotyp = STATUS_STONE; break;
+			case 11: Murderer[M_ITEM_THREE].trotyp = DEAFNESS_STONE; break;
+			default: break;
+		}
+
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_FOUR].trotyp = TINNING_KIT; break;
+			case 2: Murderer[M_ITEM_FOUR].trotyp = CAN_OF_GREASE; break;
+			default: break;
+		}
+
+        ini_inv(Murderer);
+        skill_init(Skill_Mur);
+	  u.ualign.sins += 16; /* You have sinned */
+	  u.alignlim -= 16;
+        u.uhunger = 550;  /* On the verge of hungry */
+        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
+        urace.lovemask = 0; /* Murderers are pariahs of their race */
+	    change_luck(-1); /* both their alignment and luck start out negative */
+        break;
+
 	case PM_HEALER:
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rn1(1000, 1001);
@@ -5420,6 +5558,11 @@ u_init()
 		skill_init(Skill_Top);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
+	      u.uhunger = 550;  /* They don't eat much --Amy */
+		break;
+	case PM_FAILED_EXISTENCE:
+		ini_inv(Failed_Existence);
+		skill_init(Skill_Fai);
 	      u.uhunger = 550;  /* They don't eat much --Amy */
 		break;
 
@@ -5763,6 +5906,11 @@ u_init()
             skill_init(Skill_Con);
             break;
 #endif	/* CONVICT */
+
+	case PM_MURDERER:
+            skill_init(Skill_Mur);
+            break;
+
 	case PM_HEALER:
 		skill_init(Skill_H);
 		break;
@@ -5944,6 +6092,10 @@ u_init()
 		skill_init(Skill_Top);
 		break;
 
+	case PM_FAILED_EXISTENCE:
+		skill_init(Skill_Fai);
+		break;
+
 	case PM_BULLY:
 		skill_init(Skill_Bul);
 		break;
@@ -6034,7 +6186,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(90)) {
+	switch (rnd(92)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -6849,6 +7001,57 @@ u_init()
 		ini_inv(Yeoman);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
+		break;
+
+	case 91:
+		ini_inv(Failed_Existence);
+	      u.uhunger = 550;  /* They don't eat much --Amy */
+		break;
+
+	case 92:
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_ONE].trotyp = HELM_OF_THIRST; Murderer[M_ITEM_ONE].trspe = 3; break;
+			case 2: Murderer[M_ITEM_ONE].trotyp = HELM_OF_BAD_ALIGNMENT; Murderer[M_ITEM_ONE].trspe = 0; break;
+			default: break;
+		}
+
+		switch (rnd(5)) {                
+			case 1: Murderer[M_ITEM_TWO].trotyp = GLOVES_OF_TRAP_CREATION; Murderer[M_ITEM_TWO].trspe = 0; break;
+			case 2: 
+			case 3:
+			case 4:
+			case 5: Murderer[M_ITEM_TWO].trotyp = UNDROPPABLE_GLOVES; Murderer[M_ITEM_TWO].trspe = 2; break;
+			default: break;
+		}
+
+		switch (rnd(11)) {                
+			case 1: Murderer[M_ITEM_THREE].trotyp = STONE_OF_MAGIC_RESISTANCE; break;
+			case 2: Murderer[M_ITEM_THREE].trotyp = SHADES_OF_GREY_STONE; break;
+			case 3: Murderer[M_ITEM_THREE].trotyp = DSTW_STONE; break;
+			case 4: Murderer[M_ITEM_THREE].trotyp = CONFUSION_STONE; break;
+			case 5: Murderer[M_ITEM_THREE].trotyp = STONE_OF_INTRINSIC_LOSS; break;
+			case 6: Murderer[M_ITEM_THREE].trotyp = ALIGNMENT_STONE; break;
+			case 7: Murderer[M_ITEM_THREE].trotyp = TRAP_CREATION_STONE; break;
+			case 8: Murderer[M_ITEM_THREE].trotyp = STONE_OF_VULNERABILITY; break;
+			case 9: Murderer[M_ITEM_THREE].trotyp = STONE_OF_CURSING; break;
+			case 10: Murderer[M_ITEM_THREE].trotyp = STATUS_STONE; break;
+			case 11: Murderer[M_ITEM_THREE].trotyp = DEAFNESS_STONE; break;
+			default: break;
+		}
+
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_FOUR].trotyp = TINNING_KIT; break;
+			case 2: Murderer[M_ITEM_FOUR].trotyp = CAN_OF_GREASE; break;
+			default: break;
+		}
+
+	        ini_inv(Murderer);
+		  u.ualign.sins += 16; /* You have sinned */
+		  u.alignlim -= 16;
+	        u.uhunger = 550;  /* On the verge of hungry */
+	        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
+	        urace.lovemask = 0; /* Murderers are pariahs of their race */
+		    change_luck(-1); /* both their alignment and luck start out negative */
 		break;
 
 	default:	/* impossible */
@@ -7007,7 +7210,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(90)) {
+	switch (rnd(92)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -7824,6 +8027,57 @@ u_init()
 		knows_class(ARMOR_CLASS);
 		break;
 
+	case 91:
+		ini_inv(Failed_Existence);
+	      u.uhunger = 550;  /* They don't eat much --Amy */
+		break;
+
+	case 92:
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_ONE].trotyp = HELM_OF_THIRST; Murderer[M_ITEM_ONE].trspe = 3; break;
+			case 2: Murderer[M_ITEM_ONE].trotyp = HELM_OF_BAD_ALIGNMENT; Murderer[M_ITEM_ONE].trspe = 0; break;
+			default: break;
+		}
+
+		switch (rnd(5)) {                
+			case 1: Murderer[M_ITEM_TWO].trotyp = GLOVES_OF_TRAP_CREATION; Murderer[M_ITEM_TWO].trspe = 0; break;
+			case 2: 
+			case 3:
+			case 4:
+			case 5: Murderer[M_ITEM_TWO].trotyp = UNDROPPABLE_GLOVES; Murderer[M_ITEM_TWO].trspe = 2; break;
+			default: break;
+		}
+
+		switch (rnd(11)) {                
+			case 1: Murderer[M_ITEM_THREE].trotyp = STONE_OF_MAGIC_RESISTANCE; break;
+			case 2: Murderer[M_ITEM_THREE].trotyp = SHADES_OF_GREY_STONE; break;
+			case 3: Murderer[M_ITEM_THREE].trotyp = DSTW_STONE; break;
+			case 4: Murderer[M_ITEM_THREE].trotyp = CONFUSION_STONE; break;
+			case 5: Murderer[M_ITEM_THREE].trotyp = STONE_OF_INTRINSIC_LOSS; break;
+			case 6: Murderer[M_ITEM_THREE].trotyp = ALIGNMENT_STONE; break;
+			case 7: Murderer[M_ITEM_THREE].trotyp = TRAP_CREATION_STONE; break;
+			case 8: Murderer[M_ITEM_THREE].trotyp = STONE_OF_VULNERABILITY; break;
+			case 9: Murderer[M_ITEM_THREE].trotyp = STONE_OF_CURSING; break;
+			case 10: Murderer[M_ITEM_THREE].trotyp = STATUS_STONE; break;
+			case 11: Murderer[M_ITEM_THREE].trotyp = DEAFNESS_STONE; break;
+			default: break;
+		}
+
+		switch (rnd(2)) {                
+			case 1: Murderer[M_ITEM_FOUR].trotyp = TINNING_KIT; break;
+			case 2: Murderer[M_ITEM_FOUR].trotyp = CAN_OF_GREASE; break;
+			default: break;
+		}
+
+	        ini_inv(Murderer);
+		  u.ualign.sins += 16; /* You have sinned */
+		  u.alignlim -= 16;
+	        u.uhunger = 550;  /* On the verge of hungry */
+	        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
+	        urace.lovemask = 0; /* Murderers are pariahs of their race */
+		    change_luck(-1); /* both their alignment and luck start out negative */
+		break;
+
 	default:	/* impossible */
 		break;
 	}
@@ -7953,7 +8207,7 @@ u_init()
 		    !Role_if(PM_FLAME_MAGE) && !Role_if(PM_ICE_MAGE) &&
 		    !Role_if(PM_NECROMANCER))
 #ifdef CONVICT
-        if (!Role_if(PM_CONVICT))
+        if (!Role_if(PM_CONVICT) && !Role_if(PM_MURDERER))
 #endif /* CONVICT */
 		ini_inv(Xtra_food);
 	    /* Orcs can recognize all orcish objects */
@@ -12586,6 +12840,7 @@ int otyp;
 #ifdef CONVICT
      case PM_CONVICT:		skills = Skill_Con; break;
 #endif  /* CONVICT */
+     case PM_MURDERER:		skills = Skill_Mur; break;
      case PM_COURIER:		skills = Skill_Cou; break;
      case PM_SPACEWARS_FIGHTER:		skills = Skill_Spa; break;
      case PM_ROCKER:		skills = Skill_Roc; break;
@@ -12603,6 +12858,7 @@ int otyp;
      case PM_FLAME_MAGE:		skills = Skill_F; break;
      case PM_TRANSVESTITE:	skills = Skill_Tra; break;
      case PM_TOPMODEL:	skills = Skill_Top; break;
+     case PM_FAILED_EXISTENCE:	skills = Skill_Fai; break;
      case PM_GEEK:		skills = Skill_G; break;
      case PM_SCIENTIST:		skills = Skill_Sci; break;
      case PM_GANGSTER:		skills = Skill_Gan; break;
@@ -12969,10 +13225,20 @@ register struct trobj *trop;
                 objX->cursed = TRUE;
             }
 
+		if ((objX->otyp == SNIPER_RIFLE || objX->otyp == SHOTGUN_SHELL || objX->otyp == ROCK || objX->otyp == CYAN_DRAGON_SCALE_MAIL || objX->otyp == CLOAK_OF_LUCK_NEGATION || objX->otyp == HELM_OF_THIRST || objX->otyp == HELM_OF_BAD_ALIGNMENT || objX->otyp == UNDROPPABLE_GLOVES || objX->otyp == GLOVES_OF_TRAP_CREATION || objX->otyp == BOOTS_OF_WEAKNESS || objX->otyp == HEALTHSTONE || objX->otyp == STONE_OF_MAGIC_RESISTANCE || objX->otyp == SHADES_OF_GREY_STONE || objX->otyp == DSTW_STONE || objX->otyp == CONFUSION_STONE || objX->otyp == STONE_OF_INTRINSIC_LOSS || objX->otyp == ALIGNMENT_STONE || objX->otyp == TRAP_CREATION_STONE || objX->otyp == STONE_OF_VULNERABILITY || objX->otyp == STONE_OF_CURSING || objX->otyp == STATUS_STONE || objX->otyp == DEAFNESS_STONE || objX->otyp == AMULET_OF_POISON_WARNING || objX->otyp == RIN_SUSTAIN_ABILITY || objX->otyp == RIN_GAIN_INTELLIGENCE || objX->otyp == SPE_DARKNESS || objX->otyp == SPE_AGGRAVATE_MONSTER || objX->otyp == SPE_STUN_SELF || objX->otyp == FORTUNE_COOKIE || objX->otyp == CORPSE || objX->otyp == TIN_WHISTLE || objX->otyp == MIRROR || objX->otyp == TINNING_KIT || objX->otyp == CAN_OF_GREASE) && Role_if(PM_MURDERER) ) {
+                objX->cursed = TRUE;
+            }
+
             if (objX->otyp == WAN_DEATH && (Role_if(PM_DEATH_EATER) || Race_if(PM_UNGENOMOLD) ) ) {
                 objX->cursed = TRUE;
             }
             if (objX->otyp == WAN_TELEPORTATION && (Race_if(PM_MAIA) ) ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == KNIFE && (Role_if(PM_FAILED_EXISTENCE) ) ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == SENTIENT_HIGH_HEELED_SHOES && (Role_if(PM_FAILED_EXISTENCE) ) ) {
                 objX->cursed = TRUE;
             }
             if (objX->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {
@@ -13031,10 +13297,21 @@ register struct trobj *trop;
             if (obj->otyp == UNICORN_HORN && (Race_if(PM_LEVITATOR) ) ) {
                 obj->cursed = TRUE;
             }
+
+		if ((obj->otyp == SNIPER_RIFLE || obj->otyp == SHOTGUN_SHELL || obj->otyp == ROCK || obj->otyp == CYAN_DRAGON_SCALE_MAIL || obj->otyp == CLOAK_OF_LUCK_NEGATION || obj->otyp == HELM_OF_THIRST || obj->otyp == HELM_OF_BAD_ALIGNMENT || obj->otyp == UNDROPPABLE_GLOVES || obj->otyp == GLOVES_OF_TRAP_CREATION || obj->otyp == BOOTS_OF_WEAKNESS || obj->otyp == HEALTHSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == SHADES_OF_GREY_STONE || obj->otyp == DSTW_STONE || obj->otyp == CONFUSION_STONE || obj->otyp == STONE_OF_INTRINSIC_LOSS || obj->otyp == ALIGNMENT_STONE || obj->otyp == TRAP_CREATION_STONE || obj->otyp == STONE_OF_VULNERABILITY || obj->otyp == STONE_OF_CURSING || obj->otyp == STATUS_STONE || obj->otyp == DEAFNESS_STONE || obj->otyp == AMULET_OF_POISON_WARNING || obj->otyp == RIN_SUSTAIN_ABILITY || obj->otyp == RIN_GAIN_INTELLIGENCE || obj->otyp == SPE_DARKNESS || obj->otyp == SPE_AGGRAVATE_MONSTER || obj->otyp == SPE_STUN_SELF || obj->otyp == FORTUNE_COOKIE || obj->otyp == CORPSE || obj->otyp == TIN_WHISTLE || obj->otyp == MIRROR || obj->otyp == TINNING_KIT || obj->otyp == CAN_OF_GREASE) && Role_if(PM_MURDERER) ) {
+                obj->cursed = TRUE;
+            }
+
             if (obj->otyp == WAN_DEATH && (Role_if(PM_DEATH_EATER) || Race_if(PM_UNGENOMOLD) ) ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == WAN_TELEPORTATION && (Race_if(PM_MAIA) ) ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == KNIFE && (Role_if(PM_FAILED_EXISTENCE) ) ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == SENTIENT_HIGH_HEELED_SHOES && (Role_if(PM_FAILED_EXISTENCE) ) ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LUMP_OF_ROYAL_JELLY && (Race_if(PM_INSECTOID) ) ) {
@@ -13097,6 +13374,18 @@ register struct trobj *trop;
 			else if (is_suit(obj) && !uarm)
 				setworn(obj, W_ARM);
 		}
+
+		if(obj->otyp == AMULET_OF_POISON_WARNING && (Role_if(PM_MURDERER)) ) {
+				setworn(obj, W_AMUL);
+			}
+
+		if(obj->otyp == RIN_SUSTAIN_ABILITY && (Role_if(PM_MURDERER)) ) {
+				setworn(obj, W_RINGL);
+			}
+
+		if(obj->otyp == RIN_GAIN_INTELLIGENCE && (Role_if(PM_MURDERER)) ) {
+				setworn(obj, W_RINGR);
+			}
 
 		if(obj->otyp == AMULET_OF_LIFE_SAVING && (Role_if(PM_DEATH_EATER)) ) {
 				setworn(obj, W_AMUL);

@@ -93,6 +93,12 @@ pet_type()
 		case 2: return (PM_REDGUARD_GIRL);
 		case 3: return (PM_THIEVING_GIRL);
 		}
+	else if (Role_if(PM_FAILED_EXISTENCE))
+		switch (rnd(3)) {   
+		case 1: return (PM_DARK_GIRL);
+		case 2: return (PM_REDGUARD_GIRL);
+		case 3: return (PM_THIEVING_GIRL);
+		}
 	else if (Role_if(PM_LADIESMAN))
 		switch (rnd(3)) {   
 		case 1: return (PM_DARK_GIRL);
@@ -1049,7 +1055,7 @@ boolean guaranteed;
 
 		}
 #ifdef CONVICT
-    if (Role_if(PM_CONVICT) && (is_domestic(mtmp->data) && obj)) {
+    if ( (Role_if(PM_CONVICT) || Role_if(PM_MURDERER)) && (is_domestic(mtmp->data) && obj)) {
         /* Domestic animals are wary of the Convict */
         pline("%s still looks wary of you.", Monnam(mtmp));
         return((struct monst *)0);

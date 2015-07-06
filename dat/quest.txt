@@ -8012,6 +8012,328 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#	Murderer
+#
+%Cc Mur 00001
+Somehow, you have been captured and teleported back to
+%H!  But wait, the portal you went through is still
+here.  You had heard your old mentor %l,
+the prison chaplain who taught you the ways of
+%d calling for your help.  Also, %H
+is not as you had left it.  There seems to be damage
+to the walls, and you hear sounds of strife all
+around you.
+%E
+%Cp Mur 00002
+You have returned to %H.  Somehow, things are even
+worse now than when you were on your previous visit.  Has
+%l managed to still hold out?
+%E
+%Cp Mur 00003
+The situation seems to degrade, and you wonder how long
+your fellow %gp can hold out against the corrupt
+guards and creatures of the Underdark that pervade the
+formerly tranquil %H.
+%E
+%Cp Mur 00005
+"How did you manage to escape?"
+%E
+%Cp Mur 00006
+"How is life on the outside?"
+%E
+%Cp Mur 00007
+"Between the abusive guards, and the nasty vermin, I
+don't know how we will hold out."
+%E
+%Cp Mur 00008
+"This place used to be so much nicer before %n
+became corrupt."
+%E
+%Cp Mur 00009
+"You are really back?  I thought you were gone for
+good."
+%E
+%Cp Mur 00010
+"Thank you for ridding us of %n.  I hope the
+new warden will be better."
+%E
+%Cp Mur 00011
+"Take me with you!  I will be glad to be rid of this
+awful place."
+%E
+%Cp Mur 00012
+"Don't forget to come back for us once you have
+completed your quest!"
+%E
+%Cp Mur 00013
+"Thank you for coming back to help us in our hour
+of need!"
+%E
+%Cp Mur 00014
+"Leave while you still can!  If you can escape,
+maybe there is hope for the rest of us."
+%E
+%Cc Mur 00015
+"%p, I am very happy to see that you are
+alive and well!  We were all proud of your daring
+escape, and hoped that you were doing well.
+Things have become much worse in your absence,
+however, and we desperately need your help.  Let
+me have a look at you, and see if you are ready."
+%E
+%Cp Mur 00016
+"I see that you are back, %p.  I hope that
+you are now ready to help us?  Let me see if you
+are."
+%E
+%Cp Mur 00017
+"Once again, you have returned.  Let me see if you
+are finally ready to help us."
+%E
+%Cc Mur 00018
+"You have betrayed us all, %p!  Begone from
+here, and don't come back!  You are not even worthy
+to share a cell with the least of us now."
+%E
+%Cc Mur 00019
+"%p, I am afraid that a %r will be no
+match for %n.  If I sent you now,
+she would dispatch you all too easily.
+
+"Continue your other quest, and practice your
+skills.  Return to us once you have achieved the rank
+of %R."
+%E
+%Cc Mur 00020
+"%p, I see that you are not yet a loyal servant of
+%d.  Leave this place for now, and only
+return when you have cleansed your spirit.  Only then
+will you be ready to stand up to %n and
+recover %o."
+%E
+%Cc Mur 00021
+"Yes, %p, it looks like you are now ready to
+help us.  Things have become much worse since you
+left.  The dungeons are overrun by vermin, guards
+have become brutal and corrupt, and I believe that
+%n has had dealings with dark powers.
+
+"I had spent many years enchanting my iron ball
+with powers to help lead an escape from this place,
+turning it into %o.
+Unfortunately, %n stole it from me,
+likely using it for dark, twisted purposes.
+
+"We need your help to go down to the warden's level
+to defeat the corrupt %n and recover
+%o for us so that
+%H will be safe again."
+%E
+%Cp Mur 00025
+"The sooner you are able to recover %o,
+the better off we will be."
+%E
+%Cp Mur 00026
+"I am not sure what has happened, but even without
+%o, %n will make a formidable opponent."
+%E
+%Cp Mur 00027
+"Stay true to the teachings of %d, and good
+fortune will be with you."
+%E
+%Cp Mur 00028
+"I am afraid without the power of %o
+to protect us, we will soon be overwhelmed."
+%E
+%Cp Mur 00029
+"%n used to be a woman of honor before turning
+to dark ways.  It is much too late for
+redemption, however."
+%E
+%Cp Mur 00030
+"%n is arrogant, and will try to diminish
+your confidence.  Do not let yourself be
+discouraged!"
+%E
+%Cp Mur 00031
+"You will have to be very alert, and will need
+to use all of your cunning if you hope to
+defeat %n."
+%E
+%Cp Mur 00032
+"Call upon the power of %d to protect you
+when you encounter %n."
+%E
+%Cp Mur 00033
+"If you remain true to your faith, you should
+be able to sense the power of %o when
+you are near."
+%E
+%Cp Mur 00034
+"You should be able to defeat %n easily
+enough in a fair fight.  Unfortunately, she doesn't
+fight fair."
+%E
+%Cc Mur 00035
+This must be the level that leads to the warden's
+area.  You must be getting closer to
+%o now!
+%E
+%Cp Mur 00036
+Once again, you find yourself near the entrance to
+the warden's area.  Hopefully, you can acquire
+%o before it's too late!
+%E
+%Cc Mur 00040
+You sense the presence of %o as soon as you
+enter this level.  If %o is here, then
+%n must not be far away.
+%E
+%Cp Mur 00041
+Once again, you find yourself in the abode of
+%n, and feel the presence of
+%o.
+%E
+%Cc Mur 00050
+"So, %p.  You have returned, and are here to get
+%o for %l?
+What makes you think you can get it if
+%l couldn't?  I have many
+allies that have made me even stronger."
+%E
+%Cp Mur 00051
+"I see that you have returned, %p.  I
+suggest you leave and save yourself while you still
+have a chance."
+%E
+%Cp Mur 00052
+"Back again, %p?  You will certainly die in
+your attempt to defeat me."
+%E
+%Cp Mur 00053
+"I will get %o from you, just as I did
+%l!  You can not defeat me."
+%E
+%Cp Mur 00060
+"You should never come back.  You will not escape
+here alive again!"
+%E
+%Cp Mur 00061
+"Even all of your pathetic lot put together would
+not be enough to defeat me."
+%E
+%Cp Mur 00062
+"You are no more than lowly prison scum.  You are
+unworthy to even challenge me."
+%E
+%Cp Mur 00063
+"Even %l could not stand up to me, so
+you have no chance at all."
+%E
+%Cp Mur 00064
+"Even %o would not be enough to
+make you my equal."
+%E
+%Cp Mur 00065
+"Your pathetic devotion to %d will not
+save you, either."
+%E
+%Cp Mur 00066
+"After I kill you, I will go after %l next,
+and any that dare to defy me again!"
+%E
+%Cp Mur 00067
+"Die with dishonor, lowly %c!"
+%E
+%Cp Mur 00068
+"Once a %c, always a %c."
+%E
+%Cp Mur 00069
+"How about you find yourself a cosy little cell,
+and hope that I forgive your insolence?"
+%E
+%Cc Mur 00070
+As you pick up %o, you feel its power
+flow through you, protecting you, and making you
+more aware of your surroundings.  You know that
+you need to get it back to %l as soon
+as possible now.
+%E
+%Cc Mur 00080
+As %n approaches death, you see sudden
+clarity in her eyes.
+
+"What have I done?  Those demons have been clouding my mind.
+Please forgive me, %p, although I know that I
+probably do not deserve it.  Take 
+%o back to %l
+with my blessing."
+
+With a final coughing fit, %n spasms, and her
+eyes see no more.
+%E
+%Cc Mur 00081
+"Congratulations, %p!  You have returned with
+your life, and with %o!  I had
+planned to use %o to lead an
+escape from here, but with %n defeated,
+life should go back to normal before long.
+
+"Whether I like it or not, I know my place is here.  I
+see that %o has already attuned
+itself to you.  I offer it to you in hopes that
+it will aid in your quest to recover the Amulet
+of Yendor." 
+%E
+%Cc Mur 00082
+%l looks upon %o
+with fondness.
+"You are its keeper now.  Take it with you back to
+%Z, through the magic portal
+that brought you here."
+%E
+%Cc Mur 00090
+"Welcome back, %p.  We have done well in your
+absence.  How far have you come with your quest to
+regain the Amulet of Yendor for %d?"
+%E
+%Cc Mur 00091
+"Congratulations, %p!  You have redeemed yourself
+and proven yourself a worthy servant of %d,
+and in doing so have made all of us proud.
+
+"One final task remains for you now.  You must take
+the Amulet up to the Great Temple of %d, on
+the Astral plane.  There you must offer the Amulet
+to %d."
+%E
+%Cc Mur 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Mur 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Mur 00101
+You again sense %l pleading for help.
+%E
+%Cp Mur 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #	Activistor
 #
 %Cc Act 00001
@@ -13146,6 +13468,238 @@ You again sense %l pleading for help.
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E
+
+
+#
+#       Failed Existence
+#
+%Cc Fai 00001
+This is %H, the place where you unsuccessfully tried your luck.
+
+%l didn't want you here the last time, and this time it's probably
+not gonna be any different, but you still feel you need to talk to
+him...
+%E
+%Cp Fai 00002
+Once again, you are back at %H.
+%E
+%Cp Fai 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Fai 00005
+"I wanna scratch you, bitch."
+%E
+%Cp Fai 00006
+"Get outta my sight!"
+%E
+%Cp Fai 00007
+"Fuck off, we don't want your type around here!"
+%E
+%Cp Fai 00008
+"You loser! Begone!"
+%E
+%Cp Fai 00009
+"Stop desecrating this place with your presence!"
+%E
+%Cp Fai 00010
+"I don't like you at all!"
+%E
+%Cp Fai 00011
+"I hate you! I want to make you bleed!"
+%E
+%Cp Fai 00012
+"Watch out or I'll make something terrible happen to you!"
+%E
+%Cp Fai 00013
+"You weren't supposed to defeat %n! You were supposed to shrivel up and die!"
+%E
+%Cp Fai 00014
+"Do yourself and me a favor - jump into the canyon and don't come back!"
+%E
+%Cc Fai 00015
+"WHAT? %p? You dare coming back?
+
+Excuse me, but there seems to be a misunderstanding. You're not supposed
+to set foot on %H ever again! Didn't I clearly tell you the last time?"
+%E
+%Cp Fai 00016
+"Still around? Why don't you just commit suicide?"
+%E
+%Cp Fai 00017
+"You're not giving up, huh? I swear, if you keep bugging me I'll make your
+remaining life an endless misery!"
+%E
+%Cc Fai 00018
+"Die, worthless creature!"
+%E
+%Cc Fai 00019
+"You're never gonna make it! I'll send you back to where you came
+from, and I expect you to stay there and not annoy me again!"
+%E
+%Cc Fai 00020
+"I find your lack of faith disturbing. People like you are bad for
+business, and now I'll send you far away from here.
+
+Don't even think about coming back!"
+%E
+%Cc Fai 00021
+"Blah. Why don't you go to %i and meet %n? She might just
+end your miserable, worthless life. Heck, I actually hope you're stupid
+enough to actually do that, because we'd then be rid of you.
+
+So what are you waiting for now?"
+%E
+%Cp Fai 00025
+"Didn't I tell you to die?"
+%E
+%Cp Fai 00026
+"Just allow %n to kill you already!"
+%E
+%Cp Fai 00027
+"I really hope you get killed soon!"
+%E
+%Cp Fai 00028
+"You're not even supposed to exist! You're supposed to die!"
+%E
+%Cp Fai 00029
+"%n will eradicate failures like you in her sleep."
+%E
+%Cp Fai 00030
+"Your life will always be miserable no matter what you do, so why don't
+you make it end already?"
+%E
+%Cp Fai 00031
+"How much longer will I have to look at you worthless creature?"
+%E
+%Cp Fai 00032
+"Nobody is going to help you, no matter how often you ask!"
+%E
+%Cp Fai 00033
+"Nobody likes you, nobody has ever liked you and nobody will ever
+like you in the future!"
+%E
+%Cp Fai 00034
+"You useless failure! Get out of here!"
+%E
+%Cc Fai 00035
+This is the Grand Canyon. You have to fight the urge to simply jump down.
+%E
+%Cp Fai 00036
+Once again, you see the majestic Grand Canyon in the distance.
+Maybe you can just jump in... it can't potentially be *that* deep...
+%E
+%Cc Fai 00040
+%n is here. You dread the upcoming meeting with her.
+%E
+%Cp Fai 00041
+You still need to get to %n.
+%E
+%Cc Fai 00050
+"What... how did you get here?
+
+Well, if you want to gain membership, you must defeat me in combat!"
+%E
+%Cc Fai 00051
+"You somehow got past my co-worker, but now you'll have to best me!
+Good luck, you're gonna need it!"
+%E
+%Cp Fai 00052
+"Remember that this is a fight to the death! If I defeat you, I may
+officially kill you."
+%E
+%Cp Fai 00053
+"What? You stole my valuable treasure? How did you manage that???
+
+Let's see if I can take it back!"
+%E
+%Cp Fai 00060
+"If you are not careful, I will not be polite to you!"
+%E
+%Cp Fai 00061
+"I will be rude to you if you disturb my work!"
+%E
+%Cp Fai 00062
+"See if you can avoid being defeated!"
+%E
+%Cp Fai 00063
+"Do you think you got what it takes?"
+%E
+%Cp Fai 00064
+"If you can beat me, I'll allow you to stay alive."
+%E
+%Cp Fai 00065
+"You have failed many times already. Do you think that this time
+will be different?"
+%E
+%Cp Fai 00066
+"No, I don't despise you. But I don't particularly care about you either."
+%E
+%Cp Fai 00067
+"You're a nice little distraction."
+%E
+%Cp Fai 00068
+"Maybe I'll accept you into the bunch of spectators if you're good."
+%E
+%Cp Fai 00069
+"You won't actually be given membership, but if you can impress me then
+I'll allow you to stay around."
+%E
+%Cc Fai 00070
+You quickly steal a beautiful pair of high-heeled combat boots. They're
+the prettiest that you've ever seen. Sadly, they won't ever fully
+recognize you as their owner no matter what...
+%E
+%Cp Fai 00080
+%n exclaims:
+
+"Wow. You're better than your reputation. You may stay here if you like.
+But please don't unneccesarily disturb my girls. Okay?"
+
+Then, she disappears.
+%E
+%Cc Fai 00081
+%l speaks:
+
+"Bah. You think you've bested %n, but I know that she's laughing her
+butt off right now. And now get the hell out of here at once!"
+%E
+%Cc Fai 00082
+"Thief! Give that back or I'll kill you personally!"
+%E
+%Cc Fai 00090
+"What? You're bragging about some 'deeds' you've accomplished?
+Go away, nobody believes in those fairy tales!"
+%E
+%Cc Fai 00091
+"This is impossible. A complete failure of Nature like you, a creature
+that shouldn't even have been conceived in the first place, CAN'T have
+that damn amulet.
+
+Ah well, I hope you try to ascend on the wrong altar and die. Begone!"
+%E
+%Cc Fai 00095
+"Fuck off you motherfucking piece of shit!"
+%E
+
+%Cp Fai 00100
+You suddenly get a sense of premonition, or is it a deja-vu?
+The path to %H may be hidden here! It's the place where %l resides,
+and he's the bastard who ruined your career and caused you to become
+a failed existence in the first place. You shudder at the thought of
+venturing back to meet him.
+%E
+%Cp Fai 00101
+You shiver as you realize once again that you might meet %l again.
+%E
+%Cp Fai 00102
+"Better get out of here NOW and FOREVER before I break your neck for
+stealing our silver bell!"
+%E
+
+
+
+
 #
 #       Priest
 #

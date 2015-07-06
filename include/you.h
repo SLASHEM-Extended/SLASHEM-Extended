@@ -338,7 +338,7 @@ struct you {
 #define A_CURRENT	0
 	aligntyp ualignbase[CONVERT];	/* for ualign conversion record */
 	schar uluck, moreluck, moreluckpts;		/* luck and luck bonus */
-#define Luck	(flags.dudley ? -13 : issuxxor ? -13 : (u.uluck + u.moreluck + Role_if(PM_AUGURER) )) /* credits to the Dudley's Dungeon guys --Amy */
+#define Luck	(flags.dudley ? -13 : issuxxor ? -13 : (Role_if(PM_FAILED_EXISTENCE) && ((u.uluck + u.moreluck + Role_if(PM_AUGURER) ) > 0) ) ? 0 : (u.uluck + u.moreluck + Role_if(PM_AUGURER) )) /* credits to the Dudley's Dungeon guys --Amy */
 #define LUCKADD		3	/* added value when carrying luck stone */
 #define LUCKMAX		10	/* on moonlit nights 11 */
 #define LUCKMIN		(-10)

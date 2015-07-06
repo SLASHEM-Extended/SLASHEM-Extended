@@ -454,6 +454,8 @@ register struct monst *mtmp;
 		tmp += weapon_hit_bonus(uwep);
 	}
 */
+	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+
 	return tmp;
 }
 
@@ -1112,7 +1114,7 @@ int thrown;
 #endif
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			You("strike %s from behind!", mon_nam(mon));
 			tmp += rnd(rnd(u.ulevel)); /* nerf by Amy */
 			hittxt = TRUE;

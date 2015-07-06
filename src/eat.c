@@ -320,12 +320,12 @@ register struct obj *food;
 	if (u.uhs != SATIATED) {
 		if (!food || food->otyp != AMULET_OF_STRANGULATION)
 			return;
-	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {
+	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
-	if (Race_if(PM_VEELA)) badeffect();
+	if (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE) ) badeffect();
 
 	if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) { /* They aren't used to eat much. --Amy */
 
@@ -416,7 +416,7 @@ register struct obj *food;
 			return;
 		}
 		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
-		if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) {adjalign(-20);	/* overeating doesn't befit a topmodel */
+		if (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) {adjalign(-20);	/* overeating doesn't befit a topmodel */
 		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(2000);	/* you just got *very* sick! */
 		nomovemsg = 0;
@@ -2332,12 +2332,12 @@ void
 gluttonous()
 {
 	/* only happens if you were satiated, extra check by Amy to make that conduct mean more */
-	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) ) {
+	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) ) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
-	if ((u.uhs == SATIATED) && Race_if(PM_VEELA)) {	badeffect();
+	if ((u.uhs == SATIATED) && (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE)) ) {	badeffect();
 	}
 
 	if (u.uhs == SATIATED && (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) ) { /* They aren't used to eat much. --Amy */
@@ -2421,10 +2421,12 @@ void
 violated_vegetarian()
 {
     u.uconduct.unvegetarian++;
-    if (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) {
+    if (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) {
 	You_feel("guilty.");
 	adjalign(-5);
     }
+	if (Role_if(PM_FAILED_EXISTENCE)) badeffect();
+
 	if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) { /* Their metabolism isn't used to meat. --Amy */
 
 	if(!rn2(4)) {
@@ -3878,7 +3880,7 @@ struct obj *otmp;
 		else return 2;
 	}
 	if (cadaver && !vegetarian(&mons[mnum]) &&
-	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) ) {
+	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) ) {
 		Sprintf(buf, "%s unhealthy. %s",
 			foodsmell, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
@@ -4341,7 +4343,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 {
 	if (u.uinvulnerable) return;	/* you don't feel hungrier */
 
-	if ( (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF)) && ( (rn2(2) && u.uhs == HUNGRY) || (rn2(4) && u.uhs == WEAK) || (rn2(8) && u.uhs == FAINTING) || (rn2(16) && u.uhs == FAINTED) ) ) return; /* They are used to eating very little. --Amy */
+	if ( (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) && ( (rn2(2) && u.uhs == HUNGRY) || (rn2(4) && u.uhs == WEAK) || (rn2(8) && u.uhs == FAINTING) || (rn2(16) && u.uhs == FAINTED) ) ) return; /* They are used to eating very little. --Amy */
 
 	if ((!u.usleep || !rn2(10))	/* slow metabolic rate while asleep */
 		&& (carnivorous(youmonst.data) || herbivorous(youmonst.data) || metallivorous(youmonst.data) || lithivorous(youmonst.data))

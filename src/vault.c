@@ -251,7 +251,7 @@ fnd:
 	    return;
 	}
 #ifdef CONVICT
-    if((Role_if(PM_CONVICT) || Race_if(PM_ALBAE)) && !Upolyd) {
+    if((Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE)) && !Upolyd) {
         setmangry(guard);
         verbalize("I saw your pic on the wanted poster!");
 		if (!MON_WEP(guard)) {

@@ -178,6 +178,9 @@ register boolean special;
 		case PM_CONVICT:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
+		case PM_MURDERER:
+		    weapon = HEAVY_IRON_BALL;
+		    break;
 		case PM_GEEK:
 		    weapon = ELECTRIC_SWORD;
 		    break;
@@ -393,6 +396,9 @@ register boolean special;
 		    weapon = SEXY_LEATHER_PUMP;
 		    break;
 		case PM_TOPMODEL:
+		    weapon = KNIFE;
+		    break;
+		case PM_FAILED_EXISTENCE:
 		    weapon = KNIFE;
 		    break;
 		case PM_ACTIVISTOR:

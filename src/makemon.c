@@ -1344,6 +1344,33 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, ROCK);
 		     (void)mongets(mtmp, ROCK);
 
+		   case PM_MURDERER:
+		   case PM_UNDEAD_MURDERER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		     (void)mongets(mtmp, HEAVY_IRON_BALL);
+		     (void)mongets(mtmp, STRIPED_SHIRT);
+		     (void)mongets(mtmp, ROCK);
+		     (void)mongets(mtmp, ROCK);
+		     (void)mongets(mtmp, ROCK);
+		     (void)mongets(mtmp, ROCK);
+		     (void)mongets(mtmp, ROCK);
+
 		   break;
 
 		   case PM_SPACEWARS_FIGHTER:
@@ -1919,6 +1946,8 @@ register struct monst *mtmp;
 
 		   case PM_TOPMODEL:
 		   case PM_UNDEAD_TOPMODEL:
+		   case PM_FAILED_EXISTENCE:
+		   case PM_UNDEAD_FAILED_EXISTENCE:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
@@ -9782,7 +9811,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet ) return FALSE; /* albae are hated by all other races --Amy */
+	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 

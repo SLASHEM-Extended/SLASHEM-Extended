@@ -1832,6 +1832,7 @@ int spell;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
+	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
 	if (chance < (issoviet ? 0 : 10) ) chance = (issoviet ? 0 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;

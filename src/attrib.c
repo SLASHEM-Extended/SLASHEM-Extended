@@ -80,9 +80,46 @@ const struct innate {
 		     {  20, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 #endif	/* CONVICT */
+	mur_abil[] = { {   1, &(HAggravate_monster), "", "" },
+	           {	 2, &(HSearching), "", "" },
+	           {	 3, &(HSearching), "", "" },
+	           {	 4, &(HSearching), "", "" },
+	           {	 5, &(HSearching), "", "" },
+	           {	 6, &(HSearching), "", "" },
+	           {	 7, &(HSearching), "", "" },
+	           {	 8, &(HSearching), "", "" },
+	           {	 9, &(HSearching), "", "" },
+	           {	 10, &(HSearching), "", "" },
+	           {	 11, &(HSearching), "", "" },
+	           {	 12, &(HSearching), "", "" },
+	           {	 13, &(HSearching), "", "" },
+	           {	 14, &(HSearching), "", "" },
+	           {	 15, &(HSearching), "", "" },
+	           {	 16, &(HSearching), "", "" },
+	           {	 17, &(HSearching), "", "" },
+	           {	 18, &(HSearching), "", "" },
+	           {	 19, &(HSearching), "", "" },
+	           {	 20, &(HSearching), "", "" },
+	           {	 20, &(HSearching), "", "" },
+	           {	 21, &(HSearching), "", "" },
+	           {	 22, &(HSearching), "", "" },
+	           {	 23, &(HSearching), "", "" },
+	           {	 24, &(HSearching), "", "" },
+	           {	 25, &(HSearching), "", "" },
+	           {	 26, &(HSearching), "", "" },
+	           {	 27, &(HSearching), "", "" },
+	           {	 28, &(HSearching), "", "" },
+	           {	 29, &(HSearching), "", "" },
+	           {	 30, &(HSearching), "", "" },
+		     {	 0, 0, 0, 0 } },
 
 	bul_abil[] = { {   1, &(HAggravate_monster), "", "" },
 	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
+		     {	 0, 0, 0, 0 } },
+
+	fai_abil[] = { {   1, &(HAggravate_monster), "", "" },
+			{	1, &(BadEffectProblem), "", "" },
+			{	1, &(AutomaticVulnerabilitiy), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
@@ -889,20 +926,20 @@ exerper()
 		    case SATIATED:	exercise(A_DEX, FALSE);
 					if (Role_if(PM_MONK))
 					    exercise(A_WIS, FALSE);
-					if (Role_if(PM_TOPMODEL)) { /* They strongly dislike being full --Amy */
+					if (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) { /* They strongly dislike being full --Amy */
 					    exercise(A_WIS, FALSE); exercise(A_STR, FALSE); exercise(A_CON, FALSE); exercise(A_DEX, FALSE); }
 					break;
 		    case NOT_HUNGRY:	exercise(A_CON, TRUE); break;
-		    case HUNGRY:	if (Role_if(PM_TOPMODEL)) exercise(A_WIS, TRUE); break;
-		    case WEAK:		if (!Role_if(PM_TOPMODEL)) exercise(A_STR, FALSE);
+		    case HUNGRY:	if (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) exercise(A_WIS, TRUE); break;
+		    case WEAK:		if (!Role_if(PM_TOPMODEL) && !Role_if(PM_FAILED_EXISTENCE)) exercise(A_STR, FALSE);
 					if (Role_if(PM_MONK))	/* fasting */
 					    exercise(A_WIS, TRUE);
-					if (Role_if(PM_TOPMODEL)) {
+					if (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) {
 					    exercise(A_WIS, TRUE); exercise(A_STR, TRUE);
 }					break;
 		    case FAINTING:
-		    case FAINTED:	 if (Role_if(PM_TOPMODEL)) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
-					if (!Role_if(PM_TOPMODEL)) exercise(A_CON, FALSE); break;
+		    case FAINTED:	 if (Role_if(PM_TOPMODEL) || Role_if(PM_FAILED_EXISTENCE)) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
+					if (!Role_if(PM_TOPMODEL) && !Role_if(PM_FAILED_EXISTENCE)) exercise(A_CON, FALSE); break;
 		}
 
 		/* Encumberance Checks */
@@ -1154,6 +1191,8 @@ int oldlevel, newlevel;
 #ifdef CONVICT
 	case PM_CONVICT:        abil = con_abil;	break;
 #endif	/* CONVICT */
+	case PM_MURDERER:        abil = mur_abil;	break;
+	case PM_FAILED_EXISTENCE:        abil = fai_abil;	break;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_COOK:	abil = coo_abil;	break;
 	case PM_FIREFIGHTER:	abil = fir_abil;	break;

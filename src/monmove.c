@@ -57,7 +57,7 @@ register struct monst *mtmp;
 	   mtmp->mcansee && m_canseeu(mtmp) && !rn2(3)) {
 
 #ifdef CONVICT
-		if((Role_if(PM_CONVICT) || Race_if(PM_ALBAE)) && !Upolyd) {
+		if((Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE)) && !Upolyd) {
             verbalize("%s yells: Hey!  You are the one from the wanted poster!",
              Amonnam(mtmp));
             (void) angry_guards(!(flags.soundok));

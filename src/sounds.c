@@ -1008,7 +1008,7 @@ register struct monst *mtmp;
 		pline_msg = "curses orcs.";
 	    else if (is_dwarf(ptr))
 		pline_msg = "talks about mining.";
-	    else if (likes_magic(ptr))
+	    else if (likes_magic(ptr) && rn2(5) )
 		pline_msg = "talks about spellcraft.";
 	    else if (ptr->mlet == S_CENTAUR)
 		pline_msg = "discusses hunting.";
@@ -1048,6 +1048,9 @@ register struct monst *mtmp;
 		    break;
 		case PM_TOPMODEL:
 		    verbl_msg = "I'm the chosen one who is going to win the ANTM show!";
+		    break;
+		case PM_FAILED_EXISTENCE:
+		    verbl_msg = "Waaaaaah! Life has been so cruel to me!";
 		    break;
 		case PM_ACTIVISTOR:
 		case PM_ACTIVIST:

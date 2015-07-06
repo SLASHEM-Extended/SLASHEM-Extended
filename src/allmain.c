@@ -1508,7 +1508,7 @@ newgame()
 	/* Yes I know, nymphs usually remove iron balls. The playable nymph race doesn't, since I don't want them
 	   to be totally overpowered - I mean, they start with teleportitis *and* can get teleport control! --Amy */
 #ifdef CONVICT
-       if (Role_if(PM_CONVICT) || Race_if(PM_NYMPH) ) {
+       if (Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_NYMPH) ) {
               setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
               setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
               /*uball->spe = 1;*/

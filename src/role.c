@@ -845,6 +845,34 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
 },
 
+{	{"Failed Existence", 0}, {
+	{"Looser",    0},
+	{"Failure",       0},
+	{"Bum",   0},
+	{"Torn Person", 0},
+	{"Chainsmoker",         0},
+	{"Walking Beer Bottle",    0},
+	{"Limping Tramp",        0},
+	{"Luckless Individual",  0},
+	{"Choosy Beggar",      0} },
+	0, 0, 0, /* special deities */
+	"Fai", "Red Carpet", "Violet Carpet",
+	PM_FAILED_EXISTENCE, NON_PM, PM_UNDEAD_FAILED_EXISTENCE, NON_PM, NON_PM,
+	PM_GRUFF_CO_WORKER, PM_MODEL, PM_IRINA,
+	PM_UNDEAD_ACTIVISTOR, PM_UNDEAD_FEAT_MASTER, S_HUMAN, S_HUMAN,
+	ART_UNOBTAINABLE_BEAUTIES,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 25, 15, 15, 10, 25 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
+	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
+	10, 9, 2, 1, 10, A_INT, SPE_FORBIDDEN_KNOWLEDGE,   -4
+},
+
 {	{"Feat Master", 0}, { /* stunt master, but there were too many role names beginning with S */
 	{"Hopper",     0},
 	{"Jumper",     0},
@@ -1550,6 +1578,34 @@ const struct Role roles[] = {
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
 	10, 8,-2, 2, 20, A_WIS, SPE_RESTORE_ABILITY, -4
+},
+
+{	{"Murderer", 0}, {
+	{"Knife Killer",     0},
+	{"Dangerous Criminal",   0},
+	{"Mean Contract",0},
+	{"Serial Killer",0},
+	{"Cold-Blooded Gangster",    0},
+	{"Silent Assassin",   0},
+	{"Master Hitman",     "Master Hitwoman"},
+	{"Professional Cutter",    0},
+	{"Bane of all innocent people",  0} },
+	"Falis", "_Marfa", "Falaris",	/* Record of Lodoss War */
+	"Mur", "Secret Hiding Place", "Central Cop Station",
+	PM_MURDERER, NON_PM, PM_UNDEAD_MURDERER, NON_PM, PM_SEWER_RAT,
+	PM_KILLED_BILL, PM_INMATE, PM_UPPER_BULL,
+	PM_KOP_KCHIEF, PM_ENGINAH_SEPHIRAH, S_KOP, S_KOP,
+	ART_PITCH_BLADE,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  7,  7, 13,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 20, 10, 20, 20, 10 },
+	/* Init   Lower  Higher */
+	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
+	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
+	-50, 5, 0, 2, 10, A_INT, SPE_DISSOLVE_FOOD,   -4
 },
 
 {	{"Musician", 0}, {

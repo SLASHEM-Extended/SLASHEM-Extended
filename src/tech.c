@@ -378,6 +378,9 @@ static const struct innate_tech
 		       {  10, T_CREATE_AMMO, 1},
 		       {  20, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
+	fai_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {  29, T_CREATE_AMMO, 1},
+		       {   0, 0, 0} },
 	und_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   0, 0, 0} },
@@ -1280,6 +1283,16 @@ int tech_no;
 #endif
                 return(0);
         }
+
+	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) {
+
+		pline("Unfortunately, nothing happens.");
+		techtout(tech_no) = rnz(1000);
+		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		/*By default,  action should take a turn*/
+		return(1);
+
+	}
 
 	/* switch to the tech and do stuff */
         switch (techid(tech_no)) {
@@ -2799,6 +2812,7 @@ role_tech()
 		case PM_ACID_MAGE:	return (aci_tech);
 		case PM_TRANSVESTITE:	return (tra_tech);
 		case PM_TOPMODEL:	return (top_tech);
+		case PM_FAILED_EXISTENCE:	return (fai_tech);
 		case PM_LUNATIC:	return (lun_tech);
 		case PM_ACTIVISTOR:	return (act_tech);
 		case PM_ELECTRIC_MAGE:	return (ele_tech);
