@@ -235,6 +235,29 @@ boolean digest_meal;
 	    	mon->m_en += rn1((mon->m_lev % 10 + 1),1);
 	    	if (mon->m_en > mon->m_enmax) mon->m_en = mon->m_enmax;
 	}
+
+	/* good riding skill gives extra regeneration to ridden monster --Amy */
+	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon = u.usteed) && !rn2(10) ) {
+		if (mon->mhp + 1 >= mon->mhpmax)
+		      mon->mhp = mon->mhpmax;
+		else mon->mhp++;
+	}
+	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mon = u.usteed) && !rn2(5) ) {
+		if (mon->mhp + 1 >= mon->mhpmax)
+		      mon->mhp = mon->mhpmax;
+		else mon->mhp++;
+	}
+	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mon = u.usteed) && !rn2(3) ) {
+		if (mon->mhp + 1 >= mon->mhpmax)
+		      mon->mhp = mon->mhpmax;
+		else mon->mhp++;
+	}
+	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mon = u.usteed) ) {
+		if (mon->mhp + 1 >= mon->mhpmax)
+		      mon->mhp = mon->mhpmax;
+		else mon->mhp++;
+	}
+
 	if (mon->mspec_used) mon->mspec_used--;
 	if (digest_meal) {
 	    if (mon->meating) mon->meating--;
