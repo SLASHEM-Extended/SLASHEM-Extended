@@ -7327,6 +7327,9 @@ register int	mmflags;
 	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER]);
 	boolean countbirth = ((mmflags & MM_NOCOUNTBIRTH) == 0);
 	unsigned gpflags = (mmflags & MM_IGNOREWATER) ? MM_IGNOREWATER : 0;
+	int randsp;
+	int i;
+	coord cc;
 
 	/* if caller wants random location, do it here */
 	if(x == 0 && y == 0) {
@@ -8893,6 +8896,18 @@ register int	mmflags;
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
 
+	if (/*!*/rn2(5000)) { /* very rarely create some monsters with the same letter --Amy */
+		randsp = (rn2(24) + 2);
+		if (!rn2(3)) randsp *= 2;
+		if (!rn2(7)) randsp *= 3;
+		if (!rn2(20)) randsp *= 5;
+		if (!rn2(100)) randsp *= 10;
+
+		for (i = 0; i < randsp; i++) {
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+			(void) makemon(mkclass(ptr->mlet,0), mtmp->mx, mtmp->my, MM_ADJACENTOK);
+		}
+	}
 
 	return(mtmp);
 }
