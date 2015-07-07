@@ -3357,9 +3357,16 @@ wand_explode(obj, hero_broke)
 	explode(u.ux, u.uy, ZT_MAGIC_MISSILE, dmg, WAND_CLASS, expltype);
 	makeknown(obj->otyp);	/* explode described the effect */
 	goto discard_broken_wand;
+    case WAN_ACID:
+	expltype = EXPL_NOXIOUS;
+	dmg *= 2;
+	explode(u.ux, u.uy, ZT_MAGIC_MISSILE, dmg, WAND_CLASS, expltype);
+	makeknown(obj->otyp);	/* explode described the effect */
+	goto discard_broken_wand;
 /*WAC for wands of fireball- no double damage
  * As well, effect is the same as fire, so no makeknown
  */
+
     case WAN_FIRE:
 	dmg *= 2;
     case WAN_FIREBALL:
@@ -3373,9 +3380,13 @@ wand_explode(obj, hero_broke)
 	/* we want this before the explosion instead of at the very end */
 	pline("A wall of force smashes down around you!");
 	dmg = d(1 + obj->spe,6);	/* normally 2d12 */
+	affects_objects = TRUE;
+	break;
     case WAN_DISINTEGRATION:
 	pline("A wall of force smashes down around you!");
 	dmg = d(1 + obj->spe,30);
+	affects_objects = TRUE;
+	break;
     case WAN_CANCELLATION:
     case WAN_POLYMORPH:
     case WAN_MUTATION:
