@@ -92,6 +92,7 @@ register int x, y, n;
 {
 	coord mm;
 	register int cnt = rnd(n);
+	int kindred = rn2(20) ? 0 : 1;
 	struct monst *mon;
 #if defined(__GNUC__) && (defined(HPUX) || defined(DGUX))
 	/* There is an unresolved problem with several people finding that
@@ -114,7 +115,7 @@ register int x, y, n;
 	cntdiv = ((u.ulevel < 3) ? 4 : (u.ulevel < 5) ? 2 : 1);
 #endif
 	/* Tuning: cut down on swarming at low character levels [mrs] */
-	if (/*u.ulevel*/level_difficulty() < 5) cnt /= 2;
+	if ((/*u.ulevel*/level_difficulty() < 5) && rn2(5) ) cnt /= 2;
 #if defined(__GNUC__) && (defined(HPUX) || defined(DGUX))
 	if (cnt != (cnttmp/cntdiv)) {
 		pline("cnt=%d using %d, cnttmp=%d, cntdiv=%d", cnt,
@@ -138,7 +139,8 @@ register int x, y, n;
 		 * smaller group.
 		 */
 		if (enexto(&mm, mm.x, mm.y, mtmp->data)) {
-		    mon = makemon(mtmp->data, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!kindred) mon = makemon(mtmp->data, mm.x, mm.y, NO_MM_FLAGS);
+		    else mon = makemon(mkclass(mtmp->data->mlet,0), mm.x, mm.y, NO_MM_FLAGS);
 			if (mon) {
 		    mon->mpeaceful = FALSE;
 		    mon->mavenge = 0;
@@ -8896,7 +8898,7 @@ register int	mmflags;
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
 
-	if (/*!*/rn2(5000)) { /* very rarely create some monsters with the same letter --Amy */
+	if (!rn2(5000)) { /* very rarely create some monsters with the same letter --Amy */
 		randsp = (rn2(24) + 2);
 		if (!rn2(3)) randsp *= 2;
 		if (!rn2(7)) randsp *= 3;
