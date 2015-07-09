@@ -713,7 +713,8 @@ register int after;	/* this is extra fast monster movement */
 	if (!udist) return(0);
 
 	/* Intelligent pets may rebel (apart from minions, spell beings) */
-	if (!rn2(850) && betrayed(mtmp)) return 1;
+	/* if it's a species that's supposed to not be tameable, make it happen much more often --Amy */
+	if (!rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
 
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */
 	if (!rn2(10000) && has_edog && edog->abuse) edog->abuse--;
