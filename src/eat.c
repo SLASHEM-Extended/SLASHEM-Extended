@@ -1186,7 +1186,7 @@ register struct permonst *ptr;
 
 	}
 
-	if (ptr->mlevel <= rn2(chance) || !rn2(4) )
+	if ( (ptr->mlevel <= rn2(chance) ) || !rn2(4) )
 		return;		/* failed die roll */
 
 	switch (type) {
