@@ -9320,7 +9320,7 @@ loopback:
 
 	if (mndx == SPECIAL_PM || uncommon(mndx)) {	/* shouldn't happen */
 	    impossible("rndmonst: bad `mndx' [#%d]", mndx);
-	    return (struct permonst *)0;
+	    /*return (struct permonst *)0;*/
 	}
 
 	return &mons[mndx];
