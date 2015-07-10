@@ -93,6 +93,7 @@ register int x, y, n;
 	coord mm;
 	register int cnt = rnd(n);
 	int kindred = rn2(20) ? 0 : 1;
+	if (mtmp->data->geno & G_UNIQ) kindred = 1; /* uniques are created with others of their kin, instead of clones of themselves */
 	struct monst *mon;
 #if defined(__GNUC__) && (defined(HPUX) || defined(DGUX))
 	/* There is an unresolved problem with several people finding that
@@ -8817,7 +8818,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(500) && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) && !(ptr->geno & G_UNIQ) ) {
+	    else if (!rn2(500) && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -8967,7 +8968,8 @@ STATIC_OVL boolean
 uncommon(mndx)
 int mndx;
 {
-	if (mons[mndx].geno & (G_NOGEN | G_UNIQ)) return TRUE;
+	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -9392,6 +9394,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
+	if (!rn2(20)) mask = (G_NOGEN) & ~spc;
 	int bonuslevel;
 	boolean calctype;
 
