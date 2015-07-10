@@ -497,7 +497,7 @@ struct mkroom *sroom;
 		    (type == REALZOO) ? (rn2(5) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
 		    (struct permonst *) 0,
-		   sx, sy, NO_MM_FLAGS);
+		   sx, sy, /*NO_MM_FLAGS*/MM_ADJACENTOK);
                else mon = ((struct monst *)0);
 /* some rooms can spawn new monster variants now --Amy */
 		if(mon) {
