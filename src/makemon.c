@@ -8797,7 +8797,7 @@ register int	mmflags;
 	    if (count_wsegs(mtmp)) place_worm_tail_randomly(mtmp, x, y);
 	}
 	set_malign(mtmp);		/* having finished peaceful changes */
-	if(anymon || (ptr->geno & G_UNIQ) || !rn2(5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
+	if(anymon || (ptr->geno & G_UNIQ) || !rn2((ptr->geno & G_VLGROUP) ? 500 : (ptr->geno & G_LGROUP) ? 200 : (ptr->geno & G_SGROUP) ? 50 : 5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
 	    if ((ptr->geno & G_SGROUP) && rn2(2)) {
 		if (!rn2(5000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(800))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
