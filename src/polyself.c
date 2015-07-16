@@ -315,7 +315,13 @@ boolean forcecontrol;
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
 	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnz(rnd(5000)));
-	else if (Race_if(PM_WARPER) && !u.wormpolymorph) mntmp = rn2(NUMMONS);
+	else if (Race_if(PM_WARPER) && !u.wormpolymorph) {
+		do {
+			/* randomly pick any monster, but reroll if it sucks too much --Amy */
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+	}
 	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14) );
 	else if ((Polymorph_control || forcecontrol) && rn2(5)) {
 		do {
