@@ -1799,6 +1799,13 @@ domove()
 			flags.move = 0;
 			return;
 		}
+		char bufX[BUFSZ];
+		getlin ("Are you really sure [yes/no]?",bufX);
+		if (strcmp (bufX, "yes")) {
+			nomul(0, 0);
+			flags.move = 0;
+			return;
+		}
 	}
 
 	} else if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, TEST_MOVE)) {

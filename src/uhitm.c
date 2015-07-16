@@ -247,6 +247,19 @@ boolean barehanded;
 				flags.move = 0;
 				return 0;
 			}
+			char bufX[BUFSZ];
+			getlin ("Are you really sure [yes/no]?",bufX);
+			if (strcmp (bufX, "yes")) {
+				/* Stormbringer is not tricked so easily */
+				if (!barehanded && u.twoweap && uswapwep &&
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+					override_confirmation = HIT_USWAPWEP;
+					/* Lose primary attack */
+					return HIT_USWAPWEP;
+				}
+				flags.move = 0;
+				return 0;
+			}
 		}
 	}
 
