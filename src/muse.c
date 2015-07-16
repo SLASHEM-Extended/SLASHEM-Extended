@@ -3910,6 +3910,7 @@ skipmsg:
 	case MUSE_WAN_POLYMORPH:
 		mzapmsg(mtmp, otmp, TRUE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (mtmp->mhp < mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 #if 0
 		(void) newcham(mtmp, muse_newcham_mon(), TRUE, vismon);
 #else
@@ -3927,6 +3928,7 @@ skipmsg:
 		return 2;
 	case MUSE_POT_POLYMORPH:
 		mquaffmsg(mtmp, otmp);
+		if (mtmp->mhp < mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 #if 0
 		if (vismon) pline("%s suddenly mutates!", Monnam(mtmp));
 		(void) newcham(mtmp, muse_newcham_mon(mtmp), FALSE, vismon);
