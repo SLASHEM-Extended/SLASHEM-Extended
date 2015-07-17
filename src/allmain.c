@@ -503,6 +503,11 @@ moveloop()
 				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
 
+			if (u.hanguppenalty && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* punishment for attempting hangup cheat --Amy */
+			}
+
 			if ( (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
 				if (rn2(5)) moveamt *= rnd(5);
 				moveamt /= rnd(6);
@@ -1971,6 +1976,70 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	u.stethocheat = moves;
+
+	if (!new_game && (u.hangupcheat > 1)) { /* filthy cheater! */
+
+		u.ublesscnt += rnz(2000);
+		change_luck(-3);
+
+		u.ualign.sins += 5;
+		u.alignlim -= 5;
+	      adjalign(-100);
+
+		nomul(-5, "paralyzed by severe hangup cheating");
+
+		u.uhpmax -= rnd(20);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhpmax < 1) {
+		    killer = "critical existence failure";
+		    killer_format = KILLED_BY;
+		    done(DIED);
+		}
+		u.uenmax -= rnd(20);
+		if (u.uenmax < 0) {
+			u.uenmax = u.uen = 0;
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(50);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			if (u.mhmax < 1) rehumanize();
+		}
+
+		u.hangupcheat--;
+
+	}
+
+	if (!new_game && u.hangupcheat) {
+
+		pline("You hanged up during your last session! Since I can't determine whether you did that to cheat, you will now be paralyzed, slowed and have your max HP/Pw reduced. Please save your game normally next time! --Amy");
+		if (multi >= 0) nomul(-2, "paralyzed by trying to hangup cheat");
+
+		u.ublesscnt += rnz(300);
+		change_luck(-1);
+
+		u.ualign.sins++;
+		u.alignlim--;
+	      adjalign(-10);
+
+		u.uhpmax -= rnd(5);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhpmax < 1) {
+		    killer = "critical existence failure";
+		    killer_format = KILLED_BY;
+		    done(DIED);
+		}
+		u.uenmax -= rnd(5);
+		if (u.uenmax < 0) {
+			u.uenmax = u.uen = 0;
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			if (u.mhmax < 1) rehumanize();
+		}
+
+		u.hangupcheat--;
+	}
 
 	#ifdef LIVELOGFILE
 	/* Start live reporting */

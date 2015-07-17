@@ -1458,6 +1458,13 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HFrozen);
 		you_are(buf);
 	}
+
+	if (u.hanguppenalty) {
+		Sprintf(buf, "temporarily slower because you tried to hangup cheat");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.hanguppenalty);
+		you_are(buf);
+	}
+
 	if (Burned) {
 		if (HeavyBurned) Sprintf(buf, "badly burned");
 		else Sprintf(buf, "burned");

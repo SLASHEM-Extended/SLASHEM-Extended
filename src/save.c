@@ -151,8 +151,13 @@ int sig_unused;
 #  endif
 # else	/* SAVEONHANGUP */
 	if (!program_state.done_hup++) {
-	    if (program_state.something_worth_saving)
+	    if (program_state.something_worth_saving) {
+
+		u.hangupcheat += 1;
+		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
 		(void) dosave0();
+
+		}
 #  ifdef VMS
 	    /* don't call exit when already within an exit handler;
 	       that would cancel any other pending user-mode handlers */

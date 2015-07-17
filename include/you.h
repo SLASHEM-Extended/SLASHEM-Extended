@@ -403,6 +403,9 @@ struct you {
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
+	int hangupcheat;		/* for cheating players who think hanging up is cool */
+	int hanguppenalty;
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

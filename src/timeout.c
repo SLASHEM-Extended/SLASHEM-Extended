@@ -249,6 +249,12 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	if (u.hanguppenalty > 0) {
+
+		u.hanguppenalty--;
+
+	}
+
 	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
 
 	    struct trap *t;

@@ -4739,6 +4739,9 @@ u_init()
 
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
+	u.hangupcheat = 0;	/* will be set to non-zero if the player hangs up --Amy */
+	u.hanguppenalty = 0;
+
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
 	u.ungenocidable = rnd(S_WORM_TAIL);
