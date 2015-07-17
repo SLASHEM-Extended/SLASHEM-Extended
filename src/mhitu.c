@@ -5201,14 +5201,6 @@ register int n;
 		n *= 2; /* Double Damage! */
 	}
 
-#ifdef SHOW_DMG
-	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() ) {
-
-		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
-		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
-
-	}
-#endif
 	flags.botl = 1; /* This needs to be AFTER the pline for botl to be 
 	 		 * updated correctly -- Kelly Bailey
 	 		 */
@@ -5229,6 +5221,16 @@ register int n;
 		if (u.uhp >= 1 && n > 0 && u.uhp*10 < u.uhpmax)	maybe_wail(); /* Wizard is about to die. --Amy */
 		if(u.uhp < 1) done_in_by(mtmp);
 	}
+
+#ifdef SHOW_DMG
+	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() ) {
+
+		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
+		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+
+	}
+#endif
+
 }
 
 #endif /* OVL1 */

@@ -3133,15 +3133,6 @@ int k_format; /* WAC k_format is an int */
 	}        
 
 
-#ifdef SHOW_DMG                
-	else if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
-
-		pline("[-%d -> %d]", n, (Upolyd ? (u.mh - n) : (u.uhp - n) ) );  /* WAC see damage */
-		if (!Upolyd && (( (u.uhp - n) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
-
-
-	}
-#endif
 
 	if (Upolyd) {
 		u.mh -= n;
@@ -3168,6 +3159,17 @@ int k_format; /* WAC k_format is an int */
 	} else if (n > 0 && u.uhp*10 < u.uhpmax) {
 		maybe_wail();
 	}
+
+#ifdef SHOW_DMG                
+	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
+
+		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
+		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
+
+
+	}
+#endif
+
 }
 
 int
