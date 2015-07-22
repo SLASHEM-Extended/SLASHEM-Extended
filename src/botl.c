@@ -674,6 +674,30 @@ bot2str(char *newbot2)
 #else
 		Strcat(nb = eos(nb), " Lev");
 #endif
+	if (IsGlib)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Glib", newbot2);
+#else
+		Strcat(nb = eos(nb), " Glib");
+#endif
+	if (Wounded_legs)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Legs", newbot2);
+#else
+		Strcat(nb = eos(nb), " Legs");
+#endif
+	if (Strangled)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Choke", newbot2);
+#else
+		Strcat(nb = eos(nb), " Choke");
+#endif
+	if (Vomiting)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Vomit", newbot2);
+#else
+		Strcat(nb = eos(nb), " Vomit");
+#endif
 	if(Confusion && !HeavyConfusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text("Conf", newbot2);
