@@ -5020,6 +5020,8 @@ int type;
 {
     int chance = rn2(20);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
+    if (!rn2(2)) spell_bonus += rnd(u.ulevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
+    if (!rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
 
     /* small chance for naked target to avoid being hit */
     if (!chance) return rnd(10) < ac+spell_bonus;
@@ -6044,12 +6046,12 @@ int damage, tell;
 
 	/* attack level */
 	switch (oclass) {
-	    case WAND_CLASS:	alev = 12;	 break;
-	    case TOOL_CLASS:	alev = 10;	 break;	/* instrument */
-	    case WEAPON_CLASS:	alev = 10;	 break;	/* artifact */
-	    case SCROLL_CLASS:	alev =  9;	 break;
-	    case POTION_CLASS:	alev =  6;	 break;
-	    case RING_CLASS:	alev =  5;	 break;
+	    case WAND_CLASS:	alev = 12 + (u.ulevel / 2);	 break;
+	    case TOOL_CLASS:	alev = 10 + (u.ulevel / 2);	 break;	/* instrument */
+	    case WEAPON_CLASS:	alev = 10 + (u.ulevel / 3);	 break;	/* artifact */
+	    case SCROLL_CLASS:	alev =  9 + (u.ulevel / 3);	 break;
+	    case POTION_CLASS:	alev =  6 + (u.ulevel / 4);	 break;
+	    case RING_CLASS:	alev =  5 + (u.ulevel / 5);	 break;
 	    default:		alev = u.ulevel; break;	/* spell */
 	}
 	/* defense level */
