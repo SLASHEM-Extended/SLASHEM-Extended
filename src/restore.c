@@ -417,6 +417,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
+
 	mread(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
 
@@ -437,6 +438,9 @@ unsigned int *stuckid, *steedid;	/* STEED */
 
 	mread(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_DEATH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FAMINE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PESTILENCE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
 
 	mread(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));

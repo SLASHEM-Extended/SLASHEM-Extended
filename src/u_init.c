@@ -4575,6 +4575,10 @@ u_init()
 	struct permonst* deathraylord = &mons[PM_YEENOGHU];
 	struct permonst* multigrue = &mons[PM_MULTICOLOR_GRUE];
 
+	struct permonst* riderone = &mons[PM_DEATH];
+	struct permonst* ridertwo = &mons[PM_FAMINE];
+	struct permonst* riderthree = &mons[PM_PESTILENCE];
+
 	struct permonst* randomeye = &mons[PM_MYSTIC_EYE];
 	struct permonst* randommimic = &mons[PM_UNKNOWN_MIMIC];
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
@@ -12195,6 +12199,16 @@ u_init()
 	attkptr->damn = 2;
 	attkptr->damd = 6;
 	}
+
+	/* evil patch idea by hackedhead: rider-gating */
+	/* evil patch idea by Wooble: make the riders covetous */
+
+	if (!rn2(10)) riderone->mflags2 |= M2_DEMON;
+	if (!rn2(10)) riderone->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(10)) ridertwo->mflags2 |= M2_DEMON;
+	if (!rn2(10)) ridertwo->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(10)) riderthree->mflags2 |= M2_DEMON;
+	if (!rn2(10)) riderthree->mflags3 |= M3_WANTSBOOK;
 
 	/* the multicolor grue has a AD_RBRE breath attack, but there is no AD_RBRE for melee attacks (yet).
 	 * So we're just giving it some random damage types for its melee and passive attack. --Amy */

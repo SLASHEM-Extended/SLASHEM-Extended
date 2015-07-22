@@ -153,7 +153,7 @@ int sig_unused;
 	if (!program_state.done_hup++) {
 	    if (program_state.something_worth_saving) {
 
-		u.hangupcheat += 1;
+		u.hangupcheat++;
 		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
 		(void) dosave0();
 
@@ -394,6 +394,7 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
+
 	bwrite(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
 
@@ -414,6 +415,9 @@ register int fd, mode;
 
 	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_DEATH], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_FAMINE], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_PESTILENCE], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
 
 	bwrite(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
