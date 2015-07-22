@@ -1700,6 +1700,18 @@ register struct obj *obj;
 	    can->corpsenm = corpse->corpsenm;
 	    can->cursed = obj->cursed;
 	    can->blessed = obj->blessed;
+
+		/* evil patch idea by hackedhead: eroded tinning kits are less reliable */
+		if ( (obj->oeroded == 3 || obj->oeroded2 == 3) && !rn2(2) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+		else if ( (obj->oeroded == 2 || obj->oeroded2 == 2) && !rn2(5) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+		else if ( (obj->oeroded == 1 || obj->oeroded2 == 1) && !rn2(10) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+
 	    can->owt = weight(can);
 	    can->known = 1;
 #ifdef EATEN_MEMORY
