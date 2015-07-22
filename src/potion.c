@@ -3013,7 +3013,7 @@ register struct obj *obj;
 		make_numbed(itimeout_incr(HNumbed, rnd(30)), FALSE);
 		break;
 	case POT_CANCELLATION:
-	      (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
+	      (void) cancel_monst(&youmonst, obj, FALSE, TRUE, FALSE);
 		break;
 	case POT_SLIME:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
