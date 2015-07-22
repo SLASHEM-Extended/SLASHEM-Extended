@@ -415,6 +415,7 @@ register int fd, mode;
 
 	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_ASMODEUS], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_DEATH], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_FAMINE], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_PESTILENCE], sizeof(struct permonst));

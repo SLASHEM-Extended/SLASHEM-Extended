@@ -4573,6 +4573,7 @@ u_init()
 	struct permonst* shamblerplayerp = &mons[PM_BRIGHT_GREEN_MISSINGNO];
 
 	struct permonst* deathraylord = &mons[PM_YEENOGHU];
+	struct permonst* coldlord = &mons[PM_ASMODEUS];
 	struct permonst* multigrue = &mons[PM_MULTICOLOR_GRUE];
 
 	struct permonst* riderone = &mons[PM_DEATH];
@@ -12198,6 +12199,11 @@ u_init()
 	attkptr->adtyp = AD_DISN; /* as a tribute to that fallthrough "bug" where he got a touch of death --Amy */
 	attkptr->damn = 2;
 	attkptr->damd = 6;
+	}
+
+	if (!rn2(10)) {
+	attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
+	attkptr->damn = 60;
 	}
 
 	/* evil patch idea by hackedhead: rider-gating */
