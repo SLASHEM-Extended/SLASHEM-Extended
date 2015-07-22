@@ -39,26 +39,66 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
 
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+
 	if (uarmf && uarmf->otyp == WEDGE_SANDALS && Race_if(PM_NAVI) )
 	    dmg += 5;
+
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
 
 	if (uarmf && uarmf->otyp == WEDGE_SANDALS)
 	    dmg += 2;
 
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 7;
+
 	if (uarmf && uarmf->otyp == STAIRWELL_STOMPING_BOOTS)
 	    dmg += 2;
+
+	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
+	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
+	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
+	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 7;
 
 	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
 	    dmg += 5;
 
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+
 	if (uarmf && uarmf->otyp == LEATHER_PEEP_TOES)
 	    dmg += 4;
+
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 8;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 15;
 
 	if (uarmf && uarmf->otyp == HIPPIE_HEELS)
 	    dmg += 7;
 
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 5;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 10;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 20;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 30;
+
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
+
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_SKILLED) dmg += uarmf->spe;
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT) dmg += uarmf->spe;
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_MASTER) dmg += uarmf->spe;
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER) dmg += uarmf->spe;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -111,6 +151,8 @@ register boolean clumsy;
 	dmg += (Drunken_boxing && Confusion);
 
 	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
+
+	if (dmg > 127) dmg = 127; /* sanity check --Amy */
 
 	if (dmg > 0) {
 		mon->mhp -= dmg;
