@@ -202,7 +202,7 @@ make_helper(mnum,x,y)
 		pm = &mons[mnum];
 
 		pm->pxlth += sizeof (struct edog);
-		mtmp = makemon(pm, x, y, NO_MM_FLAGS);
+		mtmp = makemon(pm, x, y, NO_MINVENT);
 		pm->pxlth -= sizeof (struct edog);
 	} while (!mtmp && --trycnt > 0);
 
