@@ -2434,10 +2434,10 @@ register const char *s;
 #ifdef WALLIFIED_MAZE
 	wallification(2, 2, x_maze_max, y_maze_max, TRUE);
 #endif
-	mazexy(&mm);
+	mazexy_all(&mm);
 	mkstairs(mm.x, mm.y, 1, (struct mkroom *)0);		/* up */
 	if (!Invocation_lev(&u.uz)) {
-	    mazexy(&mm);
+	    mazexy_all(&mm);
 	    mkstairs(mm.x, mm.y, 0, (struct mkroom *)0);	/* down */
 	} else {	/* choose "vibrating square" location */
 #define x_maze_min 2
@@ -2487,33 +2487,33 @@ register const char *s;
 	place_branch(Is_branchlev(&u.uz), 0, 0);
 
 	for(x = rn1(8,16); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
 	}
 	for (x = rn1(2,10); x; x--) 	{ 
-		mazexy(&mm);
+		mazexy_all(&mm);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
 			}
 	for(x = rn1(10,2); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	}
 	if (depth(&u.uz) > depth(&medusa_level)) {
 	for (x = rn2(3); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	for(x = rn1(5,7); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 	for(x = rn1(6,7); x; x--)
@@ -2521,33 +2521,33 @@ register const char *s;
 
 	if (ishaxor) {
 	for(x = rn1(8,16); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
 	}
 	for (x = rn1(2,10); x; x--) 	{ 
-		mazexy(&mm);
+		mazexy_all(&mm);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
 			}
 	for(x = rn1(10,2); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	}
 	if (depth(&u.uz) > depth(&medusa_level)) {
 	for (x = rn2(3); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	for(x = rn1(5,7); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {
-		mazexy(&mm);
+		mazexy_all(&mm);
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 	for(x = rn1(6,7); x; x--)
@@ -3160,6 +3160,51 @@ mazexy(cc)	/* find random point in generated corridors,
 		    }
 
 		panic("mazexy: can't find a place!");
+	}
+	return;
+}
+
+void
+mazexy_all(cc)	/* mazexy() only returns "even-numbered" squares... --Amy */
+	coord	*cc;
+{
+	int cpt=0;
+
+	do {
+	    cc->x = 3 + rn2((x_maze_max) - 1);
+	    cc->y = 3 + rn2((y_maze_max) - 1);
+	    cpt++;
+	} while (cpt < 100 && levl[cc->x][cc->y].typ !=
+#ifdef WALLIFIED_MAZE
+		 ROOM
+#else
+		 CORR
+#endif
+		);
+	if (cpt >= 100) {
+		register int x, y;
+		/* last try */
+		for (x = 0; x < (x_maze_max) - 1; x++)
+		    for (y = 0; y < (y_maze_max) - 1; y++) {
+			cc->x = 3 + x;
+			cc->y = 3 + y;
+			if (levl[cc->x][cc->y].typ ==
+#ifdef WALLIFIED_MAZE
+			    ROOM
+#else
+			    CORR
+#endif
+			   ) return;
+		    }
+
+		for (x = 0; x < (x_maze_max) - 1; x++)
+		    for (y = 0; y < (y_maze_max) - 1; y++) {
+			cc->x = 3 + x;
+			cc->y = 3 + y;
+			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE)) return;
+		    }
+
+		panic("mazexy_all: can't find a place!");
 	}
 	return;
 }

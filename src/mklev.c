@@ -7338,7 +7338,7 @@ coord *tm;
 		if (++tryct > 200)
 		    return;
 		if (mazeflag)
-		    mazexy(&m);
+		    mazexy_all(&m);
 		else if (!somexy(croom,&m))
 		    return;
 	    } while (occupied(m.x, m.y) ||
@@ -7397,7 +7397,7 @@ register struct mkroom *croom;
 	do {
 	    if(++tryct > 200) return;
 	    if(mazeflag)
-		mazexy(&m);
+		mazexy_all(&m);
 	    else
 		if (!somexy(croom, &m))
 		    return;

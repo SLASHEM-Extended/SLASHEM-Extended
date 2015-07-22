@@ -1038,7 +1038,7 @@ boolean ghostly;
 			lev < ledger_no(&stronghold_level) && xdnstair == 0) {
 		coord cc;
 
-		mazexy(&cc);
+		mazexy_all(&cc);
 		xdnstair = cc.x;
 		ydnstair = cc.y;
 		levl[cc.x][cc.y].typ = STAIRS;

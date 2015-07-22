@@ -1188,6 +1188,7 @@ E void FDECL(wallification, (int,int,int,int, BOOLEAN_P));
 E void FDECL(walkfrom, (int,int));
 E void FDECL(makemaz, (const char *));
 E void FDECL(mazexy, (coord *));
+E void FDECL(mazexy_all, (coord *));
 E void NDECL(bound_digging);
 E void FDECL(mkportal, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
 E boolean FDECL(bad_location, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
@@ -2709,7 +2710,6 @@ E void NDECL(livelog_avert_death);
 E int NDECL(doshout);
 #endif
 #endif
-
 
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
 
