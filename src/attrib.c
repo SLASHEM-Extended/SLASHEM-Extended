@@ -1506,6 +1506,11 @@ register int n;
 	if (Race_if(PM_UNALIGNMENT_THING) && n < 0) pline("You lost %d alignment points; your new value is %d.", abs(n), u.ualign.record);
 	if (Race_if(PM_UNALIGNMENT_THING) && n > 0) pline("You gained %d alignment points; your new value is %d.", n, u.ualign.record);
 
+	/* evil patch idea by jonadab: losing alignment points can result in punishment */
+	if (n < 0 && u.ualign.record < 0 && !rn2(500)) {
+		punishx();
+	}
+
 }
 
 #endif /* OVL2 */
