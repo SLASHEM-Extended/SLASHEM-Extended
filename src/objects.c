@@ -196,7 +196,7 @@ WEAPON("tsurugi", "long samurai sword",
 WEAPON("scimitar", "curved sword",
 	0, 0, 0, 65, 16, 15,  8,  8, 0, S,   P_SCIMITAR, IRON, HI_METAL),
 WEAPON("bent sable", "bent sword",
-	0, 0, 0, 10, 16, 15,  12,  12, 0, S,   P_SCIMITAR, IRON, HI_METAL),
+	0, 0, 0, 10, 16, 40,  12,  12, 0, S,   P_SCIMITAR, IRON, HI_METAL),
 
 /* Sabers */
 WEAPON("rapier", (char *)0,
@@ -206,7 +206,7 @@ WEAPON("rapier", (char *)0,
 WEAPON("silver saber", (char *)0,
 	1, 0, 0, 115, 12, 75,  8,  8, 0, S,   P_SABER, SILVER, HI_SILVER),
 WEAPON("golden saber", (char *)0,
-	1, 0, 0, 10, 12, 75,  10,  10, 0, S,   P_SABER, GOLD, CLR_YELLOW),
+	1, 0, 0, 10, 12, 150,  10,  10, 0, S,   P_SABER, GOLD, CLR_YELLOW),
 
 /* Clubs */
 WEAPON("club", (char *)0,
@@ -216,7 +216,7 @@ WEAPON("aklys", "thonged club",
 WEAPON("baseball bat", (char *)0,
 	1, 0, 0, 20, 12, 50,  8,  6, 0, B,   P_CLUB, WOOD, HI_WOOD),
 WEAPON("metal club", "heavy club",
-	0, 0, 0, 5, 7,  4,  10,  8, 0, B,   P_CLUB, IRON, HI_METAL),
+	0, 0, 0, 5, 7,  200,  10,  8, 0, B,   P_CLUB, IRON, HI_METAL),
 
 	/* STEPHEN WHITE'S NEW CODE */
 	/* Base for artifact */
@@ -226,7 +226,7 @@ WEAPON("metal club", "heavy club",
 WEAPON("fly swatter", (char *)0,
 	1, 0, 0,  50, 4,  3, 15,  2, 2, B,   P_PADDLE, PLASTIC, CLR_GREEN),
 WEAPON("insect squasher", (char *)0,
-	1, 0, 0,  5, 4,  3, 30,  2, 4, B,   P_PADDLE, PLASTIC, CLR_GREEN),
+	1, 0, 0,  5, 4, 10, 30,  2, 4, B,   P_PADDLE, PLASTIC, CLR_GREEN),
 
 /* Maces */
 WEAPON("silver mace", (char *)0,
@@ -237,7 +237,7 @@ WEAPON("mace", (char *)0,
 	/* +1 small */
 
 WEAPON("flanged mace", (char *)0,
-	1, 0, 0, 15, 12,  5,  8,  9, 0, B,   P_MACE, IRON, HI_METAL),
+	1, 0, 0, 15, 12, 15,  8,  9, 0, B,   P_MACE, IRON, HI_METAL),
 
 /* Morning stars */
 WEAPON("morning star", (char *)0,
@@ -245,10 +245,10 @@ WEAPON("morning star", (char *)0,
 						/* +d4 small, +1 large */
 
 WEAPON("jagged star", (char *)0,
-	1, 0, 0, 20,48, 10,  7,  15, 0, B,   P_MORNING_STAR, IRON, HI_METAL),
+	1, 0, 0, 20,48, 20,  7,  15, 0, B,   P_MORNING_STAR, IRON, HI_METAL),
 
 WEAPON("devil star", (char *)0,
-	1, 0, 0, 5,48, 10,  12,  18, 0, B,   P_MORNING_STAR, IRON, HI_METAL),
+	1, 0, 0, 5,48, 50,  12,  18, 0, B,   P_MORNING_STAR, IRON, HI_METAL),
 
 /* Flails */
 WEAPON("flail", (char *)0,
@@ -256,10 +256,10 @@ WEAPON("flail", (char *)0,
 	/* +1 small, +1d4 large */
 
 WEAPON("knout", (char *)0,
-	1, 0, 0, 30, 7,  4,  9,  6, 2, B,   P_FLAIL, IRON, HI_METAL),
+	1, 0, 0, 30, 7, 10,  9,  6, 2, B,   P_FLAIL, IRON, HI_METAL),
 
 WEAPON("obsid", (char *)0,
-	1, 0, 0,  5, 7,  4,  12,  8, 3, B,   P_FLAIL, IRON, HI_METAL),
+	1, 0, 0,  5, 7, 30,  12,  8, 3, B,   P_FLAIL, IRON, HI_METAL),
 
 /* Hammers */
 WEAPON("war hammer", (char *)0,
@@ -303,7 +303,7 @@ WEAPON("spiked battle boot", (char *)0,
 WEAPON("quarterstaff", "staff",
 	0, 0, 1, 60, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, WOOD, HI_WOOD),
 WEAPON("battle staff", (char *)0,
-	0, 0, 1, 5, 16,  5,  15,  15, 0, B,   P_QUARTERSTAFF, METAL, HI_METAL),
+	0, 0, 1, 5, 16,  50,  15,  15, 0, B,   P_QUARTERSTAFF, METAL, HI_METAL),
 
 /* Polearms */
 /* (also weptool fishing pole) */
@@ -362,9 +362,9 @@ WEAPON("dwarvish spear", "stout spear",
 WEAPON("javelin", "throwing spear",
 	0, 1, 0, 75, 8,  3,  6,  6, 1, P,   P_JAVELIN, IRON, HI_METAL),
 WEAPON("spirit thrower", (char *)0,
-	0, 1, 0, 25, 8,  3,  10,  10, 1, P,   P_JAVELIN, IRON, HI_METAL),
+	0, 1, 0, 25, 8, 10,  10,  10, 1, P,   P_JAVELIN, IRON, HI_METAL),
 WEAPON("torpedo", (char *)0,
-	0, 1, 0, 5, 8,  3,  16,  16, 1, P,   P_JAVELIN, IRON, HI_METAL),
+	0, 1, 0, 5, 8,  50,  16,  16, 1, P,   P_JAVELIN, IRON, HI_METAL),
 
 /* Tridents */
 WEAPON("trident", (char *)0,
@@ -372,7 +372,7 @@ WEAPON("trident", (char *)0,
 	/* +1 small, +2d4 large */
 
 WEAPON("stygian pike", (char *)0,
-	1, 0, 0,  5, 10,  5,  13,  11, 4, P,   P_TRIDENT, IRON, HI_METAL),
+	1, 0, 0,  5, 10,  50,  13,  11, 4, P,   P_TRIDENT, IRON, HI_METAL),
 
 /* Lances */
 WEAPON("lance", (char *)0,
@@ -461,7 +461,7 @@ WEAPON("bullwhip", (char *)0,
 	1, 0, 0, 45, 8,  4,  5,  3, 2, 0,   P_WHIP, LEATHER, CLR_BROWN),
 
 WEAPON("steel whip", (char *)0,
-	1, 0, 0,  5, 8,  4,  10,  6, 4, 0,   P_WHIP, METAL, HI_METAL),
+	1, 0, 0,  5, 8,  10,  10,  6, 4, 0,   P_WHIP, METAL, HI_METAL),
 
 #ifdef KOPS
 WEAPON("rubber hose", (char *)0,
