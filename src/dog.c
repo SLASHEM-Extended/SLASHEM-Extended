@@ -930,7 +930,7 @@ register struct obj *obj;
 	     */
 	    if (is_vampire(mon->data)) {
 	    	return (obj->otyp == CORPSE &&
-		  has_blood(&mons[obj->corpsenm]) && !obj->oeaten &&
+		  has_blood(&mons[obj->corpsenm]) && !obj->oeaten && !obj->odrained &&
 	    	  peek_at_iced_corpse_age(obj) + 5 >= monstermoves) ?
 			DOGFOOD : TABU;
 	    }
