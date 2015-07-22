@@ -6179,6 +6179,12 @@ retry:
 						   "slip" : "drop")),
 				       (const char *)0);
 	    u.ublesscnt += rn1(100,50);  /* the gods take notice */
+
+		/* evil patch idea by jonadab: wishing can set the player's luck to -7 */
+	    if (!rn2(500) && (u.uluck > -7) ) {
+			u.uluck = -7;
+			if (rn2(3)) pline("You seem to have used up all your good luck for that wish...");
+	    }
 	}
 }
 
