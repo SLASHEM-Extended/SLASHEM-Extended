@@ -1100,6 +1100,26 @@ boolean	at_stairs;
 
 		}
 
+		if (!rn2(ishaxor ? 2500 : 5000)) {
+			makerandomtrap();
+			if (!rn2(2)) makerandomtrap();
+			if (!rn2(3)) makerandomtrap();
+			if (!rn2(4)) makerandomtrap();
+			if (!rn2(6)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap();
+			if (!rn2(12)) makerandomtrap();
+			if (!rn2(16)) makerandomtrap();
+			if (!rn2(24)) makerandomtrap();
+			if (!rn2(32)) makerandomtrap();
+			if (!rn2(48)) makerandomtrap();
+			if (!rn2(64)) makerandomtrap();
+			if (!rn2(96)) makerandomtrap();
+			if (!rn2(128)) makerandomtrap();
+			if (!rn2(192)) makerandomtrap();
+			if (!rn2(256)) makerandomtrap();
+
+		}
+
 	} else {
 		/* Going down a stairs or jump in a trap door. */
 		d_level	newlevel;
@@ -1113,6 +1133,26 @@ boolean	at_stairs;
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
 			(void)nasty((struct monst *)0);
+
+		}
+
+		if (!rn2(ishaxor ? 2500 : 5000)) {
+			makerandomtrap();
+			if (!rn2(2)) makerandomtrap();
+			if (!rn2(3)) makerandomtrap();
+			if (!rn2(4)) makerandomtrap();
+			if (!rn2(6)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap();
+			if (!rn2(12)) makerandomtrap();
+			if (!rn2(16)) makerandomtrap();
+			if (!rn2(24)) makerandomtrap();
+			if (!rn2(32)) makerandomtrap();
+			if (!rn2(48)) makerandomtrap();
+			if (!rn2(64)) makerandomtrap();
+			if (!rn2(96)) makerandomtrap();
+			if (!rn2(128)) makerandomtrap();
+			if (!rn2(192)) makerandomtrap();
+			if (!rn2(256)) makerandomtrap();
 
 		}
 
@@ -1140,6 +1180,26 @@ boolean	at_stairs;
 
 			}
 
+			if (!rn2(ishaxor ? 2500 : 5000)) {
+				makerandomtrap();
+				if (!rn2(2)) makerandomtrap();
+				if (!rn2(3)) makerandomtrap();
+				if (!rn2(4)) makerandomtrap();
+				if (!rn2(6)) makerandomtrap();
+				if (!rn2(8)) makerandomtrap();
+				if (!rn2(12)) makerandomtrap();
+				if (!rn2(16)) makerandomtrap();
+				if (!rn2(24)) makerandomtrap();
+				if (!rn2(32)) makerandomtrap();
+				if (!rn2(48)) makerandomtrap();
+				if (!rn2(64)) makerandomtrap();
+				if (!rn2(96)) makerandomtrap();
+				if (!rn2(128)) makerandomtrap();
+				if (!rn2(192)) makerandomtrap();
+				if (!rn2(256)) makerandomtrap();
+	
+			}
+
 		}
 	} else {
 		/* Going up a stairs or rising through the ceiling. */
@@ -1154,6 +1214,26 @@ boolean	at_stairs;
 			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
 			(void)nasty((struct monst *)0);
 		}
+
+			if (!rn2(ishaxor ? 2500 : 5000)) {
+				makerandomtrap();
+				if (!rn2(2)) makerandomtrap();
+				if (!rn2(3)) makerandomtrap();
+				if (!rn2(4)) makerandomtrap();
+				if (!rn2(6)) makerandomtrap();
+				if (!rn2(8)) makerandomtrap();
+				if (!rn2(12)) makerandomtrap();
+				if (!rn2(16)) makerandomtrap();
+				if (!rn2(24)) makerandomtrap();
+				if (!rn2(32)) makerandomtrap();
+				if (!rn2(48)) makerandomtrap();
+				if (!rn2(64)) makerandomtrap();
+				if (!rn2(96)) makerandomtrap();
+				if (!rn2(128)) makerandomtrap();
+				if (!rn2(192)) makerandomtrap();
+				if (!rn2(256)) makerandomtrap();
+	
+			}
 	}
 }
 
