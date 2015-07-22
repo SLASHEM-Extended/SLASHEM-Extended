@@ -2998,6 +2998,43 @@ dozap()
 
 	}
 
+	/* evil patch idea by jondab: zapping a wand while impaired can cause it to explode */
+	else if ( Stunned && !rn2(20) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Confusion && !rn2(150) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Numbed && !rn2(500) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Feared && !rn2(500) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Frozen && !rn2(30) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Burned && !rn2(300) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+	else if ( Blind && !rn2(200) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+
 	else if(obj->otyp == WAN_WONDER && !rn2(100)) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
