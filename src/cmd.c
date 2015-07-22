@@ -2453,6 +2453,8 @@ minimal_enlightenment()
 
 		Sprintf(eos(statline), " Pw %d (max %d)", u.uen, u.uenmax);
 
+		Sprintf(eos(statline), " AC %d", u.uac);
+
 		Sprintf(eos(statline), " Current status effects: ");
 
 		if (Levitation) Sprintf(eos(statline), "levitation, ");

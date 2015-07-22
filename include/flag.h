@@ -91,6 +91,9 @@ struct flag {
 #ifdef SHOW_WEIGHT
 	boolean  showweight;    /* show weight on status line */
 #endif
+	boolean  showmc;	/* shows MC on bottom status line */
+	boolean  showmovement;	/* shows movement speed on bottom status line */
+
 	boolean  silent;	/* whether the bell rings or not */
 	boolean  sortpack;	/* sorted inventory */
 	boolean  soundok;	/* ok to tell about sounds heard */

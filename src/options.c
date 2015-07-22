@@ -236,6 +236,10 @@ static struct Bool_Opt
 #else
 	{"showweight", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+
+	{"showmc", &flags.showmc, FALSE, SET_IN_GAME},
+	{"showmovement", &flags.showmovement, FALSE, SET_IN_GAME},
+
 	{"silent", &flags.silent, TRUE, SET_IN_GAME},
 	{"softkeyboard", &iflags.wc2_softkeyboard, FALSE, SET_IN_FILE},
 	{"sortpack", &flags.sortpack, TRUE, SET_IN_GAME},
@@ -2784,6 +2788,9 @@ goodfruit:
 #ifdef SHOW_WEIGHT
 			 || (boolopt[i].addr) == &flags.showweight
 #endif
+			 || (boolopt[i].addr) == &flags.showmc
+			 || (boolopt[i].addr) == &flags.showmovement
+
 			    )
 			    bot_reconfig();
 

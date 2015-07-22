@@ -592,9 +592,11 @@ bot2str(char *newbot2)
 #endif
 	Sprintf(nb = eos(nb), " AC%d", u.uac);
 
-	Sprintf(nb = eos(nb), " MC%d", magic_negationX(&youmonst));
+	if (flags.showmc)
+		Sprintf(nb = eos(nb), " MC%d", magic_negationX(&youmonst));
 
-	Sprintf(nb = eos(nb), " Mov%d", youmonst.data->mmove);
+	if (flags.showmovement)
+		Sprintf(nb = eos(nb), " Mov%d", youmonst.data->mmove);
 
 	if (Upolyd)
 		Sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
