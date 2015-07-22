@@ -42,6 +42,13 @@ tty_doprev_message()
 
     winid prevmsg_win;
     int i;
+
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	pline("The previous message command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
     if ((iflags.prevmsg_window != 's') && !ttyDisplay->inread) { /* not single */
         if(iflags.prevmsg_window == 'f') { /* full */
             prevmsg_win = create_nhwindow(NHW_MENU);
@@ -260,8 +267,9 @@ more()
     xwaitforspace("\033 ");
 #endif
 
-    if(morc == '\033')
+    if(morc == '\033') {
 	cw->flags |= WIN_STOP;
+	}
 
     if(ttyDisplay->toplin && cw->cury) {
 	docorner(1, cw->cury+1);
