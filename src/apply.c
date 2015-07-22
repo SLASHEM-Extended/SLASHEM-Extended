@@ -1739,14 +1739,35 @@ struct obj *obj;
 
 	/* higher chance for vaporizing the horn as a centaur --Amy */
 	if (!obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+
+	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 		return;
+	    } else {
+		obj->spe -= 1;
+		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		if(obj->blessed && !rn2(10) )
+			unbless(obj);
+		else if (!rn2(5))
+			curse(obj);
+
+	    }
 		}
 	if (obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
+	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 		return;
+	    } else {
+		obj->spe -= 1;
+		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		if(obj->blessed && !rn2(10) )
+			unbless(obj);
+		else if (!rn2(5))
+			curse(obj);
+
+	    }
 		}
 
 	if (obj && obj->cursed) {
