@@ -6083,12 +6083,12 @@ int damage, tell;
 
 	/* attack level */
 	switch (oclass) {
-	    case WAND_CLASS:	alev = 12 + (u.ulevel / 2);	 break;
-	    case TOOL_CLASS:	alev = 10 + (u.ulevel / 2);	 break;	/* instrument */
-	    case WEAPON_CLASS:	alev = 10 + (u.ulevel / 3);	 break;	/* artifact */
-	    case SCROLL_CLASS:	alev =  9 + (u.ulevel / 3);	 break;
-	    case POTION_CLASS:	alev =  6 + (u.ulevel / 4);	 break;
-	    case RING_CLASS:	alev =  5 + (u.ulevel / 5);	 break;
+	    case WAND_CLASS:	alev = 12 + Role_if(PM_WANDKEEPER) ? u.ulevel : (u.ulevel / 2);	 break;
+	    case TOOL_CLASS:	alev = 10 + Role_if(PM_GRADUATE) ? (u.ulevel * 2) : (Role_if(PM_GEEK) || Role_if(PM_ARCHEOLOGIST)) ? u.ulevel : (u.ulevel / 2);	 break;	/* instrument */
+	    case WEAPON_CLASS:	alev = 10 + Role_if(PM_GOFF) ? u.ulevel : Role_if(PM_ARTIST) ? (u.ulevel / 2) : (u.ulevel / 3);	 break;	/* artifact */
+	    case SCROLL_CLASS:	alev =  9 + Role_if(PM_INTEL_SCRIBE) ? u.ulevel : Role_if(PM_LIBRARIAN) ? (u.ulevel / 2) : (u.ulevel / 3);	 break;
+	    case POTION_CLASS:	alev =  6 + Role_if(PM_DRUNK) ? u.ulevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (u.ulevel / 2) : (u.ulevel / 4);	 break;
+	    case RING_CLASS:	alev =  5 + Role_if(PM_LADIESMAN) ? (u.ulevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (u.ulevel / 3) : (u.ulevel / 5);	 break;
 	    default:		alev = u.ulevel; break;	/* spell */
 	}
 	/* defense level */
