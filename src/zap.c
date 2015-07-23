@@ -3863,7 +3863,8 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 
 	    for (otmp = (youdefend ? invent : mdef->minvent);
 			    otmp; otmp = otmp->nobj)
-		if (self_cancel || !rn2(24)) {
+		/* extra saving throw for blessed objects --Amy */
+		if (self_cancel || !rn2(obj->blessed ? 100 : 24)) {
 		    cancel_item(otmp);
 		    did_cancel = TRUE;
 		}
