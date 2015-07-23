@@ -5944,13 +5944,14 @@ register boolean force, here;
 		} else if(Is_container(obj) && !Is_box(obj) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
-		} else if (!force && (Luck - luckpenalty + 5) > rn2(20)) {
+		} else if (!force && (Luck - luckpenalty + 5 + rnd(20) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:
 			 *	max luck (full moon):	 5%
 			 *	max luck (elsewhen):	10%
 			 *	avg luck (Luck==0):	75%
 			 *	awful luck (Luck<-4):  100%
 			 *  If this is the Lethe, things are much worse.
+			 *  Amy edit: extra rnd(20) boost for the chance, so a single misstep won't necessarily blank everything
 			 */
 			continue;
 		/* An oil skin cloak protects your body armor  */
