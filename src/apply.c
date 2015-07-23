@@ -3088,6 +3088,19 @@ use_pole (obj)
 
 	/* The effect didn't apply.  Attack the monster there. */
 	if (mtmp) {
+
+	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(10000) && obj->oartifact)) {
+		if (obj->spe < 1) {
+			uwepgone();              /* set unweapon */
+			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+			useup(obj);
+			return (1);
+		} else {
+			obj->spe -= rnd(obj->spe);
+			pline(Hallucination ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+		}
+	    }
+
 	    int oldhp = mtmp->mhp;
 
 	    bhitpos = cc;
