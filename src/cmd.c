@@ -2481,6 +2481,10 @@ minimal_enlightenment()
 		else if (Hallucination) Sprintf(eos(statline), "hallucination, ");
 		if (Slimed) Sprintf(eos(statline), "sliming, ");
 		if (Stoned) Sprintf(eos(statline), "petrification, ");
+		if (IsGlib) Sprintf(eos(statline), "glib, ");
+		if (Wounded_legs) Sprintf(eos(statline), "wounded legs, ");
+		if (Strangled) Sprintf(eos(statline), "strangled, ");
+		if (Vomiting) Sprintf(eos(statline), "vomiting, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
 		if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) Sprintf(eos(statline), "oversatiated, ");
