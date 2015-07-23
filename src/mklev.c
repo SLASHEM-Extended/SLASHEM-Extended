@@ -2994,7 +2994,7 @@ makelevel()
 
 	/* very random levels --Amy */
 
-	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) ) {
 
 
 	    switch (rnd(100)) {
@@ -4237,7 +4237,7 @@ makelevel()
 
 	}
 
-	if ( (In_dod(&u.uz) && (depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
 	    switch (rnd(100)) {
 
@@ -5486,7 +5486,7 @@ makelevel()
 	else if (isspecialist) specialraceflag = 3;
 	else specialraceflag = 0; /* fail safe */
 
-	if ((specialraceflag == 1) && depth(&u.uz) > 1) { /* mazewalker */
+	if ((specialraceflag == 1) && (!rn2(100) || depth(&u.uz) > 1) ) { /* mazewalker */
 
 	    if (rn2(3)) {
 
@@ -5530,7 +5530,7 @@ makelevel()
 
 	}
 
-	if ((specialraceflag == 2) && depth(&u.uz) > 1) { /* sokosolver */
+	if ((specialraceflag == 2) && (!rn2(100) || depth(&u.uz) > 1) ) { /* sokosolver */
 
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz)) {
 		switch (rnd(152)) {
@@ -5860,7 +5860,7 @@ makelevel()
 
 	}
 
-	if ((specialraceflag == 3) && depth(&u.uz) > 1) { /* specialist */
+	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz)) {
 	    switch (rnd(100)) {
@@ -8495,14 +8495,14 @@ makelevel()
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 437 : 837) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 437 : 837) )) {
 
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 1637 : 3237) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 1637 : 3237) )) {
 
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -8510,18 +8510,8 @@ makelevel()
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 6437 : 12837) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 6437 : 12837) )) {
 
-			mkroom(RANDOMROOM);
-			mkroom(RANDOMROOM);
-			mkroom(RANDOMROOM);
-			mkroom(RANDOMROOM);
-
-		}
-
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 25637 : 51237) )) {
-
-			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -8529,7 +8519,17 @@ makelevel()
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 439 : 839) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 25637 : 51237) )) {
+
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+
+		}
+
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 439 : 839) )) {
 
 			randrmtyp = findrandtype();
 
@@ -8538,7 +8538,7 @@ makelevel()
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 1639 : 3239) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 1639 : 3239) )) {
 
 			randrmtyp = findrandtype();
 
@@ -8548,7 +8548,7 @@ makelevel()
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 6439 : 12839) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 6439 : 12839) )) {
 
 			randrmtyp = findrandtype();
 
@@ -8559,7 +8559,7 @@ makelevel()
 
 		}
 
-		if (u_depth > 1 && !((moves + u.monstertimefinish) % (ishaxor ? 25639 : 51239) )) {
+		if ( (!rn2(100) || u_depth > 1) && !((moves + u.monstertimefinish) % (ishaxor ? 25639 : 51239) )) {
 
 			randrmtyp = findrandtype();
 
@@ -8580,7 +8580,7 @@ makelevel()
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
 		}
 
-		if (isaquarian && u_depth > 1) mkrivers();
+		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrivers();
 
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
@@ -8590,7 +8590,7 @@ makelevel()
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
 
-		if (isaquarian && u_depth > 1) mkrandrivers();
+		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrandrivers();
 
 	/*}*/
 
