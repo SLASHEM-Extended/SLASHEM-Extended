@@ -2354,14 +2354,26 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 			case 7: /* black */
 			    i = pseudorand ? BLACK_OPAL : JET;
 			    break;
-			case 8: /* green */
+			case 8: /* pink */
+			    i = pseudorand ? ROSE_QUARTZ : MORGANITE ;
+			    break;
+			case 9: /* cyan */
+			    i = pseudorand ? AMAZONITE : VIVIANITE ;
+			    break;
+			case 10: /* teal */
+			    i = pseudorand ? CYAN_STONE : DISTHENE ;
+			    break;
+			case 11: /* green */
 			    i = pseudorand ? EMERALD : JADE;
 			    break;
-			case 9: /* violet */
+			case 12: /* radiant */
+			    i = pseudorand ? DIOPTASE : ANDALUSITE ;
+			    break;
+			case 13: /* violet */
 			    i = pseudorand ? AMETHYST : FLUORITE;
 			    break;
 			default: impossible("bad glass gem %d?", obj->otyp);
-			    i = STRANGE_OBJECT;
+			    i = /*STRANGE_OBJECT*/MORGANITE; /* fail safe - in case of doubt have it be something expensive --Amy */
 			    break;
 		    }
 		    tmp = (long) objects[i].oc_cost;
