@@ -3704,6 +3704,19 @@ const struct Race races[] = {
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"sokosolver", "sokosolver", "sokoban league", "Sok",
+	{0, 0},
+	PM_SOKOSOLVER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"soviet", "soviet", "soviet union", "Sov",
 	{0, 0},
 	PM_SOVIET, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3716,6 +3729,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"specialist", "specialist", "speciality", "Spe",
+	{0, 0},
+	PM_SPECIALIST, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
 {	"spiderman", "spider", "spiderhood", "Spi",
 	{0, 0},
@@ -4423,7 +4449,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(13)) {
+			switch (rnd(15)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4451,12 +4477,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridxrace = 1; break;
 				case 13:
 					flags.hybridheretic = 1; break;
+				case 14:
+					flags.hybridsokosolver = 1; break;
+				case 15:
+					flags.hybridspecialist = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(13)) {
+				switch (rnd(15)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4496,6 +4526,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 13:
 						if (!(flags.hybridheretic)) {flags.hybridheretic = 1; flags.hybridization++; break;
+						}
+					case 14:
+						if (!(flags.hybridsokosolver)) {flags.hybridsokosolver = 1; flags.hybridization++; break;
+						}
+					case 15:
+						if (!(flags.hybridspecialist)) {flags.hybridspecialist = 1; flags.hybridization++; break;
 						}
 	
 				}
