@@ -2631,7 +2631,7 @@ register struct monst *mdef;
 	mdef->mtrapped = 0;	/* (see m_detach) */
 
 	if ((int)mdef->data->msize > MZ_TINY ||
-		    !rn2(2 + ((int) (mdef->data->geno & G_FREQ) > 2))) {
+		    !rn2(2 /*+ ((int) (mdef->data->geno & G_FREQ) > 2) */ )) {
 		oldminvent = 0;
 		/* some objects may end up outside the statue */
 		while ((obj = mdef->minvent) != 0) {

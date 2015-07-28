@@ -218,6 +218,12 @@
 
 #define always_egotype(ptr)		((ptr)->mflags3 & M3_EGOTYPE)
 
+#define uncommon2(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON2)
+#define uncommon3(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON3)
+#define uncommon5(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON5)
+#define uncommon7(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON7)
+#define uncommon10(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON10)
+
 /* return TRUE if the monster tends to revive */
 #define is_reviver(ptr)		(is_rider(ptr) || (ptr)->mlet == S_FUNGUS && \
 				 (ptr) != &mons[PM_LICHEN] || \

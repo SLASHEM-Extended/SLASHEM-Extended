@@ -8971,6 +8971,13 @@ int mndx;
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
+
+	if (uncommon2(&mons[mndx]) && rn2(2)) return TRUE;
+	if (uncommon3(&mons[mndx]) && rn2(3)) return TRUE;
+	if (uncommon5(&mons[mndx]) && rn2(5)) return TRUE;
+	if (uncommon7(&mons[mndx]) && rn2(7)) return TRUE;
+	if (uncommon10(&mons[mndx]) && rn2(10)) return TRUE;
+
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
 	else
@@ -9318,10 +9325,11 @@ loopback:
 	for (mndx = LOW_PM; mndx < SPECIAL_PM; mndx++)
 	    if ((ct -= (int)rndmonst_state.mchoices[mndx]) <= 0) break;
 
-	if (mndx == SPECIAL_PM || uncommon(mndx)) {	/* shouldn't happen */
-	    impossible("rndmonst: bad `mndx' [#%d]", mndx);
-	    /*return (struct permonst *)0;*/
-	}
+	/*if (mndx == SPECIAL_PM || uncommon(mndx)) {*/	/* shouldn't happen */
+		/* but Amy edit: possible due to new spawn routine that involves the uncommon function */
+	    /*impossible("rndmonst: bad `mndx' [#%d]", mndx);
+	    return (struct permonst *)0;
+	}*/
 
 	return &mons[mndx];
 
@@ -9395,6 +9403,13 @@ int     spc;
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
 	if (!rn2(20)) mask = (G_NOGEN) & ~spc;
+
+	int uncommontwo = rn2(2) ? 1 : 0;
+	int uncommonthree = rn2(3) ? 1 : 0;
+	int uncommonfive = rn2(5) ? 1 : 0;
+	int uncommonseven = rn2(7) ? 1 : 0;
+	int uncommonten = rn2(10) ? 1 : 0;
+
 	int bonuslevel;
 	boolean calctype;
 
@@ -9427,7 +9442,14 @@ int     spc;
 	for (last = first;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
-					&& !is_placeholder(&mons[last])) {
+					&& !is_placeholder(&mons[last])
+					&& !(uncommontwo && uncommon2(&mons[last]))
+					&& !(uncommonthree && uncommon3(&mons[last]))
+					&& !(uncommonfive && uncommon5(&mons[last]))
+					&& !(uncommonseven && uncommon7(&mons[last]))
+					&& !(uncommonten && uncommon10(&mons[last]))
+
+				) {
 		/* consider it */
 		/*if(spc & MKC_ULIMIT && toostrong(last, 4 * maxmlev)) break;*/
 
@@ -9443,6 +9465,13 @@ int     spc;
 
 		if(num && (calctype ? toostrong(last, (maxmlev + bonuslevel) ) : mons[last].mlevel > (maxmlev + bonuslevel) ) &&
 		   monstr[last] != monstr[last-1]) break;
+
+		/*if (uncommon2(&mons[last]) && rn2(2)) break;
+		if (uncommon3(&mons[last]) && rn2(3)) break;
+		if (uncommon5(&mons[last]) && rn2(5)) break;
+		if (uncommon7(&mons[last]) && rn2(7)) break;
+		if (uncommon10(&mons[last]) && rn2(10)) break;*/
+
 		num += mons[last].geno & G_FREQ;
 	    }
 
@@ -9453,7 +9482,13 @@ int     spc;
  */
 	for(num = rnd(num); num > 0; first++)
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
-					&& !is_placeholder(&mons[first])) {
+					&& !is_placeholder(&mons[first])
+					&& !(uncommontwo && uncommon2(&mons[first]))
+					&& !(uncommonthree && uncommon3(&mons[first]))
+					&& !(uncommonfive && uncommon5(&mons[first]))
+					&& !(uncommonseven && uncommon7(&mons[first]))
+					&& !(uncommonten && uncommon10(&mons[first]))
+				) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
 		

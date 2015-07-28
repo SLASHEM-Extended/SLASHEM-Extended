@@ -216,6 +216,13 @@
 #define M3_PERMAMIMIC	0x02000000L			/* non-m-class-monster that mimics stuff and keeps doing so when hit */
 #define M3_SLIME		0x04000000L			/* coming into contact with this monster causes sliming */
 
+#define M3_FREQ_UNCOMMON2	0x08000000L			/* 2x more rare */
+#define M3_FREQ_UNCOMMON3	0x10000000L			/* 3x more rare */
+#define M3_FREQ_UNCOMMON5	0x20000000L			/* 5x more rare */
+#define M3_FREQ_UNCOMMON7	0x40000000L			/* 7x more rare */
+#define M3_FREQ_UNCOMMON10	0x80000000L			/* 10x more rare */
+/* these can stack to make monsters even more rare --Amy */
+
 #define M3_MIND_FLAYER	0x00480000L			/* generates "faint wave of psychic energy" message, telepathic */
 
 

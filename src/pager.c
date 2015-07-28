@@ -1094,6 +1094,11 @@ get_generation_description_of_monster_type(struct permonst * ptr, char * temp_bu
 		char frequency[BUFSZ] = "";
 		Sprintf(frequency, ", with frequency %d.", (ptr->geno & G_FREQ));
 		strcat(temp_buf, frequency);
+		if (uncommon2(ptr)) strcat(temp_buf, " Uncommon (by factor 2).");
+		if (uncommon3(ptr)) strcat(temp_buf, " Uncommon (by factor 3).");
+		if (uncommon5(ptr)) strcat(temp_buf, " Uncommon (by factor 5).");
+		if (uncommon7(ptr)) strcat(temp_buf, " Uncommon (by factor 7).");
+		if (uncommon10(ptr)) strcat(temp_buf, " Uncommon (by factor 10).");
 	} else {
 		strcat(temp_buf, ".");
 	}
