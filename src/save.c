@@ -413,6 +413,22 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
 
+	bwrite(fd, (genericptr_t) &mons[PM_BEIGE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_SHADY_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_DARK_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_SCARLET_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_VIRIDIAN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_UMBRA_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_PURPLE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_STEEL_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_VIVID_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_POISONOUS_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_TOPAZ_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_ULTRAMARINE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_PINK_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_AZURE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_MULTICOLORED_MISSINGNO], sizeof(struct permonst));
+
 	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_ASMODEUS], sizeof(struct permonst));
