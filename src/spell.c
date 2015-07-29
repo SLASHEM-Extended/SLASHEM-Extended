@@ -1764,8 +1764,6 @@ int spell;
 
 	if (Role_if(PM_PALADIN)) splcaster -= 3; /* it is assumed some of their power is granted by the Lord of Light himself */
 
-	if (splcaster < 2) splcaster = 2;
-	if (splcaster > 15) splcaster = 15;
 
 	/* Calculate learned ability */
 
@@ -1780,8 +1778,39 @@ int spell;
 	 * in that spell type.
 	 */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
+
+	/* come on, you should be able to cast better if your skill is higher! --Amy */
+	if ( skill == P_BASIC) splcaster -= 3;
+	if ( skill == P_SKILLED) splcaster -= 6;
+	if ( skill == P_EXPERT) splcaster -= 9;
+	if ( skill == P_MASTER) splcaster -= 12;
+	if ( skill == P_GRAND_MASTER) splcaster -= 15;
+
+	/* casting it often (and thereby keeping it in memory) should also improve chances... */
+	if ( spellknow(spell) >= 20000) splcaster -= 1;
+	if ( spellknow(spell) >= 23333) splcaster -= 1;
+	if ( spellknow(spell) >= 26666) splcaster -= 1;
+	if ( spellknow(spell) >= 30000) splcaster -= 1;
+	if ( spellknow(spell) >= 33333) splcaster -= 1;
+	if ( spellknow(spell) >= 36666) splcaster -= 1;
+	if ( spellknow(spell) >= 40000) splcaster -= 1;
+	if ( spellknow(spell) >= 43333) splcaster -= 1;
+	if ( spellknow(spell) >= 46666) splcaster -= 1;
+	if ( spellknow(spell) >= 50000) splcaster -= 1;
+	if ( spellknow(spell) >= 53333) splcaster -= 1;
+	if ( spellknow(spell) >= 56666) splcaster -= 1;
+	if ( spellknow(spell) >= 60000) splcaster -= 1;
+	if ( spellknow(spell) >= 63333) splcaster -= 1;
+	if ( spellknow(spell) >= 66666) splcaster -= 1;
+	if ( spellknow(spell) >= 70000) splcaster -= 1;
+
 	skill = max(skill,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	difficulty= (spellev(spell)-1) * 3 - ((skill * 6) + (u.ulevel/3) + 1);
+
+	splcaster += 5;
+
+	if (splcaster < 0) splcaster = 0;
+	if (splcaster > 25) splcaster = 25;
 
 	if (difficulty > 0) {
 		/* Player is too low level or unskilled. */
@@ -1822,7 +1851,7 @@ int spell;
 	 * a player is, intrinsics and encumbrance can prevent casting;
 	 * and no matter how able, learning is always required.
 	 */
-	chance = chance * (25-splcaster) / 10;
+	chance = chance * (30-splcaster) / 10;
 
 	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() ) && chance > 0) {
 
