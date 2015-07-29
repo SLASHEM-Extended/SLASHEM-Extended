@@ -2837,7 +2837,8 @@ struct monst *mtmp;
 				}
 			}
 
-			if (safe_pos > 0)
+			/* "scroll of bullshit" (term created by Khor) - let's be nice, and reduce the chance of screwing up the player --Amy */
+			if ((safe_pos > 0) && !rn2(20 + Luck) )
 				do_floodd(u.ux, u.uy, (genericptr_t)&stilldry);
 			if (madepool)
 				pline(Hallucination ?
