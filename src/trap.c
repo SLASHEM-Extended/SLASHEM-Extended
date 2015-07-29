@@ -5890,7 +5890,7 @@ register boolean force, here;
 	/* The invocation artifacts and the Amulet of Yendor must be immune.
 	 * Alignment keys, too, even though the game is still winnable without them. */
 
-			if ( (!rn2(50) || force ) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected */
+			if ( (!rn2(50) || force ) && (!obj->blessed || !rn2(4) ) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
 
 				if (rn2(2)) {
 
@@ -5953,6 +5953,8 @@ register boolean force, here;
 			 *  If this is the Lethe, things are much worse.
 			 *  Amy edit: extra rnd(20) boost for the chance, so a single misstep won't necessarily blank everything
 			 */
+			continue;
+		} else if (obj->blessed && rn2(4) ) { /* blessed items get an extra saving throw --Amy */
 			continue;
 		/* An oil skin cloak protects your body armor  */
 		} else if( obj->oclass == ARMOR_CLASS
