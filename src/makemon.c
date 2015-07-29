@@ -93,6 +93,10 @@ register int x, y, n;
 	coord mm;
 	register int cnt = rnd(n);
 	int kindred = rn2(20) ? 0 : 1;
+	if (!(u.monstertimefinish % 137) ) kindred = rn2(5) ? 0 : 1;
+	if (!(u.monstertimefinish % 837) ) kindred = rn2(2) ? 0 : 1;
+	if (!(u.monstertimefinish % 4337) ) kindred = rn2(20) ? 1 : 0;
+
 	if (mtmp->data->geno & G_UNIQ) kindred = 1; /* uniques are created with others of their kin, instead of clones of themselves */
 	struct monst *mon;
 #if defined(__GNUC__) && (defined(HPUX) || defined(DGUX))
@@ -9465,12 +9469,6 @@ int     spc;
 
 		if(num && (calctype ? toostrong(last, (maxmlev + bonuslevel) ) : mons[last].mlevel > (maxmlev + bonuslevel) ) &&
 		   monstr[last] != monstr[last-1]) break;
-
-		/*if (uncommon2(&mons[last]) && rn2(2)) break;
-		if (uncommon3(&mons[last]) && rn2(3)) break;
-		if (uncommon5(&mons[last]) && rn2(5)) break;
-		if (uncommon7(&mons[last]) && rn2(7)) break;
-		if (uncommon10(&mons[last]) && rn2(10)) break;*/
 
 		num += mons[last].geno & G_FREQ;
 	    }
