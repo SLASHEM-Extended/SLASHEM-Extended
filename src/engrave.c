@@ -622,14 +622,14 @@ static const char *random_mesg[] = {
 		"3001: Behinde the Eagle's Neste a grate Ash hath fellen.",
 	"VI. You Shall Not Subject Your God To Market Forces!",	/*Discworld*/
 		"Nae quin! Nae laird! Nae master! We willna be fooled again!"
-		"Morituri Nolumus Mori"
-		"End-of-the-World Switch. PLEASE DO NOT TOUCH"
-		"Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life."
-		"Do not, under any circumstances, open this door"
-		"WORDS IN THE HEART CANNOT BE TAKEN"
-		"Slab: Jus' say \"AarrghaarrghpleeassennononoUGH\""
-		"Ahahahahaha! Ahahahaha! Aahahaha!\nBEWARE!!!!!\nYrs sincerely\nThe Opera Ghost"
-		"Bee There Orr Bee A Rectangular Thyng"
+		"Morituri Nolumus Mori",
+		"End-of-the-World Switch. PLEASE DO NOT TOUCH",
+		"Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life.",
+		"Do not, under any circumstances, open this door",
+		"WORDS IN THE HEART CANNOT BE TAKEN",
+		"Slab: Jus' say \"AarrghaarrghpleeassennononoUGH\"",
+		"Ahahahahaha! Ahahahaha! Aahahaha!\nBEWARE!!!!!\nYrs sincerely\nThe Opera Ghost",
+		"Bee There Orr Bee A Rectangular Thyng",
 	"NOT A Secret Base", /*Gunnerkrigg Court*/
 	"Short to long term memory impaired. Go to Robotics Building. Explain about Bowman's architecture. Write down everything.", /*Freefall*/
 	"I SAW THE EYE. Over the horizon, like a rising sun!", /* Dresden Codak */
