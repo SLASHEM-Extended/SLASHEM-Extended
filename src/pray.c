@@ -1977,7 +1977,7 @@ boolean praying;	/* false means no messages should be given */
 {
     int alignment;
 
-    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : (Race_if(PM_HERETIC) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
+    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
 
     if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC)) {
