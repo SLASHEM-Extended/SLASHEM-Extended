@@ -421,6 +421,12 @@ struct you {
 	int frequentspecies10;	
 	int freqspeciesbonus10;	
 
+	int nospawnspecies;	/* nice patch idea by Amy - monster species that isn't randomly generated */
+	int nospawnspecies2;
+	int nospawnspecies3;
+	int nospawnspecies4;
+	int nospawnspecies5;
+
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */

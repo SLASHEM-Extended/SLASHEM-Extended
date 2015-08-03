@@ -9315,6 +9315,12 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies9)) ct += u.freqspeciesbonus9;
 		if (ct > 0 && (mndx == u.frequentspecies10)) ct += u.freqspeciesbonus10;
 
+		if (ct > 0 && (mndx == u.nospawnspecies)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies2)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies3)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies4)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies5)) ct = 0;
+
 		/*if (ct < 0 || ct > 127)
 		    panic("rndmonst: bad count [#%d: %d]", mndx, ct);*/
 		if (ct < 0) {pline("rndmonst: bad count [#%d: %d]", mndx, ct); ct = 0;}
@@ -9466,6 +9472,7 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5)
 
 				) {
 		/* consider it */
@@ -9511,6 +9518,7 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5)
 				) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;

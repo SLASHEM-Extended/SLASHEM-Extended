@@ -1414,6 +1414,36 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies];
+		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies2];
+		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies3];
+		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies4];
+		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies5];
+		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
