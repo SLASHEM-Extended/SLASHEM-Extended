@@ -624,6 +624,13 @@ moveloop()
 
 		}
 
+		if ( have_primecurse() && !rn2(100) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(100) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));

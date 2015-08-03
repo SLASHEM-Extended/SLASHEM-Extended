@@ -924,6 +924,8 @@ E boolean NDECL(have_vulnerabilitystone);
 E boolean NDECL(have_itemportstone);
 E boolean NDECL(have_nastystone);
 
+E boolean NDECL(have_primecurse);
+
 E boolean NDECL(have_mothrelay);
 
 E struct obj *FDECL(o_on, (unsigned int,struct obj *));

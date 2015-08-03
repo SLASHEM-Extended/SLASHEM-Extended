@@ -930,6 +930,18 @@ have_loadstone()
 }
 
 boolean
+have_primecurse()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->prmcurse)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_mothrelay()
 {
 	register struct obj *otmp;

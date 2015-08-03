@@ -1019,7 +1019,15 @@ register struct obj *otmp;
 #ifdef GOLDOBJ
 	if (otmp->oclass == COIN_CLASS) return;
 #endif
-	otmp->cursed = 0;
+	if (otmp->prmcurse && !rn2(10) ) {
+		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
+		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
+
+	if (otmp->cursed == 0) {
 	otmp->blessed = 1;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
@@ -1029,6 +1037,7 @@ register struct obj *otmp;
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
+	}
 	return;
 }
 
@@ -1056,7 +1065,18 @@ register struct obj *otmp;
 	if (otmp->oclass == COIN_CLASS) return;
 #endif
 	otmp->blessed = 0;
+
+	if (otmp->cursed) {
+		if (!otmp->hvycurse && !rn2(3)) otmp->hvycurse = 1;
+		else if (!otmp->prmcurse && !rn2(10)) otmp->prmcurse = 1;
+	}
+
 	otmp->cursed = 1;
+	if (!otmp->hvycurse && !rn2(25)) { otmp->hvycurse = 1;
+		if (!rn2(25)) otmp->prmcurse = 1;
+	}
+	if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
+
 	/* welded two-handed weapon interferes with some armor removal */
 	if (otmp == uwep && bimanual(uwep)) reset_remarm();
 	/* rules at top of wield.c state that twoweapon cannot be done
@@ -1083,7 +1103,13 @@ void
 uncurse(otmp)
 register struct obj *otmp;
 {
-	otmp->cursed = 0;
+	if (otmp->prmcurse && !rn2(10) ) {
+		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
+		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */

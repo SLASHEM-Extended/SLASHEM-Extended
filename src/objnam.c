@@ -2153,8 +2153,11 @@ register struct obj *obj;
 	    /* allow 'blessed clear potion' if we don't know it's holy water;
 	     * always allow "uncursed potion of water"
 	     */
-	    if (Hallucination ? !rn2(10) : obj->cursed)
-		Strcat(prefix, "cursed ");
+	    if (Hallucination ? !rn2(10) : obj->cursed) {
+		if (Hallucination ? !rn2(100) : obj->prmcurse) Strcat(prefix, "prime cursed ");
+		else if (Hallucination ? !rn2(10) : obj->hvycurse) Strcat(prefix, "heavily cursed ");
+		else Strcat(prefix, "cursed ");
+		}
 	    else if (Hallucination ? !rn2(10) : obj->blessed)
 		Strcat(prefix, "blessed ");
 	    else Strcat(prefix, "uncursed "); /*if ((!obj->known || !objects[obj->otyp].oc_charged ||

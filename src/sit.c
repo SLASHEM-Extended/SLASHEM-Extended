@@ -613,8 +613,9 @@ rndcurse()			/* curse a few inventory items at random! */
 		    if (--onum == 0) break;	/* found the target */
 		}
 		/* the !otmp case should never happen; picking an already
-		   cursed item happens--avoid "resists" message in that case */
-		if (!otmp || otmp->cursed) continue;	/* next target */
+		   cursed item happens--avoid "resists" message in that case
+		   Amy edit: only prime cursed items can't be cursed further */
+		if (!otmp || otmp->prmcurse) continue;	/* next target */
 
 		if(otmp->oartifact && spec_ability(otmp, SPFX_INTEL) &&
 		   rn2(10) < 8) {
@@ -634,7 +635,7 @@ rndcurse()			/* curse a few inventory items at random! */
 	/* treat steed's saddle as extended part of hero's inventory */
 	if (u.usteed && !rn2(4) &&
 		(otmp = which_armor(u.usteed, W_SADDLE)) != 0 &&
-		!otmp->cursed) {	/* skip if already cursed */
+		!otmp->prmcurse) {	/* skip if already cursed */
 	    if (otmp->blessed)
 		unbless(otmp);
 	    else

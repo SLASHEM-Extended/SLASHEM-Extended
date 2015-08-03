@@ -1596,7 +1596,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FaintActive);
 		you_have(buf);
 	}
-	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic || have_cursingstone()) {
+	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic || have_cursingstone() || have_primecurse() ) {
 		Sprintf(buf, "the following problem: Your inventory gradually fills up with cursed items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
 		you_have(buf);
