@@ -4801,6 +4801,16 @@ u_init()
 	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
 
 	u.frequentspecies = -1;  
+	u.frequentspecies2 = -1;  
+	u.frequentspecies3 = -1;  
+	u.frequentspecies4 = -1;  
+	u.frequentspecies5 = -1;  
+	u.frequentspecies6 = -1;  
+	u.frequentspecies7 = -1;  
+	u.frequentspecies8 = -1;  
+	u.frequentspecies9 = -1;  
+	u.frequentspecies10 = -1;  
+
 	ptr = &mons[-1];
 	while ((u.frequentspecies == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies = rn2(PM_LONG_WORM_TAIL);
@@ -4819,11 +4829,173 @@ u_init()
 	if (!rn2(8025)) u.freqspeciesbonus *= (1 + rne(2));
 	if (u.freqspeciesbonus > 10000) u.freqspeciesbonus = 10000; /* fail safe */
 
+	ptr = &mons[-1];
+	while ((u.frequentspecies2 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies2 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies2];
+	}
+	u.freqspeciesbonus2 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus2 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus2 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus2 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus2 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus2 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus2 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus2 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus2 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus2 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus2 *= (1 + rne(2));
+	if (u.freqspeciesbonus2 > 10000) u.freqspeciesbonus2 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies3 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies3 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies3];
+	}
+	u.freqspeciesbonus3 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus3 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus3 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus3 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus3 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus3 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus3 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus3 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus3 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus3 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus3 *= (1 + rne(2));
+	if (u.freqspeciesbonus3 > 10000) u.freqspeciesbonus3 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies4 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies4 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies4];
+	}
+	u.freqspeciesbonus4 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus4 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus4 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus4 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus4 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus4 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus4 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus4 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus4 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus4 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus4 *= (1 + rne(2));
+	if (u.freqspeciesbonus4 > 10000) u.freqspeciesbonus4 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies5 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies5 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies5];
+	}
+	u.freqspeciesbonus5 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus5 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus5 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus5 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus5 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus5 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus5 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus5 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus5 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus5 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus5 *= (1 + rne(2));
+	if (u.freqspeciesbonus5 > 10000) u.freqspeciesbonus5 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies6 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies6 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies6];
+	}
+	u.freqspeciesbonus6 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus6 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus6 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus6 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus6 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus6 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus6 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus6 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus6 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus6 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus6 *= (1 + rne(2));
+	if (u.freqspeciesbonus6 > 10000) u.freqspeciesbonus6 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies7 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies7 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies7];
+	}
+	u.freqspeciesbonus7 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus7 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus7 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus7 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus7 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus7 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus7 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus7 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus7 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus7 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus7 *= (1 + rne(2));
+	if (u.freqspeciesbonus7 > 10000) u.freqspeciesbonus7 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies8 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies8 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies8];
+	}
+	u.freqspeciesbonus8 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus8 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus8 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus8 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus8 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus8 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus8 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus8 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus8 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus8 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus8 *= (1 + rne(2));
+	if (u.freqspeciesbonus8 > 10000) u.freqspeciesbonus8 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies9 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies9 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies9];
+	}
+	u.freqspeciesbonus9 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus9 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus9 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus9 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus9 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus9 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus9 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus9 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus9 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus9 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus9 *= (1 + rne(2));
+	if (u.freqspeciesbonus9 > 10000) u.freqspeciesbonus9 = 10000; /* fail safe */
+
+	ptr = &mons[-1];
+	while ((u.frequentspecies10 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies10 = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies10];
+	}
+	u.freqspeciesbonus10 = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus10 += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus10 += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus10 *= 2;
+	if (!rn2(7)) u.freqspeciesbonus10 *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus10 *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus10 *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus10 *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus10 *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus10 *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus10 *= (1 + rne(2));
+	if (u.freqspeciesbonus10 > 10000) u.freqspeciesbonus10 = 10000; /* fail safe */
+
 	u.unobtainable = -1;
-	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
+	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
 
 	u.veryobtainable = -1;
-	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
 	u.veryobtainableboost = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);

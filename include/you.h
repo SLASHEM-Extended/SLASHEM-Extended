@@ -402,7 +402,28 @@ struct you {
 	int frequentspecies;	/* evil patch idea by Amy - monster species that is generated more often */
 	int freqspeciesbonus;	/* amount that is added to said monster species's frequency */
 
+	int frequentspecies2;	
+	int freqspeciesbonus2;	
+	int frequentspecies3;	
+	int freqspeciesbonus3;	
+	int frequentspecies4;	
+	int freqspeciesbonus4;	
+	int frequentspecies5;	
+	int freqspeciesbonus5;	
+	int frequentspecies6;	
+	int freqspeciesbonus6;	
+	int frequentspecies7;	
+	int freqspeciesbonus7;	
+	int frequentspecies8;	
+	int freqspeciesbonus8;	
+	int frequentspecies9;	
+	int freqspeciesbonus9;	
+	int frequentspecies10;	
+	int freqspeciesbonus10;	
+
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
+	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
+	int veryobtainableboost;	/* frequency added */
 
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 

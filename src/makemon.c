@@ -9305,6 +9305,15 @@ loopback:
 		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
 
 		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
+		if (ct > 0 && (mndx == u.frequentspecies2)) ct += u.freqspeciesbonus2;
+		if (ct > 0 && (mndx == u.frequentspecies3)) ct += u.freqspeciesbonus3;
+		if (ct > 0 && (mndx == u.frequentspecies4)) ct += u.freqspeciesbonus4;
+		if (ct > 0 && (mndx == u.frequentspecies5)) ct += u.freqspeciesbonus5;
+		if (ct > 0 && (mndx == u.frequentspecies6)) ct += u.freqspeciesbonus6;
+		if (ct > 0 && (mndx == u.frequentspecies7)) ct += u.freqspeciesbonus7;
+		if (ct > 0 && (mndx == u.frequentspecies8)) ct += u.freqspeciesbonus8;
+		if (ct > 0 && (mndx == u.frequentspecies9)) ct += u.freqspeciesbonus9;
+		if (ct > 0 && (mndx == u.frequentspecies10)) ct += u.freqspeciesbonus10;
 
 		/*if (ct < 0 || ct > 127)
 		    panic("rndmonst: bad count [#%d: %d]", mndx, ct);*/
@@ -9477,6 +9486,15 @@ int     spc;
 
 		num += mons[last].geno & G_FREQ;
 		if (last == u.frequentspecies) num += u.freqspeciesbonus;
+		if (last == u.frequentspecies2) num += u.freqspeciesbonus2;
+		if (last == u.frequentspecies3) num += u.freqspeciesbonus3;
+		if (last == u.frequentspecies4) num += u.freqspeciesbonus4;
+		if (last == u.frequentspecies5) num += u.freqspeciesbonus5;
+		if (last == u.frequentspecies6) num += u.freqspeciesbonus6;
+		if (last == u.frequentspecies7) num += u.freqspeciesbonus7;
+		if (last == u.frequentspecies8) num += u.freqspeciesbonus8;
+		if (last == u.frequentspecies9) num += u.freqspeciesbonus9;
+		if (last == u.frequentspecies10) num += u.freqspeciesbonus10;
 
 	    }
 
@@ -9497,6 +9515,15 @@ int     spc;
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
 		if (first == u.frequentspecies) num -= u.freqspeciesbonus;
+		if (first == u.frequentspecies2) num -= u.freqspeciesbonus2;
+		if (first == u.frequentspecies3) num -= u.freqspeciesbonus3;
+		if (first == u.frequentspecies4) num -= u.freqspeciesbonus4;
+		if (first == u.frequentspecies5) num -= u.freqspeciesbonus5;
+		if (first == u.frequentspecies6) num -= u.freqspeciesbonus6;
+		if (first == u.frequentspecies7) num -= u.freqspeciesbonus7;
+		if (first == u.frequentspecies8) num -= u.freqspeciesbonus8;
+		if (first == u.frequentspecies9) num -= u.freqspeciesbonus9;
+		if (first == u.frequentspecies10) num -= u.freqspeciesbonus10;
 		
 		/* or not, because seriously... what the heck??? --Amy */
 		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */
