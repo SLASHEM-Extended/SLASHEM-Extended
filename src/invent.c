@@ -4041,13 +4041,16 @@ struct obj *obj;
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
 	register int nn = (ocl->oc_name_known && obj->dknown);
+	register const char *dn = OBJ_DESCR(*ocl);
 
 	switch (obj->oclass) {
 
 		case WEAPON_CLASS:
-		pline("%s - This is a weapon. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj) );
+		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn );
 		if (!nn) pline("Unfortunately you don't know more about it.");
-		else { switch (obj->otyp) {
+		else { 
+
+			switch (obj->otyp) {
 
 			case ORCISH_DAGGER: 
 				pline("A crappy dagger that doesn't do much damage. It can be thrown."); break;
@@ -4319,7 +4322,7 @@ struct obj *obj;
 		break;
 
 		case ARMOR_CLASS:
-		pline("%s - This is a piece of armor. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj) );
+		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -4692,7 +4695,7 @@ struct obj *obj;
 		break;
 
 		case RING_CLASS:
-		pline("%s - This is a ring. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj) );
+		pline("%s - This is a ring. Color: %s. Material: %s. Appearance: %s. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -4802,12 +4805,10 @@ struct obj *obj;
 		case AMULET_CLASS:
 
 
-		pline("%s - This is an amulet. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj) );
-
 		if (obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == AMULET_OF_YENDOR) {
 		pline("This is the amulet of Yendor, a very powerful talisman that radiates power."); break;
 
-		}
+		} else pline("%s - This is an amulet. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
@@ -4887,7 +4888,7 @@ struct obj *obj;
 		break;
 
 		case TOOL_CLASS:
-		pline("%s - This is a tool. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj) );
+		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5046,7 +5047,7 @@ struct obj *obj;
 		break;
 
 		case FOOD_CLASS:
-		pline("%s - This is a comestible. It can be eaten.",xname(obj) );
+		pline("%s - This is a comestible. Color: %s. Material: %s. Appearance: %s. It can be eaten.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5143,7 +5144,7 @@ struct obj *obj;
 		break;
 
 		case POTION_CLASS:
-		pline("%s - This is a potion. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj) );
+		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5258,7 +5259,7 @@ struct obj *obj;
 		break;
 
 		case SCROLL_CLASS:
-		pline("%s - This is a scroll. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj) );
+		pline("%s - This is a scroll. Color: %s. Material: %s. Appearance: %s. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5391,7 +5392,7 @@ struct obj *obj;
 		break;
 
 		case SPBOOK_CLASS:
-		pline("%s - This is a spellbook. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj) );
+		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5607,7 +5608,7 @@ struct obj *obj;
 		break;
 
 		case WAND_CLASS:
-		pline("%s - This is a wand. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj) );
+		pline("%s - This is a wand. Color: %s. Material: %s. Appearance: %s. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5783,7 +5784,7 @@ struct obj *obj;
 		break;
 
 		case GEM_CLASS:
-		pline("%s - This is a gem. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj) );
+		pline("%s - This is a gem. Color: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6001,7 +6002,8 @@ struct obj *obj;
 		break;
 
 		case ROCK_CLASS:
-		pline("%s - This is a boulder or statue. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj) );
+		pline("%s - This is a boulder or statue. Color: %s. Material: %s. Appearance: %s. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], obj_descr[obj->otyp].oc_name
+ );
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6018,7 +6020,8 @@ struct obj *obj;
 		break;
 
 		case BALL_CLASS:
-		pline("%s - This is an iron ball. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj) );
+		pline("%s - This is an iron ball. Color: %s. Material: %s. Appearance: %s. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], obj_descr[obj->otyp].oc_name
+ );
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6065,7 +6068,7 @@ struct obj *obj;
 		break;
 
 		case CHAIN_CLASS:
-		pline("%s - This is an iron chain. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj) );
+		pline("%s - This is an iron chain. Color: %s. Material: %s. Appearance: %s. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6110,7 +6113,7 @@ struct obj *obj;
 		break;
 
 		case VENOM_CLASS:
-		pline("%s - This is a splash of venom. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj) );
+		pline("%s - This is a splash of venom. Color: %s. Material: %s. Appearance: %s. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj), c_obj_colors[objects[obj->otyp].oc_color], materialnm[objects[obj->otyp].oc_material], dn);
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
