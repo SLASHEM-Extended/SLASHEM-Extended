@@ -10008,8 +10008,9 @@ coord *tm;
 		case 6: kind = RUST_TRAP; break;
 	    }
 #endif
-	} else if (( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(5)) {
-	    /* bias the frequency of fire traps in Gehennom */
+	} else if (( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(25)) {
+	    /* bias the frequency of fire traps in Gehennom, but generate them less often
+	     * because all the other traps should also have a chance of spawning --Amy */
 	    kind = FIRE_TRAP;
 	} else {
 	    unsigned lvl = level_difficulty();
