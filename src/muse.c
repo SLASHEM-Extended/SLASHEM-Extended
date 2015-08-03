@@ -2869,6 +2869,8 @@ struct monst *mtmp;
 				update_inventory();
 			 }
 		}
+		/* being magic resistant also offers protection */
+		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
 
 	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
 		exercise(A_STR, FALSE);
