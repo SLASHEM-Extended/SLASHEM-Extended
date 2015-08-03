@@ -8976,11 +8976,11 @@ int mndx;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
-	if (uncommon2(&mons[mndx]) && rn2(2)) return TRUE;
-	if (uncommon3(&mons[mndx]) && rn2(3)) return TRUE;
-	if (uncommon5(&mons[mndx]) && rn2(5)) return TRUE;
-	if (uncommon7(&mons[mndx]) && rn2(7)) return TRUE;
-	if (uncommon10(&mons[mndx]) && rn2(10)) return TRUE;
+	if (uncommon2(&mons[mndx]) && rn2(2) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && rn2(3) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && rn2(5) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && rn2(7) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && rn2(10) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -9449,11 +9449,11 @@ int     spc;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])
-					&& !(uncommontwo && uncommon2(&mons[last]))
-					&& !(uncommonthree && uncommon3(&mons[last]))
-					&& !(uncommonfive && uncommon5(&mons[last]))
-					&& !(uncommonseven && uncommon7(&mons[last]))
-					&& !(uncommonten && uncommon10(&mons[last]))
+					&& !(uncommontwo && uncommon2(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[last]) && !Race_if(PM_RODNEYAN) )
 
 				) {
 		/* consider it */
@@ -9485,11 +9485,11 @@ int     spc;
 	for(num = rnd(num); num > 0; first++)
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
 					&& !is_placeholder(&mons[first])
-					&& !(uncommontwo && uncommon2(&mons[first]))
-					&& !(uncommonthree && uncommon3(&mons[first]))
-					&& !(uncommonfive && uncommon5(&mons[first]))
-					&& !(uncommonseven && uncommon7(&mons[first]))
-					&& !(uncommonten && uncommon10(&mons[first]))
+					&& !(uncommontwo && uncommon2(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[first]) && !Race_if(PM_RODNEYAN) )
 				) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
