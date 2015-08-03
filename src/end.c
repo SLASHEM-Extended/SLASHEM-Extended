@@ -200,6 +200,9 @@ register struct monst *mtmp;
 
 	You(isangbander ? "have died." : "die...");
 	/* for those wand o'death, touch o'death, poisoned spike times... */        
+
+	if(mtmp->data == &mons[PM_SOLDIER_ANT]) pline("Go Team Ant!");
+
 	if (Instant_Death)
 	    You("were hosed!");
 	mark_synch();	/* flush buffered screen output */
