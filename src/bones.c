@@ -556,6 +556,12 @@ getbones()
 		}
 	}
 #endif
+
+	if (!rn2(10)) { /* rarely don't delete bones --Amy */
+		compress_bonesfile();
+		return(ok);
+	}
+
 	if (!delete_bonesfile(&u.uz)) {
 		/* When N games try to simultaneously restore the same
 		 * bones file, N-1 of them will fail to delete it
