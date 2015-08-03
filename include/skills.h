@@ -130,7 +130,7 @@ struct def_skill {
 /* these roles qualify for a martial arts bonus */
 /* WAC - made this dependant on weapon skills if defined */
 
-# define martial_bonus() (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC)
+# define martial_bonus() (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) /* because sometimes they cap at expert --Amy */
 /*
 #else
 # define martial_bonus() (Role_if(PM_SAMURAI) || Role_if(PM_PRIEST) || Role_if(PM_MONK))
