@@ -4820,7 +4820,14 @@ u_init()
 	if (u.freqspeciesbonus > 10000) u.freqspeciesbonus = 10000; /* fail safe */
 
 	u.unobtainable = -1;
-	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) ) u.unobtainable = rn2(NUM_OBJECTS);
+	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
+
+	u.veryobtainable = -1;
+	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
+	u.veryobtainableboost = (1 + rnz(10));
+	if (!rn2(5)) u.veryobtainableboost += rnz(10);
+	if (!rn2(25)) u.veryobtainableboost += rnz(100);
+	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
 
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;

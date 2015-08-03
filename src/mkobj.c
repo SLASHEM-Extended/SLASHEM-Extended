@@ -158,7 +158,9 @@ boolean artif;
 	if(!OBJ_NAME(objects[i]))
 		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
 
-	return(mksobj(i, TRUE, artif));
+	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif));
+
+	else return(mksobj(i, TRUE, artif));
 }
 
 STATIC_OVL void
