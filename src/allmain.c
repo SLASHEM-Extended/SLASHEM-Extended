@@ -406,6 +406,25 @@ moveloop()
 
 			}
 
+			if (!rn2(ishaxor ? 50000 : 100000) && !issoviet) {
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG loves you!" : "You feel that someone was busy hiding useful items!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				}
+
+			}
+
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
 
 				randsp = (rn2(14) + 2);

@@ -270,6 +270,245 @@ rndmonnum()	/* select a random, common monster type */
 	return(i);
 }
 
+int
+usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
+{
+
+	switch (rnd(149)) {
+
+		case 1:
+			return ATHAME;
+		case 2:
+			return WORM_TOOTH;
+		case 3:
+			return AMULET_OF_LIFE_SAVING;
+		case 4:
+			return AMULET_VERSUS_STONE;
+		case 5:
+			return ICE_BOX;
+		case 6:
+			return MAGIC_WHISTLE;
+		case 7:
+		case 8:
+			return FROST_HORN;
+		case 9:
+		case 10:
+			return FIRE_HORN;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			return UNICORN_HORN;
+		case 16:
+			return STETHOSCOPE;
+		case 17:
+			return TINNING_KIT;
+		case 18:
+			return CAN_OF_GREASE;
+		case 19:
+			return MAGIC_MARKER;
+		case 20:
+		case 21:
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+		case 29:
+			return CHEMISTRY_SET;
+		case 30:
+			return HUGE_CHUNK_OF_MEAT;
+		case 31:
+			return KELP_FROND;
+		case 32:
+		case 33:
+			return EUCALYPTUS_LEAF;
+		case 34:
+		case 35:
+			return LUMP_OF_ROYAL_JELLY;
+		case 36:
+		case 37:
+			return HACKER_S_FOOD;
+		case 38:
+		case 39:
+			return POT_RESTORE_ABILITY;
+		case 40:
+		case 41:
+		case 42:
+		case 43:
+		case 44:
+			return POT_GAIN_ENERGY;
+		case 45:
+		case 46:
+		case 47:
+			return POT_GAIN_HEALTH;
+		case 48:
+		case 49:
+		case 50:
+		case 51:
+		case 52:
+			return POT_FULL_HEALING;
+		case 53:
+		case 54:
+		case 55:
+		case 56:
+		case 57:
+			return POT_GAIN_ABILITY;
+		case 58:
+		case 59:
+		case 60:
+		case 61:
+		case 62:
+			return POT_GAIN_LEVEL;
+		case 63:
+		case 64:
+		case 65:
+			return POT_WATER;
+		case 66:
+		case 67:
+			return SCR_CREATE_FAMILIAR;
+		case 68:
+			return SCR_TAMING;
+		case 69:
+			return SCR_INVENTORY_ID;
+		case 70:
+		case 71:
+		case 72:
+		case 73:
+		case 74:
+			return SCR_GAIN_MANA;
+		case 75:
+		case 76:
+		case 77:
+			return SCR_ENCHANT_WEAPON;
+		case 78:
+		case 79:
+			return SCR_ENCHANT_ARMOR;
+		case 80:
+		case 81:
+		case 82:
+		case 83:
+		case 84:
+			return SCR_RANDOM_ENCHANTMENT;
+		case 85:
+		case 86:
+			return SCR_REMOVE_CURSE;
+		case 87:
+		case 88:
+		case 89:
+		case 90:
+		case 91:
+			return SCR_TELEPORTATION;
+		case 92:
+		case 93:
+			return SCR_TELE_LEVEL;
+		case 94:
+			return SCR_CURE;
+		case 95:
+			return SCR_TRAP_DISARMING;
+		case 96:
+		case 97:
+		case 98:
+			return SCR_CHARGING;
+		case 99:
+		case 100:
+			return SCR_GENOCIDE;
+		case 101:
+		case 102:
+			return SCR_TRAP_DETECTION;
+		case 103:
+			return SCR_ACQUIREMENT;
+		case 104:
+			return SCR_CONSECRATION;
+		case 105:
+			return SCR_ENTHRONIZATION;
+		case 106:
+			return SPE_CURE_HALLUCINATION;
+		case 107:
+			return SPE_EXTRA_HEALING;
+		case 108:
+			return SPE_FULL_HEALING;
+		case 109:
+			return SPE_RESTORE_ABILITY;
+		case 110:
+			return SPE_CREATE_FAMILIAR;
+		case 111:
+			return SPE_IDENTIFY;
+		case 112:
+		case 113:
+		case 114:
+		case 115:
+		case 116:
+			return SPE_CHEMISTRY;
+		case 117:
+			return SPE_REMOVE_CURSE;
+		case 118:
+			return SPE_LEVITATION;
+		case 119:
+		case 120:
+			return SPE_REPAIR_ARMOR;
+		case 121:
+			return SPE_MAGIC_MISSILE;
+		case 122:
+			return SPE_FORCE_BOLT;
+		case 123:
+			return WAN_MANA;
+		case 124:
+			return WAN_GAIN_LEVEL;
+		case 125:
+		case 126:
+		case 127:
+			return WAN_HEALING;
+		case 128:
+			return WAN_IDENTIFY;
+		case 129:
+			return WAN_REMOVE_CURSE;
+		case 130:
+			return WAN_TRAP_DISARMING;
+		case 131:
+			return WAN_ENTRAPPING;
+		case 132:
+			return WAN_INCREASE_MAX_HITPOINTS;
+		case 133:
+			return WAN_CREATE_FAMILIAR;
+		case 134:
+		case 135:
+			return WAN_TELEPORTATION;
+		case 136:
+			return WAN_EXTRA_HEALING;
+		case 137:
+			return WAN_FULL_HEALING;
+		case 138:
+			return WAN_ACQUIREMENT;
+		case 139:
+			return WAN_CHARGING;
+		case 140:
+		case 141:
+			return WAN_MAGIC_MISSILE;
+		case 142:
+			return WAN_FIRE;
+		case 143:
+			return WAN_SLEEP;
+		case 144:
+			return WAN_DEATH;
+		case 145:
+		case 146:
+			return WAN_COLD;
+		case 147:
+			return WAN_LIGHTNING;
+		case 148:
+			return WAN_ACID;
+		case 149:
+			return WAN_SOLAR_BEAM;
+		default: /* fail safe */
+			return POT_FULL_HEALING;
+	}
+
+}
+
 /*
  * Split obj so that it gets size gets reduced by num. The quantity num is
  * put in the object structure delivered by this call.  The returned object
@@ -706,7 +945,7 @@ boolean artif;
 			otmp->spe = rnd(30);
 			blessorcurse(otmp, 5);
 					break;
- 		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 40 : 20);
+ 		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 80 : 40);
  					blessorcurse(otmp,4);
  					break;
 		case FIGURINE:	{	int tryct2 = 0;

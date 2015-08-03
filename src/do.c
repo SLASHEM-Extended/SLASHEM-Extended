@@ -2053,6 +2053,14 @@ boolean at_stairs, falling, portal;
 					}
 				}
 
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+
+				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+				    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
+				}
+
 			}
 
 			else if (rnd(Luck + 15) < 24) {
@@ -2072,6 +2080,17 @@ boolean at_stairs, falling, portal;
 						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, FALSE);
 						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, FALSE);
 						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, FALSE);
+					}
+				}
+
+				for (angbandtraps = 0; angbandtraps < 3; angbandtraps++) {
+
+					angbandx = rn1(COLNO-3,2);
+					angbandy = rn2(ROWNO);
+
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+	
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
 					}
 				}
 
@@ -2100,6 +2119,17 @@ boolean at_stairs, falling, portal;
 
 						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER);
 
+					}
+				}
+
+				for (angbandtraps = 0; angbandtraps < 10; angbandtraps++) {
+
+					angbandx = rn1(COLNO-3,2);
+					angbandy = rn2(ROWNO);
+
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+	
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
 					}
 				}
 			}
@@ -2141,6 +2171,17 @@ boolean at_stairs, falling, portal;
 
 						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER);
 
+					}
+				}
+
+				for (angbandtraps = 0; angbandtraps < 30; angbandtraps++) {
+
+					angbandx = rn1(COLNO-3,2);
+					angbandy = rn2(ROWNO);
+
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+	
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
 					}
 				}
 			}
@@ -2328,6 +2369,25 @@ boolean at_stairs, falling, portal;
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			}
+
+		}
+
+		if (!rn2(ishaxor ? (50000 - (Luck*1000)) : (100000 - (Luck*1000)) ) ) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG whispers to you: 'Today's your lucky day!'" : "You feel that there's lots of good stuff to be found here!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 			}
 
 		}

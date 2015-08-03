@@ -2394,7 +2394,7 @@ register struct monst *mtmp;
 	}
 
 	/* item masters and similar stuff shouldn't appear on the list so the player can't peek with ctrl-K! --Amy */
-	if (mvitals[tmp].died < 255 && tmp != PM_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER) mvitals[tmp].died++;
+	if (mvitals[tmp].died < 255 && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER) mvitals[tmp].died++;
 
 	/* if it's a (possibly polymorphed) quest leader, mark him as dead */
 	if (mtmp->m_id == quest_status.leader_m_id)
@@ -3125,6 +3125,8 @@ xkilled(mtmp, dest)
 		if (!rn2(100)) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
 		if (!rn2(100)) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
 		if (!rn2(40)) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);
+
+		if (!rn2(500)) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);
 
 		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) /*&& !(mvitals[mndx].mvflags & G_NOCORPSE) && !(nohands(mdat))*/
 	/* lowered overall chance, but see below for a chance to get extra items --Amy

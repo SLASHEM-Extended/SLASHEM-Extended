@@ -7331,7 +7331,7 @@ register int	mmflags;
 	int mndx, mcham, ct, mitem, xlth, senserchance;
 	boolean anymon = (!ptr);
 	boolean byyou = (x == u.ux && y == u.uy);
-	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER]);
+	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER]);
 	boolean countbirth = ((mmflags & MM_NOCOUNTBIRTH) == 0);
 	unsigned gpflags = (mmflags & MM_IGNOREWATER) ? MM_IGNOREWATER : 0;
 	int randsp;
@@ -7564,16 +7564,19 @@ register int	mmflags;
 
 	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
-	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
-
 	if (ptr == &mons[PM_SCROLLER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP);
 
 	if (ptr == &mons[PM_BOULDER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE);
 
+	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
+		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE);
+
 	if (ptr == &mons[PM_HOLE_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, HOLE);
+
+	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
 	if (!rn2( (Race_if(PM_DROW) ? 100 : 500) ) && x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y))  ) {
 		int rtrap;
@@ -8876,7 +8879,7 @@ register int	mmflags;
 			monkilled(mtmp, "", AD_PHYS);
 	} 
 
-	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER) monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
+	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_HOLE_MASTER) monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
 
 	if (mndx == PM_SHOCKING_SPHERE && Role_if(PM_ACID_MAGE) && Is_nemesis(&u.uz) ) {
 			(void) mon_spec_polyX(mtmp,  &mons[PM_LIGHTNING_PROOF_WALL], 0L, FALSE, FALSE, FALSE, FALSE);
