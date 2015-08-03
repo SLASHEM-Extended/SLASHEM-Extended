@@ -9051,7 +9051,7 @@ register struct permonst *ptr;
 
 static NEARDATA struct {
 	int choice_count;
-	char mchoices[SPECIAL_PM];	/* value range is 0..127 */
+	/*char*/int mchoices[SPECIAL_PM];	/* value range is 0..127, Amy edit: way too few! */
 } rndmonst_state = { -1, {0} };
 
 /* select a random monster type */
@@ -9301,12 +9301,14 @@ loopback:
 		/* evil patch - one monster class is always generated with a higher frequency (even for mystics) --Amy */
 		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
 
+		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
+
 		/*if (ct < 0 || ct > 127)
 		    panic("rndmonst: bad count [#%d: %d]", mndx, ct);*/
 		if (ct < 0) {pline("rndmonst: bad count [#%d: %d]", mndx, ct); ct = 0;}
-		if (ct > 127) {pline("rndmonst: bad count [#%d: %d]", mndx, ct); ct = 127;}
+		if (ct > 10000) {pline("rndmonst: bad count [#%d: %d]", mndx, ct); ct = 10000;} /* arbitrary --Amy */
 		rndmonst_state.choice_count += ct;
-		rndmonst_state.mchoices[mndx] = (char)ct;
+		rndmonst_state.mchoices[mndx] = ct;
 	    }
 /*
  *	    Possible modification:  if choice_count is "too low",
@@ -9471,6 +9473,8 @@ int     spc;
 		   monstr[last] != monstr[last-1]) break;
 
 		num += mons[last].geno & G_FREQ;
+		if (last == u.frequentspecies) num += u.freqspeciesbonus;
+
 	    }
 
 	if(!num) return(-1);
@@ -9489,6 +9493,7 @@ int     spc;
 				) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
+		if (first == u.frequentspecies) num -= u.freqspeciesbonus;
 		
 		/* or not, because seriously... what the heck??? --Amy */
 		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */

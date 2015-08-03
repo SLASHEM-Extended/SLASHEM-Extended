@@ -4526,6 +4526,7 @@ void
 u_init()
 {
 	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus;
+	register struct permonst *ptr;
 	struct permonst* shamblerm = &mons[PM_NITROHACK_HORROR];
 	struct permonst* shamblerma = &mons[PM_SPEEDHACK_HORROR];
 	struct permonst* shamblern = &mons[PM_NETHACKFOUR_HORROR];
@@ -4768,8 +4769,35 @@ u_init()
 	u.ungenocidable = rnd(S_WORM_TAIL);
 
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
-	u.freqmonsterbonus = rne(9);
-	if (u.freqmonsterbonus > 20) u.freqmonsterbonus = 20; /* fail safe */
+	u.freqmonsterbonus = rne(4);
+	if (!rn2(5)) u.freqmonsterbonus += rne(3);
+	if (!rn2(5)) u.freqmonsterbonus *= 2;
+	if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
+	if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
+	if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
+	if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
+	if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
+	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
+	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
+
+	u.frequentspecies = -1;  
+	ptr = &mons[-1];
+	while ((u.frequentspecies == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+		u.frequentspecies = rn2(PM_LONG_WORM_TAIL);
+		ptr = &mons[u.frequentspecies];
+	}
+	u.freqspeciesbonus = rn2(2) ? rne(2) : (1+rne(2));
+	u.freqspeciesbonus += u.freqmonsterbonus;
+	if (!rn2(5)) u.freqspeciesbonus += rne(2);
+	if (!rn2(3)) u.freqspeciesbonus *= 2;
+	if (!rn2(7)) u.freqspeciesbonus *= (1 + rne(10));
+	if (!rn2(15)) u.freqspeciesbonus *= (1 + rne(8));
+	if (!rn2(45)) u.freqspeciesbonus *= (1 + rne(6));
+	if (!rn2(125)) u.freqspeciesbonus *= (1 + rne(5));
+	if (!rn2(625)) u.freqspeciesbonus *= (1 + rne(4));
+	if (!rn2(2025)) u.freqspeciesbonus *= (1 + rne(3));
+	if (!rn2(8025)) u.freqspeciesbonus *= (1 + rne(2));
+	if (u.freqspeciesbonus > 10000) u.freqspeciesbonus = 10000; /* fail safe */
 
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;

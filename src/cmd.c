@@ -1278,6 +1278,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 {
 	int ltmp;
 	char buf[BUFSZ];
+	struct permonst *ptr;
 
 	en_win = create_nhwindow(NHW_MENU);
 	putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");
@@ -1350,6 +1351,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "generated more often: %s (frequency bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
 		enl_msg("The monster class that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies];
+		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus);
+		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " turn %d", u.next_check);
