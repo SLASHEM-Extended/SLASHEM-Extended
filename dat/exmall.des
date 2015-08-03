@@ -1004,3 +1004,128 @@ OBJECT: random, random, random
 TRAP: random, random
 
 RANDOM_CORRIDORS
+
+LEVEL: "exmall-9"
+MESSAGE: "You appear to be in a busy town."
+ROOM: "ordinary" , lit, random, random, (48,15)
+NAME: "town"
+FOUNTAIN: (20, 7)
+# lichtown (evil patch idea from the DCSS bad idea list)
+#
+#       The Town Watch.
+#
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watchman", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch captain", random, peaceful
+MONSTER: '@', "watch lieutenant", random, peaceful
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "tool shop" , lit, (2,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "food shop", lit, (2,9), (6,4), "town"
+CHANCE: 40
+DOOR: false, open, north, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "scroll shop", unlit, (9,2), (6,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "potion shop", lit, (9,9), (6,4), "town"
+CHANCE: 30
+DOOR: false, open, north, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "ring shop", lit, (16,2), (4,3), "town"
+CHANCE: 12
+DOOR: false, open, south, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "candle shop", lit, (23,2), (6,3), "town"
+CHANCE: 33
+DOOR: false, open, south, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "book shop", lit, (16,10), (4,3), "town"
+CHANCE: 12
+DOOR: false, open, east, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "shop", lit, (23,9), (10,4), "town"
+CHANCE: 20
+DOOR: false, open, north, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "wand shop", lit, (33,2), (3,3), "town"
+CHANCE: 17
+DOOR: false, open, west, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "weapon shop", lit, (39,2), (7,4), "town"
+CHANCE: 20
+DOOR: false, open, south, random
+MONSTER: 'L', random, random, hostile
+
+SUBROOM: "armor shop", unlit, (38,10), (7,3), "town"
+CHANCE: 22
+DOOR: false, open, north, random
+MONSTER: 'L', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+STAIR: random, down
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: 'L', random, random, hostile
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+
+ROOM: "ordinary" , random, random, random, random
+MONSTER: 'L', random, random, hostile
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS

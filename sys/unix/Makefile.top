@@ -130,7 +130,7 @@ DATHELP = help hh cmdhelp history opthelp wizhelp gypsy.txt
 
 SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	bigrm-??.lev compu.lev exmall-?.lev forge.lev heck-?.lev heck-??.lev \
-	hellma-?.lev hitch.lev intpla-?.lev key.lev palace_e.lev palace_f.lev \
+	hllma-?.lev hitch.lev intpla-?.lev key.lev palace_e.lev palace_f.lev \
 	rndmaze.lev rndmazea.lev school-?.lev schoolX.lev sheolfil.lev \
 	sheolmid.lev soko?-??.lev town-?.lev unhck-?.lev unhck-??.lev \
 	juiblex.lev knox.lev medus-?.lev minend-?.lev minefil?.lev \
@@ -153,7 +153,7 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	grund-?.lev demogorg.lev dispa-?.lev dragons.lev geryon.lev \
 	guild-?.lev kobold-?.lev lich.lev mall-?.lev mall.lev mking-?.lev \
 	mtemple.lev nymph-?.lev rats-?.lev sea.lev spiders.lev stor-?.lev \
-	tomb.lev yeeno-?.lev frnknstn.lev nightmar.lev
+	tomb.lev yeeno-?.lev frnknstn.lev nightmar.lev hllma-??.lev 
 QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
 
 SHARE_DATNODLB = $(CNF_SHARE_DATND)

@@ -3448,7 +3448,7 @@ makelevel()
 	    case 44:
 	    case 45:
 
-		switch (rnd(14)) {
+		switch (rnd(15)) {
 
 			case 1: makemaz("mall-1"); return;
 			case 2: makemaz("mall-2"); return;
@@ -3464,6 +3464,7 @@ makelevel()
 			case 12: makemaz("exmall-6"); return;
 			case 13: makemaz("exmall-7"); return;
 			case 14: makemaz("exmall-8"); return;
+			case 15: makemaz("exmall-9"); return;
 
 		}
 		break;
@@ -4690,17 +4691,18 @@ makelevel()
 	    case 44:
 	    case 45:
 
-		switch (rnd(9)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("hellma-1"); return;
-			case 2: makemaz("hellma-2"); return;
-			case 3: makemaz("hellma-3"); return;
-			case 4: makemaz("hellma-4"); return;
-			case 5: makemaz("hellma-5"); return;
-			case 6: makemaz("hellma-6"); return;
-			case 7: makemaz("hellma-7"); return;
-			case 8: makemaz("hellma-8"); return;
-			case 9: makemaz("hellma-9"); return;
+			case 1: makemaz("hllma-1"); return;
+			case 2: makemaz("hllma-2"); return;
+			case 3: makemaz("hllma-3"); return;
+			case 4: makemaz("hllma-4"); return;
+			case 5: makemaz("hllma-5"); return;
+			case 6: makemaz("hllma-6"); return;
+			case 7: makemaz("hllma-7"); return;
+			case 8: makemaz("hllma-8"); return;
+			case 9: makemaz("hllma-9"); return;
+			case 10: makemaz("hllma-10"); return;
 
 		}
 		break;
@@ -6314,7 +6316,7 @@ makelevel()
 	    case 44:
 	    case 45:
 
-		switch (rnd(14)) {
+		switch (rnd(15)) {
 
 			case 1: makemaz("mall-1"); return;
 			case 2: makemaz("mall-2"); return;
@@ -6330,6 +6332,7 @@ makelevel()
 			case 12: makemaz("exmall-6"); return;
 			case 13: makemaz("exmall-7"); return;
 			case 14: makemaz("exmall-8"); return;
+			case 15: makemaz("exmall-9"); return;
 
 		}
 		break;
@@ -7553,17 +7556,18 @@ makelevel()
 	    case 44:
 	    case 45:
 
-		switch (rnd(9)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("hellma-1"); return;
-			case 2: makemaz("hellma-2"); return;
-			case 3: makemaz("hellma-3"); return;
-			case 4: makemaz("hellma-4"); return;
-			case 5: makemaz("hellma-5"); return;
-			case 6: makemaz("hellma-6"); return;
-			case 7: makemaz("hellma-7"); return;
-			case 8: makemaz("hellma-8"); return;
-			case 9: makemaz("hellma-9"); return;
+			case 1: makemaz("hllma-1"); return;
+			case 2: makemaz("hllma-2"); return;
+			case 3: makemaz("hllma-3"); return;
+			case 4: makemaz("hllma-4"); return;
+			case 5: makemaz("hllma-5"); return;
+			case 6: makemaz("hllma-6"); return;
+			case 7: makemaz("hllma-7"); return;
+			case 8: makemaz("hllma-8"); return;
+			case 9: makemaz("hllma-9"); return;
+			case 10: makemaz("hllma-10"); return;
 
 		}
 		break;

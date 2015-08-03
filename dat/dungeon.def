@@ -87,7 +87,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
 RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 49
-RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 8
+RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 9
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
@@ -174,7 +174,7 @@ RNDLEVEL:          "baalz" "B" @ (2, 29) 95 6
 LEVEL:          "geryon" "R" @ (2, 29) 95
 RNDLEVEL:          "dispa" "S" @ (2, 29) 95 2
 RNDLEVEL:          "asmod" "A" @ (2, 29) 95 3
-RNDLEVEL:	"hellma" "H" @ (2, 29) 75 9
+RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
 BRANCH:         "Sheol" @ (3, 27) down
 
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
