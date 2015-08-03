@@ -3363,8 +3363,9 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 #endif
 	if (obj->unpaid != otmp->unpaid ||
 	    obj->spe != otmp->spe || obj->dknown != otmp->dknown ||
-	    (obj->bknown != otmp->bknown && !Role_if(PM_PRIEST)) ||
+	    (obj->bknown != otmp->bknown && !Role_if(PM_PRIEST) ) ||
 	    obj->cursed != otmp->cursed || obj->blessed != otmp->blessed ||
+	    obj->hvycurse != otmp->hvycurse || obj->prmcurse != otmp->prmcurse ||
 	    obj->no_charge != otmp->no_charge ||
 	    obj->obroken != otmp->obroken ||
 	    obj->otrapped != otmp->otrapped ||
