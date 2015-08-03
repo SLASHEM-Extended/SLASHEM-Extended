@@ -441,6 +441,11 @@ boolean artif;
 {
 	int mndx, tryct;
 	struct obj *otmp;
+
+	if (otyp == u.unobtainable) {
+		otyp = GOLD_PIECE;
+	}
+
 	char let = objects[otyp].oc_class;
 
 	otmp = newobj(0);

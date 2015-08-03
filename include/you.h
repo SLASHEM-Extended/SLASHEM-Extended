@@ -402,6 +402,8 @@ struct you {
 	int frequentspecies;	/* evil patch idea by Amy - monster species that is generated more often */
 	int freqspeciesbonus;	/* amount that is added to said monster species's frequency */
 
+	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
+
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */

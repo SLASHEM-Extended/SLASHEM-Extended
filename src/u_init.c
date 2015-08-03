@@ -4819,6 +4819,9 @@ u_init()
 	if (!rn2(8025)) u.freqspeciesbonus *= (1 + rne(2));
 	if (u.freqspeciesbonus > 10000) u.freqspeciesbonus = 10000; /* fail safe */
 
+	u.unobtainable = -1;
+	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) ) u.unobtainable = rn2(NUM_OBJECTS);
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
