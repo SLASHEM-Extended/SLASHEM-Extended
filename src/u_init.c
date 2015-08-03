@@ -4522,10 +4522,30 @@ static const char * const hereticgods[] = {
 
 };
 
+/* pantheons for priests etc. These contain all the roles pantheons; they need to be aligned so that if we pick a random number and apply that to all three, a consistent role's pantheon is created! It also contains made-up pantheons that don't belong to an actual role. --Amy */
+static const char * const lawfulgods[] = {
+
+"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", 
+
+};
+
+static const char * const neutralgods[] = {
+
+"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", 
+
+};
+
+static const char * const chaoticgods[] = {
+
+"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", 
+
+};
+
+
 void
 u_init()
 {
-	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus;
+	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus, randpantheon;
 	register struct permonst *ptr;
 	struct permonst* shamblerm = &mons[PM_NITROHACK_HORROR];
 	struct permonst* shamblerma = &mons[PM_SPEEDHACK_HORROR];
@@ -4827,26 +4847,26 @@ u_init()
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 
 	u.uhereticgodinit = 0; /* for heretic race */
-	u.uhereticgodlawful = randrole(); /* for heretic race */
-		    while (!roles[u.uhereticgodlawful].lgod)	/* unless they're missing */
-			u.uhereticgodlawful = randrole(); /* for heretic race */
-	if (isheretic) u.hereticlgod = roles[u.uhereticgodlawful].lgod;
+	if (isheretic) u.hereticlgod = lawfulgods[rn2(SIZE(lawfulgods))]; /* for heretic race */
 	if (isheretic && !rn2(3) ) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
-	u.uhereticgodneutral = randrole(); /* for heretic race */
-		    while (!roles[u.uhereticgodneutral].lgod)	/* unless they're missing */
-			u.uhereticgodneutral = randrole(); /* for heretic race */
-	if (isheretic) u.hereticngod = roles[u.uhereticgodneutral].ngod;
+	if (isheretic) u.hereticngod = neutralgods[rn2(SIZE(neutralgods))]; /* for heretic race */
 	if (isheretic && !rn2(3) ) {
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 	}
-	u.uhereticgodchaotic = randrole(); /* for heretic race */
-		    while (!roles[u.uhereticgodchaotic].lgod)	/* unless they're missing */
-			u.uhereticgodchaotic = randrole(); /* for heretic race */
-	if (isheretic) u.hereticcgod = roles[u.uhereticgodchaotic].cgod;
+	if (isheretic) u.hereticcgod = chaoticgods[rn2(SIZE(chaoticgods))]; /* for heretic race */
 	if (isheretic && !rn2(3) ) {
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
+	}
+
+	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) )) {
+
+		randpantheon = rn2(SIZE(lawfulgods));
+		u.hereticlgod = lawfulgods[randpantheon];
+		u.hereticngod = neutralgods[randpantheon];
+		u.hereticcgod = chaoticgods[randpantheon];
+
 	}
 
 	if (Role_if(PM_FAILED_EXISTENCE)) {
