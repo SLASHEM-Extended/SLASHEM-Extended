@@ -741,8 +741,73 @@ doforce()		/* try to force a chest with your weapon */
 #endif
 
 		    verbalize("What do you think you are, a Jedi?"); /* Phantom Menace */
-		else
-		    pline("I don't think %s would appreciate that.", mon_nam(mtmp));
+		else {
+			if (Role_if(PM_JEDI) ? (u.uen < 5) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
+			else {
+
+				u.uen -= (Role_if(PM_JEDI) ? 5 : 10);
+
+				int dmg;
+				int mdx, mdy;
+				dmg = rnd(2) + dbon() + uwep->spe;
+				boolean trapkilled = FALSE;
+
+				pline("You use the force on %s.", mon_nam(mtmp));
+
+				setmangry(mtmp);
+
+				if(mtmp->mtame) {
+				    abuse_dog(mtmp);
+				    if (mtmp->meating) {
+					pline("Startled, %s spits out the food it was eating!", mon_nam(mtmp));
+					mtmp->meating = 0;
+					}
+				    if (mtmp->mfrozen) {
+					pline("Being hit by your force, %s is jolted back to its senses.", mon_nam(mtmp));
+					mtmp->mfrozen = 0;
+					}
+				    if (mtmp->msleeping) {
+					pline("Being hit by your force, %s suddenly wakes up!", mon_nam(mtmp));
+					mtmp->msleeping = 0;
+					}
+				    if (mtmp->mtame)
+					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
+				    else
+					mtmp->mflee = 0;
+				}
+
+				if (dmg > 0) {
+					mtmp->mhp -= dmg;
+#ifdef SHOW_DMG
+					showdmg(dmg);
+#endif
+				}
+
+				if (mtmp->mhp > 0 && (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) &&
+	    mtmp->mcanmove && mtmp != u.ustuck && !mtmp->mtrapped) {
+		/* see if the monster has a place to move into */
+				mdx = mtmp->mx + u.dx;
+				mdy = mtmp->my + u.dy;
+				if(goodpos(mdx, mdy, mtmp, 0)) {
+					pline("%s is pushed back!", Monnam(mtmp));
+					if (m_in_out_region(mtmp, mdx, mdy)) {
+					    remove_monster(mtmp->mx, mtmp->my);
+					    newsym(mtmp->mx, mtmp->my);
+					    place_monster(mtmp, mdx, mdy);
+					    newsym(mtmp->mx, mtmp->my);
+					    set_apparxy(mtmp);
+					    if (mintrap(mtmp) == 2) trapkilled = TRUE;
+					    }
+					}
+				}
+
+				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH);
+				if (mtmp->mhp <= 0 && !trapkilled) killed(mtmp);
+				return(1);
+
+			} /* monster forced by player */
+
+		}
 		return(0);
 	    }
 	    /* Lightsabers dig through doors and walls via dig.c */
