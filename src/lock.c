@@ -100,7 +100,7 @@ picklock()	/* try to open/close a lock */
 	    }
 	}
 
-	if (xlock.usedtime++ >= 50 || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
+	if (xlock.usedtime++ >= 50/* || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) )*/ ) {
 	    You("give up your attempt at %s.", lock_action());
 	    exercise(A_DEX, TRUE);	/* even if you don't succeed */
 	    return((xlock.usedtime = 0));
@@ -139,7 +139,7 @@ forcelock()	/* try to force a locked chest */
 	if((xlock.box->ox != u.ux) || (xlock.box->oy != u.uy))
 		return((xlock.usedtime = 0));		/* you or it moved */
 
-	if (xlock.usedtime++ >= 50 || !uwep || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
+	if (xlock.usedtime++ >= 50 || !uwep /*|| (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) )*/ ) {
 	    You("give up your attempt to force the lock.");
 	    if(xlock.usedtime >= 50)		/* you made the effort */
 	      exercise((xlock.picktyp) ? A_DEX : A_STR, TRUE);
@@ -238,7 +238,7 @@ forcedoor()      /* try to break/pry open a door */
 		return((xlock.usedtime = 0));
 	}
 	
-	if (xlock.usedtime++ >= 50 || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) {
+	if (xlock.usedtime++ >= 50/* || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) )*/ ) {
 	    You("give up your attempt at %s the door.",
 	    	(xlock.picktyp == 2 ? "melting" : xlock.picktyp == 1 ? 
 	    		"prying open" : "breaking down"));
