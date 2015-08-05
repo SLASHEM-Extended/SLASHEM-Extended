@@ -260,6 +260,7 @@ register xchar x, y;
 		else if (!uwep) objenchant = u.ulevel / 12;
 		else objenchant = 0;
 		if (objenchant < 0) objenchant = 0;
+		if (uarmf && (uarmf->spe > 0)) objenchant += uarmf->spe;
 	} else if (uarmf)
 		objenchant = uarmf->spe;
 	else objenchant = 0;
