@@ -306,7 +306,7 @@ register struct monst *mtmp;
 	struct obj *otmp;
 
 #ifdef REINCARNATION
-	if (Is_rogue_level(&u.uz)) return;
+	if (Is_rogue_level(&u.uz) && rn2(2) ) return;
 #endif
 /*
  *	first a few special cases:
@@ -5988,7 +5988,7 @@ register struct	monst	*mtmp;
 	int i;
 
 #ifdef REINCARNATION
-	if (Is_rogue_level(&u.uz)) return;
+	if (Is_rogue_level(&u.uz) && rn2(2) ) return;
 #endif
 
 /*
@@ -9297,7 +9297,7 @@ loopback:
 		if (tooweak(mndx, minmlev) || (rn2(20) ? toostrong(mndx, maxmlev) : ptr->mlevel > maxmlev ) )
 		    continue;
 #ifdef REINCARNATION
-		if (upper && !isupper((int)def_monsyms[(int)(ptr->mlet)])) continue;
+		if (upper && !isupper((int)def_monsyms[(int)(ptr->mlet)]) && rn2(5) ) continue;
 #endif
 		if (elemlevel && wrong_elem_type(ptr) && rn2(20) ) continue;
 		if (uncommon(mndx)) continue;

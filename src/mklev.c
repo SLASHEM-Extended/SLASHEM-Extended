@@ -10001,7 +10001,7 @@ coord *tm;
 	if (num > 0 && num < TRAPNUM) {
 	    kind = num;
 #ifdef REINCARNATION
-	} else if (Is_rogue_level(&u.uz)) {
+	} else if (Is_rogue_level(&u.uz) && rn2(2) ) {
 	    switch (rn2(7)) {
 		default: kind = BEAR_TRAP; break; /* 0 */
 		case 1: kind = ARROW_TRAP; break;

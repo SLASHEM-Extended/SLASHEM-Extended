@@ -1121,7 +1121,7 @@ mattacku(mtmp)
 
 			if(range2) {
 #ifdef REINCARNATION
-				if (!Is_rogue_level(&u.uz))
+				if (!Is_rogue_level(&u.uz) || !rn2(3) )
 #endif
 				    if (!blue_on_blue(mtmp))
 					thrwmu(mtmp);

@@ -60,7 +60,7 @@ BRANCH: 	"Grund's Stronghold" @ (12, 2)
 # The rogue level (if required), on levels 15 to 19. The portal to one
 #   of the quest levels may also be on this level. The rogue level is not
 #   defined by default in Slash'EM. The dungeon is crowded enough already.
-%REINCARNATION LEVEL: "rogue" "R" @ (15, 5)
+%REINCARNATION LEVEL: "rogue" "U" @ (15, 5) 20
 
 
 # The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
