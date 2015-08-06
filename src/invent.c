@@ -5533,7 +5533,7 @@ struct obj *obj;
 			case SPE_REFLECTION:
 				pline("You can reflect beams and similar attacks for a limited amount of time if you cast this spell."); break;
 			case SPE_REPAIR_ARMOR:
-				pline("Casting this spell repairs some random worn armor."); break;
+				pline("Casting this spell repairs some of your armor. You may choose which item to repair."); break;
 			case SPE_MAGIC_MISSILE:
 				pline("A spell that fires a blue ray to do some damage to an enemy."); break;
 			case SPE_FIREBALL:

@@ -24,6 +24,8 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 
 #define spellknow(spell)	spl_book[spell].sp_know 
 
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
 #define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? KEEN \
 				 : ((spl_book[spell].sp_know + KEEN) > MAX_KNOW) ? MAX_KNOW \
 				 : spl_book[spell].sp_know + KEEN)
@@ -1522,7 +1524,8 @@ boolean atme;
 		break;
 	case SPE_REPAIR_ARMOR:
 		/* removes one level of erosion (both types) for a random piece of armor */
-		otmp = some_armor(&youmonst);
+		otmp = getobj(all_count, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
 		if (otmp) {
 			if (greatest_erosion(otmp) > 0) {
 				if (!Blind) {
