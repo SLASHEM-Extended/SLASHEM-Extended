@@ -1641,6 +1641,10 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
 
+#ifdef PUBLIC_SERVER
+	if (new_game) pline("You are playing SLASH'EM Extended on a public server. In the very rare case that your previous game crashed by sending you back to the dgamelaunch screen, please contact the server administrator for a restore. Panics and segfaults aren't the end of the world - in roughly 99% of all cases, these can be restored into a working savegame file. Have fun playing! :-) --Amy");
+#endif
+
 	if (issoviet) { /* horrible kludge for spell.c, which unfortunately makes wishing for books *very* difficult... --Amy */
 	obj_descr[SPE_FORCE_BOLT].oc_name = "sila zadvizhka";
 	obj_descr[SPE_CREATE_MONSTER].oc_name = "vyzov monstra";
