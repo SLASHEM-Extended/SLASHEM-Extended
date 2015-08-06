@@ -4846,7 +4846,7 @@ u_init()
 	u.frequentspecies10 = -1;  
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies == 1) || (u.frequentspecies == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies];
 	}
@@ -4864,7 +4864,7 @@ u_init()
 	if (u.freqspeciesbonus > 10000) u.freqspeciesbonus = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies2 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies2 == 1) || (u.frequentspecies2 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies2 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies2];
 	}
@@ -4882,7 +4882,7 @@ u_init()
 	if (u.freqspeciesbonus2 > 10000) u.freqspeciesbonus2 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies3 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies3 == 1) || (u.frequentspecies3 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies3 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies3];
 	}
@@ -4900,7 +4900,7 @@ u_init()
 	if (u.freqspeciesbonus3 > 10000) u.freqspeciesbonus3 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies4 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies4 == 1) || (u.frequentspecies4 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies4 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies4];
 	}
@@ -4918,7 +4918,7 @@ u_init()
 	if (u.freqspeciesbonus4 > 10000) u.freqspeciesbonus4 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies5 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies5 == 1) || (u.frequentspecies5 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies5 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies5];
 	}
@@ -4936,7 +4936,7 @@ u_init()
 	if (u.freqspeciesbonus5 > 10000) u.freqspeciesbonus5 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies6 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies6 == 1) || (u.frequentspecies6 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies6 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies6];
 	}
@@ -4954,7 +4954,7 @@ u_init()
 	if (u.freqspeciesbonus6 > 10000) u.freqspeciesbonus6 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies7 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies7 == 1) || (u.frequentspecies7 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies7 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies7];
 	}
@@ -4972,7 +4972,7 @@ u_init()
 	if (u.freqspeciesbonus7 > 10000) u.freqspeciesbonus7 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies8 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies8 == 1) || (u.frequentspecies8 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies8 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies8];
 	}
@@ -4990,7 +4990,7 @@ u_init()
 	if (u.freqspeciesbonus8 > 10000) u.freqspeciesbonus8 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies9 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies9 == 1) || (u.frequentspecies9 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies9 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies9];
 	}
@@ -5008,7 +5008,7 @@ u_init()
 	if (u.freqspeciesbonus9 > 10000) u.freqspeciesbonus9 = 10000; /* fail safe */
 
 	ptr = &mons[-1];
-	while ((u.frequentspecies10 == 1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.frequentspecies10 == 1) || (u.frequentspecies10 == -1) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.frequentspecies10 = rn2(PM_LONG_WORM_TAIL);
 		ptr = &mons[u.frequentspecies10];
 	}
@@ -5032,33 +5032,33 @@ u_init()
 	u.nospawnspecies5 = -1;  
 
 	ptr = &mons[-1];
-	while ((u.nospawnspecies == 1) || (u.nospawnspecies == u.frequentspecies) || (u.nospawnspecies == u.frequentspecies2) || (u.nospawnspecies == u.frequentspecies3) || (u.nospawnspecies == u.frequentspecies4) || (u.nospawnspecies == u.frequentspecies5) || (u.nospawnspecies == u.frequentspecies6) || (u.nospawnspecies == u.frequentspecies7) || (u.nospawnspecies == u.frequentspecies8) || (u.nospawnspecies == u.frequentspecies9) || (u.nospawnspecies == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.nospawnspecies == 1) || (u.nospawnspecies == -1) || (u.nospawnspecies == u.frequentspecies) || (u.nospawnspecies == u.frequentspecies2) || (u.nospawnspecies == u.frequentspecies3) || (u.nospawnspecies == u.frequentspecies4) || (u.nospawnspecies == u.frequentspecies5) || (u.nospawnspecies == u.frequentspecies6) || (u.nospawnspecies == u.frequentspecies7) || (u.nospawnspecies == u.frequentspecies8) || (u.nospawnspecies == u.frequentspecies9) || (u.nospawnspecies == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.nospawnspecies = rn2(PM_LONG_WORM_TAIL);
-		ptr = &mons[u.frequentspecies10];
+		ptr = &mons[u.nospawnspecies];
 	}
 
 	ptr = &mons[-1];
-	while ((u.nospawnspecies2 == 1) || (u.nospawnspecies2 == u.frequentspecies) || (u.nospawnspecies2 == u.frequentspecies2) || (u.nospawnspecies2 == u.frequentspecies3) || (u.nospawnspecies2 == u.frequentspecies4) || (u.nospawnspecies2 == u.frequentspecies5) || (u.nospawnspecies2 == u.frequentspecies6) || (u.nospawnspecies2 == u.frequentspecies7) || (u.nospawnspecies2 == u.frequentspecies8) || (u.nospawnspecies2 == u.frequentspecies9) || (u.nospawnspecies2 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.nospawnspecies2 == 1) || (u.nospawnspecies2 == -1) || (u.nospawnspecies2 == u.frequentspecies) || (u.nospawnspecies2 == u.frequentspecies2) || (u.nospawnspecies2 == u.frequentspecies3) || (u.nospawnspecies2 == u.frequentspecies4) || (u.nospawnspecies2 == u.frequentspecies5) || (u.nospawnspecies2 == u.frequentspecies6) || (u.nospawnspecies2 == u.frequentspecies7) || (u.nospawnspecies2 == u.frequentspecies8) || (u.nospawnspecies2 == u.frequentspecies9) || (u.nospawnspecies2 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.nospawnspecies2 = rn2(PM_LONG_WORM_TAIL);
-		ptr = &mons[u.frequentspecies10];
+		ptr = &mons[u.nospawnspecies2];
 	}
 
 	ptr = &mons[-1];
-	while ((u.nospawnspecies3 == 1) || (u.nospawnspecies3 == u.frequentspecies) || (u.nospawnspecies3 == u.frequentspecies2) || (u.nospawnspecies3 == u.frequentspecies3) || (u.nospawnspecies3 == u.frequentspecies4) || (u.nospawnspecies3 == u.frequentspecies5) || (u.nospawnspecies3 == u.frequentspecies6) || (u.nospawnspecies3 == u.frequentspecies7) || (u.nospawnspecies3 == u.frequentspecies8) || (u.nospawnspecies3 == u.frequentspecies9) || (u.nospawnspecies3 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.nospawnspecies3 == 1) || (u.nospawnspecies3 == -1) || (u.nospawnspecies3 == u.frequentspecies) || (u.nospawnspecies3 == u.frequentspecies2) || (u.nospawnspecies3 == u.frequentspecies3) || (u.nospawnspecies3 == u.frequentspecies4) || (u.nospawnspecies3 == u.frequentspecies5) || (u.nospawnspecies3 == u.frequentspecies6) || (u.nospawnspecies3 == u.frequentspecies7) || (u.nospawnspecies3 == u.frequentspecies8) || (u.nospawnspecies3 == u.frequentspecies9) || (u.nospawnspecies3 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.nospawnspecies3 = rn2(PM_LONG_WORM_TAIL);
-		ptr = &mons[u.frequentspecies10];
+		ptr = &mons[u.nospawnspecies3];
 	}
 
 	ptr = &mons[-1];
-	while ((u.nospawnspecies4 == 1) || (u.nospawnspecies4 == u.frequentspecies) || (u.nospawnspecies4 == u.frequentspecies2) || (u.nospawnspecies4 == u.frequentspecies3) || (u.nospawnspecies4 == u.frequentspecies4) || (u.nospawnspecies4 == u.frequentspecies5) || (u.nospawnspecies4 == u.frequentspecies6) || (u.nospawnspecies4 == u.frequentspecies7) || (u.nospawnspecies4 == u.frequentspecies8) || (u.nospawnspecies4 == u.frequentspecies9) || (u.nospawnspecies4 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.nospawnspecies4 == 1) || (u.nospawnspecies4 == -1) || (u.nospawnspecies4 == u.frequentspecies) || (u.nospawnspecies4 == u.frequentspecies2) || (u.nospawnspecies4 == u.frequentspecies3) || (u.nospawnspecies4 == u.frequentspecies4) || (u.nospawnspecies4 == u.frequentspecies5) || (u.nospawnspecies4 == u.frequentspecies6) || (u.nospawnspecies4 == u.frequentspecies7) || (u.nospawnspecies4 == u.frequentspecies8) || (u.nospawnspecies4 == u.frequentspecies9) || (u.nospawnspecies4 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.nospawnspecies4 = rn2(PM_LONG_WORM_TAIL);
-		ptr = &mons[u.frequentspecies10];
+		ptr = &mons[u.nospawnspecies4];
 	}
 
 	ptr = &mons[-1];
-	while ((u.nospawnspecies5 == 1) || (u.nospawnspecies5 == u.frequentspecies) || (u.nospawnspecies5 == u.frequentspecies2) || (u.nospawnspecies5 == u.frequentspecies3) || (u.nospawnspecies5 == u.frequentspecies4) || (u.nospawnspecies5 == u.frequentspecies5) || (u.nospawnspecies5 == u.frequentspecies6) || (u.nospawnspecies5 == u.frequentspecies7) || (u.nospawnspecies5 == u.frequentspecies8) || (u.nospawnspecies5 == u.frequentspecies9) || (u.nospawnspecies5 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
+	while ((u.nospawnspecies5 == 1) || (u.nospawnspecies5 == -1) || (u.nospawnspecies5 == u.frequentspecies) || (u.nospawnspecies5 == u.frequentspecies2) || (u.nospawnspecies5 == u.frequentspecies3) || (u.nospawnspecies5 == u.frequentspecies4) || (u.nospawnspecies5 == u.frequentspecies5) || (u.nospawnspecies5 == u.frequentspecies6) || (u.nospawnspecies5 == u.frequentspecies7) || (u.nospawnspecies5 == u.frequentspecies8) || (u.nospawnspecies5 == u.frequentspecies9) || (u.nospawnspecies5 == u.frequentspecies10) || ( ((int)(ptr->geno & G_FREQ)) < 1 ) ) {
 		u.nospawnspecies5 = rn2(PM_LONG_WORM_TAIL);
-		ptr = &mons[u.frequentspecies10];
+		ptr = &mons[u.nospawnspecies5];
 	}
 
 	u.unobtainable = -1;
