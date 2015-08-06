@@ -1128,6 +1128,15 @@ init_attr(np)
 	    AMAX(i)--;
 	    np++;
 	}
+
+	if (Race_if(PM_ADDICT)) {
+
+		for (i = 0; (i < A_MAX); i++) {
+
+			ABASE(i) = AMAX(i) = ATTRMAX(i);
+
+		}
+	}
 }
 
 void

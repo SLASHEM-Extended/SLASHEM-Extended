@@ -749,15 +749,15 @@ bot2str(char *newbot2)
 
 	if(Feared && !HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Fear", newbot2);
+	     	add_colored_text(Race_if(PM_TUMBLRER) ? "Triggered" : "Fear", newbot2);
 #else
-		Strcat(nb = eos(nb), " Fear");
+		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? " Triggered" : " Fear");
 #endif
 	if(Feared && HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XFear", newbot2);
+	     	add_colored_text(Race_if(PM_TUMBLRER) ? "XTriggered" : "XFear", newbot2);
 #else
-		Strcat(nb = eos(nb), " XFear");
+		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? " XTriggered" : " XFear");
 #endif
 	if(Numbed && !HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)

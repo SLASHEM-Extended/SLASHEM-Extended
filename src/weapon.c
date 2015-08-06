@@ -2940,6 +2940,9 @@ const struct def_skill *class_skill;
 	     * Right now only used for H to H skills
 	     */
 	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
+
+		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
+
 	}
 
 	/* Set skill for all objects in inventory to be basic */
@@ -2953,6 +2956,7 @@ const struct def_skill *class_skill;
 			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 
@@ -3026,6 +3030,7 @@ xtraskillinit()
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 

@@ -200,6 +200,8 @@ static const struct innate_tech
 		       {  14, T_WARD_ELEC, 1},
 		       {  20, T_DRAW_ENERGY, 1},
 		       {   0, 0, 0} },
+	cam_tech[] = { {   12, T_CREATE_AMMO, 1},
+		       {   0, 0, 0} },
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
@@ -2847,6 +2849,7 @@ role_tech()
 		case PM_RANGER:		return (ran_tech);
 		case PM_ELPH:		return (elp_tech);
 		case PM_SPACEWARS_FIGHTER:		return (spa_tech);
+		case PM_CAMPERSTRIKER:		return (cam_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
 #ifdef TOURIST        

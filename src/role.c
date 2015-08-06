@@ -2810,6 +2810,19 @@ struct Role urole =
 
 /* Table of all races */
 const struct Race races[] = {
+{	"addict", "addicted", "addiction", "Add",
+	{0, 0},
+	PM_ADDICT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"ak Thief is dead!", "ak Thief is dead!", "vailable, exit anyway?", "Akt", /* garbled strings --Amy */
 	{0, 0},
 	PM_AK_THIEF_IS_DEAD_, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3857,6 +3870,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"tumblrer", "tumblrer", "tumblr ownz joo", "Tum", /* idea by kerio */
+	{0, 0},
+	PM_TUMBLRER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"turtle", "turtle", "turtleship", "Tur", /* Khor wants to be a ninja turtle, now he can. :) --Amy */
 	{0, 0},

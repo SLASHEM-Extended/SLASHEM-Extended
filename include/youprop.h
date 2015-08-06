@@ -112,13 +112,13 @@
 /* Those implemented solely as timeouts (we use just intrinsic) */
 #define HStun			u.uprops[STUNNED].intrinsic
 #define EStun			u.uprops[STUNNED].extrinsic
-#define Stunned			(HStun || EStun || HeavyStunned || ((u.umonnum == PM_STALKER || youmonst.data->mlet == S_BAT) && !Race_if(PM_TRANSFORMER) ) )
+#define Stunned			(HStun || EStun || HeavyStunned || ((u.umonnum == PM_STALKER || youmonst.data->mlet == S_BAT) && !Race_if(PM_TRANSFORMER) ) || Race_if(PM_TUMBLRER) )
 		/* Note: birds will also be stunned */
 #define HeavyStunned		u.uprops[HEAVY_STUNNED].intrinsic
 
 #define HConfusion		u.uprops[CONFUSION].intrinsic
 #define EConfusion		u.uprops[CONFUSION].extrinsic
-#define Confusion		(HConfusion || EConfusion || HeavyConfusion)
+#define Confusion		(HConfusion || EConfusion || HeavyConfusion || Race_if(PM_ADDICT))
 #define HeavyConfusion		u.uprops[HEAVY_CONFUSION].intrinsic
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
