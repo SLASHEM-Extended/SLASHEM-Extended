@@ -81,7 +81,7 @@ unsigned gpflags;
 	    if (passes_walls(mdat) && may_passwall(x,y)) return is_badpos;
 	    /*if ( (mtmp != &youmonst) && mtmp->egotype_wallwalk && may_passwall(x,y)) return is_badpos;*/
 	}
-	if (!ACCESSIBLE(levl[x][y].typ)) {
+	if (!ACCESSIBLE(levl[x][y].typ) ) {
 		if (!(is_pool(x,y) && ignorewater)) return -1;
 	}
 
@@ -959,7 +959,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || In_endgame(&u.uz) || In_sokoban(&u.uz)
+	if ((u.uhave.amulet || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz))
 #ifdef STEED
 			|| (u.usteed && mon_has_amulet(u.usteed))
 #endif

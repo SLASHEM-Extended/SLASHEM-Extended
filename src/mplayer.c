@@ -369,6 +369,9 @@ register boolean special;
 		case PM_SPACEWARS_FIGHTER:
 		    weapon = BLUE_LIGHTSABER;
 		    break;
+		case PM_CAMPERSTRIKER:
+		    weapon = GREEN_LIGHTSABER;
+		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
 		    if (rn2(2)) weapon = MACE;

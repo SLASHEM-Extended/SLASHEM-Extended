@@ -1416,7 +1416,7 @@ int tech_no;
 
             case T_PHASE_DOOR:
 			phase_door(0);
-                t_timeout = rnz(1000);
+                if (!Role_if(PM_CAMPERSTRIKER) || !rn2(4)) t_timeout = rnz(1000);
 		break;
 
             case T_PRACTICE:

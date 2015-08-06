@@ -465,6 +465,32 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_FINGER,   -4
 },
 
+{	{"Camperstriker", 0}, {
+	{"Aimbot User",     0},
+	{"Wallhack Exploiter",     0},
+	{"Dirty Camper",    0},
+	{"Asshole Player",    0},
+	{"Kickban Bait",      0},
+	{"MMORPG Troll",    0},
+	{"Server Hacker",   0},
+	{"Godmode Cheater",   0},
+	{"Instawin Scriptkiddy",     0} },
+	"_the Bitches", "_the Hell Brides", "_the Sluts with Syphilis", /* taken from a fanfic --Amy */
+	"Cam", "Tiny Hamlet", "Inside Part",
+	PM_CAMPERSTRIKER, NON_PM, PM_UNDEAD_CAMPERSTRIKER, NON_PM, NON_PM,
+	PM_MARC, PM_ATTENDANT, PM_ARABELLA,
+	PM_SMART_TRAPPER, PM_TRAPPER_KING, S_HUMAN, S_HUMAN,
+	ART_AMULET_OF_KINGS,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{   3,  3,  3,  3,  3,  3 },
+	{  17, 17, 16, 17, 17, 16 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
+	{ 7, 2,  0, 1,  0, 1 },10,	/* Energy */
+	0, 12,-2, 0,  10, A_INT, SPE_REMOVE_CURSE,     -4
+},
+
 {	{"Caveman", "Cavewoman"}, {
 	{"Troglodyte",  0},
 	{"Aborigine",   0},

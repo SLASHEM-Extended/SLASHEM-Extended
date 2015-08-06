@@ -1775,7 +1775,7 @@ int thrown;
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5)) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5)) {
 
 			switch (rnd(232)) {
 	
@@ -2096,7 +2096,7 @@ int thrown;
 	} else if (destroyed) {
 		if (!already_killed) {
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
 				switch (rnd(231)) {
 
@@ -3438,7 +3438,7 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
 		switch (rnd(289)) {
 

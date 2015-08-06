@@ -199,7 +199,7 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Scient.des Scribe.des Slavemas.des Slayer.des Spacew.des Stunt.des	\
  Supermar.des Thalmor.des Top.des Tourist.des Trans.des Under.des	\
  Valkyrie.des Wandkeep.des Warrior.des Wizard.des Yeoman.des		\
- Zooke.des Murderer.des Failed.des
+ Zooke.des Murderer.des Failed.des Camper.des
 
 SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
  dragons.des endgame.des exmall.des forge.des frnknstn.des		\

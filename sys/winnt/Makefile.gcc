@@ -1467,7 +1467,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
 		$(DAT)\korsair.des    $(DAT)\diver.des   $(DAT)\lunatic.des   $(DAT)\gladia.des \
 		$(DAT)\nightmar.des $(DAT)\ranger.des 	$(DAT)\pirate.des 	$(DAT)\convict.des \
-		$(DAT)\murderer.des   $(DAT)\failed.des \
+		$(DAT)\murderer.des   $(DAT)\failed.des 	$(DAT)\camper.des \
 		$(DAT)\altmer.des $(DAT)\bosmer.des 	$(DAT)\dunmer.des 	$(DAT)\ordinat.des 	$(DAT)\thalmor.des \
 		$(DAT)\drunk.des    $(DAT)\firef.des   $(DAT)\locks.des   $(DAT)\music.des \
 		$(DAT)\ninja.des $(DAT)\offic.des 	$(DAT)\under.des 	$(DAT)\zooke.des \
@@ -1539,6 +1539,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/failed.des
 	lev_comp $(DDAT)/lunatic.des
 	lev_comp $(DDAT)/spacew.des
+	lev_comp $(DDAT)/camper.des
 	lev_comp $(DDAT)/grund.des
 	lev_comp $(DDAT)/dragons.des
 	lev_comp $(DDAT)/endgame.des

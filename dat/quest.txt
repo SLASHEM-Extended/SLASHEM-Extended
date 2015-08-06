@@ -3449,6 +3449,296 @@ Go back and defeat her if you want to impress me!
 She has a silver bell that you need to obtain."
 %E
 
+#
+#       Camperstriker
+#
+%Cc Cam 00001
+You remember this place... it's the location where Camperstrike games
+usually start.
+And you know that Camperstrike is a difficult game from start to finish,
+so this is a dangerous place, yet there are much greater dangers still
+ahead.
+Of course Marc is here to see you fail! But you need to prove that you
+are actually able to play Camperstrike!
+%E
+%Cp Cam 00002
+Once again, you are back at Tiny Hamlet.
+%E
+%Cp Cam 00003
+You are back at Tiny Hamlet.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Cam 00005
+"You don't even know how to play, %r!"
+%E
+%Cp Cam 00006
+"A %r thinks they can play Camperstrike? Ha ha ha!"
+%E
+%Cp Cam 00007
+"Marc would totally stomp you if you were to engage him in a real game!"
+%E
+%Cp Cam 00008
+"Arabella will stomp you too if you even manage to reach her! HAHAHAHAHAHAHA!"
+%E
+%Cp Cam 00009
+"Sucky players like you, begone!"
+%E
+%Cp Cam 00010
+"WHAT? You defeated Arabella? This is impossible!"
+%E
+%Cp Cam 00011
+"Honestly, I didn't expect you to be able to play after all!"
+%E
+%Cp Cam 00012
+"Well done, I guess you're not as stupid as you look."
+%E
+%Cp Cam 00013
+"Marc had already dug a grave for you but it seems that it won't be needed."
+%E
+%Cp Cam 00014
+"Our grandmaster can't believe that you managed to beat Arabella.
+And I can't, either."
+%E
+%Cc Cam 00015
+"What? YOU think you're good at Camperstrike? Don't make me laugh.
+
+Really now. Come on, you'll never even reach her, let alone beat her in
+a real game. She will probably instakill you on her first move.
+
+You're a fool if you insist that you can take her! Let's check your
+'abilities', and maybe I will see if you're able to last more than two
+rounds against her!"
+%E
+%Cp Cam 00016
+"Why are you here again? I don't need to test your abilities to see
+whether you're able to beat Arabella! I can tell you right now that you're
+not! But if you insist, I'll waste some more of my precious time... *sigh*"
+%E
+%Cp Cam 00017
+"Alright, this is the last time I'll tell you that you're not ready.
+From then on, you can just bugger off and leave me alone."
+%E
+%Cc Cam 00018
+"As I said, I won't help noobs like you. My time is too precious
+for it to be wasted needlessly. Bye!"
+%E
+%Cc Cam 00019
+"As I expected. Your hit points are too low, you're wearing way too
+many cursed items and I see you're lacking most important intrinsics
+and resistances, too! Go ahead if you like, but you'll probably die
+on the next level. You certainly won't reach Arabella in one piece."
+%E
+%Cc Cam 00020
+"Well, I'll give your character about... let's say three turns, and if
+you're still on the same level as Arabella then she'll kill you. Better
+hope that you can take her out faster than that, but with your crap
+equipment...
+
+Anyway, don't sweat it! You're just not good enough at this game yet,
+so better get that character killed off now and roll a new, better one!"
+%E
+%Cc Cam 00021
+"Your character doesn't look too bad to me, if I have to be honest...
+Let's see: moderately good hit points, bad AC but you might just try to
+kill everything faster than it can kill you, and you also have some
+important intrinsics.
+
+Of course there's still lots of holes in your current setup, but it's
+probably not going to get any better considering your low playing skill,
+so I'd go forth and fight Arabella now if I were you. There's still about
+a 98%% chance that you'll die, but who knows...
+
+Oh, you need hints too? Should have known that you didn't read spoilers.
+Well, first you need to get past the underground river, and then make it
+past some more levels until you reach Arabella and her special rooms."
+%E
+%Cp Cam 00025
+"You won't beat Arabella, but you'll try anyway, right?"
+%E
+# False advice. Following these will lead to YASD.
+%Cp Cam 00026
+"Free advice! Wearing gloves of fumbling improves your pick-axe!"
+%E
+%Cp Cam 00027
+"Pack as many scrolls of tele level as you can - they're really useful!"
+%E
+%Cp Cam 00028
+"The Statue Halls can only spawn statue traps. Other trap types won't be generated there."
+%E
+%Cp Cam 00029
+"Traps can only appear on open floor squares. Everything else is safe."
+%E
+%Cp Cam 00030
+"If you accidentally wake up trappers, the best thing to do is to run away real fast."
+%E
+%Cp Cam 00031
+"If Arabella's friends start attacking you, ignore them. Their attacks are puny."
+%E
+%Cp Cam 00032
+"Arabella is guaranteed to spawn with a wand. Getting hit by their wand will be beneficial for you."
+%E
+%Cp Cam 00033
+"The Underground River? Well, you'll want to swim in that water, there's useful items hidden on the bottom!"
+%E
+%Cp Cam 00034
+"What? The temple of Moloch? That's where you can buy divine protection, dummy!"
+%E
+%Cc Cam 00035
+After traversing the Underground River, you reach a place
+that somehow reminds you of the Hamlet.
+
+But... why are there so many trees here?
+
+You quickly realize there's got to be something wrong here.
+%E
+%Cp Cam 00036
+Once again, you enter a weird version of the Hamlet that you used to see at the start of your adventures.
+%E
+%Cc Cam 00040
+Finally. You've made it past the terrifying statue halls,
+and this place has got to be Inside Part.
+
+Arabella uses this level as her personal hiding place, and filled it
+with nasty stuff of all sorts. Where is she?
+%E
+%Cp Cam 00041
+Once again, you enter Inside Part, ready to defeat Arabella.
+%E
+%Cc Cam 00050
+"Oh! Greetings, %p! Well met. I'm Arabella, and I'm your opponent
+for today's match.
+May the better one of us win!
+Actually, I already know that I will win. Sorry, but I can see that
+you're a cakewalk opponent."
+%E
+%Cc Cam 00051
+"The Inside Part? Come on, you don't know how to play and survive in there at all!"
+%E
+%Cp Cam 00052
+"Wondering why I didn't instakill you yet? Well, I'm charging my mana for the next devastating spell."
+%E
+%Cp Cam 00053
+"That weak amulet will be of no use to you, %p. There are much better amulets in this game; you should wear one of them instead."
+%E
+%Cp Cam 00060
+"My array of powerful spells can instakill you, or screw up your character so that you're bound to die in a few turns."
+%E
+%Cp Cam 00061
+"Can you still open your inventory? I think I'll prevent you from doing that now."
+%E
+%Cp Cam 00062
+"You know that if you lose to me, I will break your shins with my Asian girl boots, right?"
+%E
+%Cp Cam 00063
+"Specially for you, I stepped into a heap of dog shit. You will have to clean my profiled boots after I defeated you."
+%E
+%Cp Cam 00064
+"So far, Marc is the only person who ever managed to defeat me. And it will stay that way."
+%E
+%Cp Cam 00065
+"My mentor will be very displeased if I allow you to beat me, so expect me to reduce your HP to 0 any moment now!"
+%E
+%Cp Cam 00066
+"more tsprecher deactivated, correct messages about radio are through-said!"
+%E
+%Cp Cam 00067
+"Well. It seems I need to fill the map with even more traps in order to stop you."
+%E
+%Cp Cam 00068
+"I need to recharge my wand of banishment. Please wait, %p."
+%E
+%Cp Cam 00069
+"What are you saying, you're not using Windows 3.1? But that's the only operating system suitable for playing Camperstrike!"
+%E
+%Cc Cam 00070
+So Arabella's artifact was an amulet of drain resistance, called
+the Amulet of Kings. It doesn't seem to do all that much apart
+from conveying drain resistance, but maybe you need to activate
+it in some way...
+%E
+%Cp Cam 00080
+Arabella has been defeated by %p.
+
+With her player character avatar disappearing from your screen,
+she speaks:
+"No, it can't be! This is impossible!!!
+
+...
+
+Well, a loss is a loss, and I hereby congratulate you.
+But I'd really like to watch the replay of this game to see how you
+managed to beat me. I really hope you didn't use cheats, as that would
+be against the rules.
+
+Anyway, you may take the silver bell now and go on with your game.
+Good luck, and happy ascending!"
+%E
+%Cc Cam 00081
+Marc speaks:
+
+"%p... you actually managed to beat Arabella???
+
+Uh... I didn't expect anyone to be capable of defeating her,
+apart from me of course, but you have done it. I am impressed.
+Even more so since I expected you to be a very bad player.
+
+Of course you can keep the Amulet of Kings and the Bell of Opening,
+since I have no use for them anyway. After all, I've managed to beat
+Arabella and all four of her friends teamed up against me - I tell
+you, that was a long, grueling battle! Sure, I had that fellow Sizzle
+helping me, but still... oh wait, I guess you don't want to hear about
+my old stories.
+
+Yeah; well done, %p. Your victory shows that not all new Camperstrike
+players actually suck. I still can't believe that you did it, but I've
+been watching your ttyrec while you were playing.
+And I gotta admit, even though she gave it her best, zapping you with
+her wand repeatedly and casting nasty spell after nasty spell, you
+discovered a nifty way of killing her. I never thought that method
+would even be able to defeat her at all, since a master player like her
+is too good to fall for such a weak tactic, but...
+
+Anyway, see you soon!"
+%E
+# assumes Orb of Detection (glass object)
+%Cc Cam 00082
+"Don't use that amulet. It sucks. Use an amulet of covetous warning
+instead if you have one!"
+%E
+%Cc Cam 00090
+"%p! Long time no see! Arabella is still training for a rematch, so
+maybe one day you'll be able to challenge her again. However, she
+keeps complaining about not finding any worthy opponents."
+%E
+%Cc Cam 00091
+"I'll tell you something, %p! Arabella really wants to rematch you
+in a new game, so go ahead and win this one! Then come back here
+and battle her again. She told me that she'd really like to use her
+female hugging boots as lethal weapons, since your shins look like
+they'll really enjoy pain.
+
+Don't look at me like this, that's what she said!"
+%E
+%Cc Cam 00095
+"Conversion is costly. I certainly won't help you no more."
+%E
+
+%Cp Cam 00100
+You receive a faint telepathic message from %l:
+Come to my camp at %H, I've got a surprise for you!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Cam 00101
+You again sense %l inviting you for a surprise.
+%E
+%Cp Cam 00102
+"%p, your fight with Arabella isn't over yet!
+Go back and defeat her if you want to impress me!
+She has a silver bell that you need to obtain.
+I'm starting to believe that you can actually win, but only if you
+actually do so will you be able to convince me of your ability as a player!"
+%E
 
 
 #

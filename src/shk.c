@@ -4015,6 +4015,8 @@ coord *mm;
   	  kop_pm[6] = 0;
     
 	  cnt = 7 + rnd(5);
+
+	  if (Role_if(PM_CAMPERSTRIKER)) cnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 	}
 #endif /* BLACKMARKET */
  

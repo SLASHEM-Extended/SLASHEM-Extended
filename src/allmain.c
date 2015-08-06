@@ -1126,7 +1126,7 @@ moveloop()
 			flags.botl = 1;
 
 			/* Spooky faux error messages on the Spacewars Fighter goal level --Amy */
-			if (Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
 			pline("Warning: Low Local Memory. Freeing description strings.");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			pline(" ");
@@ -1266,7 +1266,7 @@ moveloop()
 			}
 		}	/* !u.uinvulnerable */
 
-		    if(Searching && multi >= 0) (void) dosearch0(1);
+		    if(Searching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) (void) dosearch0(1);
 		    dosounds();
 		    do_storms();
 		    gethungry();

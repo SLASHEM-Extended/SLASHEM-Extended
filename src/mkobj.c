@@ -1318,7 +1318,7 @@ register struct obj *otmp;
 	}
 
 	otmp->cursed = 1;
-	if (!otmp->hvycurse && !rn2(25)) { otmp->hvycurse = 1;
+	if (!otmp->hvycurse && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 25)) { otmp->hvycurse = 1;
 		if (!rn2(25)) otmp->prmcurse = 1;
 	}
 	if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
@@ -1381,7 +1381,8 @@ register int chance;
 	    } else {
 		bless(otmp);
 	    }
-	}
+	} else if (Role_if(PM_CAMPERSTRIKER) && !rn2(chance)) curse(otmp);
+
 	return;
 }
 

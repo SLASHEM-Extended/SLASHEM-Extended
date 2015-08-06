@@ -1382,6 +1382,8 @@ register struct monst *mtmp;
 
 		   case PM_SPACEWARS_FIGHTER:
 		   case PM_UNDEAD_SPACEWARS_FIGHTER:
+		   case PM_CAMPERSTRIKER:
+		   case PM_UNDEAD_CAMPERSTRIKER:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
@@ -7331,7 +7333,7 @@ register int	mmflags;
 	int mndx, mcham, ct, mitem, xlth, senserchance;
 	boolean anymon = (!ptr);
 	boolean byyou = (x == u.ux && y == u.uy);
-	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER]);
+	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_TRAP_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER]);
 	boolean countbirth = ((mmflags & MM_NOCOUNTBIRTH) == 0);
 	unsigned gpflags = (mmflags & MM_IGNOREWATER) ? MM_IGNOREWATER : 0;
 	int randsp;
@@ -7502,6 +7504,12 @@ register int	mmflags;
 
 	}
 
+	if (Role_if(PM_CAMPERSTRIKER) && (ptr->geno & G_UNIQ) ) {
+		mtmp->mhpmax *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+		mtmp->mhp = mtmp->mhpmax;
+
+	}
+
 	/* Assign power */
 	/*if (mindless(ptr)) {
 	    mtmp->m_enmax = mtmp->m_en = 0;
@@ -7575,6 +7583,9 @@ register int	mmflags;
 
 	if (ptr == &mons[PM_HOLE_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, HOLE);
+
+	if (ptr == &mons[PM_TRAP_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
+		(void) maketrap(x, y, randomtrap() );
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
@@ -8879,7 +8890,7 @@ register int	mmflags;
 			monkilled(mtmp, "", AD_PHYS);
 	} 
 
-	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_HOLE_MASTER) monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
+	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER) monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
 
 	if (mndx == PM_SHOCKING_SPHERE && Role_if(PM_ACID_MAGE) && Is_nemesis(&u.uz) ) {
 			(void) mon_spec_polyX(mtmp,  &mons[PM_LIGHTNING_PROOF_WALL], 0L, FALSE, FALSE, FALSE, FALSE);

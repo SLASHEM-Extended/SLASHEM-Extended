@@ -1493,7 +1493,7 @@ mkinsideroom()
 			if (typ == FOUNTAIN) 	level.flags.nfountains++;
 			if (typ == SINK) 	level.flags.nsinks++;
 			}
-			/*else*/ if (!rn2(10))			(void) maketrap(sx, sy, typ2);
+			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))			(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
 		}
@@ -1527,6 +1527,7 @@ mkriverroom()
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap());
 		}
 
 	level.flags.has_riverroom = 1;

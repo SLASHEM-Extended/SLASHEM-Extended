@@ -1,0 +1,766 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+# Based on some obscure old roguelike game that nobody knows.
+# It's called "Castle of the Winds".
+# Also partly based on the Yeoman quest. Everything else is my own quest design. --Amy
+
+
+### The quest "start" level ###
+#
+#	The Hamlet was the starting town in CoW.
+#	This is not an exact reproduction of it, but it comes quite close.
+#
+MAZE: "Cam-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT....TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT....----............TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT....|..|............TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT....|..|............TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT....--+|................|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.....................|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|.|....................||.                    
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|.+.....................|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.....................|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.....---+-..........|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.....|...|......TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.....|...|......TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.----|......TTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.........TTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.........TTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT|                     
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+REGION:(00,00,75,19),unlit,"ordinary"
+
+DOOR:closed,(36,07)
+REGION:(35,05,36,06),unlit,"shop"
+
+DOOR:closed,(42,12)
+REGION:(40,13,42,14),unlit,"shop"
+
+DOOR:closed,(32,10)
+REGION:(31,09,31,10),unlit,"temple"
+ALTAR:(31,09),noalign,shrine
+
+BRANCH:(37,09,37,09),(0,0,0,0)
+
+DRAWBRIDGE:(53,09),east,closed
+
+FOUNTAIN: (36, 09)
+
+# The one who pillages the hamlet in CoW.
+MONSTER:'H',"hill giant shaman",(42,09),"Hrungnir",hostile
+
+# Let's just allow the attendants to randomly roam the level.
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"Marc",(50,09)
+
+# No random starting monsters. This won't stop the game from spawning some if the player lingers around, of course.
+
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+
+STAIR:(55,09),down
+
+### Upper filler levels ###
+#
+#	The Underground River
+#	This terrain formation must have been a glitch, since it got taken out in a CoW patch.
+#	Shame, the underground river was actually a damn great feature...
+#	Digging will probably be necessary on this level.
+#
+MAZE: "Cam-fila", ' '
+FLAGS: lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... ......... 
+     B         B         B         B         B         B         B    
+     .         .         .         .         .         .         .    
+     B         B         B         B         B         B         B    
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... .........
+ ......... ......... ......... ......... ......... ......... ......... 
+
+
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(01,01,09,07),unlit,"riverroom"
+REGION:(11,01,19,07),unlit,"riverroom"
+REGION:(21,01,29,07),unlit,"riverroom"
+REGION:(31,01,39,07),unlit,"riverroom"
+REGION:(41,01,49,07),unlit,"riverroom"
+REGION:(51,01,59,07),unlit,"riverroom"
+REGION:(61,01,69,07),unlit,"riverroom"
+REGION:(01,11,09,17),unlit,"riverroom"
+REGION:(11,11,19,17),unlit,"riverroom"
+REGION:(21,11,29,17),unlit,"riverroom"
+REGION:(31,11,39,17),unlit,"riverroom"
+REGION:(41,11,49,17),unlit,"riverroom"
+REGION:(51,11,59,17),unlit,"riverroom"
+REGION:(61,11,69,17),unlit,"riverroom"
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+### The quest "locate" level ###
+#
+#	Fleeing hamlet - lots of trees everywhere
+#	To make it harder to traverse this level, we'll make it no-teleport.
+#	Digging will be allowed though.
+#
+MAZE: "Cam-loca",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTT.TTTTTT.TTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTT.TTTTTT.TTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+.TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+RANDOM_PLACES:(28,08),(35,08),(42,08),(49,08),(28,12),(35,12),(42,12),(49,12)
+
+
+STAIR:(0,0),up
+STAIR:(75,20),down
+
+CONTAINER:'`',"statue",place[0]
+CONTAINER:'`',"statue",place[1]
+CONTAINER:'`',"statue",place[2]
+CONTAINER:'`',"statue",place[3]
+TRAP:"statue",place[4]
+TRAP:"statue",place[5]
+TRAP:"statue",place[6]
+TRAP:"statue",place[7]
+
+### Lower fill levels ###
+#
+#	Statue Halls
+#	A big, relatively open level with loads of statues everywhere.
+#
+MAZE: "Cam-filb", ' '
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                            ------------------                            
+                    ---------................---------                    
+              -------................................-------              
+         ------.........---------........---------.........------         
+      ----........-------       |........|       -------........----      
+    ---......------             |........|             ------......---    
+  ---.....----            -------........-------            ----.....---  
+---.....---       ---------....................---------       ---.....---
+|.......|    ------....................................------    |.......|
+|.......|    |..............................................|    |.......|
+|.......|    ------....................................------    |.......|
+---.....---       ---------....................---------       ---.....---
+  ---.....----            -------........-------            ----.....---  
+    ---......------             |........|             ------......---    
+      ----........-------       |........|       -------........----      
+         ------.........---------........---------.........------         
+              -------................................-------              
+                    ---------................---------                    
+                            ------------------                            
+ENDMAP
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"statue",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+CONTAINER:'`',"statue",random
+TRAP:"animation trap",random
+
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+MONSTER:'@',"trap master",random
+
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+MONSTER:'t',"smart trapper",random
+
+### The quest "goal" level ###
+#
+#	Inside Part
+#
+#	Accessible in CoW if you do some hex editing. It used to be prone to crashing the game though.
+#	I considered making it crash on purpose here, but changed my mind. Hooray for S'Em Extended players! :-) --Amy
+#
+#	Here, the layout is based partly on the Yeoman goal level, but only the upper half of it.
+#
+#	Of course you also meet Arabella, your nemesis monster. Her friends may be there, too.
+#
+MAZE: "Cam-goal", ' '
+FLAGS: lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                 ----                     ----                     ----    
+----            --..--   ----            --..--   ----            --..--   
+|..|            |..-.|   |..|            |..-.|   |..|            |..-.|   
+|..|------------|....|   |..|------------|....|   |..|------------|....|   
+--.-................--   --.-................--   --.-................--   
+ |.......|........---     |.......|........---     |.......|........---    
+ |.......|........|       |.......|........|       |.......|........|      
+ |.......|..K..K..|       |.......|..K..K..|       |.......|..K..K..|      
+
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+
+# Specifications for the whole level
+
+RANDOM_PLACES:(11,17),(36,17),(61,17),(11,14),(36,14),(61,14)
+
+REGION:(00,01,21,07),unlit,"humanhall"
+REGION:(25,01,46,07),unlit,"humanhall"
+REGION:(50,01,71,07),unlit,"humanhall"
+
+REGION:(00,09,74,20),unlit,"insideroom"
+
+STAIR:(19,01),up
+
+OBJECT:'"',"amulet of drain resistance",place[0],blessed,0,"Amulet of Kings"
+MONSTER:'@',"Arabella",place[0],hostile
+
+# Sub-bosses
+MONSTER:'@',"Anastasia",random,hostile
+MONSTER:'@',"Henrietta",random,hostile
+MONSTER:'@',"Katrin",random,hostile
+MONSTER:'@',"Jana",random,hostile
+
+# maybe you get an aide to help you out
+MONSTER:'@',random,(18,01)
+
+# or a switcher
+OBJECT[10%]:'(',"switcher",random
+
+OBJECT:'%',"ugh memory to create inventory window",random
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"car-driving superthief",random,hostile
+MONSTER:'@',"superthief",random,hostile
+MONSTER:'@',"superjedi",random,hostile
+MONSTER:'@',"division thief",random,hostile
+MONSTER:'@',"division jedi",random,hostile
+MONSTER:'@',"critically injured thief",random,hostile
+MONSTER:'@',"critically injured jedi",random,hostile
+MONSTER:'O',"huge ogre thief",random,hostile
+MONSTER:'.',"nix",random,hostile
+MONSTER:'.',"%s-$$$-NIX",random,hostile
+MONSTER:'~',"ak Thief is dead!",random,hostile
+MONSTER:'~',"un in Protect mode",random,hostile
+MONSTER:'@',"Gunnhild's General Store",random,hostile
+
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+MONSTER:'t',"trapper king",random
+
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"shit trap",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"glyph of warding",random
+TRAP:"rmb loss",random
+TRAP:"display",random
+TRAP:"spell loss",random
+TRAP:"yellow spell",random
+TRAP:"auto destruct",random
+TRAP:"memory",random
+TRAP:"menu",random
+TRAP:"speed",random
+TRAP:"inventory",random
+TRAP:"black ng wall",random
+TRAP:"unknown trap",random
+TRAP:"unknown trap",random
+TRAP:"unknown trap",random
+TRAP:"trap percents",random
+TRAP:"trap percents",random
+TRAP:"trap percents",random
+TRAP:"superscroller",random
+TRAP:"free hand",random
+TRAP:"unidentify",random
+TRAP:"thirst",random
+TRAP:"luck",random
+TRAP:"shades of grey",random
+TRAP:"faint",random
+TRAP:"curse",random
+TRAP:"difficulty",random
+TRAP:"sound",random
+TRAP:"caster",random
+TRAP:"weakness",random
+TRAP:"rot thirteen",random
+TRAP:"bishop",random
+TRAP:"confusion",random
+TRAP:"nupesell",random
+TRAP:"nupesell",random
+TRAP:"nupesell",random
+TRAP:"nupesell",random
+TRAP:"nupesell",random
+TRAP:"drop",random
+TRAP:"dstw",random
+TRAP:"status",random
+TRAP:"alignment",random
+TRAP:"stairs",random
+TRAP:"uninformation",random
+TRAP:"intrinsic loss",random
+TRAP:"blood loss",random
+TRAP:"bad effect",random
+TRAP:"multiply",random
+TRAP:"auto vulnerability",random
+TRAP:"tele items",random
+TRAP:"nastiness",random
+
