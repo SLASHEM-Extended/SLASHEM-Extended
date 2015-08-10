@@ -10136,7 +10136,7 @@ register struct monst *mtmp;
 		    block_point(mx,my);	/* vision */
 	} else if (level.flags.is_maze_lev && rn2(2)) {
 		ap_type = M_AP_OBJECT;
-		appear = STATUE;
+		appear = BOULDER;
 	} else if (roomno < 0) {
 		ap_type = M_AP_OBJECT;
 
@@ -10205,7 +10205,7 @@ register struct monst *mtmp;
 	} else if (rt == DELPHI) {
 		if (rn2(2)) {
 			ap_type = M_AP_OBJECT;
-			appear = STATUE;
+			appear = BOULDER;
 		} else {
 			ap_type = M_AP_FURNITURE;
 			appear = S_fountain;
