@@ -4401,7 +4401,7 @@ uchar aatyp;
 			{ register long sideX = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 	
 			pline("Your legs get grazed!");
-			set_wounded_legs(sideX, rnd(60-ACURR(A_DEX)));
+			set_wounded_legs(sideX, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			exercise(A_STR, FALSE);
 			exercise(A_DEX, FALSE);
 			}

@@ -393,7 +393,7 @@ nh_timeout()
 				u.legscratching++;
 				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
-			    set_wounded_legs(side, rnd(60-ACURR(A_DEX)));
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 

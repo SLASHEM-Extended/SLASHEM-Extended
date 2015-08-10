@@ -1570,7 +1570,7 @@ int magic; /* 0=Physical, otherwise skill level */
 			if (!u.usteed)
 #endif
 		    losehp(rnd(10), "jumping out of a bear trap", KILLED_BY);
-		    set_wounded_legs(side, rn1(1000,500));
+		    set_wounded_legs(side, HWounded_legs + rn1(1000,500));
 		    break;
 		  }
 		case TT_PIT:
@@ -1587,8 +1587,8 @@ int magic; /* 0=Physical, otherwise skill level */
 		case TT_INFLOOR:
 		    You("strain your %s, but you're still stuck in the floor.",
 			makeplural(body_part(LEG)));
-		    set_wounded_legs(LEFT_SIDE, rn1(10, 11));
-		    set_wounded_legs(RIGHT_SIDE, rn1(10, 11));
+		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(10, 11));
+		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(10, 11));
 		    return 1;
 		}
 

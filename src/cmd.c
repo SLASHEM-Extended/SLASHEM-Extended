@@ -2144,7 +2144,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 #endif
 			  ) {
 		Sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
-	    /*if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Wounded_legs);*/
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HWounded_legs);
 		you_have(buf);
 	}
 #if defined(WIZARD) && defined(STEED) /*randomly tell this to the player outside of wizard mode too --Amy */

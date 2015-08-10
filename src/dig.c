@@ -302,7 +302,7 @@ dig()
 			pline("Ouch!  Your %s %s and %s you!",
 			      xname(uwep),
 			      otense(uwep, "bounce"), otense(uwep, "hit"));
-		    set_wounded_legs(RIGHT_SIDE, 5 + rnd(5));
+		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
 		}
 		break;
 	    case 1:

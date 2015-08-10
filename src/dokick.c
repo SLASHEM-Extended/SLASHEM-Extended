@@ -749,7 +749,7 @@ dokick()
 	if (!Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		You("have no legs to kick with.");
 		if (yn("Try a full-body tackle instead?") == 'y') {
-			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, rnd(60-ACURR(A_DEX)));
+			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			pline("Argh! That didn't work!");
 		    return 1;}
 		}
@@ -757,7 +757,7 @@ dokick()
 	} else if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("are too small to do any kicking.");
 		if (yn("Try it anyway?") == 'y') {
-			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, rnd(60-ACURR(A_DEX)));
+			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			pline("You hurt your muscles!");
 		    return 1;}
 		}
@@ -1153,7 +1153,7 @@ ouch:
 			(void) find_drawbridge(&x,&y);
 			maploc = &levl[x][y];
 		    }
-		    if(!rn2(3)) set_wounded_legs(RIGHT_SIDE, 5 + rnd(5));
+		    if(!rn2(3)) set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
 		    losehp(rnd(ACURR(A_CON) > 15 ? 3 : 5), kickstr(buf),
 			KILLED_BY);
 		    if(Is_airlevel(&u.uz) || Levitation)
@@ -1174,7 +1174,7 @@ dumb:
 		} else {
 			pline(Hallucination ? "Argh... this feels like overdoing sports!" : "Dumb move!  You strain a muscle.");
 			exercise(A_STR, FALSE);
-			set_wounded_legs(RIGHT_SIDE, 5 + rnd(5));
+			set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
 		}
 		if ((Is_airlevel(&u.uz) || Levitation) && rn2(2)) {
 		    hurtle(-u.dx, -u.dy, 1, TRUE);

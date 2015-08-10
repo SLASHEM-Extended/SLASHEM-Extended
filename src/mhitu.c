@@ -142,7 +142,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
-			    set_wounded_legs(side, rnd(60-ACURR(A_DEX)));
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 
@@ -292,7 +292,7 @@ on the first floor, especially when you're playing as something with drain resis
 				u.legscratching++;
 				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
-			    set_wounded_legs(side, rnd(60-ACURR(A_DEX)));
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 			}
@@ -2587,7 +2587,7 @@ dopois:
 			}
 		    } else pline("%s scratches your %s %s!", Monnam(mtmp),
 			  sidestr, body_part(LEG));
-		    set_wounded_legs(side, rnd(60-ACURR(A_DEX)));
+		    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 		    exercise(A_STR, FALSE);
 		    exercise(A_DEX, FALSE);
 		  }
@@ -3702,7 +3702,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    Your("legs are covered with painful wounds!");
 			else
 			    Your("legs are covered with bloody wounds! It hurts like hell! Auuuggghhhh!");
-			set_wounded_legs(sideX, rnd(60-ACURR(A_DEX)));
+			set_wounded_legs(sideX, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			exercise(A_STR, FALSE);
 			exercise(A_DEX, FALSE);
 			}
@@ -4596,7 +4596,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			{ register long sideX = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 	
 			pline("%s's gaze makes your legs turn to jelly!", Monnam(mtmp));
-			set_wounded_legs(sideX, rnd(60-ACURR(A_DEX)));
+			set_wounded_legs(sideX, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			exercise(A_STR, FALSE);
 			exercise(A_DEX, FALSE);
 			}

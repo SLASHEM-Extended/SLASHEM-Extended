@@ -234,8 +234,8 @@ Boots_off()
 	case ZIPPER_BOOTS:
 		pline(Hallucination ? "You get the feeling that something soft just slid along the full length of your legs!" : "While taking off this pair of boots, you scratch open your legs at their zippers!");
 		losehp(rnd(20), "foolishly taking off a zipper boot", KILLED_BY);
-		    set_wounded_legs(LEFT_SIDE, rn1(35, 41));
-		    set_wounded_legs(RIGHT_SIDE, rn1(35, 41));
+		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
+		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
 		break;
 	case LOW_BOOTS:
 	case IRON_SHOES:
