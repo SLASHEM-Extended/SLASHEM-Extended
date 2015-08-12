@@ -1090,7 +1090,11 @@ boolean atme;
 	case SPE_IDENTIFY:
 	case SPE_COMMAND_UNDEAD:                
 	case SPE_SUMMON_UNDEAD:
+		if (rn2(10)) pseudo->blessed = 0;
+		(void) seffects(pseudo);
+		break;
 	case SPE_CHARGING:
+		pseudo->blessed = 0;
 		(void) seffects(pseudo);
 		break;
 
@@ -1128,6 +1132,7 @@ boolean atme;
 #endif
 		/* fall through */
 	case SPE_INVISIBILITY:
+		if (rn2(10)) pseudo->blessed = 0;
 		(void) peffects(pseudo);
 		break;
 	case SPE_CURE_BLINDNESS:
