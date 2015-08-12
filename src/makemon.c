@@ -7174,7 +7174,7 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	    return (struct monst *)0;
 
 	/* may be too weak or have been extinguished for population control */
-	if (mon->mhp <= 1 || (mvitals[monsndx(mon->data)].mvflags & G_EXTINCT))
+	if (mon->mhp <= 1 || ((mvitals[monsndx(mon->data)].mvflags & G_EXTINCT) && !(mon->data == &mons[PM_JUBILEX]) ) )
 	    return (struct monst *)0;
 
 	if (x == 0) {
