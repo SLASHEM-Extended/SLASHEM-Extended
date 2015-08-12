@@ -2863,7 +2863,7 @@ count_buc(list, type)
     int count = 0;
 
     while (list) {
-	if (Role_if(PM_PRIEST)) list->bknown = TRUE;
+	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) list->bknown = TRUE;
 	switch(type) {
 	    case BUC_BLESSED:
 		if (list->oclass != COIN_CLASS && list->bknown && list->blessed)
@@ -3354,6 +3354,7 @@ struct obj *obj;
 
 STATIC_OVL boolean
 mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
+/* obj is being merged into otmp --Amy */
 	register struct obj *otmp, *obj;
 {
 	if (obj->otyp != otmp->otyp) return FALSE;
@@ -3362,8 +3363,8 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	if (obj->oclass == COIN_CLASS) return TRUE;
 #endif
 	if (obj->unpaid != otmp->unpaid ||
-	    obj->spe != otmp->spe || obj->dknown != otmp->dknown ||
-	    (obj->bknown != otmp->bknown && !Role_if(PM_PRIEST) ) ||
+	    obj->spe != otmp->spe || (obj->dknown && !otmp->dknown) ||
+	    (obj->bknown && !otmp->bknown && !(Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) ) ) ||
 	    obj->cursed != otmp->cursed || obj->blessed != otmp->blessed ||
 	    obj->hvycurse != otmp->hvycurse || obj->prmcurse != otmp->prmcurse ||
 	    obj->no_charge != otmp->no_charge ||
@@ -3384,7 +3385,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    return(FALSE);
 
 	if ((obj->oclass==WEAPON_CLASS || obj->oclass==ARMOR_CLASS) &&
-	    (obj->oerodeproof!=otmp->oerodeproof || obj->rknown!=otmp->rknown))
+	    (obj->oerodeproof!=otmp->oerodeproof || (obj->rknown && !otmp->rknown) ))
 	    return FALSE;
 
 	if (obj->oclass == FOOD_CLASS && (obj->oeaten != otmp->oeaten ||
@@ -3439,7 +3440,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 
 	if(obj->oartifact != otmp->oartifact) return FALSE;
 
-	if(obj->known == otmp->known ||
+	if(obj->known == otmp->known || (otmp->known) ||
 		!objects[otmp->otyp].oc_uses_known) {
 		return((boolean)(objects[obj->otyp].oc_merge));
 	} else return(FALSE);
