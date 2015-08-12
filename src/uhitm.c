@@ -1311,6 +1311,8 @@ int thrown;
 		} else {
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
+			tmp = thrown ? (dmgvalX(obj, mon) + u.ulevel) : dmgvalX(obj, mon);
+			break;
 		    case HEAVY_IRON_BALL:	/* 1d25 */
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */
 		    case EXTREMELY_HEAVY_IRON_BALL:	/* 1d25 */

@@ -562,6 +562,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    break;
 			default:
 			    dam = dmgval(singleobj, &youmonst);
+			    if (singleobj->otyp == BOULDER) dam += (2 * (mon->m_lev));
 			    hitv = 3 - distmin(u.ux,u.uy, mon->mx,mon->my);
 			    if (hitv < -4) hitv = -4;
 			    if (is_elf(mon->data) &&
