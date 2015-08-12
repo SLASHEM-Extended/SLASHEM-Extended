@@ -2875,6 +2875,10 @@ makelevel()
 	    {
 		    makemaz(slev->proto);
 		    return;
+	    } else if (In_V_tower(&u.uz)) {
+		    makemaz("");
+		    return;
+
 	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
 
 		    if (rn2(3)) {
