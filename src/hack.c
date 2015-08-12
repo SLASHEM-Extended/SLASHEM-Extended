@@ -2752,9 +2752,9 @@ register boolean newlev;
 				break;
 			}
 		}*/
-		if(rt==COURT || rt==SWAMP || rt==MORGUE || rt==ZOO)
+		if(rt==COURT || rt==SWAMP || rt==MORGUE || rt==ZOO || (rt && !rn2(10)) )
 		    for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
-			if (!DEADMONSTER(mtmp) && !Stealth && !rn2(3)) mtmp->msleeping = 0;
+			if (!DEADMONSTER(mtmp) && (!Stealth || Aggravate_monster) && !rn2(3)) mtmp->msleeping = 0;
 	    }
 	}
 
