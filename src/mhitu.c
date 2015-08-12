@@ -494,7 +494,7 @@ register struct attack *mattk;
 	    if (MON_WEP(mtmp)) {
 		struct obj *obj = MON_WEP(mtmp);
 		obj->owornmask &= ~W_WEP;
-		if (rnd(100) < (obj->oeroded * 5 / 2)) {
+		if ((rnd(100) < (obj->oeroded * 5 / 2)) && !stack_too_big(obj)) {
 		    if (obj->spe > -5) {    
 			obj->spe--;
 			pline("%s %s is damaged further!",
@@ -1144,11 +1144,11 @@ mattacku(mtmp)
 				    hittmp = hitval(otmp, &youmonst);
 				    tmp += hittmp;
 				    mswings(mtmp, otmp);
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
 					pline("The massive wedge heel thunders painfully on your %s!", body_part(HEAD));
 					losehp(rnd(4),"a wedged little-girl sandal",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER && (tmp > rnd(20+i)) ) {
 					pline("The soft leather sneaker actually feels quite soothing.");
 
 					if (Upolyd) u.mh++; /* heal one hit point */
@@ -1157,12 +1157,12 @@ mattacku(mtmp)
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS && (tmp > rnd(20+i)) ) {
 					pline("The unyielding plateau boot bonks your %s!", body_part(HEAD));
 					losehp(rnd(10),"a sturdy plateau boot for girls",KILLED_BY);
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT && (tmp > rnd(20+i)) ) {
 
 					if (flags.female) {
 						pline("The massive heel hits your %s. Wow, this feels soothing and lovely!", body_part(HEAD));
@@ -1190,7 +1190,7 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT && (tmp > rnd(20+i)) ) {
 					pline("Uff! Your %s got hit hard!", body_part(HEAD));
 					losehp(rnd(12),"a hugging boot",KILLED_BY);
 						if (Upolyd) u.mhmax--; /* lose one hit point */
@@ -1199,7 +1199,7 @@ mattacku(mtmp)
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA && (tmp > rnd(20+i)) ) {
 					pline("Argh! The unyielding piece of wood painfully lands on your %s!", body_part(HEAD));
 					losehp(rnd(15),"a wooden Japanese sandal",KILLED_BY);
 
@@ -1215,7 +1215,7 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE && (tmp > rnd(20+i)) ) {
 
 					if (Role_if(PM_COURIER)) pline("The lacquered dancing shoe harmlessly scratches you.");
 					else {pline("The lacquered dancing shoe scratches your %s!", body_part(HEAD));
@@ -1264,15 +1264,15 @@ mattacku(mtmp)
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
 					pline("Your %s is hit painfully by the high heel!", body_part(HEAD));
 					losehp(rnd(12),"a high-heeled sandal",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP && (tmp > rnd(20+i)) ) {
 					pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
 					losehp(rnd(20),"a sexy leather pump",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT) {
+					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT && (tmp > rnd(20+i)) ) {
 					pline("Ouch! The spiked boot soles bore themselves into your skin!");
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
@@ -3118,7 +3118,7 @@ dopois:
 			pline("You're covered in acid! It burns!");
 			exercise(A_STR, FALSE);
 		    }
-			if(rn2(30)) erode_armor(&youmonst, TRUE);
+			if(!rn2(3)) erode_armor(&youmonst, TRUE);
 
 		if (Stoned) fix_petrification();
 
@@ -3563,6 +3563,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (Half_physical_damage) tmp *= 2; /* sorry */
 		    } else {
 			pline("%s%s digests you!", Monnam(mtmp),
+			      (u.uswldtim == 3) ? " strongly" :
 			      (u.uswldtim == 2) ? " thoroughly" :
 			      (u.uswldtim == 1) ? " utterly" : "");
 			exercise(A_STR, FALSE);
@@ -3970,7 +3971,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    if (is_corrodeable(otmp2) && !rn2(9))
 		    		(void) rust_dmg(otmp2, xname(otmp2), 3, FALSE, 
 					&youmonst);*/
-			if(rn2(30)) erode_armor(&youmonst, TRUE);
+			if(!rn2(3)) erode_armor(&youmonst, TRUE);
 		    break;
 		case AD_BLND:
 		    if (can_blnd(mtmp, &youmonst, mattk->aatyp, (struct obj*)0)) {
@@ -4532,7 +4533,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (!rn2(10)) dmg += dmgplus;
 		    if (dmg) mdamageu(mtmp, dmg);
 		    }
-			if(rn2(30)) erode_armor(&youmonst, TRUE);
+			if(!rn2(3)) erode_armor(&youmonst, TRUE);
 		}
 		}
 		break;
@@ -5254,7 +5255,7 @@ register struct obj *obj;
 
 	vis = cansee(mon->mx, mon->my);
 
-	if ((is_acid ? is_corrodeable(obj) : is_rustprone(obj)) &&
+	if ((is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
 		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		        if (vis) pline("Somehow, %s weapon is not affected.",
@@ -5417,7 +5418,7 @@ register struct monst *mon;
 	    nring = ring->nobj;
 	    if (ring->otyp != RIN_ADORNMENT) continue;
 	    if (fem) {
-		if (rn2(20) < ACURR(A_CHA)) {
+		if (rn2(120) < ACURR(A_CHA)) {
 		    Sprintf(qbuf, "\"That %s looks pretty.  May I have it?\"",
 			safe_qbuf("",sizeof("\"That  looks pretty.  May I have it?\""),
 			xname(ring), simple_typename(ring->otyp), "ring"));
@@ -5439,7 +5440,7 @@ register struct monst *mon;
 				&& uright->otyp==RIN_ADORNMENT)
 			break;
 		if (ring==uleft || ring==uright) continue;
-		if (rn2(20) < ACURR(A_CHA)) {
+		if (rn2(120) < ACURR(A_CHA)) {
 		    Sprintf(qbuf,"\"That %s looks pretty.  Would you wear it for me?\"",
 			safe_qbuf("",
 			    sizeof("\"That  looks pretty.  Would you wear it for me?\""),
@@ -5620,7 +5621,7 @@ register struct monst *mon;
 	}
 
 	if (mon->mtame) /* don't charge */ ;
-	else if (rn2(20) < ACURR(A_CHA)) {
+	else if (rn2(120) < ACURR(A_CHA)) {
 		pline("%s demands that you pay %s, but you refuse...",
 			noit_Monnam(mon),
 			Blind ? (fem ? "her" : "him") : mhim(mon));

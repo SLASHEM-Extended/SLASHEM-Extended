@@ -2023,6 +2023,7 @@ breaktest(obj)
 struct obj *obj;
 {
 	if (obj_resists(obj, 1, 99)) return 0;
+	if (stack_too_big(obj)) return 0;
 	if (objects[obj->otyp].oc_material == GLASS && !obj->oartifact &&
 		obj->oclass != GEM_CLASS)
 	    return 1;

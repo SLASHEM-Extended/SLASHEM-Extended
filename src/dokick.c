@@ -470,9 +470,9 @@ struct obj *obj;
 
 	    otmp2 = otmp->nobj;
 	    if (objects[otmp->otyp].oc_material == GLASS &&
-		otmp->oclass != GEM_CLASS && !obj_resists(otmp, 33, 100)) {
+		otmp->oclass != GEM_CLASS && !obj_resists(otmp, 33, 100) && !stack_too_big(otmp)) {
 		result = "shatter";
-	    } else if (otmp->otyp == EGG && !rn2(3)) {
+	    } else if (otmp->otyp == EGG && !rn2(3) && !stack_too_big(otmp)) {
 		result = "cracking";
 	    }
 	    if (result) {

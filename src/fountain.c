@@ -217,7 +217,7 @@ drinkfountain()
 		/* gain ability, blessed if "natural" luck is high */
 		i = rn2(A_MAX);		/* start at a random attribute */
 		for (ii = 0; ii < A_MAX; ii++) {
-		    if (adjattrib(i, 1, littleluck ? -1 : 0) && littleluck)
+		    if (adjattrib(i, 1, littleluck ? -1 : 0) && (littleluck || !rn2(2)) )
 			break;
 		    if (++i >= A_MAX) i = 0;
 		}
@@ -284,7 +284,7 @@ drinkfountain()
 			morehungry(rn1(20, 11));
 			exercise(A_CON, FALSE);
 			for(obj = invent; obj ; obj = obj->nobj)
-				if (!rn2(5))	curse(obj);
+				if (!rn2(5) && !stack_too_big(obj))	curse(obj);
 			break;
 			}
 
@@ -416,7 +416,7 @@ register struct obj *obj;
 
 	switch (rnd(30)) {
 		case 10: /* Curse the item */
-			curse(obj);
+			if (!stack_too_big(obj)) curse(obj);
 			break;
 		case 11:
 		case 12:
@@ -523,15 +523,15 @@ register struct obj *obj;
 	}
 	(void) get_wet(obj, FALSE);
 	/* KMH -- acid and water don't mix */
-	if (obj->otyp == POT_ACID) {
+	if (obj->otyp == POT_ACID && !stack_too_big(obj)) {
 	    useup(obj);
 	    return;
 	}
-	if(is_poisonable(obj)) {
+	if(is_poisonable(obj) && !stack_too_big(obj)) {
 	    if (flags.verbose)  You("cover it in filth.");
 	    obj->opoisoned = TRUE;
 	}
-	if (obj->oclass == FOOD_CLASS) {
+	if (obj->oclass == FOOD_CLASS && !stack_too_big(obj)) {
 	    if (flags.verbose)  pline("My! It certainly looks tastier now...");
 	    obj->orotten = TRUE;
 	}
@@ -756,13 +756,13 @@ register struct obj *obj;
 
 	switch (rnd(30)) {
 		case 10: /* Curse the item */
-			curse(obj);
+			if (!stack_too_big(obj)) curse(obj);
 			break;
 		case 11:
 		case 12:
 		case 13:
 		case 14: /* Uncurse the item */
-			if(obj->cursed) {
+			if(obj->cursed && !stack_too_big(obj)) {
 			    if (!Blind)
 				pline_The("water glows for a moment.");
 			    uncurse(obj);
@@ -862,7 +862,7 @@ register struct obj *obj;
 	    floating_above("toilet");
 	    return;
 	}
-	if(is_poisonable(obj)) {
+	if(is_poisonable(obj) && !stack_too_big(obj)) {
 	    if (flags.verbose)  You("cover it in filth.");
 	    obj->opoisoned = TRUE;
 	}

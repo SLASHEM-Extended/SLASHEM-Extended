@@ -3667,6 +3667,15 @@ wake_nearby()
 		    EDOG(mtmp)->whistletime = moves;
 	    }
 	}
+
+	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+	    if (!DEADMONSTER(mtmp)) {
+		mtmp->msleeping = 0;
+		if (mtmp->mtame && !mtmp->isminion)
+		    EDOG(mtmp)->whistletime = moves;
+	    }
+	}
+
 }
 
 /* Wake up monsters near some particular location. */

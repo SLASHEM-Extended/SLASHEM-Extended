@@ -904,7 +904,7 @@ register xchar x,y,cnt;
 
 	/* scare monster scrolls might randomly disappear --Amy */
 
-		pline(Hallucination ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
+		if (!rn2(10)) pline(Hallucination ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
 		(void) burn_floor_paper(x, y, TRUE, FALSE); /* The actual chance of this removing the scroll is about 3%. */
 
 	}
@@ -1867,7 +1867,7 @@ doengrave()
 	    case ENGRAVE:
 		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
 		if (otmp->otyp == WAN_DIGGING) multi /= 5; /* otherwise engraving with them would be useless --Amy */
-		if ((otmp->oclass == WEAPON_CLASS) &&
+		if ((otmp->oclass == WEAPON_CLASS) && !stack_too_big(otmp) &&
 		    ( ((otmp->otyp != ATHAME) && (!is_lightsaber(otmp))) || otmp->cursed)) {
 		    multi = -len;
 		    maxelen = ((otmp->spe + 3) * 2) + 1;
@@ -1914,7 +1914,7 @@ doengrave()
 			otmp->spe = 0;
 			multi = -(maxelen/10);
 		    } else
-			if (len > 1) otmp->spe -= len >> 1;
+			if (len > 7) otmp->spe -= (len / 8);
 			else otmp->spe -= 1; /* Prevent infinite grafitti */
 		}
 		if (multi) nomovemsg = "You finish defacing the dungeon.";

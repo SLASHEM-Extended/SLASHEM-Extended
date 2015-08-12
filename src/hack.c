@@ -324,7 +324,7 @@ boolean showmsg; /* show messages */
 boolean update;  /* do newsym() */
 {
    int herbnum = rn2(SIZE(herb_info));
-   (void) seed_tree(-1,-1);
+   if (!rn2(100)) (void) seed_tree(-1,-1);
    if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
    else

@@ -164,11 +164,11 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	    if((int)(ptr->mattk[i].damd * ptr->mattk[i].damn) > 23)
 		tmp += mtmp->m_lev;
 	    if (tmp2 == AD_WRAP && ptr->mlet == S_EEL && !Amphibious)
-		tmp += 1000;
+		tmp += 100;
 	}
 
 /*	For certain "extra nasty" monsters, give even more */
-	if (extra_nasty(ptr)) tmp += (7 * mtmp->m_lev);
+	if (extra_nasty(ptr)) tmp += (rnd(7) * mtmp->m_lev);
 
 /*	For higher level monsters, an additional bonus is given */
 	if(mtmp->m_lev > 8) tmp += 50;

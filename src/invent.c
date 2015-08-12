@@ -3445,6 +3445,36 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	} else return(FALSE);
 }
 
+/* Manipulating a stack of items is supposed to fail if the stack is very big. --Amy
+ * This sounds evil, but if you think about it for a while it makes sense: why should a scroll of enchant weapon
+ * have the same odds of enchanting a stack of 5 or 500 darts? That way, players would be well-advised to never use them
+ * because in the case of doubt they'll find more darts to make an even bigger stack to enchant all at once!
+ * And the vanilla behavior also means that finding a random stack of +5 darts is of no use since you can always make
+ * a much bigger one with a few scrolls. On the other hand, water damage, cancellation etc. has the same chance of
+ * ruining your stack of 15 teleportation scrolls all at once, which doesn't really make sense either. The best
+ * solution would be allowing each individual item to perform a saving throw to see whether it is affected,
+ * but lacking that, I'll just allow stacks to perform a saving throw against manipulation.
+ * It will affect both "positive" and "negative" effects equally. */
+
+boolean
+stack_too_big(otmp)
+register struct obj *otmp;
+{
+	/* returns 0 if the operation can be done on the stack, 1 if it will fail */
+
+	if (!objects[otmp->otyp].oc_merge) return 0;
+
+	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
+
+	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) return 1;
+
+	if ( ( (objects[otmp->otyp].oc_class == SCROLL_CLASS) || (objects[otmp->otyp].oc_class == POTION_CLASS) || (objects[otmp->otyp].oc_class == FOOD_CLASS)) && (rnd(otmp->quan) > 1 ) ) return 1;
+
+
+	else return 0;
+}
+
+
 int
 doprgold()
 {

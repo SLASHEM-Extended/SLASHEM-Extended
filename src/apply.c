@@ -358,8 +358,23 @@ STATIC_OVL void
 use_whistle(obj)
 struct obj *obj;
 {
+
+	register struct monst *mtmp;
+
 	You(whistle_str, obj->cursed ? "shrill" : "high");
 	wake_nearby();
+
+	if (obj->cursed) { /* shrill whistling sound wakes up the entire level */
+
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (!DEADMONSTER(mtmp)) {
+			mtmp->msleeping = 0;
+			if (mtmp->mtame && !mtmp->isminion)
+			    EDOG(mtmp)->whistletime = moves;
+		    }
+		}
+
+	}
 }
 
 STATIC_OVL void
@@ -2184,6 +2199,11 @@ struct obj *obj;
 #endif
 		consume_obj_charge(obj, TRUE);
 
+		if (stack_too_big(otmp)) {
+			pline("The amount of grease was not enough for your stack of %s!", yname(otmp));
+			return;
+		}
+
 		if (otmp != &zeroobj) {
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
@@ -2271,6 +2291,7 @@ set_whetstone()
 	chance = 4 - (ows->blessed) + (ows->cursed*2) + (otmp->oartifact ? 3 : 0);
 
 	if (!rn2(chance) && (ows->otyp == WHETSTONE)) {
+
 	    /* Remove rust first, then sharpen dull edges */
 	    if (otmp->oeroded) {
 		otmp->oeroded--;
@@ -2706,6 +2727,13 @@ struct obj *obj;
     if (Stunned || (Confusion && !rn2(5))) confdir();
     rx = u.ux + u.dx;
     ry = u.uy + u.dy;
+
+	if(!isok(rx, ry)) { /* gotta fix that unneccessary segfault for once and for all! --Amy */
+
+	pline(Hallucination ? "You get a great rebound effect!" : "Your whip hits an invisible barrier.");
+	return(1);
+	}
+
     mtmp = m_at(rx, ry);
 
     /* fake some proficiency checks */

@@ -859,17 +859,17 @@ int n, p;
 }
 
 #define GRENADE_TRIGGER(obj)	\
-    if ((obj)->otyp == FRAG_GRENADE) { \
+    if (((obj)->otyp == FRAG_GRENADE) && !stack_too_big(obj)) { \
 	delquan = dp((obj)->quan, 10); \
 	no_fiery += delquan; \
-    } else if ((obj)->otyp == GAS_GRENADE) { \
+    } else if (((obj)->otyp == GAS_GRENADE) && !stack_too_big(obj)) { \
 	delquan = dp((obj)->quan, 10); \
 	no_gas += delquan; \
-    } else if ((obj)->otyp == STICK_OF_DYNAMITE) { \
+    } else if (((obj)->otyp == STICK_OF_DYNAMITE) && !stack_too_big(obj)) { \
 	delquan = (obj)->quan; \
 	no_fiery += (obj)->quan * 2; \
 	no_dig += (obj)->quan; \
-    } else if (is_bullet(obj) && (!obj->blessed || !rn2(3)) ) /* have some chance to resist --Amy */\ 
+    } else if (is_bullet(obj) && !stack_too_big(obj) && (!obj->blessed || !rn2(3)) ) /* have some chance to resist --Amy */\ 
 	delquan = dp((obj)->quan, 2); \
     else \
 	delquan = 0

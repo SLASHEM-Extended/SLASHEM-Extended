@@ -9899,7 +9899,7 @@ int type;
 		case PM_INVULNERABLE_GOLEM: return 2000;
 		case PM_WAX_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;
-		default: {impossible("undefined golem?"); return 30;} /* failsafe so undefined golems don't start with zero hp! --Amy */
+		default: {impossible("undefined golem %d?",type); return 30;} /* failsafe so undefined golems don't start with zero hp! --Amy */
 	}
 }
 

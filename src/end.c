@@ -1025,8 +1025,9 @@ die:
 		/* KMH -- We need the "Save bones?" prompt for testing! */
 	    if (!wizard || yn("Save bones?") == 'y')
 #endif
-		if (Frozen) corpse = (struct obj *)0; /* no corpse if player exploded into ice cubes --Amy */
+		{if (Frozen) corpse = (struct obj *)0; /* no corpse if player exploded into ice cubes --Amy */
 		savebones(corpse);
+		}
 	    /* corpse may be invalid pointer now so
 		ensure that it isn't used again */
 	    corpse = (struct obj *)0;

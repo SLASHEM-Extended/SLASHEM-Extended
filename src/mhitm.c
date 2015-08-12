@@ -1937,7 +1937,7 @@ register struct obj *obj;
 	    return;
 
 	if (!mdef->mcan &&
-	    (is_acid ? is_corrodeable(obj) : is_rustprone(obj)) &&
+	    (is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
 		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		    if (cansee(mdef->mx, mdef->my) && flags.verbose)

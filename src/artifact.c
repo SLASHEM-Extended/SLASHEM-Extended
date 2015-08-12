@@ -2138,7 +2138,7 @@ arti_poly_contents(obj)
 			delobj(dobj);
 			dobj = 0;
 		}
-		if(!obj_resists(otmp, 5, 95)){
+		if(!obj_resists(otmp, 5, 95) && !stack_too_big(otmp) ){
 			/* KMH, conduct */
 			u.uconduct.polypiles++;
 			/* any saved lock context will be dangerously obsolete */

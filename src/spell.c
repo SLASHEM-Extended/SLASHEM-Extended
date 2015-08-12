@@ -371,7 +371,7 @@ learn()
 	/* JDS: lenses give 50% faster reading; 33% smaller read time */
 	if (delay < end_delay && ublindf && ublindf->otyp == LENSES && rn2(2))
 	    delay++;
-	if (Confusion) {		/* became confused while learning */
+	if (Confusion && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {		/* became confused while learning */
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
 	    nomul((delay - end_delay), "reading a confusing book");	/* remaining delay is uninterrupted */

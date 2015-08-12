@@ -730,7 +730,7 @@ struct obj *obj;
 	case CRYSKNIFE:
 	    /* KMH -- Fixed crysknives have only 10% chance of reverting */
 	    /* only changes when not held by player or monster */
-	    if ((!obj->oerodeproof || !rn2(10)) && !obj->oartifact) {
+	    if ((!obj->oerodeproof || !rn2(10)) && !obj->oartifact && !stack_too_big(obj)) {
 		obj->otyp = WORM_TOOTH;
 		obj->oerodeproof = 0;
 	    }
