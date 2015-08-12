@@ -884,6 +884,8 @@ E boolean NDECL(have_magicresstone);
 E boolean NDECL(have_cursedmagicresstone);
 E boolean NDECL(have_loadboulder);
 
+E boolean FDECL(stack_too_big, (struct obj *));
+
 E boolean NDECL(have_rmbstone);
 E boolean NDECL(have_displaystone);
 E boolean NDECL(have_yellowspellstone);
@@ -1266,6 +1268,7 @@ E void FDECL(mkundead, (coord *,BOOLEAN_P,int));
 /*E void FDECL(mkundeadboo, (coord *,BOOLEAN_P,int));*/
 E void FDECL(mkundeadX, (coord *,BOOLEAN_P,int));
 E struct permonst *NDECL(courtmon);
+E struct permonst *NDECL(insidemon);
 E struct permonst *NDECL(antholemon);
 E struct permonst *NDECL(realzoomon);
 E void FDECL(save_rooms, (int));

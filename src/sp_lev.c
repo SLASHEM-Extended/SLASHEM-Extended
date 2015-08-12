@@ -3568,6 +3568,9 @@ boolean prefilled;
 	schar typ, typ2;
 	struct monst *mtmp;
 
+	register int tryct = 0;
+	register struct obj *otmp;
+
 	if (croom && croom->rtype == OROOM && !rn2(Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 		switch (rnd(57)) {
@@ -3981,11 +3984,30 @@ boolean prefilled;
 
 			if (typ == FOUNTAIN) 	level.flags.nfountains++;
 			if (typ == SINK) 	level.flags.nsinks++;
+
+			if (typ == GRAVE) {
+
+					make_grave(sx, sy, (char *) 0);
+					/* Possibly fill it with objects */
+					if (!rn2(3)) (void) mkgold(0L, sx, sy);
+					for (tryct = rn2(5); tryct; tryct--) {
+					    otmp = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmp) return;
+					    curse(otmp);
+					    otmp->ox = sx;
+					    otmp->oy = sy;
+					    add_to_buried(otmp);
+					}
+
+				}
 			}
 
 			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
+
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40)) 	(void) makemon(insidemon(), sx, sy, MM_ADJACENTOK);
 		}
 
 	}

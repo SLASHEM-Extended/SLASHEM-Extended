@@ -459,6 +459,9 @@ struct mkroom *sroom;
                /* armories don't contain as many monsters */
 		if (( (type != ARMORY && rn2(moreorless) ) || rn2(2)) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
+
+		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
+
 		    (type == BARRACKS) ? squadmon() :
 			(type == CLINIC) ? &mons[PM_NURSE] :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
@@ -1141,6 +1144,26 @@ courtmon()
 }
 
 struct permonst *
+insidemon()
+{
+	int     i = rnd(100);
+	if (i > 99)       return(rn2(1000) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 40) ? &mons[PM_SUPERTHIEF] : &mons[PM__S_____NIX]);
+	else if (i > 98)  return(rn2(200) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 20) ? &mons[PM_SUPERTHIEF] : &mons[PM_NIX]);
+	else if (i > 96)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_AK_THIEF_IS_DEAD_]);
+	else if (i > 94)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_UN_IN_PROTECT_MODE]);
+	else if (i > 84)	return((level_difficulty() < 20) ? &mons[PM_SPACEWARS_FIGHTER] : &mons[PM_UNDEAD_SPACEWARS_FIGHTER]);
+	else if (i > 74)	return(&mons[PM_CAR_DRIVING_SUPERTHIEF]);
+	else if (i > 64)	return(&mons[PM_SUPERJEDI]);
+	else if (i > 54)	return(&mons[PM_DIVISION_THIEF]);
+	else if (i > 45)	return(&mons[PM_DIVISION_JEDI]);
+	else if (i > 36)	return(&mons[PM_CRITICALLY_INJURED_THIEF]);
+	else if (i > 27)	return(&mons[PM_CRITICALLY_INJURED_JEDI]);
+	else if (i > 18)	return(&mons[PM_HUGE_OGRE_THIEF]);
+	else if (i > 9)	return(&mons[PM_GUNNHILD_S_GENERAL_STORE]);
+	else			return(&mons[PM_SUPERTHIEF]);
+}
+
+struct permonst *
 colormon(color)
 {
 
@@ -1469,6 +1492,9 @@ mkinsideroom()
     schar typ, typ2;
 	register int sx,sy = 0;
 
+	register int tryct = 0;
+	register struct obj *otmp;
+
     if (!(sroom = pick_room(FALSE))) return;
 
 	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
@@ -1492,10 +1518,30 @@ mkinsideroom()
 
 			if (typ == FOUNTAIN) 	level.flags.nfountains++;
 			if (typ == SINK) 	level.flags.nsinks++;
+
+			if (typ == GRAVE) {
+
+					make_grave(sx, sy, (char *) 0);
+					/* Possibly fill it with objects */
+					if (!rn2(3)) (void) mkgold(0L, sx, sy);
+					for (tryct = rn2(5); tryct; tryct--) {
+					    otmp = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmp) return;
+					    curse(otmp);
+					    otmp->ox = sx;
+					    otmp->oy = sy;
+					    add_to_buried(otmp);
+					}
+
+				}
 			}
 			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))			(void) maketrap(sx, sy, typ2);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
+
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40)) 	(void) makemon(insidemon(), sx, sy, MM_ADJACENTOK);
+
 		}
 
 	level.flags.has_insideroom = 1;
