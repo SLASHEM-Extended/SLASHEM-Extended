@@ -611,6 +611,9 @@ register struct monst *mtmp;
 					rn1(10, 10) :
 					rn1(4, 4);
 				if (Half_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
+				if (!rn2(100)) { /* evil patch idea by jonadab: 1% chance of causing amnesia */
+					forget(1 + rn2(5));
+				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
 			}
 		}
