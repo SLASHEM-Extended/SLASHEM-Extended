@@ -845,19 +845,20 @@ register struct obj *sobj;
 outtrapmap:
     cls();
 
+	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (rn2(2)) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST) && obj->otrapped)
-	sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
+	if (rn2(2)) sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door < doorindex; door++) {
 	x = doors[door].x;
 	y = doors[door].y;
 	if (levl[x][y].doormask & D_TRAPPED)
-	sense_trap((struct trap *)0, x, y, sobj && sobj->cursed);
+	if (rn2(2)) sense_trap((struct trap *)0, x, y, sobj && sobj->cursed);
     }
 
     newsym(u.ux,u.uy);
