@@ -2538,6 +2538,16 @@ boolean at_stairs, falling, portal;
 		    (near_capacity() > UNENCUMBERED || Punished || Fumbling)) {
 #endif /* CONVICT */
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
+
+		    if (!rn2(10)) { /* evil patch idea by jonadab: amnesia */
+
+			if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+			} else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			}
+		    }
 		    if (Punished) {
 			drag_down();
 			if (carried(uball)) {
