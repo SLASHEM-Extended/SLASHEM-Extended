@@ -2894,6 +2894,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	boolean stoneable = (touch_petrifies(&mons[mnum]) && !Stone_resistance &&
 				!poly_when_stoned(youmonst.data));
 
+	register struct permonst *ptr = &mons[mnum];
 
 	/* KMH, conduct */
 	if (!vegan(&mons[mnum])) u.uconduct.unvegan++;
@@ -3027,21 +3028,21 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	} else if (acidic(&mons[mnum]) && !Acid_resistance) {
 		tp++;
 		You("have a very bad case of stomach acid."); /* not body_part() */
-		losehp(rnd(15), "acidic corpse", KILLED_BY_AN);
+		losehp(rnd(15 + ptr->mlevel), "acidic corpse", KILLED_BY_AN);
 	} else if (poisonous(&mons[mnum]) && rn2(5)) {
 		tp++;
 		pline(Hallucination ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 			if (!rn2(3)) losestr(rnd(2)); /* tone down strength loss, since you have to eat many more poisonous */
 			if (!rn2(60)) losestr(rnd(2)); /* corpses in order to get poison resistance --Amy */
-			losehp(rnd(15), "poisonous corpse", KILLED_BY_AN);
+			losehp(rnd(15 + ptr->mlevel), "poisonous corpse", KILLED_BY_AN);
 		} else	You("seem unaffected by the poison.");
 	/* now any corpse left too long will make you mildly ill */
 	} else if ((rotted > 5L || (rotted > 3L && rn2(5)))
 					&& !Sick_resistance) {
 		tp++;
 		You_feel("%ssick.", (Sick) ? "very " : "");
-		losehp(rnd(8), "cadaver", KILLED_BY_AN);
+		losehp(rnd(8 + ptr->mlevel), "cadaver", KILLED_BY_AN);
 	}
 
 	/* delay is weight dependent */
