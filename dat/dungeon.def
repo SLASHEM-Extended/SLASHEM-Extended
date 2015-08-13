@@ -118,7 +118,7 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
-RNDLEVEL:		"medus" "none" @ (-5, 4) 11
+RNDLEVEL:		"medus" "none" @ (-5, 4) 12
 LEVALIGN:		chaotic
 RNDLEVEL:			"castle" "none" @ (-1, 0) 9
 CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
