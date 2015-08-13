@@ -963,7 +963,8 @@ boolean atme;
 			if (hungr > u.uhunger-3)
 				hungr = u.uhunger-3;
 	if (energy > u.uen)  {
-		You("don't have enough energy to cast that spell. The required amount was %d.",energy);
+		if (role_skill >= P_SKILLED) You("don't have enough energy to cast that spell.");
+		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
 		if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
@@ -974,8 +975,10 @@ boolean atme;
 			losehp(energy,"spellcasting exhaustion", KILLED_BY);
 			if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
 			energy = u.uen;
-		} else
+		} else {
+			if (role_skill >= P_SKILLED) pline("The required amount was %d.",energy);
 			return 0;
+		}
 	}
 	morehungry(hungr);
 
