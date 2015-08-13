@@ -711,6 +711,8 @@ boolean artif;
 #ifdef INVISIBLE_OBJECTS
 	otmp->oinvis = !always_visible(otmp) && \
 		/*(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && */ !rn2(1250);
+
+	if (otmp->otyp == BOULDER && In_sokoban(&u.uz) && !((moves + u.monstertimefinish) % 1317) ) otmp->oinvis = 1;
 #endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
