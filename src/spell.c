@@ -894,6 +894,11 @@ boolean atme;
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
 	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone()) energy *= 2;
 
+	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
+	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
+	if (spellid(spell) == SPE_PETRIFY) { energy *= 5; energy /= 2;}
+	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
+
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
@@ -1368,7 +1373,8 @@ boolean atme;
 		break;
 
 	case SPE_GODMODE:
-		incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
+		if (rn2(3)) incr_itimeout(&Invulnerable, rnd(5) );
+		else incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
 		You_feel("invincible!");
 		break;
 	case SPE_ACIDSHIELD:
