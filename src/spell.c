@@ -919,11 +919,6 @@ boolean atme;
 		return (0);
 	}
 
-	if (u.uhave.amulet) {
-		You_feel("the amulet draining your energy away.");
-		energy += rnd(2*energy);
-	}
-
 	/* Casting any sort of magic as a mahou shoujo or naga does not cause hunger */
 
 		if (!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) ) {
@@ -998,7 +993,22 @@ boolean atme;
 		return(1);
 	}
 
+	/* Players could cheat if they had just barely enough mana for casting a spell without the increased drain.
+	 * They'd just need to keep trying until the extra mana costs are randomly very low.
+	 * Prevent players from abusing this by calculating the extra drain _after_ the other checks. --Amy */
+	if (u.uhave.amulet) {
+		You_feel("the amulet draining your energy away.");
+		energy += rnd(2*energy);
+	}
+
 	u.uen -= energy;
+	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
+	if (u.uhave.amulet && u.uen < 0) {
+		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		u.uen = 0;
+		return(1);
+	}
 
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
       become alert of your location, due to mahou shoujo always announcing their attacks. */
