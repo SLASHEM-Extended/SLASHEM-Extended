@@ -5127,6 +5127,14 @@ u_init()
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
+	/* fail safe - this will be essential for the recursion trap that changes the player's role or race --Amy */
+	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_FAILED_EXISTENCE)) {
+		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
+		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
+		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
+	}
+
+
 /* In order to make the game even more interesting for lost souls, they cannot level teleport or branchport at all. */
 
 	u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] = u.ualign.type =
