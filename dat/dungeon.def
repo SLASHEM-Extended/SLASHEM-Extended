@@ -237,8 +237,8 @@ LEVEL:			"lich" "none" @ (1, 0)
 DUNGEON:		"Sokoban" "O" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
-RNDLEVEL:		"soko1" "A" @ (1, 0) 95 51
-RNDLEVEL:		"soko2" "B" @ (2, 0) 95 44
+RNDLEVEL:		"soko1" "A" @ (1, 0) 95 52
+RNDLEVEL:		"soko2" "B" @ (2, 0) 95 45
 RNDLEVEL:		"soko3" "C" @ (3, 0) 95 29
 RNDLEVEL:		"soko4" "D" @ (4, 0) 95 28
 

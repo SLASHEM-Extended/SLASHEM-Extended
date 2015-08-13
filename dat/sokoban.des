@@ -7938,6 +7938,82 @@ ENGRAVING:place[0],burn,"Elbereth"
 MONSTER:'m',random, random
 MONSTER:'m',random, random
 
+# evil patch idea by jonadab: peaceful jellies
+MAZE:"soko2-45",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# "Thinking Rabbit"
+MAP
+        ---------
+        |...|...----
+        |...+......|
+        |...|.|..|.|
+  -----------....|.|
+  |................|
+  |.|.|..--.|.|..|.|
+  |...|.....|....|.|
+ --.|...-------+-|.|
+--......|....|...|.|
+|....|..F....F...|.|
+|......-|....|...|.--
+|..-----|....|----..|
+|..|....+....+......|
+---------------------
+ENDMAP
+STAIR:(1,13), down
+STAIR:(4,13), up
+REGION:(00,00,20,14),lit,"ordinary"
+NON_DIGGABLE:(00,00,20,14)
+NON_PASSWALL:(00,00,20,14)
+DOOR:locked,(12,2)
+DOOR:locked,(15,8)
+DOOR:locked,(8,13)
+DOOR:locked,(13,13)
+OBJECT:'`',"boulder",(10,2)
+OBJECT:'`',"boulder",(13,3)
+OBJECT:'`',"boulder",(18,4)
+OBJECT:'`',"boulder",(9,5)
+OBJECT:'`',"boulder",(8,6)
+OBJECT:'`',"boulder",(7,7)
+OBJECT:'`',"boulder",(3,8)
+OBJECT:'`',"boulder",(6,8)
+OBJECT:'`',"boulder",(5,9)
+OBJECT:'`',"boulder",(4,10)
+OBJECT:'`',"boulder",(15,10)
+OBJECT:'`',"boulder",(3,11)
+OBJECT:'`',"boulder",(2,12)
+TRAP:"hole",(18,6)
+TRAP:"hole",(18,7)
+TRAP:"hole",(18,8)
+TRAP:"hole",(18,9)
+TRAP:"hole",(18,10)
+TRAP:"hole",(18,11)
+TRAP:"hole",(5,13)
+TRAP:"hole",(6,13)
+TRAP:"hole",(7,13)
+TRAP:"hole",(14,13)
+TRAP:"hole",(15,13)
+TRAP:"hole",(16,13)
+TRAP:"hole",(17,13)
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+
+MONSTER:'m',random, random
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+MONSTER:'j',random, random, peaceful
+
 ### Top (last) level of Sokoban ###
 MAZE:"soko1-1",' '
 FLAGS:noteleport
@@ -12883,6 +12959,125 @@ OBJECT:'[',"flying boots",place[0]
 OBJECT:'%',"egg",place[1]
 OBJECT:'%',"egg",place[2]
 ENGRAVING:place[0],burn,"Elbereth"
+
+# evil patch idea by jonadab: peaceful monsters everywhere
+MAZE:"soko1-52",' '
+FLAGS:noteleport
+GEOMETRY:center,center
+# "J Franklin Mentzer <wryter@aol.com>"
+MAP
+            ---------
+            |.......|
+ -------    |..----+--
+ |.....-------.|.....|
+-----........|.|.....|
+|...|-....--.|.|.....|
+|...|..--....|.|.....|
+|...|..-----.|.|.....|
+--.........|.|.|+----|
+ |.....---.|.|.F...+.|
+ |.|.....|.|.|.|...|-|
+ |.|.|.|...|.|.F...+.|
+--.---...|.|.|.|...|-|
+|.....----.|.|.F...+.|
+|..............|------
+----....|......|
+   |....|..-----
+   ---------
+ENDMAP
+RANDOM_PLACES:(20,9),(20,11),(20,13)
+STAIR:(2,3), down
+REGION:(00,00,21,17),lit,"ordinary"
+REGION:(16,03,19,07),lit,"fungusfarm",filled,true
+NON_DIGGABLE:(00,00,21,17)
+NON_PASSWALL:(00,00,21,17)
+DOOR:locked,(19,2)
+DOOR:locked,(16,8)
+DOOR:locked,(19,9)
+DOOR:locked,(19,11)
+DOOR:locked,(19,13)
+OBJECT:'`',"boulder",(6,4)
+OBJECT:'`',"boulder",(2,6)
+OBJECT:'`',"boulder",(2,7)
+OBJECT:'`',"boulder",(3,8)
+OBJECT:'`',"boulder",(6,8)
+OBJECT:'`',"boulder",(3,9)
+OBJECT:'`',"boulder",(5,9)
+OBJECT:'`',"boulder",(6,10)
+OBJECT:'`',"boulder",(6,11)
+OBJECT:'`',"boulder",(3,13)
+OBJECT:'`',"boulder",(5,14)
+OBJECT:'`',"boulder",(10,14)
+OBJECT:'`',"boulder",(4,15)
+OBJECT:'`',"boulder",(7,15)
+OBJECT:'`',"boulder",(10,15)
+TRAP:"hole",(15,1)
+TRAP:"hole",(16,1)
+TRAP:"hole",(17,1)
+TRAP:"hole",(18,1)
+TRAP:"hole",(14,3)
+TRAP:"hole",(14,4)
+TRAP:"hole",(14,5)
+TRAP:"hole",(14,6)
+TRAP:"hole",(14,7)
+TRAP:"hole",(14,8)
+TRAP:"hole",(14,9)
+TRAP:"hole",(14,10)
+TRAP:"hole",(14,11)
+TRAP:"hole",(14,12)
+TRAP:"hole",(14,13)
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'=',random,random
+OBJECT:'/',random,random
+OBJECT:'(',"bag of holding",place[0]
+ENGRAVING:place[0],burn,"Elbereth"
+
+MONSTER:'m',random, random
+MONSTER:'m',random, random
+
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
+MONSTER:random,random, random, peaceful
 
 ### Bottom (first) level of Sokoban ###
 MAZE:"soko5-1",' '
