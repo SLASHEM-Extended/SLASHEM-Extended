@@ -2297,12 +2297,24 @@ struct obj *obj, *otmp;
 	case WAN_FEAR:
 	case WAN_STONING:
 	case WAN_PARALYSIS:
-	case WAN_DISINTEGRATION:
 	case SPE_PETRIFY:
 	case SPE_PARALYSIS:
-	case SPE_DISINTEGRATION:
 	case WAN_FIREBALL:
 		res = 0;
+		break;
+	case SPE_DISINTEGRATION:
+	case WAN_DISINTEGRATION:
+
+#define oresist_disintegrationX(obj) \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) )
+
+		    if (!oresist_disintegrationX(obj)) {
+			if (Has_contents(obj)) delete_contents(obj);
+			obj_extract_self(obj);
+			obfree(obj, (struct obj *)0);
+		    }
+
 		break;
 	case SPE_STONE_TO_FLESH:
 		refresh_x = obj->ox; refresh_y = obj->oy;
