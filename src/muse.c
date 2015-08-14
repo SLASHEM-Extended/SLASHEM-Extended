@@ -2646,7 +2646,7 @@ register struct obj *otmp;
 
 			for (otmpX = mtmp->minvent; otmpX; otmpX = otmpX2) {
 			    otmpX2 = otmpX->nobj;
-			    if (!oresist_disintegration(otmpX)) {
+			    if (!oresist_disintegration(otmpX) && !stack_too_big(otmpX) ) {
 				if (Has_contents(otmpX)) delete_contents(otmpX);
 				obj_extract_self(otmpX);
 				obfree(otmpX, (struct obj *)0);
@@ -3072,6 +3072,8 @@ struct monst *mtmp;
 		if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
 		/* extra saving throw for highly enchanted armors --Amy */
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+		/* being magic resistant also offers protection */
+		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
 		/* and grease will always offer protection but can wear off */
 		else if (otmp2->greased) {
 			pline("Your body shakes violently!");
@@ -3081,8 +3083,6 @@ struct monst *mtmp;
 				update_inventory();
 			 }
 		}
-		/* being magic resistant also offers protection */
-		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
 
 	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
 		exercise(A_STR, FALSE);

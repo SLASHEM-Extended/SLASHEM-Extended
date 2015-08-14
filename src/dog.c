@@ -696,22 +696,22 @@ long nmv;		/* number of moves */
 	else mtmp->mhp += imv;
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
-	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mtmp = u.usteed) && !rn2(10) ) {
+	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mtmp == u.usteed) && !rn2(10) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mtmp = u.usteed) && !rn2(5) ) {
+	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mtmp == u.usteed) && !rn2(5) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mtmp = u.usteed) && !rn2(3) ) {
+	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mtmp == u.usteed) && !rn2(3) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mtmp = u.usteed) ) {
+	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mtmp == u.usteed) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;

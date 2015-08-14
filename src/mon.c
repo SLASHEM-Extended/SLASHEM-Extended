@@ -2410,13 +2410,13 @@ register struct monst *mtmp;
 	    /* Dead Kops may come back. */
 	    switch(rnd(10)) {
 		case 1:	     /* returns near the stairs */
-			(void) makemon(mtmp->data,xdnstair,ydnstair,NO_MM_FLAGS);
+			(void) makemon(mtmp->data,xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
 		case 2:	     /* randomly */
 			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
 			break;
 		case 3:	     /* returns near the stairs */
-			(void) makemon(mkclass(S_KOP,0),xdnstair,ydnstair,NO_MM_FLAGS);
+			(void) makemon(mkclass(S_KOP,0),xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
 		case 4:	     /* randomly */
 			(void) makemon(mkclass(S_KOP,0),0,0,NO_MM_FLAGS);
@@ -2668,7 +2668,7 @@ register struct monst *mdef;
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-			if (is_musable(obj) && !rn2(3) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
+			if (is_musable(obj) && !stack_too_big(obj) && !rn2(3) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ

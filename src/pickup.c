@@ -1239,7 +1239,7 @@ boolean telekinesis;
 	}
     }
 
-    if (obj->otyp == SCR_SCARE_MONSTER && result <= 0 && !container)
+    if (obj->otyp == SCR_SCARE_MONSTER && !stack_too_big(obj) && result <= 0 && !container)
 	obj->spe = 0;
     return result;
 }
@@ -1381,7 +1381,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		    return -1;
 		}
 	    }
-	} else  if (obj->otyp == SCR_SCARE_MONSTER) {
+	} else  if (obj->otyp == SCR_SCARE_MONSTER && !stack_too_big(obj)) {
 	    if (obj->blessed) obj->blessed = 0;
 	    else if (!obj->spe && !obj->cursed) obj->spe = 1;
 	    else {
@@ -2409,7 +2409,7 @@ int held;
 	if (Is_mbag(obj) && obj->cursed) {
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
-		if (!rn2(13) && !evades_destruction(curr)) {
+		if (!rn2(13) && !evades_destruction(curr) && !stack_too_big(curr)) {
 		    loss += mbag_item_gone(held, curr);
 		    used = 1;
 		}
@@ -2418,7 +2418,7 @@ int held;
 	if (obj->otyp == BAG_OF_DIGESTION && !rn2(obj->blessed ? 20 : (obj->cursed ? 2 : 10))) {
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
-		if (!evades_destruction(curr)) {
+		if (!evades_destruction(curr) && !stack_too_big(curr)) {
 		    loss += mbag_item_gone(held, curr);
 		    used = 1;
 		}

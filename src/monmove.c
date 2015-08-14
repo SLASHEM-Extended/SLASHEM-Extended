@@ -237,22 +237,22 @@ boolean digest_meal;
 	}
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
-	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon = u.usteed) && !rn2(10) ) {
+	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon == u.usteed) && !rn2(10) ) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mon = u.usteed) && !rn2(5) ) {
+	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mon == u.usteed) && !rn2(5) ) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mon = u.usteed) && !rn2(3) ) {
+	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mon == u.usteed) && !rn2(3) ) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
 	}
-	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mon = u.usteed) ) {
+	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mon == u.usteed) ) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
@@ -286,7 +286,7 @@ disturb(mtmp)
 	 */
 	if(couldsee(mtmp->mx,mtmp->my) &&
 		distu(mtmp->mx,mtmp->my) <= 100 &&
-		(!Stealth || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
+		(!Stealth || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH
 			|| mtmp->data == &mons[PM_JABBERWOCK]
 			|| mtmp->data == &mons[PM_VORPAL_JABBERWOCK]
