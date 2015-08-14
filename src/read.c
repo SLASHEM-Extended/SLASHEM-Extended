@@ -1325,8 +1325,39 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			levl[randomx][randomy].typ = POOL;
+			del_engr_at(randomx, randomy);
+			water_damage(level.objects[randomx][randomy], FALSE, TRUE);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
@@ -1374,8 +1405,38 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			levl[randomx][randomy].typ = LAVAPOOL;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
@@ -1423,10 +1484,45 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+
+			if (rn2(3)) doorlockX(randomx, randomy);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				block_point(randomx,randomy);
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+		}
+	}
 
 	if (rn2(3)) doorlockX(x, y);
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
 		return;
 
@@ -1476,8 +1572,38 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = TREE;
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
 		return;
 
@@ -1525,8 +1651,37 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = ICE;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
 		return;
 
@@ -1574,8 +1729,38 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = CLOUD;
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
 		return;
 
@@ -1624,8 +1809,38 @@ genericptr_t poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
 
-	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = IRONBARS;
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
 		return;
 
@@ -2279,7 +2494,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_lockflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_lockflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2325,7 +2545,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_lavaflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_lavaflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2366,7 +2591,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_treeflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_treeflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2407,7 +2637,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_iceflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_iceflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2470,7 +2705,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_cloudflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_cloudflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2511,7 +2751,12 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
-				do_clear_areaX(u.ux, u.uy, 5-2*bcsign(sobj), do_barflood,
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_barflood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
@@ -2552,8 +2797,13 @@ register struct obj	*sobj;
 			int madepool = 0;
 			int stilldry = -1;
 			int x,y,safe_pos=0;
+			int radius = 5;
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 			if (!sobj->cursed)
-				do_clear_areaX(u.ux, u.uy, 5, do_flood,
+				do_clear_areaX(u.ux, u.uy, radius, do_flood,
 						(genericptr_t)&madepool);
 
 			/* check if there are safe tiles around the player */
