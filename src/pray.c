@@ -1675,12 +1675,22 @@ dosacrifice()
 #endif
 #endif
 
+		if (!issoviet) {
 pline("An invisible choir sings, and you are bathed in radiance...");
 		godvoice(altaralign, "Congratulations, mortal!");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 verbalize("In return for thy service, I grant thee the gift of Immortality!");
 		You("ascend to the status of Demigod%s...",
 		    flags.female ? "dess" : "");
+		} else {
+pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiation...");
+		godvoice(altaralign, "Haraso, tovari.");
+		display_nhwindow(WIN_MESSAGE, FALSE);
+verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
+		You("ascend to the status of Demigod%s...",
+		    flags.female ? "dess" : "");
+
+		}
 		done(ASCENDED);
 	    }
 	}
