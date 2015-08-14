@@ -1262,8 +1262,8 @@ int howmuch;
 	/* 1 in 3 chance of forgetting some levels */
 	if (!rn2(3)) forget_levels(rn2(10));
 
-	/* 1 in 3 chance of forgeting some objects */
-	if (!rn2(3)) forget_objects(rn2(10));
+	/* 1 in 10 chance of forgeting some objects */
+	if (!rn2(10)) forget_objects(rn2(10));
 
 	if (howmuch & ALL_SPELLS) losespells();
 	/*

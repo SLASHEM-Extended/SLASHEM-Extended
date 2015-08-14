@@ -4291,8 +4291,8 @@ uchar aatyp;
 
 			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-			forget_levels(5);	/* lose memory of 25% of levels */
-			forget_objects(5);	/* lose memory of 25% of objects */
+			if (!rn2(3)) forget_levels(5);	/* lose memory of 25% of levels */
+			if (!rn2(10)) forget_objects(5);	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
 		    } else tmp = 0;
 
