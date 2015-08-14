@@ -1427,7 +1427,7 @@ genericptr_t poolcnt;
 	if (rn2(3)) doorlockX(x, y);
 
 	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
-	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != CORR))
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
 		return;
 
 	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
@@ -1437,7 +1437,8 @@ genericptr_t poolcnt;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a wall at x, y */
-		levl[x][y].typ = STONE;
+		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
+		else levl[x][y].typ = CROSSWALL;
 		block_point(x,y);
 		del_engr_at(x, y);
 
@@ -3185,7 +3186,7 @@ revid_end:
 
 	case SCR_ENTHRONIZATION:
 
-		if (levl[u.ux][u.uy].typ != ROOM) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
 			break;
 		}
@@ -3197,7 +3198,7 @@ revid_end:
 
 	case SCR_FOUNTAIN_BUILDING:
 
-		if (levl[u.ux][u.uy].typ != ROOM) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
 			break;
 		}
@@ -3209,7 +3210,7 @@ revid_end:
 
 	case SCR_SINKING:
 
-		if (levl[u.ux][u.uy].typ != ROOM) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
 			break;
 		}
@@ -3221,7 +3222,7 @@ revid_end:
 
 	case SCR_WC:
 
-		if (levl[u.ux][u.uy].typ != ROOM) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
 			break;
 		}
@@ -3243,7 +3244,7 @@ revid_end:
 			u.ualign.record--;
 			break;
 		}
-		if (levl[u.ux][u.uy].typ != ROOM) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
 			break;
 		}
