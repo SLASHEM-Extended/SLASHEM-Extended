@@ -324,6 +324,10 @@ boolean showmsg; /* show messages */
 boolean update;  /* do newsym() */
 {
    int herbnum = rn2(SIZE(herb_info));
+   int randomx, randomy;
+   int i, j, count, randchance=0;
+	register struct monst *mtmp;
+
    if (!rn2(100)) (void) seed_tree(-1,-1);
    if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
@@ -333,6 +337,83 @@ boolean update;  /* do newsym() */
      (void) drop_ripe_treefruit(-1,-1, showmsg, update);
    (void) water_current(-1,-1, rn2(8), 
 			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);
+
+	/* evil patch idea by Amy: occasionally, corridors and room squares will "grow" back into solid rock or walls.
+	 * Depending on the # of surrounding squares that are blocked, give a higher or lower chance to place a new wall.
+	 * If 6 out of 8 surrounding squares are blocked it most probably means that it's a corridor, which would
+	 * completely block progress if it were made into a wall, and since players don't always have a pick-axe, let that	 * only happen rarely. On the other hand, if all 8 surrounding squares are blocked, there probably isn't much
+	 * harm done in closing it.
+	 * Why am I such a filthy bitch who even thinks up such bullshit?
+	 * Relax! There's a simple reason - after a while, umber hulks and similar monsters might dig out entire levels,
+	 * and in vanilla there's absolutely no way to restore them to their previous condition. Not so here,
+	 * where the dungeon will gradually "repair" itself, so to speak. Scrolls of lockout can further that repair.*/
+   if (!rn2(iswarper ? 5 : 10) || (!(u.monstertimefinish % 517) && !rn2(iswarper ? 5 : 10) ) || (!(u.monstertimefinish % 3517) && !rn2(iswarper ? 2 : 5) ) || !(u.monstertimefinish % 23517) ) {
+	randomx = rn1(COLNO-3,2);
+	randomy = rn2(ROWNO);
+
+	if (randomx && randomy && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+		count = 0;
+		for (i= -1; i<=1; i++) for(j= -1; j<=1; j++) {
+			if (!i && !j) continue;
+			if (!isok(randomx+i, randomy+j) || IS_STWALL(levl[randomx+i][randomy+j].typ) )
+				count++;
+		}
+		switch (count) {
+	
+			case 8:
+				randchance = 1;
+				break;
+			case 7:
+				randchance = 2;
+				break;
+			case 6:
+				randchance = 1000;
+				break;
+			case 5:
+				randchance = 200;
+				break;
+			case 4:
+				randchance = 50;
+				break;
+			case 3:
+				randchance = 10;
+				break;
+			case 2:
+				randchance = 3;
+				break;
+			case 1:
+				randchance = 2;
+				break;
+			case 0:
+			default: /* e.g. if it's 9 */
+				randchance = 1;
+				break;
+	
+		}
+		/*pline("coord %d,%d, count %d, chance %d",randomx, randomy, count, randchance);*/
+
+		if (!rn2(randchance)) {
+
+
+			if (rn2(3)) doorlockX(randomx, randomy);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				block_point(randomx,randomy);
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+
+		}
+	}
+
+   }
 }
 
 /* catch up with growths when returning to a previously visited level */
