@@ -9643,14 +9643,15 @@ mineralize()
 
 	/* determine if it is even allowed;
 	   almost all special levels are excluded */
-	if (In_hell(&u.uz) || In_V_tower(&u.uz) ||
+/*	if (In_hell(&u.uz) || In_V_tower(&u.uz) ||
 #ifdef REINCARNATION
 		Is_rogue_level(&u.uz) ||
 #endif
 		level.flags.arboreal ||
 		((sp = Is_special(&u.uz)) != 0 && !Is_oracle_level(&u.uz)
 					&& (!In_mines(&u.uz) || sp->flags.town)
-	    )) return;
+	    )) return;*/
+	/* Amy edit - let's just ditch that. If players want to dig for items, let them do so! */
 
 	/* basic level-related probabilities */
 	goldprob = 20 + depth(&u.uz) / 3;
@@ -9680,15 +9681,15 @@ mineralize()
 	 */
 	for (x = 2; x < (COLNO - 2); x++)
 	  for (y = 1; y < (ROWNO - 1); y++)
-	    if (levl[x][y+1].typ != STONE) {	 /* <x,y> spot not eligible */
+	    if (levl[x][y+1].typ != STONE && rn2(100) ) {	 /* <x,y> spot not eligible */
 		y += 2;		/* next two spots aren't eligible either */
-	    } else if (levl[x][y].typ != STONE) { /* this spot not eligible */
+	    } else if (levl[x][y].typ != STONE && rn2(100) ) { /* this spot not eligible */
 		y += 1;		/* next spot isn't eligible either */
-	    } else if (!(levl[x][y].wall_info & W_NONDIGGABLE) &&
-		  levl[x][y-1].typ   == STONE &&
+	    } else if ( (!(levl[x][y].wall_info & W_NONDIGGABLE) || !rn2(1000) ) &&
+		  ((levl[x][y-1].typ   == STONE &&
 		  levl[x+1][y-1].typ == STONE && levl[x-1][y-1].typ == STONE &&
 		  levl[x+1][y].typ   == STONE && levl[x-1][y].typ   == STONE &&
-		  levl[x+1][y+1].typ == STONE && levl[x-1][y+1].typ == STONE) {
+		  levl[x+1][y+1].typ == STONE && levl[x-1][y+1].typ == STONE) || !rn2(100) ) ) {
 		if (rn2(1000) < goldprob) {
 		    if ((otmp = mksobj(GOLD_PIECE, FALSE, FALSE)) != 0) {
 			otmp->ox = x,  otmp->oy = y;
