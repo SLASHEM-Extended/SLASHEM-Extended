@@ -899,8 +899,8 @@ register struct monst *mtmp;
 	case MS_BUZZ:
 	    pline_msg = mtmp->mpeaceful ? "drones." : "buzzes angrily.";
 	    break;
-	case MS_GRUNT:
-	    pline_msg = "grunts.";
+	case MS_GRUNT: /* YANI by ShivanHunter */
+	    pline_msg = (mtmp->data->mlet == S_TROLL) ? "shouts: 'VI > EMACS!!!!!'" : "grunts.";
 	    break;
 	case MS_NEIGH:
 	    if (mtmp->mtame < 5)
