@@ -214,7 +214,9 @@ dosit()
 	    else {
 			if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
-			if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			/* Based on real life experience (urgh) this doesn't always instantly cure sickness. --Amy */
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			if (u.uhs == 0) morehungry(rn2(400)+200);
 	    }
 #endif
@@ -623,17 +625,19 @@ rndcurse()			/* curse a few inventory items at random! */
 		    continue;
 		}
 
+		if (!stack_too_big(otmp)) {
 		if(otmp->blessed)
 			unbless(otmp);
 		else
 			curse(otmp);
+		}
 	    }
 	    update_inventory();
 	}
 
 #ifdef STEED
 	/* treat steed's saddle as extended part of hero's inventory */
-	if (u.usteed && !rn2(4) &&
+	if (u.usteed && !rn2(50) &&
 		(otmp = which_armor(u.usteed, W_SADDLE)) != 0 &&
 		!otmp->prmcurse) {	/* skip if already cursed */
 	    if (otmp->blessed)

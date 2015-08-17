@@ -219,6 +219,7 @@ struct monst *victim;
 	int erosion;
 
 	if (!otmp) return(FALSE);
+	if (stack_too_big(otmp)) return (FALSE);
 	switch(type) {
 		case 0: vulnerable = is_flammable(otmp);
 			break;
@@ -331,6 +332,7 @@ struct monst *victim;
 	int erosion;
 
 	if (!otmp) return(FALSE);
+	if (stack_too_big(otmp)) return (FALSE);
 	switch(type) {
 		case 0: vulnerable = TRUE;
 			break;
@@ -444,7 +446,7 @@ struct monst *victim;
 	    else if (vismon)
 		pline("%s's %s %s", Monnam(victim), aobjnam(otmp,"are"), txt);
 	}
-	if (!rn2(2)) {
+	if (!rn2(2) && !stack_too_big(otmp) ) {
 	    otmp->greased = 0;
 	    if (carried(otmp)) {
 		pline_The("grease dissolves.");
@@ -1643,7 +1645,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(5)) {
+			if (!rn2(5) && !stack_too_big(otmpi) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
@@ -5656,11 +5658,11 @@ struct obj *box;	/* null for floor trap */
 	    losehp(num + rnd((monster_difficulty() / 3) + 1), tower_of_flame, KILLED_BY_AN);
 	burn_away_slime();
 
-	if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
-	    destroy_item(SCROLL_CLASS, AD_FIRE);
-	    destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    destroy_item(POTION_CLASS, AD_FIRE);
-		burnarmor(&youmonst);
+	/*if ( burnarmor(&youmonst) || !rn2(33))*/ /* new calculation -- Amy */ {
+	    if (!rn2(33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(33)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(33)) burnarmor(&youmonst);
 	}
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
@@ -5796,6 +5798,8 @@ xchar x, y;
 	if (catch_lit(obj))
 	    continue;
 
+	if (stack_too_big(obj)) continue;
+
 	if (Is_container(obj)) {
 	    switch (obj->otyp) {
 	    case ICE_BOX:
@@ -5890,7 +5894,7 @@ register boolean force, here;
 	/* The invocation artifacts and the Amulet of Yendor must be immune.
 	 * Alignment keys, too, even though the game is still winnable without them. */
 
-			if ( (!rn2(50) || force ) && (!obj->blessed || !rn2(4) ) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
+			if ( (!rn2(50) || force ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
 
 				if (rn2(2)) {
 
@@ -5937,7 +5941,9 @@ register boolean force, here;
 
 		(void) snuff_lit(obj);
 
-		if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
+		if (stack_too_big(obj)) continue;
+
+		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased = 0;
@@ -6125,8 +6131,10 @@ register boolean force, here;
 
 		(void) snuff_lit(obj);
 
+		if (stack_too_big(obj)) continue;
+
 		/* important quest items are immune */
-		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS) break;
+		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS) continue;
 
 			if (obj->oeroded < MAX_ERODE && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
@@ -6247,7 +6255,7 @@ drown()
 	    /* Bad idea */
 	    You_feel("the sparkling waters of the Lethe sweep away your "
 			    "cares!");
-	    forget(25);
+	    forget(5); /* used to be 25 --Amy */
 	}
 
 	water_damage(invent, FALSE, FALSE);
@@ -7641,7 +7649,7 @@ lava_effects()
 #endif
 	for(obj = invent; obj; obj = obj2) {
 	    obj2 = obj->nobj;
-	    if(is_organic(obj) && !obj->oerodeproof) {
+	    if(is_organic(obj) && !obj->oerodeproof && !stack_too_big(obj)) {
 		if(obj->owornmask) {
 		    if (usurvive)
 			Your("%s into flame!", aobjnam(obj, "burst"));

@@ -221,7 +221,7 @@ struct obj *spellbook;
 {
 	boolean gone = FALSE;
 
-	if (!rn2(3) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+	if (!rn2(5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 	    spellbook->in_use = TRUE;	/* in case called from learn */
 	    pline(
 	"Being confused you have difficulties in controlling your actions.");
@@ -470,7 +470,7 @@ register struct obj *spellbook;
 			makeknown(booktype);
 			return(1);
 		}
-		if (spellbook->spe && confused) {
+		if (spellbook->spe && confused && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {
 		    check_unpaid_usage(spellbook, TRUE);
 		    consume_obj_charge(spellbook, FALSE);
 		    pline_The("words on the page seem to glow faintly purple.");
@@ -955,6 +955,11 @@ boolean atme;
 			 * this is low enough that they must eat before
 			 * casting anything else except detect food
 			 */
+
+	if (u.uhave.amulet) { /* casting while you have the amulet always causes extra hunger no matter what --Amy */
+		hungr += rnd(2*energy);
+	}
+
 			if (hungr > u.uhunger-3)
 				hungr = u.uhunger-3;
 	if (energy > u.uen)  {
@@ -1171,7 +1176,7 @@ boolean atme;
 		    register struct obj *obj, *obj2;
 		    for (obj = invent; obj; obj = obj2) {
 		      obj2 = obj->nobj;
-			if (obj->blessed) unbless(obj);
+			if (obj->blessed && !stack_too_big(obj) ) unbless(obj);
 		    }
 		}
 

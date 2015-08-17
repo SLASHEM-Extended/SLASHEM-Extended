@@ -561,7 +561,7 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
-	if (tmp > 127) tmp = 127; /* sanity check --Amy */
+	/*if (tmp > 127) tmp = 127;*/ /* sanity check --Amy ... but I think it's not needed? */
 
 	return(tmp);
 }
@@ -1025,7 +1025,7 @@ struct monst *mon;
 
 	}
 
-	if (tmp > 127) tmp = 127; /* sanity check --Amy */
+	/*if (tmp > 127) tmp = 127;*/ /* sanity check --Amy ... but I think it's not needed? */
 
 	return(tmp);
 }
@@ -1558,7 +1558,6 @@ abon()		/* attack bonus for strength & dexterity */
 	int sbon;
 	int str = ACURR(A_STR), dex = ACURR(A_DEX);
 
-	if (Upolyd) return(adj_lev(&mons[u.umonnum]) - 3);
 	/* [Tom] lowered these a little */        
 	if (str < 6) sbon = -1;
 	else if (str < 8) sbon = 0;
@@ -1597,15 +1596,16 @@ abon()		/* attack bonus for strength & dexterity */
 /* and harder for high level characters because they often hit automatically anyway */
 
 	if (!Upolyd) {
-	if (u.ulevel > 10) sbon -= 1;
-	if (u.ulevel > 13) sbon -= 1;
-	if (u.ulevel > 16) sbon -= 1;
-	if (u.ulevel > 19) sbon -= 1;
-	if (u.ulevel > 22) sbon -= 1;
-	if (u.ulevel > 24) sbon -= 1;
-	if (u.ulevel > 26) sbon -= 1;
-	if (u.ulevel > 28) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 10) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 13) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 16) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 19) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 22) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 24) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 26) sbon -= 1;
+	if (!rn2(2) && u.ulevel > 28) sbon -= 1;
 	}
+	if (Upolyd) sbon += (adj_lev(&mons[u.umonnum]) - 3);
 
 	return(sbon);
 }
@@ -2482,9 +2482,9 @@ struct obj *weapon;
 	    case P_UNSKILLED:   bonus = -4; break;
 	    case P_BASIC:       bonus =  0; break;
 		    case P_SKILLED:     bonus =  1; break;
-		    case P_EXPERT:      bonus =  2; break;
-		    case P_MASTER:	bonus =  3; break;
-		    case P_GRAND_MASTER:	bonus =  4; break;
+		    case P_EXPERT:      bonus =  1 + rnd(2) ; break;
+		    case P_MASTER:	bonus =  2 + rnd(3); break;
+		    case P_GRAND_MASTER:	bonus =  3 + rnd(4); break;
 	}
 /* WAC -- No longer needed here...  */
 #if 0
@@ -2642,18 +2642,24 @@ struct obj *weapon;
 	if (Race_if(PM_OGRO) && weapon && weapon_type(weapon) == P_CLUB){
 
 		bonus += 2;
+		if (u.ulevel >= 15) bonus += 1;
+		if (u.ulevel >= 30) bonus += 1;
 	}
 
 	/* Navi are highly proficient with spears --Amy */
 	if (Race_if(PM_NAVI) && weapon && weapon_type(weapon) == P_SPEAR){
 
 		bonus += 3;
+		if (u.ulevel >= 15) bonus += 1;
+		if (u.ulevel >= 30) bonus += 1;
 	}
 
 	/* rubber hoses for jesters */
 	if (Role_if(PM_JESTER) && weapon && weapon->otyp == RUBBER_HOSE){
 
 		bonus += 3;
+		if (u.ulevel >= 15) bonus += 2;
+		if (u.ulevel >= 30) bonus += 2;
 	}
 	/* Transvestites can whack enemies using heels --Amy */
 	if (Role_if(PM_TRANSVESTITE) && weapon && weapon_type(weapon) == P_HAMMER){

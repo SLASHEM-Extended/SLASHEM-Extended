@@ -812,6 +812,8 @@ boolean fade_scrolls;
 
 	erosion = acid_dmg ? target->oeroded2 : target->oeroded;
 
+	if (stack_too_big(target)) return;
+
 	if (target->greased) {
 	    grease_protect(target,(char *)0,victim);
 	} else if (target->oclass == SCROLL_CLASS) {

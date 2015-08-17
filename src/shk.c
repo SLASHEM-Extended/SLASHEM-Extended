@@ -3634,6 +3634,97 @@ boolean catchup;	/* restoring a level */
 		return(0);
 	}
 	if ((ttmp = t_at(x, y)) != 0) {
+
+	    if ((ttmp->ttyp != RUST_TRAP
+					|| shkp->data == &mons[PM_FLAMING_SPHERE]
+					|| shkp->data == &mons[PM_IRON_GOLEM])
+				&& ttmp->ttyp != STATUE_TRAP
+				&& ttmp->ttyp != SHIT_TRAP
+				&& ttmp->ttyp != ANIMATION_TRAP
+				&& ttmp->ttyp != RMB_LOSS_TRAP
+				&& ttmp->ttyp != SUPERSCROLLER_TRAP
+				&& ttmp->ttyp != ACTIVE_SUPERSCROLLER_TRAP
+				&& ttmp->ttyp != SPEED_TRAP
+				&& ttmp->ttyp != MENU_TRAP
+				&& ttmp->ttyp != SWARM_TRAP
+				&& ttmp->ttyp != AUTOMATIC_SWITCHER
+				&& ttmp->ttyp != HEEL_TRAP
+				&& ttmp->ttyp != VULN_TRAP
+				&& ttmp->ttyp != DISPLAY_TRAP
+				&& ttmp->ttyp != SPELL_LOSS_TRAP
+				&& ttmp->ttyp != YELLOW_SPELL_TRAP
+				&& ttmp->ttyp != AUTO_DESTRUCT_TRAP
+				&& ttmp->ttyp != MEMORY_TRAP
+				&& ttmp->ttyp != INVENTORY_TRAP
+				&& ttmp->ttyp != BLACK_NG_WALL_TRAP
+				&& ttmp->ttyp != UNKNOWN_TRAP
+				&& ttmp->ttyp != TRAP_PERCENTS
+				&& ttmp->ttyp != LAVA_TRAP
+				&& ttmp->ttyp != FLOOD_TRAP
+				&& ttmp->ttyp != FREE_HAND_TRAP
+				&& ttmp->ttyp != UNIDENTIFY_TRAP
+				&& ttmp->ttyp != THIRST_TRAP
+				&& ttmp->ttyp != LUCK_TRAP
+				&& ttmp->ttyp != SHADES_OF_GREY_TRAP
+				&& ttmp->ttyp != GRAVITY_TRAP
+				&& ttmp->ttyp != STONE_TO_FLESH_TRAP
+				&& ttmp->ttyp != QUICKSAND_TRAP
+				&& ttmp->ttyp != FAINT_TRAP
+				&& ttmp->ttyp != CURSE_TRAP
+				&& ttmp->ttyp != DIFFICULTY_TRAP
+				&& ttmp->ttyp != SOUND_TRAP
+				&& ttmp->ttyp != CASTER_TRAP
+				&& ttmp->ttyp != WEAKNESS_TRAP
+				&& ttmp->ttyp != ROT_THIRTEEN_TRAP
+				&& ttmp->ttyp != BISHOP_TRAP
+				&& ttmp->ttyp != CONFUSION_TRAP
+				&& ttmp->ttyp != NUPESELL_TRAP
+				&& ttmp->ttyp != DROP_TRAP
+				&& ttmp->ttyp != DSTW_TRAP
+				&& ttmp->ttyp != STATUS_TRAP
+				&& ttmp->ttyp != PESTILENCE_TRAP
+				&& ttmp->ttyp != FAMINE_TRAP
+				&& ttmp->ttyp != ALIGNMENT_TRAP
+				&& ttmp->ttyp != STAIRS_TRAP
+				&& ttmp->ttyp != UNINFORMATION_TRAP
+				&& ttmp->ttyp != INTRINSIC_LOSS_TRAP
+				&& ttmp->ttyp != BLOOD_LOSS_TRAP
+				&& ttmp->ttyp != BAD_EFFECT_TRAP
+				&& ttmp->ttyp != MULTIPLY_TRAP
+				&& ttmp->ttyp != AUTO_VULN_TRAP
+				&& ttmp->ttyp != NASTINESS_TRAP
+
+				&& (ttmp->ttyp != DEATH_TRAP ||
+				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )
+
+				&& (ttmp->ttyp != DISINTEGRATION_TRAP ||
+				    (!resists_disint(shkp)) )
+
+				&& (ttmp->ttyp != DRAIN_TRAP ||
+				    (!resists_drli(shkp)) )
+
+				&& (ttmp->ttyp != SLP_GAS_TRAP ||
+				    (!resists_sleep(shkp) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
+				&& (ttmp->ttyp != POISON_GAS_TRAP ||
+				    (!resists_poison(shkp) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
+				&& (ttmp->ttyp != SLOW_GAS_TRAP ||
+				    (!breathless(shkp->data) && (!shkp->egotype_undead) ) )
+				&& (ttmp->ttyp != BEAR_TRAP ||
+				    (shkp->data->msize > MZ_SMALL &&
+				     !amorphous(shkp->data) && !is_flyer(shkp->data) && (!shkp->egotype_flying) ))
+				&& (ttmp->ttyp != FIRE_TRAP ||
+				    !resists_fire(shkp))
+				&& (ttmp->ttyp != SHOCK_TRAP ||
+				    !resists_elec(shkp))
+				&& (ttmp->ttyp != ICE_TRAP ||
+				    !resists_cold(shkp))
+				&& (ttmp->ttyp != SQKY_BOARD || (!is_flyer(shkp->data) && (!shkp->egotype_flying) ))
+				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !resists_acid(shkp)) )
+				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !is_swimmer(shkp->data) && !amphibious(shkp->data) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
+				&& (ttmp->ttyp != WEB || (!amorphous(shkp->data) &&
+				    !webmaker(shkp->data)))
+			) {
+
 	    if (x == u.ux && y == u.uy)
 		if (!Passes_walls)
 		    return(0);
@@ -3655,6 +3746,7 @@ boolean catchup;	/* restoring a level */
 	    }
 	    newsym(x, y);
 	    return(3);
+	    }
 	}
 	if (IS_ROOM(tmp_dam->typ)) {
 	    /* No messages, because player already filled trap door */
@@ -5150,7 +5242,8 @@ shk_uncurse(slang, shkp)
 	{
 		/* Curse the item! */
 		You("accidentally ask for the item to be cursed");
-		curse(obj);
+		if (!stack_too_big(obj)) curse(obj);
+		else pline("But the stack was so big that the shopkeeper failed to curse it.");
 	}
 	else if (Hallucination)
 	{
@@ -5163,7 +5256,8 @@ shk_uncurse(slang, shkp)
 		    pline("Distracted by your blood-shot %s, the shopkeeper",
 			makeplural(body_part(EYE)));
 		    pline("accidentally blesses the item!");
-		    bless(obj);
+		    if (!stack_too_big(obj)) bless(obj);
+		    else pline("But the stack was so big that the blessing failed.");
 		}
 		else
 		{
@@ -5173,7 +5267,8 @@ shk_uncurse(slang, shkp)
 	else
 	{
 		verbalize("All done - safe to handle, now!");
-		uncurse(obj);
+		if (!stack_too_big(obj)) uncurse(obj);
+		else pline("But the stack was so big that the shopkeeper failed to uncurse it.");
 	}
 }
 
@@ -5377,9 +5472,10 @@ struct monst *shkp;
 	    else if (Hallucination)
 		Your(" - tin roof, un-rusted!");
 
-	    obj->oeroded = obj->oeroded2 = 0;
+	    if (!stack_too_big(obj)) {obj->oeroded = obj->oeroded2 = 0;
 	    obj->rknown = TRUE;
 	    obj->oerodeproof = TRUE;
+		} else pline("But it failed due to the stack being too big!");
 	    break;
 
 	case 2:
@@ -5413,14 +5509,15 @@ struct monst *shkp;
 		Your("%s to evaporate into thin air!", aobjnam(obj, "seem"));
 	    /* ...No actual vibrating and no evaporating */
 
-	    if (obj->otyp == WORM_TOOTH) {
+	    if (obj->otyp == WORM_TOOTH && !stack_too_big(obj) ) {
 		obj->otyp = CRYSKNIFE;
 		Your("weapon seems sharper now.");
 		obj->cursed = 0;
 		break;
 	    }
 
-	    obj->spe++;
+	    if (!stack_too_big(obj)) obj->spe++;
+	    else pline("The enchantment failed because the stack was too big.");
 	    break;
 
 	case 3:

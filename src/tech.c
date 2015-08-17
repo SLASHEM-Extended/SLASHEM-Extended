@@ -1636,7 +1636,8 @@ int tech_no;
                     		pline("%s %s %s.",Your_buf,
 						  aobjnam(obj, "softly glow"),
 						  hcolor(NH_AMBER));
-				uncurse(obj);
+				if (!stack_too_big(obj)) uncurse(obj);
+				else pline("But it failed! The stack was too big...");
 				obj->bknown=1;
 		} else if(!obj->blessed) {
 			if (!Blind) {
@@ -1646,7 +1647,8 @@ int tech_no;
 					  aobjnam(obj, "softly glow"),
 					  index(vowels, *str) ? "n" : "", str);
 			}
-			bless(obj);
+			if (!stack_too_big(obj)) bless(obj);
+			else pline("But it failed! The stack was too big...");
 			obj->bknown=1;
 		} else {
 			if (obj->bknown) {
@@ -2266,9 +2268,11 @@ int tech_no;
 		    obfree(obj, (struct obj *)0);
 		}
 		pline("Using your medical kit, you draw off a phial of your blood.");
-		losexp("drawing blood", TRUE);
+		/* Amy edit: let's make this much more useful by having the level drain only occur 1 out of 3 times. */
+		if (!rn2(3)) {losexp("drawing blood", TRUE);
 		if (u.uexp > 0)
 		    u.uexp = newuexp(u.ulevel - 1);
+		}
 		otmp = mksobj(POT_VAMPIRE_BLOOD, FALSE, FALSE);
 		otmp->cursed = obj->cursed;
 		otmp->blessed = obj->blessed;
@@ -2957,9 +2961,12 @@ int monnum;
 	if (monnum == PM_ETTIN) return PM_ETTIN_ZOMBIE;
 	if (is_giant(&mons[monnum])) return PM_GIANT_ZOMBIE;
 	/* Is it humanoid? */
-	if (!humanoid(&mons[monnum])) return (-1);
+	/* Amy edit - what the heck??? No wonder the effing tech never worked! Because NO ONE tells you that! :( */
+	/* if (!humanoid(&mons[monnum])) return (-1); */
 	/* Otherwise,  return a ghoul or ghast */
-	if (!rn2(4)) return PM_GHAST;
+	/* or a random Z because, well, we have so many monster species, let's give the necro some better undead. --Amy */
+	if (!rn2(3)) return (pm_mkclass(S_ZOMBIE, 0) );
+	else if (!rn2(4)) return PM_GHAST;
 	else return PM_GHOUL;
 }
 

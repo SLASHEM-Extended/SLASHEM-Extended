@@ -1044,6 +1044,13 @@ boolean confused;
 		return;
 	}
 
+	if (stack_too_big(obj)) {
+
+		pline("The enchantment failed because the stack was too big.");
+		return;
+
+	}
+
 	n = 0;
 	positive = rn2(2) ? 0 : 1;
 	if (obj->spe < 1) n = obj->spe;
@@ -2221,7 +2228,7 @@ register struct obj	*sobj;
 				}
 			    }
 			}
-			if (sobj->blessed || wornmask ||
+			if ((sobj->blessed || wornmask ||
 			     obj->otyp == LOADSTONE ||
 			     obj->otyp == LOADBOULDER ||
 			     obj->otyp == LUCKSTONE ||
@@ -2230,7 +2237,7 @@ register struct obj	*sobj;
 			     obj->otyp == SLEEPSTONE ||
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
-			     (obj->otyp == LEASH && obj->leashmon)) {
+			     (obj->otyp == LEASH && obj->leashmon)) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
 			    else uncurse(obj);
 			}
@@ -2331,6 +2338,11 @@ register struct obj	*sobj;
 	case SPE_ENCHANT_WEAPON:
 		if (confused) break;
 	case SCR_ENCHANT_WEAPON:
+		if (uwep && stack_too_big(uwep)) {
+			pline("The enchantment failed due to the stack being too big.");
+			break;
+		}
+
 		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 			&& confused) {
 		/* oclass check added 10/25/86 GAN */
@@ -2365,6 +2377,11 @@ register struct obj	*sobj;
 				       sobj->blessed ? rnd(2) : 1);*/
 		break;
 	case SCR_PROOF_WEAPON: /* scroll added by Amy */
+		if (uwep && stack_too_big(uwep)) {
+			pline("The enchantment failed due to the stack being too big.");
+			break;
+		}
+
 		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
 	      {
 			uwep->oerodeproof = 1;
@@ -2911,7 +2928,7 @@ register struct obj	*sobj;
 		(void) safe_teleds(FALSE);
 
 		goto_level((&medusa_level), TRUE, FALSE, FALSE);
-		register int newlev = rnd(64);
+		register int newlev = rnd(71);
 		d_level newlevel;
 		get_level(&newlevel, newlev);
 		goto_level(&newlevel, TRUE, FALSE, FALSE);
@@ -3021,7 +3038,7 @@ register struct obj	*sobj;
 		if (confused) {
 		    You_feel("charged up!");
 		    if (u.uen < u.uenmax)
-			u.uen = u.uenmax;
+			u.uen = rn2(20) ? u.uenmax : (u.uenmax += d(5,4));
 		    else
 			u.uen = (u.uenmax += d(5,4));
 		    flags.botl = 1;
@@ -3051,7 +3068,7 @@ register struct obj	*sobj;
 	case SCR_GAIN_MANA:
 		    You_feel("full of mystic power!");
 		    if (u.uen < u.uenmax)
-			u.uen = u.uenmax;
+			u.uen = rn2(20) ? u.uenmax : (u.uenmax += d(5,4));
 		    else
 			u.uen = (u.uenmax += d(5,4));
 		    flags.botl = 1;

@@ -142,16 +142,16 @@ use_saddle(otmp)
 	}
 	if (Confusion || Fumbling || IsGlib)
 	    chance -= 20;
-	else if (uarmg &&
+	/*else */if (uarmg &&
 		(s = OBJ_DESCR(objects[uarmg->otyp])) != (char *)0 &&
 		!strncmp(s, "riding ", 7))
 	    /* Bonus for wearing "riding" (but not fumbling) gloves */
 	    chance += 10;
-	else if (uarmf &&
+	/*else */if (uarmf &&
 		(s = OBJ_DESCR(objects[uarmf->otyp])) != (char *)0 &&
 		!strncmp(s, "riding ", 7))
 	    /* ... or for "riding boots" */
-	    chance += 10;
+	    chance += 10; /* Amy edit: allowed those bonuses to stack. */
 	if (otmp->cursed)
 	    chance -= 50;
 

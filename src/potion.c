@@ -711,7 +711,7 @@ badeffect()
 
 			pline("Urgh! You feel a malevolent presence!");
 			for(obj = invent; obj ; obj = obj->nobj)
-				if (!rn2(5))	curse(obj);
+				if (!rn2(5) && !stack_too_big(obj))	curse(obj);
 			}
 		break;
 
@@ -1628,7 +1628,7 @@ peffects(otmp)
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
 		if(otmp->cursed) {
-			You(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ? "are loaded to the gunwhales." : "pass out.");
+			You((Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "are loaded to the gunwhales." : "pass out.");
 			multi = -rnd(15);
 			nomovemsg = "You awake with a headache.";
 		}
@@ -1989,7 +1989,7 @@ peffects(otmp)
 	case POT_HEALING:
 		You_feel("better.");
 		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp),
-		       !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
+		       otmp->blessed ? 2 : !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
 		exercise(A_CON, TRUE);
 		break;
 	case POT_EXTRA_HEALING:
@@ -2335,10 +2335,10 @@ healup(nhp, nxtra, curesick, cureblind)
 	if (nhp) {
 		if (Upolyd) {
 			u.mh += nhp;
-			if(u.mh > u.mhmax) u.mh = (u.mhmax += nxtra);
+			if(!rn2(10) || (u.mh > u.mhmax)) u.mh = (u.mhmax += nxtra);
 		} else {
 			u.uhp += nhp;
-			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
+			if(!rn2(10) || (u.uhp > u.uhpmax)) u.uhp = (u.uhpmax += nxtra);
 		}
 	}
 	if(cureblind)	make_blinded(0L,TRUE);
@@ -3397,6 +3397,10 @@ boolean amnesia;
 	struct obj* otmp;
 	boolean used = FALSE;
 
+	if (stack_too_big(obj)) {
+		return(FALSE);
+	}
+
 	if (snuff_lit(obj)) return(TRUE);
 
 	if (obj->greased) {
@@ -3670,6 +3674,9 @@ register struct obj *obj;
 	(void)snuff_lit(obj);
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
+		return 0;
+
+	if (stack_too_big(obj))
 		return 0;
 
 	switch (obj->otyp)
@@ -4180,7 +4187,8 @@ dodip()
 					  Your_buf,
 					  aobjnam(obj, "softly glow"),
 					  hcolor(NH_AMBER));
-				uncurse(obj);
+				if (!stack_too_big(obj)) uncurse(obj);
+				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
 	poof:
 				if(!(objects[potion->otyp].oc_name_known) &&
@@ -4196,7 +4204,8 @@ dodip()
 					  aobjnam(obj, "softly glow"),
 					  index(vowels, *tmp) ? "n" : "", tmp);
 				}
-				bless(obj);
+				if (!stack_too_big(obj)) bless(obj);
+				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
 				goto poof;
 			}
@@ -4207,7 +4216,8 @@ dodip()
 					  Your_buf,
 					  aobjnam(obj, "glow"),
 					  hcolor((const char *)"brown"));
-				unbless(obj);
+				if (!stack_too_big(obj)) unbless(obj);
+				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
 				goto poof;
 			} else if(!obj->cursed) {
@@ -4218,7 +4228,8 @@ dodip()
 					  aobjnam(obj, "glow"),
 					  index(vowels, *tmp) ? "n" : "", tmp);
 				}
-				curse(obj);
+				if (!stack_too_big(obj)) curse(obj);
+				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
 				goto poof;
 			}
@@ -4312,10 +4323,11 @@ dodip()
 #ifdef UNPOLYPILE
 	} else if (potion->otyp == POT_RESTORE_ABILITY && is_hazy(obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
-		stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
+		if (!stack_too_big(obj)) {stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
 		obj->oldtyp = STRANGE_OBJECT;
 		if (!Blind)
 			pline("%s seems less hazy.", Yname2(obj));
+		}
 		useup(potion);
 		return (1);
 #endif
@@ -4324,7 +4336,7 @@ dodip()
 		pline_The("potions mix...");
 		/* KMH, balance patch -- acid is particularly unstable */
 		if (obj->cursed || obj->otyp == POT_ACID ||
-		    potion->cursed || potion->otyp == POT_ACID || !rn2(10)) {
+		    potion->cursed || potion->otyp == POT_ACID || !rn2(10) || (stack_too_big(obj) && stack_too_big(obj)) || (stack_too_big(potion) && stack_too_big(potion) ) ) {
 			pline("BOOM!  They explode!");
 			exercise(A_STR, FALSE);
 			if (!breathless(youmonst.data) || haseyes(youmonst.data))
@@ -4385,20 +4397,22 @@ dodip()
 #ifdef INVISIBLE_OBJECTS
 	if (!always_visible(obj)) {
 	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis) {
-		obj->oinvis = TRUE;
+		if (!stack_too_big(obj)) {obj->oinvis = TRUE;
 		if (!Blind)
 		    pline(!See_invisible ? "Where did %s go?" :
 			  "Gee!  All of a sudden you can see right through %s.",
 			  the(xname(obj)));
+		}
 		goto poof;
 	    } else if (potion->otyp == POT_SEE_INVISIBLE && obj->oinvis) {
-		obj->oinvis = FALSE;
+		if (!stack_too_big(obj)) {obj->oinvis = FALSE;
 		if (!Blind) {
 		    if (!See_invisible)
 			pline("So that's where %s went!", the(xname(obj)));
 		    else
 			You("can no longer see through %s.",
 				the(xname(obj)));
+		}
 		}
 		goto poof;
 	    }
@@ -4414,14 +4428,16 @@ dodip()
 		    Strcpy(buf, The(xname(potion)));
 		pline("%s forms a coating on %s.",
 		      buf, the(xname(obj)));
-		obj->opoisoned = TRUE;
+		if (!stack_too_big(obj)) obj->opoisoned = TRUE;
+		else pline("Unfortunately there wasn't enough poison in there.");
 		goto poof;
 	    } else if(obj->opoisoned &&
 		      (potion->otyp == POT_HEALING ||
 		       potion->otyp == POT_EXTRA_HEALING ||
 		       potion->otyp == POT_FULL_HEALING)) {
 		pline("A coating wears off %s.", the(xname(obj)));
-		obj->opoisoned = 0;
+		if (!stack_too_big(obj)) obj->opoisoned = 0;
+		else pline("Unfortunately it wasn't enough to completely remove the poison.");
 		goto poof;
 	    }
 	}
@@ -4478,8 +4494,8 @@ dodip()
 		      Yname2(obj), otense(obj, "are"),
 		      (obj->oeroded && obj->oeroded2) ? "corroded and rusty" :
 			obj->oeroded ? "rusty" : "corroded");
-		if (obj->oeroded > 0) obj->oeroded--;
-		if (obj->oeroded2 > 0) obj->oeroded2--;
+		if (!stack_too_big(obj) && obj->oeroded > 0) obj->oeroded--;
+		if (!stack_too_big(obj) && obj->oeroded2 > 0) obj->oeroded2--;
 		wisx = TRUE;
 	    }
 	    exercise(A_WIS, wisx);
@@ -4508,7 +4524,7 @@ dodip()
 	/* KMH, balance patch -- acid affects damage(proofing) */
 	if (potion->otyp == POT_ACID && (obj->oclass == ARMOR_CLASS ||
 		obj->oclass == WEAPON_CLASS || is_weptool(obj))) {
-	    if (!potion->blessed && obj->oerodeproof) {
+	    if (!potion->blessed && obj->oerodeproof && !stack_too_big(obj) ) {
 		pline("%s %s golden shield.",  Yname2(obj),
 			(obj->quan > 1L) ? "lose their" : "loses its");
 		obj->oerodeproof = 0;

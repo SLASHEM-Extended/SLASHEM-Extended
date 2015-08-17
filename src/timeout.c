@@ -1303,7 +1303,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
@@ -1318,7 +1318,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
@@ -1333,7 +1333,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}

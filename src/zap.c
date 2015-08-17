@@ -389,7 +389,7 @@ struct obj *otmp;
 
 			for (otmpX = mtmp->minvent; otmpX; otmpX = otmpX2) {
 			    otmpX2 = otmpX->nobj;
-			    if (!oresist_disintegration(otmpX)) {
+			    if (!oresist_disintegration(otmpX) && !stack_too_big(otmpX) ) {
 				if (Has_contents(otmpX)) delete_contents(otmpX);
 				obj_extract_self(otmpX);
 				obfree(otmpX, (struct obj *)0);
@@ -1141,6 +1141,8 @@ register struct obj *obj;
 	boolean	u_ring = (obj == uleft) || (obj == uright);
 	register boolean holy = (obj->otyp == POT_WATER && obj->blessed);
 
+	if (stack_too_big(obj)) return;
+
 	switch(obj->otyp) {
 		case RIN_GAIN_STRENGTH:
 			if ((obj->owornmask & W_RING) && u_ring) {
@@ -1287,6 +1289,8 @@ register struct obj *obj;
 	if (obj_resists(obj, 10, 90))
 	    return (FALSE);
 
+	if (stack_too_big(obj)) return (FALSE);
+
 	/* Charge for the cost of the object */
 	costly_cancel(obj);	/* The term "cancel" is okay for now */
 
@@ -1364,6 +1368,8 @@ register struct obj *obj;
 	    return (FALSE);
 	if (obj_resists(obj, 10, 90))
 	    return (FALSE);
+
+	if (stack_too_big(obj)) return (FALSE);
 
 	/* Drain the object and any implied effects */
 	obj->spe++;
@@ -1706,6 +1712,8 @@ poly_obj(obj, id)
 	boolean unpoly = (id == STRANGE_OBJECT);
 #endif
 
+	if (stack_too_big(obj)) return obj;
+
 	/* WAC Amulets of Unchanging shouldn't change */
 	if (obj->otyp == AMULET_OF_UNCHANGING)
 	    return obj;
@@ -1845,6 +1853,8 @@ poly_obj(obj, id)
 	otmp->recharged = obj->recharged;
 
 	otmp->cursed = obj->cursed;
+	otmp->hvycurse = obj->hvycurse;
+	otmp->prmcurse = obj->prmcurse;
 	otmp->blessed = obj->blessed;
 	otmp->oeroded = obj->oeroded;
 	otmp->oeroded2 = obj->oeroded2;
@@ -2250,7 +2260,7 @@ struct obj *obj, *otmp;
 		break;
 	case WAN_MAKE_INVISIBLE:
 #ifdef INVISIBLE_OBJECTS
-		if (!always_visible(obj)) {
+		if (!always_visible(obj) && !stack_too_big(obj) ) {
 		    obj->oinvis = TRUE;
 		    newsym(obj->ox,obj->oy);	/* make object disappear */
 		}
@@ -2258,7 +2268,7 @@ struct obj *obj, *otmp;
 		break;
 	case WAN_MAKE_VISIBLE:
 #ifdef INVISIBLE_OBJECTS
-		obj->oinvis = FALSE;
+		if (!stack_too_big(obj)) obj->oinvis = FALSE;
 		newsym(obj->ox,obj->oy);	/* make object appear */
 #endif
 		break;
@@ -2309,7 +2319,7 @@ struct obj *obj, *otmp;
 		(objects[obj->otyp].oc_oprop == DISINT_RES || \
 		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) )
 
-		    if (!oresist_disintegrationX(obj)) {
+		    if (!oresist_disintegrationX(obj) && !stack_too_big(obj) ) {
 			if (Has_contents(obj)) delete_contents(obj);
 			obj_extract_self(obj);
 			obfree(obj, (struct obj *)0);
@@ -2826,7 +2836,7 @@ register struct obj *obj;
 			register struct obj *obj;
 
 			for(obj = invent; obj ; obj = obj->nobj)
-				if (!rn2(5) && obj->cursed)	uncurse(obj);
+				if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj);
 
 			break;
 		case WAN_PUNISHMENT:
@@ -2915,7 +2925,7 @@ register struct obj *obj;
 				register struct obj *obj;
 	
 				for(obj = invent; obj ; obj = obj->nobj)
-					if (!rn2(5) && obj->cursed)	uncurse(obj);
+					if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj);
 	
 				break;
 			case 13 : 
@@ -3610,7 +3620,7 @@ boolean ordinary;
 			(void) safe_teleds(FALSE);
 
 			goto_level((&medusa_level), TRUE, FALSE, FALSE);
-			register int newlev = rnd(64);
+			register int newlev = rnd(71);
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);
@@ -3780,7 +3790,7 @@ struct obj *obj;	/* wand or spell */
 			(void) safe_teleds(FALSE);
 
 			goto_level((&medusa_level), TRUE, FALSE, FALSE);
-			register int newlev = rnd(64);
+			register int newlev = rnd(71);
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);
@@ -4924,6 +4934,7 @@ xchar sx, sy;
 	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
 	            dam = d(2,4);
 			u.uhpmax -= dam/2;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 	            pline("You resist the attack, but it hurts!");
             break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -4943,6 +4954,7 @@ xchar sx, sy;
 		else
                 dam = d(4,6);
 			u.uhpmax -= dam/2;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
                 pline("This hurts a lot!");
 		break;
 	case ZT_LIGHTNING:
@@ -5306,7 +5318,7 @@ register int dx,dy;
 
 			for (otmp = mon->minvent; otmp; otmp = otmp2) {
 			    otmp2 = otmp->nobj;
-			    if (!oresist_disintegration(otmp)) {
+			    if (!oresist_disintegration(otmp) && !stack_too_big(otmp) ) {
 				if (Has_contents(otmp)) delete_contents(otmp);
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
@@ -5926,7 +5938,7 @@ register int osym, dmgtyp;
 	    if(!skip) {
 		if (obj->in_use) --quan; /* one will be used up elsewhere */
 		for(i = cnt = 0L; i < quan; i++)
-		    if(!rn2(10)) cnt++;
+		    if(!rn2(10) && (rnd(20 + Luck) < 15) && (rnd(20 + Luck) < 15) ) cnt++;
 
 		if(!cnt) continue;
 		if(cnt == quan)	mult = "Your";
@@ -6069,7 +6081,7 @@ int osym, dmgtyp;
 	    }
 	    if(!skip) {
 		for(i = cnt = 0L; i < quan; i++)
-		    if(!rn2(10)) cnt++;
+		    if(!rn2(10) && (rnd(20 + Luck) < 15) && (rnd(20 + Luck) < 15) ) cnt++;
 
 		if(!cnt) continue;
 		if (vis) pline("%s %s %s!",

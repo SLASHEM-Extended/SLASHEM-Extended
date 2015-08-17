@@ -427,7 +427,7 @@ decurse:
 			impossible("fix_worst_trouble: nothing to uncurse.");
 			return;
 		    }
-		    uncurse(otmp);
+		    if (!stack_too_big(otmp)) uncurse(otmp);
 		    if (!Blind) {
 			Your("%s %s.", what ? what :
 				(const char *)aobjnam(otmp, "softly glow"),
@@ -1043,7 +1043,7 @@ pleased(g_align)
 	switch(rn2((Luck + 6)>>1)) {
 	case 0:	break;
 	case 1:
-	    if (uwep && (welded(uwep) || uwep->oclass == WEAPON_CLASS ||
+	    if (uwep && !stack_too_big(uwep) && (welded(uwep) || uwep->oclass == WEAPON_CLASS ||
 			 is_weptool(uwep))) {
 		char repair_buf[BUFSZ];
 
@@ -1134,7 +1134,7 @@ pleased(g_align)
 	    else You("are surrounded by %s aura.",
 		     an(hcolor(NH_LIGHT_BLUE)));
 	    for(otmp=invent; otmp; otmp=otmp->nobj) {
-		if (otmp->cursed) {
+		if (otmp->cursed && !stack_too_big(otmp) ) {
 		    uncurse(otmp);
 		    if (!Blind) {
 			Your("%s %s.", aobjnam(otmp, "softly glow"),
@@ -1234,7 +1234,7 @@ water_prayer(bless_water)
 
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
-	if (otmp->otyp == POT_WATER &&
+	if (otmp->otyp == POT_WATER && !stack_too_big(otmp) && !stack_too_big(otmp) && !stack_too_big(otmp) &&
 		(bless_water ? !otmp->blessed : !otmp->cursed)) {
 	    otmp->blessed = bless_water;
 	    otmp->cursed = !bless_water;
@@ -1558,13 +1558,13 @@ dosacrifice()
 			       pline("Angered at your summons, he curses you!");
 			       /* but not angry enough to whup yer ass */
 			       for(octmp = invent; octmp ; octmp = octmp->nobj)
-				 if (!rn2(6)) curse(octmp);
+				 if (!rn2(6) && !stack_too_big(octmp) ) curse(octmp);
 			       break;
 			  case 10:
 			       pline("Angered at your summons, he curses you!");
 			       dmon->mpeaceful = FALSE;
 			       for(octmp = invent; octmp ; octmp = octmp->nobj)
-				 if (!rn2(6)) curse(octmp);
+				 if (!rn2(6) && !stack_too_big(octmp) ) curse(octmp);
 			       break;
 			  case 2: 
 			  case 3:
@@ -2522,7 +2522,7 @@ aligntyp alignment;
 					break;
 			    return; /* Nothing to do! */
 		    }
-		    bless(otmp);
+		    if (!stack_too_big(otmp)) bless(otmp);
 		    otmp->bknown = TRUE;
 		    if (!Blind)
 			    Your("%s %s.",

@@ -2238,7 +2238,7 @@ do_twall:
 
 			break;
 		    default:
-			impossible("wall_angle: unknown T wall mode %d",
+			if (wizard) impossible("wall_angle: unknown T wall mode %d",
 				lev->wall_info & WM_MASK);
 			col = T_stone;
 			break;
@@ -2259,7 +2259,7 @@ do_twall:
 								  /*S_stone*/S_dungwall;
 			    break;
 		    default:
-			impossible("wall_angle: unknown vwall mode %d",
+			if (wizard) impossible("wall_angle: unknown vwall mode %d",
 				lev->wall_info & WM_MASK);
 			idx = /*S_stone*/S_dungwall;
 			break;
@@ -2277,7 +2277,7 @@ horiz:
 								  /*S_stone*/S_dungwall;
 			    break;
 		    default:
-			impossible("wall_angle: unknown hwall mode %d",
+			if (wizard) impossible("wall_angle: unknown hwall mode %d",
 				lev->wall_info & WM_MASK);
 			idx = /*S_stone*/S_dungwall;
 			break;
@@ -2290,7 +2290,7 @@ horiz:
 	case WM_C_OUTER: idx = seenv &  (outer) ? which : /*S_stone*/S_dungwall; break;   \
 	case WM_C_INNER: idx = seenv & ~(inner) ? which : /*S_stone*/S_dungwall; break;   \
 	default:							    \
-	    impossible("wall_angle: unknown %s mode %d", name,		    \
+	    if (wizard) impossible("wall_angle: unknown %s mode %d", name,		    \
 		(lev)->wall_info & WM_MASK);				    \
 	    idx = /*S_stone*/S_dungwall;						    \
 	    break;							    \
@@ -2377,7 +2377,7 @@ do_crwall:
 			    } else if (seenv & SV7) {
 				col = seenv & SV1 ? C_crwall : C_tlwall;
 			    } else {
-				impossible(
+				if (wizard) impossible(
 				    "wall_angle: bottom of crwall check");
 				col = C_crwall;
 			    }
@@ -2409,14 +2409,14 @@ do_crwall:
 			break;
 
 		    default:
-			impossible("wall_angle: unknown crosswall mode");
+			if (wizard) impossible("wall_angle: unknown crosswall mode");
 			idx = /*S_stone*/S_dungwall;
 			break;
 		}
 		break;
 
 	default:
-	    impossible("wall_angle: unexpected wall type %d", lev->typ);
+	    if (wizard) impossible("wall_angle: unexpected wall type %d", lev->typ);
 	    idx = /*S_stone*/S_dungwall;
     }
     return idx;

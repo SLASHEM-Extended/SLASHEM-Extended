@@ -469,6 +469,9 @@ register struct monst *mtmp;
 */
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
+	if (tmp < -127) tmp = -127; /* fail safe */
+	if (tmp > 127) tmp = 127;
+
 	return tmp;
 }
 
@@ -1139,7 +1142,7 @@ int thrown;
 			  ((wtype = uwep_skill_type()) != P_NONE &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
-			   !is_flimsy(monwep) &&
+			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep,
 				 50 + 15 * greatest_erosion(obj), 100))) {
 			/*
@@ -1172,7 +1175,7 @@ int thrown;
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_lightsaber(monwep) && // no cutting other lightsabers :)
-			   !monwep->oartifact && // no cutting artifacts either
+			   !monwep->oartifact && !stack_too_big(monwep) && // no cutting artifacts either
 			   !obj_resists(monwep,
 				 50 + 15 * greatest_erosion(obj), 100))) {
 			setmnotwielded(mon,monwep);
@@ -1595,7 +1598,7 @@ int thrown;
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
 	    }
-	    if (obj && obj->opoisoned && !rn2(nopoison)) {
+	    if (obj && obj->opoisoned && !rn2(nopoison) && !stack_too_big(obj) ) {
 		obj->opoisoned = FALSE;
 		Your("%s %s no longer poisoned.", xname(obj),
 		     otense(obj, "are"));
@@ -4769,6 +4772,8 @@ struct attack *mattk;		/* null means we find one internally */
 	/* In Slash'EM, the caller always specifies the object */
 	if (!obj) return;		/* no object to affect */
 #endif
+
+	if (stack_too_big(obj)) return;
 
 	/* if caller hasn't specified an attack, find one */
 	if (!mattk) {

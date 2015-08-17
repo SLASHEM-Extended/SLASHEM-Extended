@@ -306,6 +306,13 @@ nothing_to_steal:
 	else if(otmp == uarmu && uarm) otmp = uarm;
 #endif
 
+gotobj:
+	if (stack_too_big(otmp)) {
+
+		pline("%s tries to steal your %s, but you quickly protect them!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
+		return (0);
+	}
+
 	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
 		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 		return(0);
@@ -319,10 +326,11 @@ nothing_to_steal:
 		return(0);
 	}
 
-gotobj:
 	if(otmp->o_id == stealoid) return(0);
 
 #ifdef STEED
+	/* I took the liberty of making saddles less likely to be stolen, because riding sucks enough as it is. --Amy */
+	if (rn2(5) && otmp == usaddle) return (0);
 	if (otmp == usaddle) dismount_steed(DISMOUNT_FELL);
 #endif
 
@@ -652,7 +660,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-		if (is_musable(otmp) && !rn2(3) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !is_pet && !dmgtype(mtmp->data, AD_SEDU) && !dmgtype(mtmp->data, AD_SITM) && (!dmgtype(mtmp->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mtmp->data, AD_SGLD) || !rn2(5) ) ) delobj(otmp);
+		if (is_musable(otmp) && !rn2(3) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !is_pet && !dmgtype(mtmp->data, AD_SEDU) && !dmgtype(mtmp->data, AD_SITM) && (!dmgtype(mtmp->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mtmp->data, AD_SGLD) || !rn2(5) ) ) delobj(otmp);
 		else mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
 	}
 

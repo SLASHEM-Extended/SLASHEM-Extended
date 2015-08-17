@@ -341,7 +341,8 @@ boolean update;  /* do newsym() */
 	/* evil patch idea by Amy: occasionally, corridors and room squares will "grow" back into solid rock or walls.
 	 * Depending on the # of surrounding squares that are blocked, give a higher or lower chance to place a new wall.
 	 * If 6 out of 8 surrounding squares are blocked it most probably means that it's a corridor, which would
-	 * completely block progress if it were made into a wall, and since players don't always have a pick-axe, let that	 * only happen rarely. On the other hand, if all 8 surrounding squares are blocked, there probably isn't much
+	 * completely block progress if it were made into a wall, and since players don't always have a pick-axe, let that
+	 * only happen rarely. On the other hand, if all 8 surrounding squares are blocked, there probably isn't much
 	 * harm done in closing it.
 	 * Why am I such a filthy bitch who even thinks up such bullshit?
 	 * Relax! There's a simple reason - after a while, umber hulks and similar monsters might dig out entire levels,
