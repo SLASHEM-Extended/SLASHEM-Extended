@@ -3614,12 +3614,12 @@ boolean ordinary;
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
-		/*if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); level_tele(); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); level_tele(); }*/
+		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
-			(void) safe_teleds(FALSE);
+			/*(void) safe_teleds(FALSE);
 
-			goto_level((&medusa_level), TRUE, FALSE, FALSE);
+			goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
 			register int newlev = rnd(71);
 			d_level newlevel;
 			get_level(&newlevel, newlev);
