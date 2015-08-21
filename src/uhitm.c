@@ -201,7 +201,7 @@ boolean barehanded;
 		seemimic(mtmp);
 		return retval;
 	    }
-	    if (!(Blind ? Blind_telepat : Unblind_telepat)) {
+	    if (!((Blind ? Blind_telepat : Unblind_telepat) || Detect_monsters)) {
 		struct obj *obj;
 
 		if (Blind || (is_pool(mtmp->mx,mtmp->my) && !Underwater))
