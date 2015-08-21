@@ -335,7 +335,7 @@ struct obj *otmp;
 			pline("%s is frozen by the beam.", Monnam(mtmp) );
 		}
 		mtmp->mcanmove = 0;
-		mtmp->mfrozen = rnz(7 + skilldmg);
+		mtmp->mfrozen = rn2(3) ? rnz(5) : rnz(5 + skilldmg);
 		mtmp->mstrategy &= ~STRAT_WAITFORU;
 
 		break;
