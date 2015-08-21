@@ -7504,6 +7504,12 @@ register int	mmflags;
 
 	}
 
+	if (ptr->geno & G_UNIQ) {
+		mtmp->mhpmax *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+		mtmp->mhp = mtmp->mhpmax;
+
+	}
+
 	if (Role_if(PM_CAMPERSTRIKER) && (ptr->geno & G_UNIQ) ) {
 		mtmp->mhpmax *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 		mtmp->mhp = mtmp->mhpmax;
