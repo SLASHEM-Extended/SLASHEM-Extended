@@ -3208,7 +3208,13 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 #endif
 	{ "dragon scales",
 			ARMOR_CLASS,  GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES },
+	{ "dragon scale",
+			ARMOR_CLASS,  GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES },
 	{ "dragon scale mail",
+			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
+	{ "scales",
+			ARMOR_CLASS,  GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES },
+	{ "DSM",
 			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",      WEAPON_CLASS, ORCISH_SHORT_SWORD,    TSURUGI },
 	{ "polearm",    WEAPON_CLASS, PARTISAN, LANCE },
@@ -3589,6 +3595,9 @@ boolean from_user;
 	(void)mungspaces(bp);
 	/* allow wishing for "nothing" to preserve wishless conduct...
 	   [now requires "wand of nothing" if that's what was really wanted] */
+
+	if (!strncmpi(bp, "%s", 2)) return (struct obj *)0;
+
 	if (!strcmpi(bp, "nothing") || !strcmpi(bp, "nil") ||
 	    !strcmpi(bp, "none")) return no_wish;
 	/* save the [nearly] unmodified choice string */
@@ -3799,6 +3808,7 @@ boolean from_user;
 	 *  "medallion of shifters", "stake of van helsing" similarly
 	 *  ALI "potion of vampire blood" also).
 	 */
+	if (wizard)
 	if (!strstri(bp, "wand ")
 	 && !strstri(bp, "spellbook ")
          && !strstri(bp, "hand ")
@@ -3823,8 +3833,9 @@ boolean from_user;
         if (strncmpi(bp, "Ogresmasher", 11)) /* not the "ogre" monster */
         if (strncmpi(bp, "Bat from Hell", 13)) /* not the "bat" monster */
         if (strncmpi(bp, "vampire blood", 13)) /* not the "vampire" monster */
+	if (wizard)
 	if (mntmp < LOW_PM && strlen(bp) > 2 &&
-	    (mntmp = name_to_mon(bp)) >= LOW_PM) {
+	    (mntmp = name_to_mon(bp)) >= LOW_PM ) {
 		int mntmptoo, mntmplen;	/* double check for rank title */
 		char *obp = bp;
 		mntmptoo = title_to_mon(bp, (int *)0, &mntmplen);
@@ -3934,6 +3945,7 @@ boolean from_user;
     /* false hits on "GrayWAND", "Staff of WitheRING"  -- WAC */
 	if(strncmpi(bp, "enchant ", 8) &&
 	   strncmpi(bp, "destroy ", 8) &&
+	   strncmpi(bp, "proof ", 6) &&
 	   strncmpi(bp, "food detection", 14) &&
 	   strncmpi(bp, "ring mail", 9) &&
 	   strncmpi(bp, "studded leather arm", 19) &&

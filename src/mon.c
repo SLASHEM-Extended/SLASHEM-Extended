@@ -2816,7 +2816,7 @@ xkilled(mtmp, dest)
 	if (dest & 1) {
 	    const char *verb = nonliving(mtmp->data) ? "destroy" : "kill";
 
-	    if (!wasinside && !canspotmon(mtmp))
+	    if ((!wasinside && !canspotmon(mtmp)) || (mtmp->data == &mons[PM__S_RAT_MAN]) || (mtmp->data == &mons[PM__S_SECRET_CAR]) || (mtmp->data == &mons[PM__S_UFO]) || (mtmp->data == &mons[PM__S_____NIX]) )
 		You("%s it!", verb);
 	    else {
 		You("%s %s!", verb,
