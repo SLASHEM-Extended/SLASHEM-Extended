@@ -2539,7 +2539,7 @@ boolean at_stairs, falling, portal;
 #endif /* CONVICT */
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
 
-		    if (!rn2(10)) { /* evil patch idea by jonadab: amnesia */
+		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
 
 			if (rn2(50)) {
 				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
