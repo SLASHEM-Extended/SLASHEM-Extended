@@ -1921,6 +1921,7 @@ E int FDECL(d, (int,int));
 E int FDECL(rne, (int));
 E int FDECL(rnz, (int));
 E int NDECL(randattack);
+E int NDECL(randenchantment);
 
 /* ### role.c ### */
 

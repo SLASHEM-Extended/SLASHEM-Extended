@@ -2036,6 +2036,11 @@ register struct obj	*sobj;
 			adj_abon(otmp, s);
 			known = otmp->known;
 		}
+		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */
+		if (!otmp->enchantment && !rn2(sobj->blessed ? 10 : 20) && s > 0) {
+			otmp->enchantment = randenchantment();
+			pline("Your %s seems to have gained special magical properties!", xname(otmp) );
+		}
 
 		if ((otmp->spe > (special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))

@@ -17,7 +17,99 @@ static boolean FDECL(wishymatch, (const char *,const char *,BOOLEAN_P));
 static char *NDECL(nextobuf);
 static void FDECL(add_erosion_words, (struct obj *, char *));
 
+STATIC_DCL char *FDECL(enchname, (int) );
+
 STATIC_DCL char *FDECL(xname2, (struct obj *));
+
+STATIC_OVL char *
+enchname(prop)
+int prop;
+{
+	const char *output;
+	switch (prop) {
+		case FIRE_RES:
+			return "fire resistance";
+		case COLD_RES:
+			return "cold resistance";
+		case SLEEP_RES:
+			return "sleep resistance";
+		case DISINT_RES:
+			return "disintegration resistance";
+		case SHOCK_RES:
+			return "shock resistance";
+		case POISON_RES:
+			return "poison resistance";
+		case ACID_RES:
+			return "acid resistance";
+		case STONE_RES:
+			return "petrification resistance";
+		case REGENERATION:
+			return "regeneration";
+		case SEARCHING:
+			return "searching";
+		case SEE_INVIS:
+			return "see invisible";
+		case INVIS:
+			return "invisibility";
+		case TELEPORT:
+			return "teleportitis";
+		case TELEPORT_CONTROL:
+			return "teleport control";
+		case POLYMORPH:
+			return "polymorphitis";
+		case POLYMORPH_CONTROL:
+			return "polymorph control";
+		case LEVITATION:
+			return "levitation";
+		case STEALTH:
+			return "stealth";
+		case AGGRAVATE_MONSTER:
+			return "aggravate monster";
+		case CONFLICT:
+			return "conflict";
+		case WARNING:
+			return "warning";
+		case TELEPAT:
+			return "telepathy";
+		case FAST:
+			return "speed";
+		case HUNGER:
+			return "hunger";
+		case REFLECTING:
+			return "reflection";
+		case ANTIMAGIC:
+			return "magic resistance";
+		case ENERGY_REGENERATION:
+			return "energy regeneration";
+		case MAGICAL_BREATHING:
+			return "magical breathing";
+		case HALF_SPDAM:
+			return "half spell damage";
+		case HALF_PHDAM:
+			return "half physical damage";
+		case SICK_RES:
+			return "sickness resistance";
+		case DRAIN_RES:
+			return "drain resistance";
+		case WARN_UNDEAD:
+			return "undead warning";
+		case FREE_ACTION:
+			return "free action";
+		case FLYING:
+			return "flying";
+		case SLOW_DIGESTION:
+			return "slow digestion";
+		case INFRAVISION:
+			return "infravision";
+		case FEAR_RES:
+			return "fear resistance";
+		default:
+			return "undefined - this is a bug";
+
+	}
+
+}
+
 
 struct Jitem {
 	int item;
@@ -1812,11 +1904,21 @@ register struct obj *obj;
 		break;
 	    case ARMOR_CLASS:
 		/* depends on order of the dragon scales objects */
+
+		/* Armor can randomly be enchanted. I don't want players without the identify spell to have to guess
+		 * which armor items are enchanted, so I provide a little clue by default. --Amy */
+		if (obj->enchantment && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) )
+			Strcat(buf, "enchanted ");
+
+		if(obj->enchantment && obj->known && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) ) {
+			Sprintf(eos(buf), "(of %s) ", enchname(obj->enchantment) );
+		}
+
 		if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
 			Sprintf(buf, "set of %s", actualn);
 			break;
 		}
-		if(is_boots(obj) || is_gloves(obj)) Strcpy(buf,"pair of ");
+		if(is_boots(obj) || is_gloves(obj)) Strcat(buf,"pair of ");
 
 		if(obj->otyp >= ELVEN_SHIELD && obj->otyp <= ORCISH_SHIELD
 				&& !obj->dknown) {
@@ -1833,9 +1935,9 @@ register struct obj *obj;
 		else if(nn)	Strcat(buf, actualn);
 		else if(un && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) {
 			if(is_boots(obj))
-				Strcat(buf,"boots");
+				Strcpy(buf,"boots");
 			else if(is_gloves(obj))
-				Strcat(buf,"gloves");
+				Strcpy(buf,"gloves");
 			else if(is_cloak(obj))
 				Strcpy(buf,"cloak");
 			else if(is_helmet(obj))

@@ -409,6 +409,162 @@ randattack()
 
 }
 
+int
+randenchantment()
+{
+
+	switch (rnd(105)) {
+
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			return FIRE_RES;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			return COLD_RES;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			return SLEEP_RES;
+		case 16:
+		case 17:
+		case 18:
+			return DISINT_RES;
+		case 19:
+		case 20:
+		case 21:
+		case 22:
+		case 23:
+			return SHOCK_RES;
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+			return POISON_RES;
+		case 29:
+		case 30:
+		case 31:
+			return ACID_RES;
+		case 32:
+			return STONE_RES;
+		case 33:
+		case 34:
+		case 35:
+			return REGENERATION;
+		case 36:
+		case 37:
+		case 38:
+			return SEARCHING;
+		case 39:
+		case 40:
+		case 41:
+			return SEE_INVIS;
+		case 42:
+		case 43:
+		case 44:
+			return INVIS;
+		case 45:
+		case 46:
+		case 47:
+		case 48:
+		case 49:
+			return TELEPORT;
+		case 50:
+		case 51:
+		case 52:
+			return TELEPORT_CONTROL;
+		case 53:
+		case 54:
+		case 55:
+			return POLYMORPH;
+		case 56:
+			return POLYMORPH_CONTROL;
+		case 57:
+		case 58:
+		case 59:
+			return LEVITATION;
+		case 60:
+		case 61:
+		case 62:
+			return STEALTH;
+		case 63:
+		case 64:
+		case 65:
+			return AGGRAVATE_MONSTER;
+		case 66:
+			return CONFLICT;
+		case 67:
+		case 68:
+		case 69:
+			return WARNING;
+		case 70:
+		case 71:
+		case 72:
+			return TELEPAT;
+		case 73:
+		case 74:
+		case 75:
+			return FAST;
+		case 76:
+		case 77:
+		case 78:
+			return HUNGER;
+		case 79:
+		case 80:
+		case 81:
+			return REFLECTING;
+		case 82:
+		case 83:
+			return ANTIMAGIC;
+		case 84:
+		case 85:
+			return ENERGY_REGENERATION;
+		case 86:
+		case 87:
+		case 88:
+			return MAGICAL_BREATHING;
+		case 89:
+			return HALF_SPDAM;
+		case 90:
+			return HALF_PHDAM;
+		case 91:
+			return SICK_RES;
+		case 92:
+		case 93:
+			return DRAIN_RES;
+		case 94:
+			return WARN_UNDEAD;
+		case 95:
+		case 96:
+		case 97:
+			return FREE_ACTION;
+		case 98:
+		case 99:
+			return FLYING;
+		case 100:
+		case 101:
+			return SLOW_DIGESTION;
+		case 102:
+			return INFRAVISION;
+		case 103:
+		case 104:
+		case 105:
+			return FEAR_RES;
+		default:
+			return POISON_RES;
+
+	}
+
+}
+
 #endif /* OVLB */
 
 /*rnd.c*/

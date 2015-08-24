@@ -14318,7 +14318,7 @@ register struct trobj *trop;
 
 			if (!Race_if(PM_BASTARD)) obj->dknown = obj->bknown = obj->rknown = 1;
 			if (objects[otyp].oc_uses_known && !Race_if(PM_BASTARD) ) obj->known = 1;
-			obj->cursed = obj->hvycurse = obj->prmcurse = 0;
+			obj->cursed = obj->hvycurse = obj->prmcurse = obj->enchantment = 0;
 			if (obj->opoisoned && u.ualign.type != A_CHAOTIC)
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
@@ -14447,7 +14447,7 @@ register struct trobj *trop;
 #endif
 			if (!Race_if(PM_BASTARD)) obj->dknown = obj->bknown = obj->rknown = 1;
 			if (objects[otyp].oc_uses_known && !Race_if(PM_BASTARD) ) obj->known = 1;
-			obj->cursed = obj->hvycurse = obj->prmcurse  = 0;
+			obj->cursed = obj->hvycurse = obj->prmcurse = obj->enchantment = 0;
 			if (obj->opoisoned && u.ualign.type != A_CHAOTIC)
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
@@ -14465,7 +14465,7 @@ register struct trobj *trop;
 
 			if (!Race_if(PM_BASTARD)) objX->dknown = objX->bknown = objX->rknown = 1;
 			if (objects[otyp].oc_uses_known && !Race_if(PM_BASTARD)) objX->known = 1;
-			objX->cursed = objX->hvycurse = objX->prmcurse  = 0;
+			objX->cursed = objX->hvycurse = objX->prmcurse = objX->enchantment = 0;
 			if (objX->opoisoned && u.ualign.type != A_CHAOTIC)
 			    objX->opoisoned = 0;
 			if (objX->oclass == WEAPON_CLASS ||

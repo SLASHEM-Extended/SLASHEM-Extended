@@ -1143,6 +1143,12 @@ register struct obj *obj;
 
 	if (stack_too_big(obj)) return;
 
+	if (obj->enchantment) {
+		/* nasty hack - items losing their enchantment shouldn't keep giving their effects --Amy */
+		if (obj->owornmask) setnotworn(obj);
+		obj->enchantment = 0;
+	}
+
 	switch(obj->otyp) {
 		case RIN_GAIN_STRENGTH:
 			if ((obj->owornmask & W_RING) && u_ring) {

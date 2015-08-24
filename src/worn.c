@@ -58,7 +58,7 @@ long mask;
 {
 	register const struct worn *wp;
 	register struct obj *oobj;
-	register int p;
+	register int p, q;
 
 	if ((mask & (W_ARM|I_SPECIAL)) == (W_ARM|I_SPECIAL)) {
 	    /* restoring saved game; no properties are conferred via skin */
@@ -82,6 +82,12 @@ long mask;
 			p = objects[oobj->otyp].oc_oprop;
 			u.uprops[p].extrinsic =
 					u.uprops[p].extrinsic & ~wp->w_mask;
+
+			q = oobj->enchantment;
+			if (q) {
+				u.uprops[oobj->enchantment].extrinsic = u.uprops[oobj->enchantment].extrinsic & ~wp->w_mask;
+			}
+
 			if ((p = w_blocks(oobj,mask)) != 0)
 			    u.uprops[p].blocked &= ~wp->w_mask;
 			if (oobj->oartifact)
@@ -102,6 +108,12 @@ long mask;
 			    p = objects[obj->otyp].oc_oprop;
 			    u.uprops[p].extrinsic =
 					u.uprops[p].extrinsic | wp->w_mask;
+
+				q = obj->enchantment;
+				if (q) {
+					u.uprops[obj->enchantment].extrinsic = u.uprops[obj->enchantment].extrinsic | wp->w_mask;
+				}
+
 			    if ((p = w_blocks(obj, mask)) != 0)
 				u.uprops[p].blocked |= wp->w_mask;
 			}
@@ -123,7 +135,7 @@ setnotworn(obj)
 register struct obj *obj;
 {
 	register const struct worn *wp;
-	register int p;
+	register int p, q;
 
 	if (!obj) return;
 	if (obj == uwep || obj == uswapwep) {
@@ -136,6 +148,12 @@ register struct obj *obj;
 		*(wp->w_obj) = 0;
 		p = objects[obj->otyp].oc_oprop;
 		u.uprops[p].extrinsic = u.uprops[p].extrinsic & ~wp->w_mask;
+
+		q = obj->enchantment;
+		if (q) {
+			u.uprops[obj->enchantment].extrinsic = u.uprops[obj->enchantment].extrinsic & ~wp->w_mask;
+		}
+
 		obj->owornmask &= ~wp->w_mask;
 		if (obj->oartifact)
 		    set_artifact_intrinsic(obj, 0, wp->w_mask);

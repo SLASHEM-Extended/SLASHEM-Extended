@@ -251,6 +251,7 @@ struct prop {
 #	define INTRINSIC    (FROMOUTSIDE|FROMRACE|FROMEXPER)
 	/* Control flags */
 #	define I_SPECIAL    0x10000000L /* Property is controllable */
+
 };
 
 /*** Definitions for backwards compatibility ***/
