@@ -1158,6 +1158,7 @@ forget_objects(percent)
 
 	/* forget first % of randomized indices */
 	count = ((count * percent) + 50) / 100;
+	if (count > 1) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++)
 	    forget_single_object(indices[i]);
 }
@@ -1238,6 +1239,7 @@ forget_levels(percent)
 
 	/* forget first % of randomized indices */
 	count = ((count * percent) + 50) / 100;
+	if (count > 1) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++) {
 	    level_info[indices[i]].flags |= FORGOTTEN;
 	}
