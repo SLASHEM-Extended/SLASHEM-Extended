@@ -1120,11 +1120,12 @@ AMULET((char *)0,                     "dragon tooth",     0, 0, DRAGON_HIDE,	CLR
 AMULET((char *)0,                     "origami paper",     0, 0, PAPER,	CLR_WHITE),
 OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	"Amulet of Yendor"), BITS(0,0,1,0,0,0,0,0,0,0,0,0,PLASTIC), 0,
-	AMULET_CLASS, 0, 0, 0,    0, 0, 0, 0, 0,  1, HI_METAL), /* must give exactly 1 point of nutrition, see makedefs.c */
+	AMULET_CLASS, 0, 0, 500,    0, 0, 0, 0, 0,  1, HI_METAL), /* must give exactly 1 point of nutrition, see makedefs.c */
 OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 	"Amulet of Yendor"), BITS(0,0,1,0,1,0,1,1,0,0,0,0,MITHRIL), 0,
 	AMULET_CLASS, 0, 0, 0, 30000, 0, 0, 0, 0, 20, HI_METAL),
 #undef AMULET
+
 /* since there are plastic amulets now, the makedefs routine no longer recognizes the fake amulet just because it's
  * made of plastic, so we need another distinction; I chose the nutritional value, which is 20 for every other amulet
  * but 1 for the fake. --Amy */

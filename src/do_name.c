@@ -313,6 +313,9 @@ register struct obj *obj;
 	if (obj->oartifact) {
 		pline_The("artifact seems to resist the attempt.");
 		return;
+	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
+		pline("You cannot rename such a powerful object.");
+		return;
 	} else if (restrict_name(obj, buf) || exist_artifact(obj->otyp, buf)) {
 		int n = rn2((int)strlen(buf));
 		register char c1, c2;

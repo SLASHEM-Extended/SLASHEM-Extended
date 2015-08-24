@@ -557,6 +557,11 @@ register const char *word;
 					body_part(HAND));
 		return(FALSE);
 	}
+	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
+		if (*word)
+			pline("You can't %s such a powerful item.", word);
+		return(FALSE);
+	}
 #ifdef STEED
 	if (obj->owornmask & W_SADDLE) {
 		if (*word)
