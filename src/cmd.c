@@ -1449,6 +1449,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}

@@ -687,6 +687,10 @@ boolean artif;
 		otyp = GOLD_PIECE;
 	}
 
+	if (otyp == u.unobtainable2) {
+		otyp = GOLD_PIECE;
+	}
+
 	char let = objects[otyp].oc_class;
 
 	otmp = newobj(0);

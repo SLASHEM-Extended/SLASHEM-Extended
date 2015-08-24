@@ -428,6 +428,7 @@ struct you {
 	int nospawnspecies5;
 
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
+	int unobtainable2;	
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
 
