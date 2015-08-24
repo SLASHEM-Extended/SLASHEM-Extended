@@ -2063,6 +2063,19 @@ nh_timeout()
 			/* otherwise handle fumbling msgs locally. */
 			if (u.umoved && !Levitation) {
 			    slip_or_trip();
+
+			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */
+
+			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
 			    nomul(-2, "fumbling");
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
