@@ -26,6 +26,13 @@ struct icp {
     char iclass;	/* item class */
 };
 
+/* faux artifacts to fool the player --Amy */
+static const char * const fauxartinames[] = {
+
+"Pus Spitter", "Excalibat", "Moonbite", "Steelgleam", "Spellstealer", "Ironward", "Crashbug Preventer", "Segfault Breath", "Server Operator", "Mindflayer's Best", "The Burninator", "Ascension Kit Part", "DYWYPI", "Identificator", "Frost Barrier", "Zombiekiller", "Lichbane", "Gnomerist", "Vorpal Element", "Silverswandir", "Shock Brand", "Mojo", "Mirrorblack", "Eluder", "Barrowtooth", "Icy Flame", "Spider's Tongue", "Thunderbringer", "White Death", "Coldfire", 
+
+};
+
 #ifdef OVL1
 
 /* STEPHEN WHITE'S NEW CODE */   
@@ -742,6 +749,8 @@ boolean artif;
 			otmp->opoisoned = 1;
 		if (artif && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(50))
+		    otmp = oname(otmp, fauxartinames[rn2(SIZE(fauxartinames))] );
 #ifdef FIREARMS
 		if (otmp->otyp == STICK_OF_DYNAMITE) {
 			otmp->age = (otmp->cursed ? rn2(15) + 2 : 
@@ -1064,6 +1073,8 @@ boolean artif;
 		} else	blessorcurse(otmp, 10);
 		if (artif && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(100))
+		    otmp = oname(otmp, fauxartinames[rn2(SIZE(fauxartinames))] );
 		/* simulate lacquered armor for samurai */
 		if (Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL &&
 		    (moves <= 1 || In_quest(&u.uz))) {
