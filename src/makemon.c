@@ -9103,7 +9103,7 @@ rndmonst()
 	}
 	
 	if (!rn2(100)) { /* all monster "teams" have at least some chance of being selected --Amy */
-		randmnst = (rn2(192) + 1);
+		randmnst = (rn2(187) + 1);
 		randmnsx = (rn2(100) + 1);
 
 		if (randmnst < 6)
@@ -9246,8 +9246,6 @@ rndmonst()
 		    return(mkclass(S_TURRET,0));
 			else if (randmnst < 187)
 		    return(mkclass(S_FLYFISH,0));
-			else if (randmnst < 192)
-		    return(mkclass(S_TROVE,0));
 
 			/* otherwise, don't return */
 	}

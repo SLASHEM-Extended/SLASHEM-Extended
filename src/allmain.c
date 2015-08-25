@@ -227,7 +227,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				randmnst = (rn2(192) + 1);
+				randmnst = (rn2(187) + 1);
 				randmnsx = (rn2(100) + 1);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
@@ -377,8 +377,6 @@ moveloop()
 		 	    (void) makemon(mkclass(S_TURRET,0), 0, 0, NO_MM_FLAGS);
 			else if (randmnst < 187)
 		 	    (void) makemon(mkclass(S_FLYFISH,0), 0, 0, NO_MM_FLAGS);
-			else if (randmnst < 192)
-		 	    (void) makemon(mkclass(S_TROVE,0), 0, 0, NO_MM_FLAGS);
 			else
 		 	    (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 
