@@ -462,8 +462,9 @@ gotobj:
 	pline("%s stole %s.", named ? "It" : Monnam(mtmp), doname(otmp));
 
 	/* evil patch idea by jonadab - levelporting stealers
-         he wants them to always levelport if they manage to steal an artifact... */
-	if (!rn2(1000) || otmp->oartifact) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+         he wants them to always levelport if they manage to steal an artifact...
+	   however, if it's an artifact key (those meant for Vlad's Tower), they won't (obvious rule patch) --Amy */
+	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
