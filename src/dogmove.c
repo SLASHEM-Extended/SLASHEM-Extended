@@ -886,8 +886,9 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_WIZARD_OF_YENDOR] && Race_if(PM_RODNEYAN)) ||
 	/* troves only drop their items if the player kills them, so keep pets away from them */
 			 (mtmp2->data->mlet == S_TROVE) ||
-	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them */
-			 (mtmp2->isshk && !strncmpi(shkname(mtmp2), "Izchak", 6) ) ||
+	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them
+	   well screw it, just completely prevent them from attacking shopkeepers, priests and vault guards --Amy */
+			 (mtmp2->isshk ) || (mtmp2->isgd ) || (mtmp2->ispriest ) ||
 			   (touch_petrifies(mtmp2->data) &&
 				!resists_ston(mtmp)))
 			continue;
