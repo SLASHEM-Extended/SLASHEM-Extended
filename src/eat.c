@@ -3065,7 +3065,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	if (otmp->odrained) victual.reqtime = rounddiv(victual.reqtime, 5);
 
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&
-			(otmp->orotten || otmp->cursed || (!rn2(7) && !otmp->blessed)  )) {
+			(otmp->orotten || otmp->cursed || (!rn2(20) && !otmp->blessed)  )) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 	    if (rottenfood(otmp)) {
 		otmp->orotten = TRUE;
@@ -4271,7 +4271,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (otmp->otyp != FORTUNE_COOKIE &&
 		(otmp->cursed ||
 		 (((monstermoves - otmp->age) > (int) otmp->blessed ? 50:30) &&
-		(otmp->orotten || (!rn2(7) && !otmp->blessed) )))) {
+		(otmp->orotten || (!rn2(20) && !otmp->blessed) )))) {
 
 		if (rottenfood(otmp)) {
 		    otmp->orotten = TRUE;
