@@ -912,7 +912,10 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 	register struct mkroom *sroom;
 	register int sx,sy,i,eelct = 0;
 
-	for(i=0; i<5; i++) {		/* turn up to 5 rooms swampy */
+	/* There should be variation in the amount. --Amy */
+	int ammount = rnd(5);
+
+	for(i=0; i<ammount; i++) {		/* turn up to 5 rooms swampy */
 		sroom = &rooms[rn2(nroom)];
 		if(sroom->hx < 0 || sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) )
 			continue;

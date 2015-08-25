@@ -8437,9 +8437,9 @@ makelevel()
 
 	    /* courtrooms & barracks */
 	    if(depth(&u.uz) > 4 && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
-		else if (depth(&u.uz) > 5 && (ishaxor ? !rn2(4) : !rn2(8))) mkroom(LEPREHALL);
+		else if (depth(&u.uz) > 5 && (ishaxor ? !rn2(5) : !rn2(9))) mkroom(LEPREHALL);
 	    else if(depth(&u.uz) > 14 && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(GIANTCOURT);
-	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(5) : !rn2(10))) mkroom(BARRACKS);
+	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(BARRACKS);
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(HUMANHALL);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TRAPROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
@@ -8447,11 +8447,11 @@ makelevel()
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) :  (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* hives */
-	    if(depth(&u.uz) > (issoviet ? 9 : 5) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(BEEHIVE);
+	    if(depth(&u.uz) > (issoviet ? 9 : 5) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(BEEHIVE);
 	else if (u_depth > (issoviet ? 12 : 8) && (ishaxor ? !rn2(4) : !rn2(8))) mkroom(ANTHOLE);
-	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(NYMPHHALL);
-	else if (u_depth > (issoviet ? 7 : 2) && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(COINHALL);
-	else if (u_depth > (issoviet ? 16 : 7) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(ARMORY);
+	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(NYMPHHALL);
+	else if (u_depth > (issoviet ? 7 : 2) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(COINHALL);
+	else if (u_depth > (issoviet ? 16 : 7) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(ARMORY);
 	else if (u_depth > (issoviet ? 15 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(POOLROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
@@ -8476,10 +8476,10 @@ makelevel()
 	    if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(TEMPLE);
 	    else if(depth(&u.uz) > (issoviet ? 11 : 4) && (ishaxor ? !rn2(7) : !rn2(14))) mkroom(MORGUE);
 	    else if(depth(&u.uz) > (issoviet ? 13 : 1) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
-	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(4) : !rn2(7))) mkroom(SWAMP);
+	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(11) : !rn2(21))) mkroom(SWAMP);
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
         else if (depth(&u.uz) > (issoviet ? 5 : 1) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(EMPTYNEST);
-        else if (depth(&u.uz) > (issoviet ? 30 : 3) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(TERRORHALL);
+        else if (depth(&u.uz) > (issoviet ? 30 : 3) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(TERRORHALL);
         else if (depth(&u.uz) > (issoviet ? 22 : 10) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(TROLLHALL);
  	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
@@ -8488,7 +8488,7 @@ makelevel()
 
 	    /* dangerous ones */
 	    if (u_depth > (issoviet ? 16 : 10) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(COCKNEST);
-	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(DRAGONLAIR);
+	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(DRAGONLAIR);
 	    else if (u_depth > (issoviet ? 25 : 12) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(MIGOHIVE);
 	    /* [DS] the restriction of lemure pits to Gehennom means they're
 	     *      never going to show up randomly (no random room+corridor
