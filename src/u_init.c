@@ -4659,8 +4659,18 @@ u_init()
 	struct permonst* randomvortex = &mons[PM_SIZZLING_VORTEX];
 	struct permonst* randomfungus = &mons[PM_COLORLESS_MOLD];
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
+	struct permonst* randomfungusba = &mons[PM_COLORLESS_PATCH];
+	struct permonst* randomfungusbb = &mons[PM_COLORLESS_FORCE_FUNGUS];
+	struct permonst* randomfungusbc = &mons[PM_COLORLESS_FORCE_PATCH];
+	struct permonst* randomfungusbd = &mons[PM_COLORLESS_WARP_FUNGUS];
+	struct permonst* randomfungusbe = &mons[PM_COLORLESS_WARP_PATCH];
 	struct permonst* randomfungusc = &mons[PM_NONDESCRIPT_MOLD];
 	struct permonst* randomfungusd = &mons[PM_NONDESCRIPT_FUNGUS];
+	struct permonst* randomfungusda = &mons[PM_NONDESCRIPT_PATCH];
+	struct permonst* randomfungusdb = &mons[PM_NONDESCRIPT_FORCE_FUNGUS];
+	struct permonst* randomfungusdc = &mons[PM_NONDESCRIPT_FORCE_PATCH];
+	struct permonst* randomfungusdd = &mons[PM_NONDESCRIPT_WARP_FUNGUS];
+	struct permonst* randomfungusde = &mons[PM_NONDESCRIPT_WARP_PATCH];
 	struct permonst* randomfunguse = &mons[PM_COLORLESS_GROWTH];
 	struct permonst* randomfungusf = &mons[PM_COLORLESS_MUSHROOM];
 	struct permonst* randomfungusg = &mons[PM_COLORLESS_STALK];
@@ -13580,6 +13590,71 @@ u_init()
 
 	}
 
+	randomfungusba->mmove = rnd(12);
+	randomfungusba->ac = 10-rnd(25);
+	randomfungusba->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomfungusba->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusbb->mmove = rnd(12);
+	randomfungusbb->ac = 10-rnd(25);
+	randomfungusbb->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusbc->mmove = rnd(12);
+	randomfungusbc->ac = 10-rnd(25);
+	randomfungusbc->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusbd->mmove = rnd(12);
+	randomfungusbd->ac = 10-rnd(25);
+	randomfungusbd->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusbe->mmove = rnd(12);
+	randomfungusbe->ac = 10-rnd(25);
+	randomfungusbe->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbe->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	randomfungusc->ac = 10-rnd(35);
 	randomfungusc->mr = rn2(101);
 	for (i = 0; i < 1; i++) {
@@ -13597,6 +13672,71 @@ u_init()
 	randomfungusd->mr = rn2(101);
 	for (i = 0; i < 2; i++) {
 		attkptr = &randomfungusd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusda->mmove = rnd(15);
+	randomfungusda->ac = 10-rnd(35);
+	randomfungusda->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomfungusda->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusdb->mmove = rnd(15);
+	randomfungusdb->ac = 10-rnd(35);
+	randomfungusdb->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusdb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusdc->mmove = rnd(15);
+	randomfungusdc->ac = 10-rnd(35);
+	randomfungusdc->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusdc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusdd->mmove = rnd(15);
+	randomfungusdd->ac = 10-rnd(35);
+	randomfungusdd->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusdd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusde->mmove = rnd(15);
+	randomfungusde->ac = 10-rnd(35);
+	randomfungusde->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusde->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {

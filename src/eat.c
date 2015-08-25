@@ -1540,6 +1540,11 @@ register int pm;
 
 	    case PM_PETRO_MOLD:
 	    case PM_PETRO_FUNGUS:
+	    case PM_PETRO_PATCH:
+	    case PM_PETRO_FORCE_FUNGUS:
+	    case PM_PETRO_FORCE_PATCH:
+	    case PM_PETRO_WARP_FUNGUS:
+	    case PM_PETRO_WARP_PATCH:
 	    case PM_PETRO_STALK:
 	    case PM_PETRO_SPORE:
 	    case PM_PETRO_MUSHROOM:
@@ -1962,6 +1967,16 @@ register int pm;
 	    case PM_SECLUDED_MOLD:
 	    case PM_HIDDEN_FUNGUS:
 	    case PM_SECLUDED_FUNGUS:
+	    case PM_HIDDEN_PATCH:
+	    case PM_SECLUDED_PATCH:
+	    case PM_HIDDEN_FORCE_FUNGUS:
+	    case PM_SECLUDED_FORCE_FUNGUS:
+	    case PM_HIDDEN_FORCE_PATCH:
+	    case PM_SECLUDED_FORCE_PATCH:
+	    case PM_HIDDEN_WARP_FUNGUS:
+	    case PM_SECLUDED_WARP_FUNGUS:
+	    case PM_HIDDEN_WARP_PATCH:
+	    case PM_SECLUDED_WARP_PATCH:
 	    case PM_HIDDEN_STALK:
 	    case PM_SECLUDED_STALK:
 	    case PM_HIDDEN_SPORE:

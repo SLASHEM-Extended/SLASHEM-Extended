@@ -555,6 +555,16 @@ register struct monst *mtmp;
 	    case PM_FUNGOID_MOLD:
 	    case PM_UNDEAD_FUNGUS:
 	    case PM_MOLDY_FUNGUS:
+	    case PM_UNDEAD_PATCH:
+	    case PM_MOLDY_PATCH:
+	    case PM_UNDEAD_FORCE_FUNGUS:
+	    case PM_MOLDY_FORCE_FUNGUS:
+	    case PM_UNDEAD_FORCE_PATCH:
+	    case PM_MOLDY_FORCE_PATCH:
+	    case PM_UNDEAD_WARP_FUNGUS:
+	    case PM_MOLDY_WARP_FUNGUS:
+	    case PM_UNDEAD_WARP_PATCH:
+	    case PM_MOLDY_WARP_PATCH:
 	    case PM_UNDEAD_STALK:
 	    case PM_MOLDY_STALK:
 	    case PM_UNDEAD_GROWTH:

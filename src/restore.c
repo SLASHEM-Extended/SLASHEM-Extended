@@ -468,6 +468,11 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
@@ -475,6 +480,11 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_FUNGUS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_PATCH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
