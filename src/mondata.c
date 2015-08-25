@@ -371,10 +371,14 @@ max_passive_dmg(mdef, magr)
 		    (adtyp == AD_COLD && !resists_cold(magr)) ||
 		    (adtyp == AD_FIRE && !resists_fire(magr)) ||
 		    (adtyp == AD_ELEC && !resists_elec(magr)) ||
-		    adtyp == AD_PHYS) {
+		/* prevent pets from killing themselves on those karmic mold's passive attacks --Amy */
+		    (adtyp != AD_ACID && adtyp != AD_COLD && adtyp != AD_FIRE && adtyp != AD_ELEC) ) {
 		dmg = mdef->data->mattk[i].damn;
 		if(!dmg) dmg = mdef->data->mlevel+1;
 		dmg *= mdef->data->mattk[i].damd;
+
+		/* buffer --Amy */
+		dmg += magr->m_lev;
 	    } else dmg = 0;
 
 	    return dmg;
@@ -522,6 +526,7 @@ const char *in_str;
 		}
 	    }
 	}
+
 	if (mntmp == NON_PM) mntmp = title_to_mon(str, (int *)0, (int *)0);
 	return mntmp;
 }

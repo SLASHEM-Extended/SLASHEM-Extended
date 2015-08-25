@@ -876,6 +876,7 @@ register int after;	/* this is extra fast monster movement */
 			 * coaligned minions/priests/angels/unicorns.
 			 */
 			(align1 == align2 && align1 != A_NONE) ||
+			( (mtmp->mhp*10 < mtmp->mhpmax) && !Conflict ) ||
 			((mtmp->mhp*4 < mtmp->mhpmax
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
