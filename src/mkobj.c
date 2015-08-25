@@ -1216,8 +1216,9 @@ start_corpse_timeout(body)
 
 #define TAINT_AGE (50L)		/* age when corpses go bad */
 #define TROLL_REVIVE_CHANCE 37	/* 1/37 chance for 50 turns ~ 75% chance */
+#define TROLL_REVIVE_LATE_CHANCE 300	/* 1/300 chance for 200 turns ~ 49% chance */
 #define MOLD_REVIVE_CHANCE 23	/*  1/23 chance for 50 turns ~ 90% chance */
-#define MOLDY_CHANCE 290	/*  1/290 chance for 200 turns ~ 50% chance */
+#define MOLDY_CHANCE 900	/*  1/290 chance for 200 turns ~ 50% chance, but edited by Amy to be much more rare, actual chance about 20% now */
 #define ROT_AGE (250L)		/* age when corpses rot away */
 
 	/* lizards and lichen don't rot or revive */
@@ -1243,6 +1244,12 @@ start_corpse_timeout(body)
 
 	} else if (mons[body->corpsenm].mlet == S_TROLL && !body->norevive) {
 		long age;
+		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
+		    if (!rn2(TROLL_REVIVE_LATE_CHANCE)) {	/* troll revives */
+			action = REVIVE_MON;
+			when = age;
+			break;
+		    }
 		for (age = 2; age <= TAINT_AGE; age++)
 		    if (!rn2(TROLL_REVIVE_CHANCE)) {	/* troll revives */
 			action = REVIVE_MON;

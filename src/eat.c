@@ -4330,6 +4330,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 STATIC_OVL int
 bite()
 {
+	int vampirenutrition = 0;
+	if (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) vampirenutrition += rn2(6);
+	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) vampirenutrition += rn2(3);
+
 	if(victual.canchoke && u.uhunger >= 4000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);
 		return 1;
@@ -4341,6 +4345,7 @@ bite()
 	force_save_hs = TRUE;
 	if(victual.nmod < 0) {
 		lesshungry(-victual.nmod);
+		if (vampirenutrition) lesshungry(-(vampirenutrition * victual.nmod) );
 		consume_oeaten(victual.piece, victual.nmod); /* -= -nmod */
 	} else if(victual.nmod > 0 && (victual.usedtime % victual.nmod)) {
 		lesshungry(1);
