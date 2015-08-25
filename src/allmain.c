@@ -674,16 +674,16 @@ moveloop()
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->known = FALSE;
 				}
 			    }
@@ -697,16 +697,16 @@ moveloop()
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->known = FALSE;
 				}
 			    }
@@ -720,16 +720,16 @@ moveloop()
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
 				}
-				if (!rn2(100)) {
+				if (!rn2(4000)) {
 					otmpi->known = FALSE;
 				}
 			    }
