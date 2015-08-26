@@ -3522,7 +3522,7 @@ boolean amnesia;
 			useup(obj);
 			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE);
 			if (otmp) {
-				otmp->blessed = otmp->cursed = 0;
+				otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = 0;
 				addinv(otmp);
 				update_inventory();
 			}

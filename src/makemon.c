@@ -8760,7 +8760,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_LAW));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = 0;
 			mpickobj(mtmp, otmp);
 		}
 	} else if (mndx == PM_BEHOLDER) {
@@ -8769,7 +8769,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_NEUTRALITY));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = 0;
 			mpickobj(mtmp, otmp);
 		}
 	} else if (mndx == PM_VECNA) {
@@ -8778,7 +8778,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_CHAOS));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = 0;
 			mpickobj(mtmp, otmp);
 		}
 	} else if (mndx == PM_GYPSY) {

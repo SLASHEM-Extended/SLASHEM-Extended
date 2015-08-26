@@ -2012,7 +2012,15 @@ register struct obj	*sobj;
 			/* assumes same order */
 			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
 						otmp->otyp - GRAY_DRAGON_SCALES;
-			otmp->cursed = 0;
+
+			if (otmp->prmcurse && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+			}
+			else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+			}
+			else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
+
 			if (sobj->blessed) {
 				otmp->spe++;
 				otmp->blessed = 1;
