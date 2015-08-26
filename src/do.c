@@ -2371,7 +2371,7 @@ boolean at_stairs, falling, portal;
 
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				if (timebasedlowerchance()) (void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 			}
 
 		}
@@ -2390,7 +2390,7 @@ boolean at_stairs, falling, portal;
 
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-				(void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				if (timebasedlowerchance()) (void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 			}
 
 		}

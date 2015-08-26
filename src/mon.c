@@ -2682,7 +2682,7 @@ register struct monst *mdef;
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-			if (is_musable(obj) && !stack_too_big(obj) && !rn2(3) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
+			if (is_musable(obj) && !stack_too_big(obj) && (!rn2(3) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ
@@ -2898,23 +2898,23 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN]  || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5)) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN]  || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && timebasedlowerchance() ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(BANANA, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(MELON, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20)) otmp = mksobj_at(PEAR, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(50)) otmp = mksobj_at(ASIAN_PEAR, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(BANANA, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(MELON, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(PEAR, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(50) && timebasedlowerchance() ) otmp = mksobj_at(ASIAN_PEAR, x, y, TRUE, FALSE);
 
-		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO]) && !rn2(40)) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO]) && !rn2(40) && timebasedlowerchance() ) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE);
 
-		if ((mdat == &mons[PM_RHAUMBUSUN] || mdat == &mons[PM_BIG_RHAUMBUSUN]) && !rn2(20)) otmp = mksobj_at(SCR_FIRE, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_RHAUMBUSUN] || mdat == &mons[PM_BIG_RHAUMBUSUN]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(SCR_FIRE, x, y, TRUE, FALSE);
 
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(CREAM_PIE, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(APPLE, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20)) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(CREAM_PIE, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(APPLE, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE);
 
 		if (mdat == &mons[PM_SMALL_ITEM_TROVE]) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 
@@ -3136,15 +3136,15 @@ xkilled(mtmp, dest)
 		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
 		if (!rn2(100) && Race_if(PM_ANGBANDER) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
 
-		if (!rn2(500)) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
-		if (!rn2(250)) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
-		if (!rn2(100)) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
-		if (!rn2(100)) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
-		if (!rn2(40)) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);
+		if (!rn2(500) && timebasedlowerchance() ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
+		if (!rn2(250) && timebasedlowerchance() ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
+		if (!rn2(100) && timebasedlowerchance() ) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
+		if (!rn2(100) && timebasedlowerchance() ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
+		if (!rn2(40) && timebasedlowerchance() ) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);
 
-		if (!rn2(500)) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);
+		if (!rn2(500) && timebasedlowerchance() ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);
 
-		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) /*&& !(mvitals[mndx].mvflags & G_NOCORPSE) && !(nohands(mdat))*/
+		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) && timebasedlowerchance() /*&& !(mvitals[mndx].mvflags & G_NOCORPSE) && !(nohands(mdat))*/
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 #ifdef KOPS
@@ -3157,46 +3157,37 @@ xkilled(mtmp, dest)
 			if (!rn2(32)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			}
-			if (!rn2(64)) {
+			if (!rn2(96)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(128)) {
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			}
-			if (!rn2(256)) {
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			if (!rn2(288)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(512)) {
+			if (!rn2(864)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(1024)) {
+			if (!rn2(2592)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(2048)) {
+			if (!rn2(7776)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(4096)) {
+			if (!rn2(23328)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
@@ -3204,9 +3195,8 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
-			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(8192)) {
+			if (!rn2(69984)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
@@ -3215,9 +3205,19 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			}
+			if (!rn2(209952)) {
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
+			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
-			if (!rn2(16384)) {
+			if (!rn2(629856)) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE); /* small chance to get even more stuff --Amy */
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);

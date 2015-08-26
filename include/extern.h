@@ -28,6 +28,7 @@ E void FDECL(welcome, (BOOLEAN_P));
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
 E time_t NDECL(get_realtime);
 #endif
+E boolean NDECL(timebasedlowerchance);
 
 /* ### apply.c ### */
 

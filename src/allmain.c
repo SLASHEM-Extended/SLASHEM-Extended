@@ -399,7 +399,7 @@ moveloop()
 
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-					(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+					if (timebasedlowerchance()) (void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 				}
 
 			}
@@ -418,7 +418,7 @@ moveloop()
 
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-					(void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+					if (timebasedlowerchance()) (void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 				}
 
 			}
@@ -2179,6 +2179,18 @@ get_realtime(void)
 }
 #endif /* REALTIME_ON_BOTL || RECORD_REALTIME */
 
+/* if enough game time has elapsed, things in the player's favor happen less often --Amy */
+boolean
+timebasedlowerchance()
+{
+	int chance = 115;
+	chance -= (moves * 100 / u.monstertimefinish);
+	/* make sure we don't fall off the bottom */
+	if (chance < 15) chance = 15;
+
+	if (chance > rnd(100)) return(TRUE);
+	else return(FALSE);
+}
 
 #endif /* OVLB */
 
