@@ -3462,6 +3462,8 @@ boolean amnesia;
 #else
 			obj->blessed = obj->cursed = FALSE;
 #endif
+			obj->hvycurse = obj->prmcurse = FALSE;
+
 			obj->otyp = POT_WATER;
 		} else obj->odiluted++;
 		used = TRUE;
