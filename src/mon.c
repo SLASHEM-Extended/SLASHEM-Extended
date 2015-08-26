@@ -2682,7 +2682,7 @@ register struct monst *mdef;
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-			if (is_musable(obj) && !stack_too_big(obj) && (!rn2(3) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
+			if (is_musable(obj) && obj->mstartinvent && !stack_too_big(obj) && (!rn2(3) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ

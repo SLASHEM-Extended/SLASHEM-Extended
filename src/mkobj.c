@@ -2120,6 +2120,7 @@ add_to_container(container, obj)
     for (otmp = container->cobj; otmp; otmp = otmp->nobj)
 	if (merged(&otmp, &obj)) return (otmp);
 
+    obj->mstartinvent = 0;
     obj->where = OBJ_CONTAINED;
     obj->ocontainer = container;
     obj->nobj = container->cobj;

@@ -616,6 +616,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		/* Players were getting annoyed by having their inventory cluttered with garbage from attacking
 		 * low-level monsters as a high-level nymph. Let's allow them to drop items if they don't want them. --Amy */
 
+		obj->mstartinvent = 0;
 		Sprintf(qbuf, "Got %s! Drop it?", doname(obj) );
 
 		if (yn_function(qbuf, ynchars, 'n') == 'y' ) {

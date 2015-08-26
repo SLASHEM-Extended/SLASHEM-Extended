@@ -9790,6 +9790,7 @@ register int otyp;
 	    }
 
 	    spe = otmp->spe;
+	    if (is_musable(otmp)) otmp->mstartinvent = 1;
 	    (void) mpickobj(mtmp, otmp);	/* might free otmp */
 	    return(spe);
 	} else return(0);
