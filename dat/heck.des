@@ -7803,7 +7803,8 @@ NON_DIGGABLE:(00,00,75,20)
 STAIR:(53,19),down
 STAIR:levregion(1,0,79,20),(0,0,26,16),up
 
-REGION:(35,08,35,12),  lit,"ordinary",unfilled
+#REGION:(35,08,35,12),  lit,"ordinary",unfilled
+# causes game to hang on loading the level --Amy
 
 MONSTER:'u',"green nightmare", random
 OBJECT: '(',"skeleton key", random
