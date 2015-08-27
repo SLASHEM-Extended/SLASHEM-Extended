@@ -412,55 +412,55 @@ int verbose;
 	if (Is_knox(&u.uz))
 		Sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
 	else if (In_quest(&u.uz))
-		Sprintf(buf, "Quest %d ", dunlev(&u.uz)); /* used to be called home --Amy */
+		Sprintf(buf, "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
 	else if (Is_astralevel(&u.uz)) /* why the heck is there a "l" missing in "astra_l_level"? */
-		Sprintf(buf, "Astral Plane ");
+		Sprintf(buf, "Astral ");
 	else if (Is_earthlevel(&u.uz))
-		Sprintf(buf, "Earth Plane ");
+		Sprintf(buf, "Earth ");
 	else if (Is_firelevel(&u.uz))
-		Sprintf(buf, "Fire Plane ");
+		Sprintf(buf, "Fire ");
 	else if (Is_waterlevel(&u.uz))
-		Sprintf(buf, "Water Plane ");
+		Sprintf(buf, "Water ");
 	else if (Is_airlevel(&u.uz))
-		Sprintf(buf, "Air Plane ");
+		Sprintf(buf, "Air ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
-		Sprintf(buf, "Blackmarket:%d ", depth(&u.uz));
+		Sprintf(buf, "Blk:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sokoban"))
-		Sprintf(buf, "Sokoban:%d ", depth(&u.uz));
+		Sprintf(buf, "Sok:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gehennom"))
-		Sprintf(buf, "Gehennom:%d ", depth(&u.uz));
+		Sprintf(buf, "Geh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
-		Sprintf(buf, "Mines:%d ", depth(&u.uz));
+		Sprintf(buf, "Min:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Town"))
-		Sprintf(buf, "Town:%d ", depth(&u.uz));
+		Sprintf(buf, "Tow:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
-		Sprintf(buf, "Stronghold:%d ", depth(&u.uz));
+		Sprintf(buf, "Str:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
-		Sprintf(buf, "Nightmare:%d ", depth(&u.uz));
+		Sprintf(buf, "Nig:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))
-		Sprintf(buf, "Beholder:%d ", depth(&u.uz));
+		Sprintf(buf, "Beh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest"))
-		Sprintf(buf, "Vecna:%d ", depth(&u.uz));
+		Sprintf(buf, "Vec:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
-		Sprintf(buf, "Temple:%d ", depth(&u.uz));
+		Sprintf(buf, "Tem:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns"))
-		Sprintf(buf, "Giants:%d ", depth(&u.uz));
+		Sprintf(buf, "Gia:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea"))
 		Sprintf(buf, "Sea:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves"))
-		Sprintf(buf, "Spider:%d ", depth(&u.uz));
+		Sprintf(buf, "Spi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb"))
-		Sprintf(buf, "Lost Tomb:%d ", depth(&u.uz));
+		Sprintf(buf, "Los:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves"))
-		Sprintf(buf, "Wyrm Caves:%d ", depth(&u.uz));
+		Sprintf(buf, "Wyr:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
-		Sprintf(buf, "Ludios:%d ", depth(&u.uz));
+		Sprintf(buf, "Lud:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower"))
-		Sprintf(buf, "Vlad Tower:%d ", depth(&u.uz));
+		Sprintf(buf, "Vla:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
 		Sprintf(buf, "Lab:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
-		Sprintf(buf, "Sheol:%d ", depth(&u.uz));
+		Sprintf(buf, "She:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			Sprintf(buf, "%s, level %d ",
