@@ -750,7 +750,7 @@ int curse_bless;
 	     *	7 : 100     100
 	     */
 	    n = (int)obj->recharged;
-	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ||
+	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT || obj->otyp == WAN_GAIN_LEVEL || obj->otyp == WAN_INCREASE_MAX_HITPOINTS ||
 		/* no unlimited recharging of wands of charging --Amy */
 		    ((n * n * n > rn2(7*7*7)) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
 		Your("%s vibrates violently, and explodes!",xname(obj));
@@ -764,7 +764,7 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
 	    } else {
-		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 8 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : (objects[obj->otyp].oc_dir != NODIR) ? (8 + n) : (15 + n);
+		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 5 : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? 6 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : (objects[obj->otyp].oc_dir != NODIR) ? (8 + n) : (15 + n);
 
 		n = (lim == 2) ? 2 : (lim == 3) ? 3 : (is_blessed ? rn1(5, lim + 1 - 5) : rnd(lim) ) ;
 		/*if (!is_blessed) {enspe = rnd(n); n = enspe;}*/ /* no longer needed */
@@ -773,7 +773,7 @@ int curse_bless;
 		if (is_blessed && obj->spe < n && rn2(3) ) obj->spe = n;
 		}
 
-		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(6) : rnd(10));
+		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(5) : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? rnd(6) : rnd(10));
 
 		/* let's make charging a bit more useful, considering wands spawn with less charges now --Amy */
 		/*else*/ obj->spe += obj->recharged; /* cannot be higher than 1 for wishing/charging anyway */
