@@ -1173,6 +1173,8 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (!incr) You_feel("more experienced.");
 
+	if (u.ulevel < MAXULEV) {
+
 	if (!ishomicider || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
 	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
 
@@ -1198,15 +1200,55 @@ boolean incr;	/* true iff via incremental experience growth */
 	else
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
 			urole.enadv.hifix + urace.enadv.hifix);
+
 	num = enermod(num);	/* M. Stephenson */
 	num += (rn2(3) ? rnz(1) : rnz(2));
 	num -= flags.hybridization;
 	if (num < 0) num = 0;
 	u.uenmax += num;
 	u.uen += num;
-	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uen < u.uenmax)) u.uen = u.uenmax;
+	} /* homicider check */
+
+	} else { /* u.ulevel > MAXULEV */
+
+	if (!ishomicider || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
+
+	num = newhp();
+	num += rnz(2);
+	num -= flags.hybridization;
+	if (num < 0) num = 0;
+	if (num > 1) num /= (5 + rnd(5));
+	u.uhpmax += num;
+	u.uhp += num;
+
+	if (Upolyd) {
+	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
+	    num -= flags.hybridization;
+	    if (num < 0) num = 0;
+	    if (num > 1) num /= (5 + rnd(5));
+	    u.mhmax += num;
+	    u.mh += num;
+	}
+	if (u.ulevel < urole.xlev)
+	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
+			urole.enadv.lofix + urace.enadv.lofix);
+	else
+	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.hirnd + urace.enadv.hirnd,
+			urole.enadv.hifix + urace.enadv.hifix);
+
+	num = enermod(num);	/* M. Stephenson */
+	num += (rn2(3) ? rnz(1) : rnz(2));
+	num -= flags.hybridization;
+	if (num < 0) num = 0;
+	if (num > 1) num /= (5 + rnd(5));
+	u.uenmax += num;
+	u.uen += num;
 
 	} /* homicider check */
+
+	} /* u.ulevel > or < MAXULEV */
+
 
 	if (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) u.urmaxlvlUP = (u.ulevel + 1);
 	
