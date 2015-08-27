@@ -2224,7 +2224,7 @@ int tech_no;
 		break;
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
-		t_timeout = rnz(1500);
+		t_timeout = rnz(5000);
 		break;            	
             case T_SPIRIT_BOMB:
 	    	if (uwep || (u.twoweap && uswapwep)) {
