@@ -81,6 +81,11 @@ showscore  display your approximate accumulated score             [FALSE]
 Boolean option if SHOW_DMG was set at compile time:
 showdmg    display damage inflicted/received on message line      [FALSE]
 
+These three should be turned on if you're on a terminal with 25 or more lines:
+showmc     display magic cancellation on bottom status line       [FALSE]
+showmovement     display movement speed on bottom status line     [FALSE]
+showlongstats    don't abbreviate stats bottom status line        [FALSE]
+
 Boolean options if SHOW_WEIGHT was set at compile time:
 invweight  display weights of items in inventory in braces        [FALSE]
 showweight display total weight in inventory on bottom line       [FALSE]
