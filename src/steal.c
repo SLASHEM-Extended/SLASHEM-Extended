@@ -313,6 +313,14 @@ gotobj:
 		return (0);
 	}
 
+	/* artifacts resist stealing because I'm nice --Amy */
+	if (rn2(10) && otmp->oartifact) {
+
+		pline("%s tries to steal your %s, but you quickly protect it!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
+		return (0);
+	}
+
+
 	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
 		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 		return(0);
