@@ -1069,7 +1069,7 @@ AMULET("amulet of acid resistance",     "venomous",   ACID_RES,25, LIQUID,	CLR_G
 AMULET("amulet of regeneration",     "vivid",   REGENERATION,25, CLOTH,	CLR_BRIGHT_CYAN),
 AMULET("amulet of conflict",     "sounding",   CONFLICT,25, METAL,	CLR_WHITE),
 AMULET("amulet of fumbling",     "clumsy",   FUMBLING,25, LEATHER,	CLR_ORANGE),
-AMULET("amulet of second chance", "tetraedical",SECOND_CHANCE, 25, GEMSTONE,	CLR_BRIGHT_BLUE),
+AMULET("amulet of second chance", "tetraedrical",SECOND_CHANCE, 25, GEMSTONE,	CLR_BRIGHT_BLUE),
 AMULET("amulet of data storage",  "icosaedrical", 0,		25, GEMSTONE,	CLR_BRIGHT_GREEN),
 AMULET("amulet of waterwalking",     "rubber",   WWALKING,25, PLASTIC,	CLR_BRIGHT_BLUE),
 AMULET("amulet of hunger",     "gleaming",   HUNGER,25, WAX,	CLR_BRIGHT_MAGENTA),
