@@ -627,28 +627,28 @@ moveloop()
 
 		}
 
-		if ( Itemcursing && !rn2(100) ) {
+		if ( Itemcursing && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
 
 		}
 
-		if ( have_cursingstone() && !rn2(100) ) {
+		if ( have_cursingstone() && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
 
 		}
 
-		if ( have_primecurse() && !rn2(100) ) {
+		if ( have_primecurse() && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
 
 		}
 
-		if (u.uprops[ITEMCURSING].extrinsic && !rn2(100) ) {
+		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
