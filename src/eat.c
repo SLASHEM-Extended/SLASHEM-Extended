@@ -3061,7 +3061,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	}
 
 	/* delay is weight dependent */
-	victual.reqtime = 3 + (mons[mnum].cwt >> 6);
+	victual.reqtime = 2 + (mons[mnum].cwt >> 8); /* speed up --Amy */
 	if (otmp->odrained) victual.reqtime = rounddiv(victual.reqtime, 5);
 
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&

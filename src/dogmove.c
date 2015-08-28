@@ -105,7 +105,7 @@ struct obj *obj;
 	 */
 	if (obj->oclass == FOOD_CLASS) {
 	    if(obj->otyp == CORPSE) {
-		mtmp->meating = 3 + (mons[obj->corpsenm].cwt >> 6);
+		mtmp->meating = 2 + (mons[obj->corpsenm].cwt >> 8);
 		nutrit = mons[obj->corpsenm].cnutrit;
 	    } else {
 		mtmp->meating = objects[obj->otyp].oc_delay;
