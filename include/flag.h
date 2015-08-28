@@ -93,6 +93,7 @@ struct flag {
 #endif
 	boolean  showmc;	/* shows MC on bottom status line */
 	boolean  showmovement;	/* shows movement speed on bottom status line */
+	boolean  showlongstats;	/* don't abbreviate status on bottom line */
 
 	boolean  silent;	/* whether the bell rings or not */
 	boolean  sortpack;	/* sorted inventory */

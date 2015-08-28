@@ -412,55 +412,55 @@ int verbose;
 	if (Is_knox(&u.uz))
 		Sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
 	else if (In_quest(&u.uz))
-		Sprintf(buf, "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
+		Sprintf(buf, flags.showlongstats ? "Quest %d " : "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
 	else if (Is_astralevel(&u.uz)) /* why the heck is there a "l" missing in "astra_l_level"? */
-		Sprintf(buf, "Astral ");
+		Sprintf(buf, flags.showlongstats ? "Astral Plane " : "Astral ");
 	else if (Is_earthlevel(&u.uz))
-		Sprintf(buf, "Earth ");
+		Sprintf(buf, flags.showlongstats ? "Earth Plane " : "Earth ");
 	else if (Is_firelevel(&u.uz))
-		Sprintf(buf, "Fire ");
+		Sprintf(buf, flags.showlongstats ? "Fire Plane " : "Fire ");
 	else if (Is_waterlevel(&u.uz))
-		Sprintf(buf, "Water ");
+		Sprintf(buf, flags.showlongstats ? "Water Plane " : "Water ");
 	else if (Is_airlevel(&u.uz))
-		Sprintf(buf, "Air ");
+		Sprintf(buf, flags.showlongstats ? "Air Plane " : "Air ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
-		Sprintf(buf, "Blk:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Blackmarket:%d " : "Blk:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sokoban"))
-		Sprintf(buf, "Sok:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Sokoban:%d " : "Sok:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gehennom"))
-		Sprintf(buf, "Geh:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Gehennom:%d " : "Geh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
-		Sprintf(buf, "Min:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Mines:%d " : "Min:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Town"))
-		Sprintf(buf, "Tow:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Town:%d " : "Tow:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
-		Sprintf(buf, "Str:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Stronghold:%d " : "Str:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
-		Sprintf(buf, "Nig:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Nightmare:%d " : "Nig:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))
-		Sprintf(buf, "Beh:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Beholder:%d " : "Beh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest"))
-		Sprintf(buf, "Vec:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Vecna:%d " : "Vec:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
-		Sprintf(buf, "Tem:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Temple:%d " : "Tem:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns"))
-		Sprintf(buf, "Gia:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Giants:%d " : "Gia:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea"))
 		Sprintf(buf, "Sea:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves"))
-		Sprintf(buf, "Spi:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Spider:%d " : "Spi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb"))
-		Sprintf(buf, "Los:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Lost Tomb:%d " : "Los:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves"))
-		Sprintf(buf, "Wyr:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Wyrm Caves:%d " : "Wyr:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
-		Sprintf(buf, "Lud:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Ludios:%d " : "Lud:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower"))
-		Sprintf(buf, "Vla:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Vlad's Tower:%d " : "Vla:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
 		Sprintf(buf, "Lab:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
-		Sprintf(buf, "She:%d ", depth(&u.uz));
+		Sprintf(buf, flags.showlongstats ? "Sheol:%d " : "She:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			Sprintf(buf, "%s, level %d ",
@@ -650,16 +650,16 @@ bot2str(char *newbot2)
 
 	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Oversatiated", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Oversatiated" : "Ovs", newbot2);
 #else
-		Strcat(nb = eos(nb), " Oversatiated");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Oversatiated" : " Ovs");
 #endif
 
 	else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(hu_stat[u.uhs], newbot2);
+	     	add_colored_text(flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs], newbot2);
 #else
-		Sprintf(nb = eos(nb), " %s", hu_stat[u.uhs]);
+		Sprintf(nb = eos(nb), " %s", flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs]);
 #endif
 
 /* WAC further Up
@@ -678,46 +678,46 @@ bot2str(char *newbot2)
 #endif
 	if (IsGlib)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Glib", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Glib" : "Glb", newbot2);
 #else
-		Strcat(nb = eos(nb), " Glib");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Glib" : " Glb");
 #endif
 	if (Wounded_legs)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Legs", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Legs" : "Leg", newbot2);
 #else
-		Strcat(nb = eos(nb), " Legs");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Legs" : " Leg");
 #endif
 	if (Strangled)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Choke", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Choke" : "Chk", newbot2);
 #else
-		Strcat(nb = eos(nb), " Choke");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Choke" : " Chk");
 #endif
 	if (Vomiting)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Vomit", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Vomit" : "Vmt", newbot2);
 #else
-		Strcat(nb = eos(nb), " Vomit");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Vomit" : " Vmt");
 #endif
 	if(Confusion && !HeavyConfusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Conf", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Conf" : "Cnf", newbot2);
 #else
-		Strcat(nb = eos(nb), " Conf");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Conf" : " Cnf");
 #endif
 	if(Confusion && HeavyConfusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XConf", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XConf" : "XCnf", newbot2);
 #else
-		Strcat(nb = eos(nb), " XConf");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XConf" : " XCnf");
 #endif
 	if(Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-			add_colored_text("FoodPois", newbot2);
+			add_colored_text(flags.showlongstats ? "FoodPois" : "FPo", newbot2);
 #else
-			Strcat(nb = eos(nb), " FoodPois");
+			Strcat(nb = eos(nb), flags.showlongstats ? " FoodPois" : " FPo");
 #endif
 		if (u.usick_type & SICK_NONVOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
@@ -729,117 +729,117 @@ bot2str(char *newbot2)
 
 	if(Blind && !HeavyBlind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Blind", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Blind" : "Bli", newbot2);
 #else
-		Strcat(nb = eos(nb), " Blind");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Blind" : " Bli");
 #endif
 	if(Blind && HeavyBlind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XBlind", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XBlind" : "XBli", newbot2);
 #else
-		Strcat(nb = eos(nb), " XBlind");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XBlind" : " XBli");
 #endif
 	if(sengr_at("Elbereth", u.ux, u.uy))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Elbereth", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Elbereth" : "Elb", newbot2);
 #else
-		Strcat(nb = eos(nb), " Elbereth");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Elbereth" : " Elb");
 #endif
 	/* Yes I know, this should have a "is the player blind?" check. But I'm lenient. --Amy */
 
 	if(Feared && !HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(Race_if(PM_TUMBLRER) ? "Triggered" : "Fear", newbot2);
+	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "Triggered" : "Trg") : (flags.showlongstats ? "Fear" : "Fea"), newbot2);
 #else
-		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? " Triggered" : " Fear");
+		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " Triggered" : " Trg") : (flags.showlongstats ? " Fear" : " Fea") );
 #endif
 	if(Feared && HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(Race_if(PM_TUMBLRER) ? "XTriggered" : "XFear", newbot2);
+	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "XTriggered" : "XTrg") : (flags.showlongstats ? "XFear" : "XFea"), newbot2);
 #else
-		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? " XTriggered" : " XFear");
+		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " XTriggered" : " XTrg") : (flags.showlongstats ? " XFear" : " XFea"));
 #endif
 	if(Numbed && !HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Numb", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Numb" : "Nmb", newbot2);
 #else
-		Strcat(nb = eos(nb), " Numb");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Numb" : " Nmb");
 #endif
 	if(Numbed && HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XNumb", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XNumb" : "XNmb", newbot2);
 #else
-		Strcat(nb = eos(nb), " XNumb");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XNumb" : " XNmb");
 #endif
 	if(Frozen && !HeavyFrozen)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Freeze", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Freeze" : "Frz", newbot2);
 #else
-		Strcat(nb = eos(nb), " Freeze");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Freeze" : " Frz");
 #endif
 	if(Frozen && HeavyFrozen)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XFreeze", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XFreeze" : "XFrz", newbot2);
 #else
-		Strcat(nb = eos(nb), " XFreeze");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XFreeze" : " XFrz");
 #endif
 	if(Burned && !HeavyBurned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Burn", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Burn" : "Brn", newbot2);
 #else
-		Strcat(nb = eos(nb), " Burn");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Burn" : " Brn");
 #endif
 	if(Burned && HeavyBurned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XBurn", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XBurn" : "XBrn", newbot2);
 #else
-		Strcat(nb = eos(nb), " XBurn");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XBurn" : " XBrn");
 #endif
 	if(Stunned && !HeavyStunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Stun", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Stun" : "Stn", newbot2);
 #else
-		Strcat(nb = eos(nb), " Stun");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Stun" : " Stn");
 #endif
 	if(Stunned && HeavyStunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XStun", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XStun" : "XStn", newbot2);
 #else
-		Strcat(nb = eos(nb), " XStun");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XStun" : " XStn");
 #endif
 	if(Hallucination && !HeavyHallu)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Hallu", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Hallu" : "Hal", newbot2);
 #else
-		Strcat(nb = eos(nb), " Hallu");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Hallu" : " Hal");
 #endif
 	if(Hallucination && HeavyHallu)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("XHallu", newbot2);
+	     	add_colored_text(flags.showlongstats ? "XHallu" : "XHal", newbot2);
 #else
-		Strcat(nb = eos(nb), " XHallu");
+		Strcat(nb = eos(nb), flags.showlongstats ? " XHallu" : " XHal");
 #endif
 	if(Slimed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Slime", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Slime" : "Sli", newbot2);
 #else
-		Strcat(nb = eos(nb), " Slime");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Slime" : " Sli");
 #endif
 	if(Stoned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Stone", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Stone" : "Sto", newbot2);
 #else
-		Strcat(nb = eos(nb), " Stone");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Stone" : " Sto");
 #endif
 	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text("Held", newbot2);
+	     	add_colored_text(flags.showlongstats ? "Held" : "Hld", newbot2);
 #else
-		Strcat(nb = eos(nb), " Held");
+		Strcat(nb = eos(nb), flags.showlongstats ? " Held" : " Hld");
 #endif
 	if(cap > UNENCUMBERED)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-		add_colored_text(enc_stat[cap], newbot2);
+		add_colored_text(flags.showlongstats ? enc_stat[cap] : enc_abbrev_stat[cap], newbot2);
 #else
 		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
 #endif
