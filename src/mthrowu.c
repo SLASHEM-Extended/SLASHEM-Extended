@@ -45,10 +45,17 @@ const char *name;	/* if null, then format `obj' */
 {
 	const char *onm, *knm;
 	boolean is_acid;
+	boolean is_tailspike;
+	boolean is_egg;
+	boolean is_polearm;
+	boolean is_thrown_weapon;
+	boolean is_bulletammo;
 	int kprefix = KILLED_BY_AN;
 	char onmbuf[BUFSZ], knmbuf[BUFSZ];
 
 	int shieldblockrate = 0;
+
+	int extrachance = 1;
 
 	if (uarms) {
 
@@ -131,18 +138,28 @@ const char *name;	/* if null, then format `obj' */
 	onm = (obj && obj_is_pname(obj)) ? the(name) :
 			    (obj && obj->quan > 1L) ? name : an(name);
 	is_acid = (obj && obj->otyp == ACID_VENOM);
+	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
+	is_egg = (obj && obj->otyp == EGG);
+	is_polearm = (obj && objects[obj->otyp].oc_skill == P_POLEARMS);
+	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
+	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
+
+	if (is_bulletammo) extrachance = 1;
+	else if (is_acid || is_tailspike || is_egg || is_polearm) extrachance = 10;
+	else if (is_thrown_weapon) extrachance = 3;
+	else extrachance = 2;
 
 	if((u.uac + tlev <= rnd(20)) && !rn2(3)) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
 		return(0);
-	} else if ( u.uac < 0 && rn2(2) && (rnd(50) < (-(u.uac))) )    {
+	} else if ( (u.uac < 0) && rn2(2) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
 		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);
 		return(0);
 
-	} else if (rnd(100) < shieldblockrate) {
+	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
 			/* a good shield allows you to block projectiles --Amy */
 			if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
@@ -157,7 +174,7 @@ const char *name;	/* if null, then format `obj' */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 #endif
-	} else if (rnd(30) < (2 + (u.ulevel / 2) ) ) {
+	} else if (!rn2(extrachance) && rnd(30) < (2 + (u.ulevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */
 			if(Blind || !flags.verbose) pline("You dodge a projectile.");
@@ -180,8 +197,13 @@ const char *name;	/* if null, then format `obj' */
 		}
 		else {
 			if (is_acid) {pline("It burns!");
+				if (tlev > 0) dam += rnd(tlev);
 				if (Stoned) fix_petrification();
 				}
+			else if (is_tailspike && (tlev > 0) ) dam += rnd(tlev * 2);
+			else if (is_polearm && !rn2(2) && (tlev > 0) ) dam += rnd(tlev);
+			else if (!is_bulletammo && (tlev > 0) && !rn2(3)) dam += rnd(tlev);
+
 			if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 
 			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
@@ -558,7 +580,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    /* fall through */
 			case CREAM_PIE:
 			case BLINDING_VENOM:
-			    hitu = thitu(8, 0, singleobj, (char *)0);
+			    hitu = thitu(8 + (mon->m_lev / 2), 0, singleobj, (char *)0);
 			    break;
 			default:
 			    dam = dmgval(singleobj, &youmonst);
@@ -574,7 +596,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				if(singleobj->otyp == ELVEN_ARROW) dam++;
 			    }
 			    if (bigmonst(youmonst.data)) hitv++;
-			    hitv += 8 + singleobj->spe;
+			    hitv += 8 + singleobj->spe + (mon->m_lev / 2);
 			    if (dam < 1) dam = 1;
 			    hitu = thitu(hitv, dam, singleobj, (char *)0);
 		    }
