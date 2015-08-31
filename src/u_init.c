@@ -5170,6 +5170,7 @@ u_init()
 	u.urmaxlvlD = 1; /* will go up if a bard role player levels up */
 	u.urmaxlvlE = 1; /* will go up if an american gladiator player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
+	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
 
 	u.uhereticgodinit = 0; /* for heretic race */
 	if (isheretic) u.hereticlgod = lawfulgods[rn2(SIZE(lawfulgods))]; /* for heretic race */

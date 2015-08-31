@@ -268,6 +268,12 @@ newexplevel()
 {
 	if (u.ulevel < MAXULEV && u.uexp >= newuexp(u.ulevel))
 	    pluslvl(TRUE);
+	else if (u.uexp >= (1000000 + (100000 * u.xtralevelmult))) {
+	    u.xtralevelmult++;
+	    u.uexp = 1000000;
+	    pline("You feel more experienced.");
+	    pluslvl(TRUE);
+	}
 }
 
 #if 0 /* The old newexplevel() */
@@ -396,7 +402,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	num += rnz(2);
 	num -= flags.hybridization;
 	if (num < 0) num = 0;
-	if (num > 1) num /= (5 + rnd(5));
+	if (num > 1) num /= rnd(12);
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	u.uhpmax += num;
 	u.uhp += num;
@@ -405,7 +411,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
 	    num -= flags.hybridization;
 	    if (num < 0) num = 0;
-	    if (num > 1) num /= (5 + rnd(5));
+	    if (num > 1) num /= rnd(12);
 	    u.mhmax += num;
 	    u.mh += num;
 	}
@@ -420,7 +426,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	num += (rn2(3) ? rnz(1) : rnz(2));
 	num -= flags.hybridization;
 	if (num < 0) num = 0;
-	if (num > 1) num /= (5 + rnd(5));
+	if (num > 1) num /= rnd(12);
 	u.uenmax += num;
 	u.uen += num;
 
