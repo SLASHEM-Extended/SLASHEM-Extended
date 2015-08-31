@@ -363,6 +363,10 @@ register boolean special;
 		case PM_LOCKSMITH:
 		    weapon = DAGGER;
 		    break;
+		case PM_ERDRICK:
+		case PM_DQ_SLIME:
+		    weapon = BATTLE_STAFF;
+		    break;
 		case PM_NINJA:
 		    weapon = KATANA;
 		    break;

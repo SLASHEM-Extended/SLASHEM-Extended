@@ -752,6 +752,35 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_STONE_TO_FLESH,   -4
 },
 
+{	{"DQ Slime", 0}, {
+	{"Globule",     0},
+	{"Moist",    0},
+	{"Wiggly",       0},
+	{"Jiggly",    0},
+	{"Slurry",      0},
+	{"Slime Knight",     0},
+	{"Slime Hero",     0},
+	{"King Slime",     "Queen Slime"},
+	{"Slime God",       "Slime Goddess"} },
+	"King Somnus", "_Rubiss", "Malroth", /* Dragon Warrior */
+	"Sli", "The Slime Paradise", "The village of Humbleton",
+	PM_DQ_SLIME, NON_PM, PM_UNDEAD_DQ_SLIME, NON_PM, NON_PM,
+	PM_SLIME_EMPEROR, PM_GLOBULE, PM_LEGENDARY_HERO,
+	PM_ROYAL_GUARDIAN, PM_DWARF_KING, S_HUMAN, S_HUMANOID,
+
+	ART_SLIME_CROWN,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{   7,  7,  7, 10,  7,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 10, 10, 30, 20, 10 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 2,  8, 0 },	/* Hit points */
+	{  0, 0,  0, 2,  0, 8 },15,	/* Energy */
+	-20, 8, 0, 6,  14, A_INT, SPE_ACID_STREAM, -4
+},
+
 {	{"Drunk", 0}, {
 	{"Drinker",     0},
 	{"Boozer",   0},
@@ -869,6 +898,35 @@ const struct Role roles[] = {
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+},
+
+{	{"Erdrick", 0}, {
+	{"Young Boy",     "Young Girl"},
+	{"Village Hero",    0},
+	{"City Hero",       0},
+	{"Island Hero",    0},
+	{"Country Hero",      0},
+	{"Continent Hero",     0},
+	{"World Hero",     0},
+	{"Super Hero",     0},
+	{"Legend",       0} },
+	0, 0, 0, /* special deities */
+	"Erd", "Tantagel Castle", "Charlock Castle",
+	PM_ERDRICK, NON_PM, PM_UNDEAD_ERDRICK, NON_PM, NON_PM,
+	PM_KING_LORIK, PM_ROYAL_GUARD, PM_DRAGONLORD,
+	PM_SLIME, PM_DRAKEE, S_BLOB, S_BAT,
+
+	ART_BALL_OF_LIGHT,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{   7,  7,  7, 10,  7,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 10, 10, 30, 20, 10 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  2, 0,  0, 2,  0, 1 },16,	/* Energy */
+	0, 8, 0, 3,  11, A_INT, SPE_LIGHTNING, -4
 },
 
 {	{"Failed Existence", 0}, {

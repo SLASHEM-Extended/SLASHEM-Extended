@@ -1,0 +1,380 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, King Arthur
+#	and receive your quest assignment.
+#
+
+#	DQ Slime quest ideas by Kahran042, implementation by Amy
+
+MAZE: "Sli-strt",'.'
+FLAGS: noteleport,hardfloor
+# This is a kludge to init the level as a lit field.
+INIT_MAP: '.' , '.' , false , false , lit , false
+GEOMETRY:center,center
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7    7
+MAP
+................................... | ....................................
+...................................---....................................
+..................................--.--...................................
+.................................--...--..................................
+................................--.....--.................................
+...............................--.......--................................
+..............................--.}}}.}}}.--}..............................
+.............................--..}T...T}..--}.............................
+............................--...}}}.}}}...--.............................
+...........................--...............--............................
+...........................|.................|............................
+..........................................................................
+...........................|.....}.....}.....|............................
+...........................--.....}}}}}.....--............................
+............................--.............--.............................
+.............................-------.-------..............................
+..........................................................................
+..........................................................................
+..........................................................................
+..........................................................................
+ENDMAP
+# Portal arrival point
+BRANCH:(14,00,14,00),(0,0,0,0)
+# Stairs
+STAIR:(36,10),down
+# King Arthur
+MONSTER:'b',"Slime Emperor",(36,10)
+# The treasure of King Arthur
+OBJECT:'(',"chest",(36,10)
+# knight guards for the watchrooms
+MONSTER:'b',"globule",(36,11),peaceful
+MONSTER:'b',"globule",(36,09),peaceful
+MONSTER:'b',"globule",(35,10),peaceful
+MONSTER:'b',"globule",(37,10),peaceful
+MONSTER:'b',"globule",(35,11),peaceful
+MONSTER:'b',"globule",(37,09),peaceful
+MONSTER:'b',"globule",(35,09),peaceful
+MONSTER:'b',"globule",(37,11),peaceful
+
+# Monsters on siege duty.
+MONSTER:'@',random,(26,10),hostile
+MONSTER:'h',random,(26,09),hostile
+MONSTER:'@',random,(46,10),hostile
+MONSTER:'h',random,(46,09),hostile
+MONSTER:'@',random,(46,11),hostile
+MONSTER:'@',random,(36,17),hostile
+MONSTER:'@',random,(37,17),hostile
+MONSTER:'@',random,(35,17),hostile
+MONSTER:'h',random,(34,16),hostile
+
+MONSTER:'@',"wizard",(68,06),hostile,"Anestus"
+MONSTER:'@',"priest",(68,07),hostile,"Erohe"
+MONSTER:'@',"barbarian",(68,08),hostile,"Dragor"
+MONSTER:'@',"knight",(68,09),hostile,"Mauro"
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,73,19)
+# Random traps
+TRAP:"pit",(27,11)
+TRAP:"pit",(36,15)
+TRAP:"pit",(45,11)
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find your way to the Isle of Glass to go
+#	further towards your assigned quest.
+#
+
+#	placeholder for now...
+
+MAZE: "Sli-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'P' , false , true , lit , false
+GEOMETRY:center,center
+MAP
+...PPP.........PPPP..............PPPP...
+.PPPP...........PP................PPPP..
+PP.................................PPP..
+....................................PPP.
+.....................................PP.
+.......................................P
+........................................
+PP...................................PPP
+.PPP...............................PPP..
+..PP.............................PPPP...
+..PPP...........................PPPPPP..
+....PPPP.........PPP.........PPPP..PP...
+ENDMAP
+# Dungeon Description
+# The Isle of Glass is a Tor rising out of the swamps surrounding it.
+REGION:(00,00,39,11),lit,"ordinary"
+# The top area of the Tor is a holy site.
+REGION:(09,02,27,09),lit,"temple"
+# Stairs
+STAIR:(38,0),up
+STAIR:(18,05),down
+# The altar atop the Tor and its attendant (creating altar makes the priest).
+ALTAR:(17,05),neutral,shrine
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+# All of the avenues are guarded by magic except for the East.
+# South
+TRAP:"magic",(08,11)
+TRAP:"magic",(09,11)
+TRAP:"magic",(10,11)
+TRAP:"magic",(11,11)
+TRAP:"magic",(12,11)
+TRAP:"magic",(13,11)
+TRAP:"magic",(14,11)
+TRAP:"magic",(15,11)
+TRAP:"magic",(16,11)
+TRAP:"magic",(20,11)
+TRAP:"magic",(21,11)
+TRAP:"magic",(22,11)
+TRAP:"magic",(23,11)
+TRAP:"magic",(24,11)
+TRAP:"magic",(25,11)
+TRAP:"magic",(26,11)
+TRAP:"magic",(27,11)
+TRAP:"magic",(28,11)
+# West
+TRAP:"magic",(00,03)
+TRAP:"magic",(00,04)
+TRAP:"magic",(00,05)
+TRAP:"magic",(00,06)
+# North
+TRAP:"magic",(06,00)
+TRAP:"magic",(07,00)
+TRAP:"magic",(08,00)
+TRAP:"magic",(09,00)
+TRAP:"magic",(10,00)
+TRAP:"magic",(11,00)
+TRAP:"magic",(12,00)
+TRAP:"magic",(13,00)
+TRAP:"magic",(14,00)
+TRAP:"magic",(19,00)
+TRAP:"magic",(20,00)
+TRAP:"magic",(21,00)
+TRAP:"magic",(22,00)
+TRAP:"magic",(23,00)
+TRAP:"magic",(24,00)
+TRAP:"magic",(25,00)
+TRAP:"magic",(26,00)
+TRAP:"magic",(27,00)
+TRAP:"magic",(28,00)
+TRAP:"magic",(29,00)
+TRAP:"magic",(30,00)
+TRAP:"magic",(31,00)
+TRAP:"magic",(32,00)
+# Even so, there are magic "sinkholes" around.
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+# Random monsters.
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'.',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+MONSTER:'°',random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Ixoth your nemesis monster.  You have to
+#	defeat Ixoth in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Sli-goal", ' '
+GEOMETRY:center,center
+MAP
+                                                                            
+  ...                                                                  ...  
+ .......................................................................... 
+  ...                                +                                 ...  
+   .     ............     .......    .                   .......        .   
+   .  .............................  .       ........   .........S..    .   
+   .   ............    .  ......     .       .      .    .......   ..   .   
+   .     .........     .   ....      +       . ...  .               ..  .   
+   .        S          .         .........   .S.    .S...............   .   
+   .  ...   .     ...  .         .........          .                   .   
+   . ........    .....S.+.......+....\....+........+.                   .   
+   .  ...         ...    S       .........           ..      .....      .   
+   .                    ..       .........            ..      ......    .   
+   .      .......     ...            +       ....    ....    .......... .   
+   . ..............  ..              .      ......  ..  .............   .   
+   .     .............               .     ..........          ......   .   
+  ...                                +                                 ...  
+ .......................................................................... 
+  ...                                                                  ...  
+                                                                            
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(19,10),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'[',"helm of storms",(37,10),blessed,0,"The Slime Crown"
+OBJECT:'(',"chest",(37,10)
+OBJECT:random,random,(36,09)
+OBJECT:random,random,(36,10)
+OBJECT:random,random,(36,11)
+OBJECT:random,random,(37,09)
+OBJECT:random,random,(37,11)
+OBJECT:random,random,(38,09)
+OBJECT:random,random,(38,10)
+OBJECT:random,random,(38,11)
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# doors
+DOOR:locked,(12,08)
+DOOR:closed,(22,10)
+DOOR:locked,(24,10)
+DOOR:closed,(25,11)
+DOOR:closed,(32,10)
+DOOR:closed,(37,03)
+DOOR:closed,(37,07)
+DOOR:closed,(37,13)
+DOOR:closed,(37,16)
+DOOR:closed,(42,10)
+DOOR:locked,(46,08)
+DOOR:closed,(51,10)
+DOOR:locked,(53,08)
+DOOR:closed,(65,05)
+# Random monsters.
+MONSTER:'@',"Legendary Hero",(37,10),hostile
+MONSTER:'@',"wizard",(36,09),hostile
+MONSTER:'@',"rogue",(36,10),hostile
+MONSTER:'@',"High-elf",(36,11),hostile
+MONSTER:'@',"priest",(37,09),hostile
+MONSTER:'h',random,(37,11),hostile
+
+
+WALLIFY
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Sli-fila" , '.'
+INIT_MAP: '.' , 'T' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'@',random,random,hostile
+MONSTER:'@',random,random,hostile
+MONSTER:'@',random,random,hostile
+MONSTER:'@',random,random,hostile
+MONSTER:'h',random,random,hostile
+MONSTER:'@',"High-elf",random,hostile
+MONSTER:'@',random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Sli-filb" , '.'
+INIT_MAP: '.' , 'P' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'o',"Uruk-hai",random,hostile
+MONSTER:'o',"Uruk-hai",random,hostile
+MONSTER:'o',"Uruk-hai",random,hostile
+MONSTER:'o',"goblin",random,hostile
+MONSTER:'o',random,random,hostile
+MONSTER:'O',random,random,hostile
+MONSTER:'O',random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

@@ -3915,6 +3915,27 @@ static const char * const bogusmons[] = {
 	"Instawin Scriptkiddy",
 	"_the Bitches", "_the Hell Brides", "_the Sluts with Syphilis", /* taken from a fanfic --Amy */
 
+	"Globule",
+	"Moist",
+	"Wiggly",
+	"Jiggly",
+	"Slurry",
+	"Slime Knight",
+	"Slime Hero",
+	"King Slime",     "Queen Slime",
+	"Slime God",       "Slime Goddess",
+	"King Somnus", "_Rubiss", "Malroth", /* Dragon Warrior */
+
+	"Young Boy",     "Young Girl",
+	"Village Hero",    0,
+	"City Hero",       0,
+	"Island Hero",    0,
+	"Country Hero",      0,
+	"Continent Hero",     0,
+	"World Hero",     0,
+	"Super Hero",     0,
+	"Legend",       0,
+
 	/* more random names... */
 
 	"Tacitusrian", "Tacitus-rian", "Ryuan", "Ryu-an", "Robat", "Robert", "Tobi", "Tobias", "Flo-ooo", "Florian", "Cristi", "Christian", "Alex", "Johanetta", "Julia", "Julchen", "Yvonne", "Magdalena", "Eveline", "Bea", "Beatriz", "Egas", "Hannes", "Leo", "Leopold", "Baschdi Deathstrike", "Markus", "Martin", "Corina", "Elif", "Nadja", "Sunali", "Solvejg", "Thai", "Max", "Maximilian", "Jannik", "Conse", "Constantin", "Paul", "David", "Meltem", "Susanne", "Rita", "Kati", "Katinka", "Mailie", "Marie", "Klara", "Sandra", "Arne", "Antonia", "Chaska", "Ludgera", "Laura", "Eva", "Maurah", "Sophie", "Marian", "Jil", "Patricia", "Kerstin", "Hanh", "Antje", "Jennifer", "Karin", "Nicole", "Bettina", "Heike", "Dora", "Maite", "Ruth", "Verena", "Lou", "Julian", "Danielle", "Sebastian", "Amandine", "Lily", "Yannick", "Leonie", "Mira", "Felix", "Sofia", "Christiane", "Ann Kathrin", "Njusha", "Elisabeth", "Conny", "Constanze", "Lisa", "Anja", "Yasaman", "Almut", "Ksenia", "Miriam", "Elena", "Katharina", "Helen", "Victoria", "Simone", "Nataliya", "Kristin", "Nelly", "Rejda", "Nora", "Jasieen", "Yacine", "Marike", "Michael", "Merle", "Marianne", "Sina", "Dorothea", "Tinanya", "Hanno", "Noemi", "Giulia", "Nino", "Charlotte", "Friederike", "Sophia", "Sue Lyn", "Juen", "Ruea", "Gudrun", "Ella", "Manuela", "Daniel", "Lennart", "Tilla", "Ilja", "Greta", "Jane", "Nico", "Tillmann", 

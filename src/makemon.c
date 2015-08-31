@@ -2344,6 +2344,24 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_DQ_SLIME:
+		   case PM_UNDEAD_DQ_SLIME:
+		   case PM_ERDRICK:
+		   case PM_UNDEAD_ERDRICK:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, BATTLE_STAFF);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+		     (void)mongets(mtmp, HELMET);
+
+		   break;
+
 		   case PM_BULLY:
 		   case PM_UNDEAD_BULLY:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));

@@ -522,6 +522,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_GLADIATOR:
 	    case PM_UNDEAD_GOFF:
 	    case PM_UNDEAD_AMAZON:
+	    case PM_UNDEAD_MURDERER:
 	    case PM_UNDEAD_ALTMER:
 	    case PM_UNDEAD_BOSMER:
 	    case PM_UNDEAD_DUNMER:
@@ -537,7 +538,10 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_DRUNK:
 	    case PM_UNDEAD_FIREFIGHTER:
 	    case PM_UNDEAD_LOCKSMITH:
+	    case PM_UNDEAD_ERDRICK:
+	    case PM_UNDEAD_DQ_SLIME:
 	    case PM_UNDEAD_MUSICIAN:
+	    case PM_UNDEAD_FAILED_EXISTENCE:
 	    case PM_UNDEAD_NINJA:
 	    case PM_UNDEAD_OFFICER:
 	    case PM_UNDEAD_UNDERTAKER:

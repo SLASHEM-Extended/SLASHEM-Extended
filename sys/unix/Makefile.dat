@@ -336,7 +336,8 @@ quest_levs: ../util/lev_comp \
 	Scribe.des Slavemas.des Slayer.des Spacew.des Stunt.des		\
 	Supermar.des Thalmor.des Top.des Tourist.des Trans.des		\
 	Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des	\
-	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des
+	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
+	Slime.des Erdrick.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -368,6 +369,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Electric.des
 	../util/lev_comp Elf.des
 	../util/lev_comp Elfreal.des
+	../util/lev_comp Erdrick.des
 	../util/lev_comp Failed.des
 	../util/lev_comp Firef.des
 	../util/lev_comp Flame.des
@@ -416,6 +418,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Scribe.des
 	../util/lev_comp Slavemas.des
 	../util/lev_comp Slayer.des
+	../util/lev_comp Slime.des
 	../util/lev_comp Spacew.des
 	../util/lev_comp Stunt.des
 	../util/lev_comp Supermar.des

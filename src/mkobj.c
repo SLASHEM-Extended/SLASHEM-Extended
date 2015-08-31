@@ -1081,7 +1081,7 @@ boolean artif;
 		else if (artif && !rn2(100))
 		    otmp = oname(otmp, fauxartinames[rn2(SIZE(fauxartinames))] );
 		/* simulate lacquered armor for samurai */
-		if (Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL &&
+		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) &&
 		    (moves <= 1 || In_quest(&u.uz))) {
 #ifdef UNIXPC
 			/* optimizer bitfield bug */

@@ -211,6 +211,18 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	cav_tech[] = { {   1, T_PRIMAL_ROAR, 1},
 		       {   0, 0, 0} },
+	sli_tech[] = { {   1, T_LIQUID_LEAP, 1},
+		       {   6, T_HEAL_HANDS, 1},
+		       {   12, T_WORLD_FALL, 1},
+		       {   15, T_TELEKINESIS, 1},
+		       {   19, T_SUMMON_TEAM_ANT, 1},
+		       {   25, T_VANISH, 1},
+		       {   30, T_EGG_BOMB, 1},
+		       {   0, 0, 0} },
+	erd_tech[] = { {   1, T_CRIT_STRIKE, 1},
+		       {   10, T_PRACTICE, 1},
+		       {   20, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
 	brd_tech[] = { {   1, T_PRIMAL_ROAR, 1},
 		       {  10, T_BOOZE, 1},
 		       {  20, T_RAGE, 1},
@@ -2828,6 +2840,8 @@ role_tech()
 		case PM_BARBARIAN:	return (bar_tech);
 		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);
+		case PM_DQ_SLIME:	return (sli_tech);
+		case PM_ERDRICK:	return (erd_tech);
 		case PM_BARD:	return (brd_tech);
 		case PM_FLAME_MAGE:	return (fla_tech);
 		case PM_ACID_MAGE:	return (aci_tech);

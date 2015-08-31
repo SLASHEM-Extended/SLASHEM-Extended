@@ -139,6 +139,26 @@ const struct innate {
 		     {  13, &(HCold_resistance), "warm", "cooler" },
 		     {   0, 0, 0, 0 } },
 
+	sli_abil[] = { {   1, &(HAcid_resistance), "", "" },
+			{	1, &(MenuBug), "", "" },
+			{	5, &(AutoDestruct), "", "" },
+			{   6, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+			{	7, &(DSTWProblem), "", "" },
+			{	10, &(HCorrosivity), "corrosive", "less acidic" },
+			{	12, &(FreeHandLoss), "", "" },
+			{	15, &(HSleep_resistance), "awake", "tired" },
+			{	17, &(DifficultyIncreased), "", "" },
+		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
+			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
+			{	22, &(Deafness), "", "" },
+			{	25, &(HDisint_resistance), "stable", "brittle" },
+			{	28, &(ShadesOfGrey), "", "" },
+			{	30, &(HStone_resistance), "rock solid", "breakable" },
+		     {   0, 0, 0, 0 } },
+
+	erd_abil[] = { {   1, &(HFree_action), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	blo_abil[] = { {   1, &(HWarning), "", "" },
 			{  8, &(HSearching), "perceptive", "unaware" },
 		     {	 12, &(HStealth), "stealthy", "noisy" },
@@ -1206,6 +1226,8 @@ int oldlevel, newlevel;
 	case PM_JESTER:      abil = jes_abil;	break;
 	case PM_LADIESMAN:      abil = lad_abil;	break;
 	case PM_BLOODSEEKER:      abil = blo_abil;	break;
+	case PM_DQ_SLIME:      abil = sli_abil;	break;
+	case PM_ERDRICK:      abil = erd_abil;	break;
 	case PM_SLAVE_MASTER:      abil = sla_abil;	break;
 	case PM_SUPERMARKET_CASHIER:      abil = sup_abil;	break;
 	case PM_BARD:           abil = brd_abil;	break;

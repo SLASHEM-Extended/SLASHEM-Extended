@@ -1,0 +1,246 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, King Arthur
+#	and receive your quest assignment.
+#
+#	Erdrick quest ideas by Kahran042, implementation by Amy
+
+MAZE: "Erd-strt",'.'
+FLAGS: noteleport,hardfloor
+# This is a kludge to init the level as a lit field.
+INIT_MAP: ' ' , ' ' , false , false , lit , false
+GEOMETRY:center,center
+#123456789012345678901234567890
+MAP
+-----------------------------..
+|.....................|.....|..
+|..-..-----------.....|.....|..
+|.....|....\....|.....|.....|..
+|----.|.........|.....|---+--..
+|.....|.........|.....|..T.....
+|---|.-----+-------+------.--..
+|...|.|TTTT.TTTT|...........|..
+|}..|.|TTTT.TTTT|---------..|..
+|.}.+.|TT.....TT|.....|.....|..
+|}.}|.|.........|..|.....|..|..
+|----.|.........----------..|..
+|..........{...........|...-|..
+|--..--.........|......|....|..
+|.....---.....-------..|....|..
+|..-....|.....|........|....|..
+|.......|.....|-+------|-----}.
+|.}}..-.|.....|........|}}}}}}.
+|}}}}...|-...-|........|}}}}}}.
+|}}}}}..|.....|........|}}}}}}.
+----------...----------|}}}}}}.
+ENDMAP
+# Dungeon Description
+REGION:(23,01,27,03),lit,"shop"
+REGION:(13,17,22,19),lit,"temple"
+# Portal arrival point
+BRANCH:(11,20,11,20),(0,0,0,0)
+# Stairs
+STAIR:(30,20),down
+# Doors
+DOOR:closed,(04,09)
+DOOR:closed,(11,06)
+DOOR:closed,(19,06)
+DOOR:closed,(26,04)
+DOOR:closed,(16,16)
+# King Arthur
+MONSTER:'@',"King Lorik",(11,03)
+# The treasure of King Arthur
+OBJECT:'(',"chest",(11,03)
+# knight guards for the watchrooms
+MONSTER:'@',"royal guard",(09,05),peaceful
+MONSTER:'@',"royal guard",(13,05),peaceful
+MONSTER:'@',"royal guard",(09,09),peaceful
+MONSTER:'@',"royal guard",(13,09),peaceful
+MONSTER:'@',"royal guard",(09,14),peaceful
+MONSTER:'@',"royal guard",(13,14),peaceful
+MONSTER:'@',"royal guard",(09,19),peaceful
+MONSTER:'@',"royal guard",(13,19),peaceful
+
+MONSTER:'@',"watchman",(02,07),peaceful
+MONSTER:'@',"watch captain",(06,18),peaceful
+MONSTER:'@',"watch captain",(07,17),peaceful
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,30,20)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find your way to the Isle of Glass to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Erd-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'P' , false , true , lit , false
+GEOMETRY:center,center
+#123456789012345678901234567890
+MAP
+..---..-----------..
+.--.--.|.....|...--.
+--...--|..\..|.-..--
+|..|...|.....|.....|
+|.----.|.....|-.--.|
+|.|....|.....|...|.|
+|.--.-.--...--.-...|
+|.|.....|-.--....|.|
+|.--+--.|...---+--.|
+|.|...|.|-.---...|.|
+|.|.-.|.|...--.-.|.|
+|.|...|.|-.---...|.|
+|.|.-.|.....--.-.|.|
+|.|...--------...|.|
+|.--.--......--.--.|
+|..---..-..-..---..|
+--................--
+.--...---..---...--.
+..-----.|..|.-----..
+........|..|........
+....................
+ENDMAP
+# Dungeon Description
+# Stairs
+STAIR:levregion(01,00,78,20),(0,0,0,0),up
+STAIR:(10,01),down
+
+DOOR:locked,(04,08)
+DOOR:locked,(15,08)
+
+MONSTER:'m',random,(04,14),hostile,m_feature "staircase down"
+MONSTER:'m',random,(15,14),hostile,m_feature "staircase down"
+
+MONSTER:'@',"wizard",(10,02),hostile
+MONSTER:'@',"werewolf",(09,04),hostile
+MONSTER:'D',"dragon",(11,04),hostile
+MONSTER:'@',"knight",(08,16),hostile
+MONSTER:'@',"knight",(11,16),hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Ixoth your nemesis monster.  You have to
+#	defeat Ixoth in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Erd-goal", ' '
+GEOMETRY:center,center
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7    7
+MAP
+}}}}}}}}}}}}---------------------------------------------------}}}}}}}}}}}}}
+}}}}}}}}}}---.........---.........|.........|.........|.......---}}}}}}}}}}}
+}}}}}}}}}}|.....---.....|-.......--...................|.........|}}}}}}}}}}}
+}}}}}}}}}}|.....---.....|.................-----.................|}}}}}}}}}}}
+}}}}}}}}}}---.........---.........--------|...|--------.......---}}}}}}}}}}}
+}}}}}}}}}}}}---.....---...........|  |....-----....------...---..}}}}}}}}}}}
+}}}}}}}}}}}}}}|...---.....-------------...........---...|...|....}}}}}}}}}}}
+}}}}}}}}}}}}}}|...........|...........---...-...---...}.........}}}}}}}}}}}}
+}}}}}}}}}}}}}}|...---------...}.......-----...---....}}}.....}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|.......|...}}..........+...|.....}}}}}}}......}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|..---..|...}}}.....-----...---..}}}}}.}}}}}}}.}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|..---..|...........---.......|}}}.}}}..}}}}}..}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|.......|------------.......---}}}}}}}........}}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|.......|--...............---}}}}}.}}}....}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|..---..|.......-----------}}}}}...}}}}}...}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}|...|..---..|.....---}}}}}}}}}}}}}...}}}}}.........}}}}}}}}}}}
+}}}}}}}}}}}}---...|.......|...--|}}}--------|}}}}}}}}}}----.---..}}}}}}}}}}}
+}}}}}}}}}}---.....|--..---|.....-----.......------------......|..}}}}}}}}}}}
+}}}}}}}}}}|.......................|.....\.....................|..}}}}}}}}}}}
+}}}}}}}}}}---.......-------...-------.......------------......|..}}}}}}}}}}}
+}}}}}}}}}}}}---------}}}}}-----}}}}}---------}}}}}}}}}}--------..}}}}}}}}}}}
+ENDMAP
+# Stairs
+STAIR:(28,19),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'(',"crystal ball",(40,18),blessed,0,"The Ball of Light"
+# Random monsters.
+MONSTER:'D',"Dragonlord",(40,18),hostile
+MONSTER:'D',"japanese dragon",(16,04),hostile
+MONSTER:'D',"kith dragon",(58,03),hostile
+MONSTER:'D',"darth dragon",(59,18),hostile
+MONSTER:''',"stone golem",(38,13),hostile
+
+DOOR:locked,(42,09)
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Erd-fila" , '.'
+INIT_MAP: '.' , 'P' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Erd-filb" , '.'
+INIT_MAP: '.' , ' ' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
