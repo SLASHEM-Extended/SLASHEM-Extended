@@ -526,6 +526,7 @@ register struct monst *mtmp;
 #ifdef STEED
 	if (mtmp == u.usteed)	  Strcat(info, ", carrying you");
 #endif
+	if (mtmp->butthurt) Sprintf(eos(info), ", butthurt (%d)", mtmp->butthurt);
 
 	/* avoid "Status of the invisible newt ..., invisible" */
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */

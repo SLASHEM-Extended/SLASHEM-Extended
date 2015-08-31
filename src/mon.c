@@ -3561,6 +3561,19 @@ register struct monst *mtmp;
 	}
 	aggravate();
     }
+    if(mtmp->data->msound == MS_FART_QUIET) {
+		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		badeffect();
+    }
+    if(mtmp->data->msound == MS_FART_NORMAL) {
+		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		badeffect();
+    }
+    if(mtmp->data->msound == MS_FART_LOUD) {
+		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		badeffect();
+    }
+
     if(mtmp->data == &mons[PM_MEDUSA]) {
 	register int i;
 	for(i = 0; i < NATTK; i++)

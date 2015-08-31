@@ -500,6 +500,9 @@ register struct monst *mtmp;
 	/* stunned monsters get un-stunned with larger probability */
 	if (mtmp->mstun && !rn2(10)) mtmp->mstun = 0;
 
+	/* monsters whose butts were bashed by you will slowly recover --Amy */
+	if (mtmp->butthurt && !rn2(mdat->msound == MS_FART_QUIET ? 5 : mdat->msound == MS_FART_NORMAL ? 20 : 50) ) mtmp->butthurt -= 1;
+
 	/* some monsters teleport */
 	if (mtmp->mflee && !rn2(40) && can_teleport(mdat) && !mtmp->iswiz &&
 	    !level.flags.noteleport) {
@@ -507,6 +510,12 @@ register struct monst *mtmp;
 		return(0);
 	}
 	if (mdat->msound == MS_SHRIEK && !um_dist(mtmp->mx, mtmp->my, 1))
+	    m_respond(mtmp);
+	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	    m_respond(mtmp);
+	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	    m_respond(mtmp);
+	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);

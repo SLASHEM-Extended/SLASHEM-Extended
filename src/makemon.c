@@ -4341,6 +4341,46 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
+		} else if (mm == PM_FARTING_GIRL){
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+		} else if (mm == PM_FARTING_BOY){
+			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
 		} else if (mm == PM_ASIAN_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
@@ -4467,6 +4507,48 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp);
 			}
 
+		} else if (mm == PM_FARTING_WOMAN){
+			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+		} else if (mm == PM_FARTING_MAN){
+			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void)mongets(mtmp, WEDGE_SANDALS);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
 		} else if (mm == PM_ADULT_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS);
@@ -4531,6 +4613,48 @@ register struct monst *mtmp;
 			}
 
 		} else if (mm == PM_OLD_GRANDPA){
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			(void)mongets(mtmp, COMBAT_STILETTOS);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+		} else if (mm == PM_FARTING_QUEEN){
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+		} else if (mm == PM_FARTING_KING){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
 			if (!rn2(ishaxor ? 10 : 20) ) {

@@ -55,8 +55,15 @@
 #define MS_PARROT	44	/* parrots */
 #define MS_WHORE	45	/* sexy prostitute talking to you */
 #define MS_SUPERMAN	46	/* fearful superman */
+#define MS_FART_QUIET	47	/* nastier version of shrieking */
+#define MS_FART_NORMAL	48	
+#define MS_FART_LOUD	49	
+
+
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
+/* The slashem devteam did. :D --Amy */
+
 #define MS_DOUGLAS_ADAMS 95	/* "42"; "Nice day"; etc. */
 #define MS_PUPIL 	96
 #define MS_TEACHER	97

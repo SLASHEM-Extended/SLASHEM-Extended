@@ -533,6 +533,36 @@ domonability()
 	    if(u.uburied)
 		pline("Unfortunately sound does not carry well through rock.");
 	    else aggravate();
+	} else if (youmonst.data->msound == MS_FART_QUIET && yn("Do you want to fart?")=='y' ) {
+		if (u.uhunger <= 10) {
+			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			return 0;
+		} else {
+			morehungry(10);
+			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+			badeffect();
+			return 1;
+		}
+	} else if (youmonst.data->msound == MS_FART_NORMAL && yn("Do you want to fart?")=='y' ) {
+		if (u.uhunger <= 10) {
+			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			return 0;
+		} else {
+			morehungry(10);
+			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
+			badeffect();
+			return 1;
+		}
+	} else if (youmonst.data->msound == MS_FART_LOUD && yn("Do you want to fart?")=='y' ) {
+		if (u.uhunger <= 10) {
+			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			return 0;
+		} else {
+			morehungry(10);
+			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
+			badeffect();
+			return 1;
+		}
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");
 	else You("don't have another special ability in your normal form!");

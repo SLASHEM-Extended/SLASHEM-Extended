@@ -803,6 +803,59 @@ doforce()		/* try to force a chest with your weapon */
 
 				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH);
 				if (mtmp->mhp <= 0 && !trapkilled) killed(mtmp);
+
+				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_QUIET) {
+					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (mtmp->butthurt < 20 && !rn2(3)) {
+						mtmp->butthurt += rnd(5);
+						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
+						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 17) pline("%s's %s butt is heavily injured and severely bleeding!", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else {
+							pline("You hurt %s so badly that %s ended up crying, and is begging you to spare %s...", mon_nam(mtmp), mhe(mtmp), mhim(mtmp) );
+							mtmp->mpeaceful = 1;
+							mtmp->butthurt = 0;
+						}
+					}
+				}
+				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_NORMAL) {
+					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (mtmp->butthurt < 20 && !rn2(3)) {
+						mtmp->butthurt += rnd(3);
+						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
+						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 17) pline("%s's %s butt is heavily injured and severely bleeding!", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else {
+							pline("You hurt %s so badly that %s gets unconscious from the pain.", mon_nam(mtmp), mhe(mtmp));
+							mtmp->mcanmove = 0;
+							mtmp->mfrozen = 5 + rnd(15);
+							mtmp->mstrategy &= ~STRAT_WAITFORU;
+							mtmp->butthurt = 0;
+						}
+					}
+				}
+				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_LOUD) {
+					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (mtmp->butthurt < 20 && !rn2(3)) {
+						mtmp->butthurt += 1;
+						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
+						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else if (mtmp->butthurt < 17) pline("%s's %s butt is heavily injured and severely bleeding!", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
+						else {
+							pline("You hurt %s so badly that %s is furious, and realize that you're going to learn a lesson in pain!", mon_nam(mtmp), mhe(mtmp));
+							mtmp->mpeaceful = mtmp->mtame = 0;
+							mon_adjust_speed(mtmp, 2, (struct obj *)0);
+							mtmp->butthurt = 0;
+							if (!grow_up(mtmp,(struct monst *)0)) return 1;
+							if (!grow_up(mtmp,(struct monst *)0)) return 1;
+							if (!grow_up(mtmp,(struct monst *)0)) return 1;
+						}
+					}
+				}
+
 				return(1);
 
 			} /* monster forced by player */

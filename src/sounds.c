@@ -923,6 +923,22 @@ register struct monst *mtmp;
 	    pline_msg = "shrieks.";
 	    aggravate();
 	    break;
+	case MS_FART_QUIET:
+	case MS_FART_NORMAL:
+	case MS_FART_LOUD:
+		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+		if (mtmp->mtame) {
+			pline("%s seems to love you even more than before.", Monnam(mtmp) );
+			if (mtmp->mtame < 30) mtmp->mtame++;
+		}
+		else if (mtmp->mpeaceful) {
+			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
+		}
+		else {
+			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
+		}
+	    m_respond(mtmp);
+	    break;
 	case MS_IMITATE:
 	    pline_msg = "imitates you.";
 	    break;
