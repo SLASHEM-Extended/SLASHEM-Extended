@@ -3464,6 +3464,9 @@ register struct obj *otmp;
 {
 	/* returns 0 if the operation can be done on the stack, 1 if it will fail */
 
+	/* In Soviet Russia, people would probably hate this change too, because they somehow hate everything that's changed from SLASH'EM. Why they don't simply play SLASH'EM then, I will never understand. But I guess that if they want to waste their time on reverting every single one of Extended's changes, we'll let them do so. */
+	if (issoviet) return 0;
+
 	if (!objects[otmp->otyp].oc_merge) return 0;
 
 	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;

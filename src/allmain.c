@@ -1639,12 +1639,12 @@ boolean new_game;	/* false => restoring an old game */
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
 #endif
     if (new_game) pline("%s %s, welcome to %s!  You are a%s %s%s %s.",
-	  Hello((struct monst *) 0), plname, DEF_GAME_NAME, buf, xtrabuf, urace.adj,
+	  Hello((struct monst *) 0), plname, issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
     else pline("%s %s, the%s %s%s %s, welcome back to %s!",
 	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
-	  DEF_GAME_NAME);
+	  issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME);
 
 	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
 
