@@ -484,6 +484,9 @@ boolean trapok;
 {
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+
+	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
 	return TRUE;
@@ -498,6 +501,9 @@ boolean trapok;
 
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+
+	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
 	if (udist < 3) return FALSE;
@@ -515,6 +521,9 @@ boolean trapok;
 
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+
+	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
 	if (udist < 3) return FALSE;
