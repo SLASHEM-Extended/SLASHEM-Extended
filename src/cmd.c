@@ -1443,6 +1443,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
+	if (u.minimalism) {Sprintf(buf, " %d", u.minimalism);
+		enl_msg("Items generate only 1 time in X, and X ", "is", "was", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
@@ -2229,6 +2233,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Role_if(PM_PALADIN) ) you_are("aware of the presence of demons");
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
 	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
+	if (Race_if(PM_CORTEX) ) you_are("aware of the presence of unsolid creatures");
+	if (Race_if(PM_CORTEX) ) you_are("aware of the presence of creatures without limbs");
 	if (Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
 	if (Race_if(PM_RODNEYAN) ) you_are("able to sense monsters possessing coveted objects");
 	if (isselfhybrid) you_are("aware of the presence of strong wanderers");
@@ -2552,7 +2558,7 @@ minimal_enlightenment()
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) Sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else Sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);

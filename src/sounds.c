@@ -1532,7 +1532,7 @@ dochat()
     }
 #endif /* CONVICT */
 
-    if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+    if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Tame the vortex?") == 'y') {
 

@@ -422,8 +422,10 @@ hybrid_str()
 	if (flags.hybridheretic) Sprintf(eos(string), "heretic ");
 	if (flags.hybridsokosolver) Sprintf(eos(string), "sokosolver ");
 	if (flags.hybridspecialist) Sprintf(eos(string), "specialist ");
+	if (flags.hybridamerican) Sprintf(eos(string), "american ");
+	if (flags.hybridminimalist) Sprintf(eos(string), "minimalist ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist)) Sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist)) Sprintf(eos(string), "none ");
 
     return string;
 }
@@ -448,8 +450,10 @@ hybrid_strcode()
 	if (flags.hybridheretic) Sprintf(eos(string), "Her");
 	if (flags.hybridsokosolver) Sprintf(eos(string), "Sok");
 	if (flags.hybridspecialist) Sprintf(eos(string), "Spe");
+	if (flags.hybridamerican) Sprintf(eos(string), "Ame");
+	if (flags.hybridminimalist) Sprintf(eos(string), "Min");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist)) Sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist)) Sprintf(eos(string), "none");
 
     return string;
 }

@@ -3378,6 +3378,13 @@ register struct attack *mattk;
 			    golemeffects(mdef,(int)mattk->adtyp,dam);
 			} else dam = 0;
 			break;
+		    case AD_STON: /* for cortex race */
+			if (!munstone(mdef, TRUE) && !rn2(4)) {
+			    minstapetrify(mdef, TRUE);
+			    return(2);
+			}
+			dam = 0;
+			break;
 		    case AD_FIRE:
 			if (rn2(2)) {
 			    if (resists_fire(mdef)) {

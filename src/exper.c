@@ -336,829 +336,6 @@ newexplevel()
 		}
 		if (u.uen < u.uenmax) u.uen = u.uenmax;
 
-		if (Race_if(PM_RODNEYAN) && u.ulevel > u.urmaxlvl) {
-
-		u.urmaxlvl = u.ulevel;
-
-		if (!rn2(2)) {ubook = mkobj(SPBOOK_CLASS, FALSE); dropy(ubook); pline("A book appeared at your feet!"); }
-
-		}
-
-		if (Race_if(PM_ASGARDIAN) && u.ulevel > u.urmaxlvl) {
-
-		u.urmaxlvl = u.ulevel;
-
-		if (!rn2(3)) { switch (rnd(50)) {
-
-			case 1: 
-			case 2: 
-			case 3: 
-			    HFire_resistance |= FROMOUTSIDE; pline("Got fire resistance!"); break;
-			case 4: 
-			case 5: 
-			case 6: 
-			    HCold_resistance |= FROMOUTSIDE; pline("Got cold resistance!"); break;
-			case 7: 
-			case 8: 
-			case 9: 
-			    HSleep_resistance |= FROMOUTSIDE; pline("Got sleep resistance!"); break;
-			case 10: 
-			case 11: 
-			    HDisint_resistance |= FROMOUTSIDE; pline("Got disintegration resistance!"); break;
-			case 12: 
-			case 13: 
-			case 14: 
-			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
-			case 15: 
-			case 16: 
-			case 17: 
-			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
-			case 18: 
-			    HDrain_resistance |= FROMOUTSIDE; pline("Got drain resistance!"); break;
-			case 19: 
-			    HSick_resistance |= FROMOUTSIDE; pline("Got sickness resistance!"); break;
-			case 20: 
-			    HAcid_resistance |= FROMOUTSIDE; pline("Got acid resistance!"); break;
-			case 21: 
-			case 22: 
-			    HHunger |= FROMOUTSIDE; pline("You start to hunger rapidly!"); break;
-			case 23: 
-			case 24: 
-			    HSee_invisible |= FROMOUTSIDE; pline("Got see invisible!"); break;
-			case 25: 
-			    HTelepat |= FROMOUTSIDE; pline("Got telepathy!"); break;
-			case 26: 
-			case 27: 
-			    HWarning |= FROMOUTSIDE; pline("Got warning!"); break;
-			case 28: 
-			case 29: 
-			    HSearching |= FROMOUTSIDE; pline("Got searching!"); break;
-			case 30: 
-			case 31: 
-			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
-			case 32: 
-			case 33: 
-			    HAggravate_monster |= FROMOUTSIDE; pline("You aggravate monsters!"); break;
-			case 34: 
-			    HConflict |= FROMOUTSIDE; pline("You start causing conflict!"); break;
-			case 35: 
-			case 36: 
-			    HTeleportation |= FROMOUTSIDE; pline("Got teleportitis!"); break;
-			case 37: 
-			    HTeleport_control |= FROMOUTSIDE; pline("Got teleport control!"); break;
-			case 38: 
-			    HFlying |= FROMOUTSIDE; pline("Got flying!"); break;
-			case 39: 
-			    HSwimming |= FROMOUTSIDE; pline("Got swimming!"); break;
-			case 40: 
-			    HMagical_breathing |= FROMOUTSIDE; pline("Got unbreathing!"); break;
-			case 41: 
-			    HSlow_digestion |= FROMOUTSIDE; pline("Got slow digestion!"); break;
-			case 42: 
-			case 43: 
-			    HRegeneration |= FROMOUTSIDE; pline("Got regeneration!"); break;
-			case 44: 
-			    HPolymorph |= FROMOUTSIDE; pline("Got polymorphitis!"); break;
-			case 45: 
-			    HPolymorph_control |= FROMOUTSIDE; pline("Got polymorph control!"); break;
-			case 46: 
-			case 47: 
-			    HFast |= FROMOUTSIDE; pline("Got speed!"); break;
-			case 48: 
-			    HInvis |= FROMOUTSIDE; pline("Got invisibility!"); break;
-
-			default:
-				break;
-
-		    }
-
-		  }
-
-		}
-
-		if (Race_if(PM_MISSINGNO) && u.ulevel > u.urmaxlvl) {
-
-		u.urmaxlvl = u.ulevel;
-
-		if (!rn2(3)) { switch (rnd(150)) {
-
-			case 1: 
-			case 2: 
-			case 3: 
-				if (!tech_known(T_BERSERK)) {    	learntech(T_BERSERK, FROMOUTSIDE, 1);
-			    	You("learn how to perform berserk!");
-				}
-				break;
-			case 4: 
-			case 5: 
-			case 6: 
-				if (!tech_known(T_KIII)) {    	learntech(T_KIII, FROMOUTSIDE, 1);
-			    	You("learn how to perform kiii!");
-				}
-				break;
-			case 7: 
-			case 8: 
-			case 9: 
-				if (!tech_known(T_RESEARCH)) {    	learntech(T_RESEARCH, FROMOUTSIDE, 1);
-			    	You("learn how to perform research!");
-				}
-				break;
-			case 10: 
-			case 11: 
-			case 12: 
-				if (!tech_known(T_SURGERY)) {    	learntech(T_SURGERY, FROMOUTSIDE, 1);
-			    	You("learn how to perform surgery!");
-				}
-				break;
-			case 13: 
-			case 14: 
-			case 15: 
-				if (!tech_known(T_REINFORCE)) {    	learntech(T_REINFORCE, FROMOUTSIDE, 1);
-			    	You("learn how to perform reinforce memory!");
-				}
-				break;
-			case 16: 
-			case 17:
-			case 18: 
-				if (!tech_known(T_FLURRY)) {    	learntech(T_FLURRY, FROMOUTSIDE, 1);
-			    	You("learn how to perform missile flurry!");
-				}
-				break;
-			case 19: 
-			case 20: 
-			case 21: 
-				if (!tech_known(T_PRACTICE)) {    	learntech(T_PRACTICE, FROMOUTSIDE, 1);
-			    	You("learn how to perform weapon practice!");
-				}
-				break;
-			case 22: 
-			case 23: 
-			case 24: 
-				if (!tech_known(T_EVISCERATE)) {    	learntech(T_EVISCERATE, FROMOUTSIDE, 1);
-			    	You("learn how to perform eviscerate!");
-				}
-				break;
-			case 25: 
-			case 26: 
-			case 27: 
-				if (!tech_known(T_HEAL_HANDS)) {    	learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
-			    	You("learn how to perform healing hands!");
-				}
-				break;
-			case 28: 
-			case 29: 
-			case 30: 
-				if (!tech_known(T_CALM_STEED)) {    	learntech(T_CALM_STEED, FROMOUTSIDE, 1);
-			    	You("learn how to perform calm steed!");
-				}
-				break;
-			case 31: 
-			case 32: 
-			case 33: 
-				if (!tech_known(T_TURN_UNDEAD)) {    	learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
-			    	You("learn how to perform turn undead!");
-				}
-				break;
-			case 34: 
-			case 35: 
-			case 36: 
-				if (!tech_known(T_VANISH)) {    	learntech(T_VANISH, FROMOUTSIDE, 1);
-			    	You("learn how to perform vanish!");
-				}
-				break;
-			case 37: 
-			case 38: 
-			case 39: 
-				if (!tech_known(T_CUTTHROAT)) {    	learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
-			    	You("learn how to perform cutthroat!");
-				}
-				break;
-			case 40: 
-			case 41: 
-				if (!tech_known(T_BLESSING)) {    	learntech(T_BLESSING, FROMOUTSIDE, 1);
-			    	You("learn how to perform blessing!");
-				}
-				break;
-			case 42: 
-			case 43: 
-			case 44: 
-				if (!tech_known(T_E_FIST)) {    	learntech(T_E_FIST, FROMOUTSIDE, 1);
-			    	You("learn how to perform elemental fist!");
-				}
-				break;
-			case 45: 
-			case 46: 
-			case 47: 
-				if (!tech_known(T_PRIMAL_ROAR)) {    	learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
-			    	You("learn how to perform primal roar!");
-				}
-				break;
-			case 48: 
-			case 49: 
-				if (!tech_known(T_LIQUID_LEAP)) {    	learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
-			    	You("learn how to perform liquid leap!");
-				}
-				break;
-			case 50: 
-			case 51: 
-			case 52: 
-				if (!tech_known(T_CRIT_STRIKE)) {    	learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
-			    	You("learn how to perform critical strike!");
-				}
-				break;
-			case 53: 
-			case 54: 
-			case 55: 
-				if (!tech_known(T_SIGIL_CONTROL)) {    	learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of control!");
-				}
-				break;
-			case 56: 
-			case 57: 
-			case 58: 
-				if (!tech_known(T_SIGIL_TEMPEST)) {    	learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of tempest!");
-				}
-				break;
-			case 59: 
-			case 60: 
-			case 61: 
-				if (!tech_known(T_SIGIL_DISCHARGE)) {    	learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of discharge!");
-				}
-				break;
-			case 62: 
-			case 63: 
-			case 64: 
-				if (!tech_known(T_RAISE_ZOMBIES)) {    	learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
-			    	You("learn how to perform raise zombies!");
-				}
-				break;
-			case 65: 
-				if (!tech_known(T_REVIVE)) {    	learntech(T_REVIVE, FROMOUTSIDE, 1);
-			    	You("learn how to perform revivification!");
-				}
-				break;
-			case 66: 
-			case 67: 
-			case 68: 
-				if (!tech_known(T_WARD_FIRE)) {    	learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against fire!");
-				}
-				break;
-			case 69: 
-			case 70: 
-			case 71: 
-				if (!tech_known(T_WARD_COLD)) {    	learntech(T_WARD_COLD, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against cold!");
-				}
-				break;
-			case 72: 
-			case 73: 
-			case 74: 
-				if (!tech_known(T_WARD_ELEC)) {    	learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against electricity!");
-				}
-				break;
-			case 75: 
-			case 76: 
-			case 77: 
-				if (!tech_known(T_TINKER)) {    	learntech(T_TINKER, FROMOUTSIDE, 1);
-			    	You("learn how to perform tinker!");
-				}
-				break;
-			case 78: 
-			case 79: 
-			case 80: 
-				if (!tech_known(T_RAGE)) {    	learntech(T_RAGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform rage eruption!");
-				}
-				break;
-			case 81: 
-			case 82: 
-			case 83: 
-				if (!tech_known(T_BLINK)) {    	learntech(T_BLINK, FROMOUTSIDE, 1);
-			    	You("learn how to perform blink!");
-				}
-				break;
-			case 84: 
-			case 85: 
-			case 86: 
-				if (!tech_known(T_CHI_STRIKE)) {    	learntech(T_CHI_STRIKE, FROMOUTSIDE, 1);
-			    	You("learn how to perform chi strike!");
-				}
-				break;
-			case 87: 
-			case 88: 
-			case 89: 
-				if (!tech_known(T_DRAW_ENERGY)) {    	learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
-			    	You("learn how to perform draw energy!");
-				}
-				break;
-			case 90: 
-			case 91: 
-			case 92: 
-				if (!tech_known(T_CHI_HEALING)) {    	learntech(T_CHI_HEALING, FROMOUTSIDE, 1);
-			    	You("learn how to perform chi healing!");
-				}
-				break;
-			case 93: 
-			case 94: 
-			case 95: 
-				if (!tech_known(T_DAZZLE)) {    	learntech(T_DAZZLE, FROMOUTSIDE, 1);
-			    	You("learn how to perform dazzle!");
-				}
-				break;
-			case 96: 
-			case 97: 
-			case 98: 
-				if (!tech_known(T_BLITZ)) {    	learntech(T_BLITZ, FROMOUTSIDE, 1);
-			    	You("learn how to perform chained blitz!");
-				}
-				break;
-			case 99: 
-			case 100: 
-			case 101: 
-				if (!tech_known(T_PUMMEL)) {    	learntech(T_PUMMEL, FROMOUTSIDE, 1);
-			    	You("learn how to perform pummel!");
-				}
-				break;
-			case 102: 
-			case 103: 
-			case 104: 
-				if (!tech_known(T_G_SLAM)) {    	learntech(T_G_SLAM, FROMOUTSIDE, 1);
-			    	You("learn how to perform ground slam!");
-				}
-				break;
-			case 105: 
-			case 106: 
-			case 107: 
-				if (!tech_known(T_DASH)) {    	learntech(T_DASH, FROMOUTSIDE, 1);
-			    	You("learn how to perform air dash!");
-				}
-				break;
-			case 108: 
-			case 109: 
-			case 110: 
-				if (!tech_known(T_POWER_SURGE)) {    	learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform power surge!");
-				}
-				break;
-			case 111: 
-			case 112: 
-			case 113: 
-				if (!tech_known(T_SPIRIT_BOMB)) {    	learntech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
-			    	You("learn how to perform spirit bomb!");
-				}
-				break;
-			case 114: 
-			case 115: 
-			case 116: 
-				if (!tech_known(T_DRAW_BLOOD)) {    	learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
-			    	You("learn how to perform draw blood!");
-				}
-				break;
-			case 117: 
-				if (!tech_known(T_WORLD_FALL)) {    	learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
-			    	You("learn how to perform world fall!");
-				}
-				break;
-			case 118: 
-			case 119: 
-			case 120: 
-				if (!tech_known(T_CREATE_AMMO)) {    	learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
-			    	You("learn how to perform create ammo!");
-				}
-				break;
-			case 121: 
-			case 122: 
-			case 123: 
-				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
-			    	You("learn how to perform poke ball!");
-				}
-				break;
-			case 124: 
-			case 125: 
-			case 126: 
-				if (!tech_known(T_ATTIRE_CHARM)) {    	learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
-			    	You("learn how to perform attire charm!");
-				}
-				break;
-			case 127: 
-			case 128: 
-			case 129: 
-				if (!tech_known(T_SUMMON_TEAM_ANT)) {    	learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
-			    	You("learn how to perform summon team ant!");
-				}
-				break;
-			case 130: 
-			case 131: 
-			case 132: 
-				if (!tech_known(T_JEDI_JUMP)) {    	learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
-			    	You("learn how to perform jedi jump!");
-				}
-				break;
-			case 133: 
-			case 134: 
-			case 135: 
-				if (!tech_known(T_CHARGE_SABER)) {    	learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
-			    	You("learn how to perform charge saber!");
-				}
-				break;
-			case 136: 
-			case 137: 
-			case 138: 
-				if (!tech_known(T_TELEKINESIS)) {    	learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
-			    	You("learn how to perform telekinesis!");
-				}
-				break;
-			case 139: 
-				if (!tech_known(T_EGG_BOMB)) {    	learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
-			    	You("learn how to perform egg bomb!");
-				}
-				break;
-			case 140: 
-			case 141: 
-			case 142: 
-				if (!tech_known(T_BOOZE)) {    	learntech(T_BOOZE, FROMOUTSIDE, 1);
-			    	You("learn how to perform booze!");
-				}
-				break;
-
-			default:
-				break;
-
-		    }
-
-		  }
-		}
-
-		if (Role_if(PM_BINDER) && u.ulevel > u.urmaxlvlC) {
-
-		u.urmaxlvlC = u.ulevel;
-
-		if (!rn2(3)) {ubook = mkobj(SPBOOK_CLASS, FALSE); dropy(ubook); pline("A book appeared at your feet!"); }
-
-		}
-
-		if ((Role_if(PM_ZYBORG) || Role_if(PM_MYSTIC)) && u.ulevel > u.urmaxlvlB) {
-
-		u.urmaxlvlB = u.ulevel;
-
-		if (!rn2(3)) { switch (rnd(150)) {
-
-			case 1: 
-			case 2: 
-			case 3: 
-				if (!tech_known(T_BERSERK)) {    	learntech(T_BERSERK, FROMOUTSIDE, 1);
-			    	You("learn how to perform berserk!");
-				}
-				break;
-			case 4: 
-			case 5: 
-			case 6: 
-				if (!tech_known(T_KIII)) {    	learntech(T_KIII, FROMOUTSIDE, 1);
-			    	You("learn how to perform kiii!");
-				}
-				break;
-			case 7: 
-			case 8: 
-			case 9: 
-				if (!tech_known(T_RESEARCH)) {    	learntech(T_RESEARCH, FROMOUTSIDE, 1);
-			    	You("learn how to perform research!");
-				}
-				break;
-			case 10: 
-			case 11: 
-			case 12: 
-				if (!tech_known(T_SURGERY)) {    	learntech(T_SURGERY, FROMOUTSIDE, 1);
-			    	You("learn how to perform surgery!");
-				}
-				break;
-			case 13: 
-			case 14: 
-			case 15: 
-				if (!tech_known(T_REINFORCE)) {    	learntech(T_REINFORCE, FROMOUTSIDE, 1);
-			    	You("learn how to perform reinforce memory!");
-				}
-				break;
-			case 16: 
-			case 17:
-			case 18: 
-				if (!tech_known(T_FLURRY)) {    	learntech(T_FLURRY, FROMOUTSIDE, 1);
-			    	You("learn how to perform missile flurry!");
-				}
-				break;
-			case 19: 
-			case 20: 
-			case 21: 
-				if (!tech_known(T_PRACTICE)) {    	learntech(T_PRACTICE, FROMOUTSIDE, 1);
-			    	You("learn how to perform weapon practice!");
-				}
-				break;
-			case 22: 
-			case 23: 
-			case 24: 
-				if (!tech_known(T_EVISCERATE)) {    	learntech(T_EVISCERATE, FROMOUTSIDE, 1);
-			    	You("learn how to perform eviscerate!");
-				}
-				break;
-			case 25: 
-			case 26: 
-			case 27: 
-				if (!tech_known(T_HEAL_HANDS)) {    	learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
-			    	You("learn how to perform healing hands!");
-				}
-				break;
-			case 28: 
-			case 29: 
-			case 30: 
-				if (!tech_known(T_CALM_STEED)) {    	learntech(T_CALM_STEED, FROMOUTSIDE, 1);
-			    	You("learn how to perform calm steed!");
-				}
-				break;
-			case 31: 
-			case 32: 
-			case 33: 
-				if (!tech_known(T_TURN_UNDEAD)) {    	learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
-			    	You("learn how to perform turn undead!");
-				}
-				break;
-			case 34: 
-			case 35: 
-			case 36: 
-				if (!tech_known(T_VANISH)) {    	learntech(T_VANISH, FROMOUTSIDE, 1);
-			    	You("learn how to perform vanish!");
-				}
-				break;
-			case 37: 
-			case 38: 
-			case 39: 
-				if (!tech_known(T_CUTTHROAT)) {    	learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
-			    	You("learn how to perform cutthroat!");
-				}
-				break;
-			case 40: 
-			case 41: 
-				if (!tech_known(T_BLESSING)) {    	learntech(T_BLESSING, FROMOUTSIDE, 1);
-			    	You("learn how to perform blessing!");
-				}
-				break;
-			case 42: 
-			case 43: 
-			case 44: 
-				if (!tech_known(T_E_FIST)) {    	learntech(T_E_FIST, FROMOUTSIDE, 1);
-			    	You("learn how to perform elemental fist!");
-				}
-				break;
-			case 45: 
-			case 46: 
-			case 47: 
-				if (!tech_known(T_PRIMAL_ROAR)) {    	learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
-			    	You("learn how to perform primal roar!");
-				}
-				break;
-			case 48: 
-			case 49: 
-				if (!tech_known(T_LIQUID_LEAP)) {    	learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
-			    	You("learn how to perform liquid leap!");
-				}
-				break;
-			case 50: 
-			case 51: 
-			case 52: 
-				if (!tech_known(T_CRIT_STRIKE)) {    	learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
-			    	You("learn how to perform critical strike!");
-				}
-				break;
-			case 53: 
-			case 54: 
-			case 55: 
-				if (!tech_known(T_SIGIL_CONTROL)) {    	learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of control!");
-				}
-				break;
-			case 56: 
-			case 57: 
-			case 58: 
-				if (!tech_known(T_SIGIL_TEMPEST)) {    	learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of tempest!");
-				}
-				break;
-			case 59: 
-			case 60: 
-			case 61: 
-				if (!tech_known(T_SIGIL_DISCHARGE)) {    	learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform sigil of discharge!");
-				}
-				break;
-			case 62: 
-			case 63: 
-			case 64: 
-				if (!tech_known(T_RAISE_ZOMBIES)) {    	learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
-			    	You("learn how to perform raise zombies!");
-				}
-				break;
-			case 65: 
-				if (!tech_known(T_REVIVE)) {    	learntech(T_REVIVE, FROMOUTSIDE, 1);
-			    	You("learn how to perform revivification!");
-				}
-				break;
-			case 66: 
-			case 67: 
-			case 68: 
-				if (!tech_known(T_WARD_FIRE)) {    	learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against fire!");
-				}
-				break;
-			case 69: 
-			case 70: 
-			case 71: 
-				if (!tech_known(T_WARD_COLD)) {    	learntech(T_WARD_COLD, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against cold!");
-				}
-				break;
-			case 72: 
-			case 73: 
-			case 74: 
-				if (!tech_known(T_WARD_ELEC)) {    	learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
-			    	You("learn how to perform ward against electricity!");
-				}
-				break;
-			case 75: 
-			case 76: 
-			case 77: 
-				if (!tech_known(T_TINKER)) {    	learntech(T_TINKER, FROMOUTSIDE, 1);
-			    	You("learn how to perform tinker!");
-				}
-				break;
-			case 78: 
-			case 79: 
-			case 80: 
-				if (!tech_known(T_RAGE)) {    	learntech(T_RAGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform rage eruption!");
-				}
-				break;
-			case 81: 
-			case 82: 
-			case 83: 
-				if (!tech_known(T_BLINK)) {    	learntech(T_BLINK, FROMOUTSIDE, 1);
-			    	You("learn how to perform blink!");
-				}
-				break;
-			case 84: 
-			case 85: 
-			case 86: 
-				if (!tech_known(T_CHI_STRIKE)) {    	learntech(T_CHI_STRIKE, FROMOUTSIDE, 1);
-			    	You("learn how to perform chi strike!");
-				}
-				break;
-			case 87: 
-			case 88: 
-			case 89: 
-				if (!tech_known(T_DRAW_ENERGY)) {    	learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
-			    	You("learn how to perform draw energy!");
-				}
-				break;
-			case 90: 
-			case 91: 
-			case 92: 
-				if (!tech_known(T_CHI_HEALING)) {    	learntech(T_CHI_HEALING, FROMOUTSIDE, 1);
-			    	You("learn how to perform chi healing!");
-				}
-				break;
-			case 93: 
-			case 94: 
-			case 95: 
-				if (!tech_known(T_DAZZLE)) {    	learntech(T_DAZZLE, FROMOUTSIDE, 1);
-			    	You("learn how to perform dazzle!");
-				}
-				break;
-			case 96: 
-			case 97: 
-			case 98: 
-				if (!tech_known(T_BLITZ)) {    	learntech(T_BLITZ, FROMOUTSIDE, 1);
-			    	You("learn how to perform chained blitz!");
-				}
-				break;
-			case 99: 
-			case 100: 
-			case 101: 
-				if (!tech_known(T_PUMMEL)) {    	learntech(T_PUMMEL, FROMOUTSIDE, 1);
-			    	You("learn how to perform pummel!");
-				}
-				break;
-			case 102: 
-			case 103: 
-			case 104: 
-				if (!tech_known(T_G_SLAM)) {    	learntech(T_G_SLAM, FROMOUTSIDE, 1);
-			    	You("learn how to perform ground slam!");
-				}
-				break;
-			case 105: 
-			case 106: 
-			case 107: 
-				if (!tech_known(T_DASH)) {    	learntech(T_DASH, FROMOUTSIDE, 1);
-			    	You("learn how to perform air dash!");
-				}
-				break;
-			case 108: 
-			case 109: 
-			case 110: 
-				if (!tech_known(T_POWER_SURGE)) {    	learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
-			    	You("learn how to perform power surge!");
-				}
-				break;
-			case 111: 
-			case 112: 
-			case 113: 
-				if (!tech_known(T_SPIRIT_BOMB)) {    	learntech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
-			    	You("learn how to perform spirit bomb!");
-				}
-				break;
-			case 114: 
-			case 115: 
-			case 116: 
-				if (!tech_known(T_DRAW_BLOOD)) {    	learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
-			    	You("learn how to perform draw blood!");
-				}
-				break;
-			case 117: 
-				if (!tech_known(T_WORLD_FALL)) {    	learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
-			    	You("learn how to perform world fall!");
-				}
-				break;
-			case 118: 
-			case 119: 
-			case 120: 
-				if (!tech_known(T_CREATE_AMMO)) {    	learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
-			    	You("learn how to perform create ammo!");
-				}
-				break;
-			case 121: 
-			case 122: 
-			case 123: 
-				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
-			    	You("learn how to perform poke ball!");
-				}
-				break;
-			case 124: 
-			case 125: 
-			case 126: 
-				if (!tech_known(T_ATTIRE_CHARM)) {    	learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
-			    	You("learn how to perform attire charm!");
-				}
-				break;
-			case 127: 
-			case 128: 
-			case 129: 
-				if (!tech_known(T_SUMMON_TEAM_ANT)) {    	learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
-			    	You("learn how to perform summon team ant!");
-				}
-				break;
-			case 130: 
-			case 131: 
-			case 132: 
-				if (!tech_known(T_JEDI_JUMP)) {    	learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
-			    	You("learn how to perform jedi jump!");
-				}
-				break;
-			case 133: 
-			case 134: 
-			case 135: 
-				if (!tech_known(T_CHARGE_SABER)) {    	learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
-			    	You("learn how to perform charge saber!");
-				}
-				break;
-			case 136: 
-			case 137: 
-			case 138: 
-				if (!tech_known(T_TELEKINESIS)) {    	learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
-			    	You("learn how to perform telekinesis!");
-				}
-				break;
-			case 139: 
-				if (!tech_known(T_EGG_BOMB)) {    	learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
-			    	You("learn how to perform egg bomb!");
-				}
-				break;
-			case 140: 
-			case 141: 
-			case 142: 
-				if (!tech_known(T_BOOZE)) {    	learntech(T_BOOZE, FROMOUTSIDE, 1);
-			    	You("learn how to perform booze!");
-				}
-				break;
-
-			default:
-				break;
-
-		    }
-
-		  }
-
-		}
-
 		flags.botl = 1;
 	}
 }
@@ -1182,6 +359,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	num += rnz(2);
 	num -= flags.hybridization;
 	if (num < 0) num = 0;
+	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	u.uhpmax += num;
 	u.uhp += num;
 
@@ -1219,6 +397,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	num -= flags.hybridization;
 	if (num < 0) num = 0;
 	if (num > 1) num /= (5 + rnd(5));
+	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	u.uhpmax += num;
 	u.uhp += num;
 
@@ -2104,7 +1283,367 @@ boolean incr;	/* true iff via incremental experience growth */
 			default:
 				break;
 
+		      }
+
 		    }
+
+		}
+
+		if (isamerican && Role_if(PM_GLADIATOR) && (u.ulevel > u.urmaxlvlE) ) {
+
+		u.urmaxlvlE = u.ulevel;
+
+		if (!rn2(2)) { switch (rnd(150)) {
+
+			case 1: 
+			case 2: 
+			case 3: 
+				if (!tech_known(T_BERSERK)) {    	learntech(T_BERSERK, FROMOUTSIDE, 1);
+			    	You("learn how to perform berserk!");
+				}
+				break;
+			case 4: 
+			case 5: 
+			case 6: 
+				if (!tech_known(T_KIII)) {    	learntech(T_KIII, FROMOUTSIDE, 1);
+			    	You("learn how to perform kiii!");
+				}
+				break;
+			case 7: 
+			case 8: 
+			case 9: 
+				if (!tech_known(T_RESEARCH)) {    	learntech(T_RESEARCH, FROMOUTSIDE, 1);
+			    	You("learn how to perform research!");
+				}
+				break;
+			case 10: 
+			case 11: 
+			case 12: 
+				if (!tech_known(T_SURGERY)) {    	learntech(T_SURGERY, FROMOUTSIDE, 1);
+			    	You("learn how to perform surgery!");
+				}
+				break;
+			case 13: 
+			case 14: 
+			case 15: 
+				if (!tech_known(T_REINFORCE)) {    	learntech(T_REINFORCE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reinforce memory!");
+				}
+				break;
+			case 16: 
+			case 17:
+			case 18: 
+				if (!tech_known(T_FLURRY)) {    	learntech(T_FLURRY, FROMOUTSIDE, 1);
+			    	You("learn how to perform missile flurry!");
+				}
+				break;
+			case 19: 
+			case 20: 
+			case 21: 
+				if (!tech_known(T_PRACTICE)) {    	learntech(T_PRACTICE, FROMOUTSIDE, 1);
+			    	You("learn how to perform weapon practice!");
+				}
+				break;
+			case 22: 
+			case 23: 
+			case 24: 
+				if (!tech_known(T_EVISCERATE)) {    	learntech(T_EVISCERATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform eviscerate!");
+				}
+				break;
+			case 25: 
+			case 26: 
+			case 27: 
+				if (!tech_known(T_HEAL_HANDS)) {    	learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
+			    	You("learn how to perform healing hands!");
+				}
+				break;
+			case 28: 
+			case 29: 
+			case 30: 
+				if (!tech_known(T_CALM_STEED)) {    	learntech(T_CALM_STEED, FROMOUTSIDE, 1);
+			    	You("learn how to perform calm steed!");
+				}
+				break;
+			case 31: 
+			case 32: 
+			case 33: 
+				if (!tech_known(T_TURN_UNDEAD)) {    	learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
+			    	You("learn how to perform turn undead!");
+				}
+				break;
+			case 34: 
+			case 35: 
+			case 36: 
+				if (!tech_known(T_VANISH)) {    	learntech(T_VANISH, FROMOUTSIDE, 1);
+			    	You("learn how to perform vanish!");
+				}
+				break;
+			case 37: 
+			case 38: 
+			case 39: 
+				if (!tech_known(T_CUTTHROAT)) {    	learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
+			    	You("learn how to perform cutthroat!");
+				}
+				break;
+			case 40: 
+			case 41: 
+				if (!tech_known(T_BLESSING)) {    	learntech(T_BLESSING, FROMOUTSIDE, 1);
+			    	You("learn how to perform blessing!");
+				}
+				break;
+			case 42: 
+			case 43: 
+			case 44: 
+				if (!tech_known(T_E_FIST)) {    	learntech(T_E_FIST, FROMOUTSIDE, 1);
+			    	You("learn how to perform elemental fist!");
+				}
+				break;
+			case 45: 
+			case 46: 
+			case 47: 
+				if (!tech_known(T_PRIMAL_ROAR)) {    	learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
+			    	You("learn how to perform primal roar!");
+				}
+				break;
+			case 48: 
+			case 49: 
+				if (!tech_known(T_LIQUID_LEAP)) {    	learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform liquid leap!");
+				}
+				break;
+			case 50: 
+			case 51: 
+			case 52: 
+				if (!tech_known(T_CRIT_STRIKE)) {    	learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
+			    	You("learn how to perform critical strike!");
+				}
+				break;
+			case 53: 
+			case 54: 
+			case 55: 
+				if (!tech_known(T_SIGIL_CONTROL)) {    	learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of control!");
+				}
+				break;
+			case 56: 
+			case 57: 
+			case 58: 
+				if (!tech_known(T_SIGIL_TEMPEST)) {    	learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of tempest!");
+				}
+				break;
+			case 59: 
+			case 60: 
+			case 61: 
+				if (!tech_known(T_SIGIL_DISCHARGE)) {    	learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform sigil of discharge!");
+				}
+				break;
+			case 62: 
+			case 63: 
+			case 64: 
+				if (!tech_known(T_RAISE_ZOMBIES)) {    	learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
+			    	You("learn how to perform raise zombies!");
+				}
+				break;
+			case 65: 
+				if (!tech_known(T_REVIVE)) {    	learntech(T_REVIVE, FROMOUTSIDE, 1);
+			    	You("learn how to perform revivification!");
+				}
+				break;
+			case 66: 
+			case 67: 
+			case 68: 
+				if (!tech_known(T_WARD_FIRE)) {    	learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against fire!");
+				}
+				break;
+			case 69: 
+			case 70: 
+			case 71: 
+				if (!tech_known(T_WARD_COLD)) {    	learntech(T_WARD_COLD, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against cold!");
+				}
+				break;
+			case 72: 
+			case 73: 
+			case 74: 
+				if (!tech_known(T_WARD_ELEC)) {    	learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
+			    	You("learn how to perform ward against electricity!");
+				}
+				break;
+			case 75: 
+			case 76: 
+			case 77: 
+				if (!tech_known(T_TINKER)) {    	learntech(T_TINKER, FROMOUTSIDE, 1);
+			    	You("learn how to perform tinker!");
+				}
+				break;
+			case 78: 
+			case 79: 
+			case 80: 
+				if (!tech_known(T_RAGE)) {    	learntech(T_RAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform rage eruption!");
+				}
+				break;
+			case 81: 
+			case 82: 
+			case 83: 
+				if (!tech_known(T_BLINK)) {    	learntech(T_BLINK, FROMOUTSIDE, 1);
+			    	You("learn how to perform blink!");
+				}
+				break;
+			case 84: 
+			case 85: 
+			case 86: 
+				if (!tech_known(T_CHI_STRIKE)) {    	learntech(T_CHI_STRIKE, FROMOUTSIDE, 1);
+			    	You("learn how to perform chi strike!");
+				}
+				break;
+			case 87: 
+			case 88: 
+			case 89: 
+				if (!tech_known(T_DRAW_ENERGY)) {    	learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
+			    	You("learn how to perform draw energy!");
+				}
+				break;
+			case 90: 
+			case 91: 
+			case 92: 
+				if (!tech_known(T_CHI_HEALING)) {    	learntech(T_CHI_HEALING, FROMOUTSIDE, 1);
+			    	You("learn how to perform chi healing!");
+				}
+				break;
+			case 93: 
+			case 94: 
+			case 95: 
+				if (!tech_known(T_DAZZLE)) {    	learntech(T_DAZZLE, FROMOUTSIDE, 1);
+			    	You("learn how to perform dazzle!");
+				}
+				break;
+			case 96: 
+			case 97: 
+			case 98: 
+				if (!tech_known(T_BLITZ)) {    	learntech(T_BLITZ, FROMOUTSIDE, 1);
+			    	You("learn how to perform chained blitz!");
+				}
+				break;
+			case 99: 
+			case 100: 
+			case 101: 
+				if (!tech_known(T_PUMMEL)) {    	learntech(T_PUMMEL, FROMOUTSIDE, 1);
+			    	You("learn how to perform pummel!");
+				}
+				break;
+			case 102: 
+			case 103: 
+			case 104: 
+				if (!tech_known(T_G_SLAM)) {    	learntech(T_G_SLAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform ground slam!");
+				}
+				break;
+			case 105: 
+			case 106: 
+			case 107: 
+				if (!tech_known(T_DASH)) {    	learntech(T_DASH, FROMOUTSIDE, 1);
+			    	You("learn how to perform air dash!");
+				}
+				break;
+			case 108: 
+			case 109: 
+			case 110: 
+				if (!tech_known(T_POWER_SURGE)) {    	learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform power surge!");
+				}
+				break;
+			case 111: 
+			case 112: 
+			case 113: 
+				if (!tech_known(T_SPIRIT_BOMB)) {    	learntech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
+			    	You("learn how to perform spirit bomb!");
+				}
+				break;
+			case 114: 
+			case 115: 
+			case 116: 
+				if (!tech_known(T_DRAW_BLOOD)) {    	learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
+			    	You("learn how to perform draw blood!");
+				}
+				break;
+			case 117: 
+				if (!tech_known(T_WORLD_FALL)) {    	learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
+			    	You("learn how to perform world fall!");
+				}
+				break;
+			case 118: 
+			case 119: 
+			case 120: 
+				if (!tech_known(T_CREATE_AMMO)) {    	learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+			    	You("learn how to perform create ammo!");
+				}
+				break;
+			case 121: 
+			case 122: 
+			case 123: 
+				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
+			    	You("learn how to perform poke ball!");
+				}
+				break;
+			case 124: 
+			case 125: 
+			case 126: 
+				if (!tech_known(T_ATTIRE_CHARM)) {    	learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
+			    	You("learn how to perform attire charm!");
+				}
+				break;
+			case 127: 
+			case 128: 
+			case 129: 
+				if (!tech_known(T_SUMMON_TEAM_ANT)) {    	learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon team ant!");
+				}
+				break;
+			case 130: 
+			case 131: 
+			case 132: 
+				if (!tech_known(T_JEDI_JUMP)) {    	learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
+			    	You("learn how to perform jedi jump!");
+				}
+				break;
+			case 133: 
+			case 134: 
+			case 135: 
+				if (!tech_known(T_CHARGE_SABER)) {    	learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
+			    	You("learn how to perform charge saber!");
+				}
+				break;
+			case 136: 
+			case 137: 
+			case 138: 
+				if (!tech_known(T_TELEKINESIS)) {    	learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
+			    	You("learn how to perform telekinesis!");
+				}
+				break;
+			case 139: 
+				if (!tech_known(T_EGG_BOMB)) {    	learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
+			    	You("learn how to perform egg bomb!");
+				}
+				break;
+			case 140: 
+			case 141: 
+			case 142: 
+				if (!tech_known(T_BOOZE)) {    	learntech(T_BOOZE, FROMOUTSIDE, 1);
+			    	You("learn how to perform booze!");
+				}
+				break;
+
+
+			default:
+				break;
+
+
+			}
 
 		  }
 

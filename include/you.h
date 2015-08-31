@@ -377,6 +377,7 @@ struct you {
 	int urmaxlvlB;		/* for cyborg role */
 	int urmaxlvlC;		/* for binder role */
 	int urmaxlvlD;		/* for bard role */
+	int urmaxlvlE;		/* for american race */
 	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int uhereticgodinit;
 	int uhereticgodlawful;
@@ -395,6 +396,8 @@ struct you {
 	int gottenbones;		/* set to 1 if you encountered a bones level */
 
 	int ungenocidable;	/* evil patch idea by jonadab - monster class that can't be genocided at all */
+
+	int minimalism;		/* chance that an item is generated is only 1 in X for minimalist race */
 
 	int frequentmonster;	/* evil patch idea by Amy - monster class that is generated more often */
 	int freqmonsterbonus;	/* amount that is added to said monster class's frequency */

@@ -595,6 +595,14 @@ static const struct innate_tech
 		       {   15, T_EGG_BOMB, 1},
 		       {   20, T_WORLD_FALL, 1},
 		       {   0, 0, 0} },
+	cor_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_VANISH, 1},
+		       {   1, T_EGG_BOMB, 1},
+		       {   10, T_TELEKINESIS, 1},
+		       {   20, T_WORLD_FALL, 1},
+		       {   0, 0, 0} },
 	bat_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -605,6 +613,13 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
+		       {   0, 0, 0} },
+
+	jel_tech[] = { {   1, T_DRAW_ENERGY, 1},
+		       {   1, T_LIQUID_LEAP, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_APPRAISAL, 1},
 		       {   0, 0, 0} },
 
 	tur_tech[] = { {   1, T_PUMMEL, 1},
@@ -2887,12 +2902,14 @@ race_tech()
 		case PM_NORD:		return (nor_tech);
 		case PM_ALBAE:		return (alb_tech);
 		case PM_VORTEX:		return (vor_tech);
+		case PM_CORTEX:		return (cor_tech);
 		case PM_GNOME:		return (gno_tech);
 		case PM_KOBOLT:		return (kob_tech);
 		case PM_OGRO:		return (ogr_tech);
 		case PM_BATMAN:		return (bat_tech);
 		case PM_RODNEYAN:		return (rod_tech);
 		case PM_TURTLE:		return (tur_tech);
+		case PM_JELLY:		return (jel_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);

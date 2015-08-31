@@ -61,9 +61,9 @@ char msgbuf[BUFSZ];
 
 /* also used to see if you're allowed to eat cats and dogs */
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || \
-Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || Race_if(PM_WEAPON_TRAPPER) || \
+Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || Race_if(PM_WEAPON_TRAPPER) || \
  Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) )
+ Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_IMP) )
 
 #ifndef OVLB
 
@@ -131,7 +131,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if ((u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -2631,7 +2631,7 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!vegetarian(&mons[tin.tin->corpsenm]))
 		violated_vegetarian();
 
-		if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
+		if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
 
 			if (rn2(2)) {
 				pline("Ulch - that food was petrified! You're unable to swallow it.");
@@ -2643,7 +2643,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 		}
 
-		if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
+		if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
 
 			pline("Ulch - that food was petrified!");
 			badeffect();
@@ -2653,7 +2653,7 @@ opentin()		/* called during each move whilst opening a tin */
 		/* AvzinElkein wants lithivore roles to be able to eat as a cockatrice; I'll not remove the penalties
 		 * completely, but they will be imposed a lot less often, and with more meaningful wording. --Amy */
 
-		if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
+		if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
 
 			if (rn2(2)) {
 				pline("Ulch - that petrified food had manky bits! You're unable to swallow it.");
@@ -2665,7 +2665,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 		}
 
-		if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
+		if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
 
 			pline("Ulch - that petrified food had manky bits!");
 			badeffect();
@@ -2916,7 +2916,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	if (!vegetarian(&mons[mnum])) violated_vegetarian();
 	gluttonous();
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that food was petrified! You're unable to swallow it.");
@@ -2929,14 +2929,14 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		return 2;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && rn2(2) ) {
 
 		pline("Ulch - that food was petrified!");
 		badeffect();
 
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that petrified food had manky bits! You're unable to swallow it.");
@@ -2949,7 +2949,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		return 2;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && !rn2(4) ) {
 
 			pline("Ulch - that petrified food had manky bits!");
 		badeffect();
@@ -4062,7 +4062,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return (1);
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that food was petrified! You're unable to swallow it.");
@@ -4080,14 +4080,14 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return 1;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && !lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && rn2(2) ) {
 
 		pline("Ulch - that food was petrified!");
 		badeffect();
 
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
 
 		if (rn2(2)) {
 			pline("Ulch - that petrified food had manky bits! You're unable to swallow it.");
@@ -4105,7 +4105,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return 1;
 	}
 
-	if (Race_if(PM_ARMED_COCKATRICE) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
+	if ( (Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_CORTEX)) && lithivorous(youmonst.data) && !Upolyd && (otmp->otyp != TIN) && (otmp->otyp != CORPSE) && !rn2(4) ) {
 
 		pline("Ulch - that petrified food had manky bits!");
 		badeffect();

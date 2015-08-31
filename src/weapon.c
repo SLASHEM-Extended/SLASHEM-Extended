@@ -2934,6 +2934,8 @@ const struct def_skill *class_skill;
 	    P_ADVANCE(skill) = 0;
 	}
 
+	if (isamerican) return; /* all skills start out restricted --Amy */
+
 	/* Walk through array to set skill maximums */
 	for (; class_skill->skill != P_NONE; class_skill++) {
 	    skill = class_skill->skill;
@@ -2945,14 +2947,14 @@ const struct def_skill *class_skill;
 	    /* Really high potential in the skill
 	     * Right now only used for H to H skills
 	     */
-	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
+	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
 
-		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
 
 	}
 
 	/* Set skill for all objects in inventory to be basic */
-	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
+	if(!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;
@@ -3027,7 +3029,7 @@ xtraskillinit()
 	int skill;
 
 	/* Set skill for all objects in inventory to be basic */
-	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
+	if (!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;

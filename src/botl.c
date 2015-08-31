@@ -386,9 +386,11 @@ bot1()
 		if (flags.hybridmazewalker) Sprintf(nb = eos(nb), "M");
 		if (flags.hybridsoviet) Sprintf(nb = eos(nb), "V");
 		if (flags.hybridxrace) Sprintf(nb = eos(nb), "X");
-		if (flags.hybridheretic) Sprintf(nb = eos(nb), "E");
-		if (flags.hybridsokosolver) Sprintf(nb = eos(nb), "K");
 		if (flags.hybridspecialist) Sprintf(nb = eos(nb), "P");
+		if (flags.hybridminimalist) Sprintf(nb = eos(nb), "L");
+		if (flags.hybridamerican) Sprintf(nb = eos(nb), "I");
+		if (flags.hybridsokosolver) Sprintf(nb = eos(nb), "K");
+		if (flags.hybridheretic) Sprintf(nb = eos(nb), "E");
 	}
 
 #ifdef SCORE_ON_BOTL

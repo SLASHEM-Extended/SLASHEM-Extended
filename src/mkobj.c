@@ -698,6 +698,11 @@ boolean artif;
 		otyp = GOLD_PIECE;
 	}
 
+	if (u.minimalism && rn2(u.minimalism)) {
+		if (otyp != GOLD_PIECE && otyp != STRANGE_OBJECT && otyp != AMULET_OF_YENDOR && otyp != CANDELABRUM_OF_INVOCATION && otyp != BELL_OF_OPENING && otyp != SPE_BOOK_OF_THE_DEAD)
+		otyp = GOLD_PIECE;
+	}
+
 	char let = objects[otyp].oc_class;
 
 	otmp = newobj(0);

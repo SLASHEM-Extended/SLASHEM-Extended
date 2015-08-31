@@ -2874,6 +2874,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"american", "american", "patriotism", "Ame",
+	{0, 0},
+	PM_AMERICAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, MH_ELF, MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  3, 0 }		/* Energy */
+},
 {	"ancient", "ancient", "ancienty", "Anc",
 	{0, 0},
 	PM_ANCIENT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3029,6 +3042,19 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
 },
+{	"cortex", "cortex", "cortexhood", "Cor",
+	{0, 0},
+	PM_CORTEX, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  4, 0 }		/* Energy */
+},
 {	"curser", "curser", "curserhood", "Cur",
 	{0, 0},
 	PM_CURSER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3140,6 +3166,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  8, 0,  3, 0,  3, 0 }		/* Energy */
+},
+{	"ent", "ent", "enthood", "Ent",
+	{0, 0},
+	PM_LOWER_ENT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  4, 0 }		/* Energy */
 },
 {	"fenek", "fenek", "fenekhood", "Fen",
 	{0, 0},
@@ -3345,6 +3384,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"imp", "impish", "imphood", "Wim", /* "weapon imp" because there's already the imperial race --Amy */
+	{0, 0},
+	PM_WEAPON_IMP, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"imperial", "imperial", "imperialism", "Imp",
 	{0, 0},
 	PM_IMPERIAL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3383,6 +3435,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"jelly", "jelly", "jellyhood", "Jel",
+	{0, 0},
+	PM_JELLY, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 4,  8, 0 },	/* Hit points */
+	{  5, 0,  5, 0,  5, 0 }		/* Energy */
 },
 {	"khajiit", "khajiit", "cathood", "Kha",
 	{0, 0},
@@ -3499,6 +3563,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"minimalist", "minimalist", "minus world", "Min",
+	{0, 0},
+	PM_MINIMALIST, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, MH_ELF, MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  3, 0,  3, 0,  3, 0 }		/* Energy */
 },
 {	"missingno", "missing", "missing faction", "Mis",
 	{0, 0},
@@ -3807,6 +3884,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"spriggan", "spriggan", "sprigganship", "Spr",
+	{0, 0},
+	PM_SPRIGGAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  4, 0,  5, 0,  5, 0 }		/* Energy */
 },
 {	"suxxor", "suxxor", "suxxorhood", "Sux",
 	{0, 0},
@@ -4501,7 +4591,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(15)) {
+			switch (rnd(17)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -4533,12 +4623,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridsokosolver = 1; break;
 				case 15:
 					flags.hybridspecialist = 1; break;
+				case 16:
+					flags.hybridamerican = 1; break;
+				case 17:
+					flags.hybridminimalist = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(15)) {
+				switch (rnd(17)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -4584,6 +4678,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 15:
 						if (!(flags.hybridspecialist)) {flags.hybridspecialist = 1; flags.hybridization++; break;
+						}
+					case 16:
+						if (!(flags.hybridamerican)) {flags.hybridamerican = 1; flags.hybridization++; break;
+						}
+					case 17:
+						if (!(flags.hybridminimalist)) {flags.hybridminimalist = 1; flags.hybridization++; break;
 						}
 	
 				}

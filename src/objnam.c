@@ -1960,7 +1960,7 @@ register struct obj *obj;
 					break;
 				}
 			}
-			if (!f) impossible("Bad fruit #%d?", obj->spe);
+			if (!f) /*impossible("Bad fruit #%d?", obj->spe);*/Strcpy(buf, "slime mold");
 			break;
 		}
 

@@ -468,6 +468,13 @@ const struct innate {
 		     {   1, &(HStone_resistance), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	cor_abil[] = { {	1, &(HFlying), "", "" },
+			{1, &(HMagical_breathing), "", ""  },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	alb_abil[] = { {   1, &(HAntimagic), "", "" },
 		     {   3, &(HUndead_warning), "sensitive", "careless" },
 		     {   10, &(HSee_invisible), "your vision sharpen", "your vision blur" },
@@ -501,6 +508,12 @@ const struct innate {
 
 	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
 		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
+		     {   0, 0, 0, 0 } },
+
+	spr_abil[] = { {   1, &(HFast), "", "" },
+		     {	 1, &(HRegeneration), "", "" },
+		     {	 1, &(HHalf_spell_damage), "", "" },
+		     {	 1, &(HHalf_physical_damage), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	syl_abil[] = { {1,  &(HHunger), "", ""},
@@ -625,6 +638,15 @@ const struct innate {
 		     {   1, &(HTeleportation), "", "" },
 		     {   1, &(HTeleport_control), "", "" },
 		     {   0, 0, 0, 0 } },
+
+	jel_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
+		     {   1, &(HRegeneration), "", "" },
+		     {   1, &(HTeleportation), "", "" },
+		     {	 0, 0, 0, 0 } },
 
 	rod_abil[] = { {   1, &(HFire_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
@@ -1288,6 +1310,8 @@ int oldlevel, newlevel;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
 	case PM_RODNEYAN:            rabil = rod_abil;	break;
+	case PM_JELLY:            rabil = jel_abil;	break;
+	case PM_WEAPON_IMP:            rabil = wim_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
@@ -1301,9 +1325,11 @@ int oldlevel, newlevel;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
+	case PM_SPRIGGAN:	rabil = spr_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
+	case PM_CORTEX:	rabil = cor_abil;	break;
 	case PM_LEVITATOR:	rabil = lev_abil;	break;
 	case PM_HUMANOID_ANGEL:	rabil = ang_abil;	break;
 	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;

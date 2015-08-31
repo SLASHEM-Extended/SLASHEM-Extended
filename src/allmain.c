@@ -504,6 +504,9 @@ moveloop()
 			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* Cockatrices even more. */
 				moveamt /= 2;
 
+			if (Race_if(PM_CORTEX) && !Upolyd && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
 		 * So I need to make a subloop to prevent numbed or frozen players from being completely immobile. */
 
@@ -516,6 +519,10 @@ moveloop()
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
 			if (Race_if(PM_TURTLE) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* turtles are very slow too --Amy */
+			}
+			if (Race_if(PM_LOWER_ENT) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
@@ -1622,6 +1629,8 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridheretic) Sprintf(eos(xtrabuf), "heretic ");
 	if (flags.hybridsokosolver) Sprintf(eos(xtrabuf), "sokosolver ");
 	if (flags.hybridspecialist) Sprintf(eos(xtrabuf), "specialist ");
+	if (flags.hybridamerican) Sprintf(eos(xtrabuf), "american ");
+	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
 
 #if 0
     pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."

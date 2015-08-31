@@ -9960,6 +9960,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_LEPRECHAUN && Race_if(PM_HUMANOID_LEPRECHAUN) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_HUMANOID && Race_if(PM_ILLITHID) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_VORTEX && Race_if(PM_VORTEX) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_VORTEX && Race_if(PM_CORTEX) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_BAT && Race_if(PM_BATMAN) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_HUMAN && Race_if(PM_VEELA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

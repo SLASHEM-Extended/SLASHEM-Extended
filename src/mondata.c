@@ -278,7 +278,7 @@ boolean
 breakarm(ptr)	/* creature will break out of armor */
 	register struct permonst *ptr;
 {
-	return ((bigmonst(ptr) || (ptr->msize > MZ_SMALL && !humanoid(ptr)) ||
+	return ((bigmonst(ptr) /*|| (ptr->msize > MZ_SMALL && !humanoid(ptr))*/ ||
 		/* special cases of humanoids that cannot wear body armor */
 		ptr == &mons[PM_MARILITH] || ptr == &mons[PM_WINGED_GARGOYLE])
 	      && !sliparm(ptr));

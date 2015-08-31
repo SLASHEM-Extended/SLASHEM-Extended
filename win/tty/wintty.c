@@ -412,14 +412,14 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = 0;
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = 0;
 
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
 			    if (!rn2(10)) {
 
-				switch (rnd(15)) {
+				switch (rnd(17)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -481,11 +481,19 @@ give_up:	/* Quit */
 						if (!Race_if(PM_SPECIALIST)) {flags.hybridspecialist = 1; flags.hybridization++;
 						}
 						break;
+					case 16:
+						if (!Race_if(PM_AMERICAN)) {flags.hybridamerican = 1; flags.hybridization++;
+						}
+						break;
+					case 17:
+						if (!Race_if(PM_MINIMALIST)) {flags.hybridminimalist = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(15)) {
+					switch (rnd(17)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -547,6 +555,14 @@ give_up:	/* Quit */
 							if (!(flags.hybridspecialist)) {
 								flags.hybridspecialist = 1; flags.hybridization++; break;
 							}	
+						case 16:
+							if (!(flags.hybridamerican)) {
+								flags.hybridamerican = 1; flags.hybridization++; break;
+							}	
+						case 17:
+							if (!(flags.hybridminimalist)) {
+								flags.hybridminimalist = 1; flags.hybridization++; break;
+							}	
 					}
 				}
 
@@ -556,7 +572,7 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(15)) {
+				switch (rnd(17)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -633,12 +649,22 @@ give_up:	/* Quit */
 						flags.hybridspecialist = 1; flags.hybridization++;
 						}
 						break;
+					case 16:
+						if (!Race_if(PM_AMERICAN)) {
+						flags.hybridamerican = 1; flags.hybridization++;
+						}
+						break;
+					case 17:
+						if (!Race_if(PM_MINIMALIST)) {
+						flags.hybridminimalist = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(15)) {
+					switch (rnd(17)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -700,6 +726,14 @@ give_up:	/* Quit */
 							if (!(flags.hybridspecialist)) {
 								flags.hybridspecialist = 1; flags.hybridization++; break;
 							}	
+						case 16:
+							if (!(flags.hybridamerican)) {
+								flags.hybridamerican = 1; flags.hybridization++; break;
+							}	
+						case 17:
+							if (!(flags.hybridminimalist)) {
+								flags.hybridminimalist = 1; flags.hybridization++; break;
+							}	
 
 					}
 				}
@@ -751,6 +785,12 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_SPECIALIST)) {if (yn("Add the specialist hybrid race to your character?") == 'y')
 					{flags.hybridspecialist = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_AMERICAN)) {if (yn("Add the american hybrid race to your character?") == 'y')
+					{flags.hybridamerican = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_MINIMALIST)) {if (yn("Add the minimalist hybrid race to your character?") == 'y')
+					{flags.hybridminimalist = 1; flags.hybridization++;}
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */

@@ -2166,6 +2166,18 @@ static struct trobj SylphStuff[] = {
     {0, 0, 0, 0, 0}
 };
 
+static struct trobj EntStuff[] = {
+	{ ORANGE, 0, FOOD_CLASS, 3, 0 },
+	{ APPLE, 0, FOOD_CLASS, 3, 0 },
+	{ CARROT, 0, FOOD_CLASS, 3, 0 },
+	{ PEAR, 0, FOOD_CLASS, 3, 0 },
+	{ ASIAN_PEAR, 0, FOOD_CLASS, 3, 0 },
+	{ LEMON, 0, FOOD_CLASS, 3, 0 },
+	{ BANANA, 0, FOOD_CLASS, 3, 0 },
+	{ MELON, 0, FOOD_CLASS, 3, 0 },
+	{ SLIME_MOLD, 0, FOOD_CLASS, 20, 0 },
+};
+
 static struct trobj XtraRing[] = {
 	{ UNDEF_TYP, 0, RING_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -5071,6 +5083,15 @@ u_init()
 		ptr = &mons[u.nospawnspecies5];
 	}
 
+	u.minimalism = 0;
+
+	if (isminimalist) {
+
+		u.minimalism = 1 + rnd(4);
+		if (!rn2(10)) u.minimalism += rnd(5);
+		if (!rn2(100)) u.minimalism += rnz(5);
+	}
+
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
 
@@ -5109,6 +5130,7 @@ u_init()
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
 	u.urmaxlvlD = 1; /* will go up if a bard role player levels up */
+	u.urmaxlvlE = 1; /* will go up if an american gladiator player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 
 	u.uhereticgodinit = 0; /* for heretic race */
@@ -8973,6 +8995,10 @@ u_init()
           ini_inv(SylphStuff);
 		break;
 
+	case PM_LOWER_ENT:
+          ini_inv(EntStuff);
+		break;
+
 	case PM_VENTURE_CAPITALIST:	/* idea by deepy */
           u.ugold += rnd(5000);		
 		break;
@@ -9125,6 +9151,7 @@ u_init()
 	case PM_SUXXOR: racebounus = rnz(16); break;
 	case PM_RACE_X: racebounus = rnz(12); break;
 	case PM_TURTLE: racebounus = rnz(11); break;
+	case PM_LOWER_ENT: racebounus = rnz(12); break;
 	case PM_WEAPON_BUG: racebounus = rnz(16); break;
 	case PM_BASTARD: racebounus = rnz(7); break;
 	default:	racebounus = rnz(10); break;

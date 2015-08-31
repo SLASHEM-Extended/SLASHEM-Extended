@@ -247,6 +247,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Race_if(PM_VORTEX) && nolimbs(mtmp->data))
 		    ways_seen++;
+		if (Race_if(PM_CORTEX) && unsolid(mtmp->data))
+		    ways_seen++;
+		if (Race_if(PM_CORTEX) && nolimbs(mtmp->data))
+		    ways_seen++;
 		if (Race_if(PM_RODNEYAN) && mon_has_amulet(mtmp))
 		    ways_seen++;
 		if (Race_if(PM_RODNEYAN) && mon_has_special(mtmp))
@@ -330,6 +334,14 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (Race_if(PM_VORTEX) && nolimbs(mtmp->data)) {
+			Strcat(monbuf, "warned of creatures without limbs");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_CORTEX) && unsolid(mtmp->data)) {
+			Strcat(monbuf, "warned of unsolid creatures");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Race_if(PM_CORTEX) && nolimbs(mtmp->data)) {
 			Strcat(monbuf, "warned of creatures without limbs");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
