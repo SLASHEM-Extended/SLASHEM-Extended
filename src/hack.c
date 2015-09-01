@@ -1679,7 +1679,7 @@ domove()
 		return;
 	} else
 #endif
-	if( is_nonmoving(youmonst.data) ) {
+	if( is_nonmoving(youmonst.data) && !Race_if(PM_MISSINGNO) ) {
 	/* This catches the moveamt code in hack.c, preventing you from moving as a red mold
 	 * even if you do get some movement points. It's mainly meant to prevent you from being unable to do anything
 	 * until you get knocked out of red mold form, so you can at least sit around and maybe throw some daggers. --Amy */
