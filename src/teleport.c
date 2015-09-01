@@ -662,6 +662,7 @@ safe_teledsPD(confused)
 boolean confused;
 {
 	register int nux, nuy, tcnt, udist, goodspot = 0;
+	tcnt = 0;
 
 	if (confused) do {
 		nux = rnd(COLNO-1);
