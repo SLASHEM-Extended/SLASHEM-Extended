@@ -980,6 +980,25 @@ boolean atme;
 			return 0;
 		}
 	}
+
+	/* come on, you should be able to cast using less nutrition if your skill is higher! --Amy */
+	if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
+	if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
+	if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
+	if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
+	if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
+
+	/* casting it often (and thereby keeping it in memory) should also reduce hunger... */
+	if ( spellknow(spell) >= 10000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 20000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 30000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 40000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 50000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 60000) {hungr *= 9; hungr /= 10;}
+	if ( spellknow(spell) >= 70000) {hungr *= 9; hungr /= 10;}
+
+	if (hungr < 0) hungr = 0; /* fail safe */
+
 	morehungry(hungr);
 
 	chance = percent_success(spell);
@@ -1265,10 +1284,12 @@ boolean atme;
 		cc.y = u.uy;
 		if (getpos(&cc, TRUE, "the desired position") < 0) {
 		    pline(Never_mind);
+		    obfree(pseudo, (struct obj *)0);
 		    return 0;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
 		    You("smell rotten eggs.");
+		    obfree(pseudo, (struct obj *)0);
 		    return 0;
 		}
 		(void) create_gas_cloud(cc.x, cc.y, 3, 8);
