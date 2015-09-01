@@ -1234,7 +1234,7 @@ water_prayer(bless_water)
 
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
-	if (otmp->otyp == POT_WATER && !stack_too_big(otmp) && !stack_too_big(otmp) && !stack_too_big(otmp) &&
+	if (otmp->otyp == POT_WATER &&
 		(bless_water ? !otmp->blessed : !otmp->cursed)) {
 	    otmp->blessed = bless_water;
 	    otmp->cursed = !bless_water;
