@@ -295,7 +295,7 @@ use_stethoscope(obj)
 		You_hear("your heart beat.");
 		return res;
 	}
-	if (Stunned || (Confusion && !rn2(5))) confdir();
+	if ((Stunned && !rn2(2)) || (Confusion && !rn2(8))) confdir();
 	if (!u.dx && !u.dy) {
 		ustatusline();
 		return res;
@@ -2724,7 +2724,7 @@ struct obj *obj;
     }
     if (!getdir((char *)0)) return res;
 
-    if (Stunned || (Confusion && !rn2(5))) confdir();
+    if ((Stunned && !rn2(2)) || (Confusion && !rn2(8))) confdir();
     rx = u.ux + u.dx;
     ry = u.uy + u.dy;
 

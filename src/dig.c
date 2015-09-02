@@ -1019,7 +1019,7 @@ struct obj *obj;
 		flags.botl=1;
 		return(1);
 	} else if(u.dz == 0) {
-		if(Stunned || (Confusion && !rn2(5))) confdir();
+		if((Stunned && !rn2(2)) || (Confusion && !rn2(8))) confdir();
 		rx = u.ux + u.dx;
 		ry = u.uy + u.dy;
 		if(!isok(rx, ry)) {
