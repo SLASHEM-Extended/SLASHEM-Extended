@@ -4334,7 +4334,7 @@ bite()
 	if (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) vampirenutrition += rn2(6);
 	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) vampirenutrition += rn2(3);
 
-	if(victual.canchoke && u.uhunger >= 4000) { /* allowing players to eat more --Amy */
+	if(victual.canchoke && u.uhunger >= 5000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);
 		return 1;
 	}
@@ -4435,7 +4435,7 @@ register int num;
 	debugpline("lesshungry(%d)", num);
 #endif
 	u.uhunger += num;
-	if(u.uhunger >= 4000) {
+	if(u.uhunger >= 5000) {
 	    if (!iseating || victual.canchoke) {
 		if (iseating) {
 		    choke(victual.piece);
@@ -4448,7 +4448,7 @@ register int num;
 	    /* Have lesshungry() report when you're nearly full so all eating
 	     * warns when you're about to choke.
 	     */
-	    if (u.uhunger >= 3500) {
+	    if (u.uhunger >= 4500) {
 		if (!victual.eating || (victual.eating && !victual.fullwarn)) {
 		    pline(Hallucination ? "You feel like taking the All-You-Can-Eat challenge." : "You're having a hard time getting all of it down.");
 		    nomovemsg = "You're finally finished.";
@@ -4525,7 +4525,7 @@ boolean incr;
 	static boolean saved_hs = FALSE;
 	int h = u.uhunger;
 
-	newhs = (h > 2000) ? SATIATED : /* used to be 1000 --Amy */
+	newhs = (h > 2500) ? SATIATED : /* used to be 1000 --Amy */
 		(h > 500) ? NOT_HUNGRY :
 		(h > 200) ? HUNGRY :
 		(h > 0) ? WEAK : FAINTING;

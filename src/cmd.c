@@ -2629,7 +2629,7 @@ minimal_enlightenment()
 		if (Vomiting) Sprintf(eos(statline), "vomiting, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) Sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) Sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
-		if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) Sprintf(eos(statline), "oversatiated, ");
+		if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 4500) Sprintf(eos(statline), "oversatiated, ");
 		else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && strcmp(hux_stat[u.uhs], "        ")) Sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
 
 		Sprintf(eos(statline), ".");

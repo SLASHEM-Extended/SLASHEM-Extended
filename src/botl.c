@@ -650,7 +650,7 @@ bot2str(char *newbot2)
 	}
 */
 
-	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 3500) 
+	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 4500) 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Oversatiated" : "Ovs", newbot2);
 #else
