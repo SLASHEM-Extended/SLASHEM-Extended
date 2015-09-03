@@ -956,7 +956,7 @@ exerper()
 	if(!(moves % 10)) {
 		/* Hunger Checks */
 
-		int hs = (u.uhunger > 2000) ? SATIATED :
+		int hs = (u.uhunger > 2500) ? SATIATED :
 			 (u.uhunger > 500) ? NOT_HUNGRY :
 			 (u.uhunger > 200) ? HUNGRY :
 			 (u.uhunger > 0) ? WEAK : FAINTING;
