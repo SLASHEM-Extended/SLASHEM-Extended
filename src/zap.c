@@ -311,8 +311,8 @@ struct obj *otmp;
 			case 61: mtmp->egotype_gator = 1; break;
 			case 62: mtmp->egotype_reflecting = 1; break;
 			case 63: mtmp->egotype_hugger = 1; break;
-			case 64: mtmp->egotype_mimic = 1; break;
-			case 65: mtmp->egotype_permamimic = 1; break;
+			case 64: mtmp->egotype_mimic = 1; set_mimic_sym(mtmp); break;
+			case 65: mtmp->egotype_permamimic = 1; set_mimic_sym(mtmp); break;
 		}
 
 		break;

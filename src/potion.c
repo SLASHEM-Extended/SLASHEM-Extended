@@ -2669,8 +2669,8 @@ boolean your_fault;
 			case 61: mon->egotype_gator = 1; break;
 			case 62: mon->egotype_reflecting = 1; break;
 			case 63: mon->egotype_hugger = 1; break;
-			case 64: mon->egotype_mimic = 1; break;
-			case 65: mon->egotype_permamimic = 1; break;
+			case 64: mon->egotype_mimic = 1; set_mimic_sym(mon); break;
+			case 65: mon->egotype_permamimic = 1; set_mimic_sym(mon); break;
 		}
 
   		break;
