@@ -410,7 +410,11 @@ lookat(x, y, buf, monbuf)
 	} else
 	    Strcpy(buf, distant_name(otmp, xname));
 
-	if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
+	if (IS_TREE(levl[x][y].typ))
+	    Strcat(buf, " stuck in a tree"); 
+	else if (IS_IRONBAR(levl[x][y].typ))
+	    Strcat(buf, " stuck in iron bars"); 
+	else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
 	    Strcat(buf, " embedded in stone");
 	else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
 	    Strcat(buf, " embedded in a wall");
