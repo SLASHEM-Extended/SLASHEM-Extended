@@ -276,10 +276,14 @@ do_mname()
 	/* strip leading and trailing spaces; unnames monster if all spaces */
 	(void)mungspaces(buf);
 
-	if ( mtmp->data == &mons[PM_HIGH_PRIEST] )
+	if (Hallucination)
+	    pline("You wouldn't recognize it again anyway!");
+	else if ( mtmp->data == &mons[PM_HIGH_PRIEST] )
 	    pline("Abusing the astral call bug, huh, cheater? That's not gonna work anymore! --Amy");
 	else if (mtmp->data->geno & G_UNIQ)
 	    pline("%s doesn't like being called names!", Monnam(mtmp));
+	else if (mtmp->mnamelth && !mtmp->mtame)
+	    pline("%s doesn't like you enough to allow you to rename %s!", Monnam(mtmp), mhim(mtmp));
 	else
 	    (void) christen_monst(mtmp, buf);
 	return(0);
