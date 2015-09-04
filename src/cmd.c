@@ -1513,6 +1513,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 #endif
 
+	if (u.negativeprotection) {Sprintf(buf, " %d", u.negativeprotection);
+		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
+	}
+
+	if (u.chokhmahdamage) {Sprintf(buf, " %d", u.chokhmahdamage);
+		enl_msg("The escalating chokhmah attack damage ", "is", "was", buf);
+	}
+
 	/*** Resistances to troubles ***/
 	if (Fire_resistance) you_are("fire resistant");
 	if (Cold_resistance) you_are("cold resistant");

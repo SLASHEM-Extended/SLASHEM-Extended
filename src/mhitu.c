@@ -73,6 +73,9 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 			break;
+		case AT_BEAM:  
+			pline("%s blasts you!", Monnam(mtmp));  
+			break;  
 		case AT_BITE:
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
@@ -1035,6 +1038,12 @@ mattacku(mtmp)
 				sum[i]= hitmu(mtmp, mattk);
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
+		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
+			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && (rnd(5) > 3) ){  
+				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
+				else wildmiss(mtmp, mattk);  
+			}  
+			break;
 		case AT_GAZE:	/* can affect you either ranged or not */
 			/* Medusa gaze already operated through m_respond in
 			 * dochug(); don't gaze more than once per round.
@@ -1820,8 +1829,10 @@ int attk;
 
 	switch(attk) {
 	    /* 0 is burning, which we should never be called with */
+		/* Amy edit: AD_LAVA does now. */
 	    case AD_RUST: hurt = 1; break;
 	    case AD_CORR: hurt = 3; break;
+	    case AD_LAVA: hurt = 0; break;
 	    default: hurt = 2; break;
 	}
 
@@ -2068,10 +2079,14 @@ hitmu(mtmp, mattk)
 	register int uncancelled, ptmp;
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
+	int	nobj = 0;
 	char	 buf[BUFSZ];
 	struct permonst *olduasmon = youmonst.data;
 	int res;
 	boolean burnmsg = FALSE;
+	struct obj *optr;
+	struct obj *otmpi, *otmpii;
+	int hallutime;
 
 	/*int randattack = 0;*/
 	uchar atttyp;
@@ -2331,6 +2346,109 @@ hitmu(mtmp, mattk)
 		pline("That felt evil and sinister!");
 			litroomlite(FALSE);
 		break;
+
+	    case AD_UVUU:{
+		int wdmg = (int)(dmg/6) + 1;
+		hitmsg(mtmp, mattk);
+		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		poisoned(buf, A_CON, mdat->mname, 60);
+		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
+		if(wdmg > 0){
+		
+			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
+				wdmg--;
+				(void) adjattrib(A_WIS, -1, TRUE);
+				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				exercise(A_WIS, FALSE);
+			}
+			if(AMAX(A_WIS) > ATTRMIN(A_WIS) && 
+				ABASE(A_WIS) < AMAX(A_WIS)/2) AMAX(A_WIS) -= 1; //permanently drain wisdom
+			if(wdmg){
+				boolean chg;
+				chg = make_hallucinated(HHallucination + (long)(wdmg*5),FALSE,0L);
+			}
+		}
+		drain_en( (int)(dmg/2) );
+		if(!rn2(20)){
+			if (!has_head(youmonst.data)) {
+				dmg *= 2;
+			}
+			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
+				pline("%s passes through your %s.",
+				      mon_nam(mtmp), body_part(HEAD));
+				dmg *= 2;
+			}
+			else {
+				if(!uarmh){
+					dmg = (ABASE(A_WIS) <= ATTRMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (dmg * 2); 
+					pline("%s smashes your %s!",
+						mon_nam(mtmp), body_part(HEAD));
+				} else pline("%s's headspike hits your %s!",
+						mon_nam(mtmp), xname(uarmh) );
+			}
+		 }
+ 		}
+	    break;
+
+	    case AD_MALK:
+		hitmsg(mtmp, mattk);
+		if (uncancelled) {
+
+		    setustuck(mtmp);
+		    pline("%s grabs you!", Monnam(mtmp));
+		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		    You("get zapped!");
+		    if (Shock_resistance && rn2(20)) {
+			pline_The("zap doesn't shock you!");
+			dmg = 0;
+		    }
+		    if (!rn2(10)) /* high voltage - stronger than ordinary shock attack --Amy */
+			destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(10))
+			destroy_item(RING_CLASS, AD_ELEC);
+		}
+		break;
+
+	    case AD_LAVA:
+		hitmsg(mtmp, mattk);
+		    pline("You're %s!", on_fire(youmonst.data, mattk));
+		    if (youmonst.data == &mons[PM_STRAW_GOLEM] ||
+		        youmonst.data == &mons[PM_PAPER_GOLEM]) {
+			    You("roast!");
+			    /* KMH -- this is okay with unchanging */
+			    rehumanize();
+			    break;
+		    } else if (Fire_resistance && rn2(20)) {
+			pline_The("fire doesn't feel hot!");
+			dmg = 0;
+                        } else if (u.umonnum == PM_STRAW_GOLEM ||
+				   u.umonnum == PM_PAPER_GOLEM ||
+				   u.umonnum == PM_WAX_GOLEM) {
+				/* This code ASSUMES that you are polymorphed 
+				 * Code will need to be changed if we ever implement
+				 * Golems as a class.
+				 */
+				You("burn up!");
+				u.uhp -= mons[u.umonnum].mlevel;
+				u.uhpmax -= mons[u.umonnum].mlevel;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				/* KMH, balance patch -- this is okay with unchanging */
+				u.mh = 0; /* Kill monster form */
+				rehumanize();
+				break;
+		    }
+		    if (!rn2(20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(20))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(30))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+		    if (rn2(3)) hurtarmor(AD_LAVA);
+		break;
+
 	    case AD_FIRE:
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
@@ -2422,11 +2540,20 @@ hitmu(mtmp, mattk)
 		}
 		dmg = 0;
 		break;
+	    case AD_POIS:
+		ptmp = rn2(A_MAX);
+		goto dopois;
 	    case AD_DRST:
 		ptmp = A_STR;
 		goto dopois;
 	    case AD_DRDX:
 		ptmp = A_DEX;
+		goto dopois;
+	    case AD_WISD:
+		ptmp = A_WIS;
+		goto dopois;
+	    case AD_DRCH:
+		ptmp = A_CHA;
 		goto dopois;
 	    case AD_DRCO:
 		ptmp = A_CON;
@@ -2438,6 +2565,31 @@ dopois:
 		    poisoned(buf, ptmp, mdat->mname, 30);
 		}
 		break;
+	    case AD_DFOO:
+	      pline("%s determines to take you down a peg or two...", Monnam(mtmp));
+		ptmp = rn2(A_MAX);
+		if (!rn2(8)) {
+		    Sprintf(buf, "%s %s",
+			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		    poisoned(buf, ptmp, mdat->mname, 30);
+		}
+		if (!rn2(10)) {
+			pline("You feel drained...");
+			permdmg = 1;
+		}
+		if (!rn2(10)) {
+			You_feel("less energised!");
+			u.uenmax -= rn1(10,10);
+			if(u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (!rn2(10)) {
+			if(!Drain_resistance || !rn2(20) )
+			    losexp("life drainage", FALSE);
+			else You_feel("woozy for an instant, but shrug it off.");
+		}
+
+		break;
+
 	    case AD_DRIN:
 		hitmsg(mtmp, mattk);
 		if (defends(AD_DRIN, uwep) || !has_head(youmonst.data) || Role_if(PM_COURIER)) {
@@ -2532,6 +2684,71 @@ dopois:
 		    }
 		}
 		break;
+
+	    case AD_AXUS:
+		hitmsg(mtmp, mattk);
+		if (uncancelled) {
+		    pline("You're %s!", on_fire(youmonst.data, mattk));
+		    if (youmonst.data == &mons[PM_STRAW_GOLEM] ||
+		        youmonst.data == &mons[PM_PAPER_GOLEM]) {
+			    You("roast!");
+			    /* KMH -- this is okay with unchanging */
+			    rehumanize();
+			    break;
+		    } else if (Fire_resistance && rn2(20)) {
+			pline_The("fire doesn't feel hot!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+	          } else if (u.umonnum == PM_STRAW_GOLEM ||
+				   u.umonnum == PM_PAPER_GOLEM ||
+				   u.umonnum == PM_WAX_GOLEM) {
+				/* This code ASSUMES that you are polymorphed 
+				 * Code will need to be changed if we ever implement
+				 * Golems as a class.
+				 */
+				You("burn up!");
+				u.uhp -= mons[u.umonnum].mlevel;
+				u.uhpmax -= mons[u.umonnum].mlevel;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				/* KMH, balance patch -- this is okay with unchanging */
+				u.mh = 0; /* Kill monster form */
+				rehumanize();
+				break;
+		    }
+		    if (!rn2(33)) /* new calculations --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(33))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(50))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+		}
+		if (uncancelled) {
+		    pline("You're covered in frost!");
+		    if (Cold_resistance && rn2(20)) {
+			pline_The("frost doesn't seem cold!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+		    }
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(POTION_CLASS, AD_COLD);
+		}
+		if (uncancelled) {
+		    You("get zapped!");
+		    if (Shock_resistance && rn2(20)) {
+			pline_The("zap doesn't shock you!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+		    }
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(RING_CLASS, AD_ELEC);
+		}
+
+		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("life drainage", FALSE);
+		}
+
+		break;
+
 	    case AD_DRLI:
 		hitmsg(mtmp, mattk);
 		/* if vampire biting (and also a pet) */
@@ -2546,6 +2763,173 @@ dopois:
 		}
 		
 		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("life drainage", FALSE);
+		}
+		break;
+
+	    case AD_WEBS: 
+		hitmsg(mtmp, mattk);
+		{
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			if (ttmp2) {
+				pline_The("webbing sticks to you. You're caught!");
+				dotrap(ttmp2, NOWEBMSG);
+#ifdef STEED
+				if (u.usteed && u.utrap) {
+				/* you, not steed, are trapped */
+				dismount_steed(DISMOUNT_FELL);
+				}
+#endif
+			}
+		}
+		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
+		if (!rn2(8)) makerandomtrap();
+		break;
+
+	    case AD_STTP:
+
+		hitmsg(mtmp, mattk);
+		pline("You are surrounded by a purple glow!");
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(100) && !stack_too_big(otmpi) ) {
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+		break;
+
+	    case AD_DEPR:
+		hitmsg(mtmp, mattk);
+		if (!rn2(3)) {
+
+		    switch(rnd(20)) {
+		    case 1:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+			break;
+		    case 2:
+			You("need reboot.");
+			newman();
+			break;
+		    case 3: case 4:
+			if(!rn2(4) && u.ulycn == NON_PM &&
+				!Protection_from_shape_changers &&
+				!is_were(youmonst.data) &&
+				!defends(AD_WERE,uwep)) {
+			    You_feel("feverish.");
+			    exercise(A_CON, FALSE);
+			    u.ulycn = PM_WERECOW;
+			} else {
+				if (multi >= 0) {
+				    if (Sleep_resistance && rn2(20)) break;
+				    fall_asleep(-rnd(10), TRUE);
+				    if (Blind) You("are put to sleep!");
+				    else You("are put to sleep by %s!", mon_nam(mtmp));
+				}
+			}
+			break;
+		    case 5: case 6:
+			if (!u.ustuck && !sticks(youmonst.data)) {
+				setustuck(mtmp);
+				pline("%s grabs you!", Monnam(mtmp));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+			break;
+		    case 7:
+		    case 8:
+			Your("position suddenly seems very uncertain!");
+			teleX();
+			break;
+		    case 9:
+			u_slow_down();
+			break;
+		    case 10:
+			hurtarmor(AD_RUST);
+			break;
+		    case 11:
+			hurtarmor(AD_DCAY);
+			break;
+		    case 12:
+			hurtarmor(AD_CORR);
+			break;
+		    case 13:
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 14:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			hallutime = rn1(7, 16);
+			make_stunned(HStun + hallutime + dmg, FALSE);
+			(void) make_hallucinated(HHallucination + hallutime + dmg,TRUE,0L);
+			break;
+		    case 15:
+			if(!Blind)
+				Your("vision bugged.");
+			hallutime += rn1(10, 25);
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + dmg + dmg,TRUE,0L);
+			break;
+		    case 16:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + dmg,TRUE,0L);
+			break;
+		    case 17:
+			{
+			    struct obj *obj = some_armor(&youmonst);
+
+			    if (drain_item(obj)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+			    }
+			}
+			break;
+		    default:
+			    if(Confusion)
+				 You("are getting even more confused.");
+			    else You("are getting confused.");
+			    make_confused(HConfusion + dmg, FALSE);
+			break;
+		    }
+		    exercise(A_INT, FALSE);
+
+		}
+		break;
+
+	    case AD_VAMP:
+		hitmsg(mtmp, mattk);
+		/* if vampire biting (and also a pet) */
+		if (is_vampire(mtmp->data) && mattk->aatyp == AT_BITE &&
+			has_blood(youmonst.data)) {
+			   Your("blood is being drained!");
+			   /* Get 1/20th of full corpse value
+			    * Therefore 4 bites == 1 drink
+			    */
+			    if (mtmp->mtame && !mtmp->isminion)
+			    	EDOG(mtmp)->hungrytime += ((int)((youmonst.data)->cnutrit / 20) + 1);
+		}
+		
+		if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 		    losexp("life drainage", FALSE);
 		}
 		break;
@@ -2593,6 +2977,34 @@ dopois:
 		  }
 		  break;
 		}
+
+	    case AD_HODS:
+		 if(uwep){
+			if (uwep->otyp == CORPSE
+				&& touch_petrifies(&mons[uwep->corpsenm])) {
+			    dmg = 1;
+			    pline("%s hits you with the %s corpse.",
+				Monnam(mtmp), mons[uwep->corpsenm].mname);
+			    if (!Stoned)
+				goto do_stone;
+			}
+			dmg += dmgval(uwep, &youmonst);
+			
+			if (uwep->opoisoned){
+				Sprintf(buf, "%s %s",
+					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+				poisoned(buf, A_CON, mdat->mname, 30);
+			}
+			
+			if (dmg <= 0) dmg = 1;
+			if (!(uwep->oartifact &&
+				artifact_hit(mtmp, &youmonst, uwep, &dmg,dieroll)))
+			     hitmsg(mtmp, mattk);
+			if (!dmg) break;
+			hitmsg(mtmp, mattk);
+		 }
+		break;
+
 	    case AD_STON:	/* cockatrice */
 		hitmsg(mtmp, mattk);
 		if(!rn2(3)) {
@@ -2880,6 +3292,49 @@ dopois:
 		    teleX();
 		}
 		break;
+
+	    case AD_ABDC:
+		hitmsg(mtmp, mattk);
+		if (!rn2(3)) {
+		    if(flags.verbose)
+			Your("position suddenly seems very uncertain!");
+		    teleX();
+		}
+		break;
+
+	    case AD_WEEP:
+		hitmsg(mtmp, mattk);
+		/* if vampire biting (and also a pet) */
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			level_tele();
+			return(3);
+		}
+		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("loss of potential", FALSE);
+		}
+		break;
+
+	    case AD_BANI:
+		hitmsg(mtmp, mattk);
+		if (!rn2(3)) {
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
+			 pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+			register int newlev = rnd(71);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			return(3);
+		}
+		break;
+
 	    case AD_DISP:
 		hitmsg(mtmp, mattk);
 		pushplayer();
@@ -2910,13 +3365,163 @@ dopois:
 		if (mtmp->mcan) break;
 		if (rn2(3)) witherarmor();
 		break;
+
+	    case AD_SHRD:
+		hitmsg(mtmp, mattk);
+		struct obj *obj = some_armor(&youmonst);
+
+		if (drain_item(obj)) {
+			Your("%s less effective.", aobjnam(obj, "seem"));
+		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
+		
+		break;
+
+	    case AD_NPRO:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		if (!rn2(3)) {
+			u.negativeprotection++;
+			pline("You feel less protected!");
+		}
+		break;
+
+	    case AD_CHKH:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		dmg += u.chokhmahdamage;
+		u.chokhmahdamage++;
+		break;
+
+	    case AD_THIR:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
+		mtmp->mhp += dmg;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+		break;
+
+	    case AD_SUCK:
+			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmg = 0;
+			else{
+				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
+				){
+					dmg = 2 * (Upolyd ? u.mh : u.uhp)
+						  + 400; //FATAL_DAMAGE_MODIFIER;
+					pline("%s sucks your %s off!",
+					      Monnam(mtmp), body_part(HEAD));
+				}
+				else{
+					You_feel("%s trying to suck your extremities off!",mon_nam(mtmp));
+					if(!rn2(10)){
+						Your("%s twist from the suction!", makeplural(body_part(LEG)));
+					    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    exercise(A_STR, FALSE);
+					    exercise(A_DEX, FALSE);
+					}
+					if(uwep && !rn2(6)){
+						You_feel("%s pull on your weapon!",mon_nam(mtmp));
+						if( rnd(130) > ACURR(A_STR)){
+							Your("weapon is sucked out of your grasp!");
+							optr = uwep;
+							uwepgone();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else{
+							You("keep a tight grip on your weapon!");
+						}
+					}
+					if(!rn2(10) && uarmf){
+						Your("boots are sucked off!");
+						optr = uarmf;
+						if (donning(optr)) cancel_don();
+						(void) Boots_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+					if(!rn2(6) && uarmg && !uwep){
+						You_feel("%s pull on your gloves!",mon_nam(mtmp));
+						if( rnd(40) > ACURR(A_STR)){
+							Your("gloves are sucked off!");
+							optr = uarmg;
+							if (donning(optr)) cancel_don();
+							(void) Gloves_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else You("keep your %s closed.", makeplural(body_part(HAND)));
+					}
+					if(!rn2(8) && uarms){
+						You_feel("%s pull on your shield!",mon_nam(mtmp));
+						if( rnd(150) > ACURR(A_STR)){
+							Your("shield is sucked out of your grasp!");
+							optr = uarms;
+							if (donning(optr)) cancel_don();
+							Shield_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						 }
+						 else{
+							You("keep a tight grip on your shield!");
+						 }
+					}
+					if(!rn2(4) && uarmh){
+						Your("helmet is sucked off!");
+						optr = uarmh;
+						if (donning(optr)) cancel_don();
+						(void) Helmet_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+				}
+			}
+		break;
+
+	    case AD_WET:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		if (!rn2(3)) {
+			pline("Water washes over you!");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
+		break;
+
+	    case AD_LETH:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		if (!rn2(3)) {
+			pline("Sparkling water washes over you!");
+			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) forget_levels(5);
+			if (!rn2(10)) forget_objects(5);
+		}
+		break;
+
+	    case AD_CNCL:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		if (!rn2(3)) {
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		}
+		break;
+
 	    case AD_LUCK:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {change_luck(-1);
-				pline("You feel unlucky.");
-				}
+			pline("You feel unlucky.");
+		}
 		break;
+
+	    case AD_FAKE:
+		hitmsg(mtmp, mattk);
+		pline(fauxmessage());
+		break;
+
 	    case AD_HALU:
 		hitmsg(mtmp, mattk);
 		not_affected |= Blind ||
@@ -3108,6 +3713,38 @@ dopois:
 		    dmg /= 2;
 		}
 		break;
+
+	    case AD_CHRN:
+		hitmsg(mtmp, mattk);
+
+		    switch (rn2(10)) {
+		    case 0: diseasemu(mdat);
+			    break;
+		    case 1: make_blinded(Blinded + dmg, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + dmg, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + dmg, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + dmg, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + dmg, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + dmg, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + dmg, TRUE);
+			    break;
+		    }
+
+		break;
+
 	    case AD_ACID:
 		hitmsg(mtmp, mattk);
 		if(!mtmp->mcan && !rn2(3)) {
@@ -3191,6 +3828,92 @@ dopois:
 		morehungry(dmg); morehungry(dmg); /* This attack was way too weak. --Amy */
 		/* plus the normal damage */
 		break;
+
+	    case AD_WRAT:
+		pline("%s reaches out, and the life is drawn from your bones.", Monnam(mtmp));
+
+		if(u.uen < 1) {
+		    You_feel("less energised!");
+		    u.uenmax -= rn1(10,10);
+		    if(u.uenmax < 0) u.uenmax = 0;
+		} else if(u.uen <= 10) {
+		    You_feel("your magical energy dwindle to nothing!");
+		    u.uen = 0;
+		} else {
+		    You_feel("your magical energy dwindling rapidly!");
+		    u.uen /= 2;
+		}
+
+		break;
+
+	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
+		if(!rn2(2)) {
+		    pline("%s tries to touch you, but can't really be bothered.",
+			Monnam(mtmp));
+		    break;
+		}
+		pline("%s reaches out with an apathetic finger...",
+		    Monnam(mtmp));
+		switch(rn2(7)) {
+		    case 0: /* destroy certain things */
+			pline("%s touches you!", Monnam(mtmp));
+			witherarmor();
+			break;
+		    case 1: /* sleep */
+			if (multi >= 0) {
+			    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+			    fall_asleep(-rnd(10), TRUE);
+			    if (Blind) You("are put to sleep!");
+			    else You("are put to sleep by %s!", mon_nam(mtmp));
+			}
+			break;
+		    case 2: /* paralyse */
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 3: /* slow */
+			if(HFast)  u_slow_down();
+			else You("pause momentarily.");
+			break;
+		    case 4: /* drain Dex */
+			adjattrib(A_DEX, -rn1(1,1), 0);
+			break;
+		    case 5: /* steal teleportitis */
+			if(HTeleportation & INTRINSIC) {
+			      HTeleportation &= ~INTRINSIC;
+			}
+	 		if (HTeleportation & TIMEOUT) {
+				HTeleportation &= ~TIMEOUT;
+			}
+			if(HTeleport_control & INTRINSIC) {
+			      HTeleport_control &= ~INTRINSIC;
+			}
+	 		if (HTeleport_control & TIMEOUT) {
+				HTeleport_control &= ~TIMEOUT;
+			}
+		      You("don't feel in the mood for jumping around.");
+			break;
+		    case 6: /* steal sleep resistance */
+			if(HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+			} 
+			if(HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+			} 
+			You_feel("like you could use a nap.");
+			break;
+		}
+		break;
+
 	    case AD_CALM:	/* KMH -- koala attack */
 		hitmsg(mtmp, mattk);
 		if (uncancelled)

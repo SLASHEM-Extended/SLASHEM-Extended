@@ -5152,6 +5152,9 @@ u_init()
 
 	u.gottenbones = 0;
 
+	u.negativeprotection = 0;
+	u.chokhmahdamage = 0;
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;

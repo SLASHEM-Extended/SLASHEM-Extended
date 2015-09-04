@@ -368,6 +368,7 @@ mattackm(magr, mdef)
 	    case AT_TRAM:
 	    case AT_SCRA:
 	    case AT_TENT:
+	    case AT_BEAM:
 meleeattack:
 		/* Nymph that teleported away on first attack? */
 		if (distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1)
@@ -791,6 +792,9 @@ hitmm(magr, mdef, mattk)
 				break;
 			case AT_TUCH:
 				Sprintf(buf,"%s touches", magr_name);
+				break;
+			case AT_BEAM:
+				Sprintf(buf,"%s blasts", magr_name);
 				break;
 			case AT_TENT:
 				Sprintf(buf, "%s tentacles suck",
@@ -2149,6 +2153,7 @@ int aatyp;
     case AT_GAZE:
     case AT_BREA:
     case AT_MAGC:
+    case AT_BEAM:
 	w_mask = ~0L;		/* special case; no defense needed */
 	break;
     case AT_CLAW:

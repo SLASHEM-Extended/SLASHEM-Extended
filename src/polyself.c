@@ -18,7 +18,7 @@ STATIC_DCL void NDECL(break_armor);
 STATIC_DCL void FDECL(drop_weapon,(int));
 STATIC_DCL void NDECL(uunstick);
 STATIC_DCL int FDECL(armor_to_dragon,(int));
-STATIC_DCL void NDECL(newman);
+/*STATIC_DCL void NDECL(newman);*/
 STATIC_DCL void NDECL(merge_with_armor);
 
 /*  Not Used 
@@ -169,7 +169,7 @@ change_sex()
 	set_uasmon();
 }
 
-STATIC_OVL void
+void
 newman()
 {
 	int tmp, oldlvl;

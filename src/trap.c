@@ -4880,7 +4880,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case WEB:
 			/* Monster in a web. */
-			if (webmaker(mptr)) break;
+			if (webmaker(mptr) || dmgtype(mptr, AD_WEBS)) break;
 			if (amorphous(mptr) || is_whirly(mptr) || unsolid(mptr)){
 			    if(acidic(mptr) ||
 			       mptr == &mons[PM_GELATINOUS_CUBE] ||

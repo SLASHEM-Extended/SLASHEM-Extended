@@ -76,7 +76,10 @@ extern char *attk_dname(Attk);
 #define AT_GAZE     15      /* gaze - ranged */
 #define AT_TENT     16      /* tentacles */
 #define AT_TRAM     17      /* trample */
-#define AT_MULTIPLY	18	/* RJ - multiplies (yes, it's an attack) */
+#define AT_BEAM		18	/* non-contact ranged beam attack from dnethack - thanks Chris for the implementation */
+
+/* AT_MULTIPLY is also used in u_init.c as a placeholder - please put all "standard" attack types above it! --Amy */
+#define AT_MULTIPLY	19	/* RJ - multiplies (yes, it's an attack) */
 
 #define AT_WEAP		64		/* Hand-to-hand weapon (monster or character) */
 #define AT_THRO		65		/* Thrown object */
@@ -151,7 +154,42 @@ extern char *attk_dname(Attk);
 #define AD_DISP		53	/* moves you to a random nearby empty location */
 #define AD_BURN		54	/* burns you */
 #define AD_FEAR		55	/* causes fear */
-#define AD_ENDS		56	/* placeholder */
+
+/* evil patch ideas by jonadab */
+#define AD_NPRO		56	/* negative protection - temporarily make player's AC worse */
+#define AD_POIS		57	/* poison attack that damages a random stat */
+#define AD_THIR		58	/* thirsty attack - monster heals HP by the amount of damage it deals to you */
+#define AD_LAVA		59	/* deals fire damage and burns items */
+#define AD_FAKE		60	/* sends random messages */
+#define AD_LETH		61	/* lethe - amnesia, may randomly turn magic items into mundane ones */
+#define AD_CNCL		62	/* cancellation, by ais523 */
+#define AD_BANI		63	/* banishment (causes segfaults) */
+
+/* the following ones were stolen from dnethack: */
+#define AD_WISD		64	/* wisdom damage */
+#define AD_SHRD		65	/* withers non-enchanted armor, disenchants enchanted ones, MC doesn't prevent this! */
+#define AD_WET		66	/* random items carried by the player become wet (similar to AD_LETH but weaker) */
+#define AD_SUCK		67	/* suck off equipment and do damage */
+#define AD_MALK		68	/* sticks to you, shock damage with high chance of busting wands or rings */
+#define AD_UVUU		69	/* Uvuudaum head spike attack - several really nasty effects */
+#define AD_ABDC		70	/* Abduction attack, teleports you regardless of magic cancellation */
+#define AD_AXUS		71	/* Multi-element counterattack - deals fire, cold and shock damage, plus level drain */
+#define AD_CHKH		72	/* damage is increased by 1 every time; slowly times out after a while */
+#define AD_HODS		73	/* mirror attack - extra damage done to you depending on your weapon */
+#define AD_CHRN		74	/* cursed unicorn horn */
+#define AD_WEEP		75	/* level teleport, or level drain if you can't levelport */
+#define AD_VAMP		76	/* Vampire's blood drain attack - ignores MC */
+#define AD_WEBS		77	/* Spreads webbing on a hit */
+#define AD_STTP		78	/* Steal by Teleportation: Teleports your gear away */
+
+/* the following ones were stolen from FHS: */
+#define AD_DEPR		79	/* depression - many weird effects */
+#define AD_WRAT		80	/* (Wrath) drains half your current energy, or all of it if less than 10 */
+#define AD_LAZY		81	/* (Sloth) laziness attack, does all sorts of nasty things */
+#define AD_DRCH		82	/* charisma damage, supposed to be specific to Pride */
+#define AD_DFOO		83	/* (Pride) drains a random stat, or energy, or hit points, or life level */
+
+#define AD_ENDS		84	/* placeholder */
 
 #define AD_CLRC		240		/* random clerical spell */
 #define AD_SPEL		241		/* random magic spell */

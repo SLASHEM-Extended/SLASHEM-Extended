@@ -2504,6 +2504,7 @@ register struct obj *otmp;
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			return 0;
 
 		} /*else !u_teleport_monB(mtmp, TRUE);*/ /*doesn't seem to work as intended... --Amy*/
 
@@ -2984,9 +2985,7 @@ struct monst *mtmp;
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
-		m_using = TRUE;
 		mbhitm(&youmonst,otmp);
-		m_using = FALSE;
 		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/ /* This was crashing too often. --Amy */
 		return 2;
 	case MUSE_SCR_TRAP_CREATION:

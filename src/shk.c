@@ -3722,7 +3722,7 @@ boolean catchup;	/* restoring a level */
 				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !resists_acid(shkp)) )
 				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !is_swimmer(shkp->data) && !amphibious(shkp->data) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
 				&& (ttmp->ttyp != WEB || (!amorphous(shkp->data) &&
-				    !webmaker(shkp->data)))
+				    !webmaker(shkp->data) && !dmgtype(shkp->data, AD_WEBS) ))
 			) {
 
 	    if (x == u.ux && y == u.uy)

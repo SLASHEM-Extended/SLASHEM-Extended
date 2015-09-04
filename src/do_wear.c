@@ -2287,6 +2287,8 @@ find_ac()
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
 
+	if (u.negativeprotection) uac += u.negativeprotection;
+
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 

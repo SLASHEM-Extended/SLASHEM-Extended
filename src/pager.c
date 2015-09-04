@@ -1412,6 +1412,7 @@ get_description_of_attack_type(uchar id)
 		case AT_WEAP: return "uses weapon";
 		case AT_MAGC: return "uses magic spell(s)";
 		case AT_MULTIPLY: return "multiplies";
+		case AT_BEAM: return "beam";
 		default: 
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
@@ -1486,6 +1487,36 @@ get_description_of_damage_type(uchar id)
 		case AD_BURN: return "burns you";
 		case AD_FEAR: return "causes fear";
 		case AD_DISP: return "pushes you away";
+
+		case AD_NPRO: return "negative protection";
+		case AD_POIS: return "poison damage";
+		case AD_THIR: return "thirsty attack";
+		case AD_LAVA: return "lava";
+		case AD_FAKE: return "plines";
+		case AD_LETH: return "lethe";
+		case AD_CNCL: return "cancellation";
+		case AD_BANI: return "banishment";
+		case AD_WISD: return "drains wisdom";
+		case AD_SHRD: return "shredding";
+		case AD_WET: return "water damage";
+		case AD_SUCK: return "sucking";
+		case AD_MALK: return "high voltage";
+		case AD_UVUU: return "nasty head spike";
+		case AD_ABDC: return "abduction";
+		case AD_AXUS: return "multi-element counterattack";
+		case AD_CHKH: return "escalating damage";
+		case AD_HODS: return "mirror attack";
+		case AD_CHRN: return "cursed unicorn horn";
+		case AD_WEEP: return "level teleport or level drain";
+		case AD_VAMP: return "bloodsucking";
+		case AD_WEBS: return "webbing";
+		case AD_STTP: return "item teleportation";
+		case AD_DEPR: return "depression";
+		case AD_WRAT: return "unique Wrath attack";
+		case AD_LAZY: return "unique Sloth attack";
+		case AD_DRCH: return "drains charisma";
+		case AD_DFOO: return "unique Pride attack";
+
 		case AD_ENDS: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
@@ -1833,6 +1864,112 @@ dohistory()
 {
 	display_file_area(NH_HISTORY_AREA, NH_HISTORY, TRUE);
 	return 0;
+}
+
+static NEARDATA const char * const fake_plines[] = {
+	"Demogorgon suddenly disappears!",
+	"You are slowing down.",
+	"Your limbs are stiffening.",
+	"Do you want your possessions identified? DYWYPI?",
+	"Warning: Low Local Memory. Freeing description strings.",
+	"Not enough memory to create inventory window",
+	"Your potion of full healing boils and explodes!",
+	"Your scroll of genocide catches fire and burns!",
+	"Your ring of free action turns to dust and vanishes!",
+	"Your wand of death (0:8) suddenly explodes!",
+	"Your wand of wishing seems less effective.",
+	"One of your objects was destroyed by rust!",
+	"Your weapon withered away!",
+	"It summons insects!",
+	"The soldier ant stings you! The poison was deadly...",
+	"It breathes --More-- You have died.",
+	"You feel weaker!",
+	"You undergo a freakish metamorphosis!",
+	"Your armor turns to dust and is blown away!",
+	"It stole an amulet of reflection.",
+	"It summons demon lords!",
+	"The Wizard of Yendor casts a spell at you!",
+	"Death reaches out with his deadly touch...",
+	"A Master Archon suddenly appears!",
+	"Oh no, it uses the touch of death!",
+	"You feel deathly sick.",
+	"You don't feel very well.",
+	"You hear the cockatrice's hissing!",
+	"A little dart shoots out at you! The dart was poisoned!",
+	"You hear a clank.",
+	"Oh wow! Everything looks so cosmic!",
+	"You stagger and your vision blurrs...",
+	"Eating that is instantly fatal.",
+	"Falling, you touch the cockatrice corpse.",
+	"It seduces you and you start taking off your boots of levitation.",
+	"A wide-angle disintegration beam hits you!",
+	"You die...",
+	"***LOW HITPOINT WARNING***",
+	"You hear the wailing of the Banshee...",
+	"Wizard is about to die.",
+	"Oops... Suddenly, the dungeon collapses.",
+	"You turn to stone.",
+	"You are a statue.",
+	"You have become a green slime.",
+	"Your skin begins to peel away.",
+	"You die of starvation.",
+	"You faint from lack of food.",
+	"You can't move!",
+	"You fall asleep!",
+	"You suddenly feel weaker! 10 points of strength got sapped!",
+	"You float into the air!",
+	"Wait! The door really was an intrinsic eating mimic!",
+	"Remember - ascension is impossible!",
+	"You don't stand a chance!",
+	"Weaklings like you won't ever ascend, so don't even think you can do it!",
+	"YASD is waiting around the corner with big, pointy teeth!",
+	"You have 35 turns to live.",
+	"If you don't ascend within the next 10000 turns, you automatically die.",
+	"Your last thought fades away.",
+	"You feel dead inside.",
+	"Unfortunately, you're still genocided.",
+	"Blecch! Rotten food!",
+	"Ecch - that must have been poisonous!",
+	"You get a strong feeling that the gods are angry...",
+	"The voice of Moloch roars: 'Destroy him, my servants!'",
+	"Asidonhopo hits you! Asidonhopo hits you! Asidonhopo hits you! You die...",
+	"Vanzac screams: 'How dare you break my door?' Vanzac zaps a hexagonal wand!",
+	"The gnome zaps a wand of death!",
+	"The soldier zaps a wand of remove resistance!",
+	"The giant spider zaps a wand of banishment!",
+	"The black dragon breathes a disintegration blast!",
+	"The giant eel drowns you... Do you want your possessions identified? DYWYPI? [ynq] (n) _",
+	"Really quit [yes/no]? _",
+	"Suddenly, one of the Vault's guards enters!",
+	"You fall into the lava! You burn to a crisp.",
+	"You die from your illness.",
+	"The newt bites you! You die...",
+	"You hit the floating eye! You are frozen by the floating eye!",
+	"The porter lethe vortex engulfs you!",
+	"You feel the waters of the Lethe sweeping away your cares...",
+	"The mind flayer's tentacles suck you! Your brain is eaten! You feel very stupid!",
+	"The disenchanter claws you! Your silver dragon scale mail seems less effective.",
+	"Your silver saber named Grayswandir glows violently for a while and then evaporates.",
+	"Grateful for her release, she grants you a wish! For what do you wish?",
+	"The djinni speaks. 'You disturbed me, fool!'",
+	"An enormous ghost appears next to you! You are frightened to death, and unable to move.",
+	"The priest intones: 'Pilgrim, you enter a desecrated place!'",
+	"h - a cursed -5 unicorn horn.",
+	"The troll giant rises from the dead!",
+	"The barbarian named Mike the Raider wields a long sword named Vorpal Blade!",
+	"One-Eyed Sam swings his long sword named Thiefbane. One-Eyed Sam hits you!",
+	"Ashikaga Takauji picks up a tsurugi named The Tsurugi of Muramasa.",
+	"The maud agent hurls a sparkling potion!",
+	"The bone devil zaps a wand of create horde!",
+	"The bolt of fire bounces! The bolt of fire hits you! The ice underneath you melts!",
+	"You irradiate yourself with pure energy. You die...",
+
+};
+
+const char *
+fauxmessage()
+{
+	return (fake_plines[rn2(SIZE(fake_plines))]);
 }
 
 /*pager.c*/

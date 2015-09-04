@@ -227,6 +227,9 @@ nh_timeout()
 	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
 	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
 
+	if (u.negativeprotection && !rn2(2500)) u.negativeprotection--;
+	if (u.chokhmahdamage && !rn2(10000)) u.chokhmahdamage--;
+
 	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && Role_if(PM_ACTIVISTOR) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {

@@ -1611,6 +1611,8 @@ E char *FDECL(dowhatdoes_core,(CHAR_P, char *));
 E int NDECL(dohelp);
 E int NDECL(dohistory);
 
+E const char *NDECL(fauxmessage);
+
 /* ### pcmain.c ### */
 
 #if defined(MICRO) || defined(WIN32)
@@ -1723,6 +1725,7 @@ E void NDECL(self_invis_message);
 E void NDECL(init_uasmon);
 E void NDECL(set_uasmon);
 E void NDECL(change_sex);
+E void NDECL(newman);
 E void FDECL(polyself, (BOOLEAN_P));
 E int FDECL(polymon, (int));
 E void NDECL(rehumanize);

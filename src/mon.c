@@ -1921,7 +1921,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !resists_acid(mon)) )
 				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !is_swimmer(mdat) && !amphibious(mdat) && !breathless(mdat) && (!mon->egotype_undead) ) )
 				&& (ttmp->ttyp != WEB || (!amorphous(mdat) &&
-				    !webmaker(mdat)))
+				    !webmaker(mdat) && !dmgtype(mdat, AD_WEBS) ))
 			) {
 			    if (!(flag & ALLOW_TRAPS)) {
 				if (mon->mtrapseen & (1L << (ttmp->ttyp - 1)))

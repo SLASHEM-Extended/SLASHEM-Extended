@@ -177,7 +177,7 @@ int
 randattack()
 {
 
-	switch (rnd(169)) {
+	switch (rnd(221)) {
 
 		case 1:
 		case 2:
@@ -402,6 +402,85 @@ randattack()
 		case 168:
 		case 169:
 			return AD_FEAR;
+		case 170:
+			return AD_NPRO;
+		case 171:
+		case 172:
+			return AD_POIS;
+		case 173:
+		case 174:
+		case 175:
+			return AD_THIR;
+		case 176:
+		case 177:
+		case 178:
+			return AD_LAVA;
+		case 179:
+		case 180:
+		case 181:
+		case 182:
+		case 183:
+			return AD_FAKE;
+		case 184:
+			return (rn2(5) ? AD_WET : AD_LETH);
+		case 185:
+			return AD_CNCL;
+		case 186:
+			return AD_BANI;
+		case 187:
+		case 188:
+		case 189:
+			return AD_WISD;
+		case 190:
+			return AD_SHRD;
+		case 191:
+			return AD_SUCK;
+		case 192:
+		case 193:
+		case 194:
+			return AD_MALK;
+		case 195:
+			return (rn2(10) ? AD_DRIN : AD_UVUU);
+		case 196:
+		case 197:
+			return AD_ABDC;
+		case 198:
+			return AD_AXUS;
+		case 199:
+		case 200:
+		case 201:
+		case 202:
+		case 203:
+			return AD_CHKH;
+		case 204:
+		case 205:
+		case 206:
+			return AD_HODS;
+		case 207:
+		case 208:
+			return AD_CHRN;
+		case 209:
+			return AD_WEEP;
+		case 210:
+			return AD_VAMP;
+		case 211:
+		case 212:
+		case 213:
+			return AD_WEBS;
+		case 214:
+			return AD_STTP;
+		case 215:
+			return AD_DEPR;
+		case 216:
+			return AD_WRAT;
+		case 217:
+			return AD_LAZY;
+		case 218:
+		case 219:
+		case 220:
+			return AD_DRCH;
+		case 221:
+			return AD_DFOO;
 		default:
 			return AD_PHYS;
 

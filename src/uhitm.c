@@ -3951,6 +3951,7 @@ use_weapon:
 		case AT_LASH:
 		case AT_TRAM:
 		case AT_SCRA:
+		case AT_BEAM:
 		case AT_TENT:
 		case AT_MAGC:
 			/*if (i==0 && uwep && (youmonst.data->mlet==S_LICH)) goto use_weapon;*/
@@ -3996,6 +3997,8 @@ use_weapon:
 				    You("trample over %s.", mon_nam(mon));
 			    else if (mattk->aatyp == AT_SCRA)
 				    You("scratch %s.", mon_nam(mon));
+			    else if (mattk->aatyp == AT_BEAM)
+				    You("blast %s.", mon_nam(mon));
 			    else if (mattk->aatyp == AT_TUCH)
 				    You("touch %s.", mon_nam(mon));
 			    else if (mattk->aatyp == AT_MAGC)
