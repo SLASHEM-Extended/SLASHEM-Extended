@@ -6,5 +6,5 @@ compiler:
   - clang
 notifications:
   irc:
-    channels: "chat.freenode.net#acehack.de"
+    channels: "chat.freenode.net#slashemextended"
     skip_join: true
