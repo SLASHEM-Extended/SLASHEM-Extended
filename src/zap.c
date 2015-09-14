@@ -4810,6 +4810,10 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		if (!rn2(6)) erode_armor(mon, TRUE);
 		break;
 	case ZT_LITE:
+		if (dmgtype(mon->data, AD_LITE) ) {
+		    sho_shieldeff = TRUE;
+		    break;
+		}
 		tmp = d(nd,8);
 		if (is_vampire(mon->data)) {
 		tmp *= 2; /* vampires take more damage from sunlight --Amy */
