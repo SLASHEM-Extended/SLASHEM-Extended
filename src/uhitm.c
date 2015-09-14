@@ -4159,10 +4159,16 @@ uchar aatyp;
 {
 	register struct permonst *ptr = mon->data;
 	register int i, tmp;
+	int tmptemp;
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	struct obj *target = mhit & HIT_UWEP ? uwep :
 		mhit & HIT_USWAPWEP ? uswapwep : (struct obj *)0;
 	char buf[BUFSZ];
+	struct obj *optr;
+	struct obj *otmpi, *otmpii;
+	int hallutime;
+	struct permonst *mdat2;
+      struct attack *attspc;
 
 	/*int randattackC = 0;*/
 	uchar atttypC;
@@ -4227,6 +4233,102 @@ uchar aatyp;
 			mdamageu(mon, tmp);
 		}
 		break;
+
+	  case AD_CHKH:
+		if (mhit) {
+			pline("WHACK! You feel like you just got whipped!");
+			tmp += u.chokhmahdamage;
+			u.chokhmahdamage++;
+			mdamageu(mon, tmp);
+		}
+		break;
+
+	  case AD_HODS:
+		pline("Your attack is mirrored and hits you!");
+		 if(uwep){
+			if (uwep->otyp == CORPSE
+				&& touch_petrifies(&mons[uwep->corpsenm])) {
+			    tmp = 1;
+			    pline("%s hits you with the %s corpse.",
+				Monnam(mon), mons[uwep->corpsenm].mname);
+
+			    if (!Stone_resistance &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+
+				if (!Stoned) Stoned = 7;
+				Sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+				delayed_killer = killer_buf;
+		
+			    }
+
+			}
+			tmp += dmgval(uwep, &youmonst);
+			
+			if (uwep->opoisoned){
+				Sprintf(buf, "%s mirror attack",
+					s_suffix(Monnam(mon)));
+				poisoned(buf, A_CON, mon->data->mname, 30);
+			}
+			
+			if (tmp <= 0) tmp = 1;
+			tmptemp = tmp;
+			if (!(uwep->oartifact && artifact_hit(mon, &youmonst, uwep, &tmptemp,dieroll))) pline("Rattle/clink!");
+			if (!tmp) break;
+		 }
+		mdamageu(mon, tmp);
+		break;
+
+	    case AD_CHRN:
+		pline("That was a bad idea.");
+
+		    switch (rn2(10)) {
+		    case 0: difeasemu(mon->data);
+			    break;
+		    case 1: make_blinded(Blinded + tmp, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + tmp, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + tmp, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + tmp, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + tmp, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + tmp, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    }
+
+		break;
+
+	    case AD_WEEP:
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			level_tele();
+			return(3);
+		}
+		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("loss of potential", FALSE);
+		}
+		break;
+
+	  case AD_THIR:
+		if(mhit && rn2(3)) {
+			pline("Your %s is sucked!", body_part(BLOOD) );
+			mon->mhp += tmp;
+			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			mdamageu(mon, tmp);
+		}
+		break;
+
 	  case AD_NGRA:
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {
@@ -4237,6 +4339,132 @@ uchar aatyp;
 		}
 
 		break;
+
+	    case AD_FAKE:
+		pline(fauxmessage());
+		break;
+
+	    case AD_LETH:
+		if (!rn2(3)) {
+			pline("Sparkling water splashes over you!");
+			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) forget_levels(5);
+			if (!rn2(10)) forget_objects(5);
+		}
+		break;
+	    case AD_WET:
+		if (!rn2(3)) {
+			pline("Water splashes over you!");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
+		break;
+
+	    case AD_SUCK:
+			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
+			else{
+				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
+				){
+					tmp = 2 * (Upolyd ? u.mh : u.uhp)
+						  + 400; //FATAL_DAMAGE_MODIFIER;
+					pline("%s sucks your %s off!",
+					      Monnam(mon), body_part(HEAD));
+				}
+				else{
+					You_feel("%s trying to suck your extremities off!",mon_nam(mon));
+					if(!rn2(10)){
+						Your("%s twist from the suction!", makeplural(body_part(LEG)));
+					    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    exercise(A_STR, FALSE);
+					    exercise(A_DEX, FALSE);
+					}
+					if(uwep && !rn2(6)){
+						You_feel("%s pull on your weapon!",mon_nam(mon));
+						if( rnd(130) > ACURR(A_STR)){
+							Your("weapon is sucked out of your grasp!");
+							optr = uwep;
+							uwepgone();
+							freeinv(optr);
+							(void) mpickobj(mon,optr);
+						}
+						else{
+							You("keep a tight grip on your weapon!");
+						}
+					}
+					if(!rn2(10) && uarmf){
+						Your("boots are sucked off!");
+						optr = uarmf;
+						if (donning(optr)) cancel_don();
+						(void) Boots_off();
+						freeinv(optr);
+						(void) mpickobj(mon,optr);
+					}
+					if(!rn2(6) && uarmg && !uwep){
+						You_feel("%s pull on your gloves!",mon_nam(mon));
+						if( rnd(40) > ACURR(A_STR)){
+							Your("gloves are sucked off!");
+							optr = uarmg;
+							if (donning(optr)) cancel_don();
+							(void) Gloves_off();
+							freeinv(optr);
+							(void) mpickobj(mon,optr);
+						}
+						else You("keep your %s closed.", makeplural(body_part(HAND)));
+					}
+					if(!rn2(8) && uarms){
+						You_feel("%s pull on your shield!",mon_nam(mon));
+						if( rnd(150) > ACURR(A_STR)){
+							Your("shield is sucked out of your grasp!");
+							optr = uarms;
+							if (donning(optr)) cancel_don();
+							Shield_off();
+							freeinv(optr);
+							(void) mpickobj(mon,optr);
+						 }
+						 else{
+							You("keep a tight grip on your shield!");
+						 }
+					}
+					if(!rn2(4) && uarmh){
+						Your("helmet is sucked off!");
+						optr = uarmh;
+						if (donning(optr)) cancel_don();
+						(void) Helmet_off();
+						freeinv(optr);
+						(void) mpickobj(mon,optr);
+					}
+				}
+			}
+			mdamageu(mon, tmp);
+		break;
+
+	    case AD_CNCL:
+		if (!rn2(3)) {
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		}
+		break;
+
+	    case AD_BANI:
+		if (!rn2(3)) {
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
+			 pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+			register int newlev = rnd(71);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			return(3);
+		}
+		break;
+
 	  case AD_GLIB:
 
 		/* hurt the player's hands --Amy */
@@ -4259,6 +4487,7 @@ uchar aatyp;
 
 		break;
 	  case AD_TLPT:
+	  case AD_ABDC:
 
 		    if(flags.verbose)
 			Your("position suddenly seems very uncertain!");
@@ -4409,6 +4638,30 @@ uchar aatyp;
 			    losexp("life drainage", FALSE);
 			}
 			break;
+        case AD_VAMP:
+			if (!Drain_resistance || !rn2(20) ) {
+			    losexp("life drainage", FALSE);
+			}
+			break;
+
+	  case AD_WEBS: 
+		{
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			if (ttmp2) {
+				pline("You're caught in a web!");
+				dotrap(ttmp2, NOWEBMSG);
+#ifdef STEED
+				if (u.usteed && u.utrap) {
+				/* you, not steed, are trapped */
+				dismount_steed(DISMOUNT_FELL);
+				}
+#endif
+			}
+		}
+		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
+		if (!rn2(8)) makerandomtrap();
+		break;
+
 	  case AD_DREN:
 			if (!rn2(4)) drain_en(tmp);
 			break;
@@ -4462,6 +4715,14 @@ uchar aatyp;
 		morehungry(tmp+2);
 		/* plus the normal damage */
 		break;
+
+	    case AD_NPRO:
+		if (!rn2(3)) {
+			u.negativeprotection++;
+			pline("You feel less protected!");
+		}
+		break;
+
 	  case AD_SLIM:    
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 
@@ -4538,6 +4799,30 @@ uchar aatyp;
 		 pline("A cloud of spores surrounds you!");
 	       }
 	      break;
+	      case AD_WISD:
+	       if (!Strangled && !Breathless) {
+		 pline("You inhale a cloud of spores!");
+		 poisoned("spores", A_WIS, "spore cloud", 30);
+	       } else {
+		 pline("A cloud of spores surrounds you!");
+	       }
+	      break;
+	      case AD_DRCH:
+	       if (!Strangled && !Breathless) {
+		 pline("You inhale a cloud of spores!");
+		 poisoned("spores", A_CHA, "spore cloud", 30);
+	       } else {
+		 pline("A cloud of spores surrounds you!");
+	       }
+	      break;
+	      case AD_POIS:
+	       if (!Strangled && !Breathless) {
+		 pline("You inhale a cloud of spores!");
+		 poisoned("spores", rn2(A_MAX), "spore cloud", 30);
+	       } else {
+		 pline("A cloud of spores surrounds you!");
+	       }
+	      break;
 	      case AD_STCK:
 	      case AD_WRAP:
 			if (malive && !u.ustuck && !sticks(youmonst.data)) {
@@ -4575,6 +4860,295 @@ uchar aatyp;
 				};
 			}
 			break;
+
+	    case AD_STTP:
+
+		if (!rn2(3)) {
+		pline("You hear a scattering sound!");
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(100) && !stack_too_big(otmpi) ) {
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+
+		}
+		break;
+
+	    case AD_DEPR:
+		pline("You feel depressed...");
+		if (!rn2(2)) {
+
+		    switch(rnd(20)) {
+		    case 1:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+			break;
+		    case 2:
+			You("need reboot.");
+			newman();
+			break;
+		    case 3: case 4:
+			if(!rn2(4) && u.ulycn == NON_PM &&
+				!Protection_from_shape_changers &&
+				!is_were(youmonst.data) &&
+				!defends(AD_WERE,uwep)) {
+			    You_feel("feverish.");
+			    exercise(A_CON, FALSE);
+			    u.ulycn = PM_WERECOW;
+			} else {
+				if (multi >= 0) {
+				    if (Sleep_resistance && rn2(20)) break;
+				    fall_asleep(-rnd(10), TRUE);
+				    if (Blind) You("are put to sleep!");
+				    else You("are put to sleep by %s!", mon_nam(mon));
+				}
+			}
+			break;
+		    case 5: case 6:
+			if (!u.ustuck && !sticks(youmonst.data)) {
+				setustuck(mon);
+				pline("%s grabs you!", Monnam(mon));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+			break;
+		    case 7:
+		    case 8:
+			Your("position suddenly seems very uncertain!");
+			teleX();
+			break;
+		    case 9:
+			u_slow_down();
+			break;
+		    case 10:
+
+		    if(mhit) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH) {
+				mdat2 = &mons[PM_RUST_MONSTER];
+				attspc = &mdat2->mattk[2];
+			    passive_obj(mon, target, attspc);
+				}
+		    }
+		    break;
+
+		    case 11:
+
+		    if(mhit) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH) {
+				mdat2 = &mons[PM_ROT_MONSTER];
+				attspc = &mdat2->mattk[2];
+			    passive_obj(mon, target, attspc);
+				}
+		    }
+		    break;
+
+		    case 12:
+
+		    if(mhit) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH) {
+				mdat2 = &mons[PM_ACID_MONSTER];
+				attspc = &mdat2->mattk[2];
+			    passive_obj(mon, target, attspc);
+				}
+		    }
+		    break;
+
+		    case 13:
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mon));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 14:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			hallutime = rn1(7, 16);
+			make_stunned(HStun + hallutime + tmp, FALSE);
+			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
+			break;
+		    case 15:
+			if(!Blind)
+				Your("vision bugged.");
+			hallutime += rn1(10, 25);
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + tmp + tmp,TRUE,0L);
+			break;
+		    case 16:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
+			break;
+		    case 17:
+			{
+			    struct obj *obj = some_armor(&youmonst);
+
+			    if (drain_item(obj)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+			    }
+			}
+			break;
+		    default:
+			    if(Confusion)
+				 You("are getting even more confused.");
+			    else You("are getting confused.");
+			    make_confused(HConfusion + tmp, FALSE);
+			break;
+		    }
+		    exercise(A_INT, FALSE);
+
+		}
+		break;
+
+	    case AD_WRAT:
+		pline("You feel your life draining away!");
+
+		if(u.uen < 1) {
+		    You_feel("less energised!");
+		    u.uenmax -= rn1(10,10);
+		    if(u.uenmax < 0) u.uenmax = 0;
+		} else if(u.uen <= 10) {
+		    You_feel("your magical energy dwindle to nothing!");
+		    u.uen = 0;
+		} else {
+		    You_feel("your magical energy dwindling rapidly!");
+		    u.uen /= 2;
+		}
+
+		break;
+
+	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
+		if(!rn2(2)) {
+		    pline("You feel momentarily lethargic.");
+		    break;
+		}
+		pline("You feel very apathetic...");
+		switch(rn2(7)) {
+		    case 0: /* destroy certain things */
+
+		    if(mhit) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH) {
+				mdat2 = &mons[PM_WITHER_MONSTER];
+				attspc = &mdat2->mattk[2];
+			    passive_obj(mon, target, attspc);
+				}
+		    }
+		    break;
+
+		    case 1: /* sleep */
+			if (multi >= 0) {
+			    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+			    fall_asleep(-rnd(10), TRUE);
+			    if (Blind) You("are put to sleep!");
+			    else You("are put to sleep by %s!", mon_nam(mon));
+			}
+			break;
+		    case 2: /* paralyse */
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mon));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 3: /* slow */
+			if(HFast)  u_slow_down();
+			else You("pause momentarily.");
+			break;
+		    case 4: /* drain Dex */
+			adjattrib(A_DEX, -rn1(1,1), 0);
+			break;
+		    case 5: /* steal teleportitis */
+			if(HTeleportation & INTRINSIC) {
+			      HTeleportation &= ~INTRINSIC;
+			}
+	 		if (HTeleportation & TIMEOUT) {
+				HTeleportation &= ~TIMEOUT;
+			}
+			if(HTeleport_control & INTRINSIC) {
+			      HTeleport_control &= ~INTRINSIC;
+			}
+	 		if (HTeleport_control & TIMEOUT) {
+				HTeleport_control &= ~TIMEOUT;
+			}
+		      You("don't feel in the mood for jumping around.");
+			break;
+		    case 6: /* steal sleep resistance */
+			if(HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+			} 
+			if(HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+			} 
+			You_feel("like you could use a nap.");
+			break;
+		}
+		break;
+
+	    case AD_DFOO:
+	      pline("You feel physically and mentally weaker!");
+		if (!rn2(8)) {
+		    Sprintf(buf, "%s body",
+			    s_suffix(Monnam(mon)));
+		    poisoned(buf, rn2(A_MAX), mon->data->mname, 30);
+		}
+		if (!rn2(10)) {
+			pline("You feel drained...");
+			u.uhpmax -= rn1(10,10);
+			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (!rn2(10)) {
+			You_feel("less energised!");
+			u.uenmax -= rn1(10,10);
+			if(u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (!rn2(10)) {
+			if(!Drain_resistance || !rn2(20) )
+			    losexp("life drainage", FALSE);
+			else You_feel("woozy for an instant, but shrug it off.");
+		}
+
+		break;
+
+
 	      case AD_SLEE:
 
 		    if (Sleep_resistance && rn2(20)) {
@@ -4714,6 +5288,28 @@ uchar aatyp;
 		    mdamageu(mon, tmp);
 		}
 		break;
+	      case AD_LAVA:
+		if(monnear(mon, u.ux, u.uy)) {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+
+		    if(Fire_resistance && rn2(10)) {
+			shieldeff(u.ux, u.uy);
+			You_feel("quite warm.");
+			ugolemeffects(AD_FIRE, tmp);
+			break;
+		    }
+		    You("are suddenly extremely hot!");
+		    mdamageu(mon, tmp);
+		}
+		break;
 	      case AD_ELEC:
 		if(Shock_resistance && rn2(10)) {
 		    shieldeff(u.ux, u.uy);
@@ -4724,6 +5320,100 @@ uchar aatyp;
 		You("are jolted with electricity!");
 		mdamageu(mon, tmp);
 		break;
+
+	      case AD_AXUS:
+		    if(Fire_resistance && rn2(10)) {
+			shieldeff(u.ux, u.uy);
+			You_feel("mildly warm.");
+			ugolemeffects(AD_FIRE, tmp);
+			if (tmp >= 4) tmp -= (tmp / 4);
+		    } else You("are suddenly very hot!");
+
+		    if(Shock_resistance && rn2(10)) {
+			shieldeff(u.ux, u.uy);
+			You_feel("a mild tingle.");
+			ugolemeffects(AD_ELEC, tmp);
+			if (tmp >= 4) tmp -= (tmp / 4);
+		    } else You("are jolted with electricity!");
+
+		    if(Cold_resistance && rn2(10)) {
+			shieldeff(u.ux, u.uy);
+			You_feel("a mild chill.");
+			ugolemeffects(AD_COLD, tmp);
+			if (tmp >= 4) tmp -= (tmp / 4);
+		    } else You("are suddenly very cold!");
+
+		    mdamageu(mon, tmp);
+
+			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			    losexp("life drainage", FALSE);
+			}
+
+		break;
+
+	      case AD_MALK:
+		if (malive) {
+			setustuck(mon);
+			pline("%s sticks to you!", Monnam(mon));
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if(Shock_resistance && rn2(10)) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("a strong tingle.");
+		    ugolemeffects(AD_ELEC, tmp);
+		    break;
+		}
+		You("are jolted with high voltage!");
+
+		mdamageu(mon, tmp);
+		break;
+
+	    case AD_UVUU:{
+		int wdmg = (int)(tmp/6) + 1;
+		pline("A big spike painfully hits your %s!", body_part(HEAD));
+		Sprintf(buf, "%s spike", s_suffix(Monnam(mon)));
+		poisoned(buf, A_CON, mon->data->mname, 60);
+		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
+		if(wdmg > 0){
+		
+			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
+				wdmg--;
+				(void) adjattrib(A_WIS, -1, TRUE);
+				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				exercise(A_WIS, FALSE);
+			}
+			if(AMAX(A_WIS) > ATTRMIN(A_WIS) && 
+				ABASE(A_WIS) < AMAX(A_WIS)/2) AMAX(A_WIS) -= 1; //permanently drain wisdom
+			if(wdmg){
+				boolean chg;
+				chg = make_hallucinated(HHallucination + (long)(wdmg*5),FALSE,0L);
+			}
+		}
+		drain_en( (int)(tmp/2) );
+		if(!rn2(20)){
+			if (!has_head(youmonst.data)) {
+				tmp *= 2;
+			}
+			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
+				pline("%s passes through your %s.",
+				      mon_nam(mon), body_part(HEAD));
+				tmp *= 2;
+			}
+			else {
+				if(!uarmh){
+					tmp = (ABASE(A_WIS) <= ATTRMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (tmp * 2); 
+					pline("%s smashes your %s!",
+						mon_nam(mon), body_part(HEAD));
+				} else pline("%s's headspike hits your %s!",
+						mon_nam(mon), xname(uarmh) );
+			}
+		 }
+ 		}
+		mdamageu(mon, tmp);
+	    break;
+
 	      case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		if (mhit) {
 		    struct obj *obj = target;
@@ -4739,6 +5429,23 @@ uchar aatyp;
 		    passive_obj(mon, obj, &(ptr->mattk[i]));
 	    	}
 	    	break;
+
+	      case AD_SHRD:	/* KMH -- remove enchantment (disenchanter) */
+		if (mhit) {
+		    struct obj *obj = target;
+
+		    if (aatyp == AT_KICK) {
+			obj = uarmf;
+			if (!obj) break;
+		    } else if (aatyp == AT_BITE || aatyp == AT_BUTT ||
+			       (aatyp >= AT_STNG && aatyp < AT_WEAP)) {
+			break;		/* no object involved */
+		    } else if (!obj && mhit & (HIT_UWEP | HIT_USWAPWEP))
+			obj = uarmg;
+		    passive_obj(mon, obj, &(ptr->mattk[i]));
+	    	}
+	    	break;
+
 	      default:
 		break;
 	    }	/* attack switch */
@@ -4774,7 +5481,7 @@ struct attack *mattk;		/* null means we find one internally */
 	/* if caller hasn't specified an object, use uwep, uswapwep or uarmg */
 	if (!obj) {
 	    obj = (u.twoweap && uswapwep && !rn2(2)) ? uswapwep : uwep;
-	    if (!obj && mattk->adtyp == AD_ENCH)
+	    if (!obj && (mattk->adtyp == AD_ENCH || mattk->adtyp == AD_SHRD) )
 		obj = uarmg;		/* no weapon? then must be gloves */
 	    if (!obj) return;		/* no object to affect */
 	}
@@ -4811,6 +5518,27 @@ struct attack *mattk;		/* null means we find one internally */
 		erode_obj(obj, TRUE, FALSE);
 	    }
 	    break;
+	case AD_LAVA:
+
+	    if(!mon->mcan && is_flammable(obj) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+
+			if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) {
+				obj->oeroded++;
+				pline("%s weapon is damaged by fire!", carried(obj) ? "Your" : "A");
+				}
+			else if (obj->oeroded == MAX_ERODE && carried(obj) )
+			{
+				pline("Your weapon burned to ashes!");
+				if (obj == uball) unpunish();
+				delobj(obj);
+				uwepgone();
+				update_inventory();
+	    
+			}
+
+	    }
+	    break;
+
 	case AD_WTHR:
 
 	    if(!mon->mcan && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
@@ -4858,6 +5586,55 @@ struct attack *mattk;		/* null means we find one internally */
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
 	    	}
+	    	break;
+	    }
+	case AD_SHRD:
+	    if (!mon->mcan) {
+		if (drain_item(obj)) { if(carried(obj) &&
+		    (obj->known || obj->oclass == ARMOR_CLASS)) {
+		    Your("%s less effective.", aobjnam(obj, "seem"));
+		    }
+	    	}
+
+		else if(obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+
+		if (rn2(2)) {
+				if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) 
+				{obj->oeroded++;
+				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
+				}
+			else if (obj->oeroded == MAX_ERODE && carried(obj) )
+			{
+	/* Unfortunately I can't seem to make it work for non-player inventory objects without crashing. --Amy */
+		    
+			pline("Your weapon withered away!");
+			if (obj == uball) unpunish();
+			delobj(obj);
+			uwepgone();
+			update_inventory();
+	    
+			}
+		}
+		else {
+				if (obj->oeroded2 < MAX_ERODE && !((obj->blessed && !rnl(4))))
+				{obj->oeroded2++;
+				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
+				}
+			else if (obj->oeroded2 == MAX_ERODE && carried(obj) )
+			{
+		    
+			pline("Your weapon withered away!");
+			if (obj == uball) unpunish();
+			delobj(obj);
+			uwepgone();
+			update_inventory();
+	    
+			}
+		}
+
+	    }
+
+
 	    	break;
 	    }
 	  default:

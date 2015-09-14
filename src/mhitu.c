@@ -2567,11 +2567,10 @@ dopois:
 		break;
 	    case AD_DFOO:
 	      pline("%s determines to take you down a peg or two...", Monnam(mtmp));
-		ptmp = rn2(A_MAX);
 		if (!rn2(8)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
-		    poisoned(buf, ptmp, mdat->mname, 30);
+		    poisoned(buf, rn2(A_MAX), mdat->mname, 30);
 		}
 		if (!rn2(10)) {
 			pline("You feel drained...");
@@ -4197,6 +4196,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	int	i;
 	/*int randattackA = 0;*/
 	uchar atttypA;
+	int hallutime;
+	struct obj *optr;
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE) return(0);
@@ -4338,6 +4339,41 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    poisoned("The attack", A_CON, "constitution drain", 30);
 			}
 			break;
+		case AD_WISD:
+				You("feel naive!");
+			if (!rn2(8)) {
+			    poisoned("The attack", A_WIS, "wisdom drain", 30);
+			}
+			break;
+		case AD_DRCH:
+				You("feel ugly!");
+			if (!rn2(8)) {
+			    poisoned("The attack", A_CHA, "charisma drain", 30);
+			}
+			break;
+
+		case AD_POIS:
+				You("are covered with poison!");
+			if (!rn2(8)) {
+			    poisoned("The attack", rn2(A_MAX), "poisonous interior", 30);
+			}
+			break;
+
+		case AD_NPRO:
+				You("feel unsafe in here...");
+			if (!rn2(10)) {
+				u.negativeprotection++;
+				pline("You feel less protected!");
+			}
+			break;
+
+	      case AD_THIR:
+			pline("It sucks your %s!", body_part(BLOOD) );
+			mtmp->mhp += tmp;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+			break;
+
 	      case AD_STUN:
 			{
 				You("seem less steady!");
@@ -4393,10 +4429,244 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    losexp("life drainage", FALSE);
 			}
 			break;
+	      case AD_VAMP:
+			pline("It sucks you!");
+			if (!Drain_resistance || !rn2(20) ) {
+			    losexp("life drainage", FALSE);
+			}
+			break;
 	      case AD_DREN:
 			pline("It drains you!");
 			if (!rn2(4)) drain_en(tmp);
 			break;
+
+	      case AD_WEBS: /* No message. Because you can't see the web while engulfed. */
+			(void) maketrap(u.ux, u.uy, WEB);
+			/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
+			if (!rn2(8)) makerandomtrap();
+			break;
+
+	    case AD_DEPR:
+			pline("You feel manic-depressive...");
+		if (!rn2(5)) {
+
+		    switch(rnd(20)) {
+		    case 1:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+			break;
+		    case 2:
+			You("need reboot.");
+			newman();
+			break;
+		    case 3: case 4:
+			if(!rn2(4) && u.ulycn == NON_PM &&
+				!Protection_from_shape_changers &&
+				!is_were(youmonst.data) &&
+				!defends(AD_WERE,uwep)) {
+			    You_feel("feverish.");
+			    exercise(A_CON, FALSE);
+			    u.ulycn = PM_WERECOW;
+			} else {
+				if (multi >= 0) {
+				    if (Sleep_resistance && rn2(20)) break;
+				    fall_asleep(-rnd(10), TRUE);
+				    if (Blind) You("are put to sleep!");
+				    else You("are put to sleep by %s!", mon_nam(mtmp));
+				}
+			}
+			break;
+		    case 5: case 6:
+			if (!u.ustuck && !sticks(youmonst.data)) {
+				setustuck(mtmp);
+				pline("%s grabs you!", Monnam(mtmp));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+			break;
+		    case 7:
+		    case 8:
+			Your("position suddenly seems very uncertain!");
+			teleX();
+			break;
+		    case 9:
+			u_slow_down();
+			break;
+		    case 10:
+			hurtarmor(AD_RUST);
+			break;
+		    case 11:
+			hurtarmor(AD_DCAY);
+			break;
+		    case 12:
+			hurtarmor(AD_CORR);
+			break;
+		    case 13:
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by an engulfing monster");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 14:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			hallutime = rn1(7, 16);
+			make_stunned(HStun + hallutime + tmp, FALSE);
+			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
+			break;
+		    case 15:
+			if(!Blind)
+				Your("vision bugged.");
+			hallutime += rn1(10, 25);
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + tmp + tmp,TRUE,0L);
+			break;
+		    case 16:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
+			break;
+		    case 17:
+			{
+			    struct obj *obj = some_armor(&youmonst);
+
+			    if (drain_item(obj)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+			    }
+			}
+			break;
+		    default:
+			    if(Confusion)
+				 You("are getting even more confused.");
+			    else You("are getting confused.");
+			    make_confused(HConfusion + tmp, FALSE);
+			break;
+		    }
+		    exercise(A_INT, FALSE);
+
+		}
+		break;
+
+	    case AD_WRAT:
+		pline("You feel the life vanish from within you!");
+
+		if(u.uen < 1) {
+		    You_feel("less energised!");
+		    u.uenmax -= rn1(10,10);
+		    if(u.uenmax < 0) u.uenmax = 0;
+		} else if(u.uen <= 10) {
+		    You_feel("your magical energy dwindle to nothing!");
+		    u.uen = 0;
+		} else {
+		    You_feel("your magical energy dwindling rapidly!");
+		    u.uen /= 2;
+		}
+
+		break;
+
+	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
+		if(!rn2(2)) {
+		    pline("You feel momentarily lethargic.");
+		    break;
+		}
+		pline("You feel apathetic...");
+		switch(rn2(7)) {
+		    case 0: /* destroy certain things */
+			witherarmor();
+			break;
+		    case 1: /* sleep */
+			if (multi >= 0) {
+			    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+			    fall_asleep(-rnd(10), TRUE);
+			    if (Blind) You("are put to sleep!");
+			    else You("are put to sleep by %s!", mon_nam(mtmp));
+			}
+			break;
+		    case 2: /* paralyse */
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by an engulfing monster");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 3: /* slow */
+			if(HFast)  u_slow_down();
+			else You("pause momentarily.");
+			break;
+		    case 4: /* drain Dex */
+			adjattrib(A_DEX, -rn1(1,1), 0);
+			break;
+		    case 5: /* steal teleportitis */
+			if(HTeleportation & INTRINSIC) {
+			      HTeleportation &= ~INTRINSIC;
+			}
+	 		if (HTeleportation & TIMEOUT) {
+				HTeleportation &= ~TIMEOUT;
+			}
+			if(HTeleport_control & INTRINSIC) {
+			      HTeleport_control &= ~INTRINSIC;
+			}
+	 		if (HTeleport_control & TIMEOUT) {
+				HTeleport_control &= ~TIMEOUT;
+			}
+		      You("don't feel in the mood for jumping around.");
+			break;
+		    case 6: /* steal sleep resistance */
+			if(HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+			} 
+			if(HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+			} 
+			You_feel("like you could use a nap.");
+			break;
+		}
+		break;
+
+	    case AD_DFOO:
+	      pline("You feel physically and mentally weaker!");
+		if (!rn2(8)) {
+		    Sprintf(buf, "%s %s",
+			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
+		}
+		if (!rn2(10)) {
+			pline("You feel drained...");
+			u.uhpmax -= rn1(10,10);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (!rn2(10)) {
+			You_feel("less energised!");
+			u.uenmax -= rn1(10,10);
+			if(u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (!rn2(10)) {
+			if(!Drain_resistance || !rn2(20) )
+			    losexp("life drainage", FALSE);
+			else You_feel("woozy for an instant, but shrug it off.");
+		}
+
+		break;
+
 
 	    case AD_GLIB:
 			pline("A disgusting substance pours all over your hands!");
@@ -4436,6 +4706,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if(!rn2(3)) {
 			if (flags.soundok)
 			    You_hear("a hissing noise!");
+do_stone:
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
 			    if (!Stoned && !Stone_resistance
@@ -4483,7 +4754,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		    pline("It thrusts you!");
+	    case AD_STTP:
+		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
 
 		if (!rn2(3)) {
 			pline("You feel a tug on your knapsack"); break;
@@ -4508,6 +4780,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 
 	    case AD_TLPT:
+	    case AD_ABDC:
 			pline("A stream of energy irradiates you!");
 		    if(flags.verbose)
 			pline("You are teleported away!");
@@ -4517,6 +4790,48 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		pline("You're shaken around!");
 		pushplayer();
 		break;
+
+	    case AD_UVUU:{
+		pline("A drill bores into your brain!");
+		if (rn2(10)) break;
+		int wdmg = (int)(tmp/6) + 1;
+		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		poisoned(buf, A_CON, mtmp->data->mname, 60);
+		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
+		if(wdmg > 0){
+		
+			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
+				wdmg--;
+				(void) adjattrib(A_WIS, -1, TRUE);
+				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				exercise(A_WIS, FALSE);
+			}
+			if(AMAX(A_WIS) > ATTRMIN(A_WIS) && 
+				ABASE(A_WIS) < AMAX(A_WIS)/2) AMAX(A_WIS) -= 1; //permanently drain wisdom
+			if(wdmg){
+				boolean chg;
+				chg = make_hallucinated(HHallucination + (long)(wdmg*5),FALSE,0L);
+			}
+		}
+		drain_en( (int)(tmp/2) );
+		if(!rn2(20)){
+			if (!has_head(youmonst.data)) {
+				tmp *= 2;
+			}
+			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
+				pline("The drill passes through your %s.", body_part(HEAD));
+				tmp *= 2;
+			}
+			else {
+				if(!uarmh){
+					tmp = (ABASE(A_WIS) <= ATTRMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (tmp * 2); 
+					pline("The drill penetrates your %s and bores it into two halves!", body_part(HEAD));
+				} else pline("The drill penetrates your %s!", xname(uarmh) );
+			}
+		 }
+ 		}
+	    break;
 
 	    case AD_RUST:
 		pline("You are covered with rust!");
@@ -4537,10 +4852,172 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (Stoned) fix_petrification();
 		if (rn2(3)) hurtarmor(AD_CORR);
 		break;
+
+	    case AD_LAVA:
+		pline("You are covered with lava!");
+
+		    if(!mtmp->mcan && rn2(2)) {
+			if (Fire_resistance && rn2(20)) {
+				shieldeff(u.ux, u.uy);
+				You_feel("mildly hot.");
+				ugolemeffects(AD_FIRE,tmp);
+				tmp = 0;
+			} else You("are burning to a crisp!");
+			burn_away_slime();
+		    } else tmp = 0;
+
+		if (rn2(3)) hurtarmor(AD_LAVA);
+		break;
+
 	    case AD_WTHR:
 		pline("You are covered with some aggressive substance!");
 		if (rn2(3)) witherarmor();
 		break;
+
+	    case AD_FAKE:
+		pline(fauxmessage());
+		break;
+
+	    case AD_LETH:
+		pline("Sparkling water washes all around you!");
+		if (mtmp->mcan) break;
+		if (!rn2(10)) {
+			pline("You sparkle!");
+			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) forget_levels(5);
+			if (!rn2(10)) forget_objects(5);
+		}
+		break;
+
+	    case AD_WET:
+		pline("Water washes all around you!");
+		if (mtmp->mcan) break;
+		if (!rn2(10)) {
+			pline("You are soaked with water!");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
+		break;
+
+	    case AD_SUCK:
+		pline("You feel like being sucked in by a vacuum cleaner!");
+			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
+			else{
+				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
+				){
+					tmp = 2 * (Upolyd ? u.mh : u.uhp)
+						  + 400; //FATAL_DAMAGE_MODIFIER;
+					pline("Your %s is sucked off!", body_part(HEAD));
+				}
+				else{
+					You_feel("your extremities being sucked off!");
+					if(!rn2(10)){
+						Your("%s twist from the suction!", makeplural(body_part(LEG)));
+					    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    exercise(A_STR, FALSE);
+					    exercise(A_DEX, FALSE);
+					}
+					if(uwep && !rn2(6)){
+						You_feel("a pull on your weapon!");
+						if( rnd(130) > ACURR(A_STR)){
+							Your("weapon is sucked out of your grasp!");
+							optr = uwep;
+							uwepgone();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else{
+							You("keep a tight grip on your weapon!");
+						}
+					}
+					if(!rn2(10) && uarmf){
+						Your("boots are sucked off!");
+						optr = uarmf;
+						if (donning(optr)) cancel_don();
+						(void) Boots_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+					if(!rn2(6) && uarmg && !uwep){
+						You_feel("%a pull on your gloves!");
+						if( rnd(40) > ACURR(A_STR)){
+							Your("gloves are sucked off!");
+							optr = uarmg;
+							if (donning(optr)) cancel_don();
+							(void) Gloves_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else You("keep your %s closed.", makeplural(body_part(HAND)));
+					}
+					if(!rn2(8) && uarms){
+						You_feel("a pull on your shield!");
+						if( rnd(150) > ACURR(A_STR)){
+							Your("shield is sucked out of your grasp!");
+							optr = uarms;
+							if (donning(optr)) cancel_don();
+							Shield_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						 }
+						 else{
+							You("keep a tight grip on your shield!");
+						 }
+					}
+					if(!rn2(4) && uarmh){
+						Your("helmet is sucked off!");
+						optr = uarmh;
+						if (donning(optr)) cancel_don();
+						(void) Helmet_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+				}
+			}
+		break;
+
+	    case AD_CNCL:
+		pline("Sparkling lights are dancing around you!");
+		if (mtmp->mcan) break;
+		if (!rn2(10)) {
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		}
+		break;
+
+	    case AD_BANI:
+		if (!rn2(10)) {
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
+			 pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+			register int newlev = rnd(71);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			return(3);
+		}
+		break;
+
+	    case AD_WEEP:
+		pline("You hear weeping sounds!");
+		if (rn2(10)) break;
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			level_tele();
+			return(3);
+		}
+		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("loss of potential", FALSE);
+		}
+		break;
+
 	    case AD_LUCK:
 		pline("It's sucking away all of your good feelings!");
 		if (!rn2(3)) change_luck(-1);
@@ -4640,6 +5117,19 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		    }
 		break;
+
+	    case AD_SHRD:
+		pline("You are cut by razor-sharp shards!");
+		if (rn2(4)) break;
+
+		struct obj *objX = some_armor(&youmonst);
+
+		if (drain_item(objX)) {
+			Your("%s less effective.", aobjnam(objX, "seem"));
+		} else if (rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
+
+		break;
+
 	    case AD_POLY:
 		pline("A weird green light pierces you!");
 		if (!Unchanging && !Antimagic) {
@@ -4677,6 +5167,72 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			exercise(A_STR, FALSE);
 		    }
 		    break;
+
+	      case AD_CHKH:
+			You("are pummeled with heavy debris!");
+			if (mtmp->mcan) break;
+			tmp += u.chokhmahdamage;
+			u.chokhmahdamage++;
+		  break;
+
+	      case AD_HODS:
+			You("are attacked by a mirror-image of you...");
+		 if(uwep){
+			if (uwep->otyp == CORPSE
+				&& touch_petrifies(&mons[uwep->corpsenm])) {
+			    tmp = 1;
+			    pline("%s hits you with the %s corpse.",
+				Monnam(mtmp), mons[uwep->corpsenm].mname);
+			    if (!Stoned)
+				goto do_stone;
+			}
+			tmp += dmgval(uwep, &youmonst);
+			
+			if (uwep->opoisoned){
+				Sprintf(buf, "%s %s",
+					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+				poisoned(buf, A_CON, mtmp->data->mname, 30);
+			}
+			
+			if (tmp <= 0) tmp = 1;
+			if (!(uwep->oartifact &&
+				artifact_hit(mtmp, &youmonst, uwep, &tmp,dieroll)))
+			     hitmsg(mtmp, mattk);
+			if (!tmp) break;
+		 }
+		break;
+
+	    case AD_CHRN:
+		pline("You are surrounded by a black glow.");
+		if (rn2(4)) break;
+		    switch (rn2(10)) {
+		    case 0: diseasemu(mtmp->data);
+			    break;
+		    case 1: make_blinded(Blinded + tmp, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + tmp, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + tmp, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + tmp, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + tmp, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + tmp, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    }
+
+		break;
+
 		case AD_ACID:
 		    if (Acid_resistance && rn2(20)) {
 			You("are covered with a seemingly harmless goo.");
@@ -4720,6 +5276,62 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			}
 		    } else tmp = 0;
 		    break;
+
+		case AD_MALK:
+		    if(!mtmp->mcan && rn2(2)) {
+			pline_The("air around you crackles with high voltage.");
+			if (Shock_resistance && rn2(20)) {
+				shieldeff(u.ux, u.uy);
+				You("seem unhurt.");
+				ugolemeffects(AD_ELEC,tmp);
+				tmp = 0;
+			}
+		    } else tmp = 0;
+
+		    setustuck(mtmp);
+		    pline("%s grabs you!", Monnam(mtmp));
+		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		    break;
+
+		case AD_AXUS:
+		    pline("Snap! Crackle! Pop!");
+
+		    if(!mtmp->mcan && rn2(2)) {
+			if (Cold_resistance && rn2(20)) {
+				shieldeff(u.ux, u.uy);
+				You_feel("mildly chilly.");
+				ugolemeffects(AD_COLD,tmp);
+				if (tmp >= 4) tmp -= (tmp / 4);
+			} else You("are freezing to death!");
+		    }
+
+		    if(!mtmp->mcan && rn2(2)) {
+			if (Fire_resistance && rn2(20)) {
+				shieldeff(u.ux, u.uy);
+				You_feel("mildly hot.");
+				ugolemeffects(AD_FIRE,tmp);
+				if (tmp >= 4) tmp -= (tmp / 4);
+			} else You("are burning to a crisp!");
+			burn_away_slime();
+		    }
+
+		    if(!mtmp->mcan && rn2(2)) {
+			pline_The("air around you crackles with electricity.");
+			if (Shock_resistance && rn2(20)) {
+				shieldeff(u.ux, u.uy);
+				You("seem unhurt.");
+				ugolemeffects(AD_ELEC,tmp);
+				if (tmp >= 4) tmp -= (tmp / 4);
+			}
+		    }
+
+			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			    losexp("life drainage", FALSE);
+			}
+
+		    break;
+
 		case AD_COLD:
 		    if(!mtmp->mcan && rn2(2)) {
 			if (Cold_resistance && rn2(20)) {
@@ -5095,6 +5707,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	char	 buf[BUFSZ];
 	int dmgplus;
+	struct obj *optr;
+	struct obj *otmpi, *otmpii;
 
 	/*int randattackB = 0;*/
 	uchar atttypB;
@@ -5271,6 +5885,58 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	      case AD_VAMP:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+ 		{
+			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
+			    losexp("life drainage", FALSE);
+				if (!rn2(2)) mdamageu(mtmp, dmgplus);
+			}
+		}
+		break;
+
+	    case AD_WEBS: 
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(3))
+ 		{
+			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
+		{
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			if (ttmp2) {
+				pline_The("webbing sticks to you. You're caught!");
+				dotrap(ttmp2, NOWEBMSG);
+#ifdef STEED
+				if (u.usteed && u.utrap) {
+				/* you, not steed, are trapped */
+				dismount_steed(DISMOUNT_FELL);
+				}
+#endif
+			}
+		}
+		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
+		if (!rn2(8)) makerandomtrap();
+
+		}
+		break;
+
+	    case AD_STTP:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+ 		{
+		pline("%s gazes at you and curses.", Monnam(mtmp));
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(100) && !stack_too_big(otmpi) ) {
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+		}
+		break;
+
 	      case AD_DREN:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
@@ -5367,6 +6033,19 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    }
 		}
 		break;
+
+	    case AD_SHRD:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
+ 		{
+		pline("%s shoots shards at your belongings!", Monnam(mtmp));
+		struct obj *obj = some_armor(&youmonst);
+
+		if (drain_item(obj)) {
+			Your("%s less effective.", aobjnam(obj, "seem"));
+		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
+		}
+		break;
+
 	    case AD_POLY:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20))
  		{
@@ -5375,6 +6054,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("%s throws a changing gaze at you!", Monnam(mtmp));
 		    polyself(FALSE);
 			}
+		}
+		break;
+
+	    case AD_FAKE:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee)
+ 		{
+			pline(fauxmessage());
 		}
 		break;
 
@@ -5484,6 +6170,158 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		hurtarmor(AD_RUST);
 		}
 		break;
+
+	    case AD_LETH:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+		pline("%s squirts sparkling water at you!", Monnam(mtmp));
+		if (!rn2(3)) {
+			pline("You sparkle!");
+			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) forget_levels(5);
+			if (!rn2(10)) forget_objects(5);
+		}
+		}
+		break;
+
+	    case AD_WET:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+		pline("%s squirts cold water at you!", Monnam(mtmp));
+		if (!rn2(3)) {
+			pline("You're very wet!");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
+		}
+		break;
+
+	    case AD_SUCK:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20)) 		{
+		pline("%s uses a vacuum cleaner on you! Or is that a gluon gun?", Monnam(mtmp));
+
+			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmgplus = 0;
+			else{
+				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
+				){
+					dmgplus += 2 * (Upolyd ? u.mh : u.uhp)
+						  + 400; //FATAL_DAMAGE_MODIFIER;
+					pline("%s sucks your %s off!",
+					      Monnam(mtmp), body_part(HEAD));
+				}
+				else{
+					You_feel("%s trying to suck your extremities off!",mon_nam(mtmp));
+					if(!rn2(10)){
+						Your("%s twist from the suction!", makeplural(body_part(LEG)));
+					    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
+					    exercise(A_STR, FALSE);
+					    exercise(A_DEX, FALSE);
+					}
+					if(uwep && !rn2(6)){
+						You_feel("%s pull on your weapon!",mon_nam(mtmp));
+						if( rnd(130) > ACURR(A_STR)){
+							Your("weapon is sucked out of your grasp!");
+							optr = uwep;
+							uwepgone();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else{
+							You("keep a tight grip on your weapon!");
+						}
+					}
+					if(!rn2(10) && uarmf){
+						Your("boots are sucked off!");
+						optr = uarmf;
+						if (donning(optr)) cancel_don();
+						(void) Boots_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+					if(!rn2(6) && uarmg && !uwep){
+						You_feel("%s pull on your gloves!",mon_nam(mtmp));
+						if( rnd(40) > ACURR(A_STR)){
+							Your("gloves are sucked off!");
+							optr = uarmg;
+							if (donning(optr)) cancel_don();
+							(void) Gloves_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						}
+						else You("keep your %s closed.", makeplural(body_part(HAND)));
+					}
+					if(!rn2(8) && uarms){
+						You_feel("%s pull on your shield!",mon_nam(mtmp));
+						if( rnd(150) > ACURR(A_STR)){
+							Your("shield is sucked out of your grasp!");
+							optr = uarms;
+							if (donning(optr)) cancel_don();
+							Shield_off();
+							freeinv(optr);
+							(void) mpickobj(mtmp,optr);
+						 }
+						 else{
+							You("keep a tight grip on your shield!");
+						 }
+					}
+					if(!rn2(4) && uarmh){
+						Your("helmet is sucked off!");
+						optr = uarmh;
+						if (donning(optr)) cancel_don();
+						(void) Helmet_off();
+						freeinv(optr);
+						(void) mpickobj(mtmp,optr);
+					}
+				}
+			}
+			if (dmgplus) mdamageu(mtmp, (d(4,6) + dmgplus));
+		}
+		break;
+
+	    case AD_CNCL:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+		pline("%s throws a blinky gaze at you!", Monnam(mtmp));
+		if (!rn2(3)) {
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		}
+		}
+		break;
+
+	    case AD_BANI:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(100)) 		{
+		if (!rn2(3)) {
+			if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
+			 pline("For some reason you resist the banishment!"); break;}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+			register int newlev = rnd(71);
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			return(3);
+		}
+		}
+		break;
+
+	    case AD_WEEP:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(40)) 		{
+		/* if vampire biting (and also a pet) */
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			level_tele();
+			return(3);
+		}
+		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		    losexp("loss of potential", FALSE);
+		}
+		}
+		break;
+
 	    case AD_DCAY:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		pline("%s flings organic matter at you!", Monnam(mtmp));
@@ -5635,6 +6473,80 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
 		break;
+
+	    case AD_LAVA:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		    int dmg = d(3,6);
+		    if (!rn2(3)) dmg += dmgplus;
+
+		    pline("%s attacks you with a really hot gaze!", Monnam(mtmp));
+		    stop_occupation();
+		    if (Fire_resistance && rn2(20)) {
+			pline_The("fire doesn't feel hot!");
+			dmg = 0;
+		    }
+		    burn_away_slime();
+		    if (!rn2(20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(20))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(33))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+
+		    if (dmg) mdamageu(mtmp, dmg);
+		    if (!rn2(5)) hurtarmor(AD_LAVA);
+		}
+		break;
+
+	    case AD_AXUS:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		    int dmg = d(2,6);
+		    if (!rn2(10)) dmg += dmgplus;
+
+		    pline("%s attacks you with a multicolor gaze!", Monnam(mtmp));
+		    stop_occupation();
+		    if (Fire_resistance && rn2(20)) {
+			pline_The("fire doesn't feel hot!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+		    }
+		    burn_away_slime();
+		    if (!rn2(33)) /* new calculations --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(33))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(50))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+
+		    if (Cold_resistance && rn2(20)) {
+			pline_The("cold doesn't freeze you!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+		    }
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(POTION_CLASS, AD_COLD);
+
+		    if (Shock_resistance && rn2(20)) {
+			pline_The("gaze doesn't shock you!");
+			if (dmg >= 4) dmg -= (dmg / 4);
+		    }
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */
+			destroy_item(RING_CLASS, AD_ELEC);
+
+		    if (dmg) mdamageu(mtmp, dmg);
+
+			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
+			    losexp("life drainage", FALSE);
+			}
+
+		}
+		break;
+
+
 	    case AD_COLD:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
@@ -5676,6 +6588,77 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
 		break;
+	    case AD_MALK:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		    int dmg = d(3,6);
+		    if (!rn2(10)) dmg += dmgplus;
+
+		    pline("%s attacks you with an electrifying gaze!", Monnam(mtmp));
+		    stop_occupation();
+
+		    setustuck(mtmp);
+		    pline("%s grabs you!", Monnam(mtmp));
+		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		    if (Shock_resistance && rn2(20)) {
+			pline_The("gaze doesn't shock you!");
+			dmg = 0;
+		    }
+		    if (!rn2(10)) /* high voltage - stronger than ordinary shock attack --Amy */
+			destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(10))
+			destroy_item(RING_CLASS, AD_ELEC);
+		    if (dmg) mdamageu(mtmp, dmg);
+		}
+		break;
+
+	    case AD_UVUU:{
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+		pline("%s used HORN DRILL!", Monnam(mtmp));
+
+		int wdmg = (int)(dmgplus/6) + 1;
+		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		poisoned(buf, A_CON, mtmp->data->mname, 60);
+		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
+		if(wdmg > 0){
+		
+			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
+				wdmg--;
+				(void) adjattrib(A_WIS, -1, TRUE);
+				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				exercise(A_WIS, FALSE);
+			}
+			if(AMAX(A_WIS) > ATTRMIN(A_WIS) && 
+				ABASE(A_WIS) < AMAX(A_WIS)/2) AMAX(A_WIS) -= 1; //permanently drain wisdom
+			if(wdmg){
+				boolean chg;
+				chg = make_hallucinated(HHallucination + (long)(wdmg*5),FALSE,0L);
+			}
+		}
+		drain_en( (int)(dmgplus/2) );
+		if(!rn2(20)){
+			if (!has_head(youmonst.data)) {
+				dmgplus *= 2;
+			}
+			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
+				pline("It's not very effective...");
+				dmgplus *= 2;
+			}
+			else {
+				if(!uarmh){
+					dmgplus = (ABASE(A_WIS) <= ATTRMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (dmgplus * 2); 
+					pline("It's a 1-hit KO!");
+				} else pline("It's super effective!");
+			}
+		 }
+ 		}
+		}
+	    break;
+
        case AD_DRIN:
      if(!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee && !rn2(10) &&
         (!ublindf || ublindf->otyp != TOWEL)  &&
@@ -5814,6 +6797,62 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                mdamageu(mtmp, d(3,8) + dmgplus);
 	        }
 	        break;
+
+	    case AD_THIR:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+                pline("%s sucks off your life force!", Monnam(mtmp));
+			mtmp->mhp += (1 + dmgplus) ;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+                  mdamageu(mtmp, d(3,8) + dmgplus);
+		  }
+
+		break;
+
+	    case AD_CHKH:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+                  pline("%s gazes at you and screams the word 'DIE!'", Monnam(mtmp));
+			dmgplus += u.chokhmahdamage;
+			u.chokhmahdamage++;
+                  mdamageu(mtmp, d(3,8) + dmgplus);
+		  }
+		break;
+
+	    case AD_HODS:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+                  pline("%s summons a mirror image of you, which promptly attacks you!", Monnam(mtmp));
+		 if(uwep){
+			if (uwep->otyp == CORPSE
+				&& touch_petrifies(&mons[uwep->corpsenm])) {
+			    dmgplus = 1;
+			    pline("%s hits you with the %s corpse.",
+				Monnam(mtmp), mons[uwep->corpsenm].mname);
+
+			    if (!Stone_resistance &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+
+				if (!Stoned) Stoned = 7;
+				Sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+				delayed_killer = killer_buf;
+		
+			    }
+			}
+			dmgplus += dmgval(uwep, &youmonst);
+			
+			if (uwep->opoisoned){
+				Sprintf(buf, "%s %s",
+					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+				poisoned(buf, A_CON, mtmp->data->mname, 30);
+			}
+			
+			if (dmgplus <= 0) dmgplus = 1;
+			if (!(uwep->oartifact &&
+				artifact_hit(mtmp, &youmonst, uwep, &dmgplus,dieroll)))
+			     hitmsg(mtmp, mattk);
+		 }
+             mdamageu(mtmp, d(3,8) + dmgplus);
+		}
+		break;
+
 	    case AD_DRST:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
@@ -5832,6 +6871,33 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                poisoned("The gaze", A_CON, mtmp->data->mname, 30);
 	        }
 	        break;
+	    case AD_WISD:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	                pline("%s stares into your eyes...", Monnam(mtmp));
+	                poisoned("The gaze", A_WIS, mtmp->data->mname, 30);
+	        }
+	        break;
+	    case AD_DRCH:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	                pline("%s stares into your eyes...", Monnam(mtmp));
+	                poisoned("The gaze", A_CHA, mtmp->data->mname, 30);
+	        }
+	        break;
+	    case AD_POIS:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	                pline("%s stares into your eyes...", Monnam(mtmp));
+	                poisoned("The gaze", rn2(A_MAX), mtmp->data->mname, 30);
+	        }
+	        break;
+
+	    case AD_NPRO:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25)) {
+                pline("%s gives you an excruciating look!", Monnam(mtmp));
+			u.negativeprotection++;
+		}
+		break;
+
           case AD_DISE:
 		if (rn2(3)) break; /* lower chance for normal disease, so pestilence attack is unique --Amy */
           case AD_PEST:
@@ -5840,6 +6906,40 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			(void) digeasemu(mtmp); /* plus the normal damage */
 	        }
 	        break;
+
+	    case AD_CHRN:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) {
+	                pline("%s gazes at you and curses horribly.", Monnam(mtmp));
+
+		    switch (rn2(10)) {
+		    case 0: diseasemu(mtmp->data);
+			    break;
+		    case 1: make_blinded(Blinded + dmgplus, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + dmgplus, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + dmgplus, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + dmgplus, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + dmgplus, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + dmgplus, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + dmgplus, TRUE);
+			    break;
+		    }
+
+		}
+		break;
+
 	    case AD_HALU:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		    boolean chg;
@@ -5869,6 +6969,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                teleX();
 		}
 		break;
+
+	    case AD_ABDC:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used) {
+	                pline("%s stares blinkingly at you!", Monnam(mtmp));
+	                if(flags.verbose)
+	                        Your("position suddenly seems very uncertain!");
+	                teleX();
+		}
+		break;
+
 	    case AD_DISP:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 	                pline("%s telepathically tries to move you around!", Monnam(mtmp));
