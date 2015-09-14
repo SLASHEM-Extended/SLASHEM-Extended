@@ -604,7 +604,7 @@ int how;
                   write_xlentry(xlfile, t0);
                   (void) fclose(xlfile);
              }
-             unlock_file(XLOGFILE);
+             unlock_file_area(LOGAREA, XLOGFILE);
          }
 #endif /* XLOGFILE */
 

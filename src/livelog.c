@@ -79,14 +79,18 @@ boolean livelog_start() {
 void livelog_write_string(char* buffer) {
 	FILE* livelogfile;
 
+#ifdef FILE_AREAS
+	if (lock_file_area(LOGAREA, LIVELOGFILE, 10)) {
+#else
 	if (lock_file(LIVELOGFILE, SCOREPREFIX, 10)) { 
+#endif
 		if(!(livelogfile = fopen_datafile(LIVELOGFILE, "a", SCOREPREFIX))) {
 			pline("Cannot open live log file!");
 		} else {
 			fprintf(livelogfile, buffer);
 			(void) fclose(livelogfile);
 		}
-		unlock_file(LIVELOGFILE);
+		unlock_file_area(LOGAREA, LIVELOGFILE);
 	}
 }
 
