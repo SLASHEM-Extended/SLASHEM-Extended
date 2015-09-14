@@ -2930,7 +2930,7 @@ register struct obj	*sobj;
 		break;
 	case SCR_WARPING:
 		known = TRUE;
-		if (u.uevent.udemigod) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("You're unable to warp!"); break;}
