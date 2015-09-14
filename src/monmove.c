@@ -787,6 +787,12 @@ toofar:
 	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
 	    pline(fauxmessage());
 
+	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
+	    pline("%s %s", Monnam(mtmp), bosstaunt());
+
+	    if(inrange && (mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD) && (mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful && !rn2(10))
+	    pline("%s %s", Monnam(mtmp), bosstaunt());
+
 	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful &&
 		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
 	    cuss(mtmp);

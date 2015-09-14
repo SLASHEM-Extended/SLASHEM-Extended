@@ -58,6 +58,8 @@
 #define MS_FART_QUIET	47	/* nastier version of shrieking */
 #define MS_FART_NORMAL	48	
 #define MS_FART_LOUD	49	
+#define MS_VICE	50	/* seven deadly sins patch */
+#define MS_BOSS	51	/* boss monster with taunts */
 
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
