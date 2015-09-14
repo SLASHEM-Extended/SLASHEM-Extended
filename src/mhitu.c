@@ -2371,7 +2371,7 @@ hitmu(mtmp, mattk)
 		}
 		drain_en( (int)(dmg/2) );
 		if(!rn2(20)){
-			if (!has_head(youmonst.data)) {
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER) ) {
 				dmg *= 2;
 			}
 			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
@@ -3407,7 +3407,7 @@ dopois:
 	    case AD_SUCK:
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmg = 0;
 			else{
-				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					dmg = 2 * (Upolyd ? u.mh : u.uhp)
@@ -4981,7 +4981,7 @@ do_stone:
 		}
 		drain_en( (int)(tmp/2) );
 		if(!rn2(20)){
-			if (!has_head(youmonst.data)) {
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER) ) {
 				tmp *= 2;
 			}
 			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
@@ -5230,7 +5230,7 @@ do_stone:
 		pline("You feel like being sucked in by a vacuum cleaner!");
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
 			else{
-				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					tmp = 2 * (Upolyd ? u.mh : u.uhp)
@@ -6871,7 +6871,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmgplus = 0;
 			else{
-				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					dmgplus += 2 * (Upolyd ? u.mh : u.uhp)
@@ -7518,7 +7518,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		drain_en( (int)(dmgplus/2) );
 		if(!rn2(20)){
-			if (!has_head(youmonst.data)) {
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER) ) {
 				dmgplus *= 2;
 			}
 			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {

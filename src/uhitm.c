@@ -4520,7 +4520,7 @@ uchar aatyp;
 	    case AD_SUCK:
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
 			else{
-				if( has_head(youmonst.data) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					tmp = 2 * (Upolyd ? u.mh : u.uhp)
@@ -5544,7 +5544,7 @@ uchar aatyp;
 		}
 		drain_en( (int)(tmp/2) );
 		if(!rn2(20)){
-			if (!has_head(youmonst.data)) {
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER) ) {
 				tmp *= 2;
 			}
 			else if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
