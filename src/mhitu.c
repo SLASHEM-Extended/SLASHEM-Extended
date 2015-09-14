@@ -3321,7 +3321,7 @@ dopois:
 	    case AD_BANI:
 		hitmsg(mtmp, mattk);
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -4985,7 +4985,7 @@ do_stone:
 
 	    case AD_BANI:
 		if (!rn2(10)) {
-			if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -6539,7 +6539,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_BANI:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(100)) 		{
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 

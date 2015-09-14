@@ -2479,9 +2479,9 @@ register struct obj *otmp;
 		}
 		break;
 	case WAN_BANISHMENT:
-		if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
-
 		if (zap_oseen) makeknown(WAN_BANISHMENT);
+
+		if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 		pline("Somehow, the banishment beam doesn't do anything."); break;}

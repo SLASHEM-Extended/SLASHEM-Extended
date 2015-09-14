@@ -3616,7 +3616,7 @@ boolean ordinary;
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -3787,7 +3787,7 @@ struct obj *obj;	/* wand or spell */
 
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet) { pline("You shudder for a moment."); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			pline("For some reason you resist the banishment!"); break;}
 
