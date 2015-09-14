@@ -3074,7 +3074,7 @@ struct monst *mtmp;
 		/* being magic resistant also offers protection */
 		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
 		/* and grease will always offer protection but can wear off */
-		else if (otmp2->greased) {
+		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
 			 if (!rn2(2)) {
 				pline_The("grease wears off.");
@@ -3083,6 +3083,7 @@ struct monst *mtmp;
 			 }
 		}
 
+		else if (!otmp2) pline("Your skin itches.");
 	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
 		exercise(A_STR, FALSE);
 		exercise(A_CON, FALSE);
