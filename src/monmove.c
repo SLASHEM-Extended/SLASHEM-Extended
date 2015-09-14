@@ -783,6 +783,10 @@ toofar:
 	    quest_talk(mtmp);
 	/* extra emotional attack for vile monsters */
 	/* Come on, monsters can still cuss at you if you can't see them. Seriously, what the heck. --Amy */
+
+	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
+	    pline(fauxmessage());
+
 	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful &&
 		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
 	    cuss(mtmp);
