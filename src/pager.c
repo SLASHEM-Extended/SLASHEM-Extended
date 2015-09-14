@@ -901,6 +901,11 @@ do_look(quick)
 
 		if (pm) {
 		    struct monst *mtmpX = m_at(cc.x, cc.y);
+		    if (mtmpX) {
+			Sprintf(temp_buf, " (base level %d)", mtmpX->data->mlevel);
+			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
+
+		    }
 		    if (mtmpX && humanoid(mtmpX->data)) {
 			Sprintf(temp_buf, " (%s)", mtmpX->female ? "female" : "male");
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
