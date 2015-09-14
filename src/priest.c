@@ -608,7 +608,7 @@ xchar x, y;
 	register struct monst *priest;
 
 	if (mon) {
-	    if (is_minion(mon->data) || is_rider(mon->data)) return FALSE;
+	    if (is_minion(mon->data) || is_rider(mon->data) || is_deadlysin(mon->data)) return FALSE;
 	    x = mon->mx, y = mon->my;
 	}
 	if (u.ualign.record <= ALGN_SINNED)	/* sinned or worse */

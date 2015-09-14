@@ -1612,6 +1612,8 @@ struct obj *otmp;
 	    return FALSE;
 	if (otyp == CORPSE && is_rider(&mons[otmp->corpsenm]))
 	    return FALSE;
+	if (otyp == CORPSE && is_deadlysin(&mons[otmp->corpsenm]))
+	    return FALSE;
 	if (objects[otyp].oc_material == SILVER && hates_silver(mdat) &&
 		(otyp != BELL_OF_OPENING || !is_covetous(mdat)))
 	    return FALSE;
@@ -2594,6 +2596,7 @@ boolean was_swallowed;			/* digestion */
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
+		   || is_deadlysin(mdat)
 		   || is_rider(mdat))
 		return TRUE;
 	return (boolean) (!rn2((int) /* why the heck does frequency matter for this??? --Amy */

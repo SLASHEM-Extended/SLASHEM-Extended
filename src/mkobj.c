@@ -1252,7 +1252,7 @@ start_corpse_timeout(body)
 		for (when = 12L; when < 500L; when++)
 		    if (!rn2(3)) break;
 
-	} else if (mons[body->corpsenm].mlet == S_TROLL && !body->norevive) {
+	} else if ((mons[body->corpsenm].mlet == S_TROLL && !body->norevive) || is_deadlysin(&mons[body->corpsenm]) )  {
 		long age;
 		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
 		    if (!rn2(TROLL_REVIVE_LATE_CHANCE)) {	/* troll revives */
@@ -1554,6 +1554,7 @@ int x, y;
 #define special_corpse(num)  (((num) == PM_KATNISS)		\
 				|| (nocorpsedecay(&mons[num]))	\
 				|| (is_rider(&mons[num]))	\
+				|| (is_deadlysin(&mons[num]))	\
 				|| (mons[num].mlet == S_FUNGUS) \
 				|| (mons[num].mlet == S_TROLL))
 

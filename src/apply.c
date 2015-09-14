@@ -1703,6 +1703,11 @@ register struct obj *obj;
 		verbalize("Yes...  But War does not preserve its enemies...");
 		return;
 	}
+	if (is_deadlysin(&mons[corpse->corpsenm])) {
+		(void) revive_corpse(corpse, FALSE);
+		verbalize("Sealing such a powerful evil in a can is never a good idea.");
+		return;
+	}
 	if (mons[corpse->corpsenm].cnutrit == 0) {
 		pline(Hallucination ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
 		return;

@@ -195,9 +195,23 @@
 #define is_rider(ptr)		((ptr) == &mons[PM_DEATH] || \
 				 (ptr) == &mons[PM_FAMINE] || \
 				 (ptr) == &mons[PM_PESTILENCE])
+#define is_deadlysin(ptr)		((ptr) == &mons[PM_GLUTTONY] || \
+				 (ptr) == &mons[PM_LUST] || \
+				 (ptr) == &mons[PM_ENVY] || \
+				 (ptr) == &mons[PM_SLOTH] || \
+				 (ptr) == &mons[PM_GREED] || \
+				 (ptr) == &mons[PM_WRATH] || \
+				 (ptr) == &mons[PM_PRIDE])
 #define eating_is_fatal(ptr)		((ptr) == &mons[PM_DEATH] || \
 				 (ptr) == &mons[PM_FAMINE] || \
 				 (ptr) == &mons[PM_BLACK_HOLE_BLOB] || \
+				 (ptr) == &mons[PM_LUST] || \
+				 (ptr) == &mons[PM_ENVY] || \
+				 (ptr) == &mons[PM_SLOTH] || \
+				 (ptr) == &mons[PM_GREED] || \
+				 (ptr) == &mons[PM_WRATH] || \
+				 (ptr) == &mons[PM_PRIDE] || \
+				 (ptr) == &mons[PM_GLUTTONY] || \
 				 (ptr) == &mons[PM_PESTILENCE])
 #define is_placeholder(ptr)	((ptr) == &mons[PM_ORC] || \
 				 (ptr) == &mons[PM_GIANT] || \
@@ -225,7 +239,7 @@
 #define uncommon10(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON10)
 
 /* return TRUE if the monster tends to revive */
-#define is_reviver(ptr)		(is_rider(ptr) || ((ptr)->mlet == S_FUNGUS && !nocorpsedecay(ptr) ) || \
+#define is_reviver(ptr)		(is_rider(ptr) || is_deadlysin(ptr) || ((ptr)->mlet == S_FUNGUS && !nocorpsedecay(ptr) ) || \
 				 (ptr)->mlet == S_TROLL || (ptr) == &mons[PM_ROT_WALKER] || (ptr) == &mons[PM_ROT_CONVERTER] || (ptr) == &mons[PM_RED_DEATH] || (ptr) == &mons[PM_LITCH_DEMON] || (ptr) == &mons[PM_UNDEAD_BALROG] || (ptr) == &mons[PM_BONE_DEMON] || (ptr) == &mons[PM_RUST_CONVERTER] || (ptr) == &mons[PM_REANIMATED_HORDE] || (ptr) == &mons[PM_PROWLING_DEAD_POTATO] || (ptr) == &mons[PM_UNHOLY_CORPSE] || (ptr) == &mons[PM_DEFILED_WARRIOR]  )
 
 /* this returns the light's range, or 0 if none; if we add more light emitting

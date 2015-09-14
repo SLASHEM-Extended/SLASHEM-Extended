@@ -1227,6 +1227,45 @@ register struct monst *mtmp;
 		pline_msg = "is busy reading a copy of Sandman #8.";
 	    else verbl_msg = "Who do you think you are, War?";
 	    break;
+
+	case MS_VICE:
+	    switch(monsndx(ptr)) {
+		case PM_GLUTTONY:
+		    pline_msg = rn2(2) ? "gobbling noisily." :	/*[Sakusha]*/
+				"mumbles through a mouthful of food.";
+		    break;
+		case PM_LUST:
+		    pline_msg = "breathes heavily...";
+		    break;
+		case PM_GREED:
+		    verbl_msg = "Mine! All mine!";
+		    break;
+		case PM_ENVY:
+#ifndef GOLDOBJ
+		    if(u.ugold)
+#else
+		    if(money_cnt(invent))
+#endif
+			verbl_msg = "Give me that gold!";
+		    else {
+			pline_msg = "stares at you jealously.";
+		    }
+		    break;
+		case PM_WRATH:
+		    pline_msg = "glares at you ferociously.";
+		    break;
+		case PM_SLOTH:
+		    pline_msg = "sighs.";
+		    break;
+		case PM_PRIDE:
+		    pline_msg = "doesn't deign to reply.";
+		    break;
+		default:
+		    verbl_msg = "Think you're innocent and pure? That can be changed!";
+		    break;
+	    }
+	    break;
+
 	case MS_DOUGLAS_ADAMS:
             {
 	   	 static const char *da_msgs[] = {

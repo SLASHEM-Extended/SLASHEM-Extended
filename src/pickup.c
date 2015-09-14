@@ -1359,7 +1359,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 			instapetrify(kbuf);
 		    return -1;
 		}
-	    } else if (is_rider(&mons[obj->corpsenm])) {
+	    } else if (is_rider(&mons[obj->corpsenm]) || is_deadlysin(&mons[obj->corpsenm])) {
 		pline("At your %s, the corpse suddenly moves...",
 			telekinesis ? "attempted acquisition" : "touch");
 		(void) revive_corpse(obj, FALSE);

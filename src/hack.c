@@ -442,7 +442,7 @@ const char *msg;
     for(otmp = level.objects[x][y]; otmp; otmp = otmp2) {
 	otmp2 = otmp->nexthere;
 	if (otmp->otyp == CORPSE &&
-	    (is_rider(&mons[otmp->corpsenm]) ||
+	    (is_rider(&mons[otmp->corpsenm]) || is_deadlysin(&mons[otmp->corpsenm]) ||
 	     otmp->corpsenm == PM_WIZARD_OF_YENDOR)) {
 	    /* move any living monster already at that location */
 	    if((mtmp = m_at(x,y)) && enexto(&cc, x, y, mtmp->data))

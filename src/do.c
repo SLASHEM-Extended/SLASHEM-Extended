@@ -3013,6 +3013,8 @@ long timeout;
     if (!revive_corpse(body, FALSE)) {
 	if (is_rider(&mons[body->corpsenm]))
 	    You_feel("less hassled.");
+	if (is_deadlysin(&mons[body->corpsenm]))
+	    You_feel("less sinful.");
 	(void) start_timer(250L - (monstermoves-body->age),
 					TIMER_OBJECT, ROT_CORPSE, arg);
     }

@@ -1635,6 +1635,9 @@ register struct obj *obj;
 	if (obj->otyp == CORPSE && is_rider(&mons[obj->corpsenm])) {
 	    if (revive_corpse(obj, FALSE)) return;
 	}
+	if (obj->otyp == CORPSE && is_deadlysin(&mons[obj->corpsenm])) {
+	    if (revive_corpse(obj, FALSE)) return;
+	}
 
 	obj_extract_self(obj);
 	otx = obj->ox;
@@ -1786,6 +1789,9 @@ boolean give_feedback;
 	    unstuck(mtmp);
 	    rloc(mtmp, FALSE);
 	} else if (is_rider(mtmp->data) && rn2(13) &&
+		   enexto(&cc, u.ux, u.uy, mtmp->data))
+	    rloc_to(mtmp, cc.x, cc.y);
+	else if (is_deadlysin(mtmp->data) && rn2(13) &&
 		   enexto(&cc, u.ux, u.uy, mtmp->data))
 	    rloc_to(mtmp, cc.x, cc.y);
 	else {

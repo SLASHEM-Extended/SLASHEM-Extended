@@ -2476,6 +2476,17 @@ register const char *s;
 		     !SPACE_POS(levl[x][y].typ) || occupied(x, y));
 	    inv_pos.x = x;
 	    inv_pos.y = y;
+
+		/* spice this boring maze up - seven deadly sins :D --Amy */
+	    (void) makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
+	    (void) makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
+
+
 #undef INVPOS_X_MARGIN
 #undef INVPOS_Y_MARGIN
 #undef INVPOS_DISTANCE

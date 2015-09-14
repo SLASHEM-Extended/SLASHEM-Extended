@@ -1051,7 +1051,7 @@ mdamagem(magr, mdef, mattk)
           if (!rnd(25)) { /* since this is an instakill, greatly lower the chance of it connecting --Amy */
 		if (nohit) nohit = FALSE;                
 		/* eating a Rider or its corpse is fatal */
-		if (is_rider(mdef->data)) {
+		if (is_rider(mdef->data) || is_deadlysin(mdef->data) ) {
 		    if (vis)
 			pline("%s %s!", Monnam(magr),
 			      mdef->data == &mons[PM_FAMINE] ?

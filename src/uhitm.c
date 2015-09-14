@@ -3261,7 +3261,7 @@ register struct attack *mattk;
 		    case AD_DGST:
 		if (!rn2(50)) { /*muuuuuch lower chance because this attack is totally unbalanced anyway --Amy*/
 			/* eating a Rider or its corpse is fatal */
-			if (is_rider(mdef->data)) {
+			if (is_rider(mdef->data) || is_deadlysin(mdef->data)) {
 			 pline("Unfortunately, digesting any of it is fatal.");
 			    end_engulf();
 			    Sprintf(msgbuf, "unwisely tried to eat %s",
@@ -3943,7 +3943,7 @@ use_weapon:
 			   monsters if doing so would be fatal */
 			if ((uwep || u.twoweap && uswapwep) &&
 				is_vampire(youmonst.data) &&
-				(is_rider(mon->data) || slime_on_touch(mon->data) ))
+				(is_rider(mon->data) || is_deadlysin(mon->data) || slime_on_touch(mon->data) ))
 			    break;
 		case AT_STNG:
 		case AT_TUCH:

@@ -773,7 +773,7 @@ coord *cc;
 	if (mtmp2) {
 		/* save_mtraits() validated mtmp2->mnum */
 		mtmp2->data = &mons[mtmp2->mnum];
-		if (mtmp2->mhpmax <= 0 && !is_rider(mtmp2->data))
+		if (mtmp2->mhpmax <= 0 && !is_rider(mtmp2->data) && !is_deadlysin(mtmp2->data))
 			return (struct monst *)0;
 		mtmp = makemon(mtmp2->data,
 				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH);
@@ -781,6 +781,8 @@ coord *cc;
 
 		/* heal the monster */
 		if (mtmp->mhpmax > mtmp2->mhpmax && is_rider(mtmp2->data))
+			mtmp2->mhpmax = mtmp->mhpmax;
+		if (mtmp->mhpmax > mtmp2->mhpmax && is_deadlysin(mtmp2->data))
 			mtmp2->mhpmax = mtmp->mhpmax;
 		mtmp2->mhp = mtmp2->mhpmax;
 		/* Get these ones from mtmp */
@@ -1451,7 +1453,7 @@ int ochance, achance;	/* percent chance for ordinary objects, artifacts */
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
 	    obj->otyp == BELL_OF_OPENING ||
-	    (obj->otyp == CORPSE && is_rider(&mons[obj->corpsenm]))) {
+	    (obj->otyp == CORPSE && is_rider(&mons[obj->corpsenm])) || (obj->otyp == CORPSE && is_deadlysin(&mons[obj->corpsenm]))) {
 		return TRUE;
 	} else {
 		int chance = rn2(100);
@@ -5293,9 +5295,9 @@ register int dx,dy;
 			break; /* Out of while loop */
 		    }
 
-/*                    if (is_rider(mon->data) && abs(type) && type == ZT_BREATH(ZT_DEATH)) {*/
+/*                    if ( (is_rider(mon->data) || is_deadlysin(mon->data)) && abs(type) && type == ZT_BREATH(ZT_DEATH)) {*/
 /*WAC rider and disintegration check*/
-                    if (is_rider(mon->data) && abstype == ZT_DEATH && tmp == MAGIC_COOKIE) {
+                    if ( (is_rider(mon->data) || is_deadlysin(mon->data)) && abstype == ZT_DEATH && tmp == MAGIC_COOKIE) {
 			if (canseemon(mon)) {
 			    hit(fltxt, mon, ".");
 			    pline("%s disintegrates.", Monnam(mon));
