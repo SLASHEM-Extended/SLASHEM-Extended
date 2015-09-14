@@ -446,6 +446,8 @@ struct you {
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
 
+	int banishmentbeam;	/* an attempt to make wands of banishment used by monsters *not* segfault :P --Amy */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

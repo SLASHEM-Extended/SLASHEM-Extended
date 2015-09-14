@@ -1432,6 +1432,31 @@ moveloop()
 	    if (flags.time && flags.run) flags.botl = 1;
 	    display_nhwindow(WIN_MAP, FALSE);
 	}
+
+	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
+		/* this replaces the code in muse.c that always caused segfaults --Amy */
+
+		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
+		if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) {
+			pline("You shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
+		}
+
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
+		}
+
+		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+		else { (void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+		u.banishmentbeam = 0; /* player got warped, now clear the flag even if it crashes afterwards */
+
+		register int newlev = rnd(71);
+		d_level newlevel;
+		get_level(&newlevel, newlev);
+		goto_level(&newlevel, TRUE, FALSE, FALSE);
+	}
+
     }
 }
 

@@ -2163,7 +2163,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_STRIKING;
 		}
 		nomore(MUSE_WAN_BANISHMENT);
-		if(obj->otyp == WAN_BANISHMENT && obj->spe > 0) {
+		if(obj->otyp == WAN_BANISHMENT && obj->spe > 0 && !u.banishmentbeam) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_BANISHMENT;
 		}
@@ -2486,27 +2486,10 @@ register struct obj *otmp;
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 		pline("Somehow, the banishment beam doesn't do anything."); break;}
 
-		if (u.usteed) {dismount_steed(DISMOUNT_GENERIC); } /* seems to crash if the player stays on the horse?! */
-		/* but it also crashes sometimes if the player is not mounted; recover seems to be able to rescue your game */
-		/* so this seems to be a necessary evil */
-
 		if (mtmp == &youmonst) {
-
-			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-			else { (void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-			/*(void) safe_teleds(FALSE);
-
-			goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
-			register int newlev = rnd(71);
-			d_level newlevel;
-			get_level(&newlevel, newlev);
-			goto_level(&newlevel, TRUE, FALSE, FALSE);
-			return 0;
-
-		} /*else !u_teleport_monB(mtmp, TRUE);*/ /*doesn't seem to work as intended... --Amy*/
+			u.banishmentbeam = 1;
+			nomul(-2, "being banished"); /* because it's not called until you get another turn... */
+		}
 
 		break;
 	case WAN_CANCELLATION:
