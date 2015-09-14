@@ -448,6 +448,8 @@ struct you {
 
 	int banishmentbeam;	/* an attempt to make wands of banishment used by monsters *not* segfault :P --Amy */
 
+	int inertia;	/* for inertia attack - if non-zero, the player moves at half speed */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

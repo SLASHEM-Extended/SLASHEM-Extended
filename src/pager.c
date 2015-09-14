@@ -1516,6 +1516,13 @@ get_description_of_damage_type(uchar id)
 		case AD_LAZY: return "unique Sloth attack";
 		case AD_DRCH: return "drains charisma";
 		case AD_DFOO: return "unique Pride attack";
+		case AD_NEXU: return "nexus";
+		case AD_TIME: return "time";
+		case AD_PLAS: return "plasma";
+		case AD_MANA: return "mana";
+		case AD_SOUN: return "sound";
+		case AD_GRAV: return "gravity";
+		case AD_INER: return "inertia";
 
 		case AD_ENDS: return "placeholder attack";
 		default:

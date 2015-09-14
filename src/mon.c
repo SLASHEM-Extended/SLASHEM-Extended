@@ -3607,6 +3607,13 @@ register struct monst *mtmp;
 		badeffect();
     }
 
+    if(mtmp->data->msound == MS_SOUND) {
+		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
+		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
+		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		wake_nearby();
+    }
+
     if(mtmp->data == &mons[PM_MEDUSA]) {
 	register int i;
 	for(i = 0; i < NATTK; i++)

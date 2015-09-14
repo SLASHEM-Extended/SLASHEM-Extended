@@ -4313,7 +4313,8 @@ uchar aatyp;
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele();
-			return(3);
+			nomul(-2, "being levelwarped");
+			return(0);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 		    losexp("loss of potential", FALSE);
@@ -4327,6 +4328,162 @@ uchar aatyp;
 			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 			mdamageu(mon, tmp);
 		}
+		break;
+
+	    case AD_NEXU:
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		mdamageu(mon, tmp);
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("You are beamed far away!");
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("You are beamed away!");
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+					level_tele();
+					nomul(-2, "being levelwarped");
+					return(0);
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
+					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+				}
+				break;
+		}
+		break;
+
+	    case AD_SOUN:
+		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
+		if (Deafness) tmp /= 2;
+		make_stunned(HStun + tmp, TRUE);
+		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		wake_nearby();
+		break;
+
+	    case AD_GRAV:
+		pline("As you try to hit %s, you're hurled through the air and slam onto the floor with a crash.", mon_nam(mon) );
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		phase_door(0);
+		pushplayer();
+		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
+		make_stunned(HStun + tmp, TRUE);
+		mdamageu(mon, tmp);
+		break;
+
+	    case AD_INER:
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+		pline(u.inertia ? "That was a bad idea - your body struggles at your attempts to get it to move again..." : "That was a bad idea - your body lost the will to listen to your instructions...");
+		u.inertia += (tmp + 2);
+		break;
+
+	    case AD_TIME:
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		break;
+
+	    case AD_PLAS:
+
+			pline("You are suddenly extremely hot!");
+			if (!Fire_resistance) tmp *= 2;
+
+		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+			make_stunned(HStun + tmp, TRUE);
+		mdamageu(mon, tmp);
+
+		break;
+
+	    case AD_MANA:
+		pline("You're irradiated by pure unresistable mana energy!");
+		drain_en(tmp);
+		mdamageu(mon, tmp);
 		break;
 
 	  case AD_NGRA:
@@ -4461,7 +4618,8 @@ uchar aatyp;
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);
-			return(3);
+			nomul(-2, "being banished");
+			return(0);
 		}
 		break;
 

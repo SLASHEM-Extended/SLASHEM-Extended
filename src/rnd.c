@@ -177,7 +177,7 @@ int
 randattack()
 {
 
-	switch (rnd(221)) {
+	switch (rnd(225)) {
 
 		case 1:
 		case 2:
@@ -249,6 +249,7 @@ randattack()
 		case 57:
 			return AD_STUN;
 		case 58:
+			return (rnd(5) ? AD_SLOW : AD_INER);
 		case 59:
 		case 60:
 			return AD_SLOW;
@@ -256,6 +257,7 @@ randattack()
 		case 62:
 			return AD_PLYS;
 		case 63:
+			return (rnd(7) ? AD_DRLI : AD_TIME);
 		case 64:
 			return AD_DRLI;
 		case 65:
@@ -460,7 +462,7 @@ randattack()
 		case 208:
 			return AD_CHRN;
 		case 209:
-			return AD_WEEP;
+			return (rn2(3) ? AD_WEEP : AD_NEXU);
 		case 210:
 			return AD_VAMP;
 		case 211:
@@ -481,6 +483,14 @@ randattack()
 			return AD_DRCH;
 		case 221:
 			return AD_DFOO;
+		case 222:
+			return AD_GRAV;
+		case 223:
+			return AD_SOUN;
+		case 224:
+			return AD_MANA;
+		case 225:
+			return AD_PLAS;
 		default:
 			return AD_PHYS;
 

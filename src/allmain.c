@@ -518,13 +518,17 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
+			if (u.inertia && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* inert characters move at half speed --Amy */
+			}
 			if (Race_if(PM_TURTLE) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
 			if (Race_if(PM_LOWER_ENT) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
-				moveamt /= 2; /* turtles are very slow too --Amy */
+				moveamt /= 2; /* ents are very slow too --Amy */
 			}
 
 			if (u.hanguppenalty && moveamt > 1) {

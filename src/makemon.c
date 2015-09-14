@@ -10522,6 +10522,7 @@ int type;
 		case PM_ANIMATED_COMBAT_STILETTO: return 300;
 		case PM_ETERNIUM_GOLEM: return 350;
 		case PM_EBONY_GOLEM: return 400;
+		case PM_TIME_GOLEM: return 400;
 		case PM_FINNISH_EXPLORER: return 400;
 		case PM_ARCTIC_WONDERER: return 400;
 		case PM_FRANKENSTEIN_S_MONSTER: return 400;

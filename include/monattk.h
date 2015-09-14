@@ -133,7 +133,16 @@
 #define AD_DRCH		82	/* charisma damage, supposed to be specific to Pride */
 #define AD_DFOO		83	/* (Pride) drains a random stat, or energy, or hit points, or life level */
 
-#define AD_ENDS		84	/* placeholder */
+/* the following ones are from Angband: */
+#define AD_NEXU		84	/* nexus - damage and various types of teleportation */
+#define AD_SOUN		85	/* sound - stun, shatters potions */
+#define AD_GRAV		86	/* gravity - displace player, disables speed for a while, stun */
+#define AD_INER		87	/* inertia - disables intrinsic speed, temporarily disables extrinsic speed, extra slowness */
+#define AD_TIME		88	/* time - drain life or stats, ignores resistances */
+#define AD_MANA		89	/* mana - like AD_DREN but also deals hitpoint damage */
+#define AD_PLAS		90	/* plasma - stun, destroys flammable items, more damage if not fire resistant */
+
+#define AD_ENDS		91	/* placeholder */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

@@ -517,6 +517,8 @@ register struct monst *mtmp;
 	    m_respond(mtmp);
 	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
+	if (mdat->msound == MS_SOUND && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);
 	if (mtmp->mhp <= 0) return(1); /* m_respond gaze can kill medusa */

@@ -2288,6 +2288,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (Infravision) you_have("infravision");
 
+	if (u.banishmentbeam) you_are("going to be banished");
+
+	if (u.inertia) {
+		Sprintf(buf, "slowed by inertia");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.inertia);
+		you_are(buf);
+	}
+
 	if (Detect_monsters) {
 		Sprintf(buf, "sensing the presence of monsters");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HDetect_monsters);

@@ -1612,6 +1612,7 @@ E int NDECL(dohelp);
 E int NDECL(dohistory);
 
 E const char *NDECL(fauxmessage);
+E const char *NDECL(bosstaunt);
 
 /* ### pcmain.c ### */
 

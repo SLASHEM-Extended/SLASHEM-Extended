@@ -3525,6 +3525,174 @@ dopois:
 		pline(fauxmessage());
 		break;
 
+	    case AD_NEXU:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("%s sends you far away!", Monnam(mtmp) );
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("%s sends you away!", Monnam(mtmp) );
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+					level_tele();
+					return(3);
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
+					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+				}
+				break;
+		}
+		break;
+
+	    case AD_SOUN:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("Your ears are blasted by hellish noise!");
+		if (Deafness) dmg /= 2;
+		make_stunned(HStun + dmg, TRUE);
+		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		wake_nearby();
+		break;
+
+	    case AD_GRAV:
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
+
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("Gravity warps around you...");
+		phase_door(0);
+		pushplayer();
+		u.uprops[DEAC_FAST].intrinsic += (dmg + 2);
+		make_stunned(HStun + dmg, TRUE);
+		break;
+
+	    case AD_INER:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += ((dmg + 2) * 10);
+		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+		u.inertia += (dmg + 2);
+		break;
+
+	    case AD_TIME:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		break;
+
+	    case AD_PLAS:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+
+			pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
+			if (!Fire_resistance) dmg *= 2;
+
+		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+			make_stunned(HStun + dmg, TRUE);
+
+		break;
+
+	    case AD_MANA:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		drain_en(dmg);
+		break;
+
 	    case AD_HALU:
 		hitmsg(mtmp, mattk);
 		not_affected |= Blind ||
@@ -4866,6 +5034,168 @@ do_stone:
 		if (rn2(3)) hurtarmor(AD_LAVA);
 		break;
 
+	    case AD_NEXU:
+		if (mtmp->mcan) break;
+		pline("You feel an energy irradiation!");
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("%s sends you far away!", Monnam(mtmp) );
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("%s sends you away!", Monnam(mtmp) );
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+					level_tele();
+					return(3);
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
+					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+				}
+				break;
+		}
+		break;
+
+	    case AD_SOUN:
+		if (mtmp->mcan) break;
+		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
+		if (Deafness) tmp /= 2;
+		make_stunned(HStun + tmp, TRUE);
+		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		wake_nearby();
+		break;
+
+	    case AD_GRAV:
+		if (mtmp->mcan) break;
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+
+		pline("You're turned upside down...");
+		phase_door(0);
+		pushplayer();
+		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
+		make_stunned(HStun + tmp, TRUE);
+		break;
+
+	    case AD_INER:
+		if (mtmp->mcan) break;
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+		pline(u.inertia ? "You feel almost unable to move..." : "You feel very lethargic...");
+		u.inertia += (tmp + 2);
+		break;
+
+	    case AD_TIME:
+		if (mtmp->mcan) break;
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		break;
+
+	    case AD_PLAS:
+		if (mtmp->mcan) break;
+
+			pline("It's extremely hot in here!");
+			if (!Fire_resistance) tmp *= 2;
+
+		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+			make_stunned(HStun + tmp, TRUE);
+
+		break;
+
+	    case AD_MANA:
+		if (mtmp->mcan) break;
+		drain_en(tmp);
+		break;
+
 	    case AD_WTHR:
 		pline("You are covered with some aggressive substance!");
 		if (rn2(3)) witherarmor();
@@ -5538,6 +5868,72 @@ common:
 		}
 		break;
 
+	    case AD_TIME: /* timebomb */
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		break;
+
 	    case AD_DISN: /* for jonadab's disintegrating sphere */
 
 		if (Disint_resistance && rn2(100)) {
@@ -5803,6 +6199,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 		pline("%s gives you a mean look!", Monnam(mtmp));
+		    stop_occupation();
 
 			if(!rn2(10) || (night() && !rn2(3)) )  {
 			    if (u.umonnum == PM_CLAY_GOLEM) {
@@ -5824,6 +6221,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 		pline("%s's eye color suddenly changes!", Monnam(mtmp));
+		    stop_occupation();
 		    if(Antimagic && !rn2(3)) {
 			shieldeff(u.ux, u.uy);
 			pline("A hail of magic missiles narrowly misses you!");
@@ -5839,6 +6237,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 		if (!rn2(20))  {
 		pline("%s's gaze seems to drill right into you!", Monnam(mtmp));
+		    stop_occupation();
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;
@@ -5876,6 +6275,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if(!rn2(3)) {
 		pline("%s sends a terrifying gaze at you!", Monnam(mtmp));
+		    stop_occupation();
 		    if (Acid_resistance && rn2(20)) {
 			pline("You're covered in acid, but it seems harmless.");
 		    } else {
@@ -5895,6 +6295,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
+		    stop_occupation();
 			    losexp("life drainage", FALSE);
 				if (!rn2(4)) mdamageu(mtmp, dmgplus);
 			}
@@ -5906,6 +6307,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
+		    stop_occupation();
 			    losexp("life drainage", FALSE);
 				if (!rn2(2)) mdamageu(mtmp, dmgplus);
 			}
@@ -5916,6 +6318,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(3))
  		{
 			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
+		    stop_occupation();
 		{
 			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
 			if (ttmp2) {
@@ -5940,6 +6343,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
  		{
 		pline("%s gazes at you and curses.", Monnam(mtmp));
+		    stop_occupation();
 		if (invent) {
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
@@ -5957,6 +6361,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 			pline("%s seems to drain your energy with its gaze!", Monnam(mtmp));
+		    stop_occupation();
 			if (!rn2(4)) {drain_en(10); if (!rn2(5)) drain_en(dmgplus);
 			}
 		}
@@ -5968,6 +6373,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {
 		/* This attack can remove any Elbereth engraving, even burned ones. --Amy */
 			pline("%s seems to suck in the words engraved on the surface below you!", Monnam(mtmp));
+		    stop_occupation();
 		    del_engr(ep);
 		    ep = (struct engr *)0;
 			}
@@ -5981,6 +6387,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		/* hurt the player's hands --Amy */
 		pline("%s telepathically twists your hands!", Monnam(mtmp));
+		    stop_occupation();
 		incr_itimeout(&Glib, dmgplus );
 
 		}
@@ -5992,6 +6399,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
+		    stop_occupation();
 		litroomlite(FALSE);
 		}
 		break;
@@ -6002,6 +6410,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			{ register long sideX = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 	
 			pline("%s's gaze makes your legs turn to jelly!", Monnam(mtmp));
+		    stop_occupation();
 			set_wounded_legs(sideX, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			exercise(A_STR, FALSE);
 			exercise(A_DEX, FALSE);
@@ -6014,6 +6423,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 
 		pline("%s hurls some disgusting green goo at you!", Monnam(mtmp));
+		    stop_occupation();
 
 		if (flaming(youmonst.data)) {
 		    pline_The("slime burns away!");
@@ -6033,6 +6443,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 		pline("%s gazes at you softly.", Monnam(mtmp));
+		    stop_occupation();
 		    docalm();
 		}
 		break;
@@ -6040,6 +6451,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
  		{
 		pline("%s gazes at your belongings!", Monnam(mtmp));
+		    stop_occupation();
 		/* uncancelled is sufficient enough; please
 		   don't make this attack less frequent */
 		    struct obj *obj = some_armor(&youmonst);
@@ -6054,6 +6466,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
  		{
 		pline("%s shoots shards at your belongings!", Monnam(mtmp));
+		    stop_occupation();
 		struct obj *obj = some_armor(&youmonst);
 
 		if (drain_item(obj)) {
@@ -6068,6 +6481,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			pline("%s throws a changing gaze at you!", Monnam(mtmp));
+		    stop_occupation();
 		    polyself(FALSE);
 			}
 		}
@@ -6099,8 +6513,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 	    case AD_FAMN:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
-		pline("%s gazes at you with its hungry eyes!",
-			Monnam(mtmp));
+		pline("%s gazes at you with its hungry eyes!", Monnam(mtmp));
+		    stop_occupation();
 		exercise(A_CON, FALSE);
 		if (!is_fainted()) {
 			morehungry(rnz(40));
@@ -6116,8 +6530,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_DEPR:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) 		{
-		pline("%s gazes at you with depressing sorrow in its eyes!",
-			Monnam(mtmp));
+		pline("%s gazes at you with depressing sorrow in its eyes!", Monnam(mtmp));
+		    stop_occupation();
 
 		if (!rn2(3)) {
 
@@ -6235,6 +6649,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_WRAT:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
 		pline("%s gazes at you with its angry eyes!", Monnam(mtmp));
+		    stop_occupation();
 
 		if(u.uen < 1) {
 		    You_feel("less energised!");
@@ -6255,6 +6670,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
 		pline("%s gazes at you with its apathetic eyes!", Monnam(mtmp));
+		    stop_occupation();
 
 		if(!rn2(2)) {
 		    pline("Nothing seems to happen.");
@@ -6323,7 +6739,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_DFOO:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
-		pline("%s gazes at you with its angry eyes!", Monnam(mtmp));
+		pline("%s gazes at you with its glistening eyes!", Monnam(mtmp));
+		    stop_occupation();
 		if (!rn2(8)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
@@ -6351,6 +6768,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
 			pline("%s uses a telepathic gaze!", Monnam(mtmp));
+		    stop_occupation();
 			if (!rn2(3)) {
 				pline("You feel a tug on your purse"); break;
 			}
@@ -6386,8 +6804,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) )
 
 		) 		{
-		pline("%s gazes at you with its demanding eyes!",
-			Monnam(mtmp));
+		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
+		    stop_occupation();
 		buf[0] = '\0';
 			switch (steal(mtmp, buf)) {
 		  case -1:
@@ -6405,6 +6823,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_RUST:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		pline("%s squirts water at you!", Monnam(mtmp));
+		    stop_occupation();
 
 		if (u.umonnum == PM_IRON_GOLEM) {
 			You("rust!");
@@ -6423,6 +6842,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_LETH:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
 		pline("%s squirts sparkling water at you!", Monnam(mtmp));
+		    stop_occupation();
 		if (!rn2(3)) {
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
@@ -6435,6 +6855,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_WET:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
 		pline("%s squirts cold water at you!", Monnam(mtmp));
+		    stop_occupation();
 		if (!rn2(3)) {
 			pline("You're very wet!");
 			water_damage(invent, FALSE, FALSE);
@@ -6446,6 +6867,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SUCK:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20)) 		{
 		pline("%s uses a vacuum cleaner on you! Or is that a gluon gun?", Monnam(mtmp));
+		    stop_occupation();
 
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmgplus = 0;
 			else{
@@ -6530,6 +6952,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CNCL:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
 		pline("%s throws a blinky gaze at you!", Monnam(mtmp));
+		    stop_occupation();
 		if (!rn2(3)) {
 			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
 		}
@@ -6574,6 +6997,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_DCAY:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		pline("%s flings organic matter at you!", Monnam(mtmp));
+		    stop_occupation();
 
 		if (u.umonnum == PM_WOOD_GOLEM ||
 		    u.umonnum == PM_LEATHER_GOLEM) {
@@ -6592,18 +7016,21 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CORR:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		pline("%s throws corrosive stuff at you!", Monnam(mtmp));
+		    stop_occupation();
 		hurtarmor(AD_CORR);
 		}
 		break;
 	    case AD_WTHR:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
 		pline("%s telepathically messes with your clothes!", Monnam(mtmp));
+		    stop_occupation();
 		witherarmor();
 		}
 		break;
 	    case AD_LUCK:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20)) 		{
 		pline("%s's terrifying gaze makes you feel like you'll never be able to experience luck again!", Monnam(mtmp));
+		    stop_occupation();
 		change_luck(-1);
 		}
 		break;
@@ -6720,6 +7147,206 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
+		}
+		break;
+
+	    case AD_NEXU:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(25)) {
+		    pline("%s attacks you with a nether gaze!", Monnam(mtmp));
+		    stop_occupation();
+		int dmg = dmgplus;
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("%s sends you far away!", Monnam(mtmp) );
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("%s sends you away!", Monnam(mtmp) );
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+					level_tele();
+					return(3);
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
+					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+				}
+				break;
+		}
+	      if (dmg) mdamageu(mtmp, dmg);
+		}
+		break;
+
+	    case AD_SOUN:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(10)) {
+		    pline("%s sends a deafening wave of sound in your direction!", Monnam(mtmp));
+		    stop_occupation();
+		if (Deafness) dmgplus /= 2;
+		make_stunned(HStun + dmgplus, TRUE);
+		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		wake_nearby();
+		}
+		break;
+
+	    case AD_GRAV:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(25)) {
+		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
+		    stop_occupation();
+
+		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
+
+		phase_door(0);
+		pushplayer();
+		u.uprops[DEAC_FAST].intrinsic += (dmgplus + 2);
+		make_stunned(HStun + dmgplus, TRUE);
+	      if (dmgplus) mdamageu(mtmp, dmgplus);
+		}
+		break;
+
+	    case AD_INER:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(35)) {
+		    pline("%s gazes at you, and your body doesn't feel like moving around anymore...", Monnam(mtmp));
+		    stop_occupation();
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += ((dmgplus + 2) * 10);
+		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+		u.inertia += (dmgplus + 2);
+		}
+		break;
+
+	    case AD_TIME:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(50)) {
+		    pline("%s gazes at you, and sucks the essence of life out of you...", Monnam(mtmp));
+		    stop_occupation();
+
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		}
+		break;
+
+	    case AD_PLAS:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(15)) {
+
+			    pline("%s attacks you with a plasma gaze!", Monnam(mtmp));
+		    int dmg = dmgplus;
+		    stop_occupation();
+			if (!Fire_resistance) dmg *= 2;
+
+		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(5))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+			make_stunned(HStun + dmg, TRUE);
+	      if (dmg) mdamageu(mtmp, dmg);
+
+		}
+		break;
+
+	    case AD_MANA:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && !rn2(20)) {
+		    pline("%s attacks you with a mana gaze, the damage of which is completely unresistable!", Monnam(mtmp));
+		    stop_occupation();
+		drain_en(dmgplus);
+	      if (dmgplus) mdamageu(mtmp, dmgplus);
 		}
 		break;
 
@@ -6867,6 +7494,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
 		pline("%s used HORN DRILL!", Monnam(mtmp));
+		    stop_occupation();
 
 		int wdmg = (int)(dmgplus/6) + 1;
 		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
@@ -6913,6 +7541,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
         (!ublindf || ublindf->otyp != TOWEL)  &&
         !mtmp->mspec_used){
        pline("%s screeches at you!", Monnam(mtmp));
+		    stop_occupation();
        if (u.usleep){
          multi = -1;
          nomovemsg = "You wake.";
@@ -6946,6 +7575,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		   !defends(AD_SLOW, uwep) && !rn2(4)) {
 
 		    pline("%s uses a slowing gaze!",Monnam(mtmp));
+		    stop_occupation();
 
 		    u_slow_down();
 		    stop_occupation();
@@ -6964,6 +7594,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			break;
 		    }
 		    if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
+		    stop_occupation();
 		    if(Reflecting && m_canseeu(mtmp) && !mtmp->mcan) {
 			if(!Blind) {
 		    	    (void) ureflects("%s gaze is reflected by your %s.",
@@ -7042,6 +7673,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                        break;
 	                }
 	                if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
+		    stop_occupation();
 	                pline("You are wracked with pains!");
 	                mdamageu(mtmp, d(3,8) + dmgplus);
 	        }
@@ -7050,6 +7682,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_THIR:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
                 pline("%s sucks off your life force!", Monnam(mtmp));
+		    stop_occupation();
 			mtmp->mhp += (1 + dmgplus) ;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
                   mdamageu(mtmp, d(3,8) + dmgplus);
@@ -7060,6 +7693,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CHKH:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
                   pline("%s gazes at you and screams the word 'DIE!'", Monnam(mtmp));
+		    stop_occupation();
 			dmgplus += u.chokhmahdamage;
 			u.chokhmahdamage++;
                   mdamageu(mtmp, d(3,8) + dmgplus);
@@ -7069,6 +7703,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_HODS:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
                   pline("%s summons a mirror image of you, which promptly attacks you!", Monnam(mtmp));
+		    stop_occupation();
 		 if(uwep){
 			if (uwep->otyp == CORPSE
 				&& touch_petrifies(&mons[uwep->corpsenm])) {
@@ -7143,6 +7778,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25)) {
                 pline("%s gives you an excruciating look!", Monnam(mtmp));
+		    stop_occupation();
 			u.negativeprotection++;
 		}
 		break;
@@ -7152,6 +7788,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
           case AD_PEST:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) {
 	                pline("%s leers down on you!", Monnam(mtmp));
+		    stop_occupation();
 			(void) digeasemu(mtmp); /* plus the normal damage */
 	        }
 	        break;
@@ -7159,6 +7796,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CHRN:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) {
 	                pline("%s gazes at you and curses horribly.", Monnam(mtmp));
+		    stop_occupation();
 
 		    switch (rn2(10)) {
 		    case 0: diseasemu(mtmp->data);
@@ -7194,6 +7832,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    boolean chg;
 		    if (!Hallucination)
 			You("suddenly see a mess of colors!");
+		    stop_occupation();
 		    chg = make_hallucinated(HHallucination + dmgplus,FALSE,0L);
 		    You("%s.", chg ? "are getting very trippy" : "seem to get even more trippy");
 		}
@@ -7213,6 +7852,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_TLPT:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(15)) {
 	                pline("%s stares blinkingly at you!", Monnam(mtmp));
+		    stop_occupation();
 	                if(flags.verbose)
 	                        Your("position suddenly seems very uncertain!");
 	                teleX();
@@ -7222,6 +7862,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_ABDC:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used) {
 	                pline("%s stares blinkingly at you!", Monnam(mtmp));
+		    stop_occupation();
 	                if(flags.verbose)
 	                        Your("position suddenly seems very uncertain!");
 	                teleX();
@@ -7231,6 +7872,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_DISP:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
 	                pline("%s telepathically tries to move you around!", Monnam(mtmp));
+		    stop_occupation();
 		pushplayer();
 		}
 		break;

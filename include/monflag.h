@@ -60,6 +60,7 @@
 #define MS_FART_LOUD	49	
 #define MS_VICE	50	/* seven deadly sins patch */
 #define MS_BOSS	51	/* boss monster with taunts */
+#define MS_SOUND 52	/* soundwave "attack" */
 
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
