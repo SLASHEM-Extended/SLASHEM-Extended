@@ -161,9 +161,9 @@ boolean quietly;
 	initedog(mtmp);
 	mtmp->msleeping = 0;
 	if (otmp) { /* figurine; resulting monster might not become a pet */
-	    chance = rn2(10);	/* 0==tame, 1==peaceful, 2==hostile */
+	    chance = rn2(5);	/* 0==tame, 1==peaceful, 2==hostile */
 	    if (chance > 2) chance = otmp->blessed ? 0 : !otmp->cursed ? 1 : 2;
-	    /* 0,1,2:  b=80%,10,10; nc=10%,80,10; c=10%,10,80 */
+	    /* 0,1,2:  b=60%,20,20; nc=20%,60,20; c=20%,20,60 */
 	    if (chance > 0) {
 		mtmp->mtame = 0;	/* not tame after all */
 		if (chance == 2) { /* hostile (cursed figurine) */
@@ -202,7 +202,7 @@ make_helper(mnum,x,y)
 		pm = &mons[mnum];
 
 		pm->pxlth += sizeof (struct edog);
-		mtmp = makemon(pm, x, y, NO_MINVENT);
+		mtmp = makemon(pm, x, y, NO_MINVENT|MM_NOSPECIALS);
 		pm->pxlth -= sizeof (struct edog);
 	} while (!mtmp && --trycnt > 0);
 

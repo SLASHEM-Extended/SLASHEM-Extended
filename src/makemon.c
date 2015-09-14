@@ -7888,6 +7888,7 @@ register int	mmflags;
 	boolean anymon = (!ptr);
 	boolean byyou = (x == u.ux && y == u.uy);
 	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_TRAP_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER]);
+	boolean allow_special = ((mmflags & MM_NOSPECIALS) == 0);
 	boolean countbirth = ((mmflags & MM_NOCOUNTBIRTH) == 0);
 	unsigned gpflags = (mmflags & MM_IGNOREWATER) ? MM_IGNOREWATER : 0;
 	int randsp;
@@ -8097,26 +8098,26 @@ register int	mmflags;
 	mtmp->mtraitor  = FALSE;
 
 	/* Everything that can hide under an object will now do so. --Amy */
-      if(x && y && !issoviet && (hides_under(ptr) || !rn2(100) ) ) /* low chance of getting an object even if nonhiding, too */
+      if(x && y && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) /* low chance of getting an object even if nonhiding, too */
 	  (void) mkobj_at(0, x, y, TRUE);
 
 		/* and even lower chance to get extra objects */
-	if (!rn2(200)) {
+	if (!rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (!rn2(400)) {
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	}
-	if (!rn2(800)) {
-	  (void) mkobj_at(0, x, y, TRUE);
+	if (!rn2(400) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  (void) mkobj_at(0, x, y, TRUE);
 	  (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (!rn2(1600)) {
+	if (!rn2(800) && allow_special) {
+	  (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE);
+	}
+	if (!rn2(1600) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  (void) mkobj_at(0, x, y, TRUE);
 	  (void) mkobj_at(0, x, y, TRUE);
@@ -8149,7 +8150,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( (Race_if(PM_DROW) ? 100 : 500) ) && x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y))  ) {
+	if (!rn2( (Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();
@@ -9386,19 +9387,19 @@ register int	mmflags;
 	}
 	set_malign(mtmp);		/* having finished peaceful changes */
 	if(anymon || (ptr->geno & G_UNIQ) || !rn2((ptr->geno & G_VLGROUP) ? 500 : (ptr->geno & G_LGROUP) ? 200 : (ptr->geno & G_SGROUP) ? 50 : 5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
-	    if ((ptr->geno & G_SGROUP) && rn2(2)) {
+	    if ((ptr->geno & G_SGROUP) && allow_special && rn2(2)) {
 		if (!rn2(5000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(800))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(160))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(30))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    } else if (ptr->geno & G_LGROUP && rn2(3) ) {
+	    } else if (ptr->geno & G_LGROUP && allow_special && rn2(3) ) {
 		if (!rn2(1000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(200))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(40))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))	    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    } else if(ptr->geno & G_VLGROUP && rn2(5) ) {
+	    } else if(ptr->geno & G_VLGROUP && allow_special && rn2(5) ) {
 		if (!rn2(200))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(20))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -9406,7 +9407,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(500) && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+	    else if (!rn2(500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -9447,7 +9448,7 @@ register int	mmflags;
 	    if (mtmp->minvent) discard_minvent(mtmp);
 	    mtmp->minvent = (struct obj *)0;    /* caller expects this */
 	    mtmp->minvent = (struct obj *)0;    /* caller expects this */
-		m_initxtraitem(mtmp);
+		if (allow_special) m_initxtraitem(mtmp);
 	}
 	if ((ptr->mflags3 & M3_WAITMASK) && !(mmflags & MM_NOWAIT)) {
 		if (ptr->mflags3 & M3_WAITFORU)
@@ -9487,7 +9488,7 @@ register int	mmflags;
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
 
-	if (!rn2(5000)) { /* very rarely create some monsters with the same letter --Amy */
+	if (!rn2(5000) && allow_special) { /* very rarely create some monsters with the same letter --Amy */
 		randsp = (rn2(24) + 2);
 		if (!rn2(3)) randsp *= 2;
 		if (!rn2(7)) randsp *= 3;
