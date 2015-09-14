@@ -5190,13 +5190,6 @@ uchar aatyp;
 		    break;
 #endif
 		}
-	      else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
-		You("seem unaffected.");
-		break;
-	    } else if (Antimagic && rn2(20)) {
-		You("aren't affected.");
-		break;
-	    }
 	    done(DIED);
 	    return (malive | mhit); /* lifesaved */
 

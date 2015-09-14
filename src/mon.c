@@ -90,6 +90,7 @@ int mndx;
 	case PM_DRAUGR_DEATHLORD:
 	case PM_WALKING_CORPSE:
 	case PM_HUNGRY_DEAD_POTATO:
+	case PM_HUNGRY_DEAD:
 	case PM_ROTTING_CARCASS:
 	case PM_DROWNED_DEAD_ONE:
 	case PM_FLESHEATER:
@@ -113,6 +114,8 @@ int mndx;
 	case PM_STEEL_ZOMBIE:
 	case PM_DRAUGR_MUMMY:
 	case PM_GREATER_MUMMY:
+	case PM_HALF_DRAGON_MUMMY:
+	case PM_HALF_DRAGON_ZOMBIE:
 	case PM_MUMMY:
 	case PM_TOMB_MUMMY:
 	case PM_CADAVER:
@@ -139,6 +142,7 @@ int mndx;
 	case PM_TROLL_MUMMY:    mndx = PM_TROLL;  break;
 	case PM_MIMIC_MUMMY:    mndx = PM_GIANT_MIMIC;  break;
 	case PM_TASMANIAN_ZOMBIE:    mndx = PM_TASMANIAN_DEVIL;  break;
+	case PM_ZOMBIE_PROSTITUTE:    mndx = PM_PROSTITUTE;  break;
 	default:  break;
 	}
 	return mndx;
@@ -278,12 +282,22 @@ register struct monst *mtmp;
 		if (rn2(2)) goto default_1;
 		/* fall through */
 	    case PM_WHITE_UNICORN:
+	    case PM_SMOKY_QUARTZ_UNICORN:
+	    case PM_JET_UNICORN:
+	    case PM_PEARL_UNICORN:
 	    case PM_PURE_WHITE_UNICORN:
+	    case PM_WHITE_UNICORN_FOAL:
+	    case PM_GRAY_UNICORN_FOAL:
+	    case PM_BLACK_UNICORN_FOAL:
 	    case PM_GRAY_UNICORN:
 	    case PM_HANDSOME_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
 	    case PM_PORTER_BLACK_UNICORN:
 	    case PM_PURPLE_UNICORN:
+	    case PM_PINK_UNICORN:
+	    case PM_UNICORN_SKELETON:
+	    case PM_NIGHTMARE_UNICORN:
+	    case PM_UNICORN_OF_AMBER:
 	    case PM_RAINBOW_UNICORN:
 	    case PM_BIG_PURPLE_UNICORN:
 	    case PM_BIG_WHITE_UNICORN:
@@ -357,6 +371,7 @@ register struct monst *mtmp;
 	    case PM_TASMANIAN_ZOMBIE:
 	    case PM_WALKING_CORPSE:
 	case PM_HUNGRY_DEAD_POTATO:
+	case PM_HUNGRY_DEAD:
 	case PM_ROTTING_CARCASS:
 	case PM_DROWNED_DEAD_ONE:
 	case PM_FLESHEATER:
@@ -383,7 +398,10 @@ register struct monst *mtmp;
 	    case PM_DRAUGR_MUMMY:
 	    case PM_GREATER_MUMMY:
 	    case PM_DROW_ZOMBIE:
+	    case PM_ZOMBIE_PROSTITUTE:
 	    case PM_DROW_MUMMY:
+	    case PM_HALF_DRAGON_MUMMY:
+	    case PM_HALF_DRAGON_ZOMBIE:
 		num = undead_to_corpse(mndx);
 		obj = mkcorpstat(CORPSE, mtmp, &mons[num], x, y, TRUE);
 		obj->age -= 100;		/* this is an *OLD* corpse */
@@ -1504,6 +1522,7 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_LIZARD &&
 			otmp->corpsenm != PM_CAVE_LIZARD &&
 			otmp->corpsenm != PM_CHAOS_LIZARD &&
+			otmp->corpsenm != PM_GRASS_LIZARD &&
 			otmp->corpsenm != PM_LIZARD_EEL &&
 			otmp->corpsenm != PM_LIZARD_MAN &&
 			otmp->corpsenm != PM_LIZARD_KING &&
@@ -1511,6 +1530,7 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_ANTI_STONE_LIZARD &&
 			otmp->corpsenm != PM_HUGE_LIZARD &&
 			otmp->corpsenm != PM_ROCK_LIZARD &&
+			otmp->corpsenm != PM_BABY_CAVE_LIZARD &&
 			otmp->corpsenm != PM_NIGHT_LIZARD &&
 			otmp->corpsenm != PM_SAND_TIDE &&
 			otmp->corpsenm != PM_FBI_AGENT &&
@@ -1668,8 +1688,8 @@ mfndpos(mon, poss, info, flag)
 	y = mon->my;
 	nowtyp = levl[x][y].typ;
 
-	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG]);
-	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
+	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG] || mdat == &mons[PM_NATURAL_BUG] || mdat == &mons[PM_MELEE_BUG]);
+	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
@@ -2038,7 +2058,7 @@ register int x,y;
 /* Is the square close enough for the monster to move or attack into? */
 {
 	register int distance = dist2(mon->mx, mon->my, x, y);
-	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG] || mon->data==&mons[PM_WEAPON_BUG]) ) return 0;
+	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG] || mon->data==&mons[PM_NATURAL_BUG] || mon->data==&mons[PM_MELEE_BUG] || mon->data==&mons[PM_WEAPON_BUG]) ) return 0;
 	return((boolean)(distance < 3));
 }
 
@@ -2311,6 +2331,12 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWOLF], -1);
 	else if (mtmp->data == &mons[PM_WERERAT])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERERAT], -1);
+	else if (mtmp->data == &mons[PM_WERERABBIT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERERABBIT], -1);
+	else if (mtmp->data == &mons[PM_WEREBOAR])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBOAR], -1);
+	else if (mtmp->data == &mons[PM_WERELOCUST])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERELOCUST], -1);
 	else if (mtmp->data == &mons[PM_WEREPANTHER])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPANTHER], -1);
 	else if (mtmp->data == &mons[PM_WERETIGER])
@@ -2592,7 +2618,7 @@ boolean was_swallowed;			/* digestion */
 	if (!timebasedlowerchance() && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
-	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -2909,7 +2935,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN]  || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && timebasedlowerchance() ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN]  || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && timebasedlowerchance() ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);
@@ -2918,7 +2944,7 @@ xkilled(mtmp, dest)
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(PEAR, x, y, TRUE, FALSE);
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(50) && timebasedlowerchance() ) otmp = mksobj_at(ASIAN_PEAR, x, y, TRUE, FALSE);
 
-		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO]) && !rn2(40) && timebasedlowerchance() ) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO] || mdat == &mons[PM_FLYING_GECKO]) && !rn2(40) && timebasedlowerchance() ) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE);
 
 		if ((mdat == &mons[PM_RHAUMBUSUN] || mdat == &mons[PM_BIG_RHAUMBUSUN]) && !rn2(20) && timebasedlowerchance() ) otmp = mksobj_at(SCR_FIRE, x, y, TRUE, FALSE);
 

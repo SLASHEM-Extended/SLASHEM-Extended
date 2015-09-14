@@ -51,6 +51,12 @@ int pm;
 	    case PM_HUMAN_WEREJACKAL: return(PM_WEREJACKAL);
 	    case PM_WERERAT:	      return(PM_HUMAN_WERERAT);
 	    case PM_HUMAN_WERERAT:    return(PM_WERERAT);
+	    case PM_WERERABBIT:	      return(PM_HUMAN_WERERABBIT);
+	    case PM_HUMAN_WERERABBIT: return(PM_WERERABBIT);
+	    case PM_WEREBOAR:	      return(PM_HUMAN_WEREBOAR);
+	    case PM_HUMAN_WEREBOAR:   return(PM_WEREBOAR);
+	    case PM_WERELOCUST:	      return(PM_HUMAN_WERELOCUST);
+	    case PM_HUMAN_WERELOCUST: return(PM_WERELOCUST);
 	    case PM_WEREPANTHER:      return(PM_HUMAN_WEREPANTHER);            
 	    case PM_HUMAN_WEREPANTHER:return(PM_WEREPANTHER);
 	    case PM_WERETIGER:        return(PM_HUMAN_WERETIGER);
@@ -169,6 +175,21 @@ char *genbuf;
 		case PM_HUMAN_WERERAT:
 			typ = rn2(3) ? PM_SEWER_RAT : rn2(3) ? PM_GIANT_RAT : PM_RABID_RAT ;
 			if (genbuf) Strcpy(genbuf, "rat");
+			break;
+		case PM_WERERABBIT:
+		case PM_HUMAN_WERERABBIT:
+			typ = rn2(5) ? PM_RABBIT : PM_RABID_RABBIT ;
+			if (genbuf) Strcpy(genbuf, "rabbit");
+			break;
+		case PM_WEREBOAR:
+		case PM_HUMAN_WEREBOAR:
+			typ = rn2(5) ? PM_BOAR : PM_DIRE_BOAR ;
+			if (genbuf) Strcpy(genbuf, "boar");
+			break;
+		case PM_WERELOCUST:
+		case PM_HUMAN_WERELOCUST:
+			typ = rn2(5) ? PM_SMALL_LOCUST : PM_LOCUST ;
+			if (genbuf) Strcpy(genbuf, "locust");
 			break;
 		case PM_WEREJACKAL:
 		case PM_HUMAN_WEREJACKAL:

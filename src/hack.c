@@ -1226,7 +1226,7 @@ boolean guess;
 		int y = travelstepy[set][i];
 		static int ordered[] = { 0, 2, 4, 6, 1, 3, 5, 7 };
 		/* no diagonal movement for grid bugs */
-		int dirmax = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd))? 4 : 8;
+		int dirmax = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd))? 4 : 8;
 
 		for (dir = 0; dir < dirmax; ++dir) {
 		    int nx = x+xdir[ordered[dir]];
@@ -1637,7 +1637,7 @@ domove()
 		/* new displacer beast thingie -- by [Tom] */
 		/* sometimes, instead of attacking, you displace it. */
 		/* Good joke, huh? */
-		if ( (mtmp->data == &mons[PM_DISPLACER_BEAST] || mtmp->data == &mons[PM_JUMPING_CHAMPION] || mtmp->data->mlet == S_GRUE) && !rn2(2))
+		if ( (mtmp->data == &mons[PM_DISPLACER_BEAST] || mtmp->data == &mons[PM_JUMPING_CHAMPION] || mtmp->data->mlet == S_GRUE || mtmp->data == &mons[PM_QUANTUM_MOLD] || mtmp->data == &mons[PM_QUANTUM_GROWTH] || mtmp->data == &mons[PM_QUANTUM_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_PATCH] || mtmp->data == &mons[PM_QUANTUM_STALK] || mtmp->data == &mons[PM_QUANTUM_MUSHROOM] || mtmp->data == &mons[PM_QUANTUM_SPORE] || mtmp->data == &mons[PM_QUANTUM_COLONY] || mtmp->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_FORCE_PATCH] || mtmp->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_WARP_PATCH]) && !rn2(2))
 		    displacer = TRUE; /* grues can also displace the player to make them more annoying --Amy */
 		else
 		/* try to attack; note that it might evade */
@@ -2939,7 +2939,7 @@ lookaround()
 
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
-    if ((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd))&& u.dx && u.dy) {
+    if ((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd))&& u.dx && u.dy) {
 	nomul(0, 0);
 	return;
     }
@@ -2948,7 +2948,7 @@ lookaround()
     for(x = u.ux-1; x <= u.ux+1; x++) for(y = u.uy-1; y <= u.uy+1; y++) {
 	if(!isok(x,y)) continue;
 
-	if((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) && x != u.ux && y != u.uy) continue;
+	if((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) && x != u.ux && y != u.uy) continue;
 
 	if(x == u.ux && y == u.uy) continue;
 

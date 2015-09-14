@@ -131,7 +131,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if (( (!Upolyd && Race_if(PM_JELLY) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -768,6 +768,7 @@ register int pm;
 		break;
 	    case PM_LIZARD:
 	    case PM_ROCK_LIZARD:
+	    case PM_BABY_CAVE_LIZARD:
 	    case PM_NIGHT_LIZARD:
 	    case PM_LIZARD_MAN:
 	    case PM_LIZARD_KING:
@@ -786,6 +787,7 @@ register int pm;
 	    case PM_GIANT_LIZARD:
 	    case PM_LIZARD_EEL:
 	    case PM_EEL_LIZARD:
+	    case PM_GRASS_LIZARD:
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_MIMIC_LIZARD:
 	    case PM_HIDDEN_LIZARD:
@@ -833,6 +835,7 @@ register int pm;
 		make_feared(0L,TRUE);
 		break;
 	    case PM_GECKO:
+	    case PM_FLYING_GECKO:
 	    case PM_GIANT_GECKO:
 		if (Sick)
 		    make_sick(0L, (char *)0, TRUE, SICK_ALL);
@@ -884,6 +887,7 @@ struct monst *mon;
     switch(monsndx(mon->data)) {
 	case PM_LIZARD:
 	case PM_ROCK_LIZARD:
+	case PM_BABY_CAVE_LIZARD:
 	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
 	case PM_LIZARD_KING:
@@ -891,6 +895,7 @@ struct monst *mon;
 	case PM_CHAOS_LIZARD:
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
+	case PM_GRASS_LIZARD:
 	case PM_ANTI_STONE_LIZARD:
     case PM_MIMIC_LIZARD:
     case PM_HIDDEN_LIZARD:
@@ -1411,6 +1416,7 @@ register int pm;
 	switch(pm) {
 	    case PM_IGUANA:
 	    case PM_GECKO:
+	    case PM_FLYING_GECKO:
 			lesshungry(20);
 		break;
 	    case PM_RHAUMBUSUN:
@@ -1483,6 +1489,7 @@ register int pm;
 		}
 		break;
 	    case PM_POWER_TROVE:
+	    case PM_EIGHT_FOOTED_SNAKE:
 	      {int old_uen = u.uen;
 		if (rn2(3)) {
 		    u.uen += rnd(3);
@@ -1684,6 +1691,18 @@ register int pm;
 	    case PM_HUMAN_WERERAT:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERERAT;
+		break;
+	    case PM_HUMAN_WERERABBIT:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERERABBIT;
+		break;
+	    case PM_HUMAN_WERELOCUST:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERELOCUST;
+		break;
+	    case PM_HUMAN_WEREBOAR:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBOAR;
 		break;
 	    case PM_HUMAN_WEREJACKAL:
 		catch_lycanthropy = TRUE;
@@ -1911,6 +1930,7 @@ register int pm;
 	    case PM_MIMIC_ANT:
 	    case PM_MIMICRY_RUBBER:
 	    case PM_CAMO_FISH:
+	    case PM_MINOTAUR_MIMIC:
 	    case PM_FLYING_CAMO_FISH:
 	    case PM_DEFORMED_FISH:
 	    case PM_KEYSTONE_INSPECTOR:
@@ -2022,6 +2042,7 @@ register int pm;
 		tmp += 10;
 		/* fall into next case */
 	    case PM_MIMIC:
+	    case PM_PETIT_MIMIC:
 	    case PM_SMALL_MIMIC:
 	    case PM_SMALL_HEALING_MIMIC:
 	    case PM_SMALL_FLYING_MIMIC:
@@ -2070,9 +2091,11 @@ register int pm;
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
 	    case PM_ROCK_LIZARD:
+	    case PM_BABY_CAVE_LIZARD:
 	    case PM_NIGHT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_CAVE_LIZARD:
+	    case PM_GRASS_LIZARD:
 	    case PM_LIZARD_EEL:
 	    case PM_LIZARD_KING:
 	    case PM_EEL_LIZARD:
@@ -2220,6 +2243,7 @@ register int pm;
 
 	    case PM_INTELLIGENT_TROVE:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_MINOR_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:

@@ -512,14 +512,30 @@
 				  youmonst.data == &mons[PM_SHAMBLING_MOUND] ||\
 				  youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] ||\
 				  youmonst.data == &mons[PM_SILVER_WOLF] ||\
+				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
+				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
+				  youmonst.data == &mons[PM_MIRROR_MONSTER] ||\
 				  youmonst.data == &mons[PM_VENOM_ATRONACH] ||\
 				  youmonst.data == &mons[PM_DIVISION_THIEF] ||\
 				  youmonst.data == &mons[PM_DIVISION_JEDI] ||\
+				  youmonst.data == &mons[PM_MIRROR_MOLD] ||\
+				  youmonst.data == &mons[PM_MIRROR_GROWTH] ||\
+				  youmonst.data == &mons[PM_MIRROR_FUNGUS] ||\
+				  youmonst.data == &mons[PM_MIRROR_PATCH] ||\
+				  youmonst.data == &mons[PM_MIRROR_SPORE] ||\
+				  youmonst.data == &mons[PM_MIRROR_MUSHROOM] ||\
+				  youmonst.data == &mons[PM_MIRROR_STALK] ||\
+				  youmonst.data == &mons[PM_MIRROR_COLONY] ||\
+				  youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] ||\
+				  youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] ||\
+				  youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] ||\
+				  youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ||\
 				  youmonst.data == &mons[PM_ECM_NERVE_HEAD] ||\
 				  youmonst.data == &mons[PM_ECM_ARCHER] ||\
 				  youmonst.data == &mons[PM_ILLUSION_WEAVER] ||\
 				  youmonst.data == &mons[PM_SEDUCER_SAINT] ||\
 				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
+				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
 				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting && !Race_if(PM_ANGBANDER) )

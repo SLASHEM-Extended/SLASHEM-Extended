@@ -9134,37 +9134,41 @@ mineralize()
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ))
 	    	    makemon(&mons[PM_HUMAN_WEREKRAKEN], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) ))
 	    	    makemon(&mons[PM_SUBMARINE_GOBLIN], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 17 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 17 ))
 	    	    makemon(&mons[PM_PUNT], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 10 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 10 ))
 	    	    makemon(&mons[PM_SWIMMER_TROLL], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 20 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 20 ))
 	    	    makemon(&mons[PM_DIVER_TROLL], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 12 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 12 ))
 	    	    makemon(&mons[PM_WATER_TURRET], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 25 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 25 ))
 	    	    makemon(&mons[PM_AQUA_TURRET], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ))
 	    	    makemon(&mons[PM_LUXURY_YACHT], x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ))
 	    	    makemon(&mons[PM_MISTER_SUBMARINE], x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 4 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 4 ))
+	    	    makemon(&mons[PM_EEL_GOLEM], x, y, MM_ADJACENTOK);
 
 		/* More random monsters on other terrain, too. --Amy */
 
@@ -9397,36 +9401,40 @@ mineralize()
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) && level_difficulty() > 19 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 17 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 17 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 17 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 10 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 10 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 10 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 20 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 20 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 20 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 12 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 12 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 12 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 25 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 25 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 25 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ))
 	    	    makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ) ||
-			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 8000 : (issuxxor && !ishaxor) ? 32000 : 16000) && level_difficulty() > 15 ))
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 15 ))
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 4 ) ||
+			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 9000 : (issuxxor && !ishaxor) ? 36000 : 18000) && level_difficulty() > 4 ))
 	    	    makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )

@@ -41,6 +41,30 @@ abbot
 	manner, "What is God?"  The answer is not recorded but it is
 	probable that the asker went on worrying out answers for himself.
 		[ The Runaway Abbot, by G. K. Chesterton ]
+# takes 'suit or piece of armor' when specifying '['
+ac
+armor*
+armour*
+suit or piece of armor
+	"The last spot on the school jousting team came down to another 
+	boy and me. He was poor, and his only armor was a blanket his 
+	mother had made him from her hair. I, on the other hand, had 
+	a brand new suit of chain mail. Just before our joust, I asked 
+	him what he'd do if he made the team. (I was hoping to be more 
+	popular with the ladies.) He said he would be able to save the 
+	town from dragons and be able to afford some water for his 20 
+	brothers and sisters.
+
+	Well, a sense of compassion came over me. I insisted we swap 
+	armor. He was forced to accept, as it would have been an 
+	insult not to do so.
+
+	On the battlefield, we charged at each other and we both connected 
+	with our lances.
+
+	Lying there on the mud mortally wounded, I learned what true armor 
+	class was that day."
+	 	[ When Help Collides, by J. D. Berry ]
 aerdrie faenya
 	Aerdrie  Faenya is the elven goddess of air and weather. As a rain-
 	bringer, she is revered as a source of fertility.  She is, however,
@@ -76,11 +100,26 @@ siren
 	Peisinoe, Aglaope, and Thelxiepeia or Parthenope, Ligeia, and 
 	Leucosia.
 		[ http://en.wikipedia.org/wiki/Siren ]
+~agate ring
+agate*
+	Translucent, cryptocrystalline variety of quartz and a subvariety
+	of chalcedony. Agates are identical in chemical structure to jasper,
+	flint, chert, petrified wood, and tiger's-eye, and are often found in
+	association with opal. The colorful, banded rocks are used as a
+	semiprecious gemstone and in the manufacture of grinding equipment.
+	An agate's banding forms as silica from solution is slowly deposited
+	into cavities and veins in older rock.
+		[ The Columbia Encyclopedia, Sixth Edition ]
 *leax
 	An Aleax,  according to the  AD&D Fiend Folio,  is a  creature that
 	looks exactly  like the character, and  is sent  by the character's
 	god to  punish alignment violations. Obviously  - and  luckily - in
 	Nethack this is not the case.
+alhoon
+	Alhoons superficially resemble their living kin; however,
+	their skin is dry and wrinkled, free of the ubiquitous
+	mucous that covers living mind flayers.
+		[ The Illithidae, Bruce R Cordell ]
 *altar
 	Altars are of three types:
 	1.  In Temples.  These are for Sacrifices [...].  The stone
@@ -109,6 +148,13 @@ amber*
 	fossil.  One finds all kinds of insects in amber - including
 	biting insects that have sucked blood from larger animals."
 		[ Jurassic Park, by Michael Crichton ]
+amethyst*
+	The twelfth foundation is amethyst. Isidorus says of it: Among
+	purple stones, the Indian amethyst holds first position; it is,
+	indeed, purple but of mixed coloration, giving forth violet and
+	rose-coloured lights; it is easy to engrave. For this reason the
+	humility of the saints is signified by it;
+	  	[ The Aberdeen Bestiary, translated by Colin McLaren ]
 *amnesia
 maud
 	Get thee hence, nor come again,
@@ -154,6 +200,7 @@ amulet of yendor
 	immortality to the adventurer who can deliver it from the
 	depths of Moloch's Sanctum and offer it on the appropriate high
 	altar on the Astral Plane.
+~fallen angel
 angel*
 	He answered and said unto them, he that soweth the good seed
 	is the Son of man; the field is the world, and the good seed
@@ -167,6 +214,13 @@ angel*
 	and shall cast them into the furnace of fire; there shall be
 	wailing and gnashing of teeth.
 		[ The Gospel According to Matthew, 13:37-42, 49-50 ]
+angry god*
+	Cold wind blows.
+	The gods look down in anger on this poor child.
+
+	Why so unforgiving?
+	And why so cold?
+		[ Bridge of Sighs, by Robin Trower ]
 anhur
 	An Egyptian god of war and a great hunter, few gods can match
 	his fury.  Unlike many gods of war, he is a force for good.
@@ -197,12 +251,6 @@ ant
 	fiercely as its small, distant cousin.  Various varieties
 	exist, and they are known and feared for their relentless
 	persecution of their victims.
-anu
-	Anu was the Babylonian god of the heavens, the monarch of
-	the north star.  He was the oldest of the Babylonian gods,
-	the father of all gods, and the ruler of heaven and destiny.
-	Anu features strongly in the _atiku_ festival in
-	Babylon, Uruk and other cities.
 anthemoessa
 	According to the Roman poets Virgil and Ovid, the Sirenum 
 	scopuli were three small rocky islands where the Sirens of
@@ -213,6 +261,52 @@ anthemoessa
 	name no longer exists, varying accounts attribute 
 	Anthemoessa to either the island of Ischia or Capri.
 		[ http://en.wikipedia.org/wiki/Anthemoessa ]
+anu
+	Anu was the Babylonian god of the heavens, the monarch of
+	the north star.  He was the oldest of the Babylonian gods,
+	the father of all gods, and the ruler of heaven and destiny.
+	Anu features strongly in the _atiku_ festival in
+	Babylon, Uruk and other cities.
+anubite
+	_Ardeth Bay: I am sorry if I alarmed your son. But you must 
+	understand, now that the bracelet is on his wrist, we have 
+	only seven days before the Scorpion King awakens!
+	_Rick: We? What we?
+	_Ardeth: If he is not killed, he will raise the Army of Anubis!
+	_Jonathan: I take it that's not a good thing?
+	_Rick: Oh, he'll wipe out the world.
+	_Jonathan: Ah, the old "Wipe-Out-The-World" ploy.
+anthemoessa
+	According to the Roman poets Virgil and Ovid, the Sirenum 
+	scopuli were three small rocky islands where the Sirens of
+	Greek mythology lived and lured sailors to their deaths.
+	[...]
+	Similarly, Anthemoessa (or Anthemusa) was the island home 
+	of the Sirens in other versions of the myth.  Although the
+	name no longer exists, varying accounts attribute 
+	Anthemoessa to either the island of Ischia or Capri.
+		[ http://en.wikipedia.org/wiki/Anthemoessa ]
+anuban*
+	The Egyptian Jackal (_Canis aureus lupaster_) also 
+	known as the African Wolf or Wolf Jackal is currently 
+	listed as a subspecies of the golden jackal, but may be 
+	a subspecies of grey wolf or a unique species in its 
+	own right. It is native to Egypt, Libya, and Ethiopia, 
+	though its post Pleistocene range once encompassed the 
+	Palestine region.
+		[ Wikipedia ]
+Aoa*
+	Aoa resemble huge blobs of quicksilver that float above
+	the surface of whatever environment they may be found. 
+	Their surface is like a mirror and reflects all light. 
+	Aoa are surrounded by tiny orbs that randomly separate 
+	from the sphere and reabsorb back into it.
+	
+	A full-sized aoa is called a sphere. Smaller aoa called
+	droplets split off from a sphere when it reflects a 
+	large amount of magical energy. Eventually, a droplet
+	will grow to become a full-sized sphere.
+		[ DnD 3.0, Fiend Folio ]
 ape
 * ape
 	The most highly evolved of all the primates, as shown by
@@ -234,6 +328,16 @@ ape
 	sub-order  of _Anthropoidea_,  which of  all  mammals most  closely
 	resembles man (both in appearance and in behaviour).
 			  [ Van Dale's Groot Woordenboek der Nederlandse Taal ]
+apollyon
+	Apollyon's background and original name are known only to those 
+	steeped in infernal and heavenly lore. Apollyon was once a powerful
+	Solar and may have even been a Seraph. He was charged with the 
+	binding of particularly powerful Fiends and other spirits of evil 
+	in remote demi-planes in the Ethereal Plane at the behest of the 
+	Virtues of Mount Celestial, ensuring that such beings would never 
+	again threaten the Bastions of Righteousness, allied good gods, 
+	and the Prime.
+		[ Dicefreaks, The Demon Princes As They Were II: Apollyon ]
 apple
 	NEWTONIAN, adj.  Pertaining to a philosophy of the universe
 	invented by Newton, who discovered that an apple will fall
@@ -274,6 +378,17 @@ archon
 	seem evil. Rather, they appear  as beings at peace  with themselves
 	and their environment.
 					[ Monstrous Compendium 8, by TSR inc. ]
+argentum*
+argenach*
+	To paraphrase a particularly wise prime, the rilmani are an
+	enigma cloaked in a riddle, wrapped in a mystery. Who can
+	question their motives or their actions? They keep their own
+	counsel. They're sworn never to come when called, but always
+	to be there when needed; never to answer questions put to
+	them, but always to provide what information is necessary; to
+	aid and abet good, evil, law, and chaos alike in order to maintain
+	the Balance, regardless of the cost or repercussions.
+		[ Planescape Monstrous Compendium II, by Rich Baker ]
 arioch
 	Arioch, the patron demon of Elric's ancestors; one of the most
 	powerful of all the Dukes of Hell, who was called Knight of
@@ -383,6 +498,10 @@ athen*
 	Her  symbol is the Aegis,  the skin of  a sacrificial  goat. She is
 	also associated with ship-building and domestic crafts.
 			  [ after the Encyclopedia of Gods, by Michael Jordan ]
+atma weapon
+	Ancient weapon created during the War of the Magi, forged
+	in opposition to the war beasts of the gods. Its attack power is
+	bound to its wielder's life force.
 augurer
       Augurers are diviners and seekers of truth. The are very similar to an 
       Archaeologist, in that they delve into the dungeons in search of secrets. 
@@ -398,6 +517,29 @@ augurer
       often leave them uncoordinated.
 axolotl
 	A mundane salamander, harmless.
+baalphegor
+	Ancient Baalphegor, canny and inventive, here since the beginning.
+		[ Rip Van Wormer ]
+
+	Baalphegor is a dignified she-devil with cinnamon-colored skin, 
+	red eyes and hair, as well as bat wings. She appears young and 
+	carefree but when angered, her eyes glow with flames and her 
+	usually musical voice becomes very harsh. She is only five and 
+	a half feet in height.
+	
+	Baalphegor is said to have been around since the creation of 
+	Baator itself. She's a very skilled diplomat and tactician, and 
+	an unmatched sorceress. She has created many artifacts and 
+	techniques used throughout the Nine Hells. In addition to her 
+	status, this fact granted her a deep respect from almost everyone
+	in Baator, even from Asmodeus, who appreciates her to the point 
+	of letting her live with her ever-scheming consort.
+	
+	Knowing all too well her master's position, Baalphegor keeps her 
+	goals to herself, acting with a minimal degree of loyalty to the 
+	Lord of the Eighth. Mephistopheles tolerates this due to the 
+	protection given by his consort's presence.
+		[ GreyWiki ]
 bag
 bag of *
 sack
@@ -417,6 +559,29 @@ sack
 	is outside it; and whatever is outside it, is inside it.  So
 	you have all the wealth of the world in that leetle Purse!"
 		[ Sylvie and Bruno Concluded, by Lewis Carroll ]
+bael
+bel
+	Crimson scales cover this large fiend, from its bestile head
+	to its clawed toes. From its back spread great batlike wings.
+	Foul green venom drips from its teeth, sending up streams of
+	smoke wherever it falls. Cinched around its waist is a belt
+	of a dozen shrieking angel heads, their necks neatly severed
+	by the massive flaming sword the creature holds in his
+	clawed fist.
+		[ Tyrants of the Nine Hells,
+			by Robin Laws and Robert Schwalb ]
+	
+	Why there must be consorts, I do not know. But I understand. 
+	My love says that there must be balance in a layer between 
+	anima and animus. Even the writhing Zariel has a consort, 
+	her warrior Bel.
+	
+	My daughters, he told us. And my son, my Bel. You shall be 
+	my eyes, ears, and tongue among the nine. Where they plot 
+	and scheme, you shall remain loyal to me.
+	
+	I don't know that I believe him, for he is the Father of Lies.
+		[ Rip Van Wormer ]
 b*lzebub
 	The "lord of the flies" is a translation of the Hebrew
 	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
@@ -465,6 +630,40 @@ banana
 	"You'll tell," he whispered.  "Oh yes indeed you will."
 	And Dayna knew he was right.
 		[ The Stand, by Stephen King ]
+bandersnatch
+	But while he was seeking with thimbles and care,
+		A Bandersnatch swiftly drew nigh
+	And grabbed at the Banker, who shrieked in despair,
+		For he knew it was useless to fly.
+	
+	He offered large discount—he offered a check
+		(Drawn "to bearer") for seven-pounds-ten:
+	But the Bandersnatch merely extended its neck
+		And grabbed at the Banker again.
+	
+	Without rest or pause—while those frumious jaws
+		Went savagely snapping around—
+	He skipped and he hopped, and he floundered and flopped,
+		Till fainting he fell to the ground.
+	The Bandersnatch fled as the others appeared
+		Led on by that fear-stricken yell:
+	And the Bellman remarked "It is just as I feared!"
+		And solemnly tolled on his bell.
+			[ The Hunting of the Snark, by Lewis Carroll ]
+banshee
+	In Irish folklore and that of the Western Highlands of Scotland,
+	a female fairy who announces her presence by shrieking and wailing
+	under the windows of a house when one of its occupants is awaiting
+	death. The word is a phonetic spelling of the Irish _beansidhe_, a
+	woman of the fairies.
+		[ Brewer's Concise Dictionary of Phrase and Fable ]
+baphomet
+	This hulking, manlike brute stands 20 feet tall. His muscular
+	frame is covered in thick, matted black hair. His head is that
+	of a fiendish bull, and his great horns are stained in the 
+	lifeblood of countless victims.
+		[ Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
 barbarian
 * barbarian
 	They dressed alike -- in buckskin boots, leathern breeks and
@@ -504,6 +703,24 @@ barbarian
 barbed devil
 	Barbed devils lack any real special abilities, though they
 	are quite difficult to kill.
+bardiche
+long pole*
+	A long axe blade on a stick. The cutting blade is typically
+	two feet long or more, but it is mounted on one of the 
+	shortest poles for a polearm, only about five feet (1.5 meters).
+	   
+	     |\
+	     | \
+	     |  |
+	     |  |
+	     |  |
+	    Z[  |
+	    H|  |
+	    H|  |
+	    H|  |
+	    H|  |
+	    Z[_-
+	    H
 bard
 	The bard is a wanderer, one that plays music at taverns to 
 	earn money, win friends and influence people. 
@@ -523,6 +740,206 @@ bard
 	proverb, and I will show you something that ought to be in
 	some kind of a home.
 		[ A Pelican at Blandings, by P. G. Wodehouse ]
+bebelith
+	‘Long we live and long we weave
+	Till we have filled this space.
+	Then, as before, we will leave
+	To hunt another place.
+	Our task ends when the weak are gone.
+	then fill new spaces with our spawn!'
+		[ Planescape Monstrous Compendium ]
+	
+	A demonic arachnid that exists outside the regular order of
+	demons. The sharp claws of the bebelith shread flesh and
+	armor alike.
+bec de corbin
+beaked polearm
+	While this weapon does have a blunt hammer, its main 
+	feature is the heavy crow's beak blade, designed to
+	puncture heavy plate armor. The shaft is about eight
+	feet long (2.4 meters).
+	   
+	      A
+	      H
+	  _  _H______
+	 | \/ H      \
+	 |_/\_H_______\
+	      H
+	      H
+bear trap
+	Probably most commonly associated with trapping, the leghold
+	trap is a rather simple mechanical trap. It is made up of two
+	jaws, a spring of some sort, and a trigger in the middle. When
+	the animal steps on the trigger the trap closes around the leg,
+	holding the animal in place. Usually some kind of lure is used
+	to position the animal, or the trap is set on an animal trail.
+	Traditionally, leghold traps had tightly closing "teeth" to make
+	sure the animal stayed in place. The teeth also made sure the
+	animal could not move the leg in the trap and ruin their fur.
+	However, this resulted in many animals gnawing off legs in order
+	to escape. More modern traps have a gap called an "offset jaw"
+	and work more like a handcuff. They grip above the paw, making
+	sure the animal cannot pull out but does not destroy the leg.
+	This also allows the trapper to release unwanted catches.
+		[ Wikipedia, the free encyclopedia ]
+*bee
+	This giant variety of its useful normal cousin normally
+	appears in small groups, looking for raw material to produce
+	the royal jelly needed to feed their queen.  On rare
+	occasions, one may stumble upon a bee-hive, in which the
+	queen bee is being well provided for, and guarded against
+	intruders.
+*beetle
+	[ The Creator ] has an inordinate fondness for beetles.
+		[ attributed to biologist J.B.S. Haldane ]
+	
+	The common name for the insects with wings shaped like
+	shields (_Coleoptera_), one of the ten sub-species into
+	which the insects are divided.  They are characterized by
+	the shields (the front pair of wings) under which the back
+	wings are folded.
+		[ Van Dale's Groot Woordenboek der Nederlandse Taal ]
+beholder
+	"Beauty in things exists merely
+	 in the mind which contemplates them."
+			[ Moral and Political, 
+				by David Hume ]
+~bell of opening
+*bell
+	No man is an island, entire of itself; every man is a piece 
+	of the continent, a part of the main. If a clod be washed away by 
+	the sea, Europe is the less, as well as if a promontory were, as 
+	well as if a manor of thy friend's or of thine own were: any man's 
+	death diminishes me, because I am involved in mankind, and 
+	therefore never send to know for whom the bell tolls; it tolls for 
+	thee.
+		[ For Whom The Bell Tolls, by John Donne ]
+bell*book*candle
+	_Bell, book and candle._ The popular phrase for ceremonial
+	excommunication in the Roman Catholic Church. After pronouncing
+	sentence the officiating clergy closes his book, quenches the candle
+	by throwing it to the ground and tolls the bell as for one who has
+	died. The book symbolizes the book of life, the candle that the soul
+	is removed from the sight of God as the candle from the sight of man.
+		[ Brewer's Concise Dictionary of Phrase and Fable ]
+bell of opening
+	"A bell, book and candle job."
+	The Bursar sighed.  "We tried that, Archchancellor."
+	The Archchancellor leaned towards him.
+	"Eh?" he said.
+	"I _said_, we tried that Archchancellor," said the Bursar loudly,
+	directing his voice at the old man's ear.  "After dinner, you
+	remember?  We used Humptemper's _Names of the Ants_ and rang Old
+	Tom."*
+	"Did we, indeed.  Worked, did it?"
+	"_No_, Archchancellor."
+	
+	* Old Tom was the single cracked bronze bell in the University
+	bell tower.
+		[ Eric, by Terry Pratchett ]
+bill?guisarme
+hooked polearm
+	A bladed polearm with mutliple sharpened edges and spikes,
+	and with a hook. This weapon is about nine feet long
+	(2.7 meters).
+	   
+	    |
+	    ||
+	    ||___
+	    | _---\
+	    | \
+	 ___|  |
+	  -_   |
+	    |  |
+	    | /
+	    ||
+black light
+	Ultraviolet (UV) radiation is electromagnetic radiation of a wavelength
+	shorter than that of the visible region, but longer than that of soft
+	X-rays. ... Some of the UV wavelengths are colloquially called black
+	light, as it is invisible to the human eye.
+		[ Wikipedia, the free encyclopedia ]
+blindfold
+	The blindfolding was performed by binding a piece of the
+	yellowish linen whereof those of the Amahagger who condescended
+	to wear anything in particular made their dresses tightly round
+	the eyes.  This linen I afterwards discovered was taken from the
+	tombs, and was not, as I had first supposed, of native
+	manufacture.  The bandage was then knotted at the back of the
+	head, and finally brought down again and the ends bound under
+	the chin to prevent its slipping.  Ustane was, by the way, also
+	blindfolded, I do not know why, unless it was from fear that she
+	should impart the secrets of the route to us.
+		[ She, by H. Rider Haggard ]
+blind io
+	On this particular day Blind Io, by dint of constant vigilance
+	the chief of the gods, sat with his chin on his hand
+	and looked at the gaming board on the red marble table in
+	front of him.  Blind Io had got his name because, where his
+	eye sockets should have been, there were nothing but two
+	areas of blank skin.  His eyes, of which he had an impressively
+	large number, led a semi-independent life of their
+	own.  Several were currently hovering above the table.
+	    [ The Colour of Magic, by Terry Pratchett ]
+blue jelly
+	The tissue injury resulting from frostbite is produced in two ways. The most 
+	obvious is actual freezing of the tissues. Although ice crystals form between 
+	the cells and grow by extracting water from them, the cells are physically 
+	disrupted by the ice crystals only to a limited extent. The dehydration and 
+	osmotic and chemical imbalances resulting from  extraction of water from within 
+	the cell injure them, but permanent damage may be small. (...) The second 
+	mechanism of tissue injury by frostbite, which is much more significant is loss
+	of blood supply to the tissues. Blood may flow through larger vessels but (one 
+	of the signs of adequate rewarming is a flushing of the frozen area) oxygen 
+	cannot be deliver to the tissues because the small blood vessels that would 
+	carry it have been lost.
+		[ Hypothermia, Frostbite, and Other Cold Injuries: 
+			Prevention, Survival, Rescue and Treatment
+			by Gordon G. Giesbrecht, James A. Wilkerson ]
+blob
+* blob
+ooze
+* ooze
+	These giant amoeboid creatures look like nothing more than
+	puddles of slime, but they both live and move, feeding on
+	metal or wood as well as the occasional dungeon explorer to
+	supplement their diet.
+blood bloater
+	The most distinguishing feature of Bloodbloaters which set them
+	apart from other Oozes is their red, egg yolk-like center, which
+	stands out starkly from their clear, circular bodies that measure
+	about 4 inches in diameter.
+	
+	When in contact with prey, Bloodbloaters move into contact as a 
+	swarm and exude digestive enzymes from thin red flagellum that are
+	attached to the brain. The digestive enzymes eat through cloth and
+	flesh as a acid - and once in contact with the blood-stream, act 
+	as a anesthetic. Thus - it is not unheard of for a person to 
+	undertake massive damage or even death from a Bloodbloater swarm 
+	without feeling anything.
+	
+	Bloodbloaters are parthenogenic organisms, and reproduce 
+	constantly, wherever food is most plentiful.
+		[ The Clock Strikes 12 ]
+bo*shuriken
+	A thin, metal dart.
+bone devil
+	Learn to love and uphold the Law
+		[ Faces of Evil, by Colin McComb ]
+	
+	Bone devils attack with weapons and with a great hooked tail
+	which causes a loss of strength to those they sting.
+book of the dead
+	A collection of ancient Egyptian texts, both religious and magical,
+	concerned with guidance for the safe conduct of the soul through
+	Amenti (the Egyptian Hades). The Egyptians called it _The Book 
+	of Going Forth By Day_ and copies, or parts of it, were buried with
+	the mummy. There is a variety of texts.
+		[ Brewer's Concise Dictionary of Phrase and Fable ]
+~*jackboots
+~*water walking*
+~*speed boots
+~*boots of speed
 *boot*
 	In Fantasyland these are remarkable in that they seldom or
 	never wear out and are suitable for riding or walking in
@@ -534,6 +951,20 @@ bard
 	guarded secret, possibly derived from nonhumans (see Dwarfs,
 	Elves, and Gnomes).
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+*booze
+potion of sleeping
+	On waking, he found himself on the green knoll whence he had
+	first seen the old man of the glen. He rubbed his eyes-it was
+	a bright sunny morning. The birds were hopping and twittering
+	among the bushes, and the eagle was wheeling aloft, and breasting
+	the pure mountain breeze. "Surely," thought Rip, "I have not
+	slept here all night." He recalled the occurrences before he fell
+	asleep. The strange man with a keg of liquor-the mountain ravine-
+	the wild retreat among the rocks-the woe-begone party at ninepins-
+	the flagon-"Oh! that flagon! that wicked flagon!" thought Rip
+	-"what excuse shall I make to Dame Van Winkle!"
+		[ Rip Van Winkle, a Posthumous Writing 
+		  of Diedrich Knickerbocker, by Washington Irving ]
 boulder
 	I worked the lever well under, and stretched my back; the end
 	of the stone rose up, and I kicked the fulcrum under.  Then,
@@ -874,6 +1305,70 @@ babelfish
  		has caused more and bloddier wars  than  anything  else  in  the
  		history of creation."
  		[ The Hitchhiker's Guide To The Galaxy, by Douglas Adams ]
+candelabrum*
+	Faustus: Come on Mephistopheles.  What shall we do?
+	Mephistopheles: Nay, I know not.  We shall be cursed with bell,
+	book, and candle.
+	Faustus: How?  Bell, book, and candle, candle, book, and bell,
+	Forward and backward, to curse Faustus to hell.
+	Anon you shall hear a hog grunt, a calf bleat, and an ass bray,
+	Because it is Saint Peter's holy day.
+	(Enter all the Friars to sing the dirge)
+		[ Doctor Faustus and Other Plays, by Christopher Marlowe ]
+*candle
+	My candle burns at both ends
+	It will not last the night;
+	But ah, my foes, and oh, my friends -
+	It gives a lovely light. 
+		[ A Few Figs from Thistles, by Edna St. Vincent Millay ]
+carmilla
+	She was slender, and wonderfully graceful. Except that
+	her movements were languid—very languid—indeed, there 
+	was nothing in her appearance to indicate an invalid. 
+	Her complexion was rich and brilliant; her features were 
+	small and beautifully formed; her eyes large, dark, and 
+	lustrous; her hair was quite wonderful, I never saw hair 
+	so magnificently thick and long when it was down about her 
+	shoulders; I have often placed my hands under it, 
+	and laughed with wonder at its weight. It was exquisitely 
+	fine and soft, and in color a rich very dark brown, with 
+	something of gold. I loved to let it down, tumbling with 
+	its own weight, as, in her room, she lay back in her chair 
+	talking in her sweet low voice, I used to fold and braid 
+	it, and spread it out and play with it. 
+	
+	Heavens! If I had but known all!
+		[ Carmilla, by Sheridan Le Fanu ]
+carrot
+	In World War II, Britain's air ministry spread the word that a diet of
+	these vegetables helped pilots see Nazi bombers attacking at night. That
+	was a lie intended to cover the real matter of what was underpinning the
+	Royal Air Force's successes: Airborne Interception Radar, also known as
+	AI. ... British Intelligence didn't want the Germans to find out
+	about the superior new technology helping protect the nation, so they
+	created a rumor to afford a somewhat plausible-sounding explanation
+	for the sudden increase in bombers being shot down. ...
+	The disinformation was so persuasive that the English public took to
+	eating carrots to help them find their way during the blackouts.
+		[ Urban Legends Reference Pages ]
+*cat lord
+	Elder Goddess of cats, earthly knowledge of the true name 
+	and nature of this being was already becoming confused by
+	the time of ancient Egypt. It is believed that the Cat Lord
+	entered into some pact or covenant with the rulers of this 
+	early nation. However, the terms of this agreement, down to 
+	the correct pronunciation of the unprecidented hieroglyphs 
+	found in the being's name, have long since been lost, though
+	the goddesses _Bastet_ and _Sekhmet_ are believed to be 
+	descended from the stories surrounding the Cat Lord and its
+	agreement.
+	
+	The hieroglyphs enclosed within its cartouche are drawn with
+	variable numbers of strokes, though no glyph requires more
+	than seven strokes to draw. The fourth and fifth and the
+	eight and ninth hieroglyphs are smaller than the average,
+	but must be drawn as pairs. The completed cartouche contains
+	nine hieroglyphs.
 *centaur
 	Of all the monsters put together by the Greek imagination
 	the Centaurs (Kentauroi) constituted a class in themselves.
@@ -892,6 +1387,12 @@ babelfish
 	clefts of the mountains, myths associating them especially
 	with the hills of Thessaly and the range of Erymanthos.
 		 [ Mythology of all races, Vol. 1, pp. 270-271 ]
+center of all
+	Compass all the planes,
+	and yet you will never find
+	creation's heart
+		[ riff on a Planescape Haiku,
+			originally by Ecco-Mono ]
 centipede
 	I observed here, what I had often seen before, that certain
 	districts abound in centipedes.  Here they have light
@@ -925,6 +1426,22 @@ chameleon
 	(figurative) implication of unreliability.  [Capitalized:]
 	a constellation of the southern hemisphere (Chameleo).
 		[ Van Dale's Groot Woordenboek der Nederlandse Taal ]
+chaos
+	Garland's hatred
+	burned for 2000
+	years.  That
+	hatred led the 
+	Four Powers to
+	this world.
+	
+	CHAOS was
+	created from
+	those Four.
+	Evil dominated
+	the world and
+	covered it in
+	darkness.
+		[ Final Fantasy ]
 *haro*n
 	When an ancient Greek died, his soul went to the nether world:
 	the Hades.  To reach the nether world, the souls had to cross
@@ -989,6 +1506,15 @@ tiamat
 	around her/his shivering body_.  This seems to suggest they
 	are less than practical for anyone on an arduous Tour.
 		[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
+clockwork automaton
+	I am not an unimaginable thing
+	My thoughts are tangible
+	though they're full of springs
+	
+	I don't have the heart to send you untruthful words
+	My skin is cold to the touch and made from the earth
+		[ Automatonic Electronic Harmonics,
+			Music & Lyrics By David Michael Bennett ]
 cloud*
 	I wandered lonely as a cloud
 	That floats on high o'er vales and hills,
@@ -1044,11 +1570,21 @@ chickatrice
 	creature feared by adventurers great and small for its petrifying
 	peck.  
 		[ The New Bestiary, Wizard Endlebrook ]
+citrine*
+	A pale yellow variety of crystalline quartz resembling topaz.
 pyrolisk
 	A single glance from this red-feathered cockatrice  can cause even
 	the bravest adventurer to burst into flames, their flesh withering
 	and blackening and curling beneath the creature's baleful gaze.
 		[ The New Bestiary, Wizard Endlebrook ]
+# not "stethoscope"
+cope
+* cope
+	The cope is a liturgical vestment which may be worn by any
+	rank of the clergy. Copes are made in all liturgical colours,
+	and are like a very long mantle or cloak, fastened at the breast
+	by a clasp.
+		[ Wikipedia, the free encyclopedia ]
 cornuthaum
 	He was dressed in a flowing gown with fur tippets which had
 	the signs of the zodiac embroidered over it, with various
@@ -1069,6 +1605,31 @@ cornuthaum
 	moons all over it.  All in all, it couldn't have been more
 	wizardish.
 		[ The Elfin Ship, James P. Blaylock ]
+combat
+fight
+fracas
+melee
+spat
+squabble
+tiff
+	[Scene: Mr. Moon and Gilbert enter tavern and discover many
+	corpses strewn about the place; Blind Pew is sole survivor.]
+	Blind Pew:  Evening.  Sounded as though there has been a bit
+	            of a squabble.
+	 Mr. Moon:  Squabble?  They're all dead.
+	Blind Pew:  Oh.  Must have been more of a tiff then.
+		[ Yellowbeard, directed by Mel Damski, screenplay
+		  by Graham Chapman, Peter Cook, Bernard McKenna ]
+corwin
+	I am a part of the evil that exists in the world and in
+	Shadow. I sometime fancy myself an evil which exists to
+	oppose other evils, and on that Great Day of which prophets
+	speak but in which they do not truly believe, on that day
+	when the world is completely cleansed of evil, then I, too,
+	will go down into darkness, swallowing curses. 
+	But whatever . . . Until that time, I shall not wash my
+	hands nor let them hang useless.
+		[ The Guns of Avalon, Roger Zelazny ]
 couatl
 	A mythical feathered serpent.  The couatl are very rare.
 	The couatl  are feathered serpents of myth and lore. It is believed
@@ -1207,6 +1768,25 @@ cyclops
 	the red wine squirted from his throat;
 	the drunk vomited lumps of human flesh.
 		[ The Odyssey, (chapter Epsilon), by Homer ]
+daemon
+	He'll wrap you in his arms,
+	tell you that you've been a good boy
+	He'll rekindle all those dreams
+	it took you a lifetime to destroy
+	He'll reach deep into the hole,
+	heal your shrinking soul
+	...
+	They're whispering his name
+	'cross this disappearing land
+	But hidden in his coat
+	is a red right hand
+	...
+	You're one microscopic cog
+	in his catastrophic plan,
+	designed and directed by
+	his red right hand
+		[ Red Right Hand, by Nick Cave
+			and the Bad Seeds ]
 ~sting
 *dagger
 	Is this a dagger which I see before me,
@@ -1219,6 +1799,16 @@ cyclops
 	I see thee yet, in form as palpable
 	As this which now I draw.
 		[ Macbeth, by William Shakespeare ]
+dagon
+	The demon is immense, its glistening bulk heaving monstrously 
+	into the air as a writhing storm of hook-suckered tentacles
+	unfolds from its shapless lower body. Its two largest tentacles
+	terminate in immense five-fingered talons. Its head is that of
+	a deep-sea fish, twisted with cruelty and leering with a
+	primordial intelligence, its stilettolike teeth immense and
+	translucent.
+		[ Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
 damned pirate
 	These memories were bought with the lives of good men
 	A price that I paid without scruple
@@ -1244,6 +1834,34 @@ dark one
 	and the Orcs were at his command and multiplied like flies.
 	Thus the Black Years began ...
 		[ The Silmarillion, by J.R.R. Tolkien ]
+darkness given hunger
+	Juiblex has many slime, pudding, ooze, and jelly "servants," 
+	although none are intelligent enough to serve the demon lord 
+	willingly-except for one.
+	
+	Darkness Given Hunger is the largest black pudding known. 
+	It was possessed by a hezrou demon at Juiblex's command, and 
+	then an Imprison Possessor spell was cast upon the fusion, 
+	making it permanent. For centuries, the demon has dwelled 
+	within the pudding, and the two have truly become one in the 
+	foul depths of the Abyss. Now, Darkness Given Hunger is 
+	Juiblex's main servant, helping patrol the Abyssal layer upon 
+	which they both dwell, looking for food.
+		[ The Book of Vile Darkness, by Monte Cook ]
+dart
+darts
+	Darts are missile weapons, designed to fly such that a sharp, 
+	often weighted point will strike first. They can be distinguished
+	from javelins by fletching (i.e., feathers on the tail) and a shaft
+	that is shorter and/or more flexible, and from arrows by the fact
+	that they are not of the right length to use with a normal bow.
+		[ Wikipedia, the free encyclopedia ]
+
+	Against my foe I hurled a murderous dart. 
+	He caught it in his hand--I heard him laugh-- 
+	I saw the thing that should have pierced his heart 
+	Turn to a golden staff.
+		[ Gifts, by Mary Coleridge ]
 deep* one
 	For eighty thousand years Pth'thya-l'yi had lived in Y'ha-nthlei,
 	and thither she had gone back after Obed Marsh was dead. 
@@ -1287,6 +1905,63 @@ solar
 	demipowers.  Their hair and skin is metallic.  Solars stay aloof
 	from mortals, but may command them with an irresistable voice.
 		[ adapted from Aasimar, by David Roberts and Brynn ]
+devil*snare
+	"Stop moving!" Hermione ordered them. "I know what this is --
+	it's Devil's Snare!"
+	"Oh, I'm so glad we know what it's called, that's a great help,"
+	snarled Ron, leaning back, trying to stop the plant from curling
+	around his neck.
+	"Shut up, I'm trying to remember how to kill it!" said Hermione.
+	"Well, hurry up, I can't breathe!" Harry gasped, wrestling with
+	it as it curled around his chest.
+	"Devil's Snare, Devil's Snare . . . what did Professor Sprout
+	say? -- it likes the dark and the damp --"
+	"So light a fire!" Harry choked.
+	"Yes -- of course -- but there's no wood!" Hermione cried,
+	wringing her hands.
+	"HAVE YOU GONE MAD?" Ron bellowed. "ARE YOU A WITCH OR NOT?"
+	  [ Harry Potter and the Philosopher's Stone, by J. K. Rowling ]
+diamond
+	The hardest known mineral (with a hardness of 10 on Mohs' scale). It
+	is an allotropic form of pure carbon that has crystallized in the
+	cubic system, usually as octahedra or cubes, under great pressure.
+		[ A Concise Dictionary of Physics ]
+
+	The diamond, _adamas_ or _dyamas_, is a transparent stone, like crystal,
+	but having the colour of polished iron, but it cannot be destroyed by
+	iron, fire or any other means, unless it is placed in the hot blood
+	of a goat; with sharp pieces of diamond other stones are engraved and
+	polished. It is no greater than a small nut. There are six kinds,
+	however Adamant attracts metal; it expels venom; it produces amber
+	(and is efficacious against empty fears and for those resisting spells).
+	It is found in India, in Greece and in Cyprus, where magicians make use
+	of it. It gives you courage; it averts apparitions; it removes anger and
+	quarrels; it heals the mad; it defends you from your enemies. It should be
+	set in gold or silver and worn on the left arm. It is likewise found
+	in Arabia.
+	  	[ The Aberdeen Bestiary, translated by Colin McLaren ]
+dilithium*
+	The most famous and the first to be named of the imaginary 
+	"minerals" of Star Trek is dilithium. ... Because of this
+	mineral's central role in the storyline, a whole mythology
+	surrounds it. It is, however, a naturally occurring substance
+	within the mythology, as there are various episodes that
+	make reference to the mining of dilithium deposits. ...
+	This name itself is imaginary and gives no real information on
+	the structure or make-up of this substance other than that this
+	version of the name implies a lithium and iron-bearing
+	aluminosilicate of some sort. That said, the real mineral that 
+	most closely matches the descriptive elements of this name is
+	ferroholmquistite which is a dilithium triferrodiallosilicate. 
+	If one goes on the premise that nature follows certain general 
+	norms, then one could extrapolate that dilithium might have a 
+	similar number of silicon atoms in its structure.
+	Keeping seven (i.e. hepto) ferrous irons and balancing the 
+	oxygens would give a theoretical formula of Li2Fe7Al2Si8O27. A 
+	mineral with this composition could theoretically exist, although
+	it is doubtful that it would possess the more fantastic properties
+	ascribed to dilithium.
+		[ The Mineralogy of Star Trek, by Jeffrey de Fourestier ]
 dingo
 	A wolflike wild dog, Canis dingo, of Australia, having a
 	reddish- or yellowish-brown coat, believed to have been
@@ -1295,8 +1970,23 @@ dingo
 disenchanter
 	Ask not, what your magic can do to it. Ask what it can do to your magic.
 dispater
+	The Roman ruler of the underworld and fortune, similar to the Greek 
+	Hades. Every hundred years, the Ludi Tarentini were celebrated in his 
+	honor. The Gauls regarded Dis Pater as their ancestor.
+	The name is a contraction of the Latin Dives, "the wealthy", Dives 
+	Pater, "the wealthy father", or "Fater Wealth". It refers to the 
+	wealth of precious stone below the earth.
+		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
+	
 	Dispater is an arch-devil who rules the city of Dis.  He is
 	a powerful mage.
+
+	This dark-haired figure stands just over seven feet tall. He could
+	pass for human if it weren't for the small horns protruding from
+	his brow and his glowing red eyes. Dressed in regal finery, he carries
+	a long rod capped with a macelike head.
+		[ Tyrants of the Nine Hells,
+			by Robin Laws and Robert Schwalb ]
 djinn*
 	The djinn are genies from the elemental plane of Air.  There,
 	among their kind, they have their own societies.  They are
@@ -1417,6 +2107,45 @@ doppelganger
 	count upon his doing the former, and not doing the latter, why
 	then you're a dragonlord."
 		[ The Tombs of Atuan, by Ursula K. Le Guin ]
+dread blossom*
+dreadblossom*
+	An individual dread blossom looks like a foot long
+	crimson flower, speckled with gold and black pollen,
+	that ends in a 6-inch-long hollow thorn surrounded at
+	its base by a frill of inch-long roots. Few creatures can
+	examine a dread blossom in such detail, as a dread blossom
+	swarm at rest is usually firmly planted in the bodies
+	of its latest victims.
+		[ Monster Manual III, Dungeons and Dragons 3.5 ]
+drow*
+	Myths exist for a purpose - To explain the unexplainable.
+	Because man fears the unknown.
+	
+	Murdering our kin. Our children.
+	Butchering our towns.
+	Devouring our flesh.
+	Enslaving our people.
+	Whispering of incest.
+	Desecrating our lands.
+	These mythical black demons with red eyes, embodying all
+	the sins of men.
+	
+	But what if those demons truly exist?
+				What are they, who are they?
+		Do they dream?
+				 Do they hate and love?
+			Do they have their own demons that represent
+			everything they despise and fear?
+	[ Drowtales, by Kern, Kite, and Bandit, Drowtales.com ]
+	
+	Also known as dark elves, drow are a depraved and evil 
+	subterranean offshoot of the elvish species.
+	
+	White is the most common hair color among drow, but almost 
+	any pale shade is possible. Drow tend to be smaller and 
+	thinner than other sorts of elves, and their eyes are often 
+	a vivid red. 
+		[ DnD 3.5 SRD ]
 creeping 42
  		These are the incarnations of The Answer (although nobody
  		knows the question). Eating the dead body of one gives
@@ -1583,6 +2312,22 @@ dwar* cave*man
 	they like, and a dwarvish gift is likely to turn to gold in
 	the hand.  But on the whole they are a snappish lot.
 		[ The Immortals, by Derek and Julia Parker ]
+*drum*
+	Many travelers have seen the drums of the great apes, and
+	some have heard the sounds of their beating and the noise of
+	the wild, weird revelry of these first lords of the jungle,
+	but Tarzan, Lord Greystoke, is, doubtless, the only human
+	being who ever joined in the fierce, mad, intoxicating revel
+	of the Dum-Dum.
+		[ Tarzan of the Apes, by Edgar Rice Burroughs ]
+dunce*
+	A dunce cap, also variously known as a dunce hat, dunce's cap,
+	or dunce's hat, is a tall conical hat. In popular culture, it
+	is typically made of paper and often marked with a D, and given
+	to schoolchildren to wear as punishment for being stupid or
+	lazy. While this is now a rare practice, it is frequently depicted
+	in popular culture such as children's cartoons.
+		[ Wikipedia, the free encyclopedia ]
 earendil
 elwing
 	In after days, when because of the triumph of Morgoth Elves and

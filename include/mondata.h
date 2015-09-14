@@ -101,7 +101,7 @@
 #define can_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT) != 0L)
 #define control_teleport(ptr)	(((ptr)->mflags1 & M1_TPORT_CNTRL) != 0L)
 #define telepathic(ptr)		((ptr)->mflags3 & M3_TELEPATHIC)
-#define is_armed(ptr)		(attacktype(ptr, AT_WEAP) || (ptr) == &mons[PM_ANIMATED_WEDGE_SANDAL] || (ptr) == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || (ptr) == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || (ptr) == &mons[PM_ANIMATED_COMBAT_STILETTO])
+#define is_armed(ptr)		(attacktype(ptr, AT_WEAP) || (ptr) == &mons[PM_ANIMATED_WEDGE_SANDAL] || (ptr) == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || (ptr) == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || (ptr) == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || (ptr) == &mons[PM_ANIMATED_COMBAT_STILETTO])
 #define acidic(ptr)		(((ptr)->mflags1 & M1_ACID) != 0L)
 #define poisonous(ptr)		(((ptr)->mflags1 & M1_POIS) != 0L)
 #define carnivorous(ptr)	(((ptr)->mflags1 & M1_CARNIVORE) != 0L)

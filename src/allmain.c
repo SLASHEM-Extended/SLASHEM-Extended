@@ -1219,6 +1219,9 @@ moveloop()
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 
+			/* more faux messages */
+			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) pline(fauxmessage());
+
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
@@ -1649,7 +1652,8 @@ boolean new_game;	/* false => restoring an old game */
 	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
 
 #ifdef PUBLIC_SERVER
-	if (new_game) pline("You are playing SLASH'EM Extended on a public server. In the very rare case that your previous game crashed by sending you back to the dgamelaunch screen, please contact the server administrator for a restore. Panics and segfaults aren't the end of the world - in roughly 99%% of all cases, these can be restored into a working savegame file. Have fun playing! You can find me and other players on the IRC channel #slashemextended :-) --Amy");
+	if (new_game) pline("You are playing SLASH'EM Extended on a public server. In the very rare case that your previous game crashed by sending you back to the dgamelaunch screen, please contact the server administrator for a restore.");
+	if (new_game) pline("Panics and segfaults aren't the end of the world - in roughly 99%% of all cases, these can be restored into a working savegame file. Have fun playing! You can find me and other players on the IRC channel #slashemextended :-) --Amy");
 #endif
 
 	if (issoviet) { /* horrible kludge for spell.c, which unfortunately makes wishing for books *very* difficult... --Amy */

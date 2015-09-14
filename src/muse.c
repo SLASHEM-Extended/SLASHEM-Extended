@@ -940,7 +940,7 @@ struct monst *mtmp;
 		for(xx = x-1; xx <= x+1; xx++) for(yy = y-1; yy <= y+1; yy++)
 		if (isok(xx,yy))
 		if (xx != u.ux && yy != u.uy)
-		if ((mtmp->data != &mons[PM_GRID_BUG] && mtmp->data != &mons[PM_WEREGRIDBUG] && mtmp->data != &mons[PM_GRID_XORN] && mtmp->data != &mons[PM_STONE_BUG] && mtmp->data != &mons[PM_WEAPON_BUG]) || xx == x || yy == y)
+		if ((mtmp->data != &mons[PM_GRID_BUG] && mtmp->data != &mons[PM_WEREGRIDBUG] && mtmp->data != &mons[PM_GRID_XORN] && mtmp->data != &mons[PM_STONE_BUG] && mtmp->data != &mons[PM_NATURAL_BUG] && mtmp->data != &mons[PM_MELEE_BUG] && mtmp->data != &mons[PM_WEAPON_BUG]) || xx == x || yy == y)
 		if ((xx==x && yy==y) || !level.monsters[xx][yy])
 		if ((t = t_at(xx,yy)) != 0)
 		if ((verysmall(mtmp->data) || throws_rocks(mtmp->data) ||
@@ -3904,7 +3904,7 @@ struct monst *mtmp;
 	  for(xx = x-1; xx <= x+1; xx++)
 	    for(yy = y-1; yy <= y+1; yy++)
 		if (isok(xx,yy) && (xx != u.ux || yy != u.uy))
-		    if ((mdat != &mons[PM_GRID_BUG] && mdat != &mons[PM_WEREGRIDBUG] && mdat != &mons[PM_GRID_XORN] && mdat != &mons[PM_STONE_BUG] && mdat != &mons[PM_WEAPON_BUG]) || xx == x || yy == y)
+		    if ((mdat != &mons[PM_GRID_BUG] && mdat != &mons[PM_WEREGRIDBUG] && mdat != &mons[PM_GRID_XORN] && mdat != &mons[PM_STONE_BUG] && mdat != &mons[PM_WEAPON_BUG] && mdat != &mons[PM_NATURAL_BUG] && mdat != &mons[PM_MELEE_BUG]) || xx == x || yy == y)
 			if (/* (xx==x && yy==y) || */ !level.monsters[xx][yy])
 			    if ((t = t_at(xx, yy)) != 0 &&
 			      (ignore_boulders || !sobj_at(BOULDER, xx, yy))
@@ -4735,7 +4735,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || (mon->egotype_reflecting) ) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) ) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
@@ -4782,6 +4782,18 @@ const char *fmt, *str;
 	    if (fmt && str)
 	    	pline(fmt, str, "armor");
 	    return TRUE;
+	} else if (EReflecting & W_ARMU) {
+	    if (fmt && str)
+	    	pline(fmt, str, "shirt");
+	    return TRUE;
+	} else if (EReflecting & W_ARMF) {
+	    if (fmt && str)
+	    	pline(fmt, str, "footwear");
+	    return TRUE;
+	} else if (EReflecting & W_ARMH) {
+	    if (fmt && str)
+	    	pline(fmt, str, "helmet");
+	    return TRUE;
 	} else if (EReflecting & W_ARMC) {
 	    if (fmt && str)
 	    	pline(fmt, str, "cloak");
@@ -4796,7 +4808,7 @@ const char *fmt, *str;
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER]) {
+	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
 	    if (fmt && str)
 	    	pline(fmt, str, "surface");
 	    return TRUE;

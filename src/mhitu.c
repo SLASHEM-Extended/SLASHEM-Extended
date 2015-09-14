@@ -271,7 +271,7 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
+			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s scratches up and down your %ss with %s heels!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
@@ -3151,6 +3151,9 @@ dopois:
 		    exercise(A_CON, FALSE);
 		    u.ulycn = monsndx(mdat);
 			if (u.ulycn == PM_HUMAN_WERERAT) u.ulycn = PM_WERERAT;
+			if (u.ulycn == PM_HUMAN_WERERABBIT) u.ulycn = PM_WERERABBIT;
+			if (u.ulycn == PM_HUMAN_WEREBOAR) u.ulycn = PM_WEREBOAR;
+			if (u.ulycn == PM_HUMAN_WERELOCUST) u.ulycn = PM_WERELOCUST;
 			if (u.ulycn == PM_HUMAN_WEREJACKAL) u.ulycn = PM_WEREJACKAL;
 			if (u.ulycn == PM_HUMAN_WEREWOLF) u.ulycn = PM_WEREWOLF;
 			if (u.ulycn == PM_HUMAN_WEREPANTHER) u.ulycn = PM_WEREPANTHER;
@@ -3195,6 +3198,7 @@ dopois:
 
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
+		if (mattk->aatyp == AT_KICK) hitmsg(mtmp, mattk);
 		if (is_animal(mtmp->data)) {
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
@@ -3567,13 +3571,6 @@ dopois:
 		    break;
 #endif
 		}
-	      else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
-		You("seem unaffected.");
-		break;
-	    } else if (Antimagic && rn2(20)) {
-		You("aren't affected.");
-		break;
-	    }
 	    done(DIED);
 	    return 1; /* lifesaved */
 
@@ -5435,13 +5432,6 @@ do_stone:
 		    break;
 #endif
 		}
-	      else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
-		You("seem unaffected.");
-		break;
-	    } else if (Antimagic && rn2(20)) {
-		You("aren't affected.");
-		break;
-	    }
 	    done(DIED);
 	    return 1; /* lifesaved */
 
@@ -5546,6 +5536,38 @@ common:
 		    } else if (flags.verbose)
 			You("get the impression it was not terribly bright.");
 		}
+		break;
+
+	    case AD_DISN: /* for jonadab's disintegrating sphere */
+
+		if (Disint_resistance && rn2(100)) {
+		    You("are not disintegrated.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+		}
+		 else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    (void) destroy_arm(uarm);
+		    break;
+#ifdef TOURIST
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    (void) destroy_arm(uarmu);
+		    break;
+#endif
+		}
+	      done(DIED);
+
 		break;
 
 	    case AD_STON: /* mainly for jonadab's stoning sphere */
@@ -5709,6 +5731,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	int dmgplus;
 	struct obj *optr;
 	struct obj *otmpi, *otmpii;
+	int hallutime;
 
 	/*int randattackB = 0;*/
 	uchar atttypB;
@@ -5841,13 +5864,6 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    break;
 #endif
 		}
-	      else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
-		You("seem unaffected.");
-		break;
-	    } else if (Antimagic && rn2(20)) {
-		You("aren't affected.");
-		break;
-	    }
 	    done(DIED);
 	    return 1; /* lifesaved */
 
@@ -5921,7 +5937,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_STTP:
 
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
  		{
 		pline("%s gazes at you and curses.", Monnam(mtmp));
 		if (invent) {
@@ -6095,6 +6111,239 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(5)) morehungry(dmgplus);
 		}
 		/* plus the normal damage */
+		}
+		break;
+
+	    case AD_DEPR:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) 		{
+		pline("%s gazes at you with depressing sorrow in its eyes!",
+			Monnam(mtmp));
+
+		if (!rn2(3)) {
+
+		    switch(rnd(20)) {
+		    case 1:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+			break;
+		    case 2:
+			You("need reboot.");
+			newman();
+			break;
+		    case 3: case 4:
+			if(!rn2(4) && u.ulycn == NON_PM &&
+				!Protection_from_shape_changers &&
+				!is_were(youmonst.data) &&
+				!defends(AD_WERE,uwep)) {
+			    You_feel("feverish.");
+			    exercise(A_CON, FALSE);
+			    u.ulycn = PM_WERECOW;
+			} else {
+				if (multi >= 0) {
+				    if (Sleep_resistance && rn2(20)) break;
+				    fall_asleep(-rnd(10), TRUE);
+				    if (Blind) You("are put to sleep!");
+				    else You("are put to sleep by %s!", mon_nam(mtmp));
+				}
+			}
+			break;
+		    case 5: case 6:
+			if (!u.ustuck && !sticks(youmonst.data)) {
+				setustuck(mtmp);
+				pline("%s grabs you!", Monnam(mtmp));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+			break;
+		    case 7:
+		    case 8:
+			Your("position suddenly seems very uncertain!");
+			teleX();
+			break;
+		    case 9:
+			u_slow_down();
+			break;
+		    case 10:
+			hurtarmor(AD_RUST);
+			break;
+		    case 11:
+			hurtarmor(AD_DCAY);
+			break;
+		    case 12:
+			hurtarmor(AD_CORR);
+			break;
+		    case 13:
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 14:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			hallutime = rn1(7, 16);
+			make_stunned(HStun + hallutime + dmgplus, FALSE);
+			(void) make_hallucinated(HHallucination + hallutime + dmgplus,TRUE,0L);
+			break;
+		    case 15:
+			if(!Blind)
+				Your("vision bugged.");
+			hallutime += rn1(10, 25);
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + dmgplus + dmgplus,TRUE,0L);
+			break;
+		    case 16:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			hallutime += rn1(10, 25);
+			(void) make_hallucinated(HHallucination + hallutime + dmgplus,TRUE,0L);
+			break;
+		    case 17:
+			{
+			    struct obj *obj = some_armor(&youmonst);
+
+			    if (drain_item(obj)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+			    }
+			}
+			break;
+		    default:
+			    if(Confusion)
+				 You("are getting even more confused.");
+			    else You("are getting confused.");
+			    make_confused(HConfusion + dmgplus, FALSE);
+			break;
+		    }
+		    exercise(A_INT, FALSE);
+
+		}
+		}
+		break;
+
+	    case AD_WRAT:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+		pline("%s gazes at you with its angry eyes!", Monnam(mtmp));
+
+		if(u.uen < 1) {
+		    You_feel("less energised!");
+		    u.uenmax -= rn1(10,10);
+		    if(u.uenmax < 0) u.uenmax = 0;
+		} else if(u.uen <= 10) {
+		    You_feel("your magical energy dwindle to nothing!");
+		    u.uen = 0;
+		} else {
+		    You_feel("your magical energy dwindling rapidly!");
+		    u.uen /= 2;
+		}
+		}
+
+		break;
+
+	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+		pline("%s gazes at you with its apathetic eyes!", Monnam(mtmp));
+
+		if(!rn2(2)) {
+		    pline("Nothing seems to happen.");
+		    break;
+		}
+		switch(rn2(7)) {
+		    case 0: /* destroy certain things */
+			pline("%s touches you!", Monnam(mtmp));
+			witherarmor();
+			break;
+		    case 1: /* sleep */
+			if (multi >= 0) {
+			    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+			    fall_asleep(-rnd(10), TRUE);
+			    if (Blind) You("are put to sleep!");
+			    else You("are put to sleep by %s!", mon_nam(mtmp));
+			}
+			break;
+		    case 2: /* paralyse */
+			if (multi >= 0) {
+			    if (Free_action) {
+				You("momentarily stiffen.");            
+			    } else {
+				if (Blind) You("are frozen!");
+				else You("are frozen by %s!", mon_nam(mtmp));
+				nomovemsg = 0;	/* default: "you can move again" */
+				nomul(-rnd(10), "paralyzed by a monster attack");
+				exercise(A_DEX, FALSE);
+			    }
+			}
+			break;
+		    case 3: /* slow */
+			if(HFast)  u_slow_down();
+			else You("pause momentarily.");
+			break;
+		    case 4: /* drain Dex */
+			adjattrib(A_DEX, -rn1(1,1), 0);
+			break;
+		    case 5: /* steal teleportitis */
+			if(HTeleportation & INTRINSIC) {
+			      HTeleportation &= ~INTRINSIC;
+			}
+	 		if (HTeleportation & TIMEOUT) {
+				HTeleportation &= ~TIMEOUT;
+			}
+			if(HTeleport_control & INTRINSIC) {
+			      HTeleport_control &= ~INTRINSIC;
+			}
+	 		if (HTeleport_control & TIMEOUT) {
+				HTeleport_control &= ~TIMEOUT;
+			}
+		      You("don't feel in the mood for jumping around.");
+			break;
+		    case 6: /* steal sleep resistance */
+			if(HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+			} 
+			if(HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+			} 
+			You_feel("like you could use a nap.");
+			break;
+		}
+		}
+		break;
+
+	    case AD_DFOO:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+		pline("%s gazes at you with its angry eyes!", Monnam(mtmp));
+		if (!rn2(8)) {
+		    Sprintf(buf, "%s %s",
+			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
+		}
+		if (!rn2(10)) {
+			pline("You feel drained...");
+			u.uhpmax -= rn1(10,10);
+			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (!rn2(10)) {
+			You_feel("less energised!");
+			u.uenmax -= rn1(10,10);
+			if(u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (!rn2(10)) {
+			if(!Drain_resistance || !rn2(20) )
+			    losexp("life drainage", FALSE);
+			else You_feel("woozy for an instant, but shrug it off.");
+		}
 		}
 		break;
 

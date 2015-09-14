@@ -5599,6 +5599,7 @@ register struct monst *mtmp;
 		{
 			if (mm == PM_ANIMATED_WEDGE_SANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
 			else if (mm == PM_ANIMATED_SEXY_LEATHER_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
 			else if (mm == PM_ANIMATED_LEATHER_PEEP_TOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_ANIMATED_COMBAT_STILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 
@@ -5764,6 +5765,7 @@ register struct monst *mtmp;
 
 			if(ptr == &mons[PM_SMART_TRAPPER]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 			if(ptr == &mons[PM_TRAPPER_KING]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+			if(ptr == &mons[PM_CARNIVOROUS_BAG]) (void) mongets(mtmp, BAG_OF_TRICKS);
 
 		break;
 
@@ -6317,6 +6319,28 @@ register struct monst *mtmp;
 
 		if(ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_CLEAVED_ZOMBIE]) (void) mongets(mtmp, AXE);
 
+		if (mm == PM_ZOMBIE_PROSTITUTE){
+			(void)mongets(mtmp, BULLWHIP);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+			if (!rn2(ishaxor ? 10 : 20) ) {
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+
+			if (!rn2(ishaxor ? 50 : 100) ) {
+
+			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
+				      TRUE, FALSE);
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(mtmp, otmp);
+			}
+		}
+
 		if(ptr == &mons[PM_REFUGE_UHLERT]) (void) mongets(mtmp, BATTLE_AXE);
 
 		if(ptr == &mons[PM_SICKLE_SKELETON] || ptr == &mons[PM_RAGE_SCYTHE] || ptr == &mons[PM_SHADOW_REAPER]) (void) mongets(mtmp, FAUCHARD);
@@ -6368,6 +6392,9 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_OGRE_TROLL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_WAR_TROLL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_TROLL_GIANT]) (void) mongets(mtmp, ROTATING_CHAIN);
+
+		if(ptr == &mons[PM_ANNOYING_TROLL]) (void) mongets(mtmp, RANSEUR);
+		if(ptr == &mons[PM_MEAN_TROLL]) (void) mongets(mtmp, PARTISAN);
 
 			if (!rn2(ishaxor ? 10 : 20) ) {
 
@@ -8464,6 +8491,7 @@ register int	mmflags;
 			break;
 		case S_GIANT:
 			if (mndx == PM_EVIL_PATCH_MINOTAUR) set_mimic_sym(mtmp);
+			if (mndx == PM_MINOTAUR_MIMIC) set_mimic_sym(mtmp);
 
 			break;
 		case S_LICH:
@@ -10359,10 +10387,15 @@ golemhp(type)
 int type;
 {
 	switch(type) {
+		case PM_KARAKASA: return 30;
+		case PM_LIVING_IRON_CHAIN: return 30;
 		case PM_PAPER_GOLEM: return 36;
 		case PM_STRAW_GOLEM: return 40;
 		case PM_GARGOYLE: return 46;
 		case PM_FLYING_SCIMITAR: return 50;
+		case PM_CLOTH_GOLEM: return 50;
+		case PM_PLUSH_BEAR_GOLEM: return 50;
+		case PM_INTERCEPTOR_DOLL: return 50;
 
 		case PM_FLAME_ATRONACH: return 50;
 		case PM_FROST_ATRONACH: return 100;
@@ -10372,15 +10405,32 @@ int type;
 		case PM_CURSED_SWORD: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_ROPE_GOLEM: return 60;
+		case PM_TIN_SOLDIER: return 60;
+		case PM_CLAY_SOLDIER: return 60;
 		case PM_LEATHER_GOLEM: return 80;
 		case PM_GOLD_GOLEM: return 80;
+		case PM_BAMBOO_GOLEM: return 80;
+		case PM_EEL_GOLEM: return 80;
+		case PM_STONE_SOLDIER: return 80;
 		case PM_BRONZE_GOLEM: return 80;
+		case PM_BANANA_PEEL_GOLEM: return 80;
 		case PM_WOOD_GOLEM: return 100;
+		case PM_BARNACLE_COVERED_GOLEM: return 120;
+		case PM_STAINED_GLASS_GOLEM: return 100;
+		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
 		case PM_SUPER_WOODEN_STATUE: return 360; /* quite unbalanced; players who can't handle them should run away */
 		case PM_VANISHING_POINT: return 72;
 		case PM_LEVEL____ENEMY: return 72;
 		case PM_GEODUDE: return 100;
+		case PM_RUBBER_GOLEM: return 150;
+		case PM_BRASS_GOLEM: return 170;
+		case PM_ALLOY_GOLEM: return 180;
+		case PM_MIRROR_GOLEM: return 210;
+		case PM_TITANIUM_GOLEM: return 230;
+		case PM_BRONZE_COLOSSUS: return 270;
+		case PM_SILVER_GOLEM: return 290;
+		case PM_PLATINUM_GOLEM: return 310;
 		case PM_ANIMATED_ARMOR: return 100;
 		case PM_ANIMATED_BRONZE_STATUE: return 103;
 		case PM_MAIN_SCHOOL_GRADUATE: return 103;
@@ -10412,9 +10462,12 @@ int type;
 		case PM_SPACE_TRANSPORT: return 199;
 		case PM_WEATWIND: return 199;
 		case PM_FLESH_GOLEM: return 120;
+		case PM_BRAIN_GOLEM: return 120;
 		case PM_SPELL_GOLEM: return 130;
+		case PM_GROVE_GUARDIAN: return 170;
 		case PM_STATUE_GARGOYLE: return 140;
 		case PM_CLAY_GOLEM: return 150;
+		case PM_SEMBLANCE: return 150;
 		case PM_SANDMAN: return 150;
 		case PM_TONE_GOLEM: return 150;
 		case PM_BLOOD_GOLEM: return 200;
@@ -10426,6 +10479,12 @@ int type;
 		case PM_STONE_GOLEM: return 180;
 		case PM_STONE_STATUE: return 180;
 		case PM_GLASS_GOLEM: return 140;
+		case PM_SERVANT_OF_THE_UNKNOWN_GOD: return 140;
+		case PM_HEAD_OF_THE_UNKNOWN_GOD: return 140;
+		case PM_BODY_OF_THE_UNKNOWN_GOD: return 140;
+		case PM_LEGS_OF_THE_UNKNOWN_GOD: return 140;
+		case PM_EYE_OF_THE_UNKNOWN_GOD: return 100;
+		case PM_SCOURGE_OF_THE_UNKNOWN_GOD: return 180;
 		case PM_AQUATIC_GOLEM: return 190;
 		case PM_BONE_GOLEM: return 200;
 		case PM_ANIMATED_LEATHER_PEEP_TOE: return 250;
@@ -10440,6 +10499,7 @@ int type;
 		case PM_RETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;
+		case PM_LAVA_GOLEM: return 250;
 		case PM_AUTO_ROLLER: return 250;
 		case PM_BURNING_BRUTE: return 250;
 		case PM_PUKELMAN: return 250;
@@ -10452,6 +10512,7 @@ int type;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;
+		case PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP: return 350;
 		case PM_DIAMOND_GOLEM: return 270;
 		case PM_SAPPHIRE_GOLEM: return 280;
 		case PM_STEEL_GOLEM: return 290;
@@ -10468,6 +10529,9 @@ int type;
 		case PM_BLOODY_BEAUTIES: return 500;
 		case PM_INVULNERABLE_GOLEM: return 2000;
 		case PM_WAX_GOLEM: return 40;
+		case PM_WRAP_GOLEM: return 40;
+		case PM_TIN_GOLEM: return 40;
+		case PM_RESIN_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;
 		default: {impossible("undefined golem %d?",type); return 30;} /* failsafe so undefined golems don't start with zero hp! --Amy */
 	}
