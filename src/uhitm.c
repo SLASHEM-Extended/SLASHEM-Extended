@@ -4179,8 +4179,8 @@ uchar aatyp;
 	}
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
-	    if(ptr->mattk[i].aatyp == AT_NONE /*||
-	       ptr->mattk[i].aatyp == AT_BOOM*/) { /* try this one */
+	    if(ptr->mattk[i].aatyp == AT_NONE ||
+	       (!malive && ptr->mattk[i].aatyp == AT_BOOM) ) { /* try this one */
 
 	/*}*/ /* the above allows multiple passive attacks on a single monster; code from FHS --Amy */
 
