@@ -824,7 +824,7 @@ struct obj *obj;
 		} else pline ("It steals your mirror!");
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
-		(void) mpickobj(mtmp,obj);
+		(void) mpickobj(mtmp,obj,FALSE);
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) && !mtmp->minvisreal &&
 			(!mtmp->minvis || perceives(mtmp->data)) && rn2(5)) {

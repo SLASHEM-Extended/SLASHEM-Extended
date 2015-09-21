@@ -1283,7 +1283,7 @@ int thrown;
 
 	if (u.uswallow) {
 		/* ball is not picked up by monster */
-		if (obj != uball) (void) mpickobj(u.ustuck,obj);
+		if (obj != uball) (void) mpickobj(u.ustuck,obj,FALSE);
 	} else {
 		/* the code following might become part of dropy() */
 #ifndef JEDI
@@ -1363,7 +1363,7 @@ int thrown;
 			      Monnam(mon), the(xname(obj)));
 		    if(*u.ushops)
 			check_shop_obj(obj, bhitpos.x, bhitpos.y, FALSE);
-		    (void) mpickobj(mon, obj);	/* may merge and free obj */
+		    (void) mpickobj(mon, obj, FALSE);	/* may merge and free obj */
 		    thrownobj = (struct obj*)0;
 		    return;
 		}
@@ -1565,7 +1565,7 @@ int thrown;
 		    (void) encumber_msg();
 		} else {
 		    /* angry leader caught it and isn't returning it */
-		    (void) mpickobj(mon, obj);
+		    (void) mpickobj(mon, obj, FALSE);
 		}
 		return 1;		/* caller doesn't need to place it */
 	    }
@@ -1844,7 +1844,7 @@ register struct obj *obj;
 	}
 	Strcat(buf,acceptgift);
 	if(*u.ushops) check_shop_obj(obj, mon->mx, mon->my, TRUE);
-	(void) mpickobj(mon, obj);	/* may merge and free obj */
+	(void) mpickobj(mon, obj, FALSE);	/* may merge and free obj */
 	ret = 1;
 
 nopick:
