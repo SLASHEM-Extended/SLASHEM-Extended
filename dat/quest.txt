@@ -3378,7 +3378,7 @@ So Arabella's artifact was a Helm of Storms. If you read
 your sources correctly, it will give you resistance to all
 elements and some other useful benefits.
 %E
-%Cp Spa 00080
+%Cc Spa 00080
 Arabella has been defeated by %p.
 
 With her player character avatar disappearing from your screen,
@@ -3656,7 +3656,7 @@ the Amulet of Kings. It doesn't seem to do all that much apart
 from conveying drain resistance, but maybe you need to activate
 it in some way...
 %E
-%Cp Cam 00080
+%Cc Cam 00080
 Arabella has been defeated by %p.
 
 With her player character avatar disappearing from your screen,

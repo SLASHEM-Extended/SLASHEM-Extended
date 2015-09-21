@@ -105,7 +105,7 @@ struct Role {
 	short gift1arti,		/* Index (ART_) of first artifact gift */
 	      gift2arti;		/* Index (ART_) of second artifact gift */
 #endif
-	short questarti;	/* index (ART_) of quest artifact (questpgr.c) */
+	/*short*/int questarti;	/* index (ART_) of quest artifact (questpgr.c) */
 
 	/*** Bitmasks ***/
 	short allow;		/* bit mask of allowed variations */

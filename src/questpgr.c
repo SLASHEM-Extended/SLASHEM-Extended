@@ -182,7 +182,7 @@ boolean
 is_quest_artifact(otmp)
 struct obj *otmp;
 {
-	return((boolean)(otmp->oartifact == urole.questarti));
+	return((boolean)( (unsigned char) otmp->oartifact == (unsigned char) urole.questarti));
 }
 
 STATIC_OVL const char *
