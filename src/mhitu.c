@@ -1847,8 +1847,8 @@ swingweapon:
 		a = &mdat2->mattk[2];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_SOUN;
-		a->damn = 0;
-		a->damd = 0;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev / 2));
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {
@@ -2381,8 +2381,8 @@ swingweapon:
 		a = &mdat2->mattk[2];
 		a->aatyp = AT_TUCH;
 		a->adtyp = rn2(1000) ? AD_CHRN : AD_UVUU;
-		a->damn = 0;
-		a->damd = 0;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {
