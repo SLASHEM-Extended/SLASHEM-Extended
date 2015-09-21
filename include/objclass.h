@@ -91,7 +91,7 @@ struct objclass {
 
 	uchar	oc_oprop;		/* property (invis, &c.) conveyed */
 	char	oc_class;		/* object class */
-	schar	oc_delay;		/* delay when using such an object */
+	int	oc_delay;		/* delay when using such an object */
 	uchar	oc_color;		/* color of the object */
 
 	/*short*/int	oc_prob;		/* probability, used in mkobj() */
@@ -116,7 +116,7 @@ struct objclass {
 #define a_can		oc_oc2		/* armor: used in mhitu.c */
 #define oc_level	oc_oc2		/* books: spell level */
 
-	unsigned short	oc_nutrition;	/* food value */
+	int	oc_nutrition;	/* food value */
 };
 
 struct objdescr {

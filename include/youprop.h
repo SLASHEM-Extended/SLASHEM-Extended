@@ -118,7 +118,7 @@
 
 #define HConfusion		u.uprops[CONFUSION].intrinsic
 #define EConfusion		u.uprops[CONFUSION].extrinsic
-#define Confusion		(HConfusion || EConfusion || HeavyConfusion || Race_if(PM_ADDICT))
+#define Confusion		(HConfusion || EConfusion || HeavyConfusion || u.uprops[SENSORY_DEPRIVATION].extrinsic || Race_if(PM_ADDICT))
 #define HeavyConfusion		u.uprops[HEAVY_CONFUSION].intrinsic
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
@@ -145,7 +145,7 @@
 #define EBlinded			u.uprops[BLINDED].extrinsic
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES)
 		/* ...means blind because of a cover */
-#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
+#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
 		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ))
 		/* ...the Eyes operate even when you really are blind
 		    or don't have any eyes */
@@ -155,6 +155,8 @@
 #define Sick			u.uprops[SICK].intrinsic
 #define Stoned			u.uprops[STONED].intrinsic
 #define Strangled		u.uprops[STRANGLED].intrinsic
+#define Prem_death		(u.uprops[PREMDEATH].intrinsic || u.uprops[PREMDEATH].extrinsic)
+#define RecurringAmnesia		(u.uprops[RECURRING_AMNESIA].intrinsic || u.uprops[RECURRING_AMNESIA].extrinsic)
 #define Vomiting		u.uprops[VOMITING].intrinsic
 #define Glib			u.uprops[GLIB].intrinsic
 #define EGlib			u.uprops[GLIB].extrinsic
@@ -220,7 +222,7 @@
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	(EHalluc_resistance || \
 				 (Upolyd && dmgtype(youmonst.data, AD_HALU)))
-#define Hallucination		((HHallucination && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || flags.hippie )
+#define Hallucination		((HHallucination && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
 
@@ -555,5 +557,14 @@
 
 #define Lifesaved		u.uprops[LIFESAVED].extrinsic
 
+#define HKeen_memory		u.uprops[KEEN_MEMORY].intrinsic
+#define EKeen_memory		u.uprops[KEEN_MEMORY].extrinsic
+#define Keen_memory		((HKeen_memory || EKeen_memory || (youmonst.data->mlet == S_QUADRUPED)) && !NoKeen_memory)
+#define NoKeen_memory	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_KEEN_MEMORY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HUseTheForce		u.uprops[THE_FORCE].intrinsic
+#define EUseTheForce		u.uprops[THE_FORCE].extrinsic
+#define UseTheForce		((HUseTheForce || EUseTheForce ) && !NoUseTheForce)
+#define NoUseTheForce	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_THE_FORCE].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #endif /* YOUPROP_H */

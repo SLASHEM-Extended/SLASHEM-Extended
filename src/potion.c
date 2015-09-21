@@ -964,7 +964,7 @@ badeffect()
 		case 214:
 		case 215:
 
-		switch (rnd(109)) {
+		switch (rnd(111)) {
 
 			case 1:
 			case 2:
@@ -1212,6 +1212,14 @@ badeffect()
 			case 109:
 				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
 				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
+				pline("You are prevented from using the force like a real jedi!");
 				break;
 			}
 		break;

@@ -53,6 +53,7 @@ static struct trobj Artist[] = {
 	{ POT_OIL, 0, POTION_CLASS, 4, UNDEF_BLESS },
 	{ POT_WATER, 0, POTION_CLASS, 1, UNDEF_BLESS },
 	{ MAGIC_MARKER, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ FELT_TIP_MARKER, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -69,6 +70,7 @@ static struct trobj Librarian[] = {
 	{ ROBE, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LENSES, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ MAGIC_MARKER, 0, TOOL_CLASS, 1, UNDEF_BLESS }, /* empty on purpose */
+	{ FELT_TIP_MARKER, 100, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
 	{ SPE_BLANK_PAPER, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, 1 },        
@@ -5129,6 +5131,8 @@ u_init()
 		if (!rn2(10)) u.minimalism += rnd(5);
 		if (!rn2(100)) u.minimalism += rnz(5);
 	}
+
+	u.unobtainablegeno = -1;
 
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);

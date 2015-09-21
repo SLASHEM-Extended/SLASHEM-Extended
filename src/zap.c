@@ -2618,6 +2618,36 @@ register struct obj *obj;
 
 		break;
 
+		case WAN_CONFUSION:
+		if(!Confusion) {
+		    if (Hallucination) {
+			pline("What a trippy feeling!");
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR))
+			pline("Blimey! Ye're one sheet to the wind!");
+			else 
+			pline("Huh, What?  Where am I?");
+		}
+		make_confused(HConfusion + rn1(35, 115), FALSE);
+
+		break;
+
+		case WAN_SLIMING:
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+		    You("don't feel very well.");
+		    Slimed = 100L;
+		    flags.botl = 1;
+		}
+
+		break;
+
+		case WAN_LYCANTHROPY:
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWOLF;
+			pline("You feel feverish.");
+		}
+
+		break;
+
 		case WAN_LIGHT:
 		case SPE_LIGHT:
 			litroom(TRUE,obj);
@@ -2778,6 +2808,10 @@ register struct obj *obj;
 		case SPE_DARKNESS:
 			if (!Blind) known = TRUE;
 			litroom(FALSE,obj);
+			break;
+		case SPE_AMNESIA:
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
 			break;
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;

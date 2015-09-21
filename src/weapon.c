@@ -369,6 +369,7 @@ struct monst *mon;
 		case MACE:
 		case SILVER_MACE:
 		case FLANGED_MACE:
+		case REINFORCED_MACE:
 		case WAR_HAMMER:
 		case MALLET:
 		case FLAIL:
@@ -648,6 +649,7 @@ struct monst *mon;
 		case MACE:
 		case SILVER_MACE:
 		case FLANGED_MACE:
+		case REINFORCED_MACE:
 		case WAR_HAMMER:
 		case MALLET:
 		case FLAIL:
@@ -1093,7 +1095,7 @@ static NEARDATA const int rwep[] =
 };
 
 static NEARDATA const int pwep[] =
-{	HALBERD, BARDICHE, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
+{	COURSE_LANCE, HALBERD, BARDICHE, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
 	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PARTISAN, LANCE
 };
 
@@ -1154,13 +1156,14 @@ register struct monst *mtmp;
 	    /* shooting gems from slings; this goes just before the darts */
 	    /* (shooting rocks is already handled via the rwep[] ordering) */
 	    if (rwep[i] == DART && !likes_gems(mtmp->data) &&
-		    m_carrying(mtmp, SLING)) {		/* propellor */
+		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
 		    if (otmp->oclass == GEM_CLASS /*&&
 			    (otmp->otyp != LOADSTONE || !otmp->cursed)*/) {
 			/* I'll allow monsters to fire loadstones even if they are cursed.
 			 * Yes, monsters are cheating bastards. --Amy */
-			propellor = m_carrying(mtmp, SLING);
+			propellor = m_carrying(mtmp, CATAPULT);
+			if (!propellor) propellor = m_carrying(mtmp, SLING);
 			return otmp;
 		    }
 	    }
@@ -1189,10 +1192,12 @@ register struct monst *mtmp;
 		  if (!propellor) propellor = (oselect(mtmp, ORCISH_BOW));
 		  break;
 		case P_SLING:
-		  propellor = (oselect(mtmp, SLING));
+		  propellor = (oselect(mtmp, CATAPULT));
+		  if (!propellor) propellor = (oselect(mtmp, SLING));
 		  break;
 		case P_CROSSBOW:
-		  propellor = (oselect(mtmp, DROVEN_CROSSBOW));
+		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
 #ifdef FIREARMS
 		case P_FIREARM:
@@ -1271,7 +1276,7 @@ static const NEARDATA short hwep[] = {
 	  GREEN_LIGHTSABER,
 #endif
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, BLOCK_HEELED_COMBAT_BOOT,
-	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, GOLDEN_SABER, BATTLE_STAFF,
+	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, GOLDEN_SABER, BATTLE_STAFF, REINFORCED_MACE, 
 	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, TRIDENT, LONG_SWORD, OBSID, SPIRIT_THROWER,
 	  ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER, FLANGED_MACE, JAGGED_STAR, STEEL_WHIP,
 	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, SILVER_MACE,
@@ -2699,6 +2704,7 @@ struct obj *weapon;
 	if (Race_if(PM_DWARF) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;
 	if (Race_if(PM_GNOME) && weapon && (weapon->otyp == AKLYS || weapon->otyp == CROSSBOW || weapon->otyp == CROSSBOW_BOLT) ) bonus += 1;
 	if (Race_if(PM_HOBBIT) && weapon && (weapon->otyp == SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
+	if (Race_if(PM_HOBBIT) && weapon && (weapon->otyp == CATAPULT || weapon_type(weapon) == -P_SLING) ) bonus += 2;
 
     return bonus;
 }

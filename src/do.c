@@ -505,6 +505,9 @@ giveback:
 		case RIN_POLYMORPH_CONTROL:
 	pline_The("sink momentarily looks like a regularly erupting geyser.");
 		    break;
+		case RIN_MEMORY:
+		    pline_The("sink looks exactly as you remember it.");
+		    break;
 	    }
 	}
 	if(ideed)

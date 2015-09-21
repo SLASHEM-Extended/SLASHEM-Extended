@@ -1255,6 +1255,7 @@ int thrown;
 
 			      if (Role_if(PM_ROCKER)) {
 				if ((obj->otyp == SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
 				tmp++;
 				
 			    } /*else */

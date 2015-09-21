@@ -1487,6 +1487,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) ) {
+		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
+		enl_msg("This item ", "is ", "was ", buf );
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
@@ -1643,6 +1648,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Strangled) {
 		Sprintf(buf, (u.uburied) ? "buried" : "being strangled");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Strangled);
+		you_are(buf);
+	}
+	if (Prem_death) {
+		Sprintf(buf, "going to die prematurely");
 		you_are(buf);
 	}
 	if (IsGlib) {
@@ -1895,6 +1904,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if (UseTheForce) {
+		Sprintf(buf, "able to use the force like a true jedi");
+		you_are(buf);
+	}
+
+	if (RecurringAmnesia) {
+		Sprintf(buf, "going to suffer from amnesia now and then");
+		you_are(buf);
+	}
+
+	if (u.uprops[SENSORY_DEPRIVATION].extrinsic) {
+		Sprintf(buf, "sensory deprivation.");
+		you_have(buf);
+	}
+
 	if (NoFire_resistance) {
 		Sprintf(buf, "prevented from having fire resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FIRE_RES].intrinsic);
@@ -2070,6 +2094,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_REFLECTING].intrinsic);
 		you_are(buf);
 	}
+	if (NoKeen_memory) {
+		Sprintf(buf, "prevented from having keen memory");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_KEEN_MEMORY].intrinsic);
+		you_are(buf);
+	}
 	if (NoFree_action) {
 		Sprintf(buf, "prevented from having free action");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREE_ACTION].intrinsic);
@@ -2133,6 +2162,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (NoSickopathy) {
 		Sprintf(buf, "prevented from having sickopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
+		you_are(buf);
+	}
+	if (NoUseTheForce) {
+		Sprintf(buf, "prevented from using the force like a real jedi");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
 		you_are(buf);
 	}
 
@@ -2405,6 +2439,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (u.udaminc)
 	    you_have(enlght_combatinc("damage", u.udaminc, final, buf));
 	if (Slow_digestion) you_have("slower digestion");
+	if (Keen_memory)
+		enl_msg("Your memory ", "is", "was", " keen");
 	if (Half_physical_damage) you_have("physical resistance");
 	if (Half_spell_damage) you_have("spell resistance");
 	if (Regeneration) enl_msg("You regenerate", "", "d", "");

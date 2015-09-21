@@ -658,7 +658,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(177)) {
+	switch(rnd(178)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1208,6 +1208,15 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.udaminc -= u.udamincxtra;
 			u.udamincxtra = 0;
 			You_feel("your damage rating changing!");
+		}
+		break;
+	case 176: if (HKeen_memory & INTRINSIC) {
+			HKeen_memory &= ~INTRINSIC;
+			You_feel("a case of selective amnesia...");
+		}
+		if (HKeen_memory & TIMEOUT) {
+			HKeen_memory &= ~TIMEOUT;
+			You_feel("a case of selective amnesia...");
 		}
 		break;
 	default: break;

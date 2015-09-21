@@ -881,6 +881,7 @@ int curse_bless;
 		if (obj->spe > 5) obj->spe = 5;
 		break;
 	    case MAGIC_MARKER:
+	    case FELT_TIP_MARKER:
 	    case TINNING_KIT:
 #ifdef TOURIST
 	    case EXPENSIVE_CAMERA:
@@ -1091,6 +1092,8 @@ static void
 forget_single_object(obj_id)
 	int obj_id;
 {
+	if (obj_id == RIN_MEMORY && rn2(6))
+	    return;   /* does not want to be forgotten */
 	objects[obj_id].oc_name_known = 0;
 	objects[obj_id].oc_pre_discovered = 0;	/* a discovery when relearned */
 	if (objects[obj_id].oc_uname) {
@@ -1143,6 +1146,8 @@ forget_objects(percent)
 	int i, count;
 	int indices[NUM_OBJECTS];
 
+	if (Keen_memory && rn2(20)) return;
+
 	if (percent == 0) return;
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_objects: bad percent %d", percent);
@@ -1171,8 +1176,10 @@ forget_map(howmuch)
 {
 	register int zx, zy;
 
-	if (In_sokoban(&u.uz))
+	if (In_sokoban(&u.uz) && rn2(20) )
 	    return;
+
+	if (Keen_memory && rn2(20)) return;
 
 	known = TRUE;
 	for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++)
@@ -1189,6 +1196,8 @@ void
 forget_traps()
 {
 	register struct trap *trap;
+
+	if (Keen_memory && rn2(20)) return;
 
 	/* forget all traps (except the one the hero is in :-) */
 	for (trap = ftrap; trap; trap = trap->ntrap)
@@ -1209,6 +1218,8 @@ forget_levels(percent)
 	int indices[MAXLINFO];
 
 	if (percent == 0) return;
+
+	if (Keen_memory && rn2(20)) return;
 
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_levels: bad percent %d", percent);
@@ -1876,6 +1887,70 @@ genericptr_t poolcnt;
 }
 
 
+STATIC_PTR void
+do_terrainflood(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = randomwalltype();
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = randomwalltype();
+		block_point(x,y);
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
 int
 seffects(sobj)
 register struct obj	*sobj;
@@ -2057,6 +2132,33 @@ register struct obj	*sobj;
 				Blind ? "again" : "unexpectedly");
 		break;
 	    }
+	case SCR_REPAIR_ITEM:
+	    {
+		pline("You may repair a damaged item.");
+		otmp = getobj(all_count, "magically repair");
+		if (!otmp) {
+			pline("A feeling of loss comes over you.");
+			break;
+		}
+
+		if (otmp && confused) {
+			if (!Blind) {
+				pline("Your %s looks like it might fall apart if you sneeze at it!",xname(otmp));
+			}
+			otmp->oeroded = 3;
+			otmp->oeroded2 = 3;
+		} else if (otmp && greatest_erosion(otmp) > 0) {
+			if (!Blind) {
+				pline("Your %s looks as good as new!",xname(otmp));
+			}
+			if (otmp->oeroded > 0) { otmp->oeroded = 0; }
+			if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+
+		} else pline("Your %s is still as undamaged as ever.",xname(otmp));
+
+	    }
+		break;
+
 	case SCR_DESTROY_ARMOR:
 	    {
 		otmp = some_armor(&youmonst);
@@ -2350,6 +2452,37 @@ register struct obj	*sobj;
 		flush_screen(0);
 		break;
 	    }
+	case SCR_SUMMON_BOSS:
+		known = TRUE;
+		{
+			int attempts = 0;
+			register struct permonst *ptrZ;
+newboss:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", ptrZ->mname);
+				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (ptrZ && rn2(10)) {
+				attempts = 0;
+				goto newboss;
+			}
+			if (confused ? rn2(10) : !rn2(100) ) {
+				attempts = 0;
+				goto newboss;
+			}
+			pline("Boss monsters appear from nowhere!");
+
+		}
+
+		break;
+
 	case SPE_ENCHANT_WEAPON:
 		if (confused) break;
 	case SCR_ENCHANT_WEAPON:
@@ -2494,6 +2627,18 @@ register struct obj	*sobj;
 		    }
 		}
 		break;
+	case SCR_BULLSHIT:
+		pline("You notice a vile stench...");
+
+		    int i, j, bd = confused ? 100 : sobj->cursed ? 2 : 1;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT);
+		    }
+
+		break;
+
 	case SPE_CHARM_MONSTER: /* gotta nerf that overpowered spell a little --Amy */
 		if (confused) break;
 	
@@ -2814,6 +2959,46 @@ register struct obj	*sobj;
 
 	break;
 
+	case SCR_CHAOS_TERRAIN:
+		known = TRUE;
+		if (confused) {
+			/* do nothing */
+			pline("It seems this was quite a normal scroll.");
+		} else {
+			int madepool = 0;
+			int stilldry = -1;
+			int x,y,safe_pos=0;
+			int radius = 5-2*bcsign(sobj);
+			if (!rn2(3)) radius += rnd(4);
+			if (!rn2(10)) radius += rnd(6);
+			if (!rn2(25)) radius += rnd(8);
+			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
+				do_clear_areaX(u.ux, u.uy, radius, do_terrainflood,
+						(genericptr_t)&madepool);
+
+			/* check if there are safe tiles around the player */
+			for (x = u.ux-1; x <= u.ux+1; x++) {
+				for (y = u.uy - 1; y <= u.uy + 1; y++) {
+					if (x != u.ux && y != u.uy &&
+					    goodpos(x, y, &youmonst, 0)) {
+						safe_pos++;
+					}
+				}
+			}
+
+			/* we do not put these on the player's position. */
+			if (!madepool && stilldry)
+				break;
+			if (madepool)
+				pline(Hallucination ?
+						"Oh wow, look at all the stuff that is happening around you!" :
+						"What the heck is happening to the dungeon?!" );
+			known = TRUE;
+			break;
+		}
+
+	break;
+
 	case SCR_FLOOD:
 		known = TRUE;
 		if (confused) {
@@ -2880,6 +3065,44 @@ register struct obj	*sobj;
 		    }
 		}
 		break;
+	case SCR_ITEM_GENOCIDE:
+		You("have found a scroll of item genocide!");
+		known = TRUE;
+		char buf[BUFSZ];
+		int tries = 0;
+retry:
+		getlin("What item do you want to genocide?", buf);
+		if(buf[0] == '\033') buf[0] = 0;
+		struct obj *otmpY, nothing;
+
+		/* If confused, you will always genocide something, and you won't know what. --Amy 
+		 * Sometimes it also happens if the scroll was cursed. */
+
+		otmpY = (confused || (sobj->cursed && rn2(2) )) ? mkobj(RANDOM_CLASS, TRUE) : readobjnam(buf, &nothing, TRUE);
+		if (!otmpY) {
+		    pline("Nothing fitting that description exists in the game.");
+		    if (++tries < 5) goto retry;
+		    pline(thats_enough_tries);
+			break;
+		} else if (otmpY == &nothing) {
+		    break;
+		} else if ((otmpY->otyp == GOLD_PIECE) || (otmpY->otyp == STRANGE_OBJECT) || (otmpY->otyp == AMULET_OF_YENDOR) || (otmpY->otyp == CANDELABRUM_OF_INVOCATION) || (otmpY->otyp == BELL_OF_OPENING) || (otmpY->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[otmpY->otyp].oc_prob < 1)) {
+		    pline("That item cannot be genocided.");
+		    if (++tries < 5) goto retry;
+		    pline(thats_enough_tries);
+			break;
+
+		}
+		if (otmpY != &zeroobj) {
+			u.unobtainablegeno = otmpY->otyp;
+			if (!confused) pline("All %s (%s) items can no longer be generated.", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
+			else pline("In your confusion, you genocided some item. But you forgot what it is.");
+		}
+
+		if (otmpY) obfree(otmpY, (struct obj *)0);
+
+		break;
+
 	case SCR_GENOCIDE:
 		You("have found a scroll of genocide!");
 		known = TRUE;
@@ -3019,6 +3242,13 @@ register struct obj	*sobj;
 			if (!rn2(20)) healup(400 + rnz(u.ulevel), 0, FALSE, FALSE);
 			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
 			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		break;
+	case SCR_WOUNDS:
+		makeknown(SCR_WOUNDS);
+		You("feel bad!");
+			if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
+			else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
+			else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
 		break;
 	case SCR_MANA: /* there was no simple mana potion in this game! --Amy */
 		makeknown(SCR_MANA);

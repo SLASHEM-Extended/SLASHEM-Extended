@@ -810,6 +810,9 @@ struct monst *mtmp;
 	    if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
 		multishot++;
 	    if (mwep && mwep->otyp == ELVEN_BOW && !mwep->cursed) multishot++;
+
+	    if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
+
 	    /* 1/3 of object enchantment */
 	    if (mwep && mwep->spe > 1)
 		multishot += rounddiv(mwep->spe, 3);

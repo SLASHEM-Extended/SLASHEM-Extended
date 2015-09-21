@@ -547,7 +547,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(109)) {
+		switch (rnd(111)) {
 
 			case 1:
 			case 2:
@@ -795,13 +795,21 @@ nh_timeout()
 			case 109:
 				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
 				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
+				pline("You are prevented from using the force like a real jedi!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(109)) {
+		switch (rnd(111)) {
 
 			case 1:
 			case 2:
@@ -1049,13 +1057,21 @@ nh_timeout()
 			case 109:
 				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
 				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
+				pline("You are prevented from using the force like a real jedi!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(109)) {
+		switch (rnd(111)) {
 
 			case 1:
 			case 2:
@@ -1303,6 +1319,14 @@ nh_timeout()
 			case 109:
 				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
 				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
+				pline("You are prevented from using the force like a real jedi!");
 				break;
 			}
 	}
@@ -2230,6 +2254,12 @@ nh_timeout()
 			break;
 		case DEAC_REFLECTING:
 			pline("You are no longer prevented from having reflection.");
+			break;
+		case DEAC_KEEN_MEMORY:
+			pline("You are no longer prevented from having keen memory.");
+			break;
+		case DEAC_THE_FORCE:
+			pline("You are no longer prevented from using the force like a real jedi.");
 			break;
 		case DEAC_FREE_ACTION:
 			pline("You are no longer prevented from having free action.");

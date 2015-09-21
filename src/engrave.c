@@ -1327,6 +1327,9 @@ doengrave()
 		    case WAN_CORROSION:
 		    case WAN_FUMBLING:
 		    case WAN_STARVATION:
+		    case WAN_CONFUSION:
+		    case WAN_SLIMING:
+		    case WAN_LYCANTHROPY:
 			zapnodir(otmp);
 			break;
 
@@ -1609,6 +1612,7 @@ doengrave()
 #endif
 		switch (otmp->otyp)  {
 		    case MAGIC_MARKER:
+		    case FELT_TIP_MARKER:
 			if (otmp->spe <= 0)
 			    Your("marker has dried out.");
 			else
@@ -1907,7 +1911,7 @@ doengrave()
 	    case MARK:
 		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
 		if ((otmp->oclass == TOOL_CLASS) &&
-		    (otmp->otyp == MAGIC_MARKER)) {
+		    (otmp->otyp == MAGIC_MARKER || otmp->otyp == FELT_TIP_MARKER)) {
 		    maxelen = (otmp->spe) * /*2*/8; /* one charge / 2 letters */ /* Amy edit - one charge per 8 letters */
 		    if (len > maxelen) {
 			Your("marker dries out.");

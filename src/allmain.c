@@ -640,6 +640,15 @@ moveloop()
 
 		}
 
+		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
+
+			pline("You suddenly die.");
+			killer_format = KILLED_BY;
+			killer = "premature death";
+			done(DIED);
+
+		}
+
 		if ( Itemcursing && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
@@ -659,6 +668,11 @@ moveloop()
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
 
+		}
+
+		if (RecurringAmnesia && !rn2(1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
 		}
 
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {

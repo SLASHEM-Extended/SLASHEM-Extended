@@ -365,10 +365,17 @@ struct obj {
 || (otmp)->otyp == WAN_REMOVE_RESISTANCE\
 || (otmp)->otyp == WAN_CORROSION\
 || (otmp)->otyp == WAN_STARVATION\
+|| (otmp)->otyp == WAN_CONFUSION\
+|| (otmp)->otyp == WAN_SLIMING\
+|| (otmp)->otyp == WAN_LYCANTHROPY\
 || (otmp)->otyp == WAN_FUMBLING\
 || (otmp)->otyp == WAN_PUNISHMENT\
 || (otmp)->otyp == SCR_PUNISHMENT\
 || (otmp)->otyp == WAN_MAKE_VISIBLE\
+|| (otmp)->otyp == SCR_SUMMON_BOSS\
+|| (otmp)->otyp == SCR_WOUNDS\
+|| (otmp)->otyp == SCR_BULLSHIT\
+|| (otmp)->otyp == SCR_CHAOS_TERRAIN\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				

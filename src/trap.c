@@ -3292,7 +3292,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 			if (!rn2(5)) {
 
-				 switch (rnd(109)) {
+				 switch (rnd(111)) {
 
 					case 1:
 					case 2:
@@ -3541,6 +3541,14 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 						u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having sickopathy!");
 						break;
+					case 110:
+						u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having keen memory!");
+						break;
+					case 111:
+						u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from using the force like a real jedi!");
+						break;
 				}
 
 			}
@@ -3673,7 +3681,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(109)) {
+		 switch (rnd(111)) {
 
 			case 1:
 			case 2:
@@ -3921,6 +3929,14 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			case 109:
 				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from using the force like a real jedi!");
 				break;
 			}
 

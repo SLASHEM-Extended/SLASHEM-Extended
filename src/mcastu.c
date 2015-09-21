@@ -1498,7 +1498,7 @@ int spellnum;
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(109)) {
+	switch (rnd(111)) {
 
 		case 1:
 		case 2:
@@ -1746,6 +1746,14 @@ int spellnum;
 		case 109:
 			u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(dmg);
 			pline("You are prevented from having sickopathy!");
+			break;
+		case 110:
+			u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(dmg);
+			pline("You are prevented from having keen memory!");
+			break;
+		case 111:
+			u.uprops[DEAC_THE_FORCE].intrinsic += rnz(dmg);
+			pline("You are prevented from using the force like a real jedi!");
 			break;
 	}
 	dmg = 0;

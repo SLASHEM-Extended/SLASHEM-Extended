@@ -745,11 +745,13 @@ doforce()		/* try to force a chest with your weapon */
 			if (Role_if(PM_JEDI) ? (u.uen < 5) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
 			else {
 
-				u.uen -= (Role_if(PM_JEDI) ? 5 : 10);
+				if (!UseTheForce || rn2(10)) u.uen -= (Role_if(PM_JEDI) ? 5 : 10);
 
 				int dmg;
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
+				if (UseTheForce) dmg += 5;
+				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				boolean trapkilled = FALSE;
 
 				pline("You use the force on %s.", mon_nam(mtmp));
@@ -783,7 +785,7 @@ doforce()		/* try to force a chest with your weapon */
 #endif
 				}
 
-				if (mtmp->mhp > 0 && (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) &&
+				if (mtmp->mhp > 0 && ( (UseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) ) &&
 	    mtmp->mcanmove && mtmp != u.ustuck && !mtmp->mtrapped) {
 		/* see if the monster has a place to move into */
 				mdx = mtmp->mx + u.dx;

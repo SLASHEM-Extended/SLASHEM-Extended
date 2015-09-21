@@ -24,6 +24,7 @@ register struct obj *otmp;
 /*		break; */
 # endif
 	case SCR_STANDARD_ID:
+	case SCR_WOUNDS:
 		return(5);
 	case SCR_HEALING:
 	case SCR_LIGHT:
@@ -54,6 +55,7 @@ register struct obj *otmp;
 /*		break; */
 	case SCR_IDENTIFY:
 	case SCR_STONING:
+	case SCR_BULLSHIT:
 	case SCR_REVERSE_IDENTIFY:
 	case SCR_SCARE_MONSTER:
 		return(14);
@@ -66,6 +68,7 @@ register struct obj *otmp;
 	case SCR_GROWTH:
 	case SCR_ICE:
 	case SCR_CLOUDS:
+	case SCR_CHAOS_TERRAIN:
 	case SCR_TELE_LEVEL:
 	case SCR_WARPING:
 	case SCR_MASS_MURDER:
@@ -80,16 +83,19 @@ register struct obj *otmp;
 	case SCR_REMOVE_CURSE:
 	case SCR_ENCHANT_WEAPON:
 	case SCR_CHARGING:
+	case SCR_REPAIR_ITEM:
 		return(24);
 /*		break; */
 	case SCR_GENOCIDE:
 	case SCR_CURE:
+	case SCR_SUMMON_BOSS:
 	case SCR_TRAP_DISARMING:
 		return(30);
 /*		break; */
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
 	case SCR_CREATE_FAMILIAR:
+	case SCR_ITEM_GENOCIDE:
 		return(40);
 /*		break; */
 	case SCR_CONSECRATION:

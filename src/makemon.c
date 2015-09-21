@@ -10912,6 +10912,7 @@ int type;
 		case PM_TITANIUM_GOLEM: return 230;
 		case PM_BRONZE_COLOSSUS: return 270;
 		case PM_SILVER_GOLEM: return 290;
+		case PM_BANPEI_KUN: return 290;
 		case PM_PLATINUM_GOLEM: return 310;
 		case PM_ANIMATED_ARMOR: return 100;
 		case PM_ANIMATED_BRONZE_STATUE: return 103;

@@ -203,7 +203,18 @@
 #define RESPAWN_BUG 183
 #define MC_REDUCTION 184
 
-#define SECOND_CHANCE		185
+#define PREMDEATH		185
+
+#define KEEN_MEMORY	186
+#define DEAC_KEEN_MEMORY	187
+
+#define THE_FORCE	188
+#define DEAC_THE_FORCE	189
+
+#define SENSORY_DEPRIVATION 190
+#define RECURRING_AMNESIA 191
+
+#define SECOND_CHANCE		192
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

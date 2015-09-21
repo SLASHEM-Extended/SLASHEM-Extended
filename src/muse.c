@@ -501,6 +501,69 @@ genericptr_t poolcnt;
 
 }
 
+STATIC_PTR void
+do_terrainfloodd(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = randomwalltype();
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = randomwalltype();
+		block_point(x,y);
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
 STATIC_OVL int
 precheck(mon, obj)
 struct monst *mon;
@@ -785,6 +848,7 @@ struct obj *otmp;
 #define MUSE_SCR_WARPING 31
 #define MUSE_BAG_OF_TRICKS 32
 #define MUSE_WAN_TELE_LEVEL 33
+#define MUSE_SCR_SUMMON_BOSS 34
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -1163,6 +1227,11 @@ struct monst *mtmp;
 			m.has_defense = MUSE_WAN_SUMMON_UNDEAD;
 		}
 	    }
+		nomore(MUSE_SCR_SUMMON_BOSS);
+		if(obj->otyp == SCR_SUMMON_BOSS) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_SUMMON_BOSS;
+		}
 		nomore(MUSE_SCR_CREATE_MONSTER);
 		if(obj->otyp == SCR_CREATE_MONSTER) {
 			m.defensive = obj;
@@ -1627,6 +1696,42 @@ mon_tele:
 		return 2;
 	    }
 
+	case MUSE_SCR_SUMMON_BOSS:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		struct monst *mon;
+		boolean known = FALSE;
+		int attempts = 0;
+
+		mreadmsg(mtmp, otmp);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+	      if (mon && canspotmon(mon)) known = TRUE;
+
+		if (known)
+		    makeknown(SCR_SUMMON_BOSS);
+		else if (!objects[SCR_SUMMON_BOSS].oc_name_known
+			&& !objects[SCR_SUMMON_BOSS].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
 	case MUSE_TRAPDOOR:
 		/* trap doors on "bottom" levels of dungeons are rock-drop
 		 * trap doors, not holes in the floor.  We check here for
@@ -1941,7 +2046,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(24)) {
+	switch (rn2(25)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -1967,6 +2072,7 @@ struct monst *mtmp;
 		case 21: return SCR_WARPING;
 		case 22: return BAG_OF_TRICKS;
 		case 23: return WAN_TELE_LEVEL;
+		case 24: return SCR_SUMMON_BOSS;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -2037,6 +2143,12 @@ struct monst *mtmp;
 #define MUSE_SCR_PUNISHMENT 62
 #define MUSE_WAN_MAKE_VISIBLE 63
 #define MUSE_WAN_REDUCE_MAX_HITPOINTS 64
+#define MUSE_WAN_CONFUSION 65
+#define MUSE_WAN_SLIMING 66
+#define MUSE_WAN_LYCANTHROPY 67
+#define MUSE_SCR_CHAOS_TERRAIN 68
+#define MUSE_SCR_WOUNDS 69
+#define MUSE_SCR_BULLSHIT 70
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2214,7 +2326,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_POT_URINE;
 		}
 		nomore(MUSE_POT_SLIME);
-		if(obj->otyp == POT_SLIME) {
+		if(obj->otyp == POT_SLIME && !Slimed) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_SLIME;
 		}
@@ -2306,6 +2418,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_BARRHING;
 		}
+		nomore(MUSE_SCR_CHAOS_TERRAIN);
+		if(obj->otyp == SCR_CHAOS_TERRAIN) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_CHAOS_TERRAIN;
+		}
 		nomore(MUSE_WAN_TRAP_CREATION);
 		if(obj->otyp == WAN_TRAP_CREATION && obj->spe > 0) {
 			m.offensive = obj;
@@ -2354,7 +2471,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_SCR_DESTROY_ARMOR;
 		}
 		nomore(MUSE_SCR_STONING);
-		if(obj->otyp == SCR_STONING) {
+		if(obj->otyp == SCR_STONING && !Stoned) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_STONING;
 		}
@@ -2412,6 +2529,31 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_REDUCE_MAX_HITPOINTS && obj->spe > 0 && (u.uhpmax > 1 || (Upolyd && u.mhmax > 1) ) ) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_REDUCE_MAX_HITPOINTS;
+		}
+		nomore(MUSE_WAN_CONFUSION);
+		if(obj->otyp == WAN_CONFUSION && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_CONFUSION;
+		}
+		nomore(MUSE_WAN_SLIMING);
+		if(obj->otyp == WAN_SLIMING && obj->spe > 0 && !Slimed) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_SLIMING;
+		}
+		nomore(MUSE_WAN_LYCANTHROPY);
+		if(obj->otyp == WAN_LYCANTHROPY && obj->spe > 0 && !Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC) && !u.ulycn) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_LYCANTHROPY;
+		}
+		nomore(MUSE_SCR_WOUNDS);
+		if(obj->otyp == SCR_WOUNDS) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_WOUNDS;
+		}
+		nomore(MUSE_SCR_BULLSHIT);
+		if(obj->otyp == SCR_BULLSHIT) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_BULLSHIT;
 		}
 	}
 	return((boolean)(!!m.has_offense));
@@ -2494,9 +2636,11 @@ register struct obj *otmp;
 		break;
 	case WAN_CANCELLATION:
 	case SPE_CANCELLATION:
+		if (zap_oseen) makeknown(WAN_CANCELLATION);
 		(void) cancel_monst(mtmp, otmp, FALSE, TRUE, FALSE);
 		break;
 	case WAN_PARALYSIS:
+		if (zap_oseen) makeknown(WAN_PARALYSIS);
 
 		if (mtmp == &youmonst) {
 
@@ -2549,6 +2693,7 @@ register struct obj *otmp;
 		break;
 
 	case WAN_DISINTEGRATION:
+		if (zap_oseen) makeknown(WAN_DISINTEGRATION);
 
 		if (mtmp == &youmonst) {
 
@@ -2645,6 +2790,7 @@ register struct obj *otmp;
 		break;
 
 	case WAN_STONING:
+		if (zap_oseen) makeknown(WAN_STONING);
 
 		if (mtmp == &youmonst) {
 
@@ -3006,6 +3152,23 @@ struct monst *mtmp;
 
 		return 2;
 
+	case MUSE_SCR_BULLSHIT:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+		pline("You notice a vile stench...");
+
+		    int i, j, bd = mtmp->mconf ? 100 : otmp->cursed ? 2 : 1;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT);
+		    }
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_SCR_FLOOD:
 
 		mreadmsg(mtmp, otmp);
@@ -3122,6 +3285,20 @@ struct monst *mtmp;
 			delayed_killer = killer_buf;
 		
 		    }
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_WOUNDS:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		You("feel bad!");
+			if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
+			else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
+			else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -3306,6 +3483,39 @@ struct monst *mtmp;
 
 		return 2;
 
+	case MUSE_SCR_CHAOS_TERRAIN:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+			int madepoolR = 0;
+			int xR,yR,safe_posR=0;
+			int radiusR = 5;
+			if (!rn2(3)) radiusR += rnd(4);
+			if (!rn2(10)) radiusR += rnd(6);
+			if (!rn2(25)) radiusR += rnd(8);
+			if (radiusR > MAX_RADIUS) radiusR = MAX_RADIUS;
+			do_clear_areaX(u.ux, u.uy, radiusR, do_terrainfloodd, (genericptr_t)&madepoolR);
+
+			/* check if there are safe tiles around the player */
+			for (xR = u.ux-1; xR <= u.ux+1; xR++) {
+				for (yR = u.uy - 1; yR <= u.uy + 1; yR++) {
+					if (xR != u.ux && yR != u.uy &&
+					    goodpos(xR, yR, &youmonst, 0)) {
+						safe_posR++;
+					}
+				}
+			}
+
+			if (madepoolR)
+				pline(Hallucination ?
+						"Oh wow, look at all the stuff that is happening around you!" :
+						"What the heck is happening to the dungeon?!" );
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_WAN_TRAP_CREATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -3447,6 +3657,57 @@ struct monst *mtmp;
 		morehungry(rnd(1000));
 
 		if (oseen) makeknown(WAN_STARVATION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_CONFUSION:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		if(!Confusion) {
+		    if (Hallucination) {
+			pline("What a trippy feeling!");
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR))
+			pline("Blimey! Ye're one sheet to the wind!");
+			else 
+			pline("Huh, What?  Where am I?");
+		}
+		make_confused(HConfusion + rn1(35, 115), FALSE);
+
+		if (oseen) makeknown(WAN_CONFUSION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_SLIMING:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+		    You("don't feel very well.");
+		    Slimed = 100L;
+		    flags.botl = 1;
+		}
+
+		if (oseen) makeknown(WAN_SLIMING);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_LYCANTHROPY:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWOLF;
+			pline("You feel feverish.");
+		}
+
+		if (oseen) makeknown(WAN_LYCANTHROPY);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
@@ -3765,7 +4026,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(63)) {
+	switch (rn2(69)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -3830,6 +4091,12 @@ struct monst *mtmp;
 		case 60: return SCR_PUNISHMENT;
 		case 61: return WAN_MAKE_VISIBLE;
 		case 62: return WAN_REDUCE_MAX_HITPOINTS;
+		case 63: return WAN_CONFUSION;
+		case 64: return WAN_SLIMING;
+		case 65: return WAN_LYCANTHROPY;
+		case 66: return SCR_CHAOS_TERRAIN;
+		case 67: return SCR_WOUNDS;
+		case 68: return SCR_BULLSHIT;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -4570,6 +4837,9 @@ struct obj *obj;
 		    typ == WAN_CORROSION ||
 		    typ == WAN_FUMBLING ||
 		    typ == WAN_STARVATION ||
+		    typ == WAN_CONFUSION ||
+		    typ == WAN_SLIMING ||
+		    typ == WAN_LYCANTHROPY ||
 		    typ == WAN_PUNISHMENT ||
 		    typ == WAN_TELE_LEVEL ||
 		    typ == WAN_GAIN_LEVEL ||
@@ -4606,7 +4876,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_STONING || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE)
+	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS)
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

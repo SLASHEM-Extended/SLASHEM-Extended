@@ -2485,7 +2485,7 @@ register struct monst *mtmp;
 	    }
 	}
 
-	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone()) {
+	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone() && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
 		case 2:

@@ -435,6 +435,7 @@ struct you {
 
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
 	int unobtainable2;	
+	int unobtainablegeno;	/* for item genocide */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
 

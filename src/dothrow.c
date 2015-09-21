@@ -188,6 +188,8 @@ int thrown;
 	      !launcher->cursed && !rn2(3))
 		multishot++;
 
+	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
+
 	    /* 1/3 of object enchantment */
 	    if (launcher && launcher->spe > 1)
 		multishot += (long) rounddiv(launcher->spe,3);
@@ -1510,6 +1512,9 @@ int thrown;
 		break;
 	    case GAUNTLETS_OF_FUMBLING:
 		tmp -= 3;
+		break;
+	    case GAUNTLETS_OF_PANIC:
+		tmp -= 1;
 		break;
 	    case LEATHER_GLOVES:
 	    case GAUNTLETS_OF_SWIMMING:            

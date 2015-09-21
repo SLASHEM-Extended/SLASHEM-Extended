@@ -283,7 +283,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(149)) {
+	switch (rnd(150)) {
 
 		case 1:
 			return ATHAME;
@@ -512,6 +512,8 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return WAN_ACID;
 		case 149:
 			return WAN_SOLAR_BEAM;
+		case 150:
+			return SPE_REPAIR_WEAPON;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -695,6 +697,10 @@ boolean artif;
 	}
 
 	if (otyp == u.unobtainable2) {
+		otyp = GOLD_PIECE;
+	}
+
+	if (otyp == u.unobtainablegeno) {
 		otyp = GOLD_PIECE;
 	}
 
@@ -942,6 +948,7 @@ boolean artif;
 #endif
 		case TINNING_KIT:
 		case MAGIC_MARKER:
+		case FELT_TIP_MARKER:
 			otmp->spe = rnd(ishaxor ? 120 : 100);
 			blessorcurse(otmp, 5);
 					break;
@@ -1060,10 +1067,12 @@ boolean artif;
 		   otmp->otyp == CLOAK_OF_FUMBLING ||
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
 		   otmp->otyp == HELM_OF_FEAR ||
+		   otmp->otyp == HELM_OF_SENSORY_DEPRIVATION ||
 		   otmp->otyp == HELM_OF_HUNGER ||
 		   otmp->otyp == HELM_OF_STORMS ||
 		   otmp->otyp == HELM_OF_DETECT_MONSTERS ||
 		   otmp->otyp == GAUNTLETS_OF_FUMBLING ||
+		   otmp->otyp == GAUNTLETS_OF_PANIC ||
 		   otmp->otyp == GAUNTLETS_OF_SLOWING ||
 		   otmp->otyp == ROBE_OF_WEAKNESS ||
 		   otmp->otyp == OILSKIN_GLOVES ||
@@ -1092,7 +1101,7 @@ boolean artif;
 #endif
 		}
 
-		if (!rn2(100) || ( (is_shirt(otmp) || otmp->otyp == WHISPERING_HELMET || otmp->otyp == CAPTCHA_HELM ) && !rn2(15) ) || ( (otmp->otyp == WEDGE_SANDALS || otmp->otyp == DANCING_SHOES || otmp->otyp == ANGER_HELM || otmp->otyp == SWEET_MOCASSINS || otmp->otyp == SOFT_SNEAKERS ) && !rn2(10) ) || ((otmp->otyp == CLOAK_OF_UNSPELLING || otmp->otyp == ANTI_CASTER_CLOAK || otmp->otyp == HEAVY_STATUS_CLOAK || otmp->otyp == CLOAK_OF_LUCK_NEGATION || otmp->otyp == YELLOW_SPELL_CLOAK || otmp->otyp == VULNERABILITY_CLOAK || otmp->otyp == CLOAK_OF_INVENTORYLESSNESS || otmp->otyp == HELM_OF_LOSE_IDENTIFICATION || otmp->otyp == HELM_OF_OBSCURED_DISPLAY || otmp->otyp == HELM_OF_THIRST || otmp->otyp == BLACKY_HELMET || otmp->otyp == ANTI_DRINKER_HELMET || otmp->otyp == CYPHER_HELM || otmp->otyp == CLOAK_OF_RESPAWNING || otmp->otyp == HELM_OF_BAD_ALIGNMENT || otmp->otyp == SOUNDPROOF_HELMET || otmp->otyp == OUT_OF_MEMORY_HELMET || otmp->otyp == MENU_NOSE_GLOVES || otmp->otyp == UNWIELDY_GLOVES || otmp->otyp == CONFUSING_GLOVES || otmp->otyp == UNDROPPABLE_GLOVES || otmp->otyp == GLOVES_OF_MISSING_INFORMATION || otmp->otyp == GLOVES_OF_TRAP_CREATION || otmp->otyp == SADO_MASO_GLOVES || otmp->otyp == FEMININE_PUMPS || otmp->otyp == LEATHER_PEEP_TOES || otmp->otyp == COMBAT_STILETTOS || otmp->otyp == AUTODESTRUCT_DE_VICE_BOOTS || otmp->otyp == SPEEDBUG_BOOTS || otmp->otyp == BOOTS_OF_FAINTING || otmp->otyp == DIFFICULT_BOOTS || otmp->otyp == BOOTS_OF_WEAKNESS || otmp->otyp == GRIDBUG_CONDUCT_BOOTS || otmp->otyp == STAIRWELL_STOMPING_BOOTS ) && !rn2(5) ) || (otmp->otyp == HIPPIE_HEELS || otmp->otyp == SENTIENT_HIGH_HEELED_SHOES) ) otmp->enchantment = randenchantment();
+		if (!rn2(100) || ( (is_shirt(otmp) || otmp->otyp == WHISPERING_HELMET || otmp->otyp == CAPTCHA_HELM ) && !rn2(15) ) || ( (otmp->otyp == WEDGE_SANDALS || otmp->otyp == DANCING_SHOES || otmp->otyp == ANGER_HELM || otmp->otyp == SWEET_MOCASSINS || otmp->otyp == SOFT_SNEAKERS ) && !rn2(10) ) || ((otmp->otyp == CLOAK_OF_UNSPELLING || otmp->otyp == ANTI_CASTER_CLOAK || otmp->otyp == HEAVY_STATUS_CLOAK || otmp->otyp == CLOAK_OF_LUCK_NEGATION || otmp->otyp == YELLOW_SPELL_CLOAK || otmp->otyp == VULNERABILITY_CLOAK || otmp->otyp == CLOAK_OF_INVENTORYLESSNESS || otmp->otyp == HELM_OF_LOSE_IDENTIFICATION || otmp->otyp == HELM_OF_OBSCURED_DISPLAY || otmp->otyp == HELM_OF_THIRST || otmp->otyp == HELM_OF_AMNESIA || otmp->otyp == BLACKY_HELMET || otmp->otyp == ANTI_DRINKER_HELMET || otmp->otyp == CYPHER_HELM || otmp->otyp == CLOAK_OF_RESPAWNING || otmp->otyp == HELM_OF_BAD_ALIGNMENT || otmp->otyp == SOUNDPROOF_HELMET || otmp->otyp == OUT_OF_MEMORY_HELMET || otmp->otyp == MENU_NOSE_GLOVES || otmp->otyp == UNWIELDY_GLOVES || otmp->otyp == CONFUSING_GLOVES || otmp->otyp == UNDROPPABLE_GLOVES || otmp->otyp == GLOVES_OF_MISSING_INFORMATION || otmp->otyp == GLOVES_OF_TRAP_CREATION || otmp->otyp == SADO_MASO_GLOVES || otmp->otyp == FEMININE_PUMPS || otmp->otyp == LEATHER_PEEP_TOES || otmp->otyp == COMBAT_STILETTOS || otmp->otyp == AUTODESTRUCT_DE_VICE_BOOTS || otmp->otyp == SPEEDBUG_BOOTS || otmp->otyp == BOOTS_OF_FAINTING || otmp->otyp == DIFFICULT_BOOTS || otmp->otyp == BOOTS_OF_WEAKNESS || otmp->otyp == GRIDBUG_CONDUCT_BOOTS || otmp->otyp == STAIRWELL_STOMPING_BOOTS ) && !rn2(5) ) || (otmp->otyp == HIPPIE_HEELS || otmp->otyp == SENTIENT_HIGH_HEELED_SHOES) ) otmp->enchantment = randenchantment();
 
 
 		break;

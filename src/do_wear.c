@@ -340,6 +340,31 @@ Cloak_on()
 		}
 		break;
 
+	case CLOAK_OF_DEATH:
+
+		pline("Oh no, this is a cloak of death!");
+		    makeknown(uarmc->otyp);
+		if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
+		    You("seem no deader than before.");
+		} else if (!Antimagic && rn2(50) > 12) {
+		    if (Hallucination) {
+			You("have an out of body experience.");
+		    } else if (!rnd(50)) {
+			killer_format = KILLED_BY_AN;
+			killer = "cloak of death";
+			done(DIED);
+		    } else {
+			u.uhpmax -= d(4, 4);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			You("feel a loss of life.");
+			losehp(d(4, 4),"cloak of death",KILLED_BY_AN);
+		    }
+		} else {
+		    pline("Lucky for you, it didn't work!");
+		}
+
+		break;
+
 	case CLOAK_OF_UNSPELLING:
 	case ANTI_CASTER_CLOAK:
 	case HEAVY_STATUS_CLOAK:
@@ -386,6 +411,7 @@ Cloak_off()
 	case CLOAK_OF_CONFUSION:
 	case MANACLOAK:
 	case POISONOUS_CLOAK:
+	case CLOAK_OF_DEATH:
 	case OILSKIN_CLOAK:
 	case ROBE:
 	case PLASTEEL_CLOAK:
@@ -467,6 +493,16 @@ Helmet_on()
 	case HELM_OF_FEAR:
 	case HELM_OF_HUNGER:
 		break;
+	case HELM_OF_SENSORY_DEPRIVATION:
+		if (!uarmh->cursed) {
+		    if (Blind)
+			pline("%s for a moment.", Tobjnam(uarmh, "vibrate"));
+		    else
+			pline("%s %s for a moment.",
+			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
+		    curse(uarmh);
+		}
+		break;
 	case HELM_OF_BRILLIANCE:
 		adj_abon(uarmh, uarmh->spe);
 		break;
@@ -522,6 +558,7 @@ Helmet_on()
 	case HELM_OF_OBSCURED_DISPLAY:
 	case HELM_OF_LOSE_IDENTIFICATION:
 	case HELM_OF_THIRST:
+	case HELM_OF_AMNESIA:
 	case BLACKY_HELMET:
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
@@ -567,6 +604,8 @@ Helmet_off()
 	case HELM_OF_OBSCURED_DISPLAY:
 	case HELM_OF_LOSE_IDENTIFICATION:
 	case HELM_OF_THIRST:
+	case HELM_OF_AMNESIA:
+	case HELM_OF_SENSORY_DEPRIVATION:
 	case BLACKY_HELMET:
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
@@ -625,6 +664,8 @@ Gloves_on()
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_SLOWING:
 	case GAUNTLETS_OF_REFLECTION:
+	case GAUNTLETS_OF_PANIC:
+	case GAUNTLETS_OF_THE_FORCE:
 		break;
 	case OILSKIN_GLOVES:
 		if (!uarmg->cursed) {
@@ -694,6 +735,8 @@ Gloves_off()
 	case GLOVES_OF_MISSING_INFORMATION:
 	case GLOVES_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
+	case GAUNTLETS_OF_PANIC:
+	case GAUNTLETS_OF_THE_FORCE:
 	    break;
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
@@ -924,6 +967,7 @@ Amulet_on()
 
 	case AMULET_OF_RMB_LOSS:
 	case AMULET_OF_ITEM_TELEPORTATION:
+	case AMULET_OF_PREMATURE_DEATH:
 
 		if (uamul && !uamul->cursed) curse(uamul);
 
@@ -977,6 +1021,7 @@ Amulet_on()
 		pline("It constricts your throat!");
 		Strangled = 6;
 		break;
+
 	case AMULET_OF_RESTFUL_SLEEP:
 		if Race_if(PM_KOBOLT) break;
 		if(uamul->blessed) {

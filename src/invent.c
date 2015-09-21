@@ -1657,7 +1657,7 @@ struct obj *otmp;
 #ifdef LIGHTSABERS
 		     (!is_lightsaber(otmp) || !otmp->lamplit) &&
 #endif
-		     otyp != MAGIC_MARKER && otyp != TOWEL))
+		     otyp != MAGIC_MARKER && otyp != FELT_TIP_MARKER && otyp != TOWEL))
 		|| (!strcmp(word, "tin") &&
 		    (otyp != CORPSE || !tinnable(otmp)))
 		|| (!strcmp(word, "rub") &&
@@ -4219,6 +4219,8 @@ struct obj *obj;
 				pline("A mace. It's quite a weak weapon, actually."); break;
 			case FLANGED_MACE: 
 				pline("This mace does moderate damage but it's nothing to get excited about."); break;
+			case REINFORCED_MACE: 
+				pline("If you want a mace that does respectable damage, use this one."); break;
 			case MORNING_STAR: 
 				pline("The morning star can be used to whack enemies. Its damage output is mediocre."); break;
 			case JAGGED_STAR: 
@@ -4307,6 +4309,8 @@ struct obj *obj;
 				pline("A trident from the depths of Hell. Good damage and bonus versus eels."); break;
 			case LANCE: 
 				pline("The only weapon that uses the lance skill, this thing can be applied to hit monsters that don't stand right next to you. While riding, you can joust monsters with it by performing standard melee attacks but sometimes the lance breaks if you do so."); break;
+			case COURSE_LANCE: 
+				pline("This weapon is a much stronger version of the lance. Apply it to hit monsters from far away, or melee monsters with it while riding to joust (but that can cause the lance to break)."); break;
 			case ORCISH_BOW: 
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
 			case BOW: 
@@ -4331,6 +4335,8 @@ struct obj *obj;
 				pline("A high-quality arrow that has a moderate to-hit bonus. These are meant to be put in a quiver and shot with a bow."); break;
 			case SLING: 
 				pline("The sling is what you want to use if you want your thrown rocks to do more than a single point of damage. You can quiver most types of rocks and gems to shoot them with a sling."); break;
+			case CATAPULT: 
+				pline("A much better version of the sling that shoots more rocks at once and also grants significant bonuses to hit. You can quiver rocks and gems to fire."); break;
 			case PISTOL: 
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
 			case SUBMACHINE_GUN: 
@@ -4369,6 +4375,8 @@ struct obj *obj;
 				pline("The crossbow is a two-handed ranged weapon that fires bolts, doing respectable damage. Put a stack of bolts in your quiver to fire."); break;
 			case DROVEN_CROSSBOW: 
 				pline("A more accurate, one-handed version of the crossbow. Use it to fire bolts at your enemies."); break;
+			case DEMON_CROSSBOW: 
+				pline("An automatic crossbow that can quiver several bolts in a single turn."); break;
 			case DROVEN_BOW: 
 				pline("A more accurate, one-handed version of the bow. Use it to fire arrows at your enemies."); break;
 			case CROSSBOW_BOLT: 
@@ -4533,6 +4541,8 @@ struct obj *obj;
 				pline("A cloak that provides maximum magic cancellation, but also causes fumbling when worn."); break;
 			case POISONOUS_CLOAK: 
 				pline("Wearing this cloak without poison resistance can kill you. Other than that, it provides maximum magic cancellation."); break;
+			case CLOAK_OF_DEATH: 
+				pline("Putting this cloak on without magic resistance can kill you. Other than that, it provides maximum magic cancellation."); break;
 			case CLOAK_OF_INVISIBILITY: 
 				pline("This cloak renders the wearer invisible and also grants medium magic cancellation."); break;
 			case CLOAK_OF_MAGIC_RESISTANCE: 
@@ -4633,16 +4643,24 @@ struct obj *obj;
 				pline("When worn, this helm grants you the ability to detect monsters until removed. It also prevents you from eating or quaffing potions, and this helm autocurses every time it is put on."); break;
 			case HELM_OF_DISCOVERY:
 				pline("This helmet grants automatic searching if you wear it."); break;
+			case HELM_OF_AMNESIA:
+				pline("This helm causes amnesia. It provides very good AC and maximum magic cancellation."); break;
+			case HELM_OF_SENSORY_DEPRIVATION:
+				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellatin."); break;
 			case HELM_OF_TELEPATHY:
 				pline("Wearing this helmet conveys 'weak' telepathy that displays monsters close by, and 'good' telepathy that displays all monsters on the level if you are blind."); break;
 			case PLASTEEL_GLOVES:
 				pline("This pair of gloves offers good protection."); break;
+			case GAUNTLETS_OF_THE_FORCE:
+				pline("This pair of gloves offers good protection and enhances your ability to use the force."); break;
 			case LEATHER_GLOVES:
 				pline("A standard pair of gloves that offers little protection."); break;
 			case GAUNTLETS_OF_FUMBLING:
 				pline("You will fumble if you put on this pair of gloves. They are usually generated cursed."); break;
 			case GAUNTLETS_OF_SLOWING:
 				pline("A pair of gloves that slows your movement speed when worn. They are usually generated cursed."); break;
+			case GAUNTLETS_OF_PANIC:
+				pline("A pair of gloves that makes you fearful while wearing them. It grants good protection and medium magic cancellation. They are usually generated cursed."); break;
 			case OILSKIN_GLOVES:
 				pline("This pair of gloves will cause you to drop your weapon, and you'll be unable to re-equip it. They provide some AC and maximum magic cancellation, but these gloves autocurse if you put them on."); break;
 
@@ -4814,6 +4832,8 @@ struct obj *obj;
 				pline("Wearing this ring causes you to fall asleep. It is usually generated cursed."); break;
 			case RIN_STEALTH: 
 				pline("You will make less noise if you wear this ring."); break;
+			case RIN_MEMORY: 
+				pline("A ring that provides the otherwise unobtainable amnesia resistance."); break;
 			case RIN_SUSTAIN_ABILITY: 
 				pline("This ring locks your stats if worn, i.e. they can be neither increased nor decreased."); break;
 			case RIN_WARNING: 
@@ -4922,6 +4942,8 @@ struct obj *obj;
 				pline("Wearing this amulet prevents you from seeing. It is usually generated cursed."); break;
 			case AMULET_OF_STRANGULATION:
 				pline("If you wear this amulet, you only have 5 turns to live before it kills you. It is usually generated cursed."); break;
+			case AMULET_OF_PREMATURE_DEATH:
+				pline("Wanna die? Wear this! :-P"); break;
 			case AMULET_OF_UNCHANGING:
 				pline("This amulet prevents you from changing form. If something tries to force you out of a polymorphed form while wearing this amulet, you might die instantly."); break;
 			case AMULET_VERSUS_POISON:
@@ -5091,6 +5113,8 @@ struct obj *obj;
 				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
 			case MAGIC_MARKER: 
 				pline("The magic marker is actually a sort of pen that can be used for engraving. If you have blank scrolls or spellbooks, you can also attempt to write something on them; for a better chance of success, try to write an item that you know."); break;
+			case FELT_TIP_MARKER: 
+				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
 				pline("This metal box has a switch that can be pulled. What may happen if you do so?"); break;
 			case HITCHHIKER_S_GUIDE_TO_THE_GALA: 
@@ -5196,6 +5220,8 @@ struct obj *obj;
 				pline("An edible item with an unknown effect. If you disabled the missing_safety option (it defaults to on), eating it might crash the game."); break;
 			case TORTILLA: 
 				pline("A rarely seen vegetarian food item that provides relatively little nutrition."); break;
+			case TWELVE_COURSE_DINNER: 
+				pline("A very filling meal, but it also takes a long time to consume."); break;
 			case CHEESE: 
 				pline("Can be used to tame rats. It can be eaten by vegetarians but not by vegans. Not that anyone is likely to care."); break;
 			case PILL: 
@@ -5462,6 +5488,18 @@ struct obj *obj;
 				pline("A dangerous scroll that creates traps around you."); break;
 			case SCR_SLEEP: 
 				pline("Reading this scroll puts you to sleep, leaving you open to monsters attacking you."); break;
+			case SCR_CHAOS_TERRAIN: 
+				pline("Read this scroll to generate chaotic terrain around you."); break;
+			case SCR_WOUNDS: 
+				pline("The opposite of the scroll of healing, reading this thing will damage you."); break;
+			case SCR_BULLSHIT: 
+				pline("Reading this scroll causes invisible dogs to shit all over the place."); break;
+			case SCR_REPAIR_ITEM: 
+				pline("If you read this scroll, you may pick an item that will be repaired."); break;
+			case SCR_SUMMON_BOSS: 
+				pline("Summons a boss monster when read."); break;
+			case SCR_ITEM_GENOCIDE: 
+				pline("A very powerful scroll that prevents a type of item from being generated. If you use it again on another item, the previously genocided one will be able to generate again."); break;
 			case SCR_BLANK_PAPER: 
 				pline("A scroll that doesn't have a magic formula written on it. You may use a magic marker to turn it into another type of scroll."); break;
 
@@ -5615,6 +5653,8 @@ struct obj *obj;
 				pline("You can reflect beams and similar attacks for a limited amount of time if you cast this spell."); break;
 			case SPE_REPAIR_ARMOR:
 				pline("Casting this spell repairs some of your armor. You may choose which item to repair."); break;
+			case SPE_REPAIR_WEAPON:
+				pline("Casting this spell repairs your weapon."); break;
 			case SPE_MAGIC_MISSILE:
 				pline("A spell that fires a blue ray to do some damage to an enemy."); break;
 			case SPE_FIREBALL:
@@ -5639,6 +5679,8 @@ struct obj *obj;
 				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful."); break;
 			case SPE_DARKNESS:
 				pline("Cast this spell if you want to turn lit areas into unlit ones."); break;
+			case SPE_AMNESIA:
+				pline("This spellbook causes you to forget stuff."); break;
 			case SPE_DETECT_ARMOR_ENCHANTMENT:
 				pline("This spell detects the enchantment value of all armor items in your main inventory."); break;
 			case SPE_CONFUSE_SELF:
@@ -5833,6 +5875,12 @@ struct obj *obj;
 				pline("Zapping this wand will cause you to fumble. It doesn't matter who zapped it either."); break;
 			case WAN_STARVATION:
 				pline("This wand will reduce your nutrition if you, or anyone else, zaps it."); break;
+			case WAN_CONFUSION:
+				pline("Zapping this wand will confuse you, regardless of who zapped it."); break;
+			case WAN_SLIMING:
+				pline("Want to turn to slime? Zap this!"); break;
+			case WAN_LYCANTHROPY:
+				pline("You will become a werewolf if this wand is zapped by anyone."); break;
 			case WAN_PARALYSIS:
 				pline("A wand that fires invisible beams to paralyze monsters."); break;
 			case WAN_DISINTEGRATION:

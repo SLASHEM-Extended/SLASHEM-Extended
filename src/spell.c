@@ -432,6 +432,10 @@ learn()
 			}
 
 			makeknown((int)booktype);
+			if (booktype == SPE_AMNESIA) {
+				You_feel("dizzy!");
+				forget(ALL_MAP);
+			}
 			break;
 		}
 	}
@@ -633,6 +637,8 @@ void
 age_spells()
 {
 	int i;
+	if (Keen_memory && moves % 3 == 0)
+		return;
 	/*
 	 * The time relative to the hero (a pass through move
 	 * loop) causes all spell knowledge to be decremented.
@@ -1184,6 +1190,10 @@ boolean atme;
 	case SPE_CURE_BLINDNESS:
 		healup(0, 0, FALSE, TRUE);
 		break;
+	case SPE_AMNESIA:
+		You_feel("dizzy!");
+		forget(1 + rn2(5));
+		break;
 	case SPE_AGGRAVATE_MONSTER:
 		You_feel("that monsters are aware of your presence.");
 		aggravate();
@@ -1598,6 +1608,32 @@ boolean atme;
 		}
 		break;
 
+	case SPE_REPAIR_WEAPON:
+		/* removes one level of erosion (both types) for your wielded weapon */
+		if (uwep && stack_too_big(uwep)) {
+			pline("The repair failed due to the stack being too big.");
+			break;
+		}
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))) {
+			if (greatest_erosion(uwep) > 0) {
+				if (!Blind) {
+					pline("Your %s glows faintly golden for a moment.",xname(uwep));
+				}
+				if (uwep->oeroded > 0) { uwep->oeroded--; }
+				if (uwep->oeroded2 > 0) { uwep->oeroded2--; }
+			} else {
+				if (!Blind) {
+					pline("Your %s glows briefly, but looks as new as ever.",xname(uwep));
+				}
+			}
+
+			break;
+		} else {
+			pline("You don't wield a weapon!");
+		}
+
+		break;
+
 	default:
 		impossible("Unknown spell %d attempted.", spell);
 		obfree(pseudo, (struct obj *)0);
@@ -1629,6 +1665,8 @@ losespells()
 {
 	boolean confused = (Confusion != 0);
 	int  n, nzap, i;
+
+	if (Keen_memory && rn2(20)) return;
 
 	book = 0;
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
