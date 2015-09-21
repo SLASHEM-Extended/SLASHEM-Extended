@@ -2296,7 +2296,7 @@ int tech_no;
 		}
 		pline("Using your medical kit, you draw off a phial of your blood.");
 		/* Amy edit: let's make this much more useful by having the level drain only occur 1 out of 3 times. */
-		if (!rn2(3)) {losexp("drawing blood", TRUE);
+		if (!rn2(3)) {losexp("drawing blood", TRUE, FALSE);
 		if (u.uexp > 0)
 		    u.uexp = newuexp(u.ulevel - 1);
 		}

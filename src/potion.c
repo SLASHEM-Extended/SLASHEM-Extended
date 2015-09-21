@@ -898,7 +898,7 @@ badeffect()
 		break;
 
 		case 174:
-			losexp((char *)0, TRUE); 
+			losexp((char *)0, TRUE, FALSE); 
 
 		break;
 

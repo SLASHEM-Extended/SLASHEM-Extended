@@ -3559,7 +3559,7 @@ boolean ordinary;
 			makeknown(obj->otyp);
 		case SPE_DRAIN_LIFE:
 			if (!Drain_resistance || !rn2(20) ) {
-				losexp("life drainage", FALSE);
+				losexp("life drainage", FALSE, TRUE);
 			} else {
 				shieldeff(u.ux, u.uy);
 				pline("Boing!");

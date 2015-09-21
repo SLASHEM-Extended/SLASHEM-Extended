@@ -82,7 +82,7 @@ on the first floor, especially when you're playing as something with drain resis
 			if (!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
 			if (!Drain_resistance || !rn2(20)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
-		      losexp("life drainage", FALSE);
+		      losexp("life drainage", FALSE, TRUE);
 			}
 			}
 			break;
@@ -3250,7 +3250,7 @@ dopois:
 		}
 		if (!rn2(10)) {
 			if(!Drain_resistance || !rn2(20) )
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
 
@@ -3410,7 +3410,7 @@ dopois:
 		}
 
 		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("life drainage", FALSE);
+		    losexp("life drainage", FALSE, TRUE);
 		}
 
 		break;
@@ -3429,7 +3429,7 @@ dopois:
 		}
 		
 		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("life drainage", FALSE);
+		    losexp("life drainage", FALSE, TRUE);
 		}
 		break;
 
@@ -3596,7 +3596,7 @@ dopois:
 		}
 		
 		if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("life drainage", FALSE);
+		    losexp("life drainage", FALSE, TRUE);
 		}
 		break;
 	    case AD_LEGS:
@@ -3981,7 +3981,7 @@ dopois:
 			return(3);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("loss of potential", FALSE);
+		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
 
@@ -4275,7 +4275,7 @@ dopois:
 			case 4:
 			case 5:
 				pline("You feel life has clocked back.");
-			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -5254,13 +5254,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			pline("It sucks you!");
 /* Imagine the facial expression of a player who thinks this is the mind flayer's amnesia attack. --Amy */
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
 	      case AD_VAMP:
 			pline("It sucks you!");
 			if (!Drain_resistance || !rn2(20) ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
 	      case AD_DREN:
@@ -5489,7 +5489,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		}
 		if (!rn2(10)) {
 			if(!Drain_resistance || !rn2(20) )
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
 
@@ -5780,7 +5780,7 @@ do_stone:
 			case 4:
 			case 5:
 				pline("You feel life has clocked back.");
-			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -6000,7 +6000,7 @@ do_stone:
 			return(3);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("loss of potential", FALSE);
+		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
 
@@ -6313,7 +6313,7 @@ do_stone:
 		    }
 
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 
 		    break;
@@ -6536,7 +6536,7 @@ common:
 			case 4:
 			case 5:
 				pline("You feel life has clocked back.");
-			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -6667,7 +6667,7 @@ common:
 	    case AD_DRLI:
 
 		if (!Drain_resistance || !rn2(20) )
-		    losexp("draining explosion", FALSE);
+		    losexp("draining explosion", FALSE, TRUE);
 		break;
 
 	    case AD_DRST:
@@ -6955,7 +6955,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 				if (!rn2(4)) mdamageu(mtmp, dmgplus);
 			}
 		}
@@ -6967,7 +6967,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 				if (!rn2(2)) mdamageu(mtmp, dmgplus);
 			}
 		}
@@ -7417,7 +7417,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		if (!rn2(10)) {
 			if(!Drain_resistance || !rn2(20) )
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
 		}
@@ -7644,7 +7644,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			return(3);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("loss of potential", FALSE);
+		    losexp("loss of potential", FALSE, TRUE);
 		}
 		}
 		break;
@@ -7913,7 +7913,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 4:
 			case 5:
 				pline("You feel life has clocked back.");
-			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -8071,7 +8071,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (dmg) mdamageu(mtmp, dmg);
 
 			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 
 		}
@@ -8952,7 +8952,7 @@ register struct monst *mon;
 			case 3:
 				if (!Drain_resistance || !rn2(20) ) {
 				    You_feel("out of shape.");
-				    losexp("overexertion", FALSE);
+				    losexp("overexertion", FALSE, TRUE);
 				} else {
 				    You("have a curious feeling...");
 				}

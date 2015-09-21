@@ -2923,7 +2923,7 @@ register struct obj *otmp;
 				shieldeff(u.ux, u.uy);
 				pline("Boing!");
 			} else
-				losexp("life drainage", FALSE);
+				losexp("life drainage", FALSE, TRUE);
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
 			stop_occupation();

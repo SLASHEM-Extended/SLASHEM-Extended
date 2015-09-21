@@ -197,11 +197,13 @@ more_experienced(exp, rexp)
 }
 
 void
-losexp(drainer,force)	/* e.g., hit by drain life attack */
+losexp(drainer,force,dresistance)	/* e.g., hit by drain life attack */
 const char *drainer;	/* cause of death, if drain should be fatal */
 boolean force;		/* Force the loss of an experience level */
+boolean dresistance;	/* level drain resistance can protect you */
 {
 	register int num;
+	int expdrain;
 
 #ifdef WIZARD
 	/* explicit wizard mode requests to reduce level are never fatal. */
@@ -209,7 +211,20 @@ boolean force;		/* Force the loss of an experience level */
 		drainer = 0;
 #endif
 
-	if (!force && Drain_resistance && rn2(5) ) return;
+	if (dresistance && Drain_resistance && rn2(5) ) return;
+
+	/* level drain is too strong. Let's nerf it a bit. --Amy */
+	if (!force && (u.uexp > 320) && u.ulevel > 1) {
+		expdrain = newuexp(u.ulevel) - newuexp(u.ulevel - 1);
+		expdrain /= 5;
+		expdrain = rnz(expdrain);
+		if ((u.uexp - expdrain) > newuexp(u.ulevel - 1)) {
+			/* drain some experience, but not enough to make you lose a level */
+			pline("You feel your life draining away!");
+			u.uexp -= expdrain;
+			return;
+		}
+	}
 
 	if (u.ulevel > 1) {
 		pline("%s level %d.", Goodbye(), u.ulevel--);

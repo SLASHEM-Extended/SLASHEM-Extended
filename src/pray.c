@@ -690,7 +690,7 @@ aligntyp resp_god;
 			      youmonst.data->mlet == S_HUMAN ? "mortal" : "creature");
 			verbalize("Thou must relearn thy lessons!");
 			(void) adjattrib(A_WIS, -3, FALSE);
-			losexp((char *)0, TRUE); /* divine wrath ignores mundane stuff like drain resistance --Amy */
+			losexp((char *)0, TRUE, FALSE); /* divine wrath ignores mundane stuff like drain resistance --Amy */
 			break;
 	    case 6:	if (!Punished) {
 			    gods_angry(resp_god);

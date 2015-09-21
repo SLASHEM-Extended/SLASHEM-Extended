@@ -4318,7 +4318,7 @@ uchar aatyp;
 			return(0);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-		    losexp("loss of potential", FALSE);
+		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
 
@@ -4407,7 +4407,7 @@ uchar aatyp;
 			case 4:
 			case 5:
 				pline("You feel life has clocked back.");
-			      losexp("time", TRUE); /* guaranteed - resistance is futile :D */
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -4794,12 +4794,12 @@ uchar aatyp;
 		break;
         case AD_DRLI:
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
         case AD_VAMP:
 			if (!Drain_resistance || !rn2(20) ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
 
@@ -5301,7 +5301,7 @@ uchar aatyp;
 		}
 		if (!rn2(10)) {
 			if(!Drain_resistance || !rn2(20) )
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
 
@@ -5498,7 +5498,7 @@ uchar aatyp;
 		    mdamageu(mon, tmp);
 
 			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
-			    losexp("life drainage", FALSE);
+			    losexp("life drainage", FALSE, TRUE);
 			}
 
 		break;

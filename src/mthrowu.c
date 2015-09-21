@@ -629,7 +629,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			}
 		    }
 		    if (hitu && singleobj->otyp == FAERIE_FLOSS_RHING) {
-			    losexp("a sweet ring of faerie floss", TRUE);
+			    losexp("a sweet ring of faerie floss", TRUE, FALSE);
 		    } /* This ignores level-drain resistance (not a bug). --Amy */
 
 		    if (hitu && singleobj->otyp == EGG) {

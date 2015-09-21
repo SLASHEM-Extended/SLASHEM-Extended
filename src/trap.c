@@ -2313,7 +2313,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		if (!Drain_resistance || !rn2(20) ) {
 			pline("A malevolent black glow suddenly surrounds you...");
-			losexp("life drainage", FALSE);
+			losexp("life drainage", FALSE, TRUE);
 		}
 		else {
 			pline("A dark black glow suddenly surrounds you.");

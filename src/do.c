@@ -688,7 +688,7 @@ register struct obj *obj;
 		if (obj->otyp == EGG) {
 		    could_petrify = touch_petrifies(&mons[obj->corpsenm]);
 		}
-		(void) mpickobj(u.ustuck,obj);
+		(void) mpickobj(u.ustuck,obj,FALSE);
 		if (is_animal(u.ustuck->data)) {
 		    if (could_poly || could_slime) {
 			(void) newcham(u.ustuck,
@@ -941,8 +941,8 @@ dodown()
 
 		if ( (stairs_down || ladder_down) && yn("You can force yourself down, but this will hurt and drain you. Do it?") == 'y') {
 			pline("You drain your life-force to squeeze down the stairs.");
-		    losexp("levitating down a narrow set of stairs", TRUE);
-		    losexp("levitating down a narrow set of stairs", TRUE);
+		    losexp("levitating down a narrow set of stairs", TRUE, FALSE);
+		    losexp("levitating down a narrow set of stairs", TRUE, FALSE);
 		}
 		else {return(0);} /* didn't move */
 	}
@@ -2820,7 +2820,7 @@ final_level()
 					d((int)mtmp->m_lev,10) + 30 + rnd(30);
 		    if ((otmp = select_hwep(mtmp)) == 0) {
 			otmp = mksobj(SILVER_SABER, FALSE, FALSE);
-			if (mpickobj(mtmp, otmp))
+			if (mpickobj(mtmp, otmp, TRUE))
 			    panic("merged weapon?");
 		    }
 		    bless(otmp);

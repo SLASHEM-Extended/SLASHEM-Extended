@@ -1570,7 +1570,7 @@ register int pm;
 
 	    case PM_STONE_BUG:
 		You("feel that was a bad idea.");
-		losexp("eating a stone bug corpse", FALSE);
+		losexp("eating a stone bug corpse", FALSE, TRUE);
 
 		break;
 
@@ -1583,7 +1583,7 @@ register int pm;
 		switch(rnd(10)) {                
 		case 1:
 		    You("feel that was a bad idea.");
-		    losexp("eating a wraith corpse", FALSE);
+		    losexp("eating a wraith corpse", FALSE, TRUE);
 		    break;
 		case 2:                        
 		    You("don't feel so good ...");
@@ -1637,7 +1637,7 @@ register int pm;
 		switch(rnd(10)) {                
 		case 1:
 		    You("feel that was a bad idea.");
-		    losexp("eating a creeping 42 corpse", FALSE);
+		    losexp("eating a creeping 42 corpse", FALSE, TRUE);
 			make_hallucinated(HHallucination+rn1(10,50),TRUE,0L);
 		    break;
 		case 2:                        

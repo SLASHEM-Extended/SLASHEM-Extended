@@ -658,8 +658,8 @@ int how;
 	/* Troll characters have a chance of reviving. --Amy */
 	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
 		pline("But wait...");
-	    losexp("failed troll revival", TRUE);
-	    losexp("failed troll revival", TRUE);
+	    losexp("failed troll revival", TRUE, FALSE);
+	    losexp("failed troll revival", TRUE, FALSE);
 		pline("You come back to life!");
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
@@ -727,8 +727,8 @@ int how;
 		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
 
 			if (u.ulevel > 2) {
-			    losexp("menu bug", TRUE);
-			    losexp("menu bug", TRUE);
+			    losexp("menu bug", TRUE, FALSE);
+			    losexp("menu bug", TRUE, FALSE);
 			    pline("You hit the 'exit' button to escape from the grave! There you are again, back from the dead...");
 			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 			    savelife(how);
@@ -781,8 +781,8 @@ int how;
 		if (yn_function("Revive?", ynchars, 'y') == 'y' ) {
 
 			if (u.ulevel > 2) {
-			    losexp("Rodneyan resurrection", TRUE);
-			    losexp("Rodneyan resurrection", TRUE);
+			    losexp("Rodneyan resurrection", TRUE, FALSE);
+			    losexp("Rodneyan resurrection", TRUE, FALSE);
 			    pline("You reappear in good health!");
 			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 			    savelife(how);
