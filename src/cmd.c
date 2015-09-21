@@ -2348,6 +2348,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Infravision) you_have("infravision");
 
 	if (u.banishmentbeam) you_are("going to be banished");
+	if (u.levelporting) you_are("going to be levelported");
 
 	if (u.inertia) {
 		Sprintf(buf, "slowed by inertia");

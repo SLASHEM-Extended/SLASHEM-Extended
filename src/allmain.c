@@ -1588,6 +1588,15 @@ moveloop()
 		goto_level(&newlevel, TRUE, FALSE, FALSE);
 	}
 
+	if (u.levelporting) { /* something attacked you with nexus or weeping */
+
+		if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
+		}
+		u.levelporting = 0; /* player got teleported, now clear the flag even if it crashes afterwards */
+	}
+
     }
 }
 

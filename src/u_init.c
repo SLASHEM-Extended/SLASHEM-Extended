@@ -5162,6 +5162,7 @@ u_init()
 	u.negativeprotection = 0;
 	u.chokhmahdamage = 0;
 	u.banishmentbeam = 0;
+	u.levelporting = 0;
 	u.inertia = 0;
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */

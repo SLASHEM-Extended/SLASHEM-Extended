@@ -452,6 +452,7 @@ struct you {
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
 
 	int banishmentbeam;	/* an attempt to make wands of banishment used by monsters *not* segfault :P --Amy */
+	int levelporting;		/* and nexus/weeping attacks should not segfault either */
 
 	int inertia;	/* for inertia attack - if non-zero, the player moves at half speed */
 

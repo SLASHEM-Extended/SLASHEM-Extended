@@ -3977,8 +3977,12 @@ dopois:
 		/* if vampire biting (and also a pet) */
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-			level_tele();
-			return(3);
+
+			if (!u.levelporting) {
+				u.levelporting = 1;
+				nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+			}
+
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
@@ -4211,8 +4215,11 @@ dopois:
 
 				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-					level_tele();
-					return(3);
+
+					if (!u.levelporting) {
+						u.levelporting = 1;
+						nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+					}
 				}
 				break;
 			case 7:
@@ -5720,8 +5727,10 @@ do_stone:
 
 				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-					level_tele();
-					return(3);
+					if (!u.levelporting) {
+						u.levelporting = 1;
+						nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+					}
 				}
 				break;
 			case 7:
@@ -5996,8 +6005,10 @@ do_stone:
 		if (rn2(10)) break;
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-			level_tele();
-			return(3);
+			if (!u.levelporting) {
+				u.levelporting = 1;
+				nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+			}
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
@@ -7640,8 +7651,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		/* if vampire biting (and also a pet) */
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-			level_tele();
-			return(3);
+			if (!u.levelporting) {
+				u.levelporting = 1;
+				nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+			}
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
@@ -7832,8 +7845,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-					level_tele();
-					return(3);
+					if (!u.levelporting) {
+						u.levelporting = 1;
+						nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+					}
 				}
 				break;
 			case 7:
