@@ -358,6 +358,12 @@ drinkfountain()
 			break;
 	    }
 	}
+	if (level.flags.lethe) { /* bad idea! */
+		You_feel("the lethe waters running down your throat...");
+		You_feel("dizzy!");
+		forget(1 + rn2(5));
+	}
+
 	dryup(u.ux, u.uy, TRUE);
 }
 
@@ -407,6 +413,13 @@ register struct obj *obj;
 		return;
 	} else if (get_wet(obj, FALSE) && !rn2(2))
 		return;
+
+	if (!obj) return; /* if the get_wet destroyed it --Amy */
+	if (level.flags.lethe) { /* bad idea */
+		pline("The sparkling waters wash over your %s...", doname(obj));
+		lethe_damage(obj, TRUE, FALSE);
+	}
+	if (!obj) return; /* if the lethe_damage destroyed it --Amy */
 
 	/* Acid and water don't mix */
 	if (obj->otyp == POT_ACID) {

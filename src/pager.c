@@ -453,6 +453,9 @@ lookat(x, y, buf, monbuf)
     case S_pool:
 	Strcpy(buf, level.flags.lethe? "sparkling water" : "water");
 	break;
+    case S_fountain:
+	Strcpy(buf, level.flags.lethe? "sparkling fountain" : "fountain");
+	break;
     default:
 	Strcpy(buf,defsyms[glyph_to_cmap(glyph)].explanation);
 	break;
