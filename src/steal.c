@@ -477,6 +477,7 @@ gotobj:
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
 	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
+	else delobj(otmp); /* also frees otmp */
 	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);
 	    return -1;
