@@ -1272,6 +1272,7 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID |
 	uncurse(obj);
 #ifdef INVISIBLE_OBJECTS
 	if (obj->oinvis) obj->oinvis = 0;
+	if (obj->oinvisreal) obj->oinvisreal = 0;
 #endif
 	return;
 }
@@ -2270,6 +2271,7 @@ struct obj *obj, *otmp;
 #ifdef INVISIBLE_OBJECTS
 		if (!always_visible(obj) && !stack_too_big(obj) ) {
 		    obj->oinvis = TRUE;
+		    if (!rn2(100)) obj->oinvisreal = TRUE;
 		    newsym(obj->ox,obj->oy);	/* make object disappear */
 		}
 #endif
@@ -2277,6 +2279,7 @@ struct obj *obj, *otmp;
 	case WAN_MAKE_VISIBLE:
 #ifdef INVISIBLE_OBJECTS
 		if (!stack_too_big(obj)) obj->oinvis = FALSE;
+		if (obj->oinvisreal) obj->oinvis = TRUE;
 		newsym(obj->ox,obj->oy);	/* make object appear */
 #endif
 		break;

@@ -899,6 +899,7 @@ register int x, y, typ;
 		}
 		statue->owt = weight(statue);
 		if (!rn2(5)) statue->oinvis = 1; /* player needs see invisible to detect this thing --Amy */
+		if (!rn2(500)) {statue->oinvis = 1; statue->oinvisreal = 1;} /* not detectable at all */
 
 	/* "Stop Fungi/Objects from hiding statue traps. It's a bit of a balance issue and created clutter, and had a good chance of spawning out of depth monsters." In Soviet Russia, people want to be able to see that statue of a slimy vortex in advance. They don't like games being difficult, and they don't want any nasty surprises, so they make sure that statue traps are never obscured by anything. I wonder if the next thing they'll do is to remove all the other traps because you can't see them in advance, or even make sure all of them are visible before you trigger them, too? Completely missing the point of traps, but oh well... --Amy */
 

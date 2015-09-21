@@ -650,6 +650,7 @@ unsigned *ospecial;
 	    for (ptr = level.objects[x][y]; ptr; ptr = ptr->nexthere) {
 	        if (ptr->otyp == STATUE) continue;
 	        if (ptr->oinvis) continue;
+	        if (ptr->oinvisreal) continue;
 	        hilitecnt += 1;
 	        if (hilitecnt >= 2) break;
 	    }
@@ -686,6 +687,7 @@ unsigned *ospecial;
 	    for (ptr = level.objects[x][y]; ptr; ptr = ptr->nexthere) {
 	        if (ptr->otyp == STATUE) continue;
 	        if (ptr->oinvis) continue;
+	        if (ptr->oinvisreal) continue;
 	        hilitecnt += 1;
 	        if (hilitecnt >= 2) break;
 	    }

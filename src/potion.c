@@ -4406,8 +4406,8 @@ dodip()
 	}
 #ifdef INVISIBLE_OBJECTS
 	if (!always_visible(obj)) {
-	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis) {
-		if (!stack_too_big(obj)) {obj->oinvis = TRUE;
+	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis && !obj->oinvisreal) {
+		if (!stack_too_big(obj)) {obj->oinvis = TRUE; if (!rn2(100)) obj->oinvisreal = TRUE;
 		if (!Blind)
 		    pline(!See_invisible ? "Where did %s go?" :
 			  "Gee!  All of a sudden you can see right through %s.",
@@ -4415,7 +4415,7 @@ dodip()
 		}
 		goto poof;
 	    } else if (potion->otyp == POT_SEE_INVISIBLE && obj->oinvis) {
-		if (!stack_too_big(obj)) {obj->oinvis = FALSE;
+		if (!stack_too_big(obj)) {obj->oinvis = FALSE; if (obj->oinvisreal) obj->oinvis = TRUE;
 		if (!Blind) {
 		    if (!See_invisible)
 			pline("So that's where %s went!", the(xname(obj)));

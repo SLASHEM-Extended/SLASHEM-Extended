@@ -154,7 +154,7 @@ vobj_at(x,y)
     register struct obj *obj = level.objects[x][y];
 
     while (obj) {
-	if (!obj->oinvis || See_invisible) return obj;
+	if ((!obj->oinvis || See_invisible) && !obj->oinvisreal) return obj;
 	obj = obj->nexthere;
     }
     return ((struct obj *) 0);

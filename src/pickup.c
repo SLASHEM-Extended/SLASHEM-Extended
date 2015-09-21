@@ -1297,7 +1297,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 	   to look at it yet; affects docall(SCR_SCARE_MONSTER). */
 	if (!Blind)
 #ifdef INVISIBLE_OBJECTS
-		if (!obj->oinvis || See_invisible)
+		if ((!obj->oinvis || See_invisible) && !obj->oinvisreal)
 #endif
 		obj->dknown = 1;
 

@@ -74,7 +74,7 @@ doread()
 	}
 
 #ifdef INVISIBLE_OBJECTS
-	if (scroll->oinvis && !See_invisible)
+	if ((scroll->oinvis && !See_invisible) || scroll->oinvisreal)
 	    cant_see = TRUE;
 #endif
 

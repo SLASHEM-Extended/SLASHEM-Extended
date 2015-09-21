@@ -253,6 +253,7 @@ struct monst *mon;
 #ifdef INVISIBLE_OBJECTS
 	/* invisible weapons against monsters who can't see invisible */
 	if (otmp->oinvis && !perceives(ptr)) tmp += 3;
+	if (otmp->oinvisreal) tmp += 7;
 #endif
 
 	/* Check specially named weapon "to hit" bonuses */

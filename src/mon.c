@@ -1551,7 +1551,7 @@ mpickstuff(mtmp, str)
 		if (!can_carry(mtmp,otmp)) continue;
 		if (is_pool(mtmp->mx,mtmp->my)) continue;
 #ifdef INVISIBLE_OBJECTS
-		if (otmp->oinvis && !perceives(mtmp->data)) continue;
+		if ((otmp->oinvis && !perceives(mtmp->data) || otmp->oinvisreal) ) continue;
 #endif
 		if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s picks up %s.", Monnam(mtmp),

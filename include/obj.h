@@ -93,6 +93,7 @@ struct obj {
 	Bitfield(lamplit,1);	/* a light-source -- can be lit */
 #ifdef INVISIBLE_OBJECTS
 	Bitfield(oinvis,1);	/* invisible */
+	Bitfield(oinvisreal,1);	/* really invisible - won't be visible even with see invis --Amy */
 #endif
 	Bitfield(greased,1);	/* covered with grease */
 	Bitfield(oattached,2);	/* obj struct has special attachment */

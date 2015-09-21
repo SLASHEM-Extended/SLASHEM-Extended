@@ -1854,7 +1854,7 @@ register struct obj *obj;
 #ifndef INVISIBLE_OBJECTS
 	if (!Blind) obj->dknown = TRUE;
 #else
-	if (!Blind && (!obj->oinvis || See_invisible)) obj->dknown = TRUE;
+	if (!Blind && ((!obj->oinvis || See_invisible) && !obj->oinvisreal) ) obj->dknown = TRUE;
 #endif
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
@@ -2240,7 +2240,8 @@ register struct obj *obj;
 	}
 
 #ifdef INVISIBLE_OBJECTS
-	if (obj->oinvis && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) Strcat(prefix,"invisible ");
+	if (obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) Strcat(prefix,"hidden ");
+	if (obj->oinvis && !obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) Strcat(prefix,"invisible ");
 #endif
 #if defined(WIZARD) && defined(UNPOLYPILE)
 	if (/*wizard && */is_hazy(obj) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) Strcat(prefix,"hazy ");

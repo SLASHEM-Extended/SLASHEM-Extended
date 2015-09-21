@@ -700,7 +700,7 @@ struct obj *obj;
 	register struct monst *mtmp;
 	register char mlet;
 #ifdef INVISIBLE_OBJECTS
-	boolean vis = !Blind && (!obj->oinvis || See_invisible);
+	boolean vis = !Blind && !obj->oinvisreal && (!obj->oinvis || See_invisible);
 #else
 	boolean vis = !Blind;
 #endif
@@ -784,7 +784,7 @@ struct obj *obj;
 	    if (vis)
 		pline("%s can't see anything right now.", Monnam(mtmp));
 #ifdef INVISIBLE_OBJECTS
-	} else if (obj->oinvis && !perceives(mtmp->data)) {
+	} else if ((obj->oinvis && !perceives(mtmp->data)) || obj->oinvisreal) {
 	    if (vis)
 		pline("%s can't see your mirror.", Monnam(mtmp));
 #endif

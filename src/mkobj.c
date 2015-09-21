@@ -203,7 +203,7 @@ struct obj *box;
 		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE)))
 		    continue;
 		else
-		    otmp->oinvis = FALSE;
+		    otmp->oinvis = otmp->oinvisreal = FALSE;
 	    } else
 	    if (box->otyp == ICE_BOX) {
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE))) continue;
@@ -723,6 +723,7 @@ boolean artif;
 	otmp->dknown = index(dknowns, let) ? 0 : 1;
  	otmp->selfmade = FALSE;
 	otmp->oinvis = 0;
+	otmp->oinvisreal = 0;
 	otmp->olocked = FALSE; /* ->recharged */
 	otmp->altmode = WP_MODE_AUTO;
 	if ((otmp->otyp >= ELVEN_SHIELD && otmp->otyp <= ORCISH_SHIELD) ||
@@ -733,8 +734,10 @@ boolean artif;
 #ifdef INVISIBLE_OBJECTS
 	otmp->oinvis = !always_visible(otmp) && \
 		/*(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && */ !rn2(1250);
-
 	if (otmp->otyp == BOULDER && In_sokoban(&u.uz) && !((moves + u.monstertimefinish) % 1317) ) otmp->oinvis = 1;
+
+	if (otmp->oinvis && !rn2(!(u.monstertimefinish % 13333) ? 3 : !(u.monstertimefinish % 1333) ? 10 : !(u.monstertimefinish % 133) ? 30 : 100) ) otmp->oinvisreal = 1;
+
 #endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   

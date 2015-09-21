@@ -2067,7 +2067,7 @@ int tech_no;
 		/* Blindness dealt with above */
 		if (!mon_visible(mtmp)
 #ifdef INVISIBLE_OBJECTS
-				|| obj->oinvis && !See_invisible
+				|| (obj->oinvis && !See_invisible) || obj->oinvisreal
 #endif
 				) {
 	    		You_cant("see %s weapon!", s_suffix(mon_nam(mtmp)));

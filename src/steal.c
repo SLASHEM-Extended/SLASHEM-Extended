@@ -276,7 +276,7 @@ nothing_to_steal:
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
 #ifdef INVISIBLE_OBJECTS
-				&& (!otmp->oinvis || perceives(mtmp->data))
+				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->oinvisreal)
 #endif
 				)
 		tmp += ((otmp->owornmask &
@@ -286,7 +286,7 @@ nothing_to_steal:
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
 #ifdef INVISIBLE_OBJECTS
-				&& (!otmp->oinvis || perceives(mtmp->data))
+				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->oinvisreal)
 #endif
 			)
 		if((tmp -= ((otmp->owornmask &
