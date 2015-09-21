@@ -2779,6 +2779,7 @@ register struct obj *otmp;
 
 		} else {
 
+			if (mtmp->minvisreal) break;
 			int oldinvis = mtmp->minvis;
 			char nambuf[BUFSZ];
 	
@@ -3903,7 +3904,7 @@ struct monst *mtmp;
 				if (cansee(mtmp2->mx, mtmp2->my)) {
 				    pline("%s is hit by %s!", Monnam(mtmp2),
 	    	    	    			doname(otmp2));
-				    if (mtmp2->minvis && !canspotmon(mtmp2))
+				    if ((mtmp2->minvis && !canspotmon(mtmp2)) || mtmp2->minvisreal)
 					map_invisible(mtmp2->mx, mtmp2->my);
 				}
 	    	    	    	mdmg = dmgval(otmp2, mtmp2) * otmp2->quan;

@@ -830,7 +830,7 @@ gazemm(magr, mdef, mattk)
 		pline("%s %s...", buf, mon_nam(mdef));
 	}
 
-	if (magr->mcan || !magr->mcansee ||
+	if (magr->mcan || !magr->mcansee || magr->minvisreal ||
 	    (magr->minvis && !perceives(mdef->data)) ||
 	    !mdef->mcansee || mdef->msleeping) {
 	    if(vis) pline("but nothing happens.");
@@ -848,7 +848,7 @@ gazemm(magr, mdef, mattk)
 					"The gaze is reflected away by %s %s.");
 		    return (MM_MISS);
 		}
-		if (mdef->minvis && !perceives(magr->data)) {
+		if ((mdef->minvis && !perceives(magr->data)) || mdef->minvisreal) {
 		    if (canseemon(magr)) {
 			pline("%s doesn't seem to notice that %s gaze was reflected.",
 			      Monnam(magr), mhis(magr));
@@ -2048,7 +2048,7 @@ int mdead;
 		if (tmp > 127) tmp = 127;
 		if (mddat == &mons[PM_FLOATING_EYE]) {
 		    /*if (!rn2(4)) tmp = 127;*/
-		    if (magr->mcansee && haseyes(madat) && mdef->mcansee &&
+		    if (magr->mcansee && haseyes(madat) && mdef->mcansee && !mdef->minvisreal &&
 			(perceives(madat) || !mdef->minvis)) {
 			Sprintf(buf, "%s gaze is reflected by %%s %%s.",
 				s_suffix(mon_nam(mdef)));

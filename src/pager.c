@@ -208,7 +208,7 @@ lookat(x, y, buf, monbuf)
 
 		xraydist = (u.xray_range<0) ? -1 : u.xray_range * u.xray_range;
 		/* normal vision */
-		if ((mtmp->wormno ? worm_known(mtmp) : cansee(mtmp->mx, mtmp->my)) &&
+		if ((mtmp->wormno ? worm_known(mtmp) : cansee(mtmp->mx, mtmp->my)) && !mtmp->minvisreal &&
 			mon_visible(mtmp) && !mtmp->minvis) {
 		    ways_seen++;
 		    normal++;
@@ -217,7 +217,7 @@ lookat(x, y, buf, monbuf)
 		if (useemon && mtmp->minvis)
 		    ways_seen++;
 		/* infravision */
-		if ((!mtmp->minvis || See_invisible) && see_with_infrared(mtmp))
+		if ((!mtmp->minvis || See_invisible) && !mtmp->minvisreal && see_with_infrared(mtmp))
 		    ways_seen++;
 		/* telepathy */
 		if (tp_sensemon(mtmp))
@@ -280,7 +280,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "see invisible");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if ((!mtmp->minvis || See_invisible) &&
+		    if ((!mtmp->minvis || See_invisible) && !mtmp->minvisreal &&
 			    see_with_infrared(mtmp)) {
 			Strcat(monbuf, "infravision");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");

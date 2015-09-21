@@ -2998,7 +2998,7 @@ lookaround()
 	if((mtmp = m_at(x,y)) &&
 		    mtmp->m_ap_type != M_AP_FURNITURE &&
 		    mtmp->m_ap_type != M_AP_OBJECT &&
-		    (!mtmp->minvis || See_invisible) && !mtmp->mundetected) {
+		    (!mtmp->minvis || See_invisible) && !mtmp->minvisreal && !mtmp->mundetected) {
 	    if((flags.run != 1 && !mtmp->mtame)
 					|| (x == u.ux+u.dx && y == u.uy+u.dy))
 		goto stop;

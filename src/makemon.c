@@ -9935,6 +9935,9 @@ register int	mmflags;
 	    if (uwep && uwep->oartifact == ART_EXCALIBUR)
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
+
+	if (!rn2(!(u.monstertimefinish % 13334) ? 3 : !(u.monstertimefinish % 1334) ? 10 : !(u.monstertimefinish % 134) ? 30 : 100) && mtmp->minvis) mtmp->minvisreal = TRUE;
+
 #ifndef DCC30_BUG
 	if (mndx == PM_LONG_WORM && (mtmp->wormno = get_wormno()) != 0)
 #else

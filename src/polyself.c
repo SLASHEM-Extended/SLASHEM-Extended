@@ -1493,7 +1493,7 @@ dogaze()
 		looked++;
 		if (Invis && !perceives(mtmp->data))
 		    pline("%s seems not to notice your gaze.", Monnam(mtmp));
-		else if (mtmp->minvis && !See_invisible)
+		else if ((mtmp->minvis && !See_invisible) || mtmp->minvisreal)
 		    You_cant("see where to gaze at %s.", Monnam(mtmp));
 		else if (mtmp->m_ap_type == M_AP_FURNITURE
 			|| mtmp->m_ap_type == M_AP_OBJECT) {

@@ -711,7 +711,7 @@ struct monst *mtmp;
 	y = mtmp->my + sgn(tby);
 	while(x != mtmp->mux || y != mtmp->muy) {
 	    mon = m_at(x, y);
-	    if (mon && m_cansee(mtmp, x, y) && !mon->mundetected &&
+	    if (mon && m_cansee(mtmp, x, y) && !mon->mundetected && !mon->minvisreal &&
 		    (!mon->minvis || perceives(mtmp->data)))
 		return TRUE;
 	    x += sgn(tbx);
@@ -901,19 +901,19 @@ mattacku(mtmp)
 	if(tmp <= 0) tmp = 1;
 
 	/* make eels visible the moment they hit/miss us */
-	if(mdat->mlet == S_EEL && mtmp->minvis && cansee(mtmp->mx,mtmp->my) && rn2(5) ) {
+	if(mdat->mlet == S_EEL && mtmp->minvis && !mtmp->minvisreal && cansee(mtmp->mx,mtmp->my) && rn2(5) ) {
 		mtmp->minvis = 0;
 		newsym(mtmp->mx,mtmp->my);
 	}
 	/* but not always --Amy */
 
-	if(mdat->mlet == S_FLYFISH && mtmp->minvis && cansee(mtmp->mx,mtmp->my) && !rn2(5) ) {
+	if(mdat->mlet == S_FLYFISH && mtmp->minvis && !mtmp->minvisreal && cansee(mtmp->mx,mtmp->my) && !rn2(5) ) {
 		mtmp->minvis = 0;
 		newsym(mtmp->mx,mtmp->my);
 	}
 
 	/* Make Star Vampires visible the moment they hit/miss us */
-	if(mtmp->data == &mons[PM_STAR_VAMPIRE] && mtmp->minvis
+	if(mtmp->data == &mons[PM_STAR_VAMPIRE] && mtmp->minvis && !mtmp->minvisreal
 	   && cansee(mtmp->mx, mtmp->my)) {
 	    mtmp->minvis = 0;
 	    newsym(mtmp->mx, mtmp->my);

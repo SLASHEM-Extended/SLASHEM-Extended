@@ -264,6 +264,7 @@ do_mname()
 			(!(cansee(cx,cy) || see_with_infrared(mtmp)) || mtmp->mundetected
 			|| mtmp->m_ap_type == M_AP_FURNITURE
 			|| mtmp->m_ap_type == M_AP_OBJECT
+			|| mtmp->minvisreal
 			|| (mtmp->minvis && !See_invisible)))) {
 		pline("I see no monster there.");
 		return(0);

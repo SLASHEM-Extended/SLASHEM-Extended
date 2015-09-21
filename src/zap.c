@@ -437,6 +437,7 @@ struct obj *otmp;
 
 		mtmp->perminvis = 0;
 		mtmp->minvis = 0;
+		if (mtmp->minvisreal) mtmp->perminvis = mtmp->minvis = 1;
 		Strcpy(nambuf, Monnam(mtmp));
 		newsym(mtmp->mx, mtmp->my);		/* make it appear */
 		if (oldinvis) {
@@ -809,6 +810,7 @@ coord *cc;
 		mtmp2->m_ap_type = mtmp->m_ap_type;
 #ifdef INVISIBLE_OBJECTS
 		mtmp2->minvis = obj->oinvis;
+		mtmp2->minvisreal = obj->oinvisreal;
 #endif
 		/* set these ones explicitly */
 		mtmp2->mavenge = 0;

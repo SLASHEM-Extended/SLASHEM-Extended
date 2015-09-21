@@ -3479,7 +3479,7 @@ retry:
 				if (cansee(mtmp->mx, mtmp->my)) {
 				    pline("%s is hit by %s!", Monnam(mtmp),
 	    	    	    			doname(otmp2));
-				    if (mtmp->minvis && !canspotmon(mtmp))
+				    if ((mtmp->minvis && !canspotmon(mtmp)) || mtmp->minvisreal)
 					map_invisible(mtmp->mx, mtmp->my);
 				}
 	    	    	    	mdmg = dmgval(otmp2, mtmp) * otmp2->quan;

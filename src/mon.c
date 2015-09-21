@@ -817,6 +817,7 @@ register struct monst *mtmp;
 #ifdef INVISIBLE_OBJECTS
 	/* Invisible monster ==> invisible corpse */
 	obj->oinvis = mtmp->perminvis;
+	obj->oinvisreal = mtmp->minvisreal;
 #endif
 
 	stackobj(obj);

@@ -170,6 +170,7 @@ struct monst *mon;
 	mon->perminvis = 1;
 	if (!mon->invis_blkd) {
 	    mon->minvis = 1;
+	    if (!rn2(100)) mon->minvisreal = 1;
 	    newsym(mon->mx, mon->my);		/* make it disappear */
 	    if (mon->wormno) see_wsegs(mon);	/* and any tail too */
 	}
@@ -565,7 +566,7 @@ outer_break:
 	update_mon_intrinsics(mon, best, TRUE, creation);
 	/* if couldn't see it but now can, or vice versa, */
 	if (!creation && (unseen ^ !canseemon(mon))) {
-		if (mon->minvis && !See_invisible) {
+		if ((mon->minvis && !See_invisible) || mon->minvisreal) {
 			pline("Suddenly you cannot see %s.", nambuf);
 			makeknown(best->otyp);
 		} /* else if (!mon->minvis) pline("%s suddenly appears!", Amonnam(mon)); */

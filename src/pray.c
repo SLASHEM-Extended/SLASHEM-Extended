@@ -1540,6 +1540,7 @@ dosacrifice()
 		    (dmon = makemon(&mons[pm], u.ux, u.uy, NO_MM_FLAGS))) {
 		    /* here to be seen */
 		    dmon->minvis = FALSE;
+		    if (dmon->minvisreal) dmon->minvis = TRUE;
 		    You("have summoned %s!", a_monnam(dmon));
 		    if (sgn(u.ualign.type) == sgn(dmon->data->maligntyp)) {
 			dmon->mpeaceful = (rn2(2) ? TRUE : FALSE); /* making things a bit more dangerous for chaotics --Amy */

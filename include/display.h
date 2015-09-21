@@ -59,7 +59,8 @@
 					/* IF the monster		    */\
     (!((mon)->minvis) || See_invisible) &&	/* 1. is not invisible AND	    */\
     (!((mon)->mundetected))	&&		/* 2. not an undetected hider	    */\
-    (!((mon)->mburied || u.uburied))	/* 3. neither you or it is buried   */\
+    (!((mon)->mburied || u.uburied)) &&	/* 3. neither you or it is buried   */\
+	(!(mon)->minvisreal)	/* 4. monster is not permanently invisible */\
 )
 
 /*
@@ -118,7 +119,7 @@
  */
 #define knowninvisible(mon) \
 	(mon->minvis && \
-	    ((cansee(mon->mx, mon->my) && (See_invisible || Detect_monsters)) || \
+	    ((cansee(mon->mx, mon->my) && ( (See_invisible && !mon->minvisreal) || Detect_monsters)) || \
 		(!Blind && (HTelepat & ~INTRINSIC) && \
 		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \
 		) \

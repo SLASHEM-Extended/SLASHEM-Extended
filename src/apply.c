@@ -792,7 +792,7 @@ struct obj *obj;
 	} else if (is_vampire(mtmp->data) || mlet == S_GHOST) {
 	    if (vis)
 		pline ("%s doesn't have a reflection.", Monnam(mtmp));
-	} else if(!mtmp->mcan && !mtmp->minvis &&
+	} else if(!mtmp->mcan && !mtmp->minvis && !mtmp->minvisreal &&
 					mtmp->data == &mons[PM_MEDUSA]) {
 		if (mon_reflects(mtmp, "The gaze is reflected away by %s %s!"))
 			return 1;
@@ -800,7 +800,7 @@ struct obj *obj;
 			pline("%s is turned to stone!", Monnam(mtmp));
 		stoned = TRUE;
 		killed(mtmp);
-	} else if(!mtmp->mcan && !mtmp->minvis &&
+	} else if(!mtmp->mcan && !mtmp->minvis && !mtmp->minvisreal &&
 					mtmp->data == &mons[PM_FLOATING_EYE]) {
 		int tmp = d((int)mtmp->m_lev, (int)mtmp->data->mattk[0].damd);
 		if (!rn2(4)) tmp = 120;
@@ -811,12 +811,12 @@ struct obj *obj;
 		if ( (int) mtmp->mfrozen + tmp > 127)
 			mtmp->mfrozen = 127;
 		else mtmp->mfrozen += tmp;
-	} else if(!mtmp->mcan && !mtmp->minvis &&
+	} else if(!mtmp->mcan && !mtmp->minvis && !mtmp->minvisreal &&
 					mtmp->data == &mons[PM_UMBER_HULK]) {
 		if (vis)
 			pline ("%s confuses itself!", Monnam(mtmp));
 		mtmp->mconf = 1;
-	} else if(!mtmp->mcan && !mtmp->minvis && (mlet == S_NYMPH
+	} else if(!mtmp->mcan && !mtmp->minvis && !mtmp->minvisreal && (mlet == S_NYMPH
 				     || mtmp->data==&mons[PM_SUCCUBUS])) {
 		if (vis) {
 		    pline ("%s admires herself in your mirror.", Monnam(mtmp));
@@ -826,15 +826,15 @@ struct obj *obj;
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj);
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
-	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) &&
+	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) && !mtmp->minvisreal &&
 			(!mtmp->minvis || perceives(mtmp->data)) && rn2(5)) {
 		if (vis)
 		    pline("%s is frightened by its reflection.", Monnam(mtmp));
 		monflee(mtmp, d(2,4), FALSE, FALSE);
 	} else if (!Blind) {
-		if (mtmp->minvis && !See_invisible)
+		if ((mtmp->minvis && !See_invisible) || mtmp->minvisreal)
 		    ;
-		else if ((mtmp->minvis && !perceives(mtmp->data))
+		else if ((mtmp->minvis && !perceives(mtmp->data)) || mtmp->minvisreal
 			 || !haseyes(mtmp->data))
 		    pline("%s doesn't seem to notice its reflection.",
 			Monnam(mtmp));
