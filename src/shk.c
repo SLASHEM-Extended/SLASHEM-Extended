@@ -3457,7 +3457,7 @@ register xchar x, y;
 		    mark_synch();
 		}
 		subfrombill(obj, shkp);
-		(void) mpickobj(shkp, obj);
+		(void) mpickobj(shkp, obj, FALSE);
 		return shkp;
 	}
 	return (struct monst *)0;
@@ -3749,7 +3749,7 @@ boolean catchup;	/* restoring a level */
 				BEARTRAP, TRUE, FALSE);
 		otmp->quan= 1;
 		otmp->owt = weight(otmp);
-		(void) mpickobj(shkp, otmp);
+		(void) mpickobj(shkp, otmp, FALSE);
 	    }
 	    deltrap(ttmp);
 	    if(IS_DOOR(tmp_dam->typ)) {

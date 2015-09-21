@@ -3433,7 +3433,7 @@ dopois:
 							optr = uwep;
 							uwepgone();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else{
 							You("keep a tight grip on your weapon!");
@@ -3445,7 +3445,7 @@ dopois:
 						if (donning(optr)) cancel_don();
 						(void) Boots_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mtmp));
@@ -3455,7 +3455,7 @@ dopois:
 							if (donning(optr)) cancel_don();
 							(void) Gloves_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else You("keep your %s closed.", makeplural(body_part(HAND)));
 					}
@@ -3467,7 +3467,7 @@ dopois:
 							if (donning(optr)) cancel_don();
 							Shield_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						 }
 						 else{
 							You("keep a tight grip on your shield!");
@@ -3479,7 +3479,7 @@ dopois:
 						if (donning(optr)) cancel_don();
 						(void) Helmet_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 				}
 			}
@@ -5255,7 +5255,7 @@ do_stone:
 							optr = uwep;
 							uwepgone();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else{
 							You("keep a tight grip on your weapon!");
@@ -5267,7 +5267,7 @@ do_stone:
 						if (donning(optr)) cancel_don();
 						(void) Boots_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%a pull on your gloves!");
@@ -5277,7 +5277,7 @@ do_stone:
 							if (donning(optr)) cancel_don();
 							(void) Gloves_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else You("keep your %s closed.", makeplural(body_part(HAND)));
 					}
@@ -5289,7 +5289,7 @@ do_stone:
 							if (donning(optr)) cancel_don();
 							Shield_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						 }
 						 else{
 							You("keep a tight grip on your shield!");
@@ -5301,7 +5301,7 @@ do_stone:
 						if (donning(optr)) cancel_don();
 						(void) Helmet_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 				}
 			}
@@ -6897,7 +6897,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 							optr = uwep;
 							uwepgone();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else{
 							You("keep a tight grip on your weapon!");
@@ -6909,7 +6909,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 						if (donning(optr)) cancel_don();
 						(void) Boots_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mtmp));
@@ -6919,7 +6919,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 							if (donning(optr)) cancel_don();
 							(void) Gloves_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						}
 						else You("keep your %s closed.", makeplural(body_part(HAND)));
 					}
@@ -6931,7 +6931,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 							if (donning(optr)) cancel_don();
 							Shield_off();
 							freeinv(optr);
-							(void) mpickobj(mtmp,optr);
+							(void) mpickobj(mtmp,optr,FALSE);
 						 }
 						 else{
 							You("keep a tight grip on your shield!");
@@ -6943,7 +6943,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 						if (donning(optr)) cancel_don();
 						(void) Helmet_off();
 						freeinv(optr);
-						(void) mpickobj(mtmp,optr);
+						(void) mpickobj(mtmp,optr,FALSE);
 					}
 				}
 			}
@@ -8158,7 +8158,7 @@ register struct monst *mon;
 		if (ring==uswapwep) setuswapwep((struct obj *)0, FALSE);
 		if (ring==uquiver) setuqwep((struct obj *)0);
 		freeinv(ring);
-		(void) mpickobj(mon,ring);
+		(void) mpickobj(mon,ring,FALSE);
 	    } else {
 		char buf[BUFSZ];
 

@@ -102,7 +102,7 @@ pick_move:
 			    pline("%s picks up %s.", Monnam(mtmp),
 				distant_name(ib,doname));
 			obj_extract_self(ib);
-			(void) mpickobj(mtmp, ib);
+			(void) mpickobj(mtmp, ib, FALSE);
 		}
 		return(1);
 	}
@@ -218,7 +218,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		}
 		/* 2 to 4 spellbooks */
 		for (cnt = rn1(3,2); cnt > 0; --cnt) {
-		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE));
+		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE), TRUE);
 		}
 		/* [ALI] Upgrade existing robe or aquire new */
 		if (rn2(2) || (otmp = which_armor(priest, W_ARM)) == 0) {
@@ -229,7 +229,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 			uncurse(obj);
 		    else
 			curse(obj);
-		    (void) mpickobj(priest, obj);
+		    (void) mpickobj(priest, obj, TRUE);
 		    m_dowear(priest, TRUE);
 		    if (!(obj->owornmask & W_ARM)) {
 			obj_extract_self(obj);

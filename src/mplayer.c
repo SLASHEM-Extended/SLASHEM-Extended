@@ -105,7 +105,7 @@ short typ;
 	 * chances of having plusses is the same as usual....
 	 */
 	obj->spe = rn2(10) ? (rn2(3) ? rn2(5) : rn1(4,4)) : -rnd(3);
-	(void) mpickobj(mon, obj);
+	(void) mpickobj(mon, obj, TRUE);
 }
 
 struct monst *
@@ -478,7 +478,7 @@ register boolean special;
 		/* mplayers knew better than to overenchant Magicbane */
 		if (otmp->oartifact == ART_MAGICBANE)
 		    otmp->spe = rnd(4);
-		(void) mpickobj(mtmp, otmp);
+		(void) mpickobj(mtmp, otmp, TRUE);
 	    }
 
 	    if(special) {
@@ -507,7 +507,7 @@ register boolean special;
 #endif
 		quan = rn2(10);
 		while(quan--)
-		    (void) mpickobj(mtmp, mkobj(RANDOM_CLASS, FALSE));
+		    (void) mpickobj(mtmp, mkobj(RANDOM_CLASS, FALSE), TRUE);
 	    } else { /* wandering characters... */
 #ifndef GOLDOBJ
 	       mtmp->mgold = rn2((mtmp->m_lev)*100);

@@ -1361,7 +1361,7 @@ meatcorpse(mtmp)
 	otmpB = mksobj(ROCKET, TRUE, FALSE);
 	otmpB->quan = 1;
 	otmpB->owt = weight(otmpB);
-	(void) mpickobj(mtmp, otmpB);
+	(void) mpickobj(mtmp, otmpB, FALSE);
 
 			}
 
@@ -1370,7 +1370,7 @@ meatcorpse(mtmp)
 	otmpB = mksobj(ROCK, TRUE, FALSE);
 	otmpB->quan = 5;
 	otmpB->owt = weight(otmpB);
-	(void) mpickobj(mtmp, otmpB);
+	(void) mpickobj(mtmp, otmpB, FALSE);
 
 			}
 
@@ -1429,7 +1429,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 			    otmp3->age = monstermoves - otmp3->age;
 			    start_corpse_timeout(otmp3);
 			}
-			(void) mpickobj(mtmp, otmp3);
+			(void) mpickobj(mtmp, otmp3, FALSE);
 		    }
 		}
 		poly = polyfodder(otmp);
@@ -1459,7 +1459,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		} else if (ecount == 2)
 			Sprintf(buf, "%s engulfs several objects.", Monnam(mtmp));
 		obj_extract_self(otmp);
-		(void) mpickobj(mtmp, otmp);	/* slurp */
+		(void) mpickobj(mtmp, otmp, FALSE);	/* slurp */
 	    }
 	    /* Engulf & devour is instant, so don't set meating */
 	    if (mtmp->minvis) newsym(mtmp->mx, mtmp->my);
@@ -1562,7 +1562,7 @@ mpickstuff(mtmp, str)
 		/* unblock point after extract, before pickup */
 		if (otmp->otyp == BOULDER)
 		    unblock_point(otmp->ox,otmp->oy);	/* vision */
-		(void) mpickobj(mtmp, otmp);	/* may merge and free otmp */
+		(void) mpickobj(mtmp, otmp, FALSE);	/* may merge and free otmp */
 		m_dowear(mtmp, FALSE);
 		newsym(mtmp->mx, mtmp->my);
 		return TRUE;			/* pick only one object */

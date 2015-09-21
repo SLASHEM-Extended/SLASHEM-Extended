@@ -575,23 +575,23 @@ struct mkroom	*sroom;
 /* black marketeer's equipment */
 	  otmp = mksobj(LONG_SWORD, FALSE, FALSE);
 	  otmp = oname(otmp, artiname(ART_THIEFBANE));
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 	  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  otmp = mksobj(SHIELD_OF_REFLECTION, FALSE, FALSE);
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 	  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  otmp = mksobj(GRAY_DRAGON_SCALE_MAIL, FALSE, FALSE);
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 	  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  otmp = mksobj(SPEED_BOOTS, FALSE, FALSE);
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 	  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  otmp = mksobj(AMULET_OF_LIFE_SAVING, FALSE, FALSE);
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 /* wear armor and amulet */
 	  m_dowear(shk, TRUE);
 	  otmp = mksobj(SKELETON_KEY, FALSE, FALSE);
-	  mpickobj(shk, otmp);
+	  mpickobj(shk, otmp, TRUE);
 	}
 #endif /* BLACKMARKET */
 

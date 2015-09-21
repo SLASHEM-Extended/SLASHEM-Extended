@@ -4847,7 +4847,7 @@ int style;
 				else
 				    You_hear("a rumbling stop abruptly.");
 				singleobj->otrapped = 0;
-				(void) mpickobj(mtmp, singleobj);
+				(void) mpickobj(mtmp, singleobj, FALSE);
 				used_up = TRUE;
 				break;
 			    }

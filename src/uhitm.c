@@ -4545,7 +4545,7 @@ uchar aatyp;
 							optr = uwep;
 							uwepgone();
 							freeinv(optr);
-							(void) mpickobj(mon,optr);
+							(void) mpickobj(mon,optr,FALSE);
 						}
 						else{
 							You("keep a tight grip on your weapon!");
@@ -4557,7 +4557,7 @@ uchar aatyp;
 						if (donning(optr)) cancel_don();
 						(void) Boots_off();
 						freeinv(optr);
-						(void) mpickobj(mon,optr);
+						(void) mpickobj(mon,optr,FALSE);
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mon));
@@ -4567,7 +4567,7 @@ uchar aatyp;
 							if (donning(optr)) cancel_don();
 							(void) Gloves_off();
 							freeinv(optr);
-							(void) mpickobj(mon,optr);
+							(void) mpickobj(mon,optr,FALSE);
 						}
 						else You("keep your %s closed.", makeplural(body_part(HAND)));
 					}
@@ -4579,7 +4579,7 @@ uchar aatyp;
 							if (donning(optr)) cancel_don();
 							Shield_off();
 							freeinv(optr);
-							(void) mpickobj(mon,optr);
+							(void) mpickobj(mon,optr,FALSE);
 						 }
 						 else{
 							You("keep a tight grip on your shield!");
@@ -4591,7 +4591,7 @@ uchar aatyp;
 						if (donning(optr)) cancel_don();
 						(void) Helmet_off();
 						freeinv(optr);
-						(void) mpickobj(mon,optr);
+						(void) mpickobj(mon,optr,FALSE);
 					}
 				}
 			}

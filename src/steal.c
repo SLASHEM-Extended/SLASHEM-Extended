@@ -161,7 +161,7 @@ stealarm()
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
 			pline("%s steals %s!", Monnam(mtmp), doname(otmp));
-	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
+	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
 			monflee(mtmp, 0, FALSE, FALSE);
@@ -476,7 +476,7 @@ gotobj:
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
-	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp);	/* may free otmp */
+	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 	else delobj(otmp); /* also frees otmp */
 	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);
@@ -490,9 +490,10 @@ gotobj:
 
 /* Returns 1 if otmp is free'd, 0 otherwise. */
 int
-mpickobj(mtmp,otmp)
+mpickobj(mtmp,otmp,creation)
 register struct monst *mtmp;
 register struct obj *otmp;
+boolean creation;
 {
     int freed_otmp;
 
@@ -525,7 +526,8 @@ register struct obj *otmp;
 #ifndef GOLDOBJ
     }
 #endif
-	m_dowear(mtmp, FALSE); /* might want to wear whatever armor they stole --Amy */
+	if (creation) m_dowear(mtmp, TRUE); /* might want to wear whatever armor they stole --Amy */
+	else m_dowear(mtmp, FALSE);
 
     return freed_otmp;
 }
@@ -570,7 +572,7 @@ struct monst *mtmp;
 	freeinv(otmp);
 	/* mpickobj wont merge otmp because none of the above things
 	   to steal are mergable */
-	(void) mpickobj(mtmp,otmp);	/* may merge and free otmp */
+	(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
 	pline("%s stole %s!", Monnam(mtmp), doname(otmp));
 	if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
 	    (void) rloc(mtmp, FALSE);

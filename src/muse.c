@@ -5039,7 +5039,7 @@ newboss:
 			case 3:		/* into mon's inventory */
 			    pline("%s snatches %s!", Monnam(mtmp),
 				  the_weapon);
-			    (void) mpickobj(mtmp,obj);
+			    (void) mpickobj(mtmp,obj,FALSE);
 			    break;
 		    }
 		    return 1;
