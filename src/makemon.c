@@ -6610,6 +6610,13 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_FORD_PERFECT) {
 			mongets(mtmp,TOWEL);
 		}
+		if (monsndx(ptr) == PM_TOTAL_WOUNDING_KNIGHT) {
+			mongets(mtmp,SCR_WOUNDS);
+			if (!rn2(2)) mongets(mtmp,SCR_WOUNDS);
+			if (!rn2(3)) mongets(mtmp,SCR_WOUNDS);
+			if (!rn2(5)) mongets(mtmp,SCR_WOUNDS);
+			if (!rn2(7)) mongets(mtmp,SCR_WOUNDS);
+		}
 		if (ptr == &mons[PM_MAUD_AGENT] || ptr == &mons[PM_DUAM_XNAHT_AGENT]) (void) mongets(mtmp, POT_AMNESIA);
 
 		if (ptr == &mons[PM_DELUGE_AGENT] || ptr == &mons[PM_FLOOD_SURFER]) (void) mongets(mtmp, SCR_FLOOD);
@@ -7030,6 +7037,8 @@ register struct	monst	*mtmp;
 
 	    case S_QUADRUPED:
 
+		if (mtmp->data == &mons[PM_PURE_CHAOS_HORDE]) (void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+
 			if(ptr == &mons[PM_EXIT]) (void) mongets(mtmp, !rn2(3) ? SCR_WARPING : !rn2(2) ? SCR_ROOT_PASSWORD_DETECTION : SCR_TELEPORTATION);
 
 		if (mtmp->data == &mons[PM_SIEGE_BEAST] || mtmp->data == &mons[PM_TANKED_ELEPHANT]) {
@@ -7072,6 +7081,12 @@ register struct	monst	*mtmp;
 	    case S_ANT:
 
 		if (mtmp->data == &mons[PM_GREAT_PARALYSATOR_FLY]) (void) mongets(mtmp, WAN_PARALYSIS);
+
+		break;
+
+	    case S_DOG:
+
+		if (mtmp->data == &mons[PM_CRAPDOG]) (void) mongets(mtmp, SCR_BULLSHIT);
 
 		break;
 
@@ -7427,6 +7442,32 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, WAN_POLYMORPH);
 			(void)mongets(mtmp, SPE_POLYMORPH);
 		}
+
+		if (ptr == &mons[PM_ACTUAL_MONSTER_GENERATOR]) {
+			(void) mongets(mtmp, SCR_SUMMON_BOSS);
+			if (!rn2(3)) (void) mongets(mtmp, SCR_SUMMON_BOSS);
+			if (!rn2(7)) {
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+			}
+			if (!rn2(35)) {
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+			}
+			if (!rn2(335)) {
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+				(void) mongets(mtmp, SCR_SUMMON_BOSS);
+			}
+			(void) mongets(mtmp, WAN_CREATE_HORDE);
+			(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		}
+
+ 		break;
+
 		break;
 	    case S_LEPRECHAUN:
 #ifndef GOLDOBJ
@@ -7634,6 +7675,19 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, WAN_DIGGING);
 
 		}
+
+ 		break;
+
+	    case S_HUMANOID:
+
+		if (ptr == &mons[PM_DWARVEN_MESSENGER]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
+
+ 		break;
+
+	    case S_JELLY:
+
+		if (ptr == &mons[PM_ENEMY_CUBE_JELLY]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
+		if (ptr == &mons[PM_GREATER_ENEMY_CUBE_JELLY]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
 
  		break;
 
