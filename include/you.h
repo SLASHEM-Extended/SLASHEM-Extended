@@ -400,6 +400,8 @@ struct you {
 
 	int ungenocidable;	/* evil patch idea by jonadab - monster class that can't be genocided at all */
 
+	int alwaysinvisible;	/* evil patch idea by alpha123 - monster class that's always invisible */
+
 	int minimalism;		/* chance that an item is generated is only 1 in X for minimalist race */
 
 	int frequentmonster;	/* evil patch idea by Amy - monster class that is generated more often */

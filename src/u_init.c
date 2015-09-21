@@ -4884,6 +4884,9 @@ u_init()
 
 	u.ungenocidable = rnd(S_WORM_TAIL);
 
+	u.alwaysinvisible = 0;
+	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
 	u.freqmonsterbonus = rne(4);
 	if (!rn2(5)) u.freqmonsterbonus += rne(3);
