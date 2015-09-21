@@ -621,7 +621,35 @@ struct obj *obj;
 		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
 		/* I suspect few players will be upset that monsters */
 		/* can't wish for wands of death here.... */
-		    if (rn2(2)) {
+
+		/* Amy edit: I am a "few player" obviously. But then, what did you expect of a variant whose author is into BDSM? I'll allow monsters to wish for random musable items; this is different from certain other variants, and may be changed someday, but for now it's good enough for me. */
+
+		    if (rn2(3)) {
+			verbalize("I am in your debt. I will grant one wish!");
+			pline("%s wishes for an object.", Monnam(mon) );
+			switch (rnd(6)) {
+				case 1:
+					(void) mongets(mon, rnd_defensive_item(mon));
+					break;
+				case 2:
+					(void) mongets(mon, rnd_offensive_item(mon));
+					break;
+				case 3:
+					(void) mongets(mon, rnd_misc_item(mon));
+					break;
+				case 4:
+					(void) mongets(mon, rnd_defensive_item_new(mon));
+					break;
+				case 5:
+					(void) mongets(mon, rnd_offensive_item_new(mon));
+					break;
+				case 6:
+					(void) mongets(mon, rnd_misc_item_new(mon));
+					break;
+			}
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    } else if (rn2(2)) {
 			verbalize("You freed me!");
 			mtmp->mpeaceful = 1;
 			set_malign(mtmp);
@@ -649,7 +677,32 @@ struct obj *obj;
 		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
 		/* I suspect few players will be upset that monsters */
 		/* can't wish for wands of death here.... */
-		    if (rn2(2)) {
+		    if (rn2(3)) {
+			verbalize("I am in your debt. I will grant one wish!");
+			pline("%s wishes for an object.", Monnam(mon) );
+			switch (rnd(6)) {
+				case 1:
+					(void) mongets(mon, rnd_defensive_item(mon));
+					break;
+				case 2:
+					(void) mongets(mon, rnd_offensive_item(mon));
+					break;
+				case 3:
+					(void) mongets(mon, rnd_misc_item(mon));
+					break;
+				case 4:
+					(void) mongets(mon, rnd_defensive_item_new(mon));
+					break;
+				case 5:
+					(void) mongets(mon, rnd_offensive_item_new(mon));
+					break;
+				case 6:
+					(void) mongets(mon, rnd_misc_item_new(mon));
+					break;
+			}
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    } else if (rn2(2)) {
 			verbalize("You freed me!");
 			mtmp->mpeaceful = 1;
 			set_malign(mtmp);
@@ -677,7 +730,32 @@ struct obj *obj;
 		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
 		/* I suspect few players will be upset that monsters */
 		/* can't wish for wands of death here.... */
-		    if (rn2(2)) {
+		    if (rn2(3)) {
+			verbalize("I am in your debt. I will grant one wish!");
+			pline("%s wishes for an object.", Monnam(mon) );
+			switch (rnd(6)) {
+				case 1:
+					(void) mongets(mon, rnd_defensive_item(mon));
+					break;
+				case 2:
+					(void) mongets(mon, rnd_offensive_item(mon));
+					break;
+				case 3:
+					(void) mongets(mon, rnd_misc_item(mon));
+					break;
+				case 4:
+					(void) mongets(mon, rnd_defensive_item_new(mon));
+					break;
+				case 5:
+					(void) mongets(mon, rnd_offensive_item_new(mon));
+					break;
+				case 6:
+					(void) mongets(mon, rnd_misc_item_new(mon));
+					break;
+			}
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    } else if (rn2(2)) {
 			verbalize("You freed me!");
 			mtmp->mpeaceful = 1;
 			set_malign(mtmp);
@@ -705,7 +783,32 @@ struct obj *obj;
 		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
 		/* I suspect few players will be upset that monsters */
 		/* can't wish for wands of death here.... */
-		    if (rn2(2)) {
+		    if (rn2(3)) {
+			verbalize("I am in your debt. I will grant one wish!");
+			pline("%s wishes for an object.", Monnam(mon) );
+			switch (rnd(6)) {
+				case 1:
+					(void) mongets(mon, rnd_defensive_item(mon));
+					break;
+				case 2:
+					(void) mongets(mon, rnd_offensive_item(mon));
+					break;
+				case 3:
+					(void) mongets(mon, rnd_misc_item(mon));
+					break;
+				case 4:
+					(void) mongets(mon, rnd_defensive_item_new(mon));
+					break;
+				case 5:
+					(void) mongets(mon, rnd_offensive_item_new(mon));
+					break;
+				case 6:
+					(void) mongets(mon, rnd_misc_item_new(mon));
+					break;
+			}
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    } else if (rn2(2)) {
 			verbalize("You freed me!");
 			mtmp->mpeaceful = 1;
 			set_malign(mtmp);

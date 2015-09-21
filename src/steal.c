@@ -524,6 +524,8 @@ register struct obj *otmp;
 #ifndef GOLDOBJ
     }
 #endif
+	m_dowear(mtmp, FALSE); /* might want to wear whatever armor they stole --Amy */
+
     return freed_otmp;
 }
 
