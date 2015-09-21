@@ -171,7 +171,7 @@ int otyp,oquan;
 	otmp->quan = (long) rn1(oquan, 3);
 	otmp->owt = weight(otmp);
 	if (otyp == ORCISH_ARROW) otmp->opoisoned = TRUE;
-	(void) mpickobj(mtmp, otmp);
+	(void) mpickobj(mtmp, otmp, TRUE);
 }
 
 #endif /* OVLB */
@@ -273,7 +273,7 @@ register struct monst *mtmp;
 	otmpX->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
 	attach_egg_hatch_timeout(otmpX);
 	kill_egg(otmpX); /* make sure they're stale --Amy */
-	(void) mpickobj(mtmp,otmpX);
+	(void) mpickobj(mtmp,otmpX, TRUE);
 	}
 
 	if (!rn2(ishaxor ? 250 : 500)) {
@@ -285,13 +285,13 @@ register struct monst *mtmp;
 	otmpY->owt = /*weight(otmpY)*/30;
 	otmpY->corpsenm = PM_COCKATRICE;
 	start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
-	(void) mpickobj(mtmp,otmpY);
+	(void) mpickobj(mtmp,otmpY, TRUE);
 
 	struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY),
 	      TRUE, FALSE);
 	otmpZ->quan = 1;
 	otmpZ->owt = weight(otmpZ);
-	(void) mpickobj(mtmp, otmpZ);
+	(void) mpickobj(mtmp, otmpZ, TRUE);
 
 	}
 
@@ -330,7 +330,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -339,7 +339,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		if (ptr == &mons[PM_OPERATION]) (void)mongets(mtmp, FEMININE_PUMPS);
@@ -426,7 +426,7 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				}
 	
 				if (!rn2(ishaxor ? 50 : 100) ) {
@@ -435,7 +435,7 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				}
 
 			default:
@@ -457,7 +457,7 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				}
 	
 				if (!rn2(ishaxor ? 50 : 100) ) {
@@ -466,7 +466,7 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				}
 
 			default:
@@ -483,12 +483,12 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 		}
 
 		if (ptr == &mons[PM_TRIBUTE_MASTER]) {
@@ -497,77 +497,77 @@ register struct monst *mtmp;
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 				otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 					      TRUE, FALSE);
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
-				(void) mpickobj(mtmp, otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
 		}
 
 		if (ptr == &mons[PM_BLOODY_LAWYER]) (void) mongets(mtmp, SCR_BAD_EFFECT);
@@ -673,7 +673,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -682,7 +682,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
@@ -927,7 +927,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -936,7 +936,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
@@ -995,7 +995,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (mtmp->m_lev > rnd(ishaxor ? 25 : 50)) {
@@ -1004,7 +1004,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (mtmp->m_lev > rnd(ishaxor ? 50 : 100)) {
@@ -1013,7 +1013,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (mtmp->m_lev > rnd(ishaxor ? 125 : 250)) {
@@ -1022,7 +1022,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (mtmp->m_lev > rnd(ishaxor ? 250 : 500)) {
@@ -1031,7 +1031,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (mtmp->m_lev > rnd(ishaxor ? 500 : 1000)) {
@@ -1040,7 +1040,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		  switch (mm) {
@@ -1320,7 +1320,7 @@ register struct monst *mtmp;
 			otmp->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
 			attach_egg_hatch_timeout(otmp);
 			kill_egg(otmp); /* make sure they're stale --Amy */
-			mpickobj(mtmp,otmp);
+			mpickobj(mtmp,otmp, TRUE);
 
 		   break;
 
@@ -1657,7 +1657,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		   break;
 
@@ -1943,13 +1943,13 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		   break;
 
@@ -1986,7 +1986,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		   break;
 
@@ -2283,7 +2283,7 @@ register struct monst *mtmp;
 			for (v=0;v<vials;v++) {
 			  otmp = mksobj(POT_WATER, FALSE, FALSE);
 			  bless(otmp);
-			  mpickobj(mtmp, otmp);
+			  mpickobj(mtmp, otmp, TRUE);
 			}
 		     }
 #ifndef GOLDOBJ
@@ -3063,7 +3063,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3072,7 +3072,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
@@ -3080,7 +3080,7 @@ register struct monst *mtmp;
 		    if(otmp) {
 			otmp->spe = rnd(3);
 			if(!rn2(2)) curse(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 		    }
 
 		} else if (mm == PM_PIRATE_BROTHER){
@@ -3093,7 +3093,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3102,7 +3102,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SIZZLE){
@@ -3114,7 +3114,7 @@ register struct monst *mtmp;
 		    otmp->oerodeproof = TRUE;
 		    spe2 = rn2(4);
 		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp);
+		    (void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 10 : 20) ) {
 
@@ -3122,7 +3122,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3131,7 +3131,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		(void) tamedog(mtmp, (struct obj *)0, TRUE); /* supposed to start out tame */
 
@@ -3145,7 +3145,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3154,7 +3154,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		(void) tamedog(mtmp, (struct obj *)0, TRUE); /* supposed to start out tame */
 
@@ -3170,7 +3170,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3179,7 +3179,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ANASTASIA){
@@ -3193,7 +3193,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3202,7 +3202,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_HENRIETTA){
@@ -3216,7 +3216,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3225,7 +3225,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KATRIN){
@@ -3239,7 +3239,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3248,7 +3248,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_JANA){
@@ -3262,7 +3262,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3271,7 +3271,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_THE_CHAMPION_OF_POMPEJI){
@@ -3285,7 +3285,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3294,7 +3294,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DEATH_METAL_FREAK){
@@ -3305,7 +3305,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
 
@@ -3313,7 +3313,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
@@ -3328,7 +3328,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
 
@@ -3336,7 +3336,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ACTIVIST_LEADER){
@@ -3347,43 +3347,43 @@ register struct monst *mtmp;
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			otmp = mksobj(rnd_class(SCR_LAVA,SCR_LOCKOUT), TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
 
@@ -3391,7 +3391,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DEATH_METAL_DRUMMER){
@@ -3405,7 +3405,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
 
@@ -3413,7 +3413,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DEATH_METAL_ORCHESTRA_LEADER){
@@ -3431,19 +3431,19 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		} else if (mm == PM_DRACO_THE_SHARPSHOOTER){
 		     (void)mongets(mtmp, SNIPER_RIFLE);
@@ -3454,19 +3454,19 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		} else if (mm == PM_GRANDPA_TANK_BREAKER){
 		     (void)mongets(mtmp, ROCKET_LAUNCHER);
@@ -3477,19 +3477,19 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS),
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 		} else if (mm == PM_DANCING_GUY){
 			(void)mongets(mtmp, DANCING_SHOES);
@@ -3499,7 +3499,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3508,7 +3508,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DANCING_GIRL){
@@ -3519,7 +3519,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3528,7 +3528,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		} else if (mm == PM_SEXY_GIRL){
 			(void)mongets(mtmp, DANCING_SHOES);
@@ -3538,7 +3538,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3547,7 +3547,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DANCING_KING){
@@ -3559,7 +3559,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3568,7 +3568,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DANCING_QUEEN){
@@ -3580,7 +3580,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3589,7 +3589,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SEXY_LADY){
@@ -3601,7 +3601,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3610,7 +3610,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ASIAN_GIRL){
@@ -3621,7 +3621,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3630,7 +3630,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_TENDER_ASIAN_GIRL){
@@ -3641,7 +3641,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3650,7 +3650,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ESTRELLA_GIRL){
@@ -3661,7 +3661,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3670,7 +3670,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SWEET_COQUETTE){
@@ -3681,7 +3681,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3690,7 +3690,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DARK_GIRL){
@@ -3701,7 +3701,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3710,7 +3710,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DARK_WOMAN){
@@ -3722,7 +3722,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3731,7 +3731,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DARK_LADY){
@@ -3743,7 +3743,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3752,7 +3752,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_MYSTERIOUS_GIRL){
@@ -3763,7 +3763,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3772,7 +3772,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_MYSTERIOUS_WOMAN){
@@ -3784,7 +3784,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3793,7 +3793,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_MYSTERIOUS_LADY){
@@ -3805,7 +3805,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3814,7 +3814,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_REDGUARD_GIRL){
@@ -3826,7 +3826,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3835,7 +3835,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_REDGUARD_WOMAN){
@@ -3848,7 +3848,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3857,7 +3857,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_REDGUARD_LADY){
@@ -3870,7 +3870,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3879,7 +3879,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ODOROUS_GIRL){
@@ -3891,7 +3891,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3900,7 +3900,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ODOROUS_WOMAN){
@@ -3913,7 +3913,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3922,7 +3922,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ODOROUS_LADY){
@@ -3935,7 +3935,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3944,7 +3944,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_THIEVING_GIRL){
@@ -3955,7 +3955,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3964,7 +3964,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_THIEVING_WOMAN){
@@ -3976,7 +3976,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -3985,7 +3985,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_THIEVING_LADY){
@@ -3997,7 +3997,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4006,7 +4006,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_CRAPPY_BRAT){
@@ -4017,7 +4017,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4026,7 +4026,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SPOILED_PRINCESS){
@@ -4038,7 +4038,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4047,7 +4047,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_HAUGHTY_BITCH){
@@ -4059,7 +4059,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4068,7 +4068,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KICKBOXING_GIRL){
@@ -4080,7 +4080,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4089,7 +4089,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KICKBOXING_LADY){
@@ -4101,7 +4101,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4110,7 +4110,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FORSAKEN_GIRL){
@@ -4122,7 +4122,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4131,7 +4131,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FORSAKEN_LADY){
@@ -4143,7 +4143,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4152,7 +4152,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ELONA_GIRL){
@@ -4164,7 +4164,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4173,7 +4173,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ELONA_LADY){
@@ -4185,7 +4185,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4194,7 +4194,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ESTRELLARINA){
@@ -4205,7 +4205,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4214,7 +4214,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		} else if (mm == PM_EROTICITY_QUEEN){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
@@ -4224,7 +4224,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4233,7 +4233,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_PROSTITUTE){
@@ -4245,7 +4245,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4254,7 +4254,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_STRIPPER_GIRL){
@@ -4269,7 +4269,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4278,7 +4278,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_STRIPPER_LADY){
@@ -4293,7 +4293,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4302,7 +4302,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_THICK_PROSTITUTE){
@@ -4314,7 +4314,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4323,7 +4323,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_BLACK_PROSTITUTE){
@@ -4336,7 +4336,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4345,7 +4345,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_LEOPARD_DRESS_PROSTITUTE){
@@ -4358,7 +4358,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4367,7 +4367,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SADISTIC_PROSTITUTE){
@@ -4380,7 +4380,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4389,7 +4389,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_GREEN_PROSTITUTE){
@@ -4402,7 +4402,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4411,7 +4411,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_VIOLET_PROSTITUTE){
@@ -4424,7 +4424,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4433,7 +4433,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_STRING_TANGA_PROSTITUTE){
@@ -4446,7 +4446,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4455,7 +4455,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_CIGARETTE_SMOKING_PROSTITUTE){
@@ -4468,7 +4468,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4477,7 +4477,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SECRETARY){
@@ -4492,7 +4492,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4501,7 +4501,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_STUDENT_ASSISTANT){
@@ -4512,7 +4512,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4521,7 +4521,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_STUDENT_LEADER){
@@ -4537,7 +4537,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4546,7 +4546,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_HIPPIE_LADY){
@@ -4557,7 +4557,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4566,7 +4566,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_HIPPIE_GUY){
@@ -4577,7 +4577,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4586,7 +4586,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SWEET_WOMAN){
@@ -4598,7 +4598,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4607,7 +4607,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_PETTY_SWEET_WOMAN){
@@ -4619,7 +4619,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4628,7 +4628,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_LITTLE_GIRL){
@@ -4639,7 +4639,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4648,7 +4648,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_LITTLE_BOY){
@@ -4659,7 +4659,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4668,7 +4668,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_GIRL){
@@ -4679,7 +4679,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4688,7 +4688,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_BOY){
@@ -4699,7 +4699,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4708,7 +4708,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ASIAN_WOMAN){
@@ -4720,7 +4720,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4729,7 +4729,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_PRETTY_ASIAN_WOMAN){
@@ -4741,7 +4741,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4750,7 +4750,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ASIAN_LADY){
@@ -4762,7 +4762,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4771,7 +4771,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		} else if (mm == PM_SEXY_ASIAN_LADY){
 			(void)mongets(mtmp, WOODEN_GETA);
@@ -4782,7 +4782,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4791,7 +4791,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_YOUNG_ADULT_GIRL){
@@ -4803,7 +4803,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4812,7 +4812,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_YOUNG_ADULT_BOY){
@@ -4824,7 +4824,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4833,7 +4833,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_YOUNG_WOMAN){
@@ -4845,7 +4845,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4854,7 +4854,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_YOUNG_MAN){
@@ -4866,7 +4866,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4875,7 +4875,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_WOMAN){
@@ -4887,7 +4887,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4896,7 +4896,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_MAN){
@@ -4908,7 +4908,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4917,7 +4917,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ADULT_LADY){
@@ -4929,7 +4929,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4938,7 +4938,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_ADULT_GENTLEMAN){
@@ -4950,7 +4950,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4959,7 +4959,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_OLD_GRANNY){
@@ -4971,7 +4971,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -4980,7 +4980,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_OLD_GRANDPA){
@@ -4992,7 +4992,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5001,7 +5001,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_QUEEN){
@@ -5013,7 +5013,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5022,7 +5022,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FARTING_KING){
@@ -5034,7 +5034,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5043,7 +5043,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_CHARMING_SCRATCHER){
@@ -5054,7 +5054,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5063,7 +5063,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_NICE_OLD_LADY){
@@ -5074,7 +5074,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5083,7 +5083,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KUNG_FU_GIRL){
@@ -5094,7 +5094,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5103,7 +5103,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_NINJA_GIRL){
@@ -5114,7 +5114,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5123,7 +5123,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_YOGA_GIRL){
@@ -5134,7 +5134,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5143,7 +5143,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_NINJA_BOY){
@@ -5154,7 +5154,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5163,7 +5163,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_TAEKWONDO_GIRL){
@@ -5175,7 +5175,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5184,7 +5184,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_TAI_CHI_GIRL){
@@ -5196,7 +5196,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5205,7 +5205,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_BLACKBELT){
@@ -5217,7 +5217,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5226,7 +5226,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KUNG_FU_GUY){
@@ -5237,7 +5237,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5246,7 +5246,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FLYING_GIRL){
@@ -5257,7 +5257,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5266,7 +5266,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_FLYING_GUY){
@@ -5277,7 +5277,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5286,7 +5286,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_DRAGONBALL_KID){
@@ -5295,7 +5295,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 10 : 20) ) {
 
@@ -5303,7 +5303,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5312,7 +5312,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_KAMEHAMEHA_FIGHTER){
@@ -5321,7 +5321,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(5)) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
@@ -5331,7 +5331,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5340,7 +5340,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_SUPER_SAIYAN){
@@ -5351,7 +5351,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 
 			if (!rn2(ishaxor ? 10 : 20) ) {
 
@@ -5359,7 +5359,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5368,7 +5368,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 		} else if (mm == PM_MAYOR_CUMMERBUND){
@@ -5379,7 +5379,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5388,7 +5388,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
@@ -5398,19 +5398,19 @@ register struct monst *mtmp;
 		    otmp->oerodeproof = TRUE;
 		    spe2 = d(1,3);
 		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp);
+		    (void) mpickobj(mtmp, otmp, TRUE);
 			
 		    otmp = mksobj(LEATHER_JACKET, FALSE, FALSE);
 		    otmp->oerodeproof = TRUE;
 		    spe2 = d(2,3);
 		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp);
+		    (void) mpickobj(mtmp, otmp, TRUE);
 			
 		    otmp = mksobj(SMALL_SHIELD, FALSE, FALSE);
 		    otmp->oerodeproof = TRUE;
 		    spe2 = d(1,3);
 		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp);
+		    (void) mpickobj(mtmp, otmp, TRUE);
 
 			(void)mongets(mtmp, LEATHER_CLOAK);
 			(void)mongets(mtmp, HIGH_BOOTS);
@@ -5426,7 +5426,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -5435,13 +5435,13 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 
 		    (void)mongets(mtmp, PICK_AXE);
 		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
             begin_burn(otmp, FALSE);
 		}
 #endif /* CONVICT */
@@ -5478,7 +5478,7 @@ register struct monst *mtmp;
 				      TRUE, FALSE);
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp);
+			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
 			if (!rn2(ishaxor ? 50 : 100) ) {
@@ -10552,8 +10552,20 @@ char	class;
 int	spc;
 {
 	register int    first;
+	int tryct = 0;
 
+newtry:
 	first = pm_mkclass(class,spc);
+
+	if ((first == -1) && tryct < 1000) {
+		tryct++;
+		goto newtry;
+	}
+
+	if ((mons[first].mlet != class) && tryct < 1000) {
+		tryct++;
+		goto newtry;
+	}
 	
 	if (first == -1) return((struct permonst *) 0);
 
