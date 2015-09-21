@@ -230,6 +230,7 @@ STATIC_VAR short cham_to_pm[] = {
 /* for deciding whether corpse or statue will carry along full monster data */
 #define KEEPTRAITS(mon)	((mon)->isshk || (mon)->isgyp || (mon)->mtame ||\
 			 ((mon)->data->geno & G_UNIQ) ||		\
+			 (mon)->egotype_troll ||	\
 			 is_reviver((mon)->data) ||			\
 			 /* normally leader the will be unique, */	\
 			 /* but he might have been polymorphed  */	\
@@ -951,7 +952,7 @@ register struct monst *mtmp;
 	 * be handled here.  Swimmers are able to protect their stuff...
 	 */
 	if (!is_clinger(mtmp->data)
-	    && !is_swimmer(mtmp->data) && !amphibious(mtmp->data)) {
+	    && !is_swimmer(mtmp->data) && !mtmp->egotype_watersplasher && !amphibious(mtmp->data)) {
 	    if (cansee(mtmp->mx,mtmp->my)) {
 		    pline("%s drowns.", Monnam(mtmp));
 	    }
@@ -1691,7 +1692,7 @@ mfndpos(mon, poss, info, flag)
 
 	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG] || mdat == &mons[PM_NATURAL_BUG] || mdat == &mons[PM_MELEE_BUG]);
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
-	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) ||
+	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || mon->egotype_watersplasher ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
@@ -1959,8 +1960,8 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    !resists_cold(mon))
 				&& (ttmp->ttyp != SQKY_BOARD || (!is_flyer(mdat) && (!mon->egotype_flying) ))
 				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !resists_acid(mon)) )
-				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !is_swimmer(mdat) && !amphibious(mdat) && !breathless(mdat) && (!mon->egotype_undead) ) )
-				&& (ttmp->ttyp != WEB || (!amorphous(mdat) &&
+				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(mdat) && (!mon->egotype_flying) && !is_floater(mdat) && !is_swimmer(mdat) && !mon->egotype_watersplasher && !amphibious(mdat) && !breathless(mdat) && (!mon->egotype_undead) ) )
+				&& (ttmp->ttyp != WEB || (!amorphous(mdat) && !mon->egotype_webber &&
 				    !webmaker(mdat) && !dmgtype(mdat, AD_WEBS) ))
 			) {
 			    if (!(flag & ALLOW_TRAPS)) {
@@ -2629,6 +2630,36 @@ boolean was_swallowed;			/* digestion */
 	    	killer_format = KILLED_BY_AN;
 	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS); 
 	    	return (FALSE);
+	    } else if (mon->egotype_exploder) {
+		tmp = d(2, 1 + (mon->m_lev * 5) );
+		if (was_swallowed && magr) {
+		    if (magr == &youmonst) {
+			There("is an explosion in your %s!",
+			      body_part(STOMACH));
+			Sprintf(killer_buf, "%s explosion",
+				s_suffix(mdat->mname));
+			if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			losehp(tmp, killer_buf, KILLED_BY_AN);
+		    } else {
+			if (flags.soundok) You_hear("an explosion.");
+			magr->mhp -= tmp;
+			if (magr->mhp < 1) mondied(magr);
+			if (magr->mhp < 1) { /* maybe lifesaved */
+			    if (canspotmon(magr))
+				pline("%s rips open!", Monnam(magr));
+			} else if (canseemon(magr))
+			    pline("%s seems to have indigestion.",
+				  Monnam(magr));
+		    }
+
+		    return FALSE;
+		}
+
+	    	Sprintf(killer_buf, "%s explosion", s_suffix(mdat->mname));
+	    	killer = killer_buf;
+	    	killer_format = KILLED_BY_AN;
+	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS); 
+	    	return (FALSE);
 	    }
   	}
 
@@ -2651,14 +2682,14 @@ boolean was_swallowed;			/* digestion */
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
-	if (rn2(2) && !((u.urexp < 10000) && (moves < 10000)) && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (rn2(2) && !((u.urexp < 10000) && (moves < 10000)) && !(is_reviver(mdat) && !mon->egotype_troll && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	/* make it even less likely later in the game, because monsters are spawning more often anyway */
-	if (!timebasedlowerchance() && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!timebasedlowerchance() && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
-	if (bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (mon->egotype_troll || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -3634,20 +3665,24 @@ register struct monst *mtmp;
 	}
 	aggravate();
     }
-    if(mtmp->data->msound == MS_FART_QUIET) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		badeffect();
     }
-    if(mtmp->data->msound == MS_FART_NORMAL) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		badeffect();
     }
-    if(mtmp->data->msound == MS_FART_LOUD) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		badeffect();
     }
+    if (mtmp->egotype_farter) {
+		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		badeffect();
+    }
 
-    if(mtmp->data->msound == MS_SOUND) {
+    if(mtmp->data->msound == MS_SOUND || mtmp->egotype_sounder) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
 		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);

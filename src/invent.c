@@ -3398,6 +3398,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 /* obj is being merged into otmp --Amy */
 	register struct obj *otmp, *obj;
 {
+	struct monst *mtmp;
 	if (obj->otyp != otmp->otyp) return FALSE;
 #ifdef GOLDOBJ
 	/* coins of the same kind will always merge */
@@ -3446,7 +3447,9 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	/* hatching eggs don't merge; ditto for revivable corpses */
 	if ((obj->timed || otmp->timed) && (obj->otyp == EGG ||
 	    (obj->otyp == CORPSE && otmp->corpsenm >= LOW_PM &&
-		 is_reviver(&mons[otmp->corpsenm]))))
+		 (is_reviver(&mons[otmp->corpsenm]) ||
+		 ((((mtmp = get_mtraits(otmp, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll)
+		 )  )))
 	    return FALSE;
 
 	/* allow candle merging only if their ages are close */

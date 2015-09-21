@@ -4596,7 +4596,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(65)) {
+		switch (rnd(124)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -4662,6 +4662,65 @@ skipmsg:
 			case 63: mtmp->egotype_hugger = 1; break;
 			case 64: mtmp->egotype_mimic = 1; set_mimic_sym(mtmp); break;
 			case 65: mtmp->egotype_permamimic = 1; set_mimic_sym(mtmp); break;
+			case 66:
+			case 67: mtmp->egotype_poisoner = 1; break;
+			case 68: mtmp->egotype_elementalist = 1; break;
+			case 69: mtmp->egotype_resistor = 1; break;
+			case 70:
+			case 71: mtmp->egotype_acidspiller = 1; break;
+			case 72:
+			case 73: mtmp->egotype_watcher = 1; break;
+			case 74: mtmp->egotype_metallivore = 1; break;
+			case 75: mtmp->egotype_lithivore = 1; break;
+			case 76: mtmp->egotype_organivore = 1; break;
+			case 77: mtmp->egotype_breather = 1; break;
+			case 78: mtmp->egotype_beamer = 1; break;
+			case 79:
+			case 80: mtmp->egotype_troll = 1; break;
+			case 81:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
+			case 86: mtmp->egotype_faker = 1; break;
+			case 87:
+			case 88:
+			case 89:
+			case 90: mtmp->egotype_farter = 1; break;
+			case 91: mtmp->egotype_timer = 1; break;
+			case 92: mtmp->egotype_thirster = 1; break;
+			case 93: mtmp->egotype_watersplasher = 1; break;
+			case 94: mtmp->egotype_cancellator = 1; break;
+			case 95: mtmp->egotype_banisher = 1; break;
+			case 96: mtmp->egotype_shredder = 1; break;
+			case 97: mtmp->egotype_abductor = 1; break;
+			case 98:
+			case 99: mtmp->egotype_incrementor = 1; break;
+			case 100: mtmp->egotype_mirrorimage = 1; break;
+			case 101:
+			case 102: mtmp->egotype_curser = 1; break;
+			case 103: mtmp->egotype_horner = 1; break;
+			case 104: mtmp->egotype_lasher = 1; break;
+			case 105: mtmp->egotype_cullen = 1; break;
+			case 106:
+			case 107:
+			case 108: mtmp->egotype_webber = 1; break;
+			case 109: mtmp->egotype_itemporter = 1; break;
+			case 110: mtmp->egotype_schizo = 1; break;
+			case 111: mtmp->egotype_nexus = 1; break;
+			case 112: mtmp->egotype_sounder = 1; break;
+			case 113: mtmp->egotype_gravitator = 1; break;
+			case 114: mtmp->egotype_inert = 1; break;
+			case 115:
+			case 116: mtmp->egotype_antimage = 1; break;
+			case 117: mtmp->egotype_plasmon = 1; break;
+			case 118:
+			case 119:
+			case 120: mtmp->egotype_weaponizer = 1; break;
+			case 121: mtmp->egotype_engulfer = 1; break;
+			case 122: mtmp->egotype_bomber = 1; break;
+			case 123:
+			case 124: mtmp->egotype_exploder = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -4673,7 +4732,7 @@ skipmsg:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(65)) {
+		switch (rnd(124)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -4739,6 +4798,65 @@ skipmsg:
 			case 63: mtmp->egotype_hugger = 1; break;
 			case 64: mtmp->egotype_mimic = 1; set_mimic_sym(mtmp); break;
 			case 65: mtmp->egotype_permamimic = 1; set_mimic_sym(mtmp); break;
+			case 66:
+			case 67: mtmp->egotype_poisoner = 1; break;
+			case 68: mtmp->egotype_elementalist = 1; break;
+			case 69: mtmp->egotype_resistor = 1; break;
+			case 70:
+			case 71: mtmp->egotype_acidspiller = 1; break;
+			case 72:
+			case 73: mtmp->egotype_watcher = 1; break;
+			case 74: mtmp->egotype_metallivore = 1; break;
+			case 75: mtmp->egotype_lithivore = 1; break;
+			case 76: mtmp->egotype_organivore = 1; break;
+			case 77: mtmp->egotype_breather = 1; break;
+			case 78: mtmp->egotype_beamer = 1; break;
+			case 79:
+			case 80: mtmp->egotype_troll = 1; break;
+			case 81:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
+			case 86: mtmp->egotype_faker = 1; break;
+			case 87:
+			case 88:
+			case 89:
+			case 90: mtmp->egotype_farter = 1; break;
+			case 91: mtmp->egotype_timer = 1; break;
+			case 92: mtmp->egotype_thirster = 1; break;
+			case 93: mtmp->egotype_watersplasher = 1; break;
+			case 94: mtmp->egotype_cancellator = 1; break;
+			case 95: mtmp->egotype_banisher = 1; break;
+			case 96: mtmp->egotype_shredder = 1; break;
+			case 97: mtmp->egotype_abductor = 1; break;
+			case 98:
+			case 99: mtmp->egotype_incrementor = 1; break;
+			case 100: mtmp->egotype_mirrorimage = 1; break;
+			case 101:
+			case 102: mtmp->egotype_curser = 1; break;
+			case 103: mtmp->egotype_horner = 1; break;
+			case 104: mtmp->egotype_lasher = 1; break;
+			case 105: mtmp->egotype_cullen = 1; break;
+			case 106:
+			case 107:
+			case 108: mtmp->egotype_webber = 1; break;
+			case 109: mtmp->egotype_itemporter = 1; break;
+			case 110: mtmp->egotype_schizo = 1; break;
+			case 111: mtmp->egotype_nexus = 1; break;
+			case 112: mtmp->egotype_sounder = 1; break;
+			case 113: mtmp->egotype_gravitator = 1; break;
+			case 114: mtmp->egotype_inert = 1; break;
+			case 115:
+			case 116: mtmp->egotype_antimage = 1; break;
+			case 117: mtmp->egotype_plasmon = 1; break;
+			case 118:
+			case 119:
+			case 120: mtmp->egotype_weaponizer = 1; break;
+			case 121: mtmp->egotype_engulfer = 1; break;
+			case 122: mtmp->egotype_bomber = 1; break;
+			case 123:
+			case 124: mtmp->egotype_exploder = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
@@ -5355,7 +5473,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) ) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");

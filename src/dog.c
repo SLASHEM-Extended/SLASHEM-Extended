@@ -360,7 +360,7 @@ makedog()
 #ifdef STEED
 	/* Horses already wear a saddle */
 	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
-	    if (mpickobj(mtmp, otmp))
+	    if (mpickobj(mtmp, otmp, TRUE))
 		panic("merged saddle?");
 	    mtmp->misc_worn_check |= W_SADDLE;
 	    otmp->dknown = otmp->bknown = otmp->rknown = 1;
@@ -669,7 +669,7 @@ long nmv;		/* number of moves */
 	 * of dying the next time we call dog_move()
 	 */
 	if (mtmp->mtame && !mtmp->isminion &&
-			(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data))) {
+			(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore )) {
 
 	    if ((monstermoves > edog->hungrytime + 500 && mtmp->mhp < 3) ||
 		    (monstermoves > edog->hungrytime + 750)) {
@@ -972,7 +972,7 @@ register struct obj *obj;
 		    return ( (is_undead(mon->data) || mon->egotype_undead) ? TABU :
 			    ((herbi || starving) ? ACCFOOD : MANFOOD));
 		case TIN:
-		    return (metallivorous(mon->data) ? ACCFOOD : MANFOOD);
+		    return ( (metallivorous(mon->data) || mon->egotype_metallivore) ? ACCFOOD : MANFOOD);
 		case APPLE:
 		case CARROT:
 		    return (herbi ? DOGFOOD : starving ? ACCFOOD : MANFOOD);
@@ -1006,15 +1006,15 @@ register struct obj *obj;
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
 		mon->data == &mons[PM_OOZE_ELEMENTAL] ||
 		mon->data == &mons[PM_GELATINOUS_THIEF] ||
-	    	mon->data == &mons[PM_TASMANIAN_DEVIL]) && is_organic(obj))
+	    	mon->data == &mons[PM_TASMANIAN_DEVIL] || mon->egotype_organivore) && is_organic(obj))
 		return(ACCFOOD);
-	    if (metallivorous(mon->data) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
+	    if ( (metallivorous(mon->data) || mon->egotype_metallivore) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
 		/* Non-rustproofed ferrous based metals are preferred. */
 		return((is_rustprone(obj) && !obj->oerodeproof) ? DOGFOOD :
 			ACCFOOD);
 	    }
 
-	    if (lithivorous(mon->data) && is_lithic(obj) ) return( DOGFOOD );
+	    if ( (lithivorous(mon->data) || mon->egotype_lithivore) && is_lithic(obj) ) return( DOGFOOD );
 
 		/* Lithivores can eat any lithic object. They really like eating such items, too. */
 
@@ -1023,7 +1023,7 @@ register struct obj *obj;
 		return(APPORT);
 	    /* fall into next case */
 	case ROCK_CLASS:
-	    if (lithivorous(mon->data) && is_lithic(obj) ) return( DOGFOOD );
+	    if ( (lithivorous(mon->data) || mon->egotype_lithivore) && is_lithic(obj) ) return( DOGFOOD );
 	    return(UNDEF);
 	}
 }

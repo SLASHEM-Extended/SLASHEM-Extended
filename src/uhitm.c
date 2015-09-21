@@ -2941,7 +2941,7 @@ register struct attack *mattk;
 			}
 		    } else if(u.ustuck == mdef) {
 			/* Monsters don't wear amulets of magical breathing */
-			if (!rn2(20) && is_pool(u.ux,u.uy) && !is_swimmer(mdef->data) &&
+			if (!rn2(20) && is_pool(u.ux,u.uy) && !is_swimmer(mdef->data) && !mdef->egotype_watersplasher &&
 			    !amphibious(mdef->data)) {
 			    You("drown %s...", mon_nam(mdef));
 			    tmp = mdef->mhp;

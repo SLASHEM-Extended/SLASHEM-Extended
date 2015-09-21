@@ -2613,7 +2613,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(65)) {
+		switch (rnd(124)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -2679,6 +2679,65 @@ boolean your_fault;
 			case 63: mon->egotype_hugger = 1; break;
 			case 64: mon->egotype_mimic = 1; set_mimic_sym(mon); break;
 			case 65: mon->egotype_permamimic = 1; set_mimic_sym(mon); break;
+			case 66:
+			case 67: mon->egotype_poisoner = 1; break;
+			case 68: mon->egotype_elementalist = 1; break;
+			case 69: mon->egotype_resistor = 1; break;
+			case 70:
+			case 71: mon->egotype_acidspiller = 1; break;
+			case 72:
+			case 73: mon->egotype_watcher = 1; break;
+			case 74: mon->egotype_metallivore = 1; break;
+			case 75: mon->egotype_lithivore = 1; break;
+			case 76: mon->egotype_organivore = 1; break;
+			case 77: mon->egotype_breather = 1; break;
+			case 78: mon->egotype_beamer = 1; break;
+			case 79:
+			case 80: mon->egotype_troll = 1; break;
+			case 81:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
+			case 86: mon->egotype_faker = 1; break;
+			case 87:
+			case 88:
+			case 89:
+			case 90: mon->egotype_farter = 1; break;
+			case 91: mon->egotype_timer = 1; break;
+			case 92: mon->egotype_thirster = 1; break;
+			case 93: mon->egotype_watersplasher = 1; break;
+			case 94: mon->egotype_cancellator = 1; break;
+			case 95: mon->egotype_banisher = 1; break;
+			case 96: mon->egotype_shredder = 1; break;
+			case 97: mon->egotype_abductor = 1; break;
+			case 98:
+			case 99: mon->egotype_incrementor = 1; break;
+			case 100: mon->egotype_mirrorimage = 1; break;
+			case 101:
+			case 102: mon->egotype_curser = 1; break;
+			case 103: mon->egotype_horner = 1; break;
+			case 104: mon->egotype_lasher = 1; break;
+			case 105: mon->egotype_cullen = 1; break;
+			case 106:
+			case 107:
+			case 108: mon->egotype_webber = 1; break;
+			case 109: mon->egotype_itemporter = 1; break;
+			case 110: mon->egotype_schizo = 1; break;
+			case 111: mon->egotype_nexus = 1; break;
+			case 112: mon->egotype_sounder = 1; break;
+			case 113: mon->egotype_gravitator = 1; break;
+			case 114: mon->egotype_inert = 1; break;
+			case 115:
+			case 116: mon->egotype_antimage = 1; break;
+			case 117: mon->egotype_plasmon = 1; break;
+			case 118:
+			case 119:
+			case 120: mon->egotype_weaponizer = 1; break;
+			case 121: mon->egotype_engulfer = 1; break;
+			case 122: mon->egotype_bomber = 1; break;
+			case 123:
+			case 124: mon->egotype_exploder = 1; break;
 		}
 
   		break;
@@ -4161,7 +4220,7 @@ dodip()
 		    if (Levitation) {
 			floating_above(tmp);
 #ifdef STEED
-		    } else if (u.usteed && !is_swimmer(u.usteed->data) &&
+		    } else if (u.usteed && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    P_SKILL(P_RIDING) < P_BASIC) {
 			rider_cant_reach(); /* not skilled enough to reach */
 #endif

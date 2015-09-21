@@ -5605,7 +5605,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case WATER_POOL:
 
-		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data) || mtmp->egotype_undead ) break;
+		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying || mtmp->egotype_watersplasher || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data) || mtmp->egotype_undead ) break;
 
            if (in_sight)
              pline("%s falls into a pool of water!", Monnam(mtmp));
@@ -5708,7 +5708,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case WEB:
 			/* Monster in a web. */
-			if (webmaker(mptr) || dmgtype(mptr, AD_WEBS)) break;
+			if (webmaker(mptr) || dmgtype(mptr, AD_WEBS) || mtmp->egotype_webber) break;
 			if (amorphous(mptr) || is_whirly(mptr) || unsolid(mptr)){
 			    if(acidic(mptr) ||
 			       mptr == &mons[PM_GELATINOUS_CUBE] ||

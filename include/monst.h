@@ -197,6 +197,47 @@ struct monst {
 	Bitfield(egotype_mimic,1);
 	Bitfield(egotype_permamimic,1);
 
+	Bitfield(egotype_poisoner,1); /* resists poison, does AD_POIS */
+	Bitfield(egotype_elementalist,1); /* resists fire/cold/elec, does AD_AXUS */
+	Bitfield(egotype_resistor,1); /* resists death, disint and stoning */
+	Bitfield(egotype_acidspiller,1); /* resists acid, does AD_ACID */
+	Bitfield(egotype_watcher,1); /* resists sleep and drain */
+	Bitfield(egotype_metallivore,1);
+	Bitfield(egotype_lithivore,1);
+	Bitfield(egotype_organivore,1);
+	Bitfield(egotype_breather,1); /* also has reflection */
+	Bitfield(egotype_beamer,1);
+	Bitfield(egotype_troll,1);
+
+	Bitfield(egotype_faker,1);
+	Bitfield(egotype_farter,1);
+	Bitfield(egotype_timer,1);
+	Bitfield(egotype_thirster,1);
+	Bitfield(egotype_watersplasher,1); /* AD_WET, or AD_LETH on lethe levels, plus M1_SWIM */
+	Bitfield(egotype_cancellator,1);
+	Bitfield(egotype_banisher,1);
+	Bitfield(egotype_shredder,1);
+	Bitfield(egotype_abductor,1);
+	Bitfield(egotype_incrementor,1);
+	Bitfield(egotype_mirrorimage,1);
+	Bitfield(egotype_curser,1); /* AD_CURS */
+	Bitfield(egotype_horner,1); /* 1 in 1000 chance of AD_UVUU, otherwise AD_CHRN */
+	Bitfield(egotype_lasher,1); /* AT_LASH, AD_MALK */
+	Bitfield(egotype_cullen,1); /* AD_VAMP */
+	Bitfield(egotype_webber,1);
+	Bitfield(egotype_itemporter,1);
+	Bitfield(egotype_schizo,1); /* AD_DEPR */
+	Bitfield(egotype_nexus,1);
+	Bitfield(egotype_sounder,1);
+	Bitfield(egotype_gravitator,1);
+	Bitfield(egotype_inert,1);
+	Bitfield(egotype_antimage,1); /* AD_MANA */
+	Bitfield(egotype_plasmon,1);
+	Bitfield(egotype_weaponizer,1); /* AT_WEAP */
+	Bitfield(egotype_engulfer,1);
+	Bitfield(egotype_bomber,1); /* AT_EXPL */
+	Bitfield(egotype_exploder,1); /* AT_BOOM */
+
 	Bitfield(butthurt,6);
 
 	struct obj *mw;

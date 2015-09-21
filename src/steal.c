@@ -58,7 +58,7 @@ register struct monst *mtmp;
 	} else if(u.ugold) {
 	    u.ugold -= (tmp = somegold());
 	    Your("purse feels lighter.");
-	    if ( !metallivorous(mtmp->data) && rn2(20) )
+	    if ( !(metallivorous(mtmp->data) || mtmp->egotype_metallivore) && rn2(20) )
 		mtmp->mgold += tmp;
 /* Gold bugs are metallivores, so they're supposed to EAT the gold they steal. --Amy */
 	if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
@@ -161,7 +161,7 @@ stealarm()
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
 			pline("%s steals %s!", Monnam(mtmp), doname(otmp));
-	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
+	if (rn2(1000) && !( (metallivorous(mtmp->data) || mtmp->egotype_metallivore) && is_metallic(otmp) && !rn2(10) ) && !( (lithivorous(mtmp->data) || mtmp->egotype_lithivore) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
 			monflee(mtmp, 0, FALSE, FALSE);
@@ -476,7 +476,7 @@ gotobj:
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
-	if (rn2(1000) && !(metallivorous(mtmp->data) && is_metallic(otmp) && !rn2(10) ) && !(lithivorous(mtmp->data) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
+	if (rn2(1000) && !( (metallivorous(mtmp->data) || mtmp->egotype_metallivore) && is_metallic(otmp) && !rn2(10) ) && !( (lithivorous(mtmp->data) || mtmp->egotype_lithivore) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 	else delobj(otmp); /* also frees otmp */
 	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);

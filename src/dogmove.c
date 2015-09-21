@@ -274,7 +274,7 @@ register struct monst *mtmp;
 register struct edog *edog;
 {
 	if (monstermoves > edog->hungrytime + 500) {
-	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !lithivorous(mtmp->data)) {
+	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !lithivorous(mtmp->data)) {
 		edog->hungrytime = monstermoves + 500;
 		/* but not too high; it might polymorph */
 	    } else if (!edog->mhpmax_penalty) {
@@ -380,7 +380,7 @@ int udist;
 				    distant_name(obj, doname));
 			    obj_extract_self(obj);
 			    newsym(omx,omy);
-			    (void) mpickobj(mtmp,obj);
+			    (void) mpickobj(mtmp,obj,FALSE);
 			    }                            
 			    else /* picking up a few objects from a pile... */
 				/* KMH -- fix picking up zero quantity */
@@ -403,7 +403,7 @@ int udist;
 							doname(obj));
 							obj_extract_self(obj);
 				    	newsym(omx,omy);
-							(void) mpickobj(mtmp,obj);
+							(void) mpickobj(mtmp,obj,FALSE);
 #endif
 				} else {
 /*
@@ -413,7 +413,7 @@ int udist;
                                 obj->quan -= dogquan;
 				temp_quan = obj->quan;
 				floor_obj = level.objects[omx][omy];
-				mpickobj(mtmp,obj);
+				mpickobj(mtmp,obj,FALSE);
 				obj->quan = dogquan;
 				if (cansee(omx, omy) && flags.verbose)
 				pline("%s picks up %s.", Monnam(mtmp),
@@ -1071,7 +1071,7 @@ could_reach_item(mon, nx, ny)
 struct monst *mon;
 xchar nx, ny;
 {
-    if ((!is_pool(nx,ny) || is_swimmer(mon->data)) &&
+    if ((!is_pool(nx,ny) || mon->egotype_watersplasher || is_swimmer(mon->data)) &&
 	(!is_lava(nx,ny) || likes_lava(mon->data)) &&
 	(!sobj_at(BOULDER,nx,ny) || throws_rocks(mon->data)))
     	return TRUE;

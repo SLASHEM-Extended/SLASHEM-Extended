@@ -1231,6 +1231,7 @@ void
 start_corpse_timeout(body)
 	struct obj *body;
 {
+	struct monst *mtmp;
 	long when; 		/* rot away when this old */
 	long corpse_age;	/* age of corpse          */
 	int rot_adjust;
@@ -1278,7 +1279,9 @@ start_corpse_timeout(body)
 			when = age;
 			break;
 		    }
-	} else if (mons[body->corpsenm].mlet == S_FUNGUS || body->corpsenm == PM_ROT_WALKER || body->corpsenm == PM_RED_DEATH || body->corpsenm == PM_BONE_DEMON || body->corpsenm == PM_LITCH_DEMON || body->corpsenm == PM_UNDEAD_BALROG || body->corpsenm == PM_ROT_CONVERTER || body->corpsenm == PM_RUST_CONVERTER || body->corpsenm == PM_REANIMATED_HORDE || body->corpsenm == PM_PROWLING_DEAD_POTATO || body->corpsenm == PM_UNHOLY_CORPSE || body->corpsenm == PM_DEFILED_WARRIOR ) {
+	} else if (mons[body->corpsenm].mlet == S_FUNGUS || body->corpsenm == PM_ROT_WALKER || body->corpsenm == PM_RED_DEATH || body->corpsenm == PM_BONE_DEMON || body->corpsenm == PM_LITCH_DEMON || body->corpsenm == PM_UNDEAD_BALROG || body->corpsenm == PM_ROT_CONVERTER || body->corpsenm == PM_RUST_CONVERTER || body->corpsenm == PM_REANIMATED_HORDE || body->corpsenm == PM_PROWLING_DEAD_POTATO || body->corpsenm == PM_UNHOLY_CORPSE || body->corpsenm == PM_DEFILED_WARRIOR ||
+		((((mtmp = get_mtraits(body, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll)
+		 ) {
 		/* Fungi come back with a vengeance - if you don't eat it or
 		 * destroy it,  any live cells will quickly use the dead ones
 		 * as food and come back.

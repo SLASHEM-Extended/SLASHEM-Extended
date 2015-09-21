@@ -3735,8 +3735,8 @@ boolean catchup;	/* restoring a level */
 				    !resists_cold(shkp))
 				&& (ttmp->ttyp != SQKY_BOARD || (!is_flyer(shkp->data) && (!shkp->egotype_flying) ))
 				&& (ttmp->ttyp != ACID_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !resists_acid(shkp)) )
-				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !is_swimmer(shkp->data) && !amphibious(shkp->data) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
-				&& (ttmp->ttyp != WEB || (!amorphous(shkp->data) &&
+				&& (ttmp->ttyp != WATER_POOL || (!is_flyer(shkp->data) && (!shkp->egotype_flying) && !is_floater(shkp->data) && !is_swimmer(shkp->data) && !shkp->egotype_watersplasher && !amphibious(shkp->data) && !breathless(shkp->data) && (!shkp->egotype_undead) ) )
+				&& (ttmp->ttyp != WEB || (!amorphous(shkp->data) && !shkp->egotype_webber &&
 				    !webmaker(shkp->data) && !dmgtype(shkp->data, AD_WEBS) ))
 			) {
 

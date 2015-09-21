@@ -824,6 +824,47 @@ boolean called;
 	    if (mtmp->egotype_mimic) Sprintf(eos(buf), " Mimic");
 	    if (mtmp->egotype_permamimic) Sprintf(eos(buf), " Permamimic");
 
+	    if (mtmp->egotype_poisoner) Sprintf(eos(buf), " Poisoner");
+	    if (mtmp->egotype_elementalist) Sprintf(eos(buf), " Elementalist");
+	    if (mtmp->egotype_resistor) Sprintf(eos(buf), " Resistor");
+	    if (mtmp->egotype_acidspiller) Sprintf(eos(buf), " Acidspiller");
+	    if (mtmp->egotype_watcher) Sprintf(eos(buf), " Watcher");
+	    if (mtmp->egotype_metallivore) Sprintf(eos(buf), " Metallivore");
+	    if (mtmp->egotype_lithivore) Sprintf(eos(buf), " Lithivore");
+	    if (mtmp->egotype_organivore) Sprintf(eos(buf), " Organivore");
+	    if (mtmp->egotype_breather) Sprintf(eos(buf), " Breather");
+	    if (mtmp->egotype_beamer) Sprintf(eos(buf), " Beamer");
+	    if (mtmp->egotype_troll) Sprintf(eos(buf), " Resurrector");
+
+	    if (mtmp->egotype_faker) Sprintf(eos(buf), " Faker");
+	    if (mtmp->egotype_farter) Sprintf(eos(buf), " Farter");
+	    if (mtmp->egotype_timer) Sprintf(eos(buf), " Timer");
+	    if (mtmp->egotype_thirster) Sprintf(eos(buf), " Thirster");
+	    if (mtmp->egotype_watersplasher) Sprintf(eos(buf), " Watersplasher");
+	    if (mtmp->egotype_cancellator) Sprintf(eos(buf), " Cancellator");
+	    if (mtmp->egotype_banisher) Sprintf(eos(buf), " Banisher");
+	    if (mtmp->egotype_shredder) Sprintf(eos(buf), " Shredder");
+	    if (mtmp->egotype_abductor) Sprintf(eos(buf), " Abductor");
+	    if (mtmp->egotype_incrementor) Sprintf(eos(buf), " Incrementor");
+	    if (mtmp->egotype_mirrorimage) Sprintf(eos(buf), " Mirror Image");
+	    if (mtmp->egotype_curser) Sprintf(eos(buf), " Curser");
+	    if (mtmp->egotype_horner) Sprintf(eos(buf), " Horner");
+	    if (mtmp->egotype_lasher) Sprintf(eos(buf), " Lasher");
+	    if (mtmp->egotype_cullen) Sprintf(eos(buf), " Cullen");
+	    if (mtmp->egotype_webber) Sprintf(eos(buf), " Webber");
+	    if (mtmp->egotype_itemporter) Sprintf(eos(buf), " Itemporter");
+	    if (mtmp->egotype_schizo) Sprintf(eos(buf), " Schizo");
+	    if (mtmp->egotype_nexus) Sprintf(eos(buf), " Nexus");
+	    if (mtmp->egotype_sounder) Sprintf(eos(buf), " Sounder");
+	    if (mtmp->egotype_gravitator) Sprintf(eos(buf), " Gravitator");
+	    if (mtmp->egotype_inert) Sprintf(eos(buf), " Inert");
+	    if (mtmp->egotype_antimage) Sprintf(eos(buf), " Antimage");
+	    if (mtmp->egotype_plasmon) Sprintf(eos(buf), " Plasmon");
+	    if (mtmp->egotype_weaponizer) Sprintf(eos(buf), " Weaponizer");
+	    if (mtmp->egotype_engulfer) Sprintf(eos(buf), " Engulfer");
+	    if (mtmp->egotype_bomber) Sprintf(eos(buf), " Bomber");
+	    if (mtmp->egotype_exploder) Sprintf(eos(buf), " Exploder");
+
 	}
 
 	{

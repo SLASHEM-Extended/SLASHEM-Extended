@@ -806,7 +806,7 @@ doforce()		/* try to force a chest with your weapon */
 				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH);
 				if (mtmp->mhp <= 0 && !trapkilled) killed(mtmp);
 
-				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_QUIET) {
+				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (mtmp->butthurt < 20 && !rn2(3)) {
 						mtmp->butthurt += rnd(5);
@@ -821,7 +821,7 @@ doforce()		/* try to force a chest with your weapon */
 						}
 					}
 				}
-				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_NORMAL) {
+				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_NORMAL || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (mtmp->butthurt < 20 && !rn2(3)) {
 						mtmp->butthurt += rnd(3);
@@ -838,7 +838,7 @@ doforce()		/* try to force a chest with your weapon */
 						}
 					}
 				}
-				if (mtmp->mhp > 0 && mtmp->data->msound == MS_FART_LOUD) {
+				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_LOUD || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (mtmp->butthurt < 20 && !rn2(3)) {
 						mtmp->butthurt += 1;

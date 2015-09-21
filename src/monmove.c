@@ -517,7 +517,9 @@ register struct monst *mtmp;
 	    m_respond(mtmp);
 	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
-	if (mdat->msound == MS_SOUND && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	    m_respond(mtmp);
+	if ( (mdat->msound == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);
@@ -750,7 +752,7 @@ toofar:
 			/* Maybe it stepped on a trap and fell asleep... */
 			if (mtmp->msleeping || !mtmp->mcanmove) return(0);
 			if(!nearby &&
-			  (ranged_attk(mdat) || find_offensive(mtmp)))
+			  (ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_breather || find_offensive(mtmp)))
 			    break;
  			else if(u.uswallow && mtmp == u.ustuck) {
 			    /* a monster that's digesting you can move at the
@@ -787,6 +789,9 @@ toofar:
 	/* Come on, monsters can still cuss at you if you can't see them. Seriously, what the heck. --Amy */
 
 	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
+	    pline(fauxmessage());
+
+	    if(inrange && mtmp->egotype_faker && !mtmp->mpeaceful && !rn2(20))
 	    pline(fauxmessage());
 
 	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
@@ -1581,12 +1586,12 @@ postmov:
 		}
 
 		/* Maybe a rock mole just ate some metal object */
-		if (metallivorous(ptr)) {
+		if (metallivorous(ptr) || mtmp->egotype_metallivore) {
 		    if (meatmetal(mtmp) == 2) return 2;	/* it died */
 		}
 
 		/* or a lithic object */
-		if (lithivorous(ptr)) {
+		if (lithivorous(ptr) || mtmp->egotype_lithivore) {
 		    if (meatlithic(mtmp) == 2) return 2;	/* it died */
 		}
 
@@ -1595,7 +1600,7 @@ postmov:
 		/* Maybe a cube ate just about anything */
 		/* KMH -- Taz likes organics, too! */
 		if (ptr == &mons[PM_GELATINOUS_CUBE] || ptr == &mons[PM_FLYING_GELATINOUS_CUBE] || ptr == &mons[PM_STOUT_GELATINOUS_CUBE] || ptr == &mons[PM_GELATINOUS_GLOB] || ptr == &mons[PM_OOZE_ELEMENTAL] || ptr == &mons[PM_AMUSING_TYPE] || ptr == &mons[PM_MINOCUBE] || ptr == &mons[PM_ROOMBA] || ptr == &mons[PM_GELATINOUS_DICE] || ptr == &mons[PM_TASMANIAN_ZOMBIE]
-		|| ptr == &mons[PM_GELATINOUS_THIEF] ||	ptr == &mons[PM_TASMANIAN_DEVIL]) {
+		|| ptr == &mons[PM_GELATINOUS_THIEF] ||	ptr == &mons[PM_TASMANIAN_DEVIL] || mtmp->egotype_organivore) {
 		    if (meatobj(mtmp) == 2) return 2;	/* it died */
 		}
 		if (ptr == &mons[PM_GHOUL] || ptr == &mons[PM_GHAST] || ptr == &mons[PM_GASTLY] || ptr == &mons[PM_PHANTOM_GHOST]

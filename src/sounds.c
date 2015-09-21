@@ -678,7 +678,7 @@ beg(mtmp)
 register struct monst *mtmp;
 {
     if (mtmp->msleeping || !mtmp->mcanmove ||
-	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data)))
+	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore || lithivorous(mtmp->data)))
 	return;
 
     /* presumably nearness and soundok checks have already been made */
@@ -699,6 +699,21 @@ register struct monst *mtmp;
 			*verbl_msg = 0;	/* verbalize() */
     struct permonst *ptr = mtmp->data;
     char verbuf[BUFSZ];
+
+    if (mtmp->egotype_farter) {
+		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+		if (mtmp->mtame) {
+			pline("%s seems to love you even more than before.", Monnam(mtmp) );
+			if (mtmp->mtame < 30) mtmp->mtame++;
+		}
+		else if (mtmp->mpeaceful) {
+			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
+		}
+		else {
+			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
+		}
+	    m_respond(mtmp);
+    }
 
     /* presumably nearness and sleep checks have already been made */
     if (!flags.soundok) return(0);
