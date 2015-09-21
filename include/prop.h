@@ -198,7 +198,12 @@
 #define TELEPORTING_ITEMS 179
 #define RANDOM_RUMORS 180
 
-#define SECOND_CHANCE		181
+#define CAPTCHA 181
+#define FARLOOK_BUG 182
+#define RESPAWN_BUG 183
+#define MC_REDUCTION 184
+
+#define SECOND_CHANCE		185
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

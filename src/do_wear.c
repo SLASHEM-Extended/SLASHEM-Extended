@@ -347,6 +347,7 @@ Cloak_on()
 	case YELLOW_SPELL_CLOAK:
 	case VULNERABILITY_CLOAK:
 	case CLOAK_OF_INVENTORYLESSNESS:
+	case CLOAK_OF_RESPAWNING:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -399,6 +400,7 @@ Cloak_off()
 	case YELLOW_SPELL_CLOAK:
 	case VULNERABILITY_CLOAK:
 	case CLOAK_OF_INVENTORYLESSNESS:
+	case CLOAK_OF_RESPAWNING:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
@@ -524,6 +526,8 @@ Helmet_on()
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
 	case CYPHER_HELM:
+	case ANGER_HELM:
+	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
@@ -567,6 +571,8 @@ Helmet_off()
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
 	case CYPHER_HELM:
+	case ANGER_HELM:
+	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:

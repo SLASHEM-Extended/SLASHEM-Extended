@@ -205,6 +205,11 @@
 
 #define NastinessProblem		u.uprops[NASTINESS_EFFECTS].intrinsic
 
+#define CaptchaProblem		u.uprops[CAPTCHA].intrinsic
+#define FarlookProblem		u.uprops[FARLOOK_BUG].intrinsic
+#define RespawnProblem		u.uprops[RESPAWN_BUG].intrinsic
+#define MCReduction		u.uprops[MC_REDUCTION].intrinsic
+
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
 #define TimeStopped		u.uprops[TIME_STOPPED].intrinsic

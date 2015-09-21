@@ -534,6 +534,8 @@ struct monst *mon;
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
 #endif
+	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
+	if (armpro < 0) armpro = 0;
 
 	return armpro;
 }

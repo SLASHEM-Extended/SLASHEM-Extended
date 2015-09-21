@@ -927,6 +927,10 @@ E boolean NDECL(have_vulnerabilitystone);
 E boolean NDECL(have_itemportstone);
 E boolean NDECL(have_nastystone);
 
+E boolean NDECL(have_respawnstone);
+E boolean NDECL(have_captchastone);
+E boolean NDECL(have_farlookstone);
+
 E boolean NDECL(have_primecurse);
 
 E boolean NDECL(have_mothrelay);
@@ -1958,6 +1962,7 @@ E const char *FDECL(Hello, (struct monst *));
 E const char *NDECL(Goodbye);
 E char *FDECL(build_plselection_prompt, (char *, int, int, int, int, int));
 E char *FDECL(root_plselection_prompt, (char *, int, int, int, int, int));
+E void NDECL(recursion_effect);
 
 /* ### rumors.c ### */
 
@@ -2300,6 +2305,7 @@ E void FDECL(grease_protect, (struct obj *,const char *,struct monst *));
 E struct trap *FDECL(maketrap, (int,int,int));
 E void FDECL(makerandomtrap_at, (int,int));
 E void FDECL(fall_through, (BOOLEAN_P));
+E void FDECL(fall_throughX, (BOOLEAN_P));
 E struct monst *FDECL(animate_statue, (struct obj *,XCHAR_P,XCHAR_P,int,int *));
 E struct monst *FDECL(activate_statue_trap,
 			(struct trap *,XCHAR_P,XCHAR_P,BOOLEAN_P));

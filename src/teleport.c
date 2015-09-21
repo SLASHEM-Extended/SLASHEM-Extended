@@ -1558,7 +1558,7 @@ int in_sight;
 	    d_level tolevel;
 	    int migrate_typ = MIGR_RANDOM;
 
-	    if ((tt == HOLE || tt == TRAPDOOR)) {
+	    if ((tt == HOLE || tt == TRAPDOOR || tt == SHAFT_TRAP)) {
 		if (Is_stronghold(&u.uz)) {
 		    assign_level(&tolevel, &valley_level);
 		} else if (Is_botlevel(&u.uz)) {

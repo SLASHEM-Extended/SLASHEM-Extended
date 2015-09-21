@@ -155,6 +155,8 @@ struct flag {
 	 * is initialized or restored (specifically, after role_init()
 	 * is called).
 	 */
+	int    startingrole; /* for recursion trap - "starting" role (below) can change now --Amy */
+	int    startingrace; /* ditto for "starting" race */
 	int	 initrole;	/* starting role      (index into roles[])   */
 	int	 initrace;	/* starting race      (index into races[])   */
 	int	 initgend;	/* starting gender    (index into genders[]) */

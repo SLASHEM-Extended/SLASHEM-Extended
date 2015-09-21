@@ -1738,6 +1738,7 @@ rndtrap()
 	     case HOLE:		/* no random holes on special levels */
 	     case MAGIC_PORTAL:	rtrap = ROCKTRAP;
 				break;
+	     case SHAFT_TRAP:
 	     case TRAPDOOR:	if (!Can_dig_down(&u.uz)) rtrap = ROCKTRAP;
 				break;
 	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  rtrap = ANTI_MAGIC;
@@ -1844,6 +1845,22 @@ rndtrap()
 	     case NASTINESS_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) rtrap = SPIKED_PIT; break;
 
+	     case FARLOOK_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) rtrap = THROWING_STAR_TRAP; break;
+	     case RESPAWN_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) rtrap = LOCK_TRAP; break;
+	     case CAPTCHA_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) rtrap = SHIT_PIT; break;
+
+	     case RECURSION_TRAP:
+			if (rn2(500)) rtrap = ARROW_TRAP; break;
+	     case WARP_ZONE:
+			if (rn2(50)) rtrap = BOLT_TRAP; break;
+	     case MIND_WIPE_TRAP:
+			if (rn2(10)) rtrap = DART_TRAP; break;
+	     case GATEWAY_FROM_HELL:
+			if (rn2(20)) rtrap = THROWING_STAR_TRAP; break;
+
 	     case PESTILENCE_TRAP:
 			if (rn2(20)) rtrap = POISON_GAS_TRAP; break;
 	     case FAMINE_TRAP:
@@ -1867,6 +1884,7 @@ randomtrap()
 		if (rtrap == HOLE) rtrap = PIT;
 		if (rtrap == MAGIC_PORTAL) rtrap = PIT;
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
+		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz)) rtrap = SHIT_PIT;
 		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = SQKY_BOARD;
 		if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
 		if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;
@@ -1923,6 +1941,15 @@ randomtrap()
 	      if (rtrap == AUTO_VULN_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) rtrap = SLP_GAS_TRAP;
 	      if (rtrap == TELE_ITEMS_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) rtrap = ROLLING_BOULDER_TRAP;
 	      if (rtrap == NASTINESS_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) rtrap = SPIKED_PIT;
+
+	      if (rtrap == FARLOOK_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) rtrap = THROWING_STAR_TRAP;
+	      if (rtrap == RESPAWN_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) rtrap = LOCK_TRAP;
+	      if (rtrap == CAPTCHA_TRAP && !Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) rtrap = SHIT_PIT;
+
+	      if (rtrap == RECURSION_TRAP && rn2(500)) rtrap = ARROW_TRAP;
+	      if (rtrap == WARP_ZONE && rn2(50)) rtrap = BOLT_TRAP;
+	      if (rtrap == MIND_WIPE_TRAP && rn2(10)) rtrap = DART_TRAP;
+	      if (rtrap == GATEWAY_FROM_HELL && rn2(20)) rtrap = THROWING_STAR_TRAP;
 
 	      if (rtrap == PESTILENCE_TRAP && rn2(20)) rtrap = POISON_GAS_TRAP;
 	      if (rtrap == FAMINE_TRAP && rn2(2)) rtrap = SLOW_GAS_TRAP;
@@ -3977,7 +4004,7 @@ boolean prefilled;
 
     typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
 
-	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? UNINFORMATION_TRAP : !rn2(12) ? BAD_EFFECT_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(11) ? ALIGNMENT_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? INTRINSIC_LOSS_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(9) ? MULTIPLY_TRAP : !rn2(9) ? DSTW_TRAP : !rn2(9) ? STATUS_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? STAIRS_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(7) ? AUTO_VULN_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? DROP_TRAP : !rn2(6) ? BLOOD_LOSS_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? TELE_ITEMS_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : !rn2(2) ? SUPERSCROLLER_TRAP : rn2(50) ? NASTINESS_TRAP : AUTOMATIC_SWITCHER;
+	typ2 = !rn2(7) ? TRAP_PERCENTS : !rn2(9) ? UNKNOWN_TRAP : !rn2(12) ? RMB_LOSS_TRAP : !rn2(12) ? UNINFORMATION_TRAP : !rn2(12) ? BAD_EFFECT_TRAP : !rn2(12) ? CAPTCHA_TRAP : !rn2(12) ? WEAKNESS_TRAP : !rn2(11) ? ALIGNMENT_TRAP : !rn2(10) ? DISPLAY_TRAP : !rn2(10) ? SPELL_LOSS_TRAP : !rn2(10) ? NUPESELL_TRAP : !rn2(9) ? CASTER_TRAP : !rn2(9) ? INTRINSIC_LOSS_TRAP : !rn2(9) ? YELLOW_SPELL_TRAP : !rn2(9) ? SOUND_TRAP : !rn2(9) ? MULTIPLY_TRAP : !rn2(9) ? DSTW_TRAP : !rn2(9) ? STATUS_TRAP : !rn2(8) ? MENU_TRAP : !rn2(7) ? AUTO_DESTRUCT_TRAP : !rn2(7) ? DIFFICULTY_TRAP : !rn2(7) ? STAIRS_TRAP : !rn2(7) ? FREE_HAND_TRAP : !rn2(7) ? AUTO_VULN_TRAP : !rn2(6) ? ROT_THIRTEEN_TRAP : !rn2(6) ? DROP_TRAP : !rn2(6) ? BLOOD_LOSS_TRAP : !rn2(6) ? MEMORY_TRAP : !rn2(6) ? RESPAWN_TRAP : !rn2(6) ? UNIDENTIFY_TRAP : !rn2(5) ? INVENTORY_TRAP : !rn2(5) ? THIRST_TRAP : !rn2(5) ? FAINT_TRAP : !rn2(4) ? CURSE_TRAP : !rn2(4) ? FARLOOK_TRAP : !rn2(4) ? SHADES_OF_GREY_TRAP : !rn2(4) ? TELE_ITEMS_TRAP : !rn2(4) ? BISHOP_TRAP : !rn2(3) ? SPEED_TRAP : !rn2(3) ? CONFUSION_TRAP : !rn2(3) ? LUCK_TRAP : !rn2(2) ? BLACK_NG_WALL_TRAP : !rn2(2) ? SUPERSCROLLER_TRAP : rn2(50) ? NASTINESS_TRAP : AUTOMATIC_SWITCHER;
 
 		    if(rn2(3)) {
 			levl[sx][sy].typ = typ;
@@ -5703,7 +5730,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == SHIT_PIT || trytrap == SHAFT_TRAP ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap);
@@ -5746,7 +5773,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == SHIT_PIT || trytrap == SHAFT_TRAP ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap);

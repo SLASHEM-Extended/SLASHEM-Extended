@@ -147,8 +147,27 @@ extern struct trap *ftrap;
 #define TELE_ITEMS_TRAP	92
 #define NASTINESS_TRAP	93
 
-#define TRAP_PERCENTS		94
+#define RECURSION_TRAP	94
+#define RESPAWN_TRAP	95
+#define WARP_ZONE	96
+#define CAPTCHA_TRAP	97
+#define MIND_WIPE_TRAP	98
+#define THROWING_STAR_TRAP	99
+#define SHIT_PIT	100
+#define SHAFT_TRAP	101
+#define LOCK_TRAP	102
+#define MAGIC_CANCELLATION_TRAP	103
+#define FARLOOK_TRAP	104
+#define GATEWAY_FROM_HELL	105
+#define GROWING_TRAP	106
+#define COOLING_TRAP	107
+#define BAR_TRAP	108
+#define LOCKING_TRAP	109
+#define AIR_TRAP	110
+#define TERRAIN_TRAP	111
 
-#define TRAPNUM 95
+#define TRAP_PERCENTS		112
+
+#define TRAPNUM 113
 
 #endif /* TRAP_H */

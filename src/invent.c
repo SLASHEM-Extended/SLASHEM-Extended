@@ -1379,6 +1379,42 @@ have_uninformationstone()
 }
 
 boolean
+have_captchastone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CAPTCHA_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_farlookstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FARLOOK_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_respawnstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RESPAWN_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_intrinsiclossstone()
 {
 	register struct obj *otmp;
@@ -4526,6 +4562,8 @@ struct obj *obj;
 				pline("This cloak causes vulnerability. It grants good armor class and maximum magic cancellation."); break;
 			case CLOAK_OF_INVENTORYLESSNESS: 
 				pline("This cloak causes inventory loss. It grants incredibly great armor class and maximum magic cancellation."); break;
+			case CLOAK_OF_RESPAWNING: 
+				pline("This cloak causes monster respawn. It grants very good class and medium magic cancellation."); break;
 
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and maximum magic cancellation."); break;
@@ -4571,6 +4609,10 @@ struct obj *obj;
 				pline("This helmet causes alignment failures. It has good AC and maximum magic cancellation."); break;
 			case SOUNDPROOF_HELMET:
 				pline("This helmet causes deafness. It has mediocre AC and medium magic cancellation."); break;
+			case ANGER_HELM:
+				pline("This helmet causes angry monsters. It has moderately good AC and maximum magic cancellation."); break;
+			case CAPTCHA_HELM:
+				pline("This helmet causes captchas. It has no AC and no magic cancellation."); break;
 			case OUT_OF_MEMORY_HELMET:
 				pline("This helmet causes memory loss. It has great AC and maximum magic cancellation."); break;
 			case HELM_OF_BRILLIANCE:
@@ -6032,6 +6074,12 @@ struct obj *obj;
 				pline("A stone that curses itself and causes item teleportation."); break;
 			case NASTY_STONE:
 				pline("A stone that curses itself and causes nasty effects."); break;
+			case FARLOOK_STONE:
+				pline("A stone that curses itself and causes farlook problems."); break;
+			case CAPTCHA_STONE:
+				pline("A stone that curses itself and causes captchas."); break;
+			case RESPAWN_STONE:
+				pline("A stone that curses itself and causes monster respawn."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

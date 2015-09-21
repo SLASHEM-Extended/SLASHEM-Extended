@@ -819,7 +819,7 @@ newsym(x,y)
 
 		    /* if monster is in a physical trap, you see the trap too */
 		    if (tt == BEAR_TRAP || tt == PIT ||
-			tt == SPIKED_PIT ||tt == WEB) {
+			tt == SPIKED_PIT || tt == SHIT_PIT || tt == WEB) {
 			trap->tseen = TRUE;
 		    }
 		}

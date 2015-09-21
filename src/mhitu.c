@@ -2058,6 +2058,8 @@ struct monst *mon;
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
 #endif
+	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
+	if (armpro < 0) armpro = 0;
 
 	return armpro;
 }
@@ -4366,7 +4368,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE) return(0);
-		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT))) &&
+		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == SHIT_PIT))) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 

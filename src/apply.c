@@ -4226,6 +4226,9 @@ doapply()
  	case ALIGNMENT_STONE:
  	case STAIRSTRAP_STONE:
 	case UNINFORMATION_STONE:
+	case CAPTCHA_STONE:
+	case FARLOOK_STONE:
+	case RESPAWN_STONE:
 
 	case STONE_OF_INTRINSIC_LOSS:
 	case BLOOD_LOSS_STONE:
@@ -4355,6 +4358,9 @@ doapply()
 		AutomaticVulnerabilitiy = 0L;
 		TeleportingItems = 0L;
 		NastinessProblem = 0L;
+		CaptchaProblem = 0L;
+		FarlookProblem = 0L;
+		RespawnProblem = 0L;
 
 		break;
 	case GOD_O_METER:

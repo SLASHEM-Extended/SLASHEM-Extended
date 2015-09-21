@@ -55,6 +55,8 @@ moveloop()
 	int randmnsx;
 	int i;
 	coord cc;
+    char buf[BUFSZ];
+	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
     /* don't make it obvious when monsters will start speeding up */
     int monclock;
@@ -723,6 +725,117 @@ moveloop()
 			    }
 			}
 
+		}
+
+		if (!rn2(100) && CaptchaProblem) {
+			Strcpy(buf, rndmonnam() );
+			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
+			getlin("Your input:",ebuf);
+			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+
+				u.ublesscnt += rnz(300);
+				change_luck(-1);
+
+				u.ualign.sins++;
+				u.alignlim--;
+			      adjalign(-10);
+
+				u.uhpmax -= rnd(5);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.uhpmax < 1) {
+				    killer = "failing to solve a captcha";
+				    killer_format = KILLED_BY;
+				    done(DIED);
+				}
+				u.uenmax -= rnd(5);
+				if (u.uenmax < 0) {
+					u.uenmax = u.uen = 0;
+				}
+				if (Upolyd) {
+					u.mhmax -= rnd(10);
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+					if (u.mhmax < 1) rehumanize();
+				}
+
+			}
+			else pline("Alright. Please move on.");
+		}
+
+		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
+			Strcpy(buf, rndmonnam() );
+			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
+			getlin("Your input:",ebuf);
+			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+
+				u.ublesscnt += rnz(300);
+				change_luck(-1);
+
+				u.ualign.sins++;
+				u.alignlim--;
+			      adjalign(-10);
+
+				u.uhpmax -= rnd(5);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.uhpmax < 1) {
+				    killer = "failing to solve a captcha";
+				    killer_format = KILLED_BY;
+				    done(DIED);
+				}
+				u.uenmax -= rnd(5);
+				if (u.uenmax < 0) {
+					u.uenmax = u.uen = 0;
+				}
+				if (Upolyd) {
+					u.mhmax -= rnd(10);
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+					if (u.mhmax < 1) rehumanize();
+				}
+
+			}
+			else pline("Alright. Please move on.");
+		}
+
+		if (!rn2(100) && have_captchastone()) {
+			Strcpy(buf, rndmonnam() );
+			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
+			getlin("Your input:",ebuf);
+			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+
+				u.ublesscnt += rnz(300);
+				change_luck(-1);
+
+				u.ualign.sins++;
+				u.alignlim--;
+			      adjalign(-10);
+
+				u.uhpmax -= rnd(5);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.uhpmax < 1) {
+				    killer = "failing to solve a captcha";
+				    killer_format = KILLED_BY;
+				    done(DIED);
+				}
+				u.uenmax -= rnd(5);
+				if (u.uenmax < 0) {
+					u.uenmax = u.uen = 0;
+				}
+				if (Upolyd) {
+					u.mhmax -= rnd(10);
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+					if (u.mhmax < 1) rehumanize();
+				}
+
+			}
+			else pline("Alright. Please move on.");
 		}
 
 		if (u.uprops[UNIDENTIFY].extrinsic ) {
@@ -1663,6 +1776,14 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridspecialist) Sprintf(eos(xtrabuf), "specialist ");
 	if (flags.hybridamerican) Sprintf(eos(xtrabuf), "american ");
 	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
+
+	if (new_game) { /* for recursion trap */
+		ustartrace = urace;
+		ustartrole = urole;
+		flags.startingrole = flags.initrole;
+		flags.startingrace = flags.initrace;
+	}
+
 
 #if 0
     pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."

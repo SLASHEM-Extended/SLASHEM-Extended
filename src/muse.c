@@ -946,7 +946,7 @@ struct monst *mtmp;
 		if ((verysmall(mtmp->data) || throws_rocks(mtmp->data) ||
 		     passes_walls(mtmp->data) || (mtmp->egotype_wallwalk) ) || !sobj_at(BOULDER, xx, yy))
 		if (!onscary(xx,yy,mtmp)) {
-			if ((t->ttyp == TRAPDOOR || t->ttyp == HOLE)
+			if ((t->ttyp == TRAPDOOR || t->ttyp == HOLE || t->ttyp == SHAFT_TRAP)
 				&& !is_floater(mtmp->data)
 				&& !mtmp->isshk && !mtmp->isgd
 				&& !mtmp->ispriest
@@ -990,7 +990,7 @@ struct monst *mtmp;
 
 	/* kludge to cut down on trap destruction (particularly portals) */
 	t = t_at(x,y);
-	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT ||
+	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == SHIT_PIT ||
 		  t->ttyp == WEB || t->ttyp == BEAR_TRAP))
 		t = 0;		/* ok for monster to dig here */
 
@@ -1639,7 +1639,7 @@ mon_tele:
 			t = t_at(trapx,trapy);
 			pline("%s %s into a %s!", Monnam(mtmp),
 			makeplural(locomotion(mtmp->data, "jump")),
-			t->ttyp == TRAPDOOR ? "trap door" : "hole");
+			t->ttyp == TRAPDOOR ? "trap door" : t->ttyp == SHAFT_TRAP ? "shaft" : "hole");
 			if (levl[trapx][trapy].typ == SCORR) {
 			    levl[trapx][trapy].typ = CORR;
 			    unblock_point(trapx, trapy);

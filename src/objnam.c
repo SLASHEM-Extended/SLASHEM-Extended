@@ -4246,7 +4246,7 @@ srch:
 			tname = defsyms[trap_to_defsym(trap)].explanation;
 			if (!strncmpi(tname, bp, strlen(tname))) {
 				/* avoid stupid mistakes */
-				if((trap == TRAPDOOR || trap == HOLE)
+				if((trap == TRAPDOOR || trap == HOLE || trap == SHAFT_TRAP)
 				      && !Can_fall_thru(&u.uz)) trap = ROCKTRAP;
 				(void) maketrap(u.ux, u.uy, trap);
 				pline("%s.", An(tname));

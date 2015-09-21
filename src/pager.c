@@ -163,6 +163,8 @@ lookat(x, y, buf, monbuf)
 	    char *name, monnambuf[BUFSZ];
 	    boolean accurate = !Hallucination;
 
+		if (FarlookProblem || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) wakeup(mtmp);
+
 	    if ( (mtmp->data == &mons[PM_COYOTE] || mtmp->data == &mons[PM_STALKING_COYOTE]) && accurate)
 		name = coyotename(mtmp, monnambuf);
 	    else
@@ -194,7 +196,7 @@ lookat(x, y, buf, monbuf)
 		int tt = t ? t->ttyp : NO_TRAP;
 
 		/* newsym lets you know of the trap, so mention it here */
-		if (tt == BEAR_TRAP || tt == PIT ||
+		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT ||
 			tt == SPIKED_PIT || tt == WEB)
 		    Sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));
@@ -1661,7 +1663,7 @@ doidtrap()
 		if (!trap->tseen) break;
 		tt = trap->ttyp;
 		if (u.dz) {
-		    if (u.dz < 0 ? (tt == TRAPDOOR || tt == HOLE) :
+		    if (u.dz < 0 ? (tt == TRAPDOOR || tt == HOLE || tt == SHAFT_TRAP) :
 			    tt == ROCKTRAP) break;
 		}
 		tt = what_trap(tt);

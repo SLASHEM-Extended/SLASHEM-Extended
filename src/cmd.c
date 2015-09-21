@@ -1808,6 +1808,27 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if (CaptchaProblem || u.uprops[CAPTCHA].extrinsic || have_captchastone()) {
+		Sprintf(buf, "the following problem: You sometimes have to solve captchas.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CaptchaProblem);
+		you_have(buf);
+	}
+	if (FarlookProblem || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) {
+		Sprintf(buf, "the following problem: Farlooking peaceful monsters angers them.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FarlookProblem);
+		you_have(buf);
+	}
+	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone()) {
+		Sprintf(buf, "the following problem: Killing monsters will cause them to respawn somewhere on the level.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RespawnProblem);
+		you_have(buf);
+	}
+	if (MCReduction) {
+		Sprintf(buf, "reduced magic cancellation.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MCReduction);
+		you_have(buf);
+	}
+
 	if (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem || have_intrinsiclossstone() ) {
 		Sprintf(buf, "a case of random intrinsic loss.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", IntrinsicLossProblem);
@@ -2680,10 +2701,10 @@ minimal_enlightenment()
 	/* Starting name, race, role, gender */
 	Sprintf(buf, fmtstr, "name", plname);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
-	Sprintf(buf, fmtstr, "race", urace.noun);
+	Sprintf(buf, fmtstr, "race", ustartrace.noun);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
 	Sprintf(buf, fmtstr, "role",
-		(flags.initgend && urole.name.f) ? urole.name.f : urole.name.m);
+		(flags.initgend && ustartrole.name.f) ? ustartrole.name.f : ustartrole.name.m);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);
 	Sprintf(buf, fmtstr, "gender", genders[flags.initgend].adj);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, FALSE);

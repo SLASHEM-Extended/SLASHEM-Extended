@@ -34803,6 +34803,9 @@ TRAP:"multiply",random
 TRAP:"auto vulnerability",random
 TRAP:"tele items",random
 TRAP:"nastiness",random
+TRAP:"farlook",random
+TRAP:"respawn",random
+TRAP:"captcha",random
 
 #	SCCS Id: @(#)Yeoman.des	3.4	1998/09/10
 #	Copyright (c) 1998 by Kevin Hugo
@@ -97177,9 +97180,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
@@ -97261,6 +97261,9 @@ TRAP:"multiply",random
 TRAP:"auto vulnerability",random
 TRAP:"tele items",random
 TRAP:"nastiness",random
+TRAP:"farlook",random
+TRAP:"respawn",random
+TRAP:"captcha",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random

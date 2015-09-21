@@ -2866,6 +2866,25 @@ struct Role urole =
 	0, 10, 0, 0,  4, A_INT, 0, -3
 };
 
+struct Role ustartrole =
+{	{"Undefined", 0}, { {0, 0}, {0, 0}, {0, 0},
+	{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0} },
+	"L", "N", "C", "Xxx", "home", "locate",
+	NON_PM, NON_PM, NON_PM, NON_PM, NON_PM, NON_PM, NON_PM, NON_PM,
+	NON_PM, NON_PM, 0, 0, 
+#if 0
+	0, 0,
+#endif
+	0, 0,
+	/* Str Int Wis Dex Con Cha */
+	{   7,  7,  7,  7,  7,  7 },
+	{  20, 15, 15, 20, 20, 10 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  2, 0,  0, 2,  0, 3 },14,	/* Energy */
+	0, 10, 0, 0,  4, A_INT, 0, -3
+};
+
 /* Table of all races */
 const struct Race races[] = {
 {	"addict", "addicted", "addiction", "Add",
@@ -4201,6 +4220,18 @@ struct Race urace =
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 };
+struct Race ustartrace =
+{	"something", "undefined", "something", "Xxx",
+	{0, 0},
+	NON_PM, NON_PM, NON_PM, NON_PM,
+	0, 0, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+};
 
 /* Table of all genders */
 const struct Gender genders[] = {
@@ -4887,6 +4918,38 @@ int rolenum, racenum, gendnum, pickhow;
 }
 
 void
+recursioneffect()
+{
+	if (!rn2(4)) {
+
+	flags.initrole = randrole();
+	flags.initrace = randrace(flags.initrole);
+	urole = roles[flags.initrole];
+	urace = races[flags.initrace];
+
+	pline("You suddenly feel like a completely different person!");
+	pline("You're a %s %s now!", urace.noun, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+	} else if (!rn2(2)) {
+
+	flags.initrole = randrole();
+	urole = roles[flags.initrole];
+
+	pline("You suddenly feel like you have a different profession!");
+	pline("You're a %s now!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+	} else {
+
+	flags.initrace = randrace(flags.initrole);
+	urace = races[flags.initrace];
+
+	pline("You suddenly feel like your genes got exchanged!");
+	pline("You're a %s now!", urace.noun);
+
+	}
+}
+
+void
 rigid_role_checks()
 {
     /* Some roles are limited to a single race, alignment, or gender and
@@ -5262,6 +5325,8 @@ role_init()
 	/* Initialize urole and urace */
 	urole = roles[flags.initrole];
 	urace = races[flags.initrace];
+	ustartrole = roles[flags.startingrole];
+	ustartrace = races[flags.startingrace];
 
 	/* Fix up the quest leader */
 	if (urole.ldrnum != NON_PM) {

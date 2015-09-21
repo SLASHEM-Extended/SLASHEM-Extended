@@ -1258,6 +1258,7 @@ dospinweb()
 	exercise(A_DEX, TRUE);
 	if (ttmp) switch (ttmp->ttyp) {
 		case PIT:
+		case SHIT_PIT:
 		case SPIKED_PIT: You("spin a web, covering up the pit.");
 			deltrap(ttmp);
 			bury_objs(u.ux, u.uy);
@@ -1276,6 +1277,7 @@ dospinweb()
 			return(1);
 		case HOLE:
 		case TRAPDOOR:
+		case SHAFT_TRAP:
 			You("web over the %s.",
 			    (ttmp->ttyp == TRAPDOOR) ? "trap door" : "hole");
 			deltrap(ttmp);
@@ -1372,6 +1374,22 @@ dospinweb()
 		case AUTO_VULN_TRAP:
 		case TELE_ITEMS_TRAP:
 		case NASTINESS_TRAP:
+		case RECURSION_TRAP:
+		case RESPAWN_TRAP:
+		case WARP_ZONE:
+		case CAPTCHA_TRAP:
+		case MIND_WIPE_TRAP:
+		case THROWING_STAR_TRAP:
+		case LOCK_TRAP:
+		case MAGIC_CANCELLATION_TRAP:
+		case FARLOOK_TRAP:
+		case GATEWAY_FROM_HELL:
+		case GROWING_TRAP:
+		case COOLING_TRAP:
+		case BAR_TRAP:
+		case LOCKING_TRAP:
+		case AIR_TRAP:
+		case TERRAIN_TRAP:
 			dotrap(ttmp, 0);
 			return(1);
 		default:

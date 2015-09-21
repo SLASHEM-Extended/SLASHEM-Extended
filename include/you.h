@@ -151,6 +151,7 @@ struct Role {
 
 extern const struct Role roles[];	/* table of available roles */
 extern struct Role urole;
+extern struct Role ustartrole;
 #define Role_if(X)	(urole.malenum == (X))
 #define Role_switch	(urole.malenum)
 
@@ -203,6 +204,7 @@ struct Race {
 
 extern const struct Race races[];	/* Table of available races */
 extern struct Race urace;
+extern struct Race ustartrace;
 #define Race_if(X)	(urace.malenum == (X))
 #define Race_switch	(urace.malenum)
 

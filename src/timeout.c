@@ -227,6 +227,8 @@ nh_timeout()
 	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
 	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
 
+	if (MCReduction && MCReduction % 5000 == 0) pline("Your magic cancellation seems to work a bit better again.");
+
 	if (u.negativeprotection && !rn2(2500)) u.negativeprotection--;
 	if (u.chokhmahdamage && !rn2(10000)) u.chokhmahdamage--;
 
@@ -1372,7 +1374,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(38)) {
+		switch (rnd(41)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1430,6 +1432,9 @@ nh_timeout()
 			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1444,7 +1449,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(38)) {
+		switch (rnd(41)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1502,6 +1507,9 @@ nh_timeout()
 			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1516,7 +1524,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(38)) {
+		switch (rnd(41)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1574,6 +1582,9 @@ nh_timeout()
 			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1588,7 +1599,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(38)) {
+		switch (rnd(41)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1646,6 +1657,9 @@ nh_timeout()
 			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1869,6 +1883,9 @@ nh_timeout()
 			break;
 		case VOMITING:
 			make_vomiting(0L, TRUE);
+			break;
+		case MC_REDUCTION:
+			pline("Your magic cancellation seems to work correctly again.");
 			break;
 		case SICK:
 

@@ -368,6 +368,25 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "teleporting items trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "nastiness trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "recursion trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "respawn trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "warp zone", C(CLR_MAGENTA)},	/* trap */
+	{'^', "captcha trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "mind wipe trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "throwing star trap", C(CLR_CYAN)},	/* trap */
+	{'^', "shit pit", C(CLR_ORANGE)},	/* trap */
+	{'^', "shaft", C(CLR_BROWN)},	/* trap */
+	{'^', "lock trap", C(CLR_CYAN)},	/* trap */
+	{'^', "MC trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "farlook trap", C(CLR_RED)},	/* trap */
+	{'^', "gateway from hell", C(CLR_MAGENTA)},	/* trap */
+	{'^', "growing trap", C(CLR_GREEN)},	/* trap */
+	{'^', "cooling trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "bar trap", C(CLR_CYAN)},	/* trap */
+	{'^', "locking trap", C(CLR_BLACK)},	/* trap */
+	{'^', "air trap", C(CLR_WHITE)},	/* trap */
+	{'^', "terrain trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -557,6 +576,25 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_tele_items_trap),
 	g_FILLER(S_nastiness_trap),
 
+	g_FILLER(S_recursion_trap),
+	g_FILLER(S_respawn_trap),
+	g_FILLER(S_warp_zone),
+	g_FILLER(S_captcha_trap),
+	g_FILLER(S_mind_wipe_trap),
+	g_FILLER(S_shuriken_trap),
+	g_FILLER(S_shit_pit),
+	g_FILLER(S_shaft_trap),
+	g_FILLER(S_lock_trap),
+	g_FILLER(S_mc_trap),
+	g_FILLER(S_farlook_trap),
+	g_FILLER(S_gateway_trap),
+	g_FILLER(S_growing_trap),
+	g_FILLER(S_cooling_trap),
+	g_FILLER(S_bar_trap),
+	g_FILLER(S_locking_trap),
+	g_FILLER(S_air_trap),
+	g_FILLER(S_terrain_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -737,6 +775,25 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_tele_items_trap),
 	g_FILLER(S_nastiness_trap),
 
+	g_FILLER(S_recursion_trap),
+	g_FILLER(S_respawn_trap),
+	g_FILLER(S_warp_zone),
+	g_FILLER(S_captcha_trap),
+	g_FILLER(S_mind_wipe_trap),
+	g_FILLER(S_shuriken_trap),
+	g_FILLER(S_shit_pit),
+	g_FILLER(S_shaft_trap),
+	g_FILLER(S_lock_trap),
+	g_FILLER(S_mc_trap),
+	g_FILLER(S_farlook_trap),
+	g_FILLER(S_gateway_trap),
+	g_FILLER(S_growing_trap),
+	g_FILLER(S_cooling_trap),
+	g_FILLER(S_bar_trap),
+	g_FILLER(S_locking_trap),
+	g_FILLER(S_air_trap),
+	g_FILLER(S_terrain_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -914,6 +971,25 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_auto_vuln_trap),
 	g_FILLER(S_tele_items_trap),
 	g_FILLER(S_nastiness_trap),
+
+	g_FILLER(S_recursion_trap),
+	g_FILLER(S_respawn_trap),
+	g_FILLER(S_warp_zone),
+	g_FILLER(S_captcha_trap),
+	g_FILLER(S_mind_wipe_trap),
+	g_FILLER(S_shuriken_trap),
+	g_FILLER(S_shit_pit),
+	g_FILLER(S_shaft_trap),
+	g_FILLER(S_lock_trap),
+	g_FILLER(S_mc_trap),
+	g_FILLER(S_farlook_trap),
+	g_FILLER(S_gateway_trap),
+	g_FILLER(S_growing_trap),
+	g_FILLER(S_cooling_trap),
+	g_FILLER(S_bar_trap),
+	g_FILLER(S_locking_trap),
+	g_FILLER(S_air_trap),
+	g_FILLER(S_terrain_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1283,6 +1359,25 @@ boolean is_rlevel;
 	    showsyms[S_auto_vuln_trap] = 0x04;
 	    showsyms[S_tele_items_trap] = 0x04;
 	    showsyms[S_nastiness_trap] = 0x04;
+
+	    showsyms[S_recursion_trap] = 0x04;
+	    showsyms[S_respawn_trap] = 0x04;
+	    showsyms[S_warp_zone] = 0x04;
+	    showsyms[S_captcha_trap] = 0x04;
+	    showsyms[S_mind_wipe_trap] = 0x04;
+	    showsyms[S_shuriken_trap] = 0x04;
+	    showsyms[S_shit_pit] = 0x04;
+	    showsyms[S_shaft_trap] = 0x04;
+	    showsyms[S_lock_trap] = 0x04;
+	    showsyms[S_mc_trap] = 0x04;
+	    showsyms[S_farlook_trap] = 0x04;
+	    showsyms[S_gateway_trap] = 0x04;
+	    showsyms[S_growing_trap] = 0x04;
+	    showsyms[S_cooling_trap] = 0x04;
+	    showsyms[S_bar_trap] = 0x04;
+	    showsyms[S_locking_trap] = 0x04;
+	    showsyms[S_air_trap] = 0x04;
+	    showsyms[S_terrain_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

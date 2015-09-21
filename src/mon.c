@@ -1905,9 +1905,26 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != AUTO_VULN_TRAP
 				&& ttmp->ttyp != TELE_ITEMS_TRAP
 				&& ttmp->ttyp != NASTINESS_TRAP
+				&& ttmp->ttyp != RECURSION_TRAP
+				&& ttmp->ttyp != RESPAWN_TRAP
+				&& ttmp->ttyp != WARP_ZONE
+				&& ttmp->ttyp != CAPTCHA_TRAP
+				&& ttmp->ttyp != MIND_WIPE_TRAP
+				&& ttmp->ttyp != LOCK_TRAP
+				&& ttmp->ttyp != MAGIC_CANCELLATION_TRAP
+				&& ttmp->ttyp != FARLOOK_TRAP
+				&& ttmp->ttyp != GATEWAY_FROM_HELL
+				&& ttmp->ttyp != GROWING_TRAP
+				&& ttmp->ttyp != COOLING_TRAP
+				&& ttmp->ttyp != BAR_TRAP
+				&& ttmp->ttyp != LOCKING_TRAP
+				&& ttmp->ttyp != AIR_TRAP
+				&& ttmp->ttyp != TERRAIN_TRAP
 
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
+				    && ttmp->ttyp != SHIT_PIT
+				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
 				      || (!is_flyer(mdat) && (!mon->egotype_flying) 
@@ -2422,7 +2439,7 @@ register struct monst *mtmp;
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
-					if ((rtrap == TRAPDOOR || rtrap == HOLE) && !Can_fall_thru(&u.uz)) rtrap = ROCKTRAP;
+					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP) && !Can_fall_thru(&u.uz)) rtrap = ROCKTRAP;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 
@@ -2466,6 +2483,28 @@ register struct monst *mtmp;
 		default:
 			break;
 	    }
+	}
+
+	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone()) {
+	    switch(rnd(10)) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
+		case 9:
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
+		case 10:
+		default:
+			break;
+		}
 	}
 #endif
 	if(mtmp->iswiz) wizdead();
@@ -2881,7 +2920,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == SHIT_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

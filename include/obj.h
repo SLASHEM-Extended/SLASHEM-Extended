@@ -501,6 +501,9 @@ struct obj {
 				 (obj)->otyp == STONE_OF_VULNERABILITY || \
 				 (obj)->otyp == ITEM_TELEPORTING_STONE || \
 				 (obj)->otyp == NASTY_STONE || \
+				 (obj)->otyp == FARLOOK_STONE || \
+				 (obj)->otyp == CAPTCHA_STONE || \
+				 (obj)->otyp == RESPAWN_STONE || \
 				 (obj)->otyp == UNINFORMATION_STONE )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \

@@ -524,7 +524,7 @@ xchar x, y;
 		return(0);
 
 	if ((trap = t_at(x,y)) != 0 &&
-			(((trap->ttyp == PIT ||
+			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT ||
 			   trap->ttyp == SPIKED_PIT) && !Passes_walls) ||
 			 trap->ttyp == WEB)) {
 		if (!trap->tseen) find_trap(trap);
@@ -1464,7 +1464,7 @@ boolean shop_floor_obj;
 	   other things down before plugging the hole */
 	if (otmp->otyp == BOULDER &&
 		((t = t_at(x, y)) != 0) &&
-		(t->ttyp == TRAPDOOR || t->ttyp == HOLE)) {
+		(t->ttyp == TRAPDOOR || t->ttyp == SHAFT_TRAP || t->ttyp == HOLE)) {
 	    if (impact) impact_drop(otmp, x, y, 0);
 	    return FALSE;		/* let caller finish the drop */
 	}
@@ -1639,9 +1639,10 @@ xchar x, y;
 	}
 
 	if (((ttmp = t_at(x, y)) != 0 && ttmp->tseen) &&
-		(ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)) {
+		(ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == HOLE)) {
 	    gate_str = (ttmp->ttyp == TRAPDOOR) ?
-		    "through the trap door" : "through the hole";
+		    "through the trap door" : (ttmp->ttyp == SHAFT_TRAP) ?
+		    "through the shaft" : "through the hole";
 	    return MIGR_RANDOM;
 	}
 	return MIGR_NOWHERE;

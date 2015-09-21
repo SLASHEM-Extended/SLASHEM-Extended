@@ -2272,6 +2272,9 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
@@ -2299,7 +2302,7 @@ int trap_type;
 
 		rm->typ = SCORR;
 		if(trap_type) {
-		    if((trap_type == HOLE || trap_type == TRAPDOOR)
+		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP)
 			&& !Can_fall_thru(&u.uz))
 			trap_type = ROCKTRAP;
 		    ttmp = maketrap(xx, yy+dy, trap_type);
@@ -10156,6 +10159,21 @@ coord *tm;
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = ROLLING_BOULDER_TRAP; break;
 		    case NASTINESS_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) kind = SPIKED_PIT; break;
+		    case FARLOOK_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) kind = THROWING_STAR_TRAP; break;
+		    case RESPAWN_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) kind = LOCK_TRAP; break;
+		    case CAPTCHA_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) kind = SHIT_PIT; break;
+
+		    case RECURSION_TRAP:
+			if (rn2(500)) kind = ARROW_TRAP; break;
+		    case WARP_ZONE:
+			if (rn2(50)) kind = BOLT_TRAP; break;
+		    case MIND_WIPE_TRAP:
+			if (rn2(10)) kind = DART_TRAP; break;
+		    case GATEWAY_FROM_HELL:
+			if (rn2(20)) kind = THROWING_STAR_TRAP; break;
 
 		    case PESTILENCE_TRAP:
 			if (rn2(20)) kind = POISON_GAS_TRAP; break;
@@ -10168,14 +10186,14 @@ coord *tm;
 	    } while (kind == NO_TRAP);
 	}
 
-	if ((kind == TRAPDOOR || kind == HOLE) && !Can_fall_thru(&u.uz))
+	if ((kind == TRAPDOOR || kind == SHAFT_TRAP || kind == HOLE) && !Can_fall_thru(&u.uz))
 		kind = ROCKTRAP;
 
 	if (tm)
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == SHIT_PIT || kind == SHAFT_TRAP ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

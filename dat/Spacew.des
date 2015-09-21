@@ -769,3 +769,6 @@ TRAP:"multiply",random
 TRAP:"auto vulnerability",random
 TRAP:"tele items",random
 TRAP:"nastiness",random
+TRAP:"farlook",random
+TRAP:"respawn",random
+TRAP:"captcha",random

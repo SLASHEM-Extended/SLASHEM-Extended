@@ -523,7 +523,7 @@ moverock()
 
 	    if (mtmp && !noncorporeal(mtmp->data) &&
 		    (!mtmp->mtrapped ||
-			 !(ttmp && ((ttmp->ttyp == PIT) ||
+			 !(ttmp && ((ttmp->ttyp == PIT) || (ttmp->ttyp == SHIT_PIT) ||
 				    (ttmp->ttyp == SPIKED_PIT))))) {
 
 		if (Blind) feel_location(sx,sy);
@@ -566,6 +566,7 @@ moverock()
 		    }
 		    break;
 		case SPIKED_PIT:
+		case SHIT_PIT:
 		case PIT:
 		    obj_extract_self(otmp);
 		    /* vision kludge to get messages right;
@@ -579,6 +580,7 @@ moverock()
 		    continue;
 		case HOLE:
 		case TRAPDOOR:
+		case SHAFT_TRAP:
 		    if (Blind)
 			pline("Kerplunk!  You no longer feel %s.",
 				the(xname(otmp)));
@@ -1350,7 +1352,16 @@ ask_about_trap(int x, int y)
 			if (!In_sokoban(&u.uz) && traphere->ttyp == SPIKED_PIT) {
 				return FALSE;
 			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == SHIT_PIT) {
+				return FALSE;
+			}
 			if (!In_sokoban(&u.uz) && traphere->ttyp == HOLE) {
+				return FALSE;
+			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == SHAFT_TRAP) {
+				return FALSE;
+			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == TRAPDOOR) {
 				return FALSE;
 			}
 			if (traphere->ttyp == BEAR_TRAP) {
@@ -1723,6 +1734,38 @@ domove()
 				"You've fallen, and you can't get up." :
 				"You are still in a pit." );
 		    }
+		      traphere = t_at(u.ux,u.uy);
+		      if (u.utrap && traphere && traphere->ttyp == SHIT_PIT) {
+				pline("You splotch into a heap of dog shit!");
+			      int num = 0;
+			      num = d(2, 2) + rnd((monster_difficulty() / 3) + 1);
+			      if (Acid_resistance) { /* let's just assume the stuff is acidic or corrosive --Amy */
+			      	shieldeff(u.ux, u.uy);
+			           num = d(1, 2) + rnd((monster_difficulty() / 7) + 1);
+			      }
+				if (Stoned) fix_petrification();
+				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+			/* Dog shit is extremely aggressive to footwear. Let's give it a chance to do withering damage. --Amy */
+				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+				if (!rn2(20)) u_slow_down();
+
+				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
+					You("inhale the intense smell of shit! The world spins and goes dark.");
+					nomovemsg = "You are conscious again.";	/* default: "you can move again" */
+					nomul(-rnd(10), "unconscious from smelling dog shit");
+					exercise(A_DEX, FALSE);
+				}
+
+			      if (num) losehp(num, "heap of shit", KILLED_BY_AN);
+
+			}
+
 		} else if (u.utraptype == TT_LAVA) {
 		    if(flags.verbose) {
 			predicament = "stuck in the lava";
@@ -1984,7 +2027,7 @@ domove()
 
 	    if (mtmp->mtrapped &&
 		    (trap = t_at(mtmp->mx, mtmp->my)) != 0 &&
-		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT) &&
+		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT) &&
 		    sobj_at(BOULDER, trap->tx, trap->ty)) {
 		/* can't swap places with pet pinned in a pit by a boulder */
 		u.ux = u.ux0,  u.uy = u.uy0;	/* didn't move after all */
@@ -2277,7 +2320,7 @@ stillinwater:;
 	if (!in_steed_dismounting) { /* if dismounting, we'll check again later */
 		struct trap *trap = t_at(u.ux, u.uy);
 		boolean pit;
-		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT));
+		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
 		if (pick) (void) pickup(1);
@@ -2913,7 +2956,7 @@ dopickup()
 		 * in pits.
 		 */
 		/* [BarclayII] phasing or flying players can phase/fly into the pit */
-		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT) &&
+		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == SHIT_PIT) &&
 		     (!u.utrap || (u.utrap && u.utraptype != TT_PIT)) && !Passes_walls && !Flying) {
 			You("cannot reach the bottom of the pit.");
 			return(0);
