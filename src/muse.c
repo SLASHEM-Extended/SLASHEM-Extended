@@ -4118,6 +4118,13 @@ struct monst *mtmp;
 #define MUSE_WAN_MUTATION 13
 #define MUSE_WAN_GAIN_LEVEL 14
 #define MUSE_WAN_INCREASE_MAX_HITPOINTS 15
+#define MUSE_SCR_SUMMON_BOSS_M 16
+#define MUSE_SCR_CREATE_MONSTER_M 17
+#define MUSE_BAG_OF_TRICKS_M 18
+#define MUSE_WAN_CREATE_MONSTER_M 19
+#define MUSE_WAN_SUMMON_UNDEAD_M 20
+#define MUSE_WAN_CREATE_HORDE_M 21
+#define MUSE_SCR_SUMMON_UNDEAD_M 22
 
 boolean
 find_misc(mtmp)
@@ -4262,6 +4269,42 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_INCREASE_MAX_HITPOINTS;
 		}
+		nomore(MUSE_SCR_SUMMON_BOSS_M);
+		if(obj->otyp == SCR_SUMMON_BOSS && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_SUMMON_BOSS_M;
+		}
+		nomore(MUSE_SCR_CREATE_MONSTER_M);
+		if(obj->otyp == SCR_CREATE_MONSTER && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_CREATE_MONSTER_M;
+		}
+		nomore(MUSE_BAG_OF_TRICKS_M);
+		if(obj->otyp == BAG_OF_TRICKS && obj->spe > 0 && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_BAG_OF_TRICKS_M;
+		}
+		nomore(MUSE_WAN_CREATE_MONSTER_M);
+		if (obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0 && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_CREATE_MONSTER_M;
+		}
+		nomore(MUSE_WAN_SUMMON_UNDEAD_M);
+		if (obj->otyp == WAN_SUMMON_UNDEAD && obj->spe > 0 && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_SUMMON_UNDEAD_M;
+		}
+		nomore(MUSE_WAN_CREATE_HORDE_M);
+		if(obj->otyp == WAN_CREATE_HORDE && obj->spe > 0 && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_CREATE_HORDE_M;
+		}
+		nomore(MUSE_SCR_SUMMON_UNDEAD_M);
+		if(obj->otyp == SCR_SUMMON_UNDEAD && !rn2(25) ) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_SUMMON_UNDEAD_M;
+		}
+
 	}
 	return((boolean)(!!m.has_misc));
 #undef nomore
@@ -4597,6 +4640,225 @@ skipmsg:
 		if (oseen) makeknown(WAN_MUTATION);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
+
+	case MUSE_SCR_SUMMON_BOSS_M:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		struct monst *mon;
+		boolean known = FALSE;
+		int attempts = 0;
+
+		mreadmsg(mtmp, otmp);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+	      if (mon && canspotmon(mon)) known = TRUE;
+
+		if (known)
+		    makeknown(SCR_SUMMON_BOSS);
+		else if (!objects[SCR_SUMMON_BOSS].oc_name_known
+			&& !objects[SCR_SUMMON_BOSS].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_SCR_CREATE_MONSTER_M:
+	    {	coord cc;
+		struct permonst *pm = 0, *fish = 0;
+		int cnt = 1;
+		struct monst *mon;
+		boolean known = FALSE;
+
+		if (!rn2(73)) cnt += rnd(4);
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
+		/*else if (is_pool(mtmp->mx, mtmp->my))
+		    fish = &mons[u.uinwater ? PM_GIANT_EEL : PM_CROCODILE];*/
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+		    /* `fish' potentially gives bias towards water locations;
+		       `pm' is what to actually create (0 => random) */
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, fish)) break;
+		    mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_CREATE_MONSTER);
+		else if (!objects[SCR_CREATE_MONSTER].oc_name_known
+			&& !objects[SCR_CREATE_MONSTER].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_BAG_OF_TRICKS_M:
+
+		/* jonadab wants monsters to not use up charges if they apply this thing, but that would be too evil. --Amy */
+	    {	coord cc;
+
+		struct permonst *pm = 0;
+		struct monst *mon;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
+		if (mon && canspotmon(mon) && oseen)
+		    makeknown(BAG_OF_TRICKS);
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_WAN_SUMMON_UNDEAD_M:
+	    {	coord cc;
+
+		struct permonst *pm = 0;
+		struct monst *mon;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		    switch (rn2(10)+1) {
+		    case 1:
+			mon = makemon(mkclass(S_VAMPIRE,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 2:
+		    case 3:
+		    case 4:
+		    case 5:
+			mon = makemon(mkclass(S_ZOMBIE,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 6:
+		    case 7:
+		    case 8:
+			mon = makemon(mkclass(S_MUMMY,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 9:
+			mon = makemon(mkclass(S_GHOST,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 10:
+			mon = makemon(mkclass(S_WRAITH,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    }
+
+		/*mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);*/
+		if (mon && canspotmon(mon) && oseen)
+		    makeknown(WAN_SUMMON_UNDEAD);
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_SCR_SUMMON_UNDEAD_M:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		int cnt = 1;
+		struct monst *mon;
+		boolean known = FALSE;
+
+		if (rn2(2)) cnt += rnz(2);
+		if (!rn2(73)) cnt += rnd(4);
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		    /*mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);*/
+
+		    switch (rn2(10)+1) {
+		    case 1:
+			mon = makemon(mkclass(S_VAMPIRE,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 2:
+		    case 3:
+		    case 4:
+		    case 5:
+			mon = makemon(mkclass(S_ZOMBIE,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 6:
+		    case 7:
+		    case 8:
+			mon = makemon(mkclass(S_MUMMY,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 9:
+			mon = makemon(mkclass(S_GHOST,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    case 10:
+			mon = makemon(mkclass(S_WRAITH,0), cc.x, cc.y, NO_MM_FLAGS);
+			break;
+		    }
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_SUMMON_UNDEAD);
+		else if (!objects[SCR_SUMMON_UNDEAD].oc_name_known
+			&& !objects[SCR_SUMMON_UNDEAD].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_WAN_CREATE_MONSTER_M:
+	    {	coord cc;
+
+		struct permonst *pm = 0;
+		struct monst *mon;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
+		if (mon && canspotmon(mon) && oseen)
+		    makeknown(WAN_CREATE_MONSTER);
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_WAN_CREATE_HORDE_M:
+	    {   coord cc;
+		struct permonst *pm=rndmonst();
+		int cnt = 1;
+		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(WAN_CREATE_HORDE);
+		cnt = rnd(4) + 10;
+		while(cnt--) {
+			struct monst *mon;
+			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) continue;
+			mon = makemon(rndmonst(), cc.x, cc.y, NO_MM_FLAGS);
+			if (mon) newsym(mon->mx,mon->my);
+		}
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	    }
 
 	case MUSE_POLY_TRAP:
 		if (vismon)
