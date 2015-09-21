@@ -1012,7 +1012,7 @@ register struct monst *mtmp;
 	    else if (mtmp->mtrapped) {
 		struct trap *t = t_at(mtmp->mx, mtmp->my);
 
-		if (t) t->tseen = 1;
+		if (t && !t->hiddentrap) t->tseen = 1;
 		verbl_msg = "I'm trapped!";
 	    } else if (mtmp->mhp < mtmp->mhpmax/2)
 		pline_msg = "asks for a potion of healing.";

@@ -1404,7 +1404,7 @@ dospinweb()
 		 
 	}
 	ttmp = maketrap(u.ux, u.uy, WEB);
-	if (ttmp) {
+	if (ttmp && !ttmp->hiddentrap) {
 		ttmp->tseen = 1;
 		ttmp->madeby_u = 1;
 	}

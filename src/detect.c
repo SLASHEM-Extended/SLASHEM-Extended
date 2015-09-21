@@ -783,7 +783,7 @@ int src_cursed;
 	obj.otyp = (src_cursed) ? GOLD_PIECE : random_object();
 	obj.corpsenm = random_monster();	/* if otyp == CORPSE */
 	map_object(&obj,1);
-    } else if (trap) {
+    } else if (trap && !trap->hiddentrap) {
 	map_trap(trap,1);
 	trap->tseen = 1;
     } else {
@@ -1210,7 +1210,7 @@ genericptr_t num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && ttmp->ttyp != STATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1277,7 +1277,7 @@ genericptr_t num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if (!ttmp->tseen && ttmp->ttyp != STATUE_TRAP) {
+		if (!ttmp->tseen && !ttmp->hiddentrap && ttmp->ttyp != STATUE_TRAP) {
 		    ttmp->tseen = 1;
 		    newsym(zx,zy);
 		    (*(int*)num)++;
@@ -1323,6 +1323,8 @@ struct trap *trap;
 {
     int tt = what_trap(trap->ttyp);
     boolean cleared = FALSE;
+
+    if (trap->hiddentrap) return;
 
     trap->tseen = 1;
     exercise(A_WIS, TRUE);
@@ -1449,7 +1451,7 @@ register int aflag;
 			}
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
-			if ((trap = t_at(x,y)) && !trap->tseen && (!rnl(8-fund) || !rn2(5) ) ) {
+			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(5) ) ) {
 			    nomul(0, 0);
 
 			    if (trap->ttyp == STATUE_TRAP) {
@@ -1499,7 +1501,7 @@ sokoban_detect()
 	for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 
 			/* but only holes and pits --Amy */
-			if ((ttmp->ttyp == HOLE || ttmp->ttyp == PIT) && randc) {
+			if ((ttmp->ttyp == HOLE || ttmp->ttyp == PIT) && randc && !ttmp->hiddentrap) {
 		    ttmp->tseen = 1;
 		    map_trap(ttmp, 1);
 		}

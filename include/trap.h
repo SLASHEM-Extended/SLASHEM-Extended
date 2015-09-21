@@ -19,6 +19,7 @@ struct trap {
 	coord launch;
 	Bitfield(ttyp,8); /* are you kidding me? You only make room for 32 traps? That's not nearly enough for me! --Amy */
 	Bitfield(tseen,1);
+	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
 	Bitfield(once,1);
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap
 				 them.	Recognizing who made the trap isn't

@@ -281,7 +281,7 @@ int force;
 		  case CORR : /* Try to make a pit */
 do_pit:		    chasm = maketrap(x,y,PIT);
 		    if (!chasm) break;	/* no pit if portal at that location */
-		    chasm->tseen = 1;
+		    if (!chasm->hiddentrap) chasm->tseen = 1;
 
 		    levl[x][y].doormask = 0;
 

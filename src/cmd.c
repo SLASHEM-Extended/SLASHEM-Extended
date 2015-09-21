@@ -984,8 +984,8 @@ wiz_map()
 
 	    HConfusion = HHallucination = 0L;
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		t->tseen = 1;
-		map_trap(t, TRUE);
+		if (!t->hiddentrap) t->tseen = 1;
+		if (!t->hiddentrap) map_trap(t, TRUE);
 	    }
 	    do_mapping();
 	    HConfusion = save_Hconf;

@@ -1182,7 +1182,10 @@ register int x, y, typ;
 		unearth_objs(x, y);
 		break;
 	}
-	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) ) ttmp->tseen = 1;  /* You can't hide a hole */
+	ttmp->hiddentrap = 0;
+	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
+
+	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
 	ttmp->madeby_u = 0;
@@ -4988,7 +4991,7 @@ void
 seetrap(trap)
 	register struct trap *trap;
 {
-	if(!trap->tseen) {
+	if(!trap->tseen && !trap->hiddentrap) {
 	    trap->tseen = 1;
 	    newsym(trap->tx, trap->ty);
 	}
@@ -5113,7 +5116,7 @@ register struct monst *mtmp;
 	if (!trap) {
 	    mtmp->mtrapped = 0;	/* perhaps teleported? */
 	} else if (mtmp->mtrapped) {	/* is currently in the trap */
-	    if (!trap->tseen &&
+	    if (!trap->tseen && !trap->hiddentrap && 
 		cansee(mtmp->mx, mtmp->my) && canseemon(mtmp) &&
 		(trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT || trap->ttyp == BEAR_TRAP ||
 		 trap->ttyp == HOLE || trap->ttyp == PIT ||

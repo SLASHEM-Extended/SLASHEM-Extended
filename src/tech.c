@@ -3455,7 +3455,7 @@ blitz_g_slam()
 	if (chasm) {
 	    if (!is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_clinger(mtmp->data))
 		mtmp->mtrapped = 1;
-	    chasm->tseen = 1;
+	    if (!chasm->hiddentrap) chasm->tseen = 1;
 	    levl[u.ux + u.dx][u.uy + u.dy].doormask = 0;
 	    pline("%s slams into the ground, creating a crater!", Monnam(mtmp));
 	    tmp *= 2;

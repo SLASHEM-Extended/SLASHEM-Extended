@@ -582,7 +582,7 @@ drag:
 
 	    if (Levitation) {
 		You_feel("a tug from the iron ball.");
-		if (t) t->tseen = 1;
+		if (t && !t->hiddentrap) t->tseen = 1;
 	    } else {
 		struct monst *victim;
 

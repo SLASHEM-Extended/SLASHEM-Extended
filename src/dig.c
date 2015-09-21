@@ -605,7 +605,7 @@ int ttyp;
 	ttmp = maketrap(x, y, ttyp);
 	if (!ttmp) return;
 	newobjs = level.objects[x][y];
-	ttmp->tseen = (madeby_u || cansee(x,y));
+	ttmp->tseen = ((madeby_u || cansee(x,y)) && !ttmp->hiddentrap);
 	ttmp->madeby_u = madeby_u;
 	newsym(ttmp->tx,ttmp->ty);
 
@@ -1037,7 +1037,7 @@ struct obj *obj;
 			struct trap *trap = t_at(rx, ry);
 
 			if (trap && trap->ttyp == WEB) {
-			    if (!trap->tseen) {
+			    if (!trap->tseen && !trap->hiddentrap) {
 				seetrap(trap);
 				There("is a spider web there!");
 			    }

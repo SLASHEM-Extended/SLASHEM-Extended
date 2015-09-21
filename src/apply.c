@@ -2690,7 +2690,7 @@ set_trap()
 
 	ttyp = (otmp->otyp == LAND_MINE) ? LANDMINE : BEAR_TRAP;
 	ttmp = maketrap(u.ux, u.uy, ttyp);
-	if (ttmp) {
+	if (ttmp && !ttmp->hiddentrap) {
 	    ttmp->tseen = 1;
 	    ttmp->madeby_u = 1;
 	    newsym(u.ux, u.uy); /* if our hero happens to be invisible */

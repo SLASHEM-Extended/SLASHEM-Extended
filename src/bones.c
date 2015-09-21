@@ -393,7 +393,7 @@ struct obj *corpse;
 	}
 	for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 		ttmp->madeby_u = 0;
-		ttmp->tseen = (ttmp->ttyp == HOLE);
+		ttmp->tseen = (!ttmp->hiddentrap && (ttmp->ttyp == HOLE));
 	}
 	resetobjs(fobj,FALSE);
 	resetobjs(level.buriedobjlist, FALSE);

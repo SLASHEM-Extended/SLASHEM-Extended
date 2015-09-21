@@ -270,7 +270,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen) {
+		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -1381,7 +1381,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen) {
+		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}

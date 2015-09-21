@@ -1413,7 +1413,7 @@ boolean atme;
 	
 		    HConfusion = HHallucination = 0L;
 		    for (t = ftrap; t != 0; t = t->ntrap) {
-			t->tseen = 1;
+			if (!t->hiddentrap) t->tseen = 1;
 			map_trap(t, TRUE);
 		    }
 		    do_mapping();

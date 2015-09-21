@@ -527,7 +527,7 @@ xchar x, y;
 			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT ||
 			   trap->ttyp == SPIKED_PIT) && !Passes_walls) ||
 			 trap->ttyp == WEB)) {
-		if (!trap->tseen) find_trap(trap);
+		if (!trap->tseen && !trap->hiddentrap) find_trap(trap);
 		You_cant("kick %s that's in a %s!", something,
 			 Hallucination ? "tizzy" :
 			 (trap->ttyp == WEB) ? "web" : "pit");
