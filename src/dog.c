@@ -1107,7 +1107,7 @@ boolean guaranteed;
 		return mtmp;
 	    } else {
 
-		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
+		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_BEAUTIFUL_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_WONDERFUL_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
 && mtmp->data != &mons[PM_PETTY_ACEHACK_HORROR] && mtmp->data != &mons[PM_PETTY_GRUNTHACK_HORROR] && mtmp->data != &mons[PM_PETTY_ANGBAND_HORROR] && mtmp->data != &mons[PM_PETTY_ADOM_HORROR])
 
 		return (struct monst *)0;
@@ -1130,7 +1130,7 @@ boolean guaranteed;
 		/* Attire charm technique and certain other methods set the guaranteed flag,
 		 * which allows players to tame humans and certain other monsters. --Amy */
 
-		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_SIZZLE] && mtmp->data != &mons[PM_KATNISS] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
+		if (mtmp->data != &mons[PM_PETTY_BATTLE_GIRL] && mtmp->data != &mons[PM_ELONA_GIRL] && mtmp->data != &mons[PM_BEAUTIFUL_GIRL] && mtmp->data != &mons[PM_NICE_OLD_LADY] && mtmp->data != &mons[PM_THICK_PROSTITUTE] && mtmp->data != &mons[PM_VIOLET_PROSTITUTE] && mtmp->data != &mons[PM_ELONA_LADY] && mtmp->data != &mons[PM_WONDERFUL_LADY] && mtmp->data != &mons[PM_FRIENDLY_ADVENTURER] && mtmp->data != &mons[PM_PETTY_SWEET_WOMAN] && mtmp->data != &mons[PM_POKEMON] && mtmp->data != &mons[PM_UNDEAD_POKEMON] && mtmp->data != &mons[PM_PETTY_BEARDED_DEVIL] && mtmp->data != &mons[PM_SIZZLE] && mtmp->data != &mons[PM_KATNISS] && mtmp->data != &mons[PM_PETTY_NALFESHNEE] && mtmp->data != &mons[PM_PETTY_LAVA_DEMON]
 && mtmp->data != &mons[PM_PETTY_ACEHACK_HORROR] && mtmp->data != &mons[PM_PETTY_GRUNTHACK_HORROR] && mtmp->data != &mons[PM_PETTY_ANGBAND_HORROR] && mtmp->data != &mons[PM_PETTY_ADOM_HORROR] && !(guaranteed) )
 			return (struct monst *)0;
 		}
