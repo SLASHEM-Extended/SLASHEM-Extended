@@ -360,13 +360,15 @@ makedog()
 #ifdef STEED
 	/* Horses already wear a saddle */
 	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
-	    if (mpickobj(mtmp, otmp, TRUE))
-		panic("merged saddle?");
+	    if (mpickobj(mtmp, otmp, TRUE)) {
+		impossible("merged saddle?");
+		} else {
 	    mtmp->misc_worn_check |= W_SADDLE;
 	    otmp->dknown = otmp->bknown = otmp->rknown = 1;
 	    otmp->owornmask = W_SADDLE;
 	    otmp->leashmon = mtmp->m_id;
 	    update_mon_intrinsics(mtmp, otmp, TRUE, TRUE);
+		}
 	}
 #endif
 
