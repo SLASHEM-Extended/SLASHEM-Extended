@@ -904,6 +904,7 @@ register struct obj *obj;
 	boolean herbi = (herbivorous(mon->data) || mon->egotype_petty);
 	struct permonst *fptr = &mons[obj->corpsenm];
 	boolean starving;
+	struct monst *potentialpet;
 
 	if (is_quest_artifact(obj) || obj_resists(obj, 0, 95))
 	    return (obj->cursed ? TABU : APPORT);
@@ -915,7 +916,8 @@ register struct obj *obj;
 	switch(obj->oclass) {
 	case FOOD_CLASS:
 	    if (obj->otyp == CORPSE &&
-		((touch_petrifies(&mons[obj->corpsenm]) && !resists_ston(mon))
+		((touch_petrifies(&mons[obj->corpsenm]) && !resists_ston(mon)) ||
+		((((potentialpet = get_mtraits(obj, FALSE)) != (struct monst *)0) ) && potentialpet->mtame)
 		 || is_rider(fptr) || is_deadlysin(fptr) || fptr->mlet == S_TROVE )) /* troves are meant for the player --Amy */
 		    return TABU;
 	    /* Ghouls only eat old corpses... yum! */
