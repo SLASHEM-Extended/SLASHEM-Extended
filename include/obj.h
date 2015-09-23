@@ -356,6 +356,7 @@ struct obj {
 || (otmp)->otyp == WAN_CLONE_MONSTER\
 || (otmp)->otyp == SCR_DESTROY_ARMOR\
 || (otmp)->otyp == SCR_STONING\
+|| (otmp)->otyp == SCR_AMNESIA\
 || (otmp)->otyp == BAG_OF_TRICKS\
 || (otmp)->otyp == WAN_STONING\
 || (otmp)->otyp == WAN_DISINTEGRATION\

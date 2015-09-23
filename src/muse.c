@@ -2252,6 +2252,7 @@ struct monst *mtmp;
 #define MUSE_SCR_CHAOS_TERRAIN 68
 #define MUSE_SCR_WOUNDS 69
 #define MUSE_SCR_BULLSHIT 70
+#define MUSE_SCR_AMNESIA 71
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2582,6 +2583,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_PUNISHMENT) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_PUNISHMENT;
+		}
+		nomore(MUSE_SCR_AMNESIA);
+		if(obj->otyp == SCR_AMNESIA) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_AMNESIA;
 		}
 		nomore(MUSE_WAN_AMNESIA);
 		if(obj->otyp == WAN_AMNESIA && obj->spe > 0) {
@@ -3695,6 +3701,19 @@ struct monst *mtmp;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_SCR_AMNESIA:
+
+		mreadmsg(mtmp, otmp);
+
+		You_feel("dizzy!");
+		forget(1 + rn2(5));
+
+		makeknown(otmp->otyp); /* do this after you forgot stuff */
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_WAN_BAD_LUCK:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -4130,7 +4149,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(69)) {
+	switch (rn2(70)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -4201,6 +4220,7 @@ struct monst *mtmp;
 		case 66: return SCR_CHAOS_TERRAIN;
 		case 67: return SCR_WOUNDS;
 		case 68: return SCR_BULLSHIT;
+		case 69: return SCR_AMNESIA;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -5360,7 +5380,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS)
+	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS)
 		return TRUE;
 	    break;
 	case AMULET_CLASS:
