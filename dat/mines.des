@@ -2567,6 +2567,171 @@ OBJECT:random,random,random
 
 RANDOM_CORRIDORS
 
+#
+# Ruined & Dangerous Town
+#
+MAZE: "mintn-19",' '
+INIT_MAP:'.','-',true,true,unlit,true
+GEOMETRY:center,top
+MAP
+.--------..--.----.--.----..----.
+.|-----...{....---------.----.-|.
+..|...|........|..||...|......|..
+..|...|.------....||...|......||.
+..|...+.|....|....||...|.|....||.
+.||...+.|....|...--|...|.--..--..
+.||...|.|....+.....--+--.......|.
+.||...|.------...........}..}}}|.
+.|-----..........--.+-.....}}}.|.
+.------------------..-----------.
+.................................
+ENDMAP
+ENGRAVING:(19,9),burn,"BEWARE"
+ENGRAVING:(23,7),mark,"DANGER"
+NON_DIGGABLE:(0,0,32,10)
+REGION:(0,0,32,10),unlit,"ordinary"
+REGION:(3,2,5,7),lit,"temple"
+REGION:(9,4,12,6),lit,"candle shop"
+REGION:(16,2,17,4),lit,"food shop"
+REGION:(20,2,22,5),lit,"shop"
+REGION:(26,2,29,4),lit,"tool shop"
+STAIR:(24,1),down
+STAIR:levregion(01,02,75,20),(0,1,32,10),up
+DOOR:open,(20,8)
+DOOR:locked,(6,4)
+DOOR:locked,(6,5)
+DOOR:closed,(13,6)
+DOOR:closed,(21,6)
+ALTAR:(4,2),random,altar
+OBJECT:'`',"boulder",(25,2)
+OBJECT:'`',"boulder",(25,3)
+OBJECT:'`',"boulder",(27,5)
+OBJECT:'`',"boulder",(28,5)
+OBJECT:'`',"boulder",(31,5)
+OBJECT:'`',"boulder",(31,2)
+OBJECT:'`',"boulder",(1,2)
+OBJECT:'`',"boulder",(1,3)
+OBJECT:'`',"boulder",(1,4)
+OBJECT:'`',"boulder",(9,0)
+OBJECT:'`',"boulder",(10,0)
+OBJECT:'`',"boulder",(13,0)
+OBJECT:'`',"boulder",(18,0)
+OBJECT:'`',"boulder",(21,0)
+OBJECT:'`',"boulder",(26,0)
+OBJECT:'`',"boulder",(27,0)
+OBJECT:'`',"boulder",(15,3)
+OBJECT:'`',"boulder",(15,4)
+OBJECT:'`',"boulder",(15,5)
+OBJECT:'`',"boulder",(16,5)
+OBJECT:'`',"boulder",(16,8)
+OBJECT:'`',"boulder",(19,8)
+OBJECT:'`',"boulder",(20,9)
+OBJECT:'%',"corpse",(27,2),"shopkeeper",0
+OBJECT:'(',random,(28,2)
+OBJECT:'(',random,(28,2)
+CONTAINER:'`',"statue",(30,8),uncursed,"gnome king",1
+OBJECT[50%]:'(',"bag of holding",contained,cursed,0
+MONSTER: 'G', random, (3,2), hostile
+MONSTER: 'G', random, (4,2), hostile
+MONSTER: 'G', random, (5,2), hostile
+MONSTER: 'G', random, (3,3), hostile
+MONSTER: 'G', random, (4,3), hostile
+MONSTER: 'G', random, (5,3), hostile
+MONSTER: 'G', random, (3,4), hostile
+MONSTER: 'G', random, (4,4), hostile
+MONSTER: 'G', random, (5,4), hostile
+MONSTER: 'G', "gnome thief", random
+MONSTER: 'G', "gnomish wizard",(3,5), hostile
+MONSTER: 'G', "gnomish wizard",(4,5), hostile
+MONSTER: 'G', "gnome king",(5,5), hostile
+MONSTER: 'G', "gnome lord", random, hostile
+MONSTER: 'h', "dwarf thief", random
+MONSTER:';',"giant eel",(29,7), hostile
+MONSTER:'D',"white dragon",(29,2), hostile
+
+NOMAP
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+
+#
+# Mini-Castle Town
+# 
+MAZE:"mintn-20",' '
+INIT_MAP:'.','-',true,true,lit,true
+GEOMETRY:center,center
+MAP
+----...}}}}}}}}}}}}}}}}}}}}}}}.--.---
+--.....}---------------------}..-..--
+-.----.}|........|.....|..|.|}......-
+..|..|.}|.-----..|.....S.K|.|}.......
+..|..|.}|.|...|..|.....|..|.|}.......
+..|..|.}|.|...+..---+------.|}.......
+..--+-.}|.|...|.............|}......-
+.......}|.-----..T...{...T..|}......-
+..{....}|...................|}.......
+.......}|.--+--.-----.-----.|}.......
+.......}|.|...--|...|.|...|.|}.......
+.......}|.|...S.|...+.+...|.|}.......
+..-....}|.|...|.|...|.|...|.|}.-+--..
+---....}|.-----------.-----.|}.|..|..
+-......}|...................|}.|....-
+--..-..}---------------------}......-
+------.}}}}}}}}}}}}}}}}}}}}}}}..-----
+ENDMAP
+
+REGION:(0,0,36,16),lit,"ordinary"
+NON_DIGGABLE:(8,1,28,15)
+STAIR:levregion(1,1,20,20),(0,0,36,16),down
+STAIR:levregion(60,1,78,20),(0,0,36,16),up
+REGION:(3,3,4,5),lit,"food shop"
+REGION:(11,4,13,6),lit,"candle shop"
+REGION:(18,2,22,4),lit,"temple"
+ALTAR:(20,3),align[1],shrine
+REGION:(24,2,25,4),lit,"ordinary"
+REGION:(11,10,12,12),lit,"ordinary"
+REGION:(14,11,15,12),unlit,"ordinary"
+REGION:(17,10,19,12),lit,"tool shop"
+REGION:(23,10,25,12),lit,"shop"
+DOOR:closed,(4,6)
+DOOR:closed,(14,5)
+DOOR:closed,(20,5)
+DOOR:locked,(23,3)
+DOOR:locked,(12,9)
+DOOR:locked,(14,11)
+DOOR:closed,(20,11)
+DOOR:closed,(22,11)
+DOOR:locked,(32,12)
+DRAWBRIDGE:(7,8),east,open
+DRAWBRIDGE:(29,8),west,open
+MONSTER:'@',"watchman",(3,8),peaceful
+MONSTER:'@',"watchman",(13,8),peaceful
+MONSTER:'@',"watchman",(23,8),peaceful
+MONSTER:'@',"watch captain",(18,7),peaceful,asleep
+MONSTER:'G',"gnomish wizard",(25,3)
+MONSTER:'G',"gnomish wizard",(24,3)
+MONSTER:'G',"gnome lord",(11,12)
+MONSTER:'G',random,(12,12)
+MONSTER:'G',random,(11,11)
+MONSTER:'Z',"skeleton",(15,12)
+MONSTER:'O',"ogre",(33,13),asleep
+MONSTER:'O',"ogre",(32,13),asleep
+MONSTER:'O',"ogre",(33,14),asleep
+OBJECT:'`',"boulder",(34,14)
+NOMAP
+MONSTER:'G',random,random
+MONSTER:'h',"dwarf",random
+MONSTER:'h',"dwarf lord",random
+MONSTER:'G',"gnome lord",random
+
+
+
 # Mine end level variant 1
 # "Mimic of the Mines"
 #
@@ -2906,6 +3071,430 @@ MONSTER:'e',random,random
 MONSTER:'e',random,random
 MONSTER:'e',random,random
 MONSTER:'e',random,random
+
+MAZE: "minend-4", ' '
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+---------------------------------------------------------------------------
+                         |.......|     |.......-...|       |.....|        |
+  ...---------  .     ----.......-------...........S..     ---...---      |
+ .   |.......|        |..........................---   .  --.......S...   |
+ . ..|......-------   ---........................|        |.......--  .   |
+ . A |..--........-----..........................|      ..S.-..----   .   |
+ . A --..--.-----........-.....................---        --..--          |
+ . A  --..--..| -----------..................---.----------..--       .   |
+ . AA  |...--.|    |..S...S..............---................--            |
+ .  A ----..-----  ------------........--- ------------...---             |
+ .AAA |.........--            ----------              ---...-- -----      |
+ .   --.....---..--                 ..    .   --------  --...---...--     |
+ .----..-..-- --..------------------S--      --......--  ---........S...  |
+|S-....-----   --..-..................---  ..S........|    |.......--  .  |
+|.......|       --......................S..  --......--    ---..----      |
+|--.--.--  .     ----.................---     ------..------...--      .  |
+| |....|            |...............-..|         ..S...........|          |
+------------------------------------------------   ------------------------
+ENDMAP
+RANDOM_PLACES:(03,04),(53,2),(37,11),(49,16),(56,05)
+
+# Dungeon Description
+REGION:(26,01,32,01),unlit,"ordinary",filled,true
+REGION:(20,08,21,08),unlit,"ordinary"
+REGION:(23,08,25,08),unlit,"ordinary"
+# Secret doors
+DOOR:locked,(22,08)
+DOOR:locked,(26,08)
+DOOR:closed,(01,13)
+DOOR:locked,(36,12)
+DOOR:locked,(51,16)
+DOOR:locked,(58,05)
+DOOR:locked,(40,14)
+DOOR:locked,(45,13)
+DOOR:locked,(51,16)
+DOOR:locked,(51,02)
+DOOR:locked,(67,03)
+DOOR:locked,(68,12)
+MONSTER:'F',random,(70,07)
+MONSTER:'F',random,place[0]
+MONSTER:'F',random,place[1]
+MONSTER:'F',random,place[2]
+MONSTER:'F',random,place[3]
+MONSTER:'F',random,place[4]
+MONSTER:'F',random,place[2]
+MONSTER:'F',random,(11,15)
+MONSTER:'F',random,(16,02)
+MONSTER:'F',random,(42,11)
+MONSTER:'F',random,(55,03)
+MONSTER:'F',random,(71,15)
+# Stairs
+STAIR:(36,04),up
+STAIR:(20,08),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+# Niches
+OBJECT:'*',"diamond",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"diamond",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"emerald",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"emerald",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"emerald",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"ruby",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"ruby",(21,08)
+OBJECT:'*',"amethyst",(21,08)
+OBJECT:'*',random,(21,08)
+OBJECT:'*',"amethyst",(21,08)
+OBJECT:'*',"luckstone",(21,08)
+# Random objects
+OBJECT:'*',"rock",(20,8)
+OBJECT:'*',"emerald",(20,8)
+OBJECT:'*',"diamond",place[0]
+OBJECT:'*',random,place[5]
+OBJECT:'*',"diamond",place[2]
+OBJECT:'*',random,place[3]
+OBJECT:'*',"worthless piece of green glass",place[4]
+OBJECT:'*',random,place[5]
+OBJECT:'*',"emerald",place[1]
+OBJECT:'*',random,place[2]
+OBJECT:'*',"emerald",place[3]
+OBJECT:'*',random,place[4]
+OBJECT:'*',"ruby",place[5]
+OBJECT:'*',random,place[0]
+OBJECT:'*',"ruby",place[0]
+OBJECT:'*',"amethyst",place[1]
+OBJECT:'*',random,place[2]
+OBJECT:'*',"amethyst",place[4]
+OBJECT:'*',"luckstone",place[4]
+OBJECT:'*',"loadstone",place[1]
+OBJECT:'*',"loadstone",(21,8)
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"statue",(35,16),"gnome king",1
+OBJECT:'`',"statue",(38,16),"gnome king",1
+OBJECT:'`',"statue",(37,13),"gnome king",1
+OBJECT:'`',"statue",(34,13),"gnome king",1
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters
+MONSTER:'G',"gnome king",random
+MONSTER:'G',"gnome lord",random
+MONSTER:'G',"gnome lord",random
+MONSTER:'G',"gnome lord",random
+MONSTER:'G',"gnomish wizard",random
+MONSTER:'G',"gnomish wizard",random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+MONSTER:'h',random,random
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'M', random, random, hostile
+MONSTER: 'M', random, random, hostile
+
+MAZE: "minend-5", ' '
+GEOMETRY:center,center
+MAP
+                        ---------  ----                        
+                ---------.......-.--..--   ---                 
+                -..........----S---....-- --.--       ---      
+    ----------  --.....-----  -.........---...-       -.---    
+  ---........--  -...---     --....-...--.....----   --...---  
+ --...........-- -...-     ---....--.............--  -......-- 
+--.....---.....---...-     -.....--...............- --....---  
+-......--..........---     --..........----.....--- -.....-    
+-..................-      --...........-  -....--   -.....--   
+--.............-----      -............-- --....-  --......-   
+ --..........---     ------....----.....- .--...----.......-   
+  --........--      --.........-  ---...----..............--   
+   ---...----       -...-......-    -.....................-    
+     -----          -..---....--    --.......---..........-    
+                    -...--...--      -....---- --.......---    
+                    --......--     ---...--     --.....--      
+                     --------      -.....-       -------       
+                                   --...--                     
+                                    -----                      
+ENDMAP
+RANDOM_PLACES:(01,07),(03,06),(04,05),(06,04),(07,09),(10,09),(12,05),(13,08),(14,07),(16,08)
+
+NON_DIGGABLE:(00,00,62,18)
+
+STAIR:(56,04),up
+STAIR:(17,02),down
+DOOR:locked,(31,02)
+
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:"rolling boulder",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"falling rock",random
+TRAP:"board",(17,07)
+# Mindless critters
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,(42,10)
+MONSTER:''',random,place[0],asleep
+MONSTER:''',random,place[1],asleep
+MONSTER:''',random,place[2],asleep
+MONSTER:''',random,place[3],asleep
+MONSTER:''',random,place[4],asleep
+MONSTER:''',random,place[5],asleep
+MONSTER:''',"stone golem",place[6],asleep
+MONSTER:''',random,place[7],asleep
+MONSTER:''',random,place[8],asleep
+MONSTER:''',random,place[9],asleep
+# Many, many boulders and rocks
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'*',"flint",(01,08)
+OBJECT:'*',"rock",(02,09)
+OBJECT:'*',"flint",(03,05)
+OBJECT:'*',"rock",(04,11)
+OBJECT:'*',"loadstone",(05,10)
+OBJECT:'*',"rock",(06,08)
+OBJECT:'*',"flint",(07,12)
+OBJECT:'*',"flint",(08,11)
+OBJECT:'*',"rock",(09,07)
+OBJECT:'*',"loadstone",(10,10)
+OBJECT:'*',"rock",(11,11)
+OBJECT:'*',"flint",(12,09)
+OBJECT:'*',"rock",(13,06)
+OBJECT:'*',"loadstone",(14,09)
+OBJECT:'*',"rock",(15,08)
+OBJECT:'*',"flint",(16,07)
+OBJECT:'*',"loadstone",(04,10)
+OBJECT:'*',"rock",(09,10)
+OBJECT:'*',"flint",(12,10)
+OBJECT:'*',"rock",(07,04)
+OBJECT:'*',"loadstone",(08,05)
+OBJECT:'*',"rock",(10,04)
+OBJECT:'*',"diamond",place[0]
+OBJECT:'*',random,place[1]
+OBJECT:'*',"diamond",place[2]
+OBJECT:'*',random,place[3]
+OBJECT:'*',"emerald",place[4]
+OBJECT:'*',random,place[5]
+OBJECT:'*',"emerald",place[6]
+OBJECT:'*',random,place[7]
+OBJECT:'*',"emerald",place[8]
+OBJECT:'*',random,place[9]
+OBJECT:'*',"ruby",place[0]
+OBJECT:'*',random,place[1]
+OBJECT:'*',"ruby",place[2]
+OBJECT:'*',"amethyst",place[3]
+OBJECT:'*',random,place[4]
+OBJECT:'*',"amethyst",place[5]
+OBJECT:'*',"luckstone",place[6],blessed,0
+OBJECT:'*',random,place[7]
+OBJECT:'*',random,place[8]
+OBJECT:'*',random,place[9]
+OBJECT:'*',"flint",place[0]
+OBJECT:'*',"loadstone",place[1]
+OBJECT:'*',"flint",place[2]
+OBJECT:'*',"flint",place[3]
+OBJECT:'*',"loadstone",place[4]
+OBJECT:'*',"loadstone",place[5]
+OBJECT:'*',"flint",place[6]
+OBJECT:'*',"loadstone",place[7]
+OBJECT:'*',"loadstone",place[8]
+OBJECT:'*',"flint",place[9]
+OBJECT:'(',"magic marker",(42,10)
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+#
+# Gnome King's Apiary
+#
+MAZE: "minend-6", ' '
+FLAGS:nommap
+GEOMETRY:center,center
+MAP
+-----                                ------------------------------------  
+|...|--   ---------------------------|..................................|  
+|.....|---|.............................................................|  
+|..|..........-----------------------------------..------------S-----...|  
+|..----.......|  |...............| ||.||...S...............-..|.|   |...|  
+|.......------|---...---|....|...| --.--...|...........--.....|.| ---...|  
+----....|.....|......|  |....|...--|...|-----.-----------------.| |...{.|  
+   --...|.........------|.-----..|.......|  -B-----------------S------..|  
+..  |.....---------|....|.....|--|.......|--|.........B..........|...|----|
+..  |--...|   |....|...---....+.............+.........B..........S...+.S..|
+      |..---| |...............|--|.......|--|.........B..........|...|----|
+|-----|.....|-|.|..---|...-----  |.......|  -B-----------------S------..|  
+|...........|.|.|.....|...|  ------|...|-----.-----------------.| |...{.|  
+|......-----|...|.....-----  |.....--.--...|..-..........-....|.| ---...|  
+|..|............|.........|  |.....||.||...S.........--.......|.|   |...|  
+|..|..|.....-------------------..----------------..------------S-----...|  
+|-----|.................................................................|  
+      |..|---------------------------|..................................|  
+      ----                           ------------------------------------  
+ENDMAP
+#Dungeon Description
+REGION:(00,00,74,18),unlit,"ordinary"
+REGION:(45,08,53,10),lit,"beehive"
+#Normal Doors
+DOOR:closed,(30,09)
+DOOR:closed,(44,09)
+DOOR:locked,(69,09)
+#Secret Doors
+DOOR:locked,(43,04)
+DOOR:locked,(43,14)
+DOOR:locked,(63,03)
+DOOR:locked,(63,07)
+DOOR:locked,(63,11)
+DOOR:locked,(63,15)
+DOOR:locked,(71,09)
+#Stairs
+STAIR:(37,09),up
+STAIR:(73,09),down
+ENGRAVING:(41,09),engrave,"The Gnome King's Royal Apiary"
+ENGRAVING:(42,09),engrave,"Keep Out!"
+#No digging
+NON_DIGGABLE:(00,00,74,18)
+#Statues
+OBJECT: '`',"statue",(49,09),"queen bee",1
+OBJECT: '`',"statue",(55,09),"killer bee",1
+OBJECT: '`',"statue",(61,09),"gnome king",1
+#Boulders
+OBJECT: '`',"boulder",(41,04)
+OBJECT: '`',"boulder",(41,14)
+OBJECT: '`',"boulder",(63,05)
+OBJECT: '`',"boulder",(63,13)
+#Treasure chamber
+OBJECT:'*',"diamond",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"diamond",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"emerald",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"emerald",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"emerald",(72,09)
+#Darshan - since we need room for the downstairs,
+#          shifted these gems over to the same square
+#          as those above
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"ruby",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"ruby",(72,09)
+OBJECT:'*',"amethyst",(72,09)
+OBJECT:'*',random,(72,09)
+OBJECT:'*',"amethyst",(72,09)
+OBJECT:'*',"luckstone",(72,09)
+#Random objects
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'/',"death",(01,08)
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+#Monsters
+MONSTER:'E',"air elemental",(0,8),hostile
+MONSTER:'E',"air elemental",(0,9),hostile
+MONSTER:'E',"air elemental",(1,8),hostile
+MONSTER:'E',"air elemental",(1,9),hostile
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'a',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'G',"gnomish wizard",(45,8),hostile
+MONSTER:'y',"black light",(36,9),hostile
+#Traps
+TRAP:random,(68,08)
+TRAP:random,(68,09)
+TRAP:random,(68,10)
+TRAP:random,(67,08)
+TRAP:random,(67,09)
+TRAP:random,(67,10)
+TRAP:random,(66,08)
+TRAP:random,(66,09)
+TRAP:random,(66,10)
+TRAP:"land mine",(38,9)
+TRAP:"board",(43,09)
+TRAP:"polymorph",(45,9)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
 
 #
 #    Ruggo the Gnome King's own special level
@@ -8388,6 +8977,360 @@ MONSTER: 'M', random, random, hostile
 MONSTER: 'M', random, random, hostile
 
 MONSTER: 'L', random, (59,11), hostile, asleep
+
+# Ruggo's deluxe level
+MAZE: "mking-17",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+-------------------------------------------------------------------------
+|............+....||.....|..+......+...........+.......}|...............|
+|............|--.---.---.|..|-+--+-|...........|......}}--..--------....|
+|............|........||...-|......|-----------|......}}}}}....|...|....|
+|............|...|||.....|..|.....|-...........-|..............|...|....|
+|-----------+|--------------------------------S--------------..--.--....|
+    |.|----.....----|..........|......S.|..--|.........S....|.........-.|
+ ----S-......{......----.......|......|-|....---.......|---|-.--..----|.|
+ |.S........{.{........+.......+......................\S...|...-........|
+ ----S-......{......----.......|......|-|....---.......|---|-.....----|.|
+    |.|----.....----|..........|......|.|..--|.........S....|..-..|...--|
+|----------..|-------------------------S---|....-------------..--.......|
+|............|}}}}}}}}}}}.}}}}}}}}|-...........-|}}}}.............|.....|
+|............|}}...}}}}}}.....}}}}}|--S--------|}}}}..}}}......}}}------|
+|............|}}...}}}}}}}}}......}}}}......|}}}}}}..}}}}}.......}}.....|
+|............|}}...}}}}}}}}}}}}}}......}}}}}|}}}}}}}}}}}.............}..|
+--------------}}}}}}}}--------------------------------------------------|
+ENDMAP
+RANDOM_OBJECTS:'*','(','%'
+RANDOM_PLACES:(39,06),(39,10)
+REGION:(00,00,72,16),lit,"ordinary"
+TELEPORT_REGION: (1,1,71,16),(1,1,61,16)
+NON_DIGGABLE:(00,00,72,16)
+STAIR:(71,08),up
+#STAIR:(68,08),down
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (47,01)
+DOOR: locked, (35,01)
+DOOR: closed, (28,01)
+DOOR: closed, (30,02)
+DOOR: closed, (33,02)
+DOOR: closed, (13,01)
+DOOR: locked, (12,05)
+DOOR: locked, (23,08)
+DOOR: locked, (31,08)
+# The secret doors
+DOOR: locked, (46,05)
+DOOR: locked, (05,07)
+DOOR: locked, (05,09)
+DOOR: locked, (03,08)
+DOOR: locked, (38,06)
+DOOR: locked, (39,11)
+DOOR: locked, (55,08)
+DOOR: locked, (55,06)
+DOOR: locked, (55,10)
+DOOR: closed, (38,13)
+# Checkpost guards
+MONSTER: 'G', random, (64,03), hostile
+MONSTER: 'G', random, (64,04), hostile
+MONSTER: 'G', random, (66,03), hostile
+MONSTER: 'G', "gnome warrior", (66,04), hostile
+MONSTER: 'G', "gnome warrior", (67,10), hostile
+MONSTER: 'G', "gnome warrior", (69,10), hostile
+MONSTER: 'G', "gnome warrior", (67,12), hostile
+# 5 random gems all around + 1 luckstone
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',"luckstone", random
+#5 bunches of gold all around...
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+# Set about the fountains
+OBJECT: '`', "statue",(13,08),"gnome king",1
+ENGRAVING: (13,08), burn, "Ruggo the Magnificent"
+# Barracks 1 (1,1)-(12,4) - 10 warriors
+MONSTER: 'G', "gnome warrior", (01,01), hostile
+MONSTER: 'G', "gnome warrior", (08,03), hostile
+MONSTER: 'G', "gnome warrior", (03,02), hostile
+MONSTER: 'G', "gnome warrior", (10,02), hostile
+MONSTER: 'G', "gnome warrior", (12,04), hostile
+MONSTER: 'G', random, (01,04), hostile
+MONSTER: 'G', random, (10,01), hostile
+MONSTER: 'G', random, (06,03), hostile
+MONSTER: 'G', random, (09,03), hostile
+MONSTER: 'G', random, (04,04), hostile
+# Barracks 2 (1,12)-(12,15)
+MONSTER: 'G', "gnome warrior", (12,15), hostile
+MONSTER: 'G', "gnome warrior", (05,13), hostile
+MONSTER: 'G', "gnome warrior", (10,14), hostile
+MONSTER: 'G', "gnome warrior", (03,14), hostile
+MONSTER: 'G', "gnome warrior", (01,12), hostile
+MONSTER: 'G', random, (12,12), hostile
+MONSTER: 'G', random, (03,15), hostile
+MONSTER: 'G', random, (07,13), hostile
+MONSTER: 'G', random, (04,13), hostile
+MONSTER: 'G', random, (09,12), hostile
+#Chance of healthstone on the island
+OBJECT: '*', "rock",(17,14),random,0
+OBJECT: '*', "rock",(17,14),random,0
+OBJECT: '*', "rock",(17,14),random,0
+OBJECT[90%]: '*', "rock",(17,14),random,0
+OBJECT[65%]: '*', "rock",(17,14),random,0
+# Random amulet to keep folks interested
+OBJECT: '"', random, (17,14)
+# And some citrines
+OBJECT: '*', "citrine", (17,14)
+OBJECT: '*', "citrine", (17,14)
+OBJECT: '*', "citrine", (17,14)
+OBJECT: '*', "worthless piece of yellow glass", (17,14)
+OBJECT: '*', "worthless piece of yellow glass", (17,14)
+OBJECT: '*', "worthless piece of yellow glass", (17,14)
+OBJECT: '*', "citrine", (17,14)
+OBJECT: '*', "worthless piece of yellow glass", (17,14)
+# Couple of random wands - is this laying it on too thick?
+OBJECT: '/', random, (17,14)
+OBJECT: '/', random, (17,14)
+# The island's guardian - the friendly neighbourhood demilich
+# and up to 4 companions
+MONSTER: 'L', "demilich", (17,14), hostile
+MONSTER[50%]: 'L', "lich", (18,14), hostile
+MONSTER[50%]: 'L', "lich", (16,14), hostile
+MONSTER[50%]: 'L', "lich", (17,15), hostile
+MONSTER[50%]: 'L', "lich", (17,13), hostile
+MONSTER[90%]: ';', "electric eel", (22,14), hostile
+MONSTER: ';', "shark", (20,13), hostile
+MONSTER[75%]: ';', "giant eel", (48,14), hostile
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+GOLD: random, (17,14)
+
+CONTAINER: '(', "chest", (17,14)
+OBJECT[40%]: '!', "full healing", contained, blessed, 0
+OBJECT[40%]: '!', "gain level", contained
+OBJECT[90%]: '*',"healthstone",contained,uncursed,0
+OBJECT[20%]: '*',"healthstone",contained,blessed,0
+# Aha!
+OBJECT[30%]: '*',"loadstone",contained,uncursed,0
+OBJECT[45%]: '*',"flint",contained,uncursed,0
+# Random ring each in the throneroom hallway closets
+OBJECT[50%]: '=', random, (02,08)
+OBJECT[50%]: '=', random, (05,10)
+OBJECT[50%]: '=', random, (05,06)
+# And some skeletons in the closets as well
+MONSTER: 'Z', "skeleton", (02,08)
+MONSTER: 'Z', "skeleton", (05,10)
+MONSTER: 'Z', "skeleton", (05,06)
+# Chance of "oFly in one of the throneroom closets - one
+# of the nice amulets
+OBJECT[15%]: '"', "amulet of flying", place[0], cursed, 0
+OBJECT[50%]: '"', "amulet of restful sleep", place[1], cursed, 0
+# Shall they go unguarded? Niet
+MONSTER: ''', "stone golem", place[0], asleep
+MONSTER: ''', "stone golem", place[1], asleep
+# throne room
+MONSTER: 'G', "Ruggo the Gnome King", (54,8), hostile
+#Ruggo's advisers
+MONSTER: 'G', "deep gnome", (54,07),hostile
+MONSTER: 'G', "deep gnome", (54,09),hostile
+# (Historic) artwork in the hallways
+OBJECT:'`',"statue",(49,07),"gnome king",1
+OBJECT:'`',"statue",(51,07),"gnome king",1
+OBJECT:'`',"statue",(53,07),"gnome king",1
+OBJECT:'`',"statue",(49,09),"gnome king",1
+OBJECT:'`',"statue",(51,09),"gnome king",1
+OBJECT:'`',"statue",(53,09),"gnome king",1
+
+OBJECT: ')',random,(54,8)
+OBJECT: '/',random,(54,8)
+# Give Ruggo some firepower?
+OBJECT[75%]: '/', random, (54,8)
+OBJECT[30%]: '/',"sleep",(54,8)
+OBJECT[10%]: '/',"draining",(54,8)
+OBJECT[5%]: '/',"lightning",(54,8)
+# Things can get hairy very quickly...
+OBJECT[5%]: '/',"create horde",(54,8)
+# And give him a chance of being exasperating - better hope
+# he doesn't get all three...
+OBJECT[25%]: '[',"shield of reflection",(54,8)
+OBJECT[25%]: '!', "full healing", (54,8), blessed, 0
+OBJECT[15%]: '"', "amulet of life saving",(54,8)
+# Give him a nasty weapon?
+OBJECT[35%]: ')', "dwarvish mattock", (54,8), blessed, +2
+OBJECT[10%]: ')', "silver short sword", (54,8), blessed, +4
+OBJECT: '!',random,(54,8)
+OBJECT: '!',random,(54,8)
+OBJECT: '[',random,(54,8)
+
+# The audience
+MONSTER: 'G', random, (46,6), hostile
+MONSTER: 'G', random, (48,6), hostile
+MONSTER: 'G', random, (50,6), hostile
+MONSTER: 'G', random, (52,6), hostile
+MONSTER: 'G', random, (54,6), hostile
+MONSTER: 'G', random, (46,10), hostile
+MONSTER: 'G', random, (48,10), hostile
+MONSTER: 'G', random, (50,10), hostile
+MONSTER: 'G', random, (52,10), hostile
+MONSTER: 'G', random, (54,10), hostile
+
+#Throne room guards
+MONSTER: 'G', "gnome warrior", (41,07), hostile
+MONSTER: 'G', "gnome warrior", (41,09), hostile
+MONSTER: 'G', "gnome warrior", (44,07), hostile
+MONSTER: 'G', "gnome warrior", (44,07), hostile
+
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', random, random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+MONSTER: 'G', "gnome warrior", random, hostile
+
+# Random citizens
+MONSTER: 'h', random, random
+MONSTER: 'h', random, random
+MONSTER: 'h', random, random
+MONSTER: 'h', random, random
+MONSTER: 'h', random, random
+# Insects are represented as well...
+MONSTER: 'a', random, random
+MONSTER: 'a', random, random
+MONSTER: 'a', random, random
+MONSTER: 'a', random, random
+MONSTER: 'a', random, random
+# And to cater to a wider audience...
+MONSTER: ''', random, random
+MONSTER: 'D', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# A guardian...
+OBJECT: '`', "statue", (56,08), "mumak", 0
+TRAP[80%]:"statue", (56,08)
+
+# ... of riches
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (57,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+GOLD: random, (58,08)
+# Somebody might just get lucky
+OBJECT[5%]: '(', "figurine", (58,08), "Planetar", 0
+
+# Store rooms 
+OBJECT: object[0], random, (36,04)
+OBJECT: object[0], random, (37,04)
+OBJECT: object[0], random, (38,04)
+OBJECT: object[0], random, (39,04)
+OBJECT: object[0], random, (40,04)
+OBJECT: object[0], random, (41,04)
+OBJECT: object[0], random, (42,04)
+OBJECT: object[0], random, (43,04)
+OBJECT: object[0], random, (44,04)
+OBJECT: object[0], random, (45,04)
+
+OBJECT: object[1], random, (56,06)
+OBJECT: object[1], random, (57,06)
+OBJECT: object[1], random, (58,06)
+OBJECT: object[1], random, (59,06)
+
+OBJECT: object[2], random, (56,10)
+OBJECT: object[2], random, (57,10)
+OBJECT: object[2], random, (58,10)
+OBJECT: object[2], random, (59,10)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
 
 MAZE: "hellfill" , ' '
 INIT_MAP: '.' , ' ' , true , true , random , true

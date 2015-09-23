@@ -197,10 +197,10 @@ RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 DUNGEON:	"The Gnomish Mines" "M" (9, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"mintn" "T" @ (3, 2) 98 18
+RNDLEVEL:	"mintn" "T" @ (3, 2) 98 20
 LEVELDESC:	town
-RNDLEVEL:	"minend" "E" @ (-2, 0) 95 3
-RNDLEVEL:		"mking" "M" @ (-1, 0) 90 16
+RNDLEVEL:	"minend" "E" @ (-2, 0) 95 6
+RNDLEVEL:		"mking" "M" @ (-1, 0) 90 17
 
 
 ### The Quest Dungeon ###
