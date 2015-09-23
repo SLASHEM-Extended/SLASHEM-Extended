@@ -772,3 +772,24 @@ TRAP:"nastiness",random
 TRAP:"farlook",random
 TRAP:"respawn",random
 TRAP:"captcha",random
+TRAP:"amnesia",random
+TRAP:"bigscript",random
+TRAP:"bank",random
+TRAP:"only",random
+TRAP:"map",random
+TRAP:"tech",random
+TRAP:"disenchant",random
+TRAP:"verisiert",random
+TRAP:"chaos",random
+TRAP:"muteness",random
+TRAP:"ntll",random
+TRAP:"engraving",random
+TRAP:"magic device",random
+TRAP:"book",random
+TRAP:"level",random
+TRAP:"quiz",random
+TRAP:"loudspeaker",random
+TRAP:"loudspeaker",random
+TRAP:"loudspeaker",random
+TRAP:"loudspeaker",random
+TRAP:"loudspeaker",random

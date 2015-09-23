@@ -345,7 +345,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "weakness trap", C(CLR_BRIGHT_GREEN)},	/* trap */
 	{'^', "rot13 trap", C(CLR_ORANGE)},	/* trap */
 	{'^', "bishop trap", C(CLR_MAGENTA)},	/* trap */
-	{'^', "confusion trap", C(CLR_CYAN)},	/* trap */
+	{'^', "sudden confusion trap", C(CLR_CYAN)},	/* trap */
 	{'^', "super nupesell nix area", C(NO_COLOR)},	/* trap */
 	{'^', "drop trap", C(CLR_BROWN)},	/* trap */
 	{'^', "DSTW trap", C(CLR_BRIGHT_BLUE)},	/* trap */
@@ -386,6 +386,59 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "locking trap", C(CLR_BLACK)},	/* trap */
 	{'^', "air trap", C(CLR_WHITE)},	/* trap */
 	{'^', "terrain trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+
+	{'^', "loudspeaker", C(CLR_BLACK)},	/* trap */
+	{'^', "nest trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "bullet trap", C(CLR_GRAY)},	/* trap */
+	{'^', "paralysis trap", C(CLR_CYAN)},	/* trap */
+	{'^', "cyanide trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "laser trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "giant chasm", C(CLR_BROWN)},	/* trap */
+	{'^', "fart trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "confusion trap", C(CLR_GREEN)},	/* trap */
+	{'^', "stun trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "hallucination trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "petrification trap", C(CLR_BLACK)},	/* trap */
+	{'^', "numbness trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "freezing trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "burning trap", C(CLR_RED)},	/* trap */
+	{'^', "fear trap", C(CLR_WHITE)},	/* trap */
+	{'^', "blindness trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "glib trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "slime trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "inertia trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "time trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "lycanthropy trap", C(CLR_BLACK)},	/* trap */
+	{'^', "unlight trap", C(CLR_BLACK)},	/* trap */
+	{'^', "elemental trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "escalating trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "negative trap", C(CLR_BLACK)},	/* trap */
+	{'^', "mana trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "sin trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "destroy armor trap", C(CLR_BLACK)},	/* trap */
+	{'^', "divine anger trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "genetic trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "missingno trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "cancellation trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "hostility trap", C(CLR_BLACK)},	/* trap */
+	{'^', "boss trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "wishing trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "amnesia trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "bigscript trap", C(CLR_WHITE)},	/* trap */
+	{'^', "bank trap", C(CLR_BROWN)},	/* trap */
+	{'^', "Only %a%s can go there!", C(CLR_RED)},	/* trap */
+	{'^', "map trap", C(CLR_BROWN)},	/* trap */
+	{'^', "tech trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "disenchantment trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "verisiert!", C(CLR_WHITE)},	/* trap */
+	{'^', "chaos trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "muteness trap", C(CLR_BROWN)},	/* trap */
+	{'^', "ntll", C(CLR_BROWN)},	/* trap */
+	{'^', "engraving trap", C(CLR_WHITE)},	/* trap */
+	{'^', "magical device trap", C(CLR_CYAN)},	/* trap */
+	{'^', "book trap", C(CLR_BROWN)},	/* trap */
+	{'^', "level trap", C(CLR_RED)},	/* trap */
+	{'^', "quiz trap", C(CLR_ORANGE)},	/* trap */
 
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -595,6 +648,59 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_air_trap),
 	g_FILLER(S_terrain_trap),
 
+	g_FILLER(S_loudspeaker),
+	g_FILLER(S_nest_trap),
+	g_FILLER(S_bullet_trap),
+	g_FILLER(S_paralysis_trap),
+	g_FILLER(S_cyanide_trap),
+	g_FILLER(S_laser_trap),
+	g_FILLER(S_giant_chasm),
+	g_FILLER(S_fart_trap),
+	g_FILLER(S_confuse_trap),
+	g_FILLER(S_stun_trap),
+	g_FILLER(S_hallucination_trap),
+	g_FILLER(S_petrification_trap),
+	g_FILLER(S_numbness_trap),
+	g_FILLER(S_freezing_trap),
+	g_FILLER(S_burning_trap),
+	g_FILLER(S_fear_trap),
+	g_FILLER(S_blindness_trap),
+	g_FILLER(S_glib_trap),
+	g_FILLER(S_slime_trap),
+	g_FILLER(S_inertia_trap),
+	g_FILLER(S_time_trap),
+	g_FILLER(S_lycanthropy_trap),
+	g_FILLER(S_unlight_trap),
+	g_FILLER(S_elemental_trap),
+	g_FILLER(S_escalating_trap),
+	g_FILLER(S_negative_trap),
+	g_FILLER(S_mana_trap),
+	g_FILLER(S_sin_trap),
+	g_FILLER(S_destroy_armor_trap),
+	g_FILLER(S_divine_anger_trap),
+	g_FILLER(S_genetic_trap),
+	g_FILLER(S_missingno_trap),
+	g_FILLER(S_cancellation_trap),
+	g_FILLER(S_hostility_trap),
+	g_FILLER(S_boss_trap),
+	g_FILLER(S_wishing_trap),
+	g_FILLER(S_recurring_amn_trap),
+	g_FILLER(S_bigscript_trap),
+	g_FILLER(S_bank_trap),
+	g_FILLER(S_only_trap),
+	g_FILLER(S_map_trap),
+	g_FILLER(S_tech_trap),
+	g_FILLER(S_disenchant_trap),
+	g_FILLER(S_verisiert),
+	g_FILLER(S_chaos_trap),
+	g_FILLER(S_muteness_trap),
+	g_FILLER(S_ntll_trap),
+	g_FILLER(S_engraving_trap),
+	g_FILLER(S_magic_device_trap),
+	g_FILLER(S_book_trap),
+	g_FILLER(S_level_trap),
+	g_FILLER(S_quiz_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -794,6 +900,59 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_air_trap),
 	g_FILLER(S_terrain_trap),
 
+	g_FILLER(S_loudspeaker),
+	g_FILLER(S_nest_trap),
+	g_FILLER(S_bullet_trap),
+	g_FILLER(S_paralysis_trap),
+	g_FILLER(S_cyanide_trap),
+	g_FILLER(S_laser_trap),
+	g_FILLER(S_giant_chasm),
+	g_FILLER(S_fart_trap),
+	g_FILLER(S_confuse_trap),
+	g_FILLER(S_stun_trap),
+	g_FILLER(S_hallucination_trap),
+	g_FILLER(S_petrification_trap),
+	g_FILLER(S_numbness_trap),
+	g_FILLER(S_freezing_trap),
+	g_FILLER(S_burning_trap),
+	g_FILLER(S_fear_trap),
+	g_FILLER(S_blindness_trap),
+	g_FILLER(S_glib_trap),
+	g_FILLER(S_slime_trap),
+	g_FILLER(S_inertia_trap),
+	g_FILLER(S_time_trap),
+	g_FILLER(S_lycanthropy_trap),
+	g_FILLER(S_unlight_trap),
+	g_FILLER(S_elemental_trap),
+	g_FILLER(S_escalating_trap),
+	g_FILLER(S_negative_trap),
+	g_FILLER(S_mana_trap),
+	g_FILLER(S_sin_trap),
+	g_FILLER(S_destroy_armor_trap),
+	g_FILLER(S_divine_anger_trap),
+	g_FILLER(S_genetic_trap),
+	g_FILLER(S_missingno_trap),
+	g_FILLER(S_cancellation_trap),
+	g_FILLER(S_hostility_trap),
+	g_FILLER(S_boss_trap),
+	g_FILLER(S_wishing_trap),
+	g_FILLER(S_recurring_amn_trap),
+	g_FILLER(S_bigscript_trap),
+	g_FILLER(S_bank_trap),
+	g_FILLER(S_only_trap),
+	g_FILLER(S_map_trap),
+	g_FILLER(S_tech_trap),
+	g_FILLER(S_disenchant_trap),
+	g_FILLER(S_verisiert),
+	g_FILLER(S_chaos_trap),
+	g_FILLER(S_muteness_trap),
+	g_FILLER(S_ntll_trap),
+	g_FILLER(S_engraving_trap),
+	g_FILLER(S_magic_device_trap),
+	g_FILLER(S_book_trap),
+	g_FILLER(S_level_trap),
+	g_FILLER(S_quiz_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -990,6 +1149,59 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_locking_trap),
 	g_FILLER(S_air_trap),
 	g_FILLER(S_terrain_trap),
+
+	g_FILLER(S_loudspeaker),
+	g_FILLER(S_nest_trap),
+	g_FILLER(S_bullet_trap),
+	g_FILLER(S_paralysis_trap),
+	g_FILLER(S_cyanide_trap),
+	g_FILLER(S_laser_trap),
+	g_FILLER(S_giant_chasm),
+	g_FILLER(S_fart_trap),
+	g_FILLER(S_confuse_trap),
+	g_FILLER(S_stun_trap),
+	g_FILLER(S_hallucination_trap),
+	g_FILLER(S_petrification_trap),
+	g_FILLER(S_numbness_trap),
+	g_FILLER(S_freezing_trap),
+	g_FILLER(S_burning_trap),
+	g_FILLER(S_fear_trap),
+	g_FILLER(S_blindness_trap),
+	g_FILLER(S_glib_trap),
+	g_FILLER(S_slime_trap),
+	g_FILLER(S_inertia_trap),
+	g_FILLER(S_time_trap),
+	g_FILLER(S_lycanthropy_trap),
+	g_FILLER(S_unlight_trap),
+	g_FILLER(S_elemental_trap),
+	g_FILLER(S_escalating_trap),
+	g_FILLER(S_negative_trap),
+	g_FILLER(S_mana_trap),
+	g_FILLER(S_sin_trap),
+	g_FILLER(S_destroy_armor_trap),
+	g_FILLER(S_divine_anger_trap),
+	g_FILLER(S_genetic_trap),
+	g_FILLER(S_missingno_trap),
+	g_FILLER(S_cancellation_trap),
+	g_FILLER(S_hostility_trap),
+	g_FILLER(S_boss_trap),
+	g_FILLER(S_wishing_trap),
+	g_FILLER(S_recurring_amn_trap),
+	g_FILLER(S_bigscript_trap),
+	g_FILLER(S_bank_trap),
+	g_FILLER(S_only_trap),
+	g_FILLER(S_map_trap),
+	g_FILLER(S_tech_trap),
+	g_FILLER(S_disenchant_trap),
+	g_FILLER(S_verisiert),
+	g_FILLER(S_chaos_trap),
+	g_FILLER(S_muteness_trap),
+	g_FILLER(S_ntll_trap),
+	g_FILLER(S_engraving_trap),
+	g_FILLER(S_magic_device_trap),
+	g_FILLER(S_book_trap),
+	g_FILLER(S_level_trap),
+	g_FILLER(S_quiz_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1378,6 +1590,59 @@ boolean is_rlevel;
 	    showsyms[S_locking_trap] = 0x04;
 	    showsyms[S_air_trap] = 0x04;
 	    showsyms[S_terrain_trap] = 0x04;
+
+	    showsyms[S_loudspeaker] = 0x04;
+	    showsyms[S_nest_trap] = 0x04;
+	    showsyms[S_bullet_trap] = 0x04;
+	    showsyms[S_paralysis_trap] = 0x04;
+	    showsyms[S_cyanide_trap] = 0x04;
+	    showsyms[S_laser_trap] = 0x04;
+	    showsyms[S_giant_chasm] = 0x04;
+	    showsyms[S_fart_trap] = 0x04;
+	    showsyms[S_confuse_trap] = 0x04;
+	    showsyms[S_stun_trap] = 0x04;
+	    showsyms[S_hallucination_trap] = 0x04;
+	    showsyms[S_petrification_trap] = 0x04;
+	    showsyms[S_numbness_trap] = 0x04;
+	    showsyms[S_freezing_trap] = 0x04;
+	    showsyms[S_burning_trap] = 0x04;
+	    showsyms[S_fear_trap] = 0x04;
+	    showsyms[S_blindness_trap] = 0x04;
+	    showsyms[S_glib_trap] = 0x04;
+	    showsyms[S_slime_trap] = 0x04;
+	    showsyms[S_inertia_trap] = 0x04;
+	    showsyms[S_time_trap] = 0x04;
+	    showsyms[S_lycanthropy_trap] = 0x04;
+	    showsyms[S_unlight_trap] = 0x04;
+	    showsyms[S_elemental_trap] = 0x04;
+	    showsyms[S_escalating_trap] = 0x04;
+	    showsyms[S_negative_trap] = 0x04;
+	    showsyms[S_mana_trap] = 0x04;
+	    showsyms[S_sin_trap] = 0x04;
+	    showsyms[S_destroy_armor_trap] = 0x04;
+	    showsyms[S_divine_anger_trap] = 0x04;
+	    showsyms[S_genetic_trap] = 0x04;
+	    showsyms[S_missingno_trap] = 0x04;
+	    showsyms[S_cancellation_trap] = 0x04;
+	    showsyms[S_hostility_trap] = 0x04;
+	    showsyms[S_boss_trap] = 0x04;
+	    showsyms[S_wishing_trap] = 0x04;
+	    showsyms[S_recurring_amn_trap] = 0x04;
+	    showsyms[S_bigscript_trap] = 0x04;
+	    showsyms[S_bank_trap] = 0x04;
+	    showsyms[S_only_trap] = 0x04;
+	    showsyms[S_map_trap] = 0x04;
+	    showsyms[S_tech_trap] = 0x04;
+	    showsyms[S_disenchant_trap] = 0x04;
+	    showsyms[S_verisiert] = 0x04;
+	    showsyms[S_chaos_trap] = 0x04;
+	    showsyms[S_muteness_trap] = 0x04;
+	    showsyms[S_ntll_trap] = 0x04;
+	    showsyms[S_engraving_trap] = 0x04;
+	    showsyms[S_magic_device_trap] = 0x04;
+	    showsyms[S_book_trap] = 0x04;
+	    showsyms[S_level_trap] = 0x04;
+	    showsyms[S_quiz_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

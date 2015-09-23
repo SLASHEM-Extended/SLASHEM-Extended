@@ -11,7 +11,7 @@
  */
 typedef struct {
     xchar x, y;
-    xchar blast;	/* blast symbol */
+    /*xchar*/int blast;	/* blast symbol */
     xchar shielded;	/* True if this location is shielded */
 } ExplodeLocation;
 
