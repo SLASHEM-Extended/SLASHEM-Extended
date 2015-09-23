@@ -11354,6 +11354,10 @@ register struct permonst *ptr;
 
 	if (!rn2(Aggravate_monster ? 500 : 100)) return TRUE; /* low chance of getting random peaceful monsters --Amy */
 
+	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */
+	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(20) && !Role_if(PM_CONVICT) && u.ualign.type == A_LAWFUL) return TRUE;
+	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
+
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DEMON && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
