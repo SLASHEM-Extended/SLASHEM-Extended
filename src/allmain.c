@@ -55,6 +55,8 @@ moveloop()
 	int randmnsx;
 	int i;
 	coord cc;
+    int cx,cy;
+
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
@@ -207,20 +209,20 @@ moveloop()
 
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
-			xtraclock = 15000;
+			xtraclock = 30000;
 			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
-				xtraclock = 4500;
+				xtraclock = 9000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 10500;
+					xtraclock = 21000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*10500/clock_base;
+					xtraclock -= past_clock*21000/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 4500) { xtraclock = 4500; }
+			if (xtraclock < 9000) { xtraclock = 9000; }
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
 			if (ishaxor) xtraclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
@@ -391,6 +393,171 @@ moveloop()
 				}
 			}
 
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				randmnst = (rn2(187) + 1);
+				randmnsx = (rn2(100) + 1);
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+			else
+		 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+				}
+			}
+
 	/* "Put AmyBSOD's extra spawn system into a define. Because some people aren't a fan of having liches on dlvl1." In Soviet Russia, some people aren't a fan of games where the player can actually lose. They want to win all the time, so they go through the entirety of the game's code and remove every little bit of possible difficulty. --Amy */
 
 			if (!rn2(ishaxor ? 1500 : 3000) && !issoviet) {
@@ -468,6 +635,50 @@ moveloop()
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 					(void) makemon(colormon(monstercolor), 0, 0, NO_MM_FLAGS);
+				}
+			}
+
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				randmonstforspawn = rndmonst();
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+				}
+
+			}
+
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of colored monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				monstercolor = rnd(15);
+				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "The colors, the colors!" : "You feel a colorful sensation!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
 				}
 			}
 
