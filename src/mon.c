@@ -1923,8 +1923,74 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != AIR_TRAP
 				&& ttmp->ttyp != TERRAIN_TRAP
 
+				&& ttmp->ttyp != LOUDSPEAKER
+				&& ttmp->ttyp != NEST_TRAP
+				&& ttmp->ttyp != CYANIDE_TRAP
+				&& ttmp->ttyp != LASER_TRAP
+				&& ttmp->ttyp != FART_TRAP
+				&& ttmp->ttyp != CONFUSE_TRAP
+				&& ttmp->ttyp != STUN_TRAP
+				&& ttmp->ttyp != HALLUCINATION_TRAP
+				&& ttmp->ttyp != PETRIFICATION_TRAP
+				&& ttmp->ttyp != NUMBNESS_TRAP
+				&& ttmp->ttyp != FREEZING_TRAP
+				&& ttmp->ttyp != BURNING_TRAP
+				&& ttmp->ttyp != FEAR_TRAP
+				&& ttmp->ttyp != BLINDNESS_TRAP
+				&& ttmp->ttyp != GLIB_TRAP
+				&& ttmp->ttyp != SLIME_TRAP
+				&& ttmp->ttyp != INERTIA_TRAP
+				&& ttmp->ttyp != TIME_TRAP
+				&& ttmp->ttyp != LYCANTHROPY_TRAP
+				&& ttmp->ttyp != UNLIGHT_TRAP
+				&& ttmp->ttyp != ELEMENTAL_TRAP
+				&& ttmp->ttyp != ESCALATING_TRAP
+				&& ttmp->ttyp != NEGATIVE_TRAP
+				&& ttmp->ttyp != MANA_TRAP
+				&& ttmp->ttyp != SIN_TRAP
+				&& ttmp->ttyp != DESTROY_ARMOR_TRAP
+				&& ttmp->ttyp != DIVINE_ANGER_TRAP
+				&& ttmp->ttyp != GENETIC_TRAP
+				&& ttmp->ttyp != MISSINGNO_TRAP
+				&& ttmp->ttyp != CANCELLATION_TRAP
+				&& ttmp->ttyp != HOSTILITY_TRAP
+				&& ttmp->ttyp != BOSS_TRAP
+				&& ttmp->ttyp != WISHING_TRAP
+				&& ttmp->ttyp != RECURRING_AMNESIA_TRAP
+				&& ttmp->ttyp != BIGSCRIPT_TRAP
+				&& ttmp->ttyp != BANK_TRAP
+				&& ttmp->ttyp != ONLY_TRAP
+				&& ttmp->ttyp != MAP_TRAP
+				&& ttmp->ttyp != TECH_TRAP
+				&& ttmp->ttyp != DISENCHANT_TRAP
+				&& ttmp->ttyp != VERISIERT
+				&& ttmp->ttyp != CHAOS_TRAP
+				&& ttmp->ttyp != MUTENESS_TRAP
+				&& ttmp->ttyp != NTLL_TRAP
+				&& ttmp->ttyp != ENGRAVING_TRAP
+				&& ttmp->ttyp != MAGIC_DEVICE_TRAP
+				&& ttmp->ttyp != BOOK_TRAP
+				&& ttmp->ttyp != LEVEL_TRAP
+				&& ttmp->ttyp != QUIZ_TRAP
+
+				&& ttmp->ttyp != BOMB_TRAP
+				&& ttmp->ttyp != EARTHQUAKE_TRAP
+				&& ttmp->ttyp != GLUE_TRAP
+				&& ttmp->ttyp != GUILLOTINE_TRAP
+				&& ttmp->ttyp != BISECTION_TRAP
+				&& ttmp->ttyp != VOLT_TRAP
+				&& ttmp->ttyp != HORDE_TRAP
+				&& ttmp->ttyp != IMMOBILITY_TRAP
+				&& ttmp->ttyp != GREEN_GLYPH
+				&& ttmp->ttyp != BLUE_GLYPH
+				&& ttmp->ttyp != YELLOW_GLYPH
+				&& ttmp->ttyp != ORANGE_GLYPH
+				&& ttmp->ttyp != BLACK_GLYPH
+				&& ttmp->ttyp != PURPLE_GLYPH
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
+				    && ttmp->ttyp != GIANT_CHASM
 				    && ttmp->ttyp != SHIT_PIT
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
@@ -2439,6 +2505,7 @@ register struct monst *mtmp;
 
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
+					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
 					if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
 					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP) && !Can_fall_thru(&u.uz)) rtrap = ROCKTRAP;
@@ -2952,7 +3019,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == SHIT_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

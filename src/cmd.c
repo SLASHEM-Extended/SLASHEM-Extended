@@ -1836,6 +1836,75 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RespawnProblem);
 		you_have(buf);
 	}
+
+	if (BigscriptEffect || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone()) {
+		Sprintf(buf, "BIGscript.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BigscriptEffect);
+		you_have(buf);
+	}
+	if (BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) {
+		Sprintf(buf, "the following problem: Your money will wander into a mysterious bank.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BankTrapEffect);
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (amount stored: %d)", u.bankcashamount);
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (money limit: %d)", u.bankcashlimit);
+		you_have(buf);
+	}
+	if (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone()) {
+		Sprintf(buf, "the following problem: The map doesn't display correctly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MapTrapEffect);
+		you_have(buf);
+	}
+	if (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) {
+		Sprintf(buf, "the following problem: Your techniques don't work.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TechTrapEffect);
+		you_have(buf);
+	}
+	if (RecurringDisenchant || u.uprops[RECURRING_DISENCHANT].extrinsic || have_disenchantmentstone()) {
+		Sprintf(buf, "the following problem: Your possessions disenchant themselves spontaneously.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RecurringDisenchant);
+		you_have(buf);
+	}
+	if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) {
+		Sprintf(buf, "the following problem: Monster respawn speeds up rapidly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", verisiertEffect);
+		you_have(buf);
+	}
+	if (ChaosTerrain || u.uprops[CHAOS_TERRAIN].extrinsic || have_chaosterrainstone()) {
+		Sprintf(buf, "the following problem: The terrain slowly becomes ever more chaotic.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ChaosTerrain);
+		you_have(buf);
+	}
+	if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
+		Sprintf(buf, "the following problem: You're completely unable to cast spells.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Muteness);
+		you_have(buf);
+	}
+	if (EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone()) {
+		Sprintf(buf, "the following problem: Monsters don't respect Elbereth.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EngravingDoesntWork);
+		you_have(buf);
+	}
+	if (MagicDeviceEffect || u.uprops[MAGIC_DEVICE_BUG].extrinsic || have_magicdevicestone()) {
+		Sprintf(buf, "the following problem: Zapping a wand can cause it to explode.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MagicDeviceEffect);
+		you_have(buf);
+	}
+	if (BookTrapEffect || u.uprops[BOOKBUG].extrinsic || have_bookstone()) {
+		Sprintf(buf, "the following problem: Reading spellbooks confuses you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BookTrapEffect);
+		you_have(buf);
+	}
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone()) {
+		Sprintf(buf, "the following problem: Monsters become stronger if many of their species have been generated already.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LevelTrapEffect);
+		you_have(buf);
+	}
+	if (QuizTrapEffect || u.uprops[QUIZZES].extrinsic || have_quizstone()) {
+		Sprintf(buf, "the following problem: You have to partake in the Great NetHack Quiz.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", QuizTrapEffect);
+		you_have(buf);
+	}
+
 	if (MCReduction) {
 		Sprintf(buf, "reduced magic cancellation.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MCReduction);
@@ -1885,6 +1954,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TeleportingItems);
 		you_have(buf);
 	}
+
+	if (u.uprops[RECURRING_AMNESIA].extrinsic || RecurringAmnesia || have_amnesiastone() ) {
+		Sprintf(buf, "going to suffer from amnesia now and then");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RecurringAmnesia);
+		you_are(buf);
+	}
+
+
 	if (u.uprops[RANDOM_RUMORS].extrinsic) {
 		Sprintf(buf, "going to listen to random rumors");
 		you_are(buf);
@@ -1910,11 +1987,6 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (UseTheForce) {
 		Sprintf(buf, "able to use the force like a true jedi");
-		you_are(buf);
-	}
-
-	if (RecurringAmnesia) {
-		Sprintf(buf, "going to suffer from amnesia now and then");
 		you_are(buf);
 	}
 

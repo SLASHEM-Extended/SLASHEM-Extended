@@ -708,12 +708,12 @@ TRAP:"glyph of warding",random
 TRAP:"glyph of warding",random
 TRAP:"glyph of warding",random
 TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
-TRAP:"glyph of warding",random
+TRAP:"orange glyph",random
+TRAP:"purple glyph",random
+TRAP:"black glyph",random
+TRAP:"yellow glyph",random
+TRAP:"green glyph",random
+TRAP:"blue glyph",random
 TRAP:"rmb loss",random
 TRAP:"display",random
 TRAP:"spell loss",random

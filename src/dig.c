@@ -217,7 +217,7 @@ dig_check(madeby, verbose, x, y)
 	} else if ((IS_ROCK(levl[x][y].typ) && levl[x][y].typ != SDOOR &&
 		      (levl[x][y].wall_info & W_NONDIGGABLE) != 0)
 		|| (ttmp &&
-		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || !Can_dig_down(&u.uz)))) {
+		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == FART_TRAP || !Can_dig_down(&u.uz)))) {
 	    if(verbose) pline_The("%s here is too hard to %s.",
 				  surface(x,y), verb);
 	    return(FALSE);
@@ -339,7 +339,7 @@ dig()
 		    is_lightsaber(uwep) ||
 #endif
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
-			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == SHAFT_TRAP ||
+			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == SHAFT_TRAP ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
 		    return(1);
 
@@ -735,7 +735,7 @@ boolean pit_only;
 	schar typ;
 	boolean nohole = !Can_dig_down(&u.uz);
 
-	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || nohole)) ||
+	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
 	   (IS_ROCK(lev->typ) && lev->typ != SDOOR &&
@@ -772,6 +772,8 @@ boolean pit_only;
 		    rn2(2)) {
 			pline_The("boulder settles into the pit.");
 			ttmp->ttyp = PIT;	 /* crush spikes */
+		} else if (ttmp && ttmp->ttyp == GIANT_CHASM) {
+			pline("KADOOM! The boulder falls in!");
 		} else {
 			/*
 			 * digging makes a hole, but the boulder immediately
@@ -926,6 +928,14 @@ struct obj *obj;
 
 	if (u.utrap && u.utraptype == TT_WEB) {
 	    pline("%s you can't %s while entangled in a web.",
+		  /* res==0 => no prior message;
+		     res==1 => just got "You now wield a pick-axe." message */
+		  !res ? "Unfortunately," : "But", verb);
+	    return res;
+	}
+
+	if (u.utrap && u.utraptype == TT_GLUE) {
+	    pline("%s you can't %s while being held by the glue.",
 		  /* res==0 => no prior message;
 		     res==1 => just got "You now wield a pick-axe." message */
 		  !res ? "Unfortunately," : "But", verb);

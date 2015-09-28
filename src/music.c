@@ -33,7 +33,7 @@ STATIC_DCL void FDECL(put_monsters_to_sleep,(int));
 STATIC_DCL void FDECL(charm_snakes,(int));
 STATIC_DCL void FDECL(calm_nymphs,(int));
 STATIC_DCL void FDECL(charm_monsters,(int));
-STATIC_DCL void FDECL(do_earthquake,(int));
+/*STATIC_DCL void FDECL(do_earthquake,(int));*/
 STATIC_DCL int FDECL(do_improvisation,(struct obj *));
 
 #ifdef UNIX386MUSIC
@@ -212,7 +212,7 @@ int distance;
  * That is:  create random chasms (pits).
  */
 
-STATIC_OVL void
+/*STATIC_OVL */void
 do_earthquake(force)
 int force;
 {

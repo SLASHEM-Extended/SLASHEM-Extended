@@ -3246,6 +3246,7 @@ dopois:
 		if (!rn2(10)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
+			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(10)) {
@@ -5036,7 +5037,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE) return(0);
-		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == SHIT_PIT))) &&
+		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT))) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 
@@ -5487,11 +5488,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (!rn2(10)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
+			if (u.uhpmax < 0) u.uhpmax = 0;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		if (!rn2(10)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
+			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(10)) {
@@ -7419,11 +7422,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(10)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
+			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		if (!rn2(10)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
+			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(10)) {

@@ -1313,6 +1313,16 @@ int tech_no;
                 return(0);
         }
 
+	if (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) {
+
+		pline("Unfortunately, nothing happens.");
+		techtout(tech_no) = rnz(5000);
+		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		/*By default,  action should take a turn*/
+		return(1);
+
+	}
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) {
 
 		pline("Unfortunately, nothing happens.");
@@ -1768,6 +1778,9 @@ int tech_no;
 				break;
 			    case TT_WEB:
 				You("flow through the web!");
+				break;
+			    case TT_GLUE:
+				You("get rid of the sticky glue!");
 				break;
 			    case TT_LAVA:
 				You("separate from the lava!");

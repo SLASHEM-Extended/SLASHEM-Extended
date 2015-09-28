@@ -575,6 +575,7 @@ drag:
 	    || ((t = t_at(uchain->ox, uchain->oy)) &&
 			(t->ttyp == PIT ||
 			 t->ttyp == SPIKED_PIT ||
+			 t->ttyp == GIANT_CHASM ||
 			 t->ttyp == SHIT_PIT ||
 			 t->ttyp == HOLE ||
 			 t->ttyp == SHAFT_TRAP ||
@@ -666,6 +667,9 @@ xchar x, y;
 	    case TT_PIT:
 		pline(pullmsg, "pit");
 		break;
+	    case TT_GLUE:
+		pline(pullmsg, "glue");
+		break;
 	    case TT_WEB:
 		pline(pullmsg, "web");
 		pline_The("web is destroyed!");
@@ -700,7 +704,7 @@ xchar x, y;
 	if (!Levitation && !MON_AT(x, y) && !u.utrap &&
 			    (is_pool(x, y) ||
 			     ((t = t_at(x, y)) &&
-			      (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == SHIT_PIT || t->ttyp == SHAFT_TRAP ||
+			      (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == SHAFT_TRAP ||
 			       t->ttyp == TRAPDOOR || t->ttyp == HOLE)))) {
 	    u.ux = x;
 	    u.uy = y;

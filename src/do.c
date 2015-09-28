@@ -188,7 +188,7 @@ const char *verb;
 	if (obj->otyp == BOULDER && boulder_hits_pool(obj, x, y, FALSE))
 		return TRUE;
 	else if (obj->otyp == BOULDER && (t = t_at(x,y)) != 0 &&
-		 (t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==SHIT_PIT || t->ttyp==SHAFT_TRAP
+		 (t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==GIANT_CHASM || t->ttyp==SHIT_PIT || t->ttyp==SHAFT_TRAP
 			|| t->ttyp==TRAPDOOR || t->ttyp==HOLE)) {
 		if (((mtmp = m_at(x, y)) && mtmp->mtrapped) ||
 			(u.utrap && u.ux == x && u.uy == y)) {
@@ -226,7 +226,7 @@ const char *verb;
 				    "fills a pit");
 			}
 		}
-		deltrap(t);
+		if (t && !(t->ttyp == GIANT_CHASM)) deltrap(t);
 		obfree(obj, (struct obj *)0);
 		bury_objs(x, y);
 		newsym(x,y);
@@ -253,7 +253,7 @@ const char *verb;
 	} else if (u.ux == x && u.uy == y &&
 		(!u.utrap || u.utraptype != TT_PIT) &&
 		(t = t_at(x,y)) != 0 && t->tseen &&
-			(t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==SHIT_PIT)) {
+			(t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==GIANT_CHASM || t->ttyp==SHIT_PIT)) {
 		/* you escaped a pit and are standing on the precipice */
 		if (Blind && flags.soundok)
 			You_hear("%s %s downwards.",
@@ -434,6 +434,9 @@ giveback:
 		    break;
 	      case RIN_SUPERSCROLLING:
 		    pline("The water flow seems to be stuck in an infinite loop.");
+		    break;
+	      case RIN_DISENGRAVING:
+		    pline("Some writing seems to vanish from the water flow!");
 		    break;
 	      case RIN_NUMBNESS:
 		    pline("The water flow stutters for a moment.");

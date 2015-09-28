@@ -589,6 +589,10 @@ doread()
 	if (scroll->otyp == SCR_MAIL) confused = FALSE;
 #endif
 	if(scroll->oclass == SPBOOK_CLASS) {
+		if (BookTrapEffect || u.uprops[BOOKBUG].extrinsic || have_bookstone()) {
+		    pline("Suddenly you're very confused!");
+		    make_confused(HConfusion + 2, FALSE);
+		}
 	    return(study_book(scroll));
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */

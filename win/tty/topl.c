@@ -425,7 +425,8 @@ char def;
 	    Strcpy(respbuf, resp);
 	    /* any acceptable responses that follow <esc> aren't displayed */
 	    if ((rb = index(respbuf, '\033')) != 0) *rb = '\0';
-	    Sprintf(prompt, "%s [%s] ", query, respbuf);
+	    if (!strncmpi(query, "nt|| - Not a valid save file", 29) ) sprintf(prompt, "%s [y] ", query);
+	    else Sprintf(prompt, "%s [%s] ", query, respbuf);
 	    if (def) Sprintf(eos(prompt), "(%c) ", def);
 	    pline("%s", prompt);
 	} else {

@@ -923,7 +923,12 @@ boolean atme;
 		Your("arms are not free to cast!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
+	} else if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
+		pline("You're muted!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return (0);
 	}
+
 
 	/* Casting any sort of magic as a mahou shoujo or naga does not cause hunger */
 

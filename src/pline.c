@@ -96,7 +96,37 @@ pline VA_DECL(const char *, line)
 		line = replace(line,"y","L");
 		line = replace(line,"z","M");
 
+	  }  else if ( (BigscriptEffect || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+
+		line = replace(line,"a","A");
+		line = replace(line,"b","B");
+		line = replace(line,"c","C");
+		line = replace(line,"d","D");
+		line = replace(line,"e","E");
+		line = replace(line,"f","F");
+		line = replace(line,"g","G");
+		line = replace(line,"h","H");
+		line = replace(line,"i","I");
+		line = replace(line,"j","J");
+		line = replace(line,"k","K");
+		line = replace(line,"l","L");
+		line = replace(line,"m","M");
+		line = replace(line,"n","N");
+		line = replace(line,"o","O");
+		line = replace(line,"p","P");
+		line = replace(line,"q","Q");
+		line = replace(line,"r","R");
+		line = replace(line,"s","S");
+		line = replace(line,"t","T");
+		line = replace(line,"u","U");
+		line = replace(line,"v","V");
+		line = replace(line,"w","W");
+		line = replace(line,"x","X");
+		line = replace(line,"y","Y");
+		line = replace(line,"z","Z");
+
 	  }
+
 
 /*Intercept direct speach, inpossible() and very short or long Strings here*/
 /* to cut down unnecesary calls to the now slower replace */

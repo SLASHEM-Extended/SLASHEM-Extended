@@ -214,7 +214,22 @@
 #define SENSORY_DEPRIVATION 190
 #define RECURRING_AMNESIA 191
 
-#define SECOND_CHANCE		192
+#define BIGSCRIPT 192
+#define BANKBUG 193
+#define MAPBUG 194
+#define TECHBUG 195
+#define RECURRING_DISENCHANT 196
+#define VERISIERTEFFECT 197
+#define CHAOS_TERRAIN 198
+#define MUTENESS 199
+#define ENGRAVINGBUG 200
+#define MAGIC_DEVICE_BUG 201
+#define BOOKBUG 202
+#define LEVELBUG 203
+#define QUIZZES 204
+
+
+#define SECOND_CHANCE		205
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

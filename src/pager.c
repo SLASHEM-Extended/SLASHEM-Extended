@@ -197,7 +197,7 @@ lookat(x, y, buf, monbuf)
 
 		/* newsym lets you know of the trap, so mention it here */
 		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT ||
-			tt == SPIKED_PIT || tt == WEB)
+			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == WEB)
 		    Sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));
 	    }
@@ -497,7 +497,7 @@ checkfile(inp, pm, user_typed_name, without_asking)
      * for Angel and angel, make the lookup string the same for both
      * user_typed_name and picked name.
      */
-    if (pm != (struct permonst *) 0 && !user_typed_name)
+    if (pm != (struct permonst *) 0 && !user_typed_name && !u.ughmemory)
 	dbase_str = strcpy(newstr, pm->mname);
     else dbase_str = strcpy(newstr, inp);
     (void) lcase(dbase_str);

@@ -3162,6 +3162,12 @@ dozap()
 		exercise(A_STR, FALSE);
 		return(1);
 	}
+	else if ((MagicDeviceEffect || u.uprops[MAGIC_DEVICE_BUG].extrinsic || have_magicdevicestone()) && !rn2(10)) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+
 
 	else if(obj->otyp == WAN_WONDER && !rn2(100)) {
 		backfire(obj);  /* the wand blows up in your face! */
@@ -4682,7 +4688,7 @@ struct obj **obj_p;			/* object tossed/used */
 				  The(distant_name(obj, xname))); /* lame */
 			range = 0;
 		    } else if (In_sokoban(&u.uz) && (t = t_at(x, y)) != 0 &&
-			       (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == SHIT_PIT || t->ttyp == SHAFT_TRAP ||
+			       (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == SHAFT_TRAP ||
 				t->ttyp == HOLE || t->ttyp == TRAPDOOR)) {
 			/* hero falls into the trap, so ball stops */
 			range = 0;

@@ -178,6 +178,9 @@ dosit()
 		} else if(u.utraptype == TT_WEB) {
 		    You("sit in the spider web and get entangled further!");
 		    u.utrap += rn1(10, 5);
+		} else if(u.utraptype == TT_GLUE) {
+		    You("immerse yourself with glue!");
+		    u.utrap += rn1(10, 5);
 		} else if(u.utraptype == TT_LAVA) {
 		    /* Must have fire resistance or they'd be dead already */
 		    You("sit in the lava!");

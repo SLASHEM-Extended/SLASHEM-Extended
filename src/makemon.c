@@ -643,6 +643,14 @@ register struct monst *mtmp;
 
 		if (ptr == &mons[PM_SERRATED_ROGUE]) (void) mongets(mtmp, JAGGED_STAR);
 
+		if (ptr == &mons[PM_ARABELLA_THE_MONEY_THIEF]) {
+
+			mtmp->mgold = u.bankcashamount;
+			u.bankcashamount = 0;
+			u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+
+		}
+
 		if (ptr == &mons[PM_DARK_JEDI]) (void) mongets(mtmp, RED_LIGHTSABER);
 
 		if (ptr == &mons[PM_STORECLERK]) (void) mongets(mtmp, POT_PARALYSIS);
@@ -8572,6 +8580,12 @@ register int	mmflags;
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 	}
 
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone()) {
+
+		mtmp->m_lev += rnd(mvitals[mtmp->mnum].born + 1);
+		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
+
+	}
 
 	/* Set HP, HPmax */	
 	if (is_golem(ptr)) {

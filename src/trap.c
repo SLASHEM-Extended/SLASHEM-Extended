@@ -9,8 +9,10 @@ extern const char * const destroy_strings[];	/* from zap.c */
 STATIC_DCL void FDECL(rocks_fall, (int, int));
 
 STATIC_DCL void FDECL(dofiretrap, (struct obj *));
+STATIC_DCL void FDECL(doplasmatrap, (struct obj *));
 STATIC_DCL void FDECL(doicetrap, (struct obj *));
 STATIC_DCL void FDECL(doshocktrap, (struct obj *));
+STATIC_DCL void FDECL(dovolttrap, (struct obj *));
 STATIC_DCL void FDECL(doshittrap, (struct obj *));
 STATIC_DCL void NDECL(domagictrap);
 STATIC_DCL boolean FDECL(emergency_disrobe,(boolean *));
@@ -22,13 +24,14 @@ STATIC_DCL void FDECL(reward_untrap, (struct trap *, struct monst *));
 /*
 STATIC_DCL int FDECL(disarm_holdingtrap, (struct trap *));
 STATIC_DCL int FDECL(disarm_unknowntrap, (struct trap *));
+STATIC_DCL int FDECL(disarm_fartingtrap, (struct trap *));
 STATIC_DCL int FDECL(disarm_active_superscroller, (struct trap *));
 STATIC_DCL int FDECL(disarm_trap_percents, (struct trap *));
 STATIC_DCL int FDECL(disarm_rust_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_acid_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_water_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_heel_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_glyph_trap, (struct trap *));
+STATIC_DCL int FDECL(disarm_glyph_trap, (struct trap *), int);
 STATIC_DCL int FDECL(disarm_blade_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_fire_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_landmine, (struct trap *));
@@ -64,6 +67,26 @@ STATIC_VAR const char * const blindgas[6] =
 	{"humid", "odorless", "pungent", "chilling", "acrid", "biting"};
 
 #endif /* OVLB */
+
+static const char * const farttrapnames[] = {
+/* always 5 names per line, because we'll need the index numbers later --Amy */
+
+/* quiet */
+"Nadja", "Mailie", "Elif", "Solvejg", "Sueschen", 
+"Jessica", "Yvonne", "Patricia", "Jennifer", "Inge", 
+"Sarah", /* 0-10 */
+
+/* normal */
+"Kati", "Maurah", "Eveline", "Larissa", "Sandra", 
+"Meltem", "Kerstin", "Karin", "Ina", "Lou", 
+"Lisa", "Miriam", "Elena", "Katharina", "Simone", 
+"Jasieen", "Marike", "Sue Lyn", /* 11-28 */
+
+/* loud */
+"Sunali", "Thai", "Klara", "Ludgera", "Johanetta", 
+"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 29-38 */
+
+};
 
 #ifdef OVLB
 
@@ -865,7 +888,7 @@ register int x, y, typ;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP) ||
 	      (u.utraptype == TT_WEB && typ != WEB) ||
-	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != SHIT_PIT)))
+	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT)))
 		    u.utrap = 0;
 	} else {
 	    oldplace = FALSE;
@@ -937,6 +960,14 @@ register int x, y, typ;
 		{
 
 		ttmp->launch_otyp = rnd(15);
+
+		break;
+	      }
+
+	    case FART_TRAP:
+		{
+
+		ttmp->launch_otyp = rn2(SIZE(farttrapnames));
 
 		break;
 	      }
@@ -1155,6 +1186,7 @@ register int x, y, typ;
 	    case HOLE:
 	    case PIT:
 	    case SPIKED_PIT:
+	    case GIANT_CHASM:
 	    case SHIT_PIT:
 	    case SHAFT_TRAP:
 	    case TRAPDOOR:
@@ -1578,7 +1610,7 @@ unsigned trflags;
 
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
-			(ttype == PIT || ttype == SPIKED_PIT || ttype == SHIT_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
+			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
 			ttype == TRAPDOOR)) {
 	    /* The "air currents" message is still appropriate -- even when
 	     * the hero isn't flying or levitating -- because it conveys the
@@ -1591,7 +1623,7 @@ unsigned trflags;
 	    /* then proceed to normal trap effect */
 	} else if (already_seen) {
 	    if ((Levitation || Flying) &&
-		    (ttype == PIT || ttype == SPIKED_PIT || ttype == HOLE ||
+		    (ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == HOLE ||
 		    ttype == BEAR_TRAP)) {
 		You("%s over %s %s.",
 		    Levitation ? "float" : "fly",
@@ -1599,15 +1631,18 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP &&
-		ttype != ANTI_MAGIC && !forcebungle &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && !forcebungle &&
 		(!rn2(5) ||
-	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == SHIT_PIT) && is_clinger(youmonst.data)))) {
+	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
 		    (ttype == ARROW_TRAP && !trap->madeby_u) ? "an" :
 			a_your[trap->madeby_u],
 		    defsyms[trap_to_defsym(ttype)].explanation);
-		return;
+		if (ttype == FART_TRAP) {
+			pline("But you're longing for a sexy girl so much, so...");
+		} else
+			return;
 	    }
 	}
 
@@ -1670,6 +1705,101 @@ unsigned trflags;
 		    stackobj(otmp);
 		    newsym(u.ux, u.uy);
 		}
+		break;
+
+	    case BULLET_TRAP:
+		if (trap->once && trap->tseen && !rn2(15)) {
+		    You_hear("a soft click.");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("BANG! A gun shoots at you!");
+		otmp = mksobj(BULLET, TRUE, FALSE);
+		otmp->quan = 1L;
+		otmp->owt = weight(otmp);
+		otmp->opoisoned = 0;
+#ifdef STEED
+		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+		else
+#endif
+		if (thitu(8 + rnd(monster_difficulty() + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
+		    obfree(otmp, (struct obj *)0);
+		} else {
+		    obfree(otmp, (struct obj *)0);
+		}
+		break;
+
+	    case GLASS_ARROW_TRAP:
+		if (trap->once && trap->tseen && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A glass arrow shoots out at you!");
+		otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
+		otmp->quan = 1L;
+		otmp->owt = weight(otmp);
+		otmp->opoisoned = 0;
+#ifdef STEED
+		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+		else
+#endif
+		if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
+		    obfree(otmp, (struct obj *)0);
+		} else {
+		    place_object(otmp, u.ux, u.uy);
+		    if (!Blind) otmp->dknown = 1;
+		    stackobj(otmp);
+		    newsym(u.ux, u.uy);
+		}
+		break;
+
+	    case GLASS_BOLT_TRAP:
+		if (trap->once && trap->tseen && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A glass bolt shoots out at you!");
+		otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
+		otmp->quan = 1L;
+		otmp->owt = weight(otmp);
+		otmp->opoisoned = 0;
+#ifdef STEED
+		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+		else
+#endif
+		if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
+		    obfree(otmp, (struct obj *)0);
+		} else {
+		    place_object(otmp, u.ux, u.uy);
+		    if (!Blind) otmp->dknown = 1;
+		    stackobj(otmp);
+		    newsym(u.ux, u.uy);
+		}
+		break;
+
+	    case FART_TRAP:
+
+		if (!trap->tseen) pline("You discover a construction, behind which there is a sexy girl waiting... but you can only see her butt. It seems that her name is %s.", farttrapnames[trap->launch_otyp]);
+		else pline("You can't resist the temptation to caress %s's sexy butt.", farttrapnames[trap->launch_otyp]);
+
+		seetrap(trap);
+
+		if (trap->launch_otyp < 11) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "tender" : "soft");
+		else if (trap->launch_otyp < 29) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "beautiful" : "squeaky");
+		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "disgusting" : "loud");
+		badeffect();
+
 		break;
 
 	    case MAGIC_BEAM_TRAP:
@@ -1783,6 +1913,44 @@ unsigned trflags;
 		}
 		break;
 
+	    case FALLING_BOULDER_TRAP:
+		if (trap->once && trap->tseen && !rn2(15)) {
+		    pline("A trap door in %s opens, but nothing falls out!",
+			  the(ceiling(u.ux,u.uy)));
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		} else {
+		    int dmg = d(6,6) + rnd(monster_difficulty() + 1); /* should be std BOULDER dmg? */
+
+		    trap->once = 1;
+		    seetrap(trap);
+		    otmp = mksobj_at(BOULDER, u.ux, u.uy, TRUE, FALSE);
+		    otmp->quan = 1L;
+		    otmp->owt = weight(otmp);
+
+		    pline("A trap door in %s opens and %s falls on your %s!",
+			  the(ceiling(u.ux,u.uy)),
+			  an(xname(otmp)),
+			  body_part(HEAD));
+
+		    if (uarmh) {
+			if(is_metallic(uarmh)) {
+			    pline("Fortunately, you are wearing a hard helmet.");
+			    dmg /= 2;
+			} else if (flags.verbose) {
+			    Your("%s does not protect you.", xname(uarmh));
+			}
+		    }
+
+		    if (!Blind) otmp->dknown = 1;
+		    stackobj(otmp);
+		    newsym(u.ux,u.uy);	/* map the rock */
+
+		    losehp(dmg, "falling boulder", KILLED_BY_AN);
+		    exercise(A_STR, FALSE);
+		}
+		break;
+
 	    case SQKY_BOARD:	    /* stepped on a squeaky board */
 		if (Levitation || Flying) {
 		    if (!Blind) {
@@ -1796,6 +1964,27 @@ unsigned trflags;
 		    seetrap(trap);
 		    pline("A board beneath you squeaks loudly.");
 		    wake_nearby();
+		}
+		break;
+
+	    case NOISE_TRAP:
+		{
+		    pline("You stepped on a trigger!");
+		    wake_nearby();
+			register struct monst *mtmp3;
+			for(mtmp3 = fmon; mtmp3; mtmp3 = mtmp3->nmon) {
+			    if (!DEADMONSTER(mtmp3)) {
+				mtmp3->msleeping = 0;
+			    }
+			}
+			pline("Your ears are blasted by hellish noise!");
+			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
+			if (Deafness) dmg /= 2;
+			make_stunned(HStun + dmg, TRUE);
+			if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+	      	if (dmg) losehp(dmg, "noise trap", KILLED_BY_AN);
+
+		    seetrap(trap);
 		}
 		break;
 
@@ -1843,6 +2032,20 @@ unsigned trflags;
 		}
 		pline("A cloud of gas puts you to sleep!");
 		fall_asleep(-rnd(25 + rnd((monster_difficulty() / 4) + 1) ), TRUE);
+#ifdef STEED
+		(void) steedintrap(trap, (struct obj *)0);
+#endif
+		break;
+
+	    case PARALYSIS_TRAP:
+	      pline("You stepped on a trigger!");
+		seetrap(trap);
+		if (!Free_action) {
+		    pline("You are frozen in place!");
+		    nomul(-rnz(10), "frozen by a paralysis trap");
+		    nomovemsg = You_can_move_again;
+		    exercise(A_DEX, FALSE);
+		} else You("stiffen momentarily.");
 #ifdef STEED
 		(void) steedintrap(trap, (struct obj *)0);
 #endif
@@ -2036,9 +2239,47 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		doicetrap((struct obj *)0);
 		break;
 
+	    case PLASMA_TRAP:
+		seetrap(trap);
+		doplasmatrap((struct obj *)0);
+		break;
+
 	    case SHOCK_TRAP:
 		seetrap(trap);
 		doshocktrap((struct obj *)0);
+		break;
+
+	    case VOLT_TRAP:
+		seetrap(trap);
+		dovolttrap((struct obj *)0);
+		break;
+
+	    case ELEMENTAL_TRAP:
+		seetrap(trap);
+		if (rn2(2)) {
+			dofiretrap((struct obj *)0);
+			doicetrap((struct obj *)0);
+			doshocktrap((struct obj *)0);
+		} else {
+			doicetrap((struct obj *)0);
+			dofiretrap((struct obj *)0);
+			doshocktrap((struct obj *)0);
+		}
+		break;
+
+	    case LASER_TRAP:
+		seetrap(trap);
+		pline("You stepped on a trigger!");
+		pline("A laser beam hits you!");
+		losehp(monster_difficulty(),"laser trap",KILLED_BY_AN);
+		break;
+
+	    case ESCALATING_TRAP:
+		seetrap(trap);
+		pline("You stepped on a trigger!");
+		pline("Something hits your %s.", body_part(rn2(19) ) );
+		losehp(1 + u.chokhmahdamage,"escalating trap",KILLED_BY_AN);
+		u.chokhmahdamage++;
 		break;
 
 	    case ANIMATION_TRAP:
@@ -2056,6 +2297,87 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 	pline("es come to life!"); /* garbled string from Castle of the Winds. This trap summons random monsters. --Amy */
 
 		deltrap(trap); /* only triggers once */
+		break;
+
+	    case HORDE_TRAP:
+
+		monstcnt = 6 + rnd(12);
+		if (!rn2(5)) monstcnt += rnd(5);
+		if (!rn2(25)) monstcnt += rnd(10);
+		if (!rn2(125)) monstcnt += rnd(20);
+		if (!rn2(725)) monstcnt += rnd(50);
+
+	      while(--monstcnt >= 0) {
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		pline("e Pale Wraith with a lightning stroke.");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case IMMOBILITY_TRAP:
+
+		monstcnt = 8;
+		while (rn2(10)) monstcnt++;
+
+		{
+		int sessileattempts;
+		int sessilemnum;
+
+	      while(--monstcnt >= 0) {
+			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+				sessilemnum = rndmonnum();
+				if (sessilemnum != -1 && (mons[sessilemnum].mlet != S_TROVE) && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+			}
+			if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		}
+
+		pline("vailable, exit anyway?");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case BOSS_TRAP:
+
+		{
+			int attempts = 0;
+			register struct permonst *ptrZ;
+newboss:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", ptrZ->mname);
+				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (ptrZ && rn2(10)) {
+				attempts = 0;
+				goto newboss;
+			}
+
+		}
+
+		pline("A boss monster suddenly appears!");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case WISHING_TRAP:
+
+		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
+		pline("You stepped on a trap of wishing!");
+		if (Luck+rn2(5) < 0) {
+			pline("Unfortuantely, nothing happens.");
+			break;
+		}
+		makewish();
 		break;
 
 	    case GROWING_TRAP:
@@ -2380,6 +2702,274 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		break;
 
+	    case DESTROY_ARMOR_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		{
+			struct obj *otmpD;
+			otmpD = some_armor(&youmonst);
+			if(otmpD) {
+			    if(!destroy_arm(otmpD)) {
+				pline("Your skin itches.");
+			    }
+			} 
+			else pline("Your skin itches.");
+		}
+
+		break;
+
+	    case DIVINE_ANGER_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+		u.ugangr++;
+	      You("get the feeling that %s is angry...", u_gname());
+
+		break;
+
+	    case SIN_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		{
+			int dmg = 0;
+
+		switch (rnd(8)) {
+
+			case 1: /* gluttony */
+				u.negativeprotection++;
+				pline("You feel less protected!");
+				break;
+			case 2: /* wrath */
+				if(u.uen < 1) {
+				    You_feel("less energised!");
+				    u.uenmax -= rn1(10,10);
+				    if(u.uenmax < 0) u.uenmax = 0;
+				} else if(u.uen <= 10) {
+				    You_feel("your magical energy dwindle to nothing!");
+				    u.uen = 0;
+				} else {
+				    You_feel("your magical energy dwindling rapidly!");
+				    u.uen /= 2;
+				}
+				break;
+			case 3: /* sloth */
+				pline("You feel a little apathetic...");
+
+				switch(rn2(7)) {
+				    case 0: /* destroy certain things */
+					lethe_damage(invent, FALSE, FALSE);
+					break;
+				    case 1: /* sleep */
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+					break;
+				    case 2: /* paralyse */
+					if (multi >= 0) {
+					    if (Free_action) {
+						You("momentarily stiffen.");            
+					    } else {
+						You("are frozen!");
+						nomovemsg = 0;	/* default: "you can move again" */
+						nomul(-rnd(10), "paralyzed by a sin trap");
+						exercise(A_DEX, FALSE);
+					    }
+					}
+					break;
+				    case 3: /* slow */
+					if(HFast)  u_slow_down();
+					else You("pause momentarily.");
+					break;
+				    case 4: /* drain Dex */
+					adjattrib(A_DEX, -rn1(1,1), 0);
+					break;
+				    case 5: /* steal teleportitis */
+					if(HTeleportation & INTRINSIC) {
+					      HTeleportation &= ~INTRINSIC;
+					}
+			 		if (HTeleportation & TIMEOUT) {
+						HTeleportation &= ~TIMEOUT;
+					}
+					if(HTeleport_control & INTRINSIC) {
+					      HTeleport_control &= ~INTRINSIC;
+					}
+			 		if (HTeleport_control & TIMEOUT) {
+						HTeleport_control &= ~TIMEOUT;
+					}
+				      You("don't feel in the mood for jumping around.");
+					break;
+				    case 6: /* steal sleep resistance */
+					if(HSleep_resistance & INTRINSIC) {
+						HSleep_resistance &= ~INTRINSIC;
+					} 
+					if(HSleep_resistance & TIMEOUT) {
+						HSleep_resistance &= ~TIMEOUT;
+					} 
+					You_feel("like you could use a nap.");
+					break;
+				}
+
+				break;
+			case 4: /* greed */
+				if (u.ugold) pline("Your purse feels lighter...");
+				u.ugold /= 2;
+				break;
+			case 5: /* lust */
+				if (invent) {
+					pline("Your belongings leave your body!");
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+		
+					if (!rn2(5) && !stack_too_big(otmpi) ) {
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+					}
+				    }
+				}
+				break;
+			case 6: /* envy */
+				pline("You hear a chuckling laughter.");
+			      attrcurse();
+			      attrcurse();
+				break;
+			case 7: /* pride */
+			      pline("The RNG determines to take you down a peg or two...");
+				if (!rn2(8)) {
+				    poisoned("air", rn2(A_MAX), "sin trap", 30);
+				}
+				if (!rn2(10)) {
+					pline("You feel drained...");
+					u.uhpmax -= rn1(10,10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
+					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
+				if (!rn2(10)) {
+					You_feel("less energised!");
+					u.uenmax -= rn1(10,10);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if(u.uen > u.uenmax) u.uen = u.uenmax;
+				}
+				if (!rn2(10)) {
+					if(!Drain_resistance || !rn2(20) )
+					    losexp("life drainage", FALSE, TRUE);
+					else You_feel("woozy for an instant, but shrug it off.");
+				}
+				break;
+			case 8: /* depression */
+
+			    switch(rnd(20)) {
+			    case 1:
+				if (!Unchanging && !Antimagic) {
+					You("undergo a freakish metamorphosis!");
+				      polyself(FALSE);
+				}
+				break;
+			    case 2:
+				You("need reboot.");
+				newman();
+				break;
+			    case 3: case 4:
+				if(!rn2(4) && u.ulycn == NON_PM &&
+					!Protection_from_shape_changers &&
+					!is_were(youmonst.data) &&
+					!defends(AD_WERE,uwep)) {
+				    You_feel("feverish.");
+				    exercise(A_CON, FALSE);
+				    u.ulycn = PM_WERECOW;
+				} else {
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) break;
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+				}
+				break;
+			    case 5: case 6:
+				pline("Suddenly, there's glue all over you!");
+				u.utraptype = TT_GLUE;
+				u.utrap = 25 + rnd(monster_difficulty());
+
+				break;
+			    case 7:
+			    case 8:
+				Your("position suddenly seems very uncertain!");
+				teleX();
+				break;
+			    case 9:
+				u_slow_down();
+				break;
+			    case 10:
+			    case 11:
+			    case 12:
+				water_damage(invent, FALSE, FALSE);
+				break;
+			    case 13:
+				if (multi >= 0) {
+				    if (Free_action) {
+					You("momentarily stiffen.");            
+				    } else {
+					You("are frozen!");
+					nomovemsg = 0;	/* default: "you can move again" */
+					nomul(-rnd(10), "paralyzed by a sin trap");
+					exercise(A_DEX, FALSE);
+				    }
+				}
+				break;
+			    case 14:
+				if (Hallucination)
+					pline("What a groovy feeling!");
+				else
+					You(Blind ? "%s and get dizzy..." :
+						 "%s and your vision blurs...",
+						    stagger(youmonst.data, "stagger"));
+				dmg = rn1(7, 16);
+				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 15:
+				if(!Blind)
+					Your("vision bugged.");
+				dmg += rn1(10, 25);
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty() + monster_difficulty(),TRUE,0L);
+				break;
+			    case 16:
+				if(!Blind)
+					Your("vision turns to screen saver.");
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 17:
+				{
+				    struct obj *objD = some_armor(&youmonst);
+	
+				    if (drain_item(objD)) {
+					Your("%s less effective.", aobjnam(objD, "seem"));
+				    }
+				}
+				break;
+			    default:
+				    if(Confusion)
+					 You("are getting even more confused.");
+				    else You("are getting confused.");
+				    make_confused(HConfusion + monster_difficulty() + 1, FALSE);
+				break;
+			    }
+
+				break;
+
+		}
+
+		}
+
+		break;
+
 	    case DISINTEGRATION_TRAP:
 
 		seetrap(trap);
@@ -2416,7 +3006,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		break;
 
 	    case GLYPH_OF_WARDING:
-
+			{
 			pline("You trigger a hidden glyph!");
 		    seetrap(trap);
 
@@ -2453,6 +3043,269 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 			}
 		badeffect();
+		}
+
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case PURPLE_GLYPH:
+
+		pline("You trigger a hidden glyph!");
+		seetrap(trap);
+
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case BLACK_GLYPH:
+			{
+			pline("You trigger a hidden glyph!");
+		    seetrap(trap);
+
+		    int dmg = (d(4, 4) + rnd((monster_difficulty() * 3) + 1));
+			int dmgtype = rnd(4);
+
+			switch (dmgtype) {
+
+			case 1: /* ordinary physical damage */
+			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
+				break;
+			case 2: /* shock */
+			if(Shock_resistance) dmg = 0;
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
+			break;
+			case 3: /* ice */
+			if(Cold_resistance) dmg = 0;
+			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
+		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
+			break;
+			case 4: /* fire */
+			if(Fire_resistance) dmg = 0;
+			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			    destroy_item(SCROLL_CLASS, AD_FIRE);
+			    destroy_item(SPBOOK_CLASS, AD_FIRE);
+			    destroy_item(POTION_CLASS, AD_FIRE);
+				burnarmor(&youmonst);
+				}
+			if (dmg) {pline("You are hit by fire!"); losehp(dmg, "fire", KILLED_BY); }
+			break;
+
+			}
+		}
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case ORANGE_GLYPH:
+			{
+			pline("You trigger a hidden glyph!");
+		    seetrap(trap);
+
+		    int dmg = (d(4, 4) + rnd((monster_difficulty() / 2) + 1));
+			int dmgtype = rnd(4);
+
+			switch (dmgtype) {
+
+			case 1: /* ordinary physical damage */
+			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
+				break;
+			case 2: /* shock */
+			if(Shock_resistance) dmg = 0;
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
+			break;
+			case 3: /* ice */
+			if(Cold_resistance) dmg = 0;
+			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
+		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
+			break;
+			case 4: /* fire */
+			if(Fire_resistance) dmg = 0;
+			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			    destroy_item(SCROLL_CLASS, AD_FIRE);
+			    destroy_item(SPBOOK_CLASS, AD_FIRE);
+			    destroy_item(POTION_CLASS, AD_FIRE);
+				burnarmor(&youmonst);
+				}
+			if (dmg) {pline("You are hit by fire!"); losehp(dmg, "fire", KILLED_BY); }
+			break;
+
+			}
+		}
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+
+		monstcnt = 6 + rnd(12);
+		if (!rn2(5)) monstcnt += rnd(5);
+		if (!rn2(25)) monstcnt += rnd(10);
+		if (!rn2(125)) monstcnt += rnd(20);
+		if (!rn2(725)) monstcnt += rnd(50);
+
+	      while(--monstcnt >= 0) {
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		pline("e Pale Wraith with a lightning stroke.");
+
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case GREEN_GLYPH:
+			{
+			pline("You trigger a hidden glyph!");
+		    seetrap(trap);
+
+		    int dmg = (d(4, 4) + rnd(monster_difficulty() + 1));
+			int dmgtype = rnd(4);
+
+			switch (dmgtype) {
+
+			case 1: /* ordinary physical damage */
+			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
+				break;
+			case 2: /* shock */
+			if(Shock_resistance) dmg = 0;
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
+			break;
+			case 3: /* ice */
+			if(Cold_resistance) dmg = 0;
+			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
+		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
+			break;
+			case 4: /* fire */
+			if(Fire_resistance) dmg = 0;
+			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			    destroy_item(SCROLL_CLASS, AD_FIRE);
+			    destroy_item(SPBOOK_CLASS, AD_FIRE);
+			    destroy_item(POTION_CLASS, AD_FIRE);
+				burnarmor(&youmonst);
+				}
+			if (dmg) {pline("You are hit by fire!"); losehp(dmg, "fire", KILLED_BY); }
+			break;
+
+			}
+		}
+		badeffect();
+		badeffect();
+		badeffect();
+
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case YELLOW_GLYPH:
+			{
+			pline("You trigger a hidden glyph!");
+		    seetrap(trap);
+
+		    int dmg = (d(4, 4) + rnd(monster_difficulty() + 1));
+			int dmgtype = rnd(4);
+
+			switch (dmgtype) {
+
+			case 1: /* ordinary physical damage */
+			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
+				break;
+			case 2: /* shock */
+			if(Shock_resistance) dmg = 0;
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
+			break;
+			case 3: /* ice */
+			if(Cold_resistance) dmg = 0;
+			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
+		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
+			break;
+			case 4: /* fire */
+			if(Fire_resistance) dmg = 0;
+			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			    destroy_item(SCROLL_CLASS, AD_FIRE);
+			    destroy_item(SPBOOK_CLASS, AD_FIRE);
+			    destroy_item(POTION_CLASS, AD_FIRE);
+				burnarmor(&youmonst);
+				}
+			if (dmg) {pline("You are hit by fire!"); losehp(dmg, "fire", KILLED_BY); }
+			break;
+
+			}
+		badeffect();
+		badeffect();
+		}
+		monstcnt = 1;
+		if (!rn2(5)) monstcnt += 1;
+		if (!rn2(25)) monstcnt += 2;
+		if (!rn2(125)) monstcnt += 3;
+		if (!rn2(725)) monstcnt += rnd(20);
+
+	      while(--monstcnt >= 0) {
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		pline("es come to life!");
+
+		if (!rn2(10)) deltrap(trap);
+		break;
+
+	    case BLUE_GLYPH:
+			{
+			pline("You trigger a hidden glyph!");
+		    seetrap(trap);
+
+		    int dmg = (d(4, 4) + rnd((monster_difficulty() / 4) + 1));
+			int dmgtype = rnd(4);
+
+			switch (dmgtype) {
+
+			case 1: /* ordinary physical damage */
+			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
+				break;
+			case 2: /* shock */
+			if(Shock_resistance) dmg = 0;
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
+			break;
+			case 3: /* ice */
+			if(Cold_resistance) dmg = 0;
+			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
+		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
+			break;
+			case 4: /* fire */
+			if(Fire_resistance) dmg = 0;
+			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			    destroy_item(SCROLL_CLASS, AD_FIRE);
+			    destroy_item(SPBOOK_CLASS, AD_FIRE);
+			    destroy_item(POTION_CLASS, AD_FIRE);
+				burnarmor(&youmonst);
+				}
+			if (dmg) {pline("You are hit by fire!"); losehp(dmg, "fire", KILLED_BY); }
+			break;
+
+			}
+		}
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
 
 		if (!rn2(10)) deltrap(trap);
 		break;
@@ -2475,6 +3328,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 	    case PIT:
 	    case SPIKED_PIT:
+	    case GIANT_CHASM:
 	    case SHIT_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && (Levitation || Flying)) break;
@@ -2482,11 +3336,11 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		if (!In_sokoban(&u.uz) && is_clinger(youmonst.data)) {
 		    if(trap->tseen) {
 			You("see %s %spit below you.", a_your[trap->madeby_u],
-			    ttype == SPIKED_PIT ? "spiked " : "");
+			    ttype == SPIKED_PIT ? "spiked " : ttype == GIANT_CHASM ? "gigantic " : "");
 		    } else {
 			pline("%s pit %sopens up under you!",
 			    A_Your[trap->madeby_u],
-			    ttype == SPIKED_PIT ? "full of spikes " : "");
+			    ttype == SPIKED_PIT ? "full of spikes " : ttype == GIANT_CHASM ? "of enormous depth " : "");
 			You("don't fall in!");
 		    }
 		    break;
@@ -2533,6 +3387,8 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		}
 		if (!Passes_walls)
 		    u.utrap = rn1(6,2);
+		    if (ttype == SHIT_PIT) u.utrap += rnd(7);
+		    if (ttype == GIANT_CHASM) u.utrap += rnd(75);
 		u.utraptype = TT_PIT;
 #ifdef STEED
 		if (!steedintrap(trap, (struct obj *)0)) {
@@ -2542,8 +3398,11 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			NO_KILLER_PREFIX);
 		    if (!rn2(6))
 			poisoned("spikes", A_STR, "fall onto poison spikes", 8);
-		} else
+		} else if (ttype == GIANT_CHASM) {
+		    losehp(rnd(25) + rnd(monster_difficulty() + 1) ,"fell into a giant chasm", NO_KILLER_PREFIX);
+		} else {
 		    losehp(rnd(6) + rnd((monster_difficulty() / 3) + 1) ,"fell into a pit", NO_KILLER_PREFIX);
+		}
 
 		if (ttype == SHIT_PIT) {
 			doshittrap((struct obj *)0);
@@ -2705,6 +3564,264 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		}
 		break;
 
+	    case CONFUSE_TRAP:
+		pline("A cyan glow surrounds you...");
+		seetrap(trap);
+		make_confused(HConfusion + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		pline("You're confused!");
+		break;
+
+	    case STUN_TRAP:
+		pline("A yellow glow surrounds you...");
+		seetrap(trap);
+		make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case HALLUCINATION_TRAP:
+		pline("A multicolored glow surrounds you...");
+		seetrap(trap);
+		(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+		break;
+
+	    case NUMBNESS_TRAP:
+		pline("An orange glow surrounds you...");
+		seetrap(trap);
+		make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case FREEZING_TRAP:
+		pline("An icy glow surrounds you...");
+		seetrap(trap);
+		make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case BURNING_TRAP:
+		pline("A red glow surrounds you...");
+		seetrap(trap);
+		make_burned(HBurned + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case FEAR_TRAP:
+		pline("A violet glow surrounds you...");
+		seetrap(trap);
+		make_feared(HFeared + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case BLINDNESS_TRAP:
+		pline("You are blinded by a flash of light!");
+		seetrap(trap);
+		make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		break;
+
+	    case INERTIA_TRAP:
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+		u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+		break;
+
+	    case TIME_TRAP:
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "a time trap", KILLED_BY);
+		}
+		break;
+
+	    case NEGATIVE_TRAP:
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+		switch (rnd(10)) {
+			case 1:
+				make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 2:
+				make_feared(HFeared + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 3:
+				make_burned(HBurned + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 4:
+				make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 5:
+				make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 6:
+				(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+				break;
+			case 7:
+				make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 8:
+				make_confused(HConfusion + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				pline("You're confused!");
+				break;
+			case 9:
+				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+				break;
+			case 10:
+				make_sick(rn1(25,25), "negative food poisoning", TRUE, SICK_VOMITABLE);
+				break;
+		}
+		break;
+
+	    case PETRIFICATION_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		seetrap(trap);
+		    if (!Stone_resistance &&
+			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			if (!Stoned) { Stoned = 7;
+				pline("You start turning to stone!");
+			}
+			Sprintf(killer_buf, "petrification trap");
+			delayed_killer = killer_buf;
+		
+		    }
+		break;
+
+	    case CANCELLATION_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		seetrap(trap);
+		(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		break;
+
+	    case GLIB_TRAP:
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+		pline("Glibbery stuff pours all over your %s!", makeplural(body_part(HAND)) );
+		incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+		break;
+
+	    case SLIME_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		seetrap(trap);
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+		    Slimed = 100L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slime trap";
+		}
+		break;
+
+	    case LYCANTHROPY_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		seetrap(trap);
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWOLF;
+			pline("You feel feverish.");
+		}
+		break;
+
+	    case EARTHQUAKE_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		deltrap(trap);
+		pline_The("entire dungeon is shaking around you!");
+		do_earthquake((u.ulevel - 1) / 3 + 1);
+		break;
+
+	    case UNLIGHT_TRAP:
+		pline("Uh-oh, should have watched your step...");
+		seetrap(trap);
+		{
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+
+		}
+		pline("Eternal darkness seems to consume your surroundings...");
+		break;
+
+	    case HOSTILITY_TRAP: /* enrage spell effect */
+		pline("Uh-oh, should have watched your step...");
+		seetrap(trap);
+
+		{
+
+		struct monst *mtmp2;
+
+		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+			mtmp2->mtame = mtmp2->mpeaceful = 0;
+
+		}
+
+		pline("It seems a little more dangerous here now...");
+		doredraw();
+
+		}
+
+		break;
+
 	    case MIND_WIPE_TRAP:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
@@ -2719,6 +3836,14 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			pline("Thinking of Maud you forget everything else.");
 		}
 		exercise(A_WIS, FALSE);
+
+		break;
+
+	    case GLUE_TRAP:
+		seetrap(trap);
+		pline("Eek - you stepped into a heap of sticky glue!");
+		u.utraptype = TT_GLUE;
+		u.utrap = 25 + rnd(monster_difficulty());
 
 		break;
 
@@ -2840,6 +3965,29 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		} else drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
 		break;
 
+	    case MANA_TRAP:
+		pline("You are irradiated by pure mana!");
+		seetrap(trap);
+		drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
+		losehp(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1), "mana trap", KILLED_BY_AN);
+		break;
+
+	    case OUT_OF_MAGIC_TRAP:
+		seetrap(trap);
+		if(Antimagic && rn2(3) ) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("momentarily lethargic.");
+		} else if (u.uen > ((u.uenmax / 9) + 1)) {
+			u.uen = 0;
+			pline("You feel drained of energy!");
+		}
+		else {
+			u.uen = 0;
+			pline("You feel drained of energy!");
+			drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
+		}
+		break;
+
 	    case POLY_TRAP: {
 	        char verbbuf[BUFSZ];
 		seetrap(trap);
@@ -2870,6 +4018,54 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		}
 		break;
 	    }
+
+	    case GENETIC_TRAP: {
+	        char verbbuf[BUFSZ];
+		seetrap(trap);
+		 Sprintf(verbbuf,"%s",
+		    Levitation ? (const char *)"float" :
+		    locomotion(youmonst.data, "step"));
+		You("%s onto a genetic trap!", verbbuf);
+		if(Antimagic || Unchanging) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("momentarily different.");
+		    /* Trap did nothing; don't remove it --KAA */
+		} else {
+
+		    deltrap(trap);	/* delete trap before polymorph */
+		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
+		    You_feel("a change coming over you.");
+			u.wormpolymorph = rn2(NUMMONS);
+		    polyself(FALSE);
+		}
+
+		break;
+		}
+
+	    case MISSINGNO_TRAP: {
+	        char verbbuf[BUFSZ];
+		seetrap(trap);
+		 Sprintf(verbbuf,"%s",
+		    Levitation ? (const char *)"float" :
+		    locomotion(youmonst.data, "step"));
+		You("%s onto a missingno trap!", verbbuf);
+		if(Antimagic || Unchanging) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("momentarily different.");
+		    /* Trap did nothing; don't remove it --KAA */
+		} else {
+
+		    deltrap(trap);	/* delete trap before polymorph */
+		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
+		    You_feel("a change coming over you.");
+			u.wormpolymorph = (NUMMONS + rnz(rnd(5000)));
+			u.ughmemory = 1;
+		    polyself(FALSE);
+		}
+
+		break;
+		}
+
 	    case LANDMINE: {
 #ifdef STEED
 		unsigned steed_mid = 0;
@@ -2924,6 +4120,26 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		fill_pit(u.ux, u.uy);
 		break;
 	    }
+
+	    case BOMB_TRAP: {
+
+		    int i, j, bd = (1 + (monster_difficulty() / 10) );
+		    pline("KAABLAMM!!!  You triggered a bomb!");
+		newsym(u.ux,u.uy);		/* update trap symbol */
+		losehp(rnd(36) + rnd( (monster_difficulty() * 3) + 1), "hidden bomb", KILLED_BY_AN);
+		deltrap(trap);
+		/* fall recursively into the pit... */
+
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+			maketrap(u.ux + i, u.uy + j, PIT);
+		    }
+		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
+
+		break;
+	    }
+
 	    case ROLLING_BOULDER_TRAP: {
 		int style = ROLL | (trap->tseen ? LAUNCH_KNOWN : 0);
 
@@ -2978,6 +4194,30 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		}
 		break;
 
+		 case GUILLOTINE_TRAP:
+		seetrap(trap);
+
+		if (!rn2(20) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			pline("You are decapitated by a guillotine!");
+			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "guillotine trap",KILLED_BY_AN);
+		} else {
+			pline("You are hit by a guillotine!");
+			losehp(rnd(20)+ rnd( (monster_difficulty() * 2) + 1 + (has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 40 : 0),"guillotine trap",KILLED_BY_AN);
+		}
+		break;
+
+		 case BISECTION_TRAP:
+		seetrap(trap);
+
+		if (!rn2(20) && !bigmonst(youmonst.data) && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+			pline("You are bisected by a razor-sharp blade!");
+			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "bisection trap",KILLED_BY);
+		} else {
+			pline("You are hit by a razor-sharp blade!");
+			losehp(rnd(30)+ rnd( (monster_difficulty() * 3) + 1),"bisection trap",KILLED_BY_AN);
+		}
+		break;
+
 		 case COLLAPSE_TRAP:
 			pline("Rocks fall all around you!");
 			deltrap(trap);
@@ -3015,6 +4255,10 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 break;
 
+		 case LOUDSPEAKER: /* fake message */
+			pline(fauxmessage());
+
+		 break;
 
 		 case RMB_LOSS_TRAP:
 
@@ -3106,6 +4350,154 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 			Unidentify = rnz(nastytrapdur * (monster_difficulty() + 1));
 
+		 break;
+
+		 case RECURRING_AMNESIA_TRAP:
+
+			if (RecurringAmnesia) break;
+
+			RecurringAmnesia = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BIGSCRIPT_TRAP:
+
+			if (BigscriptEffect) break;
+
+			BigscriptEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BANK_TRAP:
+
+			if (BankTrapEffect) break;
+
+			BankTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+			if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+			u.bankcashamount += u.ugold;
+			u.ugold = 0;
+
+		 break;
+
+		 case MAP_TRAP:
+
+			if (MapTrapEffect) break;
+
+			MapTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TECH_TRAP:
+
+			if (TechTrapEffect) break;
+
+			TechTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DISENCHANT_TRAP:
+
+			if (RecurringDisenchant) break;
+
+			RecurringDisenchant = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case VERISIERT:
+
+			if (verisiertEffect) break;
+
+			verisiertEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case CHAOS_TRAP:
+
+			if (ChaosTerrain) break;
+
+			ChaosTerrain = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case MUTENESS_TRAP:
+
+			if (Muteness) break;
+
+			Muteness = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ENGRAVING_TRAP:
+
+			if (EngravingDoesntWork) break;
+
+			EngravingDoesntWork = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case MAGIC_DEVICE_TRAP:
+
+			if (MagicDeviceEffect) break;
+
+			MagicDeviceEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BOOK_TRAP:
+
+			if (BookTrapEffect) break;
+
+			BookTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case LEVEL_TRAP:
+
+			if (LevelTrapEffect) break;
+
+			LevelTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case QUIZ_TRAP:
+
+			if (QuizTrapEffect) break;
+
+			QuizTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case NTLL_TRAP:
+
+		 {
+			char qbuf[QBUFSZ];
+			char c;
+			Strcpy(qbuf,"nt|| - Not a valid save file");
+			if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
+			    nomul(-rnd(127), "frozen by a ntll trap");
+			    nomovemsg = You_can_move_again;
+			}
+
+		 }
+
+		 break;
+
+		 case ONLY_TRAP:
+
+		 {
+			struct obj *otmpO, *otmpP;
+
+		    for (otmpO = fobj; otmpO; otmpO = otmpO->nobj) {
+			otmpP = otmpO->nobj;
+			if (otmpP && (otmpP->where == OBJ_FLOOR) && !rn2(10)) {
+				if (!evades_destruction(otmpP)) {
+					delobj(otmpP);
+				}
+			}
+		    }
+
+		 }		 
 		 break;
 
 		 case THIRST_TRAP:
@@ -3573,7 +4965,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(41)) {
+			switch (rnd(55)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -3634,6 +5026,27 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 				case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 44: {
+					BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -4164,7 +5577,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect ) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -4207,6 +5620,20 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			CaptchaProblem = 0L;
 			FarlookProblem = 0L;
 			RespawnProblem = 0L;
+			RecurringAmnesia = 0L;
+			BigscriptEffect = 0L;
+			BankTrapEffect = 0L;
+			MapTrapEffect = 0L;
+			TechTrapEffect = 0L;
+			RecurringDisenchant = 0L;
+			verisiertEffect = 0L;
+			ChaosTerrain = 0L;
+			Muteness = 0L;
+			EngravingDoesntWork = 0L;
+			MagicDeviceEffect = 0L;
+			BookTrapEffect = 0L;
+			LevelTrapEffect = 0L;
+			QuizTrapEffect = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -4434,6 +5861,239 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		 break;
 
+		 case CYANIDE_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			pline("Cyanide gas blows in your %s!", body_part(FACE) ); /* unbreathing doesn't help --Amy */
+			if (Upolyd) {
+				if (u.mh > 1) u.mh /= 2;
+				else losehp(100, "cyanide trap", KILLED_BY_AN);
+			} else {
+				if (u.uhp > 1) u.uhp /= 2;
+				else losehp(100, "cyanide trap", KILLED_BY_AN);
+			}
+			pline("You feel very poisoned...");
+		      poisoned("gas", rn2(A_MAX), "cyanide trap", 5);
+
+		 break;
+
+		 case NEST_TRAP:
+
+			deltrap(trap); /* triggers only once */
+
+			    coord dd;
+			    int cx,cy;
+
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+
+			if (!rn2(3)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+
+				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+			else
+		 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+			}
+
+			}
+
+			else if (!rn2(2)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmonstforspawn = rndmonst();
+
+			if (wizard || !rn2(10)) pline("You feel the arrival of monsters!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+			else {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+			if (wizard || !rn2(10)) pline("You feel a colorful sensation!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+		 break;
+
 		 case DISPLAY_TRAP:
 
 			if (DisplayLoss) break;
@@ -4609,6 +6269,30 @@ struct obj *otmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			steedhit = TRUE;
 			break;
+		case BULLET_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant bullet?");
+				return 0;
+			}
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
+		case GLASS_ARROW_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant glass arrow?");
+				return 0;
+			}
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
+		case GLASS_BOLT_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant glass bolt?");
+				return 0;
+			}
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
 		case DART_TRAP:
 			if(!otmp) {
 				impossible("steed hit by non-existant dart?");
@@ -4633,6 +6317,17 @@ struct obj *otmp;
 			    if (in_sight) {
 				pline("%s suddenly falls asleep!",
 				      Monnam(mtmp));
+			    }
+			}
+			steedhit = TRUE;
+			break;
+
+		case PARALYSIS_TRAP:
+		      {
+			    mtmp->mcanmove = 0;
+			    mtmp->mfrozen = rnd(10);
+			    if (in_sight) {
+				pline("%s is suddenly paralyzed!", Monnam(mtmp));
 			    }
 			}
 			steedhit = TRUE;
@@ -4679,10 +6374,11 @@ struct obj *otmp;
 			break;
 		case PIT:
 		case SPIKED_PIT:
+		case GIANT_CHASM:
 		case SHIT_PIT:
 			if (mtmp->mhp <= 0 ||
 				thitm(0, mtmp, (struct obj *)0,
-				      rnd((tt == PIT) ? 6 : 10), FALSE))
+				      rnd((tt == PIT) ? 6 : (tt == GIANT_CHASM) ? 15 : 10), FALSE))
 			    trapkilled = TRUE;
 			steedhit = TRUE;
 			break;
@@ -4918,6 +6614,7 @@ int style;
 			    break;
 			case PIT:
 			case SPIKED_PIT:
+			case GIANT_CHASM:
 			case SHIT_PIT:
 			case SHAFT_TRAP:
 			case HOLE:
@@ -5118,7 +6815,7 @@ register struct monst *mtmp;
 	} else if (mtmp->mtrapped) {	/* is currently in the trap */
 	    if (!trap->tseen && !trap->hiddentrap && 
 		cansee(mtmp->mx, mtmp->my) && canseemon(mtmp) &&
-		(trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT || trap->ttyp == BEAR_TRAP ||
+		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == BEAR_TRAP ||
 		 trap->ttyp == HOLE || trap->ttyp == PIT ||
 		 trap->ttyp == WEB)) {
 		/* If you come upon an obviously trapped monster, then
@@ -5129,7 +6826,7 @@ register struct monst *mtmp;
 		
 	    if (!rn2(40)) {
 		if (sobj_at(BOULDER, mtmp->mx, mtmp->my) &&
-			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT)) {
+			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT)) {
 		    if (!rn2(2)) {
 			mtmp->mtrapped = 0;
 			if (canseemon(mtmp))
@@ -5218,6 +6915,57 @@ register struct monst *mtmp;
 			if (in_sight) seetrap(trap);
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
+		case BULLET_TRAP:
+			if (trap->once && trap->tseen && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(BULLET, TRUE, FALSE);
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
+			if (in_sight) seetrap(trap);
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			break;
+		case GLASS_ARROW_TRAP:
+			if (trap->once && trap->tseen && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
+			if (in_sight) seetrap(trap);
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			break;
+		case GLASS_BOLT_TRAP:
+			if (trap->once && trap->tseen && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
+			if (in_sight) seetrap(trap);
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			break;
 		case DART_TRAP:
 			if (trap->once && trap->tseen && !rn2(15)) {
 			    if (in_sight && see_it)
@@ -5271,6 +7019,25 @@ register struct monst *mtmp;
 			    trapkilled = TRUE;
 			break;
 
+		case FALLING_BOULDER_TRAP:
+			if (trap->once && trap->tseen && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("A trap door above %s opens, but nothing falls out!",
+				      mon_nam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(BOULDER, TRUE, FALSE);
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
+			if (in_sight) seetrap(trap);
+			if (thitm(0, mtmp, otmp, d(6, 6), FALSE))
+			    trapkilled = TRUE;
+			break;
+
 		case SQKY_BOARD:
 			if(is_flyer(mptr) || mtmp->egotype_flying) break;
 			/* stepped on a squeaky board */
@@ -5281,6 +7048,25 @@ register struct monst *mtmp;
 			   You_hear("a distant squeak.");
 			/* wake up nearby monsters */
 			wake_nearto(mtmp->mx, mtmp->my, 40);
+			break;
+
+		case NOISE_TRAP:
+			if (in_sight) {
+			    pline("Suddenly %s steps on a trigger, and generates a hellish noise!", mon_nam(mtmp));
+			    seetrap(trap);
+			} else
+			   You_hear("a hellish noise!");
+			/* wake up nearby monsters */
+			wake_nearto(mtmp->mx, mtmp->my, 40);
+			{
+				register struct monst *mtmp3;
+				for(mtmp3 = fmon; mtmp3; mtmp3 = mtmp3->nmon) {
+				    if (!DEADMONSTER(mtmp3)) {
+					mtmp3->msleeping = 0;
+				    }
+				}
+
+			}
 			break;
 
 		case BEAR_TRAP:
@@ -5309,6 +7095,18 @@ register struct monst *mtmp;
 			    if (in_sight) {
 				pline("%s suddenly falls asleep!",
 				      Monnam(mtmp));
+				seetrap(trap);
+			    }
+			if (!rn2(50)) deltrap(trap);
+			}
+			break;
+
+		case PARALYSIS_TRAP:
+		      {
+			    mtmp->mcanmove = 0;
+			    mtmp->mfrozen = rnd(10);
+			    if (in_sight) {
+				pline("%s is suddenly paralyzed!", Monnam(mtmp));
 				seetrap(trap);
 			    }
 			if (!rn2(50)) deltrap(trap);
@@ -5479,6 +7277,56 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (!rn2(50)) deltrap(trap);
 			break;
 
+		case PLASMA_TRAP:
+			if (in_sight)
+			    pline("A plasma cloud encloses %s!", mon_nam(mtmp));
+			else if (see_it)  /* evidently `mtmp' is invisible */
+			    You("see a plasma cloud around %s!", surface(mtmp->mx,mtmp->my));
+
+			if (resists_fire(mtmp)) {
+			    if (in_sight) {
+				shieldeff(mtmp->mx,mtmp->my);
+				pline("%s is uninjured.", Monnam(mtmp));
+			    }
+			} else {
+			    int num = d(4,4), alt;
+			    boolean immolate = FALSE;
+
+			    /* paper burns very fast, assume straw is tightly
+			     * packed and burns a bit slower */
+			    switch (monsndx(mtmp->data)) {
+			    case PM_PAPER_GOLEM:   immolate = TRUE;
+						   alt = mtmp->mhpmax; break;
+			    case PM_STRAW_GOLEM:   alt = mtmp->mhpmax / 2; break;
+			    case PM_WOOD_GOLEM:    alt = mtmp->mhpmax / 4; break;
+			    case PM_LEATHER_GOLEM: alt = mtmp->mhpmax / 8; break;
+			    default: alt = 0; break;
+			    }
+			    if (alt > num) num = alt;
+
+			    if (thitm(0, mtmp, (struct obj *)0, num, immolate))
+				trapkilled = TRUE;
+			    else
+				/* we know mhp is at least `num' below mhpmax,
+				   so no (mhp > mhpmax) check is needed here */
+				mtmp->mhpmax -= rn2(num + 1);
+			}
+			if (!rn2(5)) 
+			    (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
+			if (!rn2(5)) 
+			    (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
+			if (!rn2(5)) 
+			    (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
+
+			if (burn_floor_paper(mtmp->mx, mtmp->my, see_it, FALSE) &&
+				!see_it && distu(mtmp->mx, mtmp->my) <= 3*3)
+			    You("smell smoke.");
+			if (is_ice(mtmp->mx,mtmp->my))
+			    melt_ice(mtmp->mx,mtmp->my);
+			if (see_it) seetrap(trap);
+			if (!rn2(50)) deltrap(trap);
+			break;
+
            case ICE_TRAP:
            if (in_sight)
              pline("A freezing cloud shoots from the %s under %s!",
@@ -5622,7 +7470,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case SHIT_TRAP:
 
-		if( (is_flyer(mptr) || mtmp->egotype_flying) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) ) break; /* since this is a ground-based trap */
+		if( (is_flyer(mptr) || mtmp->egotype_flying) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ARABELLA_THE_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_ANASTASIA_THE_SWEET_BLONDE]) && (mptr != &mons[PM_HENRIETTA_THE_BURLY_WOMAN]) && (mptr != &mons[PM_KATRIN_THE_VIOLET_BEAUTY]) && (mptr != &mons[PM_JANA_THE_SOFT_WENCH]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) && (mptr != &mons[PM_ARABELLA_THE_MONEY_THIEF]) ) break; /* since this is a ground-based trap */
 		/* The spacewars fighter nemeses somehow have affinity to this type of trap. */
 
            if (in_sight)
@@ -5638,6 +7486,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case PIT:
 		case SPIKED_PIT:
+		case GIANT_CHASM:
 		case SHIT_PIT:
 			fallverb = "falls";
 			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
@@ -5661,7 +7510,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			mselftouch(mtmp, "Falling, ", FALSE);
 			if (mtmp->mhp <= 0 ||
 				thitm(0, mtmp, (struct obj *)0,
-				      rnd((tt == PIT) ? 6 : 10), FALSE))
+				      rnd((tt == PIT) ? 6 : (tt == GIANT_CHASM) ? 15 : 10), FALSE))
 			    trapkilled = TRUE;
 			break;
 		case HOLE:
@@ -5854,8 +7703,75 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case AIR_TRAP:
 		case TERRAIN_TRAP:
 
+		case NEST_TRAP:
+		case CYANIDE_TRAP:
+		case LASER_TRAP:
+		case FART_TRAP:
+		case CONFUSE_TRAP:
+		case STUN_TRAP:
+		case HALLUCINATION_TRAP:
+		case PETRIFICATION_TRAP:
+		case NUMBNESS_TRAP:
+		case FREEZING_TRAP:
+		case BURNING_TRAP:
+		case FEAR_TRAP:
+		case BLINDNESS_TRAP:
+		case GLIB_TRAP:
+		case SLIME_TRAP:
+		case INERTIA_TRAP:
+		case TIME_TRAP:
+		case LYCANTHROPY_TRAP:
+		case UNLIGHT_TRAP:
+		case ELEMENTAL_TRAP:
+		case ESCALATING_TRAP:
+		case NEGATIVE_TRAP:
+		case MANA_TRAP:
+		case SIN_TRAP:
+		case DESTROY_ARMOR_TRAP:
+		case DIVINE_ANGER_TRAP:
+		case GENETIC_TRAP:
+		case MISSINGNO_TRAP:
+		case CANCELLATION_TRAP:
+		case HOSTILITY_TRAP:
+		case BOSS_TRAP:
+		case WISHING_TRAP:
+		case BOMB_TRAP:
+		case EARTHQUAKE_TRAP:
+		case GLUE_TRAP:
+		case GUILLOTINE_TRAP:
+		case BISECTION_TRAP:
+		case VOLT_TRAP:
+		case HORDE_TRAP:
+		case IMMOBILITY_TRAP:
+		case GREEN_GLYPH:
+		case BLUE_GLYPH:
+		case YELLOW_GLYPH:
+		case ORANGE_GLYPH:
+		case BLACK_GLYPH:
+		case PURPLE_GLYPH:
+
+		case RECURRING_AMNESIA_TRAP:
+		case BIGSCRIPT_TRAP:
+		case BANK_TRAP:
+		case ONLY_TRAP:
+		case MAP_TRAP:
+		case TECH_TRAP:
+		case DISENCHANT_TRAP:
+		case VERISIERT:
+		case CHAOS_TRAP:
+		case MUTENESS_TRAP:
+		case NTLL_TRAP:
+		case ENGRAVING_TRAP:
+		case MAGIC_DEVICE_TRAP:
+		case BOOK_TRAP:
+		case LEVEL_TRAP:
+		case QUIZ_TRAP:
+
 			break;
 
+		case LOUDSPEAKER:
+			pline(fauxmessage());
+			break;
 		case MAGIC_TRAP:
 			/* A magic trap.  Monsters usually immune. */
 			if (!rn2(30)) {
@@ -5875,6 +7791,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			} else if (!rn2(21)) goto mfiretrap;
 			break;
 		case ANTI_MAGIC:
+		case OUT_OF_MAGIC_TRAP:
 			if (in_sight) seetrap(trap);
 		    	if (resists_magm(mtmp)) {
 			    if (in_sight) {
@@ -6221,7 +8138,7 @@ int x, y;
 	struct trap *t;
 
 	if ((t = t_at(x, y)) &&
-	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == SHIT_PIT)) &&
+	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT)) &&
 	    (otmp = sobj_at(BOULDER, x, y))) {
 		obj_extract_self(otmp);
 		(void) flooreffects(otmp, x, y, "settle");
@@ -6248,7 +8165,7 @@ long hmask, emask;     /* might cancel timeout */
 	if (Punished && !carried(uball) &&
 	    (is_pool(uball->ox, uball->oy) ||
 	     ((trap = t_at(uball->ox, uball->oy)) &&
-	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == SHAFT_TRAP) ||
+	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == SHAFT_TRAP) ||
 	       (trap->ttyp == TRAPDOOR) || (trap->ttyp == HOLE))))) {
 			u.ux0 = u.ux;
 			u.uy0 = u.uy;
@@ -6406,6 +8323,42 @@ struct obj *box;        /* at the moment only for floor traps */
 }
 
 STATIC_OVL void
+dovolttrap(box)
+struct obj *box;        /* at the moment only for floor traps */
+{
+        int num = 0;
+        num = d(8, 4) + rnd(monster_difficulty() + 1);
+        if (box) {
+                impossible("doshocktrap() called with non-null box.");
+                return;
+        }
+
+        pline("A massive electric shock surges through your body!");
+        if (Shock_resistance) {
+                shieldeff(u.ux, u.uy);
+                num = d(6, 3) + rnd((monster_difficulty() / 2) + 1);
+        }
+
+        if (!num)
+                You("are uninjured.");
+        else
+                losehp(num, "volt trap", KILLED_BY_AN);
+		    make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
+		    if (!rn2(10)) destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(10)) destroy_item(RING_CLASS, AD_ELEC);
+			if (!rn2(3)) {
+				if (!Free_action) {
+				    pline("You are frozen in place!");
+				    nomul(-rnz(10), "frozen by a volt trap");
+				    nomovemsg = You_can_move_again;
+				    exercise(A_DEX, FALSE);
+				} else You("stiffen momentarily.");
+
+			}
+
+}
+
+STATIC_OVL void
 doshittrap(box)
 struct obj *box;        /* at the moment only for floor traps */
 {
@@ -6433,6 +8386,12 @@ struct obj *box;        /* at the moment only for floor traps */
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+
+		if (!uarmf) {
+			pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
+			num *= 2;
+		}
+
 		if (!rn2(20)) u_slow_down();
 
 		if ( !rn2(100) || (!Free_action && !rn2(10)))	{
@@ -6507,6 +8466,68 @@ struct obj *box;	/* null for floor trap */
 	    if (!rn2(33)) destroy_item(POTION_CLASS, AD_FIRE);
 		if (!rn2(33)) burnarmor(&youmonst);
 	}
+	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
+	    You("smell paper burning.");
+	if (is_ice(u.ux, u.uy))
+	    melt_ice(u.ux, u.uy);
+}
+
+STATIC_OVL void
+doplasmatrap(box)
+struct obj *box;	/* null for floor trap */
+{
+	boolean see_it = !Blind;
+	int num, alt;
+
+/* Bug: for box case, the equivalent of burn_floor_paper() ought
+ * to be done upon its contents.
+ */
+
+	if ((box && !carried(box)) ? is_pool(box->ox, box->oy) : Underwater) {
+	    pline("A cascade of steamy bubbles erupts from %s!",
+		    the(box ? xname(box) : surface(u.ux,u.uy)));
+	    if (Fire_resistance) You("are uninjured.");
+	    else losehp(rnd(3), "boiling water", KILLED_BY);
+	    return;
+	}
+	pline("You are enveloped by searing plasma radiation!");
+	if (Slimed) {        
+	      pline("The slime that covers you is burned away!");
+	      Slimed = 0;
+	}
+    if (Frozen) {
+	pline("The ice thaws!");
+	make_frozen(0L, FALSE);
+    }
+	if (Fire_resistance) {
+	    shieldeff(u.ux, u.uy);
+	    num = rnd(12);
+	} else if (Upolyd) {
+	    num = d(6,4);
+	    switch (u.umonnum) {
+	    case PM_PAPER_GOLEM:   alt = u.mhmax; break;
+	    case PM_STRAW_GOLEM:   alt = u.mhmax / 2; break;
+	    case PM_WOOD_GOLEM:    alt = u.mhmax / 4; break;
+	    case PM_LEATHER_GOLEM: alt = u.mhmax / 8; break;
+	    default: alt = 0; break;
+	    }
+	} else {
+	    num = d(6,4);
+	}
+	if (!num)
+	    You("are uninjured.");
+	else {
+	    losehp(num + rnd(monster_difficulty() + 1), "plasma trap", KILLED_BY_AN);
+		make_stunned(HStun + num + rnd(monster_difficulty() + 1), TRUE);
+	}
+
+	burn_away_slime();
+
+	    if (!rn2(5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(5)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(5)) burnarmor(&youmonst);
+
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
 	if (is_ice(u.ux, u.uy))
@@ -7296,6 +9317,9 @@ struct trap *ttmp;
 	if (ttmp->ttyp == GLYPH_OF_WARDING) chance = 5;
 	if (ttmp->ttyp == UNKNOWN_TRAP) chance = 5;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
+
+	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp < 11) ? 5 : (ttmp->launch_otyp < 29) ? 10 : 20;
+
 	if (Confusion || Hallucination) chance++;
 	if (Blind) chance++;
 	if (Numbed) chance++;
@@ -7538,15 +9562,16 @@ struct trap *ttmp;
 }
 
 int
-disarm_glyph_trap(ttmp)
+disarm_glyph_trap(ttmp, exper)
 struct trap *ttmp;
+int exper;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
 	int fails = try_disarm(ttmp, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
-	    more_experienced(4,0);
+	    more_experienced(exper,0);
 		    newexplevel();
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -7639,6 +9664,71 @@ struct trap *ttmp;
 	deltrap(ttmp);
 	newsym(trapx, trapy);
 	return 1;
+}
+
+int
+disarm_fartingtrap(ttmp)
+struct trap *ttmp;
+{
+
+	struct obj *unkrwrd;
+	int diceroll;
+
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE);
+
+	if (fails < 2) return fails;
+
+	pline("You bash %s's sexy butt.", farttrapnames[ttmp->launch_otyp]);
+	diceroll = rnd(30);
+
+	if (ttmp->launch_otyp < 11) diceroll -= rnd(diceroll);
+	else if (!rn2(2) && ttmp->launch_otyp < 29) diceroll -= rnd(diceroll);
+
+	if (diceroll < 0) diceroll = 0; /* fail safe */
+
+	switch (diceroll) {
+
+		case 0:
+			pline("%s seems unphased.", farttrapnames[ttmp->launch_otyp]);
+			return 1;
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			pline("%s's sexy butt is getting beautiful red bruises.", farttrapnames[ttmp->launch_otyp]);
+			return 1;
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			pline("%s's sexy butt is getting sore from your beating.", farttrapnames[ttmp->launch_otyp]);
+			return 1;
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+			pline("%s's sexy butt is hurt badly.", farttrapnames[ttmp->launch_otyp]);
+			return 1;
+		case 13:
+		case 14:
+		case 15:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+			pline("%s's sexy butt looks like it's bleeding, but it instantly stops.", farttrapnames[ttmp->launch_otyp]);
+			return 1;
+		default: /* 20 or higher = disarmed */
+			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
+			deltrap(ttmp);
+			ttmp = maketrap(trapx, trapy, HEEL_TRAP);
+			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
+			newsym(trapx, trapy);
+			return 1;
+
+	}
+
 }
 
 int
@@ -7931,7 +10021,7 @@ boolean force;
 		deal_with_floor_trap = TRUE;
 		Strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
 		if (box_here) {
-			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT) {
+			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT) {
 			    You_cant("do much about %s%s.",
 					the_trap, u.utrap ?
 					" that you're stuck in" :
@@ -7975,12 +10065,20 @@ boolean force;
 				return disarm_shooting_trap(ttmp, ARROW);
 			case BOLT_TRAP:
 				return disarm_shooting_trap(ttmp, CROSSBOW_BOLT);
+			case BULLET_TRAP:
+				return disarm_shooting_trap(ttmp, BULLET);
+			case GLASS_ARROW_TRAP:
+				return disarm_shooting_trap(ttmp, DROVEN_ARROW);
+			case GLASS_BOLT_TRAP:
+				return disarm_shooting_trap(ttmp, DROVEN_BOLT);
 			case RUST_TRAP:
 				return disarm_rust_trap(ttmp);
 			case ACID_POOL:
 				return disarm_acid_trap(ttmp);
 			case UNKNOWN_TRAP:
 				return disarm_unknowntrap(ttmp);
+			case FART_TRAP:
+				return disarm_fartingtrap(ttmp);
 			case ACTIVE_SUPERSCROLLER_TRAP:
 				return disarm_active_superscroller(ttmp);
 			case TRAP_PERCENTS:
@@ -7988,13 +10086,26 @@ boolean force;
 			case WATER_POOL:
 				return disarm_water_trap(ttmp);
 			case GLYPH_OF_WARDING:
-				return disarm_glyph_trap(ttmp);
+				return disarm_glyph_trap(ttmp, 4);
+			case GREEN_GLYPH:
+				return disarm_glyph_trap(ttmp, 50);
+			case BLUE_GLYPH:
+				return disarm_glyph_trap(ttmp, 200);
+			case YELLOW_GLYPH:
+				return disarm_glyph_trap(ttmp, 25);
+			case ORANGE_GLYPH:
+				return disarm_glyph_trap(ttmp, 100);
+			case BLACK_GLYPH:
+				return disarm_glyph_trap(ttmp, 400);
+			case PURPLE_GLYPH:
+				return disarm_glyph_trap(ttmp, 2401);
 			case SCYTHING_BLADE:
 				return disarm_blade_trap(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:
 			case SPIKED_PIT:
+			case GIANT_CHASM:
 			case SHIT_PIT:
 				if (!u.dx && !u.dy) {
 				    You("are already on the edge of the pit.");

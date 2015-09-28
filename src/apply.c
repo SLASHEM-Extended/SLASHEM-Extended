@@ -1591,6 +1591,10 @@ int magic; /* 0=Physical, otherwise skill level */
 		case TT_PIT:
 		    You("leap from the pit!");
 		    break;
+		case TT_GLUE:
+		    You("try to leap, but the glue holds you in place.");
+		    return 1;
+		    break;
 		case TT_WEB:
 		    You("tear the web apart as you pull yourself free!");
 		    deltrap(t_at(u.ux,u.uy));
@@ -4230,6 +4234,21 @@ doapply()
 	case FARLOOK_STONE:
 	case RESPAWN_STONE:
 
+	case AMNESIA_STONE:
+	case BIGSCRIPT_STONE:
+	case BANK_STONE:
+	case MAP_STONE:
+	case TECHNIQUE_STONE:
+	case DISENCHANTMENT_STONE:
+	case VERISIERT_STONE:
+	case CHAOS_TERRAIN_STONE:
+	case MUTENESS_STONE:
+	case ENGRAVING_STONE:
+	case MAGIC_DEVICE_STONE:
+	case BOOK_STONE:
+	case LEVEL_STONE:
+	case QUIZ_STONE:
+
 	case STONE_OF_INTRINSIC_LOSS:
 	case BLOOD_LOSS_STONE:
 	case BAD_EFFECT_STONE:
@@ -4361,6 +4380,20 @@ doapply()
 		CaptchaProblem = 0L;
 		FarlookProblem = 0L;
 		RespawnProblem = 0L;
+		RecurringAmnesia = 0L;
+		BigscriptEffect = 0L;
+		BankTrapEffect = 0L;
+		MapTrapEffect = 0L;
+		TechTrapEffect = 0L;
+		RecurringDisenchant = 0L;
+		verisiertEffect = 0L;
+		ChaosTerrain = 0L;
+		Muteness = 0L;
+		EngravingDoesntWork = 0L;
+		MagicDeviceEffect = 0L;
+		BookTrapEffect = 0L;
+		LevelTrapEffect = 0L;
+		QuizTrapEffect = 0L;
 
 		break;
 	case GOD_O_METER:

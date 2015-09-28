@@ -264,6 +264,7 @@ struct you {
 #define TT_WEB		2
 #define TT_LAVA		3
 #define TT_INFLOOR	4
+#define TT_GLUE	5
 	char	urooms[5];	/* rooms (roomno + 3) occupied now */
 	char	urooms0[5];	/* ditto, for previous position */
 	char	uentered[5];	/* rooms (roomno + 3) entered this turn */
@@ -455,6 +456,9 @@ struct you {
 	int levelporting;		/* and nexus/weeping attacks should not segfault either */
 
 	int inertia;	/* for inertia attack - if non-zero, the player moves at half speed */
+
+	int bankcashamount; /* for bank trap */
+	int bankcashlimit;
 
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */

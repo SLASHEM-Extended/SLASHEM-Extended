@@ -919,6 +919,21 @@ E boolean NDECL(have_alignmentstone);
 E boolean NDECL(have_stairstrapstone);
 E boolean NDECL(have_uninformationstone);
 
+E boolean NDECL(have_amnesiastone);
+E boolean NDECL(have_bigscriptstone);
+E boolean NDECL(have_bankstone);
+E boolean NDECL(have_mapstone);
+E boolean NDECL(have_techniquestone);
+E boolean NDECL(have_disenchantmentstone);
+E boolean NDECL(have_verisiertstone);
+E boolean NDECL(have_chaosterrainstone);
+E boolean NDECL(have_mutenessstone);
+E boolean NDECL(have_engravingstone);
+E boolean NDECL(have_magicdevicestone);
+E boolean NDECL(have_bookstone);
+E boolean NDECL(have_levelstone);
+E boolean NDECL(have_quizstone);
+
 E boolean NDECL(have_intrinsiclossstone);
 E boolean NDECL(have_bloodlossstone);
 E boolean NDECL(have_badeffectstone);
@@ -1497,6 +1512,7 @@ E boolean FDECL(munstone, (struct monst *,BOOLEAN_P));
 
 E void NDECL(awaken_soldiers);
 E int FDECL(do_play_instrument, (struct obj *));
+E void FDECL(do_earthquake,(int));
 
 /* ### nhlan.c ### */
 #ifdef LAN_FEATURES

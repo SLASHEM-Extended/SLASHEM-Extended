@@ -5292,11 +5292,13 @@ uchar aatyp;
 		if (!rn2(10)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
+			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		if (!rn2(10)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
+			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(10)) {

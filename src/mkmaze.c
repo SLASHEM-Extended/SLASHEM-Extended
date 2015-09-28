@@ -2357,6 +2357,7 @@ register const char *s;
 	char protofile[20];
 	s_level	*sp = Is_special(&u.uz);
 	coord mm;
+	struct monst *mtmp;
 
 	if(*s) {
 	    if(sp && sp->rndlevs) Sprintf(protofile, "%s-%d", s,
@@ -2478,13 +2479,20 @@ register const char *s;
 	    inv_pos.y = y;
 
 		/* spice this boring maze up - seven deadly sins :D --Amy */
-	    (void) makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
-	    (void) makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
+	    mtmp = makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+	    mtmp = makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
 
 
 #undef INVPOS_X_MARGIN

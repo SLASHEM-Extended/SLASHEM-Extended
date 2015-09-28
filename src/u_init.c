@@ -4880,6 +4880,9 @@ u_init()
 	u.hangupcheat = 0;	/* will be set to non-zero if the player hangs up --Amy */
 	u.hanguppenalty = 0;
 
+	u.bankcashamount = 0;
+	u.bankcashlimit = 0;
+
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
 	u.ungenocidable = rnd(S_WORM_TAIL);

@@ -287,6 +287,27 @@ static struct {
 	{ "level", LEVEL_TRAP},
 	{ "quiz", QUIZ_TRAP},
 
+	{ "falling boulder", FALLING_BOULDER_TRAP},
+	{ "glass arrow", GLASS_ARROW_TRAP},
+	{ "glass bolt", GLASS_BOLT_TRAP},
+	{ "out of magic", OUT_OF_MAGIC_TRAP},
+	{ "plasma", PLASMA_TRAP},
+	{ "bomb", BOMB_TRAP},
+	{ "earthquake", EARTHQUAKE_TRAP},
+	{ "noise", NOISE_TRAP},
+	{ "glue", GLUE_TRAP},
+	{ "guillotine", GUILLOTINE_TRAP},
+	{ "bisection", BISECTION_TRAP},
+	{ "volt", VOLT_TRAP},
+	{ "horde", HORDE_TRAP},
+	{ "immobility", IMMOBILITY_TRAP},
+	{ "green glyph", GREEN_GLYPH},
+	{ "blue glyph", BLUE_GLYPH},
+	{ "yellow glyph", YELLOW_GLYPH},
+	{ "orange glyph", ORANGE_GLYPH},
+	{ "black glyph", BLACK_GLYPH},
+	{ "purple glyph", PURPLE_GLYPH},
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

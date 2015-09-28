@@ -1327,9 +1327,66 @@ dospinweb()
 		case STONE_TO_FLESH_TRAP:
 		case QUICKSAND_TRAP:
 		case RELOCATION_TRAP:
+
+		case NEST_TRAP:
+		case BULLET_TRAP:
+		case PARALYSIS_TRAP:
+		case CYANIDE_TRAP:
+		case LASER_TRAP:
+		case GIANT_CHASM:
+		case FART_TRAP:
+		case CONFUSE_TRAP:
+		case STUN_TRAP:
+		case HALLUCINATION_TRAP:
+		case PETRIFICATION_TRAP:
+		case NUMBNESS_TRAP:
+		case FREEZING_TRAP:
+		case BURNING_TRAP:
+		case FEAR_TRAP:
+		case BLINDNESS_TRAP:
+		case GLIB_TRAP:
+		case SLIME_TRAP:
+		case INERTIA_TRAP:
+		case TIME_TRAP:
+		case LYCANTHROPY_TRAP:
+		case UNLIGHT_TRAP:
+		case ELEMENTAL_TRAP:
+		case ESCALATING_TRAP:
+		case NEGATIVE_TRAP:
+		case MANA_TRAP:
+		case SIN_TRAP:
+		case DESTROY_ARMOR_TRAP:
+		case DIVINE_ANGER_TRAP:
+		case GENETIC_TRAP:
+		case MISSINGNO_TRAP:
+		case CANCELLATION_TRAP:
+		case HOSTILITY_TRAP:
+		case BOSS_TRAP:
+		case WISHING_TRAP:
+		case FALLING_BOULDER_TRAP:
+		case GLASS_ARROW_TRAP:
+		case GLASS_BOLT_TRAP:
+		case OUT_OF_MAGIC_TRAP:
+		case PLASMA_TRAP:
+		case BOMB_TRAP:
+		case EARTHQUAKE_TRAP:
+		case NOISE_TRAP:
+		case GLUE_TRAP:
+		case GUILLOTINE_TRAP:
+		case BISECTION_TRAP:
+		case VOLT_TRAP:
+		case HORDE_TRAP:
+		case IMMOBILITY_TRAP:
+		case GREEN_GLYPH:
+		case BLUE_GLYPH:
+		case YELLOW_GLYPH:
+		case ORANGE_GLYPH:
+		case BLACK_GLYPH:
+		case PURPLE_GLYPH:
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
+		case LOUDSPEAKER:
 		case RMB_LOSS_TRAP:
 		case SUPERSCROLLER_TRAP:
 		case ACTIVE_SUPERSCROLLER_TRAP:
@@ -1390,6 +1447,24 @@ dospinweb()
 		case LOCKING_TRAP:
 		case AIR_TRAP:
 		case TERRAIN_TRAP:
+
+		case RECURRING_AMNESIA_TRAP:
+		case BIGSCRIPT_TRAP:
+		case BANK_TRAP:
+		case ONLY_TRAP:
+		case MAP_TRAP:
+		case TECH_TRAP:
+		case DISENCHANT_TRAP:
+		case VERISIERT:
+		case CHAOS_TRAP:
+		case MUTENESS_TRAP:
+		case NTLL_TRAP:
+		case ENGRAVING_TRAP:
+		case MAGIC_DEVICE_TRAP:
+		case BOOK_TRAP:
+		case LEVEL_TRAP:
+		case QUIZ_TRAP:
+
 			dotrap(ttmp, 0);
 			return(1);
 		default:

@@ -58,6 +58,7 @@ moveloop()
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
+	register struct trap *ttmp;
     /* don't make it obvious when monsters will start speeding up */
     int monclock;
     int xtraclock;
@@ -186,10 +187,14 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (monclock < 15) { monclock = 15; }
+			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) monclock /= 5;
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
 			if (issuxxor) monclock *= 2;
+
+			/* here, we really need a fail safe --Amy */
+			if (monclock < 2) monclock = 2;
 
 			/* TODO: adj difficulty in makemon */
 			if (!rn2(monclock) && !ishomicider ) {
@@ -216,6 +221,7 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 4500) { xtraclock = 4500; }
+			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
 			if (ishaxor) xtraclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
@@ -620,6 +626,9 @@ moveloop()
 
 		}
 
+		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) /* this function is probably expensive... --Amy */
+			if (ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) pline(fauxmessage());
+
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
 			pline("You faint from exertion.");
@@ -670,7 +679,86 @@ moveloop()
 
 		}
 
+		if (RecurringDisenchant && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (!rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
+		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (!rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
+		if (have_disenchantmentstone() && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (!rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
+		if (ChaosTerrain && !rn2(5)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				block_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
+		if (u.uprops[CHAOS_TERRAIN].extrinsic && !rn2(5)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				block_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
+		if (have_chaosterrainstone() && !rn2(5)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				block_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
 		if (RecurringAmnesia && !rn2(1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
+		if (have_amnesiastone() && !rn2(1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
+		if (u.uprops[RECURRING_AMNESIA].extrinsic && !rn2(1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
@@ -776,6 +864,120 @@ moveloop()
 
 			}
 			else pline("Alright. Please move on.");
+		}
+
+		if (!rn2(100) && QuizTrapEffect) {
+			boolean rumoristrue = rn2(2);
+
+			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
+
+			if (rumoristrue) outrumor(1, BY_OTHER);
+			else outrumor(-1, BY_OTHER);
+
+			if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
+
+				if (rumoristrue) {
+
+					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					badeffect();
+
+				} else {
+
+					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+
+				}
+
+			} else { /* player said it's true */
+
+				if (rumoristrue) {
+
+					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+
+				} else {
+
+					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					badeffect();
+
+				}
+
+			}
+
+		}
+
+		if (!rn2(100) && u.uprops[QUIZZES].extrinsic) {
+			boolean rumoristrue = rn2(2);
+
+			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
+
+			if (rumoristrue) outrumor(1, BY_OTHER);
+			else outrumor(-1, BY_OTHER);
+
+			if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
+
+				if (rumoristrue) {
+
+					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					badeffect();
+
+				} else {
+
+					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+
+				}
+
+			} else { /* player said it's true */
+
+				if (rumoristrue) {
+
+					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+
+				} else {
+
+					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					badeffect();
+
+				}
+
+			}
+
+		}
+
+		if (!rn2(100) && have_quizstone()) {
+			boolean rumoristrue = rn2(2);
+
+			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
+
+			if (rumoristrue) outrumor(1, BY_OTHER);
+			else outrumor(-1, BY_OTHER);
+
+			if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
+
+				if (rumoristrue) {
+
+					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					badeffect();
+
+				} else {
+
+					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+
+				}
+
+			} else { /* player said it's true */
+
+				if (rumoristrue) {
+
+					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+
+				} else {
+
+					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					badeffect();
+
+				}
+
+			}
+
 		}
 
 		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
@@ -1452,6 +1654,15 @@ moveloop()
 	/****************************************/
 	/* once-per-player-input things go here */
 	/****************************************/
+
+	if ((BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+		u.bankcashamount += u.ugold;
+		u.ugold = 0;
+		pline("Your money was stored, thanks.");
+		if (u.bankcashamount > u.bankcashlimit) {
+			(void) makemon(&mons[PM_ARABELLA_THE_MONEY_THIEF], 0, 0, NO_MM_FLAGS);
+		}
+	}
 
 	find_ac();
 	if(!flags.mv || Blind) {

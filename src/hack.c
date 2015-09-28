@@ -524,7 +524,7 @@ moverock()
 	    if (mtmp && !noncorporeal(mtmp->data) &&
 		    (!mtmp->mtrapped ||
 			 !(ttmp && ((ttmp->ttyp == PIT) || (ttmp->ttyp == SHIT_PIT) ||
-				    (ttmp->ttyp == SPIKED_PIT))))) {
+				    (ttmp->ttyp == SPIKED_PIT) || (ttmp->ttyp == GIANT_CHASM))))) {
 
 		if (Blind) feel_location(sx,sy);
 		if (canspotmon(mtmp)) {
@@ -568,6 +568,7 @@ moverock()
 		case SPIKED_PIT:
 		case SHIT_PIT:
 		case PIT:
+		case GIANT_CHASM:
 		    obj_extract_self(otmp);
 		    /* vision kludge to get messages right;
 		       the pit will temporarily be seen even
@@ -1352,6 +1353,9 @@ ask_about_trap(int x, int y)
 			if (!In_sokoban(&u.uz) && traphere->ttyp == SPIKED_PIT) {
 				return FALSE;
 			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == GIANT_CHASM) {
+				return FALSE;
+			}
 			if (!In_sokoban(&u.uz) && traphere->ttyp == SHIT_PIT) {
 				return FALSE;
 			}
@@ -1753,6 +1757,11 @@ domove()
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+				if (!uarmf) {
+					pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
+					num *= 2;
+				}
+
 				if (!rn2(20)) u_slow_down();
 
 				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
@@ -1816,6 +1825,27 @@ domove()
 			else
 #endif
 			You("disentangle yourself.");
+		    }
+		} else if (u.utraptype == TT_GLUE) {
+		    if(--u.utrap) {
+			if(flags.verbose) {
+			    predicament = "held in place by the glue";
+#ifdef STEED
+			    if (u.usteed)
+				Norep("%s is %s.", upstart(y_monnam(u.usteed)),
+				      predicament);
+			    else
+#endif
+			    Norep("You are %s.", predicament);
+			}
+		    } else {
+#ifdef STEED
+			if (u.usteed)
+			    pline("%s breaks out of the glue.",
+				  upstart(y_monnam(u.usteed)));
+			else
+#endif
+			You("finally get the sticky glue off.");
 		    }
 		} else if (u.utraptype == TT_INFLOOR) {
 		    if(--u.utrap) {
@@ -2027,7 +2057,7 @@ domove()
 
 	    if (mtmp->mtrapped &&
 		    (trap = t_at(mtmp->mx, mtmp->my)) != 0 &&
-		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT) &&
+		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT) &&
 		    sobj_at(BOULDER, trap->tx, trap->ty)) {
 		/* can't swap places with pet pinned in a pit by a boulder */
 		u.ux = u.ux0,  u.uy = u.uy0;	/* didn't move after all */
@@ -2320,7 +2350,7 @@ stillinwater:;
 	if (!in_steed_dismounting) { /* if dismounting, we'll check again later */
 		struct trap *trap = t_at(u.ux, u.uy);
 		boolean pit;
-		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == SHIT_PIT));
+		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
 		if (pick) (void) pickup(1);
@@ -2956,7 +2986,7 @@ dopickup()
 		 * in pits.
 		 */
 		/* [BarclayII] phasing or flying players can phase/fly into the pit */
-		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == SHIT_PIT) &&
+		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == GIANT_CHASM || traphere->ttyp == SHIT_PIT) &&
 		     (!u.utrap || (u.utrap && u.utraptype != TT_PIT)) && !Passes_walls && !Flying) {
 			You("cannot reach the bottom of the pit.");
 			return(0);

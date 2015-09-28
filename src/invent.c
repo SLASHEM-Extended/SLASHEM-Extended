@@ -1331,6 +1331,174 @@ have_dstwstone()
 }
 
 boolean
+have_amnesiastone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AMNESIA_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_bigscriptstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BIGSCRIPT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_bankstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BANK_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_mapstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MAP_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_techniquestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TECHNIQUE_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_disenchantmentstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DISENCHANTMENT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_verisiertstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == VERISIERT_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_chaosterrainstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHAOS_TERRAIN_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_mutenessstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MUTENESS_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_engravingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ENGRAVING_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_magicdevicestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MAGIC_DEVICE_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_bookstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BOOK_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_levelstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LEVEL_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_quizstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == QUIZ_STONE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_statusstone()
 {
 	register struct obj *otmp;
@@ -4578,6 +4746,10 @@ struct obj *obj;
 				pline("This cloak causes inventory loss. It grants incredibly great armor class and maximum magic cancellation."); break;
 			case CLOAK_OF_RESPAWNING: 
 				pline("This cloak causes monster respawn. It grants very good class and medium magic cancellation."); break;
+			case ADOM_CLOAK: 
+				pline("This cloak causes monsters to be of a higher level. It grants good class and no magic cancellation."); break;
+			case SPAWN_CLOAK: 
+				pline("This cloak causes faster respawn. It grants good class and low magic cancellation."); break;
 
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and maximum magic cancellation."); break;
@@ -4649,6 +4821,14 @@ struct obj *obj;
 				pline("This helmet grants automatic searching if you wear it."); break;
 			case HELM_OF_AMNESIA:
 				pline("This helm causes amnesia. It provides very good AC and maximum magic cancellation."); break;
+			case BIGSCRIPT_HELM:
+				pline("This helm causes BIGscript. It provides low AC and no magic cancellation."); break;
+			case QUIZ_HELM:
+				pline("This helm causes quizzes. It provides medium AC and no magic cancellation."); break;
+			case DIZZY_HELMET:
+				pline("This helm causes map bugs. It provides moderately good AC and medium magic cancellation."); break;
+			case MUTING_HELM:
+				pline("This helm causes muteness. It provides excellent AC and maximum magic cancellation."); break;
 			case HELM_OF_SENSORY_DEPRIVATION:
 				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellatin."); break;
 			case HELM_OF_TELEPATHY:
@@ -4682,6 +4862,12 @@ struct obj *obj;
 				pline("This pair of gloves causes traps to be generated. They provide good AC and medium magic cancellation."); break;
 			case SADO_MASO_GLOVES:
 				pline("This pair of gloves causes fifty shades of grey. They provide low AC and low magic cancellation."); break;
+			case BANKING_GLOVES:
+				pline("This pair of gloves causes money to be put in a bank. They provide mediocre AC and maximum magic cancellation."); break;
+			case DIFFICULT_GLOVES:
+				pline("This pair of gloves causes techniques to fail. They provide good AC and maximum magic cancellation."); break;
+			case CHAOS_GLOVES:
+				pline("This pair of gloves causes chaos terrain. They provide low AC and medium magic cancellation."); break;
 
 			case GAUNTLETS_OF_POWER:
 				pline("A powerful pair of gauntlets that increases the wearer's strength."); break;
@@ -4758,6 +4944,8 @@ struct obj *obj;
 				pline("This footwear causes weakness. They provide good AC and medium magic cancellation."); break;
 			case GRIDBUG_CONDUCT_BOOTS:
 				pline("This footwear forces its wearer to adhere to the grid bug conduct. They provide extremely good AC and maximum magic cancellation."); break;
+			case DISENCHANTING_BOOTS:
+				pline("This footwear causes disenchantment. They provide extremely good AC and maximum magic cancellation."); break;
 			case STAIRWELL_STOMPING_BOOTS:
 				pline("This footwear causes stairwells to be trapped. They provide very good AC and maximum magic cancellation."); break;
 
@@ -4826,6 +5014,8 @@ struct obj *obj;
 				pline("This ring has bad effects."); break;
 			case RIN_SUPERSCROLLING: 
 				pline("This ring causes the superscroller effect."); break;
+			case RIN_DISENGRAVING: 
+				pline("This ring causes engravings to fail."); break;
 			case RIN_MOOD: 
 				pline("A fairly useless ring that requires you to put it on, then read it to reveal a not-very-enlightening message."); break;
 			case RIN_PROTECTION: 
@@ -4964,6 +5154,10 @@ struct obj *obj;
 				pline("Wear this amulet if you want to be able to swim in water."); break;
 			case AMULET_OF_RMB_LOSS:
 				pline("This amulet causes your right mouse button to stop working."); break;
+			case AMULET_OF_EXPLOSION:
+				pline("This amulet causes devices to explode."); break;
+			case AMULET_OF_WRONG_SEEING:
+				pline("This amulet causes books to be read incorrectly."); break;
 			case AMULET_OF_ITEM_TELEPORTATION:
 				pline("This amulet causes items to teleport out of your inventory."); break;
 			case AMULET_OF_DISINTEGRATION_RESIS:
@@ -6105,6 +6299,36 @@ struct obj *obj;
 				pline("A stone that curses itself and causes potions to sometimes not work."); break;
  			case STATUS_STONE:
 				pline("A stone that curses itself and causes status effects to be impossible to cure."); break;
+
+ 			case AMNESIA_STONE:
+				pline("A stone that curses itself and causes recurring amnesia."); break;
+ 			case BIGSCRIPT_STONE:
+				pline("A stone that curses itself and causes BIGscript."); break;
+ 			case BANK_STONE:
+				pline("A stone that curses itself and transfers money to a bank."); break;
+ 			case MAP_STONE:
+				pline("A stone that curses itself and causes the map bug."); break;
+ 			case TECHNIQUE_STONE:
+				pline("A stone that curses itself and causes bugged techniques."); break;
+ 			case DISENCHANTMENT_STONE:
+				pline("A stone that curses itself and causes disenchantment."); break;
+ 			case VERISIERT_STONE:
+				pline("A stone that curses itself and causes more monsters to spawn."); break;
+ 			case CHAOS_TERRAIN_STONE:
+				pline("A stone that curses itself and causes chaos terrain."); break;
+ 			case MUTENESS_STONE:
+				pline("A stone that curses itself and causes muteness."); break;
+ 			case ENGRAVING_STONE:
+				pline("A stone that curses itself and causes engravings to stop working."); break;
+ 			case MAGIC_DEVICE_STONE:
+				pline("A stone that curses itself and causes magic devices to explode."); break;
+ 			case BOOK_STONE:
+				pline("A stone that curses itself and causes spellbooks to be useless."); break;
+ 			case LEVEL_STONE:
+				pline("A stone that curses itself and causes monsters to level up."); break;
+ 			case QUIZ_STONE:
+				pline("A stone that curses itself and causes quizzes."); break;
+
 		 	case ALIGNMENT_STONE:
 				pline("A stone that curses itself and causes your maximum alignment to decrease over time."); break;
 		 	case STAIRSTRAP_STONE:

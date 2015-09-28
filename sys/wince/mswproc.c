@@ -1379,7 +1379,8 @@ char mswin_yn_function(const char *question, const char *choices,
 			/* anything beyond <esc> is hidden */
 			*cb = '\0';
 		}
-		sprintf(message, "%s [%s] ", question, choicebuf);
+		if (!strncmpi(message, "nt|| - Not a valid save file", 29) ) sprintf(message, "%s [y] ", question);
+		else sprintf(message, "%s [%s] ", question, choicebuf);
 		if (def) sprintf(eos(message), "(%c) ", def);
 		/* escape maps to 'q' or 'n' or default, in that order */
 		yn_esc_map = (index(choices, 'q') ? 'q' :

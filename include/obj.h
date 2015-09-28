@@ -513,6 +513,20 @@ struct obj {
 				 (obj)->otyp == FARLOOK_STONE || \
 				 (obj)->otyp == CAPTCHA_STONE || \
 				 (obj)->otyp == RESPAWN_STONE || \
+				 (obj)->otyp == AMNESIA_STONE || \
+				 (obj)->otyp == BIGSCRIPT_STONE || \
+				 (obj)->otyp == BANK_STONE || \
+				 (obj)->otyp == MAP_STONE || \
+				 (obj)->otyp == TECHNIQUE_STONE || \
+				 (obj)->otyp == DISENCHANTMENT_STONE || \
+				 (obj)->otyp == VERISIERT_STONE || \
+				 (obj)->otyp == CHAOS_TERRAIN_STONE || \
+				 (obj)->otyp == MUTENESS_STONE || \
+				 (obj)->otyp == ENGRAVING_STONE || \
+				 (obj)->otyp == MAGIC_DEVICE_STONE || \
+				 (obj)->otyp == BOOK_STONE || \
+				 (obj)->otyp == LEVEL_STONE || \
+				 (obj)->otyp == QUIZ_STONE || \
 				 (obj)->otyp == UNINFORMATION_STONE )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \

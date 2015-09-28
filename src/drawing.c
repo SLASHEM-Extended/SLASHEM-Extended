@@ -440,6 +440,27 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "level trap", C(CLR_RED)},	/* trap */
 	{'^', "quiz trap", C(CLR_ORANGE)},	/* trap */
 
+	{'^', "falling boulder trap", C(CLR_GRAY)},	/* trap */
+	{'^', "glass arrow trap", C(CLR_CYAN)},	/* trap */
+	{'^', "glass bolt trap", C(CLR_CYAN)},	/* trap */
+	{'^', "out of magic trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "plasma trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "contact bomb", C(CLR_ORANGE)},	/* trap */
+	{'^', "earthquake trap", C(CLR_BLACK)},	/* trap */
+	{'^', "noise trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "glue trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "guillotine trap", C(CLR_BLACK)},	/* trap */
+	{'^', "bisection trap", C(CLR_RED)},	/* trap */
+	{'^', "volt trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "horde trap", C(CLR_WHITE)},	/* trap */
+	{'^', "immobility trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "glyph of guarding", C(CLR_GREEN)},	/* trap */
+	{'^', "glyph of protection", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "glyph of animation", C(CLR_YELLOW)},	/* trap */
+	{'^', "glyph of summoning", C(CLR_ORANGE)},	/* trap */
+	{'^', "glyph of massive damage", C(CLR_BLACK)},	/* trap */
+	{'^', "glyph number seven", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -701,6 +722,27 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_level_trap),
 	g_FILLER(S_quiz_trap),
 
+	g_FILLER(S_falling_boulder_trap),
+	g_FILLER(S_glass_arrow_trap),
+	g_FILLER(S_glass_bolt_trap),
+	g_FILLER(S_out_of_magic_trap),
+	g_FILLER(S_plasma_trap),
+	g_FILLER(S_bomb_trap),
+	g_FILLER(S_earthquake_trap),
+	g_FILLER(S_noise_trap),
+	g_FILLER(S_glue_trap),
+	g_FILLER(S_guillotine_trap),
+	g_FILLER(S_bisection_trap),
+	g_FILLER(S_volt_trap),
+	g_FILLER(S_horde_trap),
+	g_FILLER(S_immobility_trap),
+	g_FILLER(S_green_glyph_trap),
+	g_FILLER(S_blue_glyph_trap),
+	g_FILLER(S_yellow_glyph_trap),
+	g_FILLER(S_orange_glyph_trap),
+	g_FILLER(S_black_glyph_trap),
+	g_FILLER(S_purple_glyph_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -953,6 +995,27 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_level_trap),
 	g_FILLER(S_quiz_trap),
 
+	g_FILLER(S_falling_boulder_trap),
+	g_FILLER(S_glass_arrow_trap),
+	g_FILLER(S_glass_bolt_trap),
+	g_FILLER(S_out_of_magic_trap),
+	g_FILLER(S_plasma_trap),
+	g_FILLER(S_bomb_trap),
+	g_FILLER(S_earthquake_trap),
+	g_FILLER(S_noise_trap),
+	g_FILLER(S_glue_trap),
+	g_FILLER(S_guillotine_trap),
+	g_FILLER(S_bisection_trap),
+	g_FILLER(S_volt_trap),
+	g_FILLER(S_horde_trap),
+	g_FILLER(S_immobility_trap),
+	g_FILLER(S_green_glyph_trap),
+	g_FILLER(S_blue_glyph_trap),
+	g_FILLER(S_yellow_glyph_trap),
+	g_FILLER(S_orange_glyph_trap),
+	g_FILLER(S_black_glyph_trap),
+	g_FILLER(S_purple_glyph_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1202,6 +1265,27 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_book_trap),
 	g_FILLER(S_level_trap),
 	g_FILLER(S_quiz_trap),
+
+	g_FILLER(S_falling_boulder_trap),
+	g_FILLER(S_glass_arrow_trap),
+	g_FILLER(S_glass_bolt_trap),
+	g_FILLER(S_out_of_magic_trap),
+	g_FILLER(S_plasma_trap),
+	g_FILLER(S_bomb_trap),
+	g_FILLER(S_earthquake_trap),
+	g_FILLER(S_noise_trap),
+	g_FILLER(S_glue_trap),
+	g_FILLER(S_guillotine_trap),
+	g_FILLER(S_bisection_trap),
+	g_FILLER(S_volt_trap),
+	g_FILLER(S_horde_trap),
+	g_FILLER(S_immobility_trap),
+	g_FILLER(S_green_glyph_trap),
+	g_FILLER(S_blue_glyph_trap),
+	g_FILLER(S_yellow_glyph_trap),
+	g_FILLER(S_orange_glyph_trap),
+	g_FILLER(S_black_glyph_trap),
+	g_FILLER(S_purple_glyph_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1643,6 +1727,27 @@ boolean is_rlevel;
 	    showsyms[S_book_trap] = 0x04;
 	    showsyms[S_level_trap] = 0x04;
 	    showsyms[S_quiz_trap] = 0x04;
+
+	    showsyms[S_falling_boulder_trap] = 0x04;
+	    showsyms[S_glass_arrow_trap] = 0x04;
+	    showsyms[S_glass_bolt_trap] = 0x04;
+	    showsyms[S_out_of_magic_trap] = 0x04;
+	    showsyms[S_plasma_trap] = 0x04;
+	    showsyms[S_bomb_trap] = 0x04;
+	    showsyms[S_earthquake_trap] = 0x04;
+	    showsyms[S_noise_trap] = 0x04;
+	    showsyms[S_glue_trap] = 0x04;
+	    showsyms[S_guillotine_trap] = 0x04;
+	    showsyms[S_bisection_trap] = 0x04;
+	    showsyms[S_volt_trap] = 0x04;
+	    showsyms[S_horde_trap] = 0x04;
+	    showsyms[S_immobility_trap] = 0x04;
+	    showsyms[S_green_glyph_trap] = 0x04;
+	    showsyms[S_blue_glyph_trap] = 0x04;
+	    showsyms[S_yellow_glyph_trap] = 0x04;
+	    showsyms[S_orange_glyph_trap] = 0x04;
+	    showsyms[S_black_glyph_trap] = 0x04;
+	    showsyms[S_purple_glyph_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

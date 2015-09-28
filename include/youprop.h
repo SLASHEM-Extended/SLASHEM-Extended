@@ -156,7 +156,6 @@
 #define Stoned			u.uprops[STONED].intrinsic
 #define Strangled		u.uprops[STRANGLED].intrinsic
 #define Prem_death		(u.uprops[PREMDEATH].intrinsic || u.uprops[PREMDEATH].extrinsic)
-#define RecurringAmnesia		(u.uprops[RECURRING_AMNESIA].intrinsic || u.uprops[RECURRING_AMNESIA].extrinsic)
 #define Vomiting		u.uprops[VOMITING].intrinsic
 #define Glib			u.uprops[GLIB].intrinsic
 #define EGlib			u.uprops[GLIB].extrinsic
@@ -206,6 +205,21 @@
 #define TeleportingItems		u.uprops[TELEPORTING_ITEMS].intrinsic
 
 #define NastinessProblem		u.uprops[NASTINESS_EFFECTS].intrinsic
+
+#define RecurringAmnesia		u.uprops[RECURRING_AMNESIA].intrinsic
+#define BigscriptEffect		u.uprops[BIGSCRIPT].intrinsic
+#define BankTrapEffect		u.uprops[BANKBUG].intrinsic
+#define MapTrapEffect		u.uprops[MAPBUG].intrinsic
+#define TechTrapEffect		u.uprops[TECHBUG].intrinsic
+#define RecurringDisenchant		u.uprops[RECURRING_DISENCHANT].intrinsic
+#define verisiertEffect		u.uprops[VERISIERTEFFECT].intrinsic
+#define ChaosTerrain		u.uprops[CHAOS_TERRAIN].intrinsic
+#define Muteness		u.uprops[MUTENESS].intrinsic
+#define EngravingDoesntWork		u.uprops[ENGRAVINGBUG].intrinsic
+#define MagicDeviceEffect		u.uprops[MAGIC_DEVICE_BUG].intrinsic
+#define BookTrapEffect		u.uprops[BOOKBUG].intrinsic
+#define LevelTrapEffect		u.uprops[LEVELBUG].intrinsic
+#define QuizTrapEffect		u.uprops[QUIZZES].intrinsic
 
 #define CaptchaProblem		u.uprops[CAPTCHA].intrinsic
 #define FarlookProblem		u.uprops[FARLOOK_BUG].intrinsic

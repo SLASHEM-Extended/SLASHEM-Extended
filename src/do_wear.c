@@ -145,6 +145,7 @@ Boots_on()
 	case DIFFICULT_BOOTS:
 	case BOOTS_OF_WEAKNESS:
 	case GRIDBUG_CONDUCT_BOOTS:
+	case DISENCHANTING_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
@@ -259,6 +260,7 @@ Boots_off()
 	case DIFFICULT_BOOTS:
 	case BOOTS_OF_WEAKNESS:
 	case GRIDBUG_CONDUCT_BOOTS:
+	case DISENCHANTING_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 #ifdef JEDI
@@ -367,6 +369,8 @@ Cloak_on()
 
 	case CLOAK_OF_UNSPELLING:
 	case ANTI_CASTER_CLOAK:
+	case ADOM_CLOAK:
+	case SPAWN_CLOAK:
 	case HEAVY_STATUS_CLOAK:
 	case CLOAK_OF_LUCK_NEGATION:
 	case YELLOW_SPELL_CLOAK:
@@ -427,6 +431,8 @@ Cloak_off()
 	case VULNERABILITY_CLOAK:
 	case CLOAK_OF_INVENTORYLESSNESS:
 	case CLOAK_OF_RESPAWNING:
+	case ADOM_CLOAK:
+	case SPAWN_CLOAK:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
@@ -564,6 +570,10 @@ Helmet_on()
 	case WHISPERING_HELMET:
 	case CYPHER_HELM:
 	case ANGER_HELM:
+	case BIGSCRIPT_HELM:
+	case QUIZ_HELM:
+	case DIZZY_HELMET:
+	case MUTING_HELM:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -611,6 +621,10 @@ Helmet_off()
 	case WHISPERING_HELMET:
 	case CYPHER_HELM:
 	case ANGER_HELM:
+	case BIGSCRIPT_HELM:
+	case QUIZ_HELM:
+	case DIZZY_HELMET:
+	case MUTING_HELM:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -684,6 +698,9 @@ Gloves_on()
 	case GLOVES_OF_MISSING_INFORMATION:
 	case GLOVES_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
+	case BANKING_GLOVES:
+	case DIFFICULT_GLOVES:
+	case CHAOS_GLOVES:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -735,6 +752,9 @@ Gloves_off()
 	case GLOVES_OF_MISSING_INFORMATION:
 	case GLOVES_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
+	case BANKING_GLOVES:
+	case DIFFICULT_GLOVES:
+	case CHAOS_GLOVES:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
 	    break;
@@ -966,6 +986,8 @@ Amulet_on()
 		break;
 
 	case AMULET_OF_RMB_LOSS:
+	case AMULET_OF_EXPLOSION:
+	case AMULET_OF_WRONG_SEEING:
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
 
@@ -1198,6 +1220,7 @@ register struct obj *obj;
 	case RIN_NASTINESS:
 	case RIN_BAD_EFFECT:
 	case RIN_SUPERSCROLLING:
+	case RIN_DISENGRAVING:
 
 		if (!obj->cursed) curse(obj);
 

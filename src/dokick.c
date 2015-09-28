@@ -525,7 +525,7 @@ xchar x, y;
 
 	if ((trap = t_at(x,y)) != 0 &&
 			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT ||
-			   trap->ttyp == SPIKED_PIT) && !Passes_walls) ||
+			   trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM) && !Passes_walls) ||
 			 trap->ttyp == WEB)) {
 		if (!trap->tseen && !trap->hiddentrap) find_trap(trap);
 		You_cant("kick %s that's in a %s!", something,
@@ -798,6 +798,7 @@ dokick()
 			pline("There's not enough room to kick down here.");
 			break;
 		    case TT_WEB:
+		    case TT_GLUE:
 		    case TT_BEARTRAP:
 			You_cant("move your %s!", body_part(LEG));
 			break;

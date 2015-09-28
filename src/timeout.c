@@ -1398,7 +1398,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(41)) {
+		switch (rnd(55)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1459,6 +1459,28 @@ nh_timeout()
 			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1473,7 +1495,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(41)) {
+		switch (rnd(55)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1534,6 +1556,27 @@ nh_timeout()
 			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1548,7 +1591,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(41)) {
+		switch (rnd(55)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1609,6 +1652,27 @@ nh_timeout()
 			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1623,7 +1687,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(41)) {
+		switch (rnd(55)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1684,6 +1748,27 @@ nh_timeout()
 			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

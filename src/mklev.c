@@ -2283,7 +2283,10 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
-			(char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
@@ -10107,6 +10110,8 @@ coord *tm;
 			if (rn2(20)) kind = ROCKTRAP; break;
 		    case DRAIN_TRAP:
 			if (rn2(3)) kind = FIRE_TRAP; break;
+		    case TIME_TRAP:
+			if (rn2(10)) kind = FIRE_TRAP; break;
 		    case FREE_HAND_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) kind = SLP_GAS_TRAP; break;
 		    case DISINTEGRATION_TRAP:
@@ -10175,6 +10180,39 @@ coord *tm;
 		    case CAPTCHA_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) kind = SHIT_PIT; break;
 
+		    case RECURRING_AMNESIA_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) kind = LOUDSPEAKER; break;
+		    case BIGSCRIPT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) kind = LASER_TRAP; break;
+		    case BANK_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) kind = FART_TRAP; break;
+		    case ONLY_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) kind = GLIB_TRAP; break;
+		    case MAP_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) kind = PLASMA_TRAP; break;
+		    case TECH_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = NOISE_TRAP; break;
+		    case DISENCHANT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) kind = MANA_TRAP; break;
+		    case VERISIERT:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) kind = UNLIGHT_TRAP; break;
+		    case CHAOS_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 33 )) kind = ESCALATING_TRAP; break;
+		    case MUTENESS_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) kind = NEGATIVE_TRAP; break;
+		    case NTLL_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) kind = LOUDSPEAKER; break;
+		    case ENGRAVING_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 17 )) kind = BLINDNESS_TRAP; break;
+		    case MAGIC_DEVICE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) kind = FART_TRAP; break;
+		    case BOOK_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 19 )) kind = NUMBNESS_TRAP; break;
+		    case LEVEL_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 15 )) kind = INERTIA_TRAP; break;
+		    case QUIZ_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) kind = LASER_TRAP; break;
+
 		    case RECURSION_TRAP:
 			if (rn2(500)) kind = ARROW_TRAP; break;
 		    case WARP_ZONE:
@@ -10189,6 +10227,45 @@ coord *tm;
 		    case FAMINE_TRAP:
 			if (rn2(2)) kind = SLOW_GAS_TRAP; break;
 
+		    case SIN_TRAP:
+			if (rn2(50)) kind = STUN_TRAP; break;
+		    case DESTROY_ARMOR_TRAP:
+			if (rn2(15)) kind = RUST_TRAP; break;
+		    case DIVINE_ANGER_TRAP:
+			if (rn2(40)) kind = HALLUCINATION_TRAP; break;
+		    case GENETIC_TRAP:
+			if (rn2(10)) kind = POLY_TRAP; break;
+		    case MISSINGNO_TRAP:
+			if (rn2(50)) kind = POLY_TRAP; break;
+		    case CANCELLATION_TRAP:
+			if (rn2(25)) kind = NUMBNESS_TRAP; break;
+		    case HOSTILITY_TRAP:
+			if (rn2(4)) kind = FREEZING_TRAP; break;
+		    case BOSS_TRAP:
+			if (rn2(16)) kind = BURNING_TRAP; break;
+		    case WISHING_TRAP:
+			if (rn2(500)) kind = BLINDNESS_TRAP; break;
+		    case GUILLOTINE_TRAP:
+			if (rn2(200)) kind = FEAR_TRAP; break;
+		    case BISECTION_TRAP:
+			if (rn2(200)) kind = CONFUSE_TRAP; break;
+		    case HORDE_TRAP:
+			if (rn2(10)) kind = ANIMATION_TRAP; break;
+		    case IMMOBILITY_TRAP:
+			if (rn2(15)) kind = PARALYSIS_TRAP; break;
+		    case GREEN_GLYPH:
+			if (rn2(5)) kind = GLYPH_OF_WARDING; break;
+		    case BLUE_GLYPH:
+			if (rn2(10)) kind = GLYPH_OF_WARDING; break;
+		    case YELLOW_GLYPH:
+			if (rn2(7)) kind = GLYPH_OF_WARDING; break;
+		    case ORANGE_GLYPH:
+			if (rn2(20)) kind = GLYPH_OF_WARDING; break;
+		    case BLACK_GLYPH:
+			if (rn2(35)) kind = GLYPH_OF_WARDING; break;
+		    case PURPLE_GLYPH:
+			if (rn2(49)) kind = GLYPH_OF_WARDING; break;
+
 		}
 		if (!rn2(12)) kind = STATUE_TRAP;
 
@@ -10202,7 +10279,7 @@ coord *tm;
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == SHIT_PIT || kind == SHAFT_TRAP ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == SHAFT_TRAP ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

@@ -220,8 +220,29 @@ extern struct trap *ftrap;
 #define LEVEL_TRAP 162
 #define QUIZ_TRAP 163
 
-#define TRAP_PERCENTS		164
+#define FALLING_BOULDER_TRAP 164
+#define GLASS_ARROW_TRAP 165
+#define GLASS_BOLT_TRAP 166
+#define OUT_OF_MAGIC_TRAP 167
+#define PLASMA_TRAP 168
+#define BOMB_TRAP 169
+#define EARTHQUAKE_TRAP 170
+#define NOISE_TRAP 171
+#define GLUE_TRAP 172
+#define GUILLOTINE_TRAP 173
+#define BISECTION_TRAP 174
+#define VOLT_TRAP 175
+#define HORDE_TRAP 176
+#define IMMOBILITY_TRAP 177
+#define GREEN_GLYPH 178
+#define BLUE_GLYPH 179
+#define YELLOW_GLYPH 180
+#define ORANGE_GLYPH 181
+#define BLACK_GLYPH 182
+#define PURPLE_GLYPH 183
 
-#define TRAPNUM 165
+#define TRAP_PERCENTS		184
+
+#define TRAPNUM 185
 
 #endif /* TRAP_H */

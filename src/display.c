@@ -819,7 +819,7 @@ newsym(x,y)
 
 		    /* if monster is in a physical trap, you see the trap too */
 		    if (trap && (tt == BEAR_TRAP || tt == PIT ||
-			tt == SPIKED_PIT || tt == SHIT_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
+			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
 			trap->tseen = TRUE;
 		    }
 		}
@@ -1611,9 +1611,17 @@ back_to_cmap(x,y)
 	case STONE:
 	    idx = level.flags.arboreal ? S_tree : /*S_stone*/S_dungwall;
 	    break;
-	case ROOM:		idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room;	  break;
+	case ROOM:
+
+	    if (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone()) idx = S_stone;
+
+	    else idx = (!cansee(x,y) && !ptr->waslit) ? S_darkroom : S_room;
+	    break;
 	case CORR:
-	    idx = (ptr->waslit || flags.lit_corridor) ? S_litcorr : S_corr;
+
+	    if (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone()) idx = S_stone;
+
+	    else idx = (ptr->waslit || flags.lit_corridor) ? S_litcorr : S_corr;
 	    break;
 	case HWALL:
 	case VWALL:
