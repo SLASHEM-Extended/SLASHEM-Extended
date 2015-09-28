@@ -1143,7 +1143,7 @@ Amulet_off()
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
 		setworn((struct obj *)0, W_AMUL);
-		if (!ESleeping && !Race_if(PM_KOBOLT))
+		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		return;
 	case AMULET_OF_DATA_STORAGE:
@@ -1379,7 +1379,7 @@ boolean gone;
 	case MEAT_RING:
 		break;
 	case RIN_SLEEPING:
-		if (!ESleeping && !Race_if(PM_KOBOLT))
+		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		break;
 #if 0
