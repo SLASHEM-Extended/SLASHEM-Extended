@@ -5048,32 +5048,32 @@ REGION:(69,08,74,11),unlit,"ordinary"
 REGION:(66,16,72,18),unlit,"ordinary"
 
 # Main Temple
-ALTAR:(04,09),noalign,sanctum
-ALTAR:(04,10),noalign,sanctum
+ALTAR:(04,09),noalign,shrine
+ALTAR:(04,10),noalign,shrine
 REGION:(01,05,23,14),unlit,"temple"
 
 # Northern Temple (Inner)
-ALTAR:(03,02),noalign,sanctum
+ALTAR:(03,02),noalign,shrine
 REGION:(01,01,09,03),unlit,"temple"
 
 # Northern Temple (Outer)
-ALTAR:(16,02),noalign,sanctum
+ALTAR:(16,02),noalign,shrine
 REGION:(14,00,26,04),unlit,"temple"
 
 # Souther Temple (Inner)
-ALTAR:(03,17),noalign,sanctum
+ALTAR:(03,17),noalign,shrine
 REGION:(01,16,09,18),unlit,"temple"
 
 # Southern Temple (Outer)
-ALTAR:(16,17),noalign,sanctum
+ALTAR:(16,17),noalign,shrine
 REGION:(14,15,26,19),unlit,"temple"
 
 # North Eastern Temple
-ALTAR:(36,01),noalign,sanctum
+ALTAR:(36,01),noalign,shrine
 REGION:(33,00,39,02),unlit,"temple"
 
 # South Eastern Tample
-ALTAR:(44,17),noalign,sanctum
+ALTAR:(44,17),noalign,shrine
 REGION:(40,16,45,18),unlit,"temple"
 
 # Stairs and Branch
