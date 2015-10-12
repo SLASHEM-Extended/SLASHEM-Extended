@@ -442,6 +442,9 @@ struct you {
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
 
+	int alwayscurseditem;		/* evil patch idea - item type that is always generated cursed */
+	int alwayscurseditem2;
+
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
 	int shaperoomchance;	/* to control the chance of irregular rooms */

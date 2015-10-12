@@ -1209,6 +1209,9 @@ boolean artif;
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
 	if (iscurser && rn2(5)) curse(otmp);
 
+	if (otyp == u.alwayscurseditem) curse(otmp);
+	if (otyp == u.alwayscurseditem2) curse(otmp);
+
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {
 	    case CORPSE:
