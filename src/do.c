@@ -282,6 +282,10 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 {
 	/* "Removed altars disappearing while using them. This made little sense and made the game needlessly more difficult." In Soviet Russia, people want to be able to indefinitely determine BUC status of objects as soon as they find a single altar. They also really love sacfesting, which they can do for 25 hours each day without getting tired. Heck, they could probably do pudding farming for 25 hours each day, combined with sacfesting if there's an altar on their farm level, and not get bored either! But I'm assuming that Slash'EM Extended is played by real players who don't want their senses to get dulled from doing some repetitive thing for hours on end. Altars disappearing is there to limit the potential abuse and prevent endless sacfesting. Yes, you aren't supposed to get a guaranteed Magicbane on your first altar. You should be grateful if you do get it since it's freaking powerful compared to non-artifacts, and so you have to work for it, possibly using up many altars, or maybe you'll never get it if you're unlucky - that's the life! --Amy */
 
+	/* high altars don't tell you the BUC of an item, partly as extra insurance against altar vanishing
+	 * but also to make sure that you can't indefinitely identify BUC on the astral plane --Amy */
+	if (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) return;
+
 	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {levl[u.ux][u.uy].typ = ROOM;
 	pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
 	newsym(u.ux,u.uy);
