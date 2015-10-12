@@ -602,7 +602,7 @@ drinksink()
 		floating_above("sink");
 		return;
 	}
-	switch(rn2(21)) {
+	switch(rn2(25)) {
 		case 0: You("take a sip of very cold water.");
 			break;
 		case 1: You("take a sip of very warm water.");
@@ -692,6 +692,27 @@ drinksink()
 			}
 			break;
 
+            case 14: pline("Steam pours out of the faucet.");
+                  if ((mvitals[PM_STEAM_VORTEX].mvflags & G_GONE)
+                  || makemon(&mons[PM_STEAM_VORTEX],
+                  u.ux, u.uy, NO_MM_FLAGS) || rnl(10) > 5)
+                      pline("It shapes itself into a spiral!");
+                  break;
+            case 15: pline("A strong jet of %s water splashes all over you!",
+                  rn2(3) ? (rn2(2) ? "cold" : "warm") : "hot");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+                  break;
+            case 16: pline("A strong jet of scalding hot water splashes all over you!");
+                  if (Fire_resistance)
+                       pline("It feels quite refreshing.");
+                  else if (!Fire_resistance)
+                       losehp(d(4,6), "jet of boiling water", KILLED_BY_AN);
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+                  break;
+            case 17: if (Hallucination)
+                  pline_The("water flies out of the plughole and into the faucet!");
 		case 19: if (Hallucination) {
 		   pline("From the murky drain, a hand reaches up... --oops--");
 				break;
