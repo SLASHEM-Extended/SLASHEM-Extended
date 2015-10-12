@@ -242,10 +242,12 @@ boolean dresistance;	/* level drain resistance can protect you */
 	}
 	num = newhp();
 	u.uhpmax -= num;
+	u.uhpmax -= rn2(3);
 	u.uhpmax -= rnz(2);
 	u.uhpmax -= rnz(3); /* making the drain for gain exploit much harder to perform --Amy */
 	if (u.uhpmax < 1) u.uhpmax = 1;
 	u.uhp -= num;
+	u.uhp -= rn2(3);
 	u.uhp -= rnz(3);
 	u.uhp -= rnz(2);
 	if (u.uhp < 1) u.uhp = 1;
@@ -259,10 +261,12 @@ boolean dresistance;	/* level drain resistance can protect you */
 			urole.enadv.hifix + urace.enadv.hifix);
 	num = enermod(num);		/* M. Stephenson */
 	u.uenmax -= num;
+	u.uenmax -= rn2(3);
 	u.uenmax -= rnz(3);
 	u.uenmax -= (rn2(3) ? rnz(1) : rnz(2));
 	if (u.uenmax < 0) u.uenmax = 0;
 	u.uen -= num;
+	u.uen -= rn2(3);
 	u.uen -= rnz(3);
 	if (u.uen < 0) u.uen = 0;
 	else if (u.uen > u.uenmax) u.uen = u.uenmax;
@@ -310,6 +314,7 @@ newexplevel()
 /* STEPHEN WHITE'S NEW CODE */                
 		tmp = newhp();
 		u.uhpmax += tmp;
+		u.uhpmax += rn2(3);
 		u.uhp += tmp;
 		u.uhpmax += rnz(2); /*making the game a bit easier --Amy */
 		if (u.uhp < u.uhpmax) u.uhp = u.uhpmax;
@@ -378,17 +383,19 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = newhp();
 	num += rnz(2);
-	num -= flags.hybridization;
+	if (flags.hybridization) num -= rnd(flags.hybridization);
 	if (num < 0) num = 0;
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
+	num += rn2(3);
 	u.uhpmax += num;
 	u.uhp += num;
 
 	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
-	    num -= flags.hybridization;
+	    if (flags.hybridization) num -= rnd(flags.hybridization);
 	    if (num < 0) num = 0;
+	    num += rn2(3);
 	    u.mhmax += num;
 	    u.mh += num;
 		if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && (u.mh < u.mhmax)) u.mh = u.mhmax;
@@ -402,8 +409,9 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = enermod(num);	/* M. Stephenson */
 	num += (rn2(3) ? rnz(1) : rnz(2));
-	num -= flags.hybridization;
+	if (flags.hybridization) num -= rnd(flags.hybridization);
 	if (num < 0) num = 0;
+	num += rn2(3);
 	u.uenmax += num;
 	u.uen += num;
 	} /* homicider check */
@@ -415,18 +423,20 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = newhp();
 	num += rnz(2);
-	num -= flags.hybridization;
+	if (flags.hybridization) num -= rnd(flags.hybridization);
 	if (num < 0) num = 0;
 	if (num > 1) num /= rnd(12);
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
+	num += rn2(2);
 	u.uhpmax += num;
 	u.uhp += num;
 
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
-	    num -= flags.hybridization;
+	    if (flags.hybridization) num -= rnd(flags.hybridization);
 	    if (num < 0) num = 0;
 	    if (num > 1) num /= rnd(12);
+	    num += rn2(2);
 	    u.mhmax += num;
 	    u.mh += num;
 	}
@@ -439,9 +449,10 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = enermod(num);	/* M. Stephenson */
 	num += (rn2(3) ? rnz(1) : rnz(2));
-	num -= flags.hybridization;
+	if (flags.hybridization) num -= rnd(flags.hybridization);
 	if (num < 0) num = 0;
 	if (num > 1) num /= rnd(12);
+	num += rn2(2);
 	u.uenmax += num;
 	u.uen += num;
 
