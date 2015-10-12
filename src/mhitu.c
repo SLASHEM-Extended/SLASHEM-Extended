@@ -4060,6 +4060,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		dmg += u.chokhmahdamage;
+		dmg += rnd(u.ualign.sins);
 		u.chokhmahdamage++;
 		break;
 
@@ -6172,6 +6173,7 @@ do_stone:
 			You("are pummeled with heavy debris!");
 			if (mtmp->mcan) break;
 			tmp += u.chokhmahdamage;
+			tmp += rnd(u.ualign.sins);
 			u.chokhmahdamage++;
 		  break;
 
@@ -8370,6 +8372,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
                   pline("%s gazes at you and screams the word 'DIE!'", Monnam(mtmp));
 		    stop_occupation();
 			dmgplus += u.chokhmahdamage;
+			dmgplus += rnd(u.ualign.sins);
 			u.chokhmahdamage++;
                   mdamageu(mtmp, d(3,8) + dmgplus);
 		  }
