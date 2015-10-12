@@ -29,7 +29,7 @@ struct icp {
 /* faux artifacts to fool the player --Amy */
 static const char * const fauxartinames[] = {
 
-"Pus Spitter", "Excalibat", "Moonbite", "Steelgleam", "Spellstealer", "Ironward", "Crashbug Preventer", "Segfault Breath", "Server Operator", "Mindflayer's Best", "The Burninator", "Ascension Kit Part", "DYWYPI", "Identificator", "Frost Barrier", "Zombiekiller", "Lichbane", "Gnomerist", "Vorpal Element", "Silverswandir", "Shock Brand", "Mojo", "Mirrorblack", "Eluder", "Barrowtooth", "Icy Flame", "Spider's Tongue", "Thunderbringer", "White Death", "Coldfire", 
+"Pus Spitter", "Excalibat", "Moonbite", "Steelgleam", "Spellstealer", "Ironward", "Crashbug Preventer", "Segfault Breath", "Server Operator", "Mindflayer's Best", "The Burninator", "Ascension Kit Part", "DYWYPI", "Identificator", "Frost Barrier", "Zombiekiller", "Lichbane", "Gnomerist", "Vorpal Element", "Silverswandir", "Shock Brand", "Mojo", "Mirrorblack", "Eluder", "Barrowtooth", "Icy Flame", "Spider's Tongue", "Thunderbringer", "White Death", "Coldfire", "Polar Sphere", "Mind Maw", "Hidden Potato", "Queeb Butt", "Total Nonsense", "Spewbrewer", "Lasercross", "Hotel Thirst", "Ultimate Artifact", "Anti-YASD Insurance", "Invulnerability Dummy", "Priced Bauble", "Hunter of Shiva", "Sharp Bender", "Itchalaquiaque", "Saintly Seduction", "Nymph Bait", "Magicbreath", "Team Nastytrap Medal", "Team Ant's Friend", "Hatefulpresident", 
 
 };
 
