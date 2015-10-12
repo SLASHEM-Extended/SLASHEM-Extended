@@ -3029,7 +3029,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(49)) {
+		switch (rnd(50)) {
 
 			case 1: makemaz("bigrm-1"); return;
 			case 2: makemaz("bigrm-2"); return;
@@ -3080,6 +3080,7 @@ makelevel()
 			case 47: makemaz("bigrm-47"); return;
 			case 48: makemaz("bigrm-48"); return;
 			case 49: makemaz("bigrm-49"); return;
+			case 50: makemaz("bigrm-50"); return;
 
 		}
 		break;
@@ -4272,7 +4273,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(49)) {
+		switch (rnd(50)) {
 
 			case 1: makemaz("ghbgr-1"); return;
 			case 2: makemaz("ghbgr-2"); return;
@@ -4323,6 +4324,7 @@ makelevel()
 			case 47: makemaz("ghbgr-47"); return;
 			case 48: makemaz("ghbgr-48"); return;
 			case 49: makemaz("ghbgr-49"); return;
+			case 50: makemaz("ghbgr-50"); return;
 
 		}
 		break;
@@ -5897,7 +5899,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(49)) {
+		switch (rnd(50)) {
 
 			case 1: makemaz("bigrm-1"); return;
 			case 2: makemaz("bigrm-2"); return;
@@ -5948,6 +5950,7 @@ makelevel()
 			case 47: makemaz("bigrm-47"); return;
 			case 48: makemaz("bigrm-48"); return;
 			case 49: makemaz("bigrm-49"); return;
+			case 50: makemaz("bigrm-50"); return;
 
 		}
 		break;
@@ -7137,7 +7140,7 @@ makelevel()
 	    case 9:
 	    case 10:
 
-		switch (rnd(49)) {
+		switch (rnd(50)) {
 
 			case 1: makemaz("ghbgr-1"); return;
 			case 2: makemaz("ghbgr-2"); return;
@@ -7188,6 +7191,7 @@ makelevel()
 			case 47: makemaz("ghbgr-47"); return;
 			case 48: makemaz("ghbgr-48"); return;
 			case 49: makemaz("ghbgr-49"); return;
+			case 50: makemaz("ghbgr-50"); return;
 
 		}
 		break;
