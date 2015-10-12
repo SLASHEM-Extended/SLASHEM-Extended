@@ -442,6 +442,8 @@ struct you {
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
 
+	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
+
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */

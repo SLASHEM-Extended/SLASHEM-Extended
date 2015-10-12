@@ -1217,6 +1217,8 @@ register int x, y, typ;
 	ttmp->hiddentrap = 0;
 	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
 
+	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
+
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else ttmp->tseen = 0;
 	ttmp->once = 0;

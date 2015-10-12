@@ -5153,6 +5153,8 @@ u_init()
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);
 	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
 
+	u.invisotrap = rn2(TRAPNUM);
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
