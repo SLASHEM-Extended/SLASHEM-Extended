@@ -4009,7 +4009,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    /* Indicate to the hero that something happened */
 	    if (did_cancel && !self_cancel && youdefend)
 		You_feel("a strange sense of loss.");
-	    attrcurse(); /* remove some random intrinsic as well --Amy */
+	    if (youdefend) attrcurse(); /* remove some random intrinsic as well --Amy */
 	}
 
 	/* now handle special cases */
