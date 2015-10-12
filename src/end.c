@@ -1286,7 +1286,7 @@ boolean ask;
 
     /* get totals first */
     for (i = LOW_PM; i < NUMMONS; i++) {
-	if (mvitals[i].died) ntypes++;
+	if (mvitals[i].died || program_state.gameover || wizard ) ntypes++;
 	total_killed += (long)mvitals[i].died;
 	if (mons[i].mlevel > max_lev) max_lev = mons[i].mlevel;
     }
@@ -1306,7 +1306,7 @@ boolean ask;
 	    /* countdown by monster "toughness" */
 	    for (lev = max_lev; lev >= 0; lev--)
 	      for (i = LOW_PM; i < NUMMONS; i++)
-		if (mons[i].mlevel == lev && (nkilled = mvitals[i].died) > 0) {
+		if (mons[i].mlevel == lev && (((nkilled = mvitals[i].died) > 0) || (nkilled != mvitals[i].born && (program_state.gameover || wizard)) ) ) {
 		    if ((mons[i].geno & G_UNIQ) && i != PM_HIGH_PRIEST) {
 			Sprintf(buf, "%s%s",
 				!type_is_pname(&mons[i]) ? "The " : "",
