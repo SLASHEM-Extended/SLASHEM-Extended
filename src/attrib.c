@@ -780,18 +780,23 @@ losestr(num)	/* may kill you; cause may be poison or monster like 'a' */
 {
 	int ustr = ABASE(A_STR) - num;
 
+	int hpreduce = rnd(5);
+
 	if (num > 0) pline("%d points of your strength got sapped!",num);
 	if (num < 0) pline("%d points of your strength got restored!",-num);
+
+	if (ustr < 3) pline("Since you don't have enough strength, your health is being sapped instead.");
 
 	while(ustr < 3) {
 	    ++ustr;
 	    --num;
+	    hpreduce = rnd(5);
 	    if (Upolyd) {
-		u.mh -= 6;
-		u.mhmax -= 6;
+		u.mh -= hpreduce;
+		u.mhmax -= hpreduce;
 	    } else {
-		u.uhp -= 6;
-		u.uhpmax -= 6;
+		u.uhp -= hpreduce;
+		u.uhpmax -= hpreduce;
 	    }
 	}
 	(void) adjattrib(A_STR, -num, TRUE);
