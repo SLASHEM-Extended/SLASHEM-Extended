@@ -9719,6 +9719,7 @@ register int	mmflags;
 
 		case S_MUMMY:
 			if (mtmp->data == &mons[PM_MIMIC_MUMMY]) set_mimic_sym(mtmp);
+			if (mndx == PM_TROLL_PERMAMIMIC_MUMMY) set_mimic_sym(mtmp);
 
 			if (mtmp->data == &mons[PM_REVIVAL_SPINNER]) (void) makemon(&mons[PM_SKELETON], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 
