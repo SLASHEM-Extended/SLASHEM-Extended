@@ -1097,11 +1097,18 @@ int thrown;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if (is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) 			{
-			if ((wtype = uwep_skill_type()) != P_NONE &&  P_SKILL(wtype) >= P_SKILLED) tmp += rnd(2);
-			if ((wtype = uwep_skill_type()) != P_NONE &&  P_SKILL(wtype) >= P_EXPERT) tmp += rnd(4);
+		    if ((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
+			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SKILLED) tmp += rnd(2);
+			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
+			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_MASTER) tmp += rnd(6);
+			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_GRAND_MASTER) tmp += rnd(8);
+			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
+			if (!rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
 		}
+		/* not gonna do that stupidity (sorry) where everything unconditionally misses 25%. --Amy 
+		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
+
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
 				obj->otyp == BOOMERANG && !rnl(4) == 4-1) {
 			boolean more_than_1 = (obj->quan > 1L);
@@ -1309,6 +1316,7 @@ int thrown;
 		mdat = mon->data;
 		tmp = (mdat == &mons[PM_SHADE]) ? 0 : 1;
 	    } else {
+		if (!rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if (mdat == &mons[PM_SHADE] && !shade_aware(obj)) {
 		    tmp = 0;
 		    Strcpy(unconventional, cxname(obj));
