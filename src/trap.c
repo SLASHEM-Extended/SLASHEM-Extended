@@ -1654,7 +1654,7 @@ unsigned trflags;
 
 	switch(ttype) {
 	    case ARROW_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1682,7 +1682,7 @@ unsigned trflags;
 		break;
 
 	    case BOLT_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1710,7 +1710,7 @@ unsigned trflags;
 		break;
 
 	    case BULLET_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a soft click.");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1735,7 +1735,7 @@ unsigned trflags;
 		break;
 
 	    case GLASS_ARROW_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1763,7 +1763,7 @@ unsigned trflags;
 		break;
 
 	    case GLASS_BOLT_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1820,7 +1820,7 @@ unsigned trflags;
 		if (!rn2(20)) deltrap(trap);
 		break;
 	    case DART_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a soft click.");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1849,7 +1849,7 @@ unsigned trflags;
 		}
 		break;
 	    case THROWING_STAR_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    You_hear("a soft click.");
 		    deltrap(trap);
 		    newsym(u.ux,u.uy);
@@ -1878,7 +1878,7 @@ unsigned trflags;
 		}
 		break;
 	    case ROCKTRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    pline("A trap door in %s opens, but nothing falls out!",
 			  the(ceiling(u.ux,u.uy)));
 		    deltrap(trap);
@@ -1916,7 +1916,7 @@ unsigned trflags;
 		break;
 
 	    case FALLING_BOULDER_TRAP:
-		if (trap->once && trap->tseen && !rn2(15)) {
+		if (trap->once && !rn2(15)) {
 		    pline("A trap door in %s opens, but nothing falls out!",
 			  the(ceiling(u.ux,u.uy)));
 		    deltrap(trap);
@@ -2376,7 +2376,7 @@ newboss:
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
 		pline("You stepped on a trap of wishing!");
 		if (Luck+rn2(5) < 0) {
-			pline("Unfortuantely, nothing happens.");
+			pline("Unfortunately, nothing happens.");
 			break;
 		}
 		makewish();
@@ -6884,7 +6884,7 @@ register struct monst *mtmp;
 #endif
 	    switch (tt) {
 		case ARROW_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6901,7 +6901,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case BOLT_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6918,7 +6918,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case BULLET_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6935,7 +6935,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case GLASS_ARROW_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6952,7 +6952,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case GLASS_BOLT_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6969,7 +6969,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case DART_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -6986,7 +6986,7 @@ register struct monst *mtmp;
 			if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case THROWING_STAR_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("%s triggers a trap but nothing happens.",
 				      Monnam(mtmp));
@@ -7003,7 +7003,7 @@ register struct monst *mtmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			break;
 		case ROCKTRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("A trap door above %s opens, but nothing falls out!",
 				      mon_nam(mtmp));
@@ -7022,7 +7022,7 @@ register struct monst *mtmp;
 			break;
 
 		case FALLING_BOULDER_TRAP:
-			if (trap->once && trap->tseen && !rn2(15)) {
+			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
 				pline("A trap door above %s opens, but nothing falls out!",
 				      mon_nam(mtmp));
