@@ -3645,6 +3645,144 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 
+# "Orc Temple" by Khor
+# In this variant of the mines end a group of orcs have found a randomly generated figurine of a demon and worship it
+# Amy edit: added downstairs (so the player can get to Ruggo's level) and random orcs.
+#
+MAZE:"minend-7",' '
+FLAGS:nommap
+GEOMETRY:center,center
+#0         1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                                                                   |-----|
+1                                             -------              |-LLLLL-|
+2                         ---------------     |.....|             |-LL...LL-|
+3                        -|..|..........|     |.....|        -----|LL.....LL|
+4                       -|...F..........|     |.....|        |...||L.......L|
+5         |-------|    -|....|-+------+-|    ----+----       |...||L.......L|
+6        |-.......-|  -|.....F..........|----|.......|---------+---L.......L|
+7 -------|.........|--|.....--...............F.......F.....||.....|LL.....LL|
+8-|..........}}}...........-|..............................--.....|-LL...LL-|
+9|...........}{}...........+...............................+......||-LL.LL-|
+0-|..........}}}...........-|..............................--.....| |--S--|
+1 -------|.........|--|.....--...............F.......F.....||.....|    .     
+2        |-.......-|  -|.....F..........|----|.......|---------S---          
+3         |-------|    -|....|-+------+-|    ----+----         .             
+4                       -|...F..........|     |.....|                        
+5                        -|..|..........|     |.....|                        
+6                         ---------------     |.....|                        
+7                                             -------                     ..}
+8                                                                         .}}
+9                                                                        .}}{
+ENDMAP
+
+RANDOM_PLACES:(0,18),(0,12),(2,18),(12,14),(20,12),(16,16),(22,14),(72,18),(52,14),(44,14)
+REGION:(0,0,75,19),lit,"ordinary"
+NON_DIGGABLE:(0,0,75,19)
+STAIR:(1,9),up
+STAIR:(73,18),down
+
+#SOME ORCS (The religious kind)
+MONSTER:'o',"goblin",random
+MONSTER:'o',"goblin",random
+MONSTER:'o',"hobgoblin",random
+MONSTER:'o',"hobgoblin",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"hill orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',"Mordor orc",random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+
+#SECRET CAVE
+MAZEWALK:(62,15),south
+ALTAR:(70,5),noalign,shrine
+DOOR:closed,(62,12)
+DOOR:closed,(70,10)
+TRAP:"rust",(72,18)
+OBJECT:'(',"figurine",(70,5),random,"balrog",1
+OBJECT:'*',"luckstone",place[0]
+OBJECT:'*',"flint",place[1]
+OBJECT:'*',random,place[2]
+OBJECT:'*',random,place[3]
+OBJECT:'*',random,place[4]
+OBJECT:'*',random,place[5]
+OBJECT:'*',random,place[6]
+OBJECT:'*',random,place[7]
+OBJECT:'*',random,place[8]
+OBJECT:'*',random,place[9]
+MONSTER:'o',"orc shaman",(69,3),asleep
+MONSTER:'o',"orc shaman",(71,3),asleep
+MONSTER:'o',"orc shaman",(68,4),asleep
+MONSTER:'o',"orc shaman",(72,4),asleep
+MONSTER:'o',"orc shaman",(68,6),asleep
+MONSTER:'o',"orc shaman",(72,6),asleep
+MONSTER:'o',"orc shaman",(69,7),asleep
+MONSTER:'o',"orc shaman",(71,7),asleep
+
+#TEMPLE
+ENGRAVING:(55,9),burn,"Blessed are the destroyers of false hope, for they are the true Messiahs."
+MONSTER:'o',"orc shaman",(55,9),asleep
+ENGRAVING:(48,3),burn,"Why should you not hate your enemies. If you love them does that not place you at their mercy?"
+MONSTER:'o',"orc shaman",(48,3),asleep
+ENGRAVING:(48,15),burn,"Cursed are the god-adorers, for they shall be shorn sheep!"
+MONSTER:'o',"orc shaman",(48,15),asleep
+ENGRAVING:(25,09),burn,"Dagul protects our doors. Dagul protects our souls."
+MONSTER:'o',"orc shaman",(25,09),asleep
+OBJECT:'`',"statue",(56,8),"orc shaman",1
+OBJECT:'`',"statue",(56,10),"orc-captain",1
+OBJECT:'`',"statue",(50,3),"hill orc",1
+OBJECT:'`',"statue",(46,3),"hill orc",1
+OBJECT:'`',"statue",(50,15),"Mordor orc",1
+OBJECT:'`',"statue",(46,15),"Mordor orc",1
+OBJECT:'`',"statue",(29,03),"Mordor orc",1
+OBJECT:'`',"statue",(32,03),"hill orc",1
+OBJECT:'`',"statue",(35,03),"orc-captain",1
+OBJECT:'`',"statue",(38,03),"orc shaman",1
+OBJECT:'`',"statue",(29,15),"mordor orc",1
+OBJECT:'`',"statue",(32,15),"hill orc",1
+OBJECT:'`',"statue",(35,15),"orc-captain",1
+OBJECT:'`',"statue",(38,15),"orc shaman",1
+OBJECT:'(',"large box",(61,4)
+OBJECT:'(',"large box",(62,4)
+OBJECT:'(',"large box",(63,4)
+ALTAR:(48,2),noalign,shrine
+ALTAR:(48,16),noalign,shrine
+ALTAR:(56,9),noalign,shrine
+DOOR:closed,(58,9)
+DOOR:closed,(26,9)
+DOOR:closed,(30,5)
+DOOR:closed,(37,5)
+DOOR:closed,(48,5)
+DOOR:locked,(62,6)
+DOOR:closed,(30,13)
+DOOR:closed,(37,13)
+DOOR:closed,(48,13)
+
+
 #
 #    Ruggo the Gnome King's own special level
 #

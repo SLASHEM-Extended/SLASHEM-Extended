@@ -199,7 +199,7 @@ ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
 RNDLEVEL:	"mintn" "T" @ (3, 2) 98 21
 LEVELDESC:	town
-RNDLEVEL:	"minend" "E" @ (-2, 0) 95 6
+RNDLEVEL:	"minend" "E" @ (-2, 0) 95 7
 RNDLEVEL:		"mking" "M" @ (-1, 0) 90 17
 
 
