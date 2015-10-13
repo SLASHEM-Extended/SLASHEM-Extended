@@ -1217,7 +1217,7 @@ dotech()
 			break;
 
 		case T_CREATE_AMMO:
-			pline("Creates a techlevel-dependant amount of bullets. Make sure you got enough room in your inventory first!");
+			pline("Creates a techlevel-dependant amount of bullets.");
 			break;
 
 		case T_EGG_BOMB:
@@ -2515,15 +2515,15 @@ int tech_no;
 	    case T_CREATE_AMMO:
 
 	    You("make some ammo for your gun.");
-		for (i = 0; i <= techlev(tech_no); i++) {
 
-		if ( inv_cnt() < 52 && (otmp = mksobj(BULLET, TRUE, FALSE)) != (struct obj *)0) {
-				if (pickup_object(otmp, 1, FALSE) <= 0) {
-					obj_extract_self(otmp);
-					place_object(otmp, u.ux, u.uy);
-					newsym(u.ux, u.uy); }
-		};
-		}
+		struct obj *uammo;
+
+		uammo = mksobj(BULLET, TRUE, FALSE);
+		uammo->quan = techlev(tech_no);
+		uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+		uammo->owt = weight(uammo);
+		dropy(uammo);
+		stackobj(uammo);
 
 	      t_timeout = rnz(500);
 	      break;
