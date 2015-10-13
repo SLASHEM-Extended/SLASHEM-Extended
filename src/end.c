@@ -1311,7 +1311,7 @@ boolean ask;
 			Sprintf(buf, "%s%s",
 				!type_is_pname(&mons[i]) ? "The " : "",
 				mons[i].mname);
-			if (nkilled > 1) {
+			if (nkilled != 1) {
 			    switch (nkilled) {
 				case 2:  Sprintf(eos(buf)," (twice)");  break;
 				case 3:  Sprintf(eos(buf)," (thrice)");  break;
