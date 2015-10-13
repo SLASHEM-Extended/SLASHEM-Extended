@@ -5511,7 +5511,7 @@ register int dx,dy;
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));
 	    }
-	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst)) {
+	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst) && !rn2(3) ) {
 		You(are_blinded_by_the_flash);
 		make_blinded((long)d(nd,5),FALSE);
 		if (!Blind) Your(vision_clears);
