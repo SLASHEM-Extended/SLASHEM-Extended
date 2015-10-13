@@ -4248,7 +4248,7 @@ srch:
 			if (!strncmpi(tname, bp, strlen(tname))) {
 				/* avoid stupid mistakes */
 				if((trap == TRAPDOOR || trap == HOLE || trap == SHAFT_TRAP)
-				      && !Can_fall_thru(&u.uz)) trap = ROCKTRAP;
+				      && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) trap = ROCKTRAP;
 				(void) maketrap(u.ux, u.uy, trap);
 				pline("%s.", An(tname));
 				return(&zeroobj);

@@ -1739,7 +1739,7 @@ rndtrap()
 	     case MAGIC_PORTAL:	rtrap = ROCKTRAP;
 				break;
 	     case SHAFT_TRAP:
-	     case TRAPDOOR:	if (!Can_dig_down(&u.uz)) rtrap = ROCKTRAP;
+	     case TRAPDOOR:	if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = ROCKTRAP;
 				break;
 	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  rtrap = ANTI_MAGIC;
 				break;
@@ -1955,10 +1955,10 @@ randomtrap()
 
 	do {
 	    rtrap = rnd(TRAPNUM-1);
-		if (rtrap == HOLE) rtrap = PIT;
+		if (rtrap == HOLE && !Is_stronghold(&u.uz) ) rtrap = PIT;
 		if (rtrap == MAGIC_PORTAL) rtrap = PIT;
-		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz)) rtrap = PIT;
-		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz)) rtrap = SHIT_PIT;
+		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = PIT;
+		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = SHIT_PIT;
 		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = SQKY_BOARD;
 		if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
 		if (rtrap == ROLLING_BOULDER_TRAP) rtrap = ROCKTRAP;

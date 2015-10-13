@@ -2508,7 +2508,7 @@ register struct monst *mtmp;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
 					if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
-					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP) && !Can_fall_thru(&u.uz)) rtrap = ROCKTRAP;
+					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = ROCKTRAP;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 

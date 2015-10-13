@@ -10276,7 +10276,7 @@ coord *tm;
 	    } while (kind == NO_TRAP);
 	}
 
-	if ((kind == TRAPDOOR || kind == SHAFT_TRAP || kind == HOLE) && !Can_fall_thru(&u.uz))
+	if ((kind == TRAPDOOR || kind == SHAFT_TRAP || kind == HOLE) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) )
 		kind = ROCKTRAP;
 
 	if (tm)
