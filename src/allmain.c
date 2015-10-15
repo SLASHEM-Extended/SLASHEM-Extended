@@ -993,6 +993,50 @@ moveloop()
 
 		if (Deafness || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
 
+		/* Let's throw a bone to permablind races. --Amy */
+		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() ) {
+
+			if (invent) {
+			    for (otmpi = invent; otmpi; otmpi = otmpii) {
+			      otmpii = otmpi->nobj;
+	
+				if (!rn2(10000) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100) && Race_if(PM_JELLY) && !(otmpi->oclass == SPBOOK_CLASS) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(10000) && isangbander && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(10000) && isangbander && !otmpi->known) {
+					otmpi->known = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(10000) && isangbander && !otmpi->bknown) {
+					otmpi->bknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(10000) && isangbander && !otmpi->rknown) {
+					otmpi->rknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(1000) && Race_if(PM_CORTEX) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(500) && Race_if(PM_VORTEX) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+			    }
+			}
+
+		}
+
 
 		if (Unidentify ) {
 
