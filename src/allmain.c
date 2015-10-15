@@ -1428,6 +1428,16 @@ moveloop()
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) ) {
+				u.uhp++;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+			}
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) && Upolyd ) {
+				u.mh++;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+				flags.botl = 1;
+			}
 
 			/* nice patch addition by Amy - sometimes regenerate more */
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
@@ -1512,6 +1522,12 @@ moveloop()
 			}
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+				u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
