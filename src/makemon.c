@@ -10388,6 +10388,18 @@ int mndx;
 	if (uncommon7(&mons[mndx]) && rn2(7) && !Race_if(PM_RODNEYAN) ) return TRUE;
 	if (uncommon10(&mons[mndx]) && rn2(10) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
+	if (monstr[mndx] >= 10 && monstr[mndx] < 15 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 15 && monstr[mndx] < 20 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 20 && monstr[mndx] < 25 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 25 && monstr[mndx] < 30 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 30 && monstr[mndx] < 35 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 35 && monstr[mndx] < 40 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 40 && monstr[mndx] < 45 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 45 && monstr[mndx] < 50 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 50 && monstr[mndx] < 60 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 60 && monstr[mndx] < 70 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 70 && rn2(50)) return TRUE;
+
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
 	else
@@ -10847,6 +10859,18 @@ int     spc;
 	int uncommonseven = rn2(7) ? 1 : 0;
 	int uncommonten = rn2(10) ? 1 : 0;
 
+	int uncommonnewten = !rn2(10) ? 1 : 0;
+	int uncommonnewfifteen = !rn2(5) ? 1 : 0;
+	int uncommonnewtwenty = (rnd(10) > 3) ? 1 : 0;
+	int uncommonnewtwentyfive = (rnd(10) > 4) ? 1 : 0;
+	int uncommonnewthirty = !rn2(2) ? 1 : 0;
+	int uncommonnewthirtyfive = (rnd(10) > 6) ? 1 : 0;
+	int uncommonnewforty = (rnd(10) > 7) ? 1 : 0;
+	int uncommonnewfortyfive = rn2(5) ? 1 : 0;
+	int uncommonnewfifty = rn2(10) ? 1 : 0;
+	int uncommonnewsixty = rn2(20) ? 1 : 0;
+	int uncommonnewseventy = rn2(50) ? 1 : 0;
+
 	int bonuslevel;
 	boolean calctype;
 
@@ -10885,6 +10909,17 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonnewten && monstr[last] >= 10 && monstr[last] < 15 )
+					&& !(uncommonnewfifteen && monstr[last] >= 15 && monstr[last] < 20 )
+					&& !(uncommonnewtwenty && monstr[last] >= 20 && monstr[last] < 25 )
+					&& !(uncommonnewtwentyfive && monstr[last] >= 25 && monstr[last] < 30 )
+					&& !(uncommonnewthirty && monstr[last] >= 30 && monstr[last] < 35 )
+					&& !(uncommonnewthirtyfive && monstr[last] >= 35 && monstr[last] < 40 )
+					&& !(uncommonnewforty && monstr[last] >= 40 && monstr[last] < 45 )
+					&& !(uncommonnewfortyfive && monstr[last] >= 45 && monstr[last] < 50 )
+					&& !(uncommonnewfifty && monstr[last] >= 50 && monstr[last] < 60 )
+					&& !(uncommonnewsixty && monstr[last] >= 60 && monstr[last] < 70 )
+					&& !(uncommonnewseventy && monstr[last] >= 70 )
 					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5)
 
 				) {
@@ -10931,6 +10966,17 @@ int     spc;
 					&& !(uncommonfive && uncommon5(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonseven && uncommon7(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonten && uncommon10(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonnewten && monstr[first] >= 10 && monstr[first] < 15 )
+					&& !(uncommonnewfifteen && monstr[first] >= 15 && monstr[first] < 20 )
+					&& !(uncommonnewtwenty && monstr[first] >= 20 && monstr[first] < 25 )
+					&& !(uncommonnewtwentyfive && monstr[first] >= 25 && monstr[first] < 30 )
+					&& !(uncommonnewthirty && monstr[first] >= 30 && monstr[first] < 35 )
+					&& !(uncommonnewthirtyfive && monstr[first] >= 35 && monstr[first] < 40 )
+					&& !(uncommonnewforty && monstr[first] >= 40 && monstr[first] < 45 )
+					&& !(uncommonnewfortyfive && monstr[first] >= 45 && monstr[first] < 50 )
+					&& !(uncommonnewfifty && monstr[first] >= 50 && monstr[first] < 60 )
+					&& !(uncommonnewsixty && monstr[first] >= 60 && monstr[first] < 70 )
+					&& !(uncommonnewseventy && monstr[first] >= 70 )
 					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5)
 				) {
 		/* skew towards lower value monsters at lower exp. levels */
