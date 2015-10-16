@@ -4949,6 +4949,7 @@ uchar aatyp;
 		 poisoned("spores", A_STR, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", A_STR, "spore cloud", 30);
 	       }
 	      break;
 	      case AD_DRDX:
@@ -4957,6 +4958,7 @@ uchar aatyp;
 		 poisoned("spores", A_DEX, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", A_DEX, "spore cloud", 30);
 	       }
 	      break;
 	      case AD_DRCO:
@@ -4965,6 +4967,7 @@ uchar aatyp;
 		 poisoned("spores", A_CON, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", A_CON, "spore cloud", 30);
 	       }
 	      break;
 	      case AD_WISD:
@@ -4973,6 +4976,7 @@ uchar aatyp;
 		 poisoned("spores", A_WIS, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", A_WIS, "spore cloud", 30);
 	       }
 	      break;
 	      case AD_DRCH:
@@ -4981,6 +4985,7 @@ uchar aatyp;
 		 poisoned("spores", A_CHA, "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", A_CHA, "spore cloud", 30);
 	       }
 	      break;
 	      case AD_POIS:
@@ -4989,6 +4994,7 @@ uchar aatyp;
 		 poisoned("spores", rn2(A_MAX), "spore cloud", 30);
 	       } else {
 		 pline("A cloud of spores surrounds you!");
+		 if (rn2(2)) poisoned("spores", rn2(A_MAX), "spore cloud", 30);
 	       }
 	      break;
 	      case AD_STCK:
