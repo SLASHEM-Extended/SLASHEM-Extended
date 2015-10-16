@@ -4024,6 +4024,7 @@ struct monst *mtmp;
 			    pline_The("scroll erupts in a tower of flame!");
 			shieldeff(mtmp->mx, mtmp->my);
 			pline("%s is uninjured.", Monnam(mtmp));
+			makeknown(otmp->otyp);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
