@@ -4395,37 +4395,37 @@ struct monst *mtmp;
 			m.has_misc = MUSE_WAN_INCREASE_MAX_HITPOINTS;
 		}
 		nomore(MUSE_SCR_SUMMON_BOSS_M);
-		if(obj->otyp == SCR_SUMMON_BOSS && !rn2(25) ) {
+		if(obj->otyp == SCR_SUMMON_BOSS && !rn2(25) && !mtmp->mpeaceful) {
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_SUMMON_BOSS_M;
 		}
 		nomore(MUSE_SCR_CREATE_MONSTER_M);
-		if(obj->otyp == SCR_CREATE_MONSTER && !rn2(25) ) {
+		if(obj->otyp == SCR_CREATE_MONSTER && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_CREATE_MONSTER_M;
 		}
 		nomore(MUSE_BAG_OF_TRICKS_M);
-		if(obj->otyp == BAG_OF_TRICKS && obj->spe > 0 && !rn2(25) ) {
+		if(obj->otyp == BAG_OF_TRICKS && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_BAG_OF_TRICKS_M;
 		}
 		nomore(MUSE_WAN_CREATE_MONSTER_M);
-		if (obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0 && !rn2(25) ) {
+		if (obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_CREATE_MONSTER_M;
 		}
 		nomore(MUSE_WAN_SUMMON_UNDEAD_M);
-		if (obj->otyp == WAN_SUMMON_UNDEAD && obj->spe > 0 && !rn2(25) ) {
+		if (obj->otyp == WAN_SUMMON_UNDEAD && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_SUMMON_UNDEAD_M;
 		}
 		nomore(MUSE_WAN_CREATE_HORDE_M);
-		if(obj->otyp == WAN_CREATE_HORDE && obj->spe > 0 && !rn2(25) ) {
+		if(obj->otyp == WAN_CREATE_HORDE && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_CREATE_HORDE_M;
 		}
 		nomore(MUSE_SCR_SUMMON_UNDEAD_M);
-		if(obj->otyp == SCR_SUMMON_UNDEAD && !rn2(25) ) {
+		if(obj->otyp == SCR_SUMMON_UNDEAD && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_SUMMON_UNDEAD_M;
 		}
