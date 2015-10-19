@@ -4631,7 +4631,7 @@ static const char * const chaoticgods[] = {
 void
 u_init()
 {
-	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus, randpantheon;
+	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus, randpantheon, starlitmonster, starlitattempts;
 	register struct permonst *ptr;
 	struct permonst* shamblerm = &mons[PM_NITROHACK_HORROR];
 	struct permonst* shamblerma = &mons[PM_SPEEDHACK_HORROR];
@@ -4781,6 +4781,18 @@ u_init()
 	struct permonst* pokshamblersp = &mons[PM_FORETOSU];	
 	struct permonst* pokshamblerxts = &mons[PM_CHARCOLT];
 	struct permonst* pokshamblerxtsp = &mons[PM_MILLENUM];
+
+	struct permonst* starlita = &mons[PM_STARLIT_SKY];
+	struct permonst* starlitb = &mons[PM_DARK_STARLIT_SKY];
+	struct permonst* starlitc = &mons[PM_BLACK_STARLIT_SKY];
+	struct permonst* starlitd = &mons[PM_RED_STARLIT_SKY];
+	struct permonst* starlite = &mons[PM_BROWN_STARLIT_SKY];
+	struct permonst* starlitf = &mons[PM_GREEN_STARLIT_SKY];
+	struct permonst* starlitg = &mons[PM_PURPLE_STARLIT_SKY];
+	struct permonst* starlith = &mons[PM_YELLOW_STARLIT_SKY];
+	struct permonst* starliti = &mons[PM_ORANGE_STARLIT_SKY];
+	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
+	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
 
 	struct attack* attkptr;
 	int no_extra_food = FALSE;
@@ -9339,8 +9351,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shambler->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shambler->cnutrit = 20;					/* see above */
+	shambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shambler->cnutrit = rnd(2000);					/* see above */
 	shambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9399,8 +9411,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerp->cnutrit = 20;					/* see above */
+	shamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerp->cnutrit = rnd(2000);					/* see above */
 	shamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9459,8 +9471,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	pokshambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshambler->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshambler->cnutrit = 20;					/* see above */
+	pokshambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshambler->cnutrit = rnd(2000);					/* see above */
 	pokshambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9519,8 +9531,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	pokshamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerp->cnutrit = 20;					/* see above */
+	pokshamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerp->cnutrit = rnd(2000);					/* see above */
 	pokshamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9581,8 +9593,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblera->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblera->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblera->cnutrit = 20;					/* see above */
+	shamblera->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblera->cnutrit = rnd(2000);					/* see above */
 	shamblera->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblera->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9641,8 +9653,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerap->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerap->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerap->cnutrit = 20;					/* see above */
+	shamblerap->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerap->cnutrit = rnd(2000);					/* see above */
 	shamblerap->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerap->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9701,8 +9713,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerb->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerb->cnutrit = 20;					/* see above */
+	shamblerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerb->cnutrit = rnd(2000);					/* see above */
 	shamblerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9760,8 +9772,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerbp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerbp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerbp->cnutrit = 20;					/* see above */
+	shamblerbp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerbp->cnutrit = rnd(2000);					/* see above */
 	shamblerbp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerbp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9822,8 +9834,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	shamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblers->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblers->cnutrit = 20;					/* see above */
+	shamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblers->cnutrit = rnd(2000);					/* see above */
 	shamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9882,8 +9894,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	shamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblersp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblersp->cnutrit = 20;					/* see above */
+	shamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblersp->cnutrit = rnd(2000);					/* see above */
 	shamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -9942,8 +9954,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	pokshamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblers->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblers->cnutrit = 20;					/* see above */
+	pokshamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblers->cnutrit = rnd(2000);					/* see above */
 	pokshamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10002,8 +10014,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	pokshamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblersp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblersp->cnutrit = 20;					/* see above */
+	pokshamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblersp->cnutrit = rnd(2000);					/* see above */
 	pokshamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10063,8 +10075,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	pokshamblerxts->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerxts->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerxts->cnutrit = 20;					/* see above */
+	pokshamblerxts->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerxts->cnutrit = rnd(2000);					/* see above */
 	pokshamblerxts->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerxts->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10123,8 +10135,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	pokshamblerxtsp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerxtsp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerxtsp->cnutrit = 20;					/* see above */
+	pokshamblerxtsp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerxtsp->cnutrit = rnd(2000);					/* see above */
 	pokshamblerxtsp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerxtsp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10183,8 +10195,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerz->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerz->cnutrit = 20;					/* see above */
+	shamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerz->cnutrit = rnd(2000);					/* see above */
 	shamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerz->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10243,8 +10255,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerza->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerza->cnutrit = 20;					/* see above */
+	shamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerza->cnutrit = rnd(2000);					/* see above */
 	shamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerza->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10306,8 +10318,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	shamblerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerr->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerr->cnutrit = 20;					/* see above */
+	shamblerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerr->cnutrit = rnd(2000);					/* see above */
 	shamblerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10366,8 +10378,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	shamblerrp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerrp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerrp->cnutrit = 20;					/* see above */
+	shamblerrp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerrp->cnutrit = rnd(2000);					/* see above */
 	shamblerrp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerrp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10427,8 +10439,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblert->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblert->cnutrit = 20;					/* see above */
+	shamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblert->cnutrit = rnd(2000);					/* see above */
 	shamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10485,8 +10497,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblery->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblery->cnutrit = 20;					/* see above */
+	shamblery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblery->cnutrit = rnd(2000);					/* see above */
 	shamblery->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10546,8 +10558,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblertp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblertp->cnutrit = 20;					/* see above */
+	shamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblertp->cnutrit = rnd(2000);					/* see above */
 	shamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10605,8 +10617,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	pokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblert->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblert->cnutrit = 20;					/* see above */
+	pokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblert->cnutrit = rnd(2000);					/* see above */
 	pokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10663,8 +10675,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	pokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblertp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblertp->cnutrit = 20;					/* see above */
+	pokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblertp->cnutrit = rnd(2000);					/* see above */
 	pokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10723,8 +10735,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerta->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerta->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerta->cnutrit = 20;					/* see above */
+	shamblerta->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerta->cnutrit = rnd(2000);					/* see above */
 	shamblerta->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerta->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10781,8 +10793,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerya->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerya->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerya->cnutrit = 20;					/* see above */
+	shamblerya->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerya->cnutrit = rnd(2000);					/* see above */
 	shamblerya->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerya->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10840,8 +10852,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblertpa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblertpa->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblertpa->cnutrit = 20;					/* see above */
+	shamblertpa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblertpa->cnutrit = rnd(2000);					/* see above */
 	shamblertpa->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblertpa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10899,8 +10911,8 @@ u_init()
 		attkptr->damd = rnd(5)+2;				/* either too high or too low */
 	}
 	shamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerl->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerl->cnutrit = 20;					/* see above */
+	shamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerl->cnutrit = rnd(2000);					/* see above */
 	shamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -10959,8 +10971,8 @@ u_init()
 		attkptr->damd = rnd(5)+2;				/* either too high or too low */
 	}
 	shamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerla->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerla->cnutrit = 20;					/* see above */
+	shamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerla->cnutrit = rnd(2000);					/* see above */
 	shamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11019,8 +11031,8 @@ u_init()
 		attkptr->damd = rnd(5)+2;				/* either too high or too low */
 	}
 	pokshamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerl->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerl->cnutrit = 20;					/* see above */
+	pokshamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerl->cnutrit = rnd(2000);					/* see above */
 	pokshamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11079,8 +11091,8 @@ u_init()
 		attkptr->damd = rnd(5)+2;				/* either too high or too low */
 	}
 	pokshamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerla->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerla->cnutrit = 20;					/* see above */
+	pokshamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerla->cnutrit = rnd(2000);					/* see above */
 	pokshamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11141,8 +11153,8 @@ u_init()
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 	shamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerx->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerx->cnutrit = 20;					/* see above */
+	shamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerx->cnutrit = rnd(2000);					/* see above */
 	shamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11201,8 +11213,8 @@ u_init()
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 	shamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerxa->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerxa->cnutrit = 20;					/* see above */
+	shamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerxa->cnutrit = rnd(2000);					/* see above */
 	shamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11261,8 +11273,8 @@ u_init()
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 	pokshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerx->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerx->cnutrit = 20;					/* see above */
+	pokshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerx->cnutrit = rnd(2000);					/* see above */
 	pokshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11321,8 +11333,8 @@ u_init()
 		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 	pokshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerxa->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerxa->cnutrit = 20;					/* see above */
+	pokshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerxa->cnutrit = rnd(2000);					/* see above */
 	pokshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11382,8 +11394,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerm->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerm->cnutrit = 20;					/* see above */
+	shamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerm->cnutrit = rnd(2000);					/* see above */
 	shamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11442,8 +11454,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerma->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerma->cnutrit = 20;					/* see above */
+	shamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerma->cnutrit = rnd(2000);					/* see above */
 	shamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11502,8 +11514,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblern->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblern->cnutrit = 20;					/* see above */
+	shamblern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblern->cnutrit = rnd(2000);					/* see above */
 	shamblern->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11562,8 +11574,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerna->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerna->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerna->cnutrit = 20;					/* see above */
+	shamblerna->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerna->cnutrit = rnd(2000);					/* see above */
 	shamblerna->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerna->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11624,8 +11636,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	pokshamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerm->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerm->cnutrit = 20;					/* see above */
+	pokshamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerm->cnutrit = rnd(2000);					/* see above */
 	pokshamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11684,8 +11696,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	pokshamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	pokshamblerma->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	pokshamblerma->cnutrit = 20;					/* see above */
+	pokshamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	pokshamblerma->cnutrit = rnd(2000);					/* see above */
 	pokshamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	pokshamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11744,8 +11756,8 @@ u_init()
 		attkptr->damd = rnd(10)+1;				/* either too high or too low */
 	}
 	shamblerplayer->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayer->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayer->cnutrit = 20;					/* see above */
+	shamblerplayer->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayer->cnutrit = rnd(2000);					/* see above */
 	shamblerplayer->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayer->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11803,8 +11815,8 @@ u_init()
 		attkptr->damd = rnd(10)+1;				/* either too high or too low */
 	}
 	shamblerplayerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerb->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerb->cnutrit = 20;					/* see above */
+	shamblerplayerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerb->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11861,8 +11873,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerc->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerc->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerc->cnutrit = 20;					/* see above */
+	shamblerplayerc->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerc->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerc->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerc->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11922,8 +11934,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerd->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerd->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerd->cnutrit = 20;					/* see above */
+	shamblerplayerd->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerd->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerd->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerd->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -11983,8 +11995,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerplayere->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayere->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayere->cnutrit = 20;					/* see above */
+	shamblerplayere->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayere->cnutrit = rnd(2000);					/* see above */
 	shamblerplayere->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayere->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12044,8 +12056,8 @@ u_init()
 		attkptr->damd = rnd(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerf->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerf->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerf->cnutrit = 20;					/* see above */
+	shamblerplayerf->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerf->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerf->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerf->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12105,8 +12117,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerg->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerg->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerg->cnutrit = 20;					/* see above */
+	shamblerplayerg->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerg->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerg->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerg->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12166,8 +12178,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerh->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerh->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerh->cnutrit = 20;					/* see above */
+	shamblerplayerh->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerh->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerh->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerh->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12227,8 +12239,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerplayeri->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayeri->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayeri->cnutrit = 20;					/* see above */
+	shamblerplayeri->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayeri->cnutrit = rnd(2000);					/* see above */
 	shamblerplayeri->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayeri->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12288,8 +12300,8 @@ u_init()
 		attkptr->damd = rnd(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerj->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerj->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerj->cnutrit = 20;					/* see above */
+	shamblerplayerj->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerj->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerj->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerj->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12349,8 +12361,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerk->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerk->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerk->cnutrit = 20;					/* see above */
+	shamblerplayerk->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerk->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerk->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerk->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12408,8 +12420,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerl->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerl->cnutrit = 20;					/* see above */
+	shamblerplayerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerl->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12467,8 +12479,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerm->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerm->cnutrit = 20;					/* see above */
+	shamblerplayerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerm->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12526,8 +12538,8 @@ u_init()
 		attkptr->damd = rnd(15)+2;				/* either too high or too low */
 	}
 	shamblerplayern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayern->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayern->cnutrit = 20;					/* see above */
+	shamblerplayern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayern->cnutrit = rnd(2000);					/* see above */
 	shamblerplayern->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12585,8 +12597,8 @@ u_init()
 		attkptr->damd = rnd(20)+2;				/* either too high or too low */
 	}
 	shamblerplayero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayero->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayero->cnutrit = 20;					/* see above */
+	shamblerplayero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayero->cnutrit = rnd(2000);					/* see above */
 	shamblerplayero->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayero->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12646,8 +12658,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerp->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerp->cnutrit = 20;					/* see above */
+	shamblerplayerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerp->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12707,8 +12719,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerq->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerq->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerq->cnutrit = 20;					/* see above */
+	shamblerplayerq->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerq->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerq->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerq->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12770,8 +12782,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerr->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerr->cnutrit = 20;					/* see above */
+	shamblerplayerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerr->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12833,8 +12845,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayers->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayers->cnutrit = 20;					/* see above */
+	shamblerplayers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayers->cnutrit = rnd(2000);					/* see above */
 	shamblerplayers->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12895,8 +12907,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayert->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayert->cnutrit = 20;					/* see above */
+	shamblerplayert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayert->cnutrit = rnd(2000);					/* see above */
 	shamblerplayert->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -12956,8 +12968,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayeru->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayeru->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayeru->cnutrit = 20;					/* see above */
+	shamblerplayeru->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayeru->cnutrit = rnd(2000);					/* see above */
 	shamblerplayeru->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayeru->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -13017,8 +13029,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerv->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerv->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerv->cnutrit = 20;					/* see above */
+	shamblerplayerv->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerv->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerv->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerv->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -13078,8 +13090,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerw->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerw->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerw->cnutrit = 20;					/* see above */
+	shamblerplayerw->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerw->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerw->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerw->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -13139,8 +13151,8 @@ u_init()
 		attkptr->damd = rnd(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerx->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerx->cnutrit = 20;					/* see above */
+	shamblerplayerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerx->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -13200,8 +13212,8 @@ u_init()
 		attkptr->damd = rnd(25)+2;				/* either too high or too low */
 	}
 	shamblerplayery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayery->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayery->cnutrit = 20;					/* see above */
+	shamblerplayery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayery->cnutrit = rnd(2000);					/* see above */
 	shamblerplayery->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
@@ -13261,8 +13273,8 @@ u_init()
 		attkptr->damd = rnd(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerz->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerz->cnutrit = 20;					/* see above */
+	shamblerplayerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerz->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerz->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -13322,8 +13334,8 @@ u_init()
 		attkptr->damd = rnd(25)+2;				/* either too high or too low */
 	}
 	shamblerplayeraa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayeraa->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayeraa->cnutrit = 20;					/* see above */
+	shamblerplayeraa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayeraa->cnutrit = rnd(2000);					/* see above */
 	shamblerplayeraa->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayeraa->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -13383,8 +13395,8 @@ u_init()
 		attkptr->damd = rnd(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerab->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerab->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerab->cnutrit = 20;					/* see above */
+	shamblerplayerab->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerab->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerab->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerab->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -13444,8 +13456,8 @@ u_init()
 		attkptr->damd = rnd(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerac->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerac->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerac->cnutrit = 20;					/* see above */
+	shamblerplayerac->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerac->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerac->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerac->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -13505,8 +13517,8 @@ u_init()
 		attkptr->damd = rnd(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerad->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerad->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerad->cnutrit = 20;					/* see above */
+	shamblerplayerad->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerad->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerad->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerad->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -13566,8 +13578,8 @@ u_init()
 		attkptr->damd = rnd(27)+2;				/* either too high or too low */
 	}
 	shamblerplayerae->msize = rn2(MZ_GIGANTIC+1);			/* any size */
-	shamblerplayerae->cwt = 20;					/* fortunately moot as it's flagged NOCORPSE */
-	shamblerplayerae->cnutrit = 20;					/* see above */
+	shamblerplayerae->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayerae->cnutrit = rnd(2000);					/* see above */
 	shamblerplayerae->msound = rn2(MS_HUMANOID);			/* any but the specials */
 	shamblerplayerae->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
@@ -14369,6 +14381,360 @@ u_init()
 	randomkopc->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	randomkopc->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	/* Starlit sky monsters are an invention of my roommate. It's a name that she gave to a glitch monster
+	 * in Castle of the Winds. --Amy */
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel > 5)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlita->mmove = mons[starlitmonster].mmove;
+	starlita->ac = mons[starlitmonster].ac;
+	starlita->mr = mons[starlitmonster].mr;
+	starlita->maligntyp = mons[starlitmonster].maligntyp;
+	starlita->mattk[0] = mons[starlitmonster].mattk[0];
+	starlita->mattk[1] = mons[starlitmonster].mattk[1];
+	starlita->mattk[2] = mons[starlitmonster].mattk[2];
+	starlita->mattk[3] = mons[starlitmonster].mattk[3];
+	starlita->mattk[4] = mons[starlitmonster].mattk[4];
+	starlita->mattk[5] = mons[starlitmonster].mattk[5];
+	starlita->cwt = mons[starlitmonster].cwt;
+	starlita->cnutrit = mons[starlitmonster].cnutrit;
+	starlita->msound = mons[starlitmonster].msound;
+	starlita->msize = mons[starlitmonster].msize;
+	starlita->mresists = mons[starlitmonster].mresists;
+	starlita->mflags1 = mons[starlitmonster].mflags1;
+	starlita->mflags2 = mons[starlitmonster].mflags2;
+	starlita->mflags3 = mons[starlitmonster].mflags3;
+
+	starlita->mflags2 &= ~M2_NOPOLY;
+	starlita->mflags2 &= ~M2_MERC;
+	starlita->mflags2 &= ~M2_WERE;
+	starlita->mflags2 &= ~M2_PNAME;
+	starlita->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 5) || (mons[starlitmonster].mlevel > 10)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitb->mmove = mons[starlitmonster].mmove;
+	starlitb->ac = mons[starlitmonster].ac;
+	starlitb->mr = mons[starlitmonster].mr;
+	starlitb->maligntyp = mons[starlitmonster].maligntyp;
+	starlitb->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitb->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitb->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitb->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitb->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitb->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitb->cwt = mons[starlitmonster].cwt;
+	starlitb->cnutrit = mons[starlitmonster].cnutrit;
+	starlitb->msound = mons[starlitmonster].msound;
+	starlitb->msize = mons[starlitmonster].msize;
+	starlitb->mresists = mons[starlitmonster].mresists;
+	starlitb->mflags1 = mons[starlitmonster].mflags1;
+	starlitb->mflags2 = mons[starlitmonster].mflags2;
+	starlitb->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitb->mflags2 &= ~M2_NOPOLY;
+	starlitb->mflags2 &= ~M2_MERC;
+	starlitb->mflags2 &= ~M2_WERE;
+	starlitb->mflags2 &= ~M2_PNAME;
+	starlitb->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 10) || (mons[starlitmonster].mlevel > 15)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitc->mmove = mons[starlitmonster].mmove;
+	starlitc->ac = mons[starlitmonster].ac;
+	starlitc->mr = mons[starlitmonster].mr;
+	starlitc->maligntyp = mons[starlitmonster].maligntyp;
+	starlitc->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitc->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitc->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitc->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitc->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitc->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitc->cwt = mons[starlitmonster].cwt;
+	starlitc->cnutrit = mons[starlitmonster].cnutrit;
+	starlitc->msound = mons[starlitmonster].msound;
+	starlitc->msize = mons[starlitmonster].msize;
+	starlitc->mresists = mons[starlitmonster].mresists;
+	starlitc->mflags1 = mons[starlitmonster].mflags1;
+	starlitc->mflags2 = mons[starlitmonster].mflags2;
+	starlitc->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitc->mflags2 &= ~M2_NOPOLY;
+	starlitc->mflags2 &= ~M2_MERC;
+	starlitc->mflags2 &= ~M2_WERE;
+	starlitc->mflags2 &= ~M2_PNAME;
+	starlitc->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 15) || (mons[starlitmonster].mlevel > 20)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitd->mmove = mons[starlitmonster].mmove;
+	starlitd->ac = mons[starlitmonster].ac;
+	starlitd->mr = mons[starlitmonster].mr;
+	starlitd->maligntyp = mons[starlitmonster].maligntyp;
+	starlitd->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitd->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitd->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitd->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitd->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitd->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitd->cwt = mons[starlitmonster].cwt;
+	starlitd->cnutrit = mons[starlitmonster].cnutrit;
+	starlitd->msound = mons[starlitmonster].msound;
+	starlitd->msize = mons[starlitmonster].msize;
+	starlitd->mresists = mons[starlitmonster].mresists;
+	starlitd->mflags1 = mons[starlitmonster].mflags1;
+	starlitd->mflags2 = mons[starlitmonster].mflags2;
+	starlitd->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitd->mflags2 &= ~M2_NOPOLY;
+	starlitd->mflags2 &= ~M2_MERC;
+	starlitd->mflags2 &= ~M2_WERE;
+	starlitd->mflags2 &= ~M2_PNAME;
+	starlitd->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 20) || (mons[starlitmonster].mlevel > 25)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlite->mmove = mons[starlitmonster].mmove;
+	starlite->ac = mons[starlitmonster].ac;
+	starlite->mr = mons[starlitmonster].mr;
+	starlite->maligntyp = mons[starlitmonster].maligntyp;
+	starlite->mattk[0] = mons[starlitmonster].mattk[0];
+	starlite->mattk[1] = mons[starlitmonster].mattk[1];
+	starlite->mattk[2] = mons[starlitmonster].mattk[2];
+	starlite->mattk[3] = mons[starlitmonster].mattk[3];
+	starlite->mattk[4] = mons[starlitmonster].mattk[4];
+	starlite->mattk[5] = mons[starlitmonster].mattk[5];
+	starlite->cwt = mons[starlitmonster].cwt;
+	starlite->cnutrit = mons[starlitmonster].cnutrit;
+	starlite->msound = mons[starlitmonster].msound;
+	starlite->msize = mons[starlitmonster].msize;
+	starlite->mresists = mons[starlitmonster].mresists;
+	starlite->mflags1 = mons[starlitmonster].mflags1;
+	starlite->mflags2 = mons[starlitmonster].mflags2;
+	starlite->mflags3 = mons[starlitmonster].mflags3;
+
+	starlite->mflags2 &= ~M2_NOPOLY;
+	starlite->mflags2 &= ~M2_MERC;
+	starlite->mflags2 &= ~M2_WERE;
+	starlite->mflags2 &= ~M2_PNAME;
+	starlite->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 25) || (mons[starlitmonster].mlevel > 30)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitf->mmove = mons[starlitmonster].mmove;
+	starlitf->ac = mons[starlitmonster].ac;
+	starlitf->mr = mons[starlitmonster].mr;
+	starlitf->maligntyp = mons[starlitmonster].maligntyp;
+	starlitf->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitf->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitf->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitf->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitf->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitf->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitf->cwt = mons[starlitmonster].cwt;
+	starlitf->cnutrit = mons[starlitmonster].cnutrit;
+	starlitf->msound = mons[starlitmonster].msound;
+	starlitf->msize = mons[starlitmonster].msize;
+	starlitf->mresists = mons[starlitmonster].mresists;
+	starlitf->mflags1 = mons[starlitmonster].mflags1;
+	starlitf->mflags2 = mons[starlitmonster].mflags2;
+	starlitf->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitf->mflags2 &= ~M2_NOPOLY;
+	starlitf->mflags2 &= ~M2_MERC;
+	starlitf->mflags2 &= ~M2_WERE;
+	starlitf->mflags2 &= ~M2_PNAME;
+	starlitf->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 30) || (mons[starlitmonster].mlevel > 35)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitg->mmove = mons[starlitmonster].mmove;
+	starlitg->ac = mons[starlitmonster].ac;
+	starlitg->mr = mons[starlitmonster].mr;
+	starlitg->maligntyp = mons[starlitmonster].maligntyp;
+	starlitg->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitg->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitg->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitg->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitg->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitg->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitg->cwt = mons[starlitmonster].cwt;
+	starlitg->cnutrit = mons[starlitmonster].cnutrit;
+	starlitg->msound = mons[starlitmonster].msound;
+	starlitg->msize = mons[starlitmonster].msize;
+	starlitg->mresists = mons[starlitmonster].mresists;
+	starlitg->mflags1 = mons[starlitmonster].mflags1;
+	starlitg->mflags2 = mons[starlitmonster].mflags2;
+	starlitg->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitg->mflags2 &= ~M2_NOPOLY;
+	starlitg->mflags2 &= ~M2_MERC;
+	starlitg->mflags2 &= ~M2_WERE;
+	starlitg->mflags2 &= ~M2_PNAME;
+	starlitg->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 35) || (mons[starlitmonster].mlevel > 40)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlith->mmove = mons[starlitmonster].mmove;
+	starlith->ac = mons[starlitmonster].ac;
+	starlith->mr = mons[starlitmonster].mr;
+	starlith->maligntyp = mons[starlitmonster].maligntyp;
+	starlith->mattk[0] = mons[starlitmonster].mattk[0];
+	starlith->mattk[1] = mons[starlitmonster].mattk[1];
+	starlith->mattk[2] = mons[starlitmonster].mattk[2];
+	starlith->mattk[3] = mons[starlitmonster].mattk[3];
+	starlith->mattk[4] = mons[starlitmonster].mattk[4];
+	starlith->mattk[5] = mons[starlitmonster].mattk[5];
+	starlith->cwt = mons[starlitmonster].cwt;
+	starlith->cnutrit = mons[starlitmonster].cnutrit;
+	starlith->msound = mons[starlitmonster].msound;
+	starlith->msize = mons[starlitmonster].msize;
+	starlith->mresists = mons[starlitmonster].mresists;
+	starlith->mflags1 = mons[starlitmonster].mflags1;
+	starlith->mflags2 = mons[starlitmonster].mflags2;
+	starlith->mflags3 = mons[starlitmonster].mflags3;
+
+	starlith->mflags2 &= ~M2_NOPOLY;
+	starlith->mflags2 &= ~M2_MERC;
+	starlith->mflags2 &= ~M2_WERE;
+	starlith->mflags2 &= ~M2_PNAME;
+	starlith->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 40) || (mons[starlitmonster].mlevel > 50)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starliti->mmove = mons[starlitmonster].mmove;
+	starliti->ac = mons[starlitmonster].ac;
+	starliti->mr = mons[starlitmonster].mr;
+	starliti->maligntyp = mons[starlitmonster].maligntyp;
+	starliti->mattk[0] = mons[starlitmonster].mattk[0];
+	starliti->mattk[1] = mons[starlitmonster].mattk[1];
+	starliti->mattk[2] = mons[starlitmonster].mattk[2];
+	starliti->mattk[3] = mons[starlitmonster].mattk[3];
+	starliti->mattk[4] = mons[starlitmonster].mattk[4];
+	starliti->mattk[5] = mons[starlitmonster].mattk[5];
+	starliti->cwt = mons[starlitmonster].cwt;
+	starliti->cnutrit = mons[starlitmonster].cnutrit;
+	starliti->msound = mons[starlitmonster].msound;
+	starliti->msize = mons[starlitmonster].msize;
+	starliti->mresists = mons[starlitmonster].mresists;
+	starliti->mflags1 = mons[starlitmonster].mflags1;
+	starliti->mflags2 = mons[starlitmonster].mflags2;
+	starliti->mflags3 = mons[starlitmonster].mflags3;
+
+	starliti->mflags2 &= ~M2_NOPOLY;
+	starliti->mflags2 &= ~M2_MERC;
+	starliti->mflags2 &= ~M2_WERE;
+	starliti->mflags2 &= ~M2_PNAME;
+	starliti->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 50) || (mons[starlitmonster].mlevel > 60)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitj->mmove = mons[starlitmonster].mmove;
+	starlitj->ac = mons[starlitmonster].ac;
+	starlitj->mr = mons[starlitmonster].mr;
+	starlitj->maligntyp = mons[starlitmonster].maligntyp;
+	starlitj->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitj->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitj->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitj->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitj->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitj->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitj->cwt = mons[starlitmonster].cwt;
+	starlitj->cnutrit = mons[starlitmonster].cnutrit;
+	starlitj->msound = mons[starlitmonster].msound;
+	starlitj->msize = mons[starlitmonster].msize;
+	starlitj->mresists = mons[starlitmonster].mresists;
+	starlitj->mflags1 = mons[starlitmonster].mflags1;
+	starlitj->mflags2 = mons[starlitmonster].mflags2;
+	starlitj->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitj->mflags2 &= ~M2_NOPOLY;
+	starlitj->mflags2 &= ~M2_MERC;
+	starlitj->mflags2 &= ~M2_WERE;
+	starlitj->mflags2 &= ~M2_PNAME;
+	starlitj->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 60)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitk->mmove = mons[starlitmonster].mmove;
+	starlitk->ac = mons[starlitmonster].ac;
+	starlitk->mr = mons[starlitmonster].mr;
+	starlitk->maligntyp = mons[starlitmonster].maligntyp;
+	starlitk->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitk->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitk->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitk->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitk->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitk->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitk->cwt = mons[starlitmonster].cwt;
+	starlitk->cnutrit = mons[starlitmonster].cnutrit;
+	starlitk->msound = mons[starlitmonster].msound;
+	starlitk->msize = mons[starlitmonster].msize;
+	starlitk->mresists = mons[starlitmonster].mresists;
+	starlitk->mflags1 = mons[starlitmonster].mflags1;
+	starlitk->mflags2 = mons[starlitmonster].mflags2;
+	starlitk->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitk->mflags2 &= ~M2_NOPOLY;
+	starlitk->mflags2 &= ~M2_MERC;
+	starlitk->mflags2 &= ~M2_WERE;
+	starlitk->mflags2 &= ~M2_PNAME;
+	starlitk->mflags2 &= ~M2_PEACEFUL;
 
 	return;
 }
