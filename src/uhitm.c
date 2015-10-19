@@ -4247,7 +4247,7 @@ uchar aatyp;
 		if (mhit) {
 			pline("WHACK! You feel like you just got whipped!");
 			tmp += u.chokhmahdamage;
-			tmp += rnd(u.ualign.sins);
+			tmp += rnd(u.ualign.sins + 1);
 			u.chokhmahdamage++;
 			mdamageu(mon, tmp);
 		}
