@@ -598,8 +598,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    if (Upolyd) {
 			if (Polymorph_control || !rn2(3)) {
 			    u.uhp -= mons[u.umonnum].mlevel;
-			    u.uhpmax -= mons[u.umonnum].mlevel;
-			    if (u.uhpmax < 1) u.uhpmax = 1;
+			    /*u.uhpmax -= mons[u.umonnum].mlevel;
+			    if (u.uhpmax < 1) u.uhpmax = 1;*/
 			}
 			rehumanize();
 		    } else {

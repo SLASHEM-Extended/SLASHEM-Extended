@@ -8613,8 +8613,8 @@ register int n;
 		if (u.mh < 1) {                
 			if (Polymorph_control || !rn2(3)) {
 			    u.uhp -= mons[u.umonnum].mlevel;
-			    u.uhpmax -= mons[u.umonnum].mlevel;
-			    if (u.uhpmax < 1) u.uhpmax = 1;
+			    /*u.uhpmax -= mons[u.umonnum].mlevel;
+			    if (u.uhpmax < 1) u.uhpmax = 1;*/
 			}
 			rehumanize();
 		}
