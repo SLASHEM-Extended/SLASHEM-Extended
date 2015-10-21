@@ -3101,18 +3101,18 @@ draw_energy()
 			    case TREE: /* Earth */
 			    case LAVAPOOL: /* Fire */
 			    case ICE: /* Water - most ordered form */
-			    	powbonus = 5;
+			    	powbonus = (u.uenmax > 40 ? u.uenmax / 8 : 5);
 				break;
 			    case AIR:
 			    case MOAT: /* Doesn't freeze */
 			    case WATER:
-			    	powbonus = 4;
+			    	powbonus = (u.uenmax > 40 ? u.uenmax / 10 : 4);
 				break;
 			    case POOL: /* Can dry up */
-			    	powbonus = 3;
+			    	powbonus = (u.uenmax > 36 ? u.uenmax / 12 : 3);
 				break;
 			    case FOUNTAIN:
-			    	powbonus = 2;
+			    	powbonus = (u.uenmax > 30 ? u.uenmax / 15 : 2);
 				break;
 			    case SINK:  /* Cleansing water */
 			    	if (!rn2(3)) powbonus = 2;

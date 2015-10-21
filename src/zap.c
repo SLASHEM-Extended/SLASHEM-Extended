@@ -4021,8 +4021,10 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		    Your("amulet grows hot for a moment, then cools.");
 		else {
 		    u.uhp -= mons[u.umonnum].mlevel;
-		    u.uhpmax -= mons[u.umonnum].mlevel;
-		    if (u.uhpmax < 1) u.uhpmax = 1;
+		    if (self_cancel) {
+			u.uhpmax -= mons[u.umonnum].mlevel;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+		    }
 		    u.mh = 0;
 		    rehumanize();
 		}

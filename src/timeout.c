@@ -1796,23 +1796,23 @@ nh_timeout()
 	}
 
 	/* special bleeder handling --Amy */
-	if (!rn2(200) && Role_if(PM_BLEEDER)) {
+	if (!rn2(500) && Role_if(PM_BLEEDER)) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
-	if (!rn2(200) && Race_if(PM_HEMOPHAGE)) {
+	if (!rn2(500) && Race_if(PM_HEMOPHAGE)) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
-	if (!rn2(200) && u.uprops[BLOOD_LOSS].extrinsic) {
+	if (!rn2(500) && u.uprops[BLOOD_LOSS].extrinsic) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
-	if (!rn2(200) && BloodLossProblem) {
+	if (!rn2(500) && BloodLossProblem) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
-	if (!rn2(200) && have_bloodlossstone() ) {
+	if (!rn2(500) && have_bloodlossstone() ) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
@@ -1844,7 +1844,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2(1000) && Role_if(PM_BLEEDER)) {
+	if (!rn2(2500) && Role_if(PM_BLEEDER)) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
 		u.uhpmax -= 1;
@@ -1852,24 +1852,7 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
-	if (!rn2(1000) && Race_if(PM_HEMOPHAGE)) {
-		You("are losing lots of blood!");
-		u.uhp -= 1;
-		u.uhpmax -= 1;
-		u.uen -= 1;
-		u.uenmax -= 1;
-		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
-	}
-
-	if (!rn2(1000) && u.uprops[BLOOD_LOSS].extrinsic) {
-		You("are losing lots of blood!");
-		u.uhp -= 1;
-		u.uhpmax -= 1;
-		u.uen -= 1;
-		u.uenmax -= 1;
-		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
-	}
-	if (!rn2(1000) && BloodLossProblem) {
+	if (!rn2(2500) && Race_if(PM_HEMOPHAGE)) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
 		u.uhpmax -= 1;
@@ -1878,7 +1861,15 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
 
-	if (!rn2(1000) && have_bloodlossstone() ) {
+	if (!rn2(2500) && u.uprops[BLOOD_LOSS].extrinsic) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+	if (!rn2(2500) && BloodLossProblem) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
 		u.uhpmax -= 1;
@@ -1887,24 +1878,33 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
 
-	if (!rn2(3000) && Role_if(PM_BLEEDER)) {
+	if (!rn2(2500) && have_bloodlossstone() ) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+
+	if (!rn2(7500) && Role_if(PM_BLEEDER)) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}
-	if (!rn2(3000) && Race_if(PM_HEMOPHAGE)) {
+	if (!rn2(7500) && Race_if(PM_HEMOPHAGE)) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}
 
-	if (!rn2(3000) && u.uprops[BLOOD_LOSS].extrinsic) {
+	if (!rn2(7500) && u.uprops[BLOOD_LOSS].extrinsic) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}
-	if (!rn2(3000) && BloodLossProblem) {
+	if (!rn2(7500) && BloodLossProblem) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}
-	if (!rn2(3000) && have_bloodlossstone() ) {
+	if (!rn2(7500) && have_bloodlossstone() ) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

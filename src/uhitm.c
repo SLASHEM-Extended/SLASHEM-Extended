@@ -5299,24 +5299,24 @@ uchar aatyp;
 
 	    case AD_DFOO:
 	      pline("You feel physically and mentally weaker!");
-		if (!rn2(8)) {
+		if (!rn2(3)) {
 		    Sprintf(buf, "%s body",
 			    s_suffix(Monnam(mon)));
 		    poisoned(buf, rn2(A_MAX), mon->data->mname, 30);
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
 			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			if(!Drain_resistance || !rn2(20) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");

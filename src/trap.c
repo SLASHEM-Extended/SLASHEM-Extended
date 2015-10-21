@@ -2842,22 +2842,22 @@ newboss:
 				break;
 			case 7: /* pride */
 			      pline("The RNG determines to take you down a peg or two...");
-				if (!rn2(8)) {
+				if (!rn2(3)) {
 				    poisoned("air", rn2(A_MAX), "sin trap", 30);
 				}
-				if (!rn2(10)) {
+				if (!rn2(4)) {
 					pline("You feel drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
-				if (!rn2(10)) {
+				if (!rn2(4)) {
 					You_feel("less energised!");
 					u.uenmax -= rn1(10,10);
 					if (u.uenmax < 0) u.uenmax = 0;
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
-				if (!rn2(10)) {
+				if (!rn2(4)) {
 					if(!Drain_resistance || !rn2(20) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
@@ -8452,9 +8452,8 @@ struct obj *box;	/* null for floor trap */
 	    if (u.mhmax > mons[u.umonnum].mlevel)
 		u.mhmax -= rn2(min(u.mhmax,num + 1)), flags.botl = 1;
 	} else {
-	    num = d(2,4);
 	    if (u.uhpmax > u.ulevel)
-		u.uhpmax -= rn2(min(u.uhpmax,num + 1)), flags.botl = 1;
+		u.uhpmax -= rn2(min(u.uhpmax,5)), flags.botl = 1;
 	}
 	if (!num)
 	    You("are uninjured.");
@@ -9266,11 +9265,20 @@ void
 drain_en(n)
 register int n;
 {
+	int maxenloss;
+
 	if (!u.uenmax) return;
 	You_feel("your magical energy drain away!");
 	u.uen -= n;
 	if(u.uen < 0)  {
-		u.uenmax += u.uen;
+
+		/* total nerf, because max Pw is hard to get back --Amy */
+		maxenloss = -u.uen;
+		maxenloss = rnd(maxenloss);
+		maxenloss = rnd(maxenloss);
+		if (rn2(2)) maxenloss = rn2(maxenloss);
+
+		u.uenmax -= maxenloss;
 		if(u.uenmax < 0) u.uenmax = 0;
 		u.uen = 0;
 	}

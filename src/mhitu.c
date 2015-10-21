@@ -316,8 +316,8 @@ on the first floor, especially when you're playing as something with drain resis
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 
-			if (Upolyd) {u.mhmax -= monsterlev; if (u.mh > u.mhmax) u.mh = u.mhmax;}
-			else {u.uhpmax -= monsterlev; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+			if (Upolyd) {u.mhmax -= rnd(monsterlev); if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax -= rnd(monsterlev); if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
 
 
 			}
@@ -348,6 +348,7 @@ on the first floor, especially when you're playing as something with drain resis
 			pline("One of your arteries bursts open! You suffer from %s loss!", body_part(BLOOD));
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
+			monsterlev = rnd(monsterlev);
 			losehp((monsterlev), "scratching attack", KILLED_BY_AN);
 
 			if (Upolyd) {u.mhmax -= monsterlev/2; if (u.mh > u.mhmax) u.mh = u.mhmax;}
@@ -3234,22 +3235,22 @@ dopois:
 		break;
 	    case AD_DFOO:
 	      pline("%s determines to take you down a peg or two...", Monnam(mtmp));
-		if (!rn2(8)) {
+		if (!rn2(3)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mdat->mname, 30);
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			pline("You feel drained...");
 			permdmg = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
 			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			if(!Drain_resistance || !rn2(20) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
@@ -5481,24 +5482,24 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	    case AD_DFOO:
 	      pline("You feel physically and mentally weaker!");
-		if (!rn2(8)) {
+		if (!rn2(3)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
 			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			if(!Drain_resistance || !rn2(20) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
@@ -7416,24 +7417,24 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
 		pline("%s gazes at you with its glistening eyes!", Monnam(mtmp));
 		    stop_occupation();
-		if (!rn2(8)) {
+		if (!rn2(3)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			pline("You feel drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			You_feel("less energised!");
 			u.uenmax -= rn1(10,10);
 			if (u.uenmax < 0) u.uenmax = 0;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
-		if (!rn2(10)) {
+		if (!rn2(4)) {
 			if(!Drain_resistance || !rn2(20) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
