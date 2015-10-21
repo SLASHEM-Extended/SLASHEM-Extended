@@ -10159,7 +10159,7 @@ register int	mmflags;
 		mitem = CANDELABRUM_OF_INVOCATION;
 	} else if (mndx == PM_CROESUS) {
 		mitem = TWO_HANDED_SWORD;
-	} else if (ptr->msound == MS_NEMESIS && ptr->mlet != S_NEMESE ) {
+	} else if (ptr->msound == MS_NEMESIS && ptr->mlet != S_NEMESE && mndx != PM_STARLIT_SKY && mndx != PM_DARK_STARLIT_SKY && mndx != PM_BLACK_STARLIT_SKY && mndx != PM_RED_STARLIT_SKY && mndx != PM_BROWN_STARLIT_SKY && mndx != PM_GREEN_STARLIT_SKY && mndx != PM_PURPLE_STARLIT_SKY && mndx != PM_YELLOW_STARLIT_SKY && mndx != PM_ORANGE_STARLIT_SKY && mndx != PM_CYAN_STARLIT_SKY && mndx != PM_VIOLET_STARLIT_SKY) {
 		mitem = BELL_OF_OPENING; /* prevent new random nemesis monsters from dropping the bell --Amy */
 	} else if (mndx == PM_PESTILENCE) {
 		mitem = POT_SICKNESS;
