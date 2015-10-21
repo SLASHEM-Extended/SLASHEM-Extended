@@ -4113,7 +4113,8 @@ struct monst *mtmp;
 		) && issoviet) return 0;
 	if (difficulty > 7 && !rn2(350)) return WAN_DEATH;
 	if (difficulty > 6 && !rn2(125)) return WAN_FIREBALL;
-	switch (rn2(9 - (difficulty < 4) + 4 * (difficulty > 6))) {
+	/* Amy edit: wand of draining removed */
+	switch (rn2(9 - (difficulty < 4) + 3 * (difficulty > 6))) {
 
 		case 0: {
 		    struct obj *helmet = which_armor(mtmp, W_ARMH);
@@ -4132,7 +4133,7 @@ struct monst *mtmp;
 		case 9: return WAN_FIRE;
 		case 10: return WAN_COLD;
 		case 11: return WAN_LIGHTNING;
-		case 12: return WAN_DRAINING;
+		/*case 12: return WAN_DRAINING;*/
 	}
 	/*NOTREACHED*/
 	return 0;
