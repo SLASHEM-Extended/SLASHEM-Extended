@@ -347,6 +347,9 @@ register struct monst *mtmp;
 	tmp = 1 + ( (Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + u.uhitinc +
 		maybe_polyd(youmonst.data->mlevel, u.ulevel);
 
+	/* another extra boost --Amy */
+	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+
 	if (Feared) tmp -= rn2(21); /* being feared reduces to-hit by something between 0 and 20 --Amy */
 
 	check_caitiff(mtmp);
