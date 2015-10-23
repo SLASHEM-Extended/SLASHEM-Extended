@@ -1491,6 +1491,17 @@ int thrown;
 
 	tmp = -1 + Luck + find_mac(mon) + u.uhitinc +
 			maybe_polyd(youmonst.data->mlevel, u.ulevel);
+
+	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+
+	/* let's just add that bonus anyway. --Amy */
+	if(mon->mstun) tmp += 2;
+	if(mon->mflee) tmp += 2;
+	if(mon->msleeping) tmp += 2;
+	if(!mon->mcanmove) tmp += 4;
+
+	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+
 	if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
 	else if (ACURR(A_DEX) < 8) tmp -= 1;
