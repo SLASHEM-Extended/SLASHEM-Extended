@@ -714,9 +714,9 @@ TRAP:"item teleporter", random
 TRAP:"item teleporter", random
 TRAP:"item teleporter", random
 
-TRAP:"pestilence", place[1]
+TRAP:"pestilence", place[0]
 TRAP:"death trap", place[1]
-TRAP:"famine", place[1]
+TRAP:"famine", place[2]
 
 TRAP:"pestilence",random
 TRAP:"death trap",random
