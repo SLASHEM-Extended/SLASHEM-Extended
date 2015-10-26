@@ -1573,6 +1573,13 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	/*** Troubles ***/
+
+	if (multi) {
+		Sprintf(buf, "paralyzed.");
+	      Sprintf(eos(buf), " (%d)", multi);
+		you_are(buf);
+	}
+
 	if (Halluc_resistance)
 		enl_msg("You resist", "", "ed", " hallucinations");
 	/*if (final) { */
