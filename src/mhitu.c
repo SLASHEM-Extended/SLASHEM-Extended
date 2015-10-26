@@ -3934,7 +3934,7 @@ dopois:
 				      locomotion(mtmp->data, "run"),
 				      buf);
 			}
-			monflee(mtmp, 0, FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
 		}
@@ -5613,7 +5613,7 @@ do_stone:
 		  default:
 			if ( !tele_restrict(mtmp) && !rn2(4) )
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, 0, FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
 		}
@@ -7464,7 +7464,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			  default:
 				if ( !tele_restrict(mtmp) && !rn2(4))
 				    (void) rloc(mtmp, FALSE);
-				monflee(mtmp, 0, FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE);
 				return 3;
 				};
 
@@ -7493,7 +7493,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  default:
 			if ( !tele_restrict(mtmp) && !rn2(4))
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, 0, FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
 		}

@@ -671,7 +671,7 @@ struct attack *uattk;
 		    /* maybe should regurgitate if swallowed? */
 		    if(!rn2(3)) {
 			monflee(mon, rnd(100), FALSE, TRUE);
-		    } else monflee(mon, 0, FALSE, TRUE);
+		    } else monflee(mon, rnd(10), FALSE, TRUE);
 
 		    if(u.ustuck == mon && !u.uswallow && !sticks(youmonst.data))
 			setustuck(0);
@@ -5044,7 +5044,7 @@ uchar aatyp;
 			  default:
 				if ( !tele_restrict(mon))
 				    (void) rloc(mon, FALSE);
-				monflee(mon, 0, FALSE, FALSE);
+				monflee(mon, rnd(10), FALSE, FALSE);
 				return 3;
 				};
 			}
@@ -5953,7 +5953,7 @@ struct obj *otmp;	/* source of flash */
 			if (rn2(4))
 			    monflee(mtmp, rnd(100), FALSE, TRUE);
 			else
-			    monflee(mtmp, 0, FALSE, TRUE);
+			    monflee(mtmp, rnd(10), FALSE, TRUE);
 		    }
 		    mtmp->mcansee = 0;
 		    mtmp->mblinded = (tmp < 3) ? 0 : rnd(1 + 50/tmp);

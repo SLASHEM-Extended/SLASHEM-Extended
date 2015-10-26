@@ -2274,8 +2274,8 @@ register struct obj	*sobj;
 			    mtmp->mflee = mtmp->mfrozen = mtmp->msleeping = 0;
 			    mtmp->mcanmove = 1;
 			} else
-			    if (! resist(mtmp, sobj->oclass, 0, NOTELL))
-				monflee(mtmp, 0, FALSE, FALSE);
+			    if (!resist(mtmp, sobj->oclass, 0, NOTELL))
+				monflee(mtmp, rnd(10), FALSE, FALSE);
 			if(!mtmp->mtame) ct++;	/* pets don't laugh at you */
 		    }
 		}

@@ -335,7 +335,7 @@ raise_dead:
 			    mtmp->mtame++;
 		    } else
 			(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		else monflee(mtmp, 0, FALSE, TRUE);
+		else monflee(mtmp, rnd(10), FALSE, TRUE);
 	    }
 	}
     } else {

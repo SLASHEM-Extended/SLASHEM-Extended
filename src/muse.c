@@ -2997,7 +2997,7 @@ register struct obj *otmp;
 			    (!mtmp->mflee || mtmp->mfleetim)) {
 			     if (canseemon(mtmp))
 				 pline("%s suddenly panics!", Monnam(mtmp));
-			     monflee(mtmp, 0, FALSE, TRUE);
+			     monflee(mtmp, rnd(10), FALSE, TRUE);
 			}
 			break;
 

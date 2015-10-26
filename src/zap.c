@@ -210,7 +210,7 @@ struct obj *otmp;
 			dmg += skilldmg;
 			flags.bypasses = TRUE;	/* for make_corpse() */
 			if (!resist(mtmp, otmp->oclass, dmg, NOTELL)) {
-			    if (mtmp->mhp > 0) monflee(mtmp, 0, FALSE, TRUE);
+			    if (mtmp->mhp > 0) monflee(mtmp, rnd(10), FALSE, TRUE);
 			}
 		}
 		break;
@@ -517,7 +517,7 @@ struct obj *otmp;
 		    (!mtmp->mflee || mtmp->mfleetim)) {
 		     if (canseemon(mtmp))
 			 pline("%s suddenly panics!", Monnam(mtmp));
-		     monflee(mtmp, 0, FALSE, TRUE);
+		     monflee(mtmp, rnd(10), FALSE, TRUE);
 		}
 		break;
 	case WAN_PROBING:
