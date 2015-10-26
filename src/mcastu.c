@@ -973,7 +973,7 @@ int spellnum;
     switch (spellnum) {
     case CLC_GEYSER:
 
-	switch (rnd(37) ) {
+	switch (rnd(38) ) {
 	case 1:
 	case 2:
 	case 3:
@@ -1054,6 +1054,20 @@ int spellnum;
 		dmg = 0;
 		 break;
 
+	case 38:
+
+		/* amnesia - evil patch idea by jonadab */
+		forget(3);
+		{
+		if (!strncmpi(plname, "Maud", 4))
+			pline("As your mind turns inward on itself, you forget everything else.");
+		else if (rn2(2))
+			pline("Who was that Maud person anyway?");
+		else
+			pline("Thinking of Maud you forget everything else.");
+		}
+
+		 break;
 
 	default: /*failsafe*/
 		You_feel("that monsters are aware of your presence."); /* aggravate monster */
