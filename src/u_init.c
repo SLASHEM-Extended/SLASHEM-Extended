@@ -4918,6 +4918,8 @@ u_init()
 	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
 
+	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
+
 	struct attack* attkptr;
 	int no_extra_food = FALSE;
 
@@ -15055,6 +15057,42 @@ u_init()
 	starlitk->mflags2 &= ~M2_WERE;
 	starlitk->mflags2 &= ~M2_PNAME;
 	starlitk->mflags2 &= ~M2_PEACEFUL;
+
+	/* and a total train wreck... */
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
+		starlitmonster = (NUMMONS + rnz(rnd(5000)));
+		starlitattempts++;
+	}
+
+	starlitu->mmove = mons[starlitmonster].mmove;
+	starlitu->ac = mons[starlitmonster].ac;
+	starlitu->mr = mons[starlitmonster].mr;
+	starlitu->maligntyp = mons[starlitmonster].maligntyp;
+	starlitu->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitu->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitu->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitu->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitu->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitu->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitu->cwt = mons[starlitmonster].cwt;
+	starlitu->cnutrit = mons[starlitmonster].cnutrit;
+	starlitu->msound = mons[starlitmonster].msound;
+	starlitu->msize = mons[starlitmonster].msize;
+	starlitu->mresists = mons[starlitmonster].mresists;
+	starlitu->mflags1 = mons[starlitmonster].mflags1;
+	starlitu->mflags2 = mons[starlitmonster].mflags2;
+	starlitu->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitu->mflags2 &= ~M2_NOPOLY;
+	starlitu->mflags2 &= ~M2_MERC;
+	starlitu->mflags2 &= ~M2_WERE;
+	starlitu->mflags2 &= ~M2_PNAME;
+	starlitu->mflags2 &= ~M2_PEACEFUL;
+
+	starlitu->mflags3 |= 0x40000000L;
+	starlitu->mflags3 |= 0x80000000L;
 
 	return;
 }

@@ -430,6 +430,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
 
+	mread(fd, (genericptr_t) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
+
 	mread(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
 
