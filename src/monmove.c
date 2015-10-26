@@ -340,8 +340,9 @@ boolean fleemsg;
 		  mtmp->mflee = 1;
 		}
 		else {
-		  pline("%s is startled for a moment.", (Monnam(mtmp)));}
-		};
+		  pline("%s is startled for a moment.", (Monnam(mtmp)));
+		}
+	    } else if (rn2(3)) mtmp->mflee = 1;
 
 		/* pline("%s turns to flee!", (Monnam(mtmp))); */
 	    /*mtmp->mflee = 1;*/
