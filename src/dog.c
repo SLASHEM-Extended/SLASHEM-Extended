@@ -304,6 +304,7 @@ makedog()
 	if (pettype == PM_DRAGONBALL_KID) petname = "Android Nr. 17"; /* don't know the real name, but it was something like this --Amy */
 
 	if (pettype == PM_GREEN_ELF) petname = "Dray Harp";
+	if (pettype == PM_DROW) petname = "Roflth"; /* Lolth */
 	if (pettype == PM_OFFICER) petname = "Officer O'Brian";
 	if (pettype == PM_SOLDIER) petname = "Lieutenant Surge"; /* Pokemon Yellow */
 	if (pettype == PM_VALKYRIE) petname = "Rue";	/* hunger games */
@@ -326,6 +327,7 @@ makedog()
 	if (pettype == PM_DARK_GRUE) petname = "ZORK!";
 
 	if (pettype == PM_CLEFAIRY) petname = "Thief Pokemon";
+	if (pettype == PM_CHAMELEON) petname = "The RNG";
 
 	if (pettype == PM_PANTHER) petname = "Tomcat Karlo";
 	if (pettype == PM_TIGER) petname = "Simba";

@@ -3163,11 +3163,11 @@ maybe_wail()
     if (moves <= wailmsg + 50) return;
 
     wailmsg = moves;
-    if (Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_RODNEYAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) {
+    if (Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_TWELPH) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || Race_if(PM_RODNEYAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) {
 	const char *who;
 	int i, powercnt;
 
-	who = (!rn2(10)) ? urace.noun :(Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Race_if(PM_ASGARDIAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
+	who = (!rn2(10)) ? urace.noun :(Role_if(PM_WIZARD) || Role_if(PM_CONVICT) || Role_if(PM_COURIER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_TWELPH) || Race_if(PM_ASGARDIAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
 		urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf";
 	if (u.uhp == 1) {
 	    pline("%s is about to die.", who);
@@ -3234,7 +3234,7 @@ showdmg(n)
 		switch (Role_switch) {
 			case PM_BARBARIAN: case PM_MONK: lev = 10; break;
 			case PM_CAVEMAN: case PM_VALKYRIE: lev = 12; break;
-			case PM_SAMURAI: case PM_KNIGHT: case PM_CHEVALIER: lev = 14; break;
+			case PM_SAMURAI: case PM_KNIGHT: case PM_CHEVALIER: case PM_GOLDMINER: lev = 14; break;
 			default: lev = 17; break;
 	}
 		switch (Race_switch) {

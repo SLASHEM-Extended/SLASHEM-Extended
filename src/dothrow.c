@@ -202,6 +202,9 @@ int thrown;
 	    case PM_ROGUE:
 		if (skill == P_DAGGER) multishot++;
 		break;
+	    case PM_RINGSEEKER:
+		if (skill == P_SLING) multishot++;
+		break;
 	    case PM_ROCKER:
 		if (skill == P_SLING) {multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
@@ -214,6 +217,11 @@ int thrown;
 		multishot++;
 		if (obj->otyp == ELVEN_ARROW && launcher &&
 				launcher->otyp == ELVEN_BOW) multishot++;
+		break;
+	    case PM_TWELPH: /* dark elf role --Amy */
+		multishot++;
+		if (obj->otyp == DARK_ELVEN_ARROW && launcher &&
+				launcher->otyp == DARK_ELVEN_BOW) multishot++;
 		break;
 	    case PM_SAMURAI:
 		if (obj->otyp == YA && launcher && launcher->otyp == YUMI) multishot++;
@@ -1598,7 +1606,7 @@ int thrown;
 		     * Polymorphing won't make you a bow expert.
 		     */
 		    if ((Race_if(PM_ELF) || Race_if(PM_DROW) ||
-		    		Role_if(PM_SAMURAI) || Role_if(PM_ELPH)) &&
+		    		Role_if(PM_SAMURAI) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) &&
 				(!Upolyd || your_race(youmonst.data)) &&
 				objects[launcher->otyp].oc_skill == P_BOW) {
 			tmp++;
@@ -1607,6 +1615,8 @@ int thrown;
 			/*else */if (Race_if(PM_DROW) && launcher->otyp == DARK_ELVEN_BOW)
 			    tmp++;
 			/*else */if (Role_if(PM_ELPH) && launcher->otyp == ELVEN_BOW)
+			tmp++;
+			/*else */if (Role_if(PM_TWELPH) && launcher->otyp == DARK_ELVEN_BOW)
 			tmp++;
 			/*else */if (Role_if(PM_SAMURAI) && launcher->otyp == YUMI)
 			    tmp++;

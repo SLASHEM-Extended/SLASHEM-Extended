@@ -2272,7 +2272,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 30;
-			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH)) shieldblockrate += 5;
+			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
 			break;
 		case URUK_HAI_SHIELD:
 			shieldblockrate = 32;
@@ -2285,6 +2285,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case DWARVISH_ROUNDSHIELD:
 			shieldblockrate = 34;
 			if (Race_if(PM_DWARF)) shieldblockrate += 5;
+			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
 			shieldblockrate = 35;

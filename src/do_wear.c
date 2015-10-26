@@ -2310,6 +2310,7 @@ find_ac()
             else uac -= (u.ulevel / 2) + 2;
 	}
 	if (Race_if(PM_DOPPELGANGER) && !uarm) uac -= (u.ulevel / 4) + 1;
+	if (Role_if(PM_SHAPESHIFTER) && !uarm) uac -= (u.ulevel / 4) + 1;
 	if (Race_if(PM_HAXOR)) uac -= 2;
 	if ((Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) && !uarm) uac -= (u.ulevel / 4) + 1;
 
@@ -2337,26 +2338,26 @@ find_ac()
 
 	/* bonus for wearing racial armor */
 
-	if (Race_if(PM_DWARF) && uarm && uarm->otyp == DWARVISH_MITHRIL_COAT) uac -= 1;
-	if (Race_if(PM_DROW) && uarm && uarm->otyp == DARK_ELVEN_MITHRIL_COAT) uac -= 1;
+	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarm && uarm->otyp == DWARVISH_MITHRIL_COAT) uac -= 1;
+	if ((Race_if(PM_DROW) || Role_if(PM_TWELPH)) && uarm && uarm->otyp == DARK_ELVEN_MITHRIL_COAT) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarm && uarm->otyp == ELVEN_MITHRIL_COAT) uac -= 1;
-	if (Race_if(PM_GNOME) && uarm && uarm->otyp == GNOMISH_SUIT) uac -= 2;
+	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarm && uarm->otyp == GNOMISH_SUIT) uac -= 2;
 	if (Race_if(PM_ORC) && uarm && (uarm->otyp == ORCISH_CHAIN_MAIL || uarm->otyp == ORCISH_RING_MAIL) ) uac -= 1;
 
 	if (Race_if(PM_ORC) && uarmc && uarmc->otyp == ORCISH_CLOAK ) uac -= 1;
-	if (Race_if(PM_DWARF) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
+	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
-	if (Race_if(PM_GNOME) && uarmh && uarmh->otyp == GNOMISH_HELM) uac -= 2;
+	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmh && uarmh->otyp == GNOMISH_HELM) uac -= 2;
 	if (Race_if(PM_ORC) && uarmh && uarmh->otyp == ORCISH_HELM) uac -= 1;
-	if (Race_if(PM_DWARF) && uarmh && uarmh->otyp == DWARVISH_IRON_HELM) uac -= 1;
+	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmh && uarmh->otyp == DWARVISH_IRON_HELM) uac -= 1;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarms && uarms->otyp == ELVEN_SHIELD) uac -= 1;
 	if (Race_if(PM_ORC) && uarms && (uarms->otyp == ORCISH_SHIELD || uarms->otyp == URUK_HAI_SHIELD) ) uac -= 1;
-	if (Race_if(PM_DWARF) && uarms && uarms->otyp == DWARVISH_ROUNDSHIELD) uac -= 1;
+	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarms && uarms->otyp == DWARVISH_ROUNDSHIELD) uac -= 1;
 
-	if (Race_if(PM_GNOME) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
+	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
 
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;

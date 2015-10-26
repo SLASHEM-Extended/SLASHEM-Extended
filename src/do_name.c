@@ -3948,7 +3948,7 @@ static const char * const bogusmons[] = {
 	"Master Hitman",     "Master Hitwoman",
 	"Professional Cutter",
 	"Bane of all innocent people",
-	"Falis", "_Marfa", "Falaris",	/* Record of Lodoss War */
+	"Falis", "Marfa", "Falaris",	/* Record of Lodoss War */
 
 	"Aimbot User",
 	"Wallhack Exploiter",
@@ -3959,7 +3959,7 @@ static const char * const bogusmons[] = {
 	"Server Hacker",
 	"Godmode Cheater",
 	"Instawin Scriptkiddy",
-	"_the Bitches", "_the Hell Brides", "_the Sluts with Syphilis", /* taken from a fanfic --Amy */
+	"the Bitches", "the Hell Brides", "the Sluts with Syphilis", /* taken from a fanfic --Amy */
 
 	"Globule",
 	"Moist",
@@ -3970,7 +3970,7 @@ static const char * const bogusmons[] = {
 	"Slime Hero",
 	"King Slime",     "Queen Slime",
 	"Slime God",       "Slime Goddess",
-	"King Somnus", "_Rubiss", "Malroth", /* Dragon Warrior */
+	"King Somnus", "Rubiss", "Malroth", /* Dragon Warrior */
 
 	"Young Boy",     "Young Girl",
 	"Village Hero",    0,
@@ -3981,6 +3981,62 @@ static const char * const bogusmons[] = {
 	"World Hero",     0,
 	"Super Hero",     0,
 	"Legend",       0,
+
+	"Mining Slave",
+	"Mine Worker",
+	"Pick Wielder",
+	"Stonecutter",
+	"Shaft Climber",
+	"Gold Digger",
+	"Gemstone Hoarder",
+	"Retired Goldrusher",
+	"Made Man",
+	"Aurum", "Argentum", "Antimony",
+
+	"Little Midget",
+	"Small Person",
+	"Middle-Earth Miner",
+	"Cave Inhabitant",
+	"Big Midget",
+	"Giant Midget",
+	"Dwarven Master Smith",
+	"Dwarvish Legend",
+	"Biggest Midget Ever",
+	"Moradin", "Dumathoin", "Abbathor",
+
+	"Hobbit Townie",
+	"Drunken Hobbit",
+	"Celebrating Hobbit",
+	"Ringquester",
+	"Fellow of the Ring",
+	"Moria Survivor",
+	"Blarog Basher",
+	"Mount Doom Hiker",
+	"Hero who defeated Sauron",
+	"Lurtz", "Saruman", "Morgoth",
+
+	"Polymorph Trainee",
+	"Item Zapper",
+	"Polymorphitis Hero",
+	"Wild Changer",
+	"Polypiler",
+	"Human Chameleon",
+	"Master Shapechanger",
+	"Grandmaster Shapechanger",
+	"Ultimate Shapechanger",
+
+	"Twedhel",       "Twelleth",
+	"Twedhel",       "Twelleth",      /* elf-maid */
+	"Twohtar",       "Twohtie",       /* warrior */
+	"Twekano",			/* commander (Q.) ['a] */
+			"Twekanie",	/* educated guess, until further research- SAC */
+	"Twarandur",			/* king's servant, minister (Q.) - guess */
+			"Twaranduriel",	/* educated guess */
+	"Twehir",         "Twehiril",       /* lord, lady (S.) ['ir] */
+	"Twaredhel",     "Twarwen",       /* noble elf, maiden (S.) */
+	"Twernil",       "Twelentariel",  /* prince (S.), elf-maiden (Q.) */
+	"Twelentar",     "Twelentari",	/* Star-king, -queen (Q.) */
+	"Legolas", "Eowyn", "Eol", /* Elven */
 
 	/* more random names... */
 

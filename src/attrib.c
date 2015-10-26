@@ -235,6 +235,9 @@ const struct innate {
 
 	loc_abil[] = { {   1, &(HSearching), "", "" },
 		     {   0, 0, 0, 0 } },
+	sha_abil[] = {/* {   1, &(HPolymorph), "", "" },*/
+		       {   9, &(HPolymorph_control), "your choices improve", "choiceless" },
+		       {   0, 0, 0, 0 } },
 
 	unt_abil[] = { {   1, &(HPoison_resistance), "", "" },
 		     {   7, &(HCold_resistance), "warm", "cooler" },
@@ -349,6 +352,10 @@ const struct innate {
 		     {   1, &(HInfravision), "", "" },
 		     {  10, &(HReflecting), "reflexive", "nonreflexive" },
 		     {	 0, 0, 0, 0 } },
+	gol_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
+		     {   9, &(HFast), "quick", "slow" },
+		     {   11, &(HSearching), "perceptive", "unaware" },
+		     {   0, 0, 0, 0 } },
 
 	gla_abil[] = {	{3, &(HFast), "quick", "slow"  },
 			 {	6, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
@@ -393,6 +400,9 @@ const struct innate {
 	tou_abil[] = { {	10, &(HSearching), "perceptive", "unaware" },
 		     {	20, &(HPoison_resistance), "hardy", "less healthy" },
 		     {	 0, 0, 0, 0 } },
+	rin_abil[] = { {  1, &(HStealth), "", "" },
+		     {   7, &(HFast), "quick", "slow" },
+		     {   0, 0, 0, 0 } },
 
 	und_abil[] = { {   1, &(HStealth), "", "" },
 		     {   1, &(HDrain_resistance), "", "" },
@@ -422,6 +432,9 @@ const struct innate {
 			{  20, &(HTeleport_control), "controlled","uncontrolled" },
 		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
 		     {	 0, 0, 0, 0 } },
+	mid_abil[] = { { 1, &(HSearching), "", "" },
+			{  10, &(HFire_resistance), "cool", "warmer" },
+			{   0, 0, 0, 0 } },
 
 #ifdef YEOMAN
 	yeo_abil[] = {
@@ -1276,6 +1289,7 @@ int oldlevel, newlevel;
 	case PM_PSION:           abil = psi_abil;	break;
 	case PM_SCIENTIST:           abil = sci_abil;	break;
 	case PM_NECROMANCER:	abil = nec_abil;	break;
+	case PM_SHAPESHIFTER:	abil = sha_abil;	break;
 	case PM_PIRATE:         abil = pir_abil;	break;
 	case PM_NINJA:		abil = nin_abil;	break;
 	case PM_KORSAIR:         abil = kor_abil;	break;
@@ -1292,15 +1306,19 @@ int oldlevel, newlevel;
 	case PM_LUNATIC:         abil = lun_abil;	break;
 	case PM_PRIEST:         abil = pri_abil;	break;
 	case PM_RANGER:         abil = ran_abil;	break;
+	case PM_TWELPH:
 	case PM_ELPH:         abil = elp_abil;	break;
 	case PM_LOCKSMITH:         abil = loc_abil;	break;
 	case PM_ROGUE:          abil = rog_abil;	break;
+	case PM_RINGSEEKER:		abil = rin_abil;	break;
 	case PM_SAMURAI:        abil = sam_abil;	break;
 #ifdef TOURIST
 	case PM_TOURIST:        abil = tou_abil;	break;
 #endif
 	case PM_UNDEAD_SLAYER:	abil = und_abil;	break;
+	case PM_MIDGET:		abil = mid_abil;	break;
 	case PM_UNDERTAKER:	abil = unt_abil;	break;
+	case PM_GOLDMINER:		abil = gol_abil;	break;
 	case PM_VALKYRIE:       abil = val_abil;	break;
 	case PM_OFFICER:       abil = off_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;

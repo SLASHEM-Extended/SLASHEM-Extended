@@ -390,6 +390,21 @@ register boolean special;
 		case PM_ELPH:
 		    weapon = ELVEN_DAGGER;
 		    break;
+		case PM_TWELPH:
+		    weapon = DARK_ELVEN_DAGGER;
+		    break;
+		case PM_GOLDMINER:
+		    weapon = PICK_AXE;
+		    break;
+		case PM_MIDGET:
+		    weapon = DWARVISH_MATTOCK;
+		    break;
+		case PM_RINGSEEKER:
+		    weapon = ELVEN_DAGGER;
+		    break;
+		case PM_SHAPESHIFTER:
+		    weapon = ATHAME;
+		    break;
 		case PM_COURIER:
 		    weapon = KNIFE;
 		    break;

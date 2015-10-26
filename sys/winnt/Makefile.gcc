@@ -1469,6 +1469,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\nightmar.des $(DAT)\ranger.des 	$(DAT)\pirate.des 	$(DAT)\convict.des \
 		$(DAT)\murderer.des   $(DAT)\failed.des 	$(DAT)\camper.des \
 		$(DAT)\altmer.des $(DAT)\bosmer.des 	$(DAT)\dunmer.des 	$(DAT)\ordinat.des 	$(DAT)\thalmor.des \
+		$(DAT)\dopp.des $(DAT)\dwarf.des 	$(DAT)\darkelf.des 	$(DAT)\hobbit.des 	$(DAT)\gnome.des \
 		$(DAT)\drunk.des    $(DAT)\firef.des   $(DAT)\locks.des   $(DAT)\music.des \
 		$(DAT)\ninja.des $(DAT)\offic.des 	$(DAT)\under.des 	$(DAT)\zooke.des \
 		$(DAT)\abuser.des $(DAT)\saiyan.des 	$(DAT)\polit.des 	$(DAT)\cook.des \
@@ -1486,6 +1487,11 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/polit.des
 	lev_comp $(DDAT)/cook.des
 	lev_comp $(DDAT)/augurer.des
+	lev_comp $(DDAT)/dopp.des
+	lev_comp $(DDAT)/dwarf.des
+	lev_comp $(DDAT)/darkelf.des
+	lev_comp $(DDAT)/hobbit.des
+	lev_comp $(DDAT)/gnome.des
 	lev_comp $(DDAT)/sage.des
 	lev_comp $(DDAT)/libra.des
 	lev_comp $(DDAT)/gunner.des

@@ -2424,6 +2424,73 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_TWELPH:
+		   case PM_UNDEAD_TWELPH:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, DARK_ELVEN_DAGGER);
+		     (void)mongets(mtmp, DARK_ELVEN_BOW);
+			    m_initthrow(mtmp, DARK_ELVEN_ARROW, 25);
+
+		   break;
+
+		   case PM_GOLDMINER:
+		   case PM_UNDEAD_GOLDMINER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, PICK_AXE);
+		     (void)mongets(mtmp, CROSSBOW);
+			    m_initthrow(mtmp, CROSSBOW_BOLT, 25);
+
+		   break;
+
+		   case PM_MIDGET:
+		   case PM_UNDEAD_MIDGET:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, DWARVISH_MATTOCK);
+		     (void)mongets(mtmp, DWARVISH_IRON_HELM);
+		     (void)mongets(mtmp, DWARVISH_MITHRIL_COAT);
+
+		   break;
+
+		   case PM_RINGSEEKER:
+		   case PM_UNDEAD_RINGSEEKER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, SLING);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+			    m_initthrow(mtmp, ROCK, 25);
+			    m_initthrow(mtmp, ROCK, 25);
+
+		   break;
+
+		   case PM_SHAPESHIFTER:
+		   case PM_UNDEAD_SHAPESHIFTER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, WAN_POLYMORPH);
+
+		   break;
+
 		   case PM_NINJA:
 		   case PM_UNDEAD_NINJA:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -8575,6 +8642,12 @@ register int	mmflags;
 
 	/* randomly make higher-level monsters for doppelgangers since the game is easy enough for them already --Amy */
 	if (mtmp->m_lev && (mtmp->m_lev < 50) && !rn2(10) && Race_if(PM_DOPPELGANGER)) {
+
+		mtmp->m_lev += rnd(u.ulevel);
+		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
+	}
+
+	if (mtmp->m_lev && (mtmp->m_lev < 50) && !rn2(10) && Role_if(PM_SHAPESHIFTER)) {
 
 		mtmp->m_lev += rnd(u.ulevel);
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;

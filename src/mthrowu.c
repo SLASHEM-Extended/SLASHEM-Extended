@@ -66,7 +66,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 30;
-			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH)) shieldblockrate += 5;
+			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
 			break;
 		case URUK_HAI_SHIELD:
 			shieldblockrate = 32;
@@ -78,7 +78,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case DWARVISH_ROUNDSHIELD:
 			shieldblockrate = 34;
-			if (Race_if(PM_DWARF)) shieldblockrate += 5;
+			if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) ) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
 			shieldblockrate = 35;

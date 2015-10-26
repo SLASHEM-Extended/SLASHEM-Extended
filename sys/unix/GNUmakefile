@@ -186,6 +186,7 @@ $(AUTO_C:%.c=%.d): ;
 
 QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Arch.des Artist.des Assassin.des Augurer.des Barb.des Bard.des		\
+ Dwarf.des Dopp.des Darkelf.des Gnome.des Hobbit.des		\
  Binder.des Bleeder.des Bloodsee.des Bosmer.des Bully.des Caveman.des	\
  Cheval.des Convict.des Cook.des Courier.des Cyborg.des Deatheat.des	\
  Diver.des Doll.des Drunk.des Dunmer.des Electric.des Elf.des		\

@@ -318,6 +318,276 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#       Goldminer
+#
+%Cc Gol 00001
+You are suddenly in familiar surroundings.  The buildings in the distance
+appear to be those of your old alma mater, but something is wrong.  It looks
+as if there has been a riot recently, or %H has
+been under siege.
+
+All of the windows are boarded up, and there are objects scattered around
+the entrance.
+
+Strange forbidding shapes seem to be moving in the distance.
+%E
+%Cp Gol 00002
+Once again, you are back at %H.
+%E
+%Cp Gol 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Gol 00005
+"Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"
+%E
+%Cp Gol 00006
+"Hey man, got any potions of hallucination for sale?"
+%E
+%Cp Gol 00007
+"Did you see the artifact %l brought back from the last dig?"
+%E
+%Cp Gol 00008
+"So what species do *you* think we evolved from?"
+%E
+%Cp Gol 00009
+"So you're %ls prize pupil!  I don't know what he sees in you."
+%E
+%Cp Gol 00010
+"Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"
+%E
+%Cp Gol 00011
+"Hey man, got any potions of hallucination for sale?"
+%E
+%Cp Gol 00012
+"I guess you are guaranteed to make full professor now."
+%E
+%Cp Gol 00013
+"So, what was worse, %n or your entrance exams?"
+%E
+%Cp Gol 00014
+"%oC is impressive, but nothing like the bones I dug up!"
+%E
+%Cc Gol 00015
+"Finally you have returned, %p.  You were always
+my most promising student.  Allow me to see if you are ready for the
+most difficult task of your career."
+%E
+%Cp Gol 00016
+"Again, %p, you stand before me.
+Let me see if you have gained experience in the interim."
+%E
+%Cp Gol 00017
+"Once more, %p, you have returned from the field.
+Are you finally ready for the task that must be accomplished?"
+%E
+%Cc Gol 00018
+"%p, you have failed us.  All of my careful training has been in
+vain.  Begone!  Your tenure at this college has been revoked!
+
+"You are a disgrace to the profession!"
+%E
+%Cc Gol 00019
+"%p, you are yet too inexperienced to undertake such a demanding
+quest.  A mere %r could not possibly face the rigors demanded and
+survive.  Go forth, and come here again when your adventures have further
+taught you."
+%E
+%Cc Gol 00020
+"%pC!  I've heard that you've been using sloppy techniques.  Your
+results lately can hardly be called suitable for %ra!
+
+"How could you have strayed from the %a path?  Go from here, and come
+back only when you have purified yourself."
+%E
+%Cc Gol 00021
+"Grave times have befallen the college, for %na has
+stolen %o.  Without it, the board of directors of
+the university will soon have no choice but to revoke our research grants.
+
+"You must locate the entrance to %i.  Within it,
+you will find %n.
+
+"You must then defeat %n and return %o
+to me.
+
+"Only in this way will we be able to prevent the budget cuts that could
+close this college.
+
+"May the wisdom of %d be your guide."
+%E
+%Cp Gol 00025
+"Beware, for %n is powerful and cunning."
+%E
+%Cp Gol 00026
+"To locate the entrance to %i, you must pass
+many traps."
+%E
+%Cp Gol 00027
+"A %nt may be vulnerable to attacks by magical cold."
+%E
+%Cp Gol 00028
+"Call upon %d when you encounter %n."
+%E
+%Cp Gol 00029
+"You must destroy %n.  It will pursue you otherwise."
+%E
+%Cp Gol 00030
+"%oC is a mighty talisman.  With it you
+can destroy %n."
+%E
+%Cp Gol 00031
+"Go forth with the blessings of %d."
+%E
+%Cp Gol 00032
+"I will have my %gP watch for your return."
+%E
+%Cp Gol 00033
+"Remember not to stray from the true %a path."
+%E
+%Cp Gol 00034
+"You may be able to sense %o when you are near."
+%E
+%Cc Gol 00035
+A plain opens before you.  Beyond the plain lies a foreboding edifice.
+
+You have the feeling that you will soon find the entrance to
+%i.
+%E
+%Cp Gol 00036
+Once again, you are near the entrance to %i.
+%E
+%Cc Gol 00040
+A strange feeling washes over you, and you think back to things you
+learned during the many lectures of %l.
+
+You realize the feeling must be the presence of %o.
+%E
+%Cp Gol 00041
+The familiar presence of %o is in the ether.
+%E
+%Cc Gol 00050
+"So, %p, you think that you can succeed in recovering
+%o, when your teacher, %l, has already failed.
+
+"Come, try your best!  I shall destroy you, and gnaw on your bones."
+%E
+%Cc Gol 00051
+"Again you try to best me, eh %p?  Well, you shall fail again.
+
+"You shall never recover %o.
+
+"I shall bear your soul to the Plane of Origins for my master's pleasure."
+%E
+%Cp Gol 00052
+"You persist yet %p!  Good.  Now, you shall die!"
+%E
+%Cp Gol 00053
+"I shall have %o from you, %p, then feast
+upon your entrails!"
+%E
+%Cp Gol 00060
+"Try your best, %p.  You cannot defeat me."
+%E
+%Cp Gol 00061
+"I shall rend the flesh from your body whilst you still breathe!"
+%E
+%Cp Gol 00062
+"First you, %p, then I shall destroy your mentor, %l."
+%E
+%Cp Gol 00063
+"Tiring yet, %p?  I draw my power from my master and cannot
+falter!"
+%E
+%Cp Gol 00064
+"I shall rend thy soul from thy body and consume it!"
+%E
+%Cp Gol 00065
+"You are far too %a -- it weakens you.  You shall die in this place."
+%E
+%Cp Gol 00066
+"%d has forsaken you!  You are lost now!"
+%E
+%Cp Gol 00067
+"A mere %r cannot hope to defeat me!"
+%E
+%Cp Gol 00068
+"If you are the best %l can send, I have nothing to fear."
+%E
+%Cp Gol 00069
+"Die %c!  I shall exhibit your carcass as a trophy."
+%E
+%Cc Gol 00070
+The power of %o flows through your body!  You feel
+as if you could now take on the Wizard of Yendor himself and win, but
+you know you must return %o to %l.
+%E
+%Cp Gol 00080
+The body of %n dissipates in a cloud of noxious fumes.
+%E
+%Cc Gol 00081
+%lC touches %o briefly, gazes into it,
+then smiles at you and says:
+
+"Well done, %p.  You have defeated %n and
+recovered %o.  But I fear that it shall never be safe
+here.
+
+Please take %o with you.  You, %p, can
+guard it now far better than I.
+
+May the blessings of %d follow you and guard you."
+%E
+# assumes Orb of Detection (glass object)
+%Cc Gol 00082
+"Careful, %p!  %oC might break, and that would be
+a tragic loss.  You are its keeper now, and the time has come to
+resume your search for the Amulet.  %Z await your
+return through the magic portal that brought you here."
+%E
+%Cc Gol 00090
+"Welcome back, %p.  Have you progressed with your quest to
+regain the Amulet of Yendor for %d?"
+%E
+%Cc Gol 00091
+"Congratulations, %p.  I wondered if anyone could prevail against
+the Wizard and the minions of Moloch.  Now, you must embark on one
+final adventure.
+
+"Take the Amulet, and find your way onto the astral plane.
+There you must find the altar of %d and sacrifice the
+Amulet on that altar to fulfill your destiny.
+
+"Remember, your path now should always be upwards."
+%E
+%Cc Gol 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Gol 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Gol 00101
+You again sense %l pleading for help.
+%E
+%Cp Gol 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #       Abuser
 #	note by Amy: based on Fifty Shades of Fucked Up
 #	nothing in here is supposed to be taken at face value.
@@ -15112,6 +15382,280 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#	Dark Elf
+#
+%Cc Twe 00001
+You arrive in familiar surroundings.  In the distance, you %x the
+great stone Circle, the place of worship to %d.
+
+Something is wrong, though.  Surrounding the circle are orcs!
+And they've noticed you!
+%E
+%Cp Twe 00002
+Once again, you stand before %H.
+%E
+%Cp Twe 00003
+You have the oddest feeling that this may be the last time you
+are to enter %H.
+%E
+%Cp Twe 00005
+"%p!  I have not seen you in many cycles.  How do you fare?"
+%E
+%Cp Twe 00006
+"%nC continues to threaten the circle.  But we hold fast."
+%E
+%Cp Twe 00007
+"%lC is growing weak.  The magic required to defend the circle drains us."
+%E
+%Cp Twe 00008
+"Remember %i is hard to enter.  Seek the secret
+passageways."
+%E
+%Cp Twe 00009
+"We must regain %o.  Without it we will be overrun."
+%E
+
+%Cp Twe 00010
+"%pC!  I have not seen you in many moons.  How do you fare?"
+%E
+%Cp Twe 00011
+"Birdsong has returned to the grove, surely this means you have defeated %n."
+%E
+%Cp Twe 00012
+"%lC seems to have regained some of his strength."
+%E
+%Cp Twe 00013
+"So, tell us how you entered %i, in case some new evil arises there."
+%E
+%Cp Twe 00014
+"Is that truely %o that I see you carrying?"
+%E
+
+%Cc Twe 00015
+"%p!  You have returned!  Thank %d.
+
+"We have great need of you.  But first, I must see if you have the
+required abilities to take on this responsibility."
+%E
+%Cp Twe 00016
+"Once again, %p, you stand in our midst.  Are you ready now?"
+%E
+%Cp Twe 00017
+"Ah, you are here again, %p.  Allow me to determine your readiness..."
+%E
+%Cc Twe 00018
+"%p!  You have doomed us all.  You fairly radiate %L influences
+and weaken the power we have raised in this circle as a result!
+
+"Begone!  We renounce your %shood with us!  You are an outcast now!"
+%E
+%Cc Twe 00019
+"%p, you are yet too inexperienced to withstand the demands of that
+which we need you to do.  %RA might just be able to do this thing.
+
+"Return to us when you have learned more, my %S."
+%E
+%Cc Twe 00020
+"You have strayed, %p!  You know that %d requires that
+we maintain a pure devotion to things %a!
+
+"You must go from us.  Return when you have purified yourself."
+%E
+%Cc Twe 00021
+"You are indeed ready, %p.  I shall tell you what has transpired,
+and why we so desperately need your help:
+
+"A short time ago, the Uruk-hai tribes of the mountains to the east
+invaded and enslaved the goblin tribes in this area.  The local
+%nt is now only a figurehead, and serves the Uruk-hai Overlord.
+
+"During our last gathering of worship here, we were beset by hordes of
+orcs and goblins, as you witnessed.  In the first onslaught a group,
+headed by %n himself, managed to breach the circle and
+steal %o.
+
+"Since then, we have been besieged.  We do not know how much longer
+we will be able to maintain our magical barriers.
+
+"If we are to survive, you, %p, must infiltrate
+%i.  There, you will find a pathway down, to the
+underground castle of %n.  He has always coveted
+%o, and will surely keep it on his person,
+until he delivers it to the Uruk-hai Overlord.
+
+"Recover %o for us, %p!  Only then will
+the circle of %d be safe."
+%E
+%Cp Twe 00025
+"It is rumored that the Uruk-hai have a pact with the Hill Ogres."
+%E
+%Cp Twe 00026
+"%nC is strong, but not very smart."
+%E
+%Cp Twe 00027
+"Use %o, when you find it.  It will help you survive
+to reach us."
+%E
+%Cp Twe 00028
+"Remember, let %d be your guide."
+%E
+%Cp Twe 00029
+"Call upon %d when you face %n.
+The very act of doing so will infuriate him, and give you advantage."
+%E
+%Cp Twe 00030
+"Though %n is as %C as we, he and his kind have always
+hated us."
+%E
+%Cp Twe 00031
+"We cannot hold the circle much longer, %p.  Hurry!"
+%E
+%Cp Twe 00032
+"To infiltrate %i, you must be very stealthy."
+%E
+%Cp Twe 00033
+"Remember that %n is a braggart.  Trust not what he says."
+%E
+%Cp Twe 00034
+"You can triumph, %p, if you trust in %d."
+%E
+%Cc Twe 00035
+You descend into the outer regions of %i.  You can hear
+scuffling sounds in the corridors, and vague mumblings in the distance.
+
+You remember that %ga once told you that there were many secret
+passageways in this complex.
+%E
+%Cp Twe 00036
+Once again, you descend into %i.
+%E
+%Cc Twe 00040
+You descend into a weird place, in which roughly cut cave-like walls
+join with smooth, finished ones, as if someone was in the midst of
+finishing off the construction of a subterranean complex.
+
+Off in the distance, you hear the sounds of a large, raucous gathering.
+%E
+%Cp Twe 00041
+Once again, you enter the distorted castle of %n.
+%E
+%Cc Twe 00050
+"So, %c.  %lC has sent you to recover %o.
+
+"Well, I shall keep that bauble.  It pleases me.  You, %c, shall die."
+%E
+%Cp Twe 00051
+"Back again, eh?  Well, a mere %r is no threat to me!  Die, %c!"
+%E
+%Cp Twe 00052
+"You haven't learned your lesson, %c.  You can't kill me!  You shall die now."
+%E
+%Cp Twe 00053
+"I shall have %o from you, %r.  Then I shall
+kill you."
+%E
+%Cp Twe 00060
+"Your %d is nothing, %c.  You are mine now!"
+%E
+%Cp Twe 00061
+"Run away little %c!  You can never hope to defeat %n!"
+%E
+%Cp Twe 00062
+"My Uruk-hai servants will rip you to shreds!"
+%E
+%Cp Twe 00063
+"I shall display your head as a trophy.  What do you think about that wall?"
+%E
+%Cp Twe 00064
+"I shall break your %ls circle, and destroy all the %gP!"
+%E
+%Cp Twe 00065
+"%d has abandoned you, %c.  You are doomed."
+%E
+%Cp Twe 00066
+"%rA?  %lC sends a mere %r against me?  Hah!"
+%E
+%Cp Twe 00067
+"%lC has failed, %c.  %oC will never leave here."
+%E
+%Cp Twe 00068
+"You really think you can defeat me, eh %c?  You are wrong!"
+%E
+%Cp Twe 00069
+"You weaken, %c.  I shall kill you now."
+%E
+%Cc Twe 00070
+As you pick up %o, it seems to glow, and a warmth
+fills you completely.  You realize that its power is what has protected
+your %sp against their enemies for so long.
+
+You must now return it to %l without delay -- their lives depend
+on your speed.
+%E
+%Cc Twe 00080
+%nC collapses to the ground, cursing you and %l, then says:
+
+    You have defeated me, %r!  But I curse you one final time, with my
+    dying breath!  You shall die before you leave my castle!
+%E
+%Cc Twe 00081
+"%p!  You have succeeded!  I feared it was not possible!
+
+"Your aura proclaims that you possess %o!
+
+"I fear, now, that the Uruk-hai will select yet another %nt.
+This will take some time, but if you can recover the Amulet of Yendor
+for %d before that happens, we will be eternally safe.
+
+"Take %o with you.  It will aid in your quest for
+the Amulet."
+%E
+%Cp Twe 00082
+"Welcome, %p.  Have you mastered the art of using %o yet?"
+%E
+%Cp Twe 00090
+"Welcome, %p.  How have you fared on your quest for the Amulet
+of Yendor?"
+%E
+%Cc Twe 00091
+"Utuelyes!  You have recovered the Amulet of Yendor!
+Now attend to me, %p, and I will tell you what must be done:
+
+"The Amulet has within it magic, the capability to transport you to
+the Astral Plane, where the primary circle of %d resides.
+
+"To activate this magic, you must travel upwards as far as you can.
+When you reach the temple, sacrifice the Amulet to %d.
+
+"Thus will you fulfill your destiny."
+%E
+%Cc Twe 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Twe 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Twe 00101
+You again sense %l pleading for help.
+%E
+%Cp Twe 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #	Erdrick
 #
 %Cc Erd 00001
@@ -24432,6 +24976,858 @@ You couldn't quite make out that last message.
 You again sense %l pleading for help.
 %E
 %Cp Wiz 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#	Ringseeker
+#
+%Cc Rin 00001
+You are suddenly in familiar surroundings.  You notice what appears to
+be a large, squat stone structure nearby.  Wait!  That looks like the
+tower of your former teacher, %l.
+
+However, things are not the same as when you were last here.  Mists and
+areas of unexplained darkness surround the tower.  There is movement in
+the shadows.
+
+Your teacher would never allow such unaesthetic forms to surround the
+tower...  unless something were dreadfully wrong!
+%E
+%Cp Rin 00002
+Once again, you are back at %H.
+%E
+%Cp Rin 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Rin 00005
+"Would you happen to have some eye of newt in that overstuffed pack, %s?"
+%E
+%Cp Rin 00006
+"Ah, the spell to create the magic portal worked.  Outstanding!"
+%E
+%Cp Rin 00007
+"Hurry!  %lC may not survive that casting of the
+portal spell!!"
+%E
+%Cp Rin 00008
+"The spells of %n were just too powerful for us to withstand."
+%E
+%Cp Rin 00009
+"I, too, will venture into the world, because %n is but one of
+many evils to be vanquished."
+%E
+%Cp Rin 00010
+"I have some eye of newt to trade, do you have a spare blind-worm's sting?"
+%E
+%Cp Rin 00011
+"The magic portal now seems like it will remain stable for quite some time."
+%E
+%Cp Rin 00012
+"Have you noticed how much stronger %l is since %o was recovered?"
+%E
+%Cp Rin 00013
+"Thank %d!  We weren't positive you would defeat %n."
+%E
+%Cp Rin 00014
+"I, too, will venture into the world, because %n was but one of
+many evils to be vanquished."
+%E
+%Cc Rin 00015
+"Come closer, %p, for my voice falters in my old age.
+Yes, I see that you have come a long way since you went out into the
+world, leaving the safe confines of this tower.  However, I must first
+determine if you have all of the skills required to take on the task
+I require of you."
+%E
+%Cp Rin 00016
+"Well, %p, you have returned.  Perhaps you are now ready..."
+%E
+%Cp Rin 00017
+"This is getting tedious, %p, but perseverance is a sign of a true mage.
+I certainly hope that you are truly ready this time!"
+%E
+%Cc Rin 00018
+"You fool, %p!  Why did I waste all of those years teaching you
+the esoteric arts?  Get out of here!  I shall find another."
+%E
+%Cc Rin 00019
+"Alas, %p, you have not yet shown your proficiency as a worthy
+spellcaster.  As %ra, you would surely be overcome in the challenge
+ahead.  Go, now, expand your horizons, and return when you have attained
+renown as %Ra."
+%E
+%Cc Rin 00020
+"You amaze me, %p!  How many times did I tell you that the way of a mage
+is an exacting one.  One must use the world with care, lest one leave it
+in ruins and simplify the task of %n.
+
+"You must go back and show your worthiness.  Do not return until you are
+truly ready for this quest.  May %d guide you in this task."
+%E
+%Cc Rin 00021
+"Yes, %p, you truly are ready for this dire task.  Listen,
+carefully, for what I tell you now will be of vital importance.
+
+"Since you left us to hone your skills in the world, we unexpectedly came
+under attack by the forces of %n.  As you know, we thought
+%n had perished at the end of the last age, but, alas, this was
+not the case.
+
+"%nC sent an army of abominations against us.  Among them was a
+minion, mindless and ensorcelled, and thus, in the confusion, it was able
+to penetrate our defenses.  Alas, this creature has stolen
+%o and I fear it has delivered %o
+to %n.
+
+"Over the years, I had woven most of my power into this amulet, and thus,
+without it, I have but a shadow of my former power, and I fear that I
+shall soon perish.
+
+"You must travel to %i, and within its dungeons,
+find and overcome %n, and return %o to me.
+
+"Go now, with %d, and complete this quest before it is too late."
+%E
+%Cp Rin 00025
+"Beware, for %n is immune to most magical attacks."
+%E
+%Cp Rin 00026
+"To enter %i you must pass many traps."
+%E
+%Cp Rin 00027
+"%nC may be vulnerable to physical attacks."
+%E
+%Cp Rin 00028
+"%d will come to your aid when you call."
+%E
+%Cp Rin 00029
+"You must utterly destroy %n.  He will pursue you otherwise."
+%E
+%Cp Rin 00030
+"%oC is a mighty artifact.  With it you can
+destroy %n."
+%E
+%Cp Rin 00031
+"Go forth with the blessings of %d."
+%E
+%Cp Rin 00032
+"I will have my %gP watch for your return."
+%E
+%Cp Rin 00033
+"Feel free to take any items in that chest that might aid you."
+%E
+%Cp Rin 00034
+"You will know when %o is near.  Proceed with care!"
+%E
+%Cc Rin 00035
+Wisps of fog swirl nearby.  You feel that %ns lair is close.
+%E
+%Cp Rin 00036
+You believe that you may once again invade %i.
+%E
+%Cc Rin 00040
+You feel your mentor's presence; perhaps %o is nearby.
+%E
+%Cp Rin 00041
+The aura of %o tingles at the edge of your perception.
+%E
+%Cc Rin 00050
+"Ah, I recognize you, %p.  So, %l has sent you to steal
+%o from me, hmmm?  Well, %l is a
+fool to send such a mental weakling against me.
+
+"Your destruction, however, should make for good sport.  In the end, you
+shall beg me to kill you!"
+%E
+%Cc Rin 00051
+"How nice of you to return, %p!  I enjoyed our last meeting.  Are you
+still hungry for more pain?
+
+"Come!  Your soul, like %o, shall soon be mine to
+command."
+%E
+%Cp Rin 00052
+"I'm sure that your perseverance shall be the subject of innumerable
+ballads, but you shall not be around to hear them, I fear!"
+%E
+%Cp Rin 00053
+"Thief!  %o belongs to me, now.  I shall feed
+your living flesh to my minions."
+%E
+%Cp Rin 00060
+"Your puny powers are no match for me, fool!"
+%E
+%Cp Rin 00061
+"When you are defeated, your torment will last for a thousand years."
+%E
+%Cp Rin 00062
+"After your downfall, %p, I shall devour %l
+for dessert!"
+%E
+%Cp Rin 00063
+"Are you ready yet to beg for mercy?  I could be lenient..."
+%E
+%Cp Rin 00064
+"Your soul shall join the enslaved multitude I command!"
+%E
+%Cp Rin 00065
+"Your lack of will is evident, and you shall die as a result."
+%E
+%Cp Rin 00066
+"Your faith in %d is for naught!  Come, submit to me now!"
+%E
+%Cp Rin 00067
+"A mere %r is nothing compared to my skill!"
+%E
+%Cp Rin 00068
+"So, you are the best hope of %l?  How droll."
+%E
+%Cp Rin 00069
+"Feel my power, %c!  My victory is imminent!"
+%E
+%Cc Rin 00070
+As you touch %o, its comforting power infuses you
+with new energy.  You feel as if you can detect others' thoughts flowing
+through it.  Although you yearn to wear %o
+and attack the Wizard of Yendor, you know you must return it to its
+rightful owner, %l.
+%E
+%Cc Rin 00080
+%nC croaks out, as his body begins to shrivel up:
+
+    I shall haunt your progress until the end of time.  A thousand
+    curses on you and %l.
+
+Then, the body bursts into a cloud of choking dust, and blows away.
+%E
+%Cc Rin 00081
+%lC notices %o in your possession,
+beams at you and says:
+
+    I knew you could defeat %n and retrieve
+    %o.  We shall never forget this
+    brave service.
+
+    Take %o with you in your quest for
+    the Amulet of Yendor.  I can sense that it has attuned
+    itself to you already.
+
+    May %d guide you in your quest, and keep you from harm.
+%E
+%Cc Rin 00082
+"You are the keeper of %o now.  It is time to
+recover the /other/ Amulet.  %Z await your return through
+the magic portal which brought you here."
+%E
+%Cp Rin 00090
+"Come near, my %S, and share your adventures with me.
+So, have you succeeded in your quest for the Amulet of Yendor?"
+%E
+%Cc Rin 00091
+"Congratulations, %p.  I always knew that if anyone could succeed
+in defeating the Wizard of Yendor and his minions, it would be you.
+
+"Go now, and take the Amulet to the astral plane.  Once there, present
+the Amulet on the altar of %d.  Along the way you shall pass through the
+four elemental planes.  These planes are like nothing you have ever
+experienced before, so be prepared!
+
+"For this you were born, %s!  I am very proud of you."
+%E
+%Cc Rin 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Rin 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Rin 00101
+You again sense %l pleading for help.
+%E
+%Cp Rin 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#	Shapeshifter
+#
+%Cc Sha 00001
+You are suddenly in familiar surroundings.  You notice what appears to
+be a large, squat stone structure nearby.  Wait!  That looks like the
+tower of your former teacher, %l.
+
+However, things are not the same as when you were last here.  Mists and
+areas of unexplained darkness surround the tower.  There is movement in
+the shadows.
+
+Your teacher would never allow such unaesthetic forms to surround the
+tower...  unless something were dreadfully wrong!
+%E
+%Cp Sha 00002
+Once again, you are back at %H.
+%E
+%Cp Sha 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Sha 00005
+"Would you happen to have some eye of newt in that overstuffed pack, %s?"
+%E
+%Cp Sha 00006
+"Ah, the spell to create the magic portal worked.  Outstanding!"
+%E
+%Cp Sha 00007
+"Hurry!  %lC may not survive that casting of the
+portal spell!!"
+%E
+%Cp Sha 00008
+"The spells of %n were just too powerful for us to withstand."
+%E
+%Cp Sha 00009
+"I, too, will venture into the world, because %n is but one of
+many evils to be vanquished."
+%E
+%Cp Sha 00010
+"I have some eye of newt to trade, do you have a spare blind-worm's sting?"
+%E
+%Cp Sha 00011
+"The magic portal now seems like it will remain stable for quite some time."
+%E
+%Cp Sha 00012
+"Have you noticed how much stronger %l is since %o was recovered?"
+%E
+%Cp Sha 00013
+"Thank %d!  We weren't positive you would defeat %n."
+%E
+%Cp Sha 00014
+"I, too, will venture into the world, because %n was but one of
+many evils to be vanquished."
+%E
+%Cc Sha 00015
+"Come closer, %p, for my voice falters in my old age.
+Yes, I see that you have come a long way since you went out into the
+world, leaving the safe confines of this tower.  However, I must first
+determine if you have all of the skills required to take on the task
+I require of you."
+%E
+%Cp Sha 00016
+"Well, %p, you have returned.  Perhaps you are now ready..."
+%E
+%Cp Sha 00017
+"This is getting tedious, %p, but perseverance is a sign of a true mage.
+I certainly hope that you are truly ready this time!"
+%E
+%Cc Sha 00018
+"You fool, %p!  Why did I waste all of those years teaching you
+the esoteric arts?  Get out of here!  I shall find another."
+%E
+%Cc Sha 00019
+"Alas, %p, you have not yet shown your proficiency as a worthy
+spellcaster.  As %ra, you would surely be overcome in the challenge
+ahead.  Go, now, expand your horizons, and return when you have attained
+renown as %Ra."
+%E
+%Cc Sha 00020
+"You amaze me, %p!  How many times did I tell you that the way of a mage
+is an exacting one.  One must use the world with care, lest one leave it
+in ruins and simplify the task of %n.
+
+"You must go back and show your worthiness.  Do not return until you are
+truly ready for this quest.  May %d guide you in this task."
+%E
+%Cc Sha 00021
+"Yes, %p, you truly are ready for this dire task.  Listen,
+carefully, for what I tell you now will be of vital importance.
+
+"Since you left us to hone your skills in the world, we unexpectedly came
+under attack by the forces of %n.  As you know, we thought
+%n had perished at the end of the last age, but, alas, this was
+not the case.
+
+"%nC sent an army of abominations against us.  Among them was a
+minion, mindless and ensorcelled, and thus, in the confusion, it was able
+to penetrate our defenses.  Alas, this creature has stolen
+%o and I fear it has delivered %o
+to %n.
+
+"Over the years, I had woven most of my power into this amulet, and thus,
+without it, I have but a shadow of my former power, and I fear that I
+shall soon perish.
+
+"You must travel to %i, and within its dungeons,
+find and overcome %n, and return %o to me.
+
+"Go now, with %d, and complete this quest before it is too late."
+%E
+%Cp Sha 00025
+"Beware, for %n is immune to most magical attacks."
+%E
+%Cp Sha 00026
+"To enter %i you must pass many traps."
+%E
+%Cp Sha 00027
+"%nC may be vulnerable to physical attacks."
+%E
+%Cp Sha 00028
+"%d will come to your aid when you call."
+%E
+%Cp Sha 00029
+"You must utterly destroy %n.  He will pursue you otherwise."
+%E
+%Cp Sha 00030
+"%oC is a mighty artifact.  With it you can
+destroy %n."
+%E
+%Cp Sha 00031
+"Go forth with the blessings of %d."
+%E
+%Cp Sha 00032
+"I will have my %gP watch for your return."
+%E
+%Cp Sha 00033
+"Feel free to take any items in that chest that might aid you."
+%E
+%Cp Sha 00034
+"You will know when %o is near.  Proceed with care!"
+%E
+%Cc Sha 00035
+Wisps of fog swirl nearby.  You feel that %ns lair is close.
+%E
+%Cp Sha 00036
+You believe that you may once again invade %i.
+%E
+%Cc Sha 00040
+You feel your mentor's presence; perhaps %o is nearby.
+%E
+%Cp Sha 00041
+The aura of %o tingles at the edge of your perception.
+%E
+%Cc Sha 00050
+"Ah, I recognize you, %p.  So, %l has sent you to steal
+%o from me, hmmm?  Well, %l is a
+fool to send such a mental weakling against me.
+
+"Your destruction, however, should make for good sport.  In the end, you
+shall beg me to kill you!"
+%E
+%Cc Sha 00051
+"How nice of you to return, %p!  I enjoyed our last meeting.  Are you
+still hungry for more pain?
+
+"Come!  Your soul, like %o, shall soon be mine to
+command."
+%E
+%Cp Sha 00052
+"I'm sure that your perseverance shall be the subject of innumerable
+ballads, but you shall not be around to hear them, I fear!"
+%E
+%Cp Sha 00053
+"Thief!  %o belongs to me, now.  I shall feed
+your living flesh to my minions."
+%E
+%Cp Sha 00060
+"Your puny powers are no match for me, fool!"
+%E
+%Cp Sha 00061
+"When you are defeated, your torment will last for a thousand years."
+%E
+%Cp Sha 00062
+"After your downfall, %p, I shall devour %l
+for dessert!"
+%E
+%Cp Sha 00063
+"Are you ready yet to beg for mercy?  I could be lenient..."
+%E
+%Cp Sha 00064
+"Your soul shall join the enslaved multitude I command!"
+%E
+%Cp Sha 00065
+"Your lack of will is evident, and you shall die as a result."
+%E
+%Cp Sha 00066
+"Your faith in %d is for naught!  Come, submit to me now!"
+%E
+%Cp Sha 00067
+"A mere %r is nothing compared to my skill!"
+%E
+%Cp Sha 00068
+"So, you are the best hope of %l?  How droll."
+%E
+%Cp Sha 00069
+"Feel my power, %c!  My victory is imminent!"
+%E
+%Cc Sha 00070
+As you touch %o, its comforting power infuses you
+with new energy.  You feel as if you can detect others' thoughts flowing
+through it.  Although you yearn to wear %o
+and attack the Wizard of Yendor, you know you must return it to its
+rightful owner, %l.
+%E
+%Cc Sha 00080
+%nC croaks out, as his body begins to shrivel up:
+
+    I shall haunt your progress until the end of time.  A thousand
+    curses on you and %l.
+
+Then, the body bursts into a cloud of choking dust, and blows away.
+%E
+%Cc Sha 00081
+%lC notices %o in your possession,
+beams at you and says:
+
+    I knew you could defeat %n and retrieve
+    %o.  We shall never forget this
+    brave service.
+
+    Take %o with you in your quest for
+    the Amulet of Yendor.  I can sense that it has attuned
+    itself to you already.
+
+    May %d guide you in your quest, and keep you from harm.
+%E
+%Cc Sha 00082
+"You are the keeper of %o now.  It is time to
+recover the /other/ Amulet.  %Z await your return through
+the magic portal which brought you here."
+%E
+%Cp Sha 00090
+"Come near, my %S, and share your adventures with me.
+So, have you succeeded in your quest for the Amulet of Yendor?"
+%E
+%Cc Sha 00091
+"Congratulations, %p.  I always knew that if anyone could succeed
+in defeating the Wizard of Yendor and his minions, it would be you.
+
+"Go now, and take the Amulet to the astral plane.  Once there, present
+the Amulet on the altar of %d.  Along the way you shall pass through the
+four elemental planes.  These planes are like nothing you have ever
+experienced before, so be prepared!
+
+"For this you were born, %s!  I am very proud of you."
+%E
+%Cc Sha 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Sha 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Sha 00101
+You again sense %l pleading for help.
+%E
+%Cp Sha 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#	Midget
+#
+%Cc Mid 00001
+You are suddenly in familiar surroundings.  You notice what appears to
+be a large, squat stone structure nearby.  Wait!  That looks like the
+tower of your former teacher, %l.
+
+However, things are not the same as when you were last here.  Mists and
+areas of unexplained darkness surround the tower.  There is movement in
+the shadows.
+
+Your teacher would never allow such unaesthetic forms to surround the
+tower...  unless something were dreadfully wrong!
+%E
+%Cp Mid 00002
+Once again, you are back at %H.
+%E
+%Cp Mid 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Mid 00005
+"Would you happen to have some eye of newt in that overstuffed pack, %s?"
+%E
+%Cp Mid 00006
+"Ah, the spell to create the magic portal worked.  Outstanding!"
+%E
+%Cp Mid 00007
+"Hurry!  %lC may not survive that casting of the
+portal spell!!"
+%E
+%Cp Mid 00008
+"The spells of %n were just too powerful for us to withstand."
+%E
+%Cp Mid 00009
+"I, too, will venture into the world, because %n is but one of
+many evils to be vanquished."
+%E
+%Cp Mid 00010
+"I have some eye of newt to trade, do you have a spare blind-worm's sting?"
+%E
+%Cp Mid 00011
+"The magic portal now seems like it will remain stable for quite some time."
+%E
+%Cp Mid 00012
+"Have you noticed how much stronger %l is since %o was recovered?"
+%E
+%Cp Mid 00013
+"Thank %d!  We weren't positive you would defeat %n."
+%E
+%Cp Mid 00014
+"I, too, will venture into the world, because %n was but one of
+many evils to be vanquished."
+%E
+%Cc Mid 00015
+"Come closer, %p, for my voice falters in my old age.
+Yes, I see that you have come a long way since you went out into the
+world, leaving the safe confines of this tower.  However, I must first
+determine if you have all of the skills required to take on the task
+I require of you."
+%E
+%Cp Mid 00016
+"Well, %p, you have returned.  Perhaps you are now ready..."
+%E
+%Cp Mid 00017
+"This is getting tedious, %p, but perseverance is a sign of a true mage.
+I certainly hope that you are truly ready this time!"
+%E
+%Cc Mid 00018
+"You fool, %p!  Why did I waste all of those years teaching you
+the esoteric arts?  Get out of here!  I shall find another."
+%E
+%Cc Mid 00019
+"Alas, %p, you have not yet shown your proficiency as a worthy
+spellcaster.  As %ra, you would surely be overcome in the challenge
+ahead.  Go, now, expand your horizons, and return when you have attained
+renown as %Ra."
+%E
+%Cc Mid 00020
+"You amaze me, %p!  How many times did I tell you that the way of a mage
+is an exacting one.  One must use the world with care, lest one leave it
+in ruins and simplify the task of %n.
+
+"You must go back and show your worthiness.  Do not return until you are
+truly ready for this quest.  May %d guide you in this task."
+%E
+%Cc Mid 00021
+"Yes, %p, you truly are ready for this dire task.  Listen,
+carefully, for what I tell you now will be of vital importance.
+
+"Since you left us to hone your skills in the world, we unexpectedly came
+under attack by the forces of %n.  As you know, we thought
+%n had perished at the end of the last age, but, alas, this was
+not the case.
+
+"%nC sent an army of abominations against us.  Among them was a
+minion, mindless and ensorcelled, and thus, in the confusion, it was able
+to penetrate our defenses.  Alas, this creature has stolen
+%o and I fear it has delivered %o
+to %n.
+
+"Over the years, I had woven most of my power into this amulet, and thus,
+without it, I have but a shadow of my former power, and I fear that I
+shall soon perish.
+
+"You must travel to %i, and within its dungeons,
+find and overcome %n, and return %o to me.
+
+"Go now, with %d, and complete this quest before it is too late."
+%E
+%Cp Mid 00025
+"Beware, for %n is immune to most magical attacks."
+%E
+%Cp Mid 00026
+"To enter %i you must pass many traps."
+%E
+%Cp Mid 00027
+"%nC may be vulnerable to physical attacks."
+%E
+%Cp Mid 00028
+"%d will come to your aid when you call."
+%E
+%Cp Mid 00029
+"You must utterly destroy %n.  He will pursue you otherwise."
+%E
+%Cp Mid 00030
+"%oC is a mighty artifact.  With it you can
+destroy %n."
+%E
+%Cp Mid 00031
+"Go forth with the blessings of %d."
+%E
+%Cp Mid 00032
+"I will have my %gP watch for your return."
+%E
+%Cp Mid 00033
+"Feel free to take any items in that chest that might aid you."
+%E
+%Cp Mid 00034
+"You will know when %o is near.  Proceed with care!"
+%E
+%Cc Mid 00035
+Wisps of fog swirl nearby.  You feel that %ns lair is close.
+%E
+%Cp Mid 00036
+You believe that you may once again invade %i.
+%E
+%Cc Mid 00040
+You feel your mentor's presence; perhaps %o is nearby.
+%E
+%Cp Mid 00041
+The aura of %o tingles at the edge of your perception.
+%E
+%Cc Mid 00050
+"Ah, I recognize you, %p.  So, %l has sent you to steal
+%o from me, hmmm?  Well, %l is a
+fool to send such a mental weakling against me.
+
+"Your destruction, however, should make for good sport.  In the end, you
+shall beg me to kill you!"
+%E
+%Cc Mid 00051
+"How nice of you to return, %p!  I enjoyed our last meeting.  Are you
+still hungry for more pain?
+
+"Come!  Your soul, like %o, shall soon be mine to
+command."
+%E
+%Cp Mid 00052
+"I'm sure that your perseverance shall be the subject of innumerable
+ballads, but you shall not be around to hear them, I fear!"
+%E
+%Cp Mid 00053
+"Thief!  %o belongs to me, now.  I shall feed
+your living flesh to my minions."
+%E
+%Cp Mid 00060
+"Your puny powers are no match for me, fool!"
+%E
+%Cp Mid 00061
+"When you are defeated, your torment will last for a thousand years."
+%E
+%Cp Mid 00062
+"After your downfall, %p, I shall devour %l
+for dessert!"
+%E
+%Cp Mid 00063
+"Are you ready yet to beg for mercy?  I could be lenient..."
+%E
+%Cp Mid 00064
+"Your soul shall join the enslaved multitude I command!"
+%E
+%Cp Mid 00065
+"Your lack of will is evident, and you shall die as a result."
+%E
+%Cp Mid 00066
+"Your faith in %d is for naught!  Come, submit to me now!"
+%E
+%Cp Mid 00067
+"A mere %r is nothing compared to my skill!"
+%E
+%Cp Mid 00068
+"So, you are the best hope of %l?  How droll."
+%E
+%Cp Mid 00069
+"Feel my power, %c!  My victory is imminent!"
+%E
+%Cc Mid 00070
+As you touch %o, its comforting power infuses you
+with new energy.  You feel as if you can detect others' thoughts flowing
+through it.  Although you yearn to wear %o
+and attack the Wizard of Yendor, you know you must return it to its
+rightful owner, %l.
+%E
+%Cc Mid 00080
+%nC croaks out, as his body begins to shrivel up:
+
+    I shall haunt your progress until the end of time.  A thousand
+    curses on you and %l.
+
+Then, the body bursts into a cloud of choking dust, and blows away.
+%E
+%Cc Mid 00081
+%lC notices %o in your possession,
+beams at you and says:
+
+    I knew you could defeat %n and retrieve
+    %o.  We shall never forget this
+    brave service.
+
+    Take %o with you in your quest for
+    the Amulet of Yendor.  I can sense that it has attuned
+    itself to you already.
+
+    May %d guide you in your quest, and keep you from harm.
+%E
+%Cc Mid 00082
+"You are the keeper of %o now.  It is time to
+recover the /other/ Amulet.  %Z await your return through
+the magic portal which brought you here."
+%E
+%Cp Mid 00090
+"Come near, my %S, and share your adventures with me.
+So, have you succeeded in your quest for the Amulet of Yendor?"
+%E
+%Cc Mid 00091
+"Congratulations, %p.  I always knew that if anyone could succeed
+in defeating the Wizard of Yendor and his minions, it would be you.
+
+"Go now, and take the Amulet to the astral plane.  Once there, present
+the Amulet on the altar of %d.  Along the way you shall pass through the
+four elemental planes.  These planes are like nothing you have ever
+experienced before, so be prepared!
+
+"For this you were born, %s!  I am very proud of you."
+%E
+%Cc Mid 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Mid 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Mid 00101
+You again sense %l pleading for help.
+%E
+%Cp Mid 00102
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E

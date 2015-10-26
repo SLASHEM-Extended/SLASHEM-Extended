@@ -1218,6 +1218,34 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_CURE_HALLUCINATION,   -4
 },
 
+{	{"Goldminer", 0}, {
+	{"Mining Slave",      0},
+	{"Mine Worker",      0},
+	{"Pick Wielder",      0},
+	{"Stonecutter",      0},
+	{"Shaft Climber",      0},
+	{"Gold Digger",      0},
+	{"Gemstone Hoarder",      0},
+	{"Retired Goldrusher",      0},
+	{"Made Man",      0} },
+	"Aurum", "Argentum", "Antimony",
+	"Gol", "The Gnome King's Caverns", "Lareth's Cave",
+	PM_GOLDMINER, NON_PM, PM_UNDEAD_GOLDMINER, NON_PM, NON_PM,
+	PM_UBER_RUGGO, PM_ATTENDANT, PM_LARETH,
+	PM_DROW, PM_OGRE, S_OGRE, S_OGRE,
+	ART_PICK_OF_FLANDAL_STEELSKIN,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	  ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+/*	{   7, 10, 10,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 20, 20, 10, 20, 10 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
+	{ 6, 0,  0, 1,  0, 1 },14,	/* Energy */
+	10, 5, 0, 2, 10, A_INT, SPE_DIG,   -4
+},
+
 {	{"Graduate", 0}, {
 	{"Junior Assistant",    0},
 	{"Ass Assistant",    0},
@@ -1631,6 +1659,32 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_LEVITATION,   -4
 },
 
+{	{"Midget", 0}, {
+	{"Little Midget",   0},
+	{"Small Person",  0},
+	{"Middle-Earth Miner",     0},
+	{"Cave Inhabitant",     0},
+	{"Big Midget",     0},
+	{"Giant Midget",     0},
+	{"Dwarven Master Smith",     0},
+	{"Dwarvish Legend",     0},
+	{"Biggest Midget Ever",     0} },
+	"Moradin", "Dumathoin", "Abbathor",
+	"Mid", "Midget Home", "Lonely Mountain",
+	PM_MIDGET, NON_PM, PM_UNDEAD_MIDGET, NON_PM, NON_PM,
+	PM_THORIN, PM_DWARF_WARRIOR, PM_SMAUG,
+	PM_ORC_CAPTAIN, PM_WARG, S_ORC, S_DOG,
+	ART_ARKENSTONE,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  7,  7, 12,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25,  9,  9, 20, 30,  7 },
+	/* Init   Lower  Higher */
+	{ 16, 0,  0, 7,  2, 0 },	/* Hit points */
+	{  2, 0,  0, 2,  0, 3 },10,	/* Energy */
+	0, 9, 0, 0,  6, A_INT, SPE_DIG,    -4
+},
 
 {	{"Monk", 0}, {
 	{"Candidate",         0},
@@ -2180,6 +2234,34 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
 },
 
+{	{"Ringseeker", 0}, {
+	{"Hobbit Townie",      0},
+	{"Drunken Hobbit",      0},
+	{"Celebrating Hobbit",      0},
+	{"Ringquester",      0},
+	{"Fellow of the Ring",      0},
+	{"Moria Survivor",      0},
+	{"Blarog Basher",      0},
+	{"Mount Doom Hiker",      0},
+	{"Hero who defeated Sauron",      0} },
+	"Lurtz", "Saruman", "Morgoth",
+	"Rin", "Bree", "Misty Mountains",
+	PM_RINGSEEKER, NON_PM, PM_UNDEAD_RINGSEEKER, NON_PM, NON_PM,
+	PM_BILBO_BAGGINS, PM_PROUDFOOT, PM_GOLLUM,
+	PM_SWAMP_KOBOLD, PM_URUK_HAI, S_KOBOLD, S_ORC,
+	ART_ONE_RING,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 10, 20, 10, 20 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 6,  1, 0 },	/* Hit points */
+	{ 15, 4,  0, 2,  0, 2 },12,	/* Energy */
+	0, 0, -2, 4, 12, A_INT, SPE_INVISIBILITY,   -4
+},
+
 {	{"Rocker", 0}, {
 	{"Whistleblower",     0},
 	{"Tooter",   0},
@@ -2355,6 +2437,34 @@ const struct Role roles[] = {
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 5,  0, 1,  0, 2 },20,	/* Energy */
 	10, 3,-3, 2, 10, A_WIS, SPE_IDENTIFY,   -4
+},
+
+{	{"Shapeshifter", 0}, {
+	{"Polymorph Trainee",    0},
+	{"Item Zapper",    0},
+	{"Polymorphitis Hero",    0},
+	{"Wild Changer",    0},
+	{"Polypiler",    0},
+	{"Human Chameleon",    0},
+	{"Master Shapechanger",    0},
+	{"Grandmaster Shapechanger",    0},
+	{"Ultimate Shapechanger",    0} },
+	0, 0, 0,	/* chosen randomly from among the other roles */
+	"Sha", "Transformer College", "Mutation Cave",
+	PM_SHAPESHIFTER, NON_PM, PM_UNDEAD_SHAPESHIFTER, NON_PM, PM_CHAMELEON,
+	PM_MASTER_SHIFTER, PM_SHIFTER, PM_TRANSMUTER,
+	PM_CHAMELEON, PM_GUARDIAN_NAGA, S_LIZARD, S_NAGA,
+	ART_MEDALLION_OF_SHIFTERS,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 25, 25, 10, 10, 20 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
+	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
+	10, 9, 2, 1, 10, A_INT, SPE_POLYMORPH,   -4
 },
 
 {	{"Slave Master", 0}, {
@@ -2557,6 +2667,38 @@ const struct Role roles[] = {
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+},
+
+{	{"Twelph", 0}, {
+	{"Twedhel",       "Twelleth"},
+	{"Twedhel",       "Twelleth"},      /* elf-maid */
+	{"Twohtar",       "Twohtie"},       /* warrior */
+	{"Twekano",			/* commander (Q.) ['a] */
+			"Twekanie"},	/* educated guess, until further research- SAC */
+	{"Twarandur",			/* king's servant, minister (Q.) - guess */
+			"Twaranduriel"},	/* educated guess */
+	{"Twehir",         "Twehiril"},       /* lord, lady (S.) ['ir] */
+	{"Twaredhel",     "Twarwen"},       /* noble elf, maiden (S.) */
+	{"Twernil",       "Twelentariel"},  /* prince (S.), elf-maiden (Q.) */
+	{"Twelentar",     "Twelentari"} },	/* Star-king, -queen (Q.) */
+	"Legolas", "_Eowyn", "Eol", /* Elven */
+
+	"Twe", "the great Circle of Lolth", "the Light Elves' Cave",
+	PM_TWELPH, NON_PM, PM_UNDEAD_TWELPH, NON_PM, PM_DROW,
+	PM_LOLTH, PM_HIGHEST_ELF, PM_TWEARENDIL,
+	PM_GREY_ELF, PM_ELVENKING, S_HUMAN, S_HUMAN,
+
+	ART_TENTACLE_STAFF,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 20, 20, 10, 10 },
+	/* Init   Lower  Higher */
+	{ 16, 0,  0, 4,  1, 0 },	/* Hit points */
+	{ 12, 0,  0, 4,  0, 3 },12,	/* Energy */
+	10, 0, 0, 4, 25, A_INT, SPE_DRAIN_LIFE,   -4
 },
 
 {	{"Undead Slayer", 0}, {

@@ -1263,6 +1263,18 @@ int thrown;
 				}
 			    } /*else */
 
+				if (Role_if(PM_TWELPH)) {
+				if (obj->otyp == DARK_ELVEN_ARROW &&
+					launcher->otyp == DARK_ELVEN_BOW) {
+				tmp++;
+				    /* WAC Extra damage if in special ability*/
+				    if (tech_inuse(T_FLURRY)) tmp += 2;
+				} else if (objects[obj->otyp].oc_skill == P_BOW
+					&& tech_inuse(T_FLURRY)) {
+				tmp++;
+				}
+			    } /*else */
+
 			      if (Role_if(PM_ROCKER)) {
 				if ((obj->otyp == SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;

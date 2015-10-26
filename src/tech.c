@@ -131,6 +131,8 @@ static const struct innate_tech
 		       {   15, T_VANISH, 1},
 		       {   25, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
+	rin_tech[] = { {   1, T_BLINK, 1},
+		       {   0, 0, 0} },
 
 	bos_tech[] = { {   1, T_FLURRY, 1},
 		       {   5, T_VANISH, 1},
@@ -186,11 +188,16 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	bar_tech[] = { {   1, T_BERSERK, 1},
 		       {   0, 0, 0} },
+	gol_tech[] = { {   1, T_VANISH, 1},
+		       {   7, T_TINKER, 1},
+		       {   0, 0, 0} },
 	ble_tech[] = { {   1, T_SURGERY, 1},
 		       {   1, T_HEAL_HANDS, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   10, T_CHI_HEALING, 1},
 		       {   20, T_REVIVE, 1},
+		       {   0, 0, 0} },
+	mid_tech[] = { {   1, T_RAGE, 1},
 		       {   0, 0, 0} },
 	spa_tech[] = { {   1, T_REINFORCE, 1},
 			 {   5, T_RESEARCH, 1},
@@ -279,6 +286,8 @@ static const struct innate_tech
 		       {   20, T_SUMMON_TEAM_ANT, 1},
 		       {   25, T_DRAW_ENERGY, 1},
 		       {   30, T_EGG_BOMB, 1},
+		       {   0, 0, 0} },
+	sha_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
 
 	mon_tech[] = { {   1, T_PUMMEL, 1},
@@ -2878,6 +2887,7 @@ role_tech()
 		case PM_PALADIN: 		return (pal_tech);
 		case PM_FEAT_MASTER: 		return (stu_tech);
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
+		case PM_MIDGET:		return (mid_tech);
 		case PM_GUNNER: 		return (gun_tech);
 		case PM_LIBRARIAN: 		return (lib_tech);
 		case PM_AUGURER: 		return (aug_tech);
@@ -2890,9 +2900,11 @@ role_tech()
 		case PM_ROCKER: 		return (roc_tech);
 		case PM_NECROMANCER:	return (nec_tech);
 		case PM_PRIEST:		return (pri_tech);
+		case PM_GOLDMINER:		return (gol_tech);
 		case PM_CHEVALIER:		return (che_tech);
 		case PM_ASSASSIN:		return (ass_tech);
 		case PM_RANGER:		return (ran_tech);
+		case PM_TWELPH:
 		case PM_ELPH:		return (elp_tech);
 		case PM_SPACEWARS_FIGHTER:		return (spa_tech);
 		case PM_CAMPERSTRIKER:		return (cam_tech);
@@ -2902,6 +2914,8 @@ role_tech()
 		case PM_TOURIST:	return (tou_tech);
 #endif        
 		case PM_UNDEAD_SLAYER:	return (und_tech);
+		case PM_SHAPESHIFTER:	return (sha_tech);
+		case PM_RINGSEEKER:		return (rin_tech);
 		case PM_UNDERTAKER:	return (unt_tech);
 		case PM_VALKYRIE:	return (val_tech);
 		case PM_WIZARD:		return (wiz_tech);

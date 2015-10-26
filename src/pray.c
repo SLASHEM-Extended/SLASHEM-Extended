@@ -2331,7 +2331,7 @@ aligntyp alignment;
 	    return gnam;
 	}
 
-	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) ) {
+	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) ) {
 
     switch (alignment) {
      case A_NONE:	gnam = Moloch; break;
@@ -2390,7 +2390,7 @@ aligntyp alignment;
     const char *gnam, *result = "god";
 
 
-	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) ) {
+	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) ) {
 
     switch (alignment) {
      case A_LAWFUL:	gnam = u.hereticlgod; break;
