@@ -8452,6 +8452,7 @@ struct obj *box;	/* null for floor trap */
 	    if (u.mhmax > mons[u.umonnum].mlevel)
 		u.mhmax -= rn2(min(u.mhmax,num + 1)), flags.botl = 1;
 	} else {
+	    num = d(2,4);
 	    if (u.uhpmax > u.ulevel)
 		u.uhpmax -= rn2(min(u.uhpmax,5)), flags.botl = 1;
 	}
