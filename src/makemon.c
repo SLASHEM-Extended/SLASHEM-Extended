@@ -10157,6 +10157,25 @@ register int	mmflags;
 	}
 	if (mtmp->egotype_mimic || mtmp->egotype_permamimic) set_mimic_sym(mtmp);
 
+	if (ptr->mlet == u.speedymonster) mon_adjust_speed(mtmp, 2, (struct obj *)0);
+	if (!rn2(20) && (ptr->mlet == u.musemonster) ) {
+		switch (rnd(3)) {
+			case 1:
+				if (rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+				else (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+				break;
+			case 2:
+				if (rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+				else (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+				break;
+			case 3:
+				if (rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+				else (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+				break;
+		}
+
+	}
+
 	if ((ct = emits_light(mtmp->data)) > 0)
 		new_light_source(mtmp->mx, mtmp->my, ct,
 				 LS_MONSTER, (genericptr_t)mtmp);

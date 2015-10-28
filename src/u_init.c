@@ -5040,6 +5040,9 @@ u_init()
 
 	u.ungenocidable = rnd(S_WORM_TAIL);
 
+	if (!rn2(3)) u.speedymonster = rnd(S_WORM_TAIL);
+	if (!rn2(20)) u.musemonster = rnd(S_WORM_TAIL);
+
 	u.alwaysinvisible = 0;
 	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
 

@@ -1502,6 +1502,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.speedymonster) {
+		Sprintf(buf, "always generated with extra speed: %s", monexplain[u.speedymonster]);
+		enl_msg("The monster class that ", "is ", "was ", buf );
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.musemonster) {
+		Sprintf(buf, "more likely to generate with musable stuff: %s", monexplain[u.musemonster]);
+		enl_msg("The monster class that ", "is ", "was ", buf );
+	}
+
 	if (u.minimalism) {Sprintf(buf, " %d", u.minimalism);
 		enl_msg("Items generate only 1 time in X, and X ", "is", "was", buf);
 	}

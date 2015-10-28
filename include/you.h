@@ -430,6 +430,9 @@ struct you {
 	int frequentspecies10;	
 	int freqspeciesbonus10;	
 
+	int speedymonster;	/* monster species that is generated with speed */
+	int musemonster;		/* monster species that has a higher chance of generating with musable stuff */
+
 	int idscrollpenalty;	/* evil patch idea by Amy - certain item types may randomly be much harder to id */
 	int idpotionpenalty;
 	int idringpenalty;
