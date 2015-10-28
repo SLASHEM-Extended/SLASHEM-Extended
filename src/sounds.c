@@ -1084,6 +1084,7 @@ register struct monst *mtmp;
 		    verbl_msg = "Waaaaaah! Life has been so cruel to me!";
 		    break;
 		case PM_ACTIVISTOR:
+		case PM_PEACEMAKER:
 		case PM_ACTIVIST:
 		    verbl_msg = "We're here to bring peace to the world.";
 		    break;

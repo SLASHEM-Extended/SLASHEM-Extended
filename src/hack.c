@@ -1006,7 +1006,7 @@ int mode;
     if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
-	    if (!(Passes_walls || passes_bars(youmonst.data)))
+	    if (!(Passes_walls || passes_bars(youmonst.data) ))
 		return FALSE;
 	    else if (In_sokoban(&u.uz)) {
 		if (mode == DO_MOVE)
@@ -1015,6 +1015,8 @@ int mode;
 	    }
 	} else if (Passes_walls && may_passwall(x,y)) {
 	    ;	/* do nothing */
+	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
+	    ;	/* dryad can walk thru trees --Amy */
 	} else if (tunnels(youmonst.data) && !needspick(youmonst.data)) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;

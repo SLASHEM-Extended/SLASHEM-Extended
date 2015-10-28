@@ -391,6 +391,7 @@ bot1()
 		if (flags.hybridamerican) Sprintf(nb = eos(nb), "I");
 		if (flags.hybridsokosolver) Sprintf(nb = eos(nb), "K");
 		if (flags.hybridheretic) Sprintf(nb = eos(nb), "E");
+		if (flags.hybridnastinator) Sprintf(nb = eos(nb), "Y");
 	}
 
 #ifdef SCORE_ON_BOTL

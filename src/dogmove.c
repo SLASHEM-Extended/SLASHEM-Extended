@@ -883,6 +883,7 @@ register int after;	/* this is extra fast monster movement */
 	/* the activistor quest shouldn't be trivialized by bringing a high-level pet or using charm monster. --Amy */
 			 mtmp2->mpeaceful && !Conflict) ||
 			 (Role_if(PM_ACTIVISTOR) && mtmp2->data == &mons[PM_TOPMODEL]) || 
+			 (Race_if(PM_PEACEMAKER) && mtmp2->data == &mons[PM_TOPMODEL]) || 
 	/* for Rodneyan race characters, the real Rodney is supposed to be their buddy so he doesn't get attacked */
 			 (mtmp2->data == &mons[PM_WIZARD_OF_YENDOR] && Race_if(PM_RODNEYAN)) ||
 	/* troves only drop their items if the player kills them, so keep pets away from them */

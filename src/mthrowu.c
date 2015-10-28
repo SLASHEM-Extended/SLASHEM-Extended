@@ -174,6 +174,13 @@ const char *name;	/* if null, then format `obj' */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 #endif
+	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
+		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
+		rn2(2)){ /* dodge half of all missiles, even when blind
+			 see "A new hope" for blindness reference */
+		You("dodge %s with %s.", onm, yname(uwep));
+		return(0);
+
 	} else if (!rn2(extrachance) && rnd(30) < (2 + (u.ulevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */

@@ -229,7 +229,7 @@ lookat(x, y, buf, monbuf)
 		if (Detect_monsters)
 		    ways_seen++;
 		if (MATCH_WARN_OF_MON(mtmp) || (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mtmp->data) || mtmp->egotype_undead) ))		    ways_seen++;
-		if (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL] )
+		if ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER)) && mtmp->data == &mons[PM_TOPMODEL] )
 		    ways_seen++;
 		if (Role_if(PM_ACTIVISTOR) && type_is_pname(mtmp->data) && uwep && is_quest_artifact(uwep) )
 		    ways_seen++;
@@ -299,7 +299,7 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "monster detection");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
-		    if (Role_if(PM_ACTIVISTOR) && mtmp->data == &mons[PM_TOPMODEL] ) {
+		    if ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && mtmp->data == &mons[PM_TOPMODEL] ) {
 			Strcat(monbuf, "warned of topmodels");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }

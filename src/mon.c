@@ -3480,7 +3480,7 @@ cleanup:
 		You_feel("guilty...");
 	}
 
-	if (Role_if(PM_ACTIVISTOR) && mdat == &mons[PM_TOPMODEL]) { /* very bad idea! --Amy */
+	if ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER)) && mdat == &mons[PM_TOPMODEL]) { /* very bad idea! --Amy */
 		You_feel("guilty for killing an innocent girl.");
 		change_luck(-5);
 		u.ualign.sins += 10; 

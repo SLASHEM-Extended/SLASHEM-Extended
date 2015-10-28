@@ -371,6 +371,13 @@ register struct monst *mtmp;
 		u.alignlim--;
 	    adjalign(-5);
 	}
+	if (Race_if(PM_BORG) && mtmp->mpeaceful &&
+	    u.ualign.record > -10) {
+	    You("violate the way of the Jedi!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
 #endif
 
 /*	Adjust vs. (and possibly modify) monster state.		*/
@@ -441,7 +448,7 @@ register struct monst *mtmp;
 	}
 
 #ifdef JEDI
-	if(Role_if(PM_JEDI) && !Upolyd) {
+	if( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
 		   (uarm &&
@@ -1180,7 +1187,7 @@ int thrown;
 
 #ifdef JEDI
 		    else if (obj == uwep &&
-			  (Role_if(PM_JEDI) && is_lightsaber(obj)) &&
+			  ( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && is_lightsaber(obj)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
@@ -2625,7 +2632,7 @@ register struct attack *mattk;
 	if (need_three(mdef) && enchantlvl < 3 && rn2(3)) noeffect = TRUE;  
 	if (need_four(mdef)  && enchantlvl < 4 && rn2(3)) noeffect = TRUE;  
 
-	if (is_demon(youmonst.data) && !rn2(23) && !uwep
+	if (is_demon(youmonst.data) && !rn2(23) && !uwep && !(Race_if(PM_BORG) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
 		&& u.umonnum != PM_BALROG && u.umonnum != PM_NEWS_DAEMON
 		&& u.umonnum != PM_PRINTER_DAEMON) {

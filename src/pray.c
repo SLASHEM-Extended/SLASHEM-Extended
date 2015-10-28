@@ -1494,7 +1494,7 @@ dosacrifice()
 
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
 
-	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_RODNEYAN) && !Race_if(PM_INSECTOID) && !Race_if(PM_WEAPON_TRAPPER) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AQUATIC_MONSTER) && !Race_if(PM_TROLLOR) && !Race_if(PM_VORTEX) && !Race_if(PM_CORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_WARPER) && !Race_if(PM_LEVITATOR) && !Race_if(PM_PHANTOM_GHOST) && !Race_if(PM_UNALIGNMENT_THING) && !Race_if(PM_ARMED_COCKATRICE) && !Race_if(PM_ELEMENTAL) && !Race_if(PM_WEAPON_BUG) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !Race_if(PM_NYMPH) && !Race_if(PM_TURTLE) && !Race_if(PM_LOWER_ENT) && !Race_if(PM_SPRIGGAN) && !Race_if(PM_JELLY) && !Race_if(PM_WEAPON_IMP) ) {
+	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_RODNEYAN) && !Race_if(PM_INSECTOID) && !Race_if(PM_WEAPON_TRAPPER) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AQUATIC_MONSTER) && !Race_if(PM_TROLLOR) && !Race_if(PM_VORTEX) && !Race_if(PM_CORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_WARPER) && !Race_if(PM_LEVITATOR) && !Race_if(PM_PHANTOM_GHOST) && !Race_if(PM_UNALIGNMENT_THING) && !Race_if(PM_ARMED_COCKATRICE) && !Race_if(PM_ELEMENTAL) && !Race_if(PM_WEAPON_BUG) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !Race_if(PM_NYMPH) && !Race_if(PM_TURTLE) && !Race_if(PM_LOWER_ENT) && !Race_if(PM_SPRIGGAN) && !Race_if(PM_JELLY) && !Race_if(PM_WEAPON_IMP) && !Race_if(PM_DRYAD) && !Race_if(PM_BORG)  && !Race_if(PM_AUREAL) && !Race_if(PM_MAZKE)  ) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
 		You("find the idea very satisfying.");
 		exercise(A_WIS, TRUE);
@@ -1991,7 +1991,7 @@ boolean praying;	/* false means no messages should be given */
     p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
 
-    if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC)) {
+    if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC) && !Race_if(PM_MAZKE) && !Race_if(PM_BORG) && !Race_if(PM_AUREAL) ) {
 	if (praying)
 	    pline_The("very idea of praying to a %s god is repugnant to you.",
 		  p_aligntyp ? "lawful" : "neutral");

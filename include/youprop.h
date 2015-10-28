@@ -370,7 +370,7 @@
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
 #define BStealth		u.uprops[STEALTH].blocked
-#define Stealth			(( (HStealth || EStealth) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))
+#define Stealth			(( (HStealth || EStealth || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))
 #define NoStealth	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STEALTH].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
@@ -413,7 +413,7 @@
 #define HFlying			u.uprops[FLYING].intrinsic
 #define EFlying			u.uprops[FLYING].extrinsic
 #ifdef STEED
-# define Flying			(( (HFlying || EFlying || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) || (u.usteed && is_flyer(u.usteed->data))) && !NoFlying && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoFlying && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))
+# define Flying			(( (HFlying || EFlying || (Race_if(PM_MOON_ELF) && flags.moonphase == FULL_MOON) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) || (u.usteed && is_flyer(u.usteed->data))) && !NoFlying && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoFlying && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))
 #define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #else
@@ -440,7 +440,7 @@
 
 #define HMagical_breathing	u.uprops[MAGICAL_BREATHING].intrinsic
 #define EMagical_breathing	u.uprops[MAGICAL_BREATHING].extrinsic
-#define Amphibious		((HMagical_breathing || EMagical_breathing || \
+#define Amphibious		((HMagical_breathing || EMagical_breathing || (Race_if(PM_MOON_ELF) && flags.moonphase == NEW_MOON) || \
 				 amphibious(youmonst.data)) && !NoBreathless)
 	/* Get wet, may go under surface */
 
@@ -507,7 +507,7 @@
 
 #define HPolymorph		u.uprops[POLYMORPH].intrinsic
 #define EPolymorph		u.uprops[POLYMORPH].extrinsic
-#define Polymorph		(HPolymorph || EPolymorph || Race_if(PM_MOULD) || Race_if(PM_TRANSFORMER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_MISSINGNO) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD))
+#define Polymorph		(HPolymorph || EPolymorph || Race_if(PM_MOULD) || Race_if(PM_PLAYER_MIMIC) || Race_if(PM_TRANSFORMER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_MISSINGNO) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD))
 
 #define HPolymorph_control	u.uprops[POLYMORPH_CONTROL].intrinsic
 #define EPolymorph_control	u.uprops[POLYMORPH_CONTROL].extrinsic
@@ -558,6 +558,7 @@
 				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
 				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
+				  youmonst.data == &mons[PM_AUREAL] ||\
 				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting && !Race_if(PM_ANGBANDER) )
 #define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))

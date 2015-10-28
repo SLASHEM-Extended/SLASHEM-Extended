@@ -981,7 +981,7 @@ moveloop()
 
 		}
 
-		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic) && !BlackNgWalls && !rn2(10) ) {
+		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic) && !BlackNgWalls && !rn2(100) ) {
 
 			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 			if (!blackngdur ) blackngdur = 500; /* fail safe */
@@ -2281,6 +2281,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridspecialist) Sprintf(eos(xtrabuf), "specialist ");
 	if (flags.hybridamerican) Sprintf(eos(xtrabuf), "american ");
 	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
+	if (flags.hybridnastinator) Sprintf(eos(xtrabuf), "nastinator ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -2520,7 +2521,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if ((Role_if(PM_ACTIVISTOR) || Role_if(PM_MYSTIC)) && new_game) {
+	if ((Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) || Role_if(PM_MYSTIC)) && new_game) {
 
 		int ammount;
 		ammount = 0;

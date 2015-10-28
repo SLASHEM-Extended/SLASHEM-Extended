@@ -670,6 +670,21 @@ static struct trobj RedSaber[] = {
 	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
+static struct trobj BorgItems[] = {
+	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0, }
+};
+
+static struct trobj PeacemakerItems[] = {
+	{ VICTORIAN_UNDERWEAR, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ FLY_SWATTER, 1, WEAPON_CLASS, 1, 1 },
+	{ SPE_CHARM_MONSTER, UNDEF_SPE, SPBOOK_CLASS, 1, 1},
+	{ EXPENSIVE_CAMERA, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 #endif
 static struct trobj Knight[] = {
 	{ LONG_SWORD, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
@@ -5391,6 +5406,135 @@ u_init()
 	u.xray_range = -1;
 	u.artifactprotection = 0;
 
+	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = 0;
+
+	if (isnastinator) { /* harder than hard race - starts with uncurable nasty trap effects --Amy */
+
+		switch (rnd(55)) {
+
+			case 1: u.nastinator01 = 1; break;
+			case 2: u.nastinator02 = 1; break;
+			case 3: u.nastinator03 = 1; break;
+			case 4: u.nastinator04 = 1; break;
+			case 5: u.nastinator05 = 1; break;
+			case 6: u.nastinator06 = 1; break;
+			case 7: u.nastinator07 = 1; break;
+			case 8: u.nastinator08 = 1; break;
+			case 9: u.nastinator09 = 1; break;
+			case 10: u.nastinator10 = 1; break;
+			case 11: u.nastinator11 = 1; break;
+			case 12: u.nastinator12 = 1; break;
+			case 13: u.nastinator13 = 1; break;
+			case 14: u.nastinator14 = 1; break;
+			case 15: u.nastinator15 = 1; break;
+			case 16: u.nastinator16 = 1; break;
+			case 17: u.nastinator17 = 1; break;
+			case 18: u.nastinator18 = 1; break;
+			case 19: u.nastinator19 = 1; break;
+			case 20: u.nastinator20 = 1; break;
+			case 21: u.nastinator21 = 1; break;
+			case 22: u.nastinator22 = 1; break;
+			case 23: u.nastinator23 = 1; break;
+			case 24: u.nastinator24 = 1; break;
+			case 25: u.nastinator25 = 1; break;
+			case 26: u.nastinator26 = 1; break;
+			case 27: u.nastinator27 = 1; break;
+			case 28: u.nastinator28 = 1; break;
+			case 29: u.nastinator29 = 1; break;
+			case 30: u.nastinator30 = 1; break;
+			case 31: u.nastinator31 = 1; break;
+			case 32: u.nastinator32 = 1; break;
+			case 33: u.nastinator33 = 1; break;
+			case 34: u.nastinator34 = 1; break;
+			case 35: u.nastinator35 = 1; break;
+			case 36: u.nastinator36 = 1; break;
+			case 37: u.nastinator37 = 1; break;
+			case 38: u.nastinator38 = 1; break;
+			case 39: u.nastinator39 = 1; break;
+			case 40: u.nastinator40 = 1; break;
+			case 41: u.nastinator41 = 1; break;
+			case 42: u.nastinator42 = 1; break;
+			case 43: u.nastinator43 = 1; break;
+			case 44: u.nastinator44 = 1; break;
+			case 45: u.nastinator45 = 1; break;
+			case 46: u.nastinator46 = 1; break;
+			case 47: u.nastinator47 = 1; break;
+			case 48: u.nastinator48 = 1; break;
+			case 49: u.nastinator49 = 1; break;
+			case 50: u.nastinator50 = 1; break;
+			case 51: u.nastinator51 = 1; break;
+			case 52: u.nastinator52 = 1; break;
+			case 53: u.nastinator53 = 1; break;
+			case 54: u.nastinator54 = 1; break;
+			case 55: u.nastinator55 = 1; break;
+
+		}
+
+		while ((rnd(7)) < 3) {
+
+			switch (rnd(55)) {
+
+				case 1: u.nastinator01 = 1; break;
+				case 2: u.nastinator02 = 1; break;
+				case 3: u.nastinator03 = 1; break;
+				case 4: u.nastinator04 = 1; break;
+				case 5: u.nastinator05 = 1; break;
+				case 6: u.nastinator06 = 1; break;
+				case 7: u.nastinator07 = 1; break;
+				case 8: u.nastinator08 = 1; break;
+				case 9: u.nastinator09 = 1; break;
+				case 10: u.nastinator10 = 1; break;
+				case 11: u.nastinator11 = 1; break;
+				case 12: u.nastinator12 = 1; break;
+				case 13: u.nastinator13 = 1; break;
+				case 14: u.nastinator14 = 1; break;
+				case 15: u.nastinator15 = 1; break;
+				case 16: u.nastinator16 = 1; break;
+				case 17: u.nastinator17 = 1; break;
+				case 18: u.nastinator18 = 1; break;
+				case 19: u.nastinator19 = 1; break;
+				case 20: u.nastinator20 = 1; break;
+				case 21: u.nastinator21 = 1; break;
+				case 22: u.nastinator22 = 1; break;
+				case 23: u.nastinator23 = 1; break;
+				case 24: u.nastinator24 = 1; break;
+				case 25: u.nastinator25 = 1; break;
+				case 26: u.nastinator26 = 1; break;
+				case 27: u.nastinator27 = 1; break;
+				case 28: u.nastinator28 = 1; break;
+				case 29: u.nastinator29 = 1; break;
+				case 30: u.nastinator30 = 1; break;
+				case 31: u.nastinator31 = 1; break;
+				case 32: u.nastinator32 = 1; break;
+				case 33: u.nastinator33 = 1; break;
+				case 34: u.nastinator34 = 1; break;
+				case 35: u.nastinator35 = 1; break;
+				case 36: u.nastinator36 = 1; break;
+				case 37: u.nastinator37 = 1; break;
+				case 38: u.nastinator38 = 1; break;
+				case 39: u.nastinator39 = 1; break;
+				case 40: u.nastinator40 = 1; break;
+				case 41: u.nastinator41 = 1; break;
+				case 42: u.nastinator42 = 1; break;
+				case 43: u.nastinator43 = 1; break;
+				case 44: u.nastinator44 = 1; break;
+				case 45: u.nastinator45 = 1; break;
+				case 46: u.nastinator46 = 1; break;
+				case 47: u.nastinator47 = 1; break;
+				case 48: u.nastinator48 = 1; break;
+				case 49: u.nastinator49 = 1; break;
+				case 50: u.nastinator50 = 1; break;
+				case 51: u.nastinator51 = 1; break;
+				case 52: u.nastinator52 = 1; break;
+				case 53: u.nastinator53 = 1; break;
+				case 54: u.nastinator54 = 1; break;
+				case 55: u.nastinator55 = 1; break;
+
+			}
+
+		}
+	}
+
 	/* Role-specific initializations */
 
 	if (!israndomizer && !isnullrace) {
@@ -9028,6 +9172,18 @@ u_init()
 
 	   break;
 
+	case PM_BORG:
+
+		ini_inv(BorgItems);
+
+	   break;
+
+	case PM_PEACEMAKER:
+
+		ini_inv(PeacemakerItems);
+
+	   break;
+
 	case PM_ORC:
 	    /* compensate for generally inferior equipment */
 	    if (!no_extra_food && !Role_if(PM_WIZARD) &&
@@ -9566,11 +9722,14 @@ u_init()
 	switch (Race_switch) {
 
 	case PM_ALIEN: racebounus = rnz(2); break;
+	case PM_AUREAL: racebounus = rnz(2); break;
+	case PM_MAZKE: racebounus = rnz(2); break;
 	case PM_CURSER: racebounus = rnz(12); break;
 	case PM_DOPPELGANGER: racebounus = rnz(8); break;
 	case PM_DROW: racebounus = rnz(7); break;
 	case PM_BRETON: racebounus = rnz(5); break;
 	case PM_REDGUARD: racebounus = rnz(5); break;
+	case PM_YOKUDA: racebounus = rnz(7); break;
 	case PM_IMPERIAL: racebounus = rnz(13); break;
 	case PM_ELF: racebounus = rnz(11); break;
 	case PM_GIGANT: racebounus = rnz(12); break;

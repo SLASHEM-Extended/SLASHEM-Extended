@@ -742,16 +742,17 @@ doforce()		/* try to force a chest with your weapon */
 
 		    verbalize("What do you think you are, a Jedi?"); /* Phantom Menace */
 		else {
-			if (Role_if(PM_JEDI) ? (u.uen < 5) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
+			if (Role_if(PM_JEDI) ? (u.uen < 5) : Race_if(PM_BORG) ? (u.uen < 7) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
 			else {
 
-				if (!UseTheForce || rn2(10)) u.uen -= (Role_if(PM_JEDI) ? 5 : 10);
+				if (!UseTheForce || rn2(10)) u.uen -= (Role_if(PM_JEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
 
 				int dmg;
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
 				if (UseTheForce) dmg += 5;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
+				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);
 				boolean trapkilled = FALSE;
 
 				pline("You use the force on %s.", mon_nam(mtmp));

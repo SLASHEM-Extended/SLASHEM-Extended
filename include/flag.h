@@ -183,6 +183,7 @@ struct flag {
 	boolean hybridspecialist;
 	boolean hybridamerican;
 	boolean hybridminimalist;
+	boolean hybridnastinator;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 

@@ -2647,6 +2647,18 @@ struct obj *weapon;
 			default: impossible("unknown lightsaber skill for a jedi"); break;
 		}
 	}
+	else if (Race_if(PM_BORG) && weapon && is_lightsaber(weapon)){
+		switch (P_SKILL(type)){
+			case P_GRAND_MASTER: bonus +=5; break; /* fall through removed by Amy */
+			case P_MASTER: bonus +=4; break; /* fall through removed by Amy */
+			case P_EXPERT: bonus +=3; break; /* fall through removed by Amy */
+			case P_SKILLED: bonus +=2; break;
+			case P_BASIC: bonus += 1; break;
+			case P_UNSKILLED: break;
+			case P_ISRESTRICTED: break;
+			default: impossible("unknown lightsaber skill for a borg"); break;
+		}
+	}
 #endif
 
 	/* Ogres are supposed to have a use for that weak starting club of theirs after all --Amy */

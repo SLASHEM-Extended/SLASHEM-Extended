@@ -624,6 +624,14 @@ static const struct innate_tech
 		       {   10, T_TELEKINESIS, 1},
 		       {   20, T_WORLD_FALL, 1},
 		       {   0, 0, 0} },
+	bor_tech[] = { {   3, T_JEDI_JUMP, 1},
+		       {   10, T_CHARGE_SABER, 1},
+		       {   20, T_TELEKINESIS, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   0, 0, 0,} },
+
 	bat_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -2948,6 +2956,7 @@ race_tech()
 		case PM_KOBOLT:		return (kob_tech);
 		case PM_OGRO:		return (ogr_tech);
 		case PM_BATMAN:		return (bat_tech);
+		case PM_BORG:		return (bor_tech);
 		case PM_RODNEYAN:		return (rod_tech);
 		case PM_TURTLE:		return (tur_tech);
 		case PM_JELLY:		return (jel_tech);

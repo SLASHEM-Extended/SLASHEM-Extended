@@ -1015,6 +1015,8 @@ have_rmbstone()
 		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE)
 			return(TRUE);
 		}
+
+	if (u.nastinator01) return TRUE;
 	return(FALSE);
 }
 
@@ -1027,6 +1029,7 @@ have_displaystone()
 		if(otmp->otyp == DISPLAY_LOSS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator02) return TRUE;
 	return(FALSE);
 }
 
@@ -1039,6 +1042,7 @@ have_yellowspellstone()
 		if(otmp->otyp == YELLOW_SPELL_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator03) return TRUE;
 	return(FALSE);
 }
 
@@ -1051,6 +1055,7 @@ have_spelllossstone()
 		if(otmp->otyp == SPELL_LOSS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator04) return TRUE;
 	return(FALSE);
 }
 
@@ -1063,6 +1068,7 @@ have_autodestructstone()
 		if(otmp->otyp == AUTO_DESTRUCT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator05) return TRUE;
 	return(FALSE);
 }
 
@@ -1075,6 +1081,7 @@ have_memorylossstone()
 		if(otmp->otyp == MEMORY_LOSS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator06) return TRUE;
 	return(FALSE);
 }
 
@@ -1087,6 +1094,7 @@ have_inventorylossstone()
 		if(otmp->otyp == INVENTORY_LOSS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator07) return TRUE;
 	return(FALSE);
 }
 
@@ -1099,6 +1107,7 @@ have_blackystone()
 		if(otmp->otyp == BLACKY_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator08) return TRUE;
 	return(FALSE);
 }
 
@@ -1111,6 +1120,7 @@ have_menubugstone()
 		if(otmp->otyp == MENU_BUG_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator09) return TRUE;
 	return(FALSE);
 }
 
@@ -1123,6 +1133,7 @@ have_speedbugstone()
 		if(otmp->otyp == SPEEDBUG_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator10) return TRUE;
 	return(FALSE);
 }
 
@@ -1135,6 +1146,7 @@ have_superscrollerstone()
 		if(otmp->otyp == SUPERSCROLLER_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator11) return TRUE;
 	return(FALSE);
 }
 
@@ -1147,6 +1159,7 @@ have_freehandbugstone()
 		if(otmp->otyp == FREE_HAND_BUG_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator12) return TRUE;
 	return(FALSE);
 }
 
@@ -1159,6 +1172,7 @@ have_unidentifystone()
 		if(otmp->otyp == UNIDENTIFY_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator13) return TRUE;
 	return(FALSE);
 }
 
@@ -1171,6 +1185,7 @@ have_thirststone()
 		if(otmp->otyp == STONE_OF_THIRST)
 			return(TRUE);
 		}
+	if (u.nastinator14) return TRUE;
 	return(FALSE);
 }
 
@@ -1183,6 +1198,7 @@ have_unluckystone()
 		if(otmp->otyp == UNLUCKY_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator15) return TRUE;
 	return(FALSE);
 }
 
@@ -1195,6 +1211,7 @@ have_shadesofgreystone()
 		if(otmp->otyp == SHADES_OF_GREY_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator16) return TRUE;
 	return(FALSE);
 }
 
@@ -1207,6 +1224,7 @@ have_faintingstone()
 		if(otmp->otyp == STONE_OF_FAINTING)
 			return(TRUE);
 		}
+	if (u.nastinator17) return TRUE;
 	return(FALSE);
 }
 
@@ -1219,6 +1237,7 @@ have_cursingstone()
 		if(otmp->otyp == STONE_OF_CURSING)
 			return(TRUE);
 		}
+	if (u.nastinator18) return TRUE;
 	return(FALSE);
 }
 
@@ -1231,6 +1250,7 @@ have_difficultystone()
 		if(otmp->otyp == STONE_OF_DIFFICULTY)
 			return(TRUE);
 		}
+	if (u.nastinator19) return TRUE;
 	return(FALSE);
 }
 
@@ -1243,6 +1263,7 @@ have_deafnessstone()
 		if(otmp->otyp == DEAFNESS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator20) return TRUE;
 	return(FALSE);
 }
 
@@ -1255,6 +1276,7 @@ have_weaknessstone()
 		if(otmp->otyp == WEAKNESS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator21) return TRUE;
 	return(FALSE);
 }
 
@@ -1267,6 +1289,7 @@ have_antimagicstone()
 		if(otmp->otyp == ANTIMAGIC_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator22) return TRUE;
 	return(FALSE);
 }
 
@@ -1279,6 +1302,7 @@ have_rotthirteenstone()
 		if(otmp->otyp == ROT_THIRTEEN_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator23) return TRUE;
 	return(FALSE);
 }
 
@@ -1291,6 +1315,7 @@ have_bishopstone()
 		if(otmp->otyp == BISHOP_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator24) return TRUE;
 	return(FALSE);
 }
 
@@ -1303,6 +1328,7 @@ have_confusionstone()
 		if(otmp->otyp == CONFUSION_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator25) return TRUE;
 	return(FALSE);
 }
 
@@ -1315,6 +1341,7 @@ have_dropbugstone()
 		if(otmp->otyp == DROPBUG_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator26) return TRUE;
 	return(FALSE);
 }
 
@@ -1327,6 +1354,7 @@ have_dstwstone()
 		if(otmp->otyp == DSTW_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator27) return TRUE;
 	return(FALSE);
 }
 
@@ -1339,6 +1367,7 @@ have_amnesiastone()
 		if(otmp->otyp == AMNESIA_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator28) return TRUE;
 	return(FALSE);
 }
 
@@ -1351,6 +1380,7 @@ have_bigscriptstone()
 		if(otmp->otyp == BIGSCRIPT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator29) return TRUE;
 	return(FALSE);
 }
 
@@ -1363,6 +1393,7 @@ have_bankstone()
 		if(otmp->otyp == BANK_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator30) return TRUE;
 	return(FALSE);
 }
 
@@ -1375,6 +1406,7 @@ have_mapstone()
 		if(otmp->otyp == MAP_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator31) return TRUE;
 	return(FALSE);
 }
 
@@ -1387,6 +1419,7 @@ have_techniquestone()
 		if(otmp->otyp == TECHNIQUE_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator32) return TRUE;
 	return(FALSE);
 }
 
@@ -1399,6 +1432,7 @@ have_disenchantmentstone()
 		if(otmp->otyp == DISENCHANTMENT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator33) return TRUE;
 	return(FALSE);
 }
 
@@ -1411,6 +1445,7 @@ have_verisiertstone()
 		if(otmp->otyp == VERISIERT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator34) return TRUE;
 	return(FALSE);
 }
 
@@ -1423,6 +1458,7 @@ have_chaosterrainstone()
 		if(otmp->otyp == CHAOS_TERRAIN_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator35) return TRUE;
 	return(FALSE);
 }
 
@@ -1435,6 +1471,7 @@ have_mutenessstone()
 		if(otmp->otyp == MUTENESS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator36) return TRUE;
 	return(FALSE);
 }
 
@@ -1447,6 +1484,7 @@ have_engravingstone()
 		if(otmp->otyp == ENGRAVING_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator37) return TRUE;
 	return(FALSE);
 }
 
@@ -1459,6 +1497,7 @@ have_magicdevicestone()
 		if(otmp->otyp == MAGIC_DEVICE_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator38) return TRUE;
 	return(FALSE);
 }
 
@@ -1471,6 +1510,7 @@ have_bookstone()
 		if(otmp->otyp == BOOK_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator39) return TRUE;
 	return(FALSE);
 }
 
@@ -1483,6 +1523,7 @@ have_levelstone()
 		if(otmp->otyp == LEVEL_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator40) return TRUE;
 	return(FALSE);
 }
 
@@ -1495,6 +1536,7 @@ have_quizstone()
 		if(otmp->otyp == QUIZ_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator41) return TRUE;
 	return(FALSE);
 }
 
@@ -1507,6 +1549,7 @@ have_statusstone()
 		if(otmp->otyp == STATUS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator42) return TRUE;
 	return(FALSE);
 }
 
@@ -1519,6 +1562,7 @@ have_alignmentstone()
 		if(otmp->otyp == ALIGNMENT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator43) return TRUE;
 	return(FALSE);
 }
 
@@ -1531,6 +1575,7 @@ have_stairstrapstone()
 		if(otmp->otyp == STAIRSTRAP_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator44) return TRUE;
 	return(FALSE);
 }
 
@@ -1543,6 +1588,7 @@ have_uninformationstone()
 		if(otmp->otyp == UNINFORMATION_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator45) return TRUE;
 	return(FALSE);
 }
 
@@ -1555,6 +1601,7 @@ have_captchastone()
 		if(otmp->otyp == CAPTCHA_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator46) return TRUE;
 	return(FALSE);
 }
 
@@ -1567,6 +1614,7 @@ have_farlookstone()
 		if(otmp->otyp == FARLOOK_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator47) return TRUE;
 	return(FALSE);
 }
 
@@ -1579,6 +1627,7 @@ have_respawnstone()
 		if(otmp->otyp == RESPAWN_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator48) return TRUE;
 	return(FALSE);
 }
 
@@ -1591,6 +1640,7 @@ have_intrinsiclossstone()
 		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS)
 			return(TRUE);
 		}
+	if (u.nastinator49) return TRUE;
 	return(FALSE);
 }
 
@@ -1603,6 +1653,7 @@ have_bloodlossstone()
 		if(otmp->otyp == BLOOD_LOSS_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator50) return TRUE;
 	return(FALSE);
 }
 
@@ -1615,6 +1666,7 @@ have_badeffectstone()
 		if(otmp->otyp == BAD_EFFECT_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator51) return TRUE;
 	return(FALSE);
 }
 
@@ -1627,6 +1679,7 @@ have_trapcreationstone()
 		if(otmp->otyp == TRAP_CREATION_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator52) return TRUE;
 	return(FALSE);
 }
 
@@ -1639,6 +1692,7 @@ have_vulnerabilitystone()
 		if(otmp->otyp == STONE_OF_VULNERABILITY)
 			return(TRUE);
 		}
+	if (u.nastinator53) return TRUE;
 	return(FALSE);
 }
 
@@ -1651,6 +1705,7 @@ have_itemportstone()
 		if(otmp->otyp == ITEM_TELEPORTING_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator54) return TRUE;
 	return(FALSE);
 }
 
@@ -1663,6 +1718,7 @@ have_nastystone()
 		if(otmp->otyp == NASTY_STONE)
 			return(TRUE);
 		}
+	if (u.nastinator55) return TRUE;
 	return(FALSE);
 }
 

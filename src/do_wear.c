@@ -882,7 +882,7 @@ Shirt_on()
 
 	if(uarmu->otyp == VICTORIAN_UNDERWEAR){
 
-		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR)) && !uarmu->cursed ) {if (yn_function("Do you want your sexy underwear to stick?", ynchars, 'n') == 'y') { curse(uarmu);
+		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && !uarmu->cursed ) {if (yn_function("Do you want your sexy underwear to stick?", ynchars, 'n') == 'y') { curse(uarmu);
 			pline("Your fleecy underwear gently welds itself to your curved body!");
 			}
 		}
@@ -893,7 +893,7 @@ Shirt_on()
 
 	if(uarmu->otyp == RUFFLED_SHIRT){
 
-		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR)) && !uarmu->cursed ) {if (yn_function("Do you want your noble shirt to stick?", ynchars, 'n') == 'y') { curse(uarmu);
+		if ((Role_if(PM_NOBLEMAN) || Role_if(PM_NOBLEWOMAN) || Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && !uarmu->cursed ) {if (yn_function("Do you want your noble shirt to stick?", ynchars, 'n') == 'y') { curse(uarmu);
 			pline("Your shirt tickles comfortably on your smooth skin!");
 			}
 		}
