@@ -10265,6 +10265,8 @@ register int	mmflags;
 
 	if (!rn2(!(u.monstertimefinish % 13334) ? 3 : !(u.monstertimefinish % 1334) ? 10 : !(u.monstertimefinish % 134) ? 30 : 100) && mtmp->minvis) mtmp->minvisreal = TRUE;
 
+	if (!rn2(!(u.monstertimefinish % 13239) ? 3 : !(u.monstertimefinish % 1329) ? 10 : !(u.monstertimefinish % 129) ? 30 : 100) ) mtmp->noegodesc = TRUE;
+
 #ifndef DCC30_BUG
 	if (mndx == PM_LONG_WORM && (mtmp->wormno = get_wormno()) != 0)
 #else

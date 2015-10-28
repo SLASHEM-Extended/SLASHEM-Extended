@@ -68,6 +68,7 @@ struct monst {
 	Bitfield(female,1);	/* is female */
 	Bitfield(minvis,1);	/* currently invisible */
 	Bitfield(minvisreal,1);	/* really invisible - doesn't become visible even if you have see invis --Amy */
+	Bitfield(noegodesc,1);	/* no egotype description --Amy */
 	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
 	Bitfield(cham,5);	/* shape-changer */
