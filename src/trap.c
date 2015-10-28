@@ -1797,9 +1797,9 @@ unsigned trflags;
 
 		seetrap(trap);
 
-		if (trap->launch_otyp < 11) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "tender" : "soft");
-		else if (trap->launch_otyp < 29) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "beautiful" : "squeaky");
-		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rnd(2) ? "disgusting" : "loud");
+		if (trap->launch_otyp < 11) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
+		else if (trap->launch_otyp < 29) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
+		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		badeffect();
 
 		break;
