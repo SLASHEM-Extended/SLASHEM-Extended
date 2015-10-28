@@ -5331,6 +5331,12 @@ u_init()
 	u.levelporting = 0;
 	u.inertia = 0;
 
+	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
+	u.idpotionpenalty = rnd(10); /* if rnd(this) is greater than 3, the potion isn't ided */
+	u.idringpenalty = rnd(20); /* if rnd(this) is greater than 4, the ring isn't ided */
+	u.idamuletpenalty = rnd(20); /* if rnd(this) is greater than 15, the item isn't ided */
+	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;

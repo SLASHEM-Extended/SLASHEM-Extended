@@ -430,6 +430,12 @@ struct you {
 	int frequentspecies10;	
 	int freqspeciesbonus10;	
 
+	int idscrollpenalty;	/* evil patch idea by Amy - certain item types may randomly be much harder to id */
+	int idpotionpenalty;
+	int idringpenalty;
+	int idamuletpenalty;
+	int idwandpenalty;
+
 	int nospawnspecies;	/* nice patch idea by Amy - monster species that isn't randomly generated */
 	int nospawnspecies2;
 	int nospawnspecies3;
@@ -450,6 +456,63 @@ struct you {
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
+
+	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy */
+	boolean nastinator01;
+	boolean nastinator02;
+	boolean nastinator03;
+	boolean nastinator04;
+	boolean nastinator05;
+	boolean nastinator06;
+	boolean nastinator07;
+	boolean nastinator08;
+	boolean nastinator09;
+	boolean nastinator10;
+	boolean nastinator11;
+	boolean nastinator12;
+	boolean nastinator13;
+	boolean nastinator14;
+	boolean nastinator15;
+	boolean nastinator16;
+	boolean nastinator17;
+	boolean nastinator18;
+	boolean nastinator19;
+	boolean nastinator20;
+	boolean nastinator21;
+	boolean nastinator22;
+	boolean nastinator23;
+	boolean nastinator24;
+	boolean nastinator25;
+	boolean nastinator26;
+	boolean nastinator27;
+	boolean nastinator28;
+	boolean nastinator29;
+	boolean nastinator30;
+	boolean nastinator31;
+	boolean nastinator32;
+	boolean nastinator33;
+	boolean nastinator34;
+	boolean nastinator35;
+	boolean nastinator36;
+	boolean nastinator37;
+	boolean nastinator38;
+	boolean nastinator39;
+	boolean nastinator40;
+	boolean nastinator41;
+	boolean nastinator42;
+	boolean nastinator43;
+	boolean nastinator44;
+	boolean nastinator45;
+	boolean nastinator46;
+	boolean nastinator47;
+	boolean nastinator48;
+	boolean nastinator49;
+	boolean nastinator50;
+	boolean nastinator51;
+	boolean nastinator52;
+	boolean nastinator53;
+	boolean nastinator54;
+	boolean nastinator55;
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */
 	int hanguppenalty;

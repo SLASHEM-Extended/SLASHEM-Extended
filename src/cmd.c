@@ -1352,6 +1352,31 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("You ", "carry", "carried", buf);
 	}
 
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100) {
+		Sprintf(buf, " %d", u.idscrollpenalty - 100);
+		enl_msg("Scroll identification fails X out of 200 attempts, and X ", "is", "was", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idpotionpenalty > 3) {
+		Sprintf(buf, " %d", u.idpotionpenalty - 3);
+		enl_msg("Potion identification fails X out of 10 attempts, and X ", "is", "was", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idringpenalty > 4) {
+		Sprintf(buf, " %d", u.idringpenalty - 4);
+		enl_msg("Ring identification fails X out of 20 attempts, and X ", "is", "was", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idamuletpenalty > 15) {
+		Sprintf(buf, " %d", u.idamuletpenalty - 15);
+		enl_msg("Amulet identification fails X out of 20 attempts, and X ", "is", "was", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3) {
+		Sprintf(buf, " %d", u.idwandpenalty - 3);
+		enl_msg("Wand identification fails X out of 12 attempts, and X ", "is", "was", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}

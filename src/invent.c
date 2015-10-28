@@ -2719,7 +2719,12 @@ void
 fully_identify_obj(otmp)
 struct obj *otmp;
 {
-    makeknown(otmp->otyp);
+	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
+	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
+	else if (otmp->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+	else if (otmp->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+      else makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
     otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
     if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
