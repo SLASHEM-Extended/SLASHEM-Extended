@@ -184,6 +184,7 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 	    /* leader IDs the real amulet but ignores any fakes */
 	    if ((otmp = carrying(AMULET_OF_YENDOR)) != 0)
 		fully_identify_obj(otmp);
+		makeknown(otmp->otyp);
 	} else {
 	    qt_pager(!Qstat(got_thanks) ? QT_OFFEREDIT : QT_OFFEREDIT2);
 	    /* should have obtained bell during quest;
@@ -198,6 +199,7 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 	    /* behave as if leader imparts sufficient info about the
 	       quest artifact */
 	    fully_identify_obj(obj);
+	    makeknown(obj->otyp);
 	    update_inventory();
 	}
 }

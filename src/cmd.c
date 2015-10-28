@@ -1353,28 +1353,28 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100) {
-		Sprintf(buf, " %d", u.idscrollpenalty - 100);
-		enl_msg("Scroll identification fails X out of 200 attempts, and X ", "is", "was", buf);
+		Sprintf(buf, " %d", u.idscrollpenalty);
+		enl_msg("Scroll identification only works 100 out of X attempts, and X ", "is", "was", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idpotionpenalty > 3) {
-		Sprintf(buf, " %d", u.idpotionpenalty - 3);
-		enl_msg("Potion identification fails X out of 10 attempts, and X ", "is", "was", buf);
+		Sprintf(buf, " %d", u.idpotionpenalty);
+		enl_msg("Potion identification only works 3 out of X attempts, and X ", "is", "was", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idringpenalty > 4) {
-		Sprintf(buf, " %d", u.idringpenalty - 4);
-		enl_msg("Ring identification fails X out of 20 attempts, and X ", "is", "was", buf);
+		Sprintf(buf, " %d", u.idringpenalty);
+		enl_msg("Ring identification only works 4 out of X attempts, and X ", "is", "was", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idamuletpenalty > 15) {
-		Sprintf(buf, " %d", u.idamuletpenalty - 15);
-		enl_msg("Amulet identification fails X out of 20 attempts, and X ", "is", "was", buf);
+		Sprintf(buf, " %d", u.idamuletpenalty);
+		enl_msg("Amulet identification only works 15 out of X attempts, and X ", "is", "was", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3) {
-		Sprintf(buf, " %d", u.idwandpenalty - 3);
-		enl_msg("Wand identification fails X out of 12 attempts, and X ", "is", "was", buf);
+		Sprintf(buf, " %d", u.idwandpenalty);
+		enl_msg("Wand identification only works 3 out of X attempts, and X ", "is", "was", buf);
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );

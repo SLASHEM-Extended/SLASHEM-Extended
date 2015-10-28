@@ -5269,6 +5269,7 @@ shk_identify(slang, shkp)
 
 	/* Premier service */
 	if (ident_type == 'p') {
+		makeknown(obj->otyp);
 		identify(obj);
 	} else { 
 		/* Basic */

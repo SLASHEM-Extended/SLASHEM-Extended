@@ -3187,7 +3187,8 @@ retry:
 		break;
 	case SPE_IDENTIFY:
 		if (confused) break;
-		cval = rn2(5);
+		cval = rnd(4);
+		if (rn2(7)) cval = 1; /* hardcore nerf by Amy */
 		goto id;
 	case SCR_IDENTIFY:
 		/* known = TRUE; */
