@@ -2584,10 +2584,10 @@ struct obj *weapon;
 	    case P_ISRESTRICTED:
 	    case P_UNSKILLED:	bonus = -2; break;
 	    case P_BASIC:	bonus =  0; break;
-	    case P_SKILLED:	bonus =  1; break;
-	    case P_EXPERT:	bonus =  2; break;
-	    case P_MASTER:	bonus =  3; break;
-	    case P_GRAND_MASTER:bonus =  4; break;
+	    case P_SKILLED:	bonus =  2; break;
+	    case P_EXPERT:	bonus =  4; break;
+	    case P_MASTER:	bonus =  6; break;
+	    case P_GRAND_MASTER:bonus =  8; break;
 	}
 #if 0
     } else if (type == P_TWO_WEAPON_COMBAT) {
@@ -2616,6 +2616,35 @@ struct obj *weapon;
 	bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	bonus = ((bonus + 1) * (martial_bonus() ? 3 : 1)) / 2;
+
+	if (type == P_MARTIAL_ARTS) {
+
+		switch (P_SKILL(P_MARTIAL_ARTS)) {
+		    default:
+		    case P_ISRESTRICTED:
+		    case P_UNSKILLED:	bonus += 0; break;
+		    case P_BASIC:	bonus += 0; break;
+		    case P_SKILLED:	bonus += rnd(5); break;
+		    case P_EXPERT:	bonus += rnd(10); break;
+		    case P_MASTER:	bonus += rnd(15); break;
+		    case P_GRAND_MASTER:	bonus += rnd(22); break;
+		}
+
+	} else if (type == P_BARE_HANDED_COMBAT) {
+
+		switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
+		    default:
+		    case P_ISRESTRICTED:
+		    case P_UNSKILLED:	bonus += 0; break;
+		    case P_BASIC:	bonus += 0; break;
+		    case P_SKILLED:	bonus += rnd(3); break;
+		    case P_EXPERT:	bonus += rnd(6); break;
+		    case P_MASTER:	bonus += rnd(10); break;
+		    case P_GRAND_MASTER:	bonus += rnd(15); break;
+		}
+
+	}
+
     } /* Misc skills aren't usually called by weapons */
 
 #ifdef STEED
@@ -2843,9 +2872,25 @@ ranged_dam_bonus(weapon)
 struct obj *weapon;
 
 {
-    int bonus = 0;
+
+    int type, wep_type, bonus = 0;
 
     if (!weapon) return 0;
+
+    wep_type = weapon_type(weapon);
+
+    type = wep_type;
+    if (type == P_NONE) {
+	bonus = 0;
+    } else if (!u.twoweap && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
+	switch (P_SKILL(type)) {
+	    case P_SKILLED:	bonus =  1; break;
+	    case P_EXPERT:	bonus =  1; break;
+	    case P_MASTER:	bonus =  2; break;
+	    case P_GRAND_MASTER:bonus =  2; break;
+	    default: bonus = 0; break;
+	}
+    }
 
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(6);

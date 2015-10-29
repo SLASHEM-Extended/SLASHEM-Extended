@@ -1659,10 +1659,10 @@ int thrown;
 		 */
 		if (((objects[otyp].oc_skill < P_NONE && 
 			objects[otyp].oc_skill > -P_BOOMERANG) ||
-			( objects[otyp].oc_skill == P_DAGGER && (!obj->oartifact || !rn2(1000)) ) ||
-			( objects[otyp].oc_skill == P_KNIFE && (!obj->oartifact || !rn2(1000)) ) ||
-			( objects[otyp].oc_skill == P_SPEAR && (!obj->oartifact || !rn2(1000)) ) ||
-			( objects[otyp].oc_skill == P_JAVELIN && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_DAGGER && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_KNIFE && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_SPEAR && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_JAVELIN && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
 
 /* low chance for daggers, knives and spears to disappear --Amy */
 			(obj->oclass == GEM_CLASS && 
@@ -1680,6 +1680,7 @@ int thrown;
 		     */
 		    int broken, chance;
 		    chance = 2 + greatest_erosion(obj) - obj->spe;	/* base chance increased --Amy */
+		    chance -= rnd(2);
 		    if (chance > 1) {
 			if (chance == 3) chance = 2;
 			else if (chance == 4) chance = 3;
@@ -1689,13 +1690,13 @@ int thrown;
 		    } else /* continue to survive longer with better enchantment --Amy */
 			broken = !rn2(/*4*/ 2 + obj->spe - greatest_erosion(obj) );
 		    if ( objects[otyp].oc_skill == P_DAGGER )
-			broken = !rn2(20);
+			broken = !rn2(40);
 		    if ( objects[otyp].oc_skill == P_SPEAR )
-			broken = !rn2(100);
+			broken = !rn2(200);
 		    if ( objects[otyp].oc_skill == P_KNIFE )
-			broken = !rn2(50);
+			broken = !rn2(150);
 		    if ( objects[otyp].oc_skill == P_JAVELIN )
-			broken = !rn2(500);
+			broken = !rn2(1200);
 		    if (obj->blessed && !rnl(4))
 			broken = 0;
 			/* also save uncursed ones sometimes --Amy */
