@@ -341,6 +341,8 @@ makedog()
 	if (pettype == PM_ANIMATED_WEDGE_SANDAL) petname = "Larissa"; /* just a common female first name */
 	if (pettype == PM_GOLD_GOLEM) petname = "Midas"; /* the greedy king who unfortunately lost all his gold :( */
 
+	if (pettype == PM_JEDI) petname = "Luke Skywalker";
+
 	if (pettype == PM_LITTLE_GIRL) petname = "Sarah"; /* just a common female first name */
 	if (pettype == PM_LITTLE_BOY) petname = "Jonas"; /* just a common male first name */
 	if (pettype == PM_ASIAN_GIRL) petname = "Whitney"; /* the Normal-type gym leader in Pokemon Crystal */

@@ -4364,6 +4364,8 @@ struct obj *obj;
 				pline("A crappy dagger that doesn't do much damage. It can be thrown."); break;
 			case DAGGER: 
 				pline("A basic dagger that doesn't do much damage. It can be thrown."); break;
+			case DROVEN_DAGGER: 
+				pline("This dagger does a lot of damage but breaks when thrown."); break;
 			case ATHAME: 
 				pline("A high-quality dagger that can create hard engravings. It can be thrown."); break;
 			case SILVER_DAGGER: 
@@ -4398,6 +4400,8 @@ struct obj *obj;
 				pline("The weakest short sword in the game. It is inferior to other short swords in every way."); break;
 			case SHORT_SWORD: 
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
+			case DROVEN_SHORT_SWORD: 
+				pline("Ever wanted a short sword that can actually hit armored enemies? Then this is for you. Don't throw it though."); break;
 			case SILVER_SHORT_SWORD: 
 				pline("A basic short sword that doesn't deal a lot of damage. It is effective against undead."); break;
 			case DWARVISH_SHORT_SWORD: 
@@ -4424,6 +4428,8 @@ struct obj *obj;
 				pline("It's heavy and requires both hands, but does quite a lot of damage."); break;
 			case TSURUGI: 
 				pline("A long samurai sword that can only be wielded with both hands. It does lots of damage."); break;
+			case DROVEN_GREATSWORD: 
+				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though."); break;
 			case SCIMITAR: 
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
 			case BENT_SABLE: 
@@ -4524,6 +4530,8 @@ struct obj *obj;
 				pline("The weakest of the spears. It can be thrown."); break;
 			case SPEAR: 
 				pline("A standard spear. It can be thrown."); break;
+			case DROVEN_SPEAR: 
+				pline("This spear deals great damage but will break if you throw it."); break;
 			case SILVER_SPEAR: 
 				pline("A spear that does extra damage to undead. It can be thrown."); break;
 			case ELVEN_SPEAR: 
@@ -4544,6 +4552,10 @@ struct obj *obj;
 				pline("The only weapon that uses the lance skill, this thing can be applied to hit monsters that don't stand right next to you. While riding, you can joust monsters with it by performing standard melee attacks but sometimes the lance breaks if you do so."); break;
 			case COURSE_LANCE: 
 				pline("This weapon is a much stronger version of the lance. Apply it to hit monsters from far away, or melee monsters with it while riding to joust (but that can cause the lance to break)."); break;
+			case DROVEN_LANCE: 
+				pline("Apply it to hit monsters from far away, joust monsters with it while riding (and risk breaking it), but NEVER throw it or it will definitely break."); break;
+			case FORCE_PIKE: 
+				pline("One of Chris_ANG's creations, this weapon is in fact a lance. Apply it to hit monsters from far away. You can also joust monsters with it while riding, but that may cause it to break."); break;
 			case ORCISH_BOW: 
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
 			case BOW: 
@@ -4654,6 +4666,8 @@ struct obj *obj;
 				pline("This wonderful piece of clothing can be worn under a suit of armor to grant maximum magic cancellation. If you wear a cursed one, you have a small chance of reviving on death. It can be read."); break;
 			case PLATE_MAIL: 
 				pline("A very heavy suit of armor that offers good protection."); break;
+			case DROVEN_PLATE_MAIL: 
+				pline("This plate mail is light, but it offers less protection than actual plate mail."); break;
 			case PLASTEEL_ARMOR: 
 				pline("A low-weight suit of armor with a good armor value."); break;
 			case CRYSTAL_PLATE_MAIL: 
@@ -4674,6 +4688,8 @@ struct obj *obj;
 				pline("This suit of armor offers very little protection."); break;
 			case CHAIN_MAIL: 
 				pline("A moderately good suit of armor."); break;
+			case DROVEN_CHAIN_MAIL: 
+				pline("Less protection than regular chain mail but better magic cancellation."); break;
 			case ORCISH_CHAIN_MAIL: 
 				pline("A crappier version of regular chain mail that offers mediocre protection."); break;
 			case SCALE_MAIL: 
@@ -4762,6 +4778,8 @@ struct obj *obj;
 				pline("A very useful cloak that provides maximum magic cancellation and also protects from grabbing attacks."); break;
 			case ELVEN_CLOAK: 
 				pline("A powerful cloak that provides maximum magic cancellation and stealth."); break;
+			case DROVEN_CLOAK: 
+				pline("This cloak only provides maximum magic cancellation and nothing else. I guess if you don't have anything better, you may want to use it..."); break;
 			case LAB_COAT: 
 				pline("This cloak is highly useful as it provides all of the following: maximum magic cancellation, poison resistance and acid resistance."); break;
 			case LEATHER_CLOAK: 
@@ -4826,6 +4844,8 @@ struct obj *obj;
 				pline("A basic helmet that gives a little bit of protection."); break;
 			case DWARVISH_IRON_HELM:
 				pline("A good helmet that offers some protection."); break;
+			case DROVEN_HELM:
+				pline("This helmet offers surprisingly good protection."); break;
 			case FEDORA:
 				pline("While it doesn't grant armor class, this headgear can increase your luck if worn."); break;
 			case CORNUTHAUM:

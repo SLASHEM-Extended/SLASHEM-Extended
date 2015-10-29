@@ -143,6 +143,32 @@ const struct Role roles[] = {
 	{ 10, 0,  0, 2,  0, 3 },11,	/* Energy */
 	10, 10, 0, 0,  8, A_INT, SPE_ENTRAPPING,    -4
 },
+{	{"Anachronist", 0}, {
+	{"Survivor",   0},
+	{"Recruit",0},
+	{"Insurgent",0},
+	{"Trooper",     0},
+	{"Rebel Leader",   0},
+	{"Chrono Commandant",   0},
+	{"Anachrononononaut",0},
+	{"Fatebreaker",   0},
+	{"Hope of the Future",     0} },
+	0, 0, 0, /* chosen randomly from among the other roles */
+	"Ana", "the Last Redoubt", "Ground Zero",
+	PM_ANACHRONIST, NON_PM, PM_UNDEAD_ANACHRONIST, NON_PM, PM_JEDI,
+	PM_SARA__THE_LAST_ORACLE, PM_TROOPER, PM_ELDER_BRAIN,
+	PM_DOPPELGANGER, PM_MIND_FLAYER, S_TRAPPER, S_UMBER,
+	ART_ITCHALAQUIAQUE,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/* {  10, 10,  7, 10,  7,  7 }, */
+	{   3,  3,  3,  3,  3,  3 },
+	{  17, 18, 17, 13, 19, 16 },
+	/* Init   Lower  Higher */
+	{ 11, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  2, 0,  0, 2,  0, 2 },14,	/* Energy */
+	10, 5, 0, 2, 10, A_INT, SPE_SLOW_MONSTER,   -9
+},
 
 {	{"Archeologist", 0}, {
 	{"Digger",      0},

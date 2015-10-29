@@ -2798,6 +2798,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case CRYSKNIFE:
 		case DARK_ELVEN_DAGGER:
 		case GREAT_DAGGER:
+		case DROVEN_DAGGER:
 			tmp = 3;
 			break;
 		case PICK_AXE:

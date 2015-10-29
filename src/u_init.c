@@ -41,6 +41,20 @@ static struct trobj Archeologist[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj Anachronist[] = {  
+	{ PISTOL, 0, WEAPON_CLASS, 1, 0 },  
+	{ FORCE_PIKE,  0, WEAPON_CLASS, 1, 0 },  
+	{ RIFLE, 0, WEAPON_CLASS, 1, 0 },  
+	{ PLASTEEL_ARMOR, 0, ARMOR_CLASS, 1, 0 },  
+	{ T_SHIRT, 0, ARMOR_CLASS, 1, 0 },  
+	{ PLASTEEL_HELM, 0, ARMOR_CLASS, 1, 0 },  
+	{ PLASTEEL_GLOVES, 0, ARMOR_CLASS, 1, 0 },  
+	{ PLASTEEL_BOOTS, 0, ARMOR_CLASS, 1, 0 },  
+	{ CLOAK_OF_MAGIC_RESISTANCE, 0, ARMOR_CLASS, 1, 0 },  
+	{ PILL, 0, FOOD_CLASS, 20, 0 },  
+	{ 0, 0, 0, 0, 0 }  
+};  
+
 static struct trobj Artist[] = {
 	{ SPOON, 2, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ TOUCHSTONE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
@@ -2526,6 +2540,26 @@ static const struct def_skill Skill_A[] = {
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
 };
+
+static const struct def_skill Skill_Ana[] = {  
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },  
+    { P_SHORT_SWORD, P_EXPERT },{ P_LANCE,  P_EXPERT },  
+    { P_SABER, P_EXPERT },		{ P_LONG_SWORD,  P_EXPERT },  
+    { P_CLUB, P_EXPERT },		{ P_QUARTERSTAFF, P_EXPERT },  
+#ifdef FIREARMS  
+    { P_FIREARM, P_GRAND_MASTER },  
+#endif  
+    { P_DART, P_EXPERT },		{ P_CROSSBOW, P_EXPERT },  
+    { P_WHIP, P_EXPERT },  
+    { P_ATTACK_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },  
+    { P_DIVINATION_SPELL, P_EXPERT },	{ P_MATTER_SPELL, P_EXPERT },  
+#ifdef STEED  
+    { P_RIDING, P_EXPERT },  
+#endif  
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },  
+    { P_BARE_HANDED_COMBAT, P_EXPERT },  
+    { P_NONE, 0 }  
+};  
 
 static const struct def_skill Skill_Art[] = {
 
@@ -5384,7 +5418,7 @@ u_init()
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
-	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_ERDRICK) )) {
+	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_ANACHRONIST) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_ERDRICK) )) {
 
 		randpantheon = rn2(SIZE(lawfulgods));
 		u.hereticlgod = lawfulgods[randpantheon];
@@ -5400,7 +5434,7 @@ u_init()
 	}
 
 	/* fail safe - this will be essential for the recursion trap that changes the player's role or race --Amy */
-	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_ERDRICK)) {
+	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_ERDRICK)) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
@@ -5598,6 +5632,13 @@ u_init()
 		else if(!rn2(4)) ini_inv(Magicmarker);
 
 		skill_init(Skill_Aug);
+		break;
+
+	case PM_ANACHRONIST:
+
+		ini_inv(Anachronist);
+
+		skill_init(Skill_Ana);
 		break;
 
 	case PM_BARBARIAN:
@@ -7028,13 +7069,18 @@ u_init()
 		break;
 #endif
 
+	case PM_ANACHRONIST:
+		skill_init(Skill_Ana);
+		break;
+
 	default:	/* impossible */
+		pline("skill init failed %d", Role_switch);
 		break;
 	}
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(100)) {
+	switch (rnd(101)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -7970,6 +8016,12 @@ u_init()
 	case 100:
 
 		ini_inv(Shapeshifter);
+
+		break;
+
+	case 101:
+
+		ini_inv(Anachronist);
 
 		break;
 
@@ -8129,7 +8181,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(100)) {
+	switch (rnd(101)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -9065,6 +9117,12 @@ u_init()
 	case 100:
 
 		ini_inv(Shapeshifter);
+
+		break;
+
+	case 101:
+
+		ini_inv(Anachronist);
 
 		break;
 
@@ -15286,6 +15344,7 @@ int otyp;
 
     switch (Role_switch) {
      case PM_ARCHEOLOGIST:	skills = Skill_A; break;
+     case PM_ANACHRONIST:	skills = Skill_Ana; break;  
      case PM_LIBRARIAN:	skills = Skill_Lib; break;
      case PM_SUPERMARKET_CASHIER:	skills = Skill_Sup; break;
      case PM_INTEL_SCRIBE:	skills = Skill_Scr; break;

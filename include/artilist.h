@@ -842,6 +842,11 @@ A("Vampire Killer",        BULLWHIP,
 	PHYS(5,6),    NO_DFNS,        CARY(AD_MAGM),
 	0,              A_LAWFUL, PM_LUNATIC, NON_PM, 5000L ),
 
+A("Itchalaquiaque",        DROVEN_DAGGER,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(5,6),    NO_DFNS,        CARY(AD_MAGM),
+	0,              A_LAWFUL, PM_ANACHRONIST, NON_PM, 5000L ),
+
 A("The Orb of Fate",		CRYSTAL_BALL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_LUCK),
 		(SPFX_WARN|SPFX_HSPDAM|SPFX_HPHDAM), 0,

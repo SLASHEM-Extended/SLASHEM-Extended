@@ -31,6 +31,10 @@ const struct innate {
 		     {  10, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 
+	ana_abil[] = { {   7, &(HFast), "quick", "slow" },  
+		     {	15, &(HWarning), "precognitive", "noncognitive" },  
+		     {	 0, 0, 0, 0 } },  
+
 	pic_abil[] = { {	 1, &(HStealth), "", "" },
 		     {   6, &(HFast), "quick", "slow" },
 		     {  8, &(HSearching), "perceptive", "unaware" },
@@ -1252,6 +1256,7 @@ int oldlevel, newlevel;
 
 	switch (Role_switch) {
 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
+	case PM_ANACHRONIST:    abil = ana_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
 	case PM_COURIER:      abil = cou_abil;	break;
 	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;

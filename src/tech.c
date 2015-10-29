@@ -119,6 +119,8 @@ static const struct innate_tech
 	gun_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_SURGERY, 1},
 		       {   0, 0, 0} },
+	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
 		       {   0, 0, 0} },
 	dol_tech[] = { {   1, T_ATTIRE_CHARM, 1},
@@ -2897,6 +2899,7 @@ role_tech()
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
 		case PM_MIDGET:		return (mid_tech);
 		case PM_GUNNER: 		return (gun_tech);
+		case PM_ANACHRONIST: 		return (ana_tech);
 		case PM_LIBRARIAN: 		return (lib_tech);
 		case PM_AUGURER: 		return (aug_tech);
 		case PM_SAIYAN: 		return (sai_tech);

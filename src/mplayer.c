@@ -153,6 +153,9 @@ register boolean special;
 		case PM_ARCHEOLOGIST:
 		    if (rn2(2)) weapon = BULLWHIP;
 		    break;
+		case PM_ANACHRONIST:
+		    weapon = FORCE_PIKE;
+		    break;
 		case PM_BARBARIAN:
 		    if (rn2(2)) {
 		    	weapon = rn2(2) ? TWO_HANDED_SWORD : BATTLE_AXE;

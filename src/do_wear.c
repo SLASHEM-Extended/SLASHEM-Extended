@@ -292,6 +292,7 @@ Cloak_on()
 		makeknown(uarmc->otyp);
 		break;
 	case ORCISH_CLOAK:
+	case DROVEN_CLOAK:
 	case DWARVISH_CLOAK:
 	case CLOAK_OF_MAGIC_RESISTANCE:
 	case CLOAK_OF_REFLECTION:
@@ -407,6 +408,7 @@ Cloak_off()
     switch (otyp) {
 	case ELVEN_CLOAK:
 	case ORCISH_CLOAK:
+	case DROVEN_CLOAK:
 	case DWARVISH_CLOAK:
 	case CLOAK_OF_PROTECTION:
 	case CLOAK_OF_MAGIC_RESISTANCE:
@@ -490,6 +492,7 @@ Helmet_on()
 	case ELVEN_LEATHER_HELM:
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
+	case DROVEN_HELM:
 	case ORCISH_HELM:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
@@ -605,6 +608,7 @@ Helmet_off()
 	case ELVEN_LEATHER_HELM:
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
+	case DROVEN_HELM:
 	case ORCISH_HELM:
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
