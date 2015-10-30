@@ -3702,7 +3702,7 @@ boolean ordinary;
 		    } else {
 			pline_The("sleep ray hits you!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-			fall_asleep(-rnd(50), TRUE);
+			fall_asleep(-rnd(10), TRUE);
 		    }
 		    break;
 
