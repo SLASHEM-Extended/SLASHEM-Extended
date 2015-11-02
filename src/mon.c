@@ -2775,8 +2775,8 @@ register struct monst *mdef;
 	mondead(mdef);
 	if (mdef->mhp > 0) return;	/* lifesaved */
 
-	if (corpse_chance(mdef, (struct monst *)0, FALSE) &&
-	    (accessible(mdef->mx, mdef->my) || is_pool(mdef->mx, mdef->my)))
+	if (corpse_chance(mdef, (struct monst *)0, FALSE) /*&&
+	    (accessible(mdef->mx, mdef->my) || is_pool(mdef->mx, mdef->my))*/)
 		(void) make_corpse(mdef);
 }
 
@@ -3069,7 +3069,7 @@ xkilled(mtmp, dest)
 	    /* might be mimic in wall or corpse in lava or on player's spot */
 	    redisp = TRUE;
 	    if(wasinside) spoteffects(TRUE);
-	} else if(x != u.ux || y != u.uy && !attacktype(mdat, AT_MULTIPLY) && (!mtmp->isspell) && (!mtmp->egotype_multiplicator) && mdat != &mons[PM_GREMLIN] ) { /* multipliers could otherwise be farmed */
+	} /*else*/ if(/*x != u.ux || y != u.uy && */!attacktype(mdat, AT_MULTIPLY) && (!mtmp->isspell) && (!mtmp->egotype_multiplicator) && mdat != &mons[PM_GREMLIN] ) { /* multipliers could otherwise be farmed */
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
