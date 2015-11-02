@@ -4492,11 +4492,18 @@ register int num;
 		    }
 		}
 	    }
+	    else if (u.uhs == SATIATED) { /* less nutrition if already satiated --Amy */
+		int xtranut = num;
+		xtranut /= 2;
+		if (u.uhunger >= 3250) {xtranut *= 3; xtranut /= 2;}
+		if (u.uhunger >= 4000) {xtranut *= 7; xtranut /= 6;}
+		u.uhunger -= xtranut;
+	    }
 	    else if (u.uhs != SATIATED) { /* extra nutrition because corpses are more rare now --Amy */
 		int xtranut = num;
-		num *= rnd((u.uhs >= FAINTING) ? 100 : (u.uhs == WEAK) ? 85 : (u.uhs == HUNGRY) ? 70 : 50);
-		num /= 100;
-		u.uhunger += num;
+		xtranut *= rnd((u.uhs >= FAINTING) ? 100 : (u.uhs == WEAK) ? 85 : (u.uhs == HUNGRY) ? 70 : 1);
+		xtranut /= 100;
+		u.uhunger += xtranut;
 	    }
 	}
 	newuhs(FALSE);
