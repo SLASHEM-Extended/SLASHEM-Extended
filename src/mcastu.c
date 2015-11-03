@@ -932,6 +932,70 @@ int spellnum;
 	}
 	break;
     case MGC_PSI_BOLT:
+
+	if (!rn2(500 - (mtmp->m_lev * 2) )) { /* wishing */
+
+		switch (rnd(6)) {
+			case 1:
+				(void) mongets(mtmp, rnd_defensive_item(mtmp));
+				break;
+			case 2:
+				(void) mongets(mtmp, rnd_offensive_item(mtmp));
+				break;
+			case 3:
+				(void) mongets(mtmp, rnd_misc_item(mtmp));
+				break;
+			case 4:
+				(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+				break;
+			case 5:
+				(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+				break;
+			case 6:
+				(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+				break;
+		}
+		pline("%s wishes for an object.", Monnam(mtmp) );
+
+	break;
+	}
+
+	if (!rn2(400 - (mtmp->m_lev * 2) )) { /* summon boss */
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		struct monst *mon;
+		int attempts = 0;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+
+	    }
+	    pline("A boss monster appears from nowhere!");
+
+	break;
+	}
+
+	if (!rn2(300 - (mtmp->m_lev * 2) )) { /* bad effect */
+
+		badeffect();
+
+	break;
+	}
+
 	/* prior to 3.4.0 Antimagic was setting the damage to 1--this
 	   made the spell virtually harmless to players with magic res. */
 	if (Antimagic && rn2(20)) {
@@ -964,6 +1028,7 @@ int dmg;
 int spellnum;
 {
 	int aligntype;
+	int oldhp, oldmp, oldhpmax, oldmpmax;
 
     if (dmg == 0 && !is_undirected_spell(AD_CLRC, spellnum)) {
 	impossible("cast directed cleric spell (%d) with dmg=0?", spellnum);
@@ -973,7 +1038,7 @@ int spellnum;
     switch (spellnum) {
     case CLC_GEYSER:
 
-	switch (rnd(38) ) {
+	switch (rnd(39) ) {
 	case 1:
 	case 2:
 	case 3:
@@ -1069,6 +1134,21 @@ int spellnum;
 
 		 break;
 
+	case 39:
+
+		/* wraparound - evil patch idea */
+		oldhp = u.uhp;
+		oldmp = u.uen;
+		oldhpmax = u.uhpmax;
+		oldmpmax = u.uenmax;
+	
+		u.uen = oldhp;
+		u.uhp = oldmp;
+		u.uenmax = oldhpmax;
+		u.uhpmax = oldmpmax;
+		pline("You feel a wraparound!");
+		break;
+
 	default: /*failsafe*/
 		You_feel("that monsters are aware of your presence."); /* aggravate monster */
 		aggravate();
@@ -1129,7 +1209,7 @@ int spellnum;
 	break;
 
     case CLC_RANDOM: /* inofficial names see below */
-	switch (rnd(38) ) {
+	switch (rnd(40) ) {
 
 	case 1:
 	case 2:
@@ -1249,6 +1329,10 @@ int spellnum;
 	      pline("You feel burdened"); /* punishment - message is from Castle of the Winds */
 			punishx();
 		dmg = 0;
+		break;
+	case 39:
+	case 40:
+		pushplayer(); /* use the force */
 		break;
 	default: /*failsafe*/
 		You_feel("that monsters are aware of your presence."); /* aggravate monster */
@@ -1496,6 +1580,69 @@ int spellnum;
 	}
 	break;
     case CLC_OPEN_WOUNDS:
+
+	if (!rn2(500 - (mtmp->m_lev * 2) )) { /* wishing */
+
+		switch (rnd(6)) {
+			case 1:
+				(void) mongets(mtmp, rnd_defensive_item(mtmp));
+				break;
+			case 2:
+				(void) mongets(mtmp, rnd_offensive_item(mtmp));
+				break;
+			case 3:
+				(void) mongets(mtmp, rnd_misc_item(mtmp));
+				break;
+			case 4:
+				(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+				break;
+			case 5:
+				(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+				break;
+			case 6:
+				(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+				break;
+		}
+		pline("%s wishes for an object.", Monnam(mtmp) );
+
+	break;
+	}
+
+	if (!rn2(400 - (mtmp->m_lev * 2) )) { /* summon boss */
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		struct monst *mon;
+		int attempts = 0;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+
+	    }
+	    pline("A boss monster appears from nowhere!");
+
+	break;
+	}
+
+	if (!rn2(300 - (mtmp->m_lev * 2) )) { /* bad effect */
+
+		badeffect();
+
+	break;
+	}
 
 	if (Antimagic && rn2(20)) {
 	    shieldeff(u.ux, u.uy);
