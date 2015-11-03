@@ -445,7 +445,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		  (Displaced && (mtmp->mux != u.ux || mtmp->muy != u.uy)) ?
 		  " at your displaced image" :
 		  " at you");
-	}
+	} else pline("You hear a mumbled incantation.");
 
 /*
  *	As these are spells, the damage is related to the level
@@ -2094,6 +2094,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 		if(canseemon(mtmp))
 		    pline("%s zaps you with a %s!", Monnam(mtmp),
 			  flash_types[ad_to_typ(mattk->adtyp)]);
+		else pline("You hear a buzzing sound.");
 		buzz(-ad_to_typ(mattk->adtyp), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 		     mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
 	    } else impossible("Monster spell %d cast", mattk->adtyp-1);
