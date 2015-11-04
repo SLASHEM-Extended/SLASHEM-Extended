@@ -10811,6 +10811,8 @@ loopback:
 		/* evil patch - one monster class is always generated with a higher frequency (even for mystics) --Amy */
 		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
 
+		if (ct > 0 && (ptr->mcolor == u.frequentcolor)) ct += u.freqcolorbonus;
+
 		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
 		if (ct > 0 && (mndx == u.frequentspecies2)) ct += u.freqspeciesbonus2;
 		if (ct > 0 && (mndx == u.frequentspecies3)) ct += u.freqspeciesbonus3;
@@ -11044,6 +11046,7 @@ int     spc;
 		if (last == u.frequentspecies8) num += u.freqspeciesbonus8;
 		if (last == u.frequentspecies9) num += u.freqspeciesbonus9;
 		if (last == u.frequentspecies10) num += u.freqspeciesbonus10;
+		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
 
 	    }
 
@@ -11085,6 +11088,7 @@ int     spc;
 		if (first == u.frequentspecies8) num -= u.freqspeciesbonus8;
 		if (first == u.frequentspecies9) num -= u.freqspeciesbonus9;
 		if (first == u.frequentspecies10) num -= u.freqspeciesbonus10;
+		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
 		
 		/* or not, because seriously... what the heck??? --Amy */
 		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */

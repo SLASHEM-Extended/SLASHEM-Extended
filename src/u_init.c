@@ -5092,6 +5092,21 @@ u_init()
 	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
 	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
 
+	if (!rn2(10)) {
+	u.frequentcolor = rnd(15);
+	do { u.frequentcolor = rnd(15); } while (u.frequentcolor == CLR_BLUE);
+	u.freqcolorbonus = rne(4);
+	if (!rn2(5)) u.freqcolorbonus += rne(3);
+	if (!rn2(5)) u.freqcolorbonus *= 2;
+	if (!rn2(12)) u.freqcolorbonus *= (1 + rne(15));
+	if (!rn2(60)) u.freqcolorbonus *= (1 + rne(12));
+	if (!rn2(360)) u.freqcolorbonus *= (1 + rne(10));
+	if (!rn2(1360)) u.freqcolorbonus *= (1 + rne(8));
+	if (!rn2(6360)) u.freqcolorbonus *= (1 + rne(7));
+	if (!rn2(36360)) u.freqcolorbonus *= (1 + rne(5));
+	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
+	}
+
 	u.frequentspecies = -1;  
 	u.frequentspecies2 = -1;  
 	u.frequentspecies3 = -1;  

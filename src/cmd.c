@@ -1412,6 +1412,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
+	if (u.freqcolorbonus && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (frequency bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
+		enl_msg("The monster color that ", "is ", "was ", buf );
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies];
 		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus);
