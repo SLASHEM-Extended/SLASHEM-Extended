@@ -741,6 +741,7 @@ int spellnum;
 	 *    who have been treated poorly may ALSO become hostile!
 	 */
 	 case MGC_ENRAGE:
+
 		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 			if (m_cansee(mtmp,mtmp2->mx,mtmp2->my) && rn2(3) &&
 					mtmp2 != mtmp && distu(mtmp2->mx,mtmp2->my) < 16) {

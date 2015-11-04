@@ -456,6 +456,9 @@ struct you {
 
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
+	int frequenttrap;		/* evil patch idea by Amy - trap that is generated more often */
+	int freqtrapbonus;	/* frequency bonus - the actual formula of how this affects generation odds is complicated */
+
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */

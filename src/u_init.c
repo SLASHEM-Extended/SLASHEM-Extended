@@ -5349,7 +5349,11 @@ u_init()
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);
 	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
 
-	u.invisotrap = rn2(TRAPNUM);
+	u.invisotrap = rnd(TRAPNUM-1);
+
+	u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	u.freqtrapbonus = rnz(3) * rne(3);
 
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;

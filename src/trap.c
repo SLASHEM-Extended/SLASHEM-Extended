@@ -882,6 +882,17 @@ register int x, y, typ;
 	register struct rm *lev;
 	register boolean oldplace;
 
+	if (typ != MAGIC_PORTAL && (rnd(u.freqtrapbonus + 200) > 200)) {
+		typ = u.frequenttrap;
+		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
+		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
+		if (typ == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == TELEP_TRAP && level.flags.noteleport) typ = SQKY_BOARD;
+		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
+		if (typ == ACTIVE_SUPERSCROLLER_TRAP) typ = SUPERSCROLLER_TRAP;
+		
+	}
+
 	if ((ttmp = t_at(x,y)) != 0) {
 	    if (ttmp->ttyp == MAGIC_PORTAL) return (struct trap *)0;
 	    oldplace = TRUE;

@@ -1551,6 +1551,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "generated more often: %s (frequency bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
+		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " turn %d", u.next_check);
 		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
 	}
