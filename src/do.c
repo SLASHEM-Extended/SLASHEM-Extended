@@ -2772,6 +2772,13 @@ boolean at_stairs, falling, portal;
 				forget(1 + rn2(5));
 			}
 		    }
+		    if (!rn2(15)) { /* evil patch idea by jonadab */
+			    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(50));
+			    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnd(50));
+			    losehp(rnd(20), "breaking their legs", KILLED_BY);
+			    pline("You crash into the ground very painfully, breaking your legs.");
+		    }
+
 		    if (Punished) {
 			drag_down();
 			if (carried(uball)) {
