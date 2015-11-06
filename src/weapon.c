@@ -1139,10 +1139,13 @@ register struct monst *mtmp;
 		 * Big weapon is basically the same as bimanual.
 		 * All monsters can wield the remaining weapons.
 		 */
-		if (((strongmonst(mtmp->data) && (mtmp->misc_worn_check & W_ARMS) == 0)
-			|| !objects[pwep[i]].oc_bimanual) &&
+
+		/* Amy edit: Allow two-handed weapons for everyone, and allow undead/demons to equip silver */
+
+		if (((/*strongmonst(mtmp->data) &&*/ (mtmp->misc_worn_check & W_ARMS) == 0)
+			|| !objects[pwep[i]].oc_bimanual) /*&&
 		    (objects[pwep[i]].oc_material != SILVER
-			|| !hates_silver(mtmp->data))) {
+			|| !hates_silver(mtmp->data))*/) {
 		    if ((otmp = oselect(mtmp, pwep[i])) != 0) {
 			propellor = otmp; /* force the monster to wield it */
 			return otmp;
@@ -1313,7 +1316,7 @@ register struct monst *mtmp;
 		if (
 		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS)
 			&& otmp->oartifact && touch_artifact(otmp,mtmp)
-			&& ((strong && !wearing_shield)
+			&& ((/*strong &&*/ !wearing_shield)
 			    || !objects[otmp->otyp].oc_bimanual))
 		    return otmp;
 	}
@@ -1324,15 +1327,21 @@ register struct monst *mtmp;
 	/* only strong monsters can wield big (esp. long) weapons */
 	/* big weapon is basically the same as bimanual */
 	/* all monsters can wield the remaining weapons */
+
+	/* Amy edit: see above, allow two-handed and silver for everyone */
+
 	for (i = 0; i < SIZE(hwep); i++) {
 	    if (hwep[i] == CORPSE && !resists_ston(mtmp) && !(mtmp->misc_worn_check & W_ARMG))
 		continue;
-	    if (((strong && !wearing_shield)
-			|| !objects[hwep[i]].oc_bimanual) &&
+	    if (((/*strong &&*/ !wearing_shield)
+			|| !objects[hwep[i]].oc_bimanual) /*&&
 		    (objects[hwep[i]].oc_material != SILVER
-			|| !hates_silver(mtmp->data)))
+			|| !hates_silver(mtmp->data))*/)
 		Oselect(hwep[i]);
 	}
+
+	/* After all, YOU can equip a silver saber in your bare hands as a vampire no problem. --Amy
+	 * This is supposed to be a *difficult* variant of NetHack, so we have exactly zero reason to penalize monsters. */
 
 	/* failure */
 	return (struct obj *)0;
