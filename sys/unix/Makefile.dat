@@ -338,12 +338,13 @@ quest_levs: ../util/lev_comp \
 	Supermar.des Thalmor.des Top.des Tourist.des Trans.des		\
 	Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des	\
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
-	Slime.des Erdrick.des Anachr.des
+	Slime.des Erdrick.des Anachr.des Druid.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
 	../util/lev_comp Altmer.des
 	../util/lev_comp Amazon.des
+	../util/lev_comp Druid.des
 	../util/lev_comp Anachr.des
 	../util/lev_comp Arch.des
 	../util/lev_comp Artist.des

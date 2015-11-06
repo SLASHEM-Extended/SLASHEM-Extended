@@ -572,6 +572,8 @@ register struct monst *mtmp;
 
 		if (ptr == &mons[PM_BLOODY_LAWYER]) (void) mongets(mtmp, SCR_BAD_EFFECT);
 
+		if (ptr == &mons[PM_HEFFER]) (void) mongets(mtmp, MALLET);
+
 		if (ptr == &mons[PM_KARATE_SISTER]) (void) mongets(mtmp, COMBAT_STILETTOS);
 
 		if (ptr == &mons[PM_WOODSMAN]) (void) mongets(mtmp, AXE);
@@ -1806,6 +1808,21 @@ register struct monst *mtmp;
 		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, JAVELIN);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+		     (void)mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 50);
+
+		   break;
+
+		   case PM_DRUID:
+		   case PM_UNDEAD_DRUID:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, CLUB);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 		     (void)mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 50);
@@ -11531,6 +11548,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_SPIDER && Race_if(PM_SPIDERMAN) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_LIZARD && Race_if(PM_ARGONIAN) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NYMPH && Race_if(PM_NYMPH) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_NYMPH && Role_if(PM_DRUID) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_BAD_FOOD && Role_if(PM_DRUID) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_LEPRECHAUN && Race_if(PM_HUMANOID_LEPRECHAUN) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_HUMANOID && Race_if(PM_ILLITHID) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_VORTEX && Race_if(PM_VORTEX) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

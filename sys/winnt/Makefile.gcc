@@ -1480,7 +1480,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\slavemas.des $(DAT)\mystic.des 	$(DAT)\bloodsee.des 	$(DAT)\ladies.des \
 		$(DAT)\jester.des $(DAT)\pickpock.des 	$(DAT)\mahou.des 	$(DAT)\gehenX.des \
 		$(DAT)\bard.des $(DAT)\amazon.des $(DAT)\goff.des $(DAT)\kwests.des $(DAT)\mazes.des \
-		$(DAT)\slime.des $(DAT)\erdrick.des
+		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des
 
 	lev_comp $(DDAT)/abuser.des
 	lev_comp $(DDAT)/saiyan.des
@@ -1519,6 +1519,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 
 	lev_comp $(DDAT)/bard.des
 	lev_comp $(DDAT)/amazon.des
+	lev_comp $(DDAT)/druid.des
 	lev_comp $(DDAT)/altmer.des
 	lev_comp $(DDAT)/bosmer.des
 	lev_comp $(DDAT)/dunmer.des

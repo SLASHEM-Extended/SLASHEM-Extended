@@ -1,0 +1,443 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+### The quest "start" level ###
+#
+#
+MAZE: "Drd-strt",'T'
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+      TTTTTTTTTTTTTTT       TTTTTTTTTTTTTTTTTT       TTTTTTTTTTTTTTT      
+      T..T...T......TTTTTTTTT................TTTTTTTTT......T...T..T      
+      T..T...TTTTFTTT.............TTTTTT.............TTTFTTTT...T..T      
+      T..TTFTTT.........TTTTTTTTT.TTTTTT.TTTTTTTTT.........TTTFTT..T      
+      TFTT........TTTTTTTTT.....T........T.....TTTTTTTTT........TTFT      
+    TTT......TTTTTT......TT.....T........T.....TT......TTTTTT......TTT    
+  TTT.....TTTT....T......TTTT+TTT.... ...TTT+TTTT......T....TTTT.....TTT  
+TTT.....TTTTTT....TTT+TTTTT........ ... .......TTTTT+TTT....TTTTTT.....TTT
+T.......T....TT+TTT..................}.................TT+TTT....T.......T
+T.......T....+................... ..}}}.. ..................+....T.......T
+T.......T....TT+TTT..................}.................TT+TTT....T.......T
+TTT.....TTTTTT....TTT+TTTTT........ ... .......TTTTT+TTT....TTTTTT.....TTT
+  TTT.....TTTT....T......TTTT+TTT.... ...TTT+TTTT......T....TTTT.....TTT  
+    TTT......TTTTTT......TT.....T........T.....TT......TTTTTT......TTT    
+      TFTT........TTTTTTTTT.....T........T.....TTTTTTTTT........TTFT      
+      T..TTFTTT.........TTTTTTTTT.TTTTTT.TTTTTTTTT.........TTTFTT..T      
+      T..T...TTTTFTTT.............TTTTTT.............TTTFTTTT...T..T      
+      T..T...T......TTTTTTTTT................TTTTTTTTT......T...T..T      
+      TTTTTTTTTTTTTTT       TTTTTTTTTTTTTTTTTT       TTTTTTTTTTTTTTT      
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+BRANCH:(01,09,01,09),(0,0,0,0)
+
+# Let's just allow the hunters to randomly roam the level.
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"Halbu",(50,09)
+
+# No random starting monsters. This won't stop the game from spawning some if the player lingers around, of course.
+
+STAIR:(71,09),down
+
+### Upper filler levels ###
+#
+MAZE: "Drd-fila", 'T'
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                        TTTTT 
+ TTT TTT TTTTTTT    TTTTTF..T 
+ T.T T.T T.F...T TTTT.TT.FFFTT
+ T.T T.T T.F...T T..F.......L.
+TTLTTT.TTT.FFFFTTT..F.TT.TT.TT
++.............L..F..F.T TTT.TT
+T.TTT.TT.TFTT.TTTT..F.T T....+
+T.T T.TT.T..F.T  TTTT.TTTTTLTT
+TTT T.TT.T..F.T  T.....TTTT.T 
+    TTTTTTFTT.TTTTFFFF....T.T 
+ TTTT...........F....F..TTTTT 
+ T..L.TT.TTTTFT.FFFFFF+TTTTT  
+ TTTT.TTFTTTT.TTT......#...T  
+    T.............TTTT.TTTTT  
+    T.TTT.TTTLTTT.TTTT.T      
+    T.T T.T T.T T.TT.S.T      
+    TTT T.T T.TTTTTT.TTT      
+        TTT TTTT...S.S.T      
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+MAZEWALK:(00,06),west
+MAZEWALK:(29,07),east
+DOOR:random,(00,06)
+DOOR:random,(29,07)
+DOOR:random,(22,12)
+DOOR:locked,(21,16)
+DOOR:locked,(19,18)
+DOOR:locked,(21,18)
+
+STAIR:random,up
+STAIR:random,down
+
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+### The quest "locate" level ###
+#
+MAZE: "Drd-loca",'T'
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.
+T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTTTT.TT.TTTTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T
+TT.TTTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTT..TTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTTT.TT
+TTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT..TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTT
+TTTT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TTTT
+TTTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTTT
+TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT
+TTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTT
+TTTTTTTT.TTT.TTTTTTTTTTTTTTT.TTT.TT.TTTTTT..TTT.T.TTTTTTTTTTTTT.TTT.TTTTTTTT
+TTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTT
+TTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTT
+TTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTT
+TTTTTTTT.TTT.TTTTTTTTTTTTTTT.TTT.TT.TTTTTT..TTT.T.TTTTTTTTTTTTT.TTT.TTTTTTTT
+TTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTTTT.TTTTTTT
+TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT.TTTTTTT.TTTTTTTTTTT.TTTTTTT.TTTTTT
+TTTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTT.TTTTTTTTT.TTTTTTTTT.TTTTTTTTT.TTTTT
+TTTT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TT.TTTTTTTTTTT.TTTTTTT.TTTTTTTTTTT.TTTT
+TTT.TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT..TTTTTTTTTTTTT.TTTTT.TTTTTTTTTTTTT.TTT
+TT.TTTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTT..TTTTTTTTTTTTTT.TTT.TTTTTTTTTTTTTTT.TT
+T.TTTTTTTTTTTTTTTTT.T.TTTTTTTTTTTTTT.TT.TTTTTTTTTTTTTT.T.TTTTTTTTTTTTTTTTT.T
+.TTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTT.TTTT.TTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT.
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+RANDOM_PLACES:(28,08),(35,08),(42,08),(49,08),(28,12),(35,12),(42,12),(49,12)
+
+
+STAIR:(0,0),up
+STAIR:(75,20),down
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+### Lower fill levels ###
+#
+MAZE: "Drd-filb", 'T'
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890123
+MAP
+                                                                            
+  ...                 ............                                          
+ ....                ..          .                                          
+ .....             ...           .    ...                   ..              
+  ....              ....         .  ... .                    ...            
+   ....             ....         .  .   ....              ......      .     
+    ..           .... ..         .... .......             .   .      ..     
+    .            .                    ..  ...             .          .      
+    ...       .  .                   ..    .              .          ...    
+      .      ..  ..                  .    ...             ..........  ..    
+      .     ..   ...                      . .                      .   .    
+      ....  ...   ...                     .      .....        ......   .    
+     ..  .  . .. ...                      .     ..   ..       .        .    
+     .   ....  ....                       .......   ..        .        .    
+     .            .       ..                        .         .    ... .    
+     .            ....   ..                         ....................    
+  ....               .   .                                         ...      
+ ....                .....                                                  
+   ..                                                                       
+                                                                            
+ENDMAP
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+### The quest "goal" level ###
+#
+MAZE: "Drd-goal", 'T'
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+T..........................................................................T
+T..............T.........................TTTTTTTTTT........................T
+T..............T.......................TTT........TTT......................T
+T..............T.....................TTT............TTT....................T
+T..............T.....................T................TT.............T.....T
+T..............T......T................................T.............T.....T
+T..............T......T................................T...........TT.TT...T
+T..............T......T...............................TT..........TT...TT..T
+T..............T......T..............................TT...........T.....T..T
+T..............T......T............................TTT...........TTTT+TTTT.T
+T..............TTTTTTTTTTTTTTT...................TTT.............TTT...TTT.T
+T................PPPPPT.......................TTTT................T.....T..T
+T................PPPPPT....................TTTT...................T.....T..T
+T.....................T.............TTTTTTTT......................T.....T..T
+T.....................T.............T......................................T
+TTTTTTTT..............T.............TTTTTTTTTTTTTTTTTTTTTTTT...............T
+T......T...................................................................T
+T......+...................................................................T
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+
+# Specifications for the whole level
+
+STAIR:(15,01),up
+
+OBJECT:')',"bow",(69,08),blessed,+5,"Heffer's Bow"
+MONSTER:'@',"Heffer",(69,08),hostile
+
+# Random monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+DOOR: locked, (07,18)
+DOOR: closed, (69,10)

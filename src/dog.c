@@ -322,6 +322,8 @@ makedog()
 
 	if (pettype == PM_VAMPIRE) petname = "Cheater";
 
+	if (pettype == PM_RAVEN) petname = "Nevermore";
+
 	if (pettype == PM_ANTIMATTER_VORTEX) petname = "Expensive Special Effect";
 
 	if (pettype == PM_DARK_GRUE) petname = "ZORK!";

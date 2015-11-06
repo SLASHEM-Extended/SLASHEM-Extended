@@ -405,6 +405,9 @@ register boolean special;
 		case PM_RINGSEEKER:
 		    weapon = ELVEN_DAGGER;
 		    break;
+		case PM_DRUID:
+		    weapon = BATTLE_STAFF;
+		    break;
 		case PM_SHAPESHIFTER:
 		    weapon = ATHAME;
 		    break;

@@ -992,6 +992,12 @@ struct monst *mon;
 {
     int mmove = mon->data->mmove;
 
+	if (mon->data == &mons[PM_HEFFER] || mon->data == &mons[PM_THE_SMITH] ) {
+	/* Hephaisto, also known as "The Armorer", speeds up whenever he takes damage. --Amy */
+		mmove *= mon->mhpmax;
+		mmove /= mon->mhp;
+	}
+
     if (mmove == 0) mmove++;	/* allowing stationary monsters to occasionally get turns --Amy */
 
     /* Note: MSLOW's `+ 1' prevents slowed speed 1 getting reduced to 0;

@@ -807,6 +807,34 @@ const struct Role roles[] = {
 	-20, 8, 0, 6,  14, A_INT, SPE_ACID_STREAM, -4
 },
 
+{	{"Druid", 0}, {
+	{"Fire Tower Caster",    0},
+	{"Rock Melter",    0},
+	{"Eruption Magician",    0},
+	{"Windchiller",    0},
+	{"Tornado Chief",    0},
+	{"Volcano Prince",    0},
+	{"Causer of Hurricanes",    0},
+	{"Armageddon Mage",    0},
+	{"Thundering Earthshaker",      0} },
+	"Tal Rascha", "_Blood Raven", "B-a-a-l", /* Diablo 2 */
+	"Drd", "Scosglen Forests", "the place where everyone dies",
+	PM_DRUID, NON_PM, PM_UNDEAD_DRUID, NON_PM, PM_RAVEN,
+	PM_HALBU, PM_HUNTER, PM_HEFFER,
+	PM_MOVED_SHAMAN, PM_VOLCANIC_ELEMENTAL, S_KOBOLD, S_ELEMENTAL,
+
+	ART_HEFFER_S_BOW,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  8,  7, 10, 17,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15,  8, 25, 14, 18 },
+	/* Init   Lower  Higher */
+	{ 8, 0,  0, 1,  1, 0 },	/* Hit points */
+	{ 12, 0,  0, 3,  0, 4 },11,	/* Energy */
+	10, 7, -3, 2,  9, A_INT, SPE_CREATE_FAMILIAR,    -4
+},
+
 {	{"Drunk", 0}, {
 	{"Drinker",     0},
 	{"Boozer",   0},

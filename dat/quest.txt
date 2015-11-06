@@ -1069,6 +1069,219 @@ you're gonna need it!"
 %E
 
 
+#
+#       Druid
+#
+%Cc Drd 00001
+You're at %H, the place that's been your home for a long time.
+What task might be the reason %l is calling you here?
+%E
+%Cp Drd 00002
+Once again, you are back at %H.
+%E
+%Cp Drd 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Drd 00005
+"The Gates of Hell have been breached!"
+%E
+%Cp Drd 00006
+"We must end the demon threat!"
+%E
+%Cp Drd 00007
+"Only you can save us from Heffer!"
+%E
+%Cp Drd 00008
+"%l is in need of your assistance, %p!"
+%E
+%Cp Drd 00009
+"You will be our only hope of defeating the forces of Hell!"
+%E
+%Cp Drd 00010
+"Well done! Heffer and his minions won't trouble us no more!"
+%E
+%Cp Drd 00011
+"You saved %H from Heffer!"
+%E
+%Cp Drd 00012
+"You saved %l from being killed by Heffer's minions!"
+%E
+%Cp Drd 00013
+"Thank God! The hellspawn will no longer be able to threaten %H!"
+%E
+%Cp Drd 00014
+"We can live in peace once again!"
+%E
+%Cc Drd 00015
+"Hail, %p, fellow %r! I'm so glad you're here. You see,
+Heffer, the blacksmith of Hell, is gathering an army of demons to attack us.
+
+You may be capable of defeating him, though. I'll test
+your abilities to see if you're ready."
+%E
+%Cp Drd 00016
+"I hope you've trained, %p! The longer you need, the more likely it is that
+Heffer's forces overrun %H!
+I'll check your abilities again!"
+%E
+%Cp Drd 00017
+"Damn it, %p, the demons are standing at the gates!
+We need your assistance now or all is lost!"
+%E
+%Cc Drd 00018
+"Oh my god, we're doomed!"
+%E
+%Cc Drd 00019
+"%p, you're not ready to face Heffer yet. Come back once you are,
+but hurry up, please!"
+%E
+%Cc Drd 00020
+"You have strayed, %p! Repent and then come back at once!"
+%E
+%Cc Drd 00021
+"Yes! You're the chosen one, %p. You will venture to %i and
+do battle with Hephaistos the Armorer, also known as Heffer.
+Watch out. He will get more and more furious when hurt.
+Good luck, and come back in one piece!"
+%E
+%Cp Drd 00025
+"Heffer might be well-armored, but you can overcome his defenses."
+%E
+%Cp Drd 00026
+"Watch out, elementals may get in your way."
+%E
+%Cp Drd 00027
+"You might meet swarms of kobolds on your path. Use whatever spells you like
+to take them out."
+%E
+%Cp Drd 00028
+"Remember that Heffer has no ranged attacks. Spells might be just the ticket
+to bring him down."
+%E
+%Cp Drd 00029
+"Heffer is not resistant to poison."
+%E
+%Cp Drd 00030
+"Using fire spells on Heffer probably won't work."
+%E
+%Cp Drd 00031
+"We're counting on you!"
+%E
+%Cp Drd 00032
+"You will be the hero that defeated Heffer!"
+%E
+%Cp Drd 00033
+"Where other druids have failed, you will be victorious, I'm sure."
+%E
+%Cp Drd 00034
+"Legends say that Heffer guards a very special bow. You might want to get it."
+%E
+%Cc Drd 00035
+You're on your way to %i. There must be an entrance somewhere...
+%E
+%Cp Drd 00036
+Once again, you are near the entrance to %i.
+%E
+%Cc Drd 00040
+This is it! %i - you have to hold back your fears as you enter.
+The place is called that because many other druids have died
+here in their quest. Hopefully you will fare better than them.
+%E
+%Cp Drd 00041
+You're back at %i.
+You can definitely feel an increasing sense of fear...
+%E
+%Cc Drd 00050
+"Your soul will be food for Hellfire!"
+%E
+%Cc Drd 00051
+"I will make weapons from your bones!"
+%E
+%Cp Drd 00052
+"I'll smash you!"
+%E
+%Cp Drd 00053
+"You won't have my hammer!"
+%E
+%Cp Drd 00060
+"HAAAAAAAAARGH!"
+%E
+%Cp Drd 00061
+"RAAAAAAAAHHH!"
+%E
+%Cp Drd 00062
+"GRRRRRRRRRRR!"
+%E
+%Cp Drd 00063
+"HOAHAHAHAHAHAHA!"
+%E
+%Cp Drd 00064
+"You're dead!"
+%E
+%Cp Drd 00065
+"Join the legion of devils or die!"
+%E
+%Cp Drd 00066
+"I'll break all your bones!"
+%E
+%Cp Drd 00067
+"I'll crush your head!"
+%E
+%Cp Drd 00068
+"You'll get pounded!"
+%E
+%Cp Drd 00069
+"Die, human!"
+%E
+%Cc Drd 00070
+Whoa. This bow... it's amazing! You can feel great power as your hands touch it.
+"Yes, I should definitely keep it..." you mutter to yourself as you make
+your way back to %l.
+%E
+%Cp Drd 00080
+Heffer screams: "OAAAAAAAAAAAAAAAA-AAAH!"
+His body twitches one last time and falls down with a mighty crash.
+%E
+%Cc Drd 00081
+"Congratulations, %p! You defeated Heffer!
+Peace is restored, %H will forever be safe from the evil forces
+that inhabit %i.
+Good luck on your next quest, and may the spirits of nature be with you!"
+%E
+%Cc Drd 00082
+"%o can create arrows from thin air. Use it valiantly and slay
+all demons that get in your way."
+%E
+%Cc Drd 00090
+"Hail, %p! Long time no see! Things are really going well since Heffer
+was killed by you. At last, %H is experiencing a period of peace.
+Thank you so much."
+%E
+%Cc Drd 00091
+"That amulet you're holding radiates more power than anything I've ever
+seen, %p.
+If I'm not mistaken, you must take it to the Astral Plane and offer it
+to %d!"
+%E
+%Cc Drd 00095
+"You abandoned %d, and thereby betrayed me and everyone else.
+Begone. You're not welcome here anymore."
+%E
+
+%Cp Drd 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Drd 00101
+You again sense %l pleading for help.
+%E
+%Cp Drd 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
 
 
 #
