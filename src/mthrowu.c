@@ -313,12 +313,19 @@ int x,y;
 		if (!objgone) {
 			if (!flooreffects(obj,x,y,"fall")) { /* don't double-dip on damage */
 			    place_object(obj, x, y);
+
 			    if (!mtmp && x == u.ux && y == u.uy)
 				mtmp = &youmonst;
 			    if (mtmp && ohit)
 				passive_obj(mtmp, obj, (struct attack *)0);
-			    stackobj(obj);
+
+			    /* evil patch idea: monsters shooting nasty gray stones cause them to end up in your pack --Amy */
+			    if (obj && x == u.ux && y == u.uy && is_nastygraystone(obj)) {
+			      pline("%s lands in your knapsack!", Doname2(obj));
+				(void) pickup_object(obj, 1L, TRUE);
+			    } else stackobj(obj);
 			    retvalu = 0;
+
 			}
 		}
 	} else if (obj) obfree(obj, (struct obj*) 0);

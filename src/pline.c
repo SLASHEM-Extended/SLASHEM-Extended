@@ -778,7 +778,7 @@ const char *st, *orig, *repl;
         if( (*st)== '"' ) return st;
 
         /* at most 20 times we replace the word to prevent infinite loops */
-        i=20;
+        i=100;
 REPEAT:
         /*Most calls won't match, so do the match first.*/
 	if (!(ch = strstr(st, orig)))
