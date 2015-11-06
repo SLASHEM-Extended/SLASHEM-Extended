@@ -1017,7 +1017,7 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
-	} else if (tunnels(youmonst.data) && !needspick(youmonst.data)) {
+	} else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd)) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	} else if (flags.autodig && !flags.run && !flags.nopick &&
@@ -1043,7 +1043,7 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but the gap is too small.");
-		    else if (tunnels(youmonst.data) && !needspick(youmonst.data))
+		    else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd))
 			You("hurt your teeth on the re-enforced door.");
 		    else if (x == u.ux || y == u.uy) {
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {                            pline("Ouch!  You bump into a heavy door.");
@@ -1057,7 +1057,7 @@ int mode;
 		;	/* do nothing */
 	    else if (can_ooze(&youmonst)) {
 		if (mode == DO_MOVE) You("ooze under the door.");
-	    } else if (tunnels(youmonst.data) && !needspick(youmonst.data)) {
+	    } else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd)) {
 		/* Eat the door. */
 		if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	    } else {
@@ -1150,7 +1150,7 @@ int mode;
 	    return FALSE;
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
-	    if (tunnels(youmonst.data) && !needspick(youmonst.data) &&
+	    if ((tunnels(youmonst.data) && !needspick(youmonst.data) || (Race_if(PM_SCURRIER) && !Upolyd)) &&
 		!In_sokoban(&u.uz)) {
 		if (still_chewing(x,y)) return FALSE;
 	    } else
@@ -1162,6 +1162,7 @@ int mode;
 	    if (sobj_at(BOULDER,ux,uy) && !In_sokoban(&u.uz)) {
 		if (!Passes_walls &&
 		    !(tunnels(youmonst.data) && !needspick(youmonst.data)) &&
+		    !(Race_if(PM_SCURRIER) && !Upolyd) &&
 		    !carrying(PICK_AXE) && !carrying(DWARVISH_MATTOCK) &&
 		    !((obj = carrying(WAN_DIGGING)) &&
 		      !objects[obj->otyp].oc_name_known))

@@ -1730,15 +1730,17 @@ escape_tomb()
 		boolean good;
 
 		if(amorphous(youmonst.data) || Passes_walls ||
-		   noncorporeal(youmonst.data) || unsolid(youmonst.data) ||
+		   noncorporeal(youmonst.data) || unsolid(youmonst.data) || (Race_if(PM_SCURRIER) && !Upolyd) ||
 		   (tunnels(youmonst.data) && !needspick(youmonst.data))) {
 
 		    You("%s up through the %s.",
 			(tunnels(youmonst.data) && !needspick(youmonst.data)) ?
-			 "try to tunnel" : (amorphous(youmonst.data)) ?
+			 "try to tunnel" : (Race_if(PM_SCURRIER) && !Upolyd) ? "try to tunnel" : (amorphous(youmonst.data)) ?
 			 "ooze" : "phase", surface(u.ux, u.uy));
 
 		    if(tunnels(youmonst.data) && !needspick(youmonst.data))
+			good = dighole(TRUE);
+		    else if (Race_if(PM_SCURRIER) && !Upolyd)
 			good = dighole(TRUE);
 		    else good = TRUE;
 		    if(good) unearth_you();

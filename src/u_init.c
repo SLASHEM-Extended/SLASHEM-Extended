@@ -2491,6 +2491,16 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_VAMGOYLE,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
     { PM_GASTLY,	FOOD_RATION,		CORPSE     },
     { PM_PHANTOM_GHOST,	FOOD_RATION,		CORPSE     },
+
+    /* for weight reasons, don't give scurriers heavy items */  
+    {PM_SCURRIER, FOOD_RATION, SLIME_MOLD},  
+    {PM_SCURRIER, CRAM_RATION, SLIME_MOLD},  
+    {PM_SCURRIER, PICK_AXE, LENSES},  
+    {PM_SCURRIER, DAGGER, DART},  
+    {PM_SCURRIER, BOW, DART},  
+    {PM_SCURRIER, ARROW, DART},  
+	/* and yes, this is slashem extended, where they're all much lighter. Consider it a way of nerfing the race. --Amy */
+
     { NON_PM,	STRANGE_OBJECT,		STRANGE_OBJECT	      }
 };
 
@@ -9826,6 +9836,7 @@ u_init()
 	case PM_BRETON: racebounus = rnz(5); break;
 	case PM_REDGUARD: racebounus = rnz(5); break;
 	case PM_YOKUDA: racebounus = rnz(7); break;
+	case PM_SCURRIER: racebounus = rnz(6); break;
 	case PM_IMPERIAL: racebounus = rnz(13); break;
 	case PM_ELF: racebounus = rnz(11); break;
 	case PM_GIGANT: racebounus = rnz(12); break;
