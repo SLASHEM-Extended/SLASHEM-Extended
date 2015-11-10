@@ -786,7 +786,7 @@ register struct monst *mtmp;
 		break;
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
-		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) ) )
+		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER ) )
 		    return (struct obj *)0;
 		else	/* preserve the unique traits of some creatures */
 		    obj = mkcorpstat(CORPSE, KEEPTRAITS(mtmp) ? mtmp : 0,

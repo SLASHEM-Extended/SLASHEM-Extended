@@ -8355,6 +8355,1034 @@ register struct	monst	*mtmp;
 
 	}
 
+	if (ptr == &mons[PM_JIL]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+
+	}
+
+	if (ptr == &mons[PM_PATRICIA]) {
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+
+	}
+
+	if (ptr == &mons[PM_KERSTIN]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, BLUE_DRAGON_SCALE_MAIL);
+
+	}
+
+	if (ptr == &mons[PM_SALLY]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, DAGGER);
+
+	}
+
+	if (ptr == &mons[PM_HANH]) {
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, POT_FULL_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_ANTJE]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, SCR_BULLSHIT);
+
+	}
+
+	if (ptr == &mons[PM_JENNIFER]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+
+	}
+
+	if (ptr == &mons[PM_ELKE]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_KARIN]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, WAN_DRAINING);
+		(void) mongets(mtmp, SCR_TRAP_CREATION);
+
+	}
+
+	if (ptr == &mons[PM_NICOLE]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, ELVEN_BOW);
+		m_initthrow(mtmp, ELVEN_ARROW, 50);
+
+	}
+
+	if (ptr == &mons[PM_BETTINA]) {
+		(void) mongets(mtmp, SPEED_BOOTS);
+		(void) mongets(mtmp, ATHAME);
+		(void) mongets(mtmp, T_SHIRT);
+
+	}
+
+	if (ptr == &mons[PM_INA]) {
+		(void) mongets(mtmp, WAN_STARVATION);
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, WAN_EXTRA_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_HEIKE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SPEED_BOOTS);
+		(void) mongets(mtmp, PISTOL);
+		m_initthrow(mtmp, BULLET, 20);
+
+	}
+
+	if (ptr == &mons[PM_DORA]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, BULLWHIP);
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, POT_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_MAITE]) {
+		(void) mongets(mtmp, POT_CYANIDE);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+
+	}
+
+	if (ptr == &mons[PM_RUTH]) {
+		(void) mongets(mtmp, POT_RADIUM);
+		(void) mongets(mtmp, POT_RADIUM);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+
+	}
+
+	if (ptr == &mons[PM_VERENA]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+
+	}
+
+	if (ptr == &mons[PM_LOU]) {
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_DANIELLE]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, WAN_CANCELLATION);
+		(void) mongets(mtmp, RIFLE);
+		m_initthrow(mtmp, BULLET, 50);
+
+	}
+
+	if (ptr == &mons[PM_AMANDINE]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+
+	}
+
+	if (ptr == &mons[PM_LILY]) {
+		(void) mongets(mtmp, ORCISH_DAGGER);
+
+	}
+
+	if (ptr == &mons[PM_LEONIE]) {
+		(void) mongets(mtmp, SHORT_SWORD);
+
+	}
+
+	if (ptr == &mons[PM_MIRA]) {
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, POT_FULL_HEALING);
+		(void) mongets(mtmp, WAN_INCREASE_MAX_HITPOINTS);
+	}
+
+	if (ptr == &mons[PM_SOFIA]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, FEMININE_PUMPS);
+
+	}
+
+	if (ptr == &mons[PM_CHRISTIANE]) {
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+
+	}
+
+	if (ptr == &mons[PM_ANN_KATHRIN]) {
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, LACQUERED_DANCING_SHOE);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+
+	}
+
+	if (ptr == &mons[PM_NJUSHA]) {
+		(void) mongets(mtmp, WOODEN_GETA);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, WAN_CONFUSION);
+
+	}
+
+	if (ptr == &mons[PM_DESIREE]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, KNIFE);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, WAN_CREATE_MONSTER);
+
+	}
+
+	if (ptr == &mons[PM_CELIA]) {
+		(void) mongets(mtmp, SCR_BULLSHIT);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+
+	}
+
+	if (ptr == &mons[PM_ELIANE]) {
+		(void) mongets(mtmp, WAN_PARALYSIS);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, POT_PARALYSIS);
+		(void) mongets(mtmp, POT_PARALYSIS);
+		(void) mongets(mtmp, POT_PARALYSIS);
+	}
+
+	if (ptr == &mons[PM_FENJA]) {
+		(void) mongets(mtmp, WAN_DISINTEGRATION);
+		(void) mongets(mtmp, WAN_STONING);
+		(void) mongets(mtmp, WAN_FULL_HEALING);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, WOODEN_GETA);
+		(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_SILVANA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SCALPEL);
+		(void) mongets(mtmp, SCR_EARTH);
+		(void) mongets(mtmp, SCR_FIRE);
+	}
+
+	if (ptr == &mons[PM_MANDARINA]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, CRYSKNIFE);
+		(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, SCR_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_ARIANE]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		(void) mongets(mtmp, WAN_STRIKING);
+
+	}
+
+	if (ptr == &mons[PM_CARINA]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, POT_PARALYSIS);
+		(void) mongets(mtmp, LEATHER_JACKET);
+
+	}
+
+	if (ptr == &mons[PM_DENISE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+
+	}
+
+	if (ptr == &mons[PM_KIRA]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, WAN_HEALING);
+
+	}
+
+	if (ptr == &mons[PM_NADINE]) {
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, SILVER_DRAGON_SCALES);
+		(void) mongets(mtmp, WAN_ACID);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+
+	}
+
+	if (ptr == &mons[PM_RONJA]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, LEATHER_JACKET);
+		(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+
+	}
+
+	if (ptr == &mons[PM_ELISABETH]) {
+		(void) mongets(mtmp, SCR_FLOOD);
+
+	}
+
+	if (ptr == &mons[PM_CONNY]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		m_initthrow(mtmp, DART, 50);
+
+	}
+
+	if (ptr == &mons[PM_LISA]) {
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, WAN_LIGHTNING);
+		(void) mongets(mtmp, POT_BLINDNESS);
+
+	}
+
+	if (ptr == &mons[PM_ANJA]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+
+	}
+
+	if (ptr == &mons[PM_YASAMAN]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, LEATHER_CLOAK);
+
+	}
+
+	if (ptr == &mons[PM_ALMUTH]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, WAN_CORROSION);
+
+	}
+
+	if (ptr == &mons[PM_KSENIA]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, POT_FEAR);
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, WAN_TELE_LEVEL);
+
+	}
+
+	if (ptr == &mons[PM_MIRIAM]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, POT_SLEEPING);
+		(void) mongets(mtmp, POT_STUNNING);
+
+	}
+
+	if (ptr == &mons[PM_ELENA]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, POT_CONFUSION);
+		(void) mongets(mtmp, POT_HALLUCINATION);
+		(void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		(void) mongets(mtmp, WAN_FULL_HEALING);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+	}
+
+	if (ptr == &mons[PM_KATHARINA]) {
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, POT_CANCELLATION);
+		(void) mongets(mtmp, POT_AMNESIA);
+		(void) mongets(mtmp, SCR_SUMMON_UNDEAD);
+		(void) mongets(mtmp, WAN_FULL_HEALING);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+	}
+
+	if (ptr == &mons[PM_HELEN]) {
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		m_initthrow(mtmp, DART, 30);
+		m_initthrow(mtmp, SHURIKEN, 5);
+
+	}
+
+	if (ptr == &mons[PM_LUCIA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, WAR_HAMMER);
+
+	}
+
+	if (ptr == &mons[PM_VICTORIA]) {
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, SCR_PUNISHMENT);
+		(void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+
+	}
+
+	if (ptr == &mons[PM_SIMONE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, WAN_LYCANTHROPY);
+		(void) mongets(mtmp, POT_FIRE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, POT_FEAR);
+		(void) mongets(mtmp, DANCING_SHOES);
+
+	}
+
+	if (ptr == &mons[PM_NATALIYA]) {
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, POT_BLINDNESS);
+		(void) mongets(mtmp, SCR_CLOUDS);
+	}
+
+	if (ptr == &mons[PM_KRISTIN]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+
+	}
+
+	if (ptr == &mons[PM_NELLY]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+
+	}
+
+	if (ptr == &mons[PM_REJDA]) {
+		(void) mongets(mtmp, ASSAULT_RIFLE);
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, POT_INVISIBILITY);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+
+	}
+
+	if (ptr == &mons[PM_VERA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, WAN_COLD);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, WHITE_DRAGON_SCALES);
+		(void) mongets(mtmp, CLOAK_OF_WARMTH);
+		(void) mongets(mtmp, ICE_SHIELD);
+		(void) mongets(mtmp, WAN_INCREASE_MAX_HITPOINTS);
+	}
+
+	if (ptr == &mons[PM_NORA]) {
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, POT_MUTATION);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+	}
+
+	if (ptr == &mons[PM_JASIEEN]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, CLOAK_OF_REFLECTION);
+		(void) mongets(mtmp, BLACK_DRAGON_SCALE_MAIL);
+		(void) mongets(mtmp, HELM_OF_STEEL);
+		(void) mongets(mtmp, GAUNTLETS_OF_STEEL);
+		(void) mongets(mtmp, T_SHIRT);
+		(void) mongets(mtmp, VENOM_SHIELD);
+	}
+
+	if (ptr == &mons[PM_MARIKE]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, POT_URINE);
+		(void) mongets(mtmp, WAN_SLIMING);
+	}
+
+	if (ptr == &mons[PM_MERLE]) {
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+
+	}
+
+	if (ptr == &mons[PM_MARIANNE]) {
+		(void) mongets(mtmp, SCR_WOUNDS);
+
+	}
+
+	if (ptr == &mons[PM_SINA]) {
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, CLUB);
+		(void) mongets(mtmp, POT_ACID);
+
+	}
+
+	if (ptr == &mons[PM_DOROTHEA]) {
+		(void) mongets(mtmp, RUBBER_HOSE);
+
+	}
+
+	if (ptr == &mons[PM_TINANYA]) {
+		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, SPEAR);
+	}
+
+	if (ptr == &mons[PM_ALINE]) {
+		(void) mongets(mtmp, T_SHIRT);
+		(void) mongets(mtmp, RING_MAIL);
+		(void) mongets(mtmp, MACE);
+
+	}
+
+	if (ptr == &mons[PM_MICHAELA]) {
+		(void) mongets(mtmp, LARGE_SHIELD);
+		(void) mongets(mtmp, SCIMITAR);
+		(void) mongets(mtmp, UNICORN_HORN);
+
+	}
+
+	if (ptr == &mons[PM_MARE]) {
+		(void) mongets(mtmp, TORPEDO);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, WAN_SPEED_MONSTER);
+		(void) mongets(mtmp, LEATHER_ARMOR);
+		(void) mongets(mtmp, POT_STUNNING);
+		m_initthrow(mtmp, SPIRIT_THROWER, 5);
+	}
+
+	if (ptr == &mons[PM_NOEMI]) {
+		(void) mongets(mtmp, POT_URINE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, WAN_AMNESIA);
+		(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
+
+	}
+
+	if (ptr == &mons[PM_GIULIA]) {
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, LACQUERED_DANCING_SHOE);
+		(void) mongets(mtmp, POT_FIRE);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+	}
+
+	if (ptr == &mons[PM_LEA]) {
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, KNIFE);
+
+	}
+
+	if (ptr == &mons[PM_SARAH]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+
+	}
+
+	if (ptr == &mons[PM_SARINA]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, POT_HEALING);
+	}
+
+	if (ptr == &mons[PM_ALEXIA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);	
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);	
+		(void) mongets(mtmp, WAN_BAD_EFFECT);	
+
+	}
+
+	if (ptr == &mons[PM_ISIS]) {
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, POT_FULL_HEALING);
+		(void) mongets(mtmp, SCR_WARPING);
+		(void) mongets(mtmp, WAN_DIGGING);
+	}
+
+	if (ptr == &mons[PM_ILSE]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, CLOAK_OF_PROTECTION);
+		(void) mongets(mtmp, SCR_HEALING);
+	}
+
+	if (ptr == &mons[PM_MELANIE]) {
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
+	}
+
+	if (ptr == &mons[PM_LARA]) {
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, POT_SPEED);
+
+	}
+
+	if (ptr == &mons[PM_JANINA]) {
+		(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+
+	}
+
+	if (ptr == &mons[PM_MICHA]) {
+		(void) mongets(mtmp, RUBBER_HOSE);
+		m_initthrow(mtmp, CREAM_PIE, 4);
+
+	}
+
+	if (ptr == &mons[PM_FRANZI]) {
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		(void) mongets(mtmp, SCR_FLOOD);
+	}
+
+	if (ptr == &mons[PM_AMELIE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+
+	}
+
+	if (ptr == &mons[PM_ANNIKA]) {
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, POT_URINE);
+		(void) mongets(mtmp, SCR_GROWTH);
+	}
+
+	if (ptr == &mons[PM_BARBARA]) {
+		(void) mongets(mtmp, WOODEN_GETA);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, WAN_LIGHTNING);
+		(void) mongets(mtmp, POT_NUMBNESS);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+	}
+
+	if (ptr == &mons[PM_ELSA]) {
+		(void) mongets(mtmp, POT_CANCELLATION);
+
+	}
+
+	if (ptr == &mons[PM_ISABEL]) {
+		(void) mongets(mtmp, POT_URINE);
+
+	}
+
+	if (ptr == &mons[PM_THUY_HAN]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+
+	}
+
+	if (ptr == &mons[PM_CHARLOTTE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, RIFLE);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		m_initthrow(mtmp, BULLET, 20);
+	}
+
+	if (ptr == &mons[PM_FRIEDERIKE]) {
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, POT_AMNESIA);
+	}
+
+	if (ptr == &mons[PM_SOPHIA]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, POT_FEAR);
+	}
+
+	if (ptr == &mons[PM_SUE_LYN]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+	}
+
+	if (ptr == &mons[PM_JUEN]) {
+		(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, CLOAK_OF_DEATH);
+		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
+		(void) mongets(mtmp, SCR_PUNISHMENT);
+	}
+
+	if (ptr == &mons[PM_RUEA]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, SCR_BULLSHIT);
+		(void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+	}
+
+	if (ptr == &mons[PM_MARIYA]) {
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, WAN_AMNESIA);
+		(void) mongets(mtmp, POT_CONFUSION);
+	}
+
+	if (ptr == &mons[PM_WENDY_O__KOOPA]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, POT_NUMBNESS);
+		(void) mongets(mtmp, SCR_TRAP_CREATION);
+	}
+
+	if (ptr == &mons[PM_KATIA]) {
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, SCR_BULLSHIT);
+		(void) mongets(mtmp, POT_URINE);
+	}
+
+	if (ptr == &mons[PM_TANJA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, POT_STUNNING);
+		(void) mongets(mtmp, POT_CONFUSION);
+	}
+
+	if (ptr == &mons[PM_VANESSA]) {
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, FLAIL);
+		(void) mongets(mtmp, SCR_BARRHING);
+
+	}
+
+	if (ptr == &mons[PM_ANNE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, WAN_SLIMING);
+
+	}
+
+	if (ptr == &mons[PM_LENA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, WAN_STRIKING);
+		(void) mongets(mtmp, T_SHIRT);
+
+	}
+
+	if (ptr == &mons[PM_JEANETTA]) {
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, WAN_SLOW_MONSTER);
+		(void) mongets(mtmp, DANCING_SHOES);
+	}
+
+	if (ptr == &mons[PM_GUDRUN]) {
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, RIFLE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_MELISSA]) {
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, LEATHER_ARMOR);
+		(void) mongets(mtmp, LEATHER_CLOAK);
+		(void) mongets(mtmp, WAN_STRIKING);
+	}
+
+	if (ptr == &mons[PM_ELLA]) {
+		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, PLASTEEL_HELM);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		(void) mongets(mtmp, SCR_PUNISHMENT);
+		(void) mongets(mtmp, POT_AMNESIA);
+	}
+
+	if (ptr == &mons[PM_MADELEINE]) {
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, SCR_BULLSHIT);
+	}
+
+	if (ptr == &mons[PM_ANITA]) {
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		(void) mongets(mtmp, SCR_WOUNDS);
+	}
+
+	if (ptr == &mons[PM_NINA]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, STILETTO);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+
+	}
+
+	if (ptr == &mons[PM_NATASCHA]) {
+		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		(void) mongets(mtmp, LEATHER_GLOVES);
+		(void) mongets(mtmp, SHIELD_OF_REFLECTION);
+	}
+
+	if (ptr == &mons[PM_MANUELA]) {
+		(void) mongets(mtmp, HIPPIE_HEELS);
+		(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+		(void) mongets(mtmp, DEEP_DRAGON_SCALE_MAIL);
+		(void) mongets(mtmp, LAB_COAT);
+		(void) mongets(mtmp, PLASTEEL_GLOVES);
+		(void) mongets(mtmp, BUGLE);
+		(void) mongets(mtmp, POT_POLYMORPH);
+		(void) mongets(mtmp, WAN_PUNISHMENT);
+		(void) mongets(mtmp, SCR_LAVA);
+		(void) mongets(mtmp, SCR_STONING);
+		(void) mongets(mtmp, WAN_DISINTEGRATION);
+	}
+
+	if (ptr == &mons[PM_TILLA]) {
+		(void) mongets(mtmp, GLAIVE);
+		(void) mongets(mtmp, POT_BLINDNESS);
+		(void) mongets(mtmp, POT_BLINDNESS);
+		(void) mongets(mtmp, POT_BLINDNESS);
+		m_initthrow(mtmp, CREAM_PIE, 5);
+	}
+
+	if (ptr == &mons[PM_GRETA]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, WAN_MAKE_VISIBLE);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, POT_RADIUM);
+	}
+
+	if (ptr == &mons[PM_JANE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, POT_FIRE);
+		(void) mongets(mtmp, SCR_TRAP_CREATION);
+		(void) mongets(mtmp, WAN_CREATE_MONSTER);
+	}
+
+	if (ptr == &mons[PM_NATALJE]) {
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, BAG_OF_TRICKS);
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, POT_CYANIDE);
+		(void) mongets(mtmp, WAN_CURSE_ITEMS);
+		(void) mongets(mtmp, WAN_POLYMORPH);
+	}
+
+	if (ptr == &mons[PM_LITTLE_MARIE]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SPEED_BOOTS);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+		(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		(void) mongets(mtmp, SCR_WARPING);
+		(void) mongets(mtmp, POT_HALLUCINATION);
+		(void) mongets(mtmp, SUBMACHINE_GUN);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_TONJA]) {
+		(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, WAN_DEATH);
+
+	}
+
+	if (ptr == &mons[PM_ANNEMARIE]) {
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		(void) mongets(mtmp, ROCKET_LAUNCHER);
+		(void) mongets(mtmp, POT_FEAR);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		(void) mongets(mtmp, WAN_FIREBALL);
+		m_initthrow(mtmp, ROCKET, 5);
+	}
+
+	if (ptr == &mons[PM_CARO]) {
+		(void) mongets(mtmp, WAN_FIRE);
+		(void) mongets(mtmp, LEATHER_JACKET);
+
+	}
+
+	if (ptr == &mons[PM_BIANCA]) {
+		(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		(void) mongets(mtmp, WAN_SOLAR_BEAM);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, ORANGE_DRAGON_SCALES);
+	}
+
+	if (ptr == &mons[PM_CARMEN]) {
+		(void) mongets(mtmp, SPEED_BOOTS);
+		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		(void) mongets(mtmp, WAN_EXTRA_HEALING);
+	}
+
+	if (ptr == &mons[PM_HILDA]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+
+	}
+
+	if (ptr == &mons[PM_JOHANNA]) {
+		(void) mongets(mtmp, POT_CONFUSION);
+
+	}
+
+	if (ptr == &mons[PM_JULIETTA]) {
+		(void) mongets(mtmp, LACQUERED_DANCING_SHOE);
+		(void) mongets(mtmp, POT_AMNESIA);
+		(void) mongets(mtmp, WAN_AMNESIA);
+		(void) mongets(mtmp, SCR_AMNESIA);
+		(void) mongets(mtmp, SCR_WARPING);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+	}
+
+	if (ptr == &mons[PM_LINDA]) {
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+
+	}
+
+	if (ptr == &mons[PM_PETRA]) {
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, DANCING_SHOES);
+		(void) mongets(mtmp, WAN_PARALYSIS);
+
+	}
+
+	if (ptr == &mons[PM_SONJA]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, SCR_SUMMON_UNDEAD);
+		(void) mongets(mtmp, LEATHER_JACKET);
+		(void) mongets(mtmp, POT_POLYMORPH);
+	}
+
+	if (ptr == &mons[PM_STELLA]) {
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, WAN_CREATE_MONSTER);
+		(void) mongets(mtmp, POT_BLINDNESS);
+
+	}
+
+	if (ptr == &mons[PM_TERESA]) {
+		(void) mongets(mtmp, POT_NUMBNESS);
+		(void) mongets(mtmp, POT_NUMBNESS);
+		(void) mongets(mtmp, POT_NUMBNESS);
+		(void) mongets(mtmp, SWEET_MOCASSINS);
+		(void) mongets(mtmp, LANCE);
+
+	}
+
+	if (ptr == &mons[PM_ROSY]) {
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+		(void) mongets(mtmp, COMBAT_STILETTOS);
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, SCR_CLOUDS);
+		(void) mongets(mtmp, CREAM_PIE);
+		(void) mongets(mtmp, POT_BLINDNESS);
+	}
+
+	if (ptr == &mons[PM_SING]) {
+		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
+		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
+		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
+		(void) mongets(mtmp, WOODEN_GETA);
+		(void) mongets(mtmp, WEDGE_SANDALS);
+		(void) mongets(mtmp, POT_PARALYSIS);
+		(void) mongets(mtmp, POT_CONFUSION);
+		(void) mongets(mtmp, ROBE);
+	}
+
 
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
@@ -10174,6 +11202,9 @@ register int	mmflags;
 	}
 	if (mtmp->egotype_mimic || mtmp->egotype_permamimic) set_mimic_sym(mtmp);
 
+	if (standardmimic(ptr) || permamimic(ptr)) set_mimic_sym(mtmp);
+
+
 	if (ptr->mlet == u.speedymonster) mon_adjust_speed(mtmp, 2, (struct obj *)0);
 	if (!rn2(20) && (ptr->mlet == u.musemonster) ) {
 		switch (rnd(3)) {
@@ -11463,6 +12494,7 @@ int type;
 		case PM_ICE_STATUE: return 240;
 		case PM_MIST_GOLEM: return 240;
 		case PM_GRAVELER: return 250;
+		case PM_THUY_HAN: return 250;
 		case PM_RETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;

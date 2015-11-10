@@ -2098,7 +2098,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	}
 	/* Moulds and ungenomolds _must_ be able to polymorph at will. Otherwise they would just suck. --Amy */
 
-	if (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_UNGENOMOLD)) {
+	if (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_UNGENOMOLD) || Race_if(PM_WARPER)) {
 
 	    if (!u.youpolyamount) {
 		pline("You have no free polymorphs left!");
