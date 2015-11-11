@@ -1666,6 +1666,7 @@ register int x, y;
 	    otmp->oy = y;
 	    add_to_buried(otmp);
 	}
+	break;
 
 	case 131:
 	case 132:
