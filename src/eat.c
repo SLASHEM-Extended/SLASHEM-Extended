@@ -2330,6 +2330,14 @@ register int pm;
 			pline("You feel lucky.");
 		}
 
+	/* and since mind flayers are so rare, improve INT gain a bit --Amy */
+		if (dmgtype(ptr, AD_DRIN) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
+			pline("You feel smarter!");
+			(void) adjattrib(A_INT, 1, 2);
+		  }
+		}
+
 		 count = 0;	/* number of possible intrinsics */
 		 tmp = 0;	/* which one we will try to give */
 		 for (i = 1; i <= LAST_PROP; i++) {
