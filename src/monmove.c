@@ -512,12 +512,35 @@ register struct monst *mtmp;
 	}
 	if (mdat->msound == MS_SHRIEK && !um_dist(mtmp->mx, mtmp->my, 1))
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
+
+	if (mdat->msound == MS_FART_QUIET && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	{
+		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
+		u.ucreamed += rnd(20);
+		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+	}
+	if (mdat->msound == MS_FART_NORMAL && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	{
+		pline("Using %s %s butt, %s produces beautiful noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
+		u.ucreamed += rnd(50);
+		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+	}
+	if (mdat->msound == MS_FART_LOUD && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	{
+		pline("Using %s %s butt, %s produces disgusting noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
+		u.ucreamed += rnd(100);
+		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+	}
+
 	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if ( (mdat->msound == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)

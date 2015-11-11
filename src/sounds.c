@@ -705,6 +705,7 @@ register struct monst *mtmp;
 		if (mtmp->mtame) {
 			pline("%s seems to love you even more than before.", Monnam(mtmp) );
 			if (mtmp->mtame < 30) mtmp->mtame++;
+			if (EDOG(mtmp)->abuse) EDOG(mtmp)->abuse--;
 		}
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );

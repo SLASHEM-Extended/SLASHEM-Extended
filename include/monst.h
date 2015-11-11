@@ -240,6 +240,8 @@ struct monst {
 	Bitfield(egotype_exploder,1); /* AT_BOOM */
 
 	Bitfield(butthurt,6);
+	Bitfield(fartbonus,6); /* actually, max should be 9 */
+	Bitfield(crapbonus,6);
 
 	struct obj *mw;
 	long misc_worn_check;

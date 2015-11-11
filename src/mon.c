@@ -888,6 +888,22 @@ register struct monst *mtmp;
 		return (0);
 #endif
 
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) ) ) {
+	if (cansee(mtmp->mx,mtmp->my)) {
+		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+	} else {
+		pline("You hear %s crapping noises.", mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting");
+	}
+	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
+	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
+	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
+      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(4 + mtmp->crapbonus), "listening to tender crapping noises");
+      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(5 + mtmp->crapbonus), "listening to beautiful crapping noises");
+      else nomul(-rnz(3 + mtmp->crapbonus), "listening to disgusting crapping noises");
+      nomovemsg = "At last, you get yourself together, ready to move on.";
+
+    }
+
     /* Gremlin multiplying won't go on forever since the hit points
      * keep going down, and when it gets to 1 hit point the clone
      * function will fail.
@@ -3740,14 +3756,20 @@ register struct monst *mtmp;
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (mtmp->butthurt) mtmp->butthurt--;
+		if (mtmp->butthurt) mtmp->butthurt--;
+		if (mtmp->butthurt) mtmp->butthurt--;
 		badeffect();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (mtmp->butthurt) mtmp->butthurt--;
+		if (mtmp->butthurt) mtmp->butthurt--;
 		badeffect();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (mtmp->butthurt) mtmp->butthurt--;
 		badeffect();
     }
     if (mtmp->egotype_farter) {

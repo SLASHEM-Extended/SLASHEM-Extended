@@ -9383,6 +9383,229 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, ROBE);
 	}
 
+	if (ptr == &mons[PM_SIMONE]) {
+
+		mtmp->fartbonus = 2;
+
+	}
+
+	if (ptr == &mons[PM_RUEA]) {
+
+		mtmp->crapbonus = 5;
+
+	}
+
+	if (ptr == &mons[PM_SARAH]) {
+
+		mtmp->fartbonus = 4;
+
+	}
+
+	if (ptr == &mons[PM_SUNALI]) {
+
+		mtmp->crapbonus = 5;
+
+	}
+
+	if (ptr == &mons[PM_KATI]) {
+
+		mtmp->crapbonus = 2;
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_THAI]) {
+
+		mtmp->crapbonus = 3;
+
+	}
+
+	if (ptr == &mons[PM_ELIF]) {
+
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_SOLVEJG]) {
+
+		mtmp->fartbonus = 1;
+
+	}
+
+	if (ptr == &mons[PM_ANTJE]) {
+
+		mtmp->crapbonus = 1;
+
+	}
+
+	if (ptr == &mons[PM_MAURAH]) {
+
+		mtmp->crapbonus = 6;
+		mtmp->fartbonus = 3;
+
+	}
+
+	if (ptr == &mons[PM_KLARA]) {
+
+		mtmp->crapbonus = 10;
+
+	}
+
+	if (ptr == &mons[PM_KERSTIN]) {
+
+		mtmp->crapbonus = 2;
+		mtmp->fartbonus = 3;
+
+	}
+
+	if (ptr == &mons[PM_EVELINE]) {
+
+		mtmp->crapbonus = 2;
+
+	}
+
+	if (ptr == &mons[PM_INA]) {
+
+		mtmp->crapbonus = 3;
+		mtmp->fartbonus = 6;
+
+	}
+
+	if (ptr == &mons[PM_KARIN]) {
+
+		mtmp->crapbonus = 8;
+
+	}
+
+	if (ptr == &mons[PM_SUE_LYN]) {
+
+		mtmp->crapbonus = 4;
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_MARIKE]) {
+
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_KATIA]) {
+
+		mtmp->crapbonus = 20;
+
+	}
+
+	if (ptr == &mons[PM_LUDGERA]) {
+
+		mtmp->crapbonus = 1;
+
+	}
+
+	if (ptr == &mons[PM_MARIYA]) {
+
+		mtmp->fartbonus = 8;
+
+	}
+
+	if (ptr == &mons[PM_SANDRA]) {
+
+		mtmp->fartbonus = 5;
+
+	}
+
+	if (ptr == &mons[PM_MELTEM]) {
+
+		mtmp->fartbonus = 4;
+
+	}
+
+	if (ptr == &mons[PM_TENDER_ASIAN_GIRL]) {
+
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_YOGA_GIRL]) {
+
+		mtmp->fartbonus = 3;
+
+	}
+
+	if (ptr == &mons[PM_BEAUTIFUL_GIRL]) {
+
+		mtmp->fartbonus = 5;
+
+	}
+
+	if (ptr == &mons[PM_PRETTY_ASIAN_WOMAN]) {
+
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_WONDERFUL_LADY]) {
+
+		mtmp->fartbonus = 6;
+
+	}
+
+	if (ptr == &mons[PM_SEXY_ASIAN_LADY]) {
+
+		mtmp->fartbonus = 5;
+
+	}
+
+	if (ptr == &mons[PM_WENDY_O__KOOPA]) {
+
+		mtmp->crapbonus = 5;
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_ELENA]) {
+
+		mtmp->crapbonus = 5;
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_KATHARINA]) {
+
+		mtmp->crapbonus = 6;
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_JESSICA]) {
+
+		mtmp->fartbonus = 9;
+
+	}
+
+	if (ptr == &mons[PM_JENNIFER]) {
+
+		mtmp->crapbonus = 1;
+
+	}
+
+	if (ptr == &mons[PM_YVONNE]) {
+
+		mtmp->crapbonus = 2;
+
+	}
+
+	if (ptr == &mons[PM_MIRIAM]) {
+
+		mtmp->fartbonus = 2;
+
+	}
+
+	if (ptr == &mons[PM_LISA]) {
+
+		mtmp->crapbonus = 2;
+
+	}
 
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
