@@ -3625,7 +3625,7 @@ register int roll;
 		case 138: pline("%s uses a weapon blocker.", Monnam(mdef)); break;
 		case 139: pline("%s doesn't lose a line!", Monnam(mdef)); break;
 		case 140: pline("Boom! Fully hit the %sshield.", which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
-		case 141: pline("%s defends really well againts your attack!", Monnam(mdef)); break;
+		case 141: pline("%s defends really well against your attack!", Monnam(mdef)); break;
 		case 142: pline("%s calls for its buddy. You're scared and run away.", Monnam(mdef)); break;
 		case 143: pline("%s defends and starts a counterattack.", Monnam(mdef)); break;
 		case 144: pline("%s defends against you with superthings!", Monnam(mdef)); break;
