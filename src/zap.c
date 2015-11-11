@@ -5015,7 +5015,7 @@ xchar sx, sy;
 		You("don't feel sleepy.");
 	    } else {
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		fall_asleep(-d(nd,25), TRUE); /* sleep ray */
+		fall_asleep(-rnd(5+nd), TRUE); /* sleep ray */
 	    }
 	    break;
 	case ZT_DEATH:
