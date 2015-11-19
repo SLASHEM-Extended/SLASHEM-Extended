@@ -11000,11 +11000,10 @@ morguemonX()
 	if(hd > 10 && i < 10)
 		return((Inhell || In_endgame(&u.uz)) ? mkclass(S_DEMON,0) :
 						       &mons[ndemon(A_NONE)]);
-	if(hd > 8 && i > 85)
+	if(hd > 8 && i > 90)
 		return(mkclass(S_VAMPIRE,0));
 
-	return((i < 20) ? &mons[PM_GHOST]
-			: (i < 40) ? mkclass(S_WRAITH,0) : (i < 70) ? mkclass(S_MUMMY,0) : mkclass(S_ZOMBIE,0));
+	return((i < 30) ? mkclass(S_GHOST,0) : (i < 40) ? mkclass(S_WRAITH,0) : (i < 70) ? mkclass(S_MUMMY,0) : (i < 71) ? mkclass(S_LICH,0) : mkclass(S_ZOMBIE,0));
 } /* added mummies, enabled all of S_wraith type monsters --Amy */
 
 /*mklev.c*/

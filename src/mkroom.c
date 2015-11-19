@@ -852,8 +852,7 @@ morguemon()
 	if(hd > 8 && i > 90)
 		return(mkclass(S_VAMPIRE,0));
 
-	return((i < 25) ? &mons[PM_GHOST]
-			: (i < 30) ? mkclass(S_GHOST,0) : (i < 40) ? mkclass(S_WRAITH,0) : (i < 70) ? mkclass(S_MUMMY,0) : (i < 71) ? mkclass(S_LICH,0) : mkclass(S_ZOMBIE,0));
+	return((i < 30) ? mkclass(S_GHOST,0) : (i < 40) ? mkclass(S_WRAITH,0) : (i < 70) ? mkclass(S_MUMMY,0) : (i < 71) ? mkclass(S_LICH,0) : mkclass(S_ZOMBIE,0));
 } /* added mummies, enabled all of S_wraith type monsters --Amy */
 
 struct permonst *
