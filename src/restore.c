@@ -552,6 +552,53 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_CHARCOLT], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_MILLENUM], sizeof(struct permonst));
 
+	mread(fd, (genericptr_t) &mons[PM_EXTRA_FLEECY_BUNDLE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_EMMELIE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LUISA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SHY_LAURA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ANNA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LEXI], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SOFT_SARAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MAREIKE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_REBECCA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_JANINE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MARLEEN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BUNDLY_ANN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LISELOTTE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LILLY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MIRIAM_THE_SPIRIT_GIRL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_EMMA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ALIDA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_JOSEFINE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_VILEA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_VILEA_S_SISTER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_HANNAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_AMELJE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NON_PRETTY_MELANIE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_SWEET_REDGUARD_GIRL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_HEELED_TOPMODEL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MARIE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_FAIRY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FANNY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_APE_HEAD], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BEANPOLE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_CHEESEHEAD_SIMON], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MALADJUSTED_LEON], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MAX_THE_BADASS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ANTON], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_JONAS_THE_SCHIZO_AUTIST], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LARS_THE_SCHIZOPHRENIC], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MELVIN], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
+
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");
