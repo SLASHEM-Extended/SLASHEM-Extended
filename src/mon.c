@@ -1226,6 +1226,7 @@ meatmetal(mtmp)
 		    else if (flags.soundok && flags.verbose)
 			You_hear("a crunching sound.");
 		    mtmp->meating = otmp->owt/2 + 1;
+		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    /* Heal up to the object's weight in hp */
 		    if (mtmp->mhp < mtmp->mhpmax) {
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
@@ -1309,6 +1310,7 @@ meatlithic(mtmp)
 		    else if (flags.soundok && flags.verbose)
 			You_hear("a grating sound.");
 		    mtmp->meating = otmp->owt/2 + 1;
+		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    /* Heal up to the object's weight in hp */
 		    if (mtmp->mhp < mtmp->mhpmax) {
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
