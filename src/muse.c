@@ -1818,7 +1818,11 @@ newboss:
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
-		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+		if (pm && !(pm->geno & G_UNIQ) && rn2(50) ) {
 			attempts = 0;
 			goto newboss;
 		}
@@ -4904,7 +4908,11 @@ newboss:
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
-		if (pm && !(pm->geno & G_UNIQ) && rn2(10) ) {
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+		if (pm && !(pm->geno & G_UNIQ) && rn2(50) ) {
 			attempts = 0;
 			goto newboss;
 		}

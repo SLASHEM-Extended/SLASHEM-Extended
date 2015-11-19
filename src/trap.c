@@ -2370,7 +2370,7 @@ newboss:
 				if (wizard) pline("monster generation: %s", ptrZ->mname);
 				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
 			}
-			else if (ptrZ && rn2(10)) {
+			else if (rn2(50)) {
 				attempts = 0;
 				goto newboss;
 			}
