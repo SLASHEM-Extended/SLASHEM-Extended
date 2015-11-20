@@ -9842,6 +9842,520 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, RUBBER_HOSE);
 	}
 
+	if (ptr == &mons[PM_SCHALOTTE]) {
+		(void) mongets(mtmp, WAN_CONFUSION);
+	}
+
+	if (ptr == &mons[PM_STRU_BES]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, CLOAK_OF_REFLECTION);
+		(void) mongets(mtmp, BAG_OF_TRICKS);
+		(void) mongets(mtmp, FIRE_HELMET);
+		(void) mongets(mtmp, OILSKIN_GLOVES);
+		(void) mongets(mtmp, ICE_SHIELD);
+		(void) mongets(mtmp, BOOTS_OF_ACID_RESISTANCE);
+		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+		(void) mongets(mtmp, WAN_INCREASE_MAX_HITPOINTS);
+		(void) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		(void) mongets(mtmp, WAN_CURSE_ITEMS);
+	}
+
+	if (ptr == &mons[PM_YANNICK]) {
+		(void) mongets(mtmp, HEAVY_HAMMER);
+		(void) mongets(mtmp, SCR_CLOUDS);
+	}
+
+	if (ptr == &mons[PM_FELIX]) {
+		(void) mongets(mtmp, CATAPULT);
+		m_initthrow(mtmp, FLINT, 50);
+	}
+
+	if (ptr == &mons[PM_STEFAN]) {
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, STRIPED_SHIRT);
+	}
+
+	if (ptr == &mons[PM_FREDDIE]) {
+		(void) mongets(mtmp, POT_STUNNING);
+		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+	}
+
+	if (ptr == &mons[PM_MICHAEL]) {
+		(void) mongets(mtmp, BROADSWORD);
+		(void) mongets(mtmp, PLATE_MAIL);
+		(void) mongets(mtmp, POT_SLEEPING);
+	}
+
+	if (ptr == &mons[PM_HANNO]) {
+		(void) mongets(mtmp, KATANA);
+		(void) mongets(mtmp, SPLINT_MAIL);
+	}
+
+	if (ptr == &mons[PM_ROBIN]) {
+		(void) mongets(mtmp, ELVEN_CLOAK);
+		(void) mongets(mtmp, POT_INVISIBILITY);
+		(void) mongets(mtmp, ELVEN_BOW);
+		m_initthrow(mtmp, ELVEN_ARROW, 50);
+		m_initthrow(mtmp, ELVEN_ARROW, 50);
+	}
+
+	if (ptr == &mons[PM_JNR]) {
+		(void) mongets(mtmp, STYGIAN_PIKE);
+		(void) mongets(mtmp, BRONZE_PLATE_MAIL);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+	}
+
+	if (ptr == &mons[PM_LARS]) {
+		(void) mongets(mtmp, BULLWHIP);
+		(void) mongets(mtmp, WAN_MAGIC_MISSILE);
+	}
+
+	if (ptr == &mons[PM_TOMMY]) {
+		(void) mongets(mtmp, FLY_SWATTER);
+		(void) mongets(mtmp, ROBE_OF_WEAKNESS);
+		(void) mongets(mtmp, GNOMISH_BOOTS);
+		(void) mongets(mtmp, POT_MUTATION);
+	}
+
+	if (ptr == &mons[PM_LUKAS]) {
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+		(void) mongets(mtmp, OBSID);
+		(void) mongets(mtmp, PLASTEEL_ARMOR);
+		(void) mongets(mtmp, GREEN_LIGHTSABER);
+		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, WAN_FULL_HEALING);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+	}
+
+	if (ptr == &mons[PM_LUKAS_S_BODYGUARD]) {
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SNIPER_RIFLE);
+		(void) mongets(mtmp, POT_FEAR);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_SELINGER]) {
+		(void) mongets(mtmp, HUGGING_BOOT);
+		(void) mongets(mtmp, SPEED_BOOTS);
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, WAN_TELEPORTATION);
+		(void) mongets(mtmp, WAN_DIGGING);
+	}
+
+	if (ptr == &mons[PM_BAENNI]) {
+		(void) mongets(mtmp, SCR_BULLSHIT);
+		(void) mongets(mtmp, POT_URINE);
+		(void) mongets(mtmp, STRIPED_SHIRT);
+		(void) mongets(mtmp, POT_SLIME);
+	}
+
+	if (ptr == &mons[PM_WALTER]) {
+		(void) mongets(mtmp, RUBBER_HOSE);
+		(void) mongets(mtmp, PISTOL);
+		(void) mongets(mtmp, CHAIN_MAIL);
+		m_initthrow(mtmp, BULLET, 20);
+		m_initthrow(mtmp, CREAM_PIE, 4);
+	}
+
+	if (ptr == &mons[PM_KLAUS]) {
+		(void) mongets(mtmp, RUBBER_HOSE);
+		(void) mongets(mtmp, PISTOL);
+		(void) mongets(mtmp, CHAIN_MAIL);
+		m_initthrow(mtmp, BULLET, 20);
+		m_initthrow(mtmp, CREAM_PIE, 4);
+	}
+
+	if (ptr == &mons[PM_LAURENS]) {
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		m_initthrow(mtmp, DART, 20);
+	}
+
+	if (ptr == &mons[PM_JORIN]) {
+		(void) mongets(mtmp, CROSSBOW);
+		(void) mongets(mtmp, BANDED_MAIL);
+		(void) mongets(mtmp, WAN_TELEPORTATION);
+		(void) mongets(mtmp, SCR_FIRE);
+		m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+	}
+
+	if (ptr == &mons[PM_ANDREJ]) {
+		(void) mongets(mtmp, DAGGER);
+		(void) mongets(mtmp, SLING);
+		m_initthrow(mtmp, ROCK, 10);
+	}
+
+	if (ptr == &mons[PM_ANSELM]) {
+		(void) mongets(mtmp, SCR_GROWTH);
+		(void) mongets(mtmp, POT_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		(void) mongets(mtmp, BOW);
+		(void) mongets(mtmp, CLUB);
+		(void) mongets(mtmp, LEATHER_ARMOR);
+		m_initthrow(mtmp, ORCISH_ARROW, 5);
+	}
+
+	if (ptr == &mons[PM_ARAM]) {
+		(void) mongets(mtmp, WAN_SLEEP);
+		(void) mongets(mtmp, LONG_SWORD);
+		(void) mongets(mtmp, ORCISH_CLOAK);
+	}
+
+	if (ptr == &mons[PM_BORIS]) {
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, RUNESWORD);
+		(void) mongets(mtmp, WAN_COLD);
+		(void) mongets(mtmp, WAN_ACID);
+	}
+
+	if (ptr == &mons[PM_BURKHARD]) {
+		(void) mongets(mtmp, DROVEN_GREATSWORD);
+		(void) mongets(mtmp, DWARVISH_MITHRIL_COAT);
+		(void) mongets(mtmp, WAN_HEALING);
+		m_initthrow(mtmp, FRAG_GRENADE, 10);
+	}
+
+	if (ptr == &mons[PM_NILS]) {
+		(void) mongets(mtmp, DWARVISH_SPEAR);
+		(void) mongets(mtmp, HELMET);
+		m_initthrow(mtmp, ORCISH_SPEAR, 5);
+	}
+
+	if (ptr == &mons[PM_OZAN]) {
+		(void) mongets(mtmp, SILVER_SABER);
+		(void) mongets(mtmp, SLING);
+		m_initthrow(mtmp, OPAL, 5);
+	}
+
+	if (ptr == &mons[PM_THORWALD]) {
+		(void) mongets(mtmp, SHORT_SWORD);
+		(void) mongets(mtmp, LEATHER_ARMOR);
+		(void) mongets(mtmp, BOW);
+		(void) mongets(mtmp, SCR_WOUNDS);
+		m_initthrow(mtmp, ARROW, 1);
+	}
+
+	if (ptr == &mons[PM_HENDRIC]) {
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, AXE);
+		(void) mongets(mtmp, SHOTGUN);
+		m_initthrow(mtmp, SHOTGUN_SHELL, 8);
+	}
+
+	if (ptr == &mons[PM_NINO]) {
+		(void) mongets(mtmp, WAN_TELEPORTATION);
+		(void) mongets(mtmp, BILL_GUISARME);
+		(void) mongets(mtmp, POT_CONFUSION);
+		(void) mongets(mtmp, SCR_LAVA);
+	}
+
+	if (ptr == &mons[PM_KASTORTRANSPORT]) {
+		(void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		(void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		(void) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+		(void) mongets(mtmp, WAN_STRIKING);
+		(void) mongets(mtmp, RING_MAIL);
+	}
+
+	if (ptr == &mons[PM_LARRY]) {
+		(void) mongets(mtmp, WAN_MAGIC_MISSILE);
+	}
+
+	if (ptr == &mons[PM_MORTON]) {
+		(void) mongets(mtmp, POT_STUNNING);
+		(void) mongets(mtmp, BROADSWORD);
+		(void) mongets(mtmp, WAN_MAGIC_MISSILE);
+	}
+
+	if (ptr == &mons[PM_IGGY]) {
+		(void) mongets(mtmp, WAN_MAGIC_MISSILE);
+		(void) mongets(mtmp, WAN_TELEPORTATION);
+	}
+
+	if (ptr == &mons[PM_LEMMY]) {
+		(void) mongets(mtmp, SLING);
+		(void) mongets(mtmp, SCR_ICE);
+		m_initthrow(mtmp, EPIDOTE, 3);
+		m_initthrow(mtmp, CYAN_STONE, 3);
+	}
+
+	if (ptr == &mons[PM_LUDWIG]) {
+		(void) mongets(mtmp, WAN_MAGIC_MISSILE);
+		(void) mongets(mtmp, POT_STUNNING);
+		(void) mongets(mtmp, POT_CONFUSION);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, SCR_WARPING);
+	}
+
+	if (ptr == &mons[PM_DANIEL]) {
+		(void) mongets(mtmp, MALLET);
+		(void) mongets(mtmp, AUTO_SHOTGUN);
+		(void) mongets(mtmp, GRAY_DRAGON_SCALE_MAIL);
+		(void) mongets(mtmp, WAN_DISINTEGRATION);
+		m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+	}
+
+	if (ptr == &mons[PM_LEN_KIND]) {
+		(void) mongets(mtmp, WAN_HASTE_MONSTER);
+		(void) mongets(mtmp, POT_FULL_HEALING);
+		(void) mongets(mtmp, BULLWHIP);
+		(void) mongets(mtmp, ORCISH_CHAIN_MAIL);
+	}
+
+	if (ptr == &mons[PM_ILJA]) {
+		(void) mongets(mtmp, POT_SLIME);
+		(void) mongets(mtmp, SCR_EARTH);
+		(void) mongets(mtmp, WAN_TELE_LEVEL);
+		(void) mongets(mtmp, WAN_DRAINING);
+		(void) mongets(mtmp, BENT_SABLE);
+		(void) mongets(mtmp, GNOMISH_SUIT);
+		(void) mongets(mtmp, ORCISH_HELM);
+	}
+
+	if (ptr == &mons[PM_TILL]) {
+		(void) mongets(mtmp, BEC_DE_CORBIN);
+		(void) mongets(mtmp, BRONZE_PLATE_MAIL);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+	}
+
+	if (ptr == &mons[PM_TOMAS]) {
+		(void) mongets(mtmp, POT_GAIN_LEVEL);
+		(void) mongets(mtmp, URUK_HAI_SHIELD);
+		(void) mongets(mtmp, CATAPULT);
+		m_initthrow(mtmp, FLINT, 40);
+	}
+
+	if (ptr == &mons[PM_NICO]) {
+		(void) mongets(mtmp, GREAT_DAGGER);
+		(void) mongets(mtmp, BAG_OF_TRICKS);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, WAN_BAD_EFFECT);
+		(void) mongets(mtmp, WAN_CURSE_ITEMS);
+		(void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+		m_initthrow(mtmp, KNIFE, 20);
+	}
+
+	if (ptr == &mons[PM_TILLMANN]) {
+		(void) mongets(mtmp, TSURUGI);
+		(void) mongets(mtmp, FORCE_PIKE);
+		(void) mongets(mtmp, YELLOW_DRAGON_SCALES);
+		(void) mongets(mtmp, VENOM_SHIELD);
+		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, WAN_GAIN_LEVEL);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+	}
+
+	if (ptr == &mons[PM_WALKER]) {
+		(void) mongets(mtmp, WAN_BAD_LUCK);
+		(void) mongets(mtmp, WAN_CORROSION);
+		(void) mongets(mtmp, WAN_LYCANTHROPY);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, DARK_ELVEN_SHORT_SWORD);
+		(void) mongets(mtmp, PLASTEEL_BOOTS);
+	}
+
+	if (ptr == &mons[PM_NIKOLEI]) {
+		(void) mongets(mtmp, POT_SPEED);
+		(void) mongets(mtmp, WAN_HASTE_MONSTER);
+		(void) mongets(mtmp, TRIDENT);
+		(void) mongets(mtmp, SLING);
+		m_initthrow(mtmp, SALT_CHUNK, 10);
+	}
+
+	if (ptr == &mons[PM_JONAS]) {
+		(void) mongets(mtmp, WAN_SLIMING);
+	}
+
+	if (ptr == &mons[PM_IWAN]) {
+		(void) mongets(mtmp, KNIFE);
+		(void) mongets(mtmp, CRYSKNIFE);
+		(void) mongets(mtmp, RIFLE);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		m_initthrow(mtmp, BULLET, 10);
+	}
+
+	if (ptr == &mons[PM_RUBINHO]) {
+		(void) mongets(mtmp, SOFT_SNEAKERS);
+		(void) mongets(mtmp, RIFLE);
+		(void) mongets(mtmp, CHAIN_MAIL);
+		(void) mongets(mtmp, WAN_FIRE);
+		(void) mongets(mtmp, POT_FIRE);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, POT_EXTRA_HEALING);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, BULLET, 50);
+		m_initthrow(mtmp, SHURIKEN, 50);
+	}
+
+	if (ptr == &mons[PM_THE_COFFIN_NAIL]) {
+		(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		(void) mongets(mtmp, PICK_AXE);
+		(void) mongets(mtmp, SMALL_SHIELD);
+	}
+
+	if (ptr == &mons[PM_EVILLAN]) {
+		(void) mongets(mtmp, WAN_CREATE_MONSTER);
+		(void) mongets(mtmp, SILVER_LONG_SWORD);
+		(void) mongets(mtmp, CATAPULT);
+		(void) mongets(mtmp, SILVER_DRAGON_SCALE_MAIL);
+		m_initthrow(mtmp, CIRMOCLINE, 7);
+		m_initthrow(mtmp, SILVER_SPEAR, 5);
+	}
+
+	if (ptr == &mons[PM_THILO]) {
+		(void) mongets(mtmp, KNIFE);
+		(void) mongets(mtmp, KNIFE);
+	}
+
+	if (ptr == &mons[PM_MAURUS]) {
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, SCR_SUMMON_UNDEAD);
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+	}
+
+	if (ptr == &mons[PM_DOMINIK]) {
+		(void) mongets(mtmp, POT_STUNNING);
+		(void) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		(void) mongets(mtmp, BATTLE_STAFF);
+		(void) mongets(mtmp, ELVEN_CLOAK);
+		(void) mongets(mtmp, WAN_LYCANTHROPY);
+	}
+
+	if (ptr == &mons[PM_ALBERT]) {
+		(void) mongets(mtmp, PISTOL);
+		(void) mongets(mtmp, KNIFE);
+		(void) mongets(mtmp, SCR_HEALING);
+		(void) mongets(mtmp, PLASTEEL_ARMOR);
+		m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_DON_FINWE]) {
+		(void) mongets(mtmp, ELVEN_BOW);
+		(void) mongets(mtmp, ELVEN_MITHRIL_COAT);
+		(void) mongets(mtmp, ELVEN_BROADSWORD);
+		(void) mongets(mtmp, ELVEN_LEATHER_HELM);
+		(void) mongets(mtmp, ELVEN_BOOTS);
+		(void) mongets(mtmp, WAN_EXTRA_HEALING);
+		m_initthrow(mtmp, ELVEN_DAGGER, 5);
+		m_initthrow(mtmp, ELVEN_SPEAR, 5);
+		m_initthrow(mtmp, ELVEN_ARROW, 50);
+	}
+
+	if (ptr == &mons[PM_GERRIT]) {
+		(void) mongets(mtmp, SPEAR);
+	}
+
+	if (ptr == &mons[PM_JENS]) {
+		(void) mongets(mtmp, PISTOL);
+		(void) mongets(mtmp, SCR_WARPING);
+		m_initthrow(mtmp, SILVER_BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_LEON]) {
+		(void) mongets(mtmp, SCR_CREATE_MONSTER);
+		(void) mongets(mtmp, LEATHER_ARMOR);
+		(void) mongets(mtmp, BATTLE_AXE);
+		(void) mongets(mtmp, SCR_GROWTH);
+		(void) mongets(mtmp, SCR_GROWTH);
+	}
+
+	if (ptr == &mons[PM_MARIUS]) {
+		(void) mongets(mtmp, SLING);
+		m_initthrow(mtmp, ROCK, 5);
+	}
+
+	if (ptr == &mons[PM_SIGURD]) {
+		(void) mongets(mtmp, WAN_CORROSION);
+		(void) mongets(mtmp, POT_AMNESIA);
+		(void) mongets(mtmp, CLOAK_OF_REFLECTION);
+		(void) mongets(mtmp, LONG_SWORD);
+	}
+
+	if (ptr == &mons[PM_WILHELM]) {
+		(void) mongets(mtmp, KATANA);
+		(void) mongets(mtmp, YUMI);
+		m_initthrow(mtmp, YA, 50);
+	}
+
+	if (ptr == &mons[PM_ANDREAS]) {
+		(void) mongets(mtmp, WAR_HAMMER);
+		(void) mongets(mtmp, PLATE_MAIL);
+		(void) mongets(mtmp, SCR_TELEPORTATION);
+	}
+
+	if (ptr == &mons[PM_TYPE_OF_ICE_BLOCK]) {
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, POT_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, SCR_ICE);
+		(void) mongets(mtmp, SCR_FLOOD);
+		(void) mongets(mtmp, WAN_COLD);
+		(void) mongets(mtmp, WHITE_DRAGON_SCALE_MAIL);
+		(void) mongets(mtmp, HELM_OF_STEEL);
+		(void) mongets(mtmp, SCR_BAD_EFFECT);
+		(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+	}
+
+	if (ptr == &mons[PM_SVEN]) {
+		(void) mongets(mtmp, WAN_SOLAR_BEAM);
+		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
+		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+		(void) mongets(mtmp, TSURUGI);
+		(void) mongets(mtmp, GRAY_DRAGON_SCALE_MAIL);
+		(void) mongets(mtmp, POT_FULL_HEALING);
+		(void) mongets(mtmp, WAN_FULL_HEALING);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, SCR_SUMMON_BOSS);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+		(void) mongets(mtmp, WAN_CREATE_HORDE);
+		m_initthrow(mtmp, SILVER_BULLET, 50);
+		m_initthrow(mtmp, SILVER_BULLET, 50);
+		m_initthrow(mtmp, SILVER_BULLET, 50);
+		m_initthrow(mtmp, SILVER_BULLET, 50);
+	}
+
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
 
@@ -12962,10 +13476,12 @@ int type;
 		case PM_PUKELMAN: return 250;
 		case PM_COLBRAN: return 270;
 		case PM_MITHRIL_GOLEM: return 300;
+		case PM_TILL: return 300;
 		case PM_EOG_GOLEM: return 340;
 		case PM_SILENT_WATCHER: return 350;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
+		case PM_JNR: return 400;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;
@@ -12978,6 +13494,7 @@ int type;
 		case PM_CRYSTAL_ICE_GOLEM: return 300;
 		case PM_ANIMATED_COMBAT_STILETTO: return 300;
 		case PM_ETERNIUM_GOLEM: return 350;
+		case PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE: return 350;
 		case PM_EBONY_GOLEM: return 400;
 		case PM_TIME_GOLEM: return 400;
 		case PM_FINNISH_EXPLORER: return 400;
@@ -12985,6 +13502,7 @@ int type;
 		case PM_FRANKENSTEIN_S_MONSTER: return 400;
 		case PM_GOLEM: return 400;
 		case PM_BLOODY_BEAUTIES: return 500;
+		case PM_KASTORTRANSPORT: return 500;
 		case PM_INVULNERABLE_GOLEM: return 2000;
 		case PM_WAX_GOLEM: return 40;
 		case PM_WRAP_GOLEM: return 40;

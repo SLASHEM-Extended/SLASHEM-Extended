@@ -598,6 +598,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SCHALOTTE], sizeof(struct permonst));
 
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */

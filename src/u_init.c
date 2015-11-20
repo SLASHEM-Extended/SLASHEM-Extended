@@ -5048,6 +5048,7 @@ u_init()
 	struct permonst* randbossar = &mons[PM_THE_BASTARD_BROTHER_OF_LILLY];
 	struct permonst* randbossas = &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER];
 	struct permonst* randbossat = &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE];
+	struct permonst* randbossau = &mons[PM_SCHALOTTE];
 
 
 	struct attack* attkptr;
@@ -17485,6 +17486,62 @@ u_init()
 	}
 
 	randbossat->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randbossau->mmove = 12 + rn2(3);				/* slow to very fast */
+	randbossau->ac = 10 - rn2(10);				/* any AC */
+	randbossau->mr = rn2(51);				/* varying amounts of MR */
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randbossau->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randbossau->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randbossau->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randbossau->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randbossau->mflags2 |= (1 << rn2(31));
+	}
+	randbossau->mflags2 &= ~M2_MERC;				/* no guards */
+	randbossau->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randbossau->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	for (i = 0; i < 1; i++) {
+		randbossau->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randbossau->mflags3 &= ~M3_NONMOVING;				/* can always move around */
 
 
 	return;
