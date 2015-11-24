@@ -265,7 +265,7 @@ register struct monst *mtmp;
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
-	if (!rn2(ishaxor ? 1000 : 2000)) {
+	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 1000 : 2000)) {
 	struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
 	otmpX->spe = 0;
 	otmpX->quan = 1;
@@ -276,7 +276,7 @@ register struct monst *mtmp;
 	(void) mpickobj(mtmp,otmpX, TRUE);
 	}
 
-	if (!rn2(ishaxor ? 250 : 500)) {
+	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 250 : 500)) {
 
 	struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
 
