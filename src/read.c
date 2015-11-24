@@ -2009,7 +2009,7 @@ register struct obj	*sobj;
 		}
 		if (!(otmp->owornmask & W_ARMOR) ) {
 
-			pline("You have a feeling of loss.");
+			strange_feeling(sobj, "You have a feeling of loss.");
 			return(1);
 		}
 
@@ -2056,7 +2056,7 @@ register struct obj	*sobj;
 		/* KMH -- catch underflow */
 		s = sobj->cursed ? -otmp->spe : otmp->spe;
 		
-		if (s > (special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
 		Your("%s violently %s%s%s for a while, then %s.",
 		     xname(otmp),
 		     otense(otmp, Blind ? "vibrate" : "glow"),
@@ -2129,7 +2129,7 @@ register struct obj	*sobj;
 			pline("Your %s seems to have gained special magical properties!", xname(otmp) );
 		}
 
-		if ((otmp->spe > (special_armor ? 5 : 3)) &&
+		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))
 			Your("%s suddenly %s %s.",
 				xname(otmp), otense(otmp, "vibrate"),

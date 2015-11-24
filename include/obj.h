@@ -256,6 +256,10 @@ struct obj {
 			 objects[(otmp)->otyp].oc_armcat == ARM_SHIRT)
 #define is_suit(otmp)	((otmp)->oclass == ARMOR_CLASS && \
 			 objects[(otmp)->otyp].oc_armcat == ARM_SUIT)
+#define is_droven_armor(otmp)	((otmp)->otyp == DROVEN_HELM\
+				|| (otmp)->otyp == DROVEN_PLATE_MAIL\
+				|| (otmp)->otyp == DROVEN_CHAIN_MAIL\
+				|| (otmp)->otyp == DROVEN_CLOAK)
 #define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
 				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
 				|| (otmp)->otyp == ELVEN_CLOAK\
@@ -428,6 +432,16 @@ struct obj {
 				|| (otmp)->otyp == ELVEN_BROADSWORD\
 				|| (otmp)->otyp == ELVEN_BOW)
 #define is_elven_obj(otmp)	(is_elven_armor(otmp) || is_elven_weapon(otmp))
+
+#define is_droven_weapon(otmp)	((otmp)->otyp == DROVEN_ARROW\
+				|| (otmp)->otyp == DROVEN_SPEAR\
+				|| (otmp)->otyp == DROVEN_LANCE\
+				|| (otmp)->otyp == DROVEN_DAGGER\
+				|| (otmp)->otyp == DROVEN_SHORT_SWORD\
+				|| (otmp)->otyp == DROVEN_GREATSWORD\
+				|| (otmp)->otyp == DROVEN_BOW\
+				|| (otmp)->otyp == DROVEN_CROSSBOW\
+				|| (otmp)->otyp == DROVEN_BOLT)
 
 /* Orcish gear */
 #define is_orcish_obj(otmp)	(is_orcish_armor(otmp)\

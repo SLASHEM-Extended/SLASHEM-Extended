@@ -956,7 +956,7 @@ register int amount;
 	    return(1);
 	}
 	/* there is a (soft) upper and lower limit to uwep->spe */
-	if(((uwep->spe > 5 && amount >= 0) || (uwep->spe < -5 && amount < 0))
+	if(((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) && amount >= 0) || (uwep->spe < -5 && amount < 0))
 								&& rn2(3) && !rn2(3) ) {
 	    if (!Blind)
 	    Your("%s %s for a while and then %s.",
@@ -1003,7 +1003,7 @@ register int amount;
 
 	/* an elven magic clue, cookie@keebler */
 	/* elven weapons vibrate warningly when enchanted beyond a limit */
-	if ((uwep->spe > 5)
+	if ((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) )
 		&& (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
 	    Your("%s unexpectedly.",
 		aobjnam(uwep, "suddenly vibrate"));
