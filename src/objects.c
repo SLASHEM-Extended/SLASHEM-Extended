@@ -2514,6 +2514,7 @@ ROCK("loadboulder", "gray",			0, 5,  6000, 60, 75, 75, 1, 6000, 7, MINERAL, CLR_
 ROCK("loadstone", "gray",			0, 40, 1200, 60, 40, 40, 1, 1200, 6, MINERAL, CLR_GRAY),
 ROCK("touchstone", "gray",			0, 30,  0,   60, 15, 15, 1, 10, 6, MINERAL, CLR_GRAY),
 
+/* first nasty stone = right mouse button stone */
 ROCK("right mouse button stone", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("display loss stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("spell loss stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
@@ -2571,6 +2572,7 @@ ROCK("trap creation stone", "gray",		0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, 
 ROCK("stone of vulnerability", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("item-teleporting stone", "gray",	0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
 ROCK("nasty stone", "gray",			0, 1,  0,   60, 30, 30, 1, 10, 9, MINERAL, CLR_GRAY),
+/* last nasty stone = nasty stone */
 
 ROCK("salt chunk", "gray", 		   	0, 25,  0,   60, 17, 17, 0, 10, 2, MINERAL, CLR_GRAY),
 ROCK("whetstone", "gray",			0, 10,  0,   60, 15, 15, 1, 10, 7, MINERAL, CLR_GRAY),
