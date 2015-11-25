@@ -45,6 +45,7 @@ register struct obj *otmp;
 	case SCR_CREATE_MONSTER:
 	case SCR_SUMMON_UNDEAD:
 	case SCR_PUNISHMENT:
+	case SCR_NASTINESS:
 	case SCR_PROOF_ARMOR:
 	case SCR_PROOF_WEAPON:
 		return(10);
@@ -83,12 +84,15 @@ register struct obj *otmp;
 	case SCR_REMOVE_CURSE:
 	case SCR_ENCHANT_WEAPON:
 	case SCR_CHARGING:
+	case SCR_GIRLINESS:
 	case SCR_REPAIR_ITEM:
 		return(24);
 /*		break; */
 	case SCR_GENOCIDE:
 	case SCR_CURE:
 	case SCR_SUMMON_BOSS:
+	case SCR_DEMONOLOGY:
+	case SCR_ELEMENTALISM:
 	case SCR_TRAP_DISARMING:
 		return(30);
 /*		break; */

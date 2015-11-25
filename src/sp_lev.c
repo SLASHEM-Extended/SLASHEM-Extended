@@ -2097,6 +2097,31 @@ makerandomtrap()
 }
 
 /*
+ * Create either a fart trap or heel trap on some random empty location, for scroll of girliness --Amy
+ */
+
+void
+makegirlytrap()
+{
+
+	int rtrap;
+	rtrap = rn2(2) ? FART_TRAP : HEEL_TRAP;
+	int tryct = 0;
+	int x, y;
+
+	for (tryct = 0; tryct < 2000; tryct++) {
+		x = rn1(COLNO-3,2);
+		y = rn2(ROWNO);
+
+		if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+			(void) maketrap(x, y, rtrap);
+			break;
+			}
+
+	}
+}
+
+/*
  * Coordinates in special level files are handled specially:
  *
  *	if x or y is -11, we generate a random coordinate.

@@ -382,6 +382,11 @@ struct obj {
 || (otmp)->otyp == SCR_WOUNDS\
 || (otmp)->otyp == SCR_BULLSHIT\
 || (otmp)->otyp == SCR_CHAOS_TERRAIN\
+|| (otmp)->otyp == SCR_NASTINESS\
+|| (otmp)->otyp == SCR_DEMONOLOGY\
+|| (otmp)->otyp == SCR_ELEMENTALISM\
+|| (otmp)->otyp == SCR_GIRLINESS\
+|| (otmp)->otyp == WAN_SUMMON_SEXY_GIRL\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				

@@ -2607,6 +2607,34 @@ register struct obj *obj;
 
 		break;
 
+		case WAN_SUMMON_SEXY_GIRL:
+		known = TRUE;
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		int attempts = 0;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+		if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET) && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		(void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+	    }
+
+		break;
+
 		case WAN_BAD_EFFECT:
 
 			badeffect();

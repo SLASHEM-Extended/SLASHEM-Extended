@@ -2386,6 +2386,146 @@ register struct obj	*sobj;
 		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
 		break;
 
+	case SCR_DEMONOLOGY:
+		known = TRUE;
+	    {
+		int cnt = rnd(9);
+		if (confused) cnt += rnd(12);
+		if (sobj->cursed) cnt += rnd(5);
+		while(cnt--) {
+			makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+		}
+	    }
+		pline("You summon the denizens of Gehennom!");
+		break;
+
+	case SCR_GIRLINESS:
+
+		pline("You feel a female presence.");
+
+	    {
+		int cnt = rnd(9);
+		if (sobj->cursed) cnt += rnd(18);
+		if (confused) cnt += rnd(100);
+		while(cnt--) {
+			makegirlytrap();
+		}
+	    }
+
+		break;
+
+
+	case SCR_ELEMENTALISM:
+		known = TRUE;
+	    {
+		int cnt = rnd(9);
+		if (confused) cnt += rnd(12);
+		if (sobj->cursed) cnt += rnd(5);
+		while(cnt--) {
+			makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, NO_MM_FLAGS);
+		}
+	    }
+		pline("You summon inhabitants of the elemental planes!");
+		break;
+
+	case SCR_NASTINESS:
+		{
+
+		int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(55)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+		}
+		}
+
+		break;
+
 	case SPE_SUMMON_UNDEAD:        
 		if (confused) break;
 	case SCR_SUMMON_UNDEAD:        
@@ -2596,6 +2736,7 @@ newboss:
 		if (!rn2(256)) makerandomtrap();
 
 		break;
+
 	case SCR_TRAP_DISARMING:
 
 

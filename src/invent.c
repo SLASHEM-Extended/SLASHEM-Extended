@@ -5765,6 +5765,14 @@ struct obj *obj;
 				pline("This scroll has the computer's root password written on it, which you can read. It's likely to be useless anyway."); break;
 			case SCR_TRAP_CREATION: 
 				pline("A dangerous scroll that creates traps around you."); break;
+			case SCR_NASTINESS: 
+				pline("Don't allow this scroll to be read unless you absolutely want to be hit by nasty trap effects!"); break;
+			case SCR_DEMONOLOGY: 
+				pline("This scroll summons greater demons."); break;
+			case SCR_ELEMENTALISM: 
+				pline("Some creatures from the elemental planes will be summoned if you read this scroll."); break;
+			case SCR_GIRLINESS: 
+				pline("The dungeon will become more female if you read this scroll. :D"); break;
 			case SCR_SLEEP: 
 				pline("Reading this scroll puts you to sleep, leaving you open to monsters attacking you."); break;
 			case SCR_CHAOS_TERRAIN: 
@@ -6054,6 +6062,8 @@ struct obj *obj;
 				pline("With every zap of this wand, you can place a stinking cloud on a nearby visible square."); break;
 			case WAN_TRAP_CREATION: 
 				pline("Zapping this wand will surround you with randomly generated traps."); break;
+			case WAN_SUMMON_SEXY_GIRL: 
+				pline("This wand summons a sexy girl when zapped. Enjoy! :-)"); break;
 			case WAN_DARKNESS: 
 				pline("A wand that makes the area surrounding you unlit."); break;
 			case WAN_MAGIC_MAPPING: 

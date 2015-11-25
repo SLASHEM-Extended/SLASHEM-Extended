@@ -1541,6 +1541,11 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
+
+		if (!objects[SCR_WARPING].oc_name_known
+			&& !objects[SCR_WARPING].oc_uname)
+		    docall(otmp);
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		if (u.uevent.udemigod) { (void) rloc(mtmp, FALSE); return 2; }
@@ -1553,7 +1558,9 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
 		how = SCR_ROOT_PASSWORD_DETECTION;
 
 			int nlev;
@@ -1696,6 +1703,7 @@ mon_tele:
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
+
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(BAG_OF_TRICKS);
@@ -1807,9 +1815,9 @@ mon_tele:
 		boolean known = FALSE;
 		int attempts = 0;
 
-		mreadmsg(mtmp, otmp);
-
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
 
 newboss:
 		do {
@@ -2257,6 +2265,11 @@ struct monst *mtmp;
 #define MUSE_SCR_WOUNDS 69
 #define MUSE_SCR_BULLSHIT 70
 #define MUSE_SCR_AMNESIA 71
+#define MUSE_WAN_SUMMON_SEXY_GIRL 72
+#define MUSE_SCR_DEMONOLOGY 73
+#define MUSE_SCR_ELEMENTALISM 74
+#define MUSE_SCR_NASTINESS 75
+#define MUSE_SCR_GIRLINESS 76
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2486,6 +2499,26 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_TRAP_CREATION;
 		}
+		nomore(MUSE_SCR_GIRLINESS);
+		if(obj->otyp == SCR_GIRLINESS) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_GIRLINESS;
+		}
+		nomore(MUSE_SCR_NASTINESS);
+		if(obj->otyp == SCR_NASTINESS) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_NASTINESS;
+		}
+		nomore(MUSE_SCR_DEMONOLOGY);
+		if(obj->otyp == SCR_DEMONOLOGY) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_DEMONOLOGY;
+		}
+		nomore(MUSE_SCR_ELEMENTALISM);
+		if(obj->otyp == SCR_ELEMENTALISM) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_ELEMENTALISM;
+		}
 		nomore(MUSE_SCR_FLOOD);
 		if(obj->otyp == SCR_FLOOD) {
 			m.offensive = obj;
@@ -2535,6 +2568,11 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_TRAP_CREATION && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_TRAP_CREATION;
+		}
+		nomore(MUSE_WAN_SUMMON_SEXY_GIRL);
+		if(obj->otyp == WAN_SUMMON_SEXY_GIRL && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_SUMMON_SEXY_GIRL;
 		}
 		nomore(MUSE_WAN_BAD_EFFECT);
 		if(obj->otyp == WAN_BAD_EFFECT && obj->spe > 0) {
@@ -3231,6 +3269,180 @@ struct monst *mtmp;
 		mbhitm(&youmonst,otmp);
 		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/ /* This was crashing too often. --Amy */
 		return 2;
+	case MUSE_SCR_ELEMENTALISM:
+	    {
+		coord cc;
+		int cnt = rnd(9);
+		if (mtmp->mconf) cnt += rnd(12);
+		if (otmp->cursed) cnt += rnd(5);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		while(cnt--) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, NO_MM_FLAGS);
+		}
+	    }
+		pline("The inhabitants of the elemental planes appear!");
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_DEMONOLOGY:
+	    {
+		coord cc;
+		int cnt = rnd(9);
+		if (mtmp->mconf) cnt += rnd(12);
+		if (otmp->cursed) cnt += rnd(5);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		while(cnt--) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			makemon(mkclass(S_DEMON,0), cc.x, cc.y, NO_MM_FLAGS);
+		}
+	    }
+		pline("The denizens of Gehennom appear!");
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_GIRLINESS:
+		mreadmsg(mtmp, otmp);
+
+	    {
+		int cnt = rnd(9);
+		if (otmp->cursed) cnt += rnd(18);
+		if (mtmp->mconf) cnt += rnd(100);
+		while(cnt--) {
+			makegirlytrap();
+		}
+	    }
+
+		if (!objects[SCR_GIRLINESS].oc_name_known
+			&& !objects[SCR_GIRLINESS].oc_uname)
+		    docall(otmp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_NASTINESS:
+		mreadmsg(mtmp, otmp);
+
+		{
+
+		int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(55)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+		}
+		}
+
+		if (!objects[SCR_NASTINESS].oc_name_known
+			&& !objects[SCR_NASTINESS].oc_uname)
+		    docall(otmp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_SCR_TRAP_CREATION:
 
 		mreadmsg(mtmp, otmp);
@@ -3521,9 +3733,10 @@ struct monst *mtmp;
 		return 2;
 
 	case MUSE_SCR_BAD_EFFECT:
-		makeknown(otmp->otyp);
 
 		mreadmsg(mtmp, otmp);
+
+		makeknown(otmp->otyp);
 
 		badeffect();
 
@@ -3629,6 +3842,44 @@ struct monst *mtmp;
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
+
+	case MUSE_WAN_SUMMON_SEXY_GIRL:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		struct monst *mon;
+		boolean known = FALSE;
+		int attempts = 0;
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+newboss:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+		if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET) && rn2(50) ) {
+			attempts = 0;
+			goto newboss;
+		}
+
+		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+	      if (mon && canspotmon(mon)) known = TRUE;
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+
+		return 2;
+	    }
+
 
 	case MUSE_WAN_TRAP_CREATION:
 
@@ -4155,7 +4406,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(70)) {
+	switch (rn2(75)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -4227,6 +4478,11 @@ struct monst *mtmp;
 		case 67: return SCR_WOUNDS;
 		case 68: return SCR_BULLSHIT;
 		case 69: return SCR_AMNESIA;
+		case 70: return WAN_SUMMON_SEXY_GIRL;
+		case 71: return SCR_DEMONOLOGY;
+		case 72: return SCR_NASTINESS;
+		case 73: return SCR_GIRLINESS;
+		case 74: return SCR_ELEMENTALISM;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -4897,9 +5153,9 @@ skipmsg:
 		boolean known = FALSE;
 		int attempts = 0;
 
-		mreadmsg(mtmp, otmp);
-
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
 
 newboss:
 		do {
@@ -5328,6 +5584,7 @@ struct obj *obj;
 		    typ == WAN_CREATE_MONSTER ||
 		    typ == WAN_SUMMON_UNDEAD ||
 		    typ == WAN_TRAP_CREATION ||
+		    typ == WAN_SUMMON_SEXY_GIRL ||
 		    typ == WAN_CREATE_HORDE ||
 		    typ == WAN_DRAINING	||
 		    typ == WAN_REDUCE_MAX_HITPOINTS	||
@@ -5390,7 +5647,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS)
+	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

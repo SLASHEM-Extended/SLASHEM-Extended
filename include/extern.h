@@ -2139,6 +2139,7 @@ E void FDECL(fill_room, (struct mkroom *,BOOLEAN_P));
 E boolean FDECL(load_special, (const char *));
 E int NDECL(randomtrap);
 E void NDECL(makerandomtrap);
+E void NDECL(makegirlytrap);
 
 /* ### spell.c ### */
 
