@@ -4066,6 +4066,7 @@ static const char * const bogusmons[] = {
 	"Celia", "Boese", "Bad", "Eliane", "O'Neill", "Stefan", "Fenja", "Silvana", "Vanasil", "Lukas", "Selinger", "Gallardo", "Sarina", "Alexia", "Vida", "Isis", "Ilse", "Melanie", "Baenni", "Peeer", "Peeta", "Lareena", "Janina", "Jannie", "Walter", "Klaus", "Micha", "Chirin", "Ingrid", "Walker", "Nikolei", "Jonas", "Iwan", "Tonja", "Tapia", "Rubinho", "Coffin Nail", "Evillan", "Thilo", "Maurus", "Ligasa", "Andrea", "Mia", "Annemarie", "Caro",
 
 	"Mandarina", "Ariane", "Carina", "Denise", "Freddie", "Kira", "Nadine", "Laurens", "Loorenz", "Jorin", "Rinjo", "Franzi", "Amelie", "Andrej", "Annika", "Anselm", "Aram", "Barbara", "Boris", "Burkhard", "Elsa", "Isabel", "Nils", "Siln", "Ozan", "Otzan", "Thorwald", "Forestgate", "Dominik", "Albert", "Bianca", "Carmen", "Don Finwe", "Gerrit", "Hilda", "Jens", "Johanna", "Julietta", "Leon", "Linda", "Marius", "Mirko", "Petra", "Sigurd", "Sonja", "Stella", "Ismella", "Teresa", "Wilhelm", "Sagarah", "Rosy",
+
 };
 
 /* Return a random monster name, for hallucination.
