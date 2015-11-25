@@ -3973,14 +3973,14 @@ static const char * const bogusmons[] = {
 	"King Somnus", "Rubiss", "Malroth", /* Dragon Warrior */
 
 	"Young Boy",     "Young Girl",
-	"Village Hero",    0,
-	"City Hero",       0,
-	"Island Hero",    0,
-	"Country Hero",      0,
-	"Continent Hero",     0,
-	"World Hero",     0,
-	"Super Hero",     0,
-	"Legend",       0,
+	"Village Hero",
+	"City Hero",
+	"Island Hero",
+	"Country Hero",
+	"Continent Hero",
+	"World Hero",
+	"Super Hero",
+	"Legend",
 
 	"Mining Slave",
 	"Mine Worker",
