@@ -576,6 +576,7 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_SCHALOTTE], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_MAY_BRITT], sizeof(struct permonst));
 
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);

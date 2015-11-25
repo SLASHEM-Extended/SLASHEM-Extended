@@ -5049,6 +5049,7 @@ u_init()
 	struct permonst* randbossas = &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER];
 	struct permonst* randbossat = &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE];
 	struct permonst* randbossau = &mons[PM_SCHALOTTE];
+	struct permonst* randbossav = &mons[PM_MAY_BRITT];
 
 
 	struct attack* attkptr;
@@ -17543,6 +17544,48 @@ u_init()
 
 	randbossau->mflags3 &= ~M3_NONMOVING;				/* can always move around */
 
+	randbossav->mmove = 15 + rn2(5);				/* slow to very fast */
+	randbossav->ac = 10 - rn2(5);				/* any AC */
+	randbossav->mr = rn2(71);				/* varying amounts of MR */
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randbossav->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(3)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randbossav->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(3)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 4; i++) {
+		randbossav->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 3; i++) {
+		randbossav->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
 
 	return;
 }
