@@ -352,7 +352,7 @@ boolean update;  /* do newsym() */
 	randomx = rn1(COLNO-3,2);
 	randomy = rn2(ROWNO);
 
-	if (randomx && randomy && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+	if (randomx && randomy && (!rn2(3) || (!In_sokoban(&u.uz)) ) && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
 		count = 0;
 		for (i= -1; i<=1; i++) for(j= -1; j<=1; j++) {
 			if (!i && !j) continue;
@@ -393,7 +393,7 @@ boolean update;  /* do newsym() */
 		}
 		/*pline("coord %d,%d, count %d, chance %d",randomx, randomy, count, randchance);*/
 
-		if (!rn2(randchance)) {
+		if (!rn2(randchance) && (!In_sokoban(&u.uz) || !sobj_at(BOULDER, randomx, randomy) ) ) {
 
 
 			if (rn2(3)) doorlockX(randomx, randomy);
