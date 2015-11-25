@@ -5269,11 +5269,21 @@ shk_identify(slang, shkp)
 
 	/* Premier service */
 	if (ident_type == 'p') {
-		makeknown(obj->otyp);
+		if (obj->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
+		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
+		else if (obj->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+		else if (obj->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+		else makeknown(obj->otyp);
 		identify(obj);
 	} else { 
 		/* Basic */
-		makeknown(obj->otyp);
+		if (obj->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
+		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
+		else if (obj->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+		else if (obj->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+		else makeknown(obj->otyp);
 		obj->dknown = 1;
     		prinv((char *)0, obj, 0L); /* Print result */
 	}
