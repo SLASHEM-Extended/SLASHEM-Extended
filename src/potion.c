@@ -719,8 +719,24 @@ badeffect()
 
 		case 105:
 			if (!Antimagic || !rn2(20)) {
-				if (!destroy_arm(some_armor(&youmonst)))
-			    Your("skin itches.");
+				struct obj *otmp2;
+
+				otmp2 = some_armor(&youmonst);
+
+				if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
+				else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+				else if (otmp2 && otmp2->greased) {
+					pline("Your body shakes violently!");
+					 if (!rn2(2)) {
+						pline_The("grease wears off.");
+						otmp2->greased = 0;
+						update_inventory();
+					 }
+				}
+
+				else if (!otmp2) pline("Your skin itches.");
+			      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+
 			}
 
 		break;
