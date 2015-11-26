@@ -1550,7 +1550,8 @@ int spellnum;
 	} else {
 	    if (multi >= 0)
 		You("are frozen in place!");
-	    dmg = 4 + (int)mtmp->m_lev;
+	    /* new calculations by Amy because otherwise this spell would be uber imba */
+	    dmg = rnd( 2 + rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev ) ;
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    nomul(-dmg, "paralyzed by a monster spell");
 	}
