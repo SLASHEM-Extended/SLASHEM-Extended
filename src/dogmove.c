@@ -365,7 +365,7 @@ int udist;
 		    return dog_eat(mtmp, obj, omx, omy, FALSE);
 
 		/* [Tom] demonic & undead pets don't mind cursed items */                
-		if(can_carry(mtmp, obj) &&
+		if(can_carry(mtmp, obj) && !Has_contents(obj) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
 		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
 		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
