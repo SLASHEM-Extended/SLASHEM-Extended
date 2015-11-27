@@ -3299,6 +3299,12 @@ int k_format; /* WAC k_format is an int */
 		    rehumanize();
 		else if (n > 0 && u.mh*10 < u.mhmax && Unchanging)
 		    maybe_wail();
+
+#ifdef SHOW_DMG                
+		if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
+			pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
+		}
+#endif
 		return;
 	} else {
 	u.uhplast = u.uhp;
