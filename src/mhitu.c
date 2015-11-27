@@ -4193,6 +4193,7 @@ dopois:
 	    case AD_FAKE:
 		hitmsg(mtmp, mattk);
 		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
 		break;
 
 	    case AD_NEXU:
@@ -5880,6 +5881,7 @@ do_stone:
 
 	    case AD_FAKE:
 		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
 		break;
 
 	    case AD_LETH:
@@ -7167,6 +7169,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee)
  		{
 			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
 		}
 		break;
 

@@ -4307,8 +4307,10 @@ newboss:
 		 break;
 
 		 case LOUDSPEAKER: /* fake message */
-			pline(fauxmessage());
-
+			{
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
 		 break;
 
 		 case RMB_LOSS_TRAP:
@@ -7821,7 +7823,10 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case LOUDSPEAKER:
-			pline(fauxmessage());
+			{
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
 			break;
 		case MAGIC_TRAP:
 			/* A magic trap.  Monsters usually immune. */

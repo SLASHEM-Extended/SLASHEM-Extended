@@ -838,7 +838,10 @@ moveloop()
 		}
 
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) /* this function is probably expensive... --Amy */
-			if (ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) pline(fauxmessage());
+			if (ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
@@ -1824,7 +1827,10 @@ moveloop()
 			}
 
 			/* more faux messages */
-			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) pline(fauxmessage());
+			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
 
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {

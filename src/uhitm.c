@@ -4530,7 +4530,10 @@ uchar aatyp;
 		break;
 
 	    case AD_FAKE:
-		pline(fauxmessage());
+		{
+			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
+		}
 		break;
 
 	    case AD_LETH:

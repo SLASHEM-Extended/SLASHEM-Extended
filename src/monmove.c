@@ -813,10 +813,16 @@ toofar:
 	/* Come on, monsters can still cuss at you if you can't see them. Seriously, what the heck. --Amy */
 
 	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
-	    pline(fauxmessage());
+		{
+			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
+		}
 
 	    if(inrange && mtmp->egotype_faker && !mtmp->mpeaceful && !rn2(20))
-	    pline(fauxmessage());
+		{
+			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
+		}
 
 	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
 	    pline("%s %s", Monnam(mtmp), bosstaunt());
