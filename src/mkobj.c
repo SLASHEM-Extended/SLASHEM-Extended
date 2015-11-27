@@ -1370,7 +1370,7 @@ register struct obj *otmp;
 
 	if (otmp->cursed) {
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
-		else if (!otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
+		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
 	} else {
 		otmp->cursed = 1;
 		if (!otmp->hvycurse && !otmp->prmcurse && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 35)) otmp->hvycurse = 1;
