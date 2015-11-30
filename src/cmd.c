@@ -101,6 +101,7 @@ extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dozap); /**/
 extern int NDECL(doorganize); /**/
+extern int NDECL(doremoveimarkers); /**/
 
 #ifdef LIVELOG_SHOUT
 extern int NDECL(doshout); /**/
@@ -368,6 +369,24 @@ doextlist()	/* here after #? - now list all full-word commands */
 	destroy_nhwindow(datawin);
 	return 0;
 }
+
+STATIC_PTR int
+doremoveimarkers()
+{
+	int x, y;
+	for(x=0; x<COLNO; x++) for(y=0; y<ROWNO; y++) {
+		if (isok(x, y)) {
+			if (memory_is_invisible(x, y)) {
+			    unmap_object(x,y);
+			    newsym(x,y);
+			}
+		}
+	}
+	pline("Remembered monster markers removed.");
+
+	return 0;
+}
+
 
 #ifdef BORG
 STATIC_PTR int 
@@ -3036,6 +3055,7 @@ static const struct menu_tab player_menu[] = {
 	{'t', TRUE, dotele, "Controlled Teleport [C-t]"},
 /*	{'T', TRUE, doturn, "Turn Undead [M-t]"},*/
 	{'T', TRUE, dotech, "Use Techniques [M-t]"},
+	{'U', TRUE, doremoveimarkers, "Remove 'I' markers [M-u]"},
 	{'x', TRUE, doattributes, "Show attributes"},
 	{'y', TRUE, polyatwill, "Self-Polymorph [M-y]"},
 	{0,0,0,0}
@@ -3413,6 +3433,7 @@ static const struct func_tab cmdlist[] = {
 /*	{C('s'), FALSE, specialpower},*/
 	{C('s'), TRUE, dosave},
 	{C('t'), TRUE, dotele},
+	{C('u'), TRUE, doremoveimarkers},
 #ifdef WIZARD
 	{C('v'), TRUE, wiz_level_tele},
 	{C('w'), TRUE, wiz_wish},
