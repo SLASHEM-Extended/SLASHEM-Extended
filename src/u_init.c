@@ -5148,6 +5148,7 @@ u_init()
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
 	u.hangupcheat = 0;	/* will be set to non-zero if the player hangs up --Amy */
+	u.hangupparalysis = 0;
 	u.hanguppenalty = 0;
 
 	u.bankcashamount = 0;

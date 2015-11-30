@@ -525,6 +525,7 @@ struct you {
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */
 	int hanguppenalty;
+	int hangupparalysis;	/* saved paralysis counter so you *really* cannot cheat */
 
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */

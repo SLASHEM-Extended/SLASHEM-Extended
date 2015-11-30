@@ -155,6 +155,7 @@ int sig_unused;
 
 		u.hangupcheat++;
 		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
+		if (multi) u.hangupparalysis += abs(multi);
 		(void) dosave0();
 
 		}

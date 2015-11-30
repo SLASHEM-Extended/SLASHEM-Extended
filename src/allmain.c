@@ -2691,7 +2691,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.alignlim -= 5;
 	      adjalign(-100);
 
-		nomul(-5, "paralyzed by severe hangup cheating");
+		nomul(-(5 + u.hangupparalysis), "paralyzed by severe hangup cheating");
 
 		u.uhpmax -= rnd(20);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -2711,13 +2711,14 @@ boolean new_game;	/* false => restoring an old game */
 		}
 
 		u.hangupcheat--;
+		u.hangupparalysis = 0;
 
 	}
 
 	if (!new_game && u.hangupcheat) {
 
 		pline("You hanged up during your last session! Since I can't determine whether you did that to cheat, you will now be paralyzed, slowed and have your max HP/Pw reduced. Please save your game normally next time! --Amy");
-		if (multi >= 0) nomul(-2, "paralyzed by trying to hangup cheat");
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat");
 
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
@@ -2744,6 +2745,7 @@ boolean new_game;	/* false => restoring an old game */
 		}
 
 		u.hangupcheat--;
+		u.hangupparalysis = 0;
 	}
 
 	#ifdef LIVELOGFILE
