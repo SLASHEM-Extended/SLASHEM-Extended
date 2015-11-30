@@ -62,6 +62,8 @@ struct flag {
 	boolean  made_amulet;
 	boolean  menu_on_esc;	/* show menu when hitting esc */
 	boolean  missing_safety;	/* don't show the player's polymorphed species as a missingno */
+	boolean  pokedex;		/* show pokedex (not on public servers) */
+	boolean  tech_description;	/* show descriptions when choosing techniques */
 	boolean  mon_moving;	/* monsters' turn to move */
 	boolean  move;
 	boolean  mv;

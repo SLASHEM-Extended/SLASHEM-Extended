@@ -934,7 +934,7 @@ do_look(quick)
 #endif
 
 #ifdef EXTENDED_INFO
-		if(pm != (struct permonst *) 0) {
+		if(flags.pokedex && (pm != (struct permonst *) 0) ) {
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
 			get_description_of_monster_type(pm, temp_buf);

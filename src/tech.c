@@ -1031,6 +1031,8 @@ dotech()
 {
 	int tech_no;
 
+	if (flags.tech_description) {
+
 	if (gettech(&tech_no)) {
 
 		switch (techid(tech_no)) {
@@ -1264,6 +1266,12 @@ dotech()
 	}
 
 	return 0;
+
+	} else if (gettech(&tech_no)) {
+		return techeffects(tech_no);
+	}
+	return 0;
+
 }
 
 static NEARDATA const char kits[] = { TOOL_CLASS, 0 };
