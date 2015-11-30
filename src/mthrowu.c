@@ -109,6 +109,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case GRAY_DRAGON_SCALE_SHIELD:
 		case SILVER_DRAGON_SCALE_SHIELD:
+		case MERCURIAL_DRAGON_SCALE_SHIELD:
 		case SHIMMERING_DRAGON_SCALE_SHIELD:
 		case DEEP_DRAGON_SCALE_SHIELD:
 		case RED_DRAGON_SCALE_SHIELD:

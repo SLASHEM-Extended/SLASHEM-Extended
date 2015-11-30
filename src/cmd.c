@@ -2442,6 +2442,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		case GRAY_DRAGON_SCALE_SHIELD:
 		case SILVER_DRAGON_SCALE_SHIELD:
+		case MERCURIAL_DRAGON_SCALE_SHIELD:
 		case SHIMMERING_DRAGON_SCALE_SHIELD:
 		case DEEP_DRAGON_SCALE_SHIELD:
 		case RED_DRAGON_SCALE_SHIELD:

@@ -4833,6 +4833,8 @@ struct obj *obj;
 				pline("This armor offers great protection as well as magic resistance."); break;
 			case SILVER_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as reflection."); break;
+			case MERCURIAL_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as extra speed."); break;
 			case SHIMMERING_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as displacement."); break;
 			case DEEP_DRAGON_SCALE_MAIL: 
@@ -4861,6 +4863,8 @@ struct obj *obj;
 				pline("This armor offers moderate protection as well as magic resistance."); break;
 			case SILVER_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as reflection."); break;
+			case MERCURIAL_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as extra speed."); break;
 			case SHIMMERING_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as displacement."); break;
 			case DEEP_DRAGON_SCALES: 
@@ -5117,6 +5121,8 @@ struct obj *obj;
 				pline("A shield made from dragon hide that provides magic resistance as well as protection."); break;
 			case SILVER_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides reflection as well as protection."); break;
+			case MERCURIAL_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides extra speed as well as protection."); break;
 			case SHIMMERING_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides displacement as well as protection."); break;
 			case DEEP_DRAGON_SCALE_SHIELD:
