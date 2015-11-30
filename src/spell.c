@@ -441,7 +441,7 @@ learn()
 	}
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
-	if (book->cursed && !Role_if(PM_LIBRARIAN) ) {	/* maybe a demon cursed it */
+	if ( (book->cursed || book->spe < 1) && !Role_if(PM_LIBRARIAN) ) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
@@ -513,7 +513,7 @@ register struct obj *spellbook;
 		spellbook->in_use = TRUE;
 		if (!spellbook->blessed &&
 		    spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    if (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) {
+		    if ( (spellbook->cursed || (spellbook->spe < 1 && rn2(5)) ) && !Role_if(PM_LIBRARIAN) ) {
 			too_hard = TRUE;
 		    } else {
 			/* uncursed - chance to fail */
@@ -539,7 +539,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if (too_hard && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || !spellbook->spe)) {
+		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || !spellbook->spe)) {
 		    boolean gone = cursed_book(spellbook);
 
 		    nomul(delay, "reading a cursed book");			/* study time */
