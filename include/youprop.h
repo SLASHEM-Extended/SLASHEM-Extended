@@ -228,6 +228,16 @@
 
 #define NoStaircase		u.uprops[NO_STAIRCASE].intrinsic
 
+#define FastMetabolismEffect		u.uprops[FAST_METABOLISM].intrinsic
+#define NoReturnEffect		u.uprops[NORETURN].intrinsic
+#define AlwaysEgotypeMonsters		u.uprops[ALWAYS_EGOTYPES].intrinsic
+#define TimeGoesByFaster		u.uprops[FAST_FORWARD].intrinsic
+#define FoodIsAlwaysRotten		u.uprops[FOOD_IS_ROTTEN].intrinsic
+#define AllSkillsUnskilled		u.uprops[SKILL_DEACTIVATED].intrinsic
+#define AllStatsAreLower		u.uprops[STATS_LOWERED].intrinsic
+#define PlayerCannotTrainSkills		u.uprops[TRAINING_DEACTIVATED].intrinsic
+#define PlayerCannotExerciseStats		u.uprops[EXERCISE_DEACTIVATED].intrinsic
+
 #define TimeStopped		u.uprops[TIME_STOPPED].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */

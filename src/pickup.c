@@ -1527,7 +1527,7 @@ int x, y;
 {
 	if (!can_reach_floor()) {
 #ifdef STEED
-		if (u.usteed && P_SKILL(P_RIDING) < P_BASIC)
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 #endif

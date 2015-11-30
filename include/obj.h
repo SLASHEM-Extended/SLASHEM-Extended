@@ -546,6 +546,15 @@ struct obj {
 				 (obj)->otyp == BOOK_STONE || \
 				 (obj)->otyp == LEVEL_STONE || \
 				 (obj)->otyp == QUIZ_STONE || \
+				 (obj)->otyp == METABOLIC_STONE || \
+				 (obj)->otyp == STONE_OF_NO_RETURN || \
+				 (obj)->otyp == EGOSTONE || \
+				 (obj)->otyp == FAST_FORWARD_STONE || \
+				 (obj)->otyp == ROTTEN_STONE || \
+				 (obj)->otyp == UNSKILLED_STONE || \
+				 (obj)->otyp == LOW_STAT_STONE || \
+				 (obj)->otyp == TRAINING_STONE || \
+				 (obj)->otyp == EXERCISE_STONE || \
 				 (obj)->otyp == UNINFORMATION_STONE )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \

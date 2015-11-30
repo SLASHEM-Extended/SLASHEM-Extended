@@ -2075,7 +2075,7 @@ int tech_no;
 	    		You("aren't wielding a proper weapon!");
 	    		return(0);
 	    	}
-	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || (Blind)) {
+	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || (Blind)) {
 	    		You("aren't capable of doing this!");
 	    		return(0);
 	    	}

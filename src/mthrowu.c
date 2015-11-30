@@ -169,6 +169,7 @@ const char *name;	/* if null, then format `obj' */
 #ifdef JEDI
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
+		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 		rn2(5)){ /* dodge four of five missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
@@ -176,6 +177,7 @@ const char *name;	/* if null, then format `obj' */
 #endif
 	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
+		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 		rn2(2)){ /* dodge half of all missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));

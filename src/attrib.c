@@ -967,7 +967,7 @@ boolean	inc_or_dec;
 
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
-		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && (flags.hybridization < rnd(20)) ) : -rn2(2);
+		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) && (flags.hybridization < rnd(20)) ) : -rn2(2);
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
 			(i == A_STR) ? "Str" : (i == A_WIS) ? "Wis" :
@@ -1550,6 +1550,10 @@ int x;
 
 		if (Upolyd && strongmonst(youmonst.data) ) tmp += 3;
 
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
 		/*if (tmp < 18 && (youmonst.data->mlet == S_NYMPH ||
@@ -1557,6 +1561,11 @@ int x;
 		    tmp = 18;*/
 		if (youmonst.data->mlet == S_NYMPH || u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS) tmp += 3;
 		if (uarmh && uarmh->otyp == FEDORA) tmp += 1;        
+
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+
 		return((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
@@ -1564,7 +1573,17 @@ int x;
 		 */
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
+	} else {
+
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+
 	}
 #ifdef WIN32_BUG
 	return(x=((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp));

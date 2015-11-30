@@ -686,7 +686,7 @@ moverock()
 	cannot_push:
 	    if (throws_rocks(youmonst.data)) {
 #ifdef STEED
-		if (u.usteed && P_SKILL(P_RIDING) < P_BASIC) {
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -2973,7 +2973,7 @@ dopickup()
 	}
 	if (!can_reach_floor()) {
 #ifdef STEED
-		if (u.usteed && P_SKILL(P_RIDING) < P_BASIC)
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else

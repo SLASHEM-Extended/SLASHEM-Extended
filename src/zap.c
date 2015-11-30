@@ -3748,7 +3748,7 @@ boolean ordinary;
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -3919,7 +3919,7 @@ struct obj *obj;	/* wand or spell */
 
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			pline("For some reason you resist the banishment!"); break;}
 
@@ -4373,7 +4373,8 @@ register int booktype;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
 
-	switch (P_SKILL(spell_skilltype(booktype))) {
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) tmp -= 1;
+	else switch (P_SKILL(spell_skilltype(booktype))) {
 		case P_ISRESTRICTED:
 		case P_UNSKILLED:   tmp -= 1; break;
 		case P_BASIC:       break;
@@ -4397,7 +4398,8 @@ int skill;
     int hit_bon = 0;
     int dex = ACURR(A_DEX);
 
-    switch (P_SKILL(spell_skilltype(skill))) {
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) hit_bon = -4;
+    else switch (P_SKILL(spell_skilltype(skill))) {
 	case P_ISRESTRICTED:
 	case P_UNSKILLED:   hit_bon = -4; break;
 	case P_BASIC:       hit_bon =  0; break;

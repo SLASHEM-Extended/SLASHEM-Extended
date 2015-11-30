@@ -335,6 +335,12 @@ register struct obj *obj;
 		You("thought your %s got lost in the sink, but there it is!",
 			xname(obj));
 		goto giveback;
+/* KMH, balance patch -- now an amulet */
+		/* re-enabled by Amy */
+	    case RIN_DRAIN_RESISTANCE:
+		pline("The sink looks weaker for a moment, but it passes.");
+		pline_The("ring refuses to go down the drain!"); /* drain resistance, geddit? --Amy */
+		goto giveback;
 	    case RIN_SLOW_DIGESTION:
 		pline_The("ring is regurgitated!");
 giveback:
@@ -354,10 +360,6 @@ giveback:
 	    case RIN_SHOCK_RESISTANCE:
 		pline("Static electricity surrounds the sink.");
 		break;
-/* KMH, balance patch -- now an amulet
-	    case RIN_DRAIN_RESISTANCE:
-		pline("The sink looks weaker for a moment, but it passes.");
-		break; */
 	    case RIN_CONFLICT:
 		You_hear("loud noises coming from the drain.");
 		break;
@@ -442,6 +444,22 @@ giveback:
 	      case RIN_DISENGRAVING:
 		    pline("Some writing seems to vanish from the water flow!");
 		    break;
+		case RIN_NO_SKILL:
+		    pline("The water flow seems to stop completely!");
+		    break;
+		case RIN_LOW_STATS:
+		    pline("The water flow slows down to a crawl.");
+		    break;
+		case RIN_FAILED_TRAINING:
+		    pline("The water doesn't seem to find its way downward any longer!");
+		    break;
+		case RIN_FAILED_EXERCISE:
+		    pline("The water flows toward the drain but just can't seem to reach it!");
+		    break;
+		case RIN_FAST_METABOLISM:
+		    pline("The water vanishes down the drain incredibly quickly!");
+		    break;
+
 	      case RIN_NUMBNESS:
 		    pline("The water flow stutters for a moment.");
 		    break;
@@ -2755,7 +2773,7 @@ boolean at_stairs, falling, portal;
 		else if (u.dz &&
 #ifdef CONVICT
 		    (near_capacity() > UNENCUMBERED || (Punished &&
-		    ((uwep != uball) || ((P_SKILL(P_FLAIL) < P_BASIC))
+		    ((uwep != uball) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()  || ((P_SKILL(P_FLAIL) < P_BASIC))
             || !Role_if(PM_CONVICT)))
 		     || Fumbling)) {
 #else

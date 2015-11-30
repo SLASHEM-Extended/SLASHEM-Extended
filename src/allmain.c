@@ -819,6 +819,37 @@ moveloop()
 		    monstermoves++;
 		    moves++;
 
+			if (u.uprops[FAST_FORWARD].extrinsic) {
+
+			    monstermoves++;
+			    moves++;
+
+			}
+
+			if (have_fastforwardstone()) {
+
+			    monstermoves++;
+			    moves++;
+
+			}
+
+			if (TimeGoesByFaster) {
+
+				int veryfasttime;
+
+			    monstermoves++;
+			    moves++;
+
+				veryfasttime = TimeGoesByFaster / 5000;
+				if (veryfasttime) {
+
+					moves += veryfasttime;
+					monstermoves += veryfasttime;
+
+				}
+
+			}
+
 		    /********************************/
 		    /* once-per-turn things go here */
 		    /********************************/
@@ -1434,6 +1465,9 @@ moveloop()
 
  			int efflev = u.ulevel + (u.uhealbonus);
  			int effcon = ACURR(A_CON) + (u.uhealbonus);
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 			if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
 			if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
 			if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
@@ -1442,6 +1476,9 @@ moveloop()
 			if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
 			if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
 			if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
+
+			}
+
 	/* Yeah I know this makes no sense at all, but it improves the usefulness of the riding skill. --Amy */
 			int heal = 1;
 
@@ -1597,6 +1634,8 @@ moveloop()
 			/* Having a spell school at skilled will improve mana regeneration.
 			 * Having a spell school at expert will improve it by even more. --Amy */
 
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -1736,6 +1775,8 @@ moveloop()
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
+
+			}
 
 			/* Spooky faux error messages on the Spacewars Fighter goal level --Amy */
 			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
@@ -2058,7 +2099,7 @@ moveloop()
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
-		if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) {
+		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 			pline("You shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 

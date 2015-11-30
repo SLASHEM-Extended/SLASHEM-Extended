@@ -1383,6 +1383,9 @@ dospinweb()
 		case ORANGE_GLYPH:
 		case BLACK_GLYPH:
 		case PURPLE_GLYPH:
+		case FALLING_LOADSTONE_TRAP:
+		case FALLING_NASTYSTONE_TRAP:
+		case SUMMON_UNDEAD_TRAP:
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
@@ -1464,6 +1467,16 @@ dospinweb()
 		case BOOK_TRAP:
 		case LEVEL_TRAP:
 		case QUIZ_TRAP:
+
+		case METABOLIC_TRAP:
+		case TRAP_OF_NO_RETURN:
+		case EGOTRAP:
+		case FAST_FORWARD_TRAP:
+		case TRAP_OF_ROTTENNESS:
+		case UNSKILLED_TRAP:
+		case LOW_STATS_TRAP:
+		case TRAINING_TRAP:
+		case EXERCISE_TRAP:
 
 			dotrap(ttmp, 0);
 			return(1);

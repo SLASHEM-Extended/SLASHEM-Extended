@@ -2602,6 +2602,7 @@ opentin()		/* called during each move whilst opening a tin */
 		goto use_me;
 	    }
 	    r = tin.tin->cursed ? ROTTEN_TIN :	/* always rotten if cursed */
+		(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ? ROTTEN_TIN :
 		    (tin.tin->spe == -1) ? /* HOMEMADE_TIN*/ rn2(TTSZ-1) :  /* player made it */
 			rn2(TTSZ-1);		/* else take your pick */
 	    if (r == ROTTEN_TIN && (nocorpsedecay(&mons[tin.tin->corpsenm]) ))
@@ -2994,6 +2995,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		long age = peek_at_iced_corpse_age(otmp);
 
 		rotted = (monstermoves - age)/(10L + rn2(20));
+		if (FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) rotted += 2L;
 		if (otmp->cursed) rotted += 2L;
 		else if (otmp->blessed) rotted -= 2L;
 	}
@@ -3104,7 +3106,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	}
 
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&
-			(otmp->orotten || otmp->cursed || (!rn2(20) && !otmp->blessed)  )) {
+			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (!rn2(20) && !otmp->blessed) ) ) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 	    if (rottenfood(otmp)) {
 		otmp->orotten = TRUE;
@@ -3330,7 +3332,7 @@ struct obj *otmp;
 		}
 		/* Fall through otherwise */
 	    default:
-		if (otmp->otyp == SLIME_MOLD && !otmp->cursed
+		if (otmp->otyp == SLIME_MOLD && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 			&& otmp->spe == current_fruit)
 		    pline("My, that was a %s %s!",
 			  Hallucination ? "primo" : "yummy",
@@ -3368,7 +3370,7 @@ struct obj *otmp;
 		} else {
 		    boolean bad_for_you;
  give_feedback:
-		    bad_for_you = otmp->cursed ||
+		    bad_for_you = otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || 
 		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_)) &&
 		      otmp->otyp == SPRIG_OF_WOLFSBANE);
 		    pline("This %s is %s", singular(otmp, xname),
@@ -3590,13 +3592,13 @@ eatspecial() /* called after eating non-food */
 		o_unleash(otmp);
 
 	/* KMH -- idea by "Tommy the Terrorist" */
-	if ((otmp->otyp == TRIDENT) && !otmp->cursed)
+	if ((otmp->otyp == TRIDENT) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 	{
 		pline(Hallucination ? "Four out of five dentists agree." :
 				"That was pure chewing satisfaction!");
 		exercise(A_WIS, TRUE);
 	}
-	if ((otmp->otyp == FLINT) && !otmp->cursed)
+	if ((otmp->otyp == FLINT) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 	{
 		pline(Hallucination ? "Whoops, what's that grating sound? Was that a piece of your tooth?" : "Yabba-dabba delicious!");
 		exercise(A_CON, TRUE);
@@ -3794,7 +3796,7 @@ register struct obj *otmp;
 		/* This stuff seems to be VERY healthy! */
 		gainstr(otmp, 1);
 		if (Upolyd) {
-		    u.mh += otmp->cursed ? -rnd(20) : rnd(20);
+		    u.mh += (otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ? -rnd(20) : rnd(20);
 		    if (u.mh > u.mhmax) {
 			if (!rn2(17)) u.mhmax++;
 			u.mh = u.mhmax;
@@ -3802,7 +3804,7 @@ register struct obj *otmp;
 			rehumanize();
 		    }
 		} else {
-		    u.uhp += otmp->cursed ? -rnd(20) : rnd(20);
+		    u.uhp += (otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ? -rnd(20) : rnd(20);
 		    if (u.uhp > u.uhpmax) {
 			if(!rn2(17)) u.uhpmax++;
 			u.uhp = u.uhpmax;
@@ -3812,7 +3814,7 @@ register struct obj *otmp;
 			done(POISONING);
 		    }
 		}
-		if(!otmp->cursed) heal_legs();
+		if(!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) heal_legs();
 		break;
 	    case EGG:
 
@@ -3833,9 +3835,9 @@ register struct obj *otmp;
 		}
 		break;
 	    case EUCALYPTUS_LEAF:
-		if (Sick && !otmp->cursed)
+		if (Sick && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 		    make_sick(0L, (char *)0, TRUE, SICK_ALL);
-		if (Vomiting && !otmp->cursed)
+		if (Vomiting && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 		    make_vomiting(0L, TRUE);
 		break;
 	}
@@ -3897,6 +3899,7 @@ struct obj *otmp;
 			/* worst case rather than random
 			   in this calculation to force prompt */
 			rotted = (monstermoves - age)/(10L + 0 /* was rn2(20) */);
+			if (FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) rotted += 2L;
 			if (otmp->cursed) rotted += 2L;
 			else if (otmp->blessed) rotted -= 2L;
 		}
@@ -4191,7 +4194,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    u.uconduct.food++;
 		gluttonous();
 	    
-	    if (otmp->cursed)
+	    if (otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 		(void) rottenfood(otmp);
 
 	    if (otmp->oclass == WEAPON_CLASS && otmp->opoisoned) {
@@ -4201,7 +4204,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
-	    } else if (!otmp->cursed)
+	    } else if (!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 		pline("This %s is delicious!",
 		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
@@ -4308,7 +4311,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 
 	    victual.reqtime = objects[otmp->otyp].oc_delay;
 	    if (otmp->otyp != FORTUNE_COOKIE &&
-		(otmp->cursed ||
+		(otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() ||
 		 (((monstermoves - otmp->age) > (int) otmp->blessed ? 50:30) &&
 		(otmp->orotten || (!rn2(20) && !otmp->blessed) )))) {
 
@@ -4413,6 +4416,18 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 #endif /* CONVICT */
 		&& !Slow_digestion)
 	    u.uhunger--;		/* ordinary food consumption */
+
+	if (u.uprops[FAST_METABOLISM].extrinsic) u.uhunger--;
+	if (have_metabolicstone()) u.uhunger--;
+	if (FastMetabolismEffect) {
+
+		int extrahungerpoints;
+
+		u.uhunger--;
+
+		extrahungerpoints = FastMetabolismEffect / 5000;
+		if (extrahungerpoints) u.uhunger -= extrahungerpoints;
+	}
 
 	if (moves % 2) {	/* odd turns */
 	    /* Regeneration uses up food, unless due to an artifact */

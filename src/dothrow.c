@@ -173,6 +173,9 @@ int thrown;
 			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
 		!(Confusion || Stunned)) {
 	    /* Bonus if the player is proficient in this weapon... */
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 	    switch (P_SKILL(weapon_type(obj))) {
 	    default:	break; /* No bonus */
 	    case P_SKILLED:	multishot++; break;
@@ -180,6 +183,8 @@ int thrown;
 	    case P_MASTER:	multishot += 3; break; /* this might be implemented --Amy */
 	    case P_GRAND_MASTER:	multishot += 4; break;
 	    }
+
+		}
 	    
 	    /* ...or is using a good weapon... */
 	    /* Elven Craftsmanship makes for light, quick bows */
@@ -207,10 +212,15 @@ int thrown;
 		break;
 	    case PM_ROCKER:
 		if (skill == P_SLING) {multishot++;
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_MASTER) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_GRAND_MASTER) multishot++;
+
+		}
 		}
 		break;
 	    case PM_ELPH: /* elf role --Amy */
@@ -1124,6 +1134,7 @@ int thrown;
 #ifdef JEDI
 	    if (u.dz < 0 && Role_if(PM_JEDI) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
+			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
 		pline("%s the %s and returns to your hand!",
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
@@ -1302,6 +1313,7 @@ int thrown;
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
 		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
+			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */
 		    /* or a Jedi with a lightsaber */

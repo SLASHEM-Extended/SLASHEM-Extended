@@ -796,7 +796,7 @@ cast_protection()
 	    }
 	    u.uspellprot += gain;
 	    u.uspmtime =
-		P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT ? 20 : 10;
+		(!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
 	    if (!u.usptime)
 		u.usptime = u.uspmtime;
 	    find_ac();
@@ -882,6 +882,7 @@ boolean atme;
 	 */
 	skill = spell_skilltype(spellid(spell));
 	role_skill = P_SKILL(skill);
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) role_skill = P_ISRESTRICTED;
 
 	/*
 	 * Spell casting no longer affects knowledge of the spell. A
@@ -1878,6 +1879,7 @@ int spell;
 	 * in that spell type.
 	 */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) skill = P_ISRESTRICTED;
 
 	/* come on, you should be able to cast better if your skill is higher! --Amy */
 	if ( skill == P_BASIC) splcaster -= 3;

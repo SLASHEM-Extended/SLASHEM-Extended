@@ -681,13 +681,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
 TRAP:"shit trap",random
@@ -788,6 +781,15 @@ TRAP:"magic device",random
 TRAP:"book",random
 TRAP:"level",random
 TRAP:"quiz",random
+TRAP:"metabolic",random
+TRAP:"no return",random
+TRAP:"egotype",random
+TRAP:"fast forward",random
+TRAP:"rottenness",random
+TRAP:"unskilled",random
+TRAP:"low stats",random
+TRAP:"training",random
+TRAP:"exercise",random
 TRAP:"loudspeaker",random
 TRAP:"loudspeaker",random
 TRAP:"loudspeaker",random

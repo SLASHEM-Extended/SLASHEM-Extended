@@ -2012,6 +2012,19 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != BLACK_GLYPH
 				&& ttmp->ttyp != PURPLE_GLYPH
 
+				&& ttmp->ttyp != METABOLIC_TRAP
+				&& ttmp->ttyp != TRAP_OF_NO_RETURN
+				&& ttmp->ttyp != EGOTRAP
+				&& ttmp->ttyp != FAST_FORWARD_TRAP
+				&& ttmp->ttyp != TRAP_OF_ROTTENNESS
+				&& ttmp->ttyp != UNSKILLED_TRAP
+				&& ttmp->ttyp != LOW_STATS_TRAP
+				&& ttmp->ttyp != TRAINING_TRAP
+				&& ttmp->ttyp != EXERCISE_TRAP
+				&& ttmp->ttyp != FALLING_LOADSTONE_TRAP
+				&& ttmp->ttyp != SUMMON_UNDEAD_TRAP
+				&& ttmp->ttyp != FALLING_NASTYSTONE_TRAP
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != GIANT_CHASM

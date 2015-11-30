@@ -1645,7 +1645,7 @@ unsigned trflags;
 		return;
 	    }
 	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
-		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && !forcebungle &&
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
@@ -1924,6 +1924,74 @@ unsigned trflags;
 		    losehp(dmg, "falling rock", KILLED_BY_AN);
 		    exercise(A_STR, FALSE);
 		}
+		break;
+
+	    case FALLING_LOADSTONE_TRAP:
+		{
+		    int dmg = rnd(30) + rnd(monster_difficulty() + 1);
+
+		    otmp = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
+		    otmp->quan = 1L;
+		    otmp->owt = weight(otmp);
+
+		    pline("A trap door in %s opens and %s falls on your %s!",
+			  the(ceiling(u.ux,u.uy)),
+			  an(xname(otmp)),
+			  body_part(HEAD));
+
+		    if (uarmh) {
+			if(is_metallic(uarmh)) {
+			    pline("Fortunately, you are wearing a hard helmet.");
+			    dmg /= 2;
+			} else if (flags.verbose) {
+			    Your("%s does not protect you.", xname(uarmh));
+			}
+		    }
+
+		    if (!Blind) otmp->dknown = 1;
+		    if (otmp) {
+		      pline("%s lands in your knapsack!", Doname2(otmp));
+			(void) pickup_object(otmp, 1L, TRUE);
+		    }
+
+		    losehp(dmg, "falling loadstone", KILLED_BY_AN);
+		    exercise(A_STR, FALSE);
+		}
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case FALLING_NASTYSTONE_TRAP:
+		{
+		    int dmg = rnd(20) + rnd(monster_difficulty() + 1);
+
+		    otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE);
+		    otmp->quan = 1L;
+		    otmp->owt = weight(otmp);
+
+		    pline("A trap door in %s opens and %s falls on your %s!",
+			  the(ceiling(u.ux,u.uy)),
+			  an(xname(otmp)),
+			  body_part(HEAD));
+
+		    if (uarmh) {
+			if(is_metallic(uarmh)) {
+			    pline("Fortunately, you are wearing a hard helmet.");
+			    dmg /= 2;
+			} else if (flags.verbose) {
+			    Your("%s does not protect you.", xname(uarmh));
+			}
+		    }
+
+		    if (!Blind) otmp->dknown = 1;
+		    if (otmp) {
+		      pline("%s lands in your knapsack!", Doname2(otmp));
+			(void) pickup_object(otmp, 1L, TRUE);
+		    }
+
+		    losehp(dmg, "falling loadstone", KILLED_BY_AN);
+		    exercise(A_STR, FALSE);
+		}
+		deltrap(trap); /* only triggers once */
 		break;
 
 	    case FALLING_BOULDER_TRAP:
@@ -2308,6 +2376,45 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		}
 
 	pline("es come to life!"); /* garbled string from Castle of the Winds. This trap summons random monsters. --Amy */
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case SUMMON_UNDEAD_TRAP:
+
+		monstcnt = rnd(3);
+		if (!rn2(3)) monstcnt += rnd(2);
+		if (!rn2(10)) monstcnt += rnd(5);
+		if (!rn2(50)) monstcnt += rnd(10);
+		if (!rn2(200)) monstcnt += rnd(20);
+
+	      while(--monstcnt >= 0) {
+
+		    switch (rnd(10)) {
+		    case 1:
+			(void) makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+		    case 2:
+		    case 3:
+		    case 4:
+		    case 5:
+			(void) makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+		    case 6:
+		    case 7:
+		    case 8:
+			(void) makemon(mkclass(S_MUMMY,0), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+		    case 9:
+			(void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+		    case 10:
+			(void) makemon(mkclass(S_WRAITH,0), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+		    }
+		}
+
+		pline("ge broadcast by Arabella to confuse unwary players.");
 
 		deltrap(trap); /* only triggers once */
 		break;
@@ -3501,7 +3608,7 @@ newboss:
 	    case WARP_ZONE:
 		deltrap(trap);
 
-		if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("For some reason you resist the banishment!"); break;}
@@ -4405,6 +4512,78 @@ newboss:
 
 		 break;
 
+		 case METABOLIC_TRAP:
+
+			if (FastMetabolismEffect) break;
+
+			FastMetabolismEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TRAP_OF_NO_RETURN:
+
+			if (NoReturnEffect) break;
+
+			NoReturnEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case EGOTRAP:
+
+			if (AlwaysEgotypeMonsters) break;
+
+			AlwaysEgotypeMonsters = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case FAST_FORWARD_TRAP:
+
+			if (TimeGoesByFaster) break;
+
+			TimeGoesByFaster = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TRAP_OF_ROTTENNESS:
+
+			if (FoodIsAlwaysRotten) break;
+
+			FoodIsAlwaysRotten = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case UNSKILLED_TRAP:
+
+			if (AllSkillsUnskilled) break;
+
+			AllSkillsUnskilled = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case LOW_STATS_TRAP:
+
+			if (AllStatsAreLower) break;
+
+			AllStatsAreLower = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TRAINING_TRAP:
+
+			if (PlayerCannotTrainSkills) break;
+
+			PlayerCannotTrainSkills = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case EXERCISE_TRAP:
+
+			if (PlayerCannotExerciseStats) break;
+
+			PlayerCannotExerciseStats = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case RECURRING_AMNESIA_TRAP:
 
 			if (RecurringAmnesia) break;
@@ -5018,7 +5197,7 @@ newboss:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(55)) {
+			switch (rnd(64)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -5100,6 +5279,15 @@ newboss:
 				case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -5630,7 +5818,7 @@ newboss:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect ) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -5687,6 +5875,15 @@ newboss:
 			BookTrapEffect = 0L;
 			LevelTrapEffect = 0L;
 			QuizTrapEffect = 0L;
+			FastMetabolismEffect = 0L;
+			NoReturnEffect = 0L;
+			AlwaysEgotypeMonsters = 0L;
+			TimeGoesByFaster = 0L;
+			FoodIsAlwaysRotten = 0L;
+			AllSkillsUnskilled = 0L;
+			AllStatsAreLower = 0L;
+			PlayerCannotTrainSkills = 0L;
+			PlayerCannotExerciseStats = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -7820,6 +8017,19 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case LEVEL_TRAP:
 		case QUIZ_TRAP:
 
+		case METABOLIC_TRAP:
+		case TRAP_OF_NO_RETURN:
+		case EGOTRAP:
+		case FAST_FORWARD_TRAP:
+		case TRAP_OF_ROTTENNESS:
+		case UNSKILLED_TRAP:
+		case LOW_STATS_TRAP:
+		case TRAINING_TRAP:
+		case EXERCISE_TRAP:
+		case FALLING_LOADSTONE_TRAP:
+		case SUMMON_UNDEAD_TRAP:
+		case FALLING_NASTYSTONE_TRAP:
+
 			break;
 
 		case LOUDSPEAKER:
@@ -9493,7 +9703,7 @@ boolean force_failure;
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
 #ifdef STEED
-		if (u.usteed && P_SKILL(P_RIDING) < P_BASIC)
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -10199,7 +10409,7 @@ boolean force;
 			case 'n': continue;
 		    }
 #ifdef STEED
-		    if (u.usteed && P_SKILL(P_RIDING) < P_BASIC) {
+		    if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);

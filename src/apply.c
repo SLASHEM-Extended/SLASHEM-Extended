@@ -2638,7 +2638,7 @@ struct obj *otmp;
 	/*[fumbling and/or confusion and/or cursed object check(s)
 	   should be incorporated here instead of in set_trap]*/
 #ifdef STEED
-	if (u.usteed && P_SKILL(P_RIDING) < P_BASIC) {
+	if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 	    boolean chance;
 
 	    if (Fumbling || otmp->cursed) chance = (rnl(10) > 3);
@@ -3012,7 +3012,7 @@ use_pole (obj)
 #ifdef WEAPON_SKILLS
 	/* Calculate range */
 	typ = weapon_type(obj);
-	if (typ == P_NONE || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 	else max_range = 8;
 #else
@@ -3223,7 +3223,7 @@ use_grapple (obj)
 
 	/* Calculate range */
 	typ = uwep_skill_type();
-	if (typ == P_NONE || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) == P_SKILLED) max_range = 5;
 	else max_range = 8;
 	if (distu(cc.x, cc.y) > max_range) {
@@ -3236,7 +3236,7 @@ use_grapple (obj)
 
 	/* What do you want to hit? */
 	tohit = rn2(5);
-	if (typ != P_NONE && P_SKILL(typ) >= P_SKILLED) {
+	if (typ != P_NONE && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(typ) >= P_SKILLED) {
 	    winid tmpwin = create_nhwindow(NHW_MENU);
 	    anything any;
 	    char buf[BUFSZ];
@@ -3303,7 +3303,7 @@ use_grapple (obj)
 	    }
 	    return (1);
 	default:	/* Yourself (oops!) */
-	    if (P_SKILL(typ) <= P_BASIC) {
+	    if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) {
 		You("hook yourself!");
 		losehp(rn1(10,10), "a grappling hook", KILLED_BY);
 		return (1);
@@ -4258,6 +4258,15 @@ doapply()
 	case ITEM_TELEPORTING_STONE:
 	case NASTY_STONE:
 
+	case METABOLIC_STONE:
+	case STONE_OF_NO_RETURN:
+	case EGOSTONE:
+	case FAST_FORWARD_STONE:
+	case ROTTEN_STONE:
+	case UNSKILLED_STONE:
+	case LOW_STAT_STONE:
+	case TRAINING_STONE:
+	case EXERCISE_STONE:
 	case SALT_CHUNK:
 		use_stone(obj);
 		break;
@@ -4395,6 +4404,16 @@ doapply()
 		BookTrapEffect = 0L;
 		LevelTrapEffect = 0L;
 		QuizTrapEffect = 0L;
+
+		FastMetabolismEffect = 0L;
+		NoReturnEffect = 0L;
+		AlwaysEgotypeMonsters = 0L;
+		TimeGoesByFaster = 0L;
+		FoodIsAlwaysRotten = 0L;
+		AllSkillsUnskilled = 0L;
+		AllStatsAreLower = 0L;
+		PlayerCannotTrainSkills = 0L;
+		PlayerCannotExerciseStats = 0L;
 
 		break;
 	case GOD_O_METER:

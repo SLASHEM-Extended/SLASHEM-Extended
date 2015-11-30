@@ -946,6 +946,16 @@ E boolean NDECL(have_respawnstone);
 E boolean NDECL(have_captchastone);
 E boolean NDECL(have_farlookstone);
 
+E boolean NDECL(have_metabolicstone);
+E boolean NDECL(have_noreturnstone);
+E boolean NDECL(have_egostone);
+E boolean NDECL(have_fastforwardstone);
+E boolean NDECL(have_rottenstone);
+E boolean NDECL(have_unskilledstone);
+E boolean NDECL(have_lowstatstone);
+E boolean NDECL(have_trainingstone);
+E boolean NDECL(have_exercisestone);
+
 E boolean NDECL(have_primecurse);
 
 E boolean NDECL(have_mothrelay);

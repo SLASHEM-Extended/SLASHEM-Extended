@@ -308,6 +308,19 @@ static struct {
 	{ "black glyph", BLACK_GLYPH},
 	{ "purple glyph", PURPLE_GLYPH},
 
+	{ "metabolic", METABOLIC_TRAP},
+	{ "no return", TRAP_OF_NO_RETURN},
+	{ "egotype", EGOTRAP},
+	{ "fast forward", FAST_FORWARD_TRAP},
+	{ "rottenness", TRAP_OF_ROTTENNESS},
+	{ "unskilled", UNSKILLED_TRAP},
+	{ "low stats", LOW_STATS_TRAP},
+	{ "training", TRAINING_TRAP},
+	{ "exercise", EXERCISE_TRAP},
+	{ "falling loadstone", FALLING_LOADSTONE_TRAP},
+	{ "undead summoning", SUMMON_UNDEAD_TRAP},
+	{ "falling nastystone", FALLING_NASTYSTONE_TRAP},
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

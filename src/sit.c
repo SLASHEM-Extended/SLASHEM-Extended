@@ -483,6 +483,10 @@ dosit()
 				unrestrict_weapon_skill(skillimprove);
 				pline("You can now learn the %s skill.", P_NAME(skillimprove));
 				break;
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				break;
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));

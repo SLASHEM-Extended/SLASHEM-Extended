@@ -3994,7 +3994,7 @@ dopois:
 	    case AD_BANI:
 		hitmsg(mtmp, mattk);
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -4200,7 +4200,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -4255,7 +4255,7 @@ dopois:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
 
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
@@ -5714,7 +5714,7 @@ do_stone:
 		if (mtmp->mcan) break;
 		pline("You feel an energy irradiation!");
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -5768,7 +5768,7 @@ do_stone:
 	    case AD_GRAV:
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("You're turned upside down...");
 		phase_door(0);
@@ -5994,7 +5994,7 @@ do_stone:
 
 	    case AD_BANI:
 		if (!rn2(10)) {
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -7643,7 +7643,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_BANI:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(100)) 		{
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -7837,7 +7837,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		int dmg = dmgplus;
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -7901,7 +7901,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
 		    stop_occupation();
 
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
 
 		phase_door(0);
 		pushplayer();

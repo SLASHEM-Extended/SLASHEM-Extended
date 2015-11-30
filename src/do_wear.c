@@ -372,6 +372,8 @@ Cloak_on()
 	case ANTI_CASTER_CLOAK:
 	case ADOM_CLOAK:
 	case SPAWN_CLOAK:
+	case EGOIST_CLOAK:
+	case CLOAK_OF_TIME:
 	case HEAVY_STATUS_CLOAK:
 	case CLOAK_OF_LUCK_NEGATION:
 	case YELLOW_SPELL_CLOAK:
@@ -435,6 +437,8 @@ Cloak_off()
 	case CLOAK_OF_RESPAWNING:
 	case ADOM_CLOAK:
 	case SPAWN_CLOAK:
+	case EGOIST_CLOAK:
+	case CLOAK_OF_TIME:
 	/* KMH, balance patch -- removed
 	case CLOAK_OF_DRAIN_RESISTANCE: */
 		break;
@@ -577,6 +581,7 @@ Helmet_on()
 	case QUIZ_HELM:
 	case DIZZY_HELMET:
 	case MUTING_HELM:
+	case ULCH_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -629,6 +634,7 @@ Helmet_off()
 	case QUIZ_HELM:
 	case DIZZY_HELMET:
 	case MUTING_HELM:
+	case ULCH_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -991,6 +997,7 @@ Amulet_on()
 
 	case AMULET_OF_RMB_LOSS:
 	case AMULET_OF_EXPLOSION:
+	case AMULET_OF_ANTI_TELEPORTATION:
 	case AMULET_OF_WRONG_SEEING:
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
@@ -1225,6 +1232,11 @@ register struct obj *obj;
 	case RIN_BAD_EFFECT:
 	case RIN_SUPERSCROLLING:
 	case RIN_DISENGRAVING:
+	case RIN_NO_SKILL:
+	case RIN_LOW_STATS:
+	case RIN_FAILED_TRAINING:
+	case RIN_FAILED_EXERCISE:
+	case RIN_FAST_METABOLISM:
 
 		if (!obj->cursed) curse(obj);
 

@@ -1513,7 +1513,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(55)) {
+		switch (rnd(64)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1596,6 +1596,15 @@ nh_timeout()
 			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1610,7 +1619,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(55)) {
+		switch (rnd(64)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1692,6 +1701,15 @@ nh_timeout()
 			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1706,7 +1724,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(55)) {
+		switch (rnd(64)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1788,6 +1806,15 @@ nh_timeout()
 			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1802,7 +1829,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(55)) {
+		switch (rnd(64)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1884,6 +1911,15 @@ nh_timeout()
 			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

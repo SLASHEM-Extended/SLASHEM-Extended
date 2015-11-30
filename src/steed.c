@@ -124,6 +124,10 @@ use_saddle(otmp)
 	    chance += 20;
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
 	    chance += 50;
+
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) chance -= 20;
+	else {
+
 	switch (P_SKILL(P_RIDING)) {
 	case P_ISRESTRICTED:
 	case P_UNSKILLED:
@@ -140,6 +144,9 @@ use_saddle(otmp)
 	case P_GRAND_MASTER:
 	    chance += 100;	break;
 	}
+
+	}
+
 	if (Confusion || Fumbling || IsGlib)
 	    chance -= 20;
 	/*else */if (uarmg &&

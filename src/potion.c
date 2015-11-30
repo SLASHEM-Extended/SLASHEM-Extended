@@ -1249,7 +1249,7 @@ badeffect()
 		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 		if (!blackngdur ) blackngdur = 500; /* fail safe */
 
-		switch (rnd(55)) {
+		switch (rnd(64)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1331,6 +1331,15 @@ badeffect()
 			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -4333,7 +4342,7 @@ dodip()
 			floating_above(tmp);
 #ifdef STEED
 		    } else if (u.usteed && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
-			    P_SKILL(P_RIDING) < P_BASIC) {
+			    (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 #endif
 		    } else {

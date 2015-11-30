@@ -237,6 +237,9 @@ boolean digest_meal;
 	}
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon == u.usteed) && !rn2(10) ) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
@@ -256,6 +259,8 @@ boolean digest_meal;
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
+	}
+
 	}
 
 	if (mon->mspec_used) mon->mspec_used--;

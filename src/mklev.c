@@ -10217,6 +10217,30 @@ coord *tm;
 		    case QUIZ_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) kind = LASER_TRAP; break;
 
+		    case METABOLIC_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) kind = MAGIC_TRAP; break;
+		    case TRAP_OF_NO_RETURN:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) kind = ICE_TRAP; break;
+		    case EGOTRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) kind = SQKY_BOARD; break;
+		    case FAST_FORWARD_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = PIT; break;
+		    case TRAP_OF_ROTTENNESS:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) kind = RUST_TRAP; break;
+		    case UNSKILLED_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) kind = BEAR_TRAP; break;
+		    case LOW_STATS_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 13 )) kind = LANDMINE; break;
+		    case TRAINING_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) kind = ROLLING_BOULDER_TRAP; break;
+		    case EXERCISE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) kind = ANTI_MAGIC; break;
+
+		    case FALLING_LOADSTONE_TRAP:
+			if (rn2(3)) kind = ROCKTRAP; break;
+		    case FALLING_NASTYSTONE_TRAP:
+			if (rn2(10)) kind = ROCKTRAP; break;
+
 		    case RECURSION_TRAP:
 			if (rn2(500)) kind = ARROW_TRAP; break;
 		    case WARP_ZONE:

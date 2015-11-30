@@ -1722,6 +1722,123 @@ have_nastystone()
 	return(FALSE);
 }
 
+boolean
+have_metabolicstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == METABOLIC_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator56) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_noreturnstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_NO_RETURN)
+			return(TRUE);
+		}
+	if (u.nastinator57) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_egostone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EGOSTONE)
+			return(TRUE);
+		}
+	if (u.nastinator58) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_fastforwardstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FAST_FORWARD_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator59) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_rottenstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ROTTEN_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator60) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_unskilledstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UNSKILLED_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator61) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_lowstatstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOW_STAT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator62) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_trainingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TRAINING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator63) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_exercisestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EXERCISE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator64) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -4824,11 +4941,15 @@ struct obj *obj;
 			case CLOAK_OF_INVENTORYLESSNESS: 
 				pline("This cloak causes inventory loss. It grants incredibly great armor class and maximum magic cancellation."); break;
 			case CLOAK_OF_RESPAWNING: 
-				pline("This cloak causes monster respawn. It grants very good class and medium magic cancellation."); break;
+				pline("This cloak causes monster respawn. It grants very good armor class and medium magic cancellation."); break;
 			case ADOM_CLOAK: 
-				pline("This cloak causes monsters to be of a higher level. It grants good class and no magic cancellation."); break;
+				pline("This cloak causes monsters to be of a higher level. It grants good armor class and no magic cancellation."); break;
 			case SPAWN_CLOAK: 
-				pline("This cloak causes faster respawn. It grants good class and low magic cancellation."); break;
+				pline("This cloak causes faster respawn. It grants good armor class and low magic cancellation."); break;
+			case EGOIST_CLOAK: 
+				pline("This cloak causes egotype monster spawns. It grants mediocre armor class and low magic cancellation."); break;
+			case CLOAK_OF_TIME: 
+				pline("This cloak causes faster passing of time. It grants very good armor class and medium magic cancellation."); break;
 
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and maximum magic cancellation."); break;
@@ -4910,6 +5031,8 @@ struct obj *obj;
 				pline("This helm causes map bugs. It provides moderately good AC and medium magic cancellation."); break;
 			case MUTING_HELM:
 				pline("This helm causes muteness. It provides excellent AC and maximum magic cancellation."); break;
+			case ULCH_HELMET:
+				pline("This helm causes rotten food. It provides medium AC and maximum magic cancellation."); break;
 			case HELM_OF_SENSORY_DEPRIVATION:
 				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellatin."); break;
 			case HELM_OF_TELEPATHY:
@@ -5077,6 +5200,8 @@ struct obj *obj;
 				pline("Put this ring on if you no longer want to be satiated. It is usually generated cursed and increases your food consumption rate."); break;
 			case RIN_DISARMING: 
 				pline("You will drop your weapon if you wear this ring. It is usually generated cursed."); break;
+			case RIN_DRAIN_RESISTANCE: 
+				pline("Wear this! It grants level-drain resistance!"); break;
 			case RIN_NUMBNESS: 
 				pline("Wearing this ring will numb your limbs, which is a Bad Thing (TM). It is usually generated cursed."); break;
 			case RIN_CURSE: 
@@ -5097,6 +5222,16 @@ struct obj *obj;
 				pline("This ring causes the superscroller effect."); break;
 			case RIN_DISENGRAVING: 
 				pline("This ring causes engravings to fail."); break;
+			case RIN_NO_SKILL: 
+				pline("This ring deactivates all of your skills."); break;
+			case RIN_LOW_STATS: 
+				pline("This ring greatly lowers all of your stats."); break;
+			case RIN_FAILED_TRAINING: 
+				pline("This ring prevents you from training your skills."); break;
+			case RIN_FAILED_EXERCISE: 
+				pline("This ring prevents you from exercising your stats."); break;
+			case RIN_FAST_METABOLISM: 
+				pline("This ring causes you to burn nutrition much faster."); break;
 			case RIN_MOOD: 
 				pline("A fairly useless ring that requires you to put it on, then read it to reveal a not-very-enlightening message."); break;
 			case RIN_PROTECTION: 
@@ -5239,6 +5374,8 @@ struct obj *obj;
 				pline("This amulet causes devices to explode."); break;
 			case AMULET_OF_WRONG_SEEING:
 				pline("This amulet causes books to be read incorrectly."); break;
+			case AMULET_OF_ANTI_TELEPORTATION:
+				pline("This amulet blocks all of your attempts to self-teleport."); break;
 			case AMULET_OF_ITEM_TELEPORTATION:
 				pline("This amulet causes items to teleport out of your inventory."); break;
 			case AMULET_OF_DISINTEGRATION_RESIS:
@@ -6447,6 +6584,25 @@ struct obj *obj;
 				pline("A stone that curses itself and causes captchas."); break;
 			case RESPAWN_STONE:
 				pline("A stone that curses itself and causes monster respawn."); break;
+
+			case METABOLIC_STONE:
+				pline("A stone that curses itself and causes faster metabolism."); break;
+			case STONE_OF_NO_RETURN:
+				pline("A stone that curses itself and causes teleports to fail."); break;
+			case EGOSTONE:
+				pline("A stone that curses itself and causes egotype monsters to spawn."); break;
+			case FAST_FORWARD_STONE:
+				pline("A stone that curses itself and causes time to flow by faster."); break;
+			case ROTTEN_STONE:
+				pline("A stone that curses itself and causes food to be rotten."); break;
+			case UNSKILLED_STONE:
+				pline("A stone that curses itself and causes skill loss."); break;
+			case LOW_STAT_STONE:
+				pline("A stone that curses itself and causes lower stats."); break;
+			case TRAINING_STONE:
+				pline("A stone that curses itself and causes skill training to fail."); break;
+			case EXERCISE_STONE:
+				pline("A stone that curses itself and causes attribute exercise to fail."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

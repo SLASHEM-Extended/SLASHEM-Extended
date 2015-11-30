@@ -1991,6 +1991,60 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if (FastMetabolismEffect || u.uprops[FAST_METABOLISM].extrinsic || have_metabolicstone()) {
+		Sprintf(buf, "the following problem: Your food consumption is much faster.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FastMetabolismEffect);
+		you_have(buf);
+	}
+
+	if (NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone()) {
+		Sprintf(buf, "the following problem: You cannot teleport at all.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoReturnEffect);
+		you_have(buf);
+	}
+
+	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
+		Sprintf(buf, "the following problem: Monsters always spawn with egotypes.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlwaysEgotypeMonsters);
+		you_have(buf);
+	}
+
+	if (TimeGoesByFaster || u.uprops[FAST_FORWARD].extrinsic || have_fastforwardstone()) {
+		Sprintf(buf, "the following problem: Time goes by faster.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TimeGoesByFaster);
+		you_have(buf);
+	}
+
+	if (FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) {
+		Sprintf(buf, "the following problem: Your food is always rotten.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FoodIsAlwaysRotten);
+		you_have(buf);
+	}
+
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) {
+		Sprintf(buf, "the following problem: Your skills are deactivated.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AllSkillsUnskilled);
+		you_have(buf);
+	}
+
+	if (AllStatsAreLower || u.uprops[STATS_LOWERED].extrinsic || have_lowstatstone()) {
+		Sprintf(buf, "the following problem: All of your stats are lowered.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AllStatsAreLower);
+		you_have(buf);
+	}
+
+	if (PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+		Sprintf(buf, "the following problem: You cannot train skills.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", PlayerCannotTrainSkills);
+		you_have(buf);
+	}
+
+	if (PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) {
+		Sprintf(buf, "the following problem: You cannot exercise your stats.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", PlayerCannotExerciseStats);
+		you_have(buf);
+	}
+
 	if (MCReduction) {
 		Sprintf(buf, "reduced magic cancellation.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MCReduction);

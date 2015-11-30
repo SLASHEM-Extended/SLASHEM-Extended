@@ -461,6 +461,19 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "glyph of massive damage", C(CLR_BLACK)},	/* trap */
 	{'^', "glyph number seven", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "metabolic trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "trap of no return", C(CLR_YELLOW)},	/* trap */
+	{'^', "egotrap", C(CLR_YELLOW)},	/* trap */
+	{'^', "fast forward trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "trap of rottenness", C(CLR_BROWN)},	/* trap */
+	{'^', "unskilled trap", C(CLR_CYAN)},	/* trap */
+	{'^', "low stats trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "training trap", C(CLR_BROWN)},	/* trap */
+	{'^', "exercise trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "falling loadstone trap", C(CLR_GRAY)},	/* trap */
+	{'^', "summon undead trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "falling nastystone trap", C(CLR_GRAY)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -743,6 +756,19 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_black_glyph_trap),
 	g_FILLER(S_purple_glyph_trap),
 
+	g_FILLER(S_metabolic_trap),
+	g_FILLER(S_no_return_trap),
+	g_FILLER(S_ego_trap),
+	g_FILLER(S_fast_forward_trap),
+	g_FILLER(S_rotten_trap),
+	g_FILLER(S_unskilled_trap),
+	g_FILLER(S_low_stats_trap),
+	g_FILLER(S_training_trap),
+	g_FILLER(S_exercise_trap),
+	g_FILLER(S_falling_loadstone_trap),
+	g_FILLER(S_summon_undead_trap),
+	g_FILLER(S_falling_nastystone_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1016,6 +1042,19 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_black_glyph_trap),
 	g_FILLER(S_purple_glyph_trap),
 
+	g_FILLER(S_metabolic_trap),
+	g_FILLER(S_no_return_trap),
+	g_FILLER(S_ego_trap),
+	g_FILLER(S_fast_forward_trap),
+	g_FILLER(S_rotten_trap),
+	g_FILLER(S_unskilled_trap),
+	g_FILLER(S_low_stats_trap),
+	g_FILLER(S_training_trap),
+	g_FILLER(S_exercise_trap),
+	g_FILLER(S_falling_loadstone_trap),
+	g_FILLER(S_summon_undead_trap),
+	g_FILLER(S_falling_nastystone_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1286,6 +1325,19 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_orange_glyph_trap),
 	g_FILLER(S_black_glyph_trap),
 	g_FILLER(S_purple_glyph_trap),
+
+	g_FILLER(S_metabolic_trap),
+	g_FILLER(S_no_return_trap),
+	g_FILLER(S_ego_trap),
+	g_FILLER(S_fast_forward_trap),
+	g_FILLER(S_rotten_trap),
+	g_FILLER(S_unskilled_trap),
+	g_FILLER(S_low_stats_trap),
+	g_FILLER(S_training_trap),
+	g_FILLER(S_exercise_trap),
+	g_FILLER(S_falling_loadstone_trap),
+	g_FILLER(S_summon_undead_trap),
+	g_FILLER(S_falling_nastystone_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1748,6 +1800,19 @@ boolean is_rlevel;
 	    showsyms[S_orange_glyph_trap] = 0x04;
 	    showsyms[S_black_glyph_trap] = 0x04;
 	    showsyms[S_purple_glyph_trap] = 0x04;
+
+	    showsyms[S_metabolic_trap] = 0x04;
+	    showsyms[S_no_return_trap] = 0x04;
+	    showsyms[S_ego_trap] = 0x04;
+	    showsyms[S_fast_forward_trap] = 0x04;
+	    showsyms[S_rotten_trap] = 0x04;
+	    showsyms[S_unskilled_trap] = 0x04;
+	    showsyms[S_low_stats_trap] = 0x04;
+	    showsyms[S_training_trap] = 0x04;
+	    showsyms[S_exercise_trap] = 0x04;
+	    showsyms[S_falling_loadstone_trap] = 0x04;
+	    showsyms[S_summon_undead_trap] = 0x04;
+	    showsyms[S_falling_nastystone_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

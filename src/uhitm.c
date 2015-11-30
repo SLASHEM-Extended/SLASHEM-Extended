@@ -574,7 +574,7 @@ register struct monst *mtmp;
 		else if (tech_inuse(T_EVISCERATE))
 		    You("begin slashing monsters with your claws.");
 		else if (!cantwield(youmonst.data)) {
-		    if (P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
+		    if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
 			You("assume a martial arts stance.");
 		    else You("begin %sing monsters with your %s %s.",
 			Role_if(PM_MONK) ? "strik" : "bash",
@@ -803,10 +803,10 @@ martial_dmg()
                              5 if Basic  (1d4)
          */
 
-        if ((Role_if(PM_MONK) && !Upolyd)
+        if ((Role_if(PM_MONK) && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) )
                 && (P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER)
                 && (u.ulevel > 16)) damage = d(6,2);                                
-        else if (u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+        else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
                 damage = d((int) ((u.ulevel+2)/3),2);
@@ -1108,10 +1108,15 @@ int thrown;
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
 		    if ((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SKILLED) tmp += rnd(2);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_MASTER) tmp += rnd(6);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_GRAND_MASTER) tmp += rnd(8);
+			}
+
 			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
 			if (!rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
@@ -1156,7 +1161,8 @@ int thrown;
 			  obj->oclass == WEAPON_CLASS &&
 			  (bimanual(obj) ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
-			  ((wtype = uwep_skill_type()) != P_NONE &&
+			  ((wtype = uwep_skill_type()) != P_NONE && 
+				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
@@ -1189,6 +1195,7 @@ int thrown;
 		    else if (obj == uwep &&
 			  ( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && is_lightsaber(obj)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE &&
+				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_lightsaber(monwep) && // no cutting other lightsabers :)
@@ -1683,7 +1690,7 @@ int thrown;
 #endif
 
 	/* VERY small chance of stunning opponent if unarmed. */
-	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd) {
+	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) {
 	    if (rnd(100) < P_SKILL(P_BARE_HANDED_COMBAT) &&
 			!bigmonst(mdat) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
@@ -1714,7 +1721,7 @@ int thrown;
         /* fixed stupid mistake - check that obj exists before comparing...*/
         if (obj && (obj->otyp == WOODEN_STAKE || obj->oartifact == ART_VAMPIRE_KILLER) && is_vampire(mdat)) {
             if (Role_if(PM_UNDEAD_SLAYER) 
-              || (P_SKILL(weapon_type(obj)) >= P_EXPERT)
+              || (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (P_SKILL(weapon_type(obj)) >= P_EXPERT))
               || obj->oartifact == ART_STAKE_OF_VAN_HELSING) {
                 if (!rn2(10)) {
                     You("plunge your stake into the heart of %s.",
@@ -2486,6 +2493,7 @@ struct obj *obj;	/* weapon */
     skill_rating = P_SKILL(weapon_type(obj));	/* lance skill */
     if (u.twoweap && P_SKILL(P_TWO_WEAPON_COMBAT) < skill_rating)
 	skill_rating = P_SKILL(P_TWO_WEAPON_COMBAT);
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) skill_rating = P_UNSKILLED;
     if (skill_rating == P_ISRESTRICTED) skill_rating = P_UNSKILLED; /* 0=>1 */
 
     /* odds to joust are expert:80%, skilled:60%, basic:40%, unskilled:20% */
@@ -4374,7 +4382,7 @@ uchar aatyp;
 		break;
 
 	    case AD_NEXU:
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 		mdamageu(mon, tmp);
 		switch (rnd(7)) {
 
@@ -4425,7 +4433,7 @@ uchar aatyp;
 
 	    case AD_GRAV:
 		pline("As you try to hit %s, you're hurled through the air and slam onto the floor with a crash.", mon_nam(mon) );
-		if (level.flags.noteleport || u.uhave.amulet || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 		phase_door(0);
 		pushplayer();
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
@@ -4651,7 +4659,7 @@ uchar aatyp;
 
 	    case AD_BANI:
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
