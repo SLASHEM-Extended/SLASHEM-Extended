@@ -2259,6 +2259,7 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_MIND_SUCKER:
 		case PM_KERRISIN:
+		case PM_GIANT_COCKATFLAYER_EELLICH:
 		case PM_REGENERATING_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 #if 0
