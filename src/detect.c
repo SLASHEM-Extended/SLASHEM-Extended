@@ -348,7 +348,7 @@ register struct obj	*sobj;
 		flags.beginner = savebeginner;
 		u.urealedibility += 1;
 	    } else {
-		u.urealedibility += 1;
+		if (sobj->blessed) u.urealedibility += 1;
 		strange_feeling(sobj, buf);
 	    }
 	}
