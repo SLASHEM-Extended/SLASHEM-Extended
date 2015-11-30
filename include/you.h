@@ -522,6 +522,15 @@ struct you {
 	boolean nastinator53;
 	boolean nastinator54;
 	boolean nastinator55;
+	boolean nastinator56;
+	boolean nastinator57;
+	boolean nastinator58;
+	boolean nastinator59;
+	boolean nastinator60;
+	boolean nastinator61;
+	boolean nastinator62;
+	boolean nastinator63;
+	boolean nastinator64;
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */
 	int hanguppenalty;
