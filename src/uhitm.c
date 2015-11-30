@@ -1770,6 +1770,17 @@ int thrown;
 	    }
 	}
 
+	/* FIQ wants the player to do fire damage to monsters while burned.
+	 * I'm granting him that wish, but the player needs to have burnopathy too. --Amy */
+
+	if (Burnopathy && Burned && !resists_fire(mon) && !thrown ) {
+
+	      pline("%s is burning!", Monnam(mon));
+
+		tmp += rnd(u.ulevel);
+
+	}
+
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
 	   a level draining artifact has already done to max HP */
