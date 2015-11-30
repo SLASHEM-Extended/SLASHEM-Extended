@@ -1995,7 +1995,8 @@ peffects(otmp)
 		see_monsters();
 		break;
 	}
-	/* KMH, balance patch -- removed
+	/* KMH, balance patch -- removed */
+	/* but re-inserted by Amy */
 	case POT_FIRE_RESISTANCE:
 	       if(!(HFire_resistance & FROMOUTSIDE)) {
 		if (Hallucination)
@@ -2005,7 +2006,7 @@ peffects(otmp)
 		   unkn++;
 		   HFire_resistance |= FROMOUTSIDE;
 		}
-		break;*/
+		break;
 	case POT_INVULNERABILITY:
 		incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
 		You_feel(Hallucination ?

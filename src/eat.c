@@ -3519,6 +3519,13 @@ struct obj *otmp;
 		    flags.female ? "feminine" : "masculine");
 		flags.botl = 1;
 		break;
+	    case AMULET_OF_POLYMORPH:
+		accessory_has_effect(otmp);
+		makeknown(typ);
+		You("feel rather strange.");
+		polyself(FALSE);
+		flags.botl = 1;
+		break;
 	    case AMULET_OF_UNCHANGING:
 		/* un-change: it's a pun */
 		if (!Unchanging && Upolyd) {

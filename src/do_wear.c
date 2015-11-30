@@ -304,8 +304,9 @@ Cloak_on()
 	case CLOAK_OF_CONFUSION:
 	case MANACLOAK:
 	case PLASTEEL_CLOAK:
-	/* KMH, balance patch -- removed
-	case CLOAK_OF_DRAIN_RESISTANCE: */               
+	/* KMH, balance patch -- removed */
+	/* but re-inserted by Amy */
+	case CLOAK_OF_DRAIN_RESISTANCE:              
 		break;
 	case CLOAK_OF_FUMBLING:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
@@ -439,8 +440,9 @@ Cloak_off()
 	case SPAWN_CLOAK:
 	case EGOIST_CLOAK:
 	case CLOAK_OF_TIME:
-	/* KMH, balance patch -- removed
-	case CLOAK_OF_DRAIN_RESISTANCE: */
+	/* KMH, balance patch -- removed */
+	/* but re-inserted by Amy */
+	case CLOAK_OF_DRAIN_RESISTANCE:
 		break;
 	case CLOAK_OF_FUMBLING:
 	    if (!oldprop && !(HFumbling & ~TIMEOUT))
@@ -1070,15 +1072,16 @@ Amulet_on()
 		useup(uamul);
 		break;
 	    }
-	/* KMH, balance patch -- removed
+	/* KMH, balance patch -- removed */
+	/* but re-inserted by Amy */
 	case AMULET_OF_POLYMORPH:        
 		makeknown(AMULET_OF_POLYMORPH);
 		You("feel rather strange.");
-		polyself();
+		polyself(FALSE);
 		flags.botl = 1;
 		pline("The amulet disintegrates!");
 		useup(uamul);
-		break;*/
+		break;
 	case AMULET_OF_STRANGULATION:
 		makeknown(AMULET_OF_STRANGULATION);
 		pline("It constricts your throat!");

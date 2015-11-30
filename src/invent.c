@@ -4919,6 +4919,8 @@ struct obj *obj;
 				pline("This cloak renders the wearer invisible and also grants medium magic cancellation."); break;
 			case CLOAK_OF_MAGIC_RESISTANCE: 
 				pline("A superb cloak that provides magic resistance in addition to maximum magic cancellation."); break;
+			case CLOAK_OF_DRAIN_RESISTANCE: 
+				pline("A cloak that some guy named KMH removed from the game but Amy added it back in. It provides drain resistance in addition to maximum magic cancellation."); break;
 			case CLOAK_OF_REFLECTION: 
 				pline("A superb cloak that provides reflection in addition to maximum magic cancellation."); break;
 			case MANACLOAK: 
@@ -5361,6 +5363,8 @@ struct obj *obj;
 
 			case AMULET_OF_CHANGE: 
 				pline("Wearing this amulet causes you to become female if you were male, and in reverse. The amulet will then disintegrate."); break;
+			case AMULET_OF_POLYMORPH: 
+				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
 			case AMULET_OF_DRAIN_RESISTANCE: 
 				pline("This amulet gives level-drain resistance if worn."); break;
 			case AMULET_OF_ESP: 
@@ -5738,6 +5742,8 @@ struct obj *obj;
 				pline("This potion can be used for healing, but its main use is increasing your maximum health when quaffed."); break;
 			case POT_BANISHING_FEAR:
 				pline("A potion that will cure fear when quaffed."); break;
+			case POT_FIRE_RESISTANCE:
+				pline("This potion temporarily makes you resistant to fire."); break;
 			case POT_ICE:
 				pline("You will freeze solid if you quaff this potion, which is usually a bad thing. Better use it as a missile to slow down enemies."); break;
 			case POT_FEAR:
