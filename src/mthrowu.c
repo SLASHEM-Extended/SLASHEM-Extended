@@ -107,6 +107,24 @@ const char *name;	/* if null, then format `obj' */
 		case SHIELD_OF_MOBILITY:
 			shieldblockrate = 40;
 			break;
+		case GRAY_DRAGON_SCALE_SHIELD:
+		case SILVER_DRAGON_SCALE_SHIELD:
+		case SHIMMERING_DRAGON_SCALE_SHIELD:
+		case DEEP_DRAGON_SCALE_SHIELD:
+		case RED_DRAGON_SCALE_SHIELD:
+		case WHITE_DRAGON_SCALE_SHIELD:
+		case ORANGE_DRAGON_SCALE_SHIELD:
+		case BLACK_DRAGON_SCALE_SHIELD:
+		case BLUE_DRAGON_SCALE_SHIELD:
+		case GREEN_DRAGON_SCALE_SHIELD:
+		case GOLDEN_DRAGON_SCALE_SHIELD:
+		case STONE_DRAGON_SCALE_SHIELD:
+		case CYAN_DRAGON_SCALE_SHIELD:
+		case YELLOW_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 33;
+			break;
+
 		default: impossible("Unknown type of shield (%d)", uarms->otyp);
 
 		}

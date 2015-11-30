@@ -5113,6 +5113,35 @@ struct obj *obj;
 				pline("A useful shield that prevents the wearer from being paralyzed."); break;
 			case SHIELD_OF_REFLECTION:
 				pline("One of the most powerful shields in the game. This reflexive shield protects the wearer from rays, gaze attacks and similar crap while also providing excellent AC."); break;
+			case GRAY_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides magic resistance as well as protection."); break;
+			case SILVER_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides reflection as well as protection."); break;
+			case SHIMMERING_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides displacement as well as protection."); break;
+			case DEEP_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides drain resistance as well as protection."); break;
+			case RED_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides fire resistance as well as protection."); break;
+			case WHITE_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides cold resistance as well as protection."); break;
+			case ORANGE_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides sleep resistance as well as protection."); break;
+			case BLACK_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides disintegration resistance as well as protection."); break;
+			case BLUE_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides shock resistance as well as protection."); break;
+			case GREEN_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides poison resistance as well as protection."); break;
+			case GOLDEN_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides sickness resistance as well as protection."); break;
+			case STONE_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides petrification resistance as well as protection."); break;
+			case CYAN_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides fear resistance as well as protection."); break;
+			case YELLOW_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides acid resistance as well as protection."); break;
+
 			case PLASTEEL_BOOTS:
 				pline("A pair of boots that offers maximum magic cancellation."); break;
 			case LOW_BOOTS:
