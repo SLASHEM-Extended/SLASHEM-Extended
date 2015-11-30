@@ -73,6 +73,8 @@ int prop;
 			return "telepathy";
 		case FAST:
 			return "speed";
+		case PASSES_WALLS:
+			return "wallwalking";
 		case HUNGER:
 			return "hunger";
 		case REFLECTING:
@@ -103,8 +105,44 @@ int prop;
 			return "infravision";
 		case FEAR_RES:
 			return "fear resistance";
+		case DISPLACED:
+			return "displacement";
+		case SWIMMING:
+			return "swimming";
+		case FIXED_ABIL:
+			return "sustain ability";
+		case KEEN_MEMORY:
+			return "keen memory";
+		case THE_FORCE:
+			return "the Force";
+		case STUNNED:
+			return "stun";
+		case CONFUSION:
+			return "confusion";
+		case CLAIRVOYANT:
+			return "clairvoyance";
+		case FEARED:
+			return "fear";
+		case FROZEN:
+			return "freezing";
+		case GLIB:
+			return "glibbery hands";
+		case HALLUC:
+			return "hallucination";
+		case BURNED:
+			return "burning";
+		case WOUNDED_LEGS:
+			return "legscratching";
+		case NUMBED:
+			return "numbness";
+		case TRAP_REVEALING:
+			return "trap revealing";
+		case BLINDED:
+			return "blindness";
+		case PREMDEATH:
+			return "premature death";
 		default:
-			return "undefined - this is a bug";
+			return "Team Nastytrap";
 
 	}
 
