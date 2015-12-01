@@ -2539,7 +2539,7 @@ register struct monst *mtmp;
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;

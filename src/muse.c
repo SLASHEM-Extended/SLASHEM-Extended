@@ -3465,7 +3465,7 @@ struct monst *mtmp;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -3496,7 +3496,8 @@ struct monst *mtmp;
 		    int i, j, bd = mtmp->mconf ? 100 : otmp->cursed ? 2 : 1;
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
 			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT);
 		    }
 
@@ -3904,7 +3905,7 @@ newboss:
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();

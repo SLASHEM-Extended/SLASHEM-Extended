@@ -12078,7 +12078,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( (Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y))  ) {
+	if (!rn2( (Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();

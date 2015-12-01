@@ -2125,7 +2125,7 @@ makerandomtrap()
 		x = rn1(COLNO-3,2);
 		y = rn2(ROWNO);
 
-		if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 			(void) maketrap(x, y, rtrap);
 			break;
 			}
@@ -2150,7 +2150,7 @@ makegirlytrap()
 		x = rn1(COLNO-3,2);
 		y = rn2(ROWNO);
 
-		if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 			(void) maketrap(x, y, rtrap);
 			break;
 			}
@@ -4139,7 +4139,7 @@ boolean prefilled;
 
 			for(sx = croom->lx; sx <= croom->hx; sx++)
 			for(sy = croom->ly; sy <= croom->hy; sy++)
-			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+			if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) ) {
 			    if(rn2(5)) 
 					(void) maketrap(sx, sy, rtrap);
 				if (randomnes == 1) rtrap = randomtrap();

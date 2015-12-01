@@ -1555,7 +1555,7 @@ boolean at_stairs, falling, portal;
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -1681,7 +1681,7 @@ boolean at_stairs, falling, portal;
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -1803,7 +1803,7 @@ boolean at_stairs, falling, portal;
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -1921,7 +1921,7 @@ boolean at_stairs, falling, portal;
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -2039,7 +2039,7 @@ boolean at_stairs, falling, portal;
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 

@@ -1445,7 +1445,7 @@ mktraproom()
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
-		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
+		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
 				(void) maketrap(sx, sy, rtrap);
 			if (randomnes == 1) rtrap = randomtrap();
