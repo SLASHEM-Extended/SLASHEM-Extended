@@ -2370,6 +2370,9 @@ register struct obj	*sobj;
 	    }
 	case SPE_CREATE_MONSTER:
 		if (confused) break;
+		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
+
+		break;
 	case SCR_CREATE_MONSTER:
 	    if (create_critters(1 + ((confused || sobj->cursed) ? 12 : 0) +
 				((sobj->blessed || rn2(73)) ? 0 : rnd(4)),
@@ -2535,7 +2538,7 @@ register struct obj	*sobj;
 
 		break;
 
-	case SPE_SUMMON_UNDEAD:        
+	case SPE_SUMMON_UNDEAD:
 		if (confused) break;
 	case SCR_SUMMON_UNDEAD:        
 	    {
@@ -2551,24 +2554,24 @@ register struct obj	*sobj;
 #endif
 		    switch (rn2(10)+1) {
 		    case 1:
-			mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
 			break;
 		    case 2:
 		    case 3:
 		    case 4:
 		    case 5:
-			mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
 			break;
 		    case 6:
 		    case 7:
 		    case 8:
-			mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
 			break;
 		    case 9:
-			mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
 			break;
 		    case 10:
-			mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
 			break;
 		    }
 		    /* WAC Give N a shot at controlling the beasties

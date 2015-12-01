@@ -145,7 +145,7 @@ boolean quietly;
 		}
 	    }
 
-	    mtmp = makemon(pm, x, y, MM_EDOG|MM_IGNOREWATER);
+	    mtmp = makemon(pm, x, y, MM_EDOG|MM_IGNOREWATER|MM_NOSPECIALS);
 	    if (otmp && !mtmp) { /* monster was genocided or square occupied */
 	 	if (!quietly)
 		   pline_The("figurine writhes and then shatters into pieces!");
@@ -1189,7 +1189,7 @@ aligntyp alignment;
 {
     register struct monst *mon;
     register struct monst *mtmp2;
-    mon = makemon(&mons[mnum], u.ux, u.uy, NO_MM_FLAGS);
+    mon = makemon(&mons[mnum], u.ux, u.uy, MM_NOSPECIALS);
     if (!mon) return 0;
     /* now tame that puppy... */
     mtmp2 = newmonst(sizeof(struct edog) + mon->mnamelth);

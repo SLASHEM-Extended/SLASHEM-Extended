@@ -2204,7 +2204,7 @@ SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 140, 300, CLR
 		0, level*100, 0, 0, 0, level, 20, color )
 /* Attack spells */
 SPELL("force bolt",      "red",         P_ATTACK_SPELL, 115,  2, 1, 1, IMMEDIATE, CLR_RED),
-SPELL("create monster",  "turquoise",   P_ATTACK_SPELL, 100,  3, 2, 1, NODIR,     CLR_BRIGHT_CYAN),
+SPELL("create monster",  "turquoise",   P_ATTACK_SPELL, 100,  3, 4, 1, NODIR,     CLR_BRIGHT_CYAN),
 SPELL("drain life",      "velvet",      P_ATTACK_SPELL, 50,  4, 3, 1, IMMEDIATE, CLR_MAGENTA),
   /* NEEDS TILE */ /* WAC -- probs from force bolt and extra healing */
 SPELL("command undead",  "dark",        P_ATTACK_SPELL, 50,  7, 5, 1, IMMEDIATE, CLR_BLACK),
@@ -2231,7 +2231,7 @@ SPELL("full healing",   "heretical",       P_HEALING_SPELL, 25,  8, 6, 1, IMMEDI
 SPELL("restore ability", "light brown", P_HEALING_SPELL, 75,  5, 4, 1, NODIR,     CLR_BROWN),
 SPELL("banishing fear", "fearsome", P_HEALING_SPELL,  5,  5, 4, 1, NODIR,     CLR_BRIGHT_MAGENTA),
 SPELL("cure freeze", "snowy", P_HEALING_SPELL,  5,  5, 4, 1, NODIR,     CLR_BRIGHT_CYAN),
-SPELL("create familiar", "glittering",  P_HEALING_SPELL, 50,  7, 6, 1, NODIR,     CLR_WHITE),
+SPELL("create familiar", "glittering",  P_HEALING_SPELL, 50,  7, 7, 1, NODIR,     CLR_WHITE),
 SPELL("gain level", "leveled",  P_HEALING_SPELL, 5,  15, 8, 1, NODIR,     CLR_BLACK),
 /* Divination spells */
 SPELL("light",           "cloth",       P_DIVINATION_SPELL, 65,  1, 1, 1, NODIR,     HI_CLOTH),
