@@ -555,7 +555,7 @@ doread()
 		&& scroll->oclass != SPBOOK_CLASS) {
 	    pline(silly_thing_to, "read");
 	    return(0);
-	} else if (Blind && scroll->otyp != SPE_BOOK_OF_THE_DEAD) {
+	} else if (Blind && !scroll->dknown && scroll->otyp != SPE_BOOK_OF_THE_DEAD) {
 	    const char *what = 0;
 	    if (scroll->oclass == SPBOOK_CLASS)
 		what = "mystic runes";
@@ -565,7 +565,7 @@ doread()
 		pline("Being blind, you cannot read the %s.", what);
 		return(0);
 	    }
-	} else if (cant_see && scroll->otyp != SPE_BOOK_OF_THE_DEAD) {
+	} else if (cant_see && scroll->otyp != SPE_BOOK_OF_THE_DEAD && !scroll->dknown) {
 	    if (scroll->oclass == SPBOOK_CLASS)
 	    {
 		You_cant("read the mystic runes in the invisible spellbook.");
