@@ -110,6 +110,7 @@ shuffle(o_low, o_high, domaterial)
 	int i, j, num_to_shuffle;
 	short sw;
 	int color;
+	    register const char *s;
 
 	for (num_to_shuffle = 0, j=o_low; j <= o_high; j++)
 		if (!objects[j].oc_name_known) num_to_shuffle++;
