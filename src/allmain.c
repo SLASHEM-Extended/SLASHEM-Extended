@@ -2460,6 +2460,8 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_TIME_STOP].oc_name = "vremya ostanovki";
 	obj_descr[SPE_MAP_LEVEL].oc_name = "uroven' otobrazheniye";
 	obj_descr[SPE_GAIN_LEVEL].oc_name = "uroven' povyshen";
+	obj_descr[SPE_AMNESIA].oc_name = "poterya pamyati";
+	obj_descr[SPE_REPAIR_WEAPON].oc_name = "remont oruzhiya";
 
 	}
 
@@ -2565,6 +2567,8 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_TIME_STOP].oc_name = "vaqt to'xtatish";
 	obj_descr[SPE_MAP_LEVEL].oc_name = "xarita darajasi";
 	obj_descr[SPE_GAIN_LEVEL].oc_name = "daromad darajasi";
+	obj_descr[SPE_AMNESIA].oc_name = "xotira halok";
+	obj_descr[SPE_REPAIR_WEAPON].oc_name = "ta'mirlash qurol";
 
 	}
 
