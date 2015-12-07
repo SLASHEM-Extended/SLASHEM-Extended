@@ -154,7 +154,7 @@ extern uchar monsyms[MAXMCLASSES];		/* current class symbols */
 #define DEF_BAD_FOOD    '%'
 #define DEF_BAD_COINS   '$'
 #define DEF_NEMESE   '§'
-#define DEF_GRUE   '­.'
+#define DEF_GRUE   '.'
 #define DEF_WALLMONST   '°'
 #define DEF_RUBMONST   '7'
 #define DEF_ARCHFIEND   '9'
@@ -163,7 +163,7 @@ extern uchar monsyms[MAXMCLASSES];		/* current class symbols */
 #define DEF_TROVE   '¯'
 
 /* #define DEF_NEMESE   '§'
-#define DEF_GRUE   '­.'
+#define DEF_GRUE   '.'
 #define DEF_WALLMONST   '°'
 #define DEF_RUBMONST   '7'
 #define DEF_ARCHFIEND   '9'
