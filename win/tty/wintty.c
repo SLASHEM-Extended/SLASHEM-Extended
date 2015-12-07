@@ -1826,11 +1826,11 @@ struct WinDesc *cw;
 			/* map glyph to character and color */  
 			mapglyph(curr->glyph, &character, &glyph_color, &special, 0, 0);  
   
-			print_vt_code(AVTC_GLYPH_START, glyph2tile[curr->glyph]);  
+/*			print_vt_code(AVTC_GLYPH_START, glyph2tile[curr->glyph]);  */
 			if (glyph_color != NO_COLOR) term_start_color(glyph_color);  
 			putchar(character);  
 			if (glyph_color != NO_COLOR) term_end_color();  
-			print_vt_code(AVTC_GLYPH_END, -1);  
+/*			print_vt_code(AVTC_GLYPH_END, -1);  */
 			putchar(' ');  
 			ttyDisplay->curx +=2;  
 		    }  
