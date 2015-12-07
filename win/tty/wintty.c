@@ -8,6 +8,9 @@
  * h+ 930227
  */
 
+#define AVTC_GLYPH_START 0
+#define AVTC_GLYPH_END 1
+
 #include "hack.h"
 #include "dlb.h"
 
