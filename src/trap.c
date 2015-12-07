@@ -3030,7 +3030,8 @@ newboss:
 				break;
 			    case 2:
 				You("need reboot.");
-				newman();
+				if (!Race_if(PM_UNGENOMOLD)) newman();
+				else polyself(FALSE);
 				break;
 			    case 3: case 4:
 				if(!rn2(4) && u.ulycn == NON_PM &&
@@ -3107,7 +3108,7 @@ newboss:
 				{
 				    struct obj *objD = some_armor(&youmonst);
 	
-				    if (drain_item(objD)) {
+				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
 				    }
 				}

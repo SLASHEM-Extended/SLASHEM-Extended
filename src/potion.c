@@ -506,7 +506,7 @@ badeffect()
 	int nastytrapdur;
 	int blackngdur;
 
-	switch (rnd(216)) {
+	switch (rnd(372)) {
 
 		case 1:
 		case 2:
@@ -518,26 +518,21 @@ badeffect()
 		case 8:
 		case 9:
 		case 10:
-		if (Hallucination) You_feel("rather trippy.");
-		else You_feel("rather %s.", body_part(LIGHT_HEADED));
-		make_confused(HConfusion + rnz(50),FALSE);
-		break;
-
 		case 11:
 		case 12:
 		case 13:
 		case 14:
 		case 15:
+		if (Hallucination) You_feel("rather trippy.");
+		else You_feel("rather %s.", body_part(LIGHT_HEADED));
+		make_confused(HConfusion + rnz(50),FALSE);
+		break;
+
 		case 16:
 		case 17:
 		case 18:
 		case 19:
 		case 20:
-		if (Hallucination) You_feel("uncontrollable.");
-		else You_feel("stunned.");
-		make_stunned(HStun + rnz(50),FALSE);
-		break;
-
 		case 21:
 		case 22:
 		case 23:
@@ -548,9 +543,9 @@ badeffect()
 		case 28:
 		case 29:
 		case 30:
-		if (Hallucination) You_feel("even weirder!");
-		else You_feel("weirded out!");
-		make_hallucinated(HHallucination + rnz(100),FALSE,0L);
+		if (Hallucination) You_feel("uncontrollable.");
+		else You_feel("stunned.");
+		make_stunned(HStun + rnz(50),FALSE);
 		break;
 
 		case 31:
@@ -563,44 +558,34 @@ badeffect()
 		case 38:
 		case 39:
 		case 40:
-		if (!Blind) pline("Everything suddenly goes dark.");
-		make_blinded(Blinded+rnz(100),FALSE);
-		if (!Blind) Your(vision_clears);
-		break;
-
 		case 41:
 		case 42:
 		case 43:
 		case 44:
 		case 45:
+		if (Hallucination) You_feel("even weirder!");
+		else You_feel("weirded out!");
+		make_hallucinated(HHallucination + rnz(100),FALSE,0L);
+		break;
+
 		case 46:
 		case 47:
 		case 48:
 		case 49:
 		case 50:
-		if (Hallucination) You_feel("like your body is trying to fall asleep!");
-		else You_feel("numb.");
-		make_numbed(HNumbed + rnz(150),FALSE);
-		break;
-
 		case 51:
 		case 52:
 		case 53:
 		case 54:
 		case 55:
-		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
-		else pline("You're getting the chills.");
-		make_frozen(HFrozen + rnz(150),FALSE);
-		break;
-
 		case 56:
 		case 57:
 		case 58:
 		case 59:
 		case 60:
-		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
-		else pline("Your hands start trembling violently!");
-		incr_itimeout(&Glib, rnz(50) );
+		if (!Blind) pline("Everything suddenly goes dark.");
+		make_blinded(Blinded+rnz(100),FALSE);
+		if (!Blind) Your(vision_clears);
 		break;
 
 		case 61:
@@ -608,12 +593,6 @@ badeffect()
 		case 63:
 		case 64:
 		case 65:
-		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
-	      make_vomiting(Vomiting+20, TRUE);
-		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
-		break;
-
 		case 66:
 		case 67:
 		case 68:
@@ -624,6 +603,52 @@ badeffect()
 		case 73:
 		case 74:
 		case 75:
+		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		else You_feel("numb.");
+		make_numbed(HNumbed + rnz(150),FALSE);
+		break;
+
+		case 76:
+		case 77:
+		case 78:
+		case 79:
+		case 80:
+		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		else pline("You're getting the chills.");
+		make_frozen(HFrozen + rnz(150),FALSE);
+		break;
+
+		case 81:
+		case 82:
+		case 83:
+		case 84:
+		case 85:
+		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		else pline("Your hands start trembling violently!");
+		incr_itimeout(&Glib, rnz(50) );
+		break;
+
+		case 86:
+		case 87:
+		case 88:
+		case 89:
+		case 90:
+		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		else pline("You feel like you're going to throw up.");
+	      make_vomiting(Vomiting+20, TRUE);
+		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		break;
+
+		case 91:
+		case 92:
+		case 93:
+		case 94:
+		case 95:
+		case 96:
+		case 97:
+		case 98:
+		case 99:
+		case 100:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
 		nomul(-rnd(10), "helplessly knocked out");
@@ -631,11 +656,11 @@ badeffect()
 		afternmv = Hear_again;
 		break;
 
-		case 76:
+		case 101:
 	    make_sick(rn1(25,25), "spreading food poisoning", TRUE, SICK_VOMITABLE);
 		break;
 
-		case 77:
+		case 102:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    Slimed = 100L;
 		    flags.botl = 1;
@@ -644,7 +669,7 @@ badeffect()
 		}
 		break;
 
-		case 78:
+		case 103:
 
 		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
 		pline("You feel burdened");
@@ -656,28 +681,28 @@ badeffect()
 
 		break;
 
-		case 79:
-		case 80:
-		case 81:
+		case 104:
+		case 105:
+		case 106:
 		pline("You float up!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, rnz(50));
 
 		break;
 
-		case 82:
-		case 83:
-		case 84:
-		case 85:
-		case 86:
+		case 107:
+		case 108:
+		case 109:
+		case 110:
+		case 111:
 		create_critters(rnz(10), (struct permonst *)0);
 		break;
 
-		case 87:
-		case 88:
-		case 89:
-		case 90:
-		case 91:
+		case 112:
+		case 113:
+		case 114:
+		case 115:
+		case 116:
 		{coord mm;   
 		mm.x = u.ux;   
 		mm.y = u.uy;   
@@ -686,29 +711,38 @@ badeffect()
 		}
 		break;
 
-		case 92:
-		case 93:
-		case 94:
-		case 95:
-		case 96:
-		case 97:
-		case 98:
+		case 117:
+		case 118:
+		case 119:
+		case 120:
+		case 121:
+		case 122:
+		case 123:
+		case 124:
+		case 125:
+		case 126:
+		case 127:
+		case 128:
+		case 129:
+		case 130:
+		case 131:
+		case 132:
 		You_feel("that monsters are aware of your presence.");
 		aggravate();
 
 		break;
 
-		case 99:
-		case 100:
-		case 101:
-		case 102:
-		case 103:
+		case 133:
+		case 134:
+		case 135:
+		case 136:
+		case 137:
 		You_feel("as if you need some help.");
 		rndcurse();
 
 		break;
 
-		case 104:
+		case 138:
 			{register struct obj *obj;
 
 			pline("Urgh! You feel a malevolent presence!");
@@ -717,7 +751,7 @@ badeffect()
 			}
 		break;
 
-		case 105:
+		case 139:
 			if (!Antimagic || !rn2(20)) {
 				struct obj *otmp2;
 
@@ -741,7 +775,7 @@ badeffect()
 
 		break;
 
-		case 106:
+		case 140:
 		u.ugangr++;
 		if (!rn2(5)) u.ugangr++;
 		if (!rn2(25)) u.ugangr++;
@@ -749,7 +783,7 @@ badeffect()
 
 		break;
 
-		case 107:
+		case 141:
 			if (!Antimagic || !rn2(20)) {
 			    You("suddenly feel weaker!");
 			    losestr(rnz(4));
@@ -764,27 +798,27 @@ badeffect()
 
 		break;
 
-		case 108:
-		case 109:
+		case 142:
+		case 143:
 		water_damage(invent, FALSE, FALSE);
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 		if (Burned) make_burned(0L, TRUE);
 
 		break;
 
-		case 110:
+		case 144:
 
 		withering_damage(invent, FALSE, FALSE);
 
 		break;
 
-		case 111:
+		case 145:
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; delayed_killer = "bad petrification effect";}
 
 		break;
 
-		case 112:
+		case 146:
 		{
 		int aligntype;
 		aligntype = rn2((int)A_LAWFUL+2) - 1;
@@ -793,46 +827,51 @@ badeffect()
 		}
 		break;
 
-		case 113:
-		case 114:
-		case 115:
-		case 116:
-		case 117:
-		case 118:
-		case 119:
-		case 120:
-		case 121:
-		case 122:
+		case 147:
+		case 148:
+		case 149:
+		case 150:
+		case 151:
+		case 152:
+		case 153:
+		case 154:
+		case 155:
+		case 156:
 	      attrcurse();
 
 		break;
 
-		case 123:
-		case 124:
-		case 125:
-		case 126:
-		case 127:
-		case 128:
-		case 129:
-		case 130:
-		case 131:
-		case 132:
+		case 157:
+		case 158:
+		case 159:
+		case 160:
+		case 161:
+		case 162:
+		case 163:
+		case 164:
+		case 165:
+		case 166:
+		case 167:
+		case 168:
+		case 169:
+		case 170:
+		case 171:
 		pline("It gets dark!");
 	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
 		15, set_litI, (genericptr_t)((char *)0));
 
 		break;
 
-		case 133:
-		case 134:
-		case 135:
-		case 136:
-		case 137:
-		case 138:
-		case 139:
-		case 140:
-		case 141:
-		case 142:
+		case 172:
+		case 173:
+		case 174:
+		case 175:
+		case 176:
+		case 177:
+		case 178:
+		case 179:
+		case 180:
+		case 181:
 		{	int rtrap;
 		    int i, j, bd;
 			bd = 1;
@@ -844,37 +883,45 @@ badeffect()
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
+				if (!rn2(20)) makerandomtrap();
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap);
 			}
+			makerandomtrap();
+			if (!rn2(3)) makerandomtrap();
 		}
 		break;
 
-		case 143:
-		case 144:
-		case 145:
+		case 182:
+		case 183:
+		case 184:
 	      You_feel("yanked in a new direction!");
 		(void) safe_teleds(FALSE);
 
 		break;
 
-		case 146:
-		case 147:
-		case 148:
-		case 149:
-		case 150:
-		case 151:
-		case 152:
-		case 153:
-		case 154:
-		case 155:
+		case 185:
+		case 186:
+		case 187:
+		case 188:
+		case 189:
+		case 190:
+		case 191:
+		case 192:
+		case 193:
+		case 194:
+		case 195:
+		case 196:
+		case 197:
+		case 198:
+		case 199:
 		pline("You lose  Mana");
 		drain_en(rnz(monster_difficulty() + 1) );
 		break;
 
-		case 156:
-		case 157:
-		case 158:
+		case 200:
+		case 201:
+		case 202:
 	      pline("You feel out of luck!");
 			change_luck(-1);
 			if (!rn2(10)) change_luck(-5);
@@ -883,24 +930,29 @@ badeffect()
 
 		break;
 
-		case 159:
-		case 160:
-		case 161:
-		case 162:
-		case 163:
+		case 203:
+		case 204:
+		case 205:
+		case 206:
+		case 207:
 		punishx();
 		break;
 
-		case 164:
-		case 165:
-		case 166:
-		case 167:
-		case 168:
-		case 169:
-		case 170:
-		case 171:
-		case 172:
-		case 173:
+		case 208:
+		case 209:
+		case 210:
+		case 211:
+		case 212:
+		case 213:
+		case 214:
+		case 215:
+		case 216:
+		case 217:
+		case 218:
+		case 219:
+		case 220:
+		case 221:
+		case 222:
 		{int copcnt;
 		copcnt = rnd(monster_difficulty() ) + 1;
 		if (rn2(5)) copcnt /= 2;
@@ -915,72 +967,85 @@ badeffect()
 		}
 		break;
 
-		case 174:
+		case 223:
 			losexp((char *)0, TRUE, FALSE); 
 
 		break;
 
-		case 175:
+		case 224:
 		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
 
 		break;
 
-		case 176:
-		case 177:
-		case 178:
-		case 179:
-		case 180:
+		case 225:
+		case 226:
+		case 227:
+		case 228:
+		case 229:
+		case 230:
+		case 231:
+		case 232:
 
 			pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
 			u.ublesscnt += rnz(ishaxor ? 150 : 300);
 
 		break;
 
-		case 181:
-		case 182:
-		case 183:
-		case 184:
-		case 185:
+		case 233:
+		case 234:
+		case 235:
+		case 236:
+		case 237:
+		case 238:
+		case 239:
+		case 240:
+		case 241:
+		case 242:
 		if (Hallucination) You_feel("totally hot! Oh yeah, baby!");
 		else pline("You're burning!");
 		make_burned(HBurned + rnz(150),FALSE);
 		break;
 
-		case 186:
-		case 187:
-		case 188:
-		case 189:
-		case 190:
-		case 191:
-		case 192:
-		case 193:
-		case 194:
-		case 195:
+		case 243:
+		case 244:
+		case 245:
+		case 246:
+		case 247:
+		case 248:
+		case 249:
+		case 250:
+		case 251:
+		case 252:
+		case 253:
+		case 254:
+		case 255:
+		case 256:
+		case 257:
 		if (Hallucination) You("panic! The alarm bells are ringing and you don't know how to get out!");
 		else You_feel("afraid.");
 		make_feared(HFeared + rnz(150),FALSE);
 		break;
 
-		case 196:
-		case 197:
-		case 198:
-		case 199:
-		case 200:
-		case 201:
-		case 202:
-		case 203:
-		case 204:
-		case 205:
-		case 206:
-		case 207:
-		case 208:
-		case 209:
-		case 210:
-		case 211:
-		case 212:
-		case 213:
-		case 214:
-		case 215:
+		case 258:
+		case 259:
+		case 260:
+		case 261:
+		case 262:
+		case 263:
+		case 264:
+		case 265:
+		case 266:
+		case 267:
+		case 268:
+		case 269:
+		case 270:
+		case 271:
+		case 272:
+		case 273:
+		case 274:
+		case 275:
+		case 276:
+		case 277:
 
 		switch (rnd(111)) {
 
@@ -1242,7 +1307,7 @@ badeffect()
 			}
 		break;
 
-		case 216:
+		case 278:
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -1342,6 +1407,402 @@ badeffect()
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
+
+		break;
+
+		case 279:
+		case 280:
+		case 281:
+		case 282:
+		case 283:
+		case 284:
+		case 285:
+		case 286:
+		case 287:
+		case 288:
+		    adjalign(-rnd(20));
+		    pline("You hear a slight rumbling...");
+
+		break;
+
+		case 289:
+
+		    adjalign(-rnd(50));
+			u.ualign.sins++;
+			u.alignlim--;
+		    pline("You hear a thunderous rumbling!");
+
+		break;
+
+		case 290:
+
+			pline("You are engulfed in flames!");
+			(void) burnarmor(&youmonst);
+		    if (!rn2(5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    if (!rn2(5)) destroy_item(POTION_CLASS, AD_FIRE);
+
+		break;
+
+		case 291:
+		case 292:
+		{	
+		      int bd = rnd(10);
+			if (!rn2(5)) bd += rnz(10);
+
+			while (bd-- >= 0) makerandomtrap();
+
+		}
+		break;
+
+		case 293:
+		case 294:
+		case 295:
+		case 296:
+		case 297:
+		case 298:
+		case 299:
+		case 300:
+		case 301:
+		case 302:
+		case 303:
+		case 304:
+		case 305:
+		case 306:
+		case 307:
+			pline("You fall asleep!");
+			fall_asleep(-rnd(15 + rnd((monster_difficulty() / 5) + 1) ), TRUE);
+
+		break;
+
+		case 308:
+		case 309:
+
+			pline("You are hit by a needle!");
+		    poisoned("needle", rn2(6), "poison needle", 30);
+
+		break;
+
+		case 310:
+		case 311:
+		case 312:
+		case 313:
+		case 314:
+			u_slow_down();
+
+		break;
+
+		case 315:
+		case 316:
+		case 317:
+		case 318:
+		case 319:
+			pline("A laser beam hits you out of nowhere!");
+			losehp(monster_difficulty(),"laser beam out of nowhere",KILLED_BY_AN);
+
+		break;
+
+		case 320:
+			pline("Suddenly your %s hurts!", body_part(rn2(19) ) );
+			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins + 1),"escalating damage effect",KILLED_BY_AN);
+			u.chokhmahdamage++;
+
+		break;
+
+		case 321:
+			if (u.ugold) {
+				u.ugold -= (u.ugold / 5);
+				pline("Your purse feels lighter...");
+			}
+
+		break;
+
+		case 322:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+
+		break;
+
+		case 323:
+			You("need reboot.");
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
+		break;
+
+		case 324:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			make_stunned(HStun + rn1(7,16) + monster_difficulty(), FALSE);
+			(void) make_hallucinated(HHallucination + rn1(7,16) + monster_difficulty(),TRUE,0L);
+
+		break;
+
+		case 325:
+			if(!Blind)
+				Your("vision bugged.");
+			(void) make_hallucinated(HHallucination + rn1(10, 25) + rn1(10, 25) + monster_difficulty() + monster_difficulty(),TRUE,0L);
+
+		break;
+
+		case 326:
+		case 327:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			(void) make_hallucinated(HHallucination + rn1(10, 25) + monster_difficulty(),TRUE,0L);
+		break;
+
+		case 328:
+			{
+			    struct obj *objD = some_armor(&youmonst);
+
+			    if (objD && drain_item(objD)) {
+				Your("%s less effective.", aobjnam(objD, "seem"));
+			    }
+			}
+
+		break;
+
+		case 329:
+
+			if (!Disint_resistance || !rn2(100) ) {
+				pline("You feel like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    (void) destroy_arm(uarms);
+				    break;
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    (void) destroy_arm(uarmc);
+				    break;
+				} else if (uarm) {
+				    /* destroy suit */
+				    (void) destroy_arm(uarm);
+				    break;
+	#ifdef TOURIST
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    (void) destroy_arm(uarmu);
+				    break;
+	#endif
+				} else done(DIED);
+	
+			}
+
+		break;
+
+		case 330:
+
+			pline("Suddenly a lightning flash hits you!");
+		    destroy_item(RING_CLASS, AD_ELEC);
+		    destroy_item(WAND_CLASS, AD_ELEC);
+
+		break;
+
+		case 331:
+			pline("Suddenly it's freezing cold!");
+			destroy_item(POTION_CLASS, AD_COLD);
+
+		break;
+
+		case 332:
+
+			MCReduction += rnz(100 * (monster_difficulty() + 1));
+			pline("The magic cancellation granted by your armor seems weaker now...");
+
+		break;
+
+		case 333:
+
+		      u_slow_down();
+			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+
+		break;
+
+		case 334:
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "being timed", KILLED_BY);
+		}
+
+		break;
+
+		case 335:
+
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+
+		break;
+
+		case 336:
+
+			forget(3);
+			{
+			if (!strncmpi(plname, "Maud", 4))
+				pline("Suddenly, your mind turns inward on itself!");
+			else 
+				pline("Suddenly, you are overwhelmed by a feeling that urges you to think of Maud.");
+			}
+			exercise(A_WIS, FALSE);
+
+		break;
+
+		case 337:
+			if (IncreasedGravity) pline("Your load feels even heavier!");
+			else pline("Your load feels heavier!");
+
+			IncreasedGravity += rnz(5 * (monster_difficulty() + 1));
+
+		break;
+
+		case 338:
+			if (Upolyd) u.mhmax--; /* lose one hit point */
+			else u.uhpmax--; /* lose one hit point */
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			pline("Your health has been drained!");
+
+		break;
+
+		case 339:
+			u.uenmax--; /* lose one mana point */
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Your mana has been drained!");
+
+		break;
+
+		case 340:
+		case 341:
+		case 342:
+		case 343:
+		case 344:
+		case 345:
+		case 346:
+		case 347:
+		case 348:
+		case 349:
+
+		You("feel bad!");
+			if (!rn2(20)) losehp(d(10,8), "a bad damage effect", KILLED_BY);
+			else if (!rn2(5)) losehp(d(6,8), "a bad damage effect", KILLED_BY);
+			else losehp(d(4,6), "a bad damage effect", KILLED_BY);
+		break;
+
+		case 350:
+		{    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+		case 351:
+
+			HFumbling = FROMOUTSIDE | rnd(100);
+
+		break;
+
+		case 352:
+			pline("You feel a hole in your %s!", body_part(STOMACH) );
+			morehungry(rnd(1000));
+
+		break;
+
+		case 353:
+		case 354:
+		case 355:
+		case 356:
+		case 357:
+		case 358:
+		case 359:
+		case 360:
+		case 361:
+		case 362:
+		case 363:
+		case 364:
+		case 365:
+		case 366:
+		case 367:
+		case 368:
+		case 369:
+		case 370:
+		case 371:
+		case 372:
+
+			pushplayer();
 
 		break;
 

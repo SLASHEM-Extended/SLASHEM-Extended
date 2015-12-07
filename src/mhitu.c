@@ -3483,7 +3483,8 @@ dopois:
 			break;
 		    case 2:
 			You("need reboot.");
-			newman();
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -3567,7 +3568,7 @@ dopois:
 			{
 			    struct obj *obj = some_armor(&youmonst);
 
-			    if (drain_item(obj)) {
+			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
 			    }
 			}
@@ -4042,7 +4043,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		struct obj *obj = some_armor(&youmonst);
 
-		if (drain_item(obj)) {
+		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		
@@ -4801,7 +4802,7 @@ dopois:
 		if (uncancelled) {
 		    struct obj *obj = some_armor(&youmonst);
 
-		    if (drain_item(obj)) {
+		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		    }
 		}
@@ -5298,7 +5299,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 		    case 2:
 			You("need reboot.");
-			newman();
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -5382,7 +5384,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			{
 			    struct obj *obj = some_armor(&youmonst);
 
-			    if (drain_item(obj)) {
+			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
 			    }
 			}
@@ -6117,7 +6119,7 @@ do_stone:
 		if (rn2(3)) break;
 		    struct obj *obj = some_armor(&youmonst);
 
-		    if (drain_item(obj)) {
+		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		    }
 		break;
@@ -6128,7 +6130,7 @@ do_stone:
 
 		struct obj *objX = some_armor(&youmonst);
 
-		if (drain_item(objX)) {
+		if (objX && drain_item(objX)) {
 			Your("%s less effective.", aobjnam(objX, "seem"));
 		} else if (rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
 
@@ -7134,7 +7136,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		   don't make this attack less frequent */
 		    struct obj *obj = some_armor(&youmonst);
 
-		    if (drain_item(obj)) {
+		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		    }
 		}
@@ -7147,7 +7149,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		struct obj *obj = some_armor(&youmonst);
 
-		if (drain_item(obj)) {
+		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
@@ -7223,7 +7225,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			break;
 		    case 2:
 			You("need reboot.");
-			newman();
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -7307,7 +7310,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			{
 			    struct obj *obj = some_armor(&youmonst);
 
-			    if (drain_item(obj)) {
+			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
 			    }
 			}
