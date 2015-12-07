@@ -2466,7 +2466,6 @@ boolean new_game;	/* false => restoring an old game */
 	{
 
 	register int i;
-	register struct objclass *ocl = &objects[i];
 	register const char *s;
 
 	for (i = 0; i < NUM_OBJECTS; i++) {
@@ -2822,7 +2821,6 @@ boolean new_game;	/* false => restoring an old game */
 	{
 
 	register int i;
-	register struct objclass *ocl = &objects[i];
 	register const char *s;
 
 	for (i = 0; i < NUM_OBJECTS; i++) {
