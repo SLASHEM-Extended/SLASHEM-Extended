@@ -20,6 +20,7 @@ typedef struct tty_mi {
     boolean selected;		/* TRUE if selected by user */
     char selector;		/* keyboard accelerator */
     char gselector;		/* group accelerator */
+    int glyph;			/* glyph display in menu */  
 } tty_menu_item;
 
 /* descriptor for tty-based windows */
