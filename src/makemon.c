@@ -8031,6 +8031,15 @@ register struct	monst	*mtmp;
 			(void) mpickobj(mtmp, otmp, TRUE);
 		}
 		break;
+
+	    case S_ORC:
+
+		if (ptr == &mons[PM_SMUT_ORC]) {
+			if (!rn2(3)) (void) mongets(mtmp, WAN_SUMMON_SEXY_GIRL);
+			else if (!rn2(2)) (void) mongets(mtmp, SCR_GIRLINESS);
+			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP);
+		}
+		break;
 	    case S_LICH:
 
 		if (ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
