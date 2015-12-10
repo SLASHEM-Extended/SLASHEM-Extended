@@ -1878,7 +1878,8 @@ register struct obj *obj;
 	}
 	Strcat(buf,acceptgift);
 	if(*u.ushops) check_shop_obj(obj, mon->mx, mon->my, TRUE);
-	(void) mpickobj(mon, obj, FALSE);	/* may merge and free obj */
+	if (rn2(2)) (void) mpickobj(mon, obj, FALSE);	/* may merge and free obj */
+	else 	obfree(obj, (struct obj *)0); /* definitely frees obj, nerf by Amy */
 	ret = 1;
 
 nopick:
