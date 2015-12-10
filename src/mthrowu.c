@@ -267,7 +267,7 @@ int x,y;
 	struct obj *mwep = (struct obj *) 0;
 	
 	int retvalu = 1;
-	int create;
+	int create, chance;
 	struct monst *mtmp;
 	struct trap *t;
 
@@ -285,9 +285,26 @@ int x,y;
 #endif
 		    (ohit && obj->otyp == EGG))
 		create = 0;
-	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK))
-		create = !rn2(3);
-	else create = 1;
+	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
+
+		/* copying over the dothrow.c code, because it makes no sense for blessed +10 ammo to break 2 out of 3 times --Amy */
+	    chance = 2 + greatest_erosion(obj) - obj->spe;
+	    chance -= rnd(2);
+
+	    if (chance > 1) {
+		if (chance == 3) chance = 2;
+		else if (chance == 4) chance = 3;
+		else if (chance == 5) chance = 3;
+		else if (chance > 5) chance /= 2;
+		create = !rn2(chance);
+	    } else create = rn2(2 + obj->spe - greatest_erosion(obj) );
+
+	    if (obj->blessed && !rnl(4))
+		create = 1;
+	    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
+		create = 1;
+
+	} else create = 1;
 
 #ifdef FIREARMS
 	/* Detonate rockets */
