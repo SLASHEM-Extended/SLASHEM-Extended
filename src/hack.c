@@ -2211,6 +2211,12 @@ invocation_message()
 static const char * const hallu_adverb[] = { /* 5lo: Wounds patch by L */ 
     "mildly", "mostly", "somewhat", "slightly", "probably", "massively", "extremely", 
     "flagrantly", "flamboyantly", "supremely", "excessively", "truly", "terribly", 
+    "not at all", "barely", "heavily", "critically", "normally", "nonchalantly",
+    "fleecily", "painfully", "hurtingly", "almost", "nearly", "now", "no longer",
+    "apparently", "frighteningly", "totally", "awfully", "with difficulty", "secretly", 
+    "immediately", "fatally", "magically", "dreadfully", "superficially", "openly",
+    "sharply", "in some way", "maybe", "seemingly", "really", "not really", "unremarkably", 
+    "happily", "randomly", "stupidly", "intelligently", "strongly", "weakly", "wisely",
     "incredibly", "unbelievably", "obscenely", "insanely", "amazingly", "absolutely" 
 }; 
  

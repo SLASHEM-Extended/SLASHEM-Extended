@@ -2189,7 +2189,31 @@ SCROLL((char *)0,               "WINDOWS XP IS THE ONLY REAL WINDOWS OPERATING S
 SCROLL((char *)0,               "VI OWNS EMACS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 SCROLL((char *)0,               "FIRE IN THE ASS HOLE",  P_NONE,     1,   0, 300, CLR_MAGENTA),
 SCROLL((char *)0,               "DOENERTELLER VERSACE",  P_NONE,     1,   0, 300, CLR_YELLOW),
-
+SCROLL((char *)0,               "XOR OTA",  P_NONE,     1,   0, 300, CLR_MAGENTA), /* Aarne Haapakoski */
+SCROLL((char *)0,               "STRC PRST SKRZ KRK",  P_NONE,     1,   0, 300, CLR_MAGENTA), /* Czech and Slovak tongue-twister */
+SCROLL((char *)0,               "DAE ZIEIEIE IEIEIE BOOOOOOOOOM",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
+SCROLL((char *)0,               "THE MISSINGNO DOES NOT CAUSE CRASH BUGS",  P_NONE,     1,   0, 300, CLR_YELLOW),
+SCROLL((char *)0,               "BREAKPOINT",  P_NONE,     1,   0, 300, CLR_ORANGE),
+SCROLL((char *)0,               "YET ANOTHER SCROLL LABEL",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "BFG 9000 OH YEAH",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
+SCROLL((char *)0,               "DO YOU WHITE WHERE THE FLIGHT HARBOR IS",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "MAND PENDING MAGIC SPELL",  P_NONE,     1,   0, 300, CLR_CYAN),
+SCROLL((char *)0,               "IDE BY 0",  P_NONE,     1,   0, 300, CLR_CYAN),
+SCROLL((char *)0,               "NETHACK 360 APPEARED IN DECEMBER 2015",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "THE NETHACK DEVTEAM IS NOT DEAD",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "THANKS FOR PLAYING SLASHEM EXTENDED",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "AMYBSOD INVITES YOU TO SLASHEMEXTENDED IRC CHANNEL",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "U HAVE MAIL",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE),
+SCROLL((char *)0,               "BLESSED GENOCIDE",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "CURSED GOLD DETECTION",  P_NONE,     1,   0, 300, CLR_YELLOW),
+SCROLL((char *)0,               "FALLOUT 4 IS DUMBED DOWN",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "YOU MAY NOT PLAY ANYTHING ELSE UNLESS YOU MANAGE TO ASCEND SLEX",  P_NONE,     1,   0, 300, CLR_YELLOW),
+SCROLL((char *)0,               "NO ONE CAN STOP ME",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "I AM THE BEST",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "WHACKING YOURSELF WITH HIGH HEELS IS FUN",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "UPDATING PINOBOT IS LIKE HITTING YOURSELF WITH A SHARP STONE",  P_NONE,     1,   0, 300, CLR_GRAY),
+SCROLL((char *)0,               "ADEON HOLDS 4TH RANK BUT HAS BEEN KILLED BY A NEWT",  P_NONE,     1,   0, 300, CLR_YELLOW),
+SCROLL((char *)0,               "SWEETHEART BUNDLE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),
