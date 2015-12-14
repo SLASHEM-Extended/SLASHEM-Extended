@@ -1284,6 +1284,179 @@ static const char * const bogusmons[] = {
 	"unicorn pegasus kitten",		/* Wil Wheaton, John Scalzi */
 	"dwerga nethackus", "dwerga castrum",	/* Ask ASCII Ponies */
 
+	"Irrenhaus the Third",			/* http://www.youtube.com/user/Irrenhaus3 */
+
+	"semipotent demidog", "shale imp",	/* Homestuck */
+	"mercury imp", "Betty Crocker",
+	"Spades Slick",
+	"patriarchy", "bourgeiose",		/* talking points */
+	"mainstream media",
+	"Demonhead Mobster Kingpin",		/* Problem Sleuth */
+	"courtesan angel", "fractal bee",
+	/* bogus UnNetHack monsters */
+	"weeping angle",
+	"gelatinous sphere", "gelatinous pyramid",
+	"gelatinous Klein bottle", "gelatinous Mandelbrot set",
+	"robot unicorn",
+	/* Welcome to Night Vale*/
+	"John Peters, you know, the farmer"
+
+	"great hell nanafushi",
+	"giant cockatflayer eellich",
+	"water hound",
+	"eel-dog",
+	"lesser nishikiori",
+	"nishikiori",
+	"Internet Exploder",
+	"lesser degudoga",
+	"degudoga",
+	"gisau",
+	"ondy",
+	"meso",
+	"hige meso",
+	"death quasit",
+	"moaning wolf",
+	"biwa jelly",
+	"wine jelly",
+	"macya jelly",
+	"nijisseiki nama jelly",
+	"apple konnyaku jelly",
+	"zakuro konnyaku jelly",
+	"ume konnyaku jelly",
+	"grape konnyaku jelly",
+	"kyohaku nymph",
+	"silly nymph",
+	"Akane",
+	"Kisuke",
+	"Aobe",
+	"lesser omochi beast",
+	"taho drakee",
+	"killer duck",
+	"duck warrior",
+	"duck captain",
+	"iron duck",
+	"takuhi",
+	"jubjub bird",
+	"plasma elemental",
+	"cribo",
+	"rafflesia",
+	"blue giant",
+	"green giant",
+	"Jaian",
+	"novice lich",
+	"slimebesu",
+	"ojyama puyo",
+	"slimebesu lord",
+	"chaos shapechanger"
+	"grape ice creep",
+	"cemedined eraser",
+	"ultra noncommittal motorcycle",
+	"Bull Gates",
+	"Mongai Sakurada",
+	"Sanji",
+	"hata-hata",
+	"winged eel",
+	"deminewt",
+	"master newt",
+	/*Silly JNetHack classes*/
+	"User of Stand",
+	"Sexymate",
+	"Triclops",
+	/*others*/
+	"Daisenki",
+	"squid girl",
+
+	"Mook",
+	"Gachapin",
+	"Noppo-san",
+	"Gonta-kun",
+	"Nonowa-san",
+
+	/*summer illust*/
+	"cast-off shell of a cicada",
+	"cast-off shell of a dragonfly larva",
+	"halcyon",
+	"Morning Glory",
+	"bitter gourd gang",
+	/*Wizardly*/
+	"unseen entity",
+	"shadowy figure",
+	"slimy thing",
+	"strange animal",
+	"strange plant",
+	"gaunt figure",
+	"tiny figure",
+	"man in black",
+	"fiery figure",
+	"radiant figure",
+	"weird humanoid",
+	"fluffy thing",
+	"unseen being",
+	"protozoan",
+	"cave dweller",
+	"animated object",
+	"creeping thing",
+	"flying creature",
+	"reptile",
+	"dark beast",
+	"toadstool",
+	"strange mist",
+	"demonic figure",
+	"dark shadow",
+	"wriggle objec",
+	"creeping objec",
+	"flap figure",
+	"squat figure",
+	"standing animal",
+	"clatter ! hoof",
+	/*others*/
+	"prototype meter",
+	"prototype kilogram",
+	"shortest sword",
+	"kotatsu snail",
+	"Saturday Knight",
+	"moai",
+	"PC mouse",
+	"kitten on your keyboard",
+	"vacuum golem",
+	"extra newspaper",
+	"wireless mouse",
+	"wireless cable",
+	"static vortex",
+	"jumping jelly",
+	"herbivorous plant",
+	"flintwork automaton",
+	"proprllered gargoyle",
+	"lonely wolf",
+	"optical rat",
+	"wireflameman",
+	"scarecockatrice",
+	"PMD model", "PMX model",	/*MikuMikuDance*/
+	"monster from lift-the-flap book",
+	"bobbin tank",
+	"time consumer",
+	"lead soldier",
+	"cyclopedia",
+	"liquor spirits",
+	"Jack of Earphone",
+	"Hi-Jack",
+	"Pandemonium demon",	/*Dungeon Crawl*/
+	"Mobile Idol Ganbutu",	/*Aku-Daikan*/
+	"Tutankamen",		/*Aku-Daikan*/
+	"Scissorman",		/*Clock Tower*/
+	"giant house centipede",
+	"steel blob",
+	"borrow wight",
+	"Kan-musu",		/*Kantai Collection*/
+	"forgotten beast",	/*Dwarf Fortress*/
+	"blank body",		/*Cataclysm DDA*/
+	"F.O.E",		/*Etrian Odyssey*/
+	"Blue-eyed Doll",	/*Dolls of Friendship*/
+	"handmade oobleck slime",
+	"dry blob",
+	"microdrive",		/*Goat MMO Simulator*/
+	"gold harvest golem",	/*Goat MMO Simulator*/
+
 	/* from UnNetHackPlus */
 	"King Krakus",               /* Polish folklore */
 	"Topielec",                  /* Slavic folklore */
@@ -4130,6 +4303,9 @@ static NEARDATA const char * const hcolors[] = {
 	"square", "round", "triangular", "octarine",
 	"cabernet", "sangria", "fuchsia", "wisteria",
 	"lemon-lime", "strawberry-banana", "peppermint",
+	"dancing", "singing", "loving",
+	"electric", "welsh onion", "your colored",
+	"loudy", "noisy", "clattery", "silent",
 	"romantic", "incandescent", "multicolored"
 };
 

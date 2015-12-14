@@ -507,7 +507,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_DISN:
 		verbalize("Avada Kedavra!");
-		if((Antimagic && rn2(20) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Invulnerable || (Stoned_chiller && Stoned)) {
+		if((Antimagic && rn2(20) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance || Invulnerable || (Stoned_chiller && Stoned)) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;
@@ -573,7 +573,7 @@ int spellnum;
     switch (spellnum) {
     case MGC_DEATH_TOUCH:
 	pline("Oh no, %s's using the touch of death!", mhe(mtmp));
-	if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
+	if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 	    You("seem no deader than before.");
 	} else if (!Antimagic && rn2(mtmp->m_lev) > 12) {
 	    if (Hallucination) {
@@ -1686,7 +1686,7 @@ newboss:
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(113)) {
+	switch (rnd(117)) {
 
 		case 1:
 		case 2:
@@ -1950,6 +1950,22 @@ newboss:
 		case 113:
 			u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(dmg);
 			pline("You are prevented from having curse resistance!");
+			break;
+		case 114:
+			u.uprops[DEAC_STUN_RES].intrinsic += rnz(dmg);
+			pline("You are prevented from having stun resistance!");
+			break;
+		case 115:
+			u.uprops[DEAC_CONF_RES].intrinsic += rnz(dmg);
+			pline("You are prevented from having confusion resistance!");
+			break;
+		case 116:
+			u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(dmg);
+			pline("You are prevented from having double attacks!");
+			break;
+		case 117:
+			u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(dmg);
+			pline("You are prevented from having quad attacks!");
 			break;
 	}
 	dmg = 0;

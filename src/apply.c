@@ -295,7 +295,7 @@ use_stethoscope(obj)
 		You_hear("your heart beat.");
 		return res;
 	}
-	if ((Stunned && !rn2(2)) || (Confusion && !rn2(8))) confdir();
+	if ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))) confdir();
 	if (!u.dx && !u.dy) {
 		ustatusline();
 		return res;
@@ -1635,7 +1635,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)  || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		killer = "a sharp-edged sword";		/* the thing that killed you */
 		killer_format = KILLED_BY;
@@ -2733,7 +2733,7 @@ struct obj *obj;
     }
     if (!getdir((char *)0)) return res;
 
-    if ((Stunned && !rn2(2)) || (Confusion && !rn2(8))) confdir();
+    if ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))) confdir();
     rx = u.ux + u.dx;
     ry = u.uy + u.dy;
 
@@ -3398,6 +3398,7 @@ wand_explode(obj, hero_broke)
     case WAN_WISHING:
     case WAN_ACQUIREMENT:
     case WAN_NOTHING:
+    case WAN_SHARE_PAIN:
     case WAN_LOCKING:
     case WAN_PROBING:
     case WAN_ENLIGHTENMENT:
@@ -3429,6 +3430,7 @@ wand_explode(obj, hero_broke)
 	pline(nothing_else_happens);
 	goto discard_broken_wand;
     case WAN_DEATH:
+    case WAN_MISFIRE:
     case WAN_LIGHTNING:
     case WAN_CHARGING:
 	dmg *= 4;
@@ -3691,6 +3693,7 @@ potion_charge_cost(struct obj *pot)
 	case POT_GAIN_HEALTH: cost += 3; break;
 	case POT_INVISIBILITY: cost += 1; break;
 	case POT_SEE_INVISIBLE: cost += 1; break;
+	case POT_CURE_CRITICAL_WOUNDS: cost += 2; break;
 	case POT_FULL_HEALING: cost += 3; break;
 	case POT_SPEED: cost += 1; break;
 	case POT_RECOVERY: cost += 1; break;
@@ -3699,7 +3702,10 @@ potion_charge_cost(struct obj *pot)
 	case POT_CYANIDE: cost += 2; break;
 	case POT_INVULNERABILITY: cost += 8; break;
 	case POT_EXTREME_POWER: cost += 2; break;
+	case POT_WONDER: cost += 10; break;
+	case POT_TERCES_DLU: cost += 10; break;
 	case POT_HEROISM: cost += 18; break;
+	case POT_ULTIMATE_TSUYOSHI_SPECIAL: cost += 18; break;
 	default: break;
 	}
 	if (cost < 1) cost = 1;
@@ -3950,6 +3956,8 @@ doapply()
 /* STEPHEN WHITE'S NEW CODE */           
 	case MAGIC_CANDLE:
 	case TALLOW_CANDLE:
+	case OIL_CANDLE:
+	case JAPAN_WAX_CANDLE:
 		use_candle(&obj);
 		break;
 #ifdef LIGHTSABERS
@@ -4068,6 +4076,7 @@ doapply()
 	case MAGIC_FLUTE:
 	case TOOLED_HORN:
 	case FROST_HORN:
+	case TEMPEST_HORN:
 	case FIRE_HORN:
 	case WOODEN_HARP:
 	case MAGIC_HARP:
@@ -4157,7 +4166,7 @@ doapply()
 		    if (!rn2(13)) {
 			otmp = mkobj(POTION_CLASS, FALSE);
 			/* KMH, balance patch -- rewritten */
-			while ((otmp->otyp == POT_SICKNESS) ||
+			while ((otmp->otyp == POT_SICKNESS) || (otmp->otyp == POT_POISON) ||
 					objects[otmp->otyp].oc_magic)
 			    otmp->otyp = rnd_class(POT_BOOZE, POT_WATER);
 			what = "A potion";
@@ -4197,6 +4206,10 @@ doapply()
 	case WHETSTONE:
 	case MANASTONE:
 	case LOADBOULDER:
+	case TALC:
+	case GRAPHITE:
+	case VOLCANIC_GLASS_FRAGMENT:
+	case STARLIGHTSTONE:
 	case STONE_OF_MAGIC_RESISTANCE:
 	case SLEEPSTONE:
 

@@ -548,7 +548,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(113)) {
+		switch (rnd(117)) {
 
 			case 1:
 			case 2:
@@ -812,13 +812,29 @@ nh_timeout()
 			case 113:
 				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
 				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having quad attacks!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(113)) {
+		switch (rnd(117)) {
 
 			case 1:
 			case 2:
@@ -1082,13 +1098,29 @@ nh_timeout()
 			case 113:
 				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
 				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having quad attacks!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(113)) {
+		switch (rnd(117)) {
 
 			case 1:
 			case 2:
@@ -1352,6 +1384,22 @@ nh_timeout()
 			case 113:
 				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
 				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having quad attacks!");
 				break;
 			}
 	}
@@ -2215,6 +2263,15 @@ nh_timeout()
 			if (!Sleep_resistance)
 				You("feel a little sleepy.");
 			break;
+		case KEEN_MEMORY:
+			if (!Keen_memory)
+				You("feel less able to memorize things.");
+			break;
+		case SIGHT_BONUS:
+			if (!Sight_bonus)
+				You("notice your surroundings darkening a bit.");
+			vision_full_recalc = 1;
+			break;
 		case SHOCK_RES:
 			if (!Shock_resistance)
 				You("feel a little static cling.");
@@ -2250,6 +2307,10 @@ nh_timeout()
 		case SICK_RES:
 			if (!Sick_resistance)
 				You("feel worried about getting sick.");
+			break;
+		case DISPLACED:
+			if (!Displaced)
+				You("feel more exposed.");
 			break;
 		case TELEPORT:
 			if (!Teleportation)
@@ -2523,6 +2584,18 @@ nh_timeout()
 			break;
 		case DEAC_VERSUS_CURSES:
 			pline("You are no longer prevented from having curse resistance.");
+			break;
+		case DEAC_STUN_RES:
+			pline("You are no longer prevented from having stun resistance.");
+			break;
+		case DEAC_CONF_RES:
+			pline("You are no longer prevented from having confusion resistance.");
+			break;
+		case DEAC_DOUBLE_ATTACK:
+			pline("You are no longer prevented from having double attacks.");
+			break;
+		case DEAC_QUAD_ATTACK:
+			pline("You are no longer prevented from having quad attacks.");
 			break;
 		case DEAC_THE_FORCE:
 			pline("You are no longer prevented from using the force like a real jedi.");
@@ -3481,6 +3554,8 @@ long timeout;
 	    case CANDELABRUM_OF_INVOCATION:
 	    case TALLOW_CANDLE:
 	    case WAX_CANDLE:
+	    case JAPAN_WAX_CANDLE:
+	    case OIL_CANDLE:
 		switch (obj->age) {
 		    case 75:
 			if (canseeit)
@@ -3814,6 +3889,8 @@ begin_burn(obj, already_lit)
 	    case CANDELABRUM_OF_INVOCATION:
 	    case TALLOW_CANDLE:
 	    case WAX_CANDLE:
+	    case JAPAN_WAX_CANDLE:
+	    case OIL_CANDLE:
 		/* magic times are 75, 15, and 0 */
 		if (obj->age > 75L)
 		    turns = obj->age - 75L;

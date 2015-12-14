@@ -15000,6 +15000,7 @@ int type;
 		case PM_GRAVELER: return 250;
 		case PM_THUY_HAN: return 250;
 		case PM_RETRIEVER: return 250;
+		case PM_TELERETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;
 		case PM_LAVA_GOLEM: return 250;

@@ -17,6 +17,89 @@
 	((mndx) == urace.malenum || \
 	 (urace.femalenum != NON_PM && (mndx) == urace.femalenum))
 
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_MATTER_SPELL		(-13)
+#define PN_BARE_HANDED		(-14)
+#define PN_MARTIAL_ARTS		(-15)
+#define PN_RIDING		(-16)
+#define PN_TWO_WEAPONS		(-17)
+#ifdef LIGHTSABERS
+#define PN_LIGHTSABER		(-18)
+#endif
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+#ifdef LIGHTSABERS
+	PN_LIGHTSABER,
+#endif
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+#ifdef STEED
+	PN_RIDING,
+#endif
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "matter spells",
+    "bare-handed combat",
+    "martial arts",
+    "riding",
+    "two-handed combat",
+#ifdef LIGHTSABERS
+    "lightsaber"
+#endif
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 #ifdef OVLB
 
 boolean	known;
@@ -36,6 +119,7 @@ static const char *warnings[] = {
 static void FDECL(wand_explode, (struct obj *));
 #endif
 static void NDECL(do_class_genocide);
+static void NDECL(do_class_erasure);
 static void FDECL(stripspe,(struct obj *));
 static void FDECL(p_glow1,(struct obj *));
 static void FDECL(p_glow2,(struct obj *,const char *));
@@ -139,6 +223,8 @@ doread()
 #ifdef TOURIST
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PLUGSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
@@ -622,7 +708,7 @@ doread()
 	 * care needs to be taken so that the scroll is used up before
 	 * a potential level teleport occurs.
 	 */
-	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
+	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_COPYING || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
 	    otemp = *scroll;
 	    otemp.where = OBJ_FREE;
 	    otemp.nobj = (struct obj *)0;
@@ -644,7 +730,7 @@ doread()
 				(scroll->blessed ? 2 : 1));
 		}
 		if(scroll->otyp != SCR_BLANK_PAPER && !scroll->oartifact &&
-		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
+		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_COPYING && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -1006,6 +1092,7 @@ int curse_bless;
 	    case MAGIC_FLUTE:
 	    case MAGIC_HARP:
 	    case FROST_HORN:
+	    case TEMPEST_HORN:
 	    case FIRE_HORN:
 	    case DRUM_OF_EARTHQUAKE:
 		if (is_cursed) {
@@ -1976,6 +2063,16 @@ register struct obj	*sobj;
 
 	}
 
+	if (sobj->otyp == SCR_COPYING) {
+
+		struct obj *wonderscroll;
+		wonderscroll = mkobj(SCROLL_CLASS,FALSE);
+		if (wonderscroll) sobj->otyp = wonderscroll->otyp;
+		obfree(wonderscroll, (struct obj *)0);
+
+	}
+
+
 	switch(sobj->otyp) {
 #ifdef MAIL
 	case SCR_MAIL:
@@ -2116,8 +2213,8 @@ register struct obj	*sobj;
 			(!Blind && !same_color) ? " " : nul,
 			(Blind || same_color) ? nul : hcolor(sobj->cursed ? NH_BLACK : NH_SILVER),
 			  (s*s>1) ? "while" : "moment");
-		otmp->cursed = sobj->cursed;
-		if (!otmp->blessed || sobj->cursed)
+		otmp->cursed = (sobj->cursed || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
+		if ((!otmp->blessed || sobj->cursed) && !otmp->cursed)
 			otmp->blessed = sobj->blessed;
 		if (s) {
 			otmp->spe += s;
@@ -2193,6 +2290,51 @@ register struct obj	*sobj;
 		}
 	    }
 	    break;
+
+	case SCR_DESTROY_WEAPON:
+
+		otmp = uwep;
+
+		if (sobj == otmp) break; /* prevent wonderful "segfault panic" that leaves corrupt files behind --Amy */
+
+		if(confused) {
+			if(!otmp) {
+				strange_feeling(sobj,"Your fingers itch.");
+				exercise(A_STR, FALSE);
+				exercise(A_CON, FALSE);
+				return(1);
+			}
+			if (!stack_too_big(otmp)) {
+				otmp->oerodeproof = sobj->cursed;
+				p_glow2(otmp, NH_PURPLE);
+			}
+			break;
+		}
+		if (!otmp) {
+			strange_feeling(sobj,"Your fingers itch.");
+			exercise(A_STR, FALSE);
+			exercise(A_CON, FALSE);
+			return(1);
+		}
+
+		if(!sobj->cursed || !otmp->cursed) {
+
+			if (!stack_too_big(otmp)) {
+			useupall(otmp);
+			pline("Your weapon evaporates!");
+			}
+			known = TRUE;
+
+		} else {	/* weapon and scroll both cursed */
+			if (!stack_too_big(otmp)) {
+		    Your("%s %s.", xname(otmp), otense(otmp, "vibrate"));
+		    if (otmp->spe >= -6) otmp->spe--;
+			}
+		    make_stunned(HStun + rn1(10, 10), TRUE);
+		}
+
+	    break;
+
 	case SCR_BAD_EFFECT:
 		if(confused) {
 			pline("You feel lucky for some reason!");
@@ -2302,6 +2444,47 @@ register struct obj	*sobj;
 		if (!sobj->cursed) return(trap_detect(sobj));
 	      break;
 		/*what the hell? */
+
+	case SCR_CURE_BLINDNESS:
+		if (confused || sobj->cursed) make_blinded(Blinded + rnd(100), TRUE);
+		else healup(0, 0, FALSE, TRUE);
+
+	      break;
+
+	case SCR_SKILL_UP:
+
+		{
+
+			pline("You feel like someone has touched your forehead...");
+
+			int skillimprove = rnd(P_NUM_SKILLS);
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				break;
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				break;
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else pline("Unfortunately, you feel no different than before.");
+
+		}
+
+	      break;
+
 	case SPE_REMOVE_CURSE:
 		if (confused) break;
 	case SCR_REMOVE_CURSE:
@@ -2353,6 +2536,7 @@ register struct obj	*sobj;
 			if ((sobj->blessed || wornmask ||
 			     obj->otyp == LOADSTONE ||
 			     obj->otyp == LOADBOULDER ||
+			     obj->otyp == STARLIGHTSTONE ||
 			     obj->otyp == LUCKSTONE ||
 			     obj->otyp == HEALTHSTONE ||
 			     obj->otyp == MANASTONE ||
@@ -2382,6 +2566,19 @@ register struct obj	*sobj;
 	    /* no need to flush monsters; we ask for identification only if the
 	     * monsters are not visible
 	     */
+	    break;
+
+	case SCR_CREATE_VICTIM:
+
+	    {
+		int cnt = rnd(9);
+		if (confused) cnt += rnd(12);
+		if (sobj->cursed) cnt += rnd(5);
+		while(cnt--) {
+			makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+		}
+	    }
+
 	    break;
 
 	case SCR_CREATE_FAMILIAR:
@@ -2747,6 +2944,21 @@ newboss:
 		if (!rn2(64)) makerandomtrap();
 		if (!rn2(128)) makerandomtrap();
 		if (!rn2(256)) makerandomtrap();
+
+		break;
+
+	case SCR_CREATE_TRAP:
+
+		{
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap() );
+		if (ttmp2) dotrap(ttmp2, 0);
+		}
+
+		break;
+
+	case SCR_COPYING:
+
+		pline("Your attempt to violate the copy protection fails. Filthy hacker.");
 
 		break;
 
@@ -3158,6 +3370,123 @@ newboss:
 
 	break;
 
+	case SCR_FLOOD_TIDE:
+	{
+
+		int randomx, randomy;
+		int randomamount = rnd(250 - 100*bcsign(sobj) );
+		if (confused) randomamount *= 5;
+
+		while (randomamount) {
+			randomamount--;
+			randomx = rn1(COLNO-3,2);
+			randomy = rn2(ROWNO);
+			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+				levl[randomx][randomy].typ = MOAT;
+				del_engr_at(randomx, randomy);
+		
+				newsym(randomx,randomy);
+	
+			}
+		}
+
+		pline("A flood surges through the entire dungeon!");
+
+	}
+
+	break;
+
+	case SCR_FROST:
+	{
+
+		int randomx, randomy;
+		int randomamount = rnd(250 - 100*bcsign(sobj) );
+		if (confused) randomamount *= 5;
+
+		while (randomamount) {
+			randomamount--;
+			randomx = rn1(COLNO-3,2);
+			randomy = rn2(ROWNO);
+			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+				levl[randomx][randomy].typ = ICE;
+				del_engr_at(randomx, randomy);
+		
+				newsym(randomx,randomy);
+	
+			}
+		}
+
+		pline("A chilly wind blows through the dungeon...");
+
+	}
+
+	break;
+
+	case SCR_CREATE_FACILITY:
+	{
+
+		int randomx, randomy;
+		int randomamount = rnd(250 - 100*bcsign(sobj) );
+		if (confused) randomamount *= 5;
+		int terrainfeature;
+
+		while (randomamount) {
+			randomamount--;
+			randomx = rn1(COLNO-3,2);
+			randomy = rn2(ROWNO);
+			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+				terrainfeature = randomwalltype();
+				if (!rn2(50)) terrainfeature = FOUNTAIN;
+				else if (!rn2(2000)) terrainfeature = THRONE;
+				else if (!rn2(100)) terrainfeature = SINK;
+				else if (!rn2(200)) terrainfeature = TOILET;
+				else if (!rn2(50)) terrainfeature = GRAVE;
+				else if (!rn2(10000) && !Is_astralevel(&u.uz) ) terrainfeature = ALTAR;
+
+				levl[randomx][randomy].typ = terrainfeature;
+				if (terrainfeature == ALTAR) levl[randomx][randomy].altarmask = Align2amask(A_NONE);
+
+
+				del_engr_at(randomx, randomy);
+		
+				newsym(randomx,randomy);
+	
+			}
+		}
+
+		pline("Crash!  Whang!  Klock!  Lots of noises suggest massive changes to the dungeon structure...");
+
+	}
+
+	break;
+
+	case SCR_EBB_TIDE:
+	{
+
+		int randomx, randomy;
+		int randomamount = rnd(250 - 100*bcsign(sobj) );
+		if (confused) randomamount *= 5;
+
+		while (randomamount) {
+			randomamount--;
+			randomx = rn1(COLNO-3,2);
+			randomy = rn2(ROWNO);
+			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == POOL || levl[randomx][randomy].typ == WATER || levl[randomx][randomy].typ == MOAT) ) {
+				levl[randomx][randomy].typ = ROOM;
+				del_engr_at(randomx, randomy);
+		
+				newsym(randomx,randomy);
+	
+			}
+		}
+
+		pline("The dungeon seems more dry than before.");
+
+	}
+
+	break;
+
 	case SCR_FLOOD:
 		known = TRUE;
 		if (confused) {
@@ -3275,6 +3604,7 @@ retry:
 		if(!Blind) known = TRUE;
 		litroom(!confused && !sobj->cursed, sobj);
 		break;
+
 	case SCR_TELEPORTATION:
 		if(confused || sobj->cursed) 
 			{
@@ -3402,6 +3732,12 @@ retry:
 			if (!rn2(20)) healup(400 + rnz(u.ulevel), 0, FALSE, FALSE);
 			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
 			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		break;
+	case SCR_POWER_HEALING:
+		makeknown(SCR_POWER_HEALING);
+		You("feel fully healed!");
+			u.uhp = u.uhpmax;
+			if (Upolyd) u.mh = u.mhmax;
 		break;
 	case SCR_WOUNDS:
 		makeknown(SCR_WOUNDS);
@@ -3778,6 +4114,14 @@ retry:
 			do_genocide(9);
 		}
 		break;
+	case SCR_ERASURE:
+		known = TRUE;
+		pline("Now, you can wipe out monsters!");
+		if (sobj->blessed) do_class_erasure();
+		else if (Confusion || Hallucination) undo_genocide();
+		else do_genocide(sobj->cursed ? 8 : 9);
+
+		break;
 	case SCR_UNDO_GENOCIDE:
 		known = TRUE;
 		You("have found a scroll of undo genocide.");
@@ -3924,6 +4268,7 @@ revid_end:
 		break;
 
 	case SCR_SINKING:
+	case SCR_CREATE_SINK:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
 			pline("You feel claustrophobic!");
@@ -3999,6 +4344,49 @@ revid_end:
 		if (u.ublesscnt < 0) u.ublesscnt = 0;
 		pline("You feel %s%scomfortable.",(abs(x)>1) ? "very " : "", (x<0) ? "un" : "");
 	} break;
+
+	case SCR_CREATE_ALTAR:
+
+		if (Is_astralevel(&u.uz)) {
+			You("sense the wrath of the gods.");
+			u.ualign.record--;
+			break;
+		}
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
+			pline("You feel claustrophobic!");
+			break;
+		}
+		known = TRUE;
+		pline("You build an altar.");
+		levl[u.ux][u.uy].typ = ALTAR;
+		levl[u.ux][u.uy].altarmask = Align2amask(A_NONE);
+		u.ualign.record -= 50;
+		u.ublesscnt += rnz(300);
+		pline("You feel uncomfortable.");
+
+		break;
+
+	case SCR_CREATE_CREATE_SCROLL:
+
+		{
+		struct obj *createdscroll;
+		pline("Now that's weird.");
+	    	known = FALSE;
+	    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE);
+	    	createdscroll->cursed = sobj->cursed;
+	    	createdscroll->hvycurse = sobj->hvycurse;
+	    	createdscroll->prmcurse = sobj->prmcurse;
+		}
+
+		break;
+
+	case SCR_SYMMETRY:
+
+		pline("Fearful Symmetry!");
+		if (u.totter) u.totter = 0;
+		else u.totter = 1;
+
+		break;
 
 	case SCR_ROOT_PASSWORD_DETECTION:
 		You("sense the computer's root password.");
@@ -4402,6 +4790,152 @@ do_class_genocide()
 	}
 }
 
+static void
+do_class_erasure()
+{
+/*WAC adding windowstuff*/
+        winid tmpwin;
+	anything any;
+        int n;
+	menu_item *selected;
+
+	int i, j, immunecnt, gonecnt, goodcnt, class, feel_dead = 0;
+	char buf[BUFSZ];
+	boolean gameover = FALSE;	/* true iff killed self */
+
+	for(j=0; ; j++) {
+		if (j >= 5) {
+			pline(thats_enough_tries);
+			return;
+		}
+		do {
+                    getlin("What class of monsters do you wish to erase? [? for help]",
+			buf);
+		    (void)mungspaces(buf);
+		} while (buf[0]=='\033' || !buf[0]);
+		/* choosing "none" preserves genocideless conduct */
+		if (!strcmpi(buf, "none") ||
+		    !strcmpi(buf, "nothing")) return;
+
+		if (strlen(buf) == 1) {
+		    /*WAC adding "help" for those who use graphical displays*/
+                    if (buf[0]=='?'){
+                        tmpwin = create_nhwindow(NHW_MENU);
+                        start_menu(tmpwin);           
+                        any.a_void = 0;         /* zero out all bits */
+                        for (i = 1; i < (MAXMCLASSES - MISCMCLASSES); i++) {
+                           any.a_int = i;        /* must be non-zero */
+			   if (monexplain[i])
+			       add_menu(tmpwin, NO_GLYPH, &any,
+				   def_monsyms[i], 0, ATR_NONE,
+				   an(monexplain[i]), MENU_UNSELECTED);
+                        }
+                        end_menu(tmpwin, "Monster Types");
+                        n = 0;
+                        while (n == 0) n = select_menu(tmpwin, PICK_ONE,
+                                &selected);
+                        destroy_nhwindow(tmpwin);
+                        if (n== -1) continue;  /*user hit escape*/
+                        class = selected[0].item.a_int;
+                    } else {
+		    if (buf[0] == ILLOBJ_SYM)
+			buf[0] = def_monsyms[S_MIMIC];
+		    class = def_char_to_monclass(buf[0]);
+                    }
+		} else {
+		    char buf2[BUFSZ];
+
+		    class = 0;
+		    Strcpy(buf2, makesingular(buf));
+		    Strcpy(buf, buf2);
+		}
+		immunecnt = gonecnt = goodcnt = 0;
+		for (i = LOW_PM; i < NUMMONS; i++) {
+		    if (class == 0 &&
+			    strstri(monexplain[(int)mons[i].mlet], buf) != 0)
+			class = mons[i].mlet;
+
+		    if (mons[i].mlet == class) {
+			if (!(mons[i].geno & G_GENO)) immunecnt++;
+			else if (mons[i].mlet == u.ungenocidable) immunecnt++;
+			else if(mvitals[i].mvflags & G_GENOD) gonecnt++;
+			else goodcnt++;
+		    }
+		}
+		/*
+		 * TODO[?]: If user's input doesn't match any class
+		 *	    description, check individual species names.
+		 */
+		if (!goodcnt && class != mons[urole.malenum].mlet &&
+				class != mons[urace.malenum].mlet) {
+			if (gonecnt)
+	pline("All such monsters are already nonexistent.");
+			else if (immunecnt ||
+				(buf[0] == DEF_INVISIBLE && buf[1] == '\0'))
+	You("aren't permitted to genocide such monsters.");
+			else
+#ifdef WIZARD	/* to aid in topology testing; remove pesky monsters */
+			  if (wizard && buf[0] == '*') {
+			    register struct monst *mtmp, *mtmp2;
+
+			    gonecnt = 0;
+			    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+				mtmp2 = mtmp->nmon;
+			    	if (DEADMONSTER(mtmp)) continue;
+				mongone(mtmp);
+				gonecnt++;
+			    }
+	pline("Eliminated %d monster%s.", gonecnt, plur(gonecnt));
+			    return;
+			} else
+#endif
+	pline("That symbol does not represent any monster.");
+			continue;
+		}
+
+		pline("Attempting to wipe out monsters.");
+
+	      gonecnt = 0;
+
+		for (i = LOW_PM; i < NUMMONS; i++) {
+		    if(mons[i].mlet == class) {
+			char nam[BUFSZ];
+
+			Strcpy(nam, makeplural(mons[i].mname));
+			/* Although "genus" is Latin for race, the hero benefits
+			 * from both race and role; thus genocide affects either.
+			 */
+			if (Your_Own_Role(i) || Your_Own_Race(i) ||
+				((mons[i].geno & G_GENO)
+				&& !(mvitals[i].mvflags & G_GENOD))) {
+			/* This check must be first since player monsters might
+			 * have G_GENOD or !G_GENO.
+			 */
+			    register struct monst *mtmp, *mtmp2;
+
+		  	    for(mtmp = fmon; mtmp; mtmp = mtmp2) {
+		  		mtmp2 = mtmp->nmon;
+
+		  		if(mtmp->mnum == i) {
+					mondead(mtmp);
+					gonecnt++;
+				}
+
+			    }
+			}
+		    }
+		}
+		pline("Eliminated %d monster%s.", gonecnt, plur(gonecnt));
+
+		if (gameover || u.uhp == -1) {
+		    killer_format = KILLED_BY_AN;
+		    killer = "scroll of genocide";
+		    if (gameover) done(GENOCIDED);
+		}
+		return;
+	}
+}
+
 #define REALLY 1
 #define PLAYER 2
 #define ONTHRONE 4
@@ -4512,7 +5046,7 @@ int how;
 		if (how & MASS_MURDER) {
 	  	    for(mtmp = fmon; mtmp; mtmp = mtmp2) {
 	  		mtmp2 = mtmp->nmon;
-	  		if(mtmp->data == ptr) 		    mondead(mtmp);
+	  		if(mtmp->data == ptr) mondead(mtmp);
 			}
 		}
 

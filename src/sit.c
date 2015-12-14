@@ -245,7 +245,7 @@ dosit()
 	    /* must be WWalking */
 	    You(sit_message, "lava");
 	    burn_away_slime();
-	    if (likes_lava(youmonst.data)) {
+	    if (likes_lava(youmonst.data) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
 		pline_The("lava feels warm.");
 		return 1;
 	    }
@@ -670,7 +670,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(179)) {
+	switch(rnd(186)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1238,6 +1238,69 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HVersus_curses & TIMEOUT) {
 			HVersus_curses &= ~TIMEOUT;
 			You_feel("cursed!");
+		}
+		break;
+	case 178: if (HStun_resist & INTRINSIC) {
+			HStun_resist &= ~INTRINSIC;
+			You_feel("a little stunned!");
+		}
+		if (HStun_resist & TIMEOUT) {
+			HStun_resist &= ~TIMEOUT;
+			You_feel("a little stunned!");
+		}
+		break;
+	case 179: if (HConf_resist & INTRINSIC) {
+			HConf_resist &= ~INTRINSIC;
+			You_feel("a little confused!");
+		}
+		if (HConf_resist & TIMEOUT) {
+			HConf_resist &= ~TIMEOUT;
+			You_feel("a little confused!");
+		}
+		break;
+	case 180: if (HDouble_attack & INTRINSIC) {
+			HDouble_attack &= ~INTRINSIC;
+			You_feel("your attacks becoming slower!");
+		}
+		if (HDouble_attack & TIMEOUT) {
+			HDouble_attack &= ~TIMEOUT;
+			You_feel("your attacks becoming slower!");
+		}
+		break;
+	case 181: if (HQuad_attack & INTRINSIC) {
+			HQuad_attack &= ~INTRINSIC;
+			You_feel("your attacks becoming a lot slower!");
+		}
+		if (HQuad_attack & TIMEOUT) {
+			HQuad_attack &= ~TIMEOUT;
+			You_feel("your attacks becoming a lot slower!");
+		}
+		break;
+	case 182: if (HExtra_wpn_practice & INTRINSIC) {
+			HExtra_wpn_practice &= ~INTRINSIC;
+			You_feel("less able to learn new stuff!");
+		}
+		if (HExtra_wpn_practice & TIMEOUT) {
+			HExtra_wpn_practice &= ~TIMEOUT;
+			You_feel("less able to learn new stuff!");
+		}
+		break;
+	case 183: if (HDeath_resistance & INTRINSIC) {
+			HDeath_resistance &= ~INTRINSIC;
+			You_feel("a little dead!");
+		}
+		if (HDeath_resistance & TIMEOUT) {
+			HDeath_resistance &= ~TIMEOUT;
+			You_feel("a little dead!");
+		}
+		break;
+	case 184: if (HDisplaced & INTRINSIC) {
+			HDisplaced &= ~INTRINSIC;
+			You_feel("a little exposed!");
+		}
+		if (HDisplaced & TIMEOUT) {
+			HDisplaced &= ~TIMEOUT;
+			You_feel("a little exposed!");
 		}
 		break;
 	default: break;

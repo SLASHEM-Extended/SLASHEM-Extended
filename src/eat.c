@@ -2805,6 +2805,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case ELVEN_DAGGER:
 		case ORCISH_DAGGER:
 		case ATHAME:
+		case MERCURIAL_ATHAME:
 		case CRYSKNIFE:
 		case DARK_ELVEN_DAGGER:
 		case GREAT_DAGGER:
@@ -3192,6 +3193,7 @@ struct obj *otmp;
 {
 	switch(otmp->otyp) {
 
+	    case BREAD:
 	    case FOOD_RATION:
 		if(u.uhunger <= 500)
 		    pline(Hallucination ? "Oh wow, like, superior, man!" :
@@ -3319,12 +3321,64 @@ struct obj *otmp;
 			break;
 		}
 		break;
+	    case SHEAF_OF_STRAW:
+	    case COTTON:
+		if (herbivorous(youmonst.data) && !carnivorous(youmonst.data)) pline("That %s was tasty!", xname(otmp));
+		break;
 	    case MEATBALL:
 	    case MEAT_STICK:
 	    case HUGE_CHUNK_OF_MEAT:
 	    case MEAT_RING:
 		goto give_feedback;
 	     /* break; */
+
+	    case X_MAS_CAKE:
+
+		if (!rn2(3)) pline(Hallucination ? "...It tastes sweet, so, too sweet!" :
+			"You munched, munched, munched...It's delicious!");
+		else pline(rn2(2) ? "(That's dud, tut.)  You feel that someone clucked her tongue." :
+			"Very delicious, mew!  You feel that your toon seems changing, mew.");
+
+		break;
+
+	    case BUNNY_CAKE:
+		/*can you eat it all?  I believe it not!*/
+		more_experienced(0,10);
+		newexplevel();
+		pline(rn2(2) ? "(That's dud, tut.)  You feel that someone clucked her tongue." :
+			"Very delicious, mew!  You feel that your toon seems changing, mew.");
+
+		break;
+
+	    case SAKURA_MOCHI:
+	    case KIBI_DANGO:
+
+		pline("You are supposed to get some kind of message here but the Japanese to English translation isn't complete yet. Sorry.");
+
+		break;
+
+	    case KOUHAKU_MANJYUU:
+
+		pline(rn2(2) ? "It tastes year-crossing." : "You feel like kotatsu-snail!");
+
+		break;
+
+	    case YOUKAN:
+
+		You_feel("somehow you are playing NetHack brass.");
+
+		break;
+
+	    case WHITE_PEACH:
+	    case SENTOU:
+		if (hates_silver(youmonst.data)) {
+			make_vomiting((long)rn1(victual.reqtime, 5), FALSE);
+			break;
+		}
+		/* Fall through otherwise */
+	    case BEAN:
+	    case SENZU:
+
 	    case CLOVE_OF_GARLIC:
 		if (is_undead(youmonst.data)) {
 			make_vomiting((long)rn1(victual.reqtime, 5), FALSE);
@@ -3371,7 +3425,7 @@ struct obj *otmp;
 		} else {
 		    boolean bad_for_you;
  give_feedback:
-		    bad_for_you = otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || 
+		    bad_for_you = otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (otmp->otyp == CHARRED_BREAD) ||
 		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_)) &&
 		      otmp->otyp == SPRIG_OF_WOLFSBANE);
 		    pline("This %s is %s", singular(otmp, xname),
@@ -3494,6 +3548,13 @@ struct obj *otmp;
 		break;
 	    case RIN_INCREASE_DAMAGE:
 		accessory_has_effect(otmp);
+		u.udaminc += otmp->spe;
+		u.udamincxtra += otmp->spe;
+		break;
+	    case RIN_HEAVY_ATTACK:
+		accessory_has_effect(otmp);
+		u.uhitinc += otmp->spe;
+		u.uhitincxtra += otmp->spe;
 		u.udaminc += otmp->spe;
 		u.udamincxtra += otmp->spe;
 		break;
@@ -3687,6 +3748,39 @@ register struct obj *otmp;
 		if (u.ulycn >= LOW_PM || is_were(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) )
 		    you_unwere(TRUE);
 		break;
+
+	    case CHOCOLATE:
+	    case CHOCOEGG:
+
+		switch (rnd(16)) {
+
+			case 1:	/* blueberry (cure blind) */
+				/* They're good for your eyes, too. [Sakusha]*/
+				pline("It was blueberry-flavored!");
+				make_blinded((long)u.ucreamed,TRUE);
+				break;
+			case 2:	/* bitter (cure stun) */
+				pline("It tasted bitter!");
+				make_stunned(0L,TRUE);
+				break;
+			case 3:	/* wasabi (cure confuse) */
+				pline("It contained all-natural wasabi extract!");
+				make_confused(0L,TRUE);
+				break;
+			case 4:	/* mattya (cure slow and totter) */
+				pline("There was some weird japanese food extras in there...");
+				make_frozen(0L, TRUE);
+				break;
+			case 5:	/* ginger (cure hallucinate) */
+				pline("Ginger! Who puts that in a chocolate???");
+				(void) make_hallucinated(0L, TRUE, 0L);
+				break;
+			default: break;
+
+		}
+
+		break;
+
 	    case HOLY_WAFER:            
 		if (u.ualign.type == A_LAWFUL) {
 			if (u.uhp < u.uhpmax) {
@@ -3743,6 +3837,18 @@ register struct obj *otmp;
 	    case ASIAN_PEAR:
 		make_confused(0L, TRUE);
 		make_stunned(0L, TRUE);
+		break;
+
+	    case MAGIC_BANANA: /* cure all */
+		make_confused(0L, TRUE);
+		make_stunned(0L, TRUE);
+		make_burned(0L, TRUE);
+		make_feared(0L, TRUE);
+		make_numbed(0L, TRUE);
+		make_frozen(0L, TRUE);
+		(void) make_hallucinated(0L, TRUE, 0L);
+		make_blinded((long)u.ucreamed,TRUE);
+
 		break;
 
 	    /* body parts -- now checks for artifact and name*/
@@ -4311,6 +4417,14 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		if (otmp->otyp == PANCAKE ||
 		    otmp->otyp == FORTUNE_COOKIE || /* eggs */
 		    otmp->otyp == CREAM_PIE ||
+		    otmp->otyp == CHOCOLATE ||
+		    otmp->otyp == CHOCOEGG ||
+		    otmp->otyp == SLICE_OF_PIZZA ||
+		    otmp->otyp == PIZZA ||
+		    otmp->otyp == LUNCH_OF_BOILED_EGG ||
+		    otmp->otyp == X_MAS_CAKE ||
+		    otmp->otyp == BUNNY_CAKE ||
+		    otmp->otyp == PARFAIT ||
 		    otmp->otyp == CANDY_BAR || /* milk */
 		    otmp->otyp == LUMP_OF_ROYAL_JELLY)
 		    u.uconduct.unvegan++;

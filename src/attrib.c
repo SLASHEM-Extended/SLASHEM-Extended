@@ -785,6 +785,11 @@ adjattrib(ndx, incr, msgflg)
 	    You_feel("%s%s!",
 		  (incr > 1 || incr < -1) ? "very ": "",
 		  (incr > 0) ? plusattr[ndx] : minusattr[ndx]);
+
+	if ( (msgflg == 0) && (incr < 0) ) {
+		pline("You lose  %s", ndx == 0 ? "Strength" : ndx == 1 ? "Intelligence" : ndx == 2 ? "Wisdom" : ndx == 3 ? "Dexterity" : ndx == 4 ? "Constitution" : "Charisma");
+	}
+
 	flags.botl = 1;
 	if (msgflg <= 1 && moves > 1 && (ndx == A_STR || ndx == A_CON))
 		(void)encumber_msg();
@@ -968,6 +973,10 @@ boolean	inc_or_dec;
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
 		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) && (flags.hybridization < rnd(20)) ) : -rn2(2);
+
+		if (Extra_wpn_practice) 
+			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) && (flags.hybridization < rnd(20)) ) : 0;
+
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
 			(i == A_STR) ? "Str" : (i == A_WIS) ? "Wis" :
@@ -1046,13 +1055,13 @@ exerper()
 		if (HRegeneration)			exercise(A_STR, TRUE);
 
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
-		if(Confusion || Hallucination || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
+		if( (Confusion && !Conf_resist) || Hallucination || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
 		if((Wounded_legs 
 #ifdef STEED
 		    && !u.usteed
 #endif
-			    ) || Fumbling || HStun)	exercise(A_DEX, FALSE);
+			    ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
 	}
 }
 

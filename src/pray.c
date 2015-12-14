@@ -163,6 +163,9 @@ in_trouble()
 	if(near_capacity() >= HVY_ENCUMBER && have_loadboulder() )
 		return(TROUBLE_LOADSTONE);
 
+	if(near_capacity() >= HVY_ENCUMBER && have_starlightstone() )
+		return(TROUBLE_LOADSTONE);
+
 	if(near_capacity() >= EXT_ENCUMBER && AMAX(A_STR)-ABASE(A_STR) > 3)
 		return(TROUBLE_COLLAPSING);
 
@@ -239,6 +242,7 @@ worst_cursed_item()
     if (near_capacity() >= HVY_ENCUMBER) {
 	for (otmp = invent; otmp; otmp = otmp->nobj)
 	    if (Cursed_obj(otmp, LOADBOULDER)) return otmp;
+	    if (Cursed_obj(otmp, STARLIGHTSTONE)) return otmp;
 	    if (Cursed_obj(otmp, LOADSTONE)) return otmp;
     }
     /* weapon takes precedence if it is interfering
@@ -282,7 +286,7 @@ worst_cursed_item()
     } else {
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
 	    if (!otmp->cursed) continue;
-	    if (otmp->otyp == LOADSTONE || otmp->otyp == LOADBOULDER || otmp->otyp==HEALTHSTONE ||
+	    if (otmp->otyp == LOADSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp==HEALTHSTONE ||
 		    confers_luck(otmp))
 		break;
 	}
@@ -1988,7 +1992,7 @@ boolean praying;	/* false means no messages should be given */
 {
     int alignment;
 
-    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
+    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(Conf_resist ? 1000 : 100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
 
     if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC) && !Race_if(PM_MAZKE) && !Race_if(PM_BORG) && !Race_if(PM_AUREAL) ) {
@@ -2228,7 +2232,7 @@ turn_undead()
 		   (is_demon(mtmp->data) && (u.ulevel > (MAXULEV/2))))) {
 
 		    mtmp->msleeping = 0;
-		    if (Confusion) {
+		    if (Confusion && !Conf_resist) {
 			if (!once++)
 			    pline("Unfortunately, your voice falters.");
 			mtmp->mflee = 0;

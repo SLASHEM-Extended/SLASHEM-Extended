@@ -1189,7 +1189,7 @@ boolean telekinesis;
 			body_part(HAND), xname(obj));
 	return -1;
     }
-    if (obj->otyp == LOADSTONE || obj->otyp == LOADBOULDER ||
+    if (obj->otyp == LOADSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE ||
 	    (obj->otyp == BOULDER && throws_rocks(youmonst.data)))
 	return 1;		/* lift regardless of current situation */
 
@@ -1303,6 +1303,8 @@ boolean telekinesis;	/* not picking it up directly by hand */
 
 	if (obj == uchain) {    /* do not pick up attached chain */
 	    return 0;
+	} else if ( (obj == uball) && obj->otyp == GOLD_PIECE) {
+	    return 0;
 	} else if (obj->oartifact && !touch_artifact(obj,&youmonst)) {
 	    return 0;
 #ifndef GOLDOBJ
@@ -1405,7 +1407,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
 	    obj = splitobj(obj, count);
 
 	obj = pick_obj(obj);
@@ -1977,7 +1979,7 @@ boolean invobj;
 		Norep("You cannot %s %s you are wearing.",
 			Icebox ? "refrigerate" : "stash", something);
 		return 0;
-	} else if ((obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) {
+	} else if ((obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) {
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
@@ -2216,7 +2218,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */

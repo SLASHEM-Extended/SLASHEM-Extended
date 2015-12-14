@@ -1337,7 +1337,7 @@ ask_about_trap(int x, int y)
 {
 
 	struct trap *traphere = t_at(x, y);
-	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !Confusion && !Stunned && !Hallucination)  {
+	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
 		/*if (traphere->ttyp == MAGIC_PORTAL) {
@@ -1394,10 +1394,10 @@ ask_about_water(int x, int y)
 {
 	if (is_pool(u.ux, u.uy)) return FALSE;
 
-	if (is_pool(x, y) && !Levitation && !Flying && !Confusion && !Stunned && levl[x][y].seenv) return TRUE; 
+	if (is_pool(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
 
-	if (is_pool(x, y) && !Confusion && !Stunned && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
-	if (is_pool(x, y) && !Confusion && !Stunned && levl[x][y].seenv && Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) return TRUE; 
+	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
+	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv && Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) return TRUE; 
 
 	return FALSE;
 }
@@ -1407,7 +1407,7 @@ ask_about_lava(int x, int y)
 {
 	if (is_lava(u.ux, u.uy)) return FALSE;
 
-	if (is_lava(x, y) && !Levitation && !Flying && !Confusion && !Stunned && levl[x][y].seenv) return TRUE; 
+	if (is_lava(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1500,7 +1500,8 @@ domove()
 		    return;
 		}
 #endif
-		if( (Stunned && !rn2(2)) || (Confusion && !rn2(8)) /* toned down so it's less crippling --Amy */
+		if( (Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))
+			/* toned down so it's less crippling --Amy */
 #ifdef STEED
 			|| (u.usteed && u.usteed->mconf)
 #endif	
@@ -2972,7 +2973,7 @@ dopickup()
 			|| (Flying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data)) {
+	    } else if (!likes_lava(youmonst.data) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }

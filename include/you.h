@@ -450,12 +450,20 @@ struct you {
 
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
 	int unobtainable2;	
+	int unobtainable3;	/* amount of such items must be lower than the amount of candles in existence */
+	int unobtainable4;	
 	int unobtainablegeno;	/* for item genocide */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
+	int veryobtainable2;	
+	int veryobtainableboost2;	
+	int veryobtainable3;	
+	int veryobtainableboost3;	
 
 	int alwayscurseditem;		/* evil patch idea - item type that is always generated cursed */
 	int alwayscurseditem2;
+	int alwayscurseditem3;
+	int alwayscurseditem4;
 
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
@@ -546,6 +554,8 @@ struct you {
 
 	int bankcashamount; /* for bank trap */
 	int bankcashlimit;
+
+	boolean totter;	/* scroll of symmetry toggles this */
 
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */

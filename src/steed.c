@@ -147,7 +147,7 @@ use_saddle(otmp)
 
 	}
 
-	if (Confusion || Fumbling || IsGlib)
+	if ( (Confusion && !Conf_resist) || Fumbling || IsGlib)
 	    chance -= 20;
 	/*else */if (uarmg &&
 		(s = OBJ_DESCR(objects[uarmg->otyp])) != (char *)0 &&
@@ -345,7 +345,7 @@ mount_steed(mtmp, force)
 			mon_nam(mtmp));
 	    return (FALSE);
 	}
-	if (!force && (Confusion || Fumbling || IsGlib || Wounded_legs ||
+	if (!force && ((Confusion && !Conf_resist) || Fumbling || IsGlib || Wounded_legs ||
 		otmp->cursed || (u.ulevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
 	    if (Levitation) {
 		pline("%s slips away from you.", Monnam(mtmp));

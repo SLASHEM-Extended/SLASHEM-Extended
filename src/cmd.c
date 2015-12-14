@@ -1550,6 +1550,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
 	if ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) ) {
 		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		enl_msg("This item ", "is ", "was ", buf );
@@ -1561,12 +1571,32 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
@@ -1720,6 +1750,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
             you_are("punished");
         }
 #endif /* CONVICT */
+
+        if (u.totter) {
+            you_have("inverted directional keys");
+        }
 
         if (sengr_at("Elbereth", u.ux, u.uy) ) {
             you_are("standing on an active Elbereth engraving");
@@ -2325,6 +2359,28 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_VERSUS_CURSES].intrinsic);
 		you_are(buf);
 	}
+
+	if (NoStun_resist) {
+		Sprintf(buf, "prevented from having stun resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUN_RES].intrinsic);
+		you_are(buf);
+	}
+	if (NoConf_resist) {
+		Sprintf(buf, "prevented from having confusion resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONF_RES].intrinsic);
+		you_are(buf);
+	}
+	if (NoDouble_attack) {
+		Sprintf(buf, "prevented from having double attacks");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DOUBLE_ATTACK].intrinsic);
+		you_are(buf);
+	}
+	if (NoQuad_attack) {
+		Sprintf(buf, "prevented from having quad attacks");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_QUAD_ATTACK].intrinsic);
+		you_are(buf);
+	}
+
 	if (NoFree_action) {
 		Sprintf(buf, "prevented from having free action");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREE_ACTION].intrinsic);
@@ -2414,6 +2470,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case ORCISH_SHIELD:
+		case ORCISH_GUARD_SHIELD:
 			shieldblockrate = 28;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
@@ -2423,15 +2480,19 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
+		case SHIELD:
 			shieldblockrate = 35;
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case CRYSTAL_SHIELD:
+		case RAPIRAPI:
 			shieldblockrate = 45;
 			break;
 		case SHIELD_OF_REFLECTION:
+		case SILVER_SHIELD:
+		case MIRROR_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case FLAME_SHIELD:
@@ -2467,6 +2528,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
+		case RAINBOW_DRAGON_SCALE_SHIELD:
+		case BLOOD_DRAGON_SCALE_SHIELD:
+		case PLAIN_DRAGON_SCALE_SHIELD:
+		case SKY_DRAGON_SCALE_SHIELD:
+		case WATER_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
 			shieldblockrate = 33;
@@ -2694,6 +2760,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Your memory ", "is", "was", " keen");
 	if (Sight_bonus) enl_msg("Your sight ", "is", "was", " improved");
 	if (Versus_curses) you_have("curse resistance");
+
+	if (Stun_resist) you_have("stun resistance");
+	if (Conf_resist) you_have("confusion resistance");
+	if (Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
+	if (Death_resistance) you_have("resistance to death rays");
+	if (Double_attack) you_have("double attacks");
+	if (Quad_attack) you_have("quad attacks");
+
 	if (Half_physical_damage) you_have("physical resistance");
 	if (Half_spell_damage) you_have("spell resistance");
 	if (Regeneration) enl_msg("You regenerate", "", "d", "");
@@ -4326,6 +4400,14 @@ char sym;
 	u.dx = xdir[dp-sdp];
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
+
+	if (u.totter) {
+
+		u.dx = -u.dx;
+		u.dy = -u.dy;
+
+	}
+
 	if (u.dx && u.dy && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd) ) ) {
 		u.dx = u.dy = 0;
 		return 0;
@@ -4403,7 +4485,7 @@ const char *s;
 		}
 		return 0;
 	}
-	if(!u.dz && ((Stunned && !rn2(2)) || (Confusion && !rn2(8)))) confdir();
+	if(!u.dz && ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8)))) confdir();
 	return 1;
 }
 

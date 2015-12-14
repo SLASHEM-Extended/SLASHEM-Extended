@@ -7,7 +7,7 @@
 
 #define is_bigfoot(x)	((x) == &mons[PM_SASQUATCH])
 #define martial()	(martial_bonus() || is_bigfoot(youmonst.data) || \
-		(uarmf && uarmf->otyp == KICKING_BOOTS))
+		(uarmf && uarmf->otyp == KICKING_BOOTS) || (uarmf && uarmf->otyp == STOMPING_BOOTS) )
 
 static NEARDATA struct rm *maploc;
 static NEARDATA const char *gate_str;
@@ -38,6 +38,8 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
+	if (uarmf && uarmf->otyp == STOMPING_BOOTS)
+	    dmg += 7;
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
@@ -45,6 +47,11 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 3;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 7;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 12;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 20;
 
 	}
 
@@ -859,7 +866,7 @@ dokick()
 	}
 
 	/* KMH -- Kicking boots always succeed */
-	if (uarmf && uarmf->otyp == KICKING_BOOTS)
+	if (uarmf && ((uarmf->otyp == KICKING_BOOTS) || (uarmf->otyp == STOMPING_BOOTS)) )
 	    avrg_attrib = 99;
 	else
 	    avrg_attrib = (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3;

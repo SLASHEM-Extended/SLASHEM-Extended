@@ -2474,6 +2474,7 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_DWARF, HELMET,			DWARVISH_IRON_HELM    },
  { PM_DWARF, SMALL_SHIELD,		DWARVISH_ROUNDSHIELD  },
  { PM_DWARF, PICK_AXE,		DWARVISH_MATTOCK      },
+ { PM_DWARF, BATTLE_AXE,		DWARVISH_BATTLE_AXE      },
     { PM_GNOME, BOW,			CROSSBOW	      },
     { PM_GNOME, ARROW,			CROSSBOW_BOLT	      },
     { PM_HUMAN_WEREWOLF,FOOD_RATION,		TRIPE_RATION	      },
@@ -5155,6 +5156,8 @@ u_init()
 	u.bankcashamount = 0;
 	u.bankcashlimit = 0;
 
+	u.totter = 0;
+
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
 	u.ungenocidable = rnd(S_WORM_TAIL);
@@ -5436,18 +5439,44 @@ u_init()
 	u.unobtainable2 = -1;
 	while ( (u.unobtainable2 == -1) || (u.unobtainable2 == GOLD_PIECE) || (u.unobtainable2 == STRANGE_OBJECT) || (u.unobtainable2 == AMULET_OF_YENDOR) || (u.unobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable2 == BELL_OF_OPENING) || (u.unobtainable2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable2].oc_prob < 1) ) u.unobtainable2 = rn2(NUM_OBJECTS);
 
+	u.unobtainable3 = -1;
+	while ( (u.unobtainable3 == -1) || (u.unobtainable3 == GOLD_PIECE) || (u.unobtainable3 == STRANGE_OBJECT) || (u.unobtainable3 == AMULET_OF_YENDOR) || (u.unobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable3 == BELL_OF_OPENING) || (u.unobtainable3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable3].oc_prob < 1) ) u.unobtainable3 = rn2(NUM_OBJECTS);
+
+	u.unobtainable4 = -1;
+	while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
+
 	u.alwayscurseditem = -1;
-	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem2 = -1;
-	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
+
+	u.alwayscurseditem3 = -1;
+	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
+
+	u.alwayscurseditem4 = -1;
+	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
 
 	u.veryobtainable = -1;
-	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (u.veryobtainable == u.unobtainable3) || (u.veryobtainable == u.unobtainable4) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
 	u.veryobtainableboost = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);
 	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
+
+	u.veryobtainable2 = -1;
+	while ( (u.veryobtainable2 == -1) || (u.veryobtainable2 == GOLD_PIECE) || (u.veryobtainable2 == STRANGE_OBJECT) || (u.veryobtainable2 == AMULET_OF_YENDOR) || (u.veryobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable2 == BELL_OF_OPENING) || (u.veryobtainable2 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable2 == u.unobtainable) || (u.veryobtainable2 == u.unobtainable2) || (u.veryobtainable2 == u.unobtainable3) || (u.veryobtainable2 == u.unobtainable4) || (objects[u.veryobtainable2].oc_prob < 1) ) u.veryobtainable2 = rn2(NUM_OBJECTS);
+	u.veryobtainableboost2 = (1 + rnz(10));
+	if (!rn2(5)) u.veryobtainableboost2 += rnz(10);
+	if (!rn2(25)) u.veryobtainableboost2 += rnz(100);
+	if (u.veryobtainableboost2 > 1000) u.veryobtainableboost2 = 1000; /* sanity check */
+
+	u.veryobtainable3 = -1;
+	while ( (u.veryobtainable3 == -1) || (u.veryobtainable3 == GOLD_PIECE) || (u.veryobtainable3 == STRANGE_OBJECT) || (u.veryobtainable3 == AMULET_OF_YENDOR) || (u.veryobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable3 == BELL_OF_OPENING) || (u.veryobtainable3 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable3 == u.unobtainable) || (u.veryobtainable3 == u.unobtainable2) || (u.veryobtainable3 == u.unobtainable3) || (u.veryobtainable3 == u.unobtainable4) || (objects[u.veryobtainable3].oc_prob < 1) ) u.veryobtainable3 = rn2(NUM_OBJECTS);
+	u.veryobtainableboost3 = (1 + rnz(10));
+	if (!rn2(5)) u.veryobtainableboost3 += rnz(10);
+	if (!rn2(25)) u.veryobtainableboost3 += rnz(100);
+	if (u.veryobtainableboost3 > 1000) u.veryobtainableboost3 = 1000; /* sanity check */
 
 	u.invisotrap = rnd(TRAPNUM-1);
 
@@ -18085,6 +18114,18 @@ register struct trobj *trop;
             if (objX->otyp == BODYGLOVE && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == PRINTED_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == BATH_TOWEL && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == PLUGSUIT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == MEN_S_UNDERWEAR && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == RUFFLED_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -18092,6 +18133,9 @@ register struct trobj *trop;
                 objX->cursed = TRUE;
             }
             if (objX->otyp == LOADBOULDER ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == STARLIGHTSTONE ) {
                 objX->cursed = TRUE;
             }
             if (objX->otyp == SLEEPSTONE ) {
@@ -18166,6 +18210,18 @@ register struct trobj *trop;
             if (obj->otyp == BODYGLOVE && !issoviet ) {
                 obj->cursed = TRUE;
             }
+            if (obj->otyp == PRINTED_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == BATH_TOWEL && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == PLUGSUIT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == MEN_S_UNDERWEAR && !issoviet ) {
+                obj->cursed = TRUE;
+            }
             if (obj->otyp == RUFFLED_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
@@ -18173,6 +18229,9 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LOADBOULDER ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == STARLIGHTSTONE ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == SLEEPSTONE ) {

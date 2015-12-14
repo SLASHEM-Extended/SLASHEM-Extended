@@ -371,7 +371,7 @@ learn()
 	/* JDS: lenses give 50% faster reading; 33% smaller read time */
 	if (delay < end_delay && ublindf && ublindf->otyp == LENSES && rn2(2))
 	    delay++;
-	if (Confusion && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {		/* became confused while learning */
+	if (Confusion && !Conf_resist && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {		/* became confused while learning */
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
 	    nomul((delay - end_delay), "reading a confusing book");	/* remaining delay is uninterrupted */
@@ -459,7 +459,7 @@ study_book(spellbook)
 register struct obj *spellbook;
 {
 	register int	 booktype = spellbook->otyp;
-	register boolean confused = (Confusion != 0);
+	register boolean confused = ((Confusion != 0) && !Conf_resist);
 	boolean too_hard = FALSE;
 
 	if (delay && !confused && spellbook == book &&
@@ -872,7 +872,7 @@ boolean atme;
 	int energy, damage, chance, n, intell;
 	int hungr;
 	int skill, role_skill;
-	boolean confused = (Confusion != 0);
+	boolean confused = ((Confusion != 0) && !Conf_resist);
 	struct obj *pseudo;
 	struct obj *otmp;
 
@@ -1248,6 +1248,23 @@ boolean atme;
 		}
 
 		break;
+
+	case SPE_KNOW_ENCHANTMENT:
+		{
+
+		    pline("You detect the enchantment status of your inventory!");
+
+		    register struct obj *obj, *obj2;
+		    for (obj = invent; obj; obj = obj2) {
+		      obj2 = obj->nobj;
+
+			obj->known = TRUE;
+
+		    }
+		}
+
+		break;
+
 	case SPE_DISSOLVE_FOOD:
 		{
 
@@ -1263,6 +1280,39 @@ boolean atme;
 		}
 
 		break;
+
+	case SPE_MASS_HEALING:
+		{
+		    register struct monst *mtmp, *mtmp2;
+
+		    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+			mtmp2 = mtmp->nmon;
+			if (mtmp == &youmonst) continue;
+			if (DEADMONSTER(mtmp)) continue;
+			if (!mtmp->mtame) {
+			    if (!Hallucination && (!mtmp->mpeaceful || !rn2(2)))
+				continue;
+			}
+			if (!canspotmon(mtmp)) continue;	/*you can't see it and can't sense it*/
+
+			mtmp->mhp += rnd(200);
+			if (mtmp->mhp > mtmp->mhpmax) {
+			    mtmp->mhp = mtmp->mhpmax;
+			}
+
+		    }
+
+		    healup(d(6,8) + rnz(u.ulevel),0,0,0);
+		}
+		break;
+
+	case SPE_TIME_SHIFT:
+		pline("Time goes forward...");
+		monstermoves += 5;
+		moves += 5;
+
+		break;
+
 	case SPE_CHEMISTRY:
 		You("call upon your chemical knowledge. Nothing happens.");
 		break;
@@ -1367,6 +1417,20 @@ boolean atme;
 			You("feel quite firm for a while.");
 			incr_itimeout(&HDisint_resistance, rn1(1000, 500) +
 				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_MAGICTORCH:
+		if(!(HSight_bonus & INTRINSIC)) {
+			You("can see in the dark!");
+			incr_itimeout(&HSight_bonus, rn1(200, 100) +
+				spell_damage_bonus(spellid(spell))*20);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_DISPLACEMENT:
+		if(!(HDisplaced & INTRINSIC)) {
+			pline("Your image is displaced!");
+			incr_itimeout(&HDisplaced, rn1(200, 100) +
+				spell_damage_bonus(spellid(spell))*20);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_BOTOX_RESIST:

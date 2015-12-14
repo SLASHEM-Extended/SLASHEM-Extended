@@ -4921,7 +4921,7 @@ newboss:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(113)) {
+				 switch (rnd(117)) {
 
 					case 1:
 					case 2:
@@ -5186,6 +5186,22 @@ newboss:
 						u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having curse resistance!");
 						break;
+					case 114:
+						u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having stun resistance!");
+						break;
+					case 115:
+						u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having confusion resistance!");
+						break;
+					case 116:
+						u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having double attacks!");
+						break;
+					case 117:
+						u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having quad attacks!");
+						break;
 				}
 
 			}
@@ -5348,7 +5364,7 @@ newboss:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(113)) {
+		 switch (rnd(117)) {
 
 			case 1:
 			case 2:
@@ -5612,6 +5628,22 @@ newboss:
 			case 113:
 				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having quad attacks!");
 				break;
 			}
 
@@ -9172,6 +9204,7 @@ register boolean force, here;
 					|| obj->otyp == MANASTONE
 					|| obj->otyp == SLEEPSTONE
 					|| obj->otyp == LOADBOULDER
+					|| obj->otyp == STARLIGHTSTONE
 					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
 					|| obj->otyp == TOUCHSTONE))
 			    obj->otyp = FLINT;
@@ -9198,6 +9231,7 @@ register boolean force, here;
 				break;
 			    case FIRE_HORN:
 			    case FROST_HORN:
+			    case TEMPEST_HORN:
 			    case HORN_OF_PLENTY:
 				obj->otyp = TOOLED_HORN;
 				obj->spe  = 0;
@@ -9322,7 +9356,7 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) ||
 			  obj == uamul || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||
@@ -10869,8 +10903,6 @@ lava_effects()
     boolean usurvive;
 
     burn_away_slime();
-    if (likes_lava(youmonst.data)) return FALSE;
-
 
     if (Slimed) {
 	pline("The slime boils away!");
@@ -10881,6 +10913,9 @@ lava_effects()
 	pline("The ice thaws!");
 	make_frozen(0L, FALSE);
     }
+
+    if (likes_lava(youmonst.data)) return FALSE;
+    if (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) return FALSE;
 
     if (!Fire_resistance) {
 

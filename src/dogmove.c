@@ -366,6 +366,7 @@ int udist;
 
 		/* [Tom] demonic & undead pets don't mind cursed items */                
 		if(can_carry(mtmp, obj) && !Has_contents(obj) &&
+		  !(obj == uchain) && !(obj == uball) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
 		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
 		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
@@ -387,6 +388,7 @@ int udist;
 			    if (dogquan > 0) {
 				if (obj->oclass == COIN_CLASS) {
 				    /* KMH, balance patch -- 10*level */
+
 #ifndef GOLDOBJ
 				    obj->quan -= dogquan;
 				    if (cansee(omx, omy) && flags.verbose)

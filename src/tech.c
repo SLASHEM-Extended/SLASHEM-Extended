@@ -1365,7 +1365,7 @@ int tech_no;
             case T_RESEARCH:
 		/* WAC stolen from the spellcasters...'A' can identify from
         	   historical research*/
-		if(Hallucination || Stunned || Confusion) {
+		if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
 		    You("can't concentrate right now!");
 		    return(0);
 		} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
@@ -1403,7 +1403,7 @@ int tech_no;
 		break;
             case T_REINFORCE:
 		/* WAC spell-users can study their known spells*/
-		if(Hallucination || Stunned || Confusion) {
+		if(Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
 		    You("can't concentrate right now!");
 		    break;
                	} else {
@@ -1507,7 +1507,7 @@ int tech_no;
                 t_timeout = rnz(1000);
 		break;
             case T_SURGERY:
-		if (Hallucination || Stunned || Confusion) {
+		if (Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {
 		    You("are in no condition to perform surgery!");
 		    break;
 		}

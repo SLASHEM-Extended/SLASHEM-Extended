@@ -73,6 +73,7 @@ const char *name;	/* if null, then format `obj' */
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case ORCISH_SHIELD:
+		case ORCISH_GUARD_SHIELD:
 			shieldblockrate = 28;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
@@ -81,15 +82,19 @@ const char *name;	/* if null, then format `obj' */
 			if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) ) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
+		case SHIELD:
 			shieldblockrate = 35;
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case CRYSTAL_SHIELD:
+		case RAPIRAPI:
 			shieldblockrate = 45;
 			break;
 		case SHIELD_OF_REFLECTION:
+		case SILVER_SHIELD:
+		case MIRROR_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case FLAME_SHIELD:
@@ -124,6 +129,11 @@ const char *name;	/* if null, then format `obj' */
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
+		case RAINBOW_DRAGON_SCALE_SHIELD:
+		case BLOOD_DRAGON_SCALE_SHIELD:
+		case PLAIN_DRAGON_SCALE_SHIELD:
+		case SKY_DRAGON_SCALE_SHIELD:
+		case WATER_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
 			shieldblockrate = 33;
@@ -1225,6 +1235,8 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 #endif
 			obj_type != TALLOW_CANDLE &&
 			obj_type != WAX_CANDLE &&
+			obj_type != JAPAN_WAX_CANDLE &&
+			obj_type != OIL_CANDLE &&
 			obj_type != LENSES &&
 			obj_type != TIN_WHISTLE &&
 			obj_type != MAGIC_WHISTLE);

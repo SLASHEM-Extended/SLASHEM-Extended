@@ -125,6 +125,13 @@ Boots_on()
 	case KICKING_BOOTS:
 	case FIRE_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
+	case RUBBER_BOOTS:
+	case LEATHER_SHOES:
+	case SNEAKERS:
+	case BOOTS_OF_PLUGSUIT:
+	case FIELD_BOOTS:
+	case BOOTS_OF_SAFEGUARD:
+	case FREEZING_BOOTS:
 		break;
 	case BOOTS_OF_MOLASSES:
 		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
@@ -170,8 +177,24 @@ Boots_on()
 		}
 		break;
 	case FUMBLE_BOOTS:
+	case ATSUZOKO_BOOTS:
+	case ROLLER_BLADE:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
 			incr_itimeout(&HFumbling, rnd(20));
+		break;
+	case MULTI_SHOES:
+		if (!oldprop && !(HFumbling & ~TIMEOUT))
+			incr_itimeout(&HFumbling, rnd(20));
+	      if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("You get the feeling that these shoes don't want to be taken off...");
+		}
+		break;
+	case CARRYING_BOOTS:
+		vision_full_recalc = 1;
+		break;
+	case STOMPING_BOOTS:
+		EAggravate_monster |= WORN_BOOTS;
 		break;
 	case LEVITATION_BOOTS:
 		if (!oldprop && !HLevitation) {
@@ -220,8 +243,17 @@ Boots_off()
 		}
 		break;
 	case FUMBLE_BOOTS:
+	case ATSUZOKO_BOOTS:
+	case MULTI_SHOES:
+	case ROLLER_BLADE:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
 			HFumbling = EFumbling = 0;
+		break;
+	case STOMPING_BOOTS:
+		EAggravate_monster &= ~WORN_BOOTS;
+		break;
+	case CARRYING_BOOTS:
+		vision_full_recalc = 1;
 		break;
 	case FLYING_BOOTS:
 		(void) float_down(0L, 0L);
@@ -265,6 +297,13 @@ Boots_off()
 	case DISENCHANTING_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
+	case RUBBER_BOOTS:
+	case LEATHER_SHOES:
+	case SNEAKERS:
+	case BOOTS_OF_PLUGSUIT:
+	case FIELD_BOOTS:
+	case BOOTS_OF_SAFEGUARD:
+	case FREEZING_BOOTS:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
 #endif
@@ -311,6 +350,21 @@ Cloak_on()
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:              
+	case AYANAMI_WRAPPING:
+	case RUBBER_APRON:
+	case KITCHEN_APRON:
+	case FRILLED_APRON:
+	case SUPER_MANTLE:
+	case WINGS_OF_ANGEL:
+	case DUMMY_WINGS:
+	case FUR:
+	case HIDE:
+	case DISPLACER_BEAST_HIDE:
+	case THE_NEMEAN_LION_HIDE:
+	case CLOAK_OF_SPRAY:
+	case CLOAK_OF_FLAME:
+	case CLOAK_OF_INSULATION:
+	case CLOAK_OF_MATADOR:
 		break;
 	case CLOAK_OF_FUMBLING:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
@@ -352,7 +406,7 @@ Cloak_on()
 
 		pline("Oh no, this is a cloak of death!");
 		    makeknown(uarmc->otyp);
-		if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
+		if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		    You("seem no deader than before.");
 		} else if (!Antimagic && rn2(50) > 12) {
 		    if (Hallucination) {
@@ -449,6 +503,21 @@ Cloak_off()
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:
+	case AYANAMI_WRAPPING:
+	case RUBBER_APRON:
+	case KITCHEN_APRON:
+	case FRILLED_APRON:
+	case SUPER_MANTLE:
+	case WINGS_OF_ANGEL:
+	case DUMMY_WINGS:
+	case FUR:
+	case HIDE:
+	case DISPLACER_BEAST_HIDE:
+	case THE_NEMEAN_LION_HIDE:
+	case CLOAK_OF_SPRAY:
+	case CLOAK_OF_FLAME:
+	case CLOAK_OF_INSULATION:
+	case CLOAK_OF_MATADOR:
 		break;
 	case CLOAK_OF_FUMBLING:
 	    if (!oldprop && !(HFumbling & ~TIMEOUT))
@@ -499,6 +568,24 @@ Helmet_on()
 	case PLASTEEL_HELM:
 #endif
 	case HELMET:
+
+	case NURSE_CAP:
+	case KATYUSHA:
+	case BUNNY_EAR:
+	case DRAGON_HORNED_HEADPIECE:
+	case STRAW_HAT:
+	case SPEEDWAGON_S_HAT:
+	case MECHA_IRAZU:
+	case SCHOOL_CAP:
+	case CROWN:
+	case ANTENNA:
+	case CHAIN_COIF:
+	case COLOR_CONE:
+	case FIELD_HELM:
+	case HELM_OF_SAFEGUARD:
+	case HELM_OF_UNDERWATER_ACTION:
+	case HELM_OF_JAMMING:
+
 	case HELM_OF_STEEL:
 	case SEDGE_HAT:
 	case SKULLCAP:
@@ -518,6 +605,7 @@ Helmet_on()
 	case HELM_OF_HUNGER:
 		break;
 	case FLACK_HELMET:
+	case MINING_HELM:
 		vision_full_recalc = 1;
 		break;
 	case HELM_OF_SENSORY_DEPRIVATION:
@@ -543,10 +631,30 @@ Helmet_on()
 		makeknown(uarmh->otyp);
 		break;
 	case HELM_OF_OPPOSITE_ALIGNMENT:
-		if (u.ualign.type == A_NEUTRAL)
-		    u.ualign.type = rn2(2) ? A_CHAOTIC : A_LAWFUL;
-		else u.ualign.type = -(u.ualign.type);
-		u.ublessed = 0; /* lose your god's protection */
+	case HELM_OF_LAWFUL:
+	case HELM_OF_NEUTRAL:
+	case HELM_OF_CHAOTIC:
+		if (uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT) {
+			if (u.ualign.type == A_NEUTRAL)
+			    u.ualign.type = rn2(2) ? A_CHAOTIC : A_LAWFUL;
+			else u.ualign.type = -(u.ualign.type);
+			u.ublessed = 0; /* lose your god's protection */
+		} else if (uarmh->otyp == HELM_OF_LAWFUL) {
+			if (u.ualign.type != A_LAWFUL) {
+				u.ualign.type = A_LAWFUL;
+				u.ublessed = 0;
+			}
+		} else if (uarmh->otyp == HELM_OF_NEUTRAL) {
+			if (u.ualign.type != A_NEUTRAL) {
+				u.ualign.type = A_NEUTRAL;
+				u.ublessed = 0;
+			}
+		} else if (uarmh->otyp == HELM_OF_CHAOTIC) {
+			if (u.ualign.type != A_CHAOTIC) {
+				u.ualign.type = A_CHAOTIC;
+				u.ublessed = 0;
+			}
+		}
 	     /* makeknown(uarmh->otyp);   -- moved below, after xname() */
 		/*FALLTHRU*/
 	case DUNCE_CAP:
@@ -567,7 +675,7 @@ Helmet_on()
 			     "like sitting in a corner" : "giddy");
 		} else {
 		    Your("mind oscillates briefly.");
-		    makeknown(HELM_OF_OPPOSITE_ALIGNMENT);
+		    /*makeknown(HELM_OF_OPPOSITE_ALIGNMENT);*/ /* taken out since there's several of them now --Amy */
 		}
 		break;
 	case HELM_OF_STORMS:
@@ -622,6 +730,24 @@ Helmet_off()
 	case PLASTEEL_HELM:
 #endif
 	case HELMET:
+
+	case NURSE_CAP:
+	case KATYUSHA:
+	case BUNNY_EAR:
+	case DRAGON_HORNED_HEADPIECE:
+	case STRAW_HAT:
+	case SPEEDWAGON_S_HAT:
+	case MECHA_IRAZU:
+	case SCHOOL_CAP:
+	case CROWN:
+	case ANTENNA:
+	case CHAIN_COIF:
+	case COLOR_CONE:
+	case FIELD_HELM:
+	case HELM_OF_SAFEGUARD:
+	case HELM_OF_UNDERWATER_ACTION:
+	case HELM_OF_JAMMING:
+
 	case SEDGE_HAT:
 	case SKULLCAP:
 	case CRYSTAL_HELM:
@@ -661,6 +787,7 @@ Helmet_off()
 	case HELM_OF_DISCOVERY:
 	    break;
 	case FLACK_HELMET:
+	case MINING_HELM:
 		vision_full_recalc = 1;
 		break;
 	case DUNCE_CAP:
@@ -685,6 +812,16 @@ Helmet_off()
 	    u.ublessed = 0; /* lose the other god's protection */
 	    flags.botl = 1;
 	    break;
+	case HELM_OF_LAWFUL:
+	case HELM_OF_NEUTRAL:
+	case HELM_OF_CHAOTIC:
+	    if (u.ualign.type != u.ualignbase[A_CURRENT]) {
+		    u.ublessed = 0;
+		    flags.botl = 1;
+	    }
+
+	    break;
+
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
     }
     setworn((struct obj *)0, W_ARMH);
@@ -711,6 +848,14 @@ Gloves_on()
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
+	case GLOVES_OF_SAFEGUARD:
+	case GLOVES_OF_PLUGSUIT:
+	case COMMANDER_GLOVES:
+	case FIELD_GLOVES:
+	case GAUNTLETS:
+	case SILVER_GAUNTLETS:
+	case GAUNTLETS_OF_FAST_CASTING:
+	case GAUNTLETS_OF_NO_FLICTION:
 		break;
 	case OILSKIN_GLOVES:
 		if (!uarmg->cursed) {
@@ -789,6 +934,14 @@ Gloves_off()
 	case CHAOS_GLOVES:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
+	case GLOVES_OF_SAFEGUARD:
+	case GLOVES_OF_PLUGSUIT:
+	case COMMANDER_GLOVES:
+	case FIELD_GLOVES:
+	case GAUNTLETS:
+	case SILVER_GAUNTLETS:
+	case GAUNTLETS_OF_FAST_CASTING:
+	case GAUNTLETS_OF_NO_FLICTION:
 	    break;
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
@@ -857,6 +1010,11 @@ Shield_on()
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
+	case ORCISH_GUARD_SHIELD:
+	case SHIELD:
+	case SILVER_SHIELD:
+	case MIRROR_SHIELD:
+	case RAPIRAPI:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
 	case VENOM_SHIELD:
@@ -876,6 +1034,11 @@ Shield_on()
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
+	case RAINBOW_DRAGON_SCALE_SHIELD:
+	case BLOOD_DRAGON_SCALE_SHIELD:
+	case PLAIN_DRAGON_SCALE_SHIELD:
+	case SKY_DRAGON_SCALE_SHIELD:
+	case WATER_DRAGON_SCALE_SHIELD:
 	case YELLOW_DRAGON_SCALE_SHIELD:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
@@ -900,6 +1063,11 @@ Shield_off()
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
+	case ORCISH_GUARD_SHIELD:
+	case SHIELD:
+	case SILVER_SHIELD:
+	case MIRROR_SHIELD:
+	case RAPIRAPI:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
 	case VENOM_SHIELD:
@@ -919,6 +1087,11 @@ Shield_off()
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
+	case RAINBOW_DRAGON_SCALE_SHIELD:
+	case BLOOD_DRAGON_SCALE_SHIELD:
+	case PLAIN_DRAGON_SCALE_SHIELD:
+	case SKY_DRAGON_SCALE_SHIELD:
+	case WATER_DRAGON_SCALE_SHIELD:
 	case YELLOW_DRAGON_SCALE_SHIELD:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
@@ -1396,6 +1569,10 @@ register struct obj *obj;
 	case RIN_INCREASE_DAMAGE:
 		u.udaminc += obj->spe;
 		break;
+	case RIN_HEAVY_ATTACK:
+		u.uhitinc += obj->spe;
+		u.udaminc += obj->spe;
+		break;
 	case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		rescham();
 		break;
@@ -1529,6 +1706,10 @@ boolean gone;
 		u.uhitinc -= obj->spe;
 		break;
 	case RIN_INCREASE_DAMAGE:
+		u.udaminc -= obj->spe;
+		break;
+	case RIN_HEAVY_ATTACK:
+		u.uhitinc -= obj->spe;
 		u.udaminc -= obj->spe;
 		break;
 	case RIN_PROTECTION:
@@ -2004,7 +2185,7 @@ boolean noisy;
 	    if (noisy) 
 		You("cannot wear a shield while wielding a two-handed %s.",
 		    is_sword(uwep) ? c_sword :
-		    (uwep->otyp == BATTLE_AXE) ? c_axe : c_weapon);
+		    (uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 	    err++;
 	} else if (u.twoweap) {
 	    if (noisy) {
@@ -2426,7 +2607,7 @@ find_ac()
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmh && uarmh->otyp == DWARVISH_IRON_HELM) uac -= 1;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarms && uarms->otyp == ELVEN_SHIELD) uac -= 1;
-	if (Race_if(PM_ORC) && uarms && (uarms->otyp == ORCISH_SHIELD || uarms->otyp == URUK_HAI_SHIELD) ) uac -= 1;
+	if (Race_if(PM_ORC) && uarms && (uarms->otyp == ORCISH_SHIELD || uarms->otyp == ORCISH_GUARD_SHIELD || uarms->otyp == URUK_HAI_SHIELD) ) uac -= 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarms && uarms->otyp == DWARVISH_ROUNDSHIELD) uac -= 1;
 
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
@@ -2488,7 +2669,7 @@ glibr()
 			makeplural(body_part(HAND)));
 		setuswapwep((struct obj *)0, FALSE);
 		xfl++;
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
 			dropx(otmp);
 	}
 	otmp = uwep;
@@ -2506,7 +2687,7 @@ glibr()
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0, FALSE);
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
 			dropx(otmp);
 	}
 }
@@ -2658,7 +2839,7 @@ register struct obj *otmp;
 	    } else if (welded(uwep) && bimanual(uwep)) {
 		Sprintf(buf, "release your %s",
 			is_sword(uwep) ? c_sword :
-			(uwep->otyp == BATTLE_AXE) ? c_axe : c_weapon);
+			(uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 		why = uwep;
 	    }
 	    if (why) {

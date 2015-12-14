@@ -77,6 +77,8 @@ int thrown;
 	struct obj *otmp;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	if (Double_attack) multishot *= 2;
+	if (Quad_attack) multishot *= 4;
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
 
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
@@ -171,7 +173,7 @@ int thrown;
 	skill = objects[obj->otyp].oc_skill;
 	if ((ammo_and_launcher(obj, uwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG ||
 			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
-		!(Confusion || Stunned)) {
+		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
 
 		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
@@ -1067,7 +1069,7 @@ int thrown;
 	register struct monst *mon;
 	register int range, urange;
 	struct obj *launcher = (struct obj*) 0;
-	boolean impaired = (Confusion || Stunned || Blind ||
+	boolean impaired = ( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) || Blind ||
 			   Hallucination || Fumbling || Frozen || Burned || Numbed || Feared);
 
 	if (thrown == 1) launcher = uwep;

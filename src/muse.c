@@ -952,6 +952,11 @@ struct obj *otmp;
 #define MUSE_BAG_OF_TRICKS 32
 #define MUSE_WAN_TELE_LEVEL 33
 #define MUSE_SCR_SUMMON_BOSS 34
+#define MUSE_POT_CURE_WOUNDS 35
+#define MUSE_POT_CURE_SERIOUS_WOUNDS 36
+#define MUSE_POT_CURE_CRITICAL_WOUNDS 37
+#define MUSE_SCR_POWER_HEALING 38
+#define MUSE_SCR_CREATE_VICTIM 39
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -1036,9 +1041,29 @@ struct monst *mtmp;
 		m.has_defense = MUSE_POT_HEALING;
 		return TRUE;
 	    }
+	    if ((obj = m_carrying(mtmp, POT_CURE_CRITICAL_WOUNDS)) != 0) {
+		m.defensive = obj;
+		m.has_defense = MUSE_POT_CURE_CRITICAL_WOUNDS;
+		return TRUE;
+	    }
+	    if ((obj = m_carrying(mtmp, POT_CURE_SERIOUS_WOUNDS)) != 0) {
+		m.defensive = obj;
+		m.has_defense = MUSE_POT_CURE_SERIOUS_WOUNDS;
+		return TRUE;
+	    }
+	    if ((obj = m_carrying(mtmp, POT_CURE_WOUNDS)) != 0) {
+		m.defensive = obj;
+		m.has_defense = MUSE_POT_CURE_WOUNDS;
+		return TRUE;
+	    }
 	    if ((obj = m_carrying(mtmp, SCR_HEALING)) != 0) {
 		m.defensive = obj;
 		m.has_defense = MUSE_SCR_HEALING;
+		return TRUE;
+	    }
+	    if ((obj = m_carrying(mtmp, SCR_POWER_HEALING)) != 0) {
+		m.defensive = obj;
+		m.has_defense = MUSE_SCR_POWER_HEALING;
 		return TRUE;
 	    }
 	    if ((obj = m_carrying(mtmp, POT_FULL_HEALING)) !=0) {
@@ -1071,9 +1096,29 @@ struct monst *mtmp;
 		    m.has_defense = MUSE_POT_HEALING;
 		    return TRUE;
 		}
+	      if ((obj = m_carrying(mtmp, POT_CURE_CRITICAL_WOUNDS)) != 0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_POT_CURE_CRITICAL_WOUNDS;
+		    return TRUE;
+	      }
+	      if ((obj = m_carrying(mtmp, POT_CURE_SERIOUS_WOUNDS)) != 0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_POT_CURE_SERIOUS_WOUNDS;
+		    return TRUE;
+	      }
+	      if ((obj = m_carrying(mtmp, POT_CURE_WOUNDS)) != 0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_POT_CURE_WOUNDS;
+		    return TRUE;
+	      }
 		if ((obj = m_carrying(mtmp, SCR_HEALING)) != 0) {
 		    m.defensive = obj;
 		    m.has_defense = MUSE_SCR_HEALING;
+		    return TRUE;
+		}
+		if ((obj = m_carrying(mtmp, SCR_POWER_HEALING)) != 0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_SCR_POWER_HEALING;
 		    return TRUE;
 		}
 		if (is_vampire(mtmp->data) &&
@@ -1263,10 +1308,20 @@ struct monst *mtmp;
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_FULL_HEALING;
 		}
+		nomore(MUSE_POT_CURE_CRITICAL_WOUNDS);
+		if(obj->otyp == POT_CURE_CRITICAL_WOUNDS) {
+			m.defensive = obj;
+			m.has_defense = MUSE_POT_CURE_CRITICAL_WOUNDS;
+		}
 		nomore(MUSE_POT_EXTRA_HEALING);
 		if(obj->otyp == POT_EXTRA_HEALING) {
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_EXTRA_HEALING;
+		}
+		nomore(MUSE_POT_CURE_SERIOUS_WOUNDS);
+		if(obj->otyp == POT_CURE_SERIOUS_WOUNDS) {
+			m.defensive = obj;
+			m.has_defense = MUSE_POT_CURE_SERIOUS_WOUNDS;
 		}
 		nomore(MUSE_WAN_CREATE_MONSTER);
 		if(obj->otyp == WAN_CREATE_MONSTER && obj->spe > 0) {
@@ -1287,6 +1342,16 @@ struct monst *mtmp;
 		if(obj->otyp == POT_HEALING) {
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_HEALING;
+		}
+		nomore(MUSE_POT_CURE_WOUNDS);
+		if(obj->otyp == POT_CURE_WOUNDS) {
+			m.defensive = obj;
+			m.has_defense = MUSE_POT_CURE_WOUNDS;
+		}
+		nomore(MUSE_SCR_POWER_HEALING);
+		if(obj->otyp == SCR_POWER_HEALING) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_POWER_HEALING;
 		}
 		nomore(MUSE_SCR_HEALING);
 		if(obj->otyp == SCR_HEALING) {
@@ -1339,6 +1404,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_CREATE_MONSTER) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_CREATE_MONSTER;
+		}
+		nomore(MUSE_SCR_CREATE_VICTIM);
+		if(obj->otyp == SCR_CREATE_VICTIM) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_CREATE_VICTIM;
 		}
 		nomore(MUSE_BAG_OF_TRICKS);
 		if(obj->otyp == BAG_OF_TRICKS  && obj->spe > 0) {
@@ -1692,6 +1762,34 @@ mon_tele:
 		return 2;
 	    }
 
+	case MUSE_SCR_CREATE_VICTIM:
+	    {	coord cc;
+		struct permonst *pm = 0, *fish = 0;
+		int cnt = 1;
+		struct monst *mon;
+		boolean known = FALSE;
+
+		if (!rn2(73)) cnt += rnd(4);
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+		    mon = makemon(pm, 0, 0, NO_MM_FLAGS);
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_CREATE_VICTIM);
+		else if (!objects[SCR_CREATE_VICTIM].oc_name_known
+			&& !objects[SCR_CREATE_VICTIM].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
 	case MUSE_BAG_OF_TRICKS:
 
 		/* jonadab wants monsters to not use up charges if they apply this thing, but that would be too evil. --Amy */
@@ -2002,7 +2100,6 @@ newboss:
 	case MUSE_SCR_HEALING:
 
 		mreadmsg(mtmp, otmp);
-		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		if (!rn2(20)) i = mtmp->mhpmax;
 		else if (!rn2(5)) i = d(8, 8);
@@ -2012,11 +2109,26 @@ newboss:
 
 		if (vismon) pline("%s looks better.", Monnam(mtmp));
 		if (oseen) makeknown(SCR_HEALING);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
 		/*m_useup(mtmp, otmp); */
 		/* the wrong dual use of m_useup caused the game to destabilize!!! --Amy
 		 * I'm sure nobody wants to know how much headache and nausea this bug has caused to me.
 		 * But I mean, why the motherfucking hell does the game just close, with no error message???
 		 * Actually there's the panic code for a reason! */
+		return 2;
+
+	case MUSE_SCR_POWER_HEALING:
+
+		mreadmsg(mtmp, otmp);
+
+		i = mtmp->mhpmax;
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+		if (vismon) pline("%s looks fully healed.", Monnam(mtmp));
+		if (oseen) makeknown(SCR_POWER_HEALING);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		return 2;
 
 	case MUSE_POT_HEALING:
@@ -2057,6 +2169,31 @@ newboss:
 			mtmp->mblinded = 0;
 			if (vismon) pline(mcsa, Monnam(mtmp));
 		}
+		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
+		if (oseen) makeknown(otmp->otyp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_CURE_WOUNDS:
+		mquaffmsg(mtmp, otmp);
+		i = d(6 + 2 * bcsign(otmp), 4);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vismon) pline("%s looks better.", Monnam(mtmp));
+		if (oseen) makeknown(POT_CURE_WOUNDS);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_CURE_SERIOUS_WOUNDS:
+		mquaffmsg(mtmp, otmp);
+		i = d(6 + 2 * bcsign(otmp), 8);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vismon) pline("%s looks much better.", Monnam(mtmp));
+		if (oseen) makeknown(POT_CURE_SERIOUS_WOUNDS);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_CURE_CRITICAL_WOUNDS:
+		mquaffmsg(mtmp, otmp);
+		mtmp->mhp = mtmp->mhpmax;
 		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
 		if (oseen) makeknown(otmp->otyp);
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
@@ -2161,7 +2298,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(25)) {
+	switch (rn2(30)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -2188,6 +2325,11 @@ struct monst *mtmp;
 		case 22: return BAG_OF_TRICKS;
 		case 23: return WAN_TELE_LEVEL;
 		case 24: return SCR_SUMMON_BOSS;
+		case 25: return POT_CURE_WOUNDS;
+		case 26: return POT_CURE_SERIOUS_WOUNDS;
+		case 27: return POT_CURE_CRITICAL_WOUNDS;
+		case 28: return SCR_POWER_HEALING;
+		case 29: return SCR_CREATE_VICTIM;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -2270,6 +2412,10 @@ struct monst *mtmp;
 #define MUSE_SCR_ELEMENTALISM 74
 #define MUSE_SCR_NASTINESS 75
 #define MUSE_SCR_GIRLINESS 76
+#define MUSE_TEMPEST_HORN 77
+#define MUSE_WAN_POISON 78
+#define MUSE_SCR_CREATE_TRAP 79
+#define MUSE_SCR_DESTROY_WEAPON 80
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2344,6 +2490,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SOLAR_BEAM;
                     }
+		    nomore(MUSE_WAN_POISON);
+		    if(obj->otyp == WAN_POISON && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_POISON;
+                    }
 		    nomore(MUSE_WAN_FIRE);
 		    if(obj->otyp == WAN_FIRE && obj->spe > 0) {
 			m.offensive = obj;
@@ -2363,6 +2514,11 @@ struct monst *mtmp;
 		    if(obj->otyp == FROST_HORN && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_FROST_HORN;
+		    }
+		    nomore(MUSE_TEMPEST_HORN);
+		    if(obj->otyp == TEMPEST_HORN && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_TEMPEST_HORN;
 		    }
 		    nomore(MUSE_WAN_LIGHTNING);
 		    if(obj->otyp == WAN_LIGHTNING && obj->spe > 0) {
@@ -2499,6 +2655,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_TRAP_CREATION;
 		}
+		nomore(MUSE_SCR_CREATE_TRAP);
+		if(obj->otyp == SCR_CREATE_TRAP) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_CREATE_TRAP;
+		}
 		nomore(MUSE_SCR_GIRLINESS);
 		if(obj->otyp == SCR_GIRLINESS) {
 			m.offensive = obj;
@@ -2615,6 +2776,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_DESTROY_ARMOR) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_DESTROY_ARMOR;
+		}
+		nomore(MUSE_SCR_DESTROY_WEAPON);
+		if(obj->otyp == SCR_DESTROY_WEAPON) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_DESTROY_WEAPON;
 		}
 		nomore(MUSE_SCR_STONING);
 		if(obj->otyp == SCR_STONING && !Stoned) {
@@ -3226,8 +3392,25 @@ struct monst *mtmp;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		}
 		return (mtmp->mhp <= 0) ? 1 : 2;
+	case MUSE_WAN_POISON:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+
+		buzz((int)(-26), 7 + (rnd(monster_difficulty()) / 6),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
 	case MUSE_FIRE_HORN:
 	case MUSE_FROST_HORN:
+	case MUSE_TEMPEST_HORN:
 		if (oseen) {
 			makeknown(otmp->otyp);
 			pline("%s plays a %s!", Monnam(mtmp), xname(otmp));
@@ -3235,7 +3418,7 @@ struct monst *mtmp;
 			You_hear("a horn being played.");
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
-		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : AD_FIRE-1),
+		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -3487,6 +3670,22 @@ struct monst *mtmp;
 
 		return 2;
 
+	case MUSE_SCR_CREATE_TRAP:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		/* don't trigger traps that might send the player to a different level due to danger of segfaults --Amy */
+
+		{
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap() );
+		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) ) dotrap(ttmp2, 0);
+		}
+
+		return 2;
+
 	case MUSE_SCR_BULLSHIT:
 
 		mreadmsg(mtmp, otmp);
@@ -3567,6 +3766,41 @@ struct monst *mtmp;
 
 		else if (!otmp2) pline("Your skin itches.");
 	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+		exercise(A_STR, FALSE);
+		exercise(A_CON, FALSE);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_DESTROY_WEAPON:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		otmp2 = uwep;
+		if (otmp2 && stack_too_big(otmp2)) pline("Your fingers shake violently!");
+
+		else if (otmp2 && otmp2->blessed && rn2(5)) pline("Your fingers shake violently!");
+		/* extra saving throw for highly enchanted weapons --Amy */
+		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your fingers shake violently!");
+		/* being magic resistant also offers protection */
+		else if (Antimagic && rn2(5)) pline("Your fingers shake violently!");
+		/* and grease will always offer protection but can wear off */
+		else if (otmp2 && otmp2->greased) {
+			pline("Your fingers shake violently!");
+			 if (!rn2(2)) {
+				pline_The("grease wears off.");
+				otmp2->greased = 0;
+				update_inventory();
+			 }
+		}
+
+		else if (!otmp2) pline("Your fingers itch.");
+	      else {
+			useupall(otmp2);
+			pline("Your weapon evaporates!");
+		}
 		exercise(A_STR, FALSE);
 		exercise(A_CON, FALSE);
 
@@ -4030,6 +4264,7 @@ newboss:
 
 		pline("You start trembling...");
 		HFumbling = FROMOUTSIDE | rnd(100);
+		incr_itimeout(&HFumbling, rnd(20));
 
 		if (oseen) makeknown(WAN_FUMBLING);
 
@@ -4416,7 +4651,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(75)) {
+	switch (rn2(78)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -4493,6 +4728,9 @@ struct monst *mtmp;
 		case 72: return SCR_NASTINESS;
 		case 73: return SCR_GIRLINESS;
 		case 74: return SCR_ELEMENTALISM;
+		case 75: return TEMPEST_HORN;
+		case 76: return WAN_POISON;
+		case 77: return SCR_DESTROY_WEAPON;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -4521,6 +4759,7 @@ struct monst *mtmp;
 #define MUSE_WAN_SUMMON_UNDEAD_M 20
 #define MUSE_WAN_CREATE_HORDE_M 21
 #define MUSE_SCR_SUMMON_UNDEAD_M 22
+#define MUSE_SCR_CREATE_VICTIM_M 23
 
 boolean
 find_misc(mtmp)
@@ -4674,6 +4913,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_CREATE_MONSTER && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_CREATE_MONSTER_M;
+		}
+		nomore(MUSE_SCR_CREATE_VICTIM_M);
+		if(obj->otyp == SCR_CREATE_VICTIM && !rn2(25) && !mtmp->mpeaceful ) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_CREATE_VICTIM_M;
 		}
 		nomore(MUSE_BAG_OF_TRICKS_M);
 		if(obj->otyp == BAG_OF_TRICKS && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
@@ -5229,6 +5473,35 @@ newboss:
 		return 2;
 	    }
 
+	case MUSE_SCR_CREATE_VICTIM_M:
+
+	    {	coord cc;
+		struct permonst *pm = 0, *fish = 0;
+		int cnt = 1;
+		struct monst *mon;
+		boolean known = FALSE;
+
+		if (!rn2(73)) cnt += rnd(4);
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+		    mon = makemon(pm, 0, 0, NO_MM_FLAGS);
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_CREATE_VICTIM);
+		else if (!objects[SCR_CREATE_VICTIM].oc_name_known
+			&& !objects[SCR_CREATE_VICTIM].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
 	case MUSE_BAG_OF_TRICKS_M:
 
 		/* jonadab wants monsters to not use up charges if they apply this thing, but that would be too evil. --Amy */
@@ -5651,17 +5924,20 @@ struct obj *obj;
 		    typ == POT_ICE ||
 		    typ == POT_FEAR ||
 		    typ == POT_FIRE ||
+		    typ == POT_CURE_WOUNDS ||
+		    typ == POT_CURE_SERIOUS_WOUNDS ||
+		    typ == POT_CURE_CRITICAL_WOUNDS ||
 		    typ == POT_AMNESIA)
 		return TRUE;
 	    if (typ == POT_BLINDNESS && !attacktype(mon->data, AT_GAZE))
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:
-	    if (typ == AMULET_OF_LIFE_SAVING || typ == AMULET_OF_DATA_STORAGE || typ == AMULET_OF_REFLECTION)
+	    if (typ == AMULET_OF_LIFE_SAVING || typ == AMULET_OF_DATA_STORAGE || typ == AMULET_OF_REFLECTION || typ == AMULET_OF_PRISM || typ == AMULET_OF_WARP_DIMENSION)
 		return /*(boolean)(!nonliving(mon->data))*/TRUE;
 	    if (typ == AMULET_OF_REFLECTION)
 		return TRUE;
@@ -5681,7 +5957,7 @@ struct obj *obj;
 		return (boolean)needspick(mon->data);
 	    if (typ == UNICORN_HORN)
 		return (boolean)(!obj->cursed && !is_unicorn(mon->data));
-	    if (typ == FROST_HORN || typ == FIRE_HORN)
+	    if (typ == FROST_HORN || typ == FIRE_HORN || typ == TEMPEST_HORN)
 		return (obj->spe > 0);
 	    if (is_weptool(obj))
 	    	return (boolean)likes_objs(mon->data);
@@ -5725,6 +6001,20 @@ const char *str;
 	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_AMUL)) &&
 				orefl->otyp == AMULET_OF_REFLECTION) {
+	    if (str) {
+		pline(str, s_suffix(mon_nam(mon)), "amulet");
+		makeknown(AMULET_OF_REFLECTION);
+	    }
+	    return TRUE;
+	} else if ((orefl = which_armor(mon, W_AMUL)) &&
+				orefl->otyp == AMULET_OF_PRISM) {
+	    if (str) {
+		pline(str, s_suffix(mon_nam(mon)), "amulet");
+		makeknown(AMULET_OF_REFLECTION);
+	    }
+	    return TRUE;
+	} else if ((orefl = which_armor(mon, W_AMUL)) &&
+				orefl->otyp == AMULET_OF_WARP_DIMENSION) {
 	    if (str) {
 		pline(str, s_suffix(mon_nam(mon)), "amulet");
 		makeknown(AMULET_OF_REFLECTION);
@@ -5795,7 +6085,7 @@ const char *fmt, *str;
 	if (EReflecting & W_ARMS) {
 	    if (fmt && str) {
 	    	pline(fmt, str, "shield");
-	    	makeknown(SHIELD_OF_REFLECTION);
+	    	/*makeknown(SHIELD_OF_REFLECTION);*/
 	    }
 	    return TRUE;
 	} else if (HReflecting) {
@@ -5810,7 +6100,7 @@ const char *fmt, *str;
 	} else if (EReflecting & W_AMUL) {
 	    if (fmt && str) {
 	    	pline(fmt, str, "medallion");
-	    	makeknown(AMULET_OF_REFLECTION);
+	    	/*makeknown(AMULET_OF_REFLECTION);*/
 	    }
 	    return TRUE;
 	} else if (EReflecting & W_ARM) {
@@ -5832,12 +6122,12 @@ const char *fmt, *str;
 	} else if (EReflecting & W_ARMC) {
 	    if (fmt && str)
 	    	pline(fmt, str, "cloak");
-	    	makeknown(CLOAK_OF_REFLECTION);
+	    	/*makeknown(CLOAK_OF_REFLECTION);*/
 	    return TRUE;
 	} else if (EReflecting & W_ARMG) {
 	    if (fmt && str)
 	    	pline(fmt, str, "gauntlets");
-	    	makeknown(GAUNTLETS_OF_REFLECTION);
+	    	/*makeknown(GAUNTLETS_OF_REFLECTION);*/
 	    return TRUE;
 	} else if (youmonst.data == &mons[PM_SILVER_DRAGON] || youmonst.data == &mons[PM_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_AUREAL] || youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON]) {
 	    if (fmt && str)

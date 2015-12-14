@@ -243,7 +243,19 @@
 #define VERSUS_CURSES	216
 #define DEAC_VERSUS_CURSES	217
 
-#define SECOND_CHANCE		218
+#define STUN_RES	218
+#define CONF_RES	219
+#define MULTISHOES	220
+#define EXTRA_WEAPON_PRACTICE	221
+#define DTBEEM_RES	222
+#define DOUBLE_ATTACK	223
+#define QUAD_ATTACK	224
+#define DEAC_STUN_RES	225
+#define DEAC_CONF_RES	226
+#define DEAC_DOUBLE_ATTACK	227
+#define DEAC_QUAD_ATTACK	228
+
+#define SECOND_CHANCE		229
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

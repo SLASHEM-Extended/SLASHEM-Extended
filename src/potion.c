@@ -1047,7 +1047,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(113)) {
+		switch (rnd(117)) {
 
 			case 1:
 			case 2:
@@ -1311,6 +1311,22 @@ badeffect()
 			case 113:
 				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
 				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
+				pline("You are prevented from having quad attacks!");
 				break;
 			}
 		break;
@@ -1780,6 +1796,7 @@ badeffect()
 		case 351:
 
 			HFumbling = FROMOUTSIDE | rnd(100);
+			incr_itimeout(&HFumbling, rnd(20));
 
 		break;
 
@@ -1983,6 +2000,16 @@ peffects(otmp)
 				break;
 		}
 		return(-1);
+	}
+
+	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
+
+		struct obj *wonderpot;
+		wonderpot = mkobj(POTION_CLASS,FALSE);
+		if (wonderpot) otmp->otyp = wonderpot->otyp;
+		obfree(wonderpot, (struct obj *)0);
+		unkn++;
+
 	}
 
 	/* KMH, balance patch -- this is too cruel for novices */
@@ -2210,6 +2237,7 @@ peffects(otmp)
 		}
 		break;
 	case POT_BOOZE:
+	case POT_WINE:
 		unkn++;
 
 		if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) pline("Ye splice the mainbrace.");
@@ -2309,6 +2337,138 @@ peffects(otmp)
 		}
 		break;
 	    }
+	case POT_COFFEE:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like sewage" : "extremely bitter");
+		else
+		    pline(Hallucination ?
+		      "This tastes like bean juice." :
+				"This tastes like coffee." );
+		    u.uhunger += (otmp->odiluted ? 10 : 20) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HSleep_resistance += rnd(25);
+
+		break;
+
+	case POT_RED_TEA:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like blood.." : "awful");
+		else
+		    pline(Hallucination ?
+		      "This tastes like cherry juice." :
+				"This tastes like red tea." );
+		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HFire_resistance += rnd(25);
+
+		break;
+
+	case POT_OOLONG_TEA:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like death" : "very rotten");
+		else
+		    pline(Hallucination ?
+		      "This tastes like peppermint." :
+				"This tastes like oolong tea." );
+		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HShock_resistance += rnd(25);
+
+		break;
+
+	case POT_GREEN_TEA:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like the contents of a trash can" : "poisonous");
+		else
+		    pline(Hallucination ?
+		      "This tastes like your mother-in-law's tea!" :
+				"This tastes like green tea." );
+		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HCold_resistance += rnd(25);
+
+		break;
+
+	case POT_GREEN_MATE:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like pee" : "stale");
+		else
+		    pline(Hallucination ?
+		      "This tastes like bitter woodruff!" :
+				"This tastes like green mate." );
+		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HPoison_resistance += rnd(25);
+
+		break;
+
+	case POT_COCOA:
+		if (otmp->cursed)
+		    pline("Yecch!  This tastes %s.",
+			  Hallucination ? "like shit" : "wretched");
+		else
+		    pline(Hallucination ?
+		      "This tastes like hot chocolate." :
+				"This tastes like cocoa." );
+		    u.uhunger += (otmp->odiluted ? 100 : 200) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		   HDisint_resistance += rnd(25);
+
+		break;
+
+	case POT_TERERE:
+		    pline(Hallucination ? "This tastes like ecstasy." : "This tastes like alcohol." );
+		    u.uhunger += (otmp->odiluted ? 250 : 500) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+
+		make_confused(itimeout_incr(HConfusion, rnd(50 - 25 * bcsign(otmp))), FALSE);
+
+		break;
+
+	case POT_AOJIRU:
+		    pline(Hallucination ? "This tastes like some illegal shit." : "This tastes like drugs." );
+		    u.uhunger += (otmp->odiluted ? 250 : 500) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+
+		make_stunned(itimeout_incr(HStun, rnd(50 - 25 * bcsign(otmp))), FALSE);
+
+		break;
+
+	case POT_ULTIMATE_TSUYOSHI_SPECIAL: {
+		int time;
+		if (otmp->cursed) {
+			pline("Ulch! What in the hell was that???");
+			adjattrib(A_CON,-1,-1);
+			break;
+		}
+		pline("You feel super-powerful!");
+		incr_itimeout(&Invulnerable, 8 + rn2(4) );
+		time = 15 + d(otmp->blessed ? 4 : 2, 8);
+		incr_itimeout(&HFast, time);
+		incr_itimeout(&HSee_invisible, time);
+		make_hallucinated(HHallucination + time + d(10, 3), FALSE, 0L);
+		u.uhpmax += rnd(5);
+		u.uhp = u.uhpmax;
+		} break;
+	case POT_MEHOHO_BURUSASAN_G:
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+		if (otmp->cursed || !rn2(3)) {
+			adjattrib(A_CON,-1,-1);
+		}
+		morehungry(rn1(50, 101));
+		make_confused(HConfusion + d(10,2),FALSE);
+		if (otmp->blessed || !rn2(3)) {
+			You(Hallucination ? "feel slightly the same." : "feel slightly different.");
+			if (u.uhp < u.uhpmax) u.uhp++;
+		}
+		break;
+
 	case POT_PARALYSIS:
 		if (Free_action)
 		    You("stiffen momentarily.");
@@ -2372,6 +2532,7 @@ peffects(otmp)
 		exercise(A_WIS, TRUE);
 		break;
 	case POT_SICKNESS:
+	case POT_POISON:
 		pline("Yecch!  This stuff tastes like poison.");
 		if (otmp->blessed) {
 		    pline("(But in fact it was mildly stale %s.)",
@@ -2476,6 +2637,12 @@ peffects(otmp)
 		   HFire_resistance |= FROMOUTSIDE;
 		}
 		break;
+	case POT_RESISTANCE:
+		You("feel resistant to elemental attacks!");
+		   HFire_resistance += rn1(100,50);
+		   HCold_resistance += rn1(100,50);
+		   HShock_resistance += rn1(100,50);
+		break;
 	case POT_INVULNERABILITY:
 		incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
 		You_feel(Hallucination ?
@@ -2558,7 +2725,7 @@ peffects(otmp)
 				d_level newlevel;
 
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
-				if(ledger_no(&u.uz) == 64 && u.uevent.udemigod && !u.uevent.invoked) {
+				if(ledger_no(&u.uz) == 71 && u.uevent.udemigod && !u.uevent.invoked) {
 				    pline("You crash into the floor.");
 					nomul(-rnd(10), "lying on the floor, unable to get up");
 					nomovemsg = "You finally get up again.";
@@ -2584,6 +2751,62 @@ peffects(otmp)
 			 * middle of the new level instead of the low point
 			 */
 			u.uexp = rndexp(TRUE);
+
+		break;
+	case POT_DOWN_LEVEL:
+		if (otmp->cursed) {
+			unkn++;
+			/* they went up a level */
+			if((ledger_no(&u.uz) == 1 && u.uhave.amulet) ||
+				Can_rise_up(u.ux, u.uy, &u.uz)) {
+			    const char *riseup ="rise up, through the %s!";
+			    /* [ALI] Special handling for quaffing potions
+			     * off the floor (otmp won't be valid after
+			     * we change levels otherwise).
+			     */
+			    if (otmp->where == OBJ_FLOOR) {
+				if (otmp->quan > 1)
+					(void) splitobj(otmp, 1);
+				/* Make sure you're charged if in shop */
+				otmp->quan++;
+				useupf(otmp, 1);
+				obj_extract_self(otmp);
+			    }
+			    if(ledger_no(&u.uz) == 1) {
+			        You(riseup, ceiling(u.ux,u.uy));
+				goto_level(&earth_level, FALSE, FALSE, FALSE);
+				} else {
+				/* Skipping levels during the ascension run is a cheap strategy. --Amy */
+			        register int newlev = depth(&u.uz)+1;
+				d_level newlevel;
+
+				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
+				if(ledger_no(&u.uz) == 71) {
+				    pline("You crash into the floor.");
+					nomul(-rnd(10), "lying on the floor, unable to get up");
+					nomovemsg = "You finally get up again.";
+				    break;
+				}
+
+				get_level(&newlevel, newlev);
+				if(on_level(&newlevel, &u.uz)) {
+				    pline("It tasted bad.");
+				    break;
+				}
+				else pline("You slide downwards...");
+				goto_level(&newlevel, FALSE, FALSE, FALSE);
+			    }
+			}
+			else You("have an uneasy feeling.");
+			break;
+		}
+		if (Drain_resistance) {
+		    You("feel rejuvenating momentarily.");
+		} else {
+		    You("restore youth!");
+		    losexp("return to the state before being born", FALSE, TRUE);
+		}
+
 		break;
 	case POT_HEALING:
 		You_feel("better.");
@@ -2611,6 +2834,23 @@ peffects(otmp)
 		    pluslvl(FALSE);
 		}
 		(void) make_hallucinated(0L,TRUE,0L);
+		exercise(A_STR, TRUE);
+		exercise(A_CON, TRUE);
+		break;
+	case POT_CURE_WOUNDS:
+		You_feel("better.");
+		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		exercise(A_CON, TRUE);
+		break;
+	case POT_CURE_SERIOUS_WOUNDS:
+		You_feel("much better.");
+		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		exercise(A_CON, TRUE);
+		exercise(A_STR, TRUE);
+		break;
+	case POT_CURE_CRITICAL_WOUNDS:
+		You_feel("completely healed.");
+		healup(400 + rnz(u.ulevel),  0, 0, 0);
 		exercise(A_STR, TRUE);
 		exercise(A_CON, TRUE);
 		break;
@@ -2894,6 +3134,34 @@ peffects(otmp)
 		u.uhp = u.uhpmax;
 		} break;
 
+	case POT_PORTER:
+		if (Hallucination)
+			pline("You feel like hopping around!");
+		else
+			You("feel very jumpy.");
+		incr_itimeout(&HTeleportation, rnd(500));
+
+		break;
+
+	case POT_KEEN_MEMORY:
+		if (Hallucination)
+			pline("You feel like remembering everything that ever happened to you!");
+		else
+			pline("Your memory keens.");
+		incr_itimeout(&HKeen_memory, rnd(500));
+
+		break;
+
+	case POT_NIGHT_VISION:
+		if (Hallucination)
+			pline("Everything is visible! Whoa! Look at all the stuff!");
+		else
+			pline("Your vision range increases.");
+		incr_itimeout(&HSight_bonus, rnd(500));
+		vision_full_recalc = 1;
+
+		break;
+
  	case POT_PAN_GALACTIC_GARGLE_BLASTE:
 		You("feel like having your brain smashed out by a slice of lemon wrapped");
 		pline("around a large gold brick.");
@@ -2918,6 +3186,33 @@ peffects(otmp)
 		}
 		break;	
 				
+	case POT_TERCES_DLU:
+
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+
+		break;
+
+	case POT_WONDER:
+
+		pline("ide by 0");
+
+		break;
+
+	case POT_HIDING:
+	case POT_DECOY_MAKING:
+
+		if(Confusion || Hallucination || metallivorous(youmonst.data)) {
+		    pline("This tinfoil is gnarly!");
+		    u.uhunger += (otmp->odiluted ? 5 : 10) * (2 + bcsign(otmp));
+		    newuhs(FALSE);
+		} else {
+		    pline("Ecch - It includes tinfoil!");
+		    make_vomiting(Vomiting + d(5, (2-bcsign(otmp))), TRUE);
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		}
+
+		break;
 
 	default:
 		impossible("What a funny potion! (%u)", otmp->otyp);
@@ -3095,7 +3390,26 @@ boolean your_fault;
 			pline("%s looks sound and hale again.", Monnam(mon));
 		healup_mon(mon, 400 + rnz(u.ulevel), 5+5*!!(obj->blessed), !(obj->cursed), 1);
 		break;
+	case POT_CURE_WOUNDS:
+		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
+		angermon = FALSE;
+		if (canseemon(mon)) pline("%s looks better.", Monnam(mon));
+		healup_mon(mon, d(5,6) + rnz(u.ulevel) + 5 * bcsign(obj), 0, 0, 0);
+		break;
+	case POT_CURE_SERIOUS_WOUNDS:
+		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
+		angermon = FALSE;
+		if (canseemon(mon)) pline("%s looks much better.", Monnam(mon));
+		healup_mon(mon, d(6,8) + rnz(u.ulevel) + 5 * bcsign(obj), 0, 0, 0);
+		break;
+	case POT_CURE_CRITICAL_WOUNDS:
+		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
+		angermon = FALSE;
+		if (canseemon(mon)) pline("%s looks sound and hale again.", Monnam(mon));
+		healup_mon(mon, 400 + rnz(u.ulevel),  0, 0, 0);
+		break;
 	case POT_SICKNESS:
+	case POT_POISON:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_healing;
 		if (dmgtype(mon->data, AD_DISE) ||
 			   dmgtype(mon->data, AD_PEST) || /* won't happen, see prior goto */
@@ -3177,6 +3491,7 @@ boolean your_fault;
 
 	case POT_CONFUSION:
 	case POT_BOOZE:
+	case POT_WINE:
 		if(!resist(mon, POTION_CLASS, 0, NOTELL))  {mon->mconf = TRUE;
 			if (canseemon(mon)) pline("%s is confused.",Monnam(mon));
 
@@ -3585,19 +3900,23 @@ register struct obj *obj;
 		}
 		break;
 	case POT_FULL_HEALING:
+	case POT_CURE_CRITICAL_WOUNDS:
 		if (Upolyd && u.mh < u.mhmax) u.mh++, flags.botl = 1;
 		if (u.uhp < u.uhpmax) u.uhp++, flags.botl = 1;
 		/*FALL THROUGH*/
 	case POT_EXTRA_HEALING:
+	case POT_CURE_SERIOUS_WOUNDS:
 		if (Upolyd && u.mh < u.mhmax) u.mh++, flags.botl = 1;
 		if (u.uhp < u.uhpmax) u.uhp++, flags.botl = 1;
 		/*FALL THROUGH*/
 	case POT_HEALING:
+	case POT_CURE_WOUNDS:
 		if (Upolyd && u.mh < u.mhmax) u.mh++, flags.botl = 1;
 		if (u.uhp < u.uhpmax) u.uhp++, flags.botl = 1;
 		exercise(A_CON, TRUE);
 		break;
 	case POT_SICKNESS:
+	case POT_POISON:
 		if (!Role_if(PM_HEALER) && !Race_if(PM_HERBALIST)) {
 			if (Upolyd) {
 			    if (u.mh <= 5) u.mh = 1; else u.mh -= 5;
@@ -3641,6 +3960,7 @@ register struct obj *obj;
 		break;
 	case POT_CONFUSION:
 	case POT_BOOZE:
+	case POT_WINE:
 		if(!Confusion)
 			You_feel("somewhat dizzy.");
 		make_confused(itimeout_incr(HConfusion, rnd(15)), FALSE);
@@ -4226,6 +4546,7 @@ boolean amnesia;
 			    break;
 			case FIRE_HORN:
 			case FROST_HORN:
+			case TEMPEST_HORN:
 			case HORN_OF_PLENTY:
 			    downgrade_obj(obj, TOOLED_HORN, &used);
 			    break;
@@ -4601,6 +4922,7 @@ register struct obj *obj;
 		case HORN_OF_PLENTY:
 		case FIRE_HORN:
 		case FROST_HORN:
+		case TEMPEST_HORN:
 			obj->otyp = TOOLED_HORN;
 			break;
 		case WOODEN_HARP:
@@ -5080,7 +5402,7 @@ dodip()
 #endif
 
 	if(is_poisonable(obj)) {
-	    if(potion->otyp == POT_SICKNESS && !obj->opoisoned) {
+	    if( (potion->otyp == POT_SICKNESS || potion->otyp == POT_POISON) && !obj->opoisoned) {
 		char buf[BUFSZ];
 		if (potion->quan > 1L)
 		    Sprintf(buf, "One of %s", the(xname(potion)));

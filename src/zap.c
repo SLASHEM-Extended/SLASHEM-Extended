@@ -506,6 +506,7 @@ struct obj *otmp;
 		break;
 	    }
 	case WAN_NOTHING:
+	case WAN_MISFIRE:
 	case WAN_LOCKING:
 	case SPE_WIZARD_LOCK:
 		wake = FALSE;
@@ -520,6 +521,16 @@ struct obj *otmp;
 		     monflee(mtmp, rnd(10), FALSE, TRUE);
 		}
 		break;
+	case WAN_SHARE_PAIN:	/*from Nethack TNG -- WAN_DRAINING */
+		dmg = mtmp->mhpmax / 2;
+		hit("wand",mtmp,exclam(dmg));
+		resist(mtmp,otmp->oclass,dmg,TELL);
+		/*[Sakusha] add and change message*/
+		pline_The("damage reversed to you!");
+		losehp(dmg,"excessive reverse damage",KILLED_BY);
+		makeknown(otyp);
+		break;
+
 	case WAN_PROBING:
 		reveal_invis = TRUE;
 		wake = FALSE;
@@ -705,6 +716,7 @@ struct obj *otmp;
 		impossible("What an interesting effect (%d)", otyp);
 		break;
 	}
+
 	if(wake) {
 	    if(mtmp->mhp > 0) {
 		wakeup(mtmp);
@@ -1257,6 +1269,12 @@ register struct obj *obj;
 			if ((obj->owornmask & W_RING) && u_ring)
 				u.udaminc -= obj->spe;
 			break;
+		case RIN_HEAVY_ATTACK:
+			if ((obj->owornmask & W_RING) && u_ring) {
+				u.udaminc -= obj->spe;
+				u.uhitinc -= obj->spe;
+			}
+			break;
 		case HELM_OF_BRILLIANCE:
 			if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
 				ABON(A_INT) -= obj->spe;
@@ -1281,7 +1299,7 @@ register struct obj *obj;
 	if (objects[obj->otyp].oc_magic
 	    || (obj->spe && (obj->oclass == ARMOR_CLASS ||
 			     obj->oclass == WEAPON_CLASS || is_weptool(obj)))
-	    || obj->otyp == POT_ACID || obj->otyp == POT_SICKNESS) {
+	    || obj->otyp == POT_ACID || obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON) {
 	    if (obj->spe != ((obj->oclass == WAND_CLASS) ? -1 : 0) &&
 	       obj->otyp != WAN_CANCELLATION &&
 		 /* can't cancel cancellation */
@@ -1314,7 +1332,7 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID |
 		if (obj->otyp == POT_AMNESIA) break;
 
 		costly_cancel(obj);
-		if (obj->otyp == POT_SICKNESS ||
+		if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON ||
 		    obj->otyp == POT_SEE_INVISIBLE) {
 	    /* sickness is "biologically contaminated" fruit juice; cancel it
 	     * and it just becomes fruit juice... whereas see invisible
@@ -1394,6 +1412,12 @@ register struct obj *obj;
 	    if ((obj->owornmask & W_RING) && u_ring)
 	    	u.udaminc--;
 	    break;
+	case RIN_HEAVY_ATTACK:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	u.udaminc--;
+	    	u.uhitinc--;
+	    }
+	    break;
 	case HELM_OF_BRILLIANCE:
 	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
 	    	ABON(A_INT)--;
@@ -1470,6 +1494,12 @@ register struct obj *obj;
 	case RIN_INCREASE_DAMAGE:
 	    if ((obj->owornmask & W_RING) && u_ring)
 	    	u.udaminc++;
+	    break;
+	case RIN_HEAVY_ATTACK:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	u.udaminc++;
+	    	u.uhitinc++;
+	    }
 	    break;
 	case HELM_OF_BRILLIANCE:
 	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
@@ -2368,6 +2398,7 @@ struct obj *obj, *otmp;
 	case WAN_SPEED_MONSTER:
 	case WAN_HASTE_MONSTER:
 	case WAN_NOTHING:
+	case WAN_MISFIRE:
 	case SPE_HEALING:
 	case SPE_EXTRA_HEALING:
 	case SPE_FULL_HEALING:
@@ -2377,6 +2408,7 @@ struct obj *obj, *otmp;
 	case WAN_FULL_HEALING:
 	case SPE_FINGER:
 	case WAN_FEAR:
+	case WAN_SHARE_PAIN:
 	case WAN_STONING:
 	case WAN_PARALYSIS:
 	case SPE_PETRIFY:
@@ -2701,6 +2733,7 @@ newboss:
 		case WAN_FUMBLING:
 
 			HFumbling = FROMOUTSIDE | rnd(100);
+			incr_itimeout(&HFumbling, rnd(20));
 
 		break;
 
@@ -3127,6 +3160,13 @@ dozap()
 	if(!zappable(obj)) {pline(nothing_happens);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
+
+	else if(obj->otyp == WAN_MISFIRE) {
+		backfire(obj);  /* the wand blows up in your face! */
+		exercise(A_STR, FALSE);
+		return(1);
+	}
+
 	else if(obj->cursed && !rn2(5)) {
 		/* WAC made this rn2(5) from rn2(100)*/
 		backfire(obj);  /* the wand blows up in your face! */
@@ -3155,12 +3195,12 @@ dozap()
 	}
 
 	/* evil patch idea by jondab: zapping a wand while impaired can cause it to explode */
-	else if ( Stunned && !rn2(20) ) {
+	else if ( Stunned && !rn2(Stun_resist ? 200 : 20) ) {
 		backfire(obj);
 		exercise(A_STR, FALSE);
 		return(1);
 	}
-	else if ( Confusion && !rn2(150) ) {
+	else if ( Confusion && !rn2(Conf_resist ? 1500 : 150) ) {
 		backfire(obj);
 		exercise(A_STR, FALSE);
 		return(1);
@@ -3406,6 +3446,17 @@ boolean ordinary;
 			You("irradiate yourself!");
 			damage = d(8,8);
 		   break;
+		case WAN_POISON:
+		case WAN_VENOM_SCATTERING:
+		    makeknown(obj->otyp);
+			You("poison yourself!");
+			if (Poison_resistance && rn2(20)) {
+			  shieldeff(u.ux,u.uy);
+			} else {
+			  damage = d(7,7);
+			  poisoned("blast", A_DEX, "poisoned blast", 15);
+			}
+		   break;
 		case WAN_CLONE_MONSTER:
 		    makeknown(WAN_CLONE_MONSTER);
 			You("try to clone yourself!");
@@ -3420,6 +3471,7 @@ boolean ordinary;
 			 break;
 		case WAN_LIGHTNING:
 		    makeknown(WAN_LIGHTNING);
+		case TEMPEST_HORN:
 		/*WAC Added Spell Lightning*/
 		case SPE_LIGHTNING:
 		    if (!Shock_resistance) {
@@ -3768,7 +3820,7 @@ boolean ordinary;
 		    break;
 		case WAN_DEATH:
 		case SPE_FINGER_OF_DEATH:
-		    if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
+		    if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 			pline((obj->otyp == WAN_DEATH) ?
 			  "The wand shoots an apparently harmless beam at you."
 			  : "You seem no deader than before.");
@@ -3834,10 +3886,22 @@ boolean ordinary;
 		case SPE_KNOCK:
 		    if (Punished) Your("chain quivers for a moment.");
 		    break;
+
+		case WAN_SHARE_PAIN:	/*from Nethack TNG -- WAN_DRAINING */
+		    /*[Sakusha] add message */
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yourself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yourself!" : "Idiot!  You've shot yourself!");
+		    /* theoretically we would have to take away half of */
+		    /* u.uhpmax _twice_, but I don't want to be unfair ... */
+		    makeknown(obj->otyp);
+		    damage = u.uhpmax / 2;
+		    if (damage < 1) damage = 1;
+		    break;
+
 		case WAN_DIGGING:
 		case SPE_DIG:
 		case SPE_DETECT_UNSEEN:
 		case WAN_NOTHING:
+		case WAN_MISFIRE:
 		case WAN_LOCKING:
 		case SPE_WIZARD_LOCK:
 		    break;
@@ -4340,6 +4404,17 @@ struct obj *obj;
 			/*} else if (obj->otyp == WAN_ACID) {
 			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
         }
+
+	    else if (otyp == WAN_POISON) {
+		buzz((int)(-26), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == WAN_VENOM_SCATTERING) {
+
+		buzz(36, 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
 
 	    else
 		impossible("weffects: unexpected spell or wand");
@@ -5075,7 +5150,7 @@ xchar sx, sy;
 		    break;
 #endif
 		}
-	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data)) {
+	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		shieldeff(sx, sy);
 		You("seem unaffected.");
 		break;
@@ -5526,8 +5601,40 @@ register int dx,dy;
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
 			pline("For some reason you are not affected.");
-		    dx = -dx;
-		    dy = -dy;
+
+	/* special reflection types adapted from FHS. It would be too much of a pain to code correctly,
+	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy */
+
+			if (uamul && uamul->otyp == AMULET_OF_PRISM) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
+			} else if (uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) {
+
+			    dx = rn1(3, -1);	/*-1, 0, 1*/
+			    dy = rn1(3, -1);	/*-1, 0, 1*/
+
+			} else {
+
+			    dx = -dx;
+			    dy = -dy;
+
+			}
+
 		    shieldeff(sx, sy);
 		    /* WAC clear the beam so you can see it bounce back ;B */
 		    if (!is_mega_spell(type)) {

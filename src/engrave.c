@@ -1462,10 +1462,18 @@ doengrave()
 		    case WAN_OPENING:
 		    case WAN_LOCKING:
 		    case WAN_PROBING:
+		    case WAN_MISFIRE: /* fire or lightning message in FHS... but I decided to be cruel :-P --Amy */
+			break;
+
+		    case WAN_VENOM_SCATTERING:
+
+			if (!Blind) pline("A venom leaves the wand top.");
+
 			break;
 
 			/* RAY wands */
 		    case WAN_MAGIC_MISSILE:
+		    case WAN_SHARE_PAIN:
 			ptext = TRUE;
 			if (!Blind) {
 			   Sprintf(post_engr_text,
@@ -1529,6 +1537,16 @@ doengrave()
 				"Gravel flies up from the floor.");
 			else
 			    Strcpy(post_engr_text, "You hear drilling!");
+			break;
+
+		    case WAN_POISON:	/*new wand [Sakusha]*/
+			ptext = TRUE;
+			type  = MARK;
+			if(!objects[otmp->otyp].oc_name_known) {
+			    if (flags.verbose)
+				pline("This %s is a wand of poison!", xname(otmp));
+			    doknown = TRUE;
+			}
 			break;
 
 		    /* type = BURN wands */
@@ -1873,7 +1891,7 @@ doengrave()
 		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
 		if (otmp->otyp == WAN_DIGGING) multi /= 5; /* otherwise engraving with them would be useless --Amy */
 		if ((otmp->oclass == WEAPON_CLASS) && !stack_too_big(otmp) &&
-		    ( ((otmp->otyp != ATHAME) && (!is_lightsaber(otmp))) || otmp->cursed)) {
+		    ( ((otmp->otyp != ATHAME) && (otmp->otyp != MERCURIAL_ATHAME) && (!is_lightsaber(otmp))) || otmp->cursed)) {
 		    multi = -len;
 		    maxelen = ((otmp->spe + 3) * 2) + 1;
 			/* -2 = 3, -1 = 5, 0 = 7, +1 = 9, +2 = 11

@@ -227,7 +227,7 @@ boolean barehanded;
 	}
 
 	if (flags.confirm && mtmp->mpeaceful
-	    && !Confusion && !Hallucination && !Stunned) {
+	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
 		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_KILLING_EDGE) ) {
@@ -495,6 +495,12 @@ register struct monst *mtmp;
 	register struct permonst *mdat = mtmp->data;
 	int mhit;
 
+	/* Double and quad attacks gives extra attacks per round --Amy
+	 * This means you do all of your normal attacks two or four times. */
+	int attackamount = 0;
+	if (Double_attack) attackamount++;
+	if (Quad_attack) attackamount += 3; /* they won't stack to become +7 attacks, sorry */
+
 	/* This section of code provides protection against accidentally
 	 * hitting peaceful (like '@') and tame (like 'd') monsters.
 	 * Protection is provided as long as player is not: blind, confused,
@@ -597,10 +603,15 @@ register struct monst *mtmp;
 
 	tmp = find_roll_to_hit(mtmp);
 	
+newroundofattacks:
 	(void) hmonas(mtmp, tmp); /* hmonas handles all attacks now */
 	
 	/* berserk lycanthropes calm down after the enemy is dead */
 	if (mtmp->mhp <= 0) repeat_hit = 0;
+	if (mtmp->mhp > 0 && (attackamount > 0)) {
+		attackamount--;
+		goto newroundofattacks;
+	}
 /*
 	if (Upolyd)
 		(void) hmonas(mtmp, tmp);
@@ -2485,7 +2496,7 @@ struct obj *obj;	/* weapon */
 {
     int skill_rating, joust_dieroll;
 
-    if (Fumbling || Stunned) return 0;
+    if (Fumbling || (Stunned && !Stun_resist) ) return 0;
     /* sanity check; lance must be wielded in order to joust */
     if (obj != uwep && (obj != uswapwep || !u.twoweap)) return 0;
 

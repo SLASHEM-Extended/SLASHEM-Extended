@@ -167,6 +167,10 @@ boolean artif;
 
 	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif));
 
+	else if ((objects[u.veryobtainable2].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost2) ) return(mksobj(u.veryobtainable2, TRUE, artif));
+
+	else if ((objects[u.veryobtainable3].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost3) ) return(mksobj(u.veryobtainable3, TRUE, artif));
+
 	else return(mksobj(i, TRUE, artif));
 }
 
@@ -700,6 +704,14 @@ boolean artif;
 		otyp = GOLD_PIECE;
 	}
 
+	if (otyp == u.unobtainable3) {
+		otyp = GOLD_PIECE;
+	}
+
+	if (otyp == u.unobtainable4) {
+		otyp = GOLD_PIECE;
+	}
+
 	if (otyp == u.unobtainablegeno) {
 		otyp = GOLD_PIECE;
 	}
@@ -751,8 +763,10 @@ boolean artif;
 		if (otmp->otyp == LASER_BEAM) otmp->quan += rnd(30);
 		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
-		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(10);
+		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT || otmp->otyp == KOKKEN) otmp->quan += rnd(10);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
+		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
+		if (otmp->otyp == CALTROP) otmp->quan += rnd(400);
 		if (otmp->otyp == BFG_AMMO) {
 			otmp->quan = 40;
 			if (!rn2(5)) otmp->quan *= (1 + rnd(4));
@@ -854,7 +868,7 @@ boolean artif;
 		if (otmp->otyp == WONDER_STONE) otmp->oinvis = 1;
 
 		/* KMH, balance patch -- healthstone replaces rotting/health */
-		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER)
+		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE)
 			{ curse(otmp); break;}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
 		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(5,5);
@@ -883,6 +897,8 @@ boolean artif;
 	    switch(otmp->otyp) {
 		case TALLOW_CANDLE:
 		case WAX_CANDLE:
+		case JAPAN_WAX_CANDLE:
+		case OIL_CANDLE:
 			otmp->spe = 1;
 					otmp->age = 20L * /* 400 or 200 */
 					      (long)objects[otmp->otyp].oc_cost;
@@ -1003,6 +1019,7 @@ boolean artif;
 		case MAGIC_FLUTE:
 		case MAGIC_HARP:
 		case FROST_HORN:
+		case TEMPEST_HORN:
 		case FIRE_HORN:
 		case DRUM_OF_EARTHQUAKE:
 		/* KMH, balance patch -- removed
@@ -1220,6 +1237,8 @@ boolean artif;
 
 	if (otyp == u.alwayscurseditem) curse(otmp);
 	if (otyp == u.alwayscurseditem2) curse(otmp);
+	if (otyp == u.alwayscurseditem3) curse(otmp);
+	if (otyp == u.alwayscurseditem4) curse(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {

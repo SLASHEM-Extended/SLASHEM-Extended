@@ -426,6 +426,20 @@ giveback:
 		case RIN_REGENERATION:
 		    pline_The("sink looks as good as new.");
 		    break;
+		case RIN_PRACTICE:
+		    pline_The("water flow seems %ser now.",
+			(obj->cursed) ? "hard" : "easi");
+		    break;
+		case RIN_HEAVY_ATTACK:
+		    pline_The("water's power seems %ser now.",
+			(obj->spe<0) ? "small" : "great");
+		    break;
+		case RIN_CONFUSION_RESISTANCE:
+		    pline_The("water flow seems straighter now.");
+		    break;
+		case RIN_RESTRATION:
+		    pline_The("drain stops vibrating for a moment.");
+		    break;
 	      case RIN_SICKNESS_RESISTANCE:
 		    pline("The sink looks clean and neat for a moment.");
 		    break;
@@ -567,7 +581,7 @@ register const char *word;
 		return(FALSE);
 	}
 	/* KMH, balance patch -- removed stone of rotting */        
-	if ( (obj->otyp == LOADSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || is_nastygraystone(obj)) && obj->cursed) {
+	if ( (obj->otyp == LOADSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || is_nastygraystone(obj)) && obj->cursed) {
 		/* getobj() kludge sets corpsenm to user's specified count
 		   when refusing to split a stack of cursed loadstones */
 		if (*word) {
@@ -876,7 +890,7 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {

@@ -884,6 +884,7 @@ E boolean NDECL(have_sleepstone);
 E boolean NDECL(have_magicresstone);
 E boolean NDECL(have_cursedmagicresstone);
 E boolean NDECL(have_loadboulder);
+E boolean NDECL(have_starlightstone);
 
 E boolean FDECL(stack_too_big, (struct obj *));
 

@@ -5258,7 +5258,7 @@ shk_identify(slang, shkp)
 		pline("You hear %s tell you it's a pot of flowers.",
 			mon_nam(shkp));
 		return;
-	    } else if (Confusion) {
+	    } else if (Confusion && !Conf_resist) {
 		pline("%s tells you but you forget.", mon_nam(shkp));
 		return;
 	    }
@@ -5426,7 +5426,7 @@ shk_appraisal(slang, shkp)
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
 	/* Shopkeeper deviousness */
-	if (Confusion)
+	if (Confusion && !Conf_resist)
 	{
 		pline("The numbers get all mixed up in your head.");
 		return;
@@ -5846,7 +5846,7 @@ shk_charge(slang, shkp)
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
 	/* Shopkeeper deviousness */
-	if ((Confusion || Hallucination) && !no_cheat)
+	if (( (Confusion && !Conf_resist) || Hallucination) && !no_cheat)
 	{
 		pline("%s says it's charged and pushes you toward the door",
 			Monnam(shkp));

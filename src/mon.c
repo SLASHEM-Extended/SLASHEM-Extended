@@ -1510,6 +1510,10 @@ mpickgold(mtmp)
 
     if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
 	mat_idx = objects[gold->otyp].oc_material;
+
+	if (uchain && (gold == uchain) ) return;
+	if (uchain && (gold == uball) ) return;
+
 #ifndef GOLDOBJ
 	mtmp->mgold += gold->quan;
 	delobj(gold);
@@ -1736,8 +1740,10 @@ mfndpos(mon, poss, info, flag)
 		rockok = (m_carrying(mon, PICK_AXE) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)));
-		treeok = (m_carrying(mon, AXE) || m_carrying(mon, MOON_AXE) ||
+		treeok = (m_carrying(mon, AXE) || m_carrying(mon, MOON_AXE) || m_carrying(mon, OBSIDIAN_AXE) ||
 			  (m_carrying(mon, BATTLE_AXE) &&
+			   !which_armor(mon, W_ARMS)) ||
+			  (m_carrying(mon, DWARVISH_BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)));
 	    }
 	    thrudoor |= rockok || treeok;
@@ -3677,6 +3683,7 @@ poisontell(typ)
 	int	typ;
 {
 	pline("You%s.", poiseff[typ]);
+	pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 }
 
 void
@@ -3703,8 +3710,10 @@ int  typ, fatal;
 
 		if(!rn2(20)) {
 		/* Check that a stat change was made */
-		if (adjattrib(typ, -1, 1))
-		    pline("You%s!", poiseff[typ]); }
+		if (adjattrib(typ, -1, 1)) {
+		    pline("You%s!", poiseff[typ]);
+			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 } 
+			}
 		return;
 	}
 	/* suppress killer prefix if it already has one */
@@ -3727,8 +3736,10 @@ int  typ, fatal;
 		}
 	} else if(i <= 5) {
 		/* Check that a stat change was made */
-		if (adjattrib(typ, thrown_weapon ? -1 : -rn1(3,3), 1))
+		if (adjattrib(typ, thrown_weapon ? -1 : -rn1(3,3), 1)) {
 		    pline("You%s!", poiseff[typ]);
+			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
+		}
 
 		/* still does damage --Amy */
 		i = thrown_weapon ? rnd(6) : rn1(10,6);

@@ -502,7 +502,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(127)) {
+	switch (rnd(133)) {
 
 		case 1:
 		case 2:
@@ -759,6 +759,18 @@ randenchantment()
 			return SIGHT_BONUS;
 		case 127:
 			return VERSUS_CURSES;
+		case 128:
+			return STUN_RES;
+		case 129:
+			return CONF_RES;
+		case 130:
+			return EXTRA_WEAPON_PRACTICE;
+		case 131:
+			return DTBEEM_RES;
+		case 132:
+			return (rn2(20) ? POISON_RES : DOUBLE_ATTACK);
+		case 133:
+			return (rn2(100) ? TELEPORT : QUAD_ATTACK);
 		default:
 			return POISON_RES;
 

@@ -362,7 +362,7 @@ STATIC_OVL int
 do_improvisation(instr)
 struct obj *instr;
 {
-	int damage, do_spec = !Confusion;
+	int damage, do_spec = !(Confusion && !Conf_resist);
 #if defined(MAC) || defined(AMIGA) || defined(VPIX_MUSIC) || defined (PCMUSIC)
 	struct obj itmp;
 
@@ -410,6 +410,7 @@ struct obj *instr;
 	    break;
 	case FROST_HORN:		/* Idem wand of cold */
 	case FIRE_HORN:			/* Idem wand of fire */
+	case TEMPEST_HORN:		/* Idem wand of lightning */
 	    if (do_spec && instr->spe > 0) {
 		consume_obj_charge(instr, TRUE);
 
@@ -423,7 +424,7 @@ struct obj *instr;
 			losehp(damage, buf, KILLED_BY);
 		    }
 		} else {
-		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : AD_FIRE-1,
+		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1,
 			 rn1(6,6), u.ux, u.uy, u.dx, u.dy);
 		}
 		makeknown(instr->otyp);
@@ -692,6 +693,7 @@ char	*buf;
 	    break;
 	case TOOLED_HORN:
 	case FROST_HORN:
+	case TEMPEST_HORN:
 	case FIRE_HORN:
 	    (void) write(fd, "<<ol", 2); /* drop two octaves & lock */
 	    break;
@@ -762,6 +764,7 @@ char	*buf;
 	    break;
 	case TOOLED_HORN:
 	case FROST_HORN:
+	case TEMPEST_HORN:
 	case FIRE_HORN:
 	    playstring("<<ol", 2); /* drop two octaves & lock */
 	    break;

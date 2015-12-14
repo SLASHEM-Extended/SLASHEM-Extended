@@ -271,6 +271,7 @@ struct obj {
 				|| (otmp)->otyp == ORCISH_RING_MAIL\
 				|| (otmp)->otyp == ORCISH_CLOAK\
 				|| (otmp)->otyp == URUK_HAI_SHIELD\
+				|| (otmp)->otyp == ORCISH_GUARD_SHIELD\
 				|| (otmp)->otyp == ORCISH_SHIELD)
 #define is_dwarvish_armor(otmp)	((otmp)->otyp == DWARVISH_IRON_HELM\
 				|| (otmp)->otyp == DWARVISH_MITHRIL_COAT\
@@ -280,10 +281,14 @@ struct obj {
 
 #define is_musable(otmp)	((otmp)->otyp == SCR_TELEPORTATION\
 || (otmp)->otyp == POT_HEALING\
+|| (otmp)->otyp == POT_CURE_WOUNDS\
+|| (otmp)->otyp == POT_CURE_SERIOUS_WOUNDS\
+|| (otmp)->otyp == POT_CURE_CRITICAL_WOUNDS\
 || (otmp)->otyp == POT_EXTRA_HEALING\
 || (otmp)->otyp == WAN_DIGGING\
 || (otmp)->otyp == WAN_CREATE_MONSTER\
 || (otmp)->otyp == SCR_CREATE_MONSTER\
+|| (otmp)->otyp == SCR_CREATE_VICTIM\
 || (otmp)->otyp == WAN_TELEPORTATION\
 || (otmp)->otyp == POT_FULL_HEALING\
 || (otmp)->otyp == WAN_HEALING\
@@ -298,6 +303,7 @@ struct obj {
 || (otmp)->otyp == SCR_SUMMON_UNDEAD\
 || (otmp)->otyp == WAN_SUMMON_UNDEAD\
 || (otmp)->otyp == SCR_HEALING\
+|| (otmp)->otyp == SCR_POWER_HEALING\
 || (otmp)->otyp == SCR_WARPING\
 || (otmp)->otyp == WAN_DEATH\
 || (otmp)->otyp == WAN_SLEEP\
@@ -315,6 +321,7 @@ struct obj {
 || (otmp)->otyp == POT_ACID\
 || (otmp)->otyp == FROST_HORN\
 || (otmp)->otyp == FIRE_HORN\
+|| (otmp)->otyp == TEMPEST_HORN\
 || (otmp)->otyp == WAN_DRAINING\
 || (otmp)->otyp == WAN_INCREASE_MAX_HITPOINTS\
 || (otmp)->otyp == WAN_REDUCE_MAX_HITPOINTS\
@@ -325,6 +332,7 @@ struct obj {
 || (otmp)->otyp == POT_RADIUM\
 || (otmp)->otyp == WAN_ACID\
 || (otmp)->otyp == SCR_TRAP_CREATION\
+|| (otmp)->otyp == SCR_CREATE_TRAP\
 || (otmp)->otyp == WAN_TRAP_CREATION\
 || (otmp)->otyp == SCR_FLOOD\
 || (otmp)->otyp == SCR_LAVA\
@@ -333,6 +341,7 @@ struct obj {
 || (otmp)->otyp == SCR_CLOUDS\
 || (otmp)->otyp == SCR_BARRHING\
 || (otmp)->otyp == WAN_SOLAR_BEAM\
+|| (otmp)->otyp == WAN_POISON\
 || (otmp)->otyp == SCR_LOCKOUT\
 || (otmp)->otyp == WAN_BANISHMENT\
 || (otmp)->otyp == POT_HALLUCINATION\
@@ -360,6 +369,7 @@ struct obj {
 || (otmp)->otyp == POT_MUTATION\
 || (otmp)->otyp == WAN_CLONE_MONSTER\
 || (otmp)->otyp == SCR_DESTROY_ARMOR\
+|| (otmp)->otyp == SCR_DESTROY_WEAPON\
 || (otmp)->otyp == SCR_STONING\
 || (otmp)->otyp == SCR_AMNESIA\
 || (otmp)->otyp == BAG_OF_TRICKS\
@@ -462,6 +472,7 @@ struct obj {
 /* Dwarvish gear */
 #define is_dwarvish_obj(otmp)	(is_dwarvish_armor(otmp)\
 				|| (otmp)->otyp == DWARVISH_SPEAR\
+				|| (otmp)->otyp == DWARVISH_BATTLE_AXE\
 				|| (otmp)->otyp == DWARVISH_SHORT_SWORD\
 				|| (otmp)->otyp == DWARVISH_MATTOCK)
 
@@ -471,6 +482,8 @@ struct obj {
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \
 			 (otmp)->otyp == WAX_CANDLE || \
+			 (otmp)->otyp == JAPAN_WAX_CANDLE || \
+			 (otmp)->otyp == OIL_CANDLE || \
 			 (otmp)->otyp == MAGIC_CANDLE)
 /* maximum amount of oil in a potion of oil */
 #define MAX_OIL_IN_FLASK 400
@@ -483,6 +496,8 @@ struct obj {
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\
 				|| (otmp)->otyp == TALLOW_CANDLE\
 				|| (otmp)->otyp == WAX_CANDLE\
+				|| (otmp)->otyp == JAPAN_WAX_CANDLE\
+				|| (otmp)->otyp == OIL_CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 /* object can be ignited */
 #define ignitable(otmp)	((otmp)->otyp == BRASS_LANTERN\
@@ -491,6 +506,8 @@ struct obj {
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\
 				|| (otmp)->otyp == TALLOW_CANDLE\
 				|| (otmp)->otyp == WAX_CANDLE\
+				|| (otmp)->otyp == JAPAN_WAX_CANDLE\
+				|| (otmp)->otyp == OIL_CANDLE\
 				|| (otmp)->otyp == MAGIC_CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 
@@ -563,6 +580,9 @@ struct obj {
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \
 				 (obj)->otyp == FLINT     || \
+				 (obj)->otyp == TALC     || \
+				 (obj)->otyp == GRAPHITE     || \
+				 (obj)->otyp == VOLCANIC_GLASS_FRAGMENT     || \
 				 (obj)->otyp == TOUCHSTONE || \
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
@@ -571,6 +591,7 @@ struct obj {
 				 (obj)->otyp == SILVER_SLINGSTONE || \
 				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
 				 (obj)->otyp == LOADBOULDER || \
+				 (obj)->otyp == STARLIGHTSTONE || \
 				 (obj)->otyp == SLEEPSTONE || \
 				 (obj)->otyp == WHETSTONE || is_nastygraystone(obj) )
 

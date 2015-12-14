@@ -44,7 +44,7 @@ register struct monst *mtmp;
 	register struct obj *gold = g_at(u.ux, u.uy);
 	register long tmp;
 
-	if (gold && ( !u.ugold || gold->quan > u.ugold || !rn2(5))) {
+	if (gold && !(gold == uchain) && !(gold == uball) && ( !u.ugold || gold->quan > u.ugold || !rn2(5))) {
 	    mtmp->mgold += gold->quan;
 	    delobj(gold);
 	    newsym(u.ux, u.uy);
