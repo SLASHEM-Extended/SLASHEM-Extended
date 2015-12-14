@@ -2186,9 +2186,10 @@ invocation_message()
 	    struct obj *otmp = carrying(CANDELABRUM_OF_INVOCATION);
 
 	    nomul(0, 0);		/* stop running or travelling */
-	    if (Hallucination)
+	    if (Hallucination) {
 		pline("You're picking up good vibrations!");
-	    else {
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	    } else {
 #ifdef STEED
 	    if (u.usteed) Sprintf(buf, "beneath %s", y_monnam(u.usteed));
 	    else
@@ -2197,6 +2198,7 @@ invocation_message()
 	    else Sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
 
 	    You_feel("a strange vibration %s.", buf);
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	    if (otmp && otmp->spe == 7 && otmp->lamplit)
 		pline("%s %s!", The(xname(otmp)),
