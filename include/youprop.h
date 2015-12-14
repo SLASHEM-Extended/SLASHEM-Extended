@@ -587,6 +587,16 @@
 #define Keen_memory		((HKeen_memory || EKeen_memory || (youmonst.data->mlet == S_QUADRUPED)) && !NoKeen_memory)
 #define NoKeen_memory	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_KEEN_MEMORY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HSight_bonus		u.uprops[SIGHT_BONUS].intrinsic
+#define ESight_bonus		u.uprops[SIGHT_BONUS].extrinsic
+#define Sight_bonus		((HSight_bonus || ESight_bonus) && !NoSight_bonus)
+#define NoSight_bonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SIGHT_BONUS].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HVersus_curses		u.uprops[VERSUS_CURSES].intrinsic
+#define EVersus_curses		u.uprops[VERSUS_CURSES].extrinsic
+#define Versus_curses		((HVersus_curses || EVersus_curses) && !NoVersus_curses)
+#define NoVersus_curses	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_VERSUS_CURSES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #define HUseTheForce		u.uprops[THE_FORCE].intrinsic
 #define EUseTheForce		u.uprops[THE_FORCE].extrinsic
 #define UseTheForce		((HUseTheForce || EUseTheForce ) && !NoUseTheForce)

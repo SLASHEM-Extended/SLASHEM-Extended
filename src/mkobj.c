@@ -746,10 +746,17 @@ boolean artif;
 		otmp->quan = is_multigen(otmp) ? (long) rn1(12,12) : 1L;
 		if (otmp->otyp == BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == SILVER_BULLET) otmp->quan += rnd(50);
+		if (otmp->otyp == BLASTER_BOLT) otmp->quan += rnd(30);
+		if (otmp->otyp == HEAVY_BLASTER_BOLT) otmp->quan += rnd(30);
+		if (otmp->otyp == LASER_BEAM) otmp->quan += rnd(30);
 		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(10);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
+		if (otmp->otyp == BFG_AMMO) {
+			otmp->quan = 40;
+			if (!rn2(5)) otmp->quan *= (1 + rnd(4));
+		}
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
@@ -850,7 +857,9 @@ boolean artif;
 		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER)
 			{ curse(otmp); break;}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
-		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(4,4);
+		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(5,5);
+		else if (otmp->otyp == SMALL_PIECE_OF_UNREFINED_MITHR && rn2(2) ) otmp->quan = (long) rn1(6,6);
+		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) otmp->quan = (long) rn1(10,10);
 	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
 		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) && (otmp->otyp != STONE_OF_MAGIC_RESISTANCE) && !is_nastygraystone(otmp) &&
 				!rn2(6)) otmp->quan = 2L;

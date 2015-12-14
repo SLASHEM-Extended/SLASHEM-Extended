@@ -2315,6 +2315,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_KEEN_MEMORY].intrinsic);
 		you_are(buf);
 	}
+	if (NoSight_bonus) {
+		Sprintf(buf, "prevented from having a sight bonus");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SIGHT_BONUS].intrinsic);
+		you_are(buf);
+	}
+	if (NoVersus_curses) {
+		Sprintf(buf, "prevented from having curse resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_VERSUS_CURSES].intrinsic);
+		you_are(buf);
+	}
 	if (NoFree_action) {
 		Sprintf(buf, "prevented from having free action");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREE_ACTION].intrinsic);
@@ -2417,6 +2427,9 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 40;
+			break;
+		case CRYSTAL_SHIELD:
+			shieldblockrate = 45;
 			break;
 		case SHIELD_OF_REFLECTION:
 			shieldblockrate = 35;
@@ -2679,6 +2692,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if (Slow_digestion) you_have("slower digestion");
 	if (Keen_memory)
 		enl_msg("Your memory ", "is", "was", " keen");
+	if (Sight_bonus) enl_msg("Your sight ", "is", "was", " improved");
+	if (Versus_curses) you_have("curse resistance");
 	if (Half_physical_damage) you_have("physical resistance");
 	if (Half_spell_damage) you_have("spell resistance");
 	if (Regeneration) enl_msg("You regenerate", "", "d", "");

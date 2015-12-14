@@ -1047,7 +1047,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(111)) {
+		switch (rnd(113)) {
 
 			case 1:
 			case 2:
@@ -1303,6 +1303,14 @@ badeffect()
 			case 111:
 				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
 				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
+				pline("You are prevented from having curse resistance!");
 				break;
 			}
 		break;

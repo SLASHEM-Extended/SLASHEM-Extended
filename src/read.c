@@ -137,7 +137,8 @@ doread()
 	    else useupf(scroll, 1L);
 	    return(1);
 #ifdef TOURIST
-	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == STRIPED_SHIRT
+	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
+	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
@@ -3478,6 +3479,49 @@ retry:
 		    flags.botl = 1;
 		    known = TRUE;
 		    break;
+
+	case SCR_WARD: /* half physical damage for a period of time */
+
+		if (confused) {
+			if (Upolyd) u.mh -= rn2(u.mh);
+			else u.uhp -= rn2(u.uhp);
+			pline("A steel plunger crashes down and severely crushes you!");
+		} else {
+			if (sobj->cursed) {
+				HHalf_physical_damage &= ~INTRINSIC;
+				HHalf_physical_damage &= ~TIMEOUT;
+				pline("You feel less protected!");
+			} else {
+				if (Hallucination)
+					pline("You feel like a tough motherfucker!");
+				else
+					You("are resistant to normal damage.");
+				incr_itimeout(&HHalf_physical_damage, rnd(500));
+			}
+		}
+		break;
+
+	case SCR_WARDING: /* half spell damage for a period of time */
+
+		if (confused) {
+			u.uen -= rn2(u.uen);
+			pline("Your magical power is sucked away!");
+
+		} else {
+			if (sobj->cursed) {
+				HHalf_spell_damage &= ~INTRINSIC;
+				HHalf_spell_damage &= ~TIMEOUT;
+				pline("You feel more afraid of magic!");
+			} else {
+				incr_itimeout(&HHalf_spell_damage, rnd(500));
+				if (Hallucination)
+					pline("Let the casting commence!");
+				else
+					You("feel a sense of spell knowledge.");
+			}
+		}
+		break;
+
 	case SCR_MAGIC_MAPPING:
 		if (level.flags.nommap) {
 		    Your("mind is filled with crazy lines!");

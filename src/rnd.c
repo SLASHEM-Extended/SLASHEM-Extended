@@ -502,7 +502,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(125)) {
+	switch (rnd(127)) {
 
 		case 1:
 		case 2:
@@ -755,6 +755,10 @@ randenchantment()
 			return PREMDEATH;
 		case 125:
 			return CLAIRVOYANT;
+		case 126:
+			return SIGHT_BONUS;
+		case 127:
+			return VERSUS_CURSES;
 		default:
 			return POISON_RES;
 

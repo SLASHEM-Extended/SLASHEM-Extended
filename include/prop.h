@@ -238,7 +238,12 @@
 #define TRAINING_DEACTIVATED 212
 #define EXERCISE_DEACTIVATED 213
 
-#define SECOND_CHANCE		214
+#define SIGHT_BONUS	214
+#define DEAC_SIGHT_BONUS	215
+#define VERSUS_CURSES	216
+#define DEAC_VERSUS_CURSES	217
+
+#define SECOND_CHANCE		218
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

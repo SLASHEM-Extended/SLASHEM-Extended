@@ -141,6 +141,10 @@ int prop;
 			return "blindness";
 		case PREMDEATH:
 			return "premature death";
+		case SIGHT_BONUS:
+			return "improved vision";
+		case VERSUS_CURSES:
+			return "curse resistance";
 		default:
 			return "Team Nastytrap";
 
@@ -167,6 +171,7 @@ struct Jitem {
 			   typ != PERIDOT && 	\
 			   typ != MOONSTONE && 	\
 			   typ != WONDER_STONE && 	\
+			   typ != MAGICITE_CRYSTAL && 	\
 			   typ != CYAN_STONE && 	\
 			   typ != EMERALD && typ != OPAL)))
 
@@ -1307,6 +1312,54 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ELYSIUM_HOSTAGE_CHAIN, "vnezemnaya zalozhnikom tsepi" },
 	{ BLINDING_VENOM, "osleplyaya yad" },
 
+	{ GOLDEN_ARROW, "zolotaya strela" },
+	{ ANCIENT_ARROW, "drevnyaya strela" },
+	{ SPIKE, "ship" },
+	{ SICKLE, "serp" },
+	{ ELVEN_SICKLE, "el'fiyskiy serp" },
+	{ SCYTHE, "sad kosa" },
+	{ MOON_AXE, "luna topor" },
+	{ VIBROBLADE, "vibratsii lezviya" },
+	{ CRYSTAL_SWORD, "khrustal'nyy mech" },
+	{ ELVEN_LANCE, "el'fiyskiy ostroga" },
+	{ ELVEN_MACE, "el'fiyskiy bulava" },
+	{ SILVER_KHAKKHARA, "serebryanyy delitsya na chetyrekh sotrudnikov" },
+	{ IRON_BAR, "zheleznyy slitok" },
+	{ FLINTLOCK, "kremnevoye ruzh'ye" },
+	{ BFG, "bol'shoy grebanyy pistolet" },
+	{ HAND_BLASTER, "ruka energiya pistolet" },
+	{ ARM_BLASTER, "energiya ruka pistolet" },
+	{ CUTTING_LASER, "lazernoy rezki" },
+	{ RAYGUN, "luchevaya pushka" },
+	{ BLASTER_BOLT, "blastera" },
+	{ HEAVY_BLASTER_BOLT, "boyepripasov tyazhelyye energii" },
+	{ LASER_BEAM, "lazernyy luch" },
+	{ BFG_AMMO, "bol'shoy grebanyy pistolet boyepripasy" },
+	{ SEDGE_HAT, "osoka shlyape" },
+	{ SKULLCAP, "tyubeteyka" },
+	{ FLACK_HELMET, "zenitnaya artilleriya shlem" },
+	{ CRYSTAL_HELM, "kristall rulya" },
+	{ ELVEN_TOGA, "el'fiyskiy khalat" },
+	{ NOBLE_S_DRESS, "blagorodnyy plat'ye" },
+	{ CONSORT_S_SUIT, "supruga kostyum" },
+	{ FORCE_ARMOR, "sila bronya" },
+	{ HEALER_UNIFORM, "tselitel' ravnomernoye" },
+	{ JUMPSUIT, "kombinezon" },
+	{ BLACK_DRESS, "chernoye plat'ye" },
+	{ BODYGLOVE, "perchatki tela" },
+	{ ALCHEMY_SMOCK, "alkhimiya khalat" },
+	{ LEO_NEMAEUS_HIDE, "moguchiy lev pal'to" },
+	{ CRYSTAL_SHIELD, "kristall shchit" },
+	{ ORIHALCYON_GAUNTLETS, "redkiye mineral'nyye perchatki" },
+	{ CRYSTAL_BOOTS, "khrustal'nyye sapogi" },
+	{ RIN_ALACRITY, "gotovnost'" },
+	{ AMULET_VERSUS_CURSES, "amulet of predotvrashcheniye proklyatiye" },
+	{ SCR_WARD, "podopechnyy" },
+	{ SCR_WARDING, "obereg" },
+	{ MAGICITE_CRYSTAL, "okonchatel'nyy kristallicheskiy fantaziya" },
+	{ SMALL_PIECE_OF_UNREFINED_MITHR, "malen'kiy kusochek nerafinirovannogo mifrilom" },
+	{ SILVER_SLINGSTONE, "serebro brosaya kamen'" },
+
 	{0, "" }
 };
 
@@ -2312,6 +2365,54 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ELYSIUM_HOSTAGE_CHAIN, "eliziy garovga zanjir" },
 	{ BLINDING_VENOM, "ko'r zahar" },
 
+	{ GOLDEN_ARROW, "oltin o'q" },
+	{ ANCIENT_ARROW, "qadimgi o'q" },
+	{ SPIKE, "boshoq" },
+	{ SICKLE, "o'roqsimon" },
+	{ ELVEN_SICKLE, "erda alf o'roq" },
+	{ SCYTHE, "bog 'chalg'i" },
+	{ MOON_AXE, "oy bolta" },
+	{ VIBROBLADE, "tebranish pichoq" },
+	{ CRYSTAL_SWORD, "billur qilich" },
+	{ ELVEN_LANCE, "erda alf lens" },
+	{ ELVEN_MACE, "erda alf moja" },
+	{ SILVER_KHAKKHARA, "to'rt xodimlari tomonidan bo'lingan kumush bir" },
+	{ IRON_BAR, "temir bo'lagi" },
+	{ FLINTLOCK, "cakmakli" },
+	{ BFG, "katta iblisona kun" },
+	{ HAND_BLASTER, "qo'l imkon" },
+	{ ARM_BLASTER, "osongina imkon" },
+	{ CUTTING_LASER, "chiqib ketish lazer" },
+	{ RAYGUN, "nuridir kun" },
+	{ BLASTER_BOLT, "imkon murvat" },
+	{ HEAVY_BLASTER_BOLT, "og'ir imkon murvat" },
+	{ LASER_BEAM, "lazer nur" },
+	{ BFG_AMMO, "katta iblisona kun o'q" },
+	{ SEDGE_HAT, "qamish xet" },
+	{ SKULLCAP, "do'ppi" },
+	{ FLACK_HELMET, "zenit artilleriyasi zarbdan" },
+	{ CRYSTAL_HELM, "billur rul" },
+	{ ELVEN_TOGA, "erda alf ustki" },
+	{ NOBLE_S_DRESS, "ezgu kiyim" },
+	{ CONSORT_S_SUIT, "er kostyum" },
+	{ FORCE_ARMOR, "kuch zirh" },
+	{ HEALER_UNIFORM, "davolovchi bir xil" },
+	{ JUMPSUIT, "ueniforma" },
+	{ BLACK_DRESS, "qora libos" },
+	{ BODYGLOVE, "tana qo'lqop" },
+	{ ALCHEMY_SMOCK, "simya maxsus kiyim" },
+	{ LEO_NEMAEUS_HIDE, "qudratli yo'lbars plash" },
+	{ CRYSTAL_SHIELD, "kristalli qalqoni" },
+	{ ORIHALCYON_GAUNTLETS, "nodir ma'dan qo'lqop" },
+	{ CRYSTAL_BOOTS, "billur chizilmasin" },
+	{ RIN_ALACRITY, "tayyor turish" },
+	{ AMULET_VERSUS_CURSES, "la'nati oldini olish" },
+	{ SCR_WARD, "palata" },
+	{ SCR_WARDING, "saqlanish" },
+	{ MAGICITE_CRYSTAL, "yakuniy hayoliy billur" },
+	{ SMALL_PIECE_OF_UNREFINED_MITHR, "qayta nodir metall kichik bo'lak" },
+	{ SILVER_SLINGSTONE, "kumush ketgan tosh" },
+
 	{0, "" }
 };
 
@@ -2770,7 +2871,7 @@ register struct obj *obj;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MINERAL) ? "stone" : "gem";
+			    (ocl->oc_material == MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == SILVER_SLINGSTONE) ? "stone" : "gem";
 		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) {
 		    Strcpy(buf, rock);
 		} else if (!nn) {
@@ -3225,7 +3326,7 @@ ring:
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight))
 		        Sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */
@@ -4107,8 +4208,16 @@ const char *oldstr;
 			}
 
 			if (!BSTRCMPI(bp, p-6, "gloves") ||
+                      !BSTRCMPI(bp, p-7, "clothes") ||
 			    !BSTRCMP(bp, p-6, "lenses") ||
                             !BSTRCMPI(bp, p-5, "shoes") ||
+                           !BSTRCMPI(bp, p-4, "toes") ||
+                           !BSTRCMPI(bp, p-9, "overknees") ||
+                           !BSTRCMPI(bp, p-13, "versus curses") ||
+                           !BSTRCMPI(bp, p-8, "floppies") ||
+                           !BSTRCMPI(bp, p-13, "glass devices") ||
+                           !BSTRCMPI(bp, p-11, "tail spikes") ||
+                           !BSTRCMPI(bp, p-10, "tailspikes") ||
                             !BSTRCMPI(bp, p-6, "scales"))
 				return bp;
 
@@ -4117,6 +4226,23 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-6, "tricks") ||
                            !BSTRCMPI(bp, p-9, "paralysis") ||
                            !BSTRCMPI(bp, p-5, "glass") ||
+                           !BSTRCMPI(bp, p-5, "dress") ||
+                           !BSTRCMPI(bp, p-5, "girls") ||
+                           !BSTRCMPI(bp, p-6, "storms") ||
+                           !BSTRCMPI(bp, p-7, "sandals") ||
+                           !BSTRCMPI(bp, p-9, "mocassins") ||
+                           !BSTRCMPI(bp, p-8, "sneakers") ||
+                           !BSTRCMPI(bp, p-5, "pumps") ||
+                           !BSTRCMPI(bp, p-5, "heels") ||
+                           !BSTRCMPI(bp, p-16, "combat stilettos") ||
+                           !BSTRCMPI(bp, p-4, "loss") ||
+                           !BSTRCMPI(bp, p-5, "stats") ||
+                           !BSTRCMPI(bp, p-5, "cards") ||
+                           !BSTRCMPI(bp, p-6, "clouds") ||
+                           !BSTRCMPI(bp, p-4, "boss") ||
+                           !BSTRCMPI(bp, p-6, "wounds") ||
+                           !BSTRCMPI(bp, p-13, "max hitpoints") ||
+                           !BSTRCMPI(bp, p-5, "items") ||
                            !BSTRCMPI(bp, p-4, "ness") ||
                            !BSTRCMPI(bp, p-14, "shape changers") ||
                            !BSTRCMPI(bp, p-15, "detect monsters") ||
@@ -5497,11 +5623,9 @@ struct obj *cloak;
 	    return "wrapping";
 	case LAB_COAT:
 	    return "coat";
-#ifdef ALCHEMY_SMOCK
 	case ALCHEMY_SMOCK:
 	    return (objects[cloak->otyp].oc_name_known &&
 			cloak->dknown) ? "smock" : "apron";
-#endif
 	default:
 	    break;
 	}

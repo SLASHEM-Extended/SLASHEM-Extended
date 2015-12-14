@@ -432,6 +432,9 @@ giveback:
 	      case RIN_DISARMING:
 		    pline("The water flow pauses for a moment.");
 		    break;
+	      case RIN_ALACRITY:
+		    pline("The water flow becomes extremely fast for a moment!");
+		    break;
 	      case RIN_NASTINESS:
 		    pline("The water looks extremely disgusting for a moment.");
 		    break;

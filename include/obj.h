@@ -263,6 +263,7 @@ struct obj {
 #define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
 				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
 				|| (otmp)->otyp == ELVEN_CLOAK\
+				|| (otmp)->otyp == ELVEN_TOGA\
 				|| (otmp)->otyp == ELVEN_SHIELD\
 				|| (otmp)->otyp == ELVEN_BOOTS)
 #define is_orcish_armor(otmp)	((otmp)->otyp == ORCISH_HELM\
@@ -432,6 +433,8 @@ struct obj {
 /* Elven gear */
 #define is_elven_weapon(otmp)	((otmp)->otyp == ELVEN_ARROW\
 				|| (otmp)->otyp == ELVEN_SPEAR\
+				|| (otmp)->otyp == ELVEN_MACE\
+				|| (otmp)->otyp == ELVEN_LANCE\
 				|| (otmp)->otyp == ELVEN_DAGGER\
 				|| (otmp)->otyp == ELVEN_SHORT_SWORD\
 				|| (otmp)->otyp == ELVEN_BROADSWORD\
@@ -564,6 +567,8 @@ struct obj {
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
 				 (obj)->otyp == MANASTONE || \
+				 (obj)->otyp == SMALL_PIECE_OF_UNREFINED_MITHR || \
+				 (obj)->otyp == SILVER_SLINGSTONE || \
 				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
 				 (obj)->otyp == LOADBOULDER || \
 				 (obj)->otyp == SLEEPSTONE || \

@@ -2204,6 +2204,8 @@ register const char *let,*word;
 			|| otmp->otyp == T_SHIRT
 			|| otmp->otyp == STRIPED_SHIRT
 			|| otmp->otyp == HAWAIIAN_SHIRT
+			|| otmp->otyp == BLACK_DRESS
+			|| otmp->otyp == BODYGLOVE
 			|| otmp->otyp == RUFFLED_SHIRT
 			|| otmp->otyp == VICTORIAN_UNDERWEAR
 #endif
@@ -4509,6 +4511,8 @@ struct obj *obj;
 				pline("This razor-sharp knife cuts meat like butter. It can be thrown."); break;
 			case AXE: 
 				pline("A standard axe that does moderate damage. It can be used to chop down trees."); break;
+			case MOON_AXE: 
+				pline("This silver axe does more damage than a standard axe and is super-effective versus undead. It can be used to chop down trees."); break;
 			case BATTLE_AXE: 
 				pline("A heavy two-handed axe that does moderate damage. It can be used to chop down trees."); break;
 			case DWARVISH_MATTOCK: 
@@ -4517,6 +4521,8 @@ struct obj *obj;
 				pline("The weakest short sword in the game. It is inferior to other short swords in every way."); break;
 			case SHORT_SWORD: 
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
+			case VIBROBLADE: 
+				pline("This object looks like a penis (LOL) and is made of plastic but otherwise it's exactly the same as a bog-standard short sword."); break;
 			case DROVEN_SHORT_SWORD: 
 				pline("Ever wanted a short sword that can actually hit armored enemies? Then this is for you. Don't throw it though."); break;
 			case SILVER_SHORT_SWORD: 
@@ -4535,6 +4541,8 @@ struct obj *obj;
 				pline("Far better than a regular broadsword, this weapon has the highest base damage among all broadswords in the game."); break;
 			case LONG_SWORD: 
 				pline("A basic long sword that does respectable damage."); break;
+			case CRYSTAL_SWORD: 
+				pline("A basic long sword that breaks when thrown. Use it in melee instead."); break;
 			case SILVER_LONG_SWORD: 
 				pline("A long sword that does respectable damage, with a bonus against undead."); break;
 			case KATANA: 
@@ -4573,6 +4581,8 @@ struct obj *obj;
 				pline("The main use of this mace is to bash undead, which take extra damage from it."); break;
 			case MACE: 
 				pline("A mace. It's quite a weak weapon, actually."); break;
+			case ELVEN_MACE: 
+				pline("A mace made of wood. It's slightly better than a standard mace."); break;
 			case FLANGED_MACE: 
 				pline("This mace does moderate damage but it's nothing to get excited about."); break;
 			case REINFORCED_MACE: 
@@ -4617,8 +4627,12 @@ struct obj *obj;
 				pline("A heavy boot with spikes made of steel. Excellent for bashing monsters. It uses the hammer skill."); break;
 			case QUARTERSTAFF: 
 				pline("The basic quarterstaff is a two-handed weapon that does pitiful damage compared to other two-handers."); break;
+			case SILVER_KHAKKHARA: 
+				pline("Don't bother unless you're looking for a quarterstaff that does extra damage to undead and demons."); break;
 			case BATTLE_STAFF: 
 				pline("A metal quarterstaff that does relatively good damage but requires both hands."); break;
+			case IRON_BAR: 
+				pline("This is a two-handed quarterstaff made of iron. It does moderately good damage."); break;
 			case PARTISAN: 
 				pline("A balanced two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case GLAIVE: 
@@ -4643,6 +4657,12 @@ struct obj *obj;
 				pline("A ferocious two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case BEC_DE_CORBIN: 
 				pline("A strong two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case SICKLE: 
+				pline("A weak one-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case ELVEN_SICKLE: 
+				pline("A useful one-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case SCYTHE: 
+				pline("An extra-damaging two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case ORCISH_SPEAR: 
 				pline("The weakest of the spears. It can be thrown."); break;
 			case SPEAR: 
@@ -4671,6 +4691,8 @@ struct obj *obj;
 				pline("This weapon is a much stronger version of the lance. Apply it to hit monsters from far away, or melee monsters with it while riding to joust (but that can cause the lance to break)."); break;
 			case DROVEN_LANCE: 
 				pline("Apply it to hit monsters from far away, joust monsters with it while riding (and risk breaking it), but NEVER throw it or it will definitely break."); break;
+			case ELVEN_LANCE: 
+				pline("Apply it to hit monsters from far away or joust monsters with it while riding (and risk breaking it)."); break;
 			case FORCE_PIKE: 
 				pline("One of Chris_ANG's creations, this weapon is in fact a lance. Apply it to hit monsters from far away. You can also joust monsters with it while riding, but that may cause it to break."); break;
 			case ORCISH_BOW: 
@@ -4687,6 +4709,10 @@ struct obj *obj;
 				pline("The weakest type of arrow. These are meant to be put in a quiver and shot with a bow."); break;
 			case ARROW: 
 				pline("A standard arrow. These are meant to be put in a quiver and shot with a bow."); break;
+			case GOLDEN_ARROW: 
+				pline("Arrows made of pure gold. They deal significant amounts of damage when shot with a bow."); break;
+			case ANCIENT_ARROW: 
+				pline("This metal arrow can be fired with a bow to deal good damage to enemies."); break;
 			case SILVER_ARROW: 
 				pline("An arrow that does more damage to undead. These are meant to be put in a quiver and shot with a bow."); break;
 			case ELVEN_ARROW: 
@@ -4701,6 +4727,18 @@ struct obj *obj;
 				pline("A much better version of the sling that shoots more rocks at once and also grants significant bonuses to hit. You can quiver rocks and gems to fire."); break;
 			case PISTOL: 
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
+			case FLINTLOCK: 
+				pline("You can theoretically use this firearm to shoot single bullets at monsters, but I'd advise you to use an actual pistol instead."); break;
+			case BFG: 
+				pline("An atomic weapon of mass destruction, this bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
+			case HAND_BLASTER: 
+				pline("A low-range energy gun with a fairly good rate of fire."); break;
+			case ARM_BLASTER: 
+				pline("PEW PEW PEW! This gun fires streams of laser ammo at your enemies."); break;
+			case CUTTING_LASER: 
+				pline("If you need an energy gun capable of hitting enemies standing up to 3 squares away, this thing might be useful. Don't try to shoot monsters standing any farther away though."); break;
+			case RAYGUN: 
+				pline("This energy gun shoots laser ammo at a good rate of fire over medium distances."); break;
 			case SUBMACHINE_GUN: 
 				pline("An automatic firearm that can fire three bullets in a single round of combat."); break;
 			case HEAVY_MACHINE_GUN: 
@@ -4723,6 +4761,14 @@ struct obj *obj;
 				pline("A metal bullet that can be fired with pistols, submachine guns, rifles of all kinds, and heavy machine guns."); break;
 			case SILVER_BULLET: 
 				pline("A silver bullet that can be fired with pistols, submachine guns, rifles of all kinds, and heavy machine guns. Undead monsters take extra damage from it."); break;
+			case BLASTER_BOLT: 
+				pline("Laser-based ammo to be used by energy guns."); break;
+			case HEAVY_BLASTER_BOLT: 
+				pline("Strong laser-based ammo to be used by energy guns."); break;
+			case LASER_BEAM: 
+				pline("The ultimate energy gun ammo capable of dealing a heck of a lot of damage per shot."); break;
+			case BFG_AMMO: 
+				pline("Only the BFG can fire this type of ammo. The damage per ammo isn't that high, but wait until you see the # of ammo fired per turn!"); break;
 			case SHOTGUN_SHELL: 
 				pline("This shell does a lot of damage if fired with a shotgun."); break;
 			case ROCKET: 
@@ -4749,6 +4795,8 @@ struct obj *obj;
 				pline("These glass arrows can be fired with a bow, doing more damage than regular arrows, but unfortunately they are very likely to break on impact."); break;
 			case DART: 
 				pline("Darts are throwing weapons that are often found in stacks. They deal moderate amounts of damage. Don't bother whacking enemies with them though; they're meant to be thrown."); break;
+			case SPIKE: 
+				pline("A bone dart that can be thrown at enemies."); break;
 			case SHURIKEN: 
 				pline("These razor-sharp throwing stars are the only weapon to use the shuriken skill. Throw them at enemies to slice them into tiny bits."); break;
 			case BOOMERANG: 
@@ -4775,6 +4823,10 @@ struct obj *obj;
 				pline("A shirt that can be worn under a suit of armor. Shopkeepers who see you wearing this thing will overcharge you. It can be read."); break;
 			case T_SHIRT: 
 				pline("A shirt that can be worn under a suit of armor. It can be read."); break;
+			case BLACK_DRESS: 
+				pline("This very lovely piece of cloth (which counts as a shirt) offers medium magic cancellation. It can be read."); break;
+			case BODYGLOVE: 
+				pline("Good thing this item is not unbalanced at all. Just a t-shirt that offers sickness resistance and maximum magic cancel-WAIT WHAT OMG I GOTTA WEAR THIS SO BAD!!! It can be read."); break;
 			case STRIPED_SHIRT: 
 				pline("A shirt that can be worn under a suit of armor. Shopkeepers who see you wearing this will not allow you to enter their shop. It can be read."); break;
 			case RUFFLED_SHIRT: 
@@ -4803,6 +4855,18 @@ struct obj *obj;
 				pline("A low-weight suit of armor that offers good protection and maximum magic cancellation."); break;
 			case GNOMISH_SUIT: 
 				pline("This suit of armor offers very little protection."); break;
+			case ELVEN_TOGA: 
+				pline("Light armor that gives medium magic cancellation."); break;
+			case NOBLE_S_DRESS: 
+				pline("A tank made of mineral that can be worn for great protection and maximum magic cancellation."); break;
+			case CONSORT_S_SUIT: 
+				pline("Low-protection armor. It gives MC though."); break;
+			case FORCE_ARMOR: 
+				pline("Looking for light armor that still gives maximum magic cancellation? Then this is for you."); break;
+			case HEALER_UNIFORM: 
+				pline("Nothing special, although I might make this thing do something if you're actually playing a healer."); break;
+			case JUMPSUIT: 
+				pline("Reflection and MC3! This thing's overpowered, I tell ya!"); break;
 			case CHAIN_MAIL: 
 				pline("A moderately good suit of armor."); break;
 			case DROVEN_CHAIN_MAIL: 
@@ -4905,6 +4969,10 @@ struct obj *obj;
 				pline("This cloak is highly useful as it provides all of the following: maximum magic cancellation, poison resistance and acid resistance."); break;
 			case LEATHER_CLOAK: 
 				pline("A basic cloak that has low magic cancellation."); break;
+			case ALCHEMY_SMOCK:
+				pline("Yes, it's back, and it's got maximum magic cancellation to boot... but unlike the lab coat, it only gives poison resistance."); break;
+			case LEO_NEMAEUS_HIDE:
+				pline("Good AC and half physical damage might almost make this cloak worth using, but it doesn't give any magic cancellation at all..."); break;
 			case PLASTEEL_CLOAK: 
 				pline("A lightweight cloak with medium magic cancellation and robust armor class."); break;
 			case CLOAK_OF_PROTECTION: 
@@ -4985,6 +5053,14 @@ struct obj *obj;
 				pline("Good protection and maximum magic cancellation, but this helmet prevents you from performing certain actions."); break;
 			case HELMET:
 				pline("A standard helmet that can be worn for protection."); break;
+			case SEDGE_HAT:
+				pline("The main use of this helm is to give you acid resistance."); break;
+			case SKULLCAP:
+				pline("Nothing special, just a helmet made of iron."); break;
+			case FLACK_HELMET:
+				pline("Extra line of sight, good AC and low magic cancellation make this helmet worth using."); break;
+			case CRYSTAL_HELM:
+				pline("This glass helmet gives low magic cancellation but its main trait is the very good AC it grants."); break;
 			case HELM_OF_OBSCURED_DISPLAY:
 				pline("This helmet causes display loss. It has good AC and medium magic cancellation."); break;
 			case HELM_OF_LOSE_IDENTIFICATION:
@@ -5049,6 +5125,8 @@ struct obj *obj;
 				pline("This pair of gloves offers good protection and enhances your ability to use the force."); break;
 			case LEATHER_GLOVES:
 				pline("A standard pair of gloves that offers little protection."); break;
+			case ORIHALCYON_GAUNTLETS:
+				pline("It doesn't matter whether you're able to spell the name of this item. What does matter is that wearing it gives motherfucking magic resistance!!!!!111oneoneone"); break;
 			case GAUNTLETS_OF_FUMBLING:
 				pline("You will fumble if you put on this pair of gloves. They are usually generated cursed."); break;
 			case GAUNTLETS_OF_SLOWING:
@@ -5101,6 +5179,8 @@ struct obj *obj;
 				pline("A good shield that offers solid armor class."); break;
 			case STEEL_SHIELD:
 				pline("This metal shield can deflect lots of attacks."); break;
+			case CRYSTAL_SHIELD:
+				pline("This glass shield can deflect lots of attacks and also gives MC1."); break;
 			case LARGE_SHIELD:
 				pline("A shield made of iron with a very good armor value."); break;
 			case DWARVISH_ROUNDSHIELD:
@@ -5158,6 +5238,8 @@ struct obj *obj;
 				pline("Don't bother wearing these things. Find a better pair of footwear instead."); break;
 			case HIGH_BOOTS:
 				pline("These boots offer moderate protection when worn."); break;
+			case CRYSTAL_BOOTS:
+				pline("A pair of boots that offers high armor class."); break;
 			case WEDGE_SANDALS:
 				pline("A lovely pair of high-heeled women's sandals that provides no protection but looks pretty."); break;
 			case DANCING_SHOES:
@@ -5277,6 +5359,8 @@ struct obj *obj;
 				pline("Most shapeshifters are forced back into their natural form if you wear this ring, and they are prevented from changing form too."); break;
 			case RIN_SLEEPING: 
 				pline("Wearing this ring causes you to fall asleep. It is usually generated cursed."); break;
+			case RIN_ALACRITY: 
+				pline("Wanna be fast? Sure you do. But this ring makes you *very* fast, so it's even better!"); break;
 			case RIN_STEALTH: 
 				pline("You will make less noise if you wear this ring."); break;
 			case RIN_MEMORY: 
@@ -5393,6 +5477,8 @@ struct obj *obj;
 				pline("If you wear this amulet, you only have 5 turns to live before it kills you. It is usually generated cursed."); break;
 			case AMULET_OF_PREMATURE_DEATH:
 				pline("Wanna die? Wear this! :-P"); break;
+			case AMULET_VERSUS_CURSES:
+				pline("This amulet, when worn, is one of very few ways to resist the generic 'curse items' effect. It has been invented by Chris_ANG."); break;
 			case AMULET_OF_UNCHANGING:
 				pline("This amulet prevents you from changing form. If something tries to force you out of a polymorphed form while wearing this amulet, you might die instantly."); break;
 			case AMULET_VERSUS_POISON:
@@ -5877,6 +5963,10 @@ struct obj *obj;
 				pline("You will forget some of your spells as well as the current level's layout if you read this scroll."); break;
 			case SCR_BAD_EFFECT: 
 				pline("Causes a randomly selected bad effect if read."); break;
+			case SCR_WARD: 
+				pline("You will become temporarily resistant to physical damage when reading this scroll."); break;
+			case SCR_WARDING: 
+				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
 			case SCR_HEALING: 
 				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points."); break;
 			case SCR_MANA: 
@@ -6386,6 +6476,8 @@ struct obj *obj;
 
 			case DILITHIUM_CRYSTAL:
 				pline("A white gem with a mohs hardness of 5, worth 4500 zorkmids."); break;
+			case MAGICITE_CRYSTAL:
+				pline("A blue gem with a mohs hardness of 11, worth 5000 zorkmids."); break;
 			case WONDER_STONE:
 				pline("An invisible gem with a mohs hardness of 13, worth 5000 zorkmids."); break;
 			case DIAMOND:
@@ -6510,6 +6602,10 @@ struct obj *obj;
 				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it; if you try to pick it up, you will always do so even if it would overburden you! It's okay to pick one up if you are a giant, though."); break;
 			case FLINT:
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
+			case SMALL_PIECE_OF_UNREFINED_MITHR:
+				pline("It's just a disguised rock that can be fired with a sling, and the main purpose it serves is to re-obscure the identification of actually useful gray stones..."); break;
+			case SILVER_SLINGSTONE:
+				pline("Flint stones are good sling ammunition, but ones made of silver are even better as long as the opponent is a silver-hating monster (certain undead and demons qualify)."); break;
 			case ROCK:
 				pline("This is a basic rock that can be thrown, but firing it with a sling does more damage."); break;
 			case RIGHT_MOUSE_BUTTON_STONE:

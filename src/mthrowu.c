@@ -86,6 +86,9 @@ const char *name;	/* if null, then format `obj' */
 		case STEEL_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case CRYSTAL_SHIELD:
+			shieldblockrate = 45;
+			break;
 		case SHIELD_OF_REFLECTION:
 			shieldblockrate = 35;
 			break;

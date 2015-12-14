@@ -584,6 +584,11 @@ rndcurse()			/* curse a few inventory items at random! */
 	    return;
 	}
 
+	if (Versus_curses && rn2(20)) { /* curse resistance, by Chris_ANG */
+		pline("A malignant aura surrounds you but is absorbed by your magical shield!");
+	    return;
+	}
+
 	else if(u.ukinghill && rn2(20)){
 	    You(mal_aura, "the cursed treasure chest");
 		otmp = 0;
@@ -665,7 +670,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(178)) {
+	switch(rnd(179)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1224,6 +1229,15 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HKeen_memory & TIMEOUT) {
 			HKeen_memory &= ~TIMEOUT;
 			You_feel("a case of selective amnesia...");
+		}
+		break;
+	case 177: if (HVersus_curses & INTRINSIC) {
+			HVersus_curses &= ~INTRINSIC;
+			You_feel("cursed!");
+		}
+		if (HVersus_curses & TIMEOUT) {
+			HVersus_curses &= ~TIMEOUT;
+			You_feel("cursed!");
 		}
 		break;
 	default: break;

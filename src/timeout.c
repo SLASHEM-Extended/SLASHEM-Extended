@@ -548,7 +548,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(111)) {
+		switch (rnd(113)) {
 
 			case 1:
 			case 2:
@@ -804,13 +804,21 @@ nh_timeout()
 			case 111:
 				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
 				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
+				pline("You are prevented from having curse resistance!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(111)) {
+		switch (rnd(113)) {
 
 			case 1:
 			case 2:
@@ -1066,13 +1074,21 @@ nh_timeout()
 			case 111:
 				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
 				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
+				pline("You are prevented from having curse resistance!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(111)) {
+		switch (rnd(113)) {
 
 			case 1:
 			case 2:
@@ -1328,6 +1344,14 @@ nh_timeout()
 			case 111:
 				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
 				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
+				pline("You are prevented from having curse resistance!");
 				break;
 			}
 	}
@@ -2493,6 +2517,12 @@ nh_timeout()
 			break;
 		case DEAC_KEEN_MEMORY:
 			pline("You are no longer prevented from having keen memory.");
+			break;
+		case DEAC_SIGHT_BONUS:
+			pline("You are no longer prevented from having extra sight.");
+			break;
+		case DEAC_VERSUS_CURSES:
+			pline("You are no longer prevented from having curse resistance.");
 			break;
 		case DEAC_THE_FORCE:
 			pline("You are no longer prevented from using the force like a real jedi.");

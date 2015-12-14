@@ -646,16 +646,16 @@ vision_recalc(control)
 	    }
 	}
 
-	if (has_night_vision && u.xray_range < u.nv_range) {
-	    if (!u.nv_range) {	/* range is 0 */
+	if (has_night_vision && u.xray_range < (u.nv_range + Sight_bonus) ) {
+	    if (!(u.nv_range + Sight_bonus) ) {	/* range is 0 */
 		next_array[u.uy][u.ux] |= IN_SIGHT;
 		levl[u.ux][u.uy].seenv = SVALL;
 		next_rmin[u.uy] = min(u.ux, next_rmin[u.uy]);
 		next_rmax[u.uy] = max(u.ux, next_rmax[u.uy]);
-	    } else if (u.nv_range > 0) {
-		ranges = circle_ptr(u.nv_range);
+	    } else if ( (u.nv_range + Sight_bonus) > 0) {
+		ranges = circle_ptr(u.nv_range + Sight_bonus);
 
-		for (row = u.uy-u.nv_range; row <= u.uy+u.nv_range; row++) {
+		for (row = u.uy-(u.nv_range + Sight_bonus); row <= u.uy+(u.nv_range + Sight_bonus); row++) {
 		    if (row < 0) continue;	if (row >= ROWNO) break;
 		    dy = v_abs(u.uy-row);	next_row = next_array[row];
 

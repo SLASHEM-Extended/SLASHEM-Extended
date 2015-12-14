@@ -4921,7 +4921,7 @@ newboss:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(111)) {
+				 switch (rnd(113)) {
 
 					case 1:
 					case 2:
@@ -5178,6 +5178,14 @@ newboss:
 						u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from using the force like a real jedi!");
 						break;
+					case 112:
+						u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having extra sight!");
+						break;
+					case 113:
+						u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having curse resistance!");
+						break;
 				}
 
 			}
@@ -5340,7 +5348,7 @@ newboss:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(111)) {
+		 switch (rnd(113)) {
 
 			case 1:
 			case 2:
@@ -5596,6 +5604,14 @@ newboss:
 			case 111:
 				u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having curse resistance!");
 				break;
 			}
 

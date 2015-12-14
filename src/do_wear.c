@@ -111,6 +111,7 @@ Boots_on()
 	case LOW_BOOTS:
 	case IRON_SHOES:
 	case HIGH_BOOTS:
+	case CRYSTAL_BOOTS:
 	case GNOMISH_BOOTS:
 	case WEDGE_SANDALS:
 	case FEMININE_PUMPS:
@@ -250,6 +251,7 @@ Boots_off()
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
 	case HIGH_BOOTS:
+	case CRYSTAL_BOOTS:
 	case JUMPING_BOOTS:
 	case KICKING_BOOTS:
 	case FIRE_BOOTS:
@@ -297,6 +299,8 @@ Cloak_on()
 	case CLOAK_OF_MAGIC_RESISTANCE:
 	case CLOAK_OF_REFLECTION:
 	case ROBE:
+	case ALCHEMY_SMOCK:
+	case LEO_NEMAEUS_HIDE:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
@@ -423,6 +427,8 @@ Cloak_off()
 	case CLOAK_OF_DEATH:
 	case OILSKIN_CLOAK:
 	case ROBE:
+	case ALCHEMY_SMOCK:
+	case LEO_NEMAEUS_HIDE:
 	case PLASTEEL_CLOAK:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
@@ -494,6 +500,9 @@ Helmet_on()
 #endif
 	case HELMET:
 	case HELM_OF_STEEL:
+	case SEDGE_HAT:
+	case SKULLCAP:
+	case CRYSTAL_HELM:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
 	case GNOMISH_HELM:
@@ -507,6 +516,9 @@ Helmet_on()
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
 	case HELM_OF_HUNGER:
+		break;
+	case FLACK_HELMET:
+		vision_full_recalc = 1;
 		break;
 	case HELM_OF_SENSORY_DEPRIVATION:
 		if (!uarmh->cursed) {
@@ -610,6 +622,9 @@ Helmet_off()
 	case PLASTEEL_HELM:
 #endif
 	case HELMET:
+	case SEDGE_HAT:
+	case SKULLCAP:
+	case CRYSTAL_HELM:
 	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
@@ -645,6 +660,9 @@ Helmet_off()
 	case FIRE_HELMET:
 	case HELM_OF_DISCOVERY:
 	    break;
+	case FLACK_HELMET:
+		vision_full_recalc = 1;
+		break;
 	case DUNCE_CAP:
 	    flags.botl = 1;
 	    break;
@@ -690,6 +708,7 @@ Gloves_on()
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_SLOWING:
 	case GAUNTLETS_OF_REFLECTION:
+	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
 		break;
@@ -756,6 +775,7 @@ Gloves_off()
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_REFLECTION:
+	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_SLOWING:
 	case MENU_NOSE_GLOVES:
 	case UNWIELDY_GLOVES:
@@ -834,6 +854,7 @@ Shield_on()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
 	case ICE_SHIELD:
@@ -876,6 +897,7 @@ Shield_off()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
 	case ICE_SHIELD:
@@ -2390,6 +2412,7 @@ find_ac()
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarm && uarm->otyp == DWARVISH_MITHRIL_COAT) uac -= 1;
 	if ((Race_if(PM_DROW) || Role_if(PM_TWELPH)) && uarm && uarm->otyp == DARK_ELVEN_MITHRIL_COAT) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarm && uarm->otyp == ELVEN_MITHRIL_COAT) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarm && uarm->otyp == ELVEN_TOGA) uac -= 1;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarm && uarm->otyp == GNOMISH_SUIT) uac -= 2;
 	if (Race_if(PM_ORC) && uarm && (uarm->otyp == ORCISH_CHAIN_MAIL || uarm->otyp == ORCISH_RING_MAIL) ) uac -= 1;
 

@@ -111,6 +111,8 @@ struct objclass {
 #define WP_SHELL	2
 #define WP_ROCKET	3
 #define WP_GRENADE	4
+#define WP_BLASTER	5
+#define WP_BFG	6
 
 #define a_ac		oc_oc1	/* armor class, used in ARM_BONUS in do.c */
 #define a_can		oc_oc2		/* armor: used in mhitu.c */

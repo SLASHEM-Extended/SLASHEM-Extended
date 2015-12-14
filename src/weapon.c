@@ -219,6 +219,8 @@ struct monst *mon;
 	/* polearms versus golems */
 	if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) tmp += 3;
 
+	if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) tmp += 10;
+
 	/* electric sword versus quantum mechanic */
 	if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) tmp += 10;
 
@@ -334,6 +336,7 @@ struct monst *mon;
 
 		case BATTLE_AXE:
 		case BARDICHE:
+		case SCYTHE:
 		case STYGIAN_PIKE:
 		case TRIDENT:		tmp += d(2,4); break;
 
@@ -368,6 +371,7 @@ struct monst *mon;
 		case CROSSBOW_BOLT:
 		case DROVEN_BOLT:
 		case MACE:
+		case ELVEN_MACE:
 		case SILVER_MACE:
 		case FLANGED_MACE:
 		case REINFORCED_MACE:
@@ -382,6 +386,7 @@ struct monst *mon;
 
 		case BATTLE_AXE:
 		case BARDICHE:
+		case SCYTHE:
 		case BILL_GUISARME:
 		case GUISARME:
 		case LUCERN_HAMMER:
@@ -533,6 +538,8 @@ struct monst *mon;
 	    /* polearms versus golems */
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
 
+	    if ((otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
+
 	    /* electric sword versus quantum mechanic */
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
 
@@ -614,6 +621,7 @@ struct monst *mon;
 
 		case BATTLE_AXE:
 		case BARDICHE:
+		case SCYTHE:
 		case STYGIAN_PIKE:
 		case TRIDENT:		tmp += d(2,4); break;
 
@@ -648,6 +656,7 @@ struct monst *mon;
 		case CROSSBOW_BOLT:
 		case DROVEN_BOLT:
 		case MACE:
+		case ELVEN_MACE:
 		case SILVER_MACE:
 		case FLANGED_MACE:
 		case REINFORCED_MACE:
@@ -662,6 +671,7 @@ struct monst *mon;
 
 		case BATTLE_AXE:
 		case BARDICHE:
+		case SCYTHE:
 		case BILL_GUISARME:
 		case GUISARME:
 		case LUCERN_HAMMER:
@@ -1004,6 +1014,16 @@ struct monst *mon;
 
 		}
 
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(8);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(16);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(25);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(34);
+		}
+
 	    /* electric sword versus quantum mechanic */
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
 
@@ -1127,23 +1147,26 @@ static NEARDATA const int rwep[] =
 	SPOON,
 #endif
 #ifdef FIREARMS
-	FRAG_GRENADE, GAS_GRENADE, ROCKET, SILVER_BULLET, BULLET, SHOTGUN_SHELL,
+	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET,
+	LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT, SILVER_BULLET, BULLET, SHOTGUN_SHELL,
 #endif
-	TORPEDO, SPIRIT_THROWER, DROVEN_SPEAR, DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR, SPEAR, ORCISH_SPEAR,
-	JAVELIN, SHURIKEN, DROVEN_ARROW, YA, SILVER_ARROW, DROVEN_DAGGER, ELVEN_ARROW, DARK_ELVEN_ARROW, 
+	LOADBOULDER, TORPEDO, SPIRIT_THROWER, DROVEN_SPEAR, DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR, SPEAR, ORCISH_SPEAR,
+	JAVELIN, SHURIKEN, DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, 
+	YA, SILVER_ARROW, DROVEN_DAGGER, ELVEN_ARROW, DARK_ELVEN_ARROW, 
 	ARROW, ORCISH_ARROW, DROVEN_BOLT, CROSSBOW_BOLT, GREAT_DAGGER, SILVER_DAGGER, ELVEN_DAGGER, 
-	DARK_ELVEN_DAGGER, DAGGER, ORCISH_DAGGER, KNIFE, FLINT, ROCK, 
-	LOADSTONE, STONE_OF_MAGIC_RESISTANCE, 
+	DARK_ELVEN_DAGGER, DAGGER, ORCISH_DAGGER, KNIFE, LOADSTONE, SILVER_SLINGSTONE, FLINT, 
+	SMALL_PIECE_OF_UNREFINED_MITHR, ROCK, 
+	STONE_OF_MAGIC_RESISTANCE, 
 
-	LOADBOULDER, SLEEPSTONE, MANASTONE,
-	SALT_CHUNK, TOUCHSTONE, HEALTHSTONE, WHETSTONE, LUCKSTONE, DART,
+	SLEEPSTONE, MANASTONE,
+	SALT_CHUNK, TOUCHSTONE, HEALTHSTONE, WHETSTONE, LUCKSTONE, DART, SPIKE,
 	/* BOOMERANG, */ CREAM_PIE
 	/* note: CREAM_PIE should NOT be #ifdef KOPS */
 };
 
 static NEARDATA const int pwep[] =
 {	FORCE_PIKE, DROVEN_LANCE, COURSE_LANCE, HALBERD, BARDICHE, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
-	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PARTISAN, LANCE
+	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, LANCE
 };
 
 
@@ -1205,7 +1228,7 @@ register struct monst *mtmp;
 
 	    /* shooting gems from slings; this goes just before the darts */
 	    /* (shooting rocks is already handled via the rwep[] ordering) */
-	    if (rwep[i] == DART && !likes_gems(mtmp->data) &&
+	    if ( (rwep[i] == DART || rwep[i] == SPIKE) && !likes_gems(mtmp->data) &&
 		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
 		    if (otmp->oclass == GEM_CLASS /*&&
@@ -1258,9 +1281,17 @@ register struct monst *mtmp;
 			if (!propellor) propellor = (oselect(mtmp, SNIPER_RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, PISTOL));
+			if (!propellor) propellor = (oselect(mtmp, FLINTLOCK));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL) {
 			propellor = (oselect(mtmp, AUTO_SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, SHOTGUN));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER) {
+			propellor = (oselect(mtmp, ARM_BLASTER));
+			if (!propellor) propellor = (oselect(mtmp, RAYGUN));
+			if (!propellor) propellor = (oselect(mtmp, HAND_BLASTER));
+			if (!propellor) propellor = (oselect(mtmp, CUTTING_LASER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BFG) {
+			propellor = (oselect(mtmp, BFG));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_ROCKET) {
 			propellor = (oselect(mtmp, ROCKET_LAUNCHER));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_GRENADE) {
@@ -1327,13 +1358,14 @@ static const NEARDATA short hwep[] = {
 #endif
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, BLOCK_HEELED_COMBAT_BOOT,
 	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, GOLDEN_SABER, BATTLE_STAFF, REINFORCED_MACE, 
-	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, TRIDENT, LONG_SWORD, OBSID, SPIRIT_THROWER,
+	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, TRIDENT, CRYSTAL_SWORD, LONG_SWORD, OBSID, SPIRIT_THROWER,
 	  DROVEN_SPEAR, DROVEN_DAGGER, ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER, FLANGED_MACE, JAGGED_STAR, STEEL_WHIP,
-	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, DROVEN_SHORT_SWORD, SILVER_MACE,
+	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, VIBROBLADE, DROVEN_SHORT_SWORD, SILVER_MACE,
   	  MORNING_STAR, DARK_ELVEN_SHORT_SWORD, ELVEN_SHORT_SWORD, 
-  	  DWARVISH_SHORT_SWORD, SHORT_SWORD, METAL_CLUB, KNOUT, 
-	  ORCISH_SHORT_SWORD, MACE, AXE, DWARVISH_SPEAR, SILVER_SPEAR,
-	  ELVEN_SPEAR, SPEAR, ORCISH_SPEAR, FLAIL, BULLWHIP, QUARTERSTAFF, INSECT_SQUASHER, BASEBALL_BAT,
+  	  DWARVISH_SHORT_SWORD, SHORT_SWORD, METAL_CLUB, KNOUT, IRON_BAR,
+	  ORCISH_SHORT_SWORD, ELVEN_MACE, MACE, MOON_AXE, AXE, DWARVISH_SPEAR, SILVER_SPEAR,
+	  ELVEN_SPEAR, SPEAR, ORCISH_SPEAR, FLAIL, BULLWHIP, QUARTERSTAFF, SILVER_KHAKKHARA, 
+	  INSECT_SQUASHER, BASEBALL_BAT,
 	  GREAT_DAGGER, JAVELIN, AKLYS, CLUB, PICK_AXE, FLY_SWATTER, 
 
 #ifdef KOPS
@@ -1476,7 +1508,8 @@ register struct monst *mon;
 			/* currently, only 2 types of axe */
 			obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS))
-			    obj = m_carrying(mon, AXE);
+			    obj = m_carrying(mon, MOON_AXE);
+			if (!obj) obj = m_carrying(mon, AXE);
 			break;
 		case NEED_PICK_OR_AXE:
 			/* prefer pick for fewer switches on most levels */
@@ -1484,6 +1517,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS)) {
 			    obj = m_carrying(mon, PICK_AXE);
+			    if (!obj) obj = m_carrying(mon, MOON_AXE);
 			    if (!obj) obj = m_carrying(mon, AXE);
 			}
 			break;

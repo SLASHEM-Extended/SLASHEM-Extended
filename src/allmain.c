@@ -2708,7 +2708,26 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "box of obscure-looking glass devices")) OBJ_DESCR(objects[i]) = "korobka neyasnykh-zazerkal'ye ustroystv";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "candelabrum")) OBJ_DESCR(objects[i]) = "kandelyabr";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver bell")) OBJ_DESCR(objects[i]) = "serebryanyy kolokol'chik";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "splash of venom")) OBJ_DESCR(objects[i]) = "vsplesk yada";	}
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "splash of venom")) OBJ_DESCR(objects[i]) = "vsplesk yada";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "large silver axe")) OBJ_DESCR(objects[i]) = "bol'shoy serebryanoy topor";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray short sword")) OBJ_DESCR(objects[i]) = "seryy korotkiy mech";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver monk's staff")) OBJ_DESCR(objects[i]) = "sotrudniki serebro monakha";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wide conical hat")) OBJ_DESCR(objects[i]) = "whirokiy konicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal disk")) OBJ_DESCR(objects[i]) = "metall kruglyy ob''yekt";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "green bowel")) OBJ_DESCR(objects[i]) = "zelenyy kishechnika";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fish bowl")) OBJ_DESCR(objects[i]) = "ryba shar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "armored black dress")) OBJ_DESCR(objects[i]) = "bronirovannyy chernoye plat'ye";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "loud foppish suit")) OBJ_DESCR(objects[i]) = "gromko modno kostyum";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gemstone-adorned clothing")) OBJ_DESCR(objects[i]) = "dragotsennyy kamen' ukrashennyye odezhdy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clean white clothes")) OBJ_DESCR(objects[i]) = "chistyye belyye odezhdy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver clothes")) OBJ_DESCR(objects[i]) = "serebryanyye odezhdy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tight black clothes")) OBJ_DESCR(objects[i]) = "plotno chernyye odezhdy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "apron")) OBJ_DESCR(objects[i]) = "fartuk";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "lion skin")) OBJ_DESCR(objects[i]) = "lev kozhi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass shield")) OBJ_DESCR(objects[i]) = "steklo shchit";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fighting gloves")) OBJ_DESCR(objects[i]) = "boyevyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass boots")) OBJ_DESCR(objects[i]) = "steklyannyye sapogi";
+	}
 	}
 
 	}
@@ -3064,6 +3083,24 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "candelabrum")) OBJ_DESCR(objects[i]) = "qandil";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver bell")) OBJ_DESCR(objects[i]) = "kumush qo'ng'iroq";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "splash of venom")) OBJ_DESCR(objects[i]) = "zahari sachratmoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "large silver axe")) OBJ_DESCR(objects[i]) = "katta kumush bolta";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray short sword")) OBJ_DESCR(objects[i]) = "kul qisqa qilich";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver monk's staff")) OBJ_DESCR(objects[i]) = "kumush rohiblik xodimlari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wide conical hat")) OBJ_DESCR(objects[i]) = "keng konusning shapka";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal disk")) OBJ_DESCR(objects[i]) = "metall diskda";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "green bowel")) OBJ_DESCR(objects[i]) = "yashil ichak";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fish bowl")) OBJ_DESCR(objects[i]) = "baliq piyola";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "armored black dress")) OBJ_DESCR(objects[i]) = "zirhli qora libos";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "loud foppish suit")) OBJ_DESCR(objects[i]) = "baland havoyi kostyum";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gemstone-adorned clothing")) OBJ_DESCR(objects[i]) = "nodir tosh-bezatilgan kiyim";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clean white clothes")) OBJ_DESCR(objects[i]) = "toza oq kiyim";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver clothes")) OBJ_DESCR(objects[i]) = "kumush kiyim";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tight black clothes")) OBJ_DESCR(objects[i]) = "qattiq qora libos";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "apron")) OBJ_DESCR(objects[i]) = "etak";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "lion skin")) OBJ_DESCR(objects[i]) = "sher teri";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass shield")) OBJ_DESCR(objects[i]) = "shisha qalqon";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fighting gloves")) OBJ_DESCR(objects[i]) = "jang qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass boots")) OBJ_DESCR(objects[i]) = "shisha chizilmasin";
 	}
 	}
 
