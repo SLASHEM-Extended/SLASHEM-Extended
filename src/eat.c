@@ -163,7 +163,7 @@ register struct obj *obj;
 		return (boolean)(obj->oclass == FOOD_CLASS && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
      /* return((boolean)(!!index(comestibles, obj->oclass))); */
-	return (boolean)(obj->oclass == FOOD_CLASS);
+	return (boolean)((obj->oclass == FOOD_CLASS) || (objects[(obj)->otyp].oc_material == VEGGY) || (objects[(obj)->otyp].oc_material == FLESH) ) ;
 }
 
 #endif /* OVL1 */
