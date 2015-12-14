@@ -314,7 +314,7 @@ boolean forcecontrol;
 	}
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
-	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnz(rnd(5000)));
+	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(10000));
 	else if (Race_if(PM_WARPER) && !u.wormpolymorph) {
 		do {
 			/* randomly pick any monster, but reroll if it sucks too much --Amy */

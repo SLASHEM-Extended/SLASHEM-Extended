@@ -4217,7 +4217,7 @@ newboss:
 		    deltrap(trap);	/* delete trap before polymorph */
 		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		    You_feel("a change coming over you.");
-			u.wormpolymorph = (NUMMONS + rnz(rnd(5000)));
+			u.wormpolymorph = (NUMMONS + rnd(10000));
 			u.ughmemory = 1;
 		    polyself(FALSE);
 		}

@@ -15438,7 +15438,7 @@ u_init()
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = (NUMMONS + rnz(rnd(5000)));
+		starlitmonster = (NUMMONS + rnd(10000));
 		starlitattempts++;
 	}
 

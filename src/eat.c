@@ -3759,7 +3759,7 @@ register struct obj *otmp;
 
 	    case UGH_MEMORY_TO_CREATE_INVENTORY:
 
-		u.wormpolymorph = (NUMMONS + rnz(rnd(5000)));
+		u.wormpolymorph = (NUMMONS + rnd(10000));
 		u.ughmemory = 1;
 		polyself(FALSE);
 
