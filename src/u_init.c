@@ -5001,6 +5001,7 @@ u_init()
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
 
 	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
+	struct permonst* starlitv = &mons[PM_ETHEREAL_MISSINGNO];
 
 	struct permonst* randbossa = &mons[PM_EXTRA_FLEECY_BUNDLE];
 	struct permonst* randbossb = &mons[PM_EMMELIE];
@@ -15469,6 +15470,69 @@ u_init()
 
 	starlitu->mflags3 |= 0x40000000L;
 	starlitu->mflags3 |= 0x80000000L;
+
+	/* idea by BarclayII: on-the-fly generation of a missingno */
+
+	starlitv->mname = "ethereal missingno";
+
+	starlitv->mmove = rn2(256);
+	starlitv->ac = rn2(256);
+	starlitv->mr = rn2(256);
+	starlitv->maligntyp = rn2(256);
+
+	attkptr = &starlitv->mattk[0];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+	attkptr = &starlitv->mattk[1];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+	attkptr = &starlitv->mattk[2];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+	attkptr = &starlitv->mattk[3];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+	attkptr = &starlitv->mattk[4];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+	attkptr = &starlitv->mattk[5];
+	attkptr->aatyp = rn2(256);
+	attkptr->adtyp = rn2(256);
+	attkptr->damn = rn2(256);
+	attkptr->damd = rn2(256);
+
+	starlitv->cwt = rn2(32768);
+	starlitv->cnutrit = rn2(32768);
+	starlitv->msound = rn2(256);
+	starlitv->mresists = rn2(1073741824);
+	starlitv->mconveys = rn2(32768);
+	starlitv->mflags1 = rn2(1073741824);
+	starlitv->mflags2 = rn2(1073741824);
+	starlitv->mflags3 = rn2(1073741824);
+
+	if (rn2(2)) starlitv->mresists |= 0x80000000L;
+	if (rn2(2)) starlitv->mflags1 |= 0x80000000L;
+	if (rn2(2)) starlitv->mflags2 |= 0x80000000L;
+
+	starlitv->mflags2 &= ~M2_NOPOLY;
+	starlitv->mflags2 &= ~M2_MERC;
+	starlitv->mflags2 &= ~M2_WERE;
+	starlitv->mflags2 &= ~M2_PNAME;
+	starlitv->mflags2 &= ~M2_PEACEFUL;
+
+	starlitv->mflags3 |= 0x20000000L;
+	starlitv->mflags3 |= 0x40000000L;
+	starlitv->mflags3 |= 0x80000000L;
 
 	randbossa->mmove = 12 + rn2(4);				/* slow to very fast */
 	randbossa->ac = 10 - rn2(16);				/* any AC */
