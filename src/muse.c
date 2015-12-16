@@ -3754,6 +3754,8 @@ struct monst *mtmp;
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
 		/* being magic resistant also offers protection */
 		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
+		/* artifacts are highly resistant */
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 		/* and grease will always offer protection but can wear off */
 		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
@@ -3786,6 +3788,8 @@ struct monst *mtmp;
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your fingers shake violently!");
 		/* being magic resistant also offers protection */
 		else if (Antimagic && rn2(5)) pline("Your fingers shake violently!");
+		/* artifacts are highly resistant */
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your fingers shake violently!");
 		/* and grease will always offer protection but can wear off */
 		else if (otmp2 && otmp2->greased) {
 			pline("Your fingers shake violently!");

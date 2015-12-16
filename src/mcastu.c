@@ -734,6 +734,7 @@ int spellnum;
 
 		if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
 			 if (!rn2(2)) {

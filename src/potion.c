@@ -506,7 +506,7 @@ badeffect()
 	int nastytrapdur;
 	int blackngdur;
 
-	switch (rnd(372)) {
+	switch (rnd(373)) {
 
 		case 1:
 		case 2:
@@ -759,6 +759,7 @@ badeffect()
 
 				if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
 				else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 				else if (otmp2 && otmp2->greased) {
 					pline("Your body shakes violently!");
 					 if (!rn2(2)) {
@@ -1830,6 +1831,36 @@ badeffect()
 			pushplayer();
 
 		break;
+
+		case 373:
+			if (!Antimagic || !rn2(20)) {
+				struct obj *otmp2;
+
+				otmp2 = uwep;
+				if (otmp2 && stack_too_big(otmp2)) pline("Your fingers shake violently!");
+
+				else if (otmp2 && otmp2->blessed && rn2(5)) pline("Your fingers shake violently!");
+				else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your fingers shake violently!");
+				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your fingers shake violently!");
+				else if (otmp2 && otmp2->greased) {
+					pline("Your fingers shake violently!");
+					 if (!rn2(2)) {
+						pline_The("grease wears off.");
+						otmp2->greased = 0;
+						update_inventory();
+					 }
+				}
+
+				else if (!otmp2) pline("Your fingers itch.");
+			      else {
+					useupall(otmp2);
+					pline("Your weapon evaporates!");
+				}
+
+			}
+
+		break;
+
 
 		default:
 		break;
