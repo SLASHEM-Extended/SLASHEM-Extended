@@ -4232,6 +4232,8 @@ static const char * const bogusmons[] = {
 	"Thundering Earthshaker",
 	"Tal Rascha", "_Blood Raven", "B-a-a-l", /* Diablo 2 */
 
+	"octo", "enraged diggle", "arch diggle", "garg", "poison slug", "dopefish", "Borg drone",
+
 	/* more random names... */
 
 	"Tacitusrian", "Tacitus-rian", "Ryuan", "Ryu-an", "Robat", "Robert", "Tobi", "Tobias", "Flo-ooo", "Florian", "Cristi", "Christian", "Alex", "Johanetta", "Julia", "Julchen", "Yvonne", "Magdalena", "Eveline", "Bea", "Beatriz", "Egas", "Hannes", "Leo", "Leopold", "Baschdi Deathstrike", "Markus", "Martin", "Corina", "Elif", "Nadja", "Sunali", "Solvejg", "Thai", "Max", "Maximilian", "Jannik", "Conse", "Constantin", "Paul", "David", "Meltem", "Susanne", "Rita", "Kati", "Katinka", "Mailie", "Marie", "Klara", "Sandra", "Arne", "Antonia", "Chaska", "Ludgera", "Laura", "Eva", "Maurah", "Sophie", "Marian", "Jil", "Patricia", "Kerstin", "Hanh", "Antje", "Jennifer", "Karin", "Nicole", "Bettina", "Heike", "Dora", "Maite", "Ruth", "Verena", "Lou", "Julian", "Danielle", "Sebastian", "Amandine", "Lily", "Yannick", "Leonie", "Mira", "Felix", "Sofia", "Christiane", "Ann Kathrin", "Njusha", "Elisabeth", "Conny", "Constanze", "Lisa", "Anja", "Yasaman", "Almut", "Ksenia", "Miriam", "Elena", "Katharina", "Helen", "Victoria", "Simone", "Nataliya", "Kristin", "Nelly", "Rejda", "Nora", "Jasieen", "Yacine", "Marike", "Michael", "Merle", "Marianne", "Sina", "Dorothea", "Tinanya", "Hanno", "Noemi", "Giulia", "Nino", "Charlotte", "Friederike", "Sophia", "Sue Lyn", "Juen", "Ruea", "Gudrun", "Ella", "Manuela", "Daniel", "Lennart", "Tilla", "Ilja", "Greta", "Jane", "Nico", "Tillmann", 
