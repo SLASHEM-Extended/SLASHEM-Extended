@@ -5888,7 +5888,7 @@ void
 stumble_onto_mimic(mtmp)
 struct monst *mtmp;
 {
-	const char *fmt = "Wait!  That's %s!",
+	const char *fmt = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "Arrrrr!  Suddenly %s shows its true colors!" : "Wait!  That's %s!",
 		   *generic = "a monster",
 		   *what = 0;
 

@@ -279,6 +279,7 @@ STATIC_OVL struct Jitem Pirate_items[] = {
 	{ ASSAULT_RIFLE, "burp gun" },
 	{ AUTO_SHOTGUN, "repeating blunderbuss" },
 	{ BAG_OF_HOLDING, "duffle" },
+	{ BLINDFOLD, "eyepatches" },
 	{ BROADSWORD, "lugsail" },
 	{ BULLWHIP, "cat o' nine tails" },
 	{ CHEST, "coffer" },

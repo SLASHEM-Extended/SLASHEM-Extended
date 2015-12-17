@@ -785,24 +785,26 @@ REPEAT:
 		return st;
 
         /* You read "eyelbereth" */
-        if( (tmp = strstr(st,"read")) && (tmp<ch) ) return st;
+        /*if( (tmp = strstr(st,"read")) && (tmp<ch) ) return st;*/
+	/* note by Amy: already caught by the direct speech test above */
 
         /* A cursed rusty iron chain named Eye Pod */
-        if( (tmp = strstr(st,"named")) && (tmp<ch) ) return st;
+        /* if( (tmp = strstr(st,"named")) && (tmp<ch) ) return st; */
 
         /* A raven called Hugin - Eye of Odin */
-        if( (tmp = strstr(st,"called")) && (tmp<ch) ) return st;
+        /* if( (tmp = strstr(st,"called")) && (tmp<ch) ) return st; */
 
         /* A tiger eye ring (that is called tiger eye in inventory) */
-        if( !strcmp(orig,"eye") && strstr(st,"tiger") ) return st;
+        /* if( !strcmp(orig,"eye") && strstr(st,"tiger") ) return st; */
 
         /* The Eye of the Aethiopica, The Eyes of the Overworld */
-        if( !strcmp(orig,"Eye") && (
+        /* if( !strcmp(orig,"Eye") && (
             strstr(ch,"Aethiopica") ||
             strstr(ch,"Overworld")
-          )) return st;
+          )) return st; */
 
 	/* note by Amy - I think the Deadlight of the Aethiopica sounds funny... */
+	/* tiger deadlight ring etc. too :D */
 
         /* Check if it will fit into the buffer */
         /* 2 is enough, but 5 is safer */
