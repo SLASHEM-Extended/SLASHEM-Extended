@@ -1984,6 +1984,9 @@ moveloop()
 	/****************************************/
 
 	if ((BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+
+		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+
 		u.bankcashamount += u.ugold;
 		u.ugold = 0;
 		pline("Your money was stored, thanks.");

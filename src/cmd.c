@@ -1968,6 +1968,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (amount stored: %d)", u.bankcashamount);
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (money limit: %d)", u.bankcashlimit);
 		you_have(buf);
+	} else {
+	  if (u.bankcashamount) {
+	    if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "the following amount of cash stored in the bank:");
+		Sprintf(eos(buf), " %d", u.bankcashamount);
+		you_have(buf);
+	    }
+	  }
+	  if (u.bankcashlimit) {
+	    if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "the following bank cash limit:");
+		Sprintf(eos(buf), " %d", u.bankcashlimit);
+		you_have(buf);
+	    }
+	  }
 	}
 	if (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone()) {
 		Sprintf(buf, "the following problem: The map doesn't display correctly.");
