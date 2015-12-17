@@ -120,6 +120,7 @@ register struct obj *otmp;
 	case SCR_CONSECRATION:
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
+	case SCR_ALTER_REALITY:
 		return(50);
 /*		break; */
 	case SCR_BLANK_PAPER:

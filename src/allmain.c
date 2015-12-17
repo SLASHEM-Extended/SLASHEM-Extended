@@ -2477,6 +2477,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DISPLACEMENT].oc_name = "smeshcheniye";
 	obj_descr[SPE_MASS_HEALING].oc_name = "massa istseleniye";
 	obj_descr[SPE_TIME_SHIFT].oc_name = "sdvig vremeni";
+	obj_descr[SPE_ALTER_REALITY].oc_name = "izmenit' real'nost'";
 
 	{
 
@@ -2909,6 +2910,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DISPLACEMENT].oc_name = "olish";
 	obj_descr[SPE_MASS_HEALING].oc_name = "ommaviy shifo";
 	obj_descr[SPE_TIME_SHIFT].oc_name = "vaqt o'zgarish";
+	obj_descr[SPE_ALTER_REALITY].oc_name = "haqiqatni o'zgartirish";
 
 	{
 

@@ -2229,7 +2229,7 @@ SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1, 
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  75, 300, CLR_BLACK),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  75, 300, CLR_YELLOW),
 SCROLL("gold detection",        "THARR",                P_DIVINATION_SPELL, 1, 115, 300, CLR_BROWN),
-SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 924, 300, CLR_GREEN),
+SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 923, 300, CLR_GREEN),
 SCROLL("inventory id",              "NOW YOU SEE IT",           P_DIVINATION_SPELL, 1,  25, 300, CLR_YELLOW),
 SCROLL("magic mapping",         "ELAM EBOW",            P_DIVINATION_SPELL, 1,  175, 300, CLR_CYAN),
 SCROLL("flood",                 "AQUE BRAGH",           P_DIVINATION_SPELL, 1,   25, 300, CLR_BRIGHT_BLUE),
@@ -2273,6 +2273,8 @@ SCROLL("ward",			"UNPLAYABLE BINDER ROLE", P_NONE, 1, 5, 300, CLR_BLACK), /* hal
 SCROLL("warding",			"YOU DO NOT GO PAST AT ME", P_NONE, 1, 5, 300, CLR_ORANGE), /* half spell damage */
 SCROLL("reverse identify",	"OH CAPTAIN MY CAPTAIN",P_NONE,  1,  25, 300, CLR_RED),
 SCROLL("wishing",		"TRICK 13",		      P_NONE,  1,  25, 300, CLR_WHITE),
+
+SCROLL("alter reality",        "FORGETABOUTIT",        P_NONE,  1,   1, 300, CLR_BRIGHT_GREEN),
 
 SCROLL("flood tide",            "TEKMAKMAYACON",        P_NONE,  1,   1, 300, CLR_BROWN),
 SCROLL("ebb tide",              "SUKI TOKIMEKI TO KISS",P_NONE,  1,   1, 300, CLR_MAGENTA),
@@ -2804,6 +2806,16 @@ SCROLL((char *)0,               "ADEON HOLDS 4TH RANK BUT HAS BEEN KILLED BY A N
 SCROLL((char *)0,               "SWEETHEART BUNDLE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 SCROLL((char *)0,               "QUARACTAR",  P_NONE,     1,   0, 300, CLR_CYAN),
 SCROLL((char *)0,               "NESCHOE NEOSTSCHOE NOISELANOSTSCHANOE",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "MERRY XMAS JOYEUX NOEL FELIZ NAVIDAD",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "YOU CALL IT THANKSGIVING I CALL YOUR HOLIDAY HELL DAY",  P_NONE,     1,   0, 300, CLR_BLACK),
+SCROLL((char *)0,               "TASODIFIY MIQDOR UERETECI MENI NAFRATLANADI",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "STARODAVNI DOMENY TAYEMNYTSI HEY",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "CHONPHIESAKHULON KUCHEA PEAKY DEL MINMEN CHEA NEI CHHNAM 2015 NIH",  P_NONE,     1,   0, 300, CLR_ORANGE),
+SCROLL((char *)0,               "GRXNAR GRXNAR ATNERC CRATHATFV JVF XBOBAT",  P_NONE,     1,   0, 300, CLR_RED),
+SCROLL((char *)0,               "UZAKTA ELLERINI EDELIM YOKSA BEN ONU KESMEK",  P_NONE,     1,   0, 300, CLR_CYAN),
+SCROLL((char *)0,               "MY NAME IS MISTER SIR",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "OSTRO BIRDO AND CLAWGLIP ARE NO MISSPELLINGS",  P_NONE,     1,   0, 300, CLR_CYAN),
+SCROLL((char *)0,               "SEGFAULT PANIC CAUSES SAVEGAME CORRUPTION",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),
@@ -2875,9 +2887,10 @@ SPELL("slow monster",    "light green", P_ENCHANTMENT_SPELL, 125,  2, 2, 1, IMME
 SPELL("cause fear",      "light blue",  P_ENCHANTMENT_SPELL, 50,  3, 3, 1, NODIR,     CLR_BRIGHT_BLUE),
 SPELL("charm monster",   "magenta",     P_ENCHANTMENT_SPELL, 50,  3, 3, 1, IMMEDIATE, CLR_MAGENTA),
 SPELL("enchant weapon",  "dull",        P_ENCHANTMENT_SPELL, 70,  8, 7, 1, NODIR,     CLR_WHITE),
-SPELL("enchant armor",   "thin",        P_ENCHANTMENT_SPELL, 75,  8, 7, 1, NODIR,     CLR_WHITE),
+SPELL("enchant armor",   "thin",        P_ENCHANTMENT_SPELL, 70,  8, 7, 1, NODIR,     CLR_WHITE),
 SPELL("charging",   "stellar",          P_ENCHANTMENT_SPELL, 25,   8, 7, 1, NODIR,     CLR_WHITE),
 SPELL("genocide",   "extraordinary",    P_ENCHANTMENT_SPELL, 5,   16, 8, 1, NODIR,     CLR_WHITE),
+SPELL("alter reality",   "mysterious",  P_ENCHANTMENT_SPELL, 5,   16, 8, 1, NODIR,     CLR_WHITE),
 SPELL("displacement",	 "transparent", P_ENCHANTMENT_SPELL, 1,   10, 5, 1, NODIR,	    HI_PAPER),
 /* Protection spells */
 SPELL("protection",      "wide",        P_PROTECTION_SPELL,  25,  3, 1, 1, NODIR,     HI_PAPER),

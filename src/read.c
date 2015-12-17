@@ -2451,6 +2451,11 @@ register struct obj	*sobj;
 
 	      break;
 
+	case SCR_ALTER_REALITY:
+		alter_reality();
+
+	      break;
+
 	case SCR_SKILL_UP:
 
 		{

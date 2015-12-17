@@ -1573,6 +1573,12 @@ boolean atme;
 
 		break;
 
+	case SPE_ALTER_REALITY:
+
+		alter_reality();
+
+		break;
+
 	case SPE_ENLIGHTEN: 
 		You("feel self-knowledgeable...");
 		display_nhwindow(WIN_MESSAGE, FALSE);
@@ -1705,7 +1711,8 @@ boolean atme;
 		break;
 
 	default:
-		impossible("Unknown spell %d attempted.", spell);
+		/*impossible("Unknown spell %d attempted.", spell);*/
+		pline("You attempted to cast a spell that either doesn't exist in this game, or it has been genocided.");
 		obfree(pseudo, (struct obj *)0);
 		return(0);
 	}
@@ -1724,6 +1731,13 @@ boolean atme;
 	}
 
 	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell,CAST_BOOST);
+
+	if (spell && pseudo && pseudo->otyp == SPE_ALTER_REALITY) {
+
+		boostknow(spell, -(rnd(20000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 	return(1);

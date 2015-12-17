@@ -2371,6 +2371,7 @@ E int NDECL(uunstone);
 /* ### u_init.c ### */
 
 E void NDECL(u_init);
+E void NDECL(alter_reality);
 
 /* ### uhitm.c ### */
 

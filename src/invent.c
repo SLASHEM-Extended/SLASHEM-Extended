@@ -6431,6 +6431,8 @@ struct obj *obj;
 				pline("You may select one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
 			case SCR_REMOVE_CURSE: 
 				pline("This scroll can uncurse some of the items in your inventory if you read it."); break;
+			case SCR_ALTER_REALITY: 
+				pline("The game's rules will never be the same again..."); break;
 			case SCR_TELEPORTATION: 
 				pline("A scroll meant to be used in emergency situations that teleports you to a random empty location on the current dungeon level. Beware, some special levels inhibit teleportation!"); break;
 			case SCR_TELE_LEVEL: 
@@ -6734,6 +6736,8 @@ struct obj *obj;
 				pline("If you want to have intrinsic displacement for a while, cast this spell."); break;
 			case SPE_MASS_HEALING:
 				pline("Heals monsters around you."); break;
+			case SPE_ALTER_REALITY:
+				pline("A truly powerful spell that re-initializes some environment variables which had been initialized when you started your adventures."); break;
 			case SPE_TIME_SHIFT:
 				pline("Casting this spell increases the turn counter by 5. Don't do it if you're doing a speedrun."); break;
 			case SPE_DETECT_ARMOR_ENCHANTMENT:

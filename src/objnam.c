@@ -1618,6 +1618,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ GRAPHITE, "grafit" },
 	{ VOLCANIC_GLASS_FRAGMENT, "vulkanicheskoye steklo oskolok" },
 	{ STARLIGHTSTONE, "zvezda svet kamen'" },
+	{ SCR_ALTER_REALITY, "izmenit' real'nost'" },
+	{ SPE_ALTER_REALITY, "izmenit' real'nost'" },
 
 	{0, "" }
 };
@@ -2916,6 +2918,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ GRAPHITE, "grafitning" },
 	{ VOLCANIC_GLASS_FRAGMENT, "vulqon shisha qism" },
 	{ STARLIGHTSTONE, "yulduz nur tosh" },
+	{ SCR_ALTER_REALITY, "haqiqatni o'zgartirish" },
+	{ SPE_ALTER_REALITY, "haqiqatni o'zgartirish" },
 
 	{0, "" }
 };
