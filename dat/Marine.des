@@ -1,0 +1,363 @@
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Robert the Lifer
+#	and receive your quest assignment.
+#
+MAZE:"Mar-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------|-----------------|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|................K|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|---.---.---.---.---.---.---.---.---.---.---.---.---.---.|.................|
+|..........................................................................|
+|..........................................................................|
+|....|.---.---.---.---.---.---.---.---.---.---.---.---.--------------..----|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|---------------------------------------------------|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|--.---.---.---.---.---.---.---.---.---.---.---.---.|-----------------|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.----.---.---.---.---.---.---.---.---.---.---.---.---.--|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|--------------------------------------------------------|-----------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(64,08),down
+# Portal arrival point
+BRANCH:(71,03,71,03),(0,0,0,0)
+
+OBJECT:')',"shotgun",(69,04)
+OBJECT:')',"shotgun shell",(69,05)
+OBJECT:')',"shotgun shell",(68,05)
+OBJECT:')',"shotgun shell",(68,04)
+
+# Altar
+ALTAR:(70,16),chaos,shrine
+# Robert the Lifer
+MONSTER:'@',"Last Surviving Other Human",(74,18)
+# fellow prisoners
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+MONSTER:'@',"super warrior",random
+# Corrupt guards
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+# Good `ol mimics
+MONSTER:'&',"baron of hell", (74,05),hostile
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the exit from the Royal Dungeons
+#	to go further towards your assigned quest.
+#
+
+MAZE:"Mar-loca",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------                                              ---------------
+|.....F.......| #################################            |............K|
+|.....F.......+##              #                #############+.............|
+|.....F.......|                #                #            |.............|
+|.....+.......|                #                #            |.............|
+|.....F.......|                #                #            |.............|
+|.....F.......|              ###                #            |.............|
+|.....F.......|             ##                  #            |FFFFFFFFFFFFF|
+|--------------     #########                   #            |......|......|
+                    #      |S-------|           #            |......|......|
+                    #      |........|      ######            |-------------|
+    #################      |........|      #    H                           
+    #                      |........+#######    #                           
+    #                      |----S---|           #            |----------|   
+ |--+-------|                   #               #####        |..........|   
+ |..........|                   #               #   #        |..........|   
+ |..........|                   #     |------|  #   #########+..........|   
+ |..........|                   ######S......+###            |..........|   
+ |----------|                         |......|               |----------|   
+                                      |------|                              
+ENDMAP
+# Dungeon Description
+REGION:(01,01,13,07),lit,"ordinary"
+REGION:(02,15,11,17),lit,"ordinary"
+REGION:(62,01,74,09),lit,"ordinary"
+REGION:(62,14,71,17),lit,"tenshall",filled
+REGION:(28,10,35,12),lit,"migohive",filled
+REGION:(39,17,44,18),lit,"nymphhall",filled
+# Stairs
+STAIR:(02,03),up
+STAIR:(39,17),down
+
+OBJECT:')',"assault rifle",(09,03)
+OBJECT:')',"bullet",(09,05)
+OBJECT:')',"bullet",(11,05)
+
+OBJECT:')',"arm blaster",(70,03)
+OBJECT:')',"hand blaster",(70,15)
+OBJECT:')',"cutting laser",(06,16)
+OBJECT:')',"blaster bolt",(30,11)
+OBJECT:')',"blaster bolt",(31,11)
+OBJECT:')',"blaster bolt",(29,11)
+OBJECT:')',"blaster bolt",(30,10)
+OBJECT:')',"blaster bolt",(30,12)
+
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+DOOR:locked,(04,14)
+DOOR:locked,(06,04)
+DOOR:open,(14,02)
+DOOR:closed,(61,16)
+DOOR:closed,(45,17)
+DOOR:locked,(36,12)
+DOOR:closed,(61,02)
+# Police station kops
+MONSTER: 'i',"arch-vile",(62,01),hostile
+MONSTER: 'i',"arch-vile",(65,01),hostile
+MONSTER: 'i',"arch-vile",(66,01),hostile
+MONSTER: 'i',"arch-vile",(74,02),hostile
+MONSTER: 'i',"arch-vile",(63,03),hostile
+MONSTER: 'i',"arch-vile",(72,03),hostile
+MONSTER: 'i',"arch-vile",(71,04),hostile
+MONSTER: 'i',"arch-vile",(68,05),hostile
+MONSTER: 'i',"arch-vile",(64,06),hostile
+# Iron golem in supply room
+MONSTER: '&',"baron of hell",(11,17),asleep,hostile
+# Supply room junk
+
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Warden Arianna, your nemesis monster.  You have to
+#	defeat Warden Arianna in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE:"Mar-goal",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------
+|...|        |............................|             |
+|...|       --............................|             |
+|...|       |.............................|             |
+|...|      --.............................|             |
+|...|      |..............................|             |
+|...|     --...................L..........|             |
+|...|     |....................L..........|             |
+|...|    --...................L.L.........|             |
+|...|    |..............L.L.L.L.L.L.L.L...|             |
+|...|-----................L..L...L..L.....|             |
+|...........................L.L.L.L.......|             |
+|...........................L.L.L.L.......|             |
+|..........................L.L...L.L......|             |
+|.........................................|-------------|
+|.........................................|.............|
+|.........................................S.............|
+|.........................................|.............|
+|.........................................|.............|
+---------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,56,19),lit,"ordinary"
+# Stairs
+STAIR:(02,02),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,56,19)
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Lava demons
+MONSTER: 'i',"arch-vile",(30,05),hostile,awake
+MONSTER: 'i',"arch-vile",(23,09),hostile,awake
+MONSTER: 'i',"arch-vile",(39,09),hostile,awake
+MONSTER: 'i',"arch-vile",(36,14),hostile,awake
+MONSTER: 'i',"arch-vile",(26,14),hostile,awake
+# Elite guard
+MONSTER: '&',"cyberdemon",(04,13),hostile
+# Objects
+OBJECT:')',"chainsword",(31,10),blessed,+0,"Brutal Chainsaw"
+
+OBJECT:')',"BFG",(50,16)
+OBJECT:')',"BFG ammo",(02,03)
+OBJECT:')',"BFG ammo",(02,07)
+OBJECT:')',"BFG ammo",(02,11)
+
+OBJECT:'(',"chest",(55,18),blessed,2
+# Warden Arianna
+MONSTER:'@',"John Romero",(31,10),hostile
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE:"Mar-fila",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|....................---------.......................---------.............|
+|....................F...|...|.......................F...|...|.............|
+|....................|...|...F.......................|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...F.......|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|....F...|...|.......F...|...|.......F...|...|.......F...|...|.............|
+|....|...|...F.......|...|...........|...|...F.......|...|...F.............|
+|....|---|---|.......|---|---|.......|---|---|.......|---|---|.............|
+|........|...|.......................F...|...|.............................|
+|....|...|...F.......................|...|...F.............................|
+|--------------------------------------------------------------------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(74,03),up
+STAIR:(03,17),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# "Regular" prisoners
+MONSTER:'i',"arch-vile",(59,02),hostile
+MONSTER:'i',"arch-vile",(55,08),hostile
+MONSTER:'i',"arch-vile",(43,14),hostile
+MONSTER:'i',"arch-vile",(38,05),hostile
+MONSTER:'i',"arch-vile",(27,02),hostile
+MONSTER:'i',"arch-vile",(23,08),hostile
+MONSTER:'i',"arch-vile",(11,14),hostile
+MONSTER:'i',"arch-vile",(06,05),hostile
+# Undead prisoners
+# Bugs and snakes
+# Corrupt guards
+MONSTER:'&',"baron of hell",random,hostile
+MONSTER:'&',"baron of hell",random,hostile
+MONSTER:'@',"hell knight",random,hostile
+MONSTER:'Z',"revenant",random,hostile
+# Random traps
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:"web",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Prison debris
+
+
+MAZE:"Mar-filb",' '
+FLAGS:hardfloor
+INIT_MAP: '.' , ' ', true, true, unlit, true
+MESSAGE: "You enter one of those 'punch every wall until you find the passage' caves."
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+# Peaceful miners
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+# Earth creatures
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+# Other nasties
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"arch-vile",random,hostile
+# Tools and corpses
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+OBJECT: '%', "corpse", random
+# Natural cavern hazards
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "pit", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "falling rock", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

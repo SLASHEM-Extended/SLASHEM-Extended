@@ -3604,7 +3604,7 @@ plus:
 		add_erosion_words(obj, prefix);
 		if (Hallucination)
 			break;
-		if(obj->known) {
+		if(obj->known || (Role_if(PM_DOOM_MARINE) && (is_firearm(obj) || is_bullet(obj) ) ) ) {
 			Strcat(prefix, sitoa(obj->spe));
 			Strcat(prefix, " ");
 		}

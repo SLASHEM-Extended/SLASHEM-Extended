@@ -338,7 +338,7 @@ quest_levs: ../util/lev_comp \
 	Supermar.des Thalmor.des Top.des Tourist.des Trans.des		\
 	Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des	\
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
-	Slime.des Erdrick.des Anachr.des Druid.des
+	Slime.des Erdrick.des Anachr.des Druid.des Marine.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -389,6 +389,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Goff.des
 	../util/lev_comp Gradu.des
 	../util/lev_comp Gunner.des
+	../util/lev_comp Marine.des
 	../util/lev_comp Healer.des
 	../util/lev_comp Ice.des
 	../util/lev_comp Jedi.des

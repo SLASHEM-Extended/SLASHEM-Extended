@@ -200,7 +200,7 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Scient.des Scribe.des Slavemas.des Slayer.des Spacew.des Stunt.des	\
  Supermar.des Thalmor.des Top.des Tourist.des Trans.des Under.des	\
  Valkyrie.des Wandkeep.des Warrior.des Wizard.des Yeoman.des		\
- Anachr.des Druid.des		\
+ Anachr.des Druid.des Marine.des		\
  Zooke.des Murderer.des Failed.des Camper.des Slime.des Erdrick.des
 
 SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\

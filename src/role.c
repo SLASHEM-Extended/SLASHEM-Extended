@@ -778,6 +778,35 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_STONE_TO_FLESH,   -4
 },
 
+{	{"Doom Marine", 0}, {
+	{"Mars Marine",     0},
+	{"Demon Blaster",     0},
+	{"Gun-Toting Avenger",     0},
+	{"Kalashnikov Gunner",     0},
+	{"BFG Wielder",     0},
+	{"Spiderdemon Hunter",     0},
+	{"Nether Realm Traveler",     0},
+	{"Hell Gate Closer",     0},
+	{"Cyberdemon's Bane",     0}},
+	"Zombieman Brigade", "The Revenants", "Cyberdemon MkIII Deluxe", /* Doom 2 */
+	"Mar", "Martian Base", "Icon of Sin",
+	PM_DOOM_MARINE, NON_PM, PM_UNDEAD_DOOM_MARINE, NON_PM, PM_SOLDIER,
+	PM_LAST_SURVIVING_OTHER_HUMAN, PM_SUPER_WARRIOR, PM_JOHN_ROMERO,
+	PM_ARCH_VILE, PM_CYBERDEMON, S_DEMON, S_DEMON,
+	ART_BRUTAL_CHAINSAW,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  7,  7, 13,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30, 4, 3, 30, 30, 3 },
+	/* Init   Lower  Higher */
+	{  15, 0,  0, 10,  0, 0 },	/* Hit points */
+	{  1, 0,  0, 1,  0, 1 },15,	/* Energy */
+	10, 10, -4, 6, 18, A_INT, SPE_TELEPORT_AWAY,   -4
+},
+
+
 {	{"DQ Slime", 0}, {
 	{"Globule",     0},
 	{"Moist",    0},

@@ -3329,6 +3329,14 @@ const struct def_skill *class_skill;
 	    }
 	}
 
+	if (Role_if(PM_DOOM_MARINE) && (!Race_if(PM_BASTARD) )) {
+
+		P_SKILL(P_FIREARM) = P_MAX_SKILL(P_FIREARM);
+		P_SKILL(P_BARE_HANDED_COMBAT) = P_MAX_SKILL(P_BARE_HANDED_COMBAT);
+		P_SKILL(P_TWO_HANDED_SWORD) = P_BASIC;
+
+	}
+
 	/* Batman obviously has legendary boomerang abilities --Amy */
 	if (Race_if(PM_BATMAN)) {
 		if (P_RESTRICTED(P_BOOMERANG)) {	

@@ -200,6 +200,9 @@ const struct innate {
 		     {  10, &(HCold_resistance), "warm", "cooler" },
 		     {   0, 0, 0, 0 } },
 
+	mar_abil[] = { {   1, &(HFast), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired" },
 		     {   5, &(HFast), "quick", "slow" },
 		     {   14, &(HFree_action), "freed", "a loss of freedom" },
@@ -1312,6 +1315,7 @@ int oldlevel, newlevel;
 	case PM_ARTIST:         abil = art_abil;	break;
 	case PM_OTAKU:         abil = ota_abil;	break;
 	case PM_GUNNER:         abil = gun_abil;	break;
+	case PM_DOOM_MARINE:         abil = mar_abil;	break;
 	case PM_SAGE:         abil = sag_abil;	break;
 	case PM_MONK:           abil = mon_abil;	break;
 	case PM_MUSICIAN:           abil = mus_abil;	break;

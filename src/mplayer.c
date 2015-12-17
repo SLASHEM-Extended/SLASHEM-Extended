@@ -265,6 +265,9 @@ register boolean special;
 		case PM_GUNNER:
 		    weapon = KNIFE;
 		    break;
+		case PM_DOOM_MARINE:
+		    weapon = CHAINSWORD;
+		    break;
 		case PM_WANDKEEPER:
 		    weapon = KNIFE;
 		    break;

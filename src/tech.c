@@ -119,6 +119,8 @@ static const struct innate_tech
 	gun_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_SURGERY, 1},
 		       {   0, 0, 0} },
+	mar_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   0, 0, 0} },
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
@@ -2541,12 +2543,47 @@ int tech_no;
 		break;
 	    case T_CREATE_AMMO:
 
+	    {
+		int ammotype;
+		ammotype = 1; /* bullets */
+		if (Role_if(PM_DOOM_MARINE)) {
+
+			if (techlev(tech_no) >= 20) {
+
+				pline("You can choose from these kinds of ammo: rockets, shotgun shells, blaster bolts or bullets.");
+				if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
+				else if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
+				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
+				else ammotype = 1;
+			}
+
+			else if (techlev(tech_no) >= 15) {
+
+				pline("You can choose from these kinds of ammo: shotgun shells, blaster bolts or bullets.");
+				if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
+				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
+				else ammotype = 1;
+			}
+
+			else if (techlev(tech_no) >= 10) {
+
+				pline("You can choose from these kinds of ammo: blaster bolts or bullets.");
+				if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
+				else ammotype = 1;
+			}
+
+		}
+
 	    You("make some ammo for your gun.");
 
 		struct obj *uammo;
 
-		uammo = mksobj(BULLET, TRUE, FALSE);
+		if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE);
+		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
+		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
+		else uammo = mksobj(BULLET, TRUE, FALSE);
 		uammo->quan = techlev(tech_no);
+		if (ammotype == 4) uammo->quan /= 10;
 		uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 		uammo->owt = weight(uammo);
 		dropy(uammo);
@@ -2554,6 +2591,8 @@ int tech_no;
 
 	      t_timeout = rnz(500);
 	      break;
+
+	    }
 
 	    case T_EGG_BOMB:
 
@@ -2907,6 +2946,7 @@ role_tech()
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
 		case PM_MIDGET:		return (mid_tech);
 		case PM_GUNNER: 		return (gun_tech);
+		case PM_DOOM_MARINE: 		return (mar_tech);
 		case PM_ANACHRONIST: 		return (ana_tech);
 		case PM_LIBRARIAN: 		return (lib_tech);
 		case PM_AUGURER: 		return (aug_tech);

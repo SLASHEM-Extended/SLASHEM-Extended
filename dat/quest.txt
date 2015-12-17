@@ -6446,6 +6446,265 @@ You again sense %l pleading for help.
 essential in locating the Amulet of Yendor."
 %E
 
+#
+#       Doom Marine
+#
+%Cc Mar 00001
+Warily you scan your surroundings, all of your senses alert for signs
+of possible danger.  Off in the distance, you can %x the familiar shapes
+of %H.
+
+But why, you think, should %l be there?
+
+Suddenly, the hairs on your neck stand on end as you detect the aura of
+evil demons in the air.
+
+Without thought, you ready your weapon, and mutter under your breath:
+
+    "By %d, my gun shall kill all those who would oppose me."
+%E
+%Cp Mar 00002
+Once again, you near %H.  You know that %l
+will be waiting.
+%E
+%Cp Mar 00003
+Again, and you think possibly for the last time, you approach
+%H.
+%E
+%Cp Mar 00005
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Mar 00006
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Mar 00007
+"There has been little treasure to loot, since the horde arrived."
+%E
+%Cp Mar 00008
+"The horde is mighty in numbers, but they have little courage."
+%E
+%Cp Mar 00009
+"%lC is a strange one, but he has helped defend us."
+%E
+%Cp Mar 00010
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Mar 00011
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Mar 00012
+"Times will be good again, now that the horde is vanquished."
+%E
+%Cp Mar 00013
+"You have saved the world by defeating %n."
+%E
+%Cp Mar 00014
+"You will be a worthy successor to %l."
+%E
+%Cc Mar 00015
+"Ah, %p.  You have returned at last.  The world is in dire
+need of your help.  There is a great quest you must undertake.
+
+"But first, I must see if you are ready to take on such a challenge."
+%E
+%Cp Mar 00016
+"%p, you are back.  Are you ready now for the challenge?"
+%E
+%Cp Mar 00017
+"Again, you stand before me, %p.  Surely you have prepared yourself."
+%E
+%Cc Mar 00018
+"Pah!  You have betrayed the gods, %p.  You will never attain
+the glory which you aspire to.  Your failure to follow the true path has
+closed this future to you.
+
+"I will protect these people as best I can, but soon %n will overcome
+me and destroy all who once called you %s.  Now begone!"
+%E
+%Cc Mar 00019
+"%p, I fear that you are as yet too inexperienced to face
+%n.  Only %Ra with the help of %d could ever hope to
+defeat him."
+%E
+%Cc Mar 00020
+"%pC!  You have wandered from the path of the %a!
+If you attempt to overcome %n in this state, he will surely
+enslave your soul.  Your only hope, and ours, lies in your purification.
+Go forth, and return when you feel ready."
+%E
+%Cc Mar 00021
+"The world is in great need of your assistance, %p.
+
+"%n has been spawning demons from Hell to overrun the planet,
+and wipe out the human race. You are our last hope.
+
+"You must go to %i.  From there, you can track down
+%n, defeat him, and return %o to us.  Only
+then will the world be safe."
+%E
+%Cp Mar 00025
+"%nC is strong in the dark arts, but not immune to raw firepower."
+%E
+%Cp Mar 00026
+"Remember that %n is a great sorcerer.  He can command demons and
+many other dangerous creatures."
+%E
+%Cp Mar 00027
+"If you fail, %p, I will not be able to protect these people long."
+%E
+%Cp Mar 00028
+"To enter %i, you must be very stealthy.  The horde will be on
+guard."
+%E
+%Cp Mar 00029
+"Call upon %d in your time of need."
+%E
+%Cp Mar 00030
+"May %d protect you, and guide your steps."
+%E
+%Cp Mar 00031
+"If you can lay hands upon %o, carry it for good fortune."
+%E
+%Cp Mar 00032
+"I cannot stand against %ns sorcery.  But %d will help you."
+%E
+%Cp Mar 00033
+"Do not fear %n.  I know you can defeat him."
+%E
+%Cp Mar 00034
+"You have a great road to travel, %p, but only after you defeat
+%n."
+%E
+%Cc Mar 00035
+A maze filled with demons. This should be easy. You just have to
+find the entrance to %i somewhere.
+%E
+%Cp Mar 00036
+Yet again you have a chance to infiltrate %i.
+%E
+%Cc Mar 00040
+The hairs on the nape of your neck lift as you sense an energy in the
+very air around you.  You fight down a primordial panic that seeks to
+make you turn and run.  This is surely the lair of %n.
+%E
+%Cp Mar 00041
+Yet again you feel the air around you heavy with malevolent magical energy.
+%E
+%Cc Mar 00050
+"OREMOR NHOJ EM LLIK TSUM UOY EMAG EHT NIW OT"
+%E
+%Cp Mar 00051
+"EYGOORTS TOGAAAAAAAAAL, JEZEHH"
+%E
+%Cp Mar 00052
+"EYGOORTS TOGAAAAAAAAAL, JEZEHH"
+%E
+%Cp Mar 00053
+"EID LLIW UOY"
+%E
+%Cp Mar 00060
+"ELIV HCRA NOMMUS"
+%E
+%Cp Mar 00061
+"GARFELET GNIRAPERP"
+%E
+%Cp Mar 00062
+"ETAG NOMEDREBYC GNINEPO"
+%E
+%Cp Mar 00063
+"EMAG EHT TAEB TONNAC UOY"
+%E
+%Cp Mar 00064
+"DETAITINI NWAPS EDROH THGINK LLEH"
+%E
+%Cp Mar 00065
+"SNOMED FO SEDROH SSELDNE NOMMUS NAC I"
+%E
+%Cp Mar 00066
+"NIARB YM HCUOT REVEN LLAHS STEKCOR RUOY"
+%E
+%Cp Mar 00067
+"DEWERCS ERUOY OS MROFTALP EHT ELBASID LLIW I TXEN"
+%E
+%Cp Mar 00068
+"RORRE YROMEM FO TUO HTIW HSARC LLIW EMAG EHT SNOMED HGUONE NOMMUS I FI"
+%E
+%Cp Mar 00069
+"SMOOR TERCES EHT HCAER OT YAW ON SI EREHT"
+%E
+%Cc Mar 00070
+As you pick up %o, you feel the power of it
+flowing through your hands.  It vibrates as if it has a sense of its own,
+wanting to cut the flesh of demons.
+%E
+%Cc Mar 00080
+As you pump your rockets into %n's exposed brain,
+he explodes and you know immediately that the demon threat is past now.
+The world is safe once again, thanks to you.
+But you must return to %l in order to report your great deed.
+%E
+%Cc Mar 00081
+When %l sees %o, he smiles, and says:
+
+    Well done, %p.  You have saved the world from certain doom.
+    What, now, should be done with %o?
+
+    These people, brave as they are, cannot hope to guard it from
+    other sorcerers who will detect it, as surely as %n did.
+
+    Take %o with you, %p.  It will guard you in
+    your adventures, and you can best guard it.  You embark on a
+    quest far greater than you realize.
+
+    Remember me, %p, and return when you have triumphed.  I
+    will tell you then of what you must do.  You will understand when the
+    time comes.
+%E
+%Cc Mar 00082
+%l gazes reverently at %o, then back at you.
+
+"You are its keeper now, and the time has come to resume your search
+for the Amulet.  %Z await your return through the
+magic portal which brought you here."
+%E
+%Cp Mar 00090
+"Tell us, %p, have you fared well on your great quest?"
+%E
+%Cc Mar 00091
+"This is wondrous, %p.  I feared that you could not possibly
+succeed in your quest, but here you are in possession of the Amulet
+of Yendor!
+
+"Take it to the Astral Plane and offer it to %d, and the world
+will forever be safe!"
+%E
+%Cc Mar 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Mar 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Mar 00101
+You again sense %l pleading for help.
+%E
+%Cp Mar 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+
 
 #
 #       Drunk

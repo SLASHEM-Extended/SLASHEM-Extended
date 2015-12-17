@@ -7153,6 +7153,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			Your("%s less effective.", aobjnam(obj, "seem"));
 		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
+
+            if (!rn2(3)) mdamageu(mtmp, (1 + dmgplus));
+
 		break;
 
 	    case AD_POLY:
@@ -8559,6 +8562,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                pline("%s telepathically tries to move you around!", Monnam(mtmp));
 		    stop_occupation();
 		pushplayer();
+            if (!rn2(5)) mdamageu(mtmp, (1 + dmgplus));
 		}
 		break;
 	    default: /*impossible*/pline("Gaze attack %d?", mattk->adtyp);

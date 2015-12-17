@@ -2395,6 +2395,7 @@ SCROLL((char *)0,               "WIZZY LABOR CO",  P_NONE,     1,   0, 300, CLR_
 SCROLL((char *)0,               "KAME HAME HA",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE),
 SCROLL((char *)0,               "SECTUM SEMPRA",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 SCROLL((char *)0,               "EYGOORTS TOGAAL JEZEHH",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "OREMOR NHOJ EM LLIK TSUM UOY EMAG EHT NIW OT",  P_NONE,     1,   0, 300, CLR_MAGENTA),
 SCROLL((char *)0,               "YOU WILL DIE A SLOW SLOW DEATH",  P_NONE,     1,   0, 300, CLR_BROWN),
 SCROLL((char *)0,               "BLUE SCREEN OF DEATH",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE),
 SCROLL((char *)0,               "SEE IF I CARE",  P_NONE,     1,   0, 300, CLR_RED),

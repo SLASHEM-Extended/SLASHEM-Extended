@@ -1523,6 +1523,43 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_DOOM_MARINE:
+		   case PM_UNDEAD_DOOM_MARINE:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     (void)mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+		     (void)mongets(mtmp, ARM_BLASTER);
+			 m_initthrow(mtmp, BLASTER_BOLT, 50);
+		     (void)mongets(mtmp, CHAIN_MAIL);
+		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, IRON_SHOES);
+			if (!rn2(100)) {
+		     (void)mongets(mtmp, BFG);
+			 m_initthrow(mtmp, BFG_AMMO, 400);
+			}
+
+		   break;
+
 		   case PM_WANDKEEPER:
 		   case PM_UNDEAD_WANDKEEPER:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -6032,7 +6069,7 @@ register struct monst *mtmp;
 		    (void)mongets(mtmp, PICK_AXE);
 		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE);
 			(void) mpickobj(mtmp, otmp, TRUE);
-            begin_burn(otmp, FALSE);
+	            /*begin_burn(otmp, FALSE);*/
 		}
 #endif /* CONVICT */
 
@@ -6100,9 +6137,11 @@ register struct monst *mtmp;
 
 			/* If this spot is unlit, light the torch */
 
-			if (!levl[mtmp->mx][mtmp->my].lit) {
+			/*if (!levl[mtmp->mx][mtmp->my].lit) {
 			  begin_burn(otmp, FALSE);
-			}		      
+			}*/
+			/* was causing weird error messages, so let's just disable it for now --Amy */
+		      
 		      }
 		    }
 		} else if (mm == PM_IMELDA_S_GHOST) {
@@ -15100,6 +15139,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
+	if (is_mercenary(ptr) && Role_if(PM_DOOM_MARINE) && rn2(100) ) return TRUE;
 
 	if (ptr->mlet == S_EEL && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
 	if (ptr->mlet == S_FLYFISH && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
