@@ -199,6 +199,7 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Ranger.des Rocker.des Rogue.des Sage.des Saiyan.des Samurai.des	\
  Scient.des Scribe.des Slavemas.des Slayer.des Spacew.des Stunt.des	\
  Supermar.des Thalmor.des Top.des Tourist.des Trans.des Under.des	\
+ Fighter.des Fencer.des Suser.des Sexy.des Justice.des Medium.des	\
  Valkyrie.des Wandkeep.des Warrior.des Wizard.des Yeoman.des		\
  Anachr.des Druid.des Marine.des		\
  Zooke.des Murderer.des Failed.des Camper.des Slime.des Erdrick.des

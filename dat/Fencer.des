@@ -1,0 +1,308 @@
+#	SCCS Id: @(#)Arch.des	3.2	91/12/13
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+MAZE: "Fen-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
+#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
+MAP
+............................................................................
+...--------------------------------------------....................CC...CCCC
+...|....................|...|.....|.......|...|...................CCCCCCCCCC
+...|.........\..........+...|.....+.......|...------............CCCCCCCCCCCC
+...|....................|...|.....|....-+--....+...|...........CCCCCCCCCCCC.
+...|....................|...+....--....|......------......CCCCCCCCCCCCCCC...
+...|--+------------+----|...|....|.....|------|........CCCCCCCCCCCCC........
+...|....................|...|....|.....+......|......CCCCCCCCCCCCC..........
+...|....................|...|------------------.......CCCCCCCC..............
+...|....................+...|......................C.CCCCCCC................
+...---+----------------------........................CCCCC..................
+........................C.........................CCCCCCC.......----------..
+...---+---...........CC..CC....................CCCCCCCC.........|........|..
+..C|.....----------CCCCCCC-------------......CCCCCCC-----.......+........|..
+.CCC..........CCCCCCCCC.....|.....+...|....CCCCCCCC.....|.......|.......--..
+..CCCC.........CCCC.........|.....|----...CCCCCCCC......+.......|.......|...
+...CCCCCC.........CC........+.....|.....CCCCCCCCCCCC....|.......---------CCC
+...|CCCCCC..........C.CCC...|.....|...CCCCCCCCCCCC-------...............CCCC
+...---C-CCC----------CCCCCC-----C-CCCCCCCCC.CCCC......................CCCCCC
+.......CCCCCC...........C..C...CCCCCCCCC.....C.....................CCCCCCC..
+..........C.C.......................................................C.......
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(49,04),down
+# Portal arrival point
+BRANCH:(65,12,71,15),(0,0,0,0)
+# Doors
+DOOR: closed,(24,03)
+DOOR: closed,(34,03)
+DOOR: closed,(40,04)
+DOOR: closed,(47,04)
+DOOR: closed,(28,05)
+DOOR: closed,(06,06)
+DOOR: closed,(19,06)
+DOOR: closed,(39,07)
+DOOR: closed,(24,09)
+DOOR: closed,(06,10)
+DOOR: closed,(06,12)
+DOOR: closed,(64,13)
+DOOR: closed,(34,14)
+DOOR: broken,(56,15)
+DOOR: closed,(28,16)
+# Leader
+MONSTER:'@',"Rigil",(13,3)
+# Chest
+OBJECT:'(',"chest",(14,3)
+# guard
+MONSTER: '@',"super warrior",(06,03),peaceful
+MONSTER: '@',"super warrior",(20,03),peaceful
+MONSTER: '@',"super warrior",(31,03),peaceful
+MONSTER: '@',"super warrior",(08,04),peaceful
+MONSTER: '@',"super warrior",(11,04),peaceful
+MONSTER: '@',"super warrior",(15,04),peaceful
+MONSTER: '@',"super warrior",(19,04),peaceful
+MONSTER: '@',"super warrior",(37,05),peaceful
+MONSTER: '@',"super warrior",(09,08),peaceful
+MONSTER: '@',"super warrior",(13,08),peaceful
+MONSTER: '@',"super warrior",(17,08),peaceful
+MONSTER: '@',"super warrior",(43,10),peaceful
+MONSTER: '@',"super warrior",(33,11),peaceful
+#
+# Non diggable walls
+NON_DIGGABLE:(01,01,75,19)
+# Random traps
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+# Monsters on siege duty.
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'Z',random,random
+MONSTER: 'S',random,random
+MONSTER: 'S',random,random
+MONSTER: 'S',random,random
+MONSTER: 'S',random,random
+MONSTER: 'S',random,random
+MONSTER: 'S',random,random
+
+#
+#	The "locate" level for the quest.
+#
+
+MAZE: "Fen-loca",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:left,top
+#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
+#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
+MAP
+.........................................................................}}}
+.......................................................PPP...............}}}
+..-------------------...........................P....PPP................}}}}
+..|....|............|..........................PP..PPP.................}}}}}
+..|....|.......C....+..........................P.PPP...................}}}}}
+..|....|......C.....|..........................PPP....................}}}}}}
+..|....|.....C..C..C|................PP......PPP.....................}}}}}}}
+..|....+.....CC..CCCC.CC...........PPP.....PPP......................}}}}}}}}
+..|....|....CCCC.C.CCCC............P.......PP......................}}}}}}}}}
+..---------CC--CC--CC..C..........PP......PP......................}}}}.}}}}}
+..........CCCC..CC.CCC...........PP.....PPP......................}}}}}}}}}}}
+.........CC.C..CC..CC............P.....PP.......................}}}}}}}}}}}}
+............................P...P......P......................}}}}}}}}}}}}}}
+......................P.PPPP...PP............................P}}}}}}}}}}}}}}
+....................PP.P.....PPP...........................}}}P}}}}}}}}}}}}}
+...................PP......PPP..........................}}}}}}}..PPP}}}}}}}}
+.................PPP....PPPP..........................}}}}}}}}}}}}}.}}}}}}}}
+.............PPPPPP.................................}}}}}}}}}}}}}}}PP}}.}}}}
+...........PPPPP..................................}}}}}}}}}}}}}}}}}}}..}.}}}
+.......PPPPP....................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+.............................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Dungeon Description
+REGION:(03,03,19,08),lit,"ordinary"
+# REGION:(01,11,71,17),unlit,"ordinary"
+# REGION:(01,01,22,08),unlit,"temple"
+# Doors
+DOOR: closed,(20,04)
+# Stairs
+STAIR:(72,18),down
+STAIR:(05,04),up
+# Non diggable walls
+# NON_DIGGABLE:(01,01,75,19)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+#
+#
+#	The "goal" level for the quest.
+#
+
+MAZE: "Fen-goal", ' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
+#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}......................................}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}.................------------------.......}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}.......------------......|..|......-----....}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}.....----........|........|..|..........|.....}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}......|...........|........|..+..........|......}}}}}}}}}}}}}}}}}}}}
+}}}}}}}.......|...........|........|..|----+-----|.......}}}}}}}}}}}}}}}}}}}
+}}}}}}}.......|...........|........|..|..........|.......}}}}}}}}}}}}}}}}}}}
+}}}}}}}}......|...........|........+..-----+------......}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}.....-----.......|--------|....--.............}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}........---.....+........+...--.............}}}}}.}}}}}}}}}}..}}}}
+}}}}}}}}}}}.........--------------------.............}}..}.}..}}}}}}}...}}}}
+}}}}}}}}}}}}}.....................................}}}}}}}}}}}}}}}}}.....}}}}
+}}}}}}}}}}}}}}}}................................}}}}}}}}}}}}}}.}}.......}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}........}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(69,16),up
+# Non diggable walls
+# NON_DIGGABLE:(00,00,30,15)
+# Objects
+OBJECT:')',"short sword",(18,9),blessed,0,"The Fortune Sword"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Toliman",(18,9)
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'S',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+
+#
+#	The "fill" levels for the quest.
+#
+
+MAZE: "Fen-fila" , ' '
+INIT_MAP: '.' , 'P' , true , true , unlit, false
+NOMAP
+STAIR:random, up
+STAIR:random, down
+#
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Fen-filb" , ' '
+INIT_MAP: '.' , '}' , true , true , unlit, false
+NOMAP
+STAIR:random, up
+STAIR:random, down
+#
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'Z', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+MONSTER: 'S', random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

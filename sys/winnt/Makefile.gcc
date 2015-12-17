@@ -1480,7 +1480,8 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\slavemas.des $(DAT)\mystic.des 	$(DAT)\bloodsee.des 	$(DAT)\ladies.des \
 		$(DAT)\jester.des $(DAT)\pickpock.des 	$(DAT)\mahou.des 	$(DAT)\gehenX.des \
 		$(DAT)\bard.des $(DAT)\amazon.des $(DAT)\goff.des $(DAT)\kwests.des $(DAT)\mazes.des \
-		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des  $(DAT)\marine.des
+		$(DAT)\justice.des $(DAT)\fighter.des $(DAT)\fencer.des $(DAT)\sexy.des $(DAT)\suser.des \
+		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des  $(DAT)\marine.des  $(DAT)\medium.des
 
 	lev_comp $(DDAT)/abuser.des
 	lev_comp $(DDAT)/saiyan.des
@@ -1512,6 +1513,12 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/mystic.des
 	lev_comp $(DDAT)/bloodsee.des
 	lev_comp $(DDAT)/ladies.des
+	lev_comp $(DDAT)/suser.des
+	lev_comp $(DDAT)/sexy.des
+	lev_comp $(DDAT)/medium.des
+	lev_comp $(DDAT)/justice.des
+	lev_comp $(DDAT)/fighter.des
+	lev_comp $(DDAT)/fencer.des
 	lev_comp $(DDAT)/jester.des
 	lev_comp $(DDAT)/pickpock.des
 	lev_comp $(DDAT)/mahou.des

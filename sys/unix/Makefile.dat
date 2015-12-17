@@ -338,7 +338,9 @@ quest_levs: ../util/lev_comp \
 	Supermar.des Thalmor.des Top.des Tourist.des Trans.des		\
 	Under.des Valkyrie.des Wandkeep.des Warrior.des Wizard.des	\
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
-	Slime.des Erdrick.des Anachr.des Druid.des Marine.des
+	Suser.des Sexy.des Justice.des Fencer.des Fighter.des	\
+	Slime.des Erdrick.des Anachr.des Druid.des Marine.des \
+	Medium.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -397,6 +399,12 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Knight.des
 	../util/lev_comp Korsair.des
 	../util/lev_comp Ladies.des
+	../util/lev_comp Suser.des
+	../util/lev_comp Sexy.des
+	../util/lev_comp Medium.des
+	../util/lev_comp Justice.des
+	../util/lev_comp Fighter.des
+	../util/lev_comp Fencer.des
 	../util/lev_comp Libra.des
 	../util/lev_comp Locks.des
 	../util/lev_comp Lunatic.des

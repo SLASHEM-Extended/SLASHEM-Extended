@@ -262,6 +262,24 @@ register boolean special;
 		case PM_LADIESMAN:
 		    weapon = KNIFE;
 		    break;
+		case PM_FIGHTER:
+		    weapon = LONG_SWORD;
+		    break;
+		case PM_FENCER:
+		    weapon = BLACK_AESTIVALIS;
+		    break;
+		case PM_MEDIUM:
+		    weapon = QUARTERSTAFF;
+		    break;
+		case PM_STAND_USER:
+		    weapon = LOG;
+		    break;
+		case PM_JUSTICE_KEEPER:
+		    weapon = SLEDGE_HAMMER;
+		    break;
+		case PM_SEXYMATE:
+		    weapon = STURDY_PLATEAU_BOOT_FOR_GIRLS;
+		    break;
 		case PM_GUNNER:
 		    weapon = KNIFE;
 		    break;

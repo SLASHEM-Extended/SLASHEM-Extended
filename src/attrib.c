@@ -178,6 +178,17 @@ const struct innate {
 	coo_abil[] = { {   1, &(HFire_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	fnc_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {   0, 0, 0, 0 } },
+
+	fig_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {   0, 0, 0, 0 } },
+
+	med_abil[] = { {	1, &(HStealth), "", "" },
+		       {	7, &(HSearching), "perceptive", "unaware" },
+			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {   0, 0, 0, 0 } },
+
 	lad_abil[] = { {   1, &(HSleep_resistance), "", "" },
 			{  4, &(HSearching), "perceptive", "unaware" },
 			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
@@ -1275,6 +1286,9 @@ int oldlevel, newlevel;
 	case PM_PICKPOCKET:      abil = pic_abil;	break;
 	case PM_JESTER:      abil = jes_abil;	break;
 	case PM_LADIESMAN:      abil = lad_abil;	break;
+	case PM_FENCER:      abil = fnc_abil;	break;
+	case PM_FIGHTER:      abil = fig_abil;	break;
+	case PM_MEDIUM:      abil = med_abil;	break;
 	case PM_BLOODSEEKER:      abil = blo_abil;	break;
 	case PM_DQ_SLIME:      abil = sli_abil;	break;
 	case PM_ERDRICK:      abil = erd_abil;	break;

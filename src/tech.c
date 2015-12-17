@@ -111,6 +111,13 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	lad_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
+	fnc_tech[] = { {   1, T_CRIT_STRIKE, 1},
+		       {   0, 0, 0} },
+	fig_tech[] = { {   1, T_BERSERK, 1},
+		       {   0, 0, 0} },
+	sex_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   1, T_POKE_BALL, 1},
+		       {   0, 0, 0} },
 	jes_tech[] = { {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	stu_tech[] = { {   1, T_LIQUID_LEAP, 1},
@@ -124,6 +131,8 @@ static const struct innate_tech
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
+		       {   0, 0, 0} },
+	med_tech[] = { {   1, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
 	dol_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   7, T_RESEARCH, 1},
@@ -2939,6 +2948,10 @@ role_tech()
 		case PM_MONK: 		return (mon_tech);
 		case PM_JESTER: 		return (jes_tech);
 		case PM_LADIESMAN: 		return (lad_tech);
+		case PM_SEXYMATE: 		return (sex_tech);
+		case PM_MEDIUM: 		return (med_tech);
+		case PM_FENCER: 		return (fnc_tech);
+		case PM_FIGHTER: 		return (fig_tech);
 		case PM_SUPERMARKET_CASHIER: 		return (sup_tech);
 		case PM_WANDKEEPER: 		return (wan_tech);
 		case PM_PALADIN: 		return (pal_tech);

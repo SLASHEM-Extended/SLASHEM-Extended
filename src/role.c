@@ -1068,6 +1068,62 @@ const struct Role roles[] = {
 	10, 8,-2, 0,  9, A_WIS, SPE_JUMPING,     -4
 },
 
+{	{"Fencer", 0}, {
+	{"Alcor",	0},
+	{"Dubhe",	0},
+	{"Merak",	0},
+	{"Phecda",	0},
+	{"Megrez",	0},
+	{"Alioth",	0},
+	{"Mizar",	0},
+	{"Benetnash",	0},
+	{"Polaris",	0} },
+	"Sol", "_Terra", "_Luna",
+	"Fen", "the Starry Rift", "Stella Maris",
+	PM_FENCER, NON_PM, PM_UNDEAD_FENCER, NON_PM, PM_ORDINATOR,
+	PM_RIGIL, PM_SUPER_WARRIOR, PM_TOLIMAN,
+	PM_AIR_ELEMENTAL, PM_SNAKE, S_SNAKE, S_ZOMBIE,
+	ART_FORTUNE_SWORD,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15, 10, 25, 20, 10 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 9,  2, 0 },	/* Hit points */
+	{ 13, 2,  0, 2,  0, 2 },12,	/* Energy */
+	0, 3, -2, 2, 6, A_INT, SPE_ENCHANT_WEAPON,        -4
+},
+
+{	{"Fighter", 0}, {
+	{"Mercury",	0},
+	{"Venus",	0},
+	{"Mars",	0},
+	{"Jupiter",	0},
+	{"Saturn",	0},
+	{"Uranus",	0},
+	{"Neptune",	0},
+	{"Pluto",	0},
+	{"Moon",	0} },
+	"_Selene", "Helios", "_Eos",
+	"Fig", "the Castle of Moon", "the Earth",
+	PM_FIGHTER, NON_PM, PM_UNDEAD_FIGHTER, NON_PM, PM_KITTEN,
+	PM_PRINCESS_OF_MOON, PM_PLANETARY_FIGHTER, PM_JEDEITE,
+	PM_EARTH_ELEMENTAL, PM_SNAKE, S_SNAKE, S_ZOMBIE,
+	ART_SILVER_CRYSTAL,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25, 10, 10, 20, 25, 10 },
+	/* Init   Lower  Higher */
+	{ 13, 0,  0, 10,  4, 0 },	/* Hit points */
+	{ 4,  0,  0, 1,  0, 1 },16,	/* Energy */
+	10, 5, -2, 4, 10, A_INT, SPE_HASTE_SELF,        -4
+},
+
 {	{"Firefighter", 0}, {
 	{"Hazard Trainee",         0},
 	{"Brigade Runner",       0},
@@ -1542,6 +1598,34 @@ const struct Role roles[] = {
 	0, 5, 0, 2, 10, A_INT, SPE_DETECT_UNSEEN,   -4
 },
 
+{	{"Justice Keeper", 0}, {
+	/*[Sakusha]*/
+	{"Kageman",	0},
+	{"Sonicblastman",	0},
+	{"Mustleman",	0},
+	{"Wingman",	0},
+	{"Eightman",	0},
+	{"Gatyaman",	0},
+	{"Rainbowman",	0},
+	{"Tekkaman",	0},
+	{"Ultimate Justice Keeper",	0}},
+	"Lawful Good", "True Neutral", "Chaotic Evil",	/* Dungeons and Dragons */
+	"Jus", "Trial Court Hall", "Robot Facilities",
+	PM_JUSTICE_KEEPER, NON_PM, PM_UNDEAD_JUSTICE_KEEPER, NON_PM, PM_MONKEY,
+	PM_BIRDMAN, PM_STARNOID, PM_EVIL_ROBOT,
+	PM_GREMLIN, PM_TIN_GOLEM, S_GREMLIN, S_GOLEM,
+	ART_SUPREME_JUSTICE_KEEPER, /* two-handed sword */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13,  7, 14,  8, 10, 17 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15, 15, 15, 20, 20 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 4,  4, 0 },	/* Hit points */
+	{ 7, 5,  0, 3,  0, 2 },18,	/* Energy */
+	10, 1, -4, 1,  7, A_WIS, SPE_SOLAR_BEAM,     -4
+},
+
 {	{"Knight", 0}, {
 	{"Gallant",     0},
 	{"Esquire",     0},
@@ -1740,6 +1824,35 @@ const struct Role roles[] = {
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_LEVITATION,   -4
+},
+
+{	{"Medium", 0}, {
+	/*adds male names [Sakusha]*/
+	{"Pure Boy",		"Pure Girl"},
+	{"Jinme Boy",		"Jinme Girl"},
+	{"Mist Youth",		"Mist Maiden"},
+	{"Moon Youth",		"Moon Maiden"},
+	{"Prince Youth",	"Princess Maiden"},
+	{"Hanuman Youth",	"Hanuman Maiden"},
+	{"Ryujin Youth",	"Ryujin Maiden"},
+	{"Kamiko",		0},
+	{"Eternal Youth",	"Eternal Maiden"} },
+	"_Umbrellarina Madeline", "_Medium Deborah", "_Crueltrainer Cindy",
+	"Med", "the Old Shrine", "the cave of fox-spirits",
+	PM_MEDIUM, NON_PM, PM_UNDEAD_MEDIUM, NON_PM, PM_WHITE_UNICORN_FOAL,
+	PM_SHINTO_PRIEST, PM_MAIDEN, PM_NINE_TAILED_FOX,
+	PM_FOX_SPIRIT, PM_HUMAN_ZOMBIE, S_DOG, S_ZOMBIE,
+	ART_HOLYDIRK,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  4, 28, 30, 4, 4, 30 },
+	/* Init   Lower  Higher */
+	{  9, 0,  0, 4,  1, 0 },	/* Hit points */
+	{ 25, 4,  0, 5,  0, 7 }, 8,	/* Energy */
+	10, 0, -5, 1, 4, A_WIS, SPE_MAP_LEVEL,   -4
 },
 
 {	{"Midget", 0}, {
@@ -2844,6 +2957,36 @@ const struct Role roles[] = {
 	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
 },
 
+{	{"User of Stand", 0}, {
+	/*from Silly JNetHack*/
+	/*and arrange [Sakusha]*/
+	{"Arrow Pierced",	0},
+	{"Possessed",	0},
+	{"Conjurer",	0},
+	{"Magician",	0},
+	{"Stand user",	0},
+	{"Journeyer",	0},
+	{"Voyager",	0},
+	{"Explorer",	0},
+	{"Adventurer",	0} },
+	"Jonathan Joestar", "Hirohiko Araki", "Cars", /* Jojo */
+	"Use", "the House of Kujyou", "the Palace of Dio",
+	PM_STAND_USER, NON_PM, PM_UNDEAD_STAND_USER, NON_PM, PM_BARD,
+	PM_MESSENGER_OF_SPW,  PM_GUIDE, PM_DIO,
+	PM_VAMPIRE, PM_HUMAN_ZOMBIE, S_ZOMBIE, S_ZOMBIE,
+	ART_RED_STONE_OF_EIGIA,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */ /* Modified from Knight */
+	/*{  13,  7, 14,  8, 10, 10 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15, 15, 20, 20, 10 },
+	/* Init   Lower  Higher */
+	{ 11, 0,  0, 4,  1, 0 },	/* Hit points */
+	{  8, 2,  0, 0,  0, 1 },10,	/* Energy */
+	10, 4,-2, 0,  9, A_INT, SPE_AGGRAVATE_MONSTER,     -4
+},
+
 {	{"Valkyrie", 0}, {
 	{"Stripling",   0},
 	{"Skirmisher",  0},
@@ -2999,6 +3142,34 @@ const struct Role roles[] = {
 	10, 8,-2, 0,  9, A_WIS, SPE_KNOCK,     -4
 },
 
+{	{"YSexymate", 0}, {
+	/*from Silly JNetHack*/
+	{"Hiyokko",	0},
+	{"Flutty",	0},
+	{"Miso Souper",	0},
+	{"Fitness Strider",	0},
+	{"Black Mate",      0},
+	{"Knee Supporter",	0},
+	{"Beard Mantlet",	0},
+	{"Global Pertner",	0},
+	{"Sexy King",	"Sexy Queen"} },
+	"Yoroshiku", "Ma Shin", "Sexy Sai", /* Chinese */
+	"Sex", "Mistranslated Entrance", "Japanese Quest Goal Area",
+	PM_SEXYMATE, NON_PM, PM_UNDEAD_SEXYMATE, NON_PM, PM_SEXY_WOMAN,
+	PM_JUDO_CAPTAIN, PM_STUDENT, PM_GIGOCK,
+	PM_SILLY_NYMPH, PM_HIGE_MESO, S_TROLL, S_MIMIC,
+	ART_CHARMPOINT,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  12, 30, 4, 12, 12, 30 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
+	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
+	10, 9, 2, 1, 10, A_INT, SPE_REPAIR_ARMOR,   -4
+},
 
 {	{"Zookeeper", 0}, {
 	{"Dog Feeder",      0},

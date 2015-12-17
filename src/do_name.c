@@ -4245,6 +4245,72 @@ static const char * const bogusmons[] = {
 	"Cyberdemon's Bane",
 	"Zombieman Brigade", "The Revenants", "Cyberdemon MkIII Deluxe", /* Doom 2 */
 
+	"Alcor",
+	"Dubhe",
+	"Merak",
+	"Phecda",
+	"Megrez",
+	"Alioth",
+	"Mizar",
+	"Benetnash",
+	"Polaris",
+	"Sol", "_Terra", "_Luna",
+
+	"Mercury",
+	"Venus",
+	"Mars",
+	"Jupiter",
+	"Saturn",
+	"Uranus",
+	"Neptune",
+	"Pluto",
+	"Moon",
+	"_Selene", "Helios", "_Eos",
+
+	"Kageman",
+	"Sonicblastman",
+	"Mustleman",
+	"Wingman",
+	"Eightman",
+	"Gatyaman",
+	"Rainbowman",
+	"Tekkaman",
+	"Ultimate Justice Keeper",
+	"Lawful Good", "True Neutral", "Chaotic Evil",	/* Dungeons and Dragons */
+
+	"Pure Boy",		"Pure Girl",
+	"Jinme Boy",		"Jinme Girl",
+	"Mist Youth",		"Mist Maiden",
+	"Moon Youth",		"Moon Maiden",
+	"Prince Youth",	"Princess Maiden",
+	"Hanuman Youth",	"Hanuman Maiden",
+	"Ryujin Youth",	"Ryujin Maiden",
+	"Kamiko",
+	"Eternal Youth",	"Eternal Maiden",
+	"_Umbrellarina Madeline", "_Medium Deborah", "_Crueltrainer Cindy",
+
+	"Arrow Pierced",
+	"Possessed",
+	"Conjurer",
+	"Magician",
+	"Stand user",
+	"Journeyer",
+	"Voyager",
+	"Explorer",
+	"Adventurer",
+	"Jonathan Joestar", "Hirohiko Araki", "Cars", /* Jojo */
+
+	"Hiyokko",
+	"Flutty",
+	"Miso Souper",
+	"Fitness Strider",
+	"Black Mate",
+	"Knee Supporter",
+	"Beard Mantlet",
+	"Global Pertner",
+	"Sexy King",	"Sexy Queen",
+	"Yoroshiku", "Ma Shin", "Sexy Sai", /* Chinese */
+
 	/* more random names... */
 
 	"Tacitusrian", "Tacitus-rian", "Ryuan", "Ryu-an", "Robat", "Robert", "Tobi", "Tobias", "Flo-ooo", "Florian", "Cristi", "Christian", "Alex", "Johanetta", "Julia", "Julchen", "Yvonne", "Magdalena", "Eveline", "Bea", "Beatriz", "Egas", "Hannes", "Leo", "Leopold", "Baschdi Deathstrike", "Markus", "Martin", "Corina", "Elif", "Nadja", "Sunali", "Solvejg", "Thai", "Max", "Maximilian", "Jannik", "Conse", "Constantin", "Paul", "David", "Meltem", "Susanne", "Rita", "Kati", "Katinka", "Mailie", "Marie", "Klara", "Sandra", "Arne", "Antonia", "Chaska", "Ludgera", "Laura", "Eva", "Maurah", "Sophie", "Marian", "Jil", "Patricia", "Kerstin", "Hanh", "Antje", "Jennifer", "Karin", "Nicole", "Bettina", "Heike", "Dora", "Maite", "Ruth", "Verena", "Lou", "Julian", "Danielle", "Sebastian", "Amandine", "Lily", "Yannick", "Leonie", "Mira", "Felix", "Sofia", "Christiane", "Ann Kathrin", "Njusha", "Elisabeth", "Conny", "Constanze", "Lisa", "Anja", "Yasaman", "Almut", "Ksenia", "Miriam", "Elena", "Katharina", "Helen", "Victoria", "Simone", "Nataliya", "Kristin", "Nelly", "Rejda", "Nora", "Jasieen", "Yacine", "Marike", "Michael", "Merle", "Marianne", "Sina", "Dorothea", "Tinanya", "Hanno", "Noemi", "Giulia", "Nino", "Charlotte", "Friederike", "Sophia", "Sue Lyn", "Juen", "Ruea", "Gudrun", "Ella", "Manuela", "Daniel", "Lennart", "Tilla", "Ilja", "Greta", "Jane", "Nico", "Tillmann", 

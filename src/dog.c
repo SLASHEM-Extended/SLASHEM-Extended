@@ -85,6 +85,14 @@ pet_type()
 		case 10: return (PM_BABY_SILVER_DRAGON);
 		case 11: return (PM_BABY_GRAY_DRAGON);
 		}
+	else if (Role_if(PM_MEDIUM)) {
+		switch (u.ualign.type) {
+			case A_LAWFUL: return (PM_WHITE_UNICORN_FOAL);
+			case A_NEUTRAL: return (PM_GRAY_UNICORN_FOAL);
+			case A_CHAOTIC: return (PM_BLACK_UNICORN_FOAL);
+			default: return (PM_GRAY_UNICORN_FOAL);
+		}
+	}
 	else if (Role_if(PM_TRANSVESTITE))
 		return ( !rn2(5) ? PM_ASIAN_GIRL : !rn2(10) ? PM_ESTRELLA_GIRL : rn2(2) ? PM_LITTLE_GIRL : PM_LITTLE_BOY);
 	else if (Role_if(PM_TOPMODEL))
@@ -293,6 +301,9 @@ makedog()
 	if (pettype == PM_SPEEDHORSE) petname = "Harley Davidson";
 	if (pettype == PM_BABY_CROCODILE) petname = "Snappy"; /* in Germany it would be called Schnappi */
 	if (pettype == PM_EEVEE) petname = "HUSI";
+	if (pettype == PM_WHITE_UNICORN_FOAL) petname = "Rastafari"; /* creature of peace */
+	if (pettype == PM_GRAY_UNICORN_FOAL) petname = "Balance of Neutrality";
+	if (pettype == PM_BLACK_UNICORN_FOAL) petname = "Orderly Chaos";
 
 	if (pettype == PM_GRIMER) petname = "BADEB";
 
@@ -304,11 +315,13 @@ makedog()
 	if (pettype == PM_DRAGONBALL_KID) petname = "Android Nr. 17"; /* don't know the real name, but it was something like this --Amy */
 
 	if (pettype == PM_GREEN_ELF) petname = "Dray Harp";
+	if (pettype == PM_BARD) petname = "Michael Jackson";
 	if (pettype == PM_DROW) petname = "Roflth"; /* Lolth */
 	if (pettype == PM_OFFICER) petname = "Officer O'Brian";
 	if (pettype == PM_SOLDIER) petname = "Lieutenant Surge"; /* Pokemon Yellow */
 	if (pettype == PM_VALKYRIE) petname = "Rue";	/* hunger games */
 	if (pettype == PM_PLATYPUS) petname = "Donald Duck";
+	if (pettype == PM_ORDINATOR) petname = "Andragil";
 
 	if (pettype == PM_FLOATING_EYE) petname = "Gazing Beholder Orb";
 
@@ -353,6 +366,8 @@ makedog()
 	if (pettype == PM_DARK_GIRL) petname = "Everella"; /* taken from a fanfic */
 	if (pettype == PM_REDGUARD_GIRL) petname = "Jasajeen"; /* taken from a fanfic */
 	if (pettype == PM_THIEVING_GIRL) petname = "Esruth"; /* taken from a fanfic */
+
+	if (pettype == PM_SEXY_WOMAN) petname = "Natalje";
 
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 

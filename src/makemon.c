@@ -2626,6 +2626,106 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_FIGHTER:
+		   case PM_UNDEAD_FIGHTER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, SHORT_SWORD);
+		     (void)mongets(mtmp, SAILOR_BLOUSE);
+		     (void)mongets(mtmp, WAN_POLYMORPH);
+
+		   break;
+
+		   case PM_FENCER:
+		   case PM_UNDEAD_FENCER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, SHORT_SWORD);
+		     (void)mongets(mtmp, DAGGER);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+
+		   break;
+
+		   case PM_MEDIUM:
+		   case PM_UNDEAD_MEDIUM:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, SILVER_DAGGER);
+		     (void)mongets(mtmp, YUMI);
+		     (void)mongets(mtmp, ROBE);
+		     m_initthrow(mtmp, YA, 50);
+
+		   break;
+
+		   case PM_JUSTICE_KEEPER:
+		   case PM_UNDEAD_JUSTICE_KEEPER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, MACE);
+		     (void)mongets(mtmp, SPLINT_MAIL);
+
+		   break;
+
+		   case PM_STAND_USER:
+		   case PM_UNDEAD_STAND_USER:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		   break;
+
+		   case PM_SEXYMATE:
+		   case PM_UNDEAD_SEXYMATE:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, FEMININE_PUMPS);
+		     (void)mongets(mtmp, SEXY_LEATHER_PUMP);
+
+		   break;
+
 		   case PM_LADIESMAN:
 		   case PM_UNDEAD_LADIESMAN:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));

@@ -1,0 +1,290 @@
+#	Medium patch for 3.4 : Copyright (c) 2007-2008 by yzh
+#	JNetHack may be freely redistributed.  See license for details. 
+#	[2007/09/19]
+#
+
+#	Medium patch for 3.4 : Copyright (c) yzh, 2007-2008
+#	For FHS patch, Copyright (c) Shiganai Sakusha, 2008-2013 
+#	JNetHack may be freely redistributed.  See license for details.
+
+#	FHS patch : Copyright (c) Shiganai Sakusha, 2003-2015
+#	changing point is marked `[FHS]' or `add: Shiganai Sakusha(*** patch)'.
+# JNetHack may be freely redistributed.  See license for details.
+#	[ver 0.8.23	2009/10/15]
+
+# start
+MAZE: "Med-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+.........TTTTTTTTTTT.....TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+.......TTT...TTTT...TT..TTTTTTTTTTT...PP...TTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT
+......TT.....TTTTTTTTTTTTTTTTTTTTT..PPPPP.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTT
+...TTT......T.......TT.TTTTTTTTTT.PPPPPPP.........T.TTTTTTTTTTTTTTTTTTTTTTTT
+....TTT..TTT...TTTT..TT...T.TTT...PPPPPP...........TTTTTTTTTTTTTTTTTTTTTTTTT
+...TT.TTT.....TT.TTTT..TTTTTTTT.....PP...-------..T.TTTTTTTTTTTTTTTTTTTTTTTT
+...........TTT......TT..TTT..TTTT......--|.....+...TTTTTTTTTTTTTTTTTTT..TTTT
+...TT..T......T..TT.......TTTT.........|.----+----..TTTTTTTTTTTTTTT.....TTTT
+...........T......TTTTTTTTT......------|.........|...TTTTTTTTTTTTTT.TT..TTTT
+.......T..TTT...........T........+.....+.........|...TTTT.TTT.......TTTTTTTT
+.................................+.....+.........|.T...T......TTTTTTTTTTTTTT
+.....TT.......TTTT..TTT.....T....------|.........|.TTT...TTTTTTTTTTTTTTTTTTT
+....TT....TTTT...TTT.TTTTTT...T........|.----+----..TTTTTTTTTTTTTTTTTTTTTTTT
+.....TTT..........TTTT....TTT...TTT....--|.....+.....TTTTTTTTTTTTTTTTTTTTTTT
+.......TTT.....TTTT.TTT......TTT.........-------....TTTTTTTTTTTTTTTTTTTTTTTT
+........TTT...T....TTTTTTT.....T.TTT.............TTTTTTTTTTTTTTTTTTTTTTTTTTT
+....TTT........TT..TT......T...TTTTTTTTT.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+........TTTTTT....TTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+......TTT.....TT.TTTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+.......TT.....T...TTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH: (03,14,03,14),(0,0,0,0)
+# Stairs
+STAIR: (71,07), down
+# Doors
+DOOR: locked,(47,06)
+DOOR: locked,(45,07)
+DOOR: locked,(33,09)
+DOOR: locked,(39,09)
+DOOR: locked,(33,10)
+DOOR: locked,(39,10)
+DOOR: locked,(45,12)
+DOOR: locked,(47,13)
+MONSTER:'@',"Shinto Priest",(46,9)
+OBJECT:'(',"chest",(46,10)
+MONSTER:'@',"maiden",(42,9)
+MONSTER:'@',"maiden",(42,10)
+MONSTER:'@',"maiden",(43,9)
+MONSTER:'@',"maiden",(43,10)
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+NON_DIGGABLE:(00,00,75,19)
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+MONSTER: 'd',"fox",(03,10)
+MONSTER: 'd',"fox",(08,08)
+MONSTER: 'd',"fox",(09,11)
+MONSTER: 'd',"fox",(12,13)
+MONSTER: 'd',"fox",(12,15)
+MONSTER: 'd',"fox",(15,09)
+MONSTER: 'd',"fox",(16,06)
+MONSTER: 'd',"fox",(18,10)
+MONSTER: 'd',"fox",(21,07)
+MONSTER: 'd',"fox",(24,14)
+MONSTER: 'd',"fox",(25,10)
+MONSTER: 'd',"fox",(28,08)
+MONSTER: 'd',"fox",(28,10)
+MONSTER: 'd',"fox",(29,15)
+MONSTER: 'd',"fox",(30,09)
+MONSTER: 'd',"fox",(45,03)
+MONSTER: 'd',"fox",(45,16)
+MONSTER: 'd',"fox spirit",(63,09)
+MONSTER: 'd',"fox spirit",(68,07)
+
+#
+#	The "locate" level for the quest.
+#
+MAZE: "Med-loca",random
+FLAGS: hardfloor
+INIT_MAP: ' ' , ' ' , false , false , unlit , false
+GEOMETRY: center,center
+MAP
+                               ..T...................
+                               .T.T..TTT.....T.......TT
+            ....              ..T..TTTT.....T....T.TTTTTT
+          ........           ..T........TTT..TT..........
+          ..........       ..TTT....TTT........T....T......
+   ...   .....   ...      ..T......T...T..TT.....T...T......
+   ...   ....    .....  ...TT..T..TTT...........T.....T......
+ ...........    ...........T....T.......T..T..T...T.....T....
+ .........     .... . ...T......TTT...T............T.........
+ .   .....    ...        ..........T........TTT..T...TT......
+       .........        TT..TT......T...T......T....TTT..T.TT
+        ......            ...T.T.T...TTT...T.....T...........
+          ..              ......T..T.........TTT.....T.T.T..
+           .              T...TT.....T.....T......T.....T.T
+                         .....TT..TT...T.........TT.T....
+                         ....TTTT......T.T..T..TT....T.
+                           ....TT...T......T.T.....TT
+ENDMAP
+STAIR: (58,05),up
+STAIR: (04,07),down
+MONSTER: 'd',"fox spirit",random
+MONSTER: 'd',"fox spirit",random
+MONSTER: 'd',"fox spirit",random
+MONSTER: 'd',"fox spirit",random
+# Random traps
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+TRAP:"arrow",random
+
+
+#
+#	The "goal" level for the quest.
+#
+MAZE: "Med-goal", ' '
+GEOMETRY:center,center
+MAP
+                                                                  
+                                                                  
+    ......                    .......                             
+    ...........               ...PP...         ......             
+    ...........                P.P.......    .........   .        
+     ...............           .P...    ..  ..............        
+     .      .........         .PP.       .  ...........           
+     .          .......     .....P       ..........  .            
+     .          ........    ......             .     .            
+    -S--         .......   ........   .              .            
+   --..|         ....      .....   ......            .            
+   |...|        ....      ......    .....................  .      
+   |..--           .      ..         ......         .......       
+   ----            .........                         ....         
+                                                                  
+                                                                  
+ENDMAP
+# Dungeon Description
+NON_DIGGABLE: (00,00,65,15)
+# Stairs
+STAIR: (05,11),up
+# Objects
+#[FHS]
+#OBJECT:')',"athame",(53,05),blessed,0,"The Holy Dagger"
+OBJECT:')',"athame",(53,05),blessed,0,"The Holydirk"
+OBJECT: '*',"diamond",random
+OBJECT: '*',"diamond",random
+OBJECT: '*',"diamond",random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT: '*',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'d',"Nine Tailed Fox",(53,05)
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox spirit",random
+MONSTER:'d',"fox",random
+MONSTER:'d',"fox",random
+MONSTER:'d',"fox",random
+MONSTER:'d',"fox",random
+MONSTER:'d',"fox",random
+MONSTER:'d',random,random
+MONSTER:'d',random,random
+MONSTER:'d',random,random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',"human zombie",random
+MONSTER:'Z',random,random
+MONSTER:'Z',random,random
+MONSTER:'W',"wraith",random
+MONSTER:'W',"wraith",random
+MONSTER:'W',"wraith",random
+MONSTER:'W',random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Med-fila" , 'T'
+INIT_MAP: '.' , 'T' , true , true , random, false
+NOMAP
+#
+STAIR: random, down
+STAIR: random, up
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+#
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox", random
+MONSTER: 'd', "fox", random
+MONSTER: 'W', "wraith", random
+MONSTER: 'Z', "human zombie", random
+MONSTER: 'Z', "human zombie", random
+#
+TRAP: "arrow", random
+TRAP: "arrow", random
+TRAP: "arrow", random
+TRAP: "arrow", random
+
+
+MAZE: "Med-filb" , ' '
+#
+INIT_MAP: '.' , ' ' , true , true , unlit, true
+NOMAP
+#
+STAIR: random, down
+STAIR: random, up
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+#
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'd', "fox spirit", random
+MONSTER: 'W', "wraith", random
+MONSTER: 'Z', "human zombie", random
+MONSTER: 'Z', "human zombie", random
+MONSTER: 'Z', "human zombie", random
+#
+TRAP: "arrow", random
+TRAP: "arrow", random
+TRAP: "arrow", random
+TRAP: "arrow", random
