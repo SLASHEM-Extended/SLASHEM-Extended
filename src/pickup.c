@@ -2102,6 +2102,7 @@ boolean invobj;
 			if (!flooreffects(otmp, u.ux, u.uy, "fall"))
 			    place_object(otmp, u.ux, u.uy);
 		}
+
 		/* did not actually insert obj yet */
 		if (was_unpaid) addtobill(obj, FALSE, FALSE, TRUE);
 
@@ -2772,7 +2773,7 @@ BOOLEAN_P destroy_after;
 
 		if (otmp->otyp == GOLD_PIECE) {
 #ifndef GOLDOBJ
-			dealloc_obj(otmp);
+			/*dealloc_obj(otmp);*/ /* causes panic, and besides, is it really needed??? --Amy */
 #endif
 			bot();	/* update character's gold piece count immediately */
 		}
