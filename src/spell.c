@@ -979,11 +979,19 @@ boolean atme;
 		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
-		if ((role_skill >= P_SKILLED) && (yn("Continue?") == 'y')) {
+		if ((role_skill >= P_SKILLED) && (u.uhpmax > (energy / 5)) && (yn("Continue? Doing so may damage your maximum health.") == 'y')) {
 			energy -= u.uen;
 			hungr += energy * 2;
 			if (hungr > u.uhunger - 1)
 				hungr = u.uhunger - 1;
+
+			if (energy > 4) {
+			/* otherwise, skilled godmode at 0% fail equals instawin. --Amy */
+				pline("Your maximum health was reduced by %d.", energy / 5);
+				u.uhpmax -= (energy / 5);
+				u.uhp -= (energy / 5);
+			}
+
 			losehp(energy,"spellcasting exhaustion", KILLED_BY);
 			if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
 			energy = u.uen;
