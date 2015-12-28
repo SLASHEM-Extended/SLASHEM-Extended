@@ -14,6 +14,7 @@
 #if defined(MONITOR_HEAP) && (defined(UNIX) || defined(WIN32))
 #define INTERNAL_MALLOC		/* Use internal malloc implementation */
 #endif
+//#define PUBLIC_SERVER
 
 /*
  * Section 1:	Operating and window systems selection.
@@ -529,6 +530,16 @@ typedef unsigned char	uchar;
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 #define AUTOPICKUP_EXCEPTIONS /* exceptions to autopickup */
 #define EPITAPH		/* 'write your own epitaph' patch */
+
+#define DUMP_LOG /* Dumplog support */
+
+#ifdef PUBLIC_SERVER
+#define DUMP_FN "/dgldir/userdata/%s/slashthem/dumplog/%ld"
+#else
+#define DUMP_FN "/tmp/%n.nh"    /* Fixed dumpfile name */
+#endif
+
+#define DUMPMSGS 20
 
 /* End of Section 5 */
 
