@@ -259,7 +259,12 @@ use_stethoscope(obj)
 	if (u.usteed && u.dz > 0) {
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
+
+			if (obj->blessed)
+			mstatuslinebl(u.ustuck);
+			else
 			mstatusline(u.ustuck);
+
 		} else
 
 			if (obj->blessed)
@@ -272,10 +277,18 @@ use_stethoscope(obj)
 	} else
 #endif
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
+
+		if (obj->blessed)
+		mstatuslinebl(u.ustuck);
+		else
 		mstatusline(u.ustuck);
 		return res;
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
+
+		if (obj->blessed)
+		mstatuslinebl(u.ustuck);
+		else
 		mstatusline(u.ustuck);
 		return res;
 	} else if (u.dz) {
@@ -315,8 +328,11 @@ use_stethoscope(obj)
 		return 0;
 		}
 
-
+		if (obj->blessed)
+		mstatuslinebl(mtmp);
+		else
 		mstatusline(mtmp);
+
 		if (mtmp->mundetected) {
 			mtmp->mundetected = 0;
 			if (cansee(rx,ry)) newsym(mtmp->mx,mtmp->my);
