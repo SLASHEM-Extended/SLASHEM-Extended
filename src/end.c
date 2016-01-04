@@ -99,6 +99,7 @@ void
 dump_init ()
 {
   if (dump_fn[0]) {
+    char *actual_fn = dump_fn;
     char *p = (char *) strstr(dump_fn, "%n");
     if (p) {
       int new_dump_fn_len = strlen(dump_fn)+strlen(plname)-2; /* %n */
@@ -113,21 +114,32 @@ dump_init ()
       p += 2;	/* skip "%n" */
       strncpy(q, p, strlen(p));
       new_dump_fn[new_dump_fn_len] = '\0';
+      actual_fn = new_dump_fn;
+    }
+    p = (char*) strstr(actual_fn, "%d");
+    if (p) {
+      int new_len = strlen(actual_fn) + 13; /* date length - "%d" + 1 */
+      char *new_dump_fn = (char *) alloc((unsigned)(new_len));
+      char *q = new_dump_fn;
+      struct tm *lt = getlt();
+      long t = (long)lt->tm_hour * 10000L + (long)lt->tm_min * 100L
+	+ (long)lt->tm_sec;
+      strncpy(q, actual_fn, p - actual_fn);
+      q += p - actual_fn;
+      sprintf(q, "%ld%06ld", yyyymmdd(0), t);
+      q += 14;
+      p += 2; /* skip "%d" */
+      strncpy(q, p, strlen(p));
+      q[strlen(p)]='\0';
+      if (actual_fn != dump_fn) free(actual_fn);
+      actual_fn = new_dump_fn;
+    }
+    dump_fp = fopen (actual_fn, "w");
+    if (actual_fn != dump_fn) free(actual_fn);
 
-      dump_fp = fopen(new_dump_fn, "w");
-      if (!dump_fp) {
-	pline("Can't open %s for output.", new_dump_fn);
-	pline("Dump file not created.");
-      }
-      free(new_dump_fn);
-
-    } else {
-      dump_fp = fopen (dump_fn, "w");
-
-      if (!dump_fp) {
-	pline("Can't open %s for output.", dump_fn);
-	pline("Dump file not created.");
-      }
+    if (!dump_fp) {
+      pline("Can't open %s for output.", dump_fn);
+      pline("Dump file not created.");
     }
   }
 }
