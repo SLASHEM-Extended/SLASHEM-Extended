@@ -2378,7 +2378,7 @@ peffects(otmp)
 				"This tastes like coffee." );
 		    u.uhunger += (otmp->odiluted ? 10 : 20) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HSleep_resistance += rnd(25);
+		   if (!otmp->cursed) HSleep_resistance += rnd(25);
 
 		break;
 
@@ -2392,7 +2392,7 @@ peffects(otmp)
 				"This tastes like red tea." );
 		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HFire_resistance += rnd(25);
+		   if (!otmp->cursed) HFire_resistance += rnd(25);
 
 		break;
 
@@ -2406,7 +2406,7 @@ peffects(otmp)
 				"This tastes like oolong tea." );
 		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HShock_resistance += rnd(25);
+		   if (!otmp->cursed) HShock_resistance += rnd(25);
 
 		break;
 
@@ -2420,7 +2420,7 @@ peffects(otmp)
 				"This tastes like green tea." );
 		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HCold_resistance += rnd(25);
+		   if (!otmp->cursed) HCold_resistance += rnd(25);
 
 		break;
 
@@ -2434,7 +2434,7 @@ peffects(otmp)
 				"This tastes like green mate." );
 		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HPoison_resistance += rnd(25);
+		   if (!otmp->cursed) HPoison_resistance += rnd(25);
 
 		break;
 
@@ -2448,11 +2448,14 @@ peffects(otmp)
 				"This tastes like cocoa." );
 		    u.uhunger += (otmp->odiluted ? 100 : 200) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
-		   HDisint_resistance += rnd(25);
+		   if (!otmp->cursed) HDisint_resistance += rnd(25);
 
 		break;
 
 	case POT_TERERE:
+		if (otmp->cursed)
+		    pline(Hallucination ? "This tastes like ecstasy spiked with poison." : "This tastes like stale alcohol." );
+		else
 		    pline(Hallucination ? "This tastes like ecstasy." : "This tastes like alcohol." );
 		    u.uhunger += (otmp->odiluted ? 250 : 500) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
@@ -2462,6 +2465,9 @@ peffects(otmp)
 		break;
 
 	case POT_AOJIRU:
+		if (otmp->cursed)
+		    pline(Hallucination ? "This tastes like something that might kill you!" : "This tastes like illegal drugs." );
+		else
 		    pline(Hallucination ? "This tastes like some illegal shit." : "This tastes like drugs." );
 		    u.uhunger += (otmp->odiluted ? 250 : 500) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
@@ -2663,16 +2669,16 @@ peffects(otmp)
 		if (Hallucination)
 		   pline("You feel, like, totally cool!");
 		   else You("feel cooler.");
-		   HFire_resistance += rn1(100,50);
+		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   unkn++;
 		   HFire_resistance |= FROMOUTSIDE;
 		}
 		break;
 	case POT_RESISTANCE:
 		You("feel resistant to elemental attacks!");
-		   HFire_resistance += rn1(100,50);
-		   HCold_resistance += rn1(100,50);
-		   HShock_resistance += rn1(100,50);
+		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+		   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+		   HShock_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		break;
 	case POT_INVULNERABILITY:
 		incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
@@ -3171,6 +3177,18 @@ peffects(otmp)
 		else
 			You("feel very jumpy.");
 		incr_itimeout(&HTeleportation, rnd(500));
+		if (otmp->cursed) {
+
+			if (HTeleport_control & INTRINSIC) {
+				HTeleport_control &= ~INTRINSIC;
+				You_feel("unable to control where you're going.");
+			}
+			if (HTeleport_control & TIMEOUT) {
+				HTeleport_control &= ~TIMEOUT;
+				You_feel("unable to control where you're going.");
+			}
+
+		}
 
 		break;
 
@@ -3179,7 +3197,7 @@ peffects(otmp)
 			pline("You feel like remembering everything that ever happened to you!");
 		else
 			pline("Your memory keens.");
-		incr_itimeout(&HKeen_memory, rnd(500));
+		incr_itimeout(&HKeen_memory, rnd(500 + 250 * bcsign(otmp) ));
 
 		break;
 
@@ -3188,7 +3206,7 @@ peffects(otmp)
 			pline("Everything is visible! Whoa! Look at all the stuff!");
 		else
 			pline("Your vision range increases.");
-		incr_itimeout(&HSight_bonus, rnd(500));
+		incr_itimeout(&HSight_bonus, rnd(500 + 250 * bcsign(otmp) ));
 		vision_full_recalc = 1;
 
 		break;

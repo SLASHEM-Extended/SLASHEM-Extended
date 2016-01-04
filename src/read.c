@@ -3844,6 +3844,7 @@ retry:
 				else
 					You("are resistant to normal damage.");
 				incr_itimeout(&HHalf_physical_damage, rnd(500));
+				if (sobj->blessed) incr_itimeout(&HHalf_physical_damage, rnd(500));
 			}
 		}
 		break;
@@ -3861,6 +3862,7 @@ retry:
 				pline("You feel more afraid of magic!");
 			} else {
 				incr_itimeout(&HHalf_spell_damage, rnd(500));
+				if (sobj->blessed) incr_itimeout(&HHalf_spell_damage, rnd(500));
 				if (Hallucination)
 					pline("Let the casting commence!");
 				else
@@ -4394,7 +4396,7 @@ revid_end:
 	case SCR_SYMMETRY:
 
 		pline("Fearful Symmetry!");
-		if (u.totter) u.totter = 0;
+		if (u.totter && !sobj->cursed && !confused) u.totter = 0;
 		else u.totter = 1;
 
 		break;
