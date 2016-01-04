@@ -492,6 +492,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_GANGSTER:
 	    case PM_UNDEAD_POKEMON:
 	    case PM_UNDEAD_ELECTRIC_MAGE:
+	    case PM_UNDEAD_POISON_MAGE:
 	    case PM_UNDEAD_ACID_MAGE:
 	    case PM_UNDEAD_FLAME_MAGE:
 	    case PM_UNDEAD_CONVICT:
@@ -559,6 +560,13 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_FIREFIGHTER:
 	    case PM_UNDEAD_LOCKSMITH:
 	    case PM_UNDEAD_ERDRICK:
+	    case PM_UNDEAD_FIGHTER:
+	    case PM_UNDEAD_FENCER:
+	    case PM_UNDEAD_MEDIUM:
+	    case PM_UNDEAD_SEXYMATE:
+	    case PM_UNDEAD_STAND_USER:
+	    case PM_UNDEAD_JUSTICE_KEEPER:
+	    case PM_UNDEAD_DOOM_MARINE:
 	    case PM_UNDEAD_DQ_SLIME:
 	    case PM_UNDEAD_MUSICIAN:
 	    case PM_UNDEAD_FAILED_EXISTENCE:

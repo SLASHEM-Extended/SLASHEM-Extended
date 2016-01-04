@@ -1121,6 +1121,7 @@ dobreathe()
 		|| (Role_if(PM_FLAME_MAGE) && u.umonnum == PM_RED_DRAGON)
 		|| (Role_if(PM_ACID_MAGE) && u.umonnum == PM_YELLOW_DRAGON)
 		|| (Role_if(PM_ELECTRIC_MAGE) && u.umonnum == PM_BLUE_DRAGON)
+		|| (Role_if(PM_POISON_MAGE) && u.umonnum == PM_GREEN_DRAGON)
 		|| (Role_if(PM_ICE_MAGE) && u.umonnum == PM_WHITE_DRAGON))
 	    energy = 15;
 	else
@@ -2020,6 +2021,8 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 				&& Role_if(PM_FLAME_MAGE)) ||
 				(uarm && uarm->otyp == BLUE_DRAGON_SCALES
 				&& Role_if(PM_ELECTRIC_MAGE)) ||
+				(uarm && uarm->otyp == GREEN_DRAGON_SCALES
+				&& Role_if(PM_POISON_MAGE)) ||
 				(uarm && uarm->otyp == YELLOW_DRAGON_SCALES
 				&& Role_if(PM_ACID_MAGE)) ||
 			  (uarm && uarm->otyp == WHITE_DRAGON_SCALES
@@ -2028,6 +2031,8 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 				&& Role_if(PM_FLAME_MAGE)) ||
 				(uarm && uarm->otyp == BLUE_DRAGON_SCALE_MAIL   
 				&& Role_if(PM_ELECTRIC_MAGE)) ||
+				(uarm && uarm->otyp == GREEN_DRAGON_SCALE_MAIL   
+				&& Role_if(PM_POISON_MAGE)) ||
 				(uarm && uarm->otyp == YELLOW_DRAGON_SCALE_MAIL   
 				&& Role_if(PM_ACID_MAGE)) ||
 			  (uarm && uarm->otyp == WHITE_DRAGON_SCALE_MAIL 
@@ -2049,13 +2054,15 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 				u.umonnum == PM_BABY_YELLOW_DRAGON)) ||
 			(Role_if(PM_ELECTRIC_MAGE) && (u.umonnum == PM_BLUE_DRAGON || 
 				u.umonnum == PM_BABY_BLUE_DRAGON)) ||
+			(Role_if(PM_POISON_MAGE) && (u.umonnum == PM_GREEN_DRAGON || 
+				u.umonnum == PM_BABY_GREEN_DRAGON)) ||
 			(Role_if(PM_ICE_MAGE) && (u.umonnum == PM_WHITE_DRAGON || 
 				u.umonnum == PM_BABY_WHITE_DRAGON)))) {
 	    rehumanize();
 	    return 1;	    
 	}
 
-	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE)) &&
+	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE)) && (yn("Transform into your draconic form?") == 'y') && 
 	    (u.ulevel > 6 || scale_mail)) {
 	    /* [ALI]
 	     * I've rewritten the logic here to fix the failure messages,
@@ -2091,9 +2098,9 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	     * We deliberately don't say what form the ritual takes since it
 	     * is unaffected by blindness, confusion, stun etc. 
 	     */
-	    if (yn("Transform into your draconic form?") == 'n') 
+	    /*if (yn("Transform into your draconic form?") == 'n') 
 		return 0;
-	    else if (!scales && !scale_mail && u.uen <= EN_BABY_DRAGON) {
+	    else*/ if (!scales && !scale_mail && u.uen <= EN_BABY_DRAGON) {
 		You("don't have the energy to polymorph. You need at least %d!",EN_BABY_DRAGON);
 		return 0;		
 	    } else {
@@ -2190,7 +2197,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    }
 	} else {
 	    pline("You can't polymorph at will%s.", 
-		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_LUNATIC) || Role_if(PM_ACID_MAGE) || Role_if(PM_ICE_MAGE) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) ?
+		    ((Role_if(PM_FLAME_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE) || Role_if(PM_LUNATIC) || Role_if(PM_ACID_MAGE) || Role_if(PM_ICE_MAGE) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) ?
 		    " yet" : ""));
 	    return 0;
 	}

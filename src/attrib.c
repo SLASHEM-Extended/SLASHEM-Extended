@@ -292,6 +292,9 @@ const struct innate {
 	ele_abil[] = { {   1, &(HShock_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	psn_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	zoo_abil[] = { {   1, &(HWarning), "", "" },
 		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
 		     {   0, 0, 0, 0 } },
@@ -641,6 +644,15 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	spi_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	gel_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HFire_resistance), "", "" },
+		     {   1, &(HShock_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HAcid_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
@@ -1319,6 +1331,7 @@ int oldlevel, newlevel;
 	case PM_POKEMON:	abil = pok_abil;	break;
 	case PM_HEALER:         abil = hea_abil;	break;
 	case PM_ELECTRIC_MAGE:	abil = ele_abil;	break;
+	case PM_POISON_MAGE:	abil = psn_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
 #ifdef JEDI
 	case PM_JEDI:		abil = jed_abil;	break;
@@ -1394,6 +1407,7 @@ int oldlevel, newlevel;
 	case PM_SNAKEMAN:            rabil = sna_abil;	break;
 	case PM_ILLITHID:            rabil = ill_abil;	break;
 	case PM_SPIDERMAN:            rabil = spi_abil;	break;
+	case PM_WEAPON_CUBE:            rabil = gel_abil;	break;
 	case PM_INSECTOID:            rabil = ins_abil;	break;
 	case PM_UNGENOMOLD:            rabil = ung_abil;	break;
 	case PM_GASTLY:            rabil = gas_abil;	break;

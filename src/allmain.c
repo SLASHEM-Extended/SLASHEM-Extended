@@ -723,6 +723,9 @@ moveloop()
 			if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1) /* Cockatrices even more. */
 				moveamt /= 2;
 
+			if (Race_if(PM_WEAPON_CUBE) && !Upolyd && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 			if (Race_if(PM_CORTEX) && !Upolyd && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 

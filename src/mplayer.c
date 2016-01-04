@@ -480,6 +480,7 @@ register boolean special;
 		case PM_ACID_MAGE:
 		case PM_ICE_MAGE:
 		case PM_ELECTRIC_MAGE:
+		case PM_POISON_MAGE:
 		case PM_NECROMANCER:
 		case PM_WIZARD:
 		    if (rn2(4)) weapon = rn2(2) ? QUARTERSTAFF : ATHAME;

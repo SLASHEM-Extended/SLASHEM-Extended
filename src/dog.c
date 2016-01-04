@@ -307,6 +307,8 @@ makedog()
 
 	if (pettype == PM_GRIMER) petname = "BADEB";
 
+	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
+
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 
 	if (pettype == PM_NINJA_BOY) petname = "Cornelia Fuck"; /* My Immortal fanfic */
@@ -1033,6 +1035,7 @@ register struct obj *obj;
 		mon->data == &mons[PM_TASMANIAN_ZOMBIE] ||
 		mon->data == &mons[PM_MINOCUBE] ||
 		mon->data == &mons[PM_GELATINOUS_DICE] ||
+		mon->data == &mons[PM_WEAPON_CUBE] ||
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
 		mon->data == &mons[PM_OOZE_ELEMENTAL] ||
 		mon->data == &mons[PM_GELATINOUS_THIEF] ||

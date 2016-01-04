@@ -3944,6 +3944,233 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#       Poison Mage
+#
+%Cc Poi 00001
+You are at %H, and since %l is calling for you, something obviously
+has to be wrong. There are weird creatures around here, too...
+
+Could it be that %H has been defiled by some evil force?
+%E
+%Cp Poi 00002
+Once again, you are back at %H.
+%E
+%Cp Poi 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Poi 00005
+"Greetings, fellow Mage."
+%E
+%Cp Poi 00006
+"We're being overrun by aliens!"
+%E
+%Cp Poi 00007
+"Help us fight the alien infestation!"
+%E
+%Cp Poi 00008
+"Some sinister force is spawning aliens here!"
+%E
+%Cp Poi 00009
+"Better look for %l quick, he may need your help!"
+%E
+%Cp Poi 00010
+"Good luck, %r!"
+%E
+%Cp Poi 00011
+"Go on and use your powers!"
+%E
+%Cp Poi 00012
+"You're quite skilled, %p."
+%E
+%Cp Poi 00013
+"Thanks for putting %n out of his misery."
+%E
+%Cp Poi 00014
+"You did a good job, %p."
+%E
+%Cc Poi 00015
+"%p, grave times have befallen us. We will need four help.
+Do you think you're ready?"
+%E
+%Cp Poi 00016
+"Welcome back, %p. Are you ready to help us now?"
+%E
+%Cp Poi 00017
+"%p! Time is running out! We need you to help us right now!"
+%E
+%Cc Poi 00018
+"You're too late, %p! All hope is lost. We will never be able to
+fight the infestation now.
+
+Please go away and let me and my fellows die in peace."
+%E
+%Cc Poi 00019
+"%p, you aren't yet ready to fight %n. Train your skills until
+you are a %R, and then come back at once."
+%E
+%Cc Poi 00020
+"Sorry %p, but we can't trust you yet. Try to prove your valor
+and then come back to me at once."
+%E
+%Cc Poi 00021
+"%p, we're being overrun by aliens. This must be the work of
+%n, a bizarre creature from outta space that seeks to devour our world!
+
+You will need to go to %i and get back %o, and also defeat %n.
+
+Now go!"
+%E
+%Cp Poi 00025
+"Don't underestimate the ghost of %n."
+%E
+%Cp Poi 00026
+"Journey forth to %i and put %n out of his misery."
+%E
+%Cp Poi 00027
+"You must get back %o!"
+%E
+%Cp Poi 00028
+"%o is a powerful artifact. If you find it, get it back to me."
+%E
+%Cp Poi 00029
+"Please be quick on your quest, %p."
+%E
+%Cp Poi 00030
+"You're a %r, you should be able to help us."
+%E
+%Cp Poi 00031
+"%d may protect you on your path."
+%E
+%Cp Poi 00032
+"Beware, %n may resist some of your attacks."
+%E
+%Cp Poi 00033
+"Good luck on your quest! Now go!"
+%E
+%Cp Poi 00034
+"If you don't defeat %n soon, the aliens will overrun our %H!"
+%E
+%Cc Poi 00035
+The entrance to %i must be somewhere around here.
+
+You feel you're getting closer to the source of all these aliens.
+%E
+%Cp Poi 00036
+Once again, you are near the entrance to %i.
+%E
+%Cc Poi 00040
+This must be the place where %n lurks. It's %i, obviously.
+
+Now you must find %o somewhere around here.
+%E
+%Cp Poi 00041
+Once again, you enter %n's domain.
+%E
+%Cc Poi 00050
+%n notices you and announces:
+".drofhctiP ydnaR em llik tsum uoy emag eht niw oT"
+
+You know you have to fight him for %o and the Bell of Opening.
+%E
+%Cc Poi 00051
+%n's presence haunts you.
+%E
+%Cp Poi 00052
+You are stricken with fear as %n comes closer to you.
+%E
+%Cp Poi 00053
+You still need to fight %n if you ever want to get %o back.
+%E
+%Cp Poi 00060
+%n screams eerily.
+%E
+%Cp Poi 00061
+The presence of %n lets the hair on the back of your neck stand up.
+%E
+%Cp Poi 00062
+Your visions are blurring...
+%E
+%Cp Poi 00063
+You suddenly remember some dreadful happenings from your past.
+%E
+%Cp Poi 00064
+Did something just move?
+%E
+%Cp Poi 00065
+The air around %i seems icy cold.
+%E
+%Cp Poi 00066
+This place is giving you the creeps.
+%E
+%Cp Poi 00067
+You seem to see a white rabbit jumping around.
+%E
+%Cp Poi 00068
+The walls seem to be closing in on you.
+%E
+%Cp Poi 00069
+You still have time to flee with your life...
+%E
+%Cc Poi 00070
+Finally! %o is yours. Now you need to bring it back to %l.
+Maybe he'll reward you.
+%E
+%Cp Poi 00080
+You destroy %n, which still tries to retreat back into the portal
+that spawned him, but ultimately he explodes voluminously.
+%E
+%Cc Poi 00081
+%l speaks:
+
+"Welcome, %p! I see you have been successful in your quest!
+
+%n is no more, and %H is in good shape again.
+Thanks a lot, %p! By the way, I've decided to allow you
+to keep %o; may it be of good use to you.
+
+Goodbye!"
+%E
+%Cc Poi 00082
+"Well done, %p! May there be light on your path!"
+%E
+%Cc Poi 00090
+"You're always welcome, %p!"
+%E
+%Cc Poi 00091
+"That amulet... Can it be? %p, you actually got the Amulet of Yendor?
+
+Unbelievable! You might actually ascend and become a demigod!
+I'll be praying for your success, %p. Best of luck to you!"
+%E
+%Cc Poi 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Poi 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Poi 00101
+You again sense %l pleading for help.
+%E
+%Cp Poi 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #       Spacewars Fighter
 #
 %Cc Spa 00001

@@ -2262,6 +2262,35 @@ const struct Role roles[] = {
 	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4
 },
 
+{	{"Poison Mage", 0}, {
+	{"Poison Mixer",         0},
+	{"Venom Scatterer",       0},
+	{"Green Poisoner",       0},
+	{"Purple Poisoner",     0},
+	{"Poison Exploder",       0},
+	{"Contaminator",      0},
+	{"Stinking Cloud Creator",   0},
+	{"Gas Attacker", 0},
+	{"Poison Bomber",  0} },
+	"Seveso Toxin", "Fukoshima Radiation", "Mustard Gas", /* poison */
+	"Poi", "Overrun Base", "Alien UFO",
+	PM_POISON_MAGE, NON_PM, PM_UNDEAD_POISON_MAGE, NON_PM, PM_VENOM_FUNGUS,
+	PM_CREATOR_OF_POISON, PM_ATTENDANT, PM_GENEWORM,
+	PM_GANGRENOUS_WYRM, PM_ALIENATED_UFO_PART, S_WORM, S_HUMAN,
+	ART_IMMUNITY_RING,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 10, 20, 20, 10 },
+	/* Init   Lower  Higher */
+	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
+	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
+	0, 1, 0, 
+	2, 10, A_INT, SPE_POISON_BLAST,        -4 /* From old role.c */
+},
+
 {	{"Pokemon", 0}, {
 	{"CROC",    0},
 	{"ALIGE",       0},
@@ -3729,6 +3758,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"gelatinous cube", "gelatinous", "cubic gelatine", "Gel",
+	{0, 0},
+	PM_WEAPON_CUBE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 4,  8, 0 },	/* Hit points */
+	{  5, 0,  5, 0,  5, 0 }		/* Energy */
 },
 {	"gigant", "gigantic", "giganthood", "Gig",
 	{0, 0},

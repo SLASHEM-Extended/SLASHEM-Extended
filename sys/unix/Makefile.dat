@@ -340,7 +340,7 @@ quest_levs: ../util/lev_comp \
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
 	Suser.des Sexy.des Justice.des Fencer.des Fighter.des	\
 	Slime.des Erdrick.des Anachr.des Druid.des Marine.des \
-	Medium.des
+	Medium.des Poison.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -377,6 +377,7 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Drunk.des
 	../util/lev_comp Dunmer.des
 	../util/lev_comp Electric.des
+	../util/lev_comp Poison.des
 	../util/lev_comp Elf.des
 	../util/lev_comp Elfreal.des
 	../util/lev_comp Erdrick.des

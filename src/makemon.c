@@ -2105,6 +2105,23 @@ register struct monst *mtmp;
 #endif
 		   break;
 
+		   case PM_POISON_MAGE:
+		   case PM_UNDEAD_POISON_MAGE:
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		     (void)mongets(mtmp, SILVER_KHAKKHARA);
+		     (void)mongets(mtmp, POISONOUS_CLOAK);
+		     (void)mongets(mtmp, WAN_POISON);
+#ifndef GOLDOBJ
+		     mtmp->mgold = (long) d(mtmp->m_lev, 15);
+#else
+		     mkmonmoney(mtmp, (long) d(mtmp->m_lev, 15));
+#endif
+		   break;
+
 		   case PM_HEALER:
 		   case PM_UNDEAD_HEALER:
 		   case PM_SCIENTIST:

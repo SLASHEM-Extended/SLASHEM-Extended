@@ -1461,7 +1461,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\acid.des   $(DAT)\spacew.des   $(DAT)\top.des   $(DAT)\rocker.des \
 		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\town.des   $(DAT)\samurai.des \
 		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\noble.des 	$(DAT)\valkyrie.des \
-		$(DAT)\electric.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
+		$(DAT)\electric.des  $(DAT)\poison.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
 		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des \
 		$(DAT)\wizard.des   $(DAT)\sheol.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
 		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
@@ -1586,6 +1586,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/nymph.des
 	lev_comp $(DDAT)/noble.des
 	lev_comp $(DDAT)/electric.des
+	lev_comp $(DDAT)/poison.des
 	lev_comp $(DDAT)/acid.des
 	lev_comp $(DDAT)/rocker.des
 	lev_comp $(DDAT)/cheval.des

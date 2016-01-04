@@ -267,6 +267,13 @@ static const struct innate_tech
 		       {  10, T_SIGIL_TEMPEST, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
+	psn_tech[] = { {   1, T_REINFORCE, 1},
+		       {   1, T_SIGIL_CONTROL, 1},
+		       {   1, T_SIGIL_TEMPEST, 1},
+		       {   1, T_SIGIL_DISCHARGE, 1},
+		       {   3, T_POWER_SURGE, 1},
+		       {   5, T_DRAW_ENERGY, 1},
+		       {   0, 0, 0} },
 	hea_tech[] = { {   1, T_SURGERY, 1},
 		       {  20, T_REVIVE, 1},
 		       {   0, 0, 0} },
@@ -570,6 +577,11 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   0, 0, 0} },
 	kha_tech[] = { {   1, T_EVISCERATE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   0, 0, 0} },
+	gel_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -2952,6 +2964,7 @@ role_tech()
 		case PM_LUNATIC:	return (lun_tech);
 		case PM_ACTIVISTOR:	return (act_tech);
 		case PM_ELECTRIC_MAGE:	return (ele_tech);
+		case PM_POISON_MAGE:	return (psn_tech);
 		case PM_HEALER:		return (hea_tech);
 		case PM_ICE_MAGE:	return (ice_tech);
 #ifdef JEDI
@@ -3043,6 +3056,7 @@ race_tech()
 		case PM_INSECTOID:		return (ins_tech);
 		case PM_MUMMY:		return (mum_tech);
 		case PM_KHAJIIT:	return (kha_tech);
+		case PM_WEAPON_CUBE:	return (gel_tech);
 		case PM_HOBBIT:		return (hob_tech);
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
 		case PM_HUMAN_MONKEY:	return (hmo_tech);

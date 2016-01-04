@@ -1,0 +1,334 @@
+#	SCCS Id: @(#)Barb.des	3.4	1991/12/22
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Pelias,
+#	and receive your quest assignment.
+#
+MAZE: "Poi-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.-------------------------------------B---------------------------------.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.|.................................BBBBBBB.............................|.|
+|.|.................................B.....B.............................|.|
+|.B.................................B.....B.............................B.|
+|.|.................................BBBBBBB.............................|.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.|.....................................................................|.|
+|.-------------------------------------B---------------------------------.|
+|.........................................................................|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(39,05,39,05),random,"randomroom",filled,true
+# Stairs
+STAIR:(39,08),down
+# Portal arrival point
+BRANCH:(01,01,01,16),(0,0,0,0)
+# Elder
+MONSTER:'@',"Creator of Poison",(39,08)
+# The treasure of Pelias
+OBJECT:'(',"chest",(39,08)
+# chieftain guards for the audience chamber
+MONSTER:'@',"attendant",(39,09)
+MONSTER:'@',"attendant",(38,09)
+MONSTER:'@',"attendant",(38,08)
+MONSTER:'@',"attendant",(37,09)
+MONSTER:'@',"attendant",(37,08)
+MONSTER:'@',"attendant",(40,09)
+MONSTER:'@',"attendant",(40,08)
+MONSTER:'@',"attendant",(41,09)
+MONSTER:'@',"attendant",(41,08)
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Duali Oasis to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Poi-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+|.........................................................................|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,73,16),lit,"riverroom"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Thoth Amon, your nemesis monster.  You have to
+#	defeat Thoth Amon in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Poi-goal", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................------------------............................
+.                   -------B-................-B-------                   .
+.             -------................................-------             .
+.       Z------.........---------........---------.........------Z       .
+.     ----........-------       |........|       -------........----     .
+.   ---......------             |........|             ------......---   .
+..---.....----            -------........-------            ----.....---..
+-B-.....---       ---------....................---------       ---.....-B-
+|.......|    ------....................................------    |.......|
+|.......|    |..............................................|    |.......|
+|.......|    ------....................................------    |.......|
+-B-.....---       ---------....................---------       ---.....-B-
+..---.....----            -------........-------            ----.....---..
+.   ---......------             |........|             ------......---   .
+.     ----........-------       |........|       -------........----     .
+.       Z------.........---------........---------.........------Z       .
+.             -------................................-------             .
+.                   -------B-................-B-------                   .
+............................------------------............................
+ENDMAP
+
+RANDOM_PLACES:(00,00),(73,00),(00,18),(73,18)
+
+# Dungeon Description
+REGION:(36,08,36,08),random,"randomroom",filled,true
+# Stairs
+STAIR:place[0],up
+NON_DIGGABLE:(00,00,73,18)
+# Objects
+OBJECT:'=',"sickness resistance",(36,08),blessed,0,"Immunity Ring"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'w',"Geneworm",(36,08),hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:'r',"pit ufo",place[1],hostile
+MONSTER:'r',"pit ufo",place[2],hostile
+MONSTER:'r',"pit ufo",place[3],hostile
+MONSTER:'@',"tender asian girl",(08,03),peaceful
+MONSTER:'@',"sweet coquette",(08,15),peaceful
+MONSTER:'@',"squeaking girl",(65,03),peaceful
+MONSTER:'@',"korean girl",(65,15),peaceful
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Poi-fila" , random
+GEOMETRY:center,center
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------               -------              -------
+                      |.....|
+                      |.....|
+                      +.....|
+                      |.....|
+                      |.....|
+-------               -------              -------
+|.....|                                    |.....|
+|.....|                                    |.....|
++.....|                                    |.....+
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,05,05),lit,"randomroom"
+REGION:(44,01,48,05),lit,"randomroom"
+REGION:(01,13,05,17),lit,"randomroom"
+REGION:(44,13,48,17),lit,"randomroom"
+REGION:(23,07,27,11),lit,"random shop"
+
+DOOR:closed,(00,03)
+DOOR:closed,(49,03)
+DOOR:closed,(00,15)
+DOOR:closed,(49,15)
+DOOR:closed,(22,09)
+
+MAZEWALK:(00,03),west
+MAZEWALK:(49,03),east
+MAZEWALK:(00,15),west
+MAZEWALK:(49,15),east
+MAZEWALK:(22,09),west
+
+MAZE: "Poi-filb" , random
+GEOMETRY:center,center
+MAP
+-------------------------
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
++...........|...........+
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+|...........|...........|
+-------------------------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+REGION:(01,01,10,12),lit,"randomroom",filled,true
+REGION:(13,01,23,12),lit,"randomroom",filled,true
+
+DOOR:closed,(00,06)
+DOOR:closed,(24,06)
+
+MAZEWALK:(00,06),west
+MAZEWALK:(24,06),east

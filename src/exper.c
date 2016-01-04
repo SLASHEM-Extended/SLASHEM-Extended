@@ -107,6 +107,7 @@ int en;
 		case PM_FLAME_MAGE:
 		case PM_ICE_MAGE:
 		case PM_ELECTRIC_MAGE:
+		case PM_POISON_MAGE:
 		case PM_ACID_MAGE:
 	case PM_PRIEST:
 	case PM_WIZARD:
