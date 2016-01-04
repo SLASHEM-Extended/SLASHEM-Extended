@@ -530,6 +530,16 @@ typedef unsigned char	uchar;
 #define AUTOPICKUP_EXCEPTIONS /* exceptions to autopickup */
 #define EPITAPH		/* 'write your own epitaph' patch */
 
+#define DUMP_LOG /* Dumplog support */
+
+#ifdef PUBLIC_SERVER
+#define DUMP_FN "/dgldir/userdata/%s/slashthem/dumplog/%ld"
+#else
+/*#define DUMP_FN "/tmp/%n.nh"*/    /* Fixed dumpfile name */
+#endif
+
+#define DUMPMSGS 20
+
 /* End of Section 5 */
 
 #define BONES_POOL /* Multiple bones files per level */ 
