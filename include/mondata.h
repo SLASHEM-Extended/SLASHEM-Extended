@@ -199,6 +199,7 @@
 				 (ptr) == &mons[PM_LUST] || \
 				 (ptr) == &mons[PM_ENVY] || \
 				 (ptr) == &mons[PM_SLOTH] || \
+				 (ptr) == &mons[PM_DEPRESSION] || \
 				 (ptr) == &mons[PM_GREED] || \
 				 (ptr) == &mons[PM_WRATH] || \
 				 (ptr) == &mons[PM_PRIDE])
@@ -208,6 +209,7 @@
 				 (ptr) == &mons[PM_LUST] || \
 				 (ptr) == &mons[PM_ENVY] || \
 				 (ptr) == &mons[PM_SLOTH] || \
+				 (ptr) == &mons[PM_DEPRESSION] || \
 				 (ptr) == &mons[PM_GREED] || \
 				 (ptr) == &mons[PM_WRATH] || \
 				 (ptr) == &mons[PM_PRIDE] || \

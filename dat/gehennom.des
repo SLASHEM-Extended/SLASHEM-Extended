@@ -3073,6 +3073,8 @@ MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
 
+MONSTER:'&',"Depression",random,hostile
+
 TRAP:"death trap", random
 TRAP:"drain trap", random
 TRAP:"disintegration", random
@@ -3227,6 +3229,8 @@ MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
 MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
+
+MONSTER:'&',"Depression",random,hostile
 
 TRAP:"death trap", random
 TRAP:"drain trap", random

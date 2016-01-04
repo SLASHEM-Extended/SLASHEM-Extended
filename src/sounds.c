@@ -1274,6 +1274,9 @@ register struct monst *mtmp;
 		case PM_SLOTH:
 		    pline_msg = "sighs.";
 		    break;
+		case PM_DEPRESSION:
+		    pline_msg = "moans in agony.";
+		    break;
 		case PM_PRIDE:
 		    pline_msg = "doesn't deign to reply.";
 		    break;
