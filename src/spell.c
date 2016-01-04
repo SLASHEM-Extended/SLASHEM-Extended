@@ -1904,14 +1904,15 @@ dump_spells()
 	}
 	dump("", "Spells known in the end");
 
-	Sprintf(buf, "%-20s   Level    %-12s Fail", "    Name", "Category");
+	Sprintf(buf, "%-20s   Level    %-12s Fail  Memory", "    Name", "Category");
 	dump("  ",buf);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
-		Sprintf(buf, "%c - %-20s  %2d%s   %-12s %3d%%",
+		Sprintf(buf, "%c - %-20s  %2d%s   %-12s %3d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
 			spellknow(i) ? " " : "*",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
-			100 - percent_success(i));
+			100 - percent_success(i), issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
+			/* In Soviet Russia, people don't want to know how much spell memory they have left. --Amy */
 		dump("  ", buf);
 	}
 	dump("","");

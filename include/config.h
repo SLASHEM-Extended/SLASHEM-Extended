@@ -535,7 +535,7 @@ typedef unsigned char	uchar;
 #ifdef PUBLIC_SERVER
 #define DUMP_FN "/dgldir/userdata/%s/slashthem/dumplog/%ld"
 #else
-/*#define DUMP_FN "/tmp/%n.nh"*/    /* Fixed dumpfile name */
+#define DUMP_FN "dump_%n.txt"    /* Fixed dumpfile name */
 #endif
 
 #define DUMPMSGS 20
