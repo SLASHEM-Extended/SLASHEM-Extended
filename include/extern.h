@@ -864,6 +864,7 @@ E int NDECL(getmonth);	/* KMH -- Used by gypsies */
 E char *FDECL(yymmdd, (time_t));
 #endif
 E long FDECL(yyyymmdd, (time_t));
+E struct tm *getlt();
 E int NDECL(phase_of_the_moon);
 E boolean NDECL(friday_13th);
 E boolean NDECL(groundhog_day);	/* KMH -- February 2 */
