@@ -1373,27 +1373,27 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100) {
 		Sprintf(buf, " %d", u.idscrollpenalty);
-		enl_msg("Scroll identification only works 100 out of X attempts, and X ", "is", "was", buf);
+		enl_msg("Scroll identification only ", "works 100 times out of", "worked 100 times out of", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idpotionpenalty > 3) {
 		Sprintf(buf, " %d", u.idpotionpenalty);
-		enl_msg("Potion identification only works 3 out of X attempts, and X ", "is", "was", buf);
+		enl_msg("Potion identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idringpenalty > 4) {
 		Sprintf(buf, " %d", u.idringpenalty);
-		enl_msg("Ring identification only works 4 out of X attempts, and X ", "is", "was", buf);
+		enl_msg("Ring identification only ", "works 4 times out of", "worked 4 times out of", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idamuletpenalty > 15) {
 		Sprintf(buf, " %d", u.idamuletpenalty);
-		enl_msg("Amulet identification only works 15 out of X attempts, and X ", "is", "was", buf);
+		enl_msg("Amulet identification only ", "works 15 times out of", "worked 15 times out of", buf);
 	}
 
 	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3) {
 		Sprintf(buf, " %d", u.idwandpenalty);
-		enl_msg("Wand identification only works 3 out of X attempts, and X ", "is", "was", buf);
+		enl_msg("Wand identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );
@@ -1427,102 +1427,102 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
 	if (u.freqcolorbonus && (wizard || (!rn2(10)) || final >= 1 )) {
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
 		enl_msg("The monster color that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies2];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus2);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus2);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies3];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus3);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus3);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies4];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus4);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus4);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies5];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus5);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus5);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies6];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus6);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus6);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies7];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus7);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus7);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies8];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus8);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus8);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies9];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus9);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus9);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.frequentspecies10];
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", ptr->mname, u.freqspeciesbonus10);
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus10);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies];
-		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies2];
-		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies3];
-		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies4];
-		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies5];
-		Sprintf(buf, "never randomly generated: %s", ptr->mname);
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
@@ -1566,17 +1566,17 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
-		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
-		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
-		Sprintf(buf, "generated more often: %s (%s, frequency bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
@@ -1606,7 +1606,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
-		Sprintf(buf, "generated more often: %s (frequency bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
