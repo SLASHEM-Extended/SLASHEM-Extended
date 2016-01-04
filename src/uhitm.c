@@ -5097,7 +5097,7 @@ uchar aatyp;
 	    case AD_STTP:
 
 		if (!rn2(3)) {
-		pline("You hear a scattering sound!");
+		if (flags.soundok) You_hear("a scattering sound!");
 		if (invent) {
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;

@@ -2992,7 +2992,7 @@ newboss:
 				}
 				break;
 			case 6: /* envy */
-				pline("You hear a chuckling laughter.");
+				if (flags.soundok) You_hear("a chuckling laughter.");
 			      attrcurse();
 			      attrcurse();
 				break;

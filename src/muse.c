@@ -4588,7 +4588,7 @@ newboss:
 			pline("%s hurls %s!", Monnam(mtmp),
 						singular(otmp, doname));
 		}
-		else pline("You hear a hurling sound.");
+		else if (flags.soundok) You_hear("a hurling sound.");
 
 		m_throw(mtmp, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx),
 			sgn(mtmp->muy-mtmp->my),

@@ -5177,7 +5177,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				rehumanize();
 				break;
 			    }
-				pline("You hear a chuckling laughter.");
+				if (flags.soundok) You_hear("a chuckling laughter.");
 			    attrcurse();
 			}
 			break;
@@ -6044,7 +6044,7 @@ do_stone:
 		break;
 
 	    case AD_WEEP:
-		pline("You hear weeping sounds!");
+		if (flags.soundok) You_hear("weeping sounds!");
 		if (rn2(10)) break;
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

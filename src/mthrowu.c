@@ -955,7 +955,7 @@ struct monst *mtmp;
 #endif
 	    m_shot.o = otmp->otyp;
 	} else {
-	    if (flags.soundok) pline("You hear a flinging sound."); /* at least tell the player that something's happening --Amy */
+	    if (flags.soundok) You_hear("a flinging sound."); /* at least tell the player that something's happening --Amy */
 	    m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
 	}
 
@@ -1009,7 +1009,7 @@ register struct attack *mattk;
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))
 			pline("%s spits venom!", Monnam(mtmp));
-		    else pline("You hear a spitting sound.");
+		    else if (flags.soundok) You_hear("a spitting sound.");
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby),
 			distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy), otmp);
 		    nomul(0, 0);
@@ -1078,7 +1078,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
 			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
-		    else if (flags.soundok) pline("You hear an exhaling sound.");
+		    else if (flags.soundok) You_hear("an exhaling sound.");
 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),

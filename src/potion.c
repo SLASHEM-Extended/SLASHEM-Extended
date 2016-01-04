@@ -1446,7 +1446,7 @@ badeffect()
 		case 287:
 		case 288:
 		    adjalign(-rnd(20));
-		    pline("You hear a slight rumbling...");
+		    if (flags.soundok) You_hear("a slight rumbling...");
 
 		break;
 
@@ -1455,7 +1455,7 @@ badeffect()
 		    adjalign(-rnd(50));
 			u.ualign.sins++;
 			u.alignlim--;
-		    pline("You hear a thunderous rumbling!");
+		    if (flags.soundok) You_hear("a thunderous rumbling!");
 
 		break;
 

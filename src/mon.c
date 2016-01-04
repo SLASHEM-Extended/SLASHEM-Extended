@@ -897,11 +897,11 @@ register struct monst *mtmp;
 		return (0);
 #endif
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
-		pline("You hear %s crapping noises.", mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting");
+		You_hear("%s crapping noises.", mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting");
 	}
 	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
 	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");

@@ -428,7 +428,7 @@ learn()
 			    splname);
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
-				pline("You hear a thunderous growling and rumbling...");
+				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
 			}
 
 			makeknown((int)booktype);
