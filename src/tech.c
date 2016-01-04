@@ -2557,7 +2557,17 @@ int tech_no;
 		ammotype = 1; /* bullets */
 		if (Role_if(PM_DOOM_MARINE)) {
 
-			if (techlev(tech_no) >= 20) {
+			if (techlev(tech_no) >= 25) {
+
+				pline("You can choose from these kinds of ammo: BFG ammo, rockets, shotgun shells, blaster bolts or bullets.");
+				if (yn("Do you want to create BFG ammo?") == 'y') ammotype = 5;
+				else if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
+				else if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
+				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
+				else ammotype = 1;
+			}
+
+			else if (techlev(tech_no) >= 20) {
 
 				pline("You can choose from these kinds of ammo: rockets, shotgun shells, blaster bolts or bullets.");
 				if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
@@ -2587,12 +2597,15 @@ int tech_no;
 
 		struct obj *uammo;
 
-		if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE);
+		if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE);
+		else if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE);
 		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
 		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
 		else uammo = mksobj(BULLET, TRUE, FALSE);
 		uammo->quan = techlev(tech_no);
+		if (ammotype == 5) uammo->quan *= 4;
 		if (ammotype == 4) uammo->quan /= 10;
+		if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
 		uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 		uammo->owt = weight(uammo);
 		dropy(uammo);
