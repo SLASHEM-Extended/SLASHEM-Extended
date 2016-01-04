@@ -89,6 +89,8 @@ register struct obj *otmp;
 	    You("are putting on %s%s.",
 		obj_is_pname(otmp) ? the(xname(otmp)) : an(xname(otmp)),
 		how);
+
+	    if ((otmp->otyp == BLACK_DRAGON_SCALE_MAIL) || (otmp->otyp == BLUE_DRAGON_SCALE_MAIL) || (otmp->otyp == BLOOD_DRAGON_SCALE_MAIL) ) pline("How kinky."); /* idea by FIQ */
 	}
 }
 
