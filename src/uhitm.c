@@ -4548,6 +4548,10 @@ uchar aatyp;
 		mdamageu(mon, tmp);
 		break;
 
+	    case AD_SKIL:
+		if (!rn2(1000)) skillcaploss();
+		break;
+
 	  case AD_NGRA:
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {

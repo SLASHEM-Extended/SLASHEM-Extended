@@ -2115,6 +2115,7 @@ E void NDECL(take_gold);
 E int NDECL(dosit);
 E void NDECL(rndcurse);
 E void NDECL(attrcurse);
+E void NDECL(skillcaploss);
 
 /* ### sounds.c ### */
 

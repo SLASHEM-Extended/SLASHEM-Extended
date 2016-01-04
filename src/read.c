@@ -2458,7 +2458,12 @@ register struct obj	*sobj;
 
 	case SCR_SKILL_UP:
 
-		{
+		if (sobj->cursed || (confused && rn2(2) ) ) {
+
+			pline("You feel your abilities draining away...");
+			skillcaploss();
+
+		} else {
 
 			pline("You feel like someone has touched your forehead...");
 
@@ -2470,6 +2475,7 @@ register struct obj	*sobj;
 				break;
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
 				pline("You can now learn the %s skill.", P_NAME(skillimprove));
 				break;
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {

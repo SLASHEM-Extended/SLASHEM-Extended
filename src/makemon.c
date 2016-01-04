@@ -12238,7 +12238,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12363,11 +12363,12 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12492,6 +12493,7 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 		}
 		}
 
@@ -12500,7 +12502,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12625,10 +12627,11 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12753,6 +12756,7 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 		}
 		}
 
@@ -12761,7 +12765,7 @@ register int	mmflags;
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12886,10 +12890,11 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13014,6 +13019,7 @@ register int	mmflags;
 			case 122: mtmp->egotype_bomber = 1; break;
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
+			case 125: mtmp->egotype_unskillor = 1; break;
 		}
 		}
 

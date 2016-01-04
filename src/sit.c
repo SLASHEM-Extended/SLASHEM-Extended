@@ -485,6 +485,7 @@ dosit()
 				break;
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
 				pline("You can now learn the %s skill.", P_NAME(skillimprove));
 				break;
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
@@ -569,6 +570,54 @@ dosit()
 	else
 		pline("Having fun sitting on the %s?", surface(u.ux,u.uy));
 	return(1);
+}
+
+void
+skillcaploss()
+{
+
+	int skilltoreduce = rnd(P_NUM_SKILLS);
+	int tryct;
+	int i = 0;
+
+	if (P_MAX_SKILL(skilltoreduce) == P_BASIC) {
+		P_MAX_SKILL(skilltoreduce) = P_UNSKILLED;
+		pline("You lose all knowledge of the %s skill!", P_NAME(skilltoreduce));
+	} else if (!rn2(2) && P_MAX_SKILL(skilltoreduce) == P_SKILLED) {
+		P_MAX_SKILL(skilltoreduce) = P_BASIC;
+		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+	} else if (!rn2(4) && P_MAX_SKILL(skilltoreduce) == P_EXPERT) {
+		P_MAX_SKILL(skilltoreduce) = P_SKILLED;
+		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+	} else if (!rn2(10) && P_MAX_SKILL(skilltoreduce) == P_MASTER) {
+		P_MAX_SKILL(skilltoreduce) = P_EXPERT;
+		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+	} else if (!rn2(100) && P_MAX_SKILL(skilltoreduce) == P_GRAND_MASTER) {
+		P_MAX_SKILL(skilltoreduce) = P_MASTER;
+		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+	}
+
+	tryct = 400;
+
+	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
+		lose_weapon_skill(1);
+		i++;
+		tryct--;
+	}
+
+	while (i) {
+		u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+		i--;
+	}
+
+	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+	if (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) {
+		P_SKILL(skilltoreduce) = P_MAX_SKILL(skilltoreduce);
+		u.weapon_slots++;
+	}
+
+	return;
+
 }
 
 void

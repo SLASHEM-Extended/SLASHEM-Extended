@@ -177,7 +177,7 @@ int
 randattack()
 {
 
-	switch (rnd(225)) {
+	switch (rnd(226)) {
 
 		case 1:
 		case 2:
@@ -491,6 +491,8 @@ randattack()
 			return AD_MANA;
 		case 225:
 			return AD_PLAS;
+		case 226:
+			return AD_SKIL;
 		default:
 			return AD_PHYS;
 

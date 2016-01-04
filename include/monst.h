@@ -239,6 +239,8 @@ struct monst {
 	Bitfield(egotype_bomber,1); /* AT_EXPL */
 	Bitfield(egotype_exploder,1); /* AT_BOOM */
 
+	Bitfield(egotype_unskillor,1); /* AD_SKIL */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

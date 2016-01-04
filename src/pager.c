@@ -1533,6 +1533,7 @@ get_description_of_damage_type(uchar id)
 		case AD_SOUN: return "sound";
 		case AD_GRAV: return "gravity";
 		case AD_INER: return "inertia";
+		case AD_SKIL: return "skill point drain";
 
 		case AD_ENDS: return "placeholder attack";
 		default:

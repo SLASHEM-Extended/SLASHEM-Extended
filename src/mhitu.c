@@ -2016,6 +2016,29 @@ swingweapon:
 
 	}
 
+	if (mtmp->egotype_unskillor ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SKIL;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_plasmon ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4368,6 +4391,12 @@ dopois:
 		drain_en(dmg);
 		break;
 
+	    case AD_SKIL:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		if (!rn2(1000)) skillcaploss();
+		break;
+
 	    case AD_HALU:
 		hitmsg(mtmp, mattk);
 		not_affected |= Blind ||
@@ -5874,6 +5903,11 @@ do_stone:
 	    case AD_MANA:
 		if (mtmp->mcan) break;
 		drain_en(tmp);
+		break;
+
+	    case AD_SKIL:
+		if (mtmp->mcan) break;
+		if (!rn2(1000)) skillcaploss();
 		break;
 
 	    case AD_WTHR:
@@ -8034,6 +8068,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		drain_en(dmgplus);
 	      if (dmgplus) mdamageu(mtmp, dmgplus);
+		}
+		break;
+
+	    case AD_SKIL:
+		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		  mtmp->mcansee && !mtmp->mspec_used && !rn2(1000)) {
+		    pline("%s tries to drain your skills with its gaze!", Monnam(mtmp));
+		    stop_occupation();
+		    skillcaploss();
 		}
 		break;
 

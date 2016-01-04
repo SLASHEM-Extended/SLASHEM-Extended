@@ -864,6 +864,7 @@ boolean called;
 	    if (mtmp->egotype_engulfer) Sprintf(eos(buf), " Engulfer");
 	    if (mtmp->egotype_bomber) Sprintf(eos(buf), " Bomber");
 	    if (mtmp->egotype_exploder) Sprintf(eos(buf), " Exploder");
+	    if (mtmp->egotype_unskillor) Sprintf(eos(buf), " Unskillor");
 
 	}
 

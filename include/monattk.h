@@ -142,7 +142,10 @@
 #define AD_MANA		89	/* mana - like AD_DREN but also deals hitpoint damage */
 #define AD_PLAS		90	/* plasma - stun, destroys flammable items, more damage if not fire resistant */
 
-#define AD_ENDS		91	/* placeholder */
+/* evil patch idea by jonadab: */
+#define AD_SKIL		91	/* 1 in 1000 chance to reduce the cap on one of your skills */
+
+#define AD_ENDS		92	/* placeholder */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

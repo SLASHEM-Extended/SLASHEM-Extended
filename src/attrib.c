@@ -1479,6 +1479,12 @@ int oldlevel, newlevel;
 		add_weapon_skill(newlevel - oldlevel);
 	    else
 		lose_weapon_skill(oldlevel - newlevel);
+
+		/* give more skill slots --Amy */
+	    if (newlevel > oldlevel)
+		add_weapon_skill(newlevel - oldlevel);
+	    else
+		lose_weapon_skill(oldlevel - newlevel);
 	}
 
 	/* ALI -- update Warn_of_mon */

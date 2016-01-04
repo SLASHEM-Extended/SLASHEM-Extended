@@ -3550,7 +3550,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(124)) {
+		switch (rnd(125)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -3675,6 +3675,7 @@ boolean your_fault;
 			case 122: mon->egotype_bomber = 1; break;
 			case 123:
 			case 124: mon->egotype_exploder = 1; break;
+			case 125: mon->egotype_unskillor = 1; break;
 		}
 
   		break;
