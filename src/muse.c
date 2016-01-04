@@ -1677,7 +1677,7 @@ mon_tele:
 					surface(mtmp->mx, mtmp->my));
 		    return 2;
 		}
-		ttmp = maketrap(mtmp->mx, mtmp->my, HOLE);
+		ttmp = maketrap(mtmp->mx, mtmp->my, HOLE, 0);
 		if (!ttmp) return 2;
 		seetrap(ttmp);
 		if (vis) {
@@ -3653,7 +3653,7 @@ struct monst *mtmp;
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 		}
 		makerandomtrap();
@@ -3680,7 +3680,7 @@ struct monst *mtmp;
 		/* don't trigger traps that might send the player to a different level due to danger of segfaults --Amy */
 
 		{
-		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap() );
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100 );
 		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) ) dotrap(ttmp2, 0);
 		}
 
@@ -3697,7 +3697,7 @@ struct monst *mtmp;
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT);
+			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT, 0);
 		    }
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -4148,7 +4148,7 @@ newboss:
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 		}
 

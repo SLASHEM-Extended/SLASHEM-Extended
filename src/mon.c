@@ -2564,7 +2564,7 @@ register struct monst *mtmp;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 
-					(void) maketrap(x, y, rtrap);
+					(void) maketrap(x, y, rtrap, 100);
 					break;
 					}
 

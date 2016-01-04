@@ -2317,7 +2317,7 @@ int trap_type;
 		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP)
 			&& !Can_fall_thru(&u.uz))
 			trap_type = ROCKTRAP;
-		    ttmp = maketrap(xx, yy+dy, trap_type);
+		    ttmp = maketrap(xx, yy+dy, trap_type, 100);
 		    if (ttmp) {
 			if (trap_type != ROCKTRAP) ttmp->once = 1;
 			if (trap_engravings[trap_type]) {
@@ -8641,7 +8641,7 @@ skip0:
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB);
+			(void) maketrap(x, y, WEB, 25);
 		    }
 		    if (ishomicider) (void) makerandomtrap_at(x, y);
 		}
@@ -8650,7 +8650,7 @@ skip0:
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB);
+			(void) maketrap(x, y, WEB, 25);
 		    }
 		    if (ishomicider) (void) makerandomtrap_at(x, y);
 		}
@@ -10026,12 +10026,14 @@ coord *tm;
 {
 	register int kind;
 	coord m;
+	boolean isspecific;
 
 	/* no traps in pools */
 	if (tm && is_pool(tm->x,tm->y)) return;
 
 	if (num > 0 && num < TRAPNUM) {
 	    kind = num;
+	    isspecific = 1;
 #ifdef REINCARNATION
 	} else if (Is_rogue_level(&u.uz) && rn2(2) ) {
 	    switch (rn2(7)) {
@@ -10321,7 +10323,7 @@ coord *tm;
 			(avoid_boulder && sobj_at(BOULDER, m.x, m.y)));
 	}
 
-	(void) maketrap(m.x, m.y, kind);
+	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100);
 	/* Webs can generate on dlvl1, where giant spiders would be totally out of depth. Let's make random spiders. --Amy */
 	if (kind == WEB) (void) makemon( /*&mons[PM_GIANT_SPIDER]*/ mkclass(S_SPIDER,0),
 						m.x, m.y, NO_MM_FLAGS);
@@ -10943,7 +10945,7 @@ int dist;
     case 1: /* fire traps */
 	if (is_pool(x,y)) break;
 	lev->typ = ROOM;
-	ttmp = maketrap(x, y, FIRE_TRAP);
+	ttmp = maketrap(x, y, FIRE_TRAP, 0);
 	if (ttmp) ttmp->tseen = TRUE;
 	break;
     case 0: /* lit room locations */

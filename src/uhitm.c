@@ -4873,7 +4873,7 @@ uchar aatyp;
 
 	  case AD_WEBS: 
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 			if (ttmp2) {
 				pline("You're caught in a web!");
 				dotrap(ttmp2, NOWEBMSG);

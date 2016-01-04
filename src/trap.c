@@ -869,20 +869,20 @@ register int x, y;
 
 	int rtrap;
 	rtrap = randomtrap();
-	maketrap(x,y,rtrap);
+	maketrap(x,y,rtrap,100);
 	return;
 
 }
 
 struct trap *
-maketrap(x,y,typ)
-register int x, y, typ;
+maketrap(x,y,typ,replacechance)
+register int x, y, typ, replacechance;
 {
 	register struct trap *ttmp;
 	register struct rm *lev;
 	register boolean oldplace;
 
-	if (typ != MAGIC_PORTAL && (rnd(u.freqtrapbonus + 200) > 200)) {
+	if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 200) > 200)) {
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
@@ -4292,7 +4292,7 @@ newboss:
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, PIT);
+			maketrap(u.ux + i, u.uy + j, PIT, 0);
 		    }
 		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 
@@ -4391,7 +4391,7 @@ newboss:
 			int rtrap;
 		      rtrap = randomtrap();
 
-			(void) maketrap(u.ux, u.uy, rtrap);
+			(void) maketrap(u.ux, u.uy, rtrap, 100);
 
 			if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 
@@ -4409,7 +4409,7 @@ newboss:
 
 			if (!rn2(10)) {
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, ROCKTRAP); /* no recursive trap here */
+			(void) maketrap(u.ux, u.uy, ROCKTRAP, 0); /* no recursive trap here */
 			}
 
 		 break;
@@ -4472,7 +4472,7 @@ newboss:
 
 			else {
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP);
+			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0);
 			/* no recursive trap - just give the nasty effect here */
 			Superscroller = rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1));
 			(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
@@ -4905,7 +4905,7 @@ newboss:
 	
 				      rtrap = randomtrap();
 	
-					(void) maketrap(u.ux + i, u.uy + j, rtrap);
+					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 				}
 			}
 
@@ -9774,7 +9774,7 @@ boolean force_failure;
 			    if ((mtmp->mhp -= rnd(4)) <= 0) killed(mtmp);
 			} else if (ttype == WEB) {
 			    if (!webmaker(youmonst.data)) {
-				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 				if (ttmp2) {
 				    pline_The("webbing sticks to you. You're caught too!");
 				    dotrap(ttmp2, NOWEBMSG);
@@ -10048,7 +10048,7 @@ struct trap *ttmp;
 		default: /* 20 or higher = disarmed */
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			deltrap(ttmp);
-			ttmp = maketrap(trapx, trapy, HEEL_TRAP);
+			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
 			newsym(trapx, trapy);
 			return 1;

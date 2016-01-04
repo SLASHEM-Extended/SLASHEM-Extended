@@ -3578,7 +3578,7 @@ blitz_g_slam()
 
 	tmp = (5 + rnd(6) + (techlev(tech_no) / 5));
 	
-	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT);
+	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT, 0);
 	if (chasm) {
 	    if (!is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_clinger(mtmp->data))
 		mtmp->mtrapped = 1;

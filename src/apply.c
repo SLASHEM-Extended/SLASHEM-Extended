@@ -2709,7 +2709,7 @@ set_trap()
 	if (--trapinfo.time_needed > 0) return 1;	/* still busy */
 
 	ttyp = (otmp->otyp == LAND_MINE) ? LANDMINE : BEAR_TRAP;
-	ttmp = maketrap(u.ux, u.uy, ttyp);
+	ttmp = maketrap(u.ux, u.uy, ttyp, 0);
 	if (ttmp && !ttmp->hiddentrap) {
 	    ttmp->tseen = 1;
 	    ttmp->madeby_u = 1;
@@ -3509,7 +3509,7 @@ wand_explode(obj, hero_broke)
 
 			struct trap *ttmp;
 
-			ttmp = maketrap(u.ux, u.uy, TELEP_TRAP);
+			ttmp = maketrap(u.ux, u.uy, TELEP_TRAP, 0);
 			if (ttmp) {
 				ttmp->madeby_u = 1;
 				newsym(u.ux, u.uy); /* if our hero happens to be invisible */
@@ -3532,7 +3532,7 @@ wand_explode(obj, hero_broke)
 
 			struct trap *ttmp;
 
-			ttmp = maketrap(u.ux, u.uy, LEVEL_TELEP);
+			ttmp = maketrap(u.ux, u.uy, LEVEL_TELEP, 0);
 			if (ttmp) {
 				ttmp->madeby_u = 1;
 				newsym(u.ux, u.uy); /* if our hero happens to be invisible */

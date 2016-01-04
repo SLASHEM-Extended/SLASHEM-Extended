@@ -886,7 +886,7 @@ badeffect()
 			      rtrap = randomtrap();
 				if (!rn2(20)) makerandomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 			makerandomtrap();
 			if (!rn2(3)) makerandomtrap();

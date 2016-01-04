@@ -1949,7 +1949,7 @@ fixup_special()
 	    for(y = croom->ly; y <= croom->hy; y++) {
 		(void) mkgold((long) rn1(300, 600), x, y);
 		if (!rn2(3) && !is_pool(x,y))
-		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT);
+		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5);
 	    }
     } else if (Role_if(PM_PRIEST) && In_quest(&u.uz)) {
 	/* less chance for undead corpses (lured from lower morgues) */
@@ -2480,19 +2480,19 @@ register const char *s;
 
 		/* spice this boring maze up - seven deadly sins :D --Amy */
 	    mtmp = makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 	    mtmp = makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
 
 
 #undef INVPOS_X_MARGIN
@@ -3321,7 +3321,7 @@ register xchar x, y, todnum, todlevel;
 {
 	/* a portal "trap" must be matched by a */
 	/* portal in the destination dungeon/dlevel */
-	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL);
+	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL, 0);
 
 	if (!ttmp) {
 		impossible("portal on top of portal??");

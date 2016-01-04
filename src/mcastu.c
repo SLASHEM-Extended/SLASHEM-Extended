@@ -1296,7 +1296,7 @@ int spellnum;
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 		dmg = 0;
 		break;

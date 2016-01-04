@@ -2126,7 +2126,7 @@ makerandomtrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			(void) maketrap(x, y, rtrap);
+			(void) maketrap(x, y, rtrap, 100);
 			break;
 			}
 
@@ -2151,7 +2151,7 @@ makegirlytrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			(void) maketrap(x, y, rtrap);
+			(void) maketrap(x, y, rtrap, 0);
 			break;
 			}
 
@@ -3594,7 +3594,7 @@ schar ftyp, btyp;
 			}
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300)) 
-				(void) maketrap(xx, yy, rndtrap());
+				(void) maketrap(xx, yy, rndtrap(), 100);
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
 				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
 				else makerandomtrap_at(xx, yy);
@@ -4141,7 +4141,7 @@ boolean prefilled;
 			for(sy = croom->ly; sy <= croom->hy; sy++)
 			if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) ) {
 			    if(rn2(5)) 
-					(void) maketrap(sx, sy, rtrap);
+					(void) maketrap(sx, sy, rtrap, 100);
 				if (randomnes == 1) rtrap = randomtrap();
 			}
 
@@ -4204,7 +4204,7 @@ boolean prefilled;
 				}
 			}
 
-			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2);
+			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2, 100);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
@@ -4228,7 +4228,7 @@ boolean prefilled;
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
-		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap());
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100);
 		}
 
 	}
@@ -4242,7 +4242,7 @@ boolean prefilled;
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
 		    if(rn2(2)) 
-				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP) );
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100 );
 		}
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
@@ -5908,7 +5908,7 @@ dlb *fd;
 			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == SHAFT_TRAP ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
-		    (void) maketrap(mm.x, mm.y, trytrap);
+		    (void) maketrap(mm.x, mm.y, trytrap, 100);
 	    }
 
 		if (ishaxor) {
@@ -5951,7 +5951,7 @@ dlb *fd;
 			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == SHAFT_TRAP ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
-		    (void) maketrap(mm.x, mm.y, trytrap);
+		    (void) maketrap(mm.x, mm.y, trytrap, 100);
 	    }
 		}
 

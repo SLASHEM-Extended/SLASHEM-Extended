@@ -602,7 +602,7 @@ int ttyp;
 	    Strcpy(surface_type, surface(x,y));
 	shopdoor = IS_DOOR(lev->typ) && *in_rooms(x, y, SHOPBASE);
 	oldobjs = level.objects[x][y];
-	ttmp = maketrap(x, y, ttyp);
+	ttmp = maketrap(x, y, ttyp, 0);
 	if (!ttmp) return;
 	newobjs = level.objects[x][y];
 	ttmp->tseen = ((madeby_u || cansee(x,y)) && !ttmp->hiddentrap);

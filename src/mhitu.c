@@ -3461,7 +3461,7 @@ dopois:
 	    case AD_WEBS: 
 		hitmsg(mtmp, mattk);
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -5310,7 +5310,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_WEBS: /* No message. Because you can't see the web while engulfed. */
-			(void) maketrap(u.ux, u.uy, WEB);
+			(void) maketrap(u.ux, u.uy, WEB, 0);
 			/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
 			if (!rn2(8)) makerandomtrap();
 			break;
@@ -7034,7 +7034,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
 		    stop_occupation();
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);

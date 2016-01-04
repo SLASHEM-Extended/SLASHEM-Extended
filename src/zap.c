@@ -2624,7 +2624,7 @@ register struct obj *obj;
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 		}
 
@@ -5823,7 +5823,7 @@ boolean *shopdamage;
 
 		    rangemod -= 3;
 		    lev->typ = ROOM;
-		    ttmp = maketrap(x, y, PIT);
+		    ttmp = maketrap(x, y, PIT, 0);
 		    if (ttmp) ttmp->tseen = 1;
 		    if (cansee(x,y)) msgtxt = "The water evaporates.";
 		}

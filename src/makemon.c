@@ -8193,7 +8193,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SMUT_ORC]) {
 			if (!rn2(3)) (void) mongets(mtmp, WAN_SUMMON_SEXY_GIRL);
 			else if (!rn2(2)) (void) mongets(mtmp, SCR_GIRLINESS);
-			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP);
+			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP, 0);
 		}
 		break;
 	    case S_LICH:
@@ -12264,7 +12264,7 @@ register int	mmflags;
 	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 	if (ptr == &mons[PM_SCROLLER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP);
+		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0);
 
 	if (ptr == &mons[PM_BOULDER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE);
@@ -12273,10 +12273,10 @@ register int	mmflags;
 		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE);
 
 	if (ptr == &mons[PM_HOLE_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, HOLE);
+		(void) maketrap(x, y, HOLE, 10);
 
 	if (ptr == &mons[PM_TRAP_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, randomtrap() );
+		(void) maketrap(x, y, randomtrap(), 100 );
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
@@ -12285,7 +12285,7 @@ register int	mmflags;
 
 		rtrap = randomtrap();
 
-		(void) maketrap(x, y, rtrap);
+		(void) maketrap(x, y, rtrap, 100);
 
 	}
 

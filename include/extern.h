@@ -2331,7 +2331,7 @@ E boolean FDECL(rust_dmg, (struct obj *,const char *,int,BOOLEAN_P,struct monst 
 E boolean FDECL(wither_dmg, (struct obj *,const char *,int,BOOLEAN_P,struct monst *));
 
 E void FDECL(grease_protect, (struct obj *,const char *,struct monst *));
-E struct trap *FDECL(maketrap, (int,int,int));
+E struct trap *FDECL(maketrap, (int,int,int,int));
 E void FDECL(makerandomtrap_at, (int,int));
 E void FDECL(fall_through, (BOOLEAN_P));
 E void FDECL(fall_throughX, (BOOLEAN_P));

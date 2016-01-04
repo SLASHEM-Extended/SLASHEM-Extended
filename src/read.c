@@ -2942,7 +2942,7 @@ newboss:
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
 			}
 		}
 
@@ -2961,7 +2961,7 @@ newboss:
 	case SCR_CREATE_TRAP:
 
 		{
-		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap() );
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100 );
 		if (ttmp2) dotrap(ttmp2, 0);
 		}
 
@@ -3016,7 +3016,7 @@ newboss:
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT);
+			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT, 0);
 		    }
 
 		break;

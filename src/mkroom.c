@@ -1447,7 +1447,7 @@ mktraproom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
-				(void) maketrap(sx, sy, rtrap);
+				(void) maketrap(sx, sy, rtrap, 100);
 			if (randomnes == 1) rtrap = randomtrap();
 		}
 
@@ -1535,7 +1535,7 @@ mkinsideroom()
 
 				}
 			}
-			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))			(void) maketrap(sx, sy, typ2);
+			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10)) (void) maketrap(sx, sy, typ2, 100);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
@@ -1573,7 +1573,7 @@ mkriverroom()
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
-		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap());
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100);
 		}
 
 	level.flags.has_riverroom = 1;
@@ -1600,7 +1600,7 @@ mkstatueroom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(2)) 
-				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP) );
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100 );
 		}
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
