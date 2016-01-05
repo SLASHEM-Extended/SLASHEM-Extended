@@ -1549,7 +1549,11 @@ boolean want_dump;
 #endif
 	}
     }
+#ifdef DUMP_LOG
+    return;
+#else
     return (boolean) (total_killed);
+#endif
 }
 
 int
