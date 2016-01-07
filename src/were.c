@@ -89,6 +89,8 @@ int pm;
 	    case PM_HUMAN_WEREMINDFLAYER: return(PM_WEREMINDFLAYER);
 	    case PM_WEREMIMIC:       return(PM_HUMAN_WEREMIMIC);
 	    case PM_HUMAN_WEREMIMIC: return(PM_WEREMIMIC);
+	    case PM_WEREPERMAMIMIC:       return(PM_HUMAN_WEREPERMAMIMIC);
+	    case PM_HUMAN_WEREPERMAMIMIC: return(PM_WEREPERMAMIMIC);
 	    case PM_WEREGIANT:        return(PM_HUMAN_WEREGIANT);
 	    case PM_HUMAN_WEREGIANT:  return(PM_WEREGIANT);
 	    case PM_WEREGHOST:        return(PM_HUMAN_WEREGHOST);
@@ -274,6 +276,11 @@ char *genbuf;
 		case PM_WEREMIMIC:
 		case PM_HUMAN_WEREMIMIC:
 			typ = rn2(5) ? PM_LARGE_MIMIC : PM_GIANT_MIMIC ;
+			if (genbuf) Strcpy(genbuf, "mimic");
+			break;
+		case PM_WEREPERMAMIMIC:
+		case PM_HUMAN_WEREPERMAMIMIC:
+			typ = rn2(5) ? PM_LARGE_PERMAMIMIC : PM_GIANT_PERMAMIMIC ;
 			if (genbuf) Strcpy(genbuf, "mimic");
 			break;
 		case PM_WEREMINDFLAYER:

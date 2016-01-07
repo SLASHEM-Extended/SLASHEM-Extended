@@ -13211,6 +13211,7 @@ register int	mmflags;
 			if (mndx == PM_INSPECTOR_KATCHER) set_mimic_sym(mtmp);
 
 			if (mndx == PM_HUMAN_WEREMIMIC) set_mimic_sym(mtmp);
+			if (mndx == PM_HUMAN_WEREPERMAMIMIC) set_mimic_sym(mtmp);
 
 			break;
 		case S_XORN:
@@ -15636,6 +15637,45 @@ assign_sym:
 			}
 		}
 	}
+
+	if (mtmp->data == &mons[PM_CLOAKER] || mtmp->data == &mons[PM_PERMACLOAKER]) {
+		s_sym = ARMOR_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT);
+	}
+
+	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC]) {
+		s_sym = POTION_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE);
+	}
+
+	if (mtmp->data == &mons[PM_SCROLL_MIMIC] || mtmp->data == &mons[PM_SCROLL_PERMAMIMIC]) {
+		s_sym = SCROLL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS);
+	}
+
+	if (mtmp->data == &mons[PM_RING_MIMIC] || mtmp->data == &mons[PM_RING_PERMAMIMIC]) {
+		s_sym = RING_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(RIN_ADORNMENT, RIN_TELEPORT_CONTROL);
+	}
+
+	if (mtmp->data == &mons[PM_CHEST_MIMIC] || mtmp->data == &mons[PM_CHEST_PERMAMIMIC]) {
+		s_sym = TOOL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = CHEST;
+	}
+
+	if (mtmp->data == &mons[PM_DOOR_MIMIC] || mtmp->data == &mons[PM_DOOR_PERMAMIMIC]) {
+		s_sym = MAXOCLASSES;
+		ap_type = M_AP_FURNITURE;
+		appear = S_hcdoor;
+	}
+
+
+
 	mtmp->m_ap_type = ap_type;
 	mtmp->mappearance = appear;
 }

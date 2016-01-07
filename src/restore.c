@@ -477,6 +477,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 
 	mread(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));

@@ -5150,6 +5150,7 @@ u_init()
 
 	struct permonst* randomeye = &mons[PM_MYSTIC_EYE];
 	struct permonst* randommimic = &mons[PM_UNKNOWN_MIMIC];
+	struct permonst* randommimicb = &mons[PM_UNKNOWN_PERMAMIMIC];
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
@@ -14812,6 +14813,19 @@ u_init()
 
 	}
 
+	randommimicb->mmove = rnd(10)+2;
+	randommimicb->ac = 5-rnd(20);
+	randommimicb->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randommimicb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	for (i = 0; i < 2; i++) {
 		attkptr = &randompiercer->mattk[i];
 
@@ -18877,6 +18891,7 @@ alter_reality()
 
 	struct permonst* randomeye = &mons[PM_MYSTIC_EYE];
 	struct permonst* randommimic = &mons[PM_UNKNOWN_MIMIC];
+	struct permonst* randommimicb = &mons[PM_UNKNOWN_PERMAMIMIC];
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
@@ -23870,6 +23885,19 @@ alter_reality()
 	randommimic->mr = rn2(101);
 	for (i = 0; i < 3; i++) {
 		attkptr = &randommimic->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randommimicb->mmove = rnd(10)+2;
+	randommimicb->ac = 5-rnd(20);
+	randommimicb->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randommimicb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {

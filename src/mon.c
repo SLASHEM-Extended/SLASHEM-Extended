@@ -437,7 +437,9 @@ register struct monst *mtmp;
 	    case PM_CREEPING___:
 	    case PM_FRANKENSTEIN_S_MONSTER:
 	    case PM_UNDEAD_MIMIC:
+	    case PM_UNDEAD_PERMAMIMIC:
 	    case PM_UNDEAD_SWARM_MIMIC:
+	    case PM_UNDEAD_SWARM_PERMAMIMIC:
 	    case PM_UNDEAD_KANGAROO:
 	    case PM_RIBBON_FISH:
 	    case PM_SKELETON_FISH:
@@ -2502,6 +2504,8 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERENYMPH], -1);
 	else if (mtmp->data == &mons[PM_WEREMIMIC])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREMIMIC], -1);
+	else if (mtmp->data == &mons[PM_WEREPERMAMIMIC])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPERMAMIMIC], -1);
 	else if (mtmp->data == &mons[PM_WERECOCKATRICE])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOCKATRICE], -1);
 	else if (mtmp->data == &mons[PM_WERESOLDIERANT])

@@ -1843,6 +1843,35 @@ register int pm;
 		    display_nhwindow(WIN_MAP, TRUE);
 		}
 		break;
+	    case PM_HUMAN_WEREPERMAMIMIC:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMIMIC;
+		tmp += 30;
+		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
+		    char buf[BUFSZ];
+		    You_cant("resist the temptation to mimic %s.",
+			Hallucination ? "an orange" : "a pile of gold");
+#ifdef STEED
+                    /* A pile of gold can't ride. */
+		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
+#endif
+		    nomul(-tmp, "pretending to be a pile of gold");
+		    Sprintf(buf, Hallucination ?
+			"You suddenly dread being peeled and mimic %s again!" :
+			"You now prefer mimicking %s again.",
+			an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
+		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
+		    nomovemsg = eatmbuf;
+		    afternmv = eatmdone;
+		    /* ??? what if this was set before? */
+		    youmonst.m_ap_type = M_AP_OBJECT;
+		    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
+		    newsym(u.ux,u.uy);
+		    curs_on_u();
+		    /* make gold symbol show up now */
+		    display_nhwindow(WIN_MAP, TRUE);
+		}
+		break;
 	    case PM_NURSE:
 	    case PM_HEALING_TROVE:
 	    case PM_GORGON_FLY:
@@ -1870,6 +1899,7 @@ register int pm;
 	    case PM_COCKTAUR:
 	    case PM_MIMIC_CHICKEN:
 	    case PM_PETRO_MIMIC:
+	    case PM_PETRO_PERMAMIMIC:
 	    case PM_INVISO_TROVE:
 		if(!Invis) {
 			set_itimeout(&HInvis, (long)rn1(100, 50));
@@ -1925,6 +1955,41 @@ register int pm;
 	    case PM_FOUL_MIMIC:
 	    case PM_PORTER_MIMIC:
 	    case PM_STEALER_MIMIC:
+	    case PM_BURNING_PERMAMIMIC:
+	    case PM_SCROLL_PERMAMIMIC:
+	    case PM_RING_PERMAMIMIC:
+	    case PM_STAIRWAY_TO_HEAVEN:
+	    case PM_POTION_PERMAMIMIC:
+	    case PM_TOME_OF_ANNIHILATION:
+	    case PM_LESSER_PERMAMIMIC:
+	    case PM_ULTIMATE_PERMAMIMIC:
+	    case PM_EMPEROR_PERMAMIMIC:
+	    case PM_DOOR_PERMAMIMIC:
+	    case PM_PERMACLOAKER:
+	    case PM_CHEST_PERMAMIMIC:
+	    case PM_UNKNOWN_PERMAMIMIC:
+	    case PM_BULLY_PERMAMIMIC:
+	    case PM_UNDEAD_PERMAMIMIC:
+	    case PM_ICE_PERMAMIMIC:
+	    case PM_TAP_PERMAMIMIC:
+	    case PM_FREEZER_PERMAMIMIC:
+	    case PM_STATIC_PERMAMIMIC:
+	    case PM_DARK_PERMAMIMIC:
+	    case PM_CONTROLLER_PERMAMIMIC:
+	    case PM_BOOBED_PERMAMIMIC:
+	    case PM_SUXXOR_PERMAMIMIC:
+	    case PM_MINUSCULE_PERMAMIMIC:
+	    case PM_WITHERING_PERMAMIMIC:
+	    case PM_ACID_PERMAMIMIC:
+	    case PM_DECAYING_PERMAMIMIC:
+	    case PM_RUSTY_PERMAMIMIC:
+	    case PM_PETTY_BOOBED_PERMAMIMIC:
+	    case PM_SUCKING_PERMAMIMIC:
+	    case PM_VAMP_PERMAMIMIC:
+	    case PM_KILLER_PERMAMIMIC:
+	    case PM_FOUL_PERMAMIMIC:
+	    case PM_PORTER_PERMAMIMIC:
+	    case PM_STEALER_PERMAMIMIC:
 	    case PM_MIMIC_MUMMY:
 	    case PM_MIMIC_NYMPH:
 	    case PM_MIMIC_ANT:
@@ -1952,6 +2017,7 @@ register int pm;
 	    case PM_MIMIC_VORTEX:
 	    case PM_VOLTORB:
 	    case PM_GIANT_EGO_MIMIC:
+	    case PM_GIANT_EGO_PERMAMIMIC:
 	    case PM_KEYSTONE_WARDER:
 	    case PM_WARDER_SERGEANT:
 	    case PM_WARDER_LIEUTENANT:
@@ -1967,14 +2033,19 @@ register int pm;
 	    case PM_NETZAH_SEPHIRAH:
 	    case PM_AMORPHOUS_FISH:
 	    case PM_GREATER_MIMIC:
+	    case PM_GREATER_PERMAMIMIC:
 	    case PM_DECEPTIVE_ORC:
 	    case PM_MASTER_MIMIC:
 	    case PM_UNDEAD_SWARM_MIMIC:
 	    case PM_FLOATING_MIMIC:
+	    case PM_MASTER_PERMAMIMIC:
+	    case PM_UNDEAD_SWARM_PERMAMIMIC:
+	    case PM_FLOATING_PERMAMIMIC:
 	    case PM_OLOG_HAI_MIMIC:
 	    case PM_OLOG_HAI_PERMAMIMIC:
 	    case PM_DWARF_KING_PERMAMIMIC:
 	    case PM_PLAYER_MIMIC:
+	    case PM_PLAYER_PERMAMIMIC:
 	    case PM_VESTY:
 	    case PM_CAMO_DWARF:
 	    case PM_COCOON_IMP:
@@ -2016,6 +2087,7 @@ register int pm;
 	    case PM_TROLL_PERMAMIMIC_MUMMY:
 	    case PM_CHEATING_BLACK_LIGHT:
 	    case PM_MIMIC_HIVEMIND:
+	    case PM_PERMAMIMIC_HIVEMIND:
 	    case PM_UNIDENTIFIED_RAVEN:
 	    case PM_ARTILLERY_DRAGON:
 	    case PM_EVIL_PATCH_MINOTAUR:
@@ -2031,15 +2103,24 @@ register int pm;
 	    case PM_LESSER_INTRINSIC_EATING_MIMIC:
 	    case PM_INTRINSIC_EATING_MIMIC:
 	    case PM_MASTER_INTRINSIC_EATING_MIMIC:
+	    case PM_LESSER_INTRINSIC_EATING_PERMAMIMIC:
+	    case PM_INTRINSIC_EATING_PERMAMIMIC:
+	    case PM_MASTER_INTRINSIC_EATING_PERMAMIMIC:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
 	    case PM_GIANT_GROUP_MIMIC:
 	    case PM_GIANT_SPAWN_MIMIC:
+	    case PM_GIANT_PERMAMIMIC:
+	    case PM_GIANT_GROUP_PERMAMIMIC:
+	    case PM_GIANT_SPAWN_PERMAMIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_LARGE_MIMIC:
 	    case PM_LARGE_PHASING_MIMIC:
 	    case PM_LARGE_SPAWN_MIMIC:
+	    case PM_LARGE_PERMAMIMIC:
+	    case PM_LARGE_PHASING_PERMAMIMIC:
+	    case PM_LARGE_SPAWN_PERMAMIMIC:
 		tmp += 10;
 		/* fall into next case */
 	    case PM_MIMIC:
@@ -2047,6 +2128,11 @@ register int pm;
 	    case PM_SMALL_MIMIC:
 	    case PM_SMALL_HEALING_MIMIC:
 	    case PM_SMALL_FLYING_MIMIC:
+	    case PM_PERMAMIMIC:
+	    case PM_PETIT_PERMAMIMIC:
+	    case PM_SMALL_PERMAMIMIC:
+	    case PM_SMALL_HEALING_PERMAMIMIC:
+	    case PM_SMALL_FLYING_PERMAMIMIC:
 		tmp += 10;
 		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
 		    char buf[BUFSZ];
