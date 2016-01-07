@@ -2766,6 +2766,128 @@ MONSTER:'B',"raven",random,hostile
 MONSTER:'B',"raven",random,hostile
 MONSTER:'B',"raven",random,hostile
 
+# evil patch idea by jonadab: Medusa accompanied by nymphs
+MAZE:"emedu-12",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}.}}}}}..}}}}}......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}...}}}}}
+}...}}.....}}}}}....}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...............}
+}....}}}}}}}}}}....}}}..}}}}}}}}}}}.......}}}}}}}}}}}}}}}}..}}.....}}}...}}
+}....}}}}}}}}.....}}}}..}}}}}}.................}}}}}}}}}}}.}}}}.....}}...}}
+}....}}}}}}}}}}}}.}}}}.}}}}}}.-----------------.}}}}}}}}}}}}}}}}}.........}
+}....}}}}}}}}}}}}}}}}}}.}}}...|...............S...}}}}}}}}}}}}}}}}}}}....}}
+}.....}.}}....}}}}}}}}}.}}....--------.--------....}}}}}}..}}}}}}}}}}}...}}
+}......}}}}..}}}}}}}}}}}}}........|.......|........}}}}}....}}}}}}}}}}}}}}}
+}.....}}}}}}}}}}}}}}}}}}}}........|.......|........}}}}}...}}}}}}}}}.}}}}}}
+}.....}}}}}}}}}}}}}}}}}}}}....--------.--------....}}}}}}.}.}}}}}}}}}}}}}}}
+}......}}}}}}}}}}}}}}}}}}}}...S...............|...}}}}}}}}}}}}}}}}}.}}}}}}}
+}.......}}}}}}}..}}}}}}}}}}}}.-----------------.}}}}}}}}}}}}}}}}}....}}}}}}
+}........}}.}}....}}}}}}}}}}}}.................}}}}}..}}}}}}}}}.......}}}}}
+}.......}}}}}}}......}}}}}}}}}}}}}}.......}}}}}}}}}.....}}}}}}...}}..}}}}}}
+}.....}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}}}}.}}}}}}}..}}}}}}}}}}....}}}}}}}
+}}..}}}}}}}}}}}}}....}}}}}}}}}}}}}}}}}}}}}}...}}..}}}}}}}.}}.}}}}..}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Dungeon Description
+# (must maintain one room definition; `unfilled' forces its room to be kept)
+REGION:(00,00,74,19),unlit,"ordinary"
+REGION:(31,07,45,07),unlit,"nymphhall"
+REGION:(35,09,41,10),unlit,"nymphhall"
+REGION:(31,12,45,12),unlit,"nymphhall"
+# Teleport: down to up stairs island, up to Medusa's island
+TELEPORT_REGION:(01,01,05,17),(0,0,0,0),down
+TELEPORT_REGION:(26,04,50,15),(0,0,0,0),up
+# Stairs
+STAIR:(05,14),up
+STAIR:(36,10),down
+# Doors
+DOOR:closed,(46,07)
+DOOR:closed,(30,12)
+# Branch, not allowed inside Medusa's building.
+BRANCH:levregion(01,00,79,20),(30,06,46,13)
+# Non diggable walls
+NON_DIGGABLE:(30,06,46,13)
+# Objects
+CONTAINER:'`',"statue",(36,10),uncursed,"knight",3,"Perseus"
+OBJECT[75%]:'[',"shield of reflection",contained,cursed,+0
+OBJECT[25%]:'[',"levitation boots",contained,random,+0
+OBJECT[50%]:')',"scimitar",contained,blessed,+2
+OBJECT[50%]:'(',"sack",contained
+# These aren't really containers, but specifying CONTAINER forces them to be
+# empty, since CONTAINERs contain only what is explicitly specified.
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"board",(38,07)
+TRAP:"board",(38,12)
+# Random monsters
+MONSTER:'@',random,(36,10),asleep
+OBJECT:'?',"root password detection",(36,10)
+MONSTER:';',"giant eel",(11,06)
+MONSTER:';',"giant eel",(23,13)
+MONSTER:';',"giant eel",(29,02)
+MONSTER:';',"jellyfish",(02,02)
+MONSTER:';',"jellyfish",(00,08)
+MONSTER:';',"jellyfish",(04,18)
+MONSTER:'T',"water troll",(51,03)
+MONSTER:'T',"water troll",(64,11)
+MONSTER:'S',random,(38,07)
+MONSTER:'S',random,(38,12)
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
 
 MAZE:"hmedu-1",' '
 FLAGS: noteleport
@@ -4602,6 +4724,188 @@ MONSTER:'B',"raven",random,hostile
 MONSTER:'B',"raven",random,hostile
 MONSTER:'B',"raven",random,hostile
 MONSTER:'B',"raven",random,hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# evil patch idea by jonadab: Medusa accompanied by nymphs
+MAZE:"medus-12",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+MAP
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}.}}}}}..}}}}}......}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}....}}}...}}}}}
+}...}}.....}}}}}....}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...............}
+}....}}}}}}}}}}....}}}..}}}}}}}}}}}.......}}}}}}}}}}}}}}}}..}}.....}}}...}}
+}....}}}}}}}}.....}}}}..}}}}}}.................}}}}}}}}}}}.}}}}.....}}...}}
+}....}}}}}}}}}}}}.}}}}.}}}}}}.-----------------.}}}}}}}}}}}}}}}}}.........}
+}....}}}}}}}}}}}}}}}}}}.}}}...|...............S...}}}}}}}}}}}}}}}}}}}....}}
+}.....}.}}....}}}}}}}}}.}}....--------.--------....}}}}}}..}}}}}}}}}}}...}}
+}......}}}}..}}}}}}}}}}}}}........|.......|........}}}}}....}}}}}}}}}}}}}}}
+}.....}}}}}}}}}}}}}}}}}}}}........|.......|........}}}}}...}}}}}}}}}.}}}}}}
+}.....}}}}}}}}}}}}}}}}}}}}....--------.--------....}}}}}}.}.}}}}}}}}}}}}}}}
+}......}}}}}}}}}}}}}}}}}}}}...S...............|...}}}}}}}}}}}}}}}}}.}}}}}}}
+}.......}}}}}}}..}}}}}}}}}}}}.-----------------.}}}}}}}}}}}}}}}}}....}}}}}}
+}........}}.}}....}}}}}}}}}}}}.................}}}}}..}}}}}}}}}.......}}}}}
+}.......}}}}}}}......}}}}}}}}}}}}}}.......}}}}}}}}}.....}}}}}}...}}..}}}}}}
+}.....}}}}}}}}}}}.....}}}}}}}}}}}}}}}}}}}}}}.}}}}}}}..}}}}}}}}}}....}}}}}}}
+}}..}}}}}}}}}}}}}....}}}}}}}}}}}}}}}}}}}}}}...}}..}}}}}}}.}}.}}}}..}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Dungeon Description
+# (must maintain one room definition; `unfilled' forces its room to be kept)
+REGION:(00,00,74,19),unlit,"ordinary"
+REGION:(31,07,45,07),unlit,"nymphhall"
+REGION:(35,09,41,10),unlit,"nymphhall"
+REGION:(31,12,45,12),unlit,"nymphhall"
+# Teleport: down to up stairs island, up to Medusa's island
+TELEPORT_REGION:(01,01,05,17),(0,0,0,0),down
+TELEPORT_REGION:(26,04,50,15),(0,0,0,0),up
+# Stairs
+STAIR:(05,14),up
+STAIR:(36,10),down
+# Doors
+DOOR:closed,(46,07)
+DOOR:closed,(30,12)
+# Branch, not allowed inside Medusa's building.
+BRANCH:levregion(01,00,79,20),(30,06,46,13)
+# Non diggable walls
+NON_DIGGABLE:(30,06,46,13)
+# Objects
+CONTAINER:'`',"statue",(36,10),uncursed,"knight",3,"Perseus"
+OBJECT[75%]:'[',"shield of reflection",contained,cursed,+0
+OBJECT[25%]:'[',"levitation boots",contained,random,+0
+OBJECT[50%]:')',"scimitar",contained,blessed,+2
+OBJECT[50%]:'(',"sack",contained
+# These aren't really containers, but specifying CONTAINER forces them to be
+# empty, since CONTAINERs contain only what is explicitly specified.
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+CONTAINER:'`',"statue",random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"board",(38,07)
+TRAP:"board",(38,12)
+# Random monsters
+MONSTER:'@',random,(36,10),asleep
+OBJECT:'?',"root password detection",(36,10)
+MONSTER:';',"giant eel",(11,06)
+MONSTER:';',"giant eel",(23,13)
+MONSTER:';',"giant eel",(29,02)
+MONSTER:';',"jellyfish",(02,02)
+MONSTER:';',"jellyfish",(00,08)
+MONSTER:';',"jellyfish",(04,18)
+MONSTER:'T',"water troll",(51,03)
+MONSTER:'T',"water troll",(64,11)
+MONSTER:'S',random,(38,07)
+MONSTER:'S',random,(38,12)
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
+MONSTER:'n',random,random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
