@@ -984,6 +984,9 @@ die:
 	  dump("", "");
 	  dump_screen();
 	}
+
+	(void)doredraw();
+
 #endif /* DUMP_LOG */
 
 	} /* if (!goexplore) */
