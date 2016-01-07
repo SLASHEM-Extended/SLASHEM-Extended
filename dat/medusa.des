@@ -4760,7 +4760,7 @@ OBJECT[10%]:'/',"bad effect",random
 OBJECT[10%]:'/',"clone monster",random
 
 # evil patch idea by jonadab: Medusa accompanied by nymphs
-MAZE:"medus-12",' '
+MAZE:"hmedu-12",' '
 FLAGS: noteleport
 GEOMETRY:center,center
 MAP
