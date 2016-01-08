@@ -1154,6 +1154,13 @@ int thrown;
 			if (mdat != &mons[PM_SHADE])
 			    tmp++;
 		   }
+
+			/* Slings were more powerful in melee than war hammers, which clearly wasn't intended. --Amy */
+			if (tmp == 3) tmp = 2;
+			else if (tmp == 4) tmp = 3;
+			else if (tmp == 5) tmp = 3;
+			else if (tmp >= 6) tmp /= 2;
+
 		} else {
 		    tmp = dmgvalX(obj, mon);
 		    /* a minimal hit doesn't exercise proficiency */
