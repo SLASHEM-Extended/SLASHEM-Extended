@@ -336,7 +336,7 @@ char *genbuf;
 		default:
 			continue;
 	    }
-	    mtmp = makemon(&mons[typ], u.ux, u.uy, NO_MM_FLAGS);
+	    mtmp = makemon(&mons[typ], u.ux, u.uy, yours ? MM_NOSPECIALS : NO_MM_FLAGS);
 	    if (mtmp) {
 		total++;
 		if (canseemon(mtmp)) *visible += 1;
