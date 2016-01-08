@@ -506,7 +506,7 @@ badeffect()
 	int nastytrapdur;
 	int blackngdur;
 
-	switch (rnd(373)) {
+	switch (rnd(374)) {
 
 		case 1:
 		case 2:
@@ -1861,6 +1861,11 @@ badeffect()
 
 		break;
 
+		case 374:
+
+			if (!rn2(1000)) skillcaploss();
+
+		break;
 
 		default:
 		break;
