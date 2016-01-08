@@ -3936,7 +3936,7 @@ begin_burn(obj, already_lit)
 	    if (get_obj_location(obj, &x, &y, CONTAINED_TOO|BURIED_TOO))
 		new_light_source(x, y, radius, LS_OBJECT, (genericptr_t) obj);
 	    else
-		impossible("begin_burn: can't get obj position");
+		if (wizard) impossible("begin_burn: can't get obj position");
 	}
 }
 
