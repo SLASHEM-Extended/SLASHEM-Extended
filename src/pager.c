@@ -956,7 +956,7 @@ do_look(quick)
 	destroy_nhwindow(datawin);*/
 
 	    /* check the data file for information about this thing */
-	    if (found == 1 && ans != LOOK_QUICK && ans != LOOK_ONCE &&
+	    if (found == 1 && ans != LOOK_QUICK && ans != LOOK_ONCE && !u.ughmemory && !Race_if(PM_MISSINGNO) && 
 			(ans == LOOK_VERBOSE || (flags.help && !quick))) {
 		char temp_buf[BUFSZ];
 		Strcpy(temp_buf, level.flags.lethe 

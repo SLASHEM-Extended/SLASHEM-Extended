@@ -815,6 +815,9 @@ register int fd;
 #ifdef INSURANCE
 	savestateinlock();
 #endif
+
+	flags.missing_safety = TRUE; /* to prevent "segfault panics" from creating unrecoverable savegames --Amy */
+
 	rtmp = restlevelfile(fd, ledger_no(&u.uz));
 	if (rtmp < 2) return(rtmp);  /* dorecover called recursively */
 
