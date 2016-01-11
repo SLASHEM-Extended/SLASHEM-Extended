@@ -646,8 +646,10 @@ age_spells()
 	 * does not alter the loss of memory.
 	 */
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
-	    if (spellknow(i))
+	    if (spellknow(i)) {
 		decrnknow(i);
+		if (spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+	    }
 	return;
 }
 
