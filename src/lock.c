@@ -773,6 +773,7 @@ doforce()		/* try to force a chest with your weapon */
 					pline("Being hit by your force, %s suddenly wakes up!", mon_nam(mtmp));
 					mtmp->msleeping = 0;
 					}
+				    mtmp->mcanmove = 1;
 				    if (mtmp->mtame)
 					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
 				    else
