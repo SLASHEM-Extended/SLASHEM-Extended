@@ -128,6 +128,10 @@ unsigned *ospecial;
 	    if (iflags.use_color &&
 		offset == S_litcorr && ch == showsyms[S_corr])
 		color = CLR_WHITE;
+	    else if (iflags.use_color &&
+		     (offset == S_upstair || offset == S_dnstair) &&
+		     (x == sstairs.sx && y == sstairs.sy))
+		color = CLR_YELLOW;
 		/* special level colors by Amy, code partly stolen from dnethack */
 	    else if(Is_lawful_quest(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor){
