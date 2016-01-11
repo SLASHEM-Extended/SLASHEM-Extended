@@ -3116,6 +3116,7 @@ register struct obj *otmp;
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) { Stoned = 7;
 				pline("You start turning to stone!");
+				stop_occupation();
 			}
 			Sprintf(killer_buf, "wand of stoning");
 			delayed_killer = killer_buf;
@@ -3854,6 +3855,7 @@ struct monst *mtmp;
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) { Stoned = 7;
 				pline("You start turning to stone!");
+				stop_occupation();
 			}
 			Sprintf(killer_buf, "a petrification scroll");
 			delayed_killer = killer_buf;
@@ -4315,6 +4317,7 @@ newboss:
 
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
+			stop_occupation();
 		    Slimed = 100L;
 		    flags.botl = 1;
 		}

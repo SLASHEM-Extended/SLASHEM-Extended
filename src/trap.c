@@ -8310,6 +8310,7 @@ const char *str;
 	killer = str;
 	done(STONING); */
 	if (!Stoned) Stoned = 7;
+	stop_occupation();
 	delayed_killer = "coming into contact with a petrifying object";
 /* Damn you annoying programmers! At least give us a chance to save ourselves with our stock of lizard corpses! */
 }

@@ -264,6 +264,7 @@ int type;
 	    if (Sickopathy) pline("You have %d turns to live.", Sick);
 	    u.usick_type |= type;
 	    flags.botl = TRUE;
+		stop_occupation();
 	} else if (old && (type & u.usick_type)) {
 	    /* was sick, now not */
 	    u.usick_type &= ~type;
@@ -664,6 +665,7 @@ badeffect()
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    Slimed = 100L;
 		    flags.botl = 1;
+			stop_occupation();
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "summoned slime";
 		}
@@ -815,7 +817,7 @@ badeffect()
 
 		case 145:
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
-				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; delayed_killer = "bad petrification effect";}
+				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; stop_occupation(); delayed_killer = "bad petrification effect";}
 
 		break;
 
@@ -4051,6 +4053,7 @@ register struct obj *obj;
 	case POT_SLIME:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
+			stop_occupation();
 		    Slimed = 100L;
 		    flags.botl = 1;
 		}

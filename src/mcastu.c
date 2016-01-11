@@ -1109,7 +1109,7 @@ int spellnum;
 		/* petrify - similar to cockatrice hissing --Amy */
 		pline("You feel a massive burden on your chest!");
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
-				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; delayed_killer = "petrify spell";}
+				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; stop_occupation(); delayed_killer = "petrify spell";}
 		dmg = 0;
 		break;
 
@@ -1122,6 +1122,7 @@ int spellnum;
 		/* sliming - similar to green slime attack --Amy */
 		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) )
 		 {You("don't feel very well.");
+			stop_occupation();
 		    Slimed = 100L;
 		    flags.botl = 1;}
 		dmg = 0;
