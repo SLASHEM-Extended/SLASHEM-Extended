@@ -310,8 +310,8 @@ static struct Comp_Opt
 						1, SET_IN_GAME },
 	{ "catname",  "the name of your (first) cat (e.g., catname:Tabby)",
 						PL_PSIZ, DISP_IN_GAME },
-	{ "coinsname",  "the name of your (first) pile of copper coins (e.g., coinsname:Dollars)",
-						PL_PSIZ, DISP_IN_GAME },
+/*	{ "coinsname",  "the name of your (first) pile of copper coins (e.g., coinsname:Dollars)",
+						PL_PSIZ, DISP_IN_GAME },*/
 	{ "disclose", "the kinds of information to disclose at end of game",
 						sizeof(flags.end_disclose) * 2,
 						SET_IN_GAME },
@@ -348,8 +348,8 @@ static struct Comp_Opt
 						PL_PSIZ, DISP_IN_GAME },
 	{ "horsename", "the name of your (first) horse (e.g., horsename:Silver)",
 						PL_PSIZ, DISP_IN_GAME },
-	{ "lichenname",  "the name of your (first) lichen (e.g., lichenname:Fungus)",
-						PL_PSIZ, DISP_IN_GAME },
+/*	{ "lichenname",  "the name of your (first) lichen (e.g., lichenname:Fungus)",
+						PL_PSIZ, DISP_IN_GAME },*/
 	{ "map_mode", "map display mode under Windows", 20, DISP_IN_GAME },	/*WC*/
         { "menucolor", "set menu colors", PL_PSIZ, SET_IN_FILE },
 	{ "menustyle", "user interface for object selection",
@@ -409,8 +409,8 @@ static struct Comp_Opt
 #endif /* CONVICT */
 	{ "role",     "your starting role (e.g., Barbarian, Valkyrie)",
 						PL_CSIZ, DISP_IN_GAME },
-	{ "rothename",  "the name of your (first) rothe (e.g., rothename:Badger)",
-						PL_PSIZ, DISP_IN_GAME },
+/*	{ "rothename",  "the name of your (first) rothe (e.g., rothename:Badger)",
+						PL_PSIZ, DISP_IN_GAME },*/
 	{ "runmode", "display frequency when `running' or `travelling'",
 						sizeof "teleport", SET_IN_GAME },
 	{ "scores",   "the parts of the score list you wish to see",
@@ -1609,7 +1609,7 @@ boolean tinitial, tfrom_file;
 	}
 #endif /* CONVICT */
 
-	fullname = "lichenname";
+/*	fullname = "lichenname";
 	if (match_optname(opts, fullname, 3, TRUE)) {
 		if (negated) bad_negation(fullname, FALSE);
 		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
@@ -1631,7 +1631,7 @@ boolean tinitial, tfrom_file;
 		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
 			nmcpy(rothename, op, PL_PSIZ);
 		return;
-	}
+	}*/
 
 	fullname = "number_pad";
 	if (match_optname(opts, fullname, 10, TRUE)) {
@@ -3722,8 +3722,8 @@ char *buf;
 			iflags.bouldersym : oc_syms[(int)objects[BOULDER].oc_class]);
 	else if (!strcmp(optname, "catname")) 
 		Sprintf(buf, "%s", catname[0] ? catname : none );
-	else if (!strcmp(optname, "coinsname")) 
-		Sprintf(buf, "%s", coinsname[0] ? coinsname : none );
+/*	else if (!strcmp(optname, "coinsname")) 
+		Sprintf(buf, "%s", coinsname[0] ? coinsname : none );*/
 	else if (!strcmp(optname, "disclose")) {
 		for (i = 0; i < NUM_DISCLOSURE_OPTIONS; i++) {
 			char topt[2];
@@ -3784,8 +3784,8 @@ char *buf;
 		Sprintf(buf, "%s", ghoulname[0] ? ghoulname : none );
 	else if (!strcmp(optname, "horsename")) 
 		Sprintf(buf, "%s", horsename[0] ? horsename : none);
-	else if (!strcmp(optname, "lichenname")) 
-		Sprintf(buf, "%s", lichenname[0] ? lichenname : none );
+/*	else if (!strcmp(optname, "lichenname")) 
+		Sprintf(buf, "%s", lichenname[0] ? lichenname : none );*/
 	else if (!strcmp(optname, "map_mode"))
 		Sprintf(buf, "%s",
 			iflags.wc_map_mode == MAP_MODE_TILES      ? "tiles" :
@@ -3874,8 +3874,8 @@ char *buf;
 	else if (!strcmp(optname, "ratname")) 
 		Sprintf(buf, "%s", ratname[0] ? ratname : none );
 #endif /* CONVICT */
-	else if (!strcmp(optname, "rothename")) 
-		Sprintf(buf, "%s", rothename[0] ? rothename : none );
+/*	else if (!strcmp(optname, "rothename")) 
+		Sprintf(buf, "%s", rothename[0] ? rothename : none );*/
 	else if (!strcmp(optname, "runmode"))
 		Sprintf(buf, "%s", runmodes[iflags.runmode]);
 	else if (!strcmp(optname, "scores")) {

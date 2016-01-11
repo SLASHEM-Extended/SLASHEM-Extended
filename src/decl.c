@@ -228,9 +228,9 @@ NEARDATA char horsename[PL_PSIZ] = DUMMY;
 NEARDATA char ratname[PL_PSIZ] = DUMMY;
 #endif /* CONVICT */
 NEARDATA char wolfname[PL_PSIZ] = DUMMY;
-NEARDATA char lichenname[PL_PSIZ] = DUMMY;
+/*NEARDATA char lichenname[PL_PSIZ] = DUMMY;
 NEARDATA char coinsname[PL_PSIZ] = DUMMY;
-NEARDATA char rothename[PL_PSIZ] = DUMMY;
+NEARDATA char rothename[PL_PSIZ] = DUMMY;*/
 #if 0
 NEARDATA char batname[PL_PSIZ] = DUMMY;
 NEARDATA char snakename[PL_PSIZ] = DUMMY;

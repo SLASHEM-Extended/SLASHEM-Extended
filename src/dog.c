@@ -259,12 +259,6 @@ makedog()
 	else if (pettype == PM_SEWER_RAT)
 		petname = ratname;
 #endif /* CONVICT */
-	else if (pettype == PM_AGGRESSIVE_LICHEN)
-		petname = lichenname;
-	else if (pettype == PM_PILE_OF_COPPER_COINS)
-		petname = coinsname;
-	else if (pettype == PM_ROTHE)
-		petname = rothename;
 #if 0
 	else if (petsym == S_BAT)
 		petname = batname;
@@ -304,6 +298,9 @@ makedog()
 	if (pettype == PM_WHITE_UNICORN_FOAL) petname = "Rastafari"; /* creature of peace */
 	if (pettype == PM_GRAY_UNICORN_FOAL) petname = "Balance of Neutrality";
 	if (pettype == PM_BLACK_UNICORN_FOAL) petname = "Orderly Chaos";
+
+	if (pettype == PM_AGGRESSIVE_LICHEN) petname = "Sessilium";
+	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
 
 	if (pettype == PM_GRIMER) petname = "BADEB";
 

@@ -248,9 +248,9 @@ E NEARDATA char horsename[];
 #ifdef CONVICT
 E NEARDATA char ratname[];
 #endif /* CONVICT */
-E NEARDATA char coinsname[];
+/*E NEARDATA char coinsname[];
 E NEARDATA char lichenname[];
-E NEARDATA char rothename[];
+E NEARDATA char rothename[];*/
 E NEARDATA char wolfname[];
 #if 0
 E NEARDATA char batname[];

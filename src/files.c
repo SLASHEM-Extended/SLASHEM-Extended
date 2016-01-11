@@ -2053,12 +2053,12 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "RATNAME", 3)) {
 	    (void) strncpy(ratname, bufp, PL_PSIZ-1);
 #endif /* CONVICT */
-	} else if (match_varname(buf, "LICHENNAME", 3)) {
+/*	} else if (match_varname(buf, "LICHENNAME", 3)) {
 	    (void) strncpy(lichenname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "COINSNAME", 3)) {
 	    (void) strncpy(coinsname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "ROTHENAME", 3)) {
-	    (void) strncpy(rothename, bufp, PL_PSIZ-1);
+	    (void) strncpy(rothename, bufp, PL_PSIZ-1);*/
 	} else if (match_varname(buf, "WOLFNAME", 3)) {
             (void) strncpy(wolfname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "GHOULNAME", 3)) {
