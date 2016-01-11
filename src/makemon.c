@@ -11804,7 +11804,7 @@ register struct	monst	*mtmp;
 	if (ptr == &mons[PM_PRINCIPAL_NATURAL_GAS]) {
 		(void) mongets(mtmp, DROVEN_BOW);
 		(void) mongets(mtmp, MALLET);
-		(void) mongets(mtmp, PLATE_MAIL);
+		(void) mongets(mtmp, FULL_PLATE_MAIL);
 		(void) mongets(mtmp, AMULET_OF_DATA_STORAGE);
 		(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
 		(void) mongets(mtmp, HELM_OF_STEEL);

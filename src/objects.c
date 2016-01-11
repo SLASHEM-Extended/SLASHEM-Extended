@@ -706,7 +706,9 @@ ARMOR("victorian underwear", (char *)0,
 
 /* Suits of armor */
 ARMOR("plate mail", (char *)0,
-	1, 0, 1, 0,	209, 5, 200, 600,  0, 2, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	184, 5, 200, 600,  0, 2, ARM_SUIT, IRON, HI_METAL),
+ARMOR("full plate mail", (char *)0,
+	1, 0, 1, 0,	 25, 5, 250, 600, -2, 2, ARM_SUIT, IRON, HI_METAL),
 ARMOR("droven plate mail", "crested black plate",
 	0, 0, 1, 0,	1, 5, 50, 	2000,  0, 1, ARM_SUIT, MINERAL, CLR_BLACK),
 #ifdef JEDI

@@ -1620,6 +1620,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ STARLIGHTSTONE, "zvezda svet kamen'" },
 	{ SCR_ALTER_REALITY, "izmenit' real'nost'" },
 	{ SPE_ALTER_REALITY, "izmenit' real'nost'" },
+	{ FULL_PLATE_MAIL, "polnyy laty" },
 
 	{0, "" }
 };
@@ -2920,6 +2921,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ STARLIGHTSTONE, "yulduz nur tosh" },
 	{ SCR_ALTER_REALITY, "haqiqatni o'zgartirish" },
 	{ SPE_ALTER_REALITY, "haqiqatni o'zgartirish" },
+	{ FULL_PLATE_MAIL, "to'liq plastinka pochta" },
 
 	{0, "" }
 };

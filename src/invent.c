@@ -5039,6 +5039,8 @@ struct obj *obj;
 				pline("This wonderful piece of clothing can be worn under a suit of armor to grant maximum magic cancellation. If you wear a cursed one, you have a small chance of reviving on death. It can be read."); break;
 			case PLATE_MAIL: 
 				pline("A very heavy suit of armor that offers good protection."); break;
+			case FULL_PLATE_MAIL: 
+				pline("This suit of armor covers your whole body and offers great protection, but it's also really heavy."); break;
 			case DROVEN_PLATE_MAIL: 
 				pline("This plate mail is light, but it offers less protection than actual plate mail."); break;
 			case PLASTEEL_ARMOR: 
