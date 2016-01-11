@@ -639,9 +639,9 @@ register struct monst *mtmp;
     if (udist < 4 && has_edog && !mtmp->isspell && !rn2(3)
 		    && (can_betray(mtmp->data) || Role_if(PM_FAILED_EXISTENCE) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
+		    && (mtmp->mhp >= u.uhp || !rn2(5) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
-		    && rn2(edog->abuse + 2)) {
+		    && rn2(edog->abuse + rnd(2) )) {
 	/* Treason */
 	if (canseemon(mtmp))
 	    pline("%s turns on you!", Monnam(mtmp));
