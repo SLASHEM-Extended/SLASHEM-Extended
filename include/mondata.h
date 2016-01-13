@@ -10,13 +10,13 @@
 
 #define pm_resistance(ptr,typ)	(((ptr)->mresists & (typ)) != 0)
 
-#define resists_fire(mon)	((((mon)->mintrinsics & MR_FIRE) != 0) || (mon)->egotype_elementalist)
-#define resists_cold(mon)	((((mon)->mintrinsics & MR_COLD) != 0) || (mon)->egotype_elementalist)
-#define resists_sleep(mon)	((((mon)->mintrinsics & MR_SLEEP) != 0) || (mon)->egotype_watcher)
-#define resists_disint(mon)	((((mon)->mintrinsics & MR_DISINT) != 0) || (mon)->egotype_resistor)
-#define resists_elec(mon)	((((mon)->mintrinsics & MR_ELEC) != 0) || (mon)->egotype_elementalist)
-#define resists_poison(mon)	((((mon)->mintrinsics & MR_POISON) != 0) || (mon)->egotype_poisoner)
-#define resists_acid(mon)	((((mon)->mintrinsics & MR_ACID) != 0) || (mon)->egotype_acidspiller)
+#define resists_fire(mon)	((((mon)->mintrinsics & MR_FIRE) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_FIRE)) || (mon)->egotype_elementalist)
+#define resists_cold(mon)	((((mon)->mintrinsics & MR_COLD) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_COLD)) || (mon)->egotype_elementalist)
+#define resists_sleep(mon)	((((mon)->mintrinsics & MR_SLEEP) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_SLEE))|| (mon)->egotype_watcher)
+#define resists_disint(mon)	((((mon)->mintrinsics & MR_DISINT) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_DISN)) || (mon)->egotype_resistor)
+#define resists_elec(mon)	((((mon)->mintrinsics & MR_ELEC) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ELEC)) || (mon)->egotype_elementalist)
+#define resists_poison(mon)	((((mon)->mintrinsics & MR_POISON) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_DRST)) || (mon)->egotype_poisoner)
+#define resists_acid(mon)	((((mon)->mintrinsics & MR_ACID) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ACID)) || (mon)->egotype_acidspiller)
 #define resists_ston(mon)	((((mon)->mintrinsics & MR_STONE) != 0) || (mon)->egotype_resistor)
 
 #define resists_drain(mon)      ((((mon)->mintrinsics & MR_DRAIN) != 0) || (mon)->egotype_watcher)
