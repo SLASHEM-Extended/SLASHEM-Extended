@@ -74,6 +74,7 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 			break;
 		case AT_BEAM:  
+		case AT_BREA:  
 			pline("%s blasts you!", Monnam(mtmp));  
 			break;  
 		case AT_BITE:
@@ -573,6 +574,8 @@ wildmiss(mtmp, mattk)		/* monster attacked your displaced image */
 
 	if (!mtmp->mcansee || (Invis && !perceives(mtmp->data))) {
 	    const char *swings =
+		mattk->aatyp == AT_BEAM ? "blasts" :
+		mattk->aatyp == AT_BREA ? "blasts" :
 		mattk->aatyp == AT_BITE ? "snaps" :
 		mattk->aatyp == AT_KICK ? "kicks" :
 		mattk->aatyp == AT_LASH ? "lashes" :
@@ -1113,8 +1116,14 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_BREA:
-			if (range2 && !blue_on_blue(mtmp))
+			if (range2 && !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_LITE) ) )
 			    sum[i] = breamu(mtmp, mattk);
+			else if ( (rnd(5) > 3) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
+			{  
+				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
+				else wildmiss(mtmp, mattk);  
+			}  
+
 			/* Note: breamu takes care of displacement */
 			break;
 		case AT_SPIT:
