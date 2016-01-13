@@ -6081,6 +6081,10 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "body");
 	    return TRUE;
+ 	} else if (attackdamagetype(mon->data, AT_BREA, AD_RBRE) ) {
+	    if (str)
+		pline(str, s_suffix(mon_nam(mon)), "reflexive surface");
+	    return TRUE;
 	}
 	return FALSE;
 }

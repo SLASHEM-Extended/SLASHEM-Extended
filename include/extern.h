@@ -1390,6 +1390,8 @@ E boolean FDECL(damage_mon,(struct monst*,int,int)); /* sporkhack */
 E void FDECL(set_mon_data, (struct monst *,struct permonst *,int));
 E struct attack *FDECL(attacktype_fordmg, (struct permonst *,int,int));
 E boolean FDECL(attacktype, (struct permonst *,int));
+E struct attack *FDECL(attdmgtype_fromattack, (struct permonst *,int,int));
+E boolean FDECL(attackdamagetype, (struct permonst *,int,int));
 E boolean FDECL(poly_when_stoned, (struct permonst *));
 E boolean FDECL(resists_drli, (struct monst *));
 E boolean FDECL(resists_magm, (struct monst *));

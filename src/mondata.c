@@ -53,6 +53,29 @@ int atyp;
     return attacktype_fordmg(ptr, atyp, AD_ANY) ? TRUE : FALSE;
 }
 
+struct attack *
+attdmgtype_fromattack(ptr, dtyp, atyp)
+struct permonst *ptr;
+int dtyp, atyp;
+{
+    struct attack *a;
+
+    for (a = &ptr->mattk[0]; a < &ptr->mattk[NATTK]; a++)
+	if (a->adtyp == dtyp && a->aatyp == atyp)
+	    return a;
+
+    return (struct attack *)0;
+}
+
+boolean
+attackdamagetype(ptr, atyp, dtyp)
+struct permonst *ptr;
+int atyp, dtyp;
+{
+    return attacktype_fordmg(ptr, atyp, dtyp) ? TRUE : FALSE;
+}
+
+
 #endif /* OVL0 */
 #ifdef OVLB
 
