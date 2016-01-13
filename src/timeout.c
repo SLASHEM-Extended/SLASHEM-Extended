@@ -238,6 +238,8 @@ nh_timeout()
 		if (!u.inertia) pline("You feel less slow.");
 	}
 
+	if (u.fumbleduration) u.fumbleduration--;
+
 	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
@@ -2459,7 +2461,7 @@ nh_timeout()
 			}
 			/* from outside means slippery ice; don't reset
 			   counter if that's the only fumble reason */
-			HFumbling &= ~FROMOUTSIDE;
+			if (!u.fumbleduration) HFumbling &= ~FROMOUTSIDE;
 			if (Fumbling)
 			    HFumbling += rnd(20);
 			break;

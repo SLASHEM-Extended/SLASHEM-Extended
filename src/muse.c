@@ -2823,7 +2823,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_BAD_LUCK;
 		}
 		nomore(MUSE_WAN_FUMBLING);
-		if(obj->otyp == WAN_FUMBLING && obj->spe > 0 && !Fumbling) {
+		if(obj->otyp == WAN_FUMBLING && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FUMBLING;
 		}
@@ -4271,6 +4271,7 @@ newboss:
 		pline("You start trembling...");
 		HFumbling = FROMOUTSIDE | rnd(100);
 		incr_itimeout(&HFumbling, rnd(20));
+		u.fumbleduration += rnz(1000);
 
 		if (oseen) makeknown(WAN_FUMBLING);
 

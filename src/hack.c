@@ -1487,7 +1487,7 @@ domove()
 			HFumbling += 1;  /* slip on next move */
 		    }
 		}
-		if (!on_ice && (HFumbling & FROMOUTSIDE))
+		if (!on_ice && !u.fumbleduration && (HFumbling & FROMOUTSIDE))
 		    HFumbling &= ~FROMOUTSIDE;
 
 		x = u.ux + u.dx;

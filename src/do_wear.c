@@ -248,7 +248,7 @@ Boots_off()
 	case ATSUZOKO_BOOTS:
 	case MULTI_SHOES:
 	case ROLLER_BLADE:
-		if (!oldprop && !(HFumbling & ~TIMEOUT))
+		if (!oldprop && !u.fumbleduration && !(HFumbling & ~TIMEOUT))
 			HFumbling = EFumbling = 0;
 		break;
 	case STOMPING_BOOTS:
@@ -522,7 +522,7 @@ Cloak_off()
 	case CLOAK_OF_MATADOR:
 		break;
 	case CLOAK_OF_FUMBLING:
-	    if (!oldprop && !(HFumbling & ~TIMEOUT))
+	    if (!oldprop && !u.fumbleduration && !(HFumbling & ~TIMEOUT))
 		HFumbling = EFumbling = 0;
 	    break;
 	/* KMH, balance patch -- lab coat gives poison _and_ acid resistance */
@@ -952,7 +952,7 @@ Gloves_off()
 	    }
 	    break;
 	case GAUNTLETS_OF_FUMBLING:
-	    if (!oldprop && !(HFumbling & ~TIMEOUT))
+	    if (!oldprop && !u.fumbleduration && !(HFumbling & ~TIMEOUT))
 		HFumbling = EFumbling = 0;
 	    break;
 	case GAUNTLETS_OF_POWER:
@@ -1360,7 +1360,7 @@ Amulet_off()
 		break;
 
 	case AMULET_OF_FUMBLING:
-		if (!oldprop && !(HFumbling & ~TIMEOUT))
+		if (!oldprop && !u.fumbleduration && !(HFumbling & ~TIMEOUT))
 			HFumbling = EFumbling = 0;
 		break;
 	case AMULET_OF_MAGICAL_BREATHING:

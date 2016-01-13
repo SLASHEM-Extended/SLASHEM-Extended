@@ -1800,6 +1800,7 @@ badeffect()
 
 			HFumbling = FROMOUTSIDE | rnd(100);
 			incr_itimeout(&HFumbling, rnd(20));
+			u.fumbleduration += rnz(1000);
 
 		break;
 
