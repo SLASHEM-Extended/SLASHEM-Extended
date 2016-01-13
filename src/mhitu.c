@@ -1190,7 +1190,7 @@ mattacku(mtmp)
 
 swingweapon:
 
-			if(range2) {
+			if(range2 || !rn2(4) ) {
 #ifdef REINCARNATION
 				if (!Is_rogue_level(&u.uz) || !rn2(3) )
 #endif
