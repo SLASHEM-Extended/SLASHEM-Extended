@@ -2484,6 +2484,20 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MASS_HEALING].oc_name = "massa istseleniye";
 	obj_descr[SPE_TIME_SHIFT].oc_name = "sdvig vremeni";
 	obj_descr[SPE_ALTER_REALITY].oc_name = "izmenit' real'nost'";
+	obj_descr[SPE_DISINTEGRATION_BEAM].oc_name = "raspad puchka";
+	obj_descr[SPE_FLYING].oc_name = "letayushchiy";
+	obj_descr[SPE_CHROMATIC_BEAM].oc_name = "khromaticheskoy sveta";
+	obj_descr[SPE_FUMBLING].oc_name = "nelovkiy";
+	obj_descr[SPE_MAKE_VISIBLE].oc_name = "sdelat' vidimym";
+	obj_descr[SPE_WARPING].oc_name = "iskrivleniye";
+	obj_descr[SPE_TRAP_CREATION].oc_name = "sozdayut lovushki";
+	obj_descr[SPE_STUN_MONSTER].oc_name = "oglushayet monstr";
+	obj_descr[SPE_CURSE_ITEMS].oc_name = "proklyatiye predmety";
+	obj_descr[SPE_CHARACTER_RECURSION].oc_name = "kharakter rekursii";
+	obj_descr[SPE_CLONE_MONSTER].oc_name = "umnozhit' monstr";
+	obj_descr[SPE_DESTROY_ARMOR].oc_name = "unichtozhit' dospekhi";
+	obj_descr[SPE_INERTIA].oc_name = "inertsiya";
+	obj_descr[SPE_TIME].oc_name = "vremya";
 
 	{
 
@@ -2802,6 +2816,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platform boots")) OBJ_DESCR(objects[i]) = "sapogi na platforme";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side gore boots")) OBJ_DESCR(objects[i]) = "bokovyye gor sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side zip boots")) OBJ_DESCR(objects[i]) = "storona molnii sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cone-shaped helmet")) OBJ_DESCR(objects[i]) = "konusoobraznyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark helmet")) OBJ_DESCR(objects[i]) = "temno-shlem";
 	}
 	}
 
@@ -2917,6 +2933,20 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MASS_HEALING].oc_name = "ommaviy shifo";
 	obj_descr[SPE_TIME_SHIFT].oc_name = "vaqt o'zgarish";
 	obj_descr[SPE_ALTER_REALITY].oc_name = "haqiqatni o'zgartirish";
+	obj_descr[SPE_DISINTEGRATION_BEAM].oc_name = "parchalanish nur";
+	obj_descr[SPE_FLYING].oc_name = "uchib";
+	obj_descr[SPE_CHROMATIC_BEAM].oc_name = "rang nur";
+	obj_descr[SPE_FUMBLING].oc_name = "paypaslab izlay oxirgi";
+	obj_descr[SPE_MAKE_VISIBLE].oc_name = "paydo qilish";
+	obj_descr[SPE_WARPING].oc_name = "coezgue";
+	obj_descr[SPE_TRAP_CREATION].oc_name = "makr yaratish";
+	obj_descr[SPE_STUN_MONSTER].oc_name = "bayiltici hayvon";
+	obj_descr[SPE_CURSE_ITEMS].oc_name = "la'nat mahsulot";
+	obj_descr[SPE_CHARACTER_RECURSION].oc_name = "belgilar oezyineleme";
+	obj_descr[SPE_CLONE_MONSTER].oc_name = "klonudur hayvon";
+	obj_descr[SPE_DESTROY_ARMOR].oc_name = "sovuti halok";
+	obj_descr[SPE_INERTIA].oc_name = "dangasalik";
+	obj_descr[SPE_TIME].oc_name = "vaqt";
 
 	{
 
@@ -3235,6 +3265,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platform boots")) OBJ_DESCR(objects[i]) = "platformalar chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side gore boots")) OBJ_DESCR(objects[i]) = "yon gor chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side zip boots")) OBJ_DESCR(objects[i]) = "yon bir zip chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cone-shaped helmet")) OBJ_DESCR(objects[i]) = "konusning-pokiza zarbdan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark helmet")) OBJ_DESCR(objects[i]) = "qorong'u zarbdan";
 	}
 	}
 

@@ -181,6 +181,84 @@ genericptr_t poolcnt;
 }
 
 STATIC_PTR void
+do_megafloodingd(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			if (rn2(4)) {
+				levl[randomx][randomy].typ = MOAT;
+				makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+			} else {
+				levl[randomx][randomy].typ = LAVAPOOL;
+				makemon(mkclass(S_FLYFISH,0), randomx, randomy, NO_MM_FLAGS);
+			}
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		if (rn2(4)) {
+			levl[x][y].typ = MOAT;
+			makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+		} else {
+			levl[x][y].typ = LAVAPOOL;
+			makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
+		}
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
 do_lockfloodd(x, y, poolcnt)
 int x, y;
 genericptr_t poolcnt;
@@ -957,6 +1035,11 @@ struct obj *otmp;
 #define MUSE_POT_CURE_CRITICAL_WOUNDS 37
 #define MUSE_SCR_POWER_HEALING 38
 #define MUSE_SCR_CREATE_VICTIM 39
+#define MUSE_SCR_GROUP_SUMMONING 40
+#define MUSE_SCR_SUMMON_GHOST 41
+#define MUSE_SCR_SUMMON_ELM 42
+#define MUSE_WAN_SUMMON_ELM 43
+#define MUSE_SCR_RELOCATION 44
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -1266,6 +1349,14 @@ struct monst *mtmp;
 			m.has_defense = MUSE_SCR_ROOT_PASSWORD_DETECTION;
 		}
 
+		nomore(MUSE_SCR_RELOCATION);
+		if(obj->otyp == SCR_RELOCATION
+		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !mtmp->isgd && !mtmp->ispriest)) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_RELOCATION;
+		}
+
 		nomore(MUSE_SCR_TELE_LEVEL);
 		if(obj->otyp == SCR_TELE_LEVEL
 		   && (!(mtmp->isshk && inhishop(mtmp))
@@ -1302,6 +1393,12 @@ struct monst *mtmp;
 			m.has_defense = MUSE_SCR_SUMMON_UNDEAD;
 		}
 
+		nomore(MUSE_SCR_GROUP_SUMMONING);
+		if(obj->otyp == SCR_GROUP_SUMMONING) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_GROUP_SUMMONING;
+		}
+
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		nomore(MUSE_POT_FULL_HEALING);
 		if(obj->otyp == POT_FULL_HEALING) {
@@ -1332,6 +1429,11 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_SUMMON_UNDEAD && obj->spe > 0) {
 			m.defensive = obj;
 			m.has_defense = MUSE_WAN_SUMMON_UNDEAD;
+		}
+		nomore(MUSE_WAN_SUMMON_ELM);
+		if(obj->otyp == WAN_SUMMON_ELM && obj->spe > 0) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_SUMMON_ELM;
 		}
 		nomore(MUSE_WAN_CREATE_HORDE);
 		if(obj->otyp == WAN_CREATE_HORDE && obj->spe > 0) {
@@ -1394,11 +1496,26 @@ struct monst *mtmp;
 			m.defensive = obj;
 			m.has_defense = MUSE_WAN_SUMMON_UNDEAD;
 		}
+		nomore(MUSE_WAN_SUMMON_ELM);
+		if (obj->otyp == WAN_SUMMON_ELM && obj->spe > 0) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_SUMMON_ELM;
+		}
 	    }
 		nomore(MUSE_SCR_SUMMON_BOSS);
 		if(obj->otyp == SCR_SUMMON_BOSS) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_SUMMON_BOSS;
+		}
+		nomore(MUSE_SCR_SUMMON_GHOST);
+		if(obj->otyp == SCR_SUMMON_GHOST) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_SUMMON_GHOST;
+		}
+		nomore(MUSE_SCR_SUMMON_ELM);
+		if(obj->otyp == SCR_SUMMON_ELM) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_SUMMON_ELM;
 		}
 		nomore(MUSE_SCR_CREATE_MONSTER);
 		if(obj->otyp == SCR_CREATE_MONSTER) {
@@ -1543,6 +1660,17 @@ mon_tele:
 				(coord *)0);
 			if (oseen) makeknown(SCR_TELEPORTATION);
 		} else goto mon_tele;
+		return 2;
+	    }
+	case MUSE_SCR_RELOCATION:
+	    {
+
+		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
+		m_flee(mtmp);
+		mreadmsg(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		rloc(mtmp, FALSE);
+
 		return 2;
 	    }
 	case MUSE_SCR_TELE_LEVEL:
@@ -1849,6 +1977,22 @@ mon_tele:
 		return 2;
 	    }
 
+	case MUSE_WAN_SUMMON_ELM:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+	      makeknown(WAN_SUMMON_ELM);
+
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+		summon_minion(aligntype, TRUE);
+		}
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_SCR_SUMMON_UNDEAD:
 
 	    {	coord cc;
@@ -1905,6 +2049,210 @@ mon_tele:
 		return 2;
 	    }
 
+	case MUSE_SCR_GROUP_SUMMONING:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		int cnt = rn2(14) + 2;
+		struct monst *mon;
+		boolean known = FALSE;
+		int randmnst;
+		int randmnsx;
+		struct permonst *randmonstforspawn;
+		int monstercolor;
+
+		int spawntype = rnd(3);
+
+		if (spawntype == 1) {
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+		} else if (spawntype == 2) {
+			randmonstforspawn = rndmonst();
+		} else {
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+		}
+
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			if (spawntype == 1) {
+
+			if (randmnst < 6)
+		 	    mon = makemon(mkclass(S_ANT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    mon = makemon(mkclass(S_BLOB,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    mon = makemon(mkclass(S_COCKATRICE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    mon = makemon(mkclass(S_DOG,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    mon = makemon(mkclass(S_EYE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    mon = makemon(mkclass(S_FELINE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    mon = makemon(mkclass(S_GREMLIN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    mon = makemon(mkclass(S_HUMANOID,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    mon = makemon(mkclass(S_IMP,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    mon = makemon(mkclass(S_JELLY,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    mon = makemon(mkclass(S_KOBOLD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    mon = makemon(mkclass(S_LEPRECHAUN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    mon = makemon(mkclass(S_MIMIC,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    mon = makemon(mkclass(S_NYMPH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    mon = makemon(mkclass(S_ORC,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    mon = makemon(mkclass(S_PIERCER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    mon = makemon(mkclass(S_QUADRUPED,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    mon = makemon(mkclass(S_RODENT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    mon = makemon(mkclass(S_SPIDER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    mon = makemon(mkclass(S_TRAPPER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    mon = makemon(mkclass(S_UNICORN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    mon = makemon(mkclass(S_VORTEX,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    mon = makemon(mkclass(S_WORM,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    mon = makemon(mkclass(S_XAN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    mon = makemon(mkclass(S_LIGHT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    mon = makemon(mkclass(S_ZOUTHERN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    mon = makemon(mkclass(S_ANGEL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    mon = makemon(mkclass(S_BAT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    mon = makemon(mkclass(S_CENTAUR,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    mon = makemon(mkclass(S_DRAGON,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    mon = makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    mon = makemon(mkclass(S_FUNGUS,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    mon = makemon(mkclass(S_GNOME,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    mon = makemon(mkclass(S_GIANT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    mon = makemon(mkclass(S_JABBERWOCK,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    mon = makemon(mkclass(S_KOP,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    mon = makemon(mkclass(S_LICH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    mon = makemon(mkclass(S_MUMMY,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    mon = makemon(mkclass(S_NAGA,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    mon = makemon(mkclass(S_OGRE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    mon = makemon(mkclass(S_PUDDING,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    mon = makemon(mkclass(S_QUANTMECH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    mon = makemon(mkclass(S_RUSTMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    mon = makemon(mkclass(S_SNAKE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    mon = makemon(mkclass(S_TROLL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    mon = makemon(mkclass(S_UMBER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    mon = makemon(mkclass(S_VAMPIRE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    mon = makemon(mkclass(S_WRAITH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    mon = makemon(mkclass(S_XORN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    mon = makemon(mkclass(S_YETI,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    mon = makemon(mkclass(S_ZOMBIE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    mon = makemon(mkclass(S_GHOST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    mon = makemon(mkclass(S_GOLEM,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    mon = makemon(mkclass(S_DEMON,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    mon = makemon(mkclass(S_EEL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    mon = makemon(mkclass(S_LIZARD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    mon = makemon(mkclass(S_BAD_FOOD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    mon = makemon(mkclass(S_BAD_COINS,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+				else
+		 	    mon = makemon(mkclass(S_NEMESE,0), cc.x, cc.y, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    mon = makemon(mkclass(S_GRUE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    mon = makemon(mkclass(S_WALLMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    mon = makemon(mkclass(S_RUBMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+				else
+		 	    mon = makemon(mkclass(S_ARCHFIEND,0), cc.x, cc.y, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    mon = makemon(mkclass(S_TURRET,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    mon = makemon(mkclass(S_FLYFISH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else
+		 	    mon = makemon((struct permonst *)0, cc.x, cc.y, MM_ADJACENTOK);
+
+			} else if (spawntype == 2) {
+
+				mon = makemon(randmonstforspawn, cc.x, cc.y, MM_ADJACENTOK);
+
+			} else {
+
+				mon = makemon(colormon(monstercolor), cc.x, cc.y, MM_ADJACENTOK);
+
+			}
+
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_GROUP_SUMMONING);
+		else if (!objects[SCR_GROUP_SUMMONING].oc_name_known
+			&& !objects[SCR_GROUP_SUMMONING].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
 	case MUSE_SCR_SUMMON_BOSS:
 
 	    {	coord cc;
@@ -1944,6 +2292,42 @@ newboss:
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
+
+	case MUSE_SCR_SUMMON_GHOST:
+
+		{
+		coord cc;   
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+
+		tt_mname(&cc, FALSE, 0);
+		if (!objects[SCR_SUMMON_GHOST].oc_name_known
+			&& !objects[SCR_SUMMON_GHOST].oc_uname)
+		    docall(otmp);
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_SCR_SUMMON_ELM:
+
+		mreadmsg(mtmp, otmp);
+
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+		summon_minion(aligntype, TRUE);
+		}
+
+		if (!objects[SCR_SUMMON_ELM].oc_name_known
+			&& !objects[SCR_SUMMON_ELM].oc_uname)
+		    docall(otmp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
 
 	case MUSE_TRAPDOOR:
 		/* trap doors on "bottom" levels of dungeons are rock-drop
@@ -2298,7 +2682,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(30)) {
+	switch (rn2(35)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -2330,6 +2714,11 @@ struct monst *mtmp;
 		case 27: return POT_CURE_CRITICAL_WOUNDS;
 		case 28: return SCR_POWER_HEALING;
 		case 29: return SCR_CREATE_VICTIM;
+		case 30: return SCR_GROUP_SUMMONING;
+		case 31: return SCR_SUMMON_GHOST;
+		case 32: return SCR_SUMMON_ELM;
+		case 33: return WAN_SUMMON_ELM;
+		case 34: return SCR_RELOCATION;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -2416,6 +2805,26 @@ struct monst *mtmp;
 #define MUSE_WAN_POISON 78
 #define MUSE_SCR_CREATE_TRAP 79
 #define MUSE_SCR_DESTROY_WEAPON 80
+#define MUSE_WAN_DISINTEGRATION_BEAM 81
+#define MUSE_WAN_CHROMATIC_BEAM 82
+#define MUSE_WAN_STUN_MONSTER 83
+#define MUSE_SCR_MEGALOAD 84
+#define MUSE_SCR_ENRAGE 85
+#define MUSE_WAN_TIDAL_WAVE 86
+#define MUSE_SCR_ANTIMATTER 87
+#define MUSE_WAN_DRAIN_MANA 88
+#define MUSE_WAN_FINGER_BENDING 89
+#define MUSE_SCR_IMMOBILITY 90
+#define MUSE_WAN_IMMOBILITY 91
+#define MUSE_SCR_FLOODING 92
+#define MUSE_SCR_EGOISM 93
+#define MUSE_WAN_EGOISM 94
+#define MUSE_SCR_RUMOR 95
+#define MUSE_SCR_MESSAGE 96
+#define MUSE_SCR_SIN 97
+#define MUSE_WAN_SIN 98
+#define MUSE_WAN_INERTIA 99
+#define MUSE_WAN_TIME 100
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2495,6 +2904,16 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_POISON;
                     }
+		    nomore(MUSE_WAN_CHROMATIC_BEAM);
+		    if(obj->otyp == WAN_CHROMATIC_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_CHROMATIC_BEAM;
+                    }
+		    nomore(MUSE_WAN_DISINTEGRATION_BEAM);
+		    if(obj->otyp == WAN_DISINTEGRATION_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_DISINTEGRATION_BEAM;
+                    }
 		    nomore(MUSE_WAN_FIRE);
 		    if(obj->otyp == WAN_FIRE && obj->spe > 0) {
 			m.offensive = obj;
@@ -2536,10 +2955,20 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_DRAINING;
 		}
+		nomore(MUSE_WAN_TIME);
+		if(obj->otyp == WAN_TIME && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_TIME;
+		}
 		nomore(MUSE_WAN_FEAR);
-		if(obj->otyp == WAN_FEAR && obj->spe > 0) {
+		if(obj->otyp == WAN_FEAR && obj->spe > 0 && !Feared) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FEAR;
+		}
+		nomore(MUSE_WAN_INERTIA);
+		if(obj->otyp == WAN_INERTIA && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_INERTIA;
 		}
 		nomore(MUSE_WAN_SLOW_MONSTER);
 		if(obj->otyp == WAN_SLOW_MONSTER && obj->spe > 0 && (HFast & (TIMEOUT | INTRINSIC)) ) {
@@ -2690,6 +3119,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_LAVA;
 		}
+		nomore(MUSE_SCR_FLOODING);
+		if(obj->otyp == SCR_FLOODING) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_FLOODING;
+		}
 		nomore(MUSE_SCR_LOCKOUT);
 		if(obj->otyp == SCR_LOCKOUT) {
 			m.offensive = obj;
@@ -2777,6 +3211,46 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_DESTROY_ARMOR;
 		}
+		nomore(MUSE_SCR_MEGALOAD);
+		if(obj->otyp == SCR_MEGALOAD) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_MEGALOAD;
+		}
+		nomore(MUSE_SCR_ANTIMATTER);
+		if(obj->otyp == SCR_ANTIMATTER) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_ANTIMATTER;
+		}
+		nomore(MUSE_SCR_RUMOR);
+		if(obj->otyp == SCR_RUMOR) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_RUMOR;
+		}
+		nomore(MUSE_SCR_MESSAGE);
+		if(obj->otyp == SCR_MESSAGE) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_MESSAGE;
+		}
+		nomore(MUSE_SCR_SIN);
+		if(obj->otyp == SCR_SIN) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_SIN;
+		}
+		nomore(MUSE_SCR_IMMOBILITY);
+		if(obj->otyp == SCR_IMMOBILITY) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_IMMOBILITY;
+		}
+		nomore(MUSE_SCR_EGOISM);
+		if(obj->otyp == SCR_EGOISM) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_EGOISM;
+		}
+		nomore(MUSE_SCR_ENRAGE);
+		if(obj->otyp == SCR_ENRAGE) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_ENRAGE;
+		}
 		nomore(MUSE_SCR_DESTROY_WEAPON);
 		if(obj->otyp == SCR_DESTROY_WEAPON) {
 			m.offensive = obj;
@@ -2801,6 +3275,16 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_AMNESIA && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_AMNESIA;
+		}
+		nomore(MUSE_WAN_IMMOBILITY);
+		if(obj->otyp == WAN_IMMOBILITY && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_IMMOBILITY;
+		}
+		nomore(MUSE_WAN_EGOISM);
+		if(obj->otyp == WAN_EGOISM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_EGOISM;
 		}
 		nomore(MUSE_WAN_CORROSION);
 		if(obj->otyp == WAN_CORROSION && obj->spe > 0) {
@@ -2827,6 +3311,26 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FUMBLING;
 		}
+		nomore(MUSE_WAN_SIN);
+		if(obj->otyp == WAN_SIN && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_SIN;
+		}
+		nomore(MUSE_WAN_FINGER_BENDING);
+		if(obj->otyp == WAN_FINGER_BENDING && obj->spe > 0 && !IsGlib) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_FINGER_BENDING;
+		}
+		nomore(MUSE_WAN_DRAIN_MANA);
+		if(obj->otyp == WAN_DRAIN_MANA && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_DRAIN_MANA;
+		}
+		nomore(MUSE_WAN_TIDAL_WAVE);
+		if(obj->otyp == WAN_TIDAL_WAVE && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_TIDAL_WAVE;
+		}
 		nomore(MUSE_WAN_STARVATION);
 		if(obj->otyp == WAN_STARVATION && obj->spe > 0) {
 			m.offensive = obj;
@@ -2848,9 +3352,14 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_REDUCE_MAX_HITPOINTS;
 		}
 		nomore(MUSE_WAN_CONFUSION);
-		if(obj->otyp == WAN_CONFUSION && obj->spe > 0) {
+		if(obj->otyp == WAN_CONFUSION && obj->spe > 0 && HConfusion < 11) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_CONFUSION;
+		}
+		nomore(MUSE_WAN_STUN_MONSTER);
+		if(obj->otyp == WAN_STUN_MONSTER && obj->spe > 0 && HStun < 11) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_STUN_MONSTER;
 		}
 		nomore(MUSE_WAN_SLIMING);
 		if(obj->otyp == WAN_SLIMING && obj->spe > 0 && !Slimed) {
@@ -3164,6 +3673,92 @@ register struct obj *otmp;
 		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 			makeknown(WAN_DRAINING);
 		break;
+	case WAN_TIME:
+		tmp = d(2,6);
+		if (mtmp == &youmonst) {
+
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
+
+			break;
+		} else {
+			mtmp->mhpmax -= tmp;
+			if (mtmp->mhpmax <= 0 || mtmp->m_lev <= 0)
+				monkilled(mtmp, "", AD_DRLI);
+			else {
+				mtmp->m_lev--;
+				if (canseemon(mtmp)) {
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+				}
+			}
+		}
+		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
+			makeknown(WAN_TIME);
+		break;
 	case WAN_REDUCE_MAX_HITPOINTS:	/* evil patch idea by jonadab */
 
 	/* he wanted it to be a wand of halve max hitpoints, but that would be too evil even for this game. --Amy */
@@ -3237,6 +3832,29 @@ register struct obj *otmp;
 		}
 		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 			makeknown(WAN_SLOW_MONSTER);
+		break;
+	case WAN_INERTIA:
+		if (mtmp == &youmonst) {
+			u_slow_down();
+			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+			break;
+		} else {
+
+			mon_adjust_speed(mtmp, -1, otmp);
+			m_dowear(mtmp, FALSE); /* might want speed boots */
+			if (u.uswallow && (mtmp == u.ustuck) &&
+			    is_whirly(mtmp->data)) {
+				pline("Something disrupts %s!", mon_nam(mtmp));
+				pline("A huge hole opens up...");
+				expels(mtmp, mtmp->data, TRUE);
+			}
+			break;
+
+		}
+		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
+			makeknown(WAN_INERTIA);
 		break;
 	}
 
@@ -3411,6 +4029,41 @@ struct monst *mtmp;
 
 		return (mtmp->mhp <= 0) ? 1 : 2;
 
+	case MUSE_WAN_CHROMATIC_BEAM:
+		{
+		int damagetype = -(20 + rn2(8));
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+
+		buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+		}
+
+	case MUSE_WAN_DISINTEGRATION_BEAM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+
+		buzz((int)(-24), 7 + (rnd(monster_difficulty()) / 6),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
 	case MUSE_FIRE_HORN:
 	case MUSE_FROST_HORN:
 	case MUSE_TEMPEST_HORN:
@@ -3432,8 +4085,10 @@ struct monst *mtmp;
 /*      case MUSE_WAN_TELEPORTATION:*/
 	case MUSE_WAN_STRIKING:
 	case MUSE_WAN_SLOW_MONSTER:
+	case MUSE_WAN_INERTIA:
 	case MUSE_WAN_FEAR:
 	case MUSE_WAN_DRAINING:	/* KMH */
+	case MUSE_WAN_TIME:
 	case MUSE_WAN_CANCELLATION:  /* Lethe */
 	case MUSE_WAN_STONING:
 	case MUSE_WAN_REDUCE_MAX_HITPOINTS:
@@ -3778,6 +4433,416 @@ struct monst *mtmp;
 
 		return 2;
 
+	case MUSE_SCR_MEGALOAD:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		{
+
+		struct obj *ldstone;
+
+		pline("A gray stone appears from nowhere!");
+
+		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
+		ldstone->quan = 1L;
+		ldstone->owt = weight(ldstone);
+		if (!Blind) ldstone->dknown = 1;
+		if (ldstone) {
+		      pline("The stone automatically wanders into your knapsack!");
+			(void) pickup_object(ldstone, 1L, TRUE);
+		}
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_ANTIMATTER:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		pline("You are caught in an antimatter storm!");
+		withering_damage(invent, FALSE, FALSE);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_RUMOR:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		{
+			const char *line;
+			char buflin[BUFSZ];
+			if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+			else line = getrumor(0, buflin, TRUE);
+			if (!*line) line = "Slash'EM rumors file closed for renovation.";
+			pline("%s", line);
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_MESSAGE:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_SIN:
+
+		mreadmsg(mtmp, otmp);
+
+		{
+		int dmg = 0;
+		struct obj *otmpi, *otmpii;
+
+		switch (rnd(8)) {
+
+			case 1: /* gluttony */
+				u.negativeprotection++;
+				pline("You feel less protected!");
+				break;
+			case 2: /* wrath */
+				if(u.uen < 1) {
+				    You_feel("less energised!");
+				    u.uenmax -= rn1(10,10);
+				    if(u.uenmax < 0) u.uenmax = 0;
+				} else if(u.uen <= 10) {
+				    You_feel("your magical energy dwindle to nothing!");
+				    u.uen = 0;
+				} else {
+				    You_feel("your magical energy dwindling rapidly!");
+				    u.uen /= 2;
+				}
+				break;
+			case 3: /* sloth */
+				pline("You feel a little apathetic...");
+
+				switch(rn2(7)) {
+				    case 0: /* destroy certain things */
+					lethe_damage(invent, FALSE, FALSE);
+					break;
+				    case 1: /* sleep */
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+					break;
+				    case 2: /* paralyse */
+					if (multi >= 0) {
+					    if (Free_action) {
+						You("momentarily stiffen.");            
+					    } else {
+						You("are frozen!");
+						nomovemsg = 0;	/* default: "you can move again" */
+						nomul(-rnd(10), "paralyzed by a scroll of sin");
+						exercise(A_DEX, FALSE);
+					    }
+					}
+					break;
+				    case 3: /* slow */
+					if(HFast)  u_slow_down();
+					else You("pause momentarily.");
+					break;
+				    case 4: /* drain Dex */
+					adjattrib(A_DEX, -rn1(1,1), 0);
+					break;
+				    case 5: /* steal teleportitis */
+					if(HTeleportation & INTRINSIC) {
+					      HTeleportation &= ~INTRINSIC;
+					}
+			 		if (HTeleportation & TIMEOUT) {
+						HTeleportation &= ~TIMEOUT;
+					}
+					if(HTeleport_control & INTRINSIC) {
+					      HTeleport_control &= ~INTRINSIC;
+					}
+			 		if (HTeleport_control & TIMEOUT) {
+						HTeleport_control &= ~TIMEOUT;
+					}
+				      You("don't feel in the mood for jumping around.");
+					break;
+				    case 6: /* steal sleep resistance */
+					if(HSleep_resistance & INTRINSIC) {
+						HSleep_resistance &= ~INTRINSIC;
+					} 
+					if(HSleep_resistance & TIMEOUT) {
+						HSleep_resistance &= ~TIMEOUT;
+					} 
+					You_feel("like you could use a nap.");
+					break;
+				}
+
+				break;
+			case 4: /* greed */
+				if (u.ugold) pline("Your purse feels lighter...");
+				u.ugold /= 2;
+				break;
+			case 5: /* lust */
+				if (invent) {
+					pline("Your belongings leave your body!");
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+		
+					if (!rn2(5) && !stack_too_big(otmpi) ) {
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+					}
+				    }
+				}
+				break;
+			case 6: /* envy */
+				if (flags.soundok) You_hear("a chuckling laughter.");
+			      attrcurse();
+			      attrcurse();
+				break;
+			case 7: /* pride */
+			      pline("The RNG determines to take you down a peg or two...");
+				if (!rn2(3)) {
+				    poisoned("air", rn2(A_MAX), "scroll of sin", 30);
+				}
+				if (!rn2(4)) {
+					pline("You feel drained...");
+					u.uhpmax -= rn1(10,10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
+					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
+				if (!rn2(4)) {
+					You_feel("less energised!");
+					u.uenmax -= rn1(10,10);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if(u.uen > u.uenmax) u.uen = u.uenmax;
+				}
+				if (!rn2(4)) {
+					if(!Drain_resistance || !rn2(20) )
+					    losexp("life drainage", FALSE, TRUE);
+					else You_feel("woozy for an instant, but shrug it off.");
+				}
+				break;
+			case 8: /* depression */
+
+			    switch(rnd(20)) {
+			    case 1:
+				if (!Unchanging && !Antimagic) {
+					You("undergo a freakish metamorphosis!");
+				      polyself(FALSE);
+				}
+				break;
+			    case 2:
+				You("need reboot.");
+				if (!Race_if(PM_UNGENOMOLD)) newman();
+				else polyself(FALSE);
+				break;
+			    case 3: case 4:
+				if(!rn2(4) && u.ulycn == NON_PM &&
+					!Protection_from_shape_changers &&
+					!is_were(youmonst.data) &&
+					!defends(AD_WERE,uwep)) {
+				    You_feel("feverish.");
+				    exercise(A_CON, FALSE);
+				    u.ulycn = PM_WERECOW;
+				} else {
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) break;
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+				}
+				break;
+			    case 5: case 6:
+				pline("Suddenly, there's glue all over you!");
+				u.utraptype = TT_GLUE;
+				u.utrap = 25 + rnd(monster_difficulty());
+
+				break;
+			    case 7:
+			    case 8:
+				Your("position suddenly seems very uncertain!");
+				teleX();
+				break;
+			    case 9:
+				u_slow_down();
+				break;
+			    case 10:
+			    case 11:
+			    case 12:
+				water_damage(invent, FALSE, FALSE);
+				break;
+			    case 13:
+				if (multi >= 0) {
+				    if (Free_action) {
+					You("momentarily stiffen.");            
+				    } else {
+					You("are frozen!");
+					nomovemsg = 0;	/* default: "you can move again" */
+					nomul(-rnd(10), "paralyzed by a scroll of sin");
+					exercise(A_DEX, FALSE);
+				    }
+				}
+				break;
+			    case 14:
+				if (Hallucination)
+					pline("What a groovy feeling!");
+				else
+					You(Blind ? "%s and get dizzy..." :
+						 "%s and your vision blurs...",
+						    stagger(youmonst.data, "stagger"));
+				dmg = rn1(7, 16);
+				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 15:
+				if(!Blind)
+					Your("vision bugged.");
+				dmg += rn1(10, 25);
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty() + monster_difficulty(),TRUE,0L);
+				break;
+			    case 16:
+				if(!Blind)
+					Your("vision turns to screen saver.");
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 17:
+				{
+				    struct obj *objD = some_armor(&youmonst);
+	
+				    if (objD && drain_item(objD)) {
+					Your("%s less effective.", aobjnam(objD, "seem"));
+				    }
+				}
+				break;
+			    default:
+				    if(Confusion)
+					 You("are getting even more confused.");
+				    else You("are getting confused.");
+				    make_confused(HConfusion + monster_difficulty() + 1, FALSE);
+				break;
+			    }
+
+				break;
+
+		}
+
+		}
+
+		if (!objects[SCR_SIN].oc_name_known
+			&& !objects[SCR_SIN].oc_uname)
+		    docall(otmp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_IMMOBILITY:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		{
+
+		int monstcnt;
+		monstcnt = 8 + rnd(10);
+		if (otmp->cursed) monstcnt += (8 + rnd(10)) ;
+		if (mtmp->mconf) monstcnt += (12 + rnd(15));
+		int sessileattempts;
+		int sessilemnum;
+
+	      while(--monstcnt >= 0) {
+			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+				sessilemnum = rndmonnum();
+				if (sessilemnum != -1 && (mons[sessilemnum].mlet != S_TROVE) && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+			}
+			if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_EGOISM:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		{
+
+		int monstcnt;
+		monstcnt = rnd(5);
+		if (otmp->cursed) monstcnt += rnd(6);
+		if (mtmp->mconf) monstcnt += rnd(12);
+		int sessileattempts;
+		int sessilemnum;
+
+	      while(--monstcnt >= 0) {
+			for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
+				sessilemnum = rndmonnum();
+				if (sessilemnum != -1 && always_egotype(&mons[sessilemnum]) ) sessileattempts = 10000;
+			}
+			if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_ENRAGE:
+
+		mreadmsg(mtmp, otmp);
+
+		{
+
+		int effectradius = (otmp->blessed ? 5 : otmp->cursed ? 20 : 10);
+		if (mtmp->mconf) effectradius *= 3;
+	      register struct monst *mtmp2;
+		struct edog* edog;
+
+		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+			if (rn2(3) && distu(mtmp2->mx,mtmp2->my) < effectradius) {
+				if (mtmp2->mtame) {
+					edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
+					if (mtmp2->mtame <= rnd(21) || (edog && edog->abuse >= rn2(6) )) {
+						mtmp2->mtame = mtmp2->mpeaceful = 0;
+						if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+					}
+				} else if (mtmp2->mpeaceful) {
+					mtmp2->mpeaceful = 0;
+				} else {
+					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+				}
+			}
+		}
+		pline("It seems a little more dangerous here now...");
+
+		if (!objects[SCR_ENRAGE].oc_name_known
+			&& !objects[SCR_ENRAGE].oc_uname)
+		    docall(otmp);
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_SCR_DESTROY_WEAPON:
 
 		mreadmsg(mtmp, otmp);
@@ -3843,6 +4908,39 @@ struct monst *mtmp;
 				pline(Hallucination ?
 						"Wow, that's, like, TOTALLY HOT, dude!" :
 						"A stream of lava surges through the area!" );
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_FLOODING:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+			int madepoolL = 0;
+			int xL,yL,safe_posL=0;
+			int radiusL = 5;
+			if (!rn2(3)) radiusL += rnd(4);
+			if (!rn2(10)) radiusL += rnd(6);
+			if (!rn2(25)) radiusL += rnd(8);
+			if (radiusL > MAX_RADIUS) radiusL = MAX_RADIUS;
+			do_clear_areaX(u.ux, u.uy, radiusL, do_megafloodingd, (genericptr_t)&madepoolL);
+
+			/* check if there are safe tiles around the player */
+			for (xL = u.ux-1; xL <= u.ux+1; xL++) {
+				for (yL = u.uy - 1; yL <= u.uy + 1; yL++) {
+					if (xL != u.ux && yL != u.uy &&
+					    goodpos(xL, yL, &youmonst, 0)) {
+						safe_posL++;
+					}
+				}
+			}
+
+			if (madepoolL)
+				pline(Hallucination ?
+						"Whoa, swimming pools and stuff!" :
+						"The dungeon is flooded!" );
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -4208,6 +5306,60 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_IMMOBILITY:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		{
+
+		int monstcnt;
+		monstcnt = 8 + rnd(10);
+		int sessileattempts;
+		int sessilemnum;
+
+	      while(--monstcnt >= 0) {
+			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+				sessilemnum = rndmonnum();
+				if (sessilemnum != -1 && (mons[sessilemnum].mlet != S_TROVE) && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+			}
+			if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		}
+
+		if (oseen) makeknown(WAN_IMMOBILITY);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_EGOISM:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		{
+
+		int monstcnt;
+		monstcnt = rnd(5);
+		int sessileattempts;
+		int sessilemnum;
+
+	      while(--monstcnt >= 0) {
+			for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
+				sessilemnum = rndmonnum();
+				if (sessilemnum != -1 && always_egotype(&mons[sessilemnum]) ) sessileattempts = 10000;
+			}
+			if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		}
+
+		if (oseen) makeknown(WAN_EGOISM);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_SCR_AMNESIA:
 
 		mreadmsg(mtmp, otmp);
@@ -4280,6 +5432,293 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_SIN:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		{
+		int dmg = 0;
+		struct obj *otmpi, *otmpii;
+
+		switch (rnd(8)) {
+
+			case 1: /* gluttony */
+				u.negativeprotection++;
+				pline("You feel less protected!");
+				break;
+			case 2: /* wrath */
+				if(u.uen < 1) {
+				    You_feel("less energised!");
+				    u.uenmax -= rn1(10,10);
+				    if(u.uenmax < 0) u.uenmax = 0;
+				} else if(u.uen <= 10) {
+				    You_feel("your magical energy dwindle to nothing!");
+				    u.uen = 0;
+				} else {
+				    You_feel("your magical energy dwindling rapidly!");
+				    u.uen /= 2;
+				}
+				break;
+			case 3: /* sloth */
+				pline("You feel a little apathetic...");
+
+				switch(rn2(7)) {
+				    case 0: /* destroy certain things */
+					lethe_damage(invent, FALSE, FALSE);
+					break;
+				    case 1: /* sleep */
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+					break;
+				    case 2: /* paralyse */
+					if (multi >= 0) {
+					    if (Free_action) {
+						You("momentarily stiffen.");            
+					    } else {
+						You("are frozen!");
+						nomovemsg = 0;	/* default: "you can move again" */
+						nomul(-rnd(10), "paralyzed by a wand of sin");
+						exercise(A_DEX, FALSE);
+					    }
+					}
+					break;
+				    case 3: /* slow */
+					if(HFast)  u_slow_down();
+					else You("pause momentarily.");
+					break;
+				    case 4: /* drain Dex */
+					adjattrib(A_DEX, -rn1(1,1), 0);
+					break;
+				    case 5: /* steal teleportitis */
+					if(HTeleportation & INTRINSIC) {
+					      HTeleportation &= ~INTRINSIC;
+					}
+			 		if (HTeleportation & TIMEOUT) {
+						HTeleportation &= ~TIMEOUT;
+					}
+					if(HTeleport_control & INTRINSIC) {
+					      HTeleport_control &= ~INTRINSIC;
+					}
+			 		if (HTeleport_control & TIMEOUT) {
+						HTeleport_control &= ~TIMEOUT;
+					}
+				      You("don't feel in the mood for jumping around.");
+					break;
+				    case 6: /* steal sleep resistance */
+					if(HSleep_resistance & INTRINSIC) {
+						HSleep_resistance &= ~INTRINSIC;
+					} 
+					if(HSleep_resistance & TIMEOUT) {
+						HSleep_resistance &= ~TIMEOUT;
+					} 
+					You_feel("like you could use a nap.");
+					break;
+				}
+
+				break;
+			case 4: /* greed */
+				if (u.ugold) pline("Your purse feels lighter...");
+				u.ugold /= 2;
+				break;
+			case 5: /* lust */
+				if (invent) {
+					pline("Your belongings leave your body!");
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+		
+					if (!rn2(5) && !stack_too_big(otmpi) ) {
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+					}
+				    }
+				}
+				break;
+			case 6: /* envy */
+				if (flags.soundok) You_hear("a chuckling laughter.");
+			      attrcurse();
+			      attrcurse();
+				break;
+			case 7: /* pride */
+			      pline("The RNG determines to take you down a peg or two...");
+				if (!rn2(3)) {
+				    poisoned("air", rn2(A_MAX), "wand of sin", 30);
+				}
+				if (!rn2(4)) {
+					pline("You feel drained...");
+					u.uhpmax -= rn1(10,10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
+					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
+				if (!rn2(4)) {
+					You_feel("less energised!");
+					u.uenmax -= rn1(10,10);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if(u.uen > u.uenmax) u.uen = u.uenmax;
+				}
+				if (!rn2(4)) {
+					if(!Drain_resistance || !rn2(20) )
+					    losexp("life drainage", FALSE, TRUE);
+					else You_feel("woozy for an instant, but shrug it off.");
+				}
+				break;
+			case 8: /* depression */
+
+			    switch(rnd(20)) {
+			    case 1:
+				if (!Unchanging && !Antimagic) {
+					You("undergo a freakish metamorphosis!");
+				      polyself(FALSE);
+				}
+				break;
+			    case 2:
+				You("need reboot.");
+				if (!Race_if(PM_UNGENOMOLD)) newman();
+				else polyself(FALSE);
+				break;
+			    case 3: case 4:
+				if(!rn2(4) && u.ulycn == NON_PM &&
+					!Protection_from_shape_changers &&
+					!is_were(youmonst.data) &&
+					!defends(AD_WERE,uwep)) {
+				    You_feel("feverish.");
+				    exercise(A_CON, FALSE);
+				    u.ulycn = PM_WERECOW;
+				} else {
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) break;
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+				}
+				break;
+			    case 5: case 6:
+				pline("Suddenly, there's glue all over you!");
+				u.utraptype = TT_GLUE;
+				u.utrap = 25 + rnd(monster_difficulty());
+
+				break;
+			    case 7:
+			    case 8:
+				Your("position suddenly seems very uncertain!");
+				teleX();
+				break;
+			    case 9:
+				u_slow_down();
+				break;
+			    case 10:
+			    case 11:
+			    case 12:
+				water_damage(invent, FALSE, FALSE);
+				break;
+			    case 13:
+				if (multi >= 0) {
+				    if (Free_action) {
+					You("momentarily stiffen.");            
+				    } else {
+					You("are frozen!");
+					nomovemsg = 0;	/* default: "you can move again" */
+					nomul(-rnd(10), "paralyzed by a wand of sin");
+					exercise(A_DEX, FALSE);
+				    }
+				}
+				break;
+			    case 14:
+				if (Hallucination)
+					pline("What a groovy feeling!");
+				else
+					You(Blind ? "%s and get dizzy..." :
+						 "%s and your vision blurs...",
+						    stagger(youmonst.data, "stagger"));
+				dmg = rn1(7, 16);
+				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 15:
+				if(!Blind)
+					Your("vision bugged.");
+				dmg += rn1(10, 25);
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty() + monster_difficulty(),TRUE,0L);
+				break;
+			    case 16:
+				if(!Blind)
+					Your("vision turns to screen saver.");
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 17:
+				{
+				    struct obj *objD = some_armor(&youmonst);
+	
+				    if (objD && drain_item(objD)) {
+					Your("%s less effective.", aobjnam(objD, "seem"));
+				    }
+				}
+				break;
+			    default:
+				    if(Confusion)
+					 You("are getting even more confused.");
+				    else You("are getting confused.");
+				    make_confused(HConfusion + monster_difficulty() + 1, FALSE);
+				break;
+			    }
+
+				break;
+
+		}
+
+		}
+
+		if (oseen) makeknown(WAN_SIN);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_FINGER_BENDING:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
+		incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+
+		if (oseen) makeknown(WAN_FINGER_BENDING);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_DRAIN_MANA:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		pline("You lose  Mana");
+		drain_en(rnz(monster_difficulty() + 1) );
+
+		if (oseen) makeknown(WAN_DRAIN_MANA);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_TIDAL_WAVE:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		pline("A sudden geyser slams into you from nowhere!");
+		water_damage(invent, FALSE, FALSE);
+		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		if (Burned) make_burned(0L, TRUE);
+
+		if (oseen) makeknown(WAN_TIDAL_WAVE);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_STARVATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -4309,6 +5748,18 @@ newboss:
 		make_confused(HConfusion + rn1(35, 115), FALSE);
 
 		if (oseen) makeknown(WAN_CONFUSION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_STUN_MONSTER:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		make_stunned(HStun + rn1(35, 115), TRUE);
+
+		if (oseen) makeknown(WAN_STUN_MONSTER);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
@@ -4661,7 +6112,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_KOP
 # endif
 		) && issoviet) return 0;
-	switch (rn2(78)) {
+	switch (rn2(98)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -4741,6 +6192,26 @@ struct monst *mtmp;
 		case 75: return TEMPEST_HORN;
 		case 76: return WAN_POISON;
 		case 77: return SCR_DESTROY_WEAPON;
+		case 78: return WAN_DISINTEGRATION_BEAM;
+		case 79: return WAN_CHROMATIC_BEAM;
+		case 80: return WAN_STUN_MONSTER;
+		case 81: return SCR_MEGALOAD;
+		case 82: return SCR_ENRAGE;
+		case 83: return WAN_TIDAL_WAVE;
+		case 84: return SCR_ANTIMATTER;
+		case 85: return WAN_DRAIN_MANA;
+		case 86: return WAN_FINGER_BENDING;
+		case 87: return SCR_IMMOBILITY;
+		case 88: return WAN_IMMOBILITY;
+		case 89: return SCR_FLOODING;
+		case 90: return SCR_EGOISM;
+		case 91: return WAN_EGOISM;
+		case 92: return SCR_RUMOR;
+		case 93: return SCR_MESSAGE;
+		case 94: return SCR_SIN;
+		case 95: return WAN_SIN;
+		case 96: return WAN_INERTIA;
+		case 97: return WAN_TIME;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -4770,6 +6241,10 @@ struct monst *mtmp;
 #define MUSE_WAN_CREATE_HORDE_M 21
 #define MUSE_SCR_SUMMON_UNDEAD_M 22
 #define MUSE_SCR_CREATE_VICTIM_M 23
+#define MUSE_SCR_GROUP_SUMMONING_M 24
+#define MUSE_SCR_SUMMON_GHOST_M 25
+#define MUSE_SCR_SUMMON_ELM_M 26
+#define MUSE_WAN_SUMMON_ELM_M 27
 
 boolean
 find_misc(mtmp)
@@ -4884,7 +6359,7 @@ struct monst *mtmp;
 			m.has_misc = MUSE_WAN_POLYMORPH;
 		}
 		nomore(MUSE_WAN_CLONE_MONSTER);
-		if(obj->otyp == WAN_CLONE_MONSTER && obj->spe > 0) {
+		if(obj->otyp == WAN_CLONE_MONSTER && obj->spe > 0 && mtmp->mhp > 1) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_CLONE_MONSTER;
 		}
@@ -4919,6 +6394,16 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_SUMMON_BOSS_M;
 		}
+		nomore(MUSE_SCR_SUMMON_GHOST_M);
+		if(obj->otyp == SCR_SUMMON_GHOST && !rn2(25) && !mtmp->mpeaceful) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_SUMMON_GHOST_M;
+		}
+		nomore(MUSE_SCR_SUMMON_ELM_M);
+		if(obj->otyp == SCR_SUMMON_ELM && !rn2(25) && !mtmp->mpeaceful) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_SUMMON_ELM_M;
+		}
 		nomore(MUSE_SCR_CREATE_MONSTER_M);
 		if(obj->otyp == SCR_CREATE_MONSTER && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
@@ -4944,6 +6429,11 @@ struct monst *mtmp;
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_SUMMON_UNDEAD_M;
 		}
+		nomore(MUSE_WAN_SUMMON_ELM_M);
+		if (obj->otyp == WAN_SUMMON_ELM && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
+			m.misc = obj;
+			m.has_misc = MUSE_WAN_SUMMON_ELM_M;
+		}
 		nomore(MUSE_WAN_CREATE_HORDE_M);
 		if(obj->otyp == WAN_CREATE_HORDE && obj->spe > 0 && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
@@ -4953,6 +6443,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_SUMMON_UNDEAD && !rn2(25) && !mtmp->mpeaceful ) {
 			m.misc = obj;
 			m.has_misc = MUSE_SCR_SUMMON_UNDEAD_M;
+		}
+		nomore(MUSE_SCR_GROUP_SUMMONING_M);
+		if(obj->otyp == SCR_GROUP_SUMMONING && !rn2(25) && !mtmp->mpeaceful ) {
+			m.misc = obj;
+			m.has_misc = MUSE_SCR_GROUP_SUMMONING_M;
 		}
 
 	}
@@ -5451,6 +6946,44 @@ newboss:
 		return 2;
 	    }
 
+	case MUSE_SCR_SUMMON_GHOST_M:
+
+		{
+		coord cc;   
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+
+		tt_mname(&cc, FALSE, 0);
+		if (!objects[SCR_SUMMON_GHOST].oc_name_known
+			&& !objects[SCR_SUMMON_GHOST].oc_uname)
+		    docall(otmp);
+
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_SCR_SUMMON_ELM_M:
+
+		mreadmsg(mtmp, otmp);
+
+		{
+
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+		summon_minion(aligntype, TRUE);
+
+		}
+
+		if (!objects[SCR_SUMMON_ELM].oc_name_known
+			&& !objects[SCR_SUMMON_ELM].oc_uname)
+		    docall(otmp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_SCR_CREATE_MONSTER_M:
 	    {	coord cc;
 		struct permonst *pm = 0, *fish = 0;
@@ -5572,6 +7105,22 @@ newboss:
 		return 2;
 	    }
 
+	case MUSE_WAN_SUMMON_ELM_M:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+	      makeknown(WAN_SUMMON_ELM);
+
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+		summon_minion(aligntype, TRUE);
+		}
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_SCR_SUMMON_UNDEAD_M:
 
 	    {	coord cc;
@@ -5623,6 +7172,210 @@ newboss:
 		    makeknown(SCR_SUMMON_UNDEAD);
 		else if (!objects[SCR_SUMMON_UNDEAD].oc_name_known
 			&& !objects[SCR_SUMMON_UNDEAD].oc_uname)
+		    docall(otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	    }
+
+	case MUSE_SCR_GROUP_SUMMONING_M:
+
+	    {	coord cc;
+		struct permonst *pm = 0;
+		int cnt = rn2(14) + 2;
+		struct monst *mon;
+		boolean known = FALSE;
+		int randmnst;
+		int randmnsx;
+		struct permonst *randmonstforspawn;
+		int monstercolor;
+
+		int spawntype = rnd(3);
+
+		if (spawntype == 1) {
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+		} else if (spawntype == 2) {
+			randmonstforspawn = rndmonst();
+		} else {
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+		}
+
+		if (mtmp->mconf || otmp->cursed) cnt += 12;
+
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		mreadmsg(mtmp, otmp);
+		while(cnt--) {
+
+		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			if (spawntype == 1) {
+
+			if (randmnst < 6)
+		 	    mon = makemon(mkclass(S_ANT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    mon = makemon(mkclass(S_BLOB,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    mon = makemon(mkclass(S_COCKATRICE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    mon = makemon(mkclass(S_DOG,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    mon = makemon(mkclass(S_EYE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    mon = makemon(mkclass(S_FELINE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    mon = makemon(mkclass(S_GREMLIN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    mon = makemon(mkclass(S_HUMANOID,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    mon = makemon(mkclass(S_IMP,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    mon = makemon(mkclass(S_JELLY,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    mon = makemon(mkclass(S_KOBOLD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    mon = makemon(mkclass(S_LEPRECHAUN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    mon = makemon(mkclass(S_MIMIC,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    mon = makemon(mkclass(S_NYMPH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    mon = makemon(mkclass(S_ORC,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    mon = makemon(mkclass(S_PIERCER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    mon = makemon(mkclass(S_QUADRUPED,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    mon = makemon(mkclass(S_RODENT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    mon = makemon(mkclass(S_SPIDER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    mon = makemon(mkclass(S_TRAPPER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    mon = makemon(mkclass(S_UNICORN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    mon = makemon(mkclass(S_VORTEX,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    mon = makemon(mkclass(S_WORM,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    mon = makemon(mkclass(S_XAN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    mon = makemon(mkclass(S_LIGHT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    mon = makemon(mkclass(S_ZOUTHERN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    mon = makemon(mkclass(S_ANGEL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    mon = makemon(mkclass(S_BAT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    mon = makemon(mkclass(S_CENTAUR,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    mon = makemon(mkclass(S_DRAGON,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    mon = makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    mon = makemon(mkclass(S_FUNGUS,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    mon = makemon(mkclass(S_GNOME,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    mon = makemon(mkclass(S_GIANT,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    mon = makemon(mkclass(S_JABBERWOCK,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    mon = makemon(mkclass(S_KOP,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    mon = makemon(mkclass(S_LICH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    mon = makemon(mkclass(S_MUMMY,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    mon = makemon(mkclass(S_NAGA,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    mon = makemon(mkclass(S_OGRE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    mon = makemon(mkclass(S_PUDDING,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    mon = makemon(mkclass(S_QUANTMECH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    mon = makemon(mkclass(S_RUSTMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    mon = makemon(mkclass(S_SNAKE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    mon = makemon(mkclass(S_TROLL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    mon = makemon(mkclass(S_UMBER,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    mon = makemon(mkclass(S_VAMPIRE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    mon = makemon(mkclass(S_WRAITH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    mon = makemon(mkclass(S_XORN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    mon = makemon(mkclass(S_YETI,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    mon = makemon(mkclass(S_ZOMBIE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    mon = makemon(mkclass(S_GHOST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    mon = makemon(mkclass(S_GOLEM,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    mon = makemon(mkclass(S_DEMON,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    mon = makemon(mkclass(S_EEL,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    mon = makemon(mkclass(S_LIZARD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    mon = makemon(mkclass(S_BAD_FOOD,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    mon = makemon(mkclass(S_BAD_COINS,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+				else
+		 	    mon = makemon(mkclass(S_NEMESE,0), cc.x, cc.y, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    mon = makemon(mkclass(S_GRUE,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    mon = makemon(mkclass(S_WALLMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    mon = makemon(mkclass(S_RUBMONST,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    mon = makemon(mkclass(S_HUMAN,0), cc.x, cc.y, MM_ADJACENTOK);
+				else
+		 	    mon = makemon(mkclass(S_ARCHFIEND,0), cc.x, cc.y, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    mon = makemon(mkclass(S_TURRET,0), cc.x, cc.y, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    mon = makemon(mkclass(S_FLYFISH,0), cc.x, cc.y, MM_ADJACENTOK);
+			else
+		 	    mon = makemon((struct permonst *)0, cc.x, cc.y, MM_ADJACENTOK);
+
+			} else if (spawntype == 2) {
+
+				mon = makemon(randmonstforspawn, cc.x, cc.y, MM_ADJACENTOK);
+
+			} else {
+
+				mon = makemon(colormon(monstercolor), cc.x, cc.y, MM_ADJACENTOK);
+
+			}
+
+		    if (mon && canspotmon(mon)) known = TRUE;
+		}
+		/* The only case where we don't use oseen.  For wands, you
+		 * have to be able to see the monster zap the wand to know
+		 * what type it is.  For teleport scrolls, you have to see
+		 * the monster to know it teleported.
+		 */
+		if (known)
+		    makeknown(SCR_GROUP_SUMMONING);
+		else if (!objects[SCR_GROUP_SUMMONING].oc_name_known
+			&& !objects[SCR_GROUP_SUMMONING].oc_uname)
 		    docall(otmp);
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
@@ -5878,13 +7631,16 @@ struct obj *obj;
 		    typ == WAN_TELEPORTATION ||
 		    typ == WAN_CREATE_MONSTER ||
 		    typ == WAN_SUMMON_UNDEAD ||
+		    typ == WAN_SUMMON_ELM ||
 		    typ == WAN_TRAP_CREATION ||
 		    typ == WAN_SUMMON_SEXY_GIRL ||
 		    typ == WAN_CREATE_HORDE ||
 		    typ == WAN_DRAINING	||
+		    typ == WAN_TIME	||
 		    typ == WAN_REDUCE_MAX_HITPOINTS	||
 		    typ == WAN_INCREASE_MAX_HITPOINTS	||
 		    typ == WAN_SLOW_MONSTER	||
+		    typ == WAN_INERTIA	||
 		    typ == WAN_FEAR	||
 		    typ == WAN_HEALING ||
 		    typ == WAN_CLONE_MONSTER ||
@@ -5897,14 +7653,24 @@ struct obj *obj;
 		    typ == WAN_MAKE_VISIBLE ||
 		    typ == WAN_CURSE_ITEMS ||
 		    typ == WAN_AMNESIA ||
+		    typ == WAN_IMMOBILITY ||
+		    typ == WAN_EGOISM ||
 		    typ == WAN_MUTATION ||
 		    typ == WAN_BAD_LUCK ||
 		    typ == WAN_REMOVE_RESISTANCE ||
 		    typ == WAN_CORROSION ||
 		    typ == WAN_FUMBLING ||
+		    typ == WAN_SIN ||
+		    typ == WAN_FINGER_BENDING ||
+		    typ == WAN_DRAIN_MANA ||
+		    typ == WAN_TIDAL_WAVE ||
 		    typ == WAN_STARVATION ||
 		    typ == WAN_CONFUSION ||
+		    typ == WAN_STUN_MONSTER ||
 		    typ == WAN_SLIMING ||
+		    typ == WAN_POISON ||
+		    typ == WAN_CHROMATIC_BEAM ||
+		    typ == WAN_DISINTEGRATION_BEAM ||
 		    typ == WAN_LYCANTHROPY ||
 		    typ == WAN_PUNISHMENT ||
 		    typ == WAN_TELE_LEVEL ||
@@ -5945,7 +7711,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_FLOOD || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_SUMMON_BOSS || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:
@@ -6022,14 +7788,14 @@ const char *str;
 				orefl->otyp == AMULET_OF_PRISM) {
 	    if (str) {
 		pline(str, s_suffix(mon_nam(mon)), "amulet");
-		makeknown(AMULET_OF_REFLECTION);
+		makeknown(AMULET_OF_PRISM);
 	    }
 	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_AMUL)) &&
 				orefl->otyp == AMULET_OF_WARP_DIMENSION) {
 	    if (str) {
 		pline(str, s_suffix(mon_nam(mon)), "amulet");
-		makeknown(AMULET_OF_REFLECTION);
+		makeknown(AMULET_OF_WARP_DIMENSION);
 	    }
 	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_AMUL)) &&
@@ -6072,7 +7838,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_ARIANE] || mon->data == &mons[PM_KSENIA] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
@@ -6149,7 +7915,7 @@ const char *fmt, *str;
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
+	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_ARIANE] || youmonst.data == &mons[PM_KSENIA] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
 	    if (fmt && str)
 	    	pline(fmt, str, "surface");
 	    return TRUE;

@@ -5415,6 +5415,10 @@ struct obj *obj;
 				pline("If you put on this helmet, your alignment will be changed and you lose all divine protection that you might have."); break;
 			case HELM_OF_STEEL:
 				pline("A robust helmet that offers good armor class."); break;
+			case HELM_OF_SPEED:
+				pline("This very useful helmet makes you faster."); break;
+			case HELMET_OF_UNDEAD_WARNING:
+				pline("A helmet that offers good armor class and magic cancellation in addition to displaying the locations of all the undead monsters on the level."); break;
 			case HELM_OF_DRAIN_RESISTANCE:
 				pline("You can get resistance to level drain by putting on this helm."); break;
 			case HELM_OF_FEAR:
@@ -5864,6 +5868,12 @@ struct obj *obj;
 				pline("This amulet can reflect beams and other nasty things while worn."); break;
 			case AMULET_OF_PRISM:
 				pline("A reflecting amulet that makes beams hitting you bounce off in a 90-degree angle."); break;
+			case AMULET_OF_SPEED:
+				pline("This wonderful amulet grants you more actions per turn."); break;
+			case AMULET_OF_TELEPORT_CONTROL:
+				pline("You can control the destination of your teleports while wearing this."); break;
+			case AMULET_OF_POLYMORPH_CONTROL:
+				pline("Wear this, and you will be able to control your polymorphs."); break;
 			case AMULET_OF_WARP_DIMENSION:
 				pline("This amulet reflects beams in a completely random direction."); break;
 			case AMULET_OF_D_TYPE_EQUIPMENT:
@@ -6545,6 +6555,36 @@ struct obj *obj;
 				pline("If you read this scroll, all traps in a 3x3 radius centered on you will be removed."); break;
 			case SCR_STANDARD_ID: 
 				pline("Reading this scroll allows you to identify exactly one item in your main inventory."); break;
+			case SCR_GROUP_SUMMONING: 
+				pline("Summons a group of themed monsters for you to fight."); break;
+			case SCR_WORLD_FALL: 
+				pline("Also known as 'apocalypse' or 'cataclysm', this scroll wipes out all monsters on the level whose level is lower than yours, and ones with a higher level can sometimes be removed too."); break;
+			case SCR_RESURRECTION: 
+				pline("Reading this scroll grants you an extra life, i.e. you come back to life after death!"); break;
+			case SCR_SUMMON_GHOST: 
+				pline("You will summon a player ghost by reading this, which can be extremely dangerous."); break;
+			case SCR_MEGALOAD: 
+				pline("A nasty scroll that puts a loadstone in your inventory if anyone reads it."); break;
+			case SCR_ENRAGE: 
+				pline("Peaceful monsters become hostile, and sometimes your tame pets too, should anyone read this scroll."); break;
+			case SCR_ANTIMATTER: 
+				pline("This scroll was put in the game by an evil developer and will damage your entire inventory."); break;
+			case SCR_SUMMON_ELM: 
+				pline("A scroll that can summon a divine minion. Unfortunately, the minion will attack you."); break;
+			case SCR_RELOCATION: 
+				pline("Useful for no-teleport levels, this scroll teleports you to an empty location on the level regardless of things that would normally prevent teleportation."); break;
+			case SCR_IMMOBILITY: 
+				pline("This scroll surrounds you with immobile monsters when read."); break;
+			case SCR_FLOODING: 
+				pline("Turns large parts of the current level into a lake of water and lava, with associated sea monsters and stuff."); break;
+			case SCR_EGOISM: 
+				pline("You will face a bunch of egotype monsters when reading this."); break;
+			case SCR_RUMOR: 
+				pline("A scroll that has a rumor written on it."); break;
+			case SCR_MESSAGE: 
+				pline("A scroll that can trigger messages if you read it."); break;
+			case SCR_SIN: 
+				pline("Don't read it. That is, unless you want to be hit by a 'deadly sin' effect which is likely to screw your character in some way or another."); break;
 			case SCR_CHARGING: 
 				pline("This scroll can be read to charge an object, which must be in your main inventory and of an item type that can be charged, e.g. a wand. Be careful, recharging an item too many times may cause it to explode."); break;
 			case SCR_RANDOM_ENCHANTMENT: 
@@ -6746,6 +6786,34 @@ struct obj *obj;
 				pline("A spell that displays your current resistances, whether it is safe to pray, etc."); break;
 			case SPE_INVISIBILITY:
 				pline("Use this spell if you want to turn invisible for a period of time."); break;
+			case SPE_DISINTEGRATION_BEAM:
+				pline("Awesome power - this spell fires disintegration beams that can instakill monsters!"); break;
+			case SPE_FLYING:
+				pline("Wanna fly for a while? Then cast this, and you'll be able to pass over water and lava for a period of time while still being able to pick up stuff."); break;
+			case SPE_CHROMATIC_BEAM:
+				pline("The RNG will determine the type of beam you fire with this spell, every time you fire it."); break;
+			case SPE_FUMBLING:
+				pline("If for some obscure reason you want to fumble, you can achieve it by casting this spell."); break;
+			case SPE_MAKE_VISIBLE:
+				pline("Any monster or item hit by the invisible beam of this spell will lose its invisibility; no effect on things that are already visible."); break;
+			case SPE_WARPING:
+				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination."); break;
+			case SPE_TRAP_CREATION:
+				pline("You will create some traps around you by casting this spell."); break;
+			case SPE_STUN_MONSTER:
+				pline("A spell that fires invisible beams to stun monsters."); break;
+			case SPE_CURSE_ITEMS:
+				pline("Some of your items will become cursed (or unblessed) if you cast this spell."); break;
+			case SPE_CHARACTER_RECURSION:
+				pline("DANGER: Casting this spell will transform your character into another one *permanently*. It also deletes your inventory (so you should probably drop it first) and your entire spell list. Be sure you really want this, because it cannot be reverted once done!"); break;
+			case SPE_CLONE_MONSTER:
+				pline("Everybody's dream spell, you can now multiply monsters if you want to! Have fun!"); break;
+			case SPE_DESTROY_ARMOR:
+				pline("A useful spell if, and only if, you put on some terribly cursed armor and need to get rid of it."); break;
+			case SPE_INERTIA:
+				pline("Powerful spell that you can fire at enemies to slow them down."); break;
+			case SPE_TIME:
+				pline("You can 'clock back' enemies with this spell, draining their health and level permanently."); break;
 			case SPE_LEVITATION:
 				pline("This spell allows you to levitate for a while."); break;
 			case SPE_TELEPORT_AWAY:
@@ -6952,6 +7020,30 @@ struct obj *obj;
 				pline("Firing this wand at a monster may cause it to run away in fear."); break;
 			case WAN_WIND:
 				pline("A wand that creates a powerful wind to push monsters and objects out of your way."); break;
+			case WAN_DISINTEGRATION_BEAM:
+				pline("Similar to polymorphing into a black dragon, but in wand form, this device lets you instakill monsters that aren't disintegration resistant."); break;
+			case WAN_CHROMATIC_BEAM:
+				pline("You can zap this wand to fire beams at enemies. What does the beam do? You won't know until you zap it!"); break;
+			case WAN_STUN_MONSTER:
+				pline("Point it at a monster or a line of monsters and they will be stunned."); break;
+			case WAN_TIDAL_WAVE:
+				pline("An evil wand that causes you, and only you, to be immersed in a wave of water when zapped."); break;
+			case WAN_SUMMON_ELM:
+				pline("Summons hostile divine minions when zapped."); break;
+			case WAN_DRAIN_MANA:
+				pline("You can get rid of your mana by zapping this wand, but I'm certain you'd never want that effect."); break;
+			case WAN_FINGER_BENDING:
+				pline("Your fingers will be unable to hold anything for a while after this wand is zapped. Unfortunately it doesn't remove cursed items though."); break;
+			case WAN_IMMOBILITY:
+				pline("Every time this wand is zapped, a bunch of nonmoving monsters will materialize from nowhere."); break;
+			case WAN_EGOISM:
+				pline("Zapping this wand creates egotype monsters."); break;
+			case WAN_SIN:
+				pline("A very dangerous wand that will subject you to nasty 'deadly sin' effects every time it's zapped."); break;
+			case WAN_INERTIA:
+				pline("Everything you hit with the invisible beam of this wand will be slowed. Period. Monsters with magic resistance are not resistant to this effect."); break;
+			case WAN_TIME:
+				pline("Time damage is unresistable for all monsters, and will drain a level from them every time it hits."); break;
 			case WAN_POLYMORPH:
 				pline("Zapping this wand at monsters, objects or yourself will polymorph whatever it hits. Be aware of the fact that polymorphing monsters and objects is temporary."); break;
 			case WAN_MUTATION:

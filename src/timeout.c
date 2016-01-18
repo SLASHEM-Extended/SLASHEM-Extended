@@ -2417,6 +2417,10 @@ nh_timeout()
 		case LEVITATION:
 			(void) float_down(I_SPECIAL|TIMEOUT, 0L);
 			break;
+		case FLYING:
+			if (!Flying)
+				pline("You feel less airborne.");
+			break;
 		case BLACK_NG_WALLS:
 
 			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");

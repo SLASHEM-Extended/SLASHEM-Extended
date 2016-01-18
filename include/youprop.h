@@ -578,6 +578,8 @@
 				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
 				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_AUREAL] ||\
+				  youmonst.data == &mons[PM_ARIANE] ||\
+				  youmonst.data == &mons[PM_KSENIA] ||\
 				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting && !Race_if(PM_ANGBANDER) )
 #define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))

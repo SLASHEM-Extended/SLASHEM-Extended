@@ -907,6 +907,8 @@ boolean atme;
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
 	if (spellid(spell) == SPE_PETRIFY) { energy *= 5; energy /= 2;}
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
+	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 3;
+	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
@@ -1106,6 +1108,8 @@ boolean atme;
 	case SPE_SLEEP:
 	case SPE_KNOCK:
 	case SPE_SLOW_MONSTER:
+	case SPE_INERTIA:
+	case SPE_CLONE_MONSTER:
 	case SPE_WIZARD_LOCK:
 	case SPE_DIG:
 	case SPE_TURN_UNDEAD:
@@ -1121,9 +1125,14 @@ boolean atme;
 	case SPE_EXTRA_HEALING:
 	case SPE_FULL_HEALING:
 	case SPE_DRAIN_LIFE:
+	case SPE_TIME:
 	case SPE_STONE_TO_FLESH:
 	case SPE_FINGER:
+	case SPE_MAKE_VISIBLE:
+	case SPE_STUN_MONSTER:
 	case SPE_DISINTEGRATION:
+	case SPE_DISINTEGRATION_BEAM:
+	case SPE_CHROMATIC_BEAM:
 	case SPE_PETRIFY:
 	case SPE_PARALYSIS:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
@@ -1156,6 +1165,7 @@ boolean atme;
 	case SPE_MAGIC_MAPPING:
 	case SPE_CREATE_MONSTER:
 	case SPE_IDENTIFY:
+	case SPE_DESTROY_ARMOR:
 	case SPE_COMMAND_UNDEAD:                
 	case SPE_SUMMON_UNDEAD:
 		if (rn2(5)) pseudo->blessed = 0;
@@ -1213,6 +1223,16 @@ boolean atme;
 	case SPE_AGGRAVATE_MONSTER:
 		You_feel("that monsters are aware of your presence.");
 		aggravate();
+		break;
+	case SPE_CURSE_ITEMS:
+		You_feel("as if you need some help.");
+		rndcurse();
+		break;
+	case SPE_FUMBLING:
+		if (!Fumbling) pline("You start fumbling.");
+		HFumbling = FROMOUTSIDE | rnd(100);
+		set_itimeout(&HFumbling, 2);
+		u.fumbleduration += rnz(1000);
 		break;
 	case SPE_REMOVE_BLESSING:
 		{
@@ -1382,6 +1402,53 @@ boolean atme;
 		else pline("Hmm... that level teleport spell didn't do anything.");
 
 		break;
+	case SPE_WARPING:
+		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+			pline("You're unable to warp!"); break;}
+
+		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+		register int newlev = rnd(71);
+		d_level newlevel;
+		get_level(&newlevel, newlev);
+		goto_level(&newlevel, TRUE, FALSE, FALSE);
+
+		break;
+	case SPE_TRAP_CREATION:
+
+		You_feel("endangered!!");
+		{
+			int rtrap;
+		      int i, j, bd = 1;
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+
+			      rtrap = randomtrap();
+
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+			}
+		}
+
+		makerandomtrap();
+		if (!rn2(2)) makerandomtrap();
+		if (!rn2(4)) makerandomtrap();
+		if (!rn2(8)) makerandomtrap();
+		if (!rn2(16)) makerandomtrap();
+		if (!rn2(32)) makerandomtrap();
+		if (!rn2(64)) makerandomtrap();
+		if (!rn2(128)) makerandomtrap();
+		if (!rn2(256)) makerandomtrap();
+
+		break;
+
 	case SPE_STUN_SELF:
 		if(!Stunned)
 			pline("You stagger a bit...");
@@ -1532,6 +1599,13 @@ boolean atme;
 				You("no longer feel tired.");
 			incr_itimeout(&HSleep_resistance, rn1(1000, 500) +
 				spell_damage_bonus(spellid(spell))*100);
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_FLYING:
+		if(!(HFlying & INTRINSIC)) {
+			You("start flying!");
+			incr_itimeout(&HFlying, rn1(70, 5) +
+				spell_damage_bonus(spellid(spell))*20);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_COLD:
@@ -1720,9 +1794,47 @@ boolean atme;
 
 		break;
 
+	case SPE_CHARACTER_RECURSION:
+
+		if (yn("WARNING!!! This spell will ***PERMANENTLY*** transform your character into another one, and remove ALL of your items and spells. Are you SURE you really want this?") == 'y') {
+
+			while (invent) {
+				register struct obj *otmp, *otmp2;
+			    for (otmp = invent; otmp; otmp = otmp2) {
+			      otmp2 = otmp->nobj;
+
+				if (evades_destruction(otmp) ) dropx(otmp);
+				else {
+				delete_contents(otmp);
+				useup(otmp);}
+			    }
+			}
+
+			for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			    spellid(n) = NO_SPELL;
+			}
+
+			(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GNOME,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_OGRE,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			(void) safe_teleds(FALSE);
+
+			recursioneffect();
+
+		}
+
+		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+		return(1);
+
 	default:
 		/*impossible("Unknown spell %d attempted.", spell);*/
-		pline("You attempted to cast a spell that either doesn't exist in this game, or it has been genocided.");
+		pline("You attempted to cast a spell %d that either doesn't exist in this game, or it has been genocided.", spell);
 		obfree(pseudo, (struct obj *)0);
 		return(0);
 	}
@@ -1742,7 +1854,7 @@ boolean atme;
 
 	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell,CAST_BOOST);
 
-	if (spell && pseudo && pseudo->otyp == SPE_ALTER_REALITY) {
+	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
 
 		boostknow(spell, -(rnd(20000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;

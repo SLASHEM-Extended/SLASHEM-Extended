@@ -5720,7 +5720,7 @@ u_init()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
@@ -5735,6 +5735,7 @@ u_init()
 	u.gottenbones = 0;
 
 	u.negativeprotection = 0;
+	u.extralives = 0;
 	u.chokhmahdamage = 0;
 	u.banishmentbeam = 0;
 	u.levelporting = 0;
@@ -18307,6 +18308,7 @@ register struct trobj *trop;
 			while (otyp == WAN_WISHING
 				|| otyp == WAN_ACQUIREMENT
 				|| otyp == SCR_WISHING
+				|| otyp == SCR_RESURRECTION
 				|| otyp == SCR_ACQUIREMENT
 				|| otyp == SCR_ENTHRONIZATION
 				|| otyp == SCR_FOUNTAIN_BUILDING
@@ -18387,6 +18389,7 @@ register struct trobj *trop;
 			while (otyp == WAN_WISHING
 				|| otyp == WAN_ACQUIREMENT
 				|| otyp == SCR_WISHING
+				|| otyp == SCR_RESURRECTION
 				|| otyp == SCR_ACQUIREMENT
 				|| otyp == SCR_ENTHRONIZATION
 				|| otyp == SCR_FOUNTAIN_BUILDING
@@ -19367,7 +19370,7 @@ alter_reality()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */

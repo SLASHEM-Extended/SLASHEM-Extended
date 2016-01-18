@@ -398,6 +398,31 @@ struct obj {
 || (otmp)->otyp == SCR_ELEMENTALISM\
 || (otmp)->otyp == SCR_GIRLINESS\
 || (otmp)->otyp == WAN_SUMMON_SEXY_GIRL\
+|| (otmp)->otyp == WAN_DISINTEGRATION_BEAM\
+|| (otmp)->otyp == SCR_GROUP_SUMMONING\
+|| (otmp)->otyp == WAN_CHROMATIC_BEAM\
+|| (otmp)->otyp == WAN_STUN_MONSTER\
+|| (otmp)->otyp == SCR_SUMMON_GHOST\
+|| (otmp)->otyp == SCR_MEGALOAD\
+|| (otmp)->otyp == SCR_ENRAGE\
+|| (otmp)->otyp == WAN_TIDAL_WAVE\
+|| (otmp)->otyp == SCR_ANTIMATTER\
+|| (otmp)->otyp == SCR_SUMMON_ELM\
+|| (otmp)->otyp == WAN_SUMMON_ELM\
+|| (otmp)->otyp == SCR_RELOCATION\
+|| (otmp)->otyp == WAN_DRAIN_MANA\
+|| (otmp)->otyp == WAN_FINGER_BENDING\
+|| (otmp)->otyp == SCR_IMMOBILITY\
+|| (otmp)->otyp == WAN_IMMOBILITY\
+|| (otmp)->otyp == SCR_FLOODING\
+|| (otmp)->otyp == SCR_EGOISM\
+|| (otmp)->otyp == WAN_EGOISM\
+|| (otmp)->otyp == SCR_RUMOR\
+|| (otmp)->otyp == SCR_MESSAGE\
+|| (otmp)->otyp == SCR_SIN\
+|| (otmp)->otyp == WAN_SIN\
+|| (otmp)->otyp == WAN_INERTIA\
+|| (otmp)->otyp == WAN_TIME\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				

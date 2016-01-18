@@ -1635,6 +1635,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
 	}
 
+	if (u.extralives == 1) {
+		you_have("an extra life");
+	}
+
+	if (u.extralives > 1) {Sprintf(buf, " %d", u.extralives);
+		enl_msg("Your amount of extra lives ", "is", "was", buf);
+	}
+
 	if (u.chokhmahdamage) {Sprintf(buf, " %d", u.chokhmahdamage);
 		enl_msg("The escalating chokhmah attack damage ", "is", "was", buf);
 	}
@@ -3246,6 +3254,15 @@ int final;
 	if (u.negativeprotection) {
 		Sprintf(buf, " %d", u.negativeprotection);
 		dump("Your protection was reduced by", buf);
+	}
+
+	if (u.extralives == 1) {
+		dump(youhad, "an extra life");
+	}
+
+	if (u.extralives > 1) {
+		Sprintf(buf, " %d", u.extralives);
+		dump("Your amount of extra lives was", buf);
 	}
 
 	if (u.chokhmahdamage) {

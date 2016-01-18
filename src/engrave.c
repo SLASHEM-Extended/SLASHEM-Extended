@@ -1327,10 +1327,17 @@ doengrave()
 		    case WAN_REMOVE_RESISTANCE:
 		    case WAN_CORROSION:
 		    case WAN_FUMBLING:
+		    case WAN_TIDAL_WAVE:
+		    case WAN_SUMMON_ELM:
 		    case WAN_STARVATION:
 		    case WAN_CONFUSION:
 		    case WAN_SLIMING:
+		    case WAN_DRAIN_MANA:
+		    case WAN_FINGER_BENDING:
 		    case WAN_LYCANTHROPY:
+		    case WAN_IMMOBILITY:
+		    case WAN_EGOISM:
+		    case WAN_SIN:
 			zapnodir(otmp);
 			break;
 
@@ -1344,6 +1351,7 @@ doengrave()
 			);
 			break;
 		    case WAN_DISINTEGRATION:
+		    case WAN_DISINTEGRATION_BEAM:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s cease to exist!",
@@ -1354,6 +1362,13 @@ doengrave()
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s turn into gravel!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_STUN_MONSTER:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s start moving in strange patterns!",
 				   surface(u.ux, u.uy));
 			}
 			break;
@@ -1379,6 +1394,7 @@ doengrave()
 			}
 			break;
 		    case WAN_SLOW_MONSTER:
+		    case WAN_INERTIA:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s slow down!",
@@ -1428,6 +1444,7 @@ doengrave()
 			}
 			break;
 		    case WAN_DRAINING:	/* KMH */
+		    case WAN_TIME:
 		    case WAN_REDUCE_MAX_HITPOINTS:
 			if (oep) {
 			    /*
@@ -1561,6 +1578,18 @@ doengrave()
 			Strcpy(post_engr_text,
 				Blind ? "You feel the wand heat up." :
 					"Flames fly from the wand.");
+			break;
+		    case WAN_CHROMATIC_BEAM:
+			ptext = TRUE;
+			type  = BURN;
+			if(!objects[otmp->otyp].oc_name_known) {
+			if (flags.verbose)
+			    pline("This %s is a wand of chromatic beam!", xname(otmp));
+			    doknown = TRUE;
+			}
+			Strcpy(post_engr_text,
+				Blind ? "You feel the wand trembling while you engrave." :
+					"Multicolored beams fly from the wand.");
 			break;
 		    case WAN_FIREBALL:
 			ptext = TRUE;

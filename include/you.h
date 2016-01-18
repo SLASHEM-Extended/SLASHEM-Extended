@@ -548,6 +548,7 @@ struct you {
 
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
+	int extralives;		/* for scroll of resurrection */
 
 	int banishmentbeam;	/* an attempt to make wands of banishment used by monsters *not* segfault :P --Amy */
 	int levelporting;		/* and nexus/weeping attacks should not segfault either */

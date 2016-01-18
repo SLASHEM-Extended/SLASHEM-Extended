@@ -178,6 +178,9 @@ struct obj *otmp;
 		clone_mon(mtmp, 0, 0);
 		makeknown(otyp);
 		break;
+	case SPE_CLONE_MONSTER:
+		clone_mon(mtmp, 0, 0);
+		break;
 	case WAN_SLOW_MONSTER:
 	case SPE_SLOW_MONSTER:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
@@ -189,6 +192,17 @@ struct obj *otmp;
 				pline("A huge hole opens up...");
 				expels(mtmp, mtmp->data, TRUE);
 			}
+		}
+		break;
+	case WAN_INERTIA:
+	case SPE_INERTIA:
+		mon_adjust_speed(mtmp, -1, otmp);
+		m_dowear(mtmp, FALSE); /* might want speed boots */
+		if (u.uswallow && (mtmp == u.ustuck) &&
+		    is_whirly(mtmp->data)) {
+			You("disrupt %s!", mon_nam(mtmp));
+			pline("A huge hole opens up...");
+			expels(mtmp, mtmp->data, TRUE);
 		}
 		break;
 	case WAN_SPEED_MONSTER:
@@ -506,6 +520,45 @@ struct obj *otmp;
 		}
 		break;
 	    }
+
+	case WAN_STUN_MONSTER:
+
+		if(!resist(mtmp, otmp->oclass, 0, NOTELL))  {
+			mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) {
+				pline("%s trembles.",Monnam(mtmp));
+			      makeknown(otyp);
+			}
+		}
+
+		break;
+
+	case SPE_STUN_MONSTER:
+
+		if(!resist(mtmp, otmp->oclass, 0, NOTELL))  {
+			mtmp->mstun = TRUE;
+			if (canseemon(mtmp)) {
+				pline("%s trembles.",Monnam(mtmp));
+			}
+		}
+
+		break;
+
+	case SPE_MAKE_VISIBLE:
+	    {
+		int oldinvis = mtmp->minvis;
+		char nambuf[BUFSZ];
+
+		mtmp->perminvis = 0;
+		mtmp->minvis = 0;
+		if (mtmp->minvisreal) mtmp->perminvis = mtmp->minvis = 1;
+		Strcpy(nambuf, Monnam(mtmp));
+		newsym(mtmp->mx, mtmp->my);		/* make it appear */
+		if (oldinvis) {
+		    pline("%s becomes visible!", nambuf);
+		}
+		break;
+	    }
 	case WAN_NOTHING:
 	case WAN_MISFIRE:
 	case WAN_LOCKING:
@@ -676,6 +729,23 @@ struct obj *otmp;
 				if (canseemon(mtmp))
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
 			}
+		}
+		makeknown(otyp);
+		break;
+	case SPE_TIME:
+	case WAN_TIME:
+		dmg = rnd(8);
+		if(dbldam) dmg *= 2;
+		dmg += skilldmg;
+		
+		mtmp->mhp -= dmg;
+		mtmp->mhpmax -= dmg;
+		if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
+			xkilled(mtmp, 1);
+		else {
+			mtmp->m_lev--;
+			if (canseemon(mtmp))
+				pline("%s suddenly seems weaker!", Monnam(mtmp));
 		}
 		makeknown(otyp);
 		break;
@@ -2031,7 +2101,7 @@ poly_obj(obj, id)
 	    break;
 
 	case SCROLL_CLASS:
-	    while (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_ACQUIREMENT || otmp->otyp == SCR_ENTHRONIZATION || otmp->otyp == SCR_FOUNTAIN_BUILDING || otmp->otyp == SCR_SINKING || otmp->otyp == SCR_WC)
+	    while (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_RESURRECTION || otmp->otyp == SCR_ACQUIREMENT || otmp->otyp == SCR_ENTHRONIZATION || otmp->otyp == SCR_FOUNTAIN_BUILDING || otmp->otyp == SCR_SINKING || otmp->otyp == SCR_WC)
 		otmp->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	    break;
 
@@ -2348,6 +2418,8 @@ struct obj *obj, *otmp;
 		break;
 	case SPE_DRAIN_LIFE:
 	case WAN_DRAINING:	/* KMH */
+	case SPE_TIME:
+	case WAN_TIME:
 	case WAN_REDUCE_MAX_HITPOINTS:
 		(void) drain_item(obj);
 		break;
@@ -2369,6 +2441,7 @@ struct obj *obj, *otmp;
 #endif
 		break;
 	case WAN_MAKE_VISIBLE:
+	case SPE_MAKE_VISIBLE:
 #ifdef INVISIBLE_OBJECTS
 		if (!stack_too_big(obj)) obj->oinvis = FALSE;
 		if (obj->oinvisreal) obj->oinvis = TRUE;
@@ -2396,6 +2469,8 @@ struct obj *obj, *otmp;
 
 	case WAN_SLOW_MONSTER:		/* no effect on objects */
 	case SPE_SLOW_MONSTER:
+	case WAN_INERTIA:
+	case SPE_INERTIA:
 	case WAN_SPEED_MONSTER:
 	case WAN_HASTE_MONSTER:
 	case WAN_NOTHING:
@@ -2406,6 +2481,7 @@ struct obj *obj, *otmp;
 	case WAN_HEALING:
 	case WAN_EXTRA_HEALING:
 	case WAN_CLONE_MONSTER:
+	case SPE_CLONE_MONSTER:
 	case WAN_FULL_HEALING:
 	case SPE_FINGER:
 	case WAN_FEAR:
@@ -2739,6 +2815,311 @@ newboss:
 
 		break;
 
+		case WAN_SIN:
+
+		{
+		int dmg = 0;
+		struct obj *otmpi, *otmpii;
+
+		switch (rnd(8)) {
+
+			case 1: /* gluttony */
+				u.negativeprotection++;
+				pline("You feel less protected!");
+				break;
+			case 2: /* wrath */
+				if(u.uen < 1) {
+				    You_feel("less energised!");
+				    u.uenmax -= rn1(10,10);
+				    if(u.uenmax < 0) u.uenmax = 0;
+				} else if(u.uen <= 10) {
+				    You_feel("your magical energy dwindle to nothing!");
+				    u.uen = 0;
+				} else {
+				    You_feel("your magical energy dwindling rapidly!");
+				    u.uen /= 2;
+				}
+				break;
+			case 3: /* sloth */
+				pline("You feel a little apathetic...");
+
+				switch(rn2(7)) {
+				    case 0: /* destroy certain things */
+					lethe_damage(invent, FALSE, FALSE);
+					break;
+				    case 1: /* sleep */
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+					break;
+				    case 2: /* paralyse */
+					if (multi >= 0) {
+					    if (Free_action) {
+						You("momentarily stiffen.");            
+					    } else {
+						You("are frozen!");
+						nomovemsg = 0;	/* default: "you can move again" */
+						nomul(-rnd(10), "paralyzed by a wand of sin");
+						exercise(A_DEX, FALSE);
+					    }
+					}
+					break;
+				    case 3: /* slow */
+					if(HFast)  u_slow_down();
+					else You("pause momentarily.");
+					break;
+				    case 4: /* drain Dex */
+					adjattrib(A_DEX, -rn1(1,1), 0);
+					break;
+				    case 5: /* steal teleportitis */
+					if(HTeleportation & INTRINSIC) {
+					      HTeleportation &= ~INTRINSIC;
+					}
+			 		if (HTeleportation & TIMEOUT) {
+						HTeleportation &= ~TIMEOUT;
+					}
+					if(HTeleport_control & INTRINSIC) {
+					      HTeleport_control &= ~INTRINSIC;
+					}
+			 		if (HTeleport_control & TIMEOUT) {
+						HTeleport_control &= ~TIMEOUT;
+					}
+				      You("don't feel in the mood for jumping around.");
+					break;
+				    case 6: /* steal sleep resistance */
+					if(HSleep_resistance & INTRINSIC) {
+						HSleep_resistance &= ~INTRINSIC;
+					} 
+					if(HSleep_resistance & TIMEOUT) {
+						HSleep_resistance &= ~TIMEOUT;
+					} 
+					You_feel("like you could use a nap.");
+					break;
+				}
+
+				break;
+			case 4: /* greed */
+				if (u.ugold) pline("Your purse feels lighter...");
+				u.ugold /= 2;
+				break;
+			case 5: /* lust */
+				if (invent) {
+					pline("Your belongings leave your body!");
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+		
+					if (!rn2(5) && !stack_too_big(otmpi) ) {
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+					}
+				    }
+				}
+				break;
+			case 6: /* envy */
+				if (flags.soundok) You_hear("a chuckling laughter.");
+			      attrcurse();
+			      attrcurse();
+				break;
+			case 7: /* pride */
+			      pline("The RNG determines to take you down a peg or two...");
+				if (!rn2(3)) {
+				    poisoned("air", rn2(A_MAX), "wand of sin", 30);
+				}
+				if (!rn2(4)) {
+					pline("You feel drained...");
+					u.uhpmax -= rn1(10,10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
+					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
+				if (!rn2(4)) {
+					You_feel("less energised!");
+					u.uenmax -= rn1(10,10);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if(u.uen > u.uenmax) u.uen = u.uenmax;
+				}
+				if (!rn2(4)) {
+					if(!Drain_resistance || !rn2(20) )
+					    losexp("life drainage", FALSE, TRUE);
+					else You_feel("woozy for an instant, but shrug it off.");
+				}
+				break;
+			case 8: /* depression */
+
+			    switch(rnd(20)) {
+			    case 1:
+				if (!Unchanging && !Antimagic) {
+					You("undergo a freakish metamorphosis!");
+				      polyself(FALSE);
+				}
+				break;
+			    case 2:
+				You("need reboot.");
+				if (!Race_if(PM_UNGENOMOLD)) newman();
+				else polyself(FALSE);
+				break;
+			    case 3: case 4:
+				if(!rn2(4) && u.ulycn == NON_PM &&
+					!Protection_from_shape_changers &&
+					!is_were(youmonst.data) &&
+					!defends(AD_WERE,uwep)) {
+				    You_feel("feverish.");
+				    exercise(A_CON, FALSE);
+				    u.ulycn = PM_WERECOW;
+				} else {
+					if (multi >= 0) {
+					    if (Sleep_resistance && rn2(20)) break;
+					    fall_asleep(-rnd(10), TRUE);
+					    You("are put to sleep!");
+					}
+				}
+				break;
+			    case 5: case 6:
+				pline("Suddenly, there's glue all over you!");
+				u.utraptype = TT_GLUE;
+				u.utrap = 25 + rnd(monster_difficulty());
+
+				break;
+			    case 7:
+			    case 8:
+				Your("position suddenly seems very uncertain!");
+				teleX();
+				break;
+			    case 9:
+				u_slow_down();
+				break;
+			    case 10:
+			    case 11:
+			    case 12:
+				water_damage(invent, FALSE, FALSE);
+				break;
+			    case 13:
+				if (multi >= 0) {
+				    if (Free_action) {
+					You("momentarily stiffen.");            
+				    } else {
+					You("are frozen!");
+					nomovemsg = 0;	/* default: "you can move again" */
+					nomul(-rnd(10), "paralyzed by a wand of sin");
+					exercise(A_DEX, FALSE);
+				    }
+				}
+				break;
+			    case 14:
+				if (Hallucination)
+					pline("What a groovy feeling!");
+				else
+					You(Blind ? "%s and get dizzy..." :
+						 "%s and your vision blurs...",
+						    stagger(youmonst.data, "stagger"));
+				dmg = rn1(7, 16);
+				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 15:
+				if(!Blind)
+					Your("vision bugged.");
+				dmg += rn1(10, 25);
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty() + monster_difficulty(),TRUE,0L);
+				break;
+			    case 16:
+				if(!Blind)
+					Your("vision turns to screen saver.");
+				dmg += rn1(10, 25);
+				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
+				break;
+			    case 17:
+				{
+				    struct obj *objD = some_armor(&youmonst);
+	
+				    if (objD && drain_item(objD)) {
+					Your("%s less effective.", aobjnam(objD, "seem"));
+				    }
+				}
+				break;
+			    default:
+				    if(Confusion)
+					 You("are getting even more confused.");
+				    else You("are getting confused.");
+				    make_confused(HConfusion + monster_difficulty() + 1, FALSE);
+				break;
+			    }
+
+				break;
+
+		}
+
+		}
+
+		break;
+
+		case WAN_IMMOBILITY:
+			known = TRUE;
+			{
+
+			int monstcnt;
+			monstcnt = 8 + rnd(10);
+			int sessileattempts;
+			int sessilemnum;
+
+		      while(--monstcnt >= 0) {
+				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+					sessilemnum = rndmonnum();
+					if (sessilemnum != -1 && (mons[sessilemnum].mlet != S_TROVE) && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+				}
+				if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+			}
+
+			}
+
+		break;
+
+		case WAN_EGOISM:
+			known = TRUE;
+			{
+
+			int monstcnt;
+			monstcnt = rnd(5);
+			int sessileattempts;
+			int sessilemnum;
+
+		      while(--monstcnt >= 0) {
+				for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
+					sessilemnum = rndmonnum();
+					if (sessilemnum != -1 && always_egotype(&mons[sessilemnum]) ) sessileattempts = 10000;
+				}
+				if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+			}
+
+			}
+
+		break;
+
+		case WAN_DRAIN_MANA:
+
+			pline("You lose  Mana");
+			drain_en(rnz(monster_difficulty() + 1) );
+
+		break;
+
+		case WAN_FINGER_BENDING:
+
+			pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
+			incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+
+		break;
+
+		case WAN_TIDAL_WAVE:
+
+			pline("A sudden geyser slams into you from nowhere!");
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if (Burned) make_burned(0L, TRUE);
+
+		break;
+
 		case WAN_STARVATION:
 
 			morehungry(rnd(1000));
@@ -2813,6 +3194,17 @@ newboss:
 		case WAN_CREATE_FAMILIAR:
 			known = TRUE;
 			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+			break;
+		case WAN_SUMMON_ELM:
+			known = TRUE;
+
+			{
+			int aligntype;
+			aligntype = rn2((int)A_LAWFUL+2) - 1;
+			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+			summon_minion(aligntype, TRUE);
+			}
+
 			break;
 		case WAN_SUMMON_UNDEAD:
 			known = TRUE;
@@ -2890,7 +3282,7 @@ newboss:
 			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 			acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
-		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 			acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	
 			pline("Something appeared on the ground just beneath you!");
@@ -3123,7 +3515,7 @@ newboss:
 					}
 			} break;
 	}
-	if (known && !objects[obj->otyp].oc_name_known) {
+	if (obj && known && !objects[obj->otyp].oc_name_known) {
 		makeknown(obj->otyp);
 		more_experienced(0,10);
 	}
@@ -3448,6 +3840,15 @@ boolean ordinary;
 			You("irradiate yourself!");
 			damage = d(8,8);
 		   break;
+		case SPE_CHROMATIC_BEAM:
+			You("blast yourself with magical energy!");
+			damage = d(15,10);
+		   break;
+		case WAN_CHROMATIC_BEAM:
+		    makeknown(WAN_CHROMATIC_BEAM);
+			You("blast yourself with magical energy!");
+			damage = d(10,10);
+		   break;
 		case WAN_POISON:
 		case WAN_VENOM_SCATTERING:
 		    makeknown(obj->otyp);
@@ -3461,6 +3862,10 @@ boolean ordinary;
 		   break;
 		case WAN_CLONE_MONSTER:
 		    makeknown(WAN_CLONE_MONSTER);
+			You("try to clone yourself!");
+			cloneu();
+		   break;
+		case SPE_CLONE_MONSTER:
 			You("try to clone yourself!");
 			cloneu();
 		   break;
@@ -3596,7 +4001,9 @@ boolean ordinary;
 
 		    break;
 		case WAN_DISINTEGRATION:
+		case WAN_DISINTEGRATION_BEAM:
 		case SPE_DISINTEGRATION:
+		case SPE_DISINTEGRATION_BEAM:
 
 			if (Disint_resistance && rn2(100)) {
 			    You("are not disintegrated.");
@@ -3654,6 +4061,80 @@ boolean ordinary;
 			}
 			damage = 0;	/* No additional damage */
 			break;
+		case WAN_TIME:
+			makeknown(obj->otyp);
+		case SPE_TIME:
+
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				pline("You feel life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
+		}
+
+			break;
 		case WAN_REDUCE_MAX_HITPOINTS:
 			pline("You feel drained...");
 				if (Upolyd) u.mhmax -= rnd(5);
@@ -3703,6 +4184,33 @@ boolean ordinary;
 				HInvis &= ~TIMEOUT;
 				pline("You become more opaque.");
 				makeknown(WAN_MAKE_VISIBLE);
+				newsym(u.ux, u.uy);
+			}
+		    break;
+
+		case WAN_STUN_MONSTER:
+
+			make_stunned(HStun + rn1(35, 80), TRUE);
+			makeknown(WAN_STUN_MONSTER);
+
+		    break;
+
+		case SPE_STUN_MONSTER:
+
+			make_stunned(HStun + rn1(35, 80), TRUE);
+
+		    break;
+
+		case SPE_MAKE_VISIBLE:
+
+			if (HInvis & INTRINSIC) {
+				HInvis &= ~INTRINSIC;
+				pline("You become more opaque.");
+				newsym(u.ux, u.uy);
+			}
+			if (HInvis & TIMEOUT) {
+				HInvis &= ~TIMEOUT;
+				pline("You become more opaque.");
 				newsym(u.ux, u.uy);
 			}
 		    break;
@@ -3794,6 +4302,16 @@ boolean ordinary;
 			u_slow_down();
 			makeknown(obj->otyp);
 		    }
+		    break;
+		case WAN_INERTIA:
+		case SPE_INERTIA:
+
+			u_slow_down();
+			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+			makeknown(obj->otyp);
+
 		    break;
 		case WAN_TELEPORTATION:
 		case SPE_TELEPORT_AWAY:
@@ -4007,6 +4525,9 @@ struct obj *obj;	/* wand or spell */
 		case SPE_CURE_SICKNESS:
 		case WAN_MAKE_INVISIBLE:
 		case WAN_MAKE_VISIBLE:
+		case WAN_STUN_MONSTER:
+		case SPE_STUN_MONSTER:
+		case SPE_MAKE_VISIBLE:
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
 		case WAN_POLYMORPH:
@@ -4017,6 +4538,8 @@ struct obj *obj;	/* wand or spell */
 		case SPE_FORCE_BOLT:
 		case WAN_SLOW_MONSTER:
 		case SPE_SLOW_MONSTER:
+		case WAN_INERTIA:
+		case SPE_INERTIA:
 		case WAN_SPEED_MONSTER:
 		case WAN_HASTE_MONSTER:
 		case SPE_HEALING:
@@ -4026,9 +4549,11 @@ struct obj *obj;	/* wand or spell */
 		case WAN_EXTRA_HEALING:
 		case WAN_FULL_HEALING:
 		case WAN_DRAINING:
+		case WAN_TIME:
 		case WAN_INCREASE_MAX_HITPOINTS:
 		case WAN_REDUCE_MAX_HITPOINTS:
 		case SPE_DRAIN_LIFE:
+		case SPE_TIME:
 		case WAN_OPENING:
 		case SPE_KNOCK:
 		case WAN_WIND:
@@ -4336,6 +4861,8 @@ struct obj *obj;
 
 	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_CHROMATIC_BEAM)
+		skilldmg = spell_damage_bonus(obj->otyp);
 
 
 	exercise(A_WIS, TRUE);
@@ -4408,7 +4935,29 @@ struct obj *obj;
         }
 
 	    else if (otyp == WAN_POISON) {
-		buzz((int)(-26), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == WAN_CHROMATIC_BEAM) {
+		int damagetype = 20 + rn2(9);
+		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(u.ulevel) / 6) : damagetype == 20 ? 2 + (rnz(u.ulevel) / 10) : damagetype == 28 ? 8 + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_CHROMATIC_BEAM) {
+		int damagetype = 20 + rn2(9);
+		buzz((int)(damagetype), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == WAN_DISINTEGRATION_BEAM) {
+		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_DISINTEGRATION_BEAM) {
+		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 

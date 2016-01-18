@@ -792,6 +792,21 @@ int how;
 
 	}
 
+	if (u.extralives && how <= GENOCIDED) {
+		pline("But wait...");
+		pline("You have an extra life!");
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		u.extralives--;
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		return;
+
+	}
 
 	if ((Second_chance || Lifesaved) && how <= GENOCIDED) {
 		pline("But wait...");

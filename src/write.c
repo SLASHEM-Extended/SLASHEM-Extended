@@ -25,6 +25,8 @@ register struct obj *otmp;
 # endif
 	case SCR_STANDARD_ID:
 	case SCR_WOUNDS:
+	case SCR_RUMOR:
+	case SCR_MESSAGE:
 		return(5);
 	case SCR_HEALING:
 	case SCR_LIGHT:
@@ -73,14 +75,17 @@ register struct obj *otmp;
 	case SCR_BARRHING:
 	case SCR_GROWTH:
 	case SCR_ICE:
+	case SCR_ENRAGE:
 	case SCR_FROST:
 	case SCR_CLOUDS:
 	case SCR_CHAOS_TERRAIN:
 	case SCR_TELE_LEVEL:
 	case SCR_WARPING:
+	case SCR_IMMOBILITY:
 	case SCR_MASS_MURDER:
 	case SCR_TRAP_CREATION:
 	case SCR_CREATE_TRAP:
+	case SCR_GROUP_SUMMONING:
 	case SCR_UNDO_GENOCIDE:
 	case SCR_RANDOM_ENCHANTMENT:
 		return(20);
@@ -92,19 +97,26 @@ register struct obj *otmp;
 	case SCR_ENCHANT_WEAPON:
 	case SCR_CHARGING:
 	case SCR_GIRLINESS:
+	case SCR_FLOODING:
+	case SCR_EGOISM:
 	case SCR_ERASURE:
+	case SCR_ANTIMATTER:
+	case SCR_MEGALOAD:
 	case SCR_REPAIR_ITEM:
 		return(24);
 /*		break; */
 	case SCR_GENOCIDE:
 	case SCR_CURE:
+	case SCR_SIN:
 	case SCR_SUMMON_BOSS:
+	case SCR_SUMMON_ELM:
 	case SCR_DEMONOLOGY:
 	case SCR_ELEMENTALISM:
 	case SCR_TRAP_DISARMING:
 	case SCR_FLOOD_TIDE:
 	case SCR_EBB_TIDE:
 	case SCR_CREATE_FACILITY:
+	case SCR_SUMMON_GHOST:
 		return(30);
 /*		break; */
 	case SCR_GAIN_MANA:
@@ -112,6 +124,7 @@ register struct obj *otmp;
 	case SCR_WARD:
 	case SCR_CREATE_ALTAR:
 	case SCR_WARDING:
+	case SCR_RELOCATION:
 	case SCR_CREATE_FAMILIAR:
 	case SCR_ITEM_GENOCIDE:
 	case SCR_POWER_HEALING:
@@ -121,11 +134,13 @@ register struct obj *otmp;
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
 	case SCR_ALTER_REALITY:
+	case SCR_WORLD_FALL:
 		return(50);
 /*		break; */
 	case SCR_BLANK_PAPER:
 	case SCR_COPYING:
 	case SCR_WISHING:
+	case SCR_RESURRECTION:
 	case SCR_ACQUIREMENT:
 	case SCR_ENTHRONIZATION:
 	case SCR_FOUNTAIN_BUILDING:
@@ -226,7 +241,7 @@ found:
 		if(Hallucination) 
 			pline("(I know it, but not tell to you.)");
 		return 1;
-	} else if (i == SCR_WISHING || i == SCR_ACQUIREMENT || i == SCR_ENTHRONIZATION || i == SCR_FOUNTAIN_BUILDING || i == SCR_SINKING || i == SCR_CREATE_SINK || i == SCR_WC) {
+	} else if (i == SCR_WISHING || i == SCR_RESURRECTION || i == SCR_ACQUIREMENT || i == SCR_ENTHRONIZATION || i == SCR_FOUNTAIN_BUILDING || i == SCR_SINKING || i == SCR_CREATE_SINK || i == SCR_WC) {
 		pline("This scroll refuses to be written.");
 		return 1;
 	} else if (by_descr && paper->oclass == SPBOOK_CLASS &&

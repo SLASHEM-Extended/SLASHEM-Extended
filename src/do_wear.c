@@ -600,6 +600,8 @@ Helmet_on()
 	case ORCISH_HELM:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
+	case HELM_OF_SPEED:
+	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_TELEPATHY:
 	case HELM_OF_DISCOVERY:
 	case HELM_OF_DRAIN_RESISTANCE:
@@ -786,6 +788,8 @@ Helmet_off()
 	case OUT_OF_MEMORY_HELMET:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
+	case HELM_OF_SPEED:
+	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_DISCOVERY:
 	    break;
 	case FLACK_HELMET:
