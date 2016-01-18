@@ -5392,6 +5392,8 @@ u_init()
 
 	u.youpolyamount = 0;	/* amount of uses for #youpoly command --Amy */
 
+	u.randomquestlevels = rnd(250);	/* random levels may be replaced with quest levels, 1 in this times --Amy */
+
 	u.hangupcheat = 0;	/* will be set to non-zero if the player hangs up --Amy */
 	u.hangupparalysis = 0;
 	u.hanguppenalty = 0;

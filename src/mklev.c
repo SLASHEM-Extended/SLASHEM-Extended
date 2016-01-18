@@ -2894,6 +2894,46 @@ makelevel()
 		    makemaz("");
 		    return;
 
+	    } else if (!rn2(u.randomquestlevels) && (!rn2(10) || depth(&u.uz) > 1) && (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz)) ) {
+
+		    char fillname[16];
+		    switch (rnd(5)) {
+
+			  case 1:
+		        Sprintf(fillname, "%s-1", urole.filecode); break;
+			  case 2:
+		        Sprintf(fillname, "%s-2", urole.filecode); break;
+			  case 3:
+		        Sprintf(fillname, "%s-3", urole.filecode); break;
+			  case 4:
+		        Sprintf(fillname, "%s-4", urole.filecode); break;
+			  case 5:
+		        Sprintf(fillname, "%s-5", urole.filecode); break;
+
+		    }
+		    makemaz(fillname);
+		    return;
+
+	    } else if (!rn2(u.randomquestlevels) && (In_gehennom(&u.uz) || In_sheol(&u.uz)) ) {
+
+		    char fillname[16];
+		    switch (rnd(5)) {
+
+			  case 1:
+		        Sprintf(fillname, "%s-6", urole.filecode); break;
+			  case 2:
+		        Sprintf(fillname, "%s-7", urole.filecode); break;
+			  case 3:
+		        Sprintf(fillname, "%s-8", urole.filecode); break;
+			  case 4:
+		        Sprintf(fillname, "%s-9", urole.filecode); break;
+			  case 5:
+		        Sprintf(fillname, "%s-0", urole.filecode); break;
+
+		    }
+		    makemaz(fillname);
+		    return;
+
 	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
 
 		    if (rn2(3)) {
@@ -2970,6 +3010,7 @@ makelevel()
 			   (u.uz.dlevel < loc_lev->dlevel.dlevel) ? "a" : "b");
 		    makemaz(fillname);
 		    return;
+
 	    } else if( /*u.uz.dnum == wiz1_level.dnum || u.uz.dnum == (wiz1_level.dnum + 1) || u.uz.dnum == (wiz1_level.dnum + 2) ||*/ (In_V_tower(&u.uz)) || Invocation_lev(&u.uz) || (In_hell(&u.uz) && issoviet) || 
 
 	/* "Revert change allowing Room/Corridors in Gehennom. Gehennom should only have mazes and the specified special levels again." In Soviet Russia, people actually like the endless boring mazes of the Gehennom for some inexplicable reason. Why don't they just turn Nethack into an 100-level dungeon that has only mazes??? --Amy */

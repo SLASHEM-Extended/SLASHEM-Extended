@@ -364,6 +364,7 @@ struct you {
 	int ublessed, ublesscnt;	/* blessing/duration from #pray */
 	int monstertimeout; 	/* when monster spawns are increasing in frequency */
 	int monstertimefinish; 	/* point in time when monster spawns are at their maximum */
+	int ascensiontimelimit;	/* If you haven't ascended at this turn yet, add random nasty effects for annoyance. */
 	int legscratching; 	/* for special AT_KICK attacks */
 	int tensionmonster; 	/* for tension rooms */
 	int tensionmonsteX; 	/* for the chance of getting really bad stuff in tension rooms */
@@ -541,6 +542,8 @@ struct you {
 	boolean nastinator62;
 	boolean nastinator63;
 	boolean nastinator64;
+
+	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */
 	int hanguppenalty;
