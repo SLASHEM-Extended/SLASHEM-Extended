@@ -265,8 +265,9 @@ found:
 	exercise(A_WIS, TRUE);
 	/* dry out marker */
 	if (pen->spe < actualcost) {
-		pen->spe = 0;
-		Your("marker dries out!");
+		pen->spe -= rnd(pen->spe);
+		if (!pen->spe) Your("marker dries out!");
+		else pline("Unfortunately, after writing for a bit you notice that there's not enough ink left. You stop writing to salvage at least some of the precious ink.");
 		/* scrolls disappear, spellbooks don't */
 		if (paper->oclass == SPBOOK_CLASS) {
 			pline_The(
