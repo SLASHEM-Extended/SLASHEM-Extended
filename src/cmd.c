@@ -1418,6 +1418,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 	}
 
+	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " turn %d", u.ascensiontimelimit);
+		enl_msg("Your limit for ascension ", "is at", "was at", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		enl_msg("The monster class that cannot be genocided ", "is ", "was ", monexplain[u.ungenocidable] );
 	}
@@ -3048,14 +3052,14 @@ int final;
 	else if (u.ualign.record >= -8)	dump(youhave, "sinned");
 	else dump("  You have ", "transgressed");
 
-		Sprintf(buf, " %d", u.ualign.record);
-		dump("  Your alignment was ", buf);
+	Sprintf(buf, " %d", u.ualign.record);
+	dump("  Your alignment was ", buf);
 
-		Sprintf(buf, " %d", u.alignlim);
-		dump("  Your max alignment was ", buf);
+	Sprintf(buf, " %d", u.alignlim);
+	dump("  Your max alignment was ", buf);
 
-		Sprintf(buf, " %d sins", u.ualign.sins);
-		dump("  You carried ", buf);
+	Sprintf(buf, " %d sins", u.ualign.sins);
+	dump("  You carried ", buf);
 
 	if (u.idscrollpenalty > 100) {
 		Sprintf(buf, " %d", u.idscrollpenalty);
@@ -3082,8 +3086,8 @@ int final;
 		dump("  Wand identification only worked 3 times out of ", buf);
 	}
 
-		Sprintf(buf, " %d", nartifact_exist() );
-		dump("  Number of artifacts generated was ", buf);
+	Sprintf(buf, " %d", nartifact_exist() );
+	dump("  Number of artifacts generated was ", buf);
 
 	if (u.legscratching > 1) { 
 		Sprintf(buf, " %d", u.legscratching - 1);
@@ -3095,87 +3099,90 @@ int final;
 		dump("  Your remaining amount of free polymorphs was ", buf);
 	}
 
-		Sprintf(buf, " turn %d", u.monstertimeout);
-		dump("  Monster spawn increase started at ", buf);
+	Sprintf(buf, " turn %d", u.monstertimeout);
+	dump("  Monster spawn increase started at ", buf);
 
-		Sprintf(buf, " turn %d", u.monstertimefinish);
-		dump("  Monster spawn increase reached its maximum at ", buf);
-		dump("  In this game, Eevee's evolution was ", mons[u.eeveelution].mname );
-		/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
+	Sprintf(buf, " turn %d", u.monstertimefinish);
+	dump("  Monster spawn increase reached its maximum at ", buf);
+	dump("  In this game, Eevee's evolution was ", mons[u.eeveelution].mname );
+	/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 
-		dump("  The monster class that cannot be genocided was ", monexplain[u.ungenocidable] );
+	Sprintf(buf, " turn %d", u.ascensiontimelimit);
+	dump("  Your limit for ascension was at ", buf);
+
+	dump("  The monster class that cannot be genocided was ", monexplain[u.ungenocidable] );
 
 	if (u.alwaysinvisible) {
 		dump("  Today, this monster class was always generated invisible: ", monexplain[u.alwaysinvisible] );
 	}
 
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
-		dump("  The monster class that was ", buf );
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
+	dump("  The monster class that was ", buf );
 
 	if (u.freqcolorbonus) {
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
 		dump("  The monster color that was ", buf );
 	}
 
-		ptr = &mons[u.frequentspecies];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies2];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus2);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies2];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus2);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies3];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus3);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies3];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus3);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies4];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus4);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies4];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus4);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies5];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus5);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies5];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus5);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies6];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus6);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies6];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus6);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies7];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus7);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies7];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus7);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies8];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus8);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies8];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus8);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies9];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus9);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies9];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus9);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.frequentspecies10];
-		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus10);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.frequentspecies10];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus10);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.nospawnspecies];
-		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.nospawnspecies];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.nospawnspecies2];
-		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.nospawnspecies2];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.nospawnspecies3];
-		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.nospawnspecies3];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.nospawnspecies4];
-		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.nospawnspecies4];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
 
-		ptr = &mons[u.nospawnspecies5];
-		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
-		dump("  The monster species that ", buf );
+	ptr = &mons[u.nospawnspecies5];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
 
 	if (u.speedymonster) {
 		Sprintf(buf, "always generated with extra speed: %s", monexplain[u.speedymonster]);
@@ -3192,64 +3199,64 @@ int final;
 		dump("  Items generated only 1 time in", buf);
 	}
 
-		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
 	if (u.unobtainablegeno != -1) {
 		Sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		dump("  You had genocided this item: ", buf );
 	}
 
-		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
-		dump("  The RNG hath decreed that this item was ", buf );
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
 
-		Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
-		dump("  The RNG hath decreed that this trap was ", buf );
+	Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
+	dump("  The RNG hath decreed that this trap was ", buf );
 
-		Sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
-		dump("  The RNG hath decreed that this trap was ", buf );
+	Sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
+	dump("  The RNG hath decreed that this trap was ", buf );
 
-		Sprintf(buf, " turn %d", u.next_check);
-		dump("  Next attribute increase check would have come at", buf);
+	Sprintf(buf, " turn %d", u.next_check);
+	dump("  Next attribute increase check would have come at", buf);
 
-		Sprintf(buf, " %d", AEXE(A_STR));
-		dump("  Strength training was", buf);
+	Sprintf(buf, " %d", AEXE(A_STR));
+	dump("  Strength training was", buf);
 
-		Sprintf(buf, " %d", AEXE(A_DEX));
-		dump("  Dexterity training was", buf);
+	Sprintf(buf, " %d", AEXE(A_DEX));
+	dump("  Dexterity training was", buf);
 
-		Sprintf(buf, " %d", AEXE(A_WIS));
-		dump("  Wisdom training was", buf);
+	Sprintf(buf, " %d", AEXE(A_WIS));
+	dump("  Wisdom training was", buf);
 
-		Sprintf(buf, " %d", AEXE(A_CON));
-		dump("  Constitution training was", buf);
+	Sprintf(buf, " %d", AEXE(A_CON));
+	dump("  Constitution training was", buf);
 
 	if (u.negativeprotection) {
 		Sprintf(buf, " %d", u.negativeprotection);

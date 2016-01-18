@@ -599,6 +599,23 @@ moveloop()
 
 			}
 
+			if (moves == u.ascensiontimelimit) {
+				pline("You exceeded the maximum permissible amount of turns for winning the game!");
+				pline("Now, the RNG is fed up with your shenanigans, and decides to make the game much more difficult.");
+				pline("If you hurry up, you may still be able to ascend, but it will get harder the longer you procrastinate.");
+			}
+
+			if (moves > u.ascensiontimelimit) {
+
+				int annoyancefactor = 200 * u.ascensiontimelimit / moves;
+				if (ishaxor) annoyancefactor /= 2;
+				if (annoyancefactor > 200) annoyancefactor = 200;
+				if (annoyancefactor < 2) annoyancefactor = 2;
+
+				if (!rn2(annoyancefactor)) badeffect();
+
+			}
+
 			nastyitemchance = 50000;
 
 			if (moves > 2000) nastyitemchance = 45000;

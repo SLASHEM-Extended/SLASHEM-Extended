@@ -5375,7 +5375,11 @@ u_init()
 	u.stethocheat = 0;
 
       u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
       u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+	u.ascensiontimelimit = rnz(1000000); /* if you still didn't ascend at this turn count, the game becomes much harder */
+	while (u.ascensiontimelimit < 10000) u.ascensiontimelimit = rnz(1000000);
 	u.legscratching = (Role_if(PM_BLEEDER) ? 3 : 1); /*must also be set here; this may increase over time*/
 	if (Race_if(PM_HEMOPHAGE)) u.legscratching += 2; /* racial version of the bleeder role */
 	u.next_check = rnz(600); /* it used to be exactly 600 at the start of every game */
@@ -19040,7 +19044,11 @@ alter_reality()
 	struct attack* attkptr;
 
       u.monstertimeout = rnz(10000)+rnz(15000);
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
       u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+	u.ascensiontimelimit = rnz(1000000);
+	while (u.ascensiontimelimit < 10000) u.ascensiontimelimit = rnz(1000000);
 
 	u.statuetrapname = rn2(NUMMONS);
 
