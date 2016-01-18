@@ -4449,20 +4449,20 @@ dopois:
                 break;
 		} else if (uarms) {
 		    /* destroy shield; other possessions are safe */
-		    (void) destroy_arm(uarms);
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
 		    break;
 		} else if (uarmc) {
 		    /* destroy cloak; other possessions are safe */
-		    (void) destroy_arm(uarmc);
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
 		    break;
 		} else if (uarm) {
 		    /* destroy suit */
-		    (void) destroy_arm(uarm);
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
 #ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
-		    (void) destroy_arm(uarmu);
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 #endif
 		}
@@ -6480,25 +6480,27 @@ do_stone:
                 pline("You are unharmed!");
                 break;
 		}
+
 		 else if (uarms) {
 		    /* destroy shield; other possessions are safe */
-		    (void) destroy_arm(uarms);
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
 		    break;
 		} else if (uarmc) {
 		    /* destroy cloak; other possessions are safe */
-		    (void) destroy_arm(uarmc);
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
 		    break;
 		} else if (uarm) {
 		    /* destroy suit */
-		    (void) destroy_arm(uarm);
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
 #ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
-		    (void) destroy_arm(uarmu);
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 #endif
 		}
+
 	    done(DIED);
 	    return 1; /* lifesaved */
 
@@ -6680,25 +6682,27 @@ common:
                 pline("You are unharmed!");
                 break;
 		}
+
 		 else if (uarms) {
 		    /* destroy shield; other possessions are safe */
-		    (void) destroy_arm(uarms);
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
 		    break;
 		} else if (uarmc) {
 		    /* destroy cloak; other possessions are safe */
-		    (void) destroy_arm(uarmc);
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
 		    break;
 		} else if (uarm) {
 		    /* destroy suit */
-		    (void) destroy_arm(uarm);
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
 #ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
-		    (void) destroy_arm(uarmu);
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 #endif
 		}
+
 	      done(DIED);
 
 		break;
@@ -6981,25 +6985,27 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
                 pline("You are unharmed!");
                 break;
+
 		} else if (uarms) {
 		    /* destroy shield; other possessions are safe */
-		    (void) destroy_arm(uarms);
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
 		    break;
 		} else if (uarmc) {
 		    /* destroy cloak; other possessions are safe */
-		    (void) destroy_arm(uarmc);
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
 		    break;
 		} else if (uarm) {
 		    /* destroy suit */
-		    (void) destroy_arm(uarm);
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
 #ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
-		    (void) destroy_arm(uarmu);
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 #endif
 		}
+
 	    done(DIED);
 	    return 1; /* lifesaved */
 

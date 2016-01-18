@@ -570,7 +570,8 @@ aligntyp resp_god;
 	    		!(EDisint_resistance & W_ARM) && !uarmc)
 		(void) destroy_arm(uarm);
 #ifdef TOURIST
-	    if (uarmu && !uarm && !uarmc) (void) destroy_arm(uarmu);
+	    if (uarmu && !uarm && !uarmc && !(EReflecting & W_ARMU) &&
+	    		!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 #endif
 	    if (!Disint_resistance)
 		fry_by_god(resp_god);
