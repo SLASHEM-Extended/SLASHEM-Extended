@@ -1066,7 +1066,7 @@ struct monst *mtmp;
 
 	if ((is_animal(mtmp->data) || mindless(mtmp->data)) && issoviet)
 		return FALSE;
-	if(dist2(x, y, mtmp->mux, mtmp->muy) > 25)
+	if(dist2(x, y, mtmp->mux, mtmp->muy) > 25 && rn2(dist2(x, y, mtmp->mux, mtmp->muy) - 25) )
 		return FALSE;
 	if (u.uswallow && stuck) return FALSE;
 
@@ -5984,7 +5984,6 @@ newboss:
 			if (vis)
 			    pline_The("scroll erupts in a tower of flame!");
 			shieldeff(mtmp->mx, mtmp->my);
-			pline("%s is uninjured.", Monnam(mtmp));
 			makeknown(otmp->otyp);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
@@ -5994,8 +5993,6 @@ newboss:
 			      Your("slimy parts are burned away!");
 			      Slimed = 0;
 			}
-			if (Fire_resistance)
-			    You("are not harmed.");
 			burn_away_slime();
 			if (Half_spell_damage && rn2(2) ) num = (num+1) / 2;
 			else losehp(num, "scroll of fire", KILLED_BY_AN);
@@ -6272,7 +6269,7 @@ struct monst *mtmp;
 	 * same reason as Junior Pac-Man doesn't have energizers eaten until
 	 * you can see them...
 	 */
-	if(dist2(x, y, mtmp->mux, mtmp->muy) > 36)
+	if(dist2(x, y, mtmp->mux, mtmp->muy) > 36 && rn2(dist2(x, y, mtmp->mux, mtmp->muy) - 36) )
 		return FALSE;
 
 	if (!stuck && !immobile && !mtmp->cham && monstr[monsndx(mdat)] < 6) {
