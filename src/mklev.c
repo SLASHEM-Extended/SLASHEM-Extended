@@ -1662,8 +1662,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	}
 
 	croom->colouur = 0;
-	if (!special && rtype == OROOM) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
-	if (!special && rtype >= SHOPBASE) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
+	if (!special && rtype == OROOM) croom->colouur = (!rn2(20) ? 20 : rnd(15) );
+	if (!special && rtype >= SHOPBASE) croom->colouur = (!rn2(20) ? 20 : rnd(15) );
 	if (!special && rtype == BEEHIVE) croom->colouur = CLR_YELLOW;
 	if (!special && rtype == COURT) croom->colouur = CLR_MAGENTA;
 	if (!special && rtype == SWAMP) croom->colouur = CLR_GREEN;
@@ -1699,7 +1699,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (!special && rtype == TENSHALL) croom->colouur = 20;
 	if (!special && rtype == INSIDEROOM) croom->colouur = 20;
 	if (!special && rtype == POOLROOM) croom->colouur = CLR_BRIGHT_BLUE;
-	if (!special && rtype == EMPTYNEST) croom->colouur = (!rn2(20) ? 20 : rn2(15) );
+	if (!special && rtype == EMPTYNEST) croom->colouur = (!rn2(20) ? 20 : rnd(15) );
 
 	/* locations might bump level edges in wall-less rooms */
 	/* add/subtract 1 to allow for edge locations */
