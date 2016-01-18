@@ -240,6 +240,7 @@ struct monst {
 	Bitfield(egotype_exploder,1); /* AT_BOOM */
 
 	Bitfield(egotype_unskillor,1); /* AD_SKIL */
+	Bitfield(egotype_blinker,1);
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */

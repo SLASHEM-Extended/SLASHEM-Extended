@@ -1143,6 +1143,13 @@ register int after;
 	    mmoved = 1;
 	    goto postmov;
 	}
+
+	if (mtmp->egotype_blinker && !mtmp->mcan && !rn2(5) ) {
+		(void) rloc(mtmp, FALSE);
+	      mmoved = 1;
+	      goto postmov;
+	}
+
 not_special:
 	if(u.uswallow && !mtmp->mflee && u.ustuck != mtmp) return(1);
 	omx = mtmp->mx;

@@ -6634,7 +6634,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(125)) {
+		switch (rnd(126)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -6760,6 +6760,7 @@ skipmsg:
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
+			case 126: mtmp->egotype_blinker = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -6771,7 +6772,7 @@ skipmsg:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(125)) {
+		switch (rnd(126)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -6897,6 +6898,7 @@ skipmsg:
 			case 123:
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
+			case 126: mtmp->egotype_blinker = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
