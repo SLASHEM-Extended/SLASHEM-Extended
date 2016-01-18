@@ -797,7 +797,7 @@ register struct monst *mtmp;
 		break;
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
-		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER ) )
+		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER ) )
 		    return (struct obj *)0;
 		else	/* preserve the unique traits of some creatures */
 		    obj = mkcorpstat(CORPSE, KEEPTRAITS(mtmp) ? mtmp : 0,
@@ -2579,7 +2579,7 @@ register struct monst *mtmp;
 	}
 
 	/* item masters and similar stuff shouldn't appear on the list so the player can't peek with ctrl-K! --Amy */
-	if (mvitals[tmp].died < 255 && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_TRAP_MASTER) mvitals[tmp].died++;
+	if (mvitals[tmp].died < 255 && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_TRAP_MASTER) mvitals[tmp].died++;
 
 	/* if it's a (possibly polymorphed) quest leader, mark him as dead */
 	if (mtmp->m_id == quest_status.leader_m_id)
@@ -2913,7 +2913,7 @@ register struct monst *mdef;
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-			if (is_musable(obj) && obj->mstartinvent && !stack_too_big(obj) && (!rn2(3) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
+			if (is_musable(obj) && obj->mstartinvent && !stack_too_big(obj) && (!rn2(3) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) && !dmgtype(mdef->data, AD_SEDU) && !dmgtype(mdef->data, AD_SITM) && (!dmgtype(mdef->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mdef->data, AD_SGLD) || !rn2(5) ) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ

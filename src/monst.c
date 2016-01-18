@@ -53671,6 +53671,14 @@ struct permonst _mons2[] = {
 	M1_HUMANOID|M1_OMNIVORE|M1_CONCEAL,
 	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_COLLECT|M2_MAGIC|M2_HOSTILE|M2_MALE, M3_NOTAME,
 	CLR_ORANGE),
+    MON("bad item master", S_HUMAN, /* special monster to generate musable items --Amy */
+	LVL(10, 12, 10, 3, 0), (G_NOGEN|G_NOCORPSE),
+	A(ATTK(AT_WEAP, AD_PHYS, 1, 6),
+	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
+	SIZ(WT_HUMAN, 1000, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
+	M1_HUMANOID|M1_OMNIVORE,
+	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_COLLECT|M2_MAGIC|M2_HOSTILE|M2_MALE, M3_NOTAME,
+	CLR_ORANGE),
 
     MON("Arabella the Money Thief", S_HUMAN, /* special monster for bank trap --Amy */
 	LVL(20, 12, 0, 0, 0), (G_NOGEN|G_NOCORPSE),

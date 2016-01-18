@@ -54,6 +54,7 @@ moveloop()
 	int monstercolor;
 	int randmnsx;
 	int i;
+	int nastyitemchance;
 	coord cc;
     int cx,cy;
 
@@ -594,6 +595,48 @@ moveloop()
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 					if (timebasedlowerchance()) (void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				}
+
+			}
+
+			nastyitemchance = 50000;
+
+			if (moves > 2000) nastyitemchance = 45000;
+			if (moves > 4000) nastyitemchance = 40000;
+			if (moves > 10000) nastyitemchance = 35000;
+			if (moves > 20000) nastyitemchance = 30000;
+			if (moves > 40000) nastyitemchance = 27500;
+			if (moves > 60000) nastyitemchance = 25000;
+			if (moves > 80000) nastyitemchance = 22500;
+			if (moves > 120000) nastyitemchance = 20000;
+			if (moves > 160000) nastyitemchance = 17500;
+			if (moves > 200000) nastyitemchance = 15000;
+			if (moves > 300000) nastyitemchance = 12500;
+			if (moves > 400000) nastyitemchance = 10000;
+			if (moves > 500000) nastyitemchance = 7500;
+			if (moves > 1000000) nastyitemchance = 5000;
+			if (moves > 1500000) nastyitemchance = 2500;
+			if (moves > 2000000) nastyitemchance = 1500;
+			if (moves > 2500000) nastyitemchance = 1000;
+
+			if (ishaxor) nastyitemchance /= 2;
+
+			if (!rn2(nastyitemchance) && !issoviet) {
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG hates you!" : "You feel that the monsters are coming for you with everything they got!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(&mons[PM_BAD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			 	      (void) makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK);
 				}
 
 			}

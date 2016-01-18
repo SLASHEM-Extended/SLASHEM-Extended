@@ -2607,6 +2607,26 @@ boolean at_stairs, falling, portal;
 
 		}
 
+		if (!rn2(ishaxor ? (25000 + (Luck*1000)) : (50000 + (Luck*1000)) ) ) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG's voice booms out: 'You were fated to die on this level. DIE!'" : "You feel that the monsters are exceptionally well-armed here!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(&mons[PM_BAD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+		 	      (void) makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK);
+			}
+
+		}
+
 		if (!rn2(iswarper ? 120 : 6000)) {
 
 			randsp = (rn2(14) + 2);
