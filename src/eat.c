@@ -3650,14 +3650,14 @@ struct obj *otmp;
 		u.ublessed += otmp->spe;
 		flags.botl = 1;
 		break;
-	    case RIN_FREE_ACTION:
+	    /*case RIN_FREE_ACTION:*/
 		/* Give sleep resistance instead */
-		if (!(HSleep_resistance & FROMOUTSIDE))
+		/*if (!(HSleep_resistance & FROMOUTSIDE))
 		    accessory_has_effect(otmp);
 		if (!Sleep_resistance)
 		    You_feel("wide awake.");
 		HSleep_resistance |= FROMOUTSIDE;
-		break;
+		break;*/
 	    case AMULET_OF_CHANGE:
 		accessory_has_effect(otmp);
 		makeknown(typ);
@@ -3695,6 +3695,12 @@ struct obj *otmp;
 		if (!(HFumbling & FROMOUTSIDE))
 		    accessory_has_effect(otmp);
 		HFumbling = FROMOUTSIDE | rnd(100);
+		incr_itimeout(&HFumbling, rnd(20));
+		u.fumbleduration += rnz(1000);
+		break;
+	    case AMULET_OF_LIFE_SAVING:
+		u.extralives++;
+		pline("1-UP!");
 		break;
 	    case AMULET_VERSUS_STONE:
 		/* no message--this gives no permanent effect */
@@ -3702,7 +3708,6 @@ struct obj *otmp;
 		break;
 	    case RIN_SUSTAIN_ABILITY:
 	    /*case AMULET_OF_FLYING:*/ /* Intrinsic flying not supported --ALI */
-	    case AMULET_OF_LIFE_SAVING:
 	    case AMULET_OF_SECOND_CHANCE:
 	    /*case AMULET_OF_REFLECTION:*/ /* nice try */
 	    /*case AMULET_OF_DRAIN_RESISTANCE:*/
