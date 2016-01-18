@@ -24,6 +24,9 @@ struct flag {
 #endif
 	boolean  autodig;       /* MRKR: Automatically dig */
 	boolean  autoquiver;	/* Automatically fill quiver */
+
+	boolean  bash_reminder;	/* remind player about bashing with a launcher or non-weapon */
+
 	boolean  beginner;
 #ifdef MAIL
 	boolean  biff;		/* enable checking for mail */

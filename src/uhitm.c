@@ -1130,7 +1130,7 @@ int thrown;
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
-			if (!rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
+			if (flags.bash_reminder && !rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
 		}
 		/* not gonna do that stupidity (sorry) where everything unconditionally misses 25%. --Amy 
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
@@ -1363,7 +1363,7 @@ int thrown;
 		mdat = mon->data;
 		tmp = (mdat == &mons[PM_SHADE]) ? 0 : 1;
 	    } else {
-		if (!rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
+		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if (mdat == &mons[PM_SHADE] && !shade_aware(obj)) {
 		    tmp = 0;
 		    Strcpy(unconventional, cxname(obj));

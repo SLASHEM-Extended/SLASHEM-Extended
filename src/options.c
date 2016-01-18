@@ -59,6 +59,9 @@ static struct Bool_Opt
 	{"autodig", &flags.autodig, FALSE, SET_IN_GAME},
 	{"autopickup", &flags.pickup, FALSE, SET_IN_GAME},
 	{"autoquiver", &flags.autoquiver, FALSE, SET_IN_GAME},
+
+	{"bash_reminder", &flags.bash_reminder, TRUE, SET_IN_GAME},
+
 #if defined(MICRO) && !defined(AMIGA)
 	{"BIOS", &iflags.BIOS, FALSE, SET_IN_FILE},
 #else
@@ -2817,6 +2820,7 @@ goodfruit:
 #ifdef SHOW_WEIGHT
 			 || (boolopt[i].addr) == &flags.showweight
 #endif
+			 || (boolopt[i].addr) == &flags.bash_reminder
 			 || (boolopt[i].addr) == &flags.showmc
 			 || (boolopt[i].addr) == &flags.showmovement
 			 || (boolopt[i].addr) == &flags.showlongstats
