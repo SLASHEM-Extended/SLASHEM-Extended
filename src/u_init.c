@@ -1492,7 +1492,7 @@ static struct trobj KopItemA[] = {
 };
 
 static struct trobj KopItemB[] = {
-	{ CREAM_PIE, 0, FOOD_CLASS, 0, 0 },
+	{ CREAM_PIE, 0, FOOD_CLASS, 64, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -18380,6 +18380,7 @@ register struct trobj *trop;
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
 				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
+			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    obj->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
@@ -18510,6 +18511,7 @@ register struct trobj *trop;
 			    obj->opoisoned = 0;
 			if (obj->oclass == WEAPON_CLASS ||
 				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
+			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    obj->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
@@ -18528,6 +18530,7 @@ register struct trobj *trop;
 			    objX->opoisoned = 0;
 			if (objX->oclass == WEAPON_CLASS ||
 				objX->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
+			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    objX->quan = (long) trop->trquan;
 			    trop->trquan = 1;
 			} else if (objX->oclass == GEM_CLASS &&
@@ -18804,16 +18807,12 @@ register struct trobj *trop;
 				obj->otyp != SPE_BLANK_PAPER)
 		    initialspell(obj);
 
-#if !defined(PYRAMID_BUG) && !defined(MAC)
-		if(--trop->trquan) continue;	/* make a similar object */
-#else
 		if(trop->trquan) {		/* check if zero first */
 			--trop->trquan;
 			if(trop->trquan)
 				continue;	/* make a similar object */
 		}
-#endif
-		
+
 		trop++;
 	}
 
