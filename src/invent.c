@@ -6751,7 +6751,7 @@ struct obj *obj;
 			case SPE_ENCHANT_ARMOR:
 				pline("This spell rarely works, but if it does, it tries to enchant a user-selected worn piece of armor. Beware, if the armor in question already has a very high enchantment, it might blow up."); break;
 			case SPE_CHARGING:
-				pline("Cast this spell if you want to recharge your objects."); break;
+				pline("Cast this spell if you want to recharge your objects. Beware, though; occasionally, doing so can have nasty side effects, because otherwise this spell would be too overpowered."); break;
 			case SPE_PROTECTION:
 				pline("A spell that temporarily improves your armor class."); break;
 			case SPE_RESIST_POISON:

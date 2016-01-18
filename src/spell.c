@@ -1861,6 +1861,20 @@ boolean atme;
 
 	}
 
+	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+
+		boostknow(spell, -(rnd(100000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	/* charging is way too overpowered, let's add another "bullshit downside" --Amy */
+	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+
+		badeffect();
+
+	}
+
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 	return(1);
 }
