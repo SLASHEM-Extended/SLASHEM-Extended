@@ -365,6 +365,8 @@ struct you {
 	int monstertimeout; 	/* when monster spawns are increasing in frequency */
 	int monstertimefinish; 	/* point in time when monster spawns are at their maximum */
 	int ascensiontimelimit;	/* If you haven't ascended at this turn yet, add random nasty effects for annoyance. */
+	int ascensionfirsthint;
+	int ascensionsecondhint;
 	int legscratching; 	/* for special AT_KICK attacks */
 	int tensionmonster; 	/* for tension rooms */
 	int tensionmonsteX; 	/* for the chance of getting really bad stuff in tension rooms */

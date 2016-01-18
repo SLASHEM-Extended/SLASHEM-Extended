@@ -599,6 +599,20 @@ moveloop()
 
 			}
 
+			if (moves == u.ascensionfirsthint) {
+				pline("Reminder: You have a limited amount of time for ascending. This is not a joke.");
+				pline("Currently you still have more than %d turns left though, so don't panic.", (u.ascensionfirsthint * 4) );
+				pline("However, keep in mind that you're not supposed to be farming forever. Okay?");
+
+			}
+
+			if (moves == u.ascensionsecondhint) {
+				pline("Remember, you're not supposed to dilly-dally all the time! You're supposed to work towards ascending!");
+				pline("Currently you have less than %d turns left, so better move on!", u.ascensionsecondhint);
+				pline("If you don't ascend in time, the RNG will get angry, and you don't want that to happen!");
+
+			}
+
 			if (moves == u.ascensiontimelimit) {
 				pline("You exceeded the maximum permissible amount of turns for winning the game!");
 				pline("Now, the RNG is fed up with your shenanigans, and decides to make the game much more difficult.");
