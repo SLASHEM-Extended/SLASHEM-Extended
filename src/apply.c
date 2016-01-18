@@ -1801,7 +1801,7 @@ struct obj *obj;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
-		else if (!rn2(5))
+		else if (!obj->blessed && !rn2(5))
 			curse(obj);
 
 	    }
@@ -1816,7 +1816,7 @@ struct obj *obj;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
-		else if (!rn2(5))
+		else if (!obj->blessed && !rn2(5))
 			curse(obj);
 
 	    }
