@@ -2846,6 +2846,9 @@ SCROLL((char *)0,               "UZAKTA ELLERINI EDELIM YOKSA BEN ONU KESMEK",  
 SCROLL((char *)0,               "MY NAME IS MISTER SIR",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 SCROLL((char *)0,               "OSTRO BIRDO AND CLAWGLIP ARE NO MISSPELLINGS",  P_NONE,     1,   0, 300, CLR_CYAN),
 SCROLL((char *)0,               "SEGFAULT PANIC CAUSES SAVEGAME CORRUPTION",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN),
+SCROLL((char *)0,               "THE AMY THINKS THAT AIR CURRENT NOISES ARE EROTIC",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "KERIO WONT TOUCH MAPGLYPH DOT C WITH A 10 FOOT POLE",  P_NONE,     1,   0, 300, CLR_BLACK),
+SCROLL((char *)0,               "FLEECY COLORS ARE A FEATURE OF SLASHEM EXTENDED",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),
