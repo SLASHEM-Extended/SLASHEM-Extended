@@ -817,7 +817,7 @@ martial_dmg()
         if ((Role_if(PM_MONK) && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) )
                 && (P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER)
                 && (u.ulevel > 16)) damage = d(6,2);                                
-        else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+        else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
                 damage = d((int) ((u.ulevel+2)/3),2);
