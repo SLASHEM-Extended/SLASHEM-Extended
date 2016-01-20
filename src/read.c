@@ -1659,6 +1659,8 @@ genericptr_t roomcnt;
 {
 	if (levl[x][y].typ != STONE)
 		return;
+	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		return;
 
 	(*(int *)roomcnt)++;
 
