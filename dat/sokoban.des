@@ -7481,7 +7481,7 @@ MONSTER:'m',random, random
 
 # "Through the Cracks"
 MAZE:"soko2-40",' '
-FLAGS:noteleport,hardfloor
+FLAGS:noteleport
 GEOMETRY:center,center
 #12345678901234567890123456789012345678901234567890
 MAP
@@ -7560,7 +7560,7 @@ MONSTER:'m',random, random
 
 # Either Way It's All Good
 MAZE: "soko2-41",' '
-FLAGS:noteleport,hardfloor
+FLAGS:noteleport
 GEOMETRY:center,center
 #12345678901234567890123456789012345678901234567890
 MAP
@@ -27337,7 +27337,7 @@ OBJECT[10%]:'/',"clone monster",random
 
 # "Through the Cracks"
 MAZE:"soko8-40",' '
-FLAGS:noteleport,hardfloor
+FLAGS:noteleport
 GEOMETRY:center,center
 #12345678901234567890123456789012345678901234567890
 MAP
@@ -27441,7 +27441,7 @@ OBJECT[10%]:'/',"clone monster",random
 
 # Either Way It's All Good
 MAZE: "soko8-41",' '
-FLAGS:noteleport,hardfloor
+FLAGS:noteleport
 GEOMETRY:center,center
 #12345678901234567890123456789012345678901234567890
 MAP
