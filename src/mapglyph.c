@@ -613,6 +613,134 @@ unsigned *ospecial;
 				color = rnd(15);
 			}
 			else cmap_color(offset);
+		} else if ((100 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 1;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 1;
+			}
+			else cmap_color(offset);
+		} else if ((101 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 2;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 2;
+			}
+			else cmap_color(offset);
+		} else if ((102 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 3;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 3;
+			}
+			else cmap_color(offset);
+		} else if ((103 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 4;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 4;
+			}
+			else cmap_color(offset);
+		} else if ((104 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 5;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 5;
+			}
+			else cmap_color(offset);
+		} else if ((105 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 6;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 6;
+			}
+			else cmap_color(offset);
+		} else if ((106 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 7;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 7;
+			}
+			else cmap_color(offset);
+		} else if ((107 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 8;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 8;
+			}
+			else cmap_color(offset);
+		} else if ((108 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 9;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 9;
+			}
+			else cmap_color(offset);
+		} else if ((109 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 10;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 10;
+			}
+			else cmap_color(offset);
+		} else if ((110 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 11;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 11;
+			}
+			else cmap_color(offset);
+		} else if ((111 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 12;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 12;
+			}
+			else cmap_color(offset);
+		} else if ((112 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 13;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 13;
+			}
+			else cmap_color(offset);
+		} else if ((113 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 14;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 14;
+			}
+			else cmap_color(offset);
+		} else if ((114 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 15;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 15;
+			}
+			else cmap_color(offset);
+		} else if ((115 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = rnd(15);
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rnd(15);
+			}
+			else cmap_color(offset);
 		}
 		else
 #endif
