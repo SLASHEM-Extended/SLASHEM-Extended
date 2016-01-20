@@ -71,6 +71,9 @@ unsigned *ospecial;
 	uchar ch;
 	unsigned special = 0;
 
+	register struct rm *colorroom;
+	colorroom = &levl[x][y];
+
     /*
      *  Map the glyph back to a character and color.
      *
@@ -613,7 +616,152 @@ unsigned *ospecial;
 				color = rnd(15);
 			}
 			else cmap_color(offset);
-		} else if ((100 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
+		}
+		else if (colorroom->fleecycolor == 1) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 1;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 1;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 2) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 2;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 2;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 3) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 3;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 3;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 4) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 4;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 4;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 5) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 5;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 5;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 6) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 6;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 6;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 7) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 7;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 7;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 8) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 8;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 8;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 9) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 9;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 9;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 10) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 10;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 10;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 11) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 11;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 11;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 12) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 12;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 12;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 13) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 13;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 13;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 14) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 14;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 14;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 15) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = 15;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = 15;
+			}
+			else cmap_color(offset);
+		}
+		else if (colorroom->fleecycolor == 16) {
+			if(offset >= S_vwall && offset <= S_hcdoor){
+				color = rnd(15);
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rnd(15);
+			}
+			else cmap_color(offset);
+		}
+		else if ((100 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor){
 				color = 1;
 			}
@@ -741,8 +889,7 @@ unsigned *ospecial;
 				color = rnd(15);
 			}
 			else cmap_color(offset);
-		}
-		else
+		} else
 #endif
 	    if (color == NO_COLOR) cmap_color(offset);
 		if (BlackNgWalls || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;

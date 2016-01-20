@@ -3547,6 +3547,8 @@ schar ftyp, btyp;
 	register int dx=0, dy=0, dix, diy, cct;
 	register struct rm *crm;
 	register int tx, ty, xx, yy;
+	int randomcolouur;
+	randomcolouur = rnd(16);
 
 	xx = org->x;  yy = org->y;
 	tx = dest->x; ty = dest->y;
@@ -3582,6 +3584,7 @@ schar ftyp, btyp;
 	    if(crm->typ == btyp) {
 		if(ftyp != CORR || rn2(100)) {
 			crm->typ = ftyp;
+			crm->fleecycolor = randomcolouur;
 
 			if(/*nxcor && */!rn2(ishaxor ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
