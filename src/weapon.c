@@ -1326,6 +1326,15 @@ register struct monst *mtmp;
 	for (i = 0; i < SIZE(rwep); i++) {
 	    int prop;
 
+		/* Throwing nasty gray stones is always allowed. --Amy */
+		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj) {
+			if (is_nastygraystone(otmp)) {
+				propellor = m_carrying(mtmp, CATAPULT);
+				if (!propellor) propellor = m_carrying(mtmp, SLING);
+				return otmp;
+			}
+		}
+
 	    /* shooting gems from slings; this goes just before the darts */
 	    /* (shooting rocks is already handled via the rwep[] ordering) */
 	    if ( (rwep[i] == DART || rwep[i] == SPIKE) && !likes_gems(mtmp->data) &&
@@ -1418,8 +1427,10 @@ register struct monst *mtmp;
 		/* STEPHEN WHITE'S NEW CODE */
 		if (rwep[i] != LOADSTONE) {
 			/* Don't throw a cursed weapon-in-hand or an artifact */
+			/* Amy edit: or the only melee weapon (ok to throw from a stack of wielded daggers though,
+			 * even if it means possibly throwing them all) */
 			if ((otmp = oselect(mtmp, rwep[i])) && !otmp->oartifact
-			    && (!otmp->cursed || otmp != MON_WEP(mtmp)))
+			    && ( (!otmp->cursed && !(otmp->quan == 1) ) || otmp != MON_WEP(mtmp)))
 				return(otmp);
 		/* STEPHEN WHITE'S NEW CODE */
 		/* KMH, balance patch -- removed stone of rotting */
