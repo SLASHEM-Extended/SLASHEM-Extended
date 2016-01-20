@@ -2163,7 +2163,7 @@ register struct obj	*sobj;
 		/* note to the puzzled: the game Larn actually sends you junk
 		 * mail if you win!
 		 */
-		else readmail(sobj);
+		/*else*/ readmail(sobj);
 		break;
 #endif
 	case SPE_ENCHANT_ARMOR:
