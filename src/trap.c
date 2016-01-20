@@ -74,17 +74,17 @@ static const char * const farttrapnames[] = {
 /* quiet */
 "Nadja", "Mailie", "Elif", "Solvejg", "Sueschen", 
 "Jessica", "Yvonne", "Patricia", "Jennifer", "Inge", 
-"Sarah", /* 0-10 */
+"Sarah", "Birgit", /* 0-11 */
 
 /* normal */
 "Kati", "Maurah", "Eveline", "Larissa", "Sandra", 
 "Meltem", "Kerstin", "Karin", "Ina", "Lou", 
 "Lisa", "Miriam", "Elena", "Katharina", "Simone", 
-"Jasieen", "Marike", "Sue Lyn", /* 11-28 */
+"Jasieen", "Marike", "Sue Lyn", "Marleen", /* 12-30 */
 
 /* loud */
 "Sunali", "Thai", "Klara", "Ludgera", "Johanetta", 
-"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 29-38 */
+"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 31-40 */
 
 };
 
@@ -1808,8 +1808,8 @@ unsigned trflags;
 
 		seetrap(trap);
 
-		if (trap->launch_otyp < 11) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
-		else if (trap->launch_otyp < 29) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
+		if (trap->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
+		else if (trap->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		badeffect();
 
@@ -9651,7 +9651,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == UNKNOWN_TRAP) chance = 5;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
 
-	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp < 11) ? 5 : (ttmp->launch_otyp < 29) ? 10 : 20;
+	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 39) ? 10 : (ttmp->launch_otyp == 40) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 31) ? 10 : 20;
 
 	if (Confusion || Hallucination) chance++;
 	if (Blind) chance++;
@@ -9665,6 +9665,7 @@ struct trap *ttmp;
 	    if (rn2(2 * MAXULEV) < u.ulevel) chance--;
 	    if (u.uhave.questart && chance > 1) chance--;
 	} else if (Role_if(PM_RANGER) && chance > 1) chance--;
+	if (chance < 1) chance = 1; /* fail safe */
 	return rn2(chance);
 }
 
@@ -10015,8 +10016,17 @@ struct trap *ttmp;
 	pline("You bash %s's sexy butt.", farttrapnames[ttmp->launch_otyp]);
 	diceroll = rnd(30);
 
-	if (ttmp->launch_otyp < 11) diceroll -= rnd(diceroll);
-	else if (!rn2(2) && ttmp->launch_otyp < 29) diceroll -= rnd(diceroll);
+	if (ttmp->launch_otyp == 2) diceroll - rnd(20);
+	if (ttmp->launch_otyp == 5) diceroll - rnd(10);
+	if (ttmp->launch_otyp == 12) diceroll - rnd(10);
+	if (ttmp->launch_otyp == 20) diceroll - rnd(5);
+	if (ttmp->launch_otyp == 25) diceroll - rnd(5);
+	if (ttmp->launch_otyp == 28) diceroll - rnd(30);
+	if (ttmp->launch_otyp == 29) diceroll - rnd(20);
+	if (ttmp->launch_otyp == 39) diceroll - rnd(15);
+
+	if (ttmp->launch_otyp < 12) diceroll -= rnd(diceroll);
+	else if (!rn2(2) && ttmp->launch_otyp < 31) diceroll -= rnd(diceroll);
 
 	if (diceroll < 0) diceroll = 0; /* fail safe */
 
