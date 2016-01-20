@@ -4321,6 +4321,12 @@ newboss:
 			  Monnam(u.usteed));
 		else
 #endif
+		if (!rn2(10) && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
+			pline("You trigger a magic portal, but it malfunctions!");
+			pushplayer();
+		} else if (rn2(3) && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
+			pline("You trigger a magic portal, but it doesn't seem to work!");
+		} else
 		domagicportal(trap);
 		break;
 
