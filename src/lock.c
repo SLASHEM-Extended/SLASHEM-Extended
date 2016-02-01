@@ -401,6 +401,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    if(c == 'q') return(0);
 		    if(c == 'n') continue;
 
+		    if (pick->oartifact) {
+		      Your("key doesn't seem to fit.");
+			return 0;
+		    }
+
 		    if (otmp->obroken) {
 			You_cant("fix its broken lock with %s.", doname(pick));
 			return 0;
