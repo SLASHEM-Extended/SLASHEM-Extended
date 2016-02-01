@@ -2425,6 +2425,12 @@ register int pm;
 		  }
 		}
 
+	/* eating anything that spouts fake messages will give another one --Amy */
+		if (dmgtype(ptr, AD_FAKE)) {
+			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
+		}
+
 		 count = 0;	/* number of possible intrinsics */
 		 tmp = 0;	/* which one we will try to give */
 		 for (i = 1; i <= LAST_PROP; i++) {
