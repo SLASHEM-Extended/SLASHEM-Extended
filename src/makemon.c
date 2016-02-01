@@ -14750,6 +14750,8 @@ loopback:
 
 		/* evil patch - one monster class is always generated with a higher frequency (even for mystics) --Amy */
 		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
+		if (ct > 0 && (ptr->mlet == urole.enemy1sym)) ct += 5;
+		if (ct > 0 && (ptr->mlet == urole.enemy2sym)) ct += 2;
 
 		if (ct > 0 && (ptr->mcolor == u.frequentcolor)) ct += u.freqcolorbonus;
 
@@ -14763,6 +14765,9 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies8)) ct += u.freqspeciesbonus8;
 		if (ct > 0 && (mndx == u.frequentspecies9)) ct += u.freqspeciesbonus9;
 		if (ct > 0 && (mndx == u.frequentspecies10)) ct += u.freqspeciesbonus10;
+
+		if (ct > 0 && (urole.enemy1num != NON_PM) && (mndx == urole.enemy1num)) ct += 125;
+		if (ct > 0 && (urole.enemy2num != NON_PM) && (mndx == urole.enemy2num)) ct += 25;
 
 		if (ct > 0 && (mndx == u.nospawnspecies)) ct = 0;
 		if (ct > 0 && (mndx == u.nospawnspecies2)) ct = 0;
@@ -14988,6 +14993,9 @@ int     spc;
 		if (last == u.frequentspecies10) num += u.freqspeciesbonus10;
 		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
 
+		if ((urole.enemy1num != NON_PM) && (last == urole.enemy1num)) num += 125;
+		if ((urole.enemy2num != NON_PM) && (last == urole.enemy2num)) num += 25;
+
 	    }
 
 	if(!num) return(-1);
@@ -15030,6 +15038,9 @@ int     spc;
 		if (first == u.frequentspecies10) num -= u.freqspeciesbonus10;
 		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
 		
+		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;
+		if ((urole.enemy2num != NON_PM) && (first == urole.enemy2num)) num -= 25;
+
 		/* or not, because seriously... what the heck??? --Amy */
 		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */
 		    /* but not when multiple monsters are same level */
