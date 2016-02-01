@@ -2910,7 +2910,7 @@ ENDMAP
 
 # Dungeon Description
 RANDOM_PLACES:(08,16),(13,07),(21,08),(41,14),(50,04),(50,16),(66,01)
-REGION:(26,01,32,01),unlit,"ordinary",filled,true
+REGION:(26,01,32,01),unlit,"ordinary"
 REGION:(20,08,21,08),unlit,"ordinary"
 REGION:(23,08,25,08),unlit,"ordinary"
 # Secret doors
@@ -3247,7 +3247,7 @@ ENDMAP
 RANDOM_PLACES:(03,04),(53,2),(37,11),(49,16),(56,05)
 
 # Dungeon Description
-REGION:(26,01,32,01),unlit,"ordinary",filled,true
+REGION:(26,01,32,01),unlit,"ordinary"
 REGION:(20,08,21,08),unlit,"ordinary"
 REGION:(23,08,25,08),unlit,"ordinary"
 # Secret doors
@@ -14137,7 +14137,7 @@ ENDMAP
 
 # Dungeon Description
 RANDOM_PLACES:(08,16),(13,07),(21,08),(41,14),(50,04),(50,16),(66,01)
-REGION:(26,01,32,01),unlit,"ordinary",filled,true
+REGION:(26,01,32,01),unlit,"ordinary"
 REGION:(20,08,21,08),unlit,"ordinary"
 REGION:(23,08,25,08),unlit,"ordinary"
 # Secret doors
@@ -14633,7 +14633,7 @@ ENDMAP
 RANDOM_PLACES:(03,04),(53,2),(37,11),(49,16),(56,05)
 
 # Dungeon Description
-REGION:(26,01,32,01),unlit,"ordinary",filled,true
+REGION:(26,01,32,01),unlit,"ordinary"
 REGION:(20,08,21,08),unlit,"ordinary"
 REGION:(23,08,25,08),unlit,"ordinary"
 # Secret doors
