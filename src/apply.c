@@ -2232,7 +2232,7 @@ struct obj *obj;
 		if (otmp != &zeroobj) {
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
-			otmp->greased = 1;
+			if (otmp->greased < 3) otmp->greased += 1;
 			if (obj->cursed && !nohands(youmonst.data)) {
 			    incr_itimeout(&Glib, rnd(15));
 			    pline("Some of the grease gets all over your %s.",

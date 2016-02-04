@@ -3682,7 +3682,7 @@ register struct obj *obj;
 		Strcat(prefix, "uncursed ");*/
 	}
 
-	if (Hallucination ? !rn2(100) : (obj->greased && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) ) Strcat(prefix, "greased ");
+	if (Hallucination ? !rn2(100) : (obj->greased && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) ) Strcat(prefix, (obj->greased == 3) ? "thoroughly greased " : (obj->greased == 2) ? "strongly greased " : "greased ");
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:

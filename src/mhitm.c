@@ -1947,7 +1947,7 @@ register struct obj *obj;
 		    if (cansee(mdef->mx, mdef->my) && flags.verbose)
 			pline("%s weapon is not affected.",
 			                 s_suffix(Monnam(magr)));
-		    if (obj->greased && !rn2(2)) obj->greased = 0;
+		    if (obj->greased && !rn2(2)) obj->greased -= 1;
 		} else {
 		    if (cansee(mdef->mx, mdef->my)) {
 			pline("%s %s%s!", s_suffix(Monnam(magr)),

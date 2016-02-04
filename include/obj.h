@@ -95,7 +95,7 @@ struct obj {
 	Bitfield(oinvis,1);	/* invisible */
 	Bitfield(oinvisreal,1);	/* really invisible - won't be visible even with see invis --Amy */
 #endif
-	Bitfield(greased,1);	/* covered with grease */
+	Bitfield(greased,2);	/* covered with grease */
 	Bitfield(oattached,2);	/* obj struct has special attachment */
 #define OATTACHED_NOTHING 0
 #define OATTACHED_MONST   1	/* monst struct in oextra */

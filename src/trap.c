@@ -854,7 +854,7 @@ struct monst *victim;
 		pline("%s's %s %s", Monnam(victim), aobjnam(otmp,"are"), txt);
 	}
 	if (!rn2(2) && !stack_too_big(otmp) ) {
-	    otmp->greased = 0;
+	    otmp->greased -= 1;
 	    if (carried(otmp)) {
 		pline_The("grease dissolves.");
 		update_inventory();
@@ -9132,7 +9132,7 @@ register boolean force, here;
 		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
 		} else if(obj->greased) {
-			if (force || !rn2(2)) obj->greased = 0;
+			if (force || !rn2(2)) obj->greased -= 1;
 		} else if(Is_container(obj) && !Is_box(obj) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);

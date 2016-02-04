@@ -4419,7 +4419,7 @@ struct monst *mtmp;
 			pline("Your body shakes violently!");
 			 if (!rn2(2)) {
 				pline_The("grease wears off.");
-				otmp2->greased = 0;
+				otmp2->greased -= 1;
 				update_inventory();
 			 }
 		}
@@ -4863,7 +4863,7 @@ struct monst *mtmp;
 			pline("Your fingers shake violently!");
 			 if (!rn2(2)) {
 				pline_The("grease wears off.");
-				otmp2->greased = 0;
+				otmp2->greased -= 1;
 				update_inventory();
 			 }
 		}

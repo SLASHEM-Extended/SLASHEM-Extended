@@ -2713,7 +2713,7 @@ struct attack *mattk;
 
 	    if (obj->greased && !rn2(2)) {
 		pline_The("grease wears off.");
-		obj->greased = 0;
+		obj->greased -= 1;
 		update_inventory();
 	    }
 	    return TRUE;
@@ -8745,7 +8745,7 @@ register struct obj *obj;
 		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		        if (vis) pline("Somehow, %s weapon is not affected.",
 						s_suffix(mon_nam(mon)));
-		    if (obj->greased && !rn2(2)) obj->greased = 0;
+		    if (obj->greased && !rn2(2)) obj->greased -= 1;
 		} else {
 		        if (vis) pline("%s %s%s!",
 			        s_suffix(Monnam(mon)),

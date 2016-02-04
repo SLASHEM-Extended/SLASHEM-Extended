@@ -6074,7 +6074,7 @@ struct obj *obj;
 			case TIN_OPENER: 
 				pline("A tool that must be wielded in order to work. It allows you to open tins more quickly. Some players use it to kill Vlad but that's not a good idea in Slash'EM Extended."); break;
 			case CAN_OF_GREASE: 
-				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again."); break;
+				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again. You can apply up to three layers of grease to a single item."); break;
 			case FIGURINE: 
 				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
 			case MAGIC_MARKER: 
