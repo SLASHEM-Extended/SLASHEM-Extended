@@ -2616,6 +2616,12 @@ struct attack *mattk;
 			  Monnam(mdef), mhis(mdef));
 	    }
 	    /* give the object to the character, new function by Amy - see invent.c */
+
+	    if (otmp && otmp->mstartinvent) {
+			delobj(otmp);
+			return;
+	    }
+
 	    otmp = hold_another_objectX(otmp, "You snatched but dropped %s.",
 				       doname(otmp), "You steal: ");
 	    if (otmp->where != OBJ_INVENT) /*continue*/return; /* otherwise you could steal everything the monster has! */
