@@ -3385,7 +3385,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
 		if (!rn2(250) && timebasedlowerchance() ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 		if (!rn2(100) && timebasedlowerchance() ) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
-		if (!rn2(100) && timebasedlowerchance() ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
+		if (!rn2(200) && timebasedlowerchance() ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
 		if (!rn2(40) && timebasedlowerchance() ) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);
 
 		if (!rn2(500) && timebasedlowerchance() ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);

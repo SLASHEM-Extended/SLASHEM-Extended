@@ -257,7 +257,7 @@ register struct monst *mtmp;
 {
 	register struct permonst *ptr = mtmp->data;
 
-	if (!rn2(100) && timebasedlowerchance() ) (void) mongets(mtmp, SCR_STANDARD_ID);
+	if (!rn2(500) && timebasedlowerchance() ) (void) mongets(mtmp, SCR_STANDARD_ID);
 
 	if (!rn2(60)) (void) mongets(mtmp, SCR_HEALING);
 
