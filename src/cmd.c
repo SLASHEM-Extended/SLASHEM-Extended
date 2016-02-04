@@ -4452,6 +4452,9 @@ int final;
 	}
 	else dump("  ", "Your mana bonus was zero");
 
+	    Sprintf(buf, "Your pantheon consisted of %s, %s and %s", align_gname(A_LAWFUL), align_gname(A_NEUTRAL), align_gname(A_CHAOTIC) );
+	    dump("  ", buf);
+
 	    Sprintf(buf, "Your deity was %s", u_gname());
 	    dump("  ", buf);
 
