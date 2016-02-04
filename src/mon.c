@@ -2042,6 +2042,21 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != SUMMON_UNDEAD_TRAP
 				&& ttmp->ttyp != FALLING_NASTYSTONE_TRAP
 
+				&& ttmp->ttyp != SPINED_BALL_TRAP
+				&& ttmp->ttyp != PENDULUM_TRAP
+				&& ttmp->ttyp != TURN_TABLE
+				&& ttmp->ttyp != SCENT_TRAP
+				&& ttmp->ttyp != BANANA_TRAP
+				&& ttmp->ttyp != FALLING_TUB_TRAP
+				&& ttmp->ttyp != ALARM
+				&& ttmp->ttyp != CALTROPS_TRAP
+				&& ttmp->ttyp != BLADE_WIRE
+				&& ttmp->ttyp != MAGNET_TRAP
+				&& ttmp->ttyp != SLINGSHOT_TRAP
+				&& ttmp->ttyp != CANNON_TRAP
+				&& ttmp->ttyp != VENOM_SPRINKLER
+				&& ttmp->ttyp != FUMAROLE
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != GIANT_CHASM

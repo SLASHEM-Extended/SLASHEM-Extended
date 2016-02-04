@@ -474,6 +474,21 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "summon undead trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "falling nastystone trap", C(CLR_GRAY)},	/* trap */
 
+	{'^', "spined ball trap", C(CLR_CYAN)},	/* trap */
+	{'^', "pendulum trap", C(CLR_CYAN)},	/* trap */
+	{'^', "turn table", C(CLR_BROWN)},	/* trap */
+	{'^', "scent trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "banana trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "falling tub trap", C(CLR_CYAN)},	/* trap */
+	{'^', "alarm", C(CLR_RED)},	/* trap */
+	{'^', "caltrops trap", C(CLR_CYAN)},	/* trap */
+	{'^', "blade wire", C(CLR_BLACK)},	/* trap */
+	{'^', "magnet trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "slingshot trap", C(CLR_GRAY)},	/* trap */
+	{'^', "cannon trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "venom sprinkler", C(CLR_YELLOW)},	/* trap */
+	{'^', "fumarole", C(CLR_GREEN)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -769,6 +784,21 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_summon_undead_trap),
 	g_FILLER(S_falling_nastystone_trap),
 
+	g_FILLER(S_spined_ball_trap),
+	g_FILLER(S_pendulum_trap),
+	g_FILLER(S_turn_table),
+	g_FILLER(S_scent_trap),
+	g_FILLER(S_banana_trap),
+	g_FILLER(S_falling_tub_trap),
+	g_FILLER(S_alarm),
+	g_FILLER(S_caltrops_trap),
+	g_FILLER(S_blade_wire),
+	g_FILLER(S_magnet_trap),
+	g_FILLER(S_slingshot_trap),
+	g_FILLER(S_cannon_trap),
+	g_FILLER(S_venom_sprinkler),
+	g_FILLER(S_fumarole),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1055,6 +1085,21 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_summon_undead_trap),
 	g_FILLER(S_falling_nastystone_trap),
 
+	g_FILLER(S_spined_ball_trap),
+	g_FILLER(S_pendulum_trap),
+	g_FILLER(S_turn_table),
+	g_FILLER(S_scent_trap),
+	g_FILLER(S_banana_trap),
+	g_FILLER(S_falling_tub_trap),
+	g_FILLER(S_alarm),
+	g_FILLER(S_caltrops_trap),
+	g_FILLER(S_blade_wire),
+	g_FILLER(S_magnet_trap),
+	g_FILLER(S_slingshot_trap),
+	g_FILLER(S_cannon_trap),
+	g_FILLER(S_venom_sprinkler),
+	g_FILLER(S_fumarole),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1338,6 +1383,21 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_falling_loadstone_trap),
 	g_FILLER(S_summon_undead_trap),
 	g_FILLER(S_falling_nastystone_trap),
+
+	g_FILLER(S_spined_ball_trap),
+	g_FILLER(S_pendulum_trap),
+	g_FILLER(S_turn_table),
+	g_FILLER(S_scent_trap),
+	g_FILLER(S_banana_trap),
+	g_FILLER(S_falling_tub_trap),
+	g_FILLER(S_alarm),
+	g_FILLER(S_caltrops_trap),
+	g_FILLER(S_blade_wire),
+	g_FILLER(S_magnet_trap),
+	g_FILLER(S_slingshot_trap),
+	g_FILLER(S_cannon_trap),
+	g_FILLER(S_venom_sprinkler),
+	g_FILLER(S_fumarole),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1813,6 +1873,21 @@ boolean is_rlevel;
 	    showsyms[S_falling_loadstone_trap] = 0x04;
 	    showsyms[S_summon_undead_trap] = 0x04;
 	    showsyms[S_falling_nastystone_trap] = 0x04;
+
+	    showsyms[S_spined_ball_trap] = 0x04;
+	    showsyms[S_pendulum_trap] = 0x04;
+	    showsyms[S_turn_table] = 0x04;
+	    showsyms[S_scent_trap] = 0x04;
+	    showsyms[S_banana_trap] = 0x04;
+	    showsyms[S_falling_tub_trap] = 0x04;
+	    showsyms[S_alarm] = 0x04;
+	    showsyms[S_caltrops_trap] = 0x04;
+	    showsyms[S_blade_wire] = 0x04;
+	    showsyms[S_magnet_trap] = 0x04;
+	    showsyms[S_slingshot_trap] = 0x04;
+	    showsyms[S_cannon_trap] = 0x04;
+	    showsyms[S_venom_sprinkler] = 0x04;
+	    showsyms[S_fumarole] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

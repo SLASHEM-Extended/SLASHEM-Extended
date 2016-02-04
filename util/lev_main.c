@@ -321,6 +321,21 @@ static struct {
 	{ "undead summoning", SUMMON_UNDEAD_TRAP},
 	{ "falling nastystone", FALLING_NASTYSTONE_TRAP},
 
+	{ "spined ball",	SPINED_BALL_TRAP },
+	{ "pendulum",	PENDULUM_TRAP },
+	{ "turn table",	TURN_TABLE },
+	{ "scent",	SCENT_TRAP },
+	{ "banana",	BANANA_TRAP },
+	{ "falling tub",	FALLING_TUB_TRAP },
+	{ "alarm",	ALARM },
+	{ "caltrops",	CALTROPS_TRAP },
+	{ "blade wire",	BLADE_WIRE },
+	{ "magnet",	MAGNET_TRAP },
+	{ "slingshot",	SLINGSHOT_TRAP },
+	{ "cannon",	CANNON_TRAP },
+	{ "venom sprinkler",	VENOM_SPRINKLER },
+	{ "fumarole",	FUMAROLE },
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

@@ -1387,6 +1387,22 @@ dospinweb()
 		case FALLING_LOADSTONE_TRAP:
 		case FALLING_NASTYSTONE_TRAP:
 		case SUMMON_UNDEAD_TRAP:
+
+		case SPINED_BALL_TRAP:
+		case PENDULUM_TRAP:
+		case TURN_TABLE:
+		case SCENT_TRAP:
+		case BANANA_TRAP:
+		case FALLING_TUB_TRAP:
+		case ALARM:
+		case CALTROPS_TRAP:
+		case BLADE_WIRE:
+		case MAGNET_TRAP:
+		case SLINGSHOT_TRAP:
+		case CANNON_TRAP:
+		case VENOM_SPRINKLER:
+		case FUMAROLE:
+
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);

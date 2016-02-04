@@ -3786,6 +3786,21 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != SUMMON_UNDEAD_TRAP
 				&& ttmp->ttyp != FALLING_NASTYSTONE_TRAP
 
+				&& ttmp->ttyp != SPINED_BALL_TRAP
+				&& ttmp->ttyp != PENDULUM_TRAP
+				&& ttmp->ttyp != TURN_TABLE
+				&& ttmp->ttyp != SCENT_TRAP
+				&& ttmp->ttyp != BANANA_TRAP
+				&& ttmp->ttyp != FALLING_TUB_TRAP
+				&& ttmp->ttyp != ALARM
+				&& ttmp->ttyp != CALTROPS_TRAP
+				&& ttmp->ttyp != BLADE_WIRE
+				&& ttmp->ttyp != MAGNET_TRAP
+				&& ttmp->ttyp != SLINGSHOT_TRAP
+				&& ttmp->ttyp != CANNON_TRAP
+				&& ttmp->ttyp != VENOM_SPRINKLER
+				&& ttmp->ttyp != FUMAROLE
+
 				&& (ttmp->ttyp != DEATH_TRAP ||
 				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )
 

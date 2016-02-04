@@ -955,11 +955,23 @@ moveloop()
 
 		}
 
-		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) /* this function is probably expensive... --Amy */
-			if (ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
+		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
+			if (ttmp && ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
 				pline(fauxmessage());
 				if (!rn2(3)) pline(fauxmessage());
 			}
+
+			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
+			       if (!Strangled && !Breathless) {
+					 pline("You inhale a cloud of spores!");
+					 poisoned("spores", A_STR, "fumarole spores", 30);
+			       } else {
+					 pline("A cloud of spores surrounds you!");
+					 if (rn2(2)) poisoned("spores", A_STR, "fumarole spores", 30);
+			       }
+
+			}
+		}
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 

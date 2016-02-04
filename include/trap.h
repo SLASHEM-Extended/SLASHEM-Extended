@@ -254,8 +254,23 @@ extern struct trap *ftrap;
 #define SUMMON_UNDEAD_TRAP 194
 #define FALLING_NASTYSTONE_TRAP 195
 
-#define TRAP_PERCENTS	196
+#define SPINED_BALL_TRAP	196	/*[Sakusha]*/
+#define PENDULUM_TRAP	197		/*[Sakusha]*/
+#define TURN_TABLE	198		/*[Sakusha]*/
+#define SCENT_TRAP	199		/*[Sakusha]*/
+#define BANANA_TRAP	200		/*[Sakusha]*/
+#define FALLING_TUB_TRAP	201	/*from RJNH*/
+#define ALARM		202		/*[Sakusha]*/
+#define CALTROPS_TRAP	203		/*[Sakusha]*/
+#define BLADE_WIRE	204		/*[Sakusha]*/
+#define MAGNET_TRAP	205		/*from RJNH*/
+#define SLINGSHOT_TRAP	206		/*[Sakusha]*/
+#define CANNON_TRAP	207		/*[Sakusha]*/
+#define VENOM_SPRINKLER	208		/*[Sakusha]*/
+#define FUMAROLE	209		/*[Sakusha]*/
 
-#define TRAPNUM 197
+#define TRAP_PERCENTS	210
+
+#define TRAPNUM 211
 
 #endif /* TRAP_H */

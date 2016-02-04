@@ -33,6 +33,8 @@ STATIC_DCL int FDECL(disarm_water_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_heel_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_glyph_trap, (struct trap *), int);
 STATIC_DCL int FDECL(disarm_blade_trap, (struct trap *));
+STATIC_DCL int FDECL(disarm_spined_ball, (struct trap *));
+STATIC_DCL int FDECL(disarm_pendulum, (struct trap *));
 STATIC_DCL int FDECL(disarm_fire_trap, (struct trap *));
 STATIC_DCL int FDECL(disarm_landmine, (struct trap *));
 STATIC_DCL int FDECL(disarm_squeaky_board, (struct trap *));
@@ -4359,6 +4361,475 @@ newboss:
 		}
 		break;
 
+		 case SPINED_BALL_TRAP:
+		seetrap(trap);
+
+		if (unsolid(youmonst.data)) {
+			pline("A spined ball swings through your body.");
+		} else {
+			pline("You are hit by a spined ball!");
+			losehp(rnd(12)+ rnd( (monster_difficulty() / 2) + 1),"spined ball",KILLED_BY_AN);
+		}
+		break;
+
+		 case PENDULUM_TRAP:
+		seetrap(trap);
+
+		if (unsolid(youmonst.data)) {
+			pline("A pendulum swings through your body.");
+		} else {
+			pline("You are hit by a pendulum!");
+			losehp(rnd(6)+ rnd( (monster_difficulty() / 2) + 1),"pendulum",KILLED_BY_AN);
+			pushplayer();
+		}
+		break;
+
+	    case TURN_TABLE:
+		if (Levitation || Flying || unsolid(youmonst.data)) break;
+
+		i = rn2(15);
+		if (trap->once && i < 1) {
+			You("sense words of ouija board...");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			enlightenment(0);
+			exercise(A_WIS, TRUE);
+			pline_The("feeling subsides.");
+		    deltrap(trap);
+		    newsym(u.ux, u.uy);
+		    break;
+	      }
+
+		trap->once = 1;
+		seetrap(trap);
+
+		{
+		    const char *message;
+			const char *message2;
+			static const char *confmsg1[] = {
+			"feel that you ride x128 speed coffee cup!",
+			"announced triple Axel. It's regrettable -- landing failure.",
+			"are put on the turning umbrella!",
+			"change your whole body to drill!",
+			};
+			static const char *confmsg2[] = {
+			"The world turns and turns and turns but it turns too much? Ah-Ha...",
+			"The judgment is shocking to you, and you are crowded.",
+			"You are crowded feebly.",
+			"has the belt pulled! Oh-No-(turn and turn)",
+			};
+			if (Confusion || Hallucination) {
+			    int mess_num = rn2(SIZE(confmsg1));
+			    message = confmsg1[mess_num];
+			    message2 = confmsg2[mess_num];
+			} else {
+			    message = "spin high speed accidentally!";
+			    message2 = "You stagger...";
+			}
+			You(message);
+			pline(message2);
+			if (i < 6) pushplayer();
+		    make_stunned(HStun + rn1(12, 5), FALSE);
+		}
+
+		break;
+
+	    case SCENT_TRAP:
+
+		i = rn2(15);
+		if (trap->once && i < 1) {
+		    You_hear("a soft blowing.");	/*"a soft blowing."*/
+		    deltrap(trap);
+		    newsym(u.ux, u.uy);
+		    break;
+		}
+
+		seetrap(trap);
+
+	      {
+		boolean youbreath = !breathless(youmonst.data);
+		boolean youghoul = (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY ||
+				u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR ||
+				(Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) );
+		trap->once = 1;
+		if (youbreath)
+		    You("smell sweet scent...");
+		switch (i) {
+
+			case 1: /* tainted */
+
+				if (youghoul) {
+					pline("Yum - something well aged.");
+				} else if (youbreath) {
+					pline("Ulch - something %s!", rn2(2) ? "like excrement" : "tainted");
+				      make_vomiting(Vomiting+20, TRUE);
+					if (Sick && Sick < 100)	set_itimeout(&Sick, (Sick * 2) + 10);
+				}
+				break;
+			case 2: /* incense */
+
+				if (youbreath && !youghoul) {
+					pline_The("incense dyed your body.");
+				} else if (youghoul) {
+					pline("Ulch - terrible smell!");
+				      make_vomiting(Vomiting+20, TRUE);
+					if (Sick && Sick < 100)	set_itimeout(&Sick, (Sick * 2) + 10);
+				}
+			      (void) adjattrib(A_CHA, !youghoul ? 1 : -1, FALSE);
+
+				break;
+			case 3: /* holy incense */
+
+				if(is_undead(youmonst.data) || hates_silver(youmonst.data)) {
+
+					pline("Eek - this smells like %s!", Hallucination ? "priest's fart" : "exocism incense");
+					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy incense",KILLED_BY);
+
+				} else if(youbreath) {
+					if (!rn2(3)) {
+						You_feel("relaxed with the holy incense.");
+						adjalign(5);
+					} else {
+						pline("Oh, it's incense of ritual.");
+					}
+				}
+
+				break;
+			case 4: /* mosquito incense */
+
+				if (youbreath) {
+				    You("are suffering from smoke of mosquito-incense!");
+					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"mosquito incense",KILLED_BY);
+				      make_vomiting(Vomiting+20, TRUE);
+					if (Sick && Sick < 100)	set_itimeout(&Sick, (Sick * 2) + 10);
+
+				} else {
+					pline("It's mosquito-incense.");
+
+				}
+
+				break;
+			case 5: /* holyflowers */
+
+				if (u.ualign.type == A_CHAOTIC) {
+
+					pline("Eek - this smells like holy flowers!");
+					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy flowers",KILLED_BY);
+
+				} else if (youbreath) {
+				    You_feel("relaxed with the smell of flowers...");
+					make_stunned(0L, TRUE);
+
+				} else {
+					pline("You feel so relaxed that you decide to take a nap.");
+					nomul(-5, "relaxed with a smell");
+					nomovemsg = "You are conscious again.";
+
+				}
+
+				break;
+			case 6: /* poisonous flowers */
+				if (youbreath) {
+				    You_feel("relaxed with the smell of flowers...");
+				    pline("No, it's poisonous flowers!");
+				    poisoned("smell", A_STR, "smell of poisonous flowers", 5);
+				}
+
+				break;
+			case 7: /* onion */
+
+				pline_The("onion infiltrates your %s.", body_part(EYE));
+				    make_blinded(Blinded+rnd(10 + monster_difficulty() ) ,FALSE);
+
+				break;
+			case 8: /* Chanel No. 5 */
+
+				pline("Whoa! Sweet fragrant perfume! You get ready for sex...");
+				if (uarmc) remove_worn_item(uarmc, TRUE);
+				if (uarm) remove_worn_item(uarm, TRUE);
+				if (uarmu) remove_worn_item(uarmu, TRUE);
+				if (uarms) remove_worn_item(uarms, TRUE);
+				if (uarmf) remove_worn_item(uarmf, TRUE);
+				if (uarmg) remove_worn_item(uarmg, TRUE);
+				if (uarmh) remove_worn_item(uarmh, TRUE);
+				nomul(-5, "dreaming of lovely girls");
+				nomovemsg = "You wake up and discover you're naked.";
+
+				break;
+			case 9: /* dinner */
+
+				if (youbreath) {
+				    pline("It is sweet smell of gorgeous dinners.");
+				    if (u.uhunger <= 0) {
+					u.uhs = 6; /* STARVED */
+					flags.botl = 1;
+					bot();
+				    You(Hallucination ? "fired the last match, and ascended with your grandmother..." : "faint from starvation, and died...");
+					killer_format = KILLED_BY_AN;
+					killer = "caught in smell of gorgeous dinners which can't get";
+					done(DIED);
+				    } else {
+					You_feel("hungry%s.", (u.uhunger > 500) ? " a bit" : "");
+					if (u.uhunger > 500) u.uhunger = 500;
+					else if (u.uhunger > 200) u.uhunger = 200;
+					else u.uhunger -= rnd(400);
+
+				    }
+
+				}
+
+				break;
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			default:
+				/* do nothing */
+				break;
+
+		} /* switch i */
+
+		}
+
+		break;
+
+	    case BANANA_TRAP:
+		if (Levitation || Flying) break ;
+		trap->once = 1;
+		seetrap(trap);
+
+		if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
+		    if (Blind)
+			You("trample on %s.", something);
+		    else
+			You("trample on a banana peel, but don't slip.");
+		    break;
+		}
+		else
+		    You("trample on a banana peel and slip your %s!", body_part(FOOT));
+		exercise(A_DEX, FALSE);
+
+		break;
+
+	    case FALLING_TUB_TRAP:
+
+		if (trap->once && (rn2(10) > 7)) {
+			You_hear("a loud click!");	/*"a loud click!"*/
+			deltrap(trap);
+			newsym(u.ux, u.uy);
+			break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		newsym(u.ux, u.uy);
+
+		if ( Confusion )
+			pline("Achoo!");
+		pline("%s drops from above!", Blind ? "Something" : "A bathtub");
+
+		if ( is_whirly(youmonst.data) ) {
+			You("blow the bathtub away.");
+			break;
+		} else if ( unsolid(youmonst.data) ) {
+			pline("%s passes through your body.", Blind ? "Something" : "A bathtub");
+			break;
+		} else if ( amorphous(youmonst.data) ) {
+			pline("%s stucks onto your body.", Blind ? "Something" : "A bathtub");
+			break;
+		} else if ( rn2(10) > 3 ) {
+			pline("Whang! It hits you%s%s!",
+				has_head(youmonst.data) ? "r " : "",
+				has_head(youmonst.data) ? body_part(HEAD) : "");
+			if ( Confusion )
+				You_hear("someone laughing.");
+			if (Hallucination) {
+				You(rn2(2) ? "saw stars!" : "can see stars yet.");
+				if (Confusion)
+					pline("You feel cosmic lifestream.");
+			}
+
+			losehp(rnd(3)+ rnd( (monster_difficulty() / 5) + 1),"falling bathtub",KILLED_BY_AN);
+	
+			/*from NetHack brass 08.03.25, and arrange [Sakusha]*/
+			if(!rn2(5)) {
+				pline("The water splashes all over you!");
+				water_damage(invent, FALSE, FALSE);
+			}
+			make_stunned(HStun + rn1(14, 32), TRUE);
+
+		} else {
+			if (Blind)
+				You_hear("metallic sound nearby.");
+			else
+				You("avoid the falling bathtub.");
+		}
+
+		break;
+
+	    case ALARM:
+		pline((Hallucination|| Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
+		trap->once = 1;
+		seetrap(trap);
+		aggravate();
+
+		break;
+
+	    case CALTROPS_TRAP:
+		pline("You stepped into a caltrop!");
+		seetrap(trap);
+
+		if (uarmf && !rn2(3)) {
+			pline("But it isn't long enough to pierce through your boot.");
+			break;
+		}
+
+		if (!rn2(2)) set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
+		else set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
+
+		losehp(rnd(2)+ rnd( (monster_difficulty() / 10) + 1),"caltrop trap",KILLED_BY_AN);
+
+		u.inertia += (rnd(4) + rnd( (monster_difficulty() / 6) + 1));
+
+		break;
+
+	    case BLADE_WIRE:
+		pline("You trip over a wire!");
+		seetrap(trap);
+
+		if (rn2(4)) {
+			pline("You fall down.");
+		    nomul(-(2 + rnd( (monster_difficulty() / 10) + 1) ) , "helpless from tripping over a wire");
+			nomovemsg = "You get up again.";
+		}
+		if (rn2(4)) {
+			pline("It slits your %s!", makeplural(body_part(LEG)) );
+		    losehp(rnd(7)+ rnd( (monster_difficulty() / 5) + 1),"blade wire",KILLED_BY_AN);
+		}
+
+		break;
+
+	    case MAGNET_TRAP:
+
+		pline("CLICK! You have triggered a trap!");
+		pline("A magnet attracts your metallic equipment!");
+		seetrap(trap);
+
+		{
+			register struct obj *otmp, *otmp2;
+
+			for(otmp2 = otmp =invent; otmp2 ; otmp = otmp2) {
+				otmp2 = otmp->nobj;
+				if (objects[(otmp)->otyp].oc_material == IRON ) {
+
+					if (otmp->owornmask & W_ARMOR) {
+					    if (otmp == uskin) {
+						skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+					    }
+					    if (otmp == uarm) (void) Armor_off();
+					    else if (otmp == uarmc) (void) Cloak_off();
+					    else if (otmp == uarmf) (void) Boots_off();
+					    else if (otmp == uarmg) (void) Gloves_off();
+					    else if (otmp == uarmh) (void) Helmet_off();
+					    else if (otmp == uarms) (void) Shield_off();
+	#ifdef TOURIST
+					    else if (otmp == uarmu) (void) Shirt_off();
+	#endif
+					    /* catchall -- should never happen */
+					    else setworn((struct obj *)0, otmp ->owornmask & W_ARMOR);
+					} else if (otmp ->owornmask & W_AMUL) {
+					    Amulet_off();
+					} else if (otmp ->owornmask & W_RING) {
+					    Ring_gone(otmp);
+					} else if (otmp ->owornmask & W_TOOL) {
+					    Blindf_off(otmp);
+					} else if (otmp ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+					    if (otmp == uwep)
+						uwepgone();
+					    if (otmp == uswapwep)
+						uswapwepgone();
+					    if (otmp == uquiver)
+						uqwepgone();
+					}
+	
+					if (otmp->owornmask & (W_BALL|W_CHAIN)) {
+					    unpunish();
+					} else if (otmp->owornmask) {
+					/* catchall */
+					    setnotworn(otmp);
+					}
+
+				dropx(otmp);
+
+				}
+			}
+		}
+
+		scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+
+		break;
+
+	    case SLINGSHOT_TRAP:
+
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A stone shoots out at you!");
+		otmp = mksobj(ROCK, TRUE, FALSE);
+		otmp->quan = 1L;
+		otmp->owt = weight(otmp);
+
+		if (thitu(5 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+		    obfree(otmp, (struct obj *)0);
+		} else {
+		    place_object(otmp, u.ux, u.uy);
+		    if (!Blind) otmp->dknown = 1;
+		    stackobj(otmp);
+		    newsym(u.ux, u.uy);
+		}
+
+		break;
+
+	    case CANNON_TRAP:
+
+		seetrap(trap);
+
+		pline("CLICK! You have triggered a trap!");
+		pline("Suddenly, you're hit by an enormous cannonball!");
+		losehp(rnd(24)+ rnd( (monster_difficulty() * 2) + 1),"cannonball",KILLED_BY_AN);
+
+		break;
+
+	    case VENOM_SPRINKLER:
+
+		seetrap(trap);
+
+		if (!rn2(2)) {
+			int blindtime = rnd(25 + rnd(monster_difficulty() ) );
+			pline("You hear a splash, and something hits you right in the %s.", body_part(FACE));
+			u.ucreamed += blindtime;
+			make_blinded(Blinded + (long)blindtime, FALSE);
+
+		} else {
+			pline("You hear a splash, and are covered in acid!");
+			if (Acid_resistance && rn2(20)) {
+				pline("But it seems harmless.");
+			} else {
+				losehp(rnd(6)+ rnd( (monster_difficulty() / 3) + 1),"sprinkled acid venom",KILLED_BY_AN);
+				if(!rn2(3)) erode_armor(&youmonst, TRUE);
+			}
+		}
+
+		break;
+
+	    case FUMAROLE:
+
+		break;
+
 		 case GUILLOTINE_TRAP:
 		seetrap(trap);
 
@@ -8085,6 +8556,21 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SUMMON_UNDEAD_TRAP:
 		case FALLING_NASTYSTONE_TRAP:
 
+		case SPINED_BALL_TRAP:
+		case PENDULUM_TRAP:
+		case TURN_TABLE:
+		case SCENT_TRAP:
+		case BANANA_TRAP:
+		case FALLING_TUB_TRAP:
+		case ALARM:
+		case CALTROPS_TRAP:
+		case BLADE_WIRE:
+		case MAGNET_TRAP:
+		case SLINGSHOT_TRAP:
+		case CANNON_TRAP:
+		case VENOM_SPRINKLER:
+		case FUMAROLE:
+
 			break;
 
 		case LOUDSPEAKER:
@@ -9929,6 +10415,38 @@ struct trap *ttmp;
 }
 
 int
+disarm_spined_ball(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	    more_experienced(3,0);
+		    newexplevel();
+	cnv_trap_obj(MORNING_STAR, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_pendulum(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	    more_experienced(3,0);
+		    newexplevel();
+	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
 disarm_acid_trap(ttmp)
 struct trap *ttmp;
 {
@@ -10400,6 +10918,8 @@ boolean force;
 				return disarm_squeaky_board(ttmp);
 			case DART_TRAP:
 				return disarm_shooting_trap(ttmp, DART);
+			case SLINGSHOT_TRAP:
+				return disarm_shooting_trap(ttmp, ROCK);
 			case THROWING_STAR_TRAP:
 				return disarm_shooting_trap(ttmp, SHURIKEN);
 			case HEEL_TRAP:
@@ -10444,6 +10964,10 @@ boolean force;
 				return disarm_glyph_trap(ttmp, 2401);
 			case SCYTHING_BLADE:
 				return disarm_blade_trap(ttmp);
+			case SPINED_BALL_TRAP:
+				return disarm_spined_ball(ttmp);
+			case PENDULUM_TRAP:
+				return disarm_pendulum(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:
