@@ -850,6 +850,13 @@ spotless: clean
 	-$(DEL) $(DAT)\*.lev
 	-$(DEL) $(DAT)\data
 	-$(DEL) $(DAT)\dungeon
+	-$(DEL) $(DAT)\dungeon2
+	-$(DEL) $(DAT)\dungeon3
+	-$(DEL) $(DAT)\dungeon4
+	-$(DEL) $(DAT)\dungeon5
+	-$(DEL) $(DAT)\dungeon6
+	-$(DEL) $(DAT)\dungeon7
+	-$(DEL) $(DAT)\dungeon8
 	-$(DEL) $(DAT)\ttyoptions
 	-$(DEL) $(DAT)\guioptions
 	-$(DEL) $(DAT)\oracles
@@ -1652,10 +1659,40 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 $(DAT)\dungeon:	  utility.tag  $(DAT)\dungeon.def
 	-makedefs -e
 	dgn_comp $(DAT)\dungeon.pdf
+
+$(DAT)\dungeon2:	  utility.tag  $(DAT)\dungeon2.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon2.pdf
+
+$(DAT)\dungeon3:	  utility.tag  $(DAT)\dungeon3.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon3.pdf
+
+$(DAT)\dungeon4:	  utility.tag  $(DAT)\dungeon4.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon4.pdf
+
+$(DAT)\dungeon5:	  utility.tag  $(DAT)\dungeon5.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon5.pdf
+
+$(DAT)\dungeon6:	  utility.tag  $(DAT)\dungeon6.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon6.pdf
+
+$(DAT)\dungeon7:	  utility.tag  $(DAT)\dungeon7.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon7.pdf
+
+$(DAT)\dungeon8:	  utility.tag  $(DAT)\dungeon8.def
+	-makedefs -e
+	dgn_comp $(DAT)\dungeon8.pdf
 #
 # DLB stuff
 #
-$(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors $(DAT)\dungeon \
+$(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors \
+		$(DAT)\dungeon $(DAT)\dungeon2 $(DAT)\dungeon3 $(DAT)\dungeon4 \
+		$(DAT)\dungeon5 $(DAT)\dungeon6 $(DAT)\dungeon7 $(DAT)\dungeon8 \
 		$(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) data >$(DAT)\dlb.lst
 	$(ECHO) oracles >>$(DAT)\dlb.lst
@@ -1675,8 +1712,16 @@ endif
 	$(ECHO) license >>$(DAT)\dlb.lst
 	dlb_main cvCIf $(DAT) dlb.lst nhshare
 
-$(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\quest.dat sp_lev.tag
+$(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\dungeon2 $(DAT)\dungeon3 $(DAT)\dungeon4 \
+	$(DAT)\dungeon5 $(DAT)\dungeon6 $(DAT)\dungeon7 $(DAT)\dungeon8 $(DAT)\quest.dat sp_lev.tag
 	$(ECHO) dungeon > $(DAT)\dlb2.lst
+	$(ECHO) dungeon2 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon3 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon4 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon5 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon6 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon7 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon8 >>$(DAT)\dlb2.lst
 	$(ECHO) quest.dat >>$(DAT)\dlb2.lst
 	$(LS) $(DAT)\*.lev >>$(DAT)\dlb2.lst
 	dlb_main cvCIf $(DAT) dlb2.lst nhushare

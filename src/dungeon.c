@@ -10,6 +10,13 @@
 
 #define DUNGEON_AREA    FILE_AREA_UNSHARE
 #define DUNGEON_FILE	"dungeon"
+#define DUNGEON_FILE2	"dungeon2"
+#define DUNGEON_FILE3	"dungeon3"
+#define DUNGEON_FILE4	"dungeon4"
+#define DUNGEON_FILE5	"dungeon5"
+#define DUNGEON_FILE6	"dungeon6"
+#define DUNGEON_FILE7	"dungeon7"
+#define DUNGEON_FILE8	"dungeon8"
 
 #define X_START		"x-strt"
 #define X_LOCATE	"x-loca"
@@ -656,6 +663,22 @@ init_dungeons()
 	struct level_map *lev_map;
 	struct version_info vers_info;
 
+	int dungeonfileversion = 1;
+	if (!rn2(100)) dungeonfileversion = 2;
+	else if (!rn2(100)) dungeonfileversion = 3;
+	else if (!rn2(100)) dungeonfileversion = 4;
+	else if (!rn2(100)) dungeonfileversion = 5;
+	else if (!rn2(100)) dungeonfileversion = 6;
+	else if (!rn2(100)) dungeonfileversion = 7;
+	else if (!rn2(100)) dungeonfileversion = 8;
+
+	/* note by Amy: we now have several variations of the dungeon, which have either the quest entrances moved to Gehennom, 100% chance for special levels to exist, a bigger range of areas for special levels to appear in, or several of these at once. The chance of non-standard versions should be low though. */
+
+	/* 1 = normal, 2 = quests in Gehennom, 3 = all special levels exist, 4 = special levels can be everywhere, 5 = quests in Gehennom and all special levels exist, 6 = quests in Gehennom and special levels can be everywhere, 7 = all special levels exist and special levels can be everywhere, 8 = quests in Gehennom, all special levels exist and special levels can be everywhere */
+
+	/* In Soviet Russia, people HATE it if they can't get multiple ascension kits before even reaching the castle. They need the Monty Haul segment in the game with all the special levels because, well, resource management isn't taught in Communism. But, this isn't slashthem, it's slashthem extended, so they will have to contend with all the nasty special levels I added, too! Which will also have a 100% chance of existing! :D --Amy */
+	if (issoviet) dungeonfileversion = 3;
+
 	/* [ALI] Cope with being called more than once. The GTK interface
 	 * can currently do this, although it really should use popen().
 	 */
@@ -663,11 +686,11 @@ init_dungeons()
 
 	pd.n_levs = pd.n_brs = 0;
 
-	dgn_file = dlb_fopen_area(DUNGEON_AREA, DUNGEON_FILE, RDBMODE);
+	dgn_file = dlb_fopen_area(DUNGEON_AREA, (dungeonfileversion == 8) ? DUNGEON_FILE8 : (dungeonfileversion == 7) ? DUNGEON_FILE7 : (dungeonfileversion == 6) ? DUNGEON_FILE6 : (dungeonfileversion == 5) ? DUNGEON_FILE5 : (dungeonfileversion == 4) ? DUNGEON_FILE4 : (dungeonfileversion == 3) ? DUNGEON_FILE3 : (dungeonfileversion == 2) ? DUNGEON_FILE2 : DUNGEON_FILE, RDBMODE);
 	if (!dgn_file) {
 	    char tbuf[BUFSZ];
 	    Sprintf(tbuf, "Cannot open dungeon description - \"%s",
-		DUNGEON_FILE);
+		(dungeonfileversion == 8) ? DUNGEON_FILE8 : (dungeonfileversion == 7) ? DUNGEON_FILE7 : (dungeonfileversion == 6) ? DUNGEON_FILE6 : (dungeonfileversion == 5) ? DUNGEON_FILE5 : (dungeonfileversion == 4) ? DUNGEON_FILE4 : (dungeonfileversion == 3) ? DUNGEON_FILE3 : (dungeonfileversion == 2) ? DUNGEON_FILE2 : DUNGEON_FILE);
 #ifdef DLBRSRC /* using a resource from the executable */
 	    Strcat(tbuf, "\" resource!");
 #else /* using a file or DLB file */
@@ -698,6 +721,20 @@ init_dungeons()
 	 */
 	if (iflags.window_inited) clear_nhwindow(WIN_MAP);
 	if (!check_version(&vers_info, DUNGEON_FILE, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE2, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE3, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE4, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE5, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE6, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE7, TRUE))
+	    panic("Dungeon description not valid.");
+	if (!check_version(&vers_info, DUNGEON_FILE8, TRUE))
 	    panic("Dungeon description not valid.");
 
 	/*

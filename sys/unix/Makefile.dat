@@ -7,7 +7,7 @@
 
 VARDAT = data rumors quest.dat oracles options
 
-all:	$(VARDAT) spec_levs quest_levs dungeon
+all:	$(VARDAT) spec_levs quest_levs dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8
 
 ../util/makedefs:
 	(cd ../util ; make makedefs)
@@ -460,9 +460,31 @@ quest_levs: ../util/lev_comp \
 dungeon: dungeon.def ../util/makedefs ../util/dgn_comp
 	../util/makedefs -e
 	../util/dgn_comp dungeon.pdf
+dungeon2: dungeon2.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon2.pdf
+dungeon3: dungeon3.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon3.pdf
+dungeon4: dungeon4.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon4.pdf
+dungeon5: dungeon5.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon5.pdf
+dungeon6: dungeon6.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon6.pdf
+dungeon7: dungeon7.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon7.pdf
+dungeon8: dungeon8.def ../util/makedefs ../util/dgn_comp
+	../util/makedefs -e
+	../util/dgn_comp dungeon8.pdf
 
 spotless:
-	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
+	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon2 dungeon3 dungeon4 dungeon.pdf dungeon2.pdf dungeon3.pdf dungeon4.pdf
+	-rm -f dungeon5 dungeon6 dungeon7 dungeon8 dungeon5.pdf dungeon6.pdf dungeon7.pdf dungeon8.pdf
 	-rm -f nhshare nhushare x11tiles x11bigtiles x11big3dtiles beostiles
 	-rm -f x11tiles.map x11bigtiles.map x11big3dtiles.map
 	-rm -f gtkrc

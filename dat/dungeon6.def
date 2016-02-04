@@ -25,96 +25,87 @@
 DUNGEON:        "The Dungeons of Doom" "D" (40, 0)
 ALIGNMENT:      unaligned
 
-
 # Early levels, to the Oracle
 #   KMH -- The Gnomish Mines are an important source of essential
 #   items for low-level characters: food, armor, and tools.  Even a
 #   short stay in the mines pays off.  Slash moved the entrance
 #   deeper, penalizing many characters.  The balance patch restores
 #   the entrance to levels 2 to 4.
-BRANCH:		"The Gnomish Mines" @ (2, 3)
+BRANCH:		"The Gnomish Mines" @ (2, 38)
 
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
 #   This allows a weak character to plunge to the Oracle, then return
 #   to the Mines.
-RNDLEVEL:	"mall" "T" @ (5, 2) 75 6
+RNDLEVEL:	"mall" "T" @ (2, 38) 75 6
 LEVALIGN:	lawful
 LEVELDESC:	town
 #
 #   Oracle on levels 7 to 9.
-LEVEL:		"oracle" "O" @ (7, 3) 70
+LEVEL:		"oracle" "O" @ (2, 38) 70
 LEVALIGN:	neutral
-BRANCH:	"Sokoban" @ (8, 2) up -1
-BRANCH:	"Town" @ (10, 3) up -1
+BRANCH:	"Sokoban" @ (5, 35) up -1
+BRANCH:	"Town" @ (6, 34) up -1
 
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-RNDLEVEL:		"rats" "R" @ (10, 2) 20 3
-RNDLEVEL:	"kobold" "K" @ (11, 2) 20 6
-BRANCH: 	"Grund's Stronghold" @ (12, 2)
+RNDLEVEL:		"rats" "R" @ (2, 38) 20 3
+RNDLEVEL:	"kobold" "K" @ (2, 38) 20 6
+BRANCH: 	"Grund's Stronghold" @ (2, 38)
 
 
 # The rogue level (if required), on levels 15 to 19. The portal to one
 #   of the quest levels may also be on this level. The rogue level is not
 #   defined by default in Slash'EM. The dungeon is crowded enough already.
-%REINCARNATION LEVEL: "rogue" "U" @ (15, 5) 20
+%REINCARNATION LEVEL: "rogue" "U" @ (2, 38) 20
 
 
-# The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
-#   These levels should not be shared with other special levels
-#   or branches, else the quests may not be generated!
-#   But usually the game is smart enough to not place a branch on a level that already has a branch.
-BRANCH:	"The Quest" @ (15, 25) portal
-BRANCH:	"Lawful Quest" @ (15, 25) portal
-BRANCH:	"Neutral Quest" @ (15, 25) portal
-BRANCH:	"Chaotic Quest" @ (15, 25) portal
 
 
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
-BRANCH: 	"The Temple of Moloch" @ (29, 11)
-BRANCH: 	"The Giant Caverns" @ (29, 11)
-BRANCH:		"The Sunless Sea" @ (27, 13)
-BRANCH:		"The Spider Caves" @ (26, 14)
-BRANCH: 	"One-eyed Sam's Market" @ (22, 18) portal
-BRANCH: 	"The Lost Tomb" @ (21, 19)
-BRANCH: 	"The Wyrm Caves" @ (20, 20)
+BRANCH: 	"The Temple of Moloch" @ (2, 38)
+BRANCH: 	"The Giant Caverns" @ (2, 38)
+BRANCH:		"The Sunless Sea" @ (2, 38)
+BRANCH:		"The Spider Caves" @ (2, 38)
+BRANCH: 	"One-eyed Sam's Market" @ (2, 38) portal
+BRANCH: 	"The Lost Tomb" @ (2, 38)
+BRANCH: 	"The Wyrm Caves" @ (2, 38)
 
 #   And the levels...
-RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 50
-RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 9
+RNDLEVEL:		"nymph" "N" @ (2, 38) 25 5
+RNDLEVEL:	"bigrm" "B" @ (2, 38) 75 50
+RNDLEVEL:	"exmall" "Y" @ (2, 38) 75 9
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
 #   "Unused 'cause they suck"?
-RNDLEVEL:	"stor" "S" @ (19, 21) 30 9
+RNDLEVEL:	"stor" "S" @ (2, 38) 30 9
 #   Rounding out the bottom levels
-RNDLEVEL:		"guild" "G" @ (26, 14) 10 8
+RNDLEVEL:		"guild" "G" @ (2, 38) 10 8
 
 
 
 
-LEVEL:		"rndmaze" "Z" @ (5, 35) 30
-LEVEL:		"rndmazea" "Q" @ (5, 35) 30
-RNDLEVEL:	"intpla" "J" @ (5, 35) 30 5
-LEVEL:		"makemais" "C" @ (5, 35) 30
-LEVEL:		"makemase" "D" @ (5, 35) 30
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
-LEVEL:          "forge" "F" @ (5, 35) 20
-LEVEL:          "hitch" "H" @ (5, 35) 5
-LEVEL:		"compu" "P" @ (5, 35) 10 
-LEVEL:		"key" "L" @ (5, 35) 10
+LEVEL:		"rndmaze" "Z" @ (2, 38) 30
+LEVEL:		"rndmazea" "Q" @ (2, 38) 30
+RNDLEVEL:	"intpla" "J" @ (2, 38) 30 5
+LEVEL:		"makemais" "C" @ (2, 38) 30
+LEVEL:		"makemase" "D" @ (2, 38) 30
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 87
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 87
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 87
+LEVEL:          "forge" "F" @ (2, 38) 20
+LEVEL:          "hitch" "H" @ (2, 38) 5
+LEVEL:		"compu" "P" @ (2, 38) 10 
+LEVEL:		"key" "L" @ (2, 38) 10
 
 
 # The famous Fort Ludios...
-BRANCH:			"Fort Ludios" @ (23, 4) portal
+BRANCH:			"Fort Ludios" @ (2, 38) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
@@ -157,7 +148,7 @@ RNDLEVEL:          "valley" "V" @ (1, 0) 2
 RNDLEVEL:          "sanct" "none" @ (-1, 0) 2
 # Tower before wiz, please
 # Dr. Frankenstein's Lab
-BRANCH:         "Frankenstein's Lab" @ (3, 24) up
+BRANCH:         "Frankenstein's Lab" @ (2, 29) up
 # Half-way down
 LEVEL:          "wizard1" "none" @ (15, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
@@ -175,7 +166,16 @@ LEVEL:          "geryon" "R" @ (2, 29) 95
 RNDLEVEL:          "dispa" "S" @ (2, 29) 95 2
 RNDLEVEL:          "asmod" "A" @ (2, 29) 95 3
 RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
-BRANCH:         "Sheol" @ (3, 27) down
+BRANCH:         "Sheol" @ (2, 29) down
+
+# The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
+#   These levels should not be shared with other special levels
+#   or branches, else the quests may not be generated!
+#   But usually the game is smart enough to not place a branch on a level that already has a branch.
+BRANCH:	"The Quest" @ (1, 31) portal
+BRANCH:	"Lawful Quest" @ (1, 31) portal
+BRANCH:	"Neutral Quest" @ (1, 31) portal
+BRANCH:	"Chaotic Quest" @ (1, 31) portal
 
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87

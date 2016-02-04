@@ -68,6 +68,20 @@ static	const char	SCCS_Id[] = "@(#)makedefs.c\t3.4\t2002/02/03";
 #define RUMOR_FILE	"rumors"
 #define DGN_I_FILE	"dungeon.def"
 #define DGN_O_FILE	"dungeon.pdf"
+#define DGN_I_FILE2	"dungeon2.def"
+#define DGN_O_FILE2	"dungeon2.pdf"
+#define DGN_I_FILE3	"dungeon3.def"
+#define DGN_O_FILE3	"dungeon3.pdf"
+#define DGN_I_FILE4	"dungeon4.def"
+#define DGN_O_FILE4	"dungeon4.pdf"
+#define DGN_I_FILE5	"dungeon5.def"
+#define DGN_O_FILE5	"dungeon5.pdf"
+#define DGN_I_FILE6	"dungeon6.def"
+#define DGN_O_FILE6	"dungeon6.pdf"
+#define DGN_I_FILE7	"dungeon7.def"
+#define DGN_O_FILE7	"dungeon7.pdf"
+#define DGN_I_FILE8	"dungeon8.def"
+#define DGN_O_FILE8	"dungeon8.pdf"
 #define MON_STR_C	"monstr.c"
 #define QTXT_I_FILE	"quest.txt"
 #define QTXT_O_FILE	"quest.dat"
@@ -1460,6 +1474,293 @@ recheck:
 		} else {
 		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE2);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE2);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck2:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck2;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE2, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE3);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE3);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck3:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck3;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE3, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE4);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE4);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck4:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck4;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE4, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE5);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE5);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck5:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck5;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE5, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE6);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE6);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck6:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck6;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE6, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE7);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE7);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck7:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck7;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE7, rcnt);
+		    exit(EXIT_FAILURE);
+		}
+	    } else
+		(void) fputs(in_line,ofp);
+	}
+	Fclose(ifp);
+	Fclose(ofp);
+
+	Sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE8);
+	if (!(ifp = fopen(filename, RDTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	filename[0]='\0';
+#ifdef FILE_PREFIX
+	Strcat(filename, file_prefix);
+#endif
+	Sprintf(eos(filename), DGN_TEMPLATE, DGN_O_FILE8);
+	if (!(ofp = fopen(filename, WRTMODE))) {
+		perror(filename);
+		exit(EXIT_FAILURE);
+	}
+	Fprintf(ofp,Dont_Edit_Data);
+
+	while (fgets(in_line, sizeof in_line, ifp) != 0) {
+	    SpinCursor(3);
+
+	    rcnt++;
+	    if(in_line[0] == '#') continue;	/* discard comments */
+recheck8:
+	    if(in_line[0] == '%') {
+		int i = check_control(in_line);
+		if(i >= 0) {
+		    if(!deflist[i].true_or_false)  {
+			while (fgets(in_line, sizeof in_line, ifp) != 0)
+			    if(check_control(in_line) != i) goto recheck8;
+		    } else
+			(void) fputs(without_control(in_line),ofp);
+		} else {
+		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+			    in_line, DGN_I_FILE8, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else

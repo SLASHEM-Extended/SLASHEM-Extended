@@ -63,16 +63,6 @@ BRANCH: 	"Grund's Stronghold" @ (12, 2)
 %REINCARNATION LEVEL: "rogue" "U" @ (15, 5) 20
 
 
-# The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
-#   These levels should not be shared with other special levels
-#   or branches, else the quests may not be generated!
-#   But usually the game is smart enough to not place a branch on a level that already has a branch.
-BRANCH:	"The Quest" @ (15, 25) portal
-BRANCH:	"Lawful Quest" @ (15, 25) portal
-BRANCH:	"Neutral Quest" @ (15, 25) portal
-BRANCH:	"Chaotic Quest" @ (15, 25) portal
-
-
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
@@ -176,6 +166,15 @@ RNDLEVEL:          "dispa" "S" @ (2, 29) 95 2
 RNDLEVEL:          "asmod" "A" @ (2, 29) 95 3
 RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
 BRANCH:         "Sheol" @ (3, 27) down
+
+# The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
+#   These levels should not be shared with other special levels
+#   or branches, else the quests may not be generated!
+#   But usually the game is smart enough to not place a branch on a level that already has a branch.
+BRANCH:	"The Quest" @ (1, 31) portal
+BRANCH:	"Lawful Quest" @ (1, 31) portal
+BRANCH:	"Neutral Quest" @ (1, 31) portal
+BRANCH:	"Chaotic Quest" @ (1, 31) portal
 
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87

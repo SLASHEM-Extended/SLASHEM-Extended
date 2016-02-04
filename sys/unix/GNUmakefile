@@ -221,8 +221,8 @@ $(ALL_TAG): dat/%.tag: dat/%.des util/lev_comp
 	cd dat && ../util/lev_comp $(<F) && touch $(@F)
 AUTO_DAT += $(ALL_TAG)
 
-DAT_NHDAT = cmdhelp data dungeon gypsy.txt help hh history opthelp	\
-              options oracles quest.dat rumors wizhelp
+DAT_NHDAT = cmdhelp data dungeon dungeon2 dungeon3 dungeon4 gypsy.txt help hh history opthelp	\
+              dungeon5 dungeon6 dungeon7 dungeon8 options oracles quest.dat rumors wizhelp
 dat/nhdat: util/dlb $(DAT_NHDAT:%=dat/%) $(ALL_TAG)
 	cd dat && ../util/dlb cf nhdat $(DAT_NHDAT) *.lev
 AUTO_DAT += dat/nhdat
@@ -243,7 +243,36 @@ dat/dungeon: dat/dungeon.pdf util/dgn_comp
 	util/dgn_comp < $< > $@
 dat/dungeon.pdf: dat/dungeon.def util/makedefs
 	cd util && ./makedefs -e  # dat/dungeon.pdf
-AUTO_DAT += dat/dungeon dat/dungeon.pdf
+dat/dungeon2: dat/dungeon2.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon2.pdf: dat/dungeon2.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon2.pdf
+dat/dungeon3: dat/dungeon3.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon3.pdf: dat/dungeon3.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon3.pdf
+dat/dungeon4: dat/dungeon4.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon4.pdf: dat/dungeon4.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon4.pdf
+dat/dungeon5: dat/dungeon5.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon5.pdf: dat/dungeon5.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon5.pdf
+dat/dungeon6: dat/dungeon6.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon6.pdf: dat/dungeon6.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon6.pdf
+dat/dungeon7: dat/dungeon7.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon7.pdf: dat/dungeon7.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon7.pdf
+dat/dungeon8: dat/dungeon8.pdf util/dgn_comp
+	util/dgn_comp < $< > $@
+dat/dungeon8.pdf: dat/dungeon8.def util/makedefs
+	cd util && ./makedefs -e  # dat/dungeon8.pdf
+AUTO_DAT += dat/dungeon dat/dungeon.pdf dat/dungeon2 dat/dungeon2.pdf dat/dungeon3 dat/dungeon3.pdf dat/dungeon4 dat/dungeon4.pdf
+AUTO_DAT += dat/dungeon5 dat/dungeon5.pdf dat/dungeon6 dat/dungeon6.pdf dat/dungeon7 dat/dungeon7.pdf dat/dungeon8 dat/dungeon8.pdf
 
 ##### CLEANING UP #####
 
