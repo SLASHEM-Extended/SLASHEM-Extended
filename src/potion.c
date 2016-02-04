@@ -3841,6 +3841,11 @@ boolean your_fault;
 		        pline("%s looks unusually well!", Monnam(mon));
 		    mon->m_lev--;
 		    break;
+		case PM_FRUSTRATION:
+		    if (canseemon(mon))
+		        pline("%s looks like something terrible happened to him!", Monnam(mon));
+		    mon->m_lev--;
+		    break;
 		default:
 		    if (mon->data->msound == MS_NEMESIS && canseemon(mon)
 				    && your_fault) {

@@ -844,8 +844,17 @@ register int pm;
 		break;
 	    case PM_DEATH:
 	    case PM_PESTILENCE:
+	    case PM_FRUSTRATION:
 	    case PM_BLACK_HOLE_BLOB:
 	    case PM_FAMINE:
+	    case PM_GLUTTONY:
+	    case PM_LUST:
+	    case PM_ENVY:
+	    case PM_SLOTH:
+	    case PM_PRIDE:
+	    case PM_WRATH:
+	    case PM_GREED:
+	    case PM_DEPRESSION:
 		{ char buf[BUFSZ];
 		    pline("Eating that is instantly fatal.");
 		    Sprintf(buf, "unwisely ate the body of %s",
@@ -917,8 +926,17 @@ struct monst *mon;
 
 	case PM_DEATH:
 	case PM_PESTILENCE:
+	case PM_FRUSTRATION:
 	case PM_BLACK_HOLE_BLOB:
 	case PM_FAMINE:
+	case PM_GLUTTONY:
+	case PM_LUST:
+	case PM_ENVY:
+	case PM_SLOTH:
+	case PM_PRIDE:
+	case PM_WRATH:
+	case PM_GREED:
+	case PM_DEPRESSION:
 	    pline("Unfortunately, eating any of it is fatal.");
 	    done_in_by(mon);
 	    return TRUE;		/* lifesaved */
