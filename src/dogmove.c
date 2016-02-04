@@ -54,6 +54,8 @@ register struct monst *mon;
 			item2 = TRUE;
 			continue;
 		}
+		if (obj->mstartinvent) continue;
+
 		if (!obj->owornmask && obj != wep) return obj;
 	}
 	return (struct obj *)0;
