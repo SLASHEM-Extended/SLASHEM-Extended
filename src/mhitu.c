@@ -4091,7 +4091,7 @@ dopois:
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
+		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		
 		break;
 
@@ -6189,7 +6189,7 @@ do_stone:
 
 		if (objX && drain_item(objX)) {
 			Your("%s less effective.", aobjnam(objX, "seem"));
-		} else if (rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
+		} else if (objX && rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
 
 		break;
 
@@ -7214,7 +7214,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-		} else if (rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
+		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
 
             if (!rn2(3)) mdamageu(mtmp, (1 + dmgplus));
