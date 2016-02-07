@@ -5,6 +5,13 @@
 #ifndef FUNC_TAB_H
 #define FUNC_TAB_H
 
+#ifdef DYNKEY
+struct dkb_tab {
+        char bound_char;
+        char cmd_char;
+};
+#endif
+
 struct func_tab {
 	char f_char;
 	boolean	can_if_buried;
@@ -19,6 +26,7 @@ struct ext_func_tab {
 };
 
 extern struct ext_func_tab extcmdlist[];
+extern struct dkb_tab *dkblist;
 
 /*WAC for the menus */
 struct menu_tab {
