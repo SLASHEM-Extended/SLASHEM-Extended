@@ -5326,7 +5326,11 @@ static const struct func_tab cmdlist[] = {
 	{'W', FALSE, dowear},
 	{M('w'), FALSE, dowipe},
 	{'x', FALSE, doswapweapon},                    /* [Tom] */        
+#ifdef PUBLIC_SERVER
 	{'X', FALSE, dotwoweapon},
+#else
+	{'X', TRUE, enter_explore_mode},
+#endif
 #if 0
         {M('x'), TRUE, dovspell},                  /* Mike Stephenson */
 #endif
