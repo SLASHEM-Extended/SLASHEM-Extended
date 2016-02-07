@@ -217,20 +217,12 @@ static struct Bool_Opt
 #else
 	{"sanity_check", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
-#ifdef EXP_ON_BOTL
 	{"showexp", &flags.showexp, FALSE, SET_IN_GAME},
-#else
-	{"showexp", (boolean *)0, FALSE, SET_IN_FILE},
-#endif
 	{"showrace", &iflags.showrace, FALSE, SET_IN_GAME},
 #ifdef REALTIME_ON_BOTL
   {"showrealtime", &iflags.showrealtime, FALSE, SET_IN_GAME},
 #endif
-#ifdef SCORE_ON_BOTL
 	{"showscore", &flags.showscore, FALSE, SET_IN_GAME},
-#else
-	{"showscore", (boolean *)0, FALSE, SET_IN_FILE},
-#endif
 	{"showsym", &iflags.showsym, TRUE, SET_IN_GAME},
 /* WAC made the [ xx pts]  dmg display optional */
 #ifdef SHOW_DMG
@@ -2811,12 +2803,8 @@ goodfruit:
 			if (initial) return;
 
 			if ((boolopt[i].addr) == &flags.time
-#ifdef EXP_ON_BOTL
 			 || (boolopt[i].addr) == &flags.showexp
-#endif
-#ifdef SCORE_ON_BOTL
 			 || (boolopt[i].addr) == &flags.showscore
-#endif
 #ifdef SHOW_WEIGHT
 			 || (boolopt[i].addr) == &flags.showweight
 #endif

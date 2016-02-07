@@ -215,10 +215,8 @@ void FormatStatusString(char* text, int format)
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
 	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "  Chaotic" :
 			(u.ualign.type == A_NEUTRAL) ? "  Neutral" : "  Lawful");
-#ifdef SCORE_ON_BOTL
 	if (flags.showscore)
 	    Sprintf(nb = eos(nb), " S:%ld", botl_score());
-#endif
 	if( format==NHSTAT_LINES_4 ||
 		format==NHSTAT_LINES_2 ) strcat(text, "\r\n");
 
@@ -239,10 +237,8 @@ void FormatStatusString(char* text, int format)
 
 	if (Upolyd)
 		Sprintf(nb = eos(nb), " HD:%d", mons[u.umonnum].mlevel);
-#ifdef EXP_ON_BOTL
 	else if(flags.showexp)
 		Sprintf(nb = eos(nb), " Xp:%u/%-1ld", u.ulevel,u.uexp);
-#endif
 	else
 		Sprintf(nb = eos(nb), " Exp:%u", u.ulevel);
 	if( format==NHSTAT_LINES_4 ) strcat(text, "\r\n");

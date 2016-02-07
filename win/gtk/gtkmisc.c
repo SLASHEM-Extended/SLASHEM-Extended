@@ -44,9 +44,7 @@ static struct GTK_Option {
 #endif
     {NULL,},
     {"display experience points", "Yes", "No", "showexp"},
-#ifdef SCORE_ON_BOTL
     {"display score points", "Yes", "No", "showscore"},
-#endif
     {"display elapsed game time", "Yes", "No", "time"},
     {NULL,},
     {"automatically pick up objects", "Yes", "No", "autopickup"},

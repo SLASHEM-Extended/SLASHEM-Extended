@@ -429,7 +429,6 @@ update_val(attr_rec, new_value)
 	/* special case: exp can be enabled & disabled */
 	else if (attr_rec == &shown_stats[F_EXP]) {
 	    static boolean flagexp = TRUE;
-#ifdef EXP_ON_BOTL
 
 	    if (flags.showexp && !flagexp) {
 		set_name(attr_rec->w, shown_stats[F_EXP].name);
@@ -441,21 +440,11 @@ update_val(attr_rec, new_value)
 		flagexp = flags.showexp;
 	    }
 	    if (!flagexp) return;
-#else
-	    if (flagexp) {
-		set_name(attr_rec->w, "");
-		set_value(attr_rec->w, "");
-		flagexp = FALSE;
-	    }
-	    return;	/* don't show it at all */
-#endif
 	}
 
 	/* special case: score can be enabled & disabled */
 	else if (attr_rec == &shown_stats[F_SCORE]) {
 	    static boolean flagscore = TRUE;
-#ifdef SCORE_ON_BOTL
-
 	    if(flags.showscore && !flagscore) {
 		set_name(attr_rec->w, shown_stats[F_SCORE].name);
 		force_update = TRUE;
@@ -466,14 +455,6 @@ update_val(attr_rec, new_value)
 		flagscore = flags.showscore;
 	    }
 	    if(!flagscore) return;
-#else
-	    if (flagscore) {
-		set_name(attr_rec->w, "");
-		set_value(attr_rec->w, "");
-		flagscore = FALSE;
-	    }
-	    return;
-#endif
 	}
 
 	/* special case: weight can be enabled & disabled - clive */
@@ -665,18 +646,10 @@ update_fancy_status(wp)
 	    case F_LEVEL:	val = (long) (u.mtimedone ?
 						mons[u.umonnum].mlevel :
 						u.ulevel);		break;
-#ifdef EXP_ON_BOTL
 	    case F_EXP:		val = flags.showexp ? u.uexp : 0L; break;
-#else
-	    case F_EXP:		val = 0L; break;
-#endif
 	    case F_ALIGN:	val = (long) u.ualign.type; break;
 	    case F_TIME:	val = flags.time ? (long) moves : 0L;	break;
-#ifdef SCORE_ON_BOTL
 	    case F_SCORE:	val = flags.showscore ? botl_score():0L; break;
-#else
-	    case F_SCORE:	val = 0L; break;
-#endif
 #ifdef SHOW_WEIGHT
 	    case F_WEIGHT:	val = (long) (flags.showweight ?
 						inv_weight() + weight_cap() :

@@ -28,7 +28,7 @@ CPPFLAGS += -DDLB
 CPPFLAGS += -DDLBFILE=\"nhdat\"
 CPPFLAGS += -DDLBAREA=FILE_AREA_SHARE
 
-GAMELIBS = -lncurses
+GAMELIBS = -lcurses
 
 LOCAL_MK = local.mk
 -include $(LOCAL_MK)

@@ -668,7 +668,6 @@ void ghack_status_window_update_stats()
     lastAC = u.uac;
     gtk_label_set( GTK_LABEL( acLabel), buf);
     
-#ifdef EXP_ON_BOTL
     if (flags.showexp) {
 	sprintf(buf,"Exp:%ld", u.uexp);
 	if (lastExp < u.uexp && firstTime==FALSE) {
@@ -682,7 +681,6 @@ void ghack_status_window_update_stats()
 	lastExp = u.uexp;
 	gtk_label_set( GTK_LABEL( expLabel), buf);
    } else
-#endif
     {
 	gtk_label_set( GTK_LABEL( expLabel), "");
     }
@@ -693,17 +691,11 @@ void ghack_status_window_update_stats()
     }
     else
 	gtk_label_set( GTK_LABEL( timeLabel), "");
-#ifdef SCORE_ON_BOTL
     if (flags.showscore) {
 	sprintf(buf,"Score:%ld", botl_score());
 	gtk_label_set( GTK_LABEL( scoreLabel), buf);
     } else
 	gtk_label_set( GTK_LABEL( scoreLabel), "");
-#else
-    {
-	gtk_label_set( GTK_LABEL( scoreLabel), "");
-    }
-#endif
 
     /* See if their alignment has changed */
     if (lastAlignment != u.ualign.type) {

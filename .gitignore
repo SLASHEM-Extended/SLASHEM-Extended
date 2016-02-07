@@ -1,6 +1,14 @@
 # unix-y stuff, kinda
 *.o
 *.d
+*.swp
+*/*.swp
+*/*/*.swp
+*.diff
+*.patch
+*.orig
+*/*.orig
+*/*/*.orig
 dat/*.lev
 dat/*.tag
 dat/data

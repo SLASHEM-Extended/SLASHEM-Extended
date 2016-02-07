@@ -203,13 +203,11 @@ static void do_characteristics(struct TextWindow *win, int *len)
   add_str(win, " Ch:");
   add_val(win, st_CHA.cur, st_CHA.last, 1, 0);
 
-#ifdef SCORE_ON_BOTL
   if (flags.showscore)
   {
     add_str(win, " S:");
     add_val(win, (int)botl_score(), STAT_INVALID, 1, 0);
   }
-#endif
 
   add_str(win, (u.ualign.type == A_CHAOTIC) ? "  Chaotic" :
       (u.ualign.type == A_NEUTRAL) ? "  Neutral" : "  Lawful");
@@ -253,7 +251,6 @@ static void do_money_hp(struct TextWindow *win, int *len)
     add_str(win, " HD:");
     add_val(win, mons[u.umonnum].mlevel, STAT_INVALID, 0, 0);
   }
-#ifdef EXP_ON_BOTL
   else if (flags.showexp)
   {
     add_str(win, " Xp:");
@@ -261,7 +258,6 @@ static void do_money_hp(struct TextWindow *win, int *len)
     add_str(win, "/");
     add_val(win, (int)u.uexp, STAT_INVALID, 0, 0);
   }
-#endif
   else
   {
     add_str(win, " Exp:");

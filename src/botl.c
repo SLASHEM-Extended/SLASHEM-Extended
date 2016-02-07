@@ -279,7 +279,6 @@ max_rank_sz()
 #endif /* OVLB */
 #ifdef OVL0
 
-#ifdef SCORE_ON_BOTL
 long
 botl_score()
 {
@@ -298,7 +297,6 @@ botl_score()
 			  + (long)(deepest > 30 ? 10000 :
 				   deepest > 20 ? 1000*(deepest - 20) : 0);
 }
-#endif
 
 static char *
 botl_player()
@@ -400,10 +398,8 @@ bot1()
 		if (flags.hybridnastinator) Sprintf(nb = eos(nb), "Y");
 	}
 
-#ifdef SCORE_ON_BOTL
 	if (flags.showscore)
 	    Sprintf(nb = eos(nb), " S%ld", botl_score());
-#endif
 #ifdef DUMP_LOG
 }
 STATIC_OVL void
@@ -627,10 +623,8 @@ bot2str(char *newbot2)
 	if (Upolyd)
 		Sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
 						u.ulevel : mons[u.umonnum].mlevel));
-#ifdef EXP_ON_BOTL
 	/*else*/ if(flags.showexp && bot2_abbrev < 3) /* show this when polymorphed, too --Amy */
 		Sprintf(nb = eos(nb), " Xp%u/%-1ld", u.ulevel,u.uexp);
-#endif
 	else
 		Sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
@@ -687,11 +681,9 @@ bot2str(char *newbot2)
 #endif
 
 /* WAC further Up
-#ifdef SCORE_ON_BOTL
 	if (flags.showscore)
                 Sprintf(nb,"%c%d Score%ld", oc_syms[COIN_CLASS],
                    u.ugold, botl_score());
-#endif
 */
 	/* KMH -- changed to Lev */
 	if (Levitation)
@@ -962,11 +954,9 @@ boolean reconfig;
     *rv++ = reconfig ? "charisma" : (Sprintf(cha, "%d", ACURR(A_CHA)), cha);
     *rv++ = reconfig ? "alignment" : u.ualign.type == A_CHAOTIC ? "Chaotic" :
 	    u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful";
-#ifdef SCORE_ON_BOTL
     if (flags.showscore)
 	*rv++ = reconfig ? "score" :
 		(Sprintf(score, "%ld", botl_score()), score);
-#endif
     uhp = Upolyd ? u.mh : u.uhp;
     if (uhp < 0) uhp = 0;
     (void) describe_level(dlevel, TRUE);
@@ -988,10 +978,8 @@ boolean reconfig;
     Sprintf(elevel, "%u",
 	    Upolyd && u.ulycn != u.umonnum ? mons[u.umonnum].mlevel : u.ulevel);
     *rv++ = reconfig ? (Upolyd ? "hitdice" : "elevel") : elevel;
-#ifdef EXP_ON_BOTL
     if (flags.showexp)
 	*rv++ = reconfig ? "experience" : (Sprintf(expr, "%ld", u.uexp), expr);
-#endif
 #ifdef SHOW_WEIGHT
     if (flags.showweight) {
 	*rv++ = reconfig ? "weight" : (Sprintf(iweight,

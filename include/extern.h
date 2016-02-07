@@ -145,9 +145,7 @@ E char FDECL(borg_input, (void)); */
 E int FDECL(xlev_to_rank, (int));
 E int FDECL(title_to_mon, (const char *,int *,int *));
 E void NDECL(max_rank_sz);
-#ifdef SCORE_ON_BOTL
 E long NDECL(botl_score);
-#endif
 E int FDECL(describe_level, (char *, int));
 E const char *NDECL(rank);
 E const char *FDECL(rank_of, (int,SHORT_P,BOOLEAN_P));

@@ -496,8 +496,6 @@ typedef unsigned char	uchar;
 # define DOAGAIN '\001'	/* ^A, the "redo" key used in cmd.c and getline.c */
 #endif
 
-#define EXP_ON_BOTL	/* Show experience on bottom line */
-#define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
 /* #define BORG */            /* Works only under DOS */
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
 /* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */

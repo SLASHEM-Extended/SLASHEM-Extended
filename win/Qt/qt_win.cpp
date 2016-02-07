@@ -2593,11 +2593,9 @@ void NetHackQtStatusWindow::updateStats()
     Sprintf(buf, "/%d", u.uenmax);
     power.setLabel("Pow:",u.uen,buf);
     ac.setLabel("AC:",(long)u.uac);
-#ifdef EXP_ON_BOTL
     if (::flags.showexp) {
 	exp.setLabel("Exp:",(long)u.uexp);
     } else
-#endif
     {
 	exp.setLabel("");
     }
@@ -2614,11 +2612,9 @@ void NetHackQtStatusWindow::updateStats()
 
     if (::flags.time) time.setLabel("Time:",(long)moves);
     else time.setLabel("");
-#ifdef SCORE_ON_BOTL
     if (::flags.showscore) {
 	score.setLabel("Score:",(long)botl_score());
     } else
-#endif
     {
 	score.setLabel("");
     }
