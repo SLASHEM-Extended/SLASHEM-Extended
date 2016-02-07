@@ -213,14 +213,7 @@ E void NDECL(confdir);
 E int FDECL(isok, (int,int));
 E int FDECL(get_adjacent_loc, (const char *, const char *, XCHAR_P, XCHAR_P, coord *));
 E const char *FDECL(click_to_cmd, (int,int,int));
-#ifdef DYNKEY
-E int FDECL(map_dkb, (char, char));
-E char FDECL(keydesc2char, (char *));
-E char FDECL(greadchar, (boolean));
-#define readchar() greadchar(FALSE)
-#else
 E char NDECL(readchar);
-#endif
 #ifdef WIZARD
 E void NDECL(sanity_check);
 #endif
@@ -1652,9 +1645,6 @@ E void FDECL(set_duplicate_opt_detection, (int));
 E void FDECL(set_wc_option_mod_status, (unsigned long, int));
 E void FDECL(set_wc2_option_mod_status, (unsigned long, int));
 E void FDECL(set_option_mod_status, (const char *, int));
-#ifdef DYNKEY
-E void FDECL(add_dkb, (char *, boolean));
-#endif
 #ifdef MENU_COLOR
 E boolean FDECL(add_menu_coloring, (char *));
 #endif

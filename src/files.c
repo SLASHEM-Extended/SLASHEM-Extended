@@ -1979,12 +1979,6 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "AUTOPICKUP_EXCEPTION", 5)) {
 		add_autopickup_exception(bufp);
 #endif
-#ifdef DYNKEY
-        } else if (match_varname(buf, "MAPPING", 3)) {
-                add_dkb(bufp, FALSE);
-        } else if (match_varname(buf, "SWAP", 4)) {
-                add_dkb(bufp, TRUE);
-#endif
 #ifdef NOCWD_ASSUMPTIONS
 	} else if (match_varname(buf, "HACKDIR", 4)) {
 		adjust_prefix(bufp, HACKPREFIX);

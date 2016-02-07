@@ -4089,31 +4089,6 @@ free_autopickup_exceptions()
 }
 #endif /* AUTOPICKUP_EXCEPTIONS */
 
-#ifdef DYNKEY
-void
-add_dkb(bufp, swap)
-char *bufp;
-boolean swap;
-{
-        char *p;
-        char b, c;
-
-        if(!(p=index(bufp,' '))) {
-                raw_printf("DYNKEY MAP: bad mapping: %s.", bufp);
-                return;
-        }
-        *p++='\0';
-
-        b=keydesc2char(bufp);
-        c=keydesc2char(p);
-        if(b && c) {
-                if(!map_dkb(b, c) || (swap && !map_dkb(c, b)))
-                        raw_printf("DYNKEY MAP: map_dkb error");
-        } else
-                raw_printf("DYNKEY MAP: invalid key: %s.", b==0?bufp:p);
-}
-#endif /* DYNKEY */
-
 /* data for option_help() */
 static const char *opt_intro[] = {
 	"",

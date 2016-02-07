@@ -69,21 +69,7 @@ const char *goal;
     lock_mouse_cursor(TRUE);
 #endif
     for (;;) {
-#ifdef DYNKEY
-#include "func_tab.h"
-#endif
 	c = nh_poskey(&tx, &ty, &sidx);
-#ifdef DYNKEY
-        if(dkblist) {
-                register const struct dkb_tab *dlist;
-
-                for(dlist = dkblist; dlist->bound_char; dlist++) {
-                    if((c & 0xff) != (dlist->bound_char & 0xff)) continue;
-                    c=dlist->cmd_char;
-                    break;
-                }
-        }
-#endif
 	if (c == '\033') {
 	    cx = cy = -10;
 	    msg_given = TRUE;	/* force clear */
