@@ -5281,6 +5281,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"quit", "exit without saving current game", done2, IFBURIED, AUTOCOMPLETE},
 
 	{"apply", "apply (use) a tool (pick-axe, key, lamp...)", doapply, !IFBURIED},
+	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED},
 	{"attributes", "show your attributes (intrinsic ones included in debug or explore mode)", doattributes, IFBURIED},
 	{"close", "close a door", doclose, !IFBURIED},
 	{"cast", "zap (cast) a spell", docast, IFBURIED},
@@ -5415,6 +5416,7 @@ static struct ext_func_tab debug_extcmdlist[] = {
 #ifdef DEBUG_MIGRATING_MONS
 	{"migratemons", "migrate n random monsters", wiz_migrate_mons, IFBURIED, AUTOCOMPLETE},
 #endif
+	{"detectmons", "detect monsters", wiz_detect_monsters, IFBURIED, AUTOCOMPLETE},
 	{"monpolycontrol", "control monster polymorphs", wiz_mon_polycontrol, IFBURIED, AUTOCOMPLETE},
 	{"panic", "test panic routine (fatal to game)", wiz_panic, IFBURIED, AUTOCOMPLETE},
 	{"polyself", "polymorph self", wiz_polyself, IFBURIED, AUTOCOMPLETE},
@@ -5478,6 +5480,7 @@ init_bind_list(void)
 		bind_key(C('o'), "where" );
 		bind_key(C('v'), "levelport" );
 		bind_key(C('w'), "wish" );
+		bind_key(C('H'), "wiz_detect_mons" );
 	}
 #endif
 	bind_key(C('l'), "redraw" ); /* if number_pad is set */
@@ -5518,6 +5521,7 @@ init_bind_list(void)
 	/*       'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N' : move commands */
 	bind_key(M('j'), "jump" ); /* if number_pad is on */
 	bind_key('k',    "kick" ); /* if number_pad is on */
+	bind_key('K',	"vanquished" )  /* if number_pad is on */
 	bind_key('l',    "loot" ); /* if number_pad is on */
 	bind_key(M('l'), "loot" );
 	bind_key(M('m'), "monster" );
@@ -5546,6 +5550,7 @@ init_bind_list(void)
 	/*        'u', 'U' : go ne */
 	bind_key('u',    "untrap" ); /* if number_pad is on */
 	bind_key(M('u'), "untrap" );
+	bind_key(C('U'), "removeimarkers" );
 	bind_key('v',    "version" );
 	bind_key('V',    "history" );
 	bind_key(M('v'), "versionext" );
