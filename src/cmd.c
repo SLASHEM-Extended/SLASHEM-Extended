@@ -5521,7 +5521,7 @@ init_bind_list(void)
 	/*       'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N' : move commands */
 	bind_key(M('j'), "jump" ); /* if number_pad is on */
 	bind_key('k',    "kick" ); /* if number_pad is on */
-	bind_key('K',	"vanquished" )  /* if number_pad is on */
+	bind_key('K',	"vanquished" );  /* if number_pad is on */
 	bind_key('l',    "loot" ); /* if number_pad is on */
 	bind_key(M('l'), "loot" );
 	bind_key(M('m'), "monster" );
