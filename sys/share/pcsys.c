@@ -74,7 +74,7 @@ static const char *COMSPEC =
 
 #define getcomspec() nh_getenv(COMSPEC)
 
-# ifdef SHELL
+# ifndef PUBLIC_SERVER
 int
 dosh()
 {
@@ -130,7 +130,7 @@ dosh()
 		pline("Can't find %s.",COMSPEC);
 	return 0;
 }
-# endif /* SHELL */
+# endif /* PUBLIC_SERVER */
 
 # ifdef MFLOPPY
 

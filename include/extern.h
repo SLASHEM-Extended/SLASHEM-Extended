@@ -2,6 +2,8 @@
 /* Copyright (c) Steve Creps, 1988.				  */
 /* NetHack may be freely redistributed.  See license for details. */
 
+
+#include "config.h"
 #ifndef EXTERN_H
 #define EXTERN_H
 
@@ -193,10 +195,8 @@ E char NDECL(pgetchar);
 E void FDECL(pushch, (CHAR_P));
 E void FDECL(savech, (CHAR_P));
 #endif
-#ifdef WIZARD
-E void NDECL(add_debug_extended_commands);
-#endif /* WIZARD */
 E void FDECL(rhack, (char *));
+E void NDECL(dokeylist);
 E int NDECL(doextlist);
 E int NDECL(extcmd_via_menu);
 E void FDECL(enlightenment, (int));
@@ -217,6 +217,13 @@ E char NDECL(readchar);
 #ifdef WIZARD
 E void NDECL(sanity_check);
 #endif
+E void NDECL(commands_init);
+E char* FDECL(stripspace, (char*));
+E void FDECL(parsebindings, (char*));
+E void FDECL(parseautocomplete, (char*,boolean));
+E char FDECL(txt2key, (char*));
+E char* FDECL(key2txt, (char, char*));
+E char* FDECL(str2txt, (char*, char*));
 E char FDECL(yn_function, (const char *, const char *, CHAR_P));
 
 /* ### dbridge.c ### */
@@ -2437,10 +2444,10 @@ E void FDECL(regularize, (char *));
 # if defined(TIMED_DELAY) && !defined(msleep) && defined(SYSV)
 E void FDECL(msleep, (unsigned));
 # endif
-# ifdef SHELL
+# ifndef PUBLIC_SERVER
 E int NDECL(dosh);
-# endif /* SHELL */
-# if defined(SHELL) || defined(DEF_PAGER) || defined(DEF_MAILREADER)
+# endif /* PUBLIC_SERVER */
+# if !defined(PUBLIC_SERVER) || defined(DEF_PAGER) || defined(DEF_MAILREADER)
 E int FDECL(child, (int));
 # endif
 #ifdef FILE_AREAS
@@ -2588,14 +2595,14 @@ E boolean FDECL(file_is_stmlf, (int));
 E int FDECL(vms_define, (const char *,const char *,int));
 E int FDECL(vms_putenv, (const char *));
 E char *NDECL(verify_termcap);
-# if defined(CHDIR) || defined(SHELL) || defined(SECURE)
+# if defined(CHDIR) || !defined(PUBLIC_SERVER) || defined(SECURE)
 E void NDECL(privoff);
 E void NDECL(privon);
 # endif
-# ifdef SHELL
+# ifndef PUBLIC_SERVER
 E int NDECL(dosh);
 # endif
-# if defined(SHELL) || defined(MAIL)
+# if !defined(PUBLIC_SERVER) || defined(MAIL)
 E int FDECL(vms_doshell, (const char *,BOOLEAN_P));
 # endif
 # ifdef SUSPEND

@@ -191,9 +191,9 @@
 
 
 /* ### pcsys.c ### */
-#ifdef SHELL
+#ifndef PUBLIC_SERVER
 #define dosh()       dosh_()
-#endif /* SHELL */
+#endif /* PUBLIC_SERVER */
 
 
 /* ### pickup.c ### */

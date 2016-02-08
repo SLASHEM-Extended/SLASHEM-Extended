@@ -1762,11 +1762,14 @@ static const char *help_menu_items[] = {
 /* 4*/	"Info on what a given key does.",
 /* 5*/	"List of game options.",
 /* 6*/	"Longer explanation of game options.",
-/* 7*/	"List of extended commands.",
-/* 8*/	"The NetHack license.",
+/* 7*/	"Full list of keyboard commands.",
+/* 8*/	"List of extended commands.",
+/* 9*/  "The NetHack license.",
+#if 0
 #ifndef MAC
 /*WAC Add access to txt guidebook*/
 /* 9*/  "The Slash'EM Guidebook.",
+#endif
 #endif
 #ifdef PORT_HELP
 	"%s-specific help and commands.",
@@ -1854,15 +1857,18 @@ dohelp()
 			case  6:  display_file_area(NH_OPTIONAREA,
 				    NH_OPTIONFILE, TRUE);
 				  break;
-			case  7:  (void) doextlist();  break;
-			case  8:  display_file_area(NH_LICENSE_AREA,
+			case  7:   dokeylist();  break;
+			case  8:  (void) doextlist();  break;
+			case  9:  display_file_area(NH_LICENSE_AREA,
 				    NH_LICENSE, TRUE);
 				  break;
+#if 0
 #ifndef MAC
 /*WAC add guidebook.*/
                         case  GUIDEBOOK_SLOT:  display_file_area(NH_GUIDEBOOK_AREA,
 				    NH_GUIDEBOOK, TRUE);
 				  break;
+#endif
 #endif
 #ifdef PORT_HELP
 			case PORT_HELP_ID:  port_help();  break;

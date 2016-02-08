@@ -273,6 +273,25 @@ E char const *sdir;
 E const char sdir[], ndir[];
 #endif
 E const schar xdir[], ydir[], zdir[];
+E char misc_cmds[];
+
+#define DORUSH			misc_cmds[0]
+#define DORUN			misc_cmds[1]
+#define DOFORCEFIGHT		misc_cmds[2]
+#define DONOPICKUP		misc_cmds[3]
+#define DORUN_NOPICKUP		misc_cmds[4]
+#define DOESCAPE		misc_cmds[5]
+#ifdef REDO			/* JDS: moved from config.h */
+# undef  DOAGAIN /* remove previous definition from config.h */
+# define DOAGAIN		misc_cmds[6]
+#endif
+
+/* the number of miscellaneous commands */
+#ifdef REDO
+# define MISC_CMD_COUNT		7
+#else
+# define MISC_CMD_COUNT		6
+#endif
 
 E NEARDATA schar tbx, tby;		/* set in mthrowu.c */
 

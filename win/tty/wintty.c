@@ -1223,7 +1223,7 @@ tty_askname()
 	ct = 0;
 	while((c = tty_nhgetch()) != '\n') {
 		if(c == EOF) error("End of input\n");
-		if (c == '\033') { ct = 0; break; }  /* continue outer loop */
+		if (c == DOESCAPE) { ct = 0; break; }  /* continue outer loop */
 #if defined(WIN32CON)
 		if (c == '\003') bail("^C abort.\n");
 #endif
@@ -2065,7 +2065,7 @@ struct WinDesc *cw;
 	    tty_curs(window, 1, n);
 	    cl_end();
 	    dmore(cw, quitchars);
-	    if (morc == '\033') {
+	    if (morc == DOESCAPE) {
 		cw->flags |= WIN_CANCELLED;
 		break;
 	    }
@@ -2101,7 +2101,7 @@ struct WinDesc *cw;
 		 (cw->type == NHW_TEXT) ? (int) ttyDisplay->rows - 1 : n);
 	cl_end();
 	dmore(cw, quitchars);
-	if (morc == '\033')
+	if (morc == DOESCAPE)
 	    cw->flags |= WIN_CANCELLED;
     }
 }
@@ -2907,7 +2907,7 @@ const char *mesg;
     wins[WIN_MESSAGE]->flags &= ~WIN_CANCELLED;
     ttyDisplay->dismiss_more = 0;
 
-    return ((how == PICK_ONE && morc == let) || morc == '\033') ? morc : '\0';
+    return ((how == PICK_ONE && morc == let) || morc == DOESCAPE) ? morc : '\0';
 }
 
 void
@@ -3249,7 +3249,7 @@ tty_nhgetch()
 #else
     i = tgetch();
 #endif
-    if (!i) i = '\033'; /* map NUL to ESC since nethack doesn't expect NUL */
+    if (!i) i = DOESCAPE; /* map NUL to ESC since nethack doesn't expect NUL */
     if (ttyDisplay && ttyDisplay->toplin == 1)
 	ttyDisplay->toplin = 2;
     return i;
@@ -3280,7 +3280,7 @@ tty_nh_poskey(x, y, mod)
 	    wins[WIN_MESSAGE]->flags &= ~WIN_STOP;
     i = ntposkey(x, y, mod);
     if (!i && mod && *mod == 0)
-    	i = '\033'; /* map NUL to ESC since nethack doesn't expect NUL */
+    	i = DOESCAPE; /* map NUL to ESC since nethack doesn't expect NUL */
     if (ttyDisplay && ttyDisplay->toplin == 1)
 		ttyDisplay->toplin = 2;
     return i;

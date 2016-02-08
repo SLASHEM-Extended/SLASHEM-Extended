@@ -7,8 +7,7 @@
 *.diff
 *.patch
 *.orig
-*/*.orig
-*/*/*.orig
+*.rej
 dat/*.lev
 dat/*.tag
 dat/data
@@ -49,7 +48,7 @@ src/Sysunix
 src/config.h-t
 src/hack.h-t
 src/monstr.c
-src/slashem
+src/slex
 src/vis_tab.c
 util/dgn_comp
 util/dgn_comp.c

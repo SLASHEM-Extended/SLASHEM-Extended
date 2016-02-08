@@ -456,7 +456,13 @@ typedef unsigned char	uchar;
 #ifdef TTY_GRAPHICS
 # define MENU_COLOR
 #endif
-#define QWERTZ		/* qwertz_layout */
+
+/* This probably conflicts with the key rebinding patch, as it uses the
+ * old framework for commands.  The relevant code and the define will be
+ * phased out at some point, and the option will be re-enabled using the
+ * key framework provided by the key rebinding patch
+ */
+//#define QWERTZ		/* qwertz_layout */
 
 #if defined(UNIX)
 #define USE_REGEX_MATCH

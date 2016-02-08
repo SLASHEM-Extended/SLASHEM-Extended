@@ -1455,9 +1455,7 @@ boolean tinitial, tfrom_file;
 	}
 
 	/* strip leading and trailing white space */
-	while (isspace((int)*opts)) opts++;
-	op = eos(opts);
-	while (--op >= opts && isspace((int)*op)) *op = '\0';
+	opts = stripspace(opts);
 
 	if (!*opts) return;
 	negated = FALSE;

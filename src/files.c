@@ -1979,6 +1979,10 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "AUTOPICKUP_EXCEPTION", 5)) {
 		add_autopickup_exception(bufp);
 #endif
+	} else if (match_varname(buf, "BINDINGS", 4)) {
+		parsebindings(bufp);
+	} else if (match_varname(buf, "AUTOCOMPLETE", 5)) {
+		parseautocomplete(bufp, TRUE);
 #ifdef NOCWD_ASSUMPTIONS
 	} else if (match_varname(buf, "HACKDIR", 4)) {
 		adjust_prefix(bufp, HACKPREFIX);

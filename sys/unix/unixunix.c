@@ -316,7 +316,7 @@ unsigned msec;				/* milliseconds */
 }
 #endif /* TIMED_DELAY for SYSV */
 
-#ifdef SHELL
+#ifndef PUBLIC_SERVER
 int
 dosh()
 {
@@ -331,7 +331,7 @@ dosh()
 	}
 	return 0;
 }
-#endif /* SHELL */
+#endif /* PUBLIC_SERVER */
 
 #if defined(SHELL) || defined(DEF_PAGER) || defined(DEF_MAILREADER)
 int
