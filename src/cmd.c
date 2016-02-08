@@ -5231,10 +5231,10 @@ int final;
 # else
 #  define M(c)		((c) - 128)
 # endif /* NHSTDC */
+#endif
 #define ISMETA(c) (((c) & 0x80) != 0)
 #define UNMETA(c) ((c) & 0x7f)
 
-#endif
 #ifndef C
 #define C(c)		(0x1f & (c))
 #endif
