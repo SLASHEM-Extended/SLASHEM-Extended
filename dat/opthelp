@@ -31,6 +31,7 @@ pickup_thrown  autopickup things you threw                        [TRUE]
 prayconfirm    use confirmation prompt when #pray command issued  [TRUE]
 pushweapon     when wielding a new weapon, put your previously
                wielded weapon into the secondary weapon slot      [FALSE]
+qwertz_layout  swap the y and z keys                              [FALSE]
 rawio          allow the use of raw I/O                           [FALSE]
 rest_on_space  count the space bar as a rest character            [FALSE]
 safe_pet       prevent you from (knowingly) attacking your pet(s) [TRUE]
@@ -101,9 +102,6 @@ timed_delay    on unix and VMS, use a timer instead of sending    [TRUE]
 
 Boolean options if KEEP_SAVE was set at compile time:
 keep_savefile  keep save file after restore                       [FALSE]
-
-Boolean option if QWERTZ was set at compile time:
-qwertz_layout  swap the y and z keys                              [FALSE]
 
 Boolean option if USE_TILES was set at compile time (MSDOS protected mode only):
 preload_tiles  control whether tiles get pre-loaded into RAM at the

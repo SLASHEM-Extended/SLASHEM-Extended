@@ -62,8 +62,7 @@ b j n   1 2 3           g<dir>:   run in direction <dir> until something
                                     case means the Control key, not a caret)
  >  down                m<dir>:   move without picking up objects
                         F<dir>:   fight even if you don't sense a monster
-                With the qwertz_layout option, the y and z keys are swapped
-                (this requires option QWERTZ to be set at compile-time).
+                With the qwertz_layout option, the y and z keys are swapped.
                 If the number_pad option is set, the number keys move instead.
                 Depending on the platform, Shift number (on the numberpad),
                 Meta number, or Alt number will invoke the YUHJKLBN commands.

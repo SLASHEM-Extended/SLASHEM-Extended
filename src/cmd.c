@@ -5486,7 +5486,11 @@ init_bind_list(void)
 	bind_key(C('t'), "teleport" );
 	bind_key(C('x'), "attributes" );
 #ifdef SUSPEND
-	bind_key(C('z'), "suspend" );
+	if (iflags.qwertz_layout) {
+		bind_key(C('y'), "suspend" );
+	} else {
+		bind_key(C('z'), "suspend" );
+	}
 #endif
 	bind_key('a',    "apply" );
 	bind_key('A',    "takeoffall" );
@@ -5553,10 +5557,19 @@ init_bind_list(void)
 	/*bind_key('X',    "explore_mode" );*/
 	/*        'y', 'Y' : go nw */
 #ifdef STICKY_COMMAND
-	bind_key(M('y'), "sticky" );
+	if (iflags.qwertz_layout) {
+		bind_key(M('z'), "sticky" );
+	} else {
+		bind_key(M('y'), "sticky" );
+	}
 #endif /* STICKY_COMMAND */
-	bind_key('z',    "zap" );
-	bind_key('Z',    "cast" );
+	if (iflags.qwertz_layout) {
+		bind_key('y',	"zap" );
+		bind_key('Y',	"cast" );
+	} else {
+		bind_key('z',    "zap" );
+		bind_key('Z',    "cast" );
+	}
 	bind_key('<',    "up" );
 	bind_key('>',    "down" );
 	bind_key('/',    "whatis" );
@@ -6414,19 +6427,9 @@ register char *cmd;
 	/* handle bound commands */
 	} else {
 	    const struct key_tab *keytab = &cmdlist[(unsigned char)*cmd];
-#ifdef QWERTZ
-            unsigned char cmdchar = *cmd & 0xff;
-#endif
 	    if (keytab->bind_cmd != NULL) {
-#ifdef QWERTZ
-                if (C(cmdchar) == C('y') && iflags.qwertz_layout == TRUE)
-                    cmdchar += 'z' - 'y';
-
-                if (cmdchar != (tlist->f_char & 0xff)) continue;
-#else
 		struct ext_func_tab *extcmd = keytab->bind_cmd;
 		int res, NDECL((*func));		
-#endif
 		if (u.uburied && !extcmd->can_if_buried) {
 		    You_cant("do that while you are buried!");
 		    res = 0;
