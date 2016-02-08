@@ -290,6 +290,7 @@ struct instance_flags {
 	boolean lan_mail_fetched; /* mail is awaiting display */
 #endif
 	boolean death_expl;	/* prompt for explore mode at death */
+	boolean quiver_fired;   /* quiver with f command */
 /*
  * Window capability support.
  */

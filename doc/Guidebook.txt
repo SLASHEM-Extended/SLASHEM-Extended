@@ -2834,6 +2834,10 @@
             This  option  can be  used to swap the y and z keys.
             This is useful for some key-board layouts.
 
+          quiver_fired
+            Using the 'f' (fire) command when nothing is quivered, prompts
+            for ammunition to quiver, then fires it (default off).
+
           race
             Selects your race (for example,  ``race:human'').   Default  is
 

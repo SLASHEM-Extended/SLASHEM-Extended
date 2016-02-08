@@ -31,6 +31,9 @@ pickup_thrown  autopickup things you threw                        [TRUE]
 prayconfirm    use confirmation prompt when #pray command issued  [TRUE]
 pushweapon     when wielding a new weapon, put your previously
                wielded weapon into the secondary weapon slot      [FALSE]
+quiver_fired   when using the f (fire) command and no ammunition
+               is quivered, prompt for ammunition to quiver, then 
+               fire it.                                           [FALSE]
 qwertz_layout  swap the y and z keys                              [FALSE]
 rawio          allow the use of raw I/O                           [FALSE]
 rest_on_space  count the space bar as a rest character            [FALSE]
