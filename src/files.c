@@ -2045,6 +2045,20 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "NAME", 4)) {
 	    (void) strncpy(plname, bufp, PL_NSIZ-1);
 	    plnamesuffix();
+	} else if (match_varname(buf, "MSGTYPE", 7)) {
+	    char pattern[256];
+	    char msgtype[11];
+	    if (sscanf(bufp, "%10s \"%255[^\"]\"", msgtype, pattern) == 2) {
+		int typ = MSGTYP_NORMAL;
+		if (!strcasecmp("norep", msgtype)) typ = MSGTYP_NOREP;
+		else if (!strcasecmp("hide", msgtype)) typ = MSGTYP_NOSHOW;
+		else if (!strcasecmp("noshow", msgtype)) typ = MSGTYP_NOSHOW;
+		else if (!strcasecmp("more", msgtype)) typ = MSGTYP_STOP;
+		else if (!strcasecmp("stop", msgtype)) typ = MSGTYP_STOP;
+		if (typ != MSGTYP_NORMAL) {
+		    msgpline_add(typ, pattern);
+		}
+	    }
 	} else if (match_varname(buf, "ROLE", 4) ||
 		   match_varname(buf, "CHARACTER", 4)) {
 	    if ((len = str2role(bufp)) >= 0)

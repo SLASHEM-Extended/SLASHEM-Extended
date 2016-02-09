@@ -1334,6 +1334,7 @@ freedynamicdata()
 	unload_qtlist();
 	free_invbuf();	/* let_to_name (invent.c) */
 	free_youbuf();	/* You_buf,&c (pline.c) */
+	msgpline_free();
 #ifdef MENU_COLOR
         free_menu_coloring();
 #endif
