@@ -7,6 +7,11 @@
 #define UNIXCONF_H
 
 
+/* Need this to automatically test for BSD */
+#if (defined(__unix__) || defined(unix)) && !defined(USG)
+#include <sys/param.h>
+#endif
+
 /*
  * Some include files are in a different place under SYSV
  *	BSD		   SYSV
@@ -38,7 +43,9 @@
 #define NETWORK		/* if running on a networked system */
 			/* e.g. Suns sharing a playground through NFS */
 /* #define SUNOS4 */	/* SunOS 4.x */
+#if !defined(BSD)
 #define LINUX		/* Another Unix clone */
+#endif
 /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
 /* #define GENIX */	/* Yet Another Unix Clone */
 /* #define HISX */	/* Bull Unix for XPS Machines */
