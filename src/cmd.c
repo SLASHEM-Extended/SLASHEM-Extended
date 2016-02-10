@@ -5401,6 +5401,9 @@ struct ext_func_tab extcmdlist[] = {
 	{(char *)0, (char *)0, donull, TRUE}, /* #identify */
 	{(char *)0, (char *)0, donull, TRUE}, /* #levelport */
 	{(char *)0, (char *)0, donull, TRUE}, /* #wish */
+	{(char *)0, (char *)0, donull, TRUE}, /* #gainac */
+	{(char *)0, (char *)0, donull, TRUE}, /* #gainlevel */
+	{(char *)0, (char *)0, donull, TRUE}, /* #iddqd */
 	{(char *)0, (char *)0, donull, TRUE}, /* #where */
 #endif
 	{(char *)0, (char *)0, donull, TRUE}	/* sentinel */
@@ -5437,6 +5440,9 @@ static struct ext_func_tab debug_extcmdlist[] = {
 	{"identify", "identify items in pack", wiz_identify, IFBURIED},
 	{"levelport", "to trans-level teleport", wiz_level_tele, IFBURIED},
 	{"wish", "make wish", wiz_wish, IFBURIED},
+	{"gainac", "gain ac", wiz_gain_ac, IFBURIED},
+	{"gainlevel", "gain level", wiz_gain_level, IFBURIED},
+	{"iddqd", "become invulnerable", wiz_toggle_invulnerability, IFBURIED},
 	{"where", "tell locations of special levels", wiz_where, IFBURIED},
 	{(char *)0, (char *)0, donull, IFBURIED}
 
@@ -5480,7 +5486,10 @@ init_bind_list(void)
 		bind_key(C('o'), "where" );
 		bind_key(C('v'), "levelport" );
 		bind_key(C('w'), "wish" );
-		bind_key(C('H'), "wiz_detect_mons" );
+		bind_key(C('h'), "detectmons" );
+		bind_key(C('c'), "gainac" );
+		bind_key(C('j'), "gainlevel" );
+		bind_key(C('n'), "iddqd" );
 	}
 #endif
 	bind_key(C('l'), "redraw" ); /* if number_pad is set */
@@ -5488,6 +5497,9 @@ init_bind_list(void)
 	bind_key(C('r'), "redraw" );
 	bind_key(C('t'), "teleport" );
 	bind_key(C('x'), "attributes" );
+	bind_key(C('y'), "youpoly" );
+	bind_key(C('b'), "borrow" );
+	bind_key(C('s'), "save" );
 #ifdef SUSPEND
 	if (iflags.qwertz_layout) {
 		bind_key(C('y'), "suspend" );
@@ -5499,6 +5511,7 @@ init_bind_list(void)
 	bind_key('A',    "takeoffall" );
 	bind_key(M('a'), "adjust" );
 	/*       'b', 'B' : go sw */
+	bind_key(M('b'), "borrow" );
 	bind_key('c',    "close" );
 	bind_key('C',    "call" );
 	bind_key(M('c'), "chat" );
@@ -5546,7 +5559,7 @@ init_bind_list(void)
 	bind_key(M('s'), "sit" );
 	bind_key('t',    "throw" );
 	bind_key('T',    "takeoff" );
-	bind_key(M('t'), "turn" );
+	bind_key(M('t'), "technique" );
 	/*        'u', 'U' : go ne */
 	bind_key('u',    "untrap" ); /* if number_pad is on */
 	bind_key(M('u'), "untrap" );
