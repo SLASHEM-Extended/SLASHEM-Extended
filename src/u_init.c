@@ -15905,7 +15905,7 @@ u_init()
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = (NUMMONS + rnd(10000));
+		starlitmonster = (NUMMONS + rnd(MISSINGNORANGE));
 		starlitattempts++;
 	}
 
@@ -24992,7 +24992,7 @@ alter_reality()
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = (NUMMONS + rnd(10000));
+		starlitmonster = (NUMMONS + rnd(MISSINGNORANGE));
 		starlitattempts++;
 	}
 

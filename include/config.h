@@ -537,6 +537,15 @@ typedef unsigned char	uchar;
 
 #define DUMPMSGS 20
 
+/* Missingno initialization range, also used in u_init.c and some other places. This determines how many monster records
+ * past the end of the monster array will be read, and defaults to 10000 which works on Windows and the public server but
+ * apparently not on a local Unix or BSD system. I would guess that it all depends on memory allocation. Therefore, I made
+ * it configurable. If your compiled game sometimes crashes with a segfault on startup, consider setting this to a lower
+ * value. Don't set it too low though or else the missingno will not be very random at all; I recommend trying a value of
+ * 2000 and if that fixes the crash, leave it at that value. Only if the crash reappears, consider going to 1000 or
+ * even 500. --Amy */
+#define MISSINGNORANGE 10000
+
 /* End of Section 5 */
 
 #define BONES_POOL /* Multiple bones files per level */ 
