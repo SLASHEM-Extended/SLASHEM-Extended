@@ -59,6 +59,7 @@ util/lev_comp
 util/lev_comp.c
 util/lev_lex.c
 util/lev_yacc.c
+util/recover
 util/makedefs
 
 # the build system itself
