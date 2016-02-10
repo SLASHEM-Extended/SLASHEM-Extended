@@ -908,6 +908,7 @@ moveloop()
 
 			    monstermoves++;
 			    moves++;
+			    nh_timeout();
 
 			}
 
@@ -915,6 +916,7 @@ moveloop()
 
 			    monstermoves++;
 			    moves++;
+			    nh_timeout();
 
 			}
 
@@ -924,12 +926,14 @@ moveloop()
 
 			    monstermoves++;
 			    moves++;
+			    nh_timeout();
 
 				veryfasttime = TimeGoesByFaster / 5000;
 				if (veryfasttime) {
 
 					moves += veryfasttime;
 					monstermoves += veryfasttime;
+					nh_timeout();
 
 				}
 
