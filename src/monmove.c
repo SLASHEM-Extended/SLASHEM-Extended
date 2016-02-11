@@ -656,6 +656,45 @@ register struct monst *mtmp;
 				if (!rn2(100)) { /* evil patch idea by jonadab: 1% chance of causing amnesia */
 					forget(1 + rn2(5));
 				}
+				/* evil patch idea by Amy: chance of causing other adverse effects, like ToME eldritch horror */
+				if (!rn2(100)) {
+					losexp("eldritch life force drain", FALSE, TRUE);
+				}
+				if (!rn2(100)) {
+					make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+					make_confused(HConfusion + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+					pline("You're confused!");
+				}
+				if (!rn2(100)) {
+					adjattrib(A_INT, -1, 1);
+					adjattrib(A_WIS, -1, 1);
+				}
+				if (!rn2(100)) {
+					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+					if (!Free_action) {
+					    pline("You are frozen in place!");
+					    nomul(-rnz(10), "frozen by an eldritch blast");
+					    nomovemsg = You_can_move_again;
+					    exercise(A_DEX, FALSE);
+					}
+
+				}
+				if (!rn2(100)) {
+					pline("You let out a bloodcurdling scream!");
+					wake_nearby();
+				}
+				if (!rn2(100)) {
+					make_feared(HFeared + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				}
+				if (!rn2(100)) {
+					badeffect();
+				}
+				if (!rn2(100)) {
+					badeffect();
+				}
+				if (!rn2(100)) {
+					badeffect();
+				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
 			}
 		}
