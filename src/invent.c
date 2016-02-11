@@ -2032,6 +2032,7 @@ struct obj *otmp;
 		    ((otmp->oclass == WEAPON_CLASS && !is_pick(otmp) &&
 #ifdef FIREARMS
 		      otyp != SUBMACHINE_GUN &&
+		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
 		      otyp != ASSAULT_RIFLE &&
 		      otyp != FRAG_GRENADE &&

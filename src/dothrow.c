@@ -293,6 +293,16 @@ int thrown;
 		else if (launcher->altmode == WP_MODE_BURST)
 		    multishot = ((multishot > 3) ? (multishot / 3) : 1);
 		/* else it is auto == no change */
+
+		if (objects[(launcher->otyp)].oc_rof) {
+			if (launcher->altmode == WP_MODE_AUTO && obj->quan < objects[(launcher->otyp)].oc_rof) {
+				pline("You do not have enough ammo to fire that weapon in full-auto mode!");
+				return(0);
+			} else if (launcher->altmode == WP_MODE_BURST && obj->quan < (objects[(launcher->otyp)].oc_rof / 3) ) {
+				pline("You do not have enough ammo to fire that weapon in burst-fire mode!");
+				return(0);
+			}
+		}
 	    }
 
 	    if ((long)multishot > obj->quan) multishot = (int)obj->quan;
