@@ -659,7 +659,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		/* special case: pick-axe and unicorn horn are non-worn */
 		/* items that we also want pets to keep 1 of */
 		/* (It is a coincidence that these can also be wielded.) */
-		if (otmp->owornmask || otmp == wep ||
+		if (otmp->owornmask || otmp == wep || otmp->mstartinvent ||
 		    ((!item1 && otmp->otyp == PICK_AXE) ||
 		     (!item2 && otmp->otyp == UNICORN_HORN && !otmp->cursed))) {
 			if (is_pet) { /* dont drop worn/wielded item */
