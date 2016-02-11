@@ -597,6 +597,17 @@ moveloop()
 
 			}
 
+			if (u.ualign.sins && (rn2(100000) < u.ualign.sins ) ) {
+				int copcnt = rnd(monster_difficulty() ) + 1;
+				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+			      while(--copcnt >= 0) {
+					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, MM_ANGRY|MM_ADJACENTOK);
+					else (void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
+				} /* while */
+
+			}
+
 			if (moves == u.ascensionfirsthint) {
 				pline("Reminder: You have a limited amount of time for ascending. This is not a joke.");
 				pline("Currently you still have more than %d turns left though, so don't panic.", (u.ascensionfirsthint * 4) );
