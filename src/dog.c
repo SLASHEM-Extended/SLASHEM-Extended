@@ -945,7 +945,7 @@ register struct obj *obj;
 	    if (obj->otyp == CORPSE &&
 		((touch_petrifies(&mons[obj->corpsenm]) && !resists_ston(mon)) ||
 		((((potentialpet = get_mtraits(obj, FALSE)) != (struct monst *)0) ) && potentialpet->mtame)
-		 || is_rider(fptr) || is_deadlysin(fptr) || fptr->mlet == S_TROVE )) /* troves are meant for the player --Amy */
+		 || is_rider(fptr) || fptr->cnutrit < 1 || is_deadlysin(fptr) || fptr->mlet == S_TROVE )) /* troves are meant for the player --Amy */
 		    return TABU;
 	    /* Ghouls only eat old corpses... yum! */
 	    if (mon->data == &mons[PM_GHOUL] || mon->data == &mons[PM_GHAST] || mon->data == &mons[PM_GASTLY] || mon->data == &mons[PM_PHANTOM_GHOST]
