@@ -9902,6 +9902,12 @@ u_init()
 	    u.alignlim -= 5;
 	    change_luck(-1);
 
+	case PM_SINNER:
+	    adjalign(-100); 
+	    u.ualign.sins += 100;
+	    u.alignlim -= 100;
+	    change_luck(-1);
+
 	case PM_SUCKING_FIEND:
 	    adjalign(-5); 
 	    u.ualign.sins += 5;

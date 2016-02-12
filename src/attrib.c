@@ -630,6 +630,14 @@ const struct innate {
 		     {   1, &(HFire_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	sin_abil[] = { {  1, &(HConf_resist), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	rdt_abil[] = { {  1, &(HStun_resist), "", "" },
+		     {   10, &(HStun), "slightly stunned", "less stunned" },
+		     {   10, &(HStunnopathy), "", "" }, /* previous one already gives message --Amy */
+		     {   0, 0, 0, 0 } },
+
 	kob_abil[] = { {  1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
@@ -1403,6 +1411,8 @@ int oldlevel, newlevel;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
 	case PM_YOKUDA:            rabil = yok_abil;	break;
+	case PM_SINNER:            rabil = sin_abil;	break;
+	case PM_REDDITOR:            rabil = rdt_abil;	break;
 	case PM_TROLLOR:            rabil = tro_abil;	break;
 	case PM_SNAKEMAN:            rabil = sna_abil;	break;
 	case PM_ILLITHID:            rabil = ill_abil;	break;
@@ -1661,6 +1671,12 @@ void
 adjalign(n)
 register int n;
 {
+	if (Race_if(PM_SINNER) && n < 0) {
+		n *= 10;
+		u.ualign.sins += 1; 
+		u.alignlim -= 1;
+	}
+
 	register int newalign = u.ualign.record + n;
 
 	if (n < 0) {
