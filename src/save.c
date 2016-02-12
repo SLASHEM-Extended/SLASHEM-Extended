@@ -124,9 +124,10 @@ dosave()
 			change_luck(1);         
 		if(flags.moonphase == NEW_MOON)
 			adjalign(-3); 
-		if(flags.friday13)
+		if(flags.friday13) {
 			change_luck(-1);
 			adjalign(-10); 
+		}
 		if(iflags.window_inited)
 			clear_nhwindow(WIN_MESSAGE);
 	}
@@ -234,9 +235,10 @@ dosave0()
 		change_luck(-1);		/* and unido!ab */
 	if(flags.moonphase == NEW_MOON)	/* ut-sally!fletcher */
 		adjalign(3); 
-	if(flags.friday13)
+	if(flags.friday13) {
 		change_luck(1);
 		adjalign(10); 
+	}
 	if(iflags.window_inited)
 	    HUP clear_nhwindow(WIN_MESSAGE);
 
