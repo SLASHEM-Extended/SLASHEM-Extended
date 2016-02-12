@@ -797,7 +797,7 @@ register struct monst *mtmp;
 		break;
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
-		if ( ((mvitals[mndx].mvflags & G_NOCORPSE) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || rn2(5) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER ) )
+		if ( (( (mvitals[mndx].mvflags & G_NOCORPSE) && !(mtmp->egotype_troll) ) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || (rn2(5) && !(mtmp->egotype_troll) ) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER ) )
 		    return (struct obj *)0;
 		else	/* preserve the unique traits of some creatures */
 		    obj = mkcorpstat(CORPSE, KEEPTRAITS(mtmp) ? mtmp : 0,
@@ -2820,7 +2820,7 @@ boolean was_swallowed;			/* digestion */
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
-	if (rn2(2) && !((u.urexp < 10000) && (moves < 10000)) && !(is_reviver(mdat) && !mon->egotype_troll && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (rn2(2) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	/* make it even less likely later in the game, because monsters are spawning more often anyway */

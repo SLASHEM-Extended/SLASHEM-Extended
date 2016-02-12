@@ -1862,7 +1862,7 @@ boolean init;
 		otmp->corpsenm = monsndx(ptr);
 		otmp->owt = weight(otmp);
 		if (otmp->otyp == CORPSE &&
-			(special_corpse(old_corpsenm) ||
+			(special_corpse(old_corpsenm) || (mtmp && mtmp->egotype_troll) ||
 				special_corpse(otmp->corpsenm))) {
 		    obj_stop_timers(otmp);
 		    start_corpse_timeout(otmp);
