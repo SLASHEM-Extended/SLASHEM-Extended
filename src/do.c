@@ -2241,7 +2241,7 @@ boolean at_stairs, falling, portal;
 
 		/* very rarely, spawn a group of typed monsters --Amy */
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2404,7 +2404,7 @@ boolean at_stairs, falling, portal;
 			}
 		}
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2627,7 +2627,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2647,7 +2647,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2667,7 +2667,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2689,7 +2689,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (!rn2(iswarper ? 120 : 6000)) {
+		if (!rn2(iswarper ? 160 : 8000)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -2710,6 +2710,48 @@ boolean at_stairs, falling, portal;
 			}
 
 		}
+
+		if (!rn2(iswarper ? 160 : 8000)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(287);
+
+			if (wizard || !rn2(10)) pline(Hallucination ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+		}
+
+		if (!rn2(iswarper ? 160 : 8000)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(287);
+
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+
+			if (wizard || !rn2(10)) pline(Hallucination ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+		}
+
 
 		/* some levels are populated with a few undead player monsters --Amy */
 		if (on_level(&u.uz, &earth_level))

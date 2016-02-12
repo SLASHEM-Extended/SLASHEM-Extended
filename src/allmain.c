@@ -208,20 +208,20 @@ moveloop()
 
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
-			xtraclock = 30000;
+			xtraclock = 40000;
 			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
-				xtraclock = 9000;
+				xtraclock = 12000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 21000;
+					xtraclock = 28000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*21000/clock_base;
+					xtraclock -= past_clock*28000/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 9000) { xtraclock = 9000; }
+			if (xtraclock < 12000) { xtraclock = 12000; }
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
 			if (ishaxor) xtraclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
@@ -721,6 +721,25 @@ moveloop()
 				}
 			}
 
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of themed monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				monstercolor = rnd(287);
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(specialtensmon(monstercolor), 0, 0, NO_MM_FLAGS);
+				}
+			}
+
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
 
 				randsp = (rn2(14) + 2);
@@ -762,6 +781,27 @@ moveloop()
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 					(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+				}
+			}
+
+			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of themed monster species --Amy */
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+				monstercolor = rnd(287);
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
 				}
 			}
 

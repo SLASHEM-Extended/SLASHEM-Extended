@@ -373,6 +373,8 @@ struct you {
 	int tensionmonsterB; 	/* for mixed tension rooms */
 	int colormonster; 	/* for tension rooms */
 	int colormonsterB; 	/* for tension rooms */
+	int specialtensionmonster; 	/* for themed tension rooms */
+	int specialtensionmonsterB; 	/* for themed tension rooms */
 	int statuetrapname;	/* for mimics pretending to be statues etc. */
 
 	struct permonst *tensionmonsterspec; 	/* for tension rooms */

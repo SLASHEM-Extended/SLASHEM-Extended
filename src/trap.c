@@ -6430,7 +6430,7 @@ newboss:
 
 			    coord cc;
 
-			if (!rn2(3)) {
+			if (!rn2(4)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6594,7 +6594,7 @@ newboss:
 
 			}
 
-			else if (!rn2(2)) {
+			else if (!rn2(3)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6614,7 +6614,7 @@ newboss:
 
 			}
 
-			else {
+			else if (!rn2(2)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6631,6 +6631,26 @@ newboss:
 				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 				(void) makemon(colormon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+			}
+
+			else {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(287);
+
+			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), 0, 0, NO_MM_FLAGS);
 			}
 
 			}
@@ -6663,7 +6683,7 @@ newboss:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			if (!rn2(3)) {
+			if (!rn2(4)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6827,7 +6847,7 @@ newboss:
 
 			}
 
-			else if (!rn2(2)) {
+			else if (!rn2(3)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6847,7 +6867,7 @@ newboss:
 
 			}
 
-			else {
+			else if (!rn2(2)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -6864,6 +6884,26 @@ newboss:
 				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 				(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+			else {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(287);
+
+			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
 			}
 
 			}

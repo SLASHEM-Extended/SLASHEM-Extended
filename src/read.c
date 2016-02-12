@@ -3258,7 +3258,7 @@ register struct obj	*sobj;
 		struct permonst *randmonstforspawn;
 		int monstercolor;
 
-		int spawntype = rnd(3);
+		int spawntype = rnd(4);
 
 		if(confused || sobj->cursed) cnt += 12;
 
@@ -3267,9 +3267,11 @@ register struct obj	*sobj;
 			randmnsx = (rn2(100) + 1);
 		} else if (spawntype == 2) {
 			randmonstforspawn = rndmonst();
-		} else {
+		} else if (spawntype == 3) {
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+		} else {
+			monstercolor = rnd(287);
 		}
 
 		while(cnt--) {
@@ -3423,9 +3425,13 @@ register struct obj	*sobj;
 
 				mon = makemon(randmonstforspawn, u.ux, u.uy, MM_ADJACENTOK);
 
-			} else {
+			} else if (spawntype == 3) {
 
 				mon = makemon(colormon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
+
+			} else {
+
+				mon = makemon(specialtensmon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
 
 			}
 
