@@ -2677,8 +2677,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) you_are("aware of the presence of topmodels");
 	if (Role_if(PM_ACTIVISTOR) && uwep && is_quest_artifact(uwep) ) you_are("aware of the presence of unique monsters");
-	if (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");
-	if (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");
+	/*if (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");
+	if (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");*/
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING ) you_are("aware of the presence of poisonous monsters");
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING ) you_are("aware of the presence of same-race monsters");
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING ) you_are("aware of the presence of covetous monsters");
@@ -4255,8 +4255,8 @@ int final;
 
 	if (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) dump(youwere, "aware of the presence of topmodels");
 	if (Role_if(PM_ACTIVISTOR) && uwep && is_quest_artifact(uwep) ) dump(youwere, "aware of the presence of unique monsters");
-	if (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING ) dump(youwere, "aware of the presence of undead");
-	if (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING ) dump(youwere, "aware of the presence of undead");
+	/*if (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING ) dump(youwere, "aware of the presence of undead");
+	if (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING ) dump(youwere, "aware of the presence of undead");*/
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING ) dump(youwere, "aware of the presence of poisonous monsters");
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING ) dump(youwere, "aware of the presence of same-race monsters");
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING ) dump(youwere, "aware of the presence of covetous monsters");

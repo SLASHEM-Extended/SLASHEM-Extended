@@ -1502,8 +1502,8 @@ int oldlevel, newlevel;
 	}
 
 	/* ALI -- update Warn_of_mon */
-	HWarn_of_mon = (HUndead_warning);
-	if (HUndead_warning)
+	HWarn_of_mon = (Undead_warning);
+	if (Undead_warning)
 	    flags.warntype |= M2_UNDEAD;
 	else
 	    flags.warntype &= ~M2_UNDEAD;

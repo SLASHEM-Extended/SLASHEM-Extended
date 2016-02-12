@@ -334,7 +334,7 @@
 #define Warn_of_mon		(HWarn_of_mon || EWarn_of_mon)
 
 #define HUndead_warning		u.uprops[WARN_UNDEAD].intrinsic
-#define EUndead_warning		u.uprops[WARN_UNDEAD].intrinsic
+#define EUndead_warning		u.uprops[WARN_UNDEAD].extrinsic
 #define Undead_warning		(HUndead_warning || EUndead_warning)
 
 #define HSearching		u.uprops[SEARCHING].intrinsic

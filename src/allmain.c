@@ -2097,6 +2097,15 @@ moveloop()
 		}
 	}
 
+	/* copy undead warning code over from attrib.c - this needs to update in real time due to items --Amy */
+	HWarn_of_mon = (Undead_warning);
+	if (Undead_warning) {
+	    flags.warntype |= M2_UNDEAD;
+	}
+	else {
+	    flags.warntype &= ~M2_UNDEAD;
+	}
+
 	find_ac();
 	if(!flags.mv || Blind) {
 	    /* redo monsters if hallu or wearing a helm of telepathy */
