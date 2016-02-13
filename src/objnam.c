@@ -4859,9 +4859,7 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-21, "Medallion of Shifters") ||
                                 /* WAC added */
                            !BSTRCMPI(bp, p-12, "Key of Chaos") ||
-#ifdef WALLET_O_P
                            !BSTRCMPI(bp, p-7, "Perseus") || /* WAC added */
-#endif
 			   !BSTRCMPI(bp, p-11, "Aesculapius") || /* staff */
 			   !BSTRCMP(bp, p-10, "eucalyptus") ||
 #ifdef WIZARD

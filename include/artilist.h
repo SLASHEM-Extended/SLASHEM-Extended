@@ -332,13 +332,11 @@ A("Houchou",                SPOON,
 
 /*** Special Artifacts ***/
 
-# ifdef WALLET_O_P
 /* KMH -- made it a bag of holding */
 A("Wallet of Perseus",       BAG_OF_HOLDING,
         (SPFX_RESTR), 0, 0,
         NO_ATTK,        NO_DFNS,        NO_CARY,
         0,      A_NONE, NON_PM, NON_PM, 10000L ),
-# endif /* WALLET_O_P */
 
 A("Nighthorn", UNICORN_HORN,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_REFLECT), 0, 0,
