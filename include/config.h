@@ -430,7 +430,6 @@ typedef unsigned char	uchar;
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */
 #define LIGHTSABERS
 #define JEDI
-#define NWAR
 #define CONVICT		/* Convict player with heavy iron ball */
 #ifdef LIGHTSABERS
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
