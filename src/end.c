@@ -953,7 +953,7 @@ int how;
 
 	}
 
-	bones_ok = (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */
+	bones_ok = iflags.bones && (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */
 
 	if ((
 #ifdef WIZARD
