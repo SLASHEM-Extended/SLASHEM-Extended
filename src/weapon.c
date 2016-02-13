@@ -1279,16 +1279,12 @@ register struct monst *mtmp;
 	register struct obj *otmp;
 	int i;
 
-#ifdef KOPS
 	char mlet = mtmp->data->mlet;
-#endif
 
 	propellor = &zeroobj;
 	Oselect(EGG); /* cockatrice egg */
-#ifdef KOPS
 	if(mlet == S_KOP)	/* pies are first choice for Kops */
 	    Oselect(CREAM_PIE);
-#endif
 	if(throws_rocks(mtmp->data))	/* ...boulders for giants */
 	    Oselect(BOULDER);
 
@@ -1494,10 +1490,7 @@ static const NEARDATA short hwep[] = {
 	  INSECT_SQUASHER, SPIKED_CLUB, BASEBALL_BAT,
 	  GREAT_DAGGER, JAVELIN, AKLYS, BONE_CLUB, CLUB, PICK_AXE, FLY_SWATTER, 
 	  FUTON_SWATTER, MAGICAL_PAINTBRUSH, BROOM, MOP,
-
-#ifdef KOPS
 	  RUBBER_HOSE,
-#endif /* KOPS */
 	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, DAGGER, 
 	  ORCISH_DAGGER,
 	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN

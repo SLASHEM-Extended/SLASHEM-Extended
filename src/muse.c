@@ -2643,9 +2643,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
     try_again:
 	switch (rn2(8 + (difficulty > 3) + (difficulty > 6) +
@@ -2684,9 +2682,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
 	switch (rn2(35)) {
 
@@ -6071,9 +6067,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
 	if (difficulty > 7 && !rn2(350)) return WAN_DEATH;
 	if (difficulty > 6 && !rn2(125)) return WAN_FIREBALL;
@@ -6111,9 +6105,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
 	switch (rn2(98)) {
 
@@ -7550,9 +7542,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
 	/* Unlike other rnd_item functions, we only allow _weak_ monsters
 	 * to have this item; after all, the item will be used to strengthen
@@ -7585,9 +7575,7 @@ struct monst *mtmp;
 
 	if((is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) && issoviet) return 0;
 	switch (rn2(14)) {
 

@@ -6866,7 +6866,6 @@ register struct monst *mtmp;
 	          break;                     
 		}
 		break;
-# ifdef KOPS
 	    case S_KOP:		/* create Keystone Kops with cream pies to
 				 * throw. As suggested by KAA.	   [MRS]
 				 */
@@ -6893,7 +6892,6 @@ register struct monst *mtmp;
 
 
 		break;
-# endif
 	    case S_ORC:
 
 		if (ptr == &mons[PM_DEPRAVED_ORC]) (void) mongets(mtmp, WAN_CANCELLATION);

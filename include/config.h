@@ -425,7 +425,6 @@ typedef unsigned char	uchar;
 #define BLACKMARKET     /* Massimo Campostrini (campo@sunthpi3.difi.unipi.it) */
 
 /* monsters & objects */
-#define KOPS		/* Keystone Kops by Scott R. Turner */
 #define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM */
 #define INVISIBLE_OBJECTS /* Not yet fully implemented */
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */

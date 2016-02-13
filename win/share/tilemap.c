@@ -40,12 +40,6 @@ struct conditionals {
 	/* commented out in monst.c at present */
 	{ MON_GLYPH, PM_BLACK_LIGHT, "zruty" },
 
-#ifndef KOPS
-	{ MON_GLYPH, PM_VORPAL_JABBERWOCK, "Keystone Kop" },
-	{ MON_GLYPH, PM_VORPAL_JABBERWOCK, "Kop Sergeant" },
-	{ MON_GLYPH, PM_VORPAL_JABBERWOCK, "Kop Lieutenant" },
-	{ MON_GLYPH, PM_VORPAL_JABBERWOCK, "Kop Kaptain" },
-#endif
 
 #ifndef BLACKMARKET
 	{ MON_GLYPH, PM_SHOPKEEPER, "black marketeer" },
@@ -144,15 +138,8 @@ struct conditionals {
 	{ OBJ_GLYPH, SLING, "stick of dynamite" },
 #endif
 
-#ifndef KOPS
-	{ OBJ_GLYPH, BULLWHIP, "rubber hose" },
-#endif
 #ifndef TOURIST
 
-#ifdef KOPS
-	{ OBJ_GLYPH, RUBBER_HOSE, "Hawaiian shirt" },
-	{ OBJ_GLYPH, RUBBER_HOSE, "T-shirt" },
-#else
 	{ OBJ_GLYPH, BULLWHIP, "Hawaiian shirt" },
 	{ OBJ_GLYPH, BULLWHIP, "T-shirt" },
 #endif

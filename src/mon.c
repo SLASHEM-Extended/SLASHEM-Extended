@@ -2605,7 +2605,6 @@ register struct monst *mtmp;
 	if (tmp == PM_MAIL_DAEMON) mvitals[tmp].mvflags |= G_GENOD;
 #endif
 
-#ifdef KOPS
 	if (mtmp->data->mlet == S_KOP) {
 	    /* Dead Kops may come back. */
 	    switch(rnd(10)) {
@@ -2647,7 +2646,6 @@ register struct monst *mtmp;
 			break;
 		}
 	}
-#endif
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS && mtmp->data->mlet != S_NEMESE && tmp != PM_TRUE_MISSINGNO && tmp != PM_ETHEREAL_MISSINGNO && tmp != PM_STARLIT_SKY && tmp != PM_DARK_STARLIT_SKY && tmp != PM_BLACK_STARLIT_SKY && tmp != PM_RED_STARLIT_SKY && tmp != PM_BROWN_STARLIT_SKY && tmp != PM_GREEN_STARLIT_SKY && tmp != PM_PURPLE_STARLIT_SKY && tmp != PM_YELLOW_STARLIT_SKY && tmp != PM_ORANGE_STARLIT_SKY && tmp != PM_CYAN_STARLIT_SKY && tmp != PM_VIOLET_STARLIT_SKY) nemdead();
 
@@ -3394,9 +3392,7 @@ xkilled(mtmp, dest)
 		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) && timebasedlowerchance() /*&& !(mvitals[mndx].mvflags & G_NOCORPSE) && !(nohands(mdat))*/
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
-#ifdef KOPS
 					/*&& mdat->mlet != S_KOP*/
-#endif
 							) { /* allow death drops for every monster type --Amy */
 			int typ;
 

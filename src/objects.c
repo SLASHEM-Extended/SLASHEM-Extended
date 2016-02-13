@@ -632,11 +632,8 @@ WEAPON("flame whip", (char *)0,
 	1, 0, 0,  1, 6, 70, 4, 2,    1, B, P_WHIP, LIQUID, CLR_RED),
 WEAPON("rose whip", (char *)0,
 	1, 0, 0,  1, 6, 70, 4, 2,    1, S, P_WHIP, WOOD, CLR_RED),
-
-#ifdef KOPS
 WEAPON("rubber hose", (char *)0,
 	1, 0, 0, 15, 8,  3,  4,  3, 5, B,   P_WHIP, PLASTIC, CLR_BROWN),
-#endif
 
 /* With shuffled appearances... */
 #undef P
