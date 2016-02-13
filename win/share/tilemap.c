@@ -146,10 +146,6 @@ struct conditionals {
 	{ OBJ_GLYPH, LOCK_PICK, "credit card" },
 #endif
 
-#ifndef P_SPOON
-	{ OBJ_GLYPH, BEARTRAP, "spoon" },
-#endif
-
 #ifndef LIGHTSABERS
 	{ OBJ_GLYPH, TORCH, "green lightsaber" },
 	{ OBJ_GLYPH, TORCH, "blue lightsaber" },

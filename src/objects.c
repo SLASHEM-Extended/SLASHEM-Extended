@@ -1799,12 +1799,10 @@ TOOL("land mine",(char *)0,     1, 0, 0, 0,   5,30, 180, IRON, CLR_RED),
 TOOL("beartrap", (char *)0,     1, 0, 0, 0,   5,20,  60, IRON, HI_METAL),
 
 /* Weapon-tools */
-# ifdef P_SPOON
 /* Added by Tsanth, in homage to Final Fantasy 2 */
 /* KMH -- Not randomly generated (no damage!) */
 WEPTOOL("spoon", (char *)0,
 	1, 0, 0, 0,  5,  1, 5000,  0,  0, 0, WHACK,  -P_DART, PLATINUM, HI_METAL),
-# endif /* P_SPOON */
 #ifdef LIGHTSABERS
 # ifdef D_SABER
 WEPTOOL("pick-axe", (char *)0,

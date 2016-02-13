@@ -324,11 +324,9 @@ A("Hellfire", CROSSBOW,	/* WAC */
 	PHYS(5,4),        FIRE(0,0),  NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
 	/* Auto-explode code in dothrow.c, uhitm.c */
 
-#ifdef P_SPOON
 A("Houchou",                SPOON,
 	(SPFX_RESTR), 0, 0,
         NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 50000L ),
-#endif
 
 /*** Special Artifacts ***/
 

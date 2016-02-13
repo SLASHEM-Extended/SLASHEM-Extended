@@ -312,10 +312,8 @@ struct monst *mon;
 
 	if (otyp == CREAM_PIE) return 0;
 
-# ifdef P_SPOON
 	if (otmp->oartifact == ART_HOUCHOU)
 	        return 9999;
-# endif /* P_SPOON */
 
 	if (bigmonst(ptr)) {
 	    if (objects[otyp].oc_wldam)
@@ -625,10 +623,8 @@ struct monst *mon;
 
 	if (otyp == CREAM_PIE) return 0;
 
-# ifdef P_SPOON
 	if (otmp->oartifact == ART_HOUCHOU)
 	        return 9999;
-# endif /* P_SPOON */
 
 	if (bigmonst(ptr)) {
 	    if (objects[otyp].oc_wldam)
@@ -1237,11 +1233,7 @@ static NEARDATA const int rwep[] =
 	BOOK_STONE, LEVEL_STONE, QUIZ_STONE, LOW_STAT_STONE, TRAINING_STONE, EXERCISE_STONE,
 
 	STONE_OF_INTRINSIC_LOSS, BLOOD_LOSS_STONE, BAD_EFFECT_STONE, TRAP_CREATION_STONE,
-	STONE_OF_VULNERABILITY, ITEM_TELEPORTING_STONE, NASTY_STONE,
-
-#ifdef SPOON
-	SPOON,
-#endif
+	STONE_OF_VULNERABILITY, ITEM_TELEPORTING_STONE, NASTY_STONE, SPOON,
 #ifdef FIREARMS
 	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET,
 	LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT, SILVER_BULLET, BULLET, SHOTGUN_SHELL,

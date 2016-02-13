@@ -435,7 +435,6 @@ typedef unsigned char	uchar;
 #ifdef LIGHTSABERS
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #endif
-#define P_SPOON         /* Enable WEPTOOL(spoon), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten */
 #define STEED		/* The ability to ride monsters */

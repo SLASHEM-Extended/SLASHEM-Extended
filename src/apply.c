@@ -3956,11 +3956,9 @@ doapply()
 	case MIRROR:
 		res = use_mirror(obj);
 		break;
-# ifdef P_SPOON
 	case SPOON:
 		pline(Hallucination ? "Seems like exactly the thing needed to kill everything in one hit." : "It's a finely crafted antique spoon; what do you want to do with it?");
 		break;
-# endif /* P_SPOON */
 	case BELL:
 	case BELL_OF_OPENING:
 		use_bell(&obj);

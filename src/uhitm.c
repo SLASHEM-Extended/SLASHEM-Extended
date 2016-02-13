@@ -1254,13 +1254,11 @@ int thrown;
 		    }
 #endif
 		    if (thrown && (is_ammo(obj) || is_missile(obj))) {
-#ifdef P_SPOON
 			if (obj->oartifact == ART_HOUCHOU) {
 			    pline("There is a bright flash as it hits %s.",
 				the(mon_nam(mon)));
 			    tmp = dmgvalX(obj, mon);
 			}
-#endif /* P_SPOON */
 			if (ammo_and_launcher(obj, launcher)) {
 			    if (launcher->oartifact)
 				tmp += spec_dbon(launcher, mon, tmp);

@@ -1696,9 +1696,7 @@ int thrown;
 /* low chance for daggers, knives and spears to disappear --Amy */
 			(obj->oclass == GEM_CLASS && 
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
-# ifdef P_SPOON
 			|| (obj->oartifact == ART_HOUCHOU)
-# endif
 			/* WAC catch Hellfire */
 			|| (launcher && launcher->oartifact == ART_HELLFIRE 
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))

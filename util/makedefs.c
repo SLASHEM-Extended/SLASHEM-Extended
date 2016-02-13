@@ -511,9 +511,7 @@ make_version()
 			| (1L <<  7)
 #endif
 		/* objects (8..15) */
-#ifdef P_SPOON
 			| (1L <<  9)
-#endif
 #ifdef TOURIST
 			| (1L << 10)
 #endif
@@ -895,9 +893,6 @@ static const char *build_opts[] = {
 # ifdef JEDI
 		"Jedi",
 # endif
-#endif
-#ifdef P_SPOON
-		"Houchou",
 #endif
 #ifdef FIREARMS
 		"firearms",

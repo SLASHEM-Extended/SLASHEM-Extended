@@ -288,9 +288,7 @@ int x,y;
 
 	if (obj->otyp == CREAM_PIE || obj->oclass == VENOM_CLASS ||
 /* WAC added Spoon throw code */
-# ifdef P_SPOON
                     (obj->oartifact == ART_HOUCHOU) ||
-# endif
 #ifdef FIREARMS
 		    /* WAC -- assume monsters don't throw without 
 		    	using the right propellor */
@@ -430,12 +428,10 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    return 1;
 	} else {
 	    damage = dmgval(otmp, mtmp);
-# ifdef P_SPOON
             if (otmp->otyp == SPOON) {
             pline("The spoon flashes brightly as it hits %s.",
                    the(mon_nam(mtmp)));
             }
-# endif /* P_SPOON */
 
 	    if (otmp->otyp == ACID_VENOM && resists_acid(mtmp))
 		damage = 0;
