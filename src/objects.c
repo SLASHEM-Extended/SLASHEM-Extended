@@ -226,9 +226,11 @@ WEAPON("basterd sword", "huge sword", /* +1 large */
 
 /* Scimitars */
 WEAPON("scimitar", "curved sword",
-	0, 0, 0, 65, 16, 15,  8,  8, 0, S,   P_SCIMITAR, IRON, HI_METAL),
+	0, 0, 0, 64, 16, 15,  8,  8, 0, S,   P_SCIMITAR, IRON, HI_METAL),
 WEAPON("bent sable", "bent sword",
 	0, 0, 0, 10, 16, 40,  12,  12, 0, S,   P_SCIMITAR, IRON, HI_METAL),
+WEAPON("high-elven warsword", "runed curved sword",
+	0, 0, 0,  1,  4, 15, 10, 10, 2, S,   P_SCIMITAR, MITHRIL, HI_METAL),
 
 /* Sabers */
 WEAPON("rapier", (char *)0,
@@ -322,7 +324,7 @@ WEAPON("devil star", (char *)0,
 
 /* Flails */
 WEAPON("flail", (char *)0,
-	1, 0, 0, 148, 7,  4,  6,  4, 1, B,   P_FLAIL, IRON, HI_METAL),
+	1, 0, 0, 142, 7,  4,  6,  4, 1, B,   P_FLAIL, IRON, HI_METAL),
 	/* +1 small, +1d4 large */
 
 WEAPON("chain and sickle", (char *)0,
@@ -482,7 +484,7 @@ WEAPON("torpedo", (char *)0,
 
 /* Tridents */
 WEAPON("trident", (char *)0,
-	1, 0, 0,  58, 10,  5,  6,  4, 1, P,   P_TRIDENT, IRON, HI_METAL),
+	1, 0, 0,  56, 10,  5,  6,  4, 1, P,   P_TRIDENT, IRON, HI_METAL),
 	/* +1 small, +2d4 large */
 
 WEAPON("two-handed trident", (char *)0,
@@ -490,6 +492,12 @@ WEAPON("two-handed trident", (char *)0,
 
 WEAPON("stygian pike", (char *)0,
 	1, 0, 0,  5, 10,  50,  13,  11, 4, P,   P_TRIDENT, IRON, HI_METAL),
+
+WEAPON("mare trident", (char *)0,
+	1, 0, 0,  1, 10,  50,  12,  10, 5, P,   P_TRIDENT, SILVER, CLR_BRIGHT_CYAN),
+
+WEAPON("mancatcher", (char *)0,
+	1, 0, 0,  1, 10, 200,  17,  15, 3, P,   P_TRIDENT, WOOD, CLR_BROWN),
 
 /* Lances */
 WEAPON("lance", (char *)0,
@@ -503,18 +511,19 @@ WEAPON("droven lance", "obsidian lance",
 WEAPON("elven lance", (char *)0,
 	1, 0, 0,  1,60, 10,  14, 15, 2, P,   P_LANCE, WOOD, HI_WOOD),
 WEAPON("parasol", (char *)0,
-	1, 0, 0,  0, 6,200, 4, 2, 1, P,   P_LANCE, PLASTIC, CLR_BRIGHT_MAGENTA),
+	1, 0, 0,  1, 6,200, 4, 2, 1, P,   P_LANCE, PLASTIC, CLR_BRIGHT_MAGENTA),
 WEAPON("umbrella", (char *)0,
-	1, 0, 0,  0, 6, 20, 4, 2, 1, P,   P_LANCE, WOOD, CLR_BROWN),
+	1, 0, 0,  1, 6, 20, 4, 2, 1, P,   P_LANCE, WOOD, CLR_BROWN),
 
 /* Bows (and arrows) */
 /* KMH, balance patch -- damage of launchers restored to d2 big and small */
 BOW("orcish bow", "crude bow",	0, 1, 50, 12, 60, 0, WOOD, P_BOW, CLR_BLACK),
-BOW("bow", (char *)0,			1, 1, 100, 12, 60, 0, WOOD, P_BOW, HI_WOOD),
+BOW("bow", (char *)0,			1, 1, 99, 12, 60, 0, WOOD, P_BOW, HI_WOOD),
 BOW("elven bow", "runed bow",	0, 1, 60, 12, 60, 0, WOOD, P_BOW, HI_WOOD),
 BOW("dark elven bow",  "black runed bow", 0, 1, 10, 12, 60, 1, WOOD, P_BOW, CLR_BLACK),
 BOW("yumi", "long bow",			0, 1, 10, 12, 60, 0, WOOD, P_BOW, HI_WOOD),
-BOW("droven bow", "spider-legged bow",	1, 0, 5, 12, 60, 5, GLASS, P_BOW, CLR_BLACK),
+BOW("droven bow", "spider-legged bow",	0, 0, 5, 12, 60, 5, GLASS, P_BOW, CLR_BLACK),
+BOW("hydra bow", (char *)0,	1, 0, 5, 12, 60, 0, WOOD, P_BOW, CLR_BROWN),
 PROJECTILE("orcish arrow", "crude arrow",
 	0, 75, 0, 2, 9, 9, 0, IRON, -P_BOW, CLR_BLACK),
 PROJECTILE("arrow", (char *)0,
@@ -582,10 +591,11 @@ BULLET("stick of dynamite", "red stick",
 
 /* Crossbows (and bolts) */
 /* Crossbow range is now independant of strength */
-GUN("crossbow", (char *)0,				0, 1, 194, 20, 40, 12, -1, 1, WP_GENERIC, WOOD, P_CROSSBOW, HI_WOOD),
+GUN("crossbow", (char *)0,				0, 1, 193, 20, 40, 12, -1, 1, WP_GENERIC, WOOD, P_CROSSBOW, HI_WOOD),
 GUN("droven crossbow", "spider-legged crossbow", 0, 0, 25, 30, 120, 12, -1, 5, WP_GENERIC, GLASS, P_CROSSBOW, CLR_BLACK), 
 GUN("demon crossbow", (char *)0,			0, 1,   5, 20, 250, 12, 5, 0, WP_GENERIC, METAL, P_CROSSBOW, CLR_BROWN),
 GUN("pile bunker", (char *)0,   			0, 0,  1, 16, 40, 12, 0, 0, WP_GENERIC, BONE, P_CROSSBOW, CLR_BRIGHT_BLUE),
+GUN("helo crossbow", (char *)0,			0, 1,  1, 20, 40, 30, -5, 10, WP_GENERIC, WOOD, P_CROSSBOW, CLR_ORANGE),
 
 PROJECTILE("crossbow bolt", (char *)0,
 	1, 214, 0, 2, 16, 16, 1, IRON, -P_CROSSBOW, HI_METAL),
@@ -613,7 +623,11 @@ WEAPON("caltrop", (char *)0,
 
 /* Boomerangs */
 WEAPON("boomerang", (char *)0,
-	1, 1, 0, 75,  0, 20,  9,  9, 3, 0,   -P_BOOMERANG, WOOD, HI_WOOD),
+	1, 1, 0, 73,  0, 20,  9,  9, 3, 0,   -P_BOOMERANG, WOOD, HI_WOOD),
+WEAPON("silver chakram", "silver circular blade",
+	1, 1, 0,  1,  0, 20,  9,  9, 0, 0,   -P_BOOMERANG, SILVER, HI_SILVER),
+WEAPON("batarang", (char *)0,
+	1, 1, 0,  1,  0, 20,  15, 15, 2, 0,   -P_BOOMERANG, METAL, CLR_BRIGHT_BLUE),
 
 /* Whips */
 
@@ -723,11 +737,11 @@ ARMOR("bronze plate mail", (char *)0,
 	1, 0, 1, 0,	185, 5, 200, 400,  1, 0, ARM_SUIT, COPPER, HI_COPPER),
 #endif
 ARMOR("splint mail", (char *)0,
-	1, 0, 1, 0,	320, 5, 160,  80,  2, 1, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	312, 5, 160,  80,  2, 1, ARM_SUIT, IRON, HI_METAL),
 ARMOR("oliharcon splint mail", (char *)0,
 	1, 0, 1, 0,	 1, 5, 160,  80,  2, 1, ARM_SUIT, MITHRIL, CLR_YELLOW),
 ARMOR("banded mail", (char *)0,
-	1, 0, 1, 0,	325, 5, 160,  90,  3, 0, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 1, 0,	321, 5, 160,  90,  3, 0, ARM_SUIT, IRON, HI_METAL),
 ARMOR("dwarvish mithril-coat", (char *)0,
 	1, 0, 0, 0,	50, 1, 60, 240,  5, 3, ARM_SUIT, MITHRIL, HI_METAL),
 ARMOR("dark elven mithril-coat", (char *)0,
@@ -737,7 +751,7 @@ ARMOR("elven mithril-coat", (char *)0,
 ARMOR("gnomish suit", "little blue vest",
 	0, 0, 0, 0,	5, 0, 20,  10,  9, 0, ARM_SUIT, CLOTH, CLR_BRIGHT_BLUE),
 ARMOR("chain mail", (char *)0,
-	1, 0, 0, 0,	330, 5, 120,  75,  4, 1, ARM_SUIT, IRON, HI_METAL),
+	1, 0, 0, 0,	334, 5, 120,  75,  4, 1, ARM_SUIT, IRON, HI_METAL),
 
 ARMOR("sailor blouse", (char *)0,
 	1, 0, 0, 0,	 1, 0,  	 6, 200,  7, 0, ARM_SUIT, CLOTH, CLR_WHITE),
@@ -787,9 +801,19 @@ ARMOR("consort's suit", "loud foppish suit",
 ARMOR("force armor", "gemstone-adorned clothing",
 	0, 0, 1, 0,	1, 5, 10, 1000, 9, 3, ARM_SUIT, GEMSTONE, CLR_BRIGHT_GREEN),
 ARMOR("healer uniform", "clean white clothes",
-	1, 0, 0, 0,	1, 0,	6,  10,  9, 0, ARM_SUIT, CLOTH, CLR_WHITE),
+	0, 0, 0, 0,	1, 0,	6,  10,  9, 0, ARM_SUIT, CLOTH, CLR_WHITE),
 ARMOR("jumpsuit", "silver clothes",
 	0, 0, 1, REFLECTING, 1, 1, 5, 1000, 10, 3, ARM_SUIT, PLASTIC, HI_SILVER),
+ARMOR("gentleman's suit", "expensive clothes",
+	0, 0, 1, 0,	1, 5, 4, 1000,  10, 1, ARM_SUIT, CLOTH, CLR_BLACK),
+ARMOR("gentlewoman's dress", "expensive dress",
+	0, 0, 1, 0,	1, 6, 60, 1000,   9, 3, ARM_SUIT, BONE, CLR_RED), /*Specifically, whale bone*/
+ARMOR("straitjacket", "long-sleeved jacket",
+	0, 0, 0, 0,	1, 0,	12,  10,  9, 2, ARM_SUIT, CLOTH, CLR_WHITE),
+ARMOR("curing uniform","clean white clothes",
+	0, 0, 0, SICK_RES, 1, 0, 12,  10,  9, 0, ARM_SUIT, CLOTH, CLR_WHITE),
+ARMOR("Hawaiian shorts", "flowery shorts and lei",
+	0, 0, 0, 0,	 1, 0,	 5,   3, 10, 0, ARM_SUIT, CLOTH, CLR_MAGENTA),
 ARMOR("leather jacket", (char *)0,
 	1, 0, 0, 0,	65, 0,	12,  10,  9, 0, ARM_SUIT, LEATHER, CLR_BLACK),
 
@@ -1006,6 +1030,10 @@ HELM("color cone", "conical hat",
 		0, 1, 0,			1,  1,  2,  80, 9, 0, CLOTH, CLR_BRIGHT_BLUE),
 HELM("dented pot", (char *)0,
 		1, 0, 0,			10, 0, 4,   8, 9, 0, IRON, CLR_BLACK),
+HELM("elven helm", "runed helm",
+		0, 0,  0,			1, 1, 12,   5, 9, 0, WOOD, HI_WOOD),
+HELM("high-elven helm", "runed helm",
+		0, 0,  0,			1, 1,  3,   5, 8, 0, MITHRIL, HI_METAL),
 
 HELM("nurse cap", (char *)0,
 		1, 0,  0,			1, 0,  2,  10,10, 0, CLOTH, CLR_WHITE),
@@ -1125,6 +1153,8 @@ HELM("helm of underwater action", "scuba helmet",
 		0, 1, MAGICAL_BREATHING, 1, 1, 20,  50, 9, 0, IRON, CLR_RED),
 HELM("helm of jamming", "radio helmet",
 		0, 1, STEALTH,		1, 1, 20,  50, 9, 0, IRON, HI_METAL),
+HELM("war hat", "wide metal helm",
+		0, 0,  0,			1, 0, 20,  50, 8, 2, IRON, HI_METAL),
 
 HELM("helm of telepathy", "visored helmet",
 		0, 1, TELEPAT,		10, 1, 20,  50, 9, 0, IRON, HI_METAL),
@@ -1894,8 +1924,9 @@ TOOL("orb of destruction", "glass orb",
 				0, 0, 0, 0,   5, 0, 750, GLASS, HI_GLASS),
 #endif
 TOOL("lenses", (char *)0,	1, 0, 0, 0,   25,  0,  80, GLASS, HI_GLASS),
-TOOL("blindfold", (char *)0,    1, 0, 0, 0, 250,  0,  20, CLOTH, CLR_BLACK),
+TOOL("blindfold", (char *)0,    1, 0, 0, 0, 240,  0,  20, CLOTH, CLR_BLACK),
 TOOL("towel", (char *)0,        1, 0, 0, 0, 100,  0,  50, CLOTH, CLR_MAGENTA),
+TOOL("condome", (char *)0,      1, 0, 0, 0,  10,  0,   5, CLOTH, CLR_WHITE),
 #ifdef STEED
 TOOL("saddle", (char *)0,       1, 0, 0, 0, 175,0, 150, LEATHER, HI_LEATHER),
 TOOL("leash", (char *)0,        1, 0, 0, 0,  65, 0,  20, LEATHER, HI_LEATHER),

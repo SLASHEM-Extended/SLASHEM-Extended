@@ -1533,6 +1533,15 @@ moveloop()
 			else pline("Alright. Please move on.");
 		}
 
+		if (Race_if(PM_BATMAN) && u.ualign.record > 0 && (rnd(300000) < u.ualign.record) ) {
+			struct obj *ubatarang;
+			ubatarang = mksobj(BATARANG, TRUE, FALSE);
+			ubatarang->known = ubatarang->dknown = ubatarang->bknown = ubatarang->rknown = 1;
+			ubatarang->owt = weight(ubatarang);
+			dropy(ubatarang);
+			pline("The HQ grants you a batarang for your valiant efforts.");
+		}
+
 		if (u.uprops[UNIDENTIFY].extrinsic ) {
 
 			if (invent) {
@@ -3009,6 +3018,15 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "complete helmet")) OBJ_DESCR(objects[i]) = "polnaya shlem";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeb cloak")) OBJ_DESCR(objects[i]) = "zese plashch";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver circular blade")) OBJ_DESCR(objects[i]) = "serebro krugloye lezviye";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runed curved sword")) OBJ_DESCR(objects[i]) = "runicheskiy krivoy mech";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wide metal helm")) OBJ_DESCR(objects[i]) = "shirokiy metallicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runed helm")) OBJ_DESCR(objects[i]) = "runicheskiy rulya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive clothes")) OBJ_DESCR(objects[i]) = "dorogaya odezhda";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive dress")) OBJ_DESCR(objects[i]) = "dorogoye plat'ye";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "long-sleeved jacket")) OBJ_DESCR(objects[i]) = "kurtki s dlinnymi rukavami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flowery shorts and lei")) OBJ_DESCR(objects[i]) = "tsvetochnyye shorty i ley";
+
 	}
 	}
 
@@ -3462,6 +3480,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velcro boots")) OBJ_DESCR(objects[i]) = "cirt chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "complete helmet")) OBJ_DESCR(objects[i]) = "to'liq dubulg'a";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeb cloak")) OBJ_DESCR(objects[i]) = "yaponiya ucube rido";
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silver circular blade")) OBJ_DESCR(objects[i]) = "kumush dairesel bir pichoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runed curved sword")) OBJ_DESCR(objects[i]) = "yodimga tushyapti gvardiyasi qilich";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wide metal helm")) OBJ_DESCR(objects[i]) = "keng metall elkan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runed helm")) OBJ_DESCR(objects[i]) = "yodimga tushyapti elkan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive clothes")) OBJ_DESCR(objects[i]) = "qimmat kiyim";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive dress")) OBJ_DESCR(objects[i]) = "qimmat liboslar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "long-sleeved jacket")) OBJ_DESCR(objects[i]) = "uzoq qisma ko'ylagi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flowery shorts and lei")) OBJ_DESCR(objects[i]) = "gullarni shortilar va ley";
+
 	}
 	}
 

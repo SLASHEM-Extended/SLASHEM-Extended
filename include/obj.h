@@ -263,6 +263,8 @@ struct obj {
 #define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
 				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
 				|| (otmp)->otyp == ELVEN_CLOAK\
+				|| (otmp)->otyp == ELVEN_HELM\
+				|| (otmp)->otyp == HIGH_ELVEN_HELM\
 				|| (otmp)->otyp == ELVEN_TOGA\
 				|| (otmp)->otyp == ELVEN_SHIELD\
 				|| (otmp)->otyp == ELVEN_BOOTS)
@@ -472,6 +474,7 @@ struct obj {
 				|| (otmp)->otyp == ELVEN_LANCE\
 				|| (otmp)->otyp == ELVEN_DAGGER\
 				|| (otmp)->otyp == ELVEN_SHORT_SWORD\
+				|| (otmp)->otyp == HIGH_ELVEN_WARSWORD\
 				|| (otmp)->otyp == ELVEN_BROADSWORD\
 				|| (otmp)->otyp == ELVEN_BOW)
 #define is_elven_obj(otmp)	(is_elven_armor(otmp) || is_elven_weapon(otmp))

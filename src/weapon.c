@@ -250,6 +250,16 @@ struct monst *mon;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
+	if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
+	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
+	}
+
+	if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
+	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
+	}
+
 	if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 	   if (is_pool(mon->mx, mon->my)) tmp += 12;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 6;
@@ -356,6 +366,8 @@ struct monst *mon;
 		case BARDICHE:
 		case SCYTHE:
 		case STYGIAN_PIKE:
+		case MANCATCHER:
+		case MARE_TRIDENT:
 		case TRIDENT:		tmp += d(2,4); break;
 
 		case TSURUGI:
@@ -404,6 +416,8 @@ struct monst *mon;
 		case PITCHFORK:
 		case TWO_HANDED_FLAIL:
 		case STYGIAN_PIKE:
+		case MANCATCHER:
+		case MARE_TRIDENT:
 		case DWARVISH_BATTLE_AXE:
 		case CHAINWHIP:
 		case MITHRIL_WHIP:
@@ -555,6 +569,16 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
@@ -667,6 +691,8 @@ struct monst *mon;
 		case BARDICHE:
 		case SCYTHE:
 		case STYGIAN_PIKE:
+		case MANCATCHER:
+		case MARE_TRIDENT:
 		case TRIDENT:		tmp += d(2,4); break;
 
 		case TSURUGI:
@@ -715,6 +741,8 @@ struct monst *mon;
 		case PITCHFORK:
 		case TWO_HANDED_FLAIL:
 		case STYGIAN_PIKE:
+		case MANCATCHER:
+		case MARE_TRIDENT:
 		case DWARVISH_BATTLE_AXE:
 		case CHAINWHIP:
 		case MITHRIL_WHIP:
@@ -967,6 +995,16 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
@@ -980,6 +1018,16 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -999,6 +1047,16 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
@@ -1014,6 +1072,16 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 24;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 12;
@@ -1025,6 +1093,16 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+	    }
+
+	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+	    }
+
+	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 32;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
@@ -1357,6 +1435,7 @@ register struct monst *mtmp;
 			 */
 		case P_BOW:
 		  propellor = (oselect(mtmp, DROVEN_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, HYDRA_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, YUMI));
 		  if (!propellor) propellor = (oselect(mtmp, ELVEN_BOW));
 		  /* WAC added dark elven bow */
@@ -1370,6 +1449,7 @@ register struct monst *mtmp;
 		  break;
 		case P_CROSSBOW:
 		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, HELO_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, PILE_BUNKER));
 		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
@@ -1447,7 +1527,8 @@ static const NEARDATA short hwep[] = {
 
 	  CONCRETE_NUNCHIAKU, CONUNDRUM_NUNCHIAKU, NUNCHIAKU,
 
-	  BASTERD_SWORD, CHAINSWORD, TSURUGI, DROVEN_GREATSWORD, DWARVISH_BATTLE_AXE, TWO_HANDED_TRIDENT, STYGIAN_PIKE,
+	  BASTERD_SWORD, CHAINSWORD, TSURUGI, DROVEN_GREATSWORD, DWARVISH_BATTLE_AXE, TWO_HANDED_TRIDENT,
+	  MANCATCHER, STYGIAN_PIKE, MARE_TRIDENT,
 	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, 
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, TORPEDO,
 	  DWARVISH_MATTOCK, BENT_SABLE, 
@@ -1477,7 +1558,7 @@ static const NEARDATA short hwep[] = {
 	  PLATINUM_FIRE_HOOK, FIRE_HOOK, DROVEN_DAGGER, ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
 	  FLANGED_MACE, BRONZE_MORNING_STAR, SPINED_BALL, JAGGED_STAR, STEEL_WHIP,
 	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, IRON_SABER, VIBROBLADE, DROVEN_SHORT_SWORD, SILVER_MACE,
-  	  MORNING_STAR, GREAT_HOUCHOU, DARK_ELVEN_SHORT_SWORD, ELVEN_SHORT_SWORD, 
+  	  MORNING_STAR, GREAT_HOUCHOU, DARK_ELVEN_SHORT_SWORD, HIGH_ELVEN_WARSWORD, ELVEN_SHORT_SWORD, 
   	  DWARVISH_SHORT_SWORD, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, IRON_BAR,
 	  ORCISH_SHORT_SWORD, ELVEN_MACE, MACE, MOON_AXE, AXE, DWARVISH_SPEAR, SILVER_SPEAR,
 	  ELVEN_SPEAR, FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SPEAR, ORCISH_SPEAR,
@@ -3024,7 +3105,7 @@ struct obj *weapon;
 
 	/* damage bonus for using racial equipment */
 
-	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && weapon && (weapon->otyp == ELVEN_DAGGER || weapon->otyp == ELVEN_BOW || weapon->otyp == ELVEN_ARROW || weapon->otyp == ELVEN_SPEAR || weapon->otyp == ELVEN_SHORT_SWORD || weapon->otyp == ELVEN_BROADSWORD) ) bonus += 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && weapon && (weapon->otyp == ELVEN_DAGGER || weapon->otyp == ELVEN_BOW || weapon->otyp == ELVEN_ARROW || weapon->otyp == ELVEN_SPEAR || weapon->otyp == ELVEN_SHORT_SWORD || weapon->otyp == HIGH_ELVEN_WARSWORD || weapon->otyp == ELVEN_BROADSWORD) ) bonus += 1;
 	if ((Race_if(PM_DROW) || Role_if(PM_TWELPH)) && weapon && (weapon->otyp == DARK_ELVEN_DAGGER || weapon->otyp == DROVEN_CROSSBOW || weapon->otyp == DROVEN_BOLT || weapon->otyp == DROVEN_BOW || weapon->otyp == DROVEN_ARROW || weapon->otyp == DARK_ELVEN_ARROW || weapon->otyp == DARK_ELVEN_BOW || weapon->otyp == DARK_ELVEN_SHORT_SWORD) ) bonus += 1;
 	if (Race_if(PM_ORC) && weapon && (weapon->otyp == ORCISH_DAGGER || weapon->otyp == ORCISH_BOW || weapon->otyp == ORCISH_ARROW || weapon->otyp == ORCISH_SPEAR || weapon->otyp == ORCISH_SHORT_SWORD ) ) bonus += 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;

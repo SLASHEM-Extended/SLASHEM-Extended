@@ -143,7 +143,7 @@
 
 #define Blinded			u.uprops[BLINDED].intrinsic
 #define EBlinded			u.uprops[BLINDED].extrinsic
-#define Blindfolded		(ublindf && ublindf->otyp != LENSES)
+#define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != CONDOME)
 		/* ...means blind because of a cover */
 #define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
 		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ))

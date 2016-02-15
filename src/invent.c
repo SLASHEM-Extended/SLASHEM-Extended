@@ -2039,7 +2039,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != TOWEL && otyp != LENSES)))
+		     otyp != BLINDFOLD && otyp != CONDOME && otyp != TOWEL && otyp != LENSES)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -2540,7 +2540,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS ||
-		(otyp == BLINDFOLD || otyp == TOWEL || otyp == LENSES)) {
+		(otyp == BLINDFOLD || otyp == CONDOME || otyp == TOWEL || otyp == LENSES)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -4716,6 +4716,8 @@ struct obj *obj;
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
 			case BENT_SABLE: 
 				pline("This sharpened scimitar is actually very useful for quickly cutting up your enemies."); break;
+			case HIGH_ELVEN_WARSWORD: 
+				pline("An elven scimitar that does more damage than a regular scimitar and also hits more often."); break;
 			case RAPIER: 
 				pline("A basic saber that's not stronger than a short sword."); break;
 			case IRON_SABER: 
@@ -4900,6 +4902,10 @@ struct obj *obj;
 				pline("A relatively damaging trident that does bonus damage versus eels, however it also requires both hands to use."); break;
 			case STYGIAN_PIKE: 
 				pline("A trident from the depths of Hell. Good damage and bonus versus eels."); break;
+			case MANCATCHER: 
+				pline("A very strong trident that does extra damage to eels."); break;
+			case MARE_TRIDENT: 
+				pline("This trident is made of silver, and does extra damage to eels."); break;
 			case LANCE: 
 				pline("Formerly the only weapon that uses the lance skill, this thing can be applied to hit monsters that don't stand right next to you. While riding, you can joust monsters with it by performing standard melee attacks but sometimes the lance breaks if you do so."); break;
 			case COURSE_LANCE: 
@@ -4924,6 +4930,8 @@ struct obj *obj;
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies. This bow has a small to-hit bonus."); break;
 			case YUMI: 
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
+			case HYDRA_BOW: 
+				pline("This bow fires three arrows at once and is therefore very powerful. You need to wield it with both hands though."); break;
 			case ORCISH_ARROW: 
 				pline("The weakest type of arrow. These are meant to be put in a quiver and shot with a bow."); break;
 			case ARROW: 
@@ -5006,6 +5014,8 @@ struct obj *obj;
 				pline("An automatic crossbow that can quiver several bolts in a single turn."); break;
 			case PILE_BUNKER: 
 				pline("This crossbow can fire a bit faster than a regular crossbow but at the expense of accuracy. It only requires one hand to be wielded."); break;
+			case HELO_CROSSBOW: 
+				pline("Want to snipe with a crossbow? Now you can! This thing has a huge range."); break;
 			case DROVEN_BOW: 
 				pline("A more accurate, one-handed version of the bow. Use it to fire arrows at your enemies."); break;
 			case CROSSBOW_BOLT: 
@@ -5028,6 +5038,10 @@ struct obj *obj;
 				pline("If you want to train your shuriken skill, throw these at enemies. They deal much less damage than actual shuriken however."); break;
 			case BOOMERANG: 
 				pline("Good luck making this crappy weapon work! The boomerang can theoretically be thrown to hit several enemies in a single turn, but its weird flight pattern means it has situational uses at best and no uses at worst. Using the boomerang in melee will probably cause it to break."); break;
+			case SILVER_CHAKRAM: 
+				pline("A silver version of the boomerang. If you guessed that this weapon still sucks, you are right."); break;
+			case BATARANG: 
+				pline("This weapon cannot stun the little poison ivies, but it can kill them! :D Joking aside, it's a far stronger version of the boomerang but it still flies in that weird circle pattern and rarely hits what you aim for."); break;
 			case BULLWHIP: 
 				pline("*cue Vampire Killer theme* For some reason, Simon Belmont likes to use this weapon. It's got a totally pitiful damage output, and thick-skinned enemies are even outright immune to it. However, you can apply a bullwhip to perform feats like disarming an enemy."); break;
 			case STEEL_WHIP: 
@@ -5158,6 +5172,16 @@ struct obj *obj;
 				pline("A basic suit of armor that offers little protection."); break;
 			case LEATHER_JACKET: 
 				pline("This thing is only useful if you don't have a better suit of armor."); break;
+			case GENTLEMAN_S_SUIT: 
+				pline("You should wear this only if you lack a real armor, for it only gives low magic cancellation and nothing else."); break;
+			case GENTLEWOMAN_S_DRESS: 
+				pline("If you're having no luck finding something with maximum magic cancellation, this can be used as a substitute. It only grants a single point of AC though, which is really bad for a body armor."); break;
+			case STRAITJACKET: 
+				pline("Bad AC and medium magic cancellation aren't good enough to make this 'armor' worth using IMHO, plus you'll look like a retard if you wear it."); break;
+			case CURING_UNIFORM: 
+				pline("One of Chris_ANG's overpowered creations, this uniform grants sickness resistance. However, there is a dragon scale mail that gives the same property and much more AC. :D"); break;
+			case HAWAIIAN_SHORTS: 
+				pline("A totally useless armor that grants absolutely nothing. Bonus points if it is cursed and prevents you from wearing an actual armor."); break;
 			case ROBE: 
 				pline("Robes can be worn instead of armor. This is mainly useful for monks and jedi who are penalized for wearing 'real' armor."); break;
 			case ROBE_OF_PROTECTION: 
@@ -5359,6 +5383,12 @@ struct obj *obj;
 				pline("Wearing this cloak grants displacement and medium magic cancellation."); break;
 			case ELVEN_LEATHER_HELM:
 				pline("A light helmet that grants good armor class."); break;
+			case ELVEN_HELM: 
+				pline("It's a standard elven helm that grants low armor class."); break;
+			case HIGH_ELVEN_HELM: 
+				pline("A mithril helm with good armor class."); break;
+			case WAR_HAT: 
+				pline("Good armor class and medium magic cancellation."); break;
 			case FIRE_HELMET:
 				pline("This helmet conveys fire resistance when worn."); break;
 			case GNOMISH_HELM:
@@ -6107,6 +6137,8 @@ struct obj *obj;
 				pline("A weird tool that can be put on to improve the player's ability to search for things."); break;
 			case BLINDFOLD: 
 				pline("Putting on this tool prevents you from seeing."); break;
+			case CONDOME: 
+				pline("Wear this to prevent diseases from sexual encounters!"); break;
 			case TOWEL: 
 				pline("According to Douglas Adams, you can do a lot of stuff with a towel. Possible uses include: covering your eyes, wiping your hands, throwing it at a monster or wielding it as a melee weapon. See for yourself if you find any of these useful. :-)"); break;
 			case SADDLE: 

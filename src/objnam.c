@@ -1676,6 +1676,24 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CHATTER_STONE, "boltovnya kamen'" },
 	{ CHATBOX_CLOAK, "chata plashch" },
 
+	{ SILVER_CHAKRAM, "serebro shakram" },
+	{ HIGH_ELVEN_WARSWORD, "vysshikh el'fov voyna mech" },
+	{ WAR_HAT, "voyna shlem" },
+	{ ELVEN_HELM, "el'fiyskiy shlem" },
+	{ HIGH_ELVEN_HELM, "vysshikh el'fov rulya" },
+	{ GENTLEMAN_S_SUIT, "dzhentl'men kostyum" },
+	{ GENTLEWOMAN_S_DRESS, "dama plat'ye" },
+	{ STRAITJACKET, "smiritel'naya rubashka" },
+	{ CURING_UNIFORM, "otverzhdeniya ravnomernoye" },
+	{ HAWAIIAN_SHORTS, "gavayskiye shorty" },
+
+	{ CONDOME, "prezervativ" },
+	{ HYDRA_BOW, "gidra luk" },
+	{ MANCATCHER, "chelovek lovli kop'ye" },
+	{ MARE_TRIDENT, "kobyla trezubets" },
+	{ HELO_CROSSBOW, "ballisty arbaleta" },
+	{ BATARANG, "bitoy bumerang" },
+
 	{0, "" }
 };
 
@@ -3030,6 +3048,24 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ DIMMER_HELMET, "karartma xususiyati dubulg'a" },
 	{ CHATTER_STONE, "safsata tosh" },
 	{ CHATBOX_CLOAK, "nejmeddin erbakan rido" },
+
+	{ SILVER_CHAKRAM, "kumush uchirish majmui" },
+	{ HIGH_ELVEN_WARSWORD, "yuqori erda alf urush qilich" },
+	{ WAR_HAT, "urush xet" },
+	{ ELVEN_HELM, "erda alf elkan" },
+	{ HIGH_ELVEN_HELM, "yuqori erda alf elkan" },
+	{ GENTLEMAN_S_SUIT, "bey afandi kostyum" },
+	{ GENTLEWOMAN_S_DRESS, "xonim liboslar" },
+	{ STRAITJACKET, "tor kamzul" },
+	{ CURING_UNIFORM, "tuzatish yagona" },
+	{ HAWAIIAN_SHORTS, "gavayi shortilar" },
+
+	{ CONDOME, "prezervativ" },
+	{ HYDRA_BOW, "gidra kamon" },
+	{ MANCATCHER, "odam qiluvchi" },
+	{ MARE_TRIDENT, "marek sacayagimiz" },
+	{ HELO_CROSSBOW, "xalon yayli miltiq" },
+	{ BATARANG, "botsheva bumerang" },
 
 	{0, "" }
 };
@@ -4828,6 +4864,7 @@ const char *oldstr;
 			if (!BSTRCMPI(bp, p-6, "gloves") ||
                       !BSTRCMPI(bp, p-7, "clothes") ||
 			    !BSTRCMP(bp, p-6, "lenses") ||
+			    !BSTRCMP(bp, p-6, "shorts") ||
                             !BSTRCMPI(bp, p-5, "shoes") ||
                            !BSTRCMPI(bp, p-4, "toes") ||
                            !BSTRCMPI(bp, p-9, "overknees") ||
@@ -5879,7 +5916,8 @@ typfnd:
 		wizard ||
 #endif
 		 (cnt <= 7 && Is_candle(otmp)) ||
-		 (cnt <= 100 && (typ != BOOMERANG) &&	/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
+		 (cnt <= 7 && (typ == BATARANG) && Race_if(PM_BATMAN)) ||
+		 (cnt <= 100 && (typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) &&	/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
 		  ((oclass == WEAPON_CLASS && is_ammo(otmp))
 				|| typ == ROCK || is_missile(otmp)))))
 			otmp->quan = (long) cnt;

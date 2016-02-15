@@ -197,6 +197,8 @@ int thrown;
 
 	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
 
+	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
+
 	    /* 1/3 of object enchantment */
 	    if (launcher && launcher->spe > 1)
 		multishot += (long) rounddiv(launcher->spe,3);
@@ -1196,7 +1198,7 @@ int thrown;
 	    thrownobj = (struct obj*)0;
 	    return;
 
-	} else if(obj->otyp == BOOMERANG && !Underwater) {
+	} else if( (obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG) && !Underwater) {
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, 1, TRUE);
 		mon = boomhit(u.dx, u.dy);
@@ -1652,7 +1654,7 @@ int thrown;
 		    }
 		}
 	    } else {
-		if (otyp == BOOMERANG)		/* arbitrary */
+		if (otyp == BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG)		/* arbitrary */
 		    tmp += 4;
 		else if (throwing_weapon(obj))	/* meant to be thrown */
 		    tmp += 2;

@@ -9193,12 +9193,12 @@ register struct monst *mon;
 	}
 
 	/* maybe contract a disease? --Amy */
-	if (!rn2(25)) {
+	if (!rn2(25) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted syphilis from having unprotected intercourse with your lover!");
 		(void) diseasemu(mon->data);
 	}
 
-	if (!rn2(1000)) {
+	if (!rn2(1000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted AIDS from having unprotected intercourse with your lover!");
 		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
@@ -9256,25 +9256,25 @@ register struct monst *mon;
 		u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 	}
 
-	if (!rn2(250)) {
+	if (!rn2(250) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted ataxia from having unprotected intercourse with your lover!");
 		HFumbling = FROMOUTSIDE | rnd(100);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(1000);
 	}
 
-	if (!rn2(100)) {
+	if (!rn2(100) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted rust chancres from having unprotected intercourse with your lover!");
 	      HAggravate_monster |= FROMOUTSIDE;
 	}
 
-	if (!rn2(200)) {
+	if (!rn2(200) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted chills from having unprotected intercourse with your lover!");
 		make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyFrozen, HFrozen);
 	}
 
-	if (!rn2(500)) {
+	if (!rn2(500) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted blackheart plague from having unprotected intercourse with your lover!");
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
@@ -9288,176 +9288,178 @@ register struct monst *mon;
 
 	}
 
-	if (!rn2(100)) {
+	if (!rn2(100) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted swamp fever from having unprotected intercourse with your lover!");
 		make_burned(HBurned + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyBurned, HBurned);
 	}
 
-	if (!rn2(500)) {
+	if (!rn2(500) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted gray star from having unprotected intercourse with your lover!");
 		make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyBlind, Blinded);
 	}
 
-	if (!rn2(500)) {
+	if (!rn2(500) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
 	      HHunger |= FROMOUTSIDE;
 	}
 
-	if (!rn2(5000)) {
+	if (!rn2(5000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted polymorphitis from having unprotected intercourse with your lover!");
 	      HPolymorph |= FROMOUTSIDE;
 	}
 
-	if (!rn2(5000)) {
+	if (!rn2(5000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted green star from having unprotected intercourse with your lover!");
 	      u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(50000)) {
+	if (!rn2(50000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted an ancient foul curse from having unprotected intercourse with your lover!");
 	      u.uprops[PREMDEATH].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted witbane from having unprotected intercourse with your lover!");
 	      u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted hydroanemia from having unprotected intercourse with your lover!");
 	      u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted Dudley's disease from having unprotected intercourse with your lover!");
 	      u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(1000)) {
+	if (!rn2(1000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted fuckedupness (the disease that has befallen Christian Grey) from having unprotected intercourse with your lover!");
 	      u.uprops[SHADES_OF_GREY].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(1000)) {
+	if (!rn2(1000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted Rodney's Black Cancer from having unprotected intercourse with your lover!");
 	      u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted narcolepsy from having unprotected intercourse with your lover!");
 	      u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted deafness from having unprotected intercourse with your lover!");
 	      u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(5000)) {
+	if (!rn2(5000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted a tapeworm infection from having unprotected intercourse with your lover!");
 	      u.uprops[WEAKNESS_PROBLEM].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(2000)) {
+	if (!rn2(2000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted a heavy flu from having unprotected intercourse with your lover!");
 	      u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(10000)) {
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted migraine from having unprotected intercourse with your lover!");
 	      u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted Alzheimer's disease from having unprotected intercourse with your lover!");
 	      u.uprops[RECURRING_AMNESIA].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted telomer cutting disease from having unprotected intercourse with your lover!");
 	      u.uprops[INTRINSIC_LOSS].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted tongue crippling from having unprotected intercourse with your lover!");
 	      u.uprops[MUTENESS].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted parkinson from having unprotected intercourse with your lover!");
 	      u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted shatterhands from having unprotected intercourse with your lover!");
 	      u.uprops[MAGIC_DEVICE_BUG].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted dyslexia from having unprotected intercourse with your lover!");
 	      u.uprops[BOOKBUG].intrinsic |= FROMOUTSIDE;
 	      u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted hypermetabolism from having unprotected intercourse with your lover!");
 	      u.uprops[FAST_METABOLISM].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted ghoulification from having unprotected intercourse with your lover!");
 	      u.uprops[FOOD_IS_ROTTEN].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted autism from having unprotected intercourse with your lover!");
 	      u.uprops[SKILL_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted schizophreny from having unprotected intercourse with your lover!");
 	      u.uprops[STATS_LOWERED].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted down syndrome from having unprotected intercourse with your lover!");
 	      u.uprops[TRAINING_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted locked-in syndrome from having unprotected intercourse with your lover!");
 	      u.uprops[EXERCISE_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(10000)) {
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted magic vacuum from having unprotected intercourse with your lover!");
 	      u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(1000)) {
+ 	if (!rn2(1000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted osteoporosis from having unprotected intercourse with your lover!");
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(10000));
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(10000));
 
 	}
 
- 	if (!rn2(2000)) {
+ 	if (!rn2(2000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted porphyric hemophilia from having unprotected intercourse with your lover!");
 	      u.uprops[BLOOD_LOSS].intrinsic |= FROMOUTSIDE;
 	}
 
- 	if (!rn2(50000)) {
+ 	if (!rn2(50000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted an ancient Morgothian curse from having unprotected intercourse with your lover!");
 	      u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
 	}
 
-	if (!rn2(75) && !flags.female) {
+	if (!rn2(75) && !flags.female && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted erective dysfunction from having unprotected intercourse with your lover!");
 		make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyNumbed, HNumbed);
 	}
+
+	if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
 
 	if (!rn2(Role_if(PM_LADIESMAN) ? 100 : 10)) mon->mcan = 1; /* monster is worn out; chance is much higher now --Amy */
 	if (!tele_restrict(mon)) (void) rloc(mon, FALSE);

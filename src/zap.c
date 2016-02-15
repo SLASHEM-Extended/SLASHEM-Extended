@@ -2174,7 +2174,7 @@ poly_obj(obj, id)
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
 #endif
-	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD &&
+	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != CONDOME &&
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);

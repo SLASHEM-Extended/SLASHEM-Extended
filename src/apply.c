@@ -1651,7 +1651,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		killer = "a sharp-edged sword";		/* the thing that killed you */
 		killer_format = KILLED_BY;
@@ -3853,6 +3853,7 @@ doapply()
 	switch(obj->otyp){
 	case BLINDFOLD:
 	case LENSES:
+	case CONDOME:
 		if (obj == ublindf) {
 		    if (!cursed(obj)) Blindf_off(obj);
 		} else if (!ublindf)
@@ -3860,6 +3861,7 @@ doapply()
 		else You("are already %s.",
 			ublindf->otyp == TOWEL ?     "covered by a towel" :
 			ublindf->otyp == BLINDFOLD ? "wearing a blindfold" :
+			ublindf->otyp == CONDOME ? "wearing a condome" :
 						     "wearing lenses");
 		break;
 	case CREAM_PIE:

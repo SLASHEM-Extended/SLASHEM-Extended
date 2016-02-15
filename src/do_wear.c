@@ -598,6 +598,9 @@ Helmet_on()
 	case CRYSTAL_HELM:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
+	case ELVEN_HELM:
+	case WAR_HAT:
+	case HIGH_ELVEN_HELM:
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case DROVEN_HELM:
@@ -763,6 +766,9 @@ Helmet_off()
 	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
+	case ELVEN_HELM:
+	case WAR_HAT:
+	case HIGH_ELVEN_HELM:
 	case GNOMISH_HELM:
 	case DWARVISH_IRON_HELM:
 	case DROVEN_HELM:
@@ -2401,7 +2407,7 @@ doputon()
 		Your("%s%s are full, and you're already wearing an amulet and %s.",
 			humanoid(youmonst.data) ? "ring-" : "",
 			makeplural(body_part(FINGER)),
-			ublindf->otyp==LENSES ? "some lenses" : "a blindfold");
+			ublindf->otyp==LENSES ? "some lenses" : ublindf->otyp==CONDOME ? "a condome" : "a blindfold");
 		return(0);
 	}
 	otmp = getobj(accessories, "put on");
@@ -2491,6 +2497,8 @@ doputon()
 			if (ublindf->otyp == TOWEL)
 				Your("%s is already covered by a towel.",
 					body_part(FACE));
+			else if (ublindf->otyp == CONDOME)
+					already_wearing("a condome");
 			else if (ublindf->otyp == BLINDFOLD) {
 				if (otmp->otyp == LENSES)
 					already_wearing2("lenses", "a blindfold");
@@ -2505,7 +2513,7 @@ doputon()
 				already_wearing(something); /* ??? */
 			return(0);
 		}
-		if (otmp->otyp != BLINDFOLD && otmp->otyp != TOWEL && otmp->otyp != LENSES) {
+		if (otmp->otyp != BLINDFOLD && otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != CONDOME) {
 			You_cant("wear that!");
 			return(0);
 		}
@@ -2614,6 +2622,8 @@ find_ac()
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_HELM) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == HIGH_ELVEN_HELM) uac -= 1;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmh && uarmh->otyp == GNOMISH_HELM) uac -= 2;
 	if (Race_if(PM_ORC) && uarmh && uarmh->otyp == ORCISH_HELM) uac -= 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmh && uarmh->otyp == DWARVISH_IRON_HELM) uac -= 1;

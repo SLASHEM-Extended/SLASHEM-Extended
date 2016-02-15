@@ -1841,7 +1841,7 @@ struct monst *mtmp;
                 if (typ == COIN_CLASS && obj->quan > 100L) return FALSE;
 #endif
 		if (obj->oclass != GEM_CLASS &&
-		    !(typ >= ARROW && typ <= BOOMERANG) &&
+		    !(typ >= ARROW && typ <= BATARANG) &&
 		    !(typ >= DAGGER && typ <= CRYSKNIFE) &&
 		    typ != SLING &&
 		    !is_cloak(obj) && typ != FEDORA &&

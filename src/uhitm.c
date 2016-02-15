@@ -1136,7 +1136,7 @@ int thrown;
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				obj->otyp == BOOMERANG && !rnl(4) == 4-1) {
+				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG) && !rnl(4) == 4-1) {
 			boolean more_than_1 = (obj->quan > 1L);
 
 			pline("As you hit %s, %s%s %s breaks into splinters.",

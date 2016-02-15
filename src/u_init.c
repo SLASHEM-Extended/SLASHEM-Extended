@@ -385,6 +385,7 @@ static struct trobj StandUser[] = {
 static struct trobj Sexymate[] = {
 
 	{ FEMININE_PUMPS, 7, ARMOR_CLASS, 1, 0 },
+	{ CONDOME, 0, TOOL_CLASS, 1, 0 },
   	{ 0, 0, 0, 0, 0 }
 };
 

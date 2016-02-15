@@ -874,6 +874,8 @@ struct monst *mtmp;
 
 	    if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
 
+	    if (mwep && mwep->otyp == HYDRA_BOW) multishot += 2;
+
 	    /* 1/3 of object enchantment */
 	    if (mwep && mwep->spe > 1)
 		multishot += rounddiv(mwep->spe, 3);

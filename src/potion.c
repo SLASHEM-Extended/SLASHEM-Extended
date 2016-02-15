@@ -5132,7 +5132,7 @@ register struct obj *obj;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
 #endif
-	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD &&
+	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CONDOME &&
 	      obj->otyp != TOWEL && obj->otyp != LENSES)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
