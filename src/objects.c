@@ -632,6 +632,7 @@ WEAPON("flame whip", (char *)0,
 	1, 0, 0,  1, 6, 70, 4, 2,    1, B, P_WHIP, LIQUID, CLR_RED),
 WEAPON("rose whip", (char *)0,
 	1, 0, 0,  1, 6, 70, 4, 2,    1, S, P_WHIP, WOOD, CLR_RED),
+
 WEAPON("rubber hose", (char *)0,
 	1, 0, 0, 15, 8,  3,  4,  3, 5, B,   P_WHIP, PLASTIC, CLR_BROWN),
 
@@ -2844,6 +2845,19 @@ SCROLL((char *)0,               "SEGFAULT PANIC CAUSES SAVEGAME CORRUPTION",  P_
 SCROLL((char *)0,               "THE AMY THINKS THAT AIR CURRENT NOISES ARE EROTIC",  P_NONE,     1,   0, 300, CLR_WHITE),
 SCROLL((char *)0,               "KERIO WONT TOUCH MAPGLYPH DOT C WITH A 10 FOOT POLE",  P_NONE,     1,   0, 300, CLR_BLACK),
 SCROLL((char *)0,               "FLEECY COLORS ARE A FEATURE OF SLASHEM EXTENDED",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "VYSOKE PODPAETKY MOZU POSKRIABAT KRASNE KRVAVE RANY NA NOHACH",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
+SCROLL((char *)0,               "MA KALPANA MRDU SAM POMPA MA KAPA ADARAYA",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "POMPA KULIT SEKSI NYAETA SEKSI ALATAN KURING NYEBUTKEUN ETA SEKSI",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "KOMALA KATARA JUTA DHERAI KHATARANAKA CHAN",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "VINDOJ 7 AAP BAKAVAAS KAR RAHE HAIN",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE),
+SCROLL((char *)0,               "BATMAN IS UNABLE TO HURT THE LITTLE POISON IVIES",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
+SCROLL((char *)0,               "THIS KITTEN CORPSE IS DELICIOUS",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "THE BEST WAY TO DEAL WITH CATS IS TO STRANGULATE THEM",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "SMIRITELNAYA RUBASHKA",  P_NONE,     1,   0, 300, CLR_RED),
+SCROLL((char *)0,               "GOOGLE TRANSLATE DOES NOT KNOW WHAT A BATARANG IS",  P_NONE,     1,   0, 300, CLR_BLACK),
+SCROLL((char *)0,               "TSVETOCHNYYE SHORTY I LEY",  P_NONE,     1,   0, 300, CLR_CYAN),
+SCROLL((char *)0,               "OGRANICHENIYE SAPOGI",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN),
+SCROLL((char *)0,               "ZESE PLASHCH",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),
