@@ -1587,7 +1587,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1679,6 +1679,9 @@ nh_timeout()
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1693,7 +1696,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1784,6 +1787,9 @@ nh_timeout()
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1798,7 +1804,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1889,6 +1895,9 @@ nh_timeout()
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1903,7 +1912,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1994,6 +2003,9 @@ nh_timeout()
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

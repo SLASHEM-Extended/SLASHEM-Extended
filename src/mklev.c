@@ -2287,6 +2287,8 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
+			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
@@ -10808,6 +10810,12 @@ coord *tm;
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) kind = ROLLING_BOULDER_TRAP; break;
 		    case EXERCISE_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) kind = ANTI_MAGIC; break;
+		    case LIMITATION_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) kind = PIT; break;
+		    case WEAK_SIGHT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) kind = ANTI_MAGIC; break;
+		    case RANDOM_MESSAGE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) kind = MAGIC_TRAP; break;
 
 		    case FALLING_LOADSTONE_TRAP:
 			if (rn2(3)) kind = ROCKTRAP; break;
@@ -10880,7 +10888,7 @@ coord *tm;
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == SHAFT_TRAP ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == SHAFT_TRAP ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

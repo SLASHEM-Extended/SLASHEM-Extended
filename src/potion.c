@@ -1341,7 +1341,7 @@ badeffect()
 		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 		if (!blackngdur ) blackngdur = 500; /* fail safe */
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1432,6 +1432,9 @@ badeffect()
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

@@ -1260,6 +1260,7 @@ dospinweb()
 	if (ttmp) switch (ttmp->ttyp) {
 		case PIT:
 		case SHIT_PIT:
+		case MANA_PIT:
 		case SPIKED_PIT: You("spin a web, covering up the pit.");
 			deltrap(ttmp);
 			bury_objs(u.ux, u.uy);
@@ -1403,6 +1404,14 @@ dospinweb()
 		case VENOM_SPRINKLER:
 		case FUMAROLE:
 
+		case ELEMENTAL_PORTAL:
+		case GIRLINESS_TRAP:
+		case FUMBLING_TRAP:
+		case EGOMONSTER_TRAP:
+		case FLOODING_TRAP:
+		case MONSTER_CUBE:
+		case CURSED_GRAVE:
+
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
@@ -1494,6 +1503,9 @@ dospinweb()
 		case LOW_STATS_TRAP:
 		case TRAINING_TRAP:
 		case EXERCISE_TRAP:
+		case LIMITATION_TRAP:
+		case WEAK_SIGHT_TRAP:
+		case RANDOM_MESSAGE_TRAP:
 
 			dotrap(ttmp, 0);
 			return(1);

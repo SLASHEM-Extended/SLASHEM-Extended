@@ -336,6 +336,18 @@ static struct {
 	{ "venom sprinkler",	VENOM_SPRINKLER },
 	{ "fumarole",	FUMAROLE },
 
+	{ "mana pit",	MANA_PIT },
+	{ "elemental portal",	ELEMENTAL_PORTAL },
+	{ "girliness",	GIRLINESS_TRAP },
+	{ "fumbling",	FUMBLING_TRAP },
+	{ "egomonster",	EGOMONSTER_TRAP },
+	{ "flooding",	FLOODING_TRAP },
+	{ "monster cube",	MONSTER_CUBE },
+	{ "cursed grave",	CURSED_GRAVE },
+	{ "limitation",	LIMITATION_TRAP },
+	{ "weak sight",	WEAK_SIGHT_TRAP },
+	{ "random message",	RANDOM_MESSAGE_TRAP },
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

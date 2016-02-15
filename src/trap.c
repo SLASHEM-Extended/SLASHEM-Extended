@@ -227,6 +227,85 @@ genericptr_t poolcnt;
 }
 
 STATIC_PTR void
+do_megafloodingd(x, y, poolcnt)
+int x, y;
+genericptr_t poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			if (rn2(4)) {
+				levl[randomx][randomy].typ = MOAT;
+				makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+			} else {
+				levl[randomx][randomy].typ = LAVAPOOL;
+				makemon(mkclass(S_FLYFISH,0), randomx, randomy, NO_MM_FLAGS);
+			}
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		if (rn2(4)) {
+			levl[x][y].typ = MOAT;
+			makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+		} else {
+			levl[x][y].typ = LAVAPOOL;
+			makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
+		}
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+
+STATIC_PTR void
 do_icefloodd(x, y, poolcnt)
 int x, y;
 genericptr_t poolcnt;
@@ -901,7 +980,7 @@ register int x, y, typ, replacechance;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP) ||
 	      (u.utraptype == TT_WEB && typ != WEB) ||
-	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT)))
+	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT)))
 		    u.utrap = 0;
 	} else {
 	    oldplace = FALSE;
@@ -1201,6 +1280,7 @@ register int x, y, typ, replacechance;
 	    case SPIKED_PIT:
 	    case GIANT_CHASM:
 	    case SHIT_PIT:
+	    case MANA_PIT:
 	    case SHAFT_TRAP:
 	    case TRAPDOOR:
 		lev = &levl[x][y];
@@ -1625,7 +1705,7 @@ unsigned trflags;
 
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
-			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
+			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
 			ttype == TRAPDOOR)) {
 	    /* The "air currents" message is still appropriate -- even when
 	     * the hero isn't flying or levitating -- because it conveys the
@@ -1649,7 +1729,7 @@ unsigned trflags;
 	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && !forcebungle &&
 		(!rn2(5) ||
-	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT) && is_clinger(youmonst.data)))) {
+	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
 		    (ttype == ARROW_TRAP && !trap->madeby_u) ? "an" :
 			a_your[trap->madeby_u],
@@ -2491,6 +2571,89 @@ newboss:
 		deltrap(trap); /* only triggers once */
 		break;
 
+	    case GIRLINESS_TRAP:
+
+		{
+			int attempts = 0;
+			int ammount = rnd(9);
+			register struct permonst *ptrZ;
+newgirl:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_FART_LOUD || ptrZ->msound == MS_FART_NORMAL || ptrZ->msound == MS_FART_QUIET))) && attempts < 50000);
+
+			if (ptrZ && (ptrZ->msound == MS_FART_LOUD || ptrZ->msound == MS_FART_NORMAL || ptrZ->msound == MS_FART_QUIET) ) {
+				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+				if (ammount > 0) {
+					ammount--;
+					attempts = 0;
+					goto newgirl;
+				}
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newgirl;
+			}
+
+		}
+
+		pline("You feel a very feminine aura!");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case EGOMONSTER_TRAP:
+
+		{
+			int attempts = 0;
+			int ammount = rnd(9);
+			register struct permonst *ptrZ;
+newegomon:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(always_egotype(ptrZ)))) && attempts < 50000);
+
+			if (ptrZ && (always_egotype(ptrZ)) ) {
+				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+				if (ammount > 0) {
+					ammount--;
+					attempts = 0;
+					goto newegomon;
+				}
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newegomon;
+			}
+
+		}
+
+		pline("hwer!");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case FLOODING_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		{
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_megafloodingd, (genericptr_t)&madepoolQ);
+			if (madepoolQ)
+				pline("The dungeon is flooded!");
+			else pline("The trap doesn't seem to have any effect.");
+
+		}
+		deltrap(trap); /* only triggers once */
+		break;
+
 	    case WISHING_TRAP:
 
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
@@ -2611,6 +2774,23 @@ newboss:
 		}
 
 		pline(Hallucination ? "And she's buying a stairway to heaven... er, hell." : "From the dark stairway to hell, demons appear to surround you!");
+
+		deltrap(trap); /* only triggers once */
+		break;
+
+	    case ELEMENTAL_PORTAL:
+
+		monstcnt = d(3, 5);	
+		if (!rn2(5)) monstcnt += rnd(3);
+		if (!rn2(25)) monstcnt += rnd(7);
+		if (!rn2(125)) monstcnt += rnd(15);
+		if (!rn2(725)) monstcnt += rnd(50);
+
+	      while(--monstcnt >= 0) {
+		(void) makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, NO_MM_FLAGS);
+		}
+
+		pline(Hallucination ? "Alien alert! I will kick you in the god damn ass! Shit these alien creeps are hot!" : "The barriers between the dungeon and the elemental planes have been breached!");
 
 		deltrap(trap); /* only triggers once */
 		break;
@@ -3491,6 +3671,7 @@ newboss:
 	    case SPIKED_PIT:
 	    case GIANT_CHASM:
 	    case SHIT_PIT:
+	    case MANA_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && (Levitation || Flying)) break;
 		seetrap(trap);
@@ -3567,6 +3748,10 @@ newboss:
 
 		if (ttype == SHIT_PIT) {
 			doshittrap((struct obj *)0);
+		}
+
+		if (ttype == MANA_PIT) {
+		    drain_en(rnz(monster_difficulty() + 1));
 		}
 
 		if (Punished && !carried(uball)) {
@@ -3723,6 +3908,15 @@ newboss:
 		default: impossible("bad lock trap");
 			break;
 		}
+		break;
+
+	    case FUMBLING_TRAP:
+		pline("A green glow surrounds you...");
+		HFumbling = FROMOUTSIDE | rnd(100);
+		incr_itimeout(&HFumbling, rnd(20));
+		u.fumbleduration += rnz(10 * (monster_difficulty() + 1) );
+		seetrap(trap);
+		pline("You feel like a whiny Mary-Sue!"); /* yes Anabella Swansteele, I'm looking at you!!! --Amy */
 		break;
 
 	    case CONFUSE_TRAP:
@@ -4827,6 +5021,8 @@ newboss:
 		break;
 
 	    case FUMAROLE:
+	    case MONSTER_CUBE:
+	    case CURSED_GRAVE:
 
 		break;
 
@@ -5059,6 +5255,30 @@ newboss:
 			if (PlayerCannotExerciseStats) break;
 
 			PlayerCannotExerciseStats = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case LIMITATION_TRAP:
+
+			if (TurnLimitation) break;
+
+			TurnLimitation = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case WEAK_SIGHT_TRAP:
+
+			if (WeakSight) break;
+
+			WeakSight = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case RANDOM_MESSAGE_TRAP:
+
+			if (RandomMessages) break;
+
+			RandomMessages = rnz(nastytrapdur * (monster_difficulty() + 1));
 
 		 break;
 
@@ -5699,7 +5919,7 @@ newboss:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(64)) {
+			switch (rnd(67)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -5790,6 +6010,9 @@ newboss:
 				case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -6344,7 +6567,7 @@ newboss:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -6410,6 +6633,9 @@ newboss:
 			AllStatsAreLower = 0L;
 			PlayerCannotTrainSkills = 0L;
 			PlayerCannotExerciseStats = 0L;
+			TurnLimitation = 0L;
+			WeakSight = 0L;
+			RandomMessages = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -7192,6 +7418,7 @@ struct obj *otmp;
 		case SPIKED_PIT:
 		case GIANT_CHASM:
 		case SHIT_PIT:
+		case MANA_PIT:
 			if (mtmp->mhp <= 0 ||
 				thitm(0, mtmp, (struct obj *)0,
 				      rnd((tt == PIT) ? 6 : (tt == GIANT_CHASM) ? 15 : 10), FALSE))
@@ -7432,6 +7659,7 @@ int style;
 			case SPIKED_PIT:
 			case GIANT_CHASM:
 			case SHIT_PIT:
+			case MANA_PIT:
 			case SHAFT_TRAP:
 			case HOLE:
 			case TRAPDOOR:
@@ -7631,7 +7859,7 @@ register struct monst *mtmp;
 	} else if (mtmp->mtrapped) {	/* is currently in the trap */
 	    if (!trap->tseen && !trap->hiddentrap && 
 		cansee(mtmp->mx, mtmp->my) && canseemon(mtmp) &&
-		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == BEAR_TRAP ||
+		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == BEAR_TRAP ||
 		 trap->ttyp == HOLE || trap->ttyp == PIT ||
 		 trap->ttyp == WEB)) {
 		/* If you come upon an obviously trapped monster, then
@@ -7642,7 +7870,7 @@ register struct monst *mtmp;
 		
 	    if (!rn2(40)) {
 		if (sobj_at(BOULDER, mtmp->mx, mtmp->my) &&
-			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT)) {
+			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT)) {
 		    if (!rn2(2)) {
 			mtmp->mtrapped = 0;
 			if (canseemon(mtmp))
@@ -8304,6 +8532,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SPIKED_PIT:
 		case GIANT_CHASM:
 		case SHIT_PIT:
+		case MANA_PIT:
 			fallverb = "falls";
 			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
 				(mtmp->wormno && count_wsegs(mtmp) > 5) ||
@@ -8595,6 +8824,17 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FALLING_LOADSTONE_TRAP:
 		case SUMMON_UNDEAD_TRAP:
 		case FALLING_NASTYSTONE_TRAP:
+
+		case ELEMENTAL_PORTAL:
+		case GIRLINESS_TRAP:
+		case FUMBLING_TRAP:
+		case EGOMONSTER_TRAP:
+		case FLOODING_TRAP:
+		case MONSTER_CUBE:
+		case CURSED_GRAVE:
+		case LIMITATION_TRAP:
+		case WEAK_SIGHT_TRAP:
+		case RANDOM_MESSAGE_TRAP:
 
 		case SPINED_BALL_TRAP:
 		case PENDULUM_TRAP:
@@ -8986,7 +9226,7 @@ int x, y;
 	struct trap *t;
 
 	if ((t = t_at(x, y)) &&
-	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT)) &&
+	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT)) &&
 	    (otmp = sobj_at(BOULDER, x, y))) {
 		obj_extract_self(otmp);
 		(void) flooreffects(otmp, x, y, "settle");
@@ -9013,7 +9253,7 @@ long hmask, emask;     /* might cancel timeout */
 	if (Punished && !carried(uball) &&
 	    (is_pool(uball->ox, uball->oy) ||
 	     ((trap = t_at(uball->ox, uball->oy)) &&
-	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == SHAFT_TRAP) ||
+	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == SHAFT_TRAP) ||
 	       (trap->ttyp == TRAPDOOR) || (trap->ttyp == HOLE))))) {
 			u.ux0 = u.ux;
 			u.uy0 = u.uy;
@@ -10922,7 +11162,7 @@ boolean force;
 		deal_with_floor_trap = TRUE;
 		Strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
 		if (box_here) {
-			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT) {
+			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT) {
 			    You_cant("do much about %s%s.",
 					the_trap, u.utrap ?
 					" that you're stuck in" :
@@ -11014,6 +11254,7 @@ boolean force;
 			case SPIKED_PIT:
 			case GIANT_CHASM:
 			case SHIT_PIT:
+			case MANA_PIT:
 				if (!u.dx && !u.dy) {
 				    You("are already on the edge of the pit.");
 				    return 0;
@@ -11377,6 +11618,7 @@ register struct trap *ttmp;
 		     (ttmp->ttyp == TRAPDOOR) ||
 		     (ttmp->ttyp == SHAFT_TRAP) ||
 		     (ttmp->ttyp == SHIT_PIT) ||
+		     (ttmp->ttyp == MANA_PIT) ||
 		     (ttmp->ttyp == TELEP_TRAP) ||
 		     (ttmp->ttyp == LEVEL_TELEP) ||
 		     (ttmp->ttyp == WEB) ||

@@ -156,6 +156,7 @@ Boots_on()
 	case BOOTS_OF_WEAKNESS:
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
+	case LIMITATION_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
@@ -297,6 +298,7 @@ Boots_off()
 	case BOOTS_OF_WEAKNESS:
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
+	case LIMITATION_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 	case RUBBER_BOOTS:
@@ -435,6 +437,7 @@ Cloak_on()
 	case SPAWN_CLOAK:
 	case EGOIST_CLOAK:
 	case CLOAK_OF_TIME:
+	case CHATBOX_CLOAK:
 	case HEAVY_STATUS_CLOAK:
 	case CLOAK_OF_LUCK_NEGATION:
 	case YELLOW_SPELL_CLOAK:
@@ -502,6 +505,7 @@ Cloak_off()
 	case SPAWN_CLOAK:
 	case EGOIST_CLOAK:
 	case CLOAK_OF_TIME:
+	case CHATBOX_CLOAK:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:
@@ -708,6 +712,7 @@ Helmet_on()
 	case DIZZY_HELMET:
 	case MUTING_HELM:
 	case ULCH_HELMET:
+	case DIMMER_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -782,6 +787,7 @@ Helmet_off()
 	case DIZZY_HELMET:
 	case MUTING_HELM:
 	case ULCH_HELMET:
+	case DIMMER_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:

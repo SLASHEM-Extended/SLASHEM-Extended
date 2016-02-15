@@ -238,6 +238,10 @@
 #define PlayerCannotTrainSkills		u.uprops[TRAINING_DEACTIVATED].intrinsic
 #define PlayerCannotExerciseStats		u.uprops[EXERCISE_DEACTIVATED].intrinsic
 
+#define TurnLimitation		u.uprops[TURNLIMITATION].intrinsic
+#define WeakSight		u.uprops[WEAKSIGHT].intrinsic
+#define RandomMessages		u.uprops[RANDOM_MESSAGES].intrinsic
+
 #define TimeStopped		u.uprops[TIME_STOPPED].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */

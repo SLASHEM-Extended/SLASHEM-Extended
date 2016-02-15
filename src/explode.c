@@ -631,6 +631,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 #endif
+
+		if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+			if (damu > 0) u.ascensiontimelimit -= damu;
+			if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+		}
+
 	}
 
 	if (shopdamage) {

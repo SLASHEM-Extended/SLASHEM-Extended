@@ -269,8 +269,20 @@ extern struct trap *ftrap;
 #define VENOM_SPRINKLER	208		/*[Sakusha]*/
 #define FUMAROLE	209		/*[Sakusha]*/
 
-#define TRAP_PERCENTS	210
+#define MANA_PIT 210
+#define ELEMENTAL_PORTAL 211
+#define GIRLINESS_TRAP 212
+#define FUMBLING_TRAP 213
+#define EGOMONSTER_TRAP 214
+#define FLOODING_TRAP 215
+#define MONSTER_CUBE 216
+#define CURSED_GRAVE 217
+#define LIMITATION_TRAP 218
+#define WEAK_SIGHT_TRAP 219
+#define RANDOM_MESSAGE_TRAP 220
 
-#define TRAPNUM 211
+#define TRAP_PERCENTS	221
+
+#define TRAPNUM 222
 
 #endif /* TRAP_H */

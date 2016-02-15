@@ -1024,6 +1024,44 @@ moveloop()
 			       }
 
 			}
+
+			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(50)) {
+				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
+				(void) makemon((struct permonst *)0, ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+				if (!rn2(20)) pline("Chaeaet!");
+				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
+			}
+
+			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(50)) {
+				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
+				    switch (rnd(10)) {
+				    case 1:
+					(void) makemon(mkclass(S_VAMPIRE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+					break;
+				    case 2:
+				    case 3:
+				    case 4:
+				    case 5:
+					(void) makemon(mkclass(S_ZOMBIE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+					break;
+				    case 6:
+				    case 7:
+				    case 8:
+					(void) makemon(mkclass(S_MUMMY,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+					break;
+				    case 9:
+					(void) makemon(mkclass(S_GHOST,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+					break;
+				    case 10:
+					(void) makemon(mkclass(S_WRAITH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+					break;
+				    }
+
+				if (midnight()) pline("You feel a ghastly chill running down your %s!", body_part(SPINE) );
+				else if (!rn2(20)) pline("A monster rises from the grave!");
+				if (!rn2(50)) ttmp->ttyp = SUMMON_UNDEAD_TRAP;
+			}
+
 		}
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
@@ -2966,6 +3004,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side zip boots")) OBJ_DESCR(objects[i]) = "storona molnii sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cone-shaped helmet")) OBJ_DESCR(objects[i]) = "konusoobraznyy shlem";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark helmet")) OBJ_DESCR(objects[i]) = "temno-shlem";
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velcro boots")) OBJ_DESCR(objects[i]) = "lipuchki sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "complete helmet")) OBJ_DESCR(objects[i]) = "polnaya shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeb cloak")) OBJ_DESCR(objects[i]) = "zese plashch";
+
 	}
 	}
 
@@ -3415,6 +3458,10 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "side zip boots")) OBJ_DESCR(objects[i]) = "yon bir zip chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cone-shaped helmet")) OBJ_DESCR(objects[i]) = "konusning-pokiza zarbdan";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark helmet")) OBJ_DESCR(objects[i]) = "qorong'u zarbdan";
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velcro boots")) OBJ_DESCR(objects[i]) = "cirt chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "complete helmet")) OBJ_DESCR(objects[i]) = "to'liq dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeb cloak")) OBJ_DESCR(objects[i]) = "yaponiya ucube rido";
 	}
 	}
 

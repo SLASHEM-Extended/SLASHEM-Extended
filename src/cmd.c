@@ -2177,6 +2177,24 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 
+	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+		Sprintf(buf, "getting your ascension turn limit reduced whenever you take damage");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TurnLimitation);
+		you_are(buf);
+	}
+
+	if (u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) {
+		Sprintf(buf, "short-sighted");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WeakSight);
+		you_are(buf);
+	}
+
+	if (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() ) {
+		Sprintf(buf, "reading random messages");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RandomMessages);
+		you_are(buf);
+	}
+
 
 	if (u.uprops[RANDOM_RUMORS].extrinsic) {
 		Sprintf(buf, "going to listen to random rumors");
@@ -3780,6 +3798,24 @@ int final;
 	if (u.uprops[RECURRING_AMNESIA].extrinsic || RecurringAmnesia || have_amnesiastone() ) {
 		Sprintf(buf, "going to suffer from amnesia now and then");
 	      Sprintf(eos(buf), " (%d)", RecurringAmnesia);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+		Sprintf(buf, "getting your ascension turn limit reduced whenever you take damage");
+	      Sprintf(eos(buf), " (%d)", TurnLimitation);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) {
+		Sprintf(buf, "short-sighted");
+	      Sprintf(eos(buf), " (%d)", WeakSight);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() ) {
+		Sprintf(buf, "reading random messages");
+	      Sprintf(eos(buf), " (%d)", RandomMessages);
 		dump(youwere, buf);
 	}
 

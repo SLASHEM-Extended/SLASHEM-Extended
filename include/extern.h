@@ -979,6 +979,10 @@ E boolean NDECL(have_lowstatstone);
 E boolean NDECL(have_trainingstone);
 E boolean NDECL(have_exercisestone);
 
+E boolean NDECL(have_limitationstone);
+E boolean NDECL(have_weaksightstone);
+E boolean NDECL(have_messagestone);
+
 E boolean NDECL(have_primecurse);
 
 E boolean NDECL(have_mothrelay);

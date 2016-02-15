@@ -4294,6 +4294,11 @@ doapply()
 	case LOW_STAT_STONE:
 	case TRAINING_STONE:
 	case EXERCISE_STONE:
+
+	case TURN_LIMIT_STONE:
+	case WEAK_SIGHT_STONE:
+	case CHATTER_STONE:
+
 	case SALT_CHUNK:
 	case SILVER_SLINGSTONE:
 	case SMALL_PIECE_OF_UNREFINED_MITHR:
@@ -4444,6 +4449,10 @@ doapply()
 		AllStatsAreLower = 0L;
 		PlayerCannotTrainSkills = 0L;
 		PlayerCannotExerciseStats = 0L;
+
+		TurnLimitation = 0L;
+		WeakSight = 0L;
+		RandomMessages = 0L;
 
 		break;
 	case GOD_O_METER:

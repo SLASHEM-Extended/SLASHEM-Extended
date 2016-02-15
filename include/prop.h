@@ -255,7 +255,11 @@
 #define DEAC_DOUBLE_ATTACK	227
 #define DEAC_QUAD_ATTACK	228
 
-#define SECOND_CHANCE		229
+#define TURNLIMITATION 229
+#define WEAKSIGHT 230
+#define RANDOM_MESSAGES 231
+
+#define SECOND_CHANCE		232
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

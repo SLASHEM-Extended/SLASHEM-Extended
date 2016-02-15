@@ -5093,7 +5093,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE) return(0);
-		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT))) &&
+		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT))) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 
@@ -8717,6 +8717,11 @@ register int n;
 	}
 #endif
 
+	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+		if (n > 0) u.ascensiontimelimit -= n;
+		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+	}
+
 }
 
 #endif /* OVL1 */
@@ -9290,6 +9295,12 @@ register struct monst *mon;
 	}
 
 	if (!rn2(500)) {
+		pline("Ulch - you contracted gray star from having unprotected intercourse with your lover!");
+		make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		set_itimeout(&HeavyBlind, Blinded);
+	}
+
+	if (!rn2(500)) {
 		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
 	      HHunger |= FROMOUTSIDE;
 	}
@@ -9297,6 +9308,11 @@ register struct monst *mon;
 	if (!rn2(5000)) {
 		pline("Ulch - you contracted polymorphitis from having unprotected intercourse with your lover!");
 	      HPolymorph |= FROMOUTSIDE;
+	}
+
+	if (!rn2(5000)) {
+		pline("Ulch - you contracted green star from having unprotected intercourse with your lover!");
+	      u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
 	}
 
 	if (!rn2(50000)) {

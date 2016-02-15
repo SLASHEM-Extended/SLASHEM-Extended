@@ -1856,6 +1856,46 @@ have_exercisestone()
 	return(FALSE);
 }
 
+boolean
+have_limitationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TURN_LIMIT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator65) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_weaksightstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == WEAK_SIGHT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator66) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_messagestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHATTER_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator67) return TRUE;
+	return(FALSE);
+}
+
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -5278,6 +5318,9 @@ struct obj *obj;
 			case CLOAK_OF_TIME: 
 				pline("This cloak causes faster passing of time. It grants very good armor class and medium magic cancellation."); break;
 
+			case CHATBOX_CLOAK: 
+				pline("This cloak causes messages to be replaced randomly. It grants good armor class and maximum magic cancellation."); break;
+
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and maximum magic cancellation."); break;
 
@@ -5444,6 +5487,8 @@ struct obj *obj;
 				pline("This helm causes muteness. It provides excellent AC and maximum magic cancellation."); break;
 			case ULCH_HELMET:
 				pline("This helm causes rotten food. It provides medium AC and maximum magic cancellation."); break;
+			case DIMMER_HELMET:
+				pline("This helm causes weak sight. It provides good AC and medium magic cancellation."); break;
 			case HELM_OF_SENSORY_DEPRIVATION:
 				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellatin."); break;
 			case HELM_OF_TELEPATHY:
@@ -5635,6 +5680,8 @@ struct obj *obj;
 				pline("This footwear forces its wearer to adhere to the grid bug conduct. They provide extremely good AC and maximum magic cancellation."); break;
 			case DISENCHANTING_BOOTS:
 				pline("This footwear causes disenchantment. They provide extremely good AC and maximum magic cancellation."); break;
+			case LIMITATION_BOOTS:
+				pline("This footwear causes your ascension turn limitation to decrease. They provide very good AC and maximum magic cancellation."); break;
 			case STAIRWELL_STOMPING_BOOTS:
 				pline("This footwear causes stairwells to be trapped. They provide very good AC and maximum magic cancellation."); break;
 
@@ -7310,7 +7357,7 @@ struct obj *obj;
 		 	case AUTO_DESTRUCT_STONE:
 				pline("A stone that curses itself and causes an auto destruct mechanism to be initiated."); break;
 		 	case MEMORY_LOSS_STONE:
-				pline("A stone that curses itself and causes low local memory."); break;
+				pline("A stone that curses itself and causes low local memory. This message should never be displayed, yet somehow it is?!"); break;
 		 	case INVENTORY_LOSS_STONE:
 				pline("A stone that curses itself and causes the memory used for displaying an inventory window to run out. You cannot view this message in-game because you can't open your inventory while having this stone in there, so you gotta be peeking at the source! --Amy"); break;
 		 	case BLACKY_STONE:
@@ -7431,6 +7478,12 @@ struct obj *obj;
 				pline("A stone that curses itself and causes skill training to fail."); break;
 			case EXERCISE_STONE:
 				pline("A stone that curses itself and causes attribute exercise to fail."); break;
+			case TURN_LIMIT_STONE:
+				pline("A stone that curses itself and causes your ascension turn limit to decrease."); break;
+			case WEAK_SIGHT_STONE:
+				pline("A stone that curses itself and causes weak sight."); break;
+			case CHATTER_STONE:
+				pline("A stone that curses itself and causes random messages to appear instead of real ones, so you shouldn't even be able to see this message."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

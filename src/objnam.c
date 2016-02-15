@@ -1669,6 +1669,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HELM_OF_SPEED, "skorost' shlem" },
 	{ HELMET_OF_UNDEAD_WARNING, "nezhit' preduprezhdeniye shlem" },
 
+	{ TURN_LIMIT_STONE, "vklyuchit' predel'noye kamen'" },
+	{ LIMITATION_BOOTS, "ogranicheniye sapogi" },
+	{ WEAK_SIGHT_STONE, "slabym zreniyem kamen'" },
+	{ DIMMER_HELMET, "nizkiy shlem zreniye" },
+	{ CHATTER_STONE, "boltovnya kamen'" },
+	{ CHATBOX_CLOAK, "chata plashch" },
+
 	{0, "" }
 };
 
@@ -3016,6 +3023,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_POLYMORPH_CONTROL, "amulet of bir polimorfunun nazorat" },
 	{ HELM_OF_SPEED, "tezlik zarbdan" },
 	{ HELMET_OF_UNDEAD_WARNING, "bo'lmagan-o'lik ogohlantirish zarbdan" },
+
+	{ TURN_LIMIT_STONE, "chegarasi toshni o'girib" },
+	{ LIMITATION_BOOTS, "cheklash chizilmasin" },
+	{ WEAK_SIGHT_STONE, "zaif ko'rish tosh" },
+	{ DIMMER_HELMET, "karartma xususiyati dubulg'a" },
+	{ CHATTER_STONE, "safsata tosh" },
+	{ CHATBOX_CLOAK, "nejmeddin erbakan rido" },
 
 	{0, "" }
 };

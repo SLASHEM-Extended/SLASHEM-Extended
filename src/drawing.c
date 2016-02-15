@@ -489,6 +489,18 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "venom sprinkler", C(CLR_YELLOW)},	/* trap */
 	{'^', "fumarole", C(CLR_GREEN)},	/* trap */
 
+	{'^', "mana pit", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "elemental portal", C(CLR_GRAY)},	/* trap */
+	{'^', "girliness trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "fumbling trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "egomonster trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "flooding trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "monster cube", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "cursed grave", C(CLR_BLACK)},	/* trap */
+	{'^', "limitation trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "weak sight trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "random message trap", C(CLR_WHITE)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -799,6 +811,18 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_venom_sprinkler),
 	g_FILLER(S_fumarole),
 
+	g_FILLER(S_mana_pit),
+	g_FILLER(S_elemental_portal),
+	g_FILLER(S_girliness_trap),
+	g_FILLER(S_fumbling_trap),
+	g_FILLER(S_egomonster_trap),
+	g_FILLER(S_flooding_trap),
+	g_FILLER(S_monster_cube),
+	g_FILLER(S_cursed_grave),
+	g_FILLER(S_limitation_trap),
+	g_FILLER(S_weak_sight_trap),
+	g_FILLER(S_random_message_trap),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1100,6 +1124,18 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_venom_sprinkler),
 	g_FILLER(S_fumarole),
 
+	g_FILLER(S_mana_pit),
+	g_FILLER(S_elemental_portal),
+	g_FILLER(S_girliness_trap),
+	g_FILLER(S_fumbling_trap),
+	g_FILLER(S_egomonster_trap),
+	g_FILLER(S_flooding_trap),
+	g_FILLER(S_monster_cube),
+	g_FILLER(S_cursed_grave),
+	g_FILLER(S_limitation_trap),
+	g_FILLER(S_weak_sight_trap),
+	g_FILLER(S_random_message_trap),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1398,6 +1434,18 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_cannon_trap),
 	g_FILLER(S_venom_sprinkler),
 	g_FILLER(S_fumarole),
+
+	g_FILLER(S_mana_pit),
+	g_FILLER(S_elemental_portal),
+	g_FILLER(S_girliness_trap),
+	g_FILLER(S_fumbling_trap),
+	g_FILLER(S_egomonster_trap),
+	g_FILLER(S_flooding_trap),
+	g_FILLER(S_monster_cube),
+	g_FILLER(S_cursed_grave),
+	g_FILLER(S_limitation_trap),
+	g_FILLER(S_weak_sight_trap),
+	g_FILLER(S_random_message_trap),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1888,6 +1936,18 @@ boolean is_rlevel;
 	    showsyms[S_cannon_trap] = 0x04;
 	    showsyms[S_venom_sprinkler] = 0x04;
 	    showsyms[S_fumarole] = 0x04;
+
+	    showsyms[S_mana_pit] = 0x04;
+	    showsyms[S_elemental_portal] = 0x04;
+	    showsyms[S_girliness_trap] = 0x04;
+	    showsyms[S_fumbling_trap] = 0x04;
+	    showsyms[S_egomonster_trap] = 0x04;
+	    showsyms[S_flooding_trap] = 0x04;
+	    showsyms[S_monster_cube] = 0x04;
+	    showsyms[S_cursed_grave] = 0x04;
+	    showsyms[S_limitation_trap] = 0x04;
+	    showsyms[S_weak_sight_trap] = 0x04;
+	    showsyms[S_random_message_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

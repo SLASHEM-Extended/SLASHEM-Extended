@@ -1285,7 +1285,7 @@ struct monst *mtmp;
 
 	/* kludge to cut down on trap destruction (particularly portals) */
 	t = t_at(x,y);
-	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT ||
+	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT ||
 		  t->ttyp == WEB || t->ttyp == BEAR_TRAP))
 		t = 0;		/* ok for monster to dig here */
 
@@ -4192,7 +4192,7 @@ struct monst *mtmp;
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(64)) {
+		switch (rnd(67)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -4283,6 +4283,9 @@ struct monst *mtmp;
 			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 		}

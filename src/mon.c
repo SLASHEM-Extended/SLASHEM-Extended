@@ -2058,10 +2058,22 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != VENOM_SPRINKLER
 				&& ttmp->ttyp != FUMAROLE
 
+				&& ttmp->ttyp != ELEMENTAL_PORTAL
+				&& ttmp->ttyp != GIRLINESS_TRAP
+				&& ttmp->ttyp != FUMBLING_TRAP
+				&& ttmp->ttyp != EGOMONSTER_TRAP
+				&& ttmp->ttyp != FLOODING_TRAP
+				&& ttmp->ttyp != MONSTER_CUBE
+				&& ttmp->ttyp != CURSED_GRAVE
+				&& ttmp->ttyp != LIMITATION_TRAP
+				&& ttmp->ttyp != WEAK_SIGHT_TRAP
+				&& ttmp->ttyp != RANDOM_MESSAGE_TRAP
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != GIANT_CHASM
 				    && ttmp->ttyp != SHIT_PIT
+				    && ttmp->ttyp != MANA_PIT
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
@@ -3089,7 +3101,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

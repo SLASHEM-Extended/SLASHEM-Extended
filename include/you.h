@@ -546,6 +546,9 @@ struct you {
 	boolean nastinator62;
 	boolean nastinator63;
 	boolean nastinator64;
+	boolean nastinator65;
+	boolean nastinator66;
+	boolean nastinator67;
 
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 

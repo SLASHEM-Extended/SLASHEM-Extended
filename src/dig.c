@@ -339,7 +339,7 @@ dig()
 		    is_lightsaber(uwep) ||
 #endif
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
-			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == SHAFT_TRAP ||
+			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == SHAFT_TRAP ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
 		    return(1);
 
@@ -768,7 +768,7 @@ boolean pit_only;
 		}
 
 	} else if ((boulder_here = sobj_at(BOULDER, u.ux, u.uy)) != 0) {
-		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT) &&
+		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT) &&
 		    rn2(2)) {
 			pline_The("boulder settles into the pit.");
 			ttmp->ttyp = PIT;	 /* crush spikes */

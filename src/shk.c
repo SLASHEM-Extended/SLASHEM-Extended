@@ -1151,7 +1151,7 @@ register boolean killkops;
 	(void) mnearto(shkp, x, y, TRUE);
 	level.flags.has_shop = 1;
 	if (killkops) {
-/* kops_gone(TRUE); */
+		/* kops_gone(TRUE); */
 		pacify_guards();
 	}
 	after_shk_move(shkp);
@@ -3784,6 +3784,17 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != CANNON_TRAP
 				&& ttmp->ttyp != VENOM_SPRINKLER
 				&& ttmp->ttyp != FUMAROLE
+
+				&& ttmp->ttyp != ELEMENTAL_PORTAL
+				&& ttmp->ttyp != GIRLINESS_TRAP
+				&& ttmp->ttyp != FUMBLING_TRAP
+				&& ttmp->ttyp != EGOMONSTER_TRAP
+				&& ttmp->ttyp != FLOODING_TRAP
+				&& ttmp->ttyp != MONSTER_CUBE
+				&& ttmp->ttyp != CURSED_GRAVE
+				&& ttmp->ttyp != LIMITATION_TRAP
+				&& ttmp->ttyp != WEAK_SIGHT_TRAP
+				&& ttmp->ttyp != RANDOM_MESSAGE_TRAP
 
 				&& (ttmp->ttyp != DEATH_TRAP ||
 				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )

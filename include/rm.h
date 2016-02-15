@@ -376,49 +376,61 @@
 #define S_venom_sprinkler	251
 #define S_fumarole	252
 
-#define S_trap_percents		253
+#define S_mana_pit	253
+#define S_elemental_portal	254
+#define S_girliness_trap	255
+#define S_fumbling_trap	256
+#define S_egomonster_trap	257
+#define S_flooding_trap	258
+#define S_monster_cube	259
+#define S_cursed_grave	260
+#define S_limitation_trap	261
+#define S_weak_sight_trap	262
+#define S_random_message_trap	263
+
+#define S_trap_percents		264
 
 /* end traps, begin special effects */
 
-#define S_vbeam		254	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		255	/* To change order or add, see function     */
-#define S_lslant	256	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	257
-#define S_digbeam	258	/* dig beam symbol */
-#define S_flashbeam	259	/* camera flash symbol */
-#define S_boomleft	260	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	261	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		262	/* 4 magic shield glyphs */
-#define S_ss2		263
-#define S_ss3		264
-#define S_ss4		265
+#define S_vbeam		265	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		266	/* To change order or add, see function     */
+#define S_lslant	267	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	268
+#define S_digbeam	269	/* dig beam symbol */
+#define S_flashbeam	270	/* camera flash symbol */
+#define S_boomleft	271	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	272	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		273	/* 4 magic shield glyphs */
+#define S_ss2		274
+#define S_ss3		275
+#define S_ss4		276
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		266	/* swallow top left [1]			*/
-#define S_sw_tc		267	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		268	/* swallow top right [3]		*/
-#define S_sw_ml		269	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		270	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		271	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		272	/* swallow bottom center [8]		*/
-#define S_sw_br		273	/* swallow bottom right [9]		*/
+#define S_sw_tl		277	/* swallow top left [1]			*/
+#define S_sw_tc		278	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		279	/* swallow top right [3]		*/
+#define S_sw_ml		280	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		281	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		282	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		283	/* swallow bottom center [8]		*/
+#define S_sw_br		284	/* swallow bottom right [9]		*/
 
-#define S_explode1	274	/* explosion top left			*/
-#define S_explode2	275	/* explosion top center			*/
-#define S_explode3	276	/* explosion top right		 Ex.	*/
-#define S_explode4	277	/* explosion middle left		*/
-#define S_explode5	278	/* explosion middle center	 /-\	*/
-#define S_explode6	279	/* explosion middle right	 |@|	*/
-#define S_explode7	280	/* explosion bottom left	 \-/	*/
-#define S_explode8	281	/* explosion bottom center		*/
-#define S_explode9	282	/* explosion bottom right		*/
+#define S_explode1	285	/* explosion top left			*/
+#define S_explode2	286	/* explosion top center			*/
+#define S_explode3	287	/* explosion top right		 Ex.	*/
+#define S_explode4	288	/* explosion middle left		*/
+#define S_explode5	289	/* explosion middle center	 /-\	*/
+#define S_explode6	290	/* explosion middle right	 |@|	*/
+#define S_explode7	291	/* explosion bottom left	 \-/	*/
+#define S_explode8	292	/* explosion bottom center		*/
+#define S_explode9	293	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	283	/* maximum number of mapped characters */
+#define MAXPCHARS	294	/* maximum number of mapped characters */
 #define MAXDCHARS	44	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	210	/* maximum of mapped trap characters */
+#define MAXTCHARS	221	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 

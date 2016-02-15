@@ -577,6 +577,7 @@ drag:
 			 t->ttyp == SPIKED_PIT ||
 			 t->ttyp == GIANT_CHASM ||
 			 t->ttyp == SHIT_PIT ||
+			 t->ttyp == MANA_PIT ||
 			 t->ttyp == HOLE ||
 			 t->ttyp == SHAFT_TRAP ||
 			 t->ttyp == TRAPDOOR)) ) {
@@ -704,7 +705,7 @@ xchar x, y;
 	if (!Levitation && !MON_AT(x, y) && !u.utrap &&
 			    (is_pool(x, y) ||
 			     ((t = t_at(x, y)) &&
-			      (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == SHAFT_TRAP ||
+			      (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == SHAFT_TRAP ||
 			       t->ttyp == TRAPDOOR || t->ttyp == HOLE)))) {
 	    u.ux = x;
 	    u.uy = y;

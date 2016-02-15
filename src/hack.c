@@ -523,7 +523,7 @@ moverock()
 
 	    if (mtmp && !noncorporeal(mtmp->data) &&
 		    (!mtmp->mtrapped ||
-			 !(ttmp && ((ttmp->ttyp == PIT) || (ttmp->ttyp == SHIT_PIT) ||
+			 !(ttmp && ((ttmp->ttyp == PIT) || (ttmp->ttyp == SHIT_PIT) || (ttmp->ttyp == MANA_PIT) ||
 				    (ttmp->ttyp == SPIKED_PIT) || (ttmp->ttyp == GIANT_CHASM))))) {
 
 		if (Blind) feel_location(sx,sy);
@@ -567,6 +567,7 @@ moverock()
 		    break;
 		case SPIKED_PIT:
 		case SHIT_PIT:
+		case MANA_PIT:
 		case PIT:
 		case GIANT_CHASM:
 		    obj_extract_self(otmp);
@@ -1362,6 +1363,9 @@ ask_about_trap(int x, int y)
 			if (!In_sokoban(&u.uz) && traphere->ttyp == SHIT_PIT) {
 				return FALSE;
 			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == MANA_PIT) {
+				return FALSE;
+			}
 			if (!In_sokoban(&u.uz) && traphere->ttyp == HOLE) {
 				return FALSE;
 			}
@@ -1779,6 +1783,10 @@ domove()
 
 			}
 
+		      if (u.utrap && traphere && traphere->ttyp == MANA_PIT) {
+			    drain_en(rnz(monster_difficulty() + 1));
+			}
+
 		} else if (u.utraptype == TT_LAVA) {
 		    if(flags.verbose) {
 			predicament = "stuck in the lava";
@@ -2061,7 +2069,7 @@ domove()
 
 	    if (mtmp->mtrapped &&
 		    (trap = t_at(mtmp->mx, mtmp->my)) != 0 &&
-		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT) &&
+		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT) &&
 		    sobj_at(BOULDER, trap->tx, trap->ty)) {
 		/* can't swap places with pet pinned in a pit by a boulder */
 		u.ux = u.ux0,  u.uy = u.uy0;	/* didn't move after all */
@@ -2364,7 +2372,7 @@ stillinwater:;
 	if (!in_steed_dismounting) { /* if dismounting, we'll check again later */
 		struct trap *trap = t_at(u.ux, u.uy);
 		boolean pit;
-		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT));
+		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
 		if (pick) (void) pickup(1);
@@ -3000,7 +3008,7 @@ dopickup()
 		 * in pits.
 		 */
 		/* [BarclayII] phasing or flying players can phase/fly into the pit */
-		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == GIANT_CHASM || traphere->ttyp == SHIT_PIT) &&
+		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == GIANT_CHASM || traphere->ttyp == SHIT_PIT || traphere->ttyp == MANA_PIT) &&
 		     (!u.utrap || (u.utrap && u.utraptype != TT_PIT)) && !Passes_walls && !Flying) {
 			You("cannot reach the bottom of the pit.");
 			return(0);
@@ -3344,6 +3352,11 @@ int k_format; /* WAC k_format is an int */
 
 	}
 #endif
+
+	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+		if (n > 0) u.ascensiontimelimit -= n;
+		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+	}
 
 }
 
