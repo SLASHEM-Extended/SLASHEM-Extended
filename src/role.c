@@ -3771,7 +3771,7 @@ const struct Race races[] = {
 	{  2, 0,  0, 4,  8, 0 },	/* Hit points */
 	{  5, 0,  5, 0,  5, 0 }		/* Energy */
 },
-{	"gigant", "gigantic", "giganthood", "Gig",
+{	"giant", "gigantic", "giganthood", "Gig",
 	{0, 0},
 	PM_GIGANT, NON_PM, PM_GIANT_MUMMY, PM_GIANT_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
@@ -4039,7 +4039,7 @@ const struct Race races[] = {
 	{  2, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
 },
-{	"kobolt", "koboltic", "kobolthood", "Kob",
+{	"kobold", "koboldic", "kobolthood", "Kob",
 	{0, 0},
 	PM_KOBOLT, NON_PM, PM_KOBOLD_MUMMY, PM_KOBOLD_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
@@ -4308,7 +4308,7 @@ const struct Race races[] = {
 	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
 },
-{	"ogro", "ogrotic", "ogrohood", "Ogr",
+{	"ogre", "ogrotic", "ogrohood", "Ogr",
 	{0, 0},
 	PM_OGRO, NON_PM, PM_OGRE_MUMMY, PM_OGRE_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
@@ -4614,7 +4614,7 @@ const struct Race races[] = {
 	{  8, 0,  0, 8,  10, 0 },	/* Hit points */
 	{  10, 0,  8, 0,  8, 0 }		/* Energy */
 },
-{	"trollor", "troll", "trollhood", "Tro",
+{	"troll", "troll", "trollhood", "Tro",
 	{0, 0},
 	PM_TROLLOR, NON_PM, PM_TROLL_MUMMY, PM_TROLL_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
