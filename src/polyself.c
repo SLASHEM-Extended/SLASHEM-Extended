@@ -1826,6 +1826,14 @@ int part;
 		"large scale tip", "rear region", "scale gap", "scale gapped",
 		"head", "rear region", "light headed", "neck", "length",
 		"rear scale", "scales", "blood", "lung", "forked tongue", "stomach" },
+	*wallmonst_parts[] = { "long wall", "center core", "top region", "wall extension",
+		"wall extension", "bottom region", "wall extension", "extended", "central core", "tall wall",
+		"misdirectional", "support column", "large column", "lower extension", "painting",
+		"stone fragments", "inner segment", "front support", "middle wall"},
+	*turret_parts[] = { "gun arm", "lens", "calculation region", "gun",
+		"laser point", "foot", "laser gun", "gunned", "CPU", "pod",
+		"frenzied", "support", "back", "mainframe", "combat inhibitor",
+		"electrical energy", "RAM", "power", "armor"},
 	*fish_parts[] = { "fin", "eye", "premaxillary", "pelvic axillary",
 		"pelvic fin", "anal fin", "pectoral fin", "finned", "head", "peduncle",
 		"played out", "gills", "dorsal fin", "caudal fin",
@@ -1864,7 +1872,7 @@ int part;
 		(part == ARM || part == FINGER || part == FINGERTIP ||
 		    part == HAND || part == HANDED))
 	    return humanoid_parts[part];
-	if (mptr == &mons[PM_RAVEN])
+	if (mptr->mlet == S_BAT)
 	    return bird_parts[part];
 	if (mptr->mlet == S_CENTAUR || mptr->mlet == S_UNICORN ||
 		(mptr == &mons[PM_ROTHE] && part != HAIR))
@@ -1877,9 +1885,11 @@ int part;
 	}
 	if (mptr->mlet == S_EEL && mptr != &mons[PM_JELLYFISH])
 	    return fish_parts[part];
+	if (mptr->mlet == S_FLYFISH)
+	    return fish_parts[part];
 	if (slithy(mptr) || (mptr->mlet == S_DRAGON && part == HAIR))
 	    return snake_parts[part];
-	if (mptr->mlet == S_EYE)
+	if (mptr->mlet == S_EYE || mptr->mlet == S_GRUE)
 	    return sphere_parts[part];
 	if (mptr->mlet == S_JELLY || mptr->mlet == S_PUDDING ||
 		mptr->mlet == S_BLOB || mptr == &mons[PM_JELLYFISH])
@@ -1888,6 +1898,10 @@ int part;
 	    return vortex_parts[part];
 	if (mptr->mlet == S_FUNGUS)
 	    return fungus_parts[part];
+	if (mptr->mlet == S_WALLMONST)
+	    return wallmonst_parts[part];
+	if (mptr->mlet == S_TURRET)
+	    return turret_parts[part];
 	if (humanoid(mptr))
 	    return humanoid_parts[part];
 	return animal_parts[part];
