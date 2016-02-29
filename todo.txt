@@ -1,0 +1,10 @@
+To-do list:
+
+- Add some special traps, and some from ToME
+- Add a few items from dnethack
+- overhaul "items sometimes spawn with BUC known" code
+- add more monsters
+
+Maybe also:
+
+- add Unnethack-style conduct menu for starting characters
