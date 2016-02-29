@@ -5551,7 +5551,7 @@ init_bind_list(void)
 	/*       'b', 'B' : go sw */
 	bind_key(M('b'), "borrow" );
 	bind_key('c',    "close" );
-	bind_key('C',    "call" );
+	bind_key('C',    "callold" );
 	bind_key(M('c'), "chat" );
 	bind_key('d',    "drop" );
 	bind_key('D',    "dropall" );
