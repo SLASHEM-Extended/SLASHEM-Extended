@@ -10255,8 +10255,8 @@ mineralize()
 
 	/* basic level-related probabilities */
 	goldprob = 20 + depth(&u.uz) / 3;
-	gemprob = goldprob / 4;
-	objprob = goldprob / 5;
+	gemprob = goldprob / 6;
+	objprob = goldprob / 20;
 
 	/* mines have ***MORE*** goodies - otherwise why mine? */
 	if (In_mines(&u.uz)) {
@@ -10311,7 +10311,7 @@ mineralize()
 			    }
 		    }
 		}
-		if (rn2(1000) < objprob) {
+		if (rn2(1500) < objprob) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(RANDOM_CLASS, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
@@ -11394,8 +11394,8 @@ struct mkroom *croom;
 
 	/* Possibly fill it with objects */
 	if (!rn2(3)) (void) mkgold(0L, m.x, m.y);
-	for (tryct = rn2(5); tryct; tryct--) {
-	    otmp = mkobj(RANDOM_CLASS, TRUE);
+	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
+	    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 	    if (!otmp) return;
 	    curse(otmp);
 	    otmp->ox = m.x;

@@ -552,8 +552,8 @@ struct mkroom *sroom;
 			    make_grave(sx, sy, (char *)0);
 
 				if (!rn2(3)) (void) mkgold(0L, sx, sy);
-				for (gravetries = rn2(5); gravetries; gravetries--) {
-				    otmp = mkobj(RANDOM_CLASS, TRUE);
+				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
+				    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 				    if (!otmp) return;
 				    curse(otmp);
 				    otmp->ox = sx;
@@ -564,16 +564,16 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BEEHIVE:
-			if(!rn2(3))
+			if(!rn2(4)) /* slightly lowered chance --Amy */
 			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY,
 					     sx, sy, TRUE, FALSE);
 			break;
 		    case FUNGUSFARM:
-			if (!rn2(3))
+			if (!rn2(5)) /* lowered chance --Amy */
 			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE);
 			break;
 		    case MIGOHIVE:
-			switch (rn2(10)) {
+			switch (rn2(30)) { /* greatly lowered chance --Amy */
 			    case 9:
 				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE);
 				break;
@@ -600,8 +600,8 @@ struct mkroom *sroom;
 			    make_grave(sx, sy, (char *)0);
 
 				if (!rn2(3)) (void) mkgold(0L, sx, sy);
-				for (gravetries = rn2(5); gravetries; gravetries--) {
-				    otmp = mkobj(RANDOM_CLASS, TRUE);
+				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
+				    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 				    if (!otmp) return;
 				    curse(otmp);
 				    otmp->ox = sx;
@@ -661,7 +661,10 @@ struct mkroom *sroom;
 			if(!rn2(10))
 			    (void) mkobj_at(GEM_CLASS, sx, sy, FALSE);
 			break;
-		    case MIMICHALL:
+		    case MIMICHALL: /* lower overall amount of items --Amy */
+			if(!rn2(10))
+			    (void) mkobj_at(rn2(5) ? COIN_CLASS : RANDOM_CLASS, sx, sy, FALSE);
+			break;
 		    case HUMANHALL:
 			if(!rn2(3))
 			    (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE);
@@ -1549,8 +1552,8 @@ mkinsideroom()
 					make_grave(sx, sy, (char *) 0);
 					/* Possibly fill it with objects */
 					if (!rn2(3)) (void) mkgold(0L, sx, sy);
-					for (tryct = rn2(5); tryct; tryct--) {
-					    otmp = mkobj(RANDOM_CLASS, TRUE);
+					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
+					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 					    if (!otmp) return;
 					    curse(otmp);
 					    otmp->ox = sx;
@@ -1634,12 +1637,13 @@ mkstatueroom()
 			{
 			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
 
-			    if (sobj) {
-				for (i = rn2(5); i; i--)
+			    if (sobj && !rn2(3) ) {
+				for (i = rn2(2 + rn2(4)); i; i--)
 				    (void) add_to_container(sobj,
 						mkobj(RANDOM_CLASS, FALSE));
 				sobj->owt = weight(sobj);
 			    }
+			    if (sobj) sobj->owt = weight(sobj);
 			}
 
 	level.flags.has_statueroom = 1;

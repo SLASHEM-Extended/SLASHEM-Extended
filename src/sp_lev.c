@@ -1658,8 +1658,8 @@ register int x, y;
 	make_grave(x, y, (char *) 0);
 	/* Possibly fill it with objects */
 	if (!rn2(3)) (void) mkgold(0L, x, y);
-	for (tryct = rn2(5); tryct; tryct--) {
-	    otmp = mkobj(RANDOM_CLASS, TRUE);
+	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
+	    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 	    if (!otmp) return;
 	    curse(otmp);
 	    otmp->ox = x;
@@ -4206,8 +4206,8 @@ boolean prefilled;
 					make_grave(sx, sy, (char *) 0);
 					/* Possibly fill it with objects */
 					if (!rn2(3)) (void) mkgold(0L, sx, sy);
-					for (tryct = rn2(5); tryct; tryct--) {
-					    otmp = mkobj(RANDOM_CLASS, TRUE);
+					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
+					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
 					    if (!otmp) return;
 					    curse(otmp);
 					    otmp->ox = sx;
@@ -4265,12 +4265,13 @@ boolean prefilled;
 			{
 			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
 
-			    if (sobj) {
-				for (i = rn2(5); i; i--)
+			    if (sobj && !rn2(3) ) {
+				for (i = rn2(2 + rn2(4)); i; i--)
 				    (void) add_to_container(sobj,
 						mkobj(RANDOM_CLASS, FALSE));
 				sobj->owt = weight(sobj);
 			    }
+			    if (sobj) sobj->owt = weight(sobj);
 			}
 
 	}

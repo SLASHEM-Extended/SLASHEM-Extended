@@ -220,14 +220,14 @@ struct obj *box;
 	case ICE_BOX_OF_WATERPROOFING:
 	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
 	case CHEST_OF_HOLDING:
-	case CHEST:		n = (ishaxor ? 10 : 5); break;
-	case LARGE_BOX:		n = (ishaxor ? 6 : 3); break;
+	case CHEST:		n = (ishaxor ? rnd(10) : rnd(5)); break;
+	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case SACK:
 	case OILSKIN_SACK:
 				/* initial inventory: sack starts out empty */
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
 				/*else FALLTHRU*/
-	case BAG_OF_HOLDING:	n = (ishaxor ? 2 : 1); break;
+	case BAG_OF_HOLDING:	n = (ishaxor ? rnd(2) : rn2(2)); break;
 	case LARGE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_DIGESTION:
 	case BAG_OF_DIGESTION:		/* makes sense, doesn't it ? */
