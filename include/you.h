@@ -475,6 +475,15 @@ struct you {
 	int alwayscurseditem4;
 	int alwayscurseditem5;
 
+	int musableremovechance;	/* extra chance for musable items to get removed */
+
+	int bookspawnchance;	/* lower spawn chance for certain item classes */
+	int scrollspawnchance;
+	int potionspawnchance;
+	int ringspawnchance;
+	int wandspawnchance;
+	int amuletspawnchance;
+
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
 	int frequenttrap;		/* evil patch idea by Amy - trap that is generated more often */

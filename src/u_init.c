@@ -5783,6 +5783,69 @@ u_init()
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
 
+	u.musableremovechance = 0;
+	if (!rn2(3)) u.musableremovechance += rnd(20);
+	if (!rn2(3)) u.musableremovechance += rnd(40);
+	if (!rn2(5)) u.musableremovechance += rnd(70);
+	if (!rn2(25)) u.musableremovechance += rnd(90);
+	if (u.musableremovechance > 90) u.musableremovechance = 90;
+	if (u.musableremovechance < 0) u.musableremovechance = 0;
+
+	u.bookspawnchance = 0;
+	if (!rn2(20)) u.bookspawnchance += rnd(10);
+	if (!rn2(200)) u.bookspawnchance += rnd(20);
+	if (!rn2(2000)) u.bookspawnchance += rnd(50);
+	if (!rn2(20000)) u.bookspawnchance += rnd(70);
+	if (u.bookspawnchance > 90) u.bookspawnchance = 90;
+	if (u.bookspawnchance < 0) u.bookspawnchance = 0;
+
+	u.ringspawnchance = 0;
+	if (!rn2(3)) u.ringspawnchance += rnd(30);
+	if (!rn2(5)) u.ringspawnchance += rnd(50);
+	if (!rn2(30)) u.ringspawnchance += rnd(90);
+	if (u.ringspawnchance > 90) u.ringspawnchance = 90;
+	if (u.ringspawnchance < 0) u.ringspawnchance = 0;
+
+	u.amuletspawnchance = 0;
+	if (!rn2(3)) u.amuletspawnchance += rnd(40);
+	if (!rn2(4)) u.amuletspawnchance += rnd(50);
+	if (!rn2(10)) u.amuletspawnchance += rnd(60);
+	if (!rn2(20)) u.amuletspawnchance += rnd(90);
+	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
+	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
+
+	u.potionspawnchance = 0;
+	if (!rn2(2)) u.potionspawnchance += rnd(15);
+	if (!rn2(3)) u.potionspawnchance += rnd(15);
+	if (!rn2(5)) u.potionspawnchance += rnd(25);
+	if (!rn2(20)) u.potionspawnchance += rnd(40);
+	if (!rn2(100)) u.potionspawnchance += rnd(60);
+	if (!rn2(500)) u.potionspawnchance += rnd(90);
+	if (u.potionspawnchance > 90) u.potionspawnchance = 90;
+	if (u.potionspawnchance < 0) u.potionspawnchance = 0;
+
+	u.scrollspawnchance = 0;
+	if (!rn2(2)) u.scrollspawnchance += rnd(20);
+	if (!rn2(3)) u.scrollspawnchance += rnd(20);
+	if (!rn2(5)) u.scrollspawnchance += rnd(20);
+	if (!rn2(10)) u.scrollspawnchance += rnd(20);
+	if (!rn2(20)) u.scrollspawnchance += rnd(20);
+	if (!rn2(50)) u.scrollspawnchance += rnd(20);
+	if (!rn2(200)) u.scrollspawnchance += rnd(50);
+	if (!rn2(900)) u.scrollspawnchance += rnd(90);
+	if (u.scrollspawnchance > 90) u.scrollspawnchance = 90;
+	if (u.scrollspawnchance < 0) u.scrollspawnchance = 0;
+
+	u.wandspawnchance = 0;
+	if (!rn2(3)) u.wandspawnchance += rnd(10);
+	if (!rn2(5)) u.wandspawnchance += rnd(20);
+	if (!rn2(7)) u.wandspawnchance += rnd(30);
+	if (!rn2(10)) u.wandspawnchance += rnd(50);
+	if (!rn2(60)) u.wandspawnchance += rnd(70);
+	if (!rn2(600)) u.wandspawnchance += rnd(90);
+	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
+	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;
@@ -19448,6 +19511,69 @@ alter_reality()
 	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
+
+	u.musableremovechance = 0;
+	if (!rn2(3)) u.musableremovechance += rnd(20);
+	if (!rn2(3)) u.musableremovechance += rnd(40);
+	if (!rn2(5)) u.musableremovechance += rnd(70);
+	if (!rn2(25)) u.musableremovechance += rnd(90);
+	if (u.musableremovechance > 90) u.musableremovechance = 90;
+	if (u.musableremovechance < 0) u.musableremovechance = 0;
+
+	u.bookspawnchance = 0;
+	if (!rn2(20)) u.bookspawnchance += rnd(10);
+	if (!rn2(200)) u.bookspawnchance += rnd(20);
+	if (!rn2(2000)) u.bookspawnchance += rnd(50);
+	if (!rn2(20000)) u.bookspawnchance += rnd(70);
+	if (u.bookspawnchance > 90) u.bookspawnchance = 90;
+	if (u.bookspawnchance < 0) u.bookspawnchance = 0;
+
+	u.ringspawnchance = 0;
+	if (!rn2(3)) u.ringspawnchance += rnd(30);
+	if (!rn2(5)) u.ringspawnchance += rnd(50);
+	if (!rn2(30)) u.ringspawnchance += rnd(90);
+	if (u.ringspawnchance > 90) u.ringspawnchance = 90;
+	if (u.ringspawnchance < 0) u.ringspawnchance = 0;
+
+	u.amuletspawnchance = 0;
+	if (!rn2(3)) u.amuletspawnchance += rnd(40);
+	if (!rn2(4)) u.amuletspawnchance += rnd(50);
+	if (!rn2(10)) u.amuletspawnchance += rnd(60);
+	if (!rn2(20)) u.amuletspawnchance += rnd(90);
+	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
+	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
+
+	u.potionspawnchance = 0;
+	if (!rn2(2)) u.potionspawnchance += rnd(15);
+	if (!rn2(3)) u.potionspawnchance += rnd(15);
+	if (!rn2(5)) u.potionspawnchance += rnd(25);
+	if (!rn2(20)) u.potionspawnchance += rnd(40);
+	if (!rn2(100)) u.potionspawnchance += rnd(60);
+	if (!rn2(500)) u.potionspawnchance += rnd(90);
+	if (u.potionspawnchance > 90) u.potionspawnchance = 90;
+	if (u.potionspawnchance < 0) u.potionspawnchance = 0;
+
+	u.scrollspawnchance = 0;
+	if (!rn2(2)) u.scrollspawnchance += rnd(20);
+	if (!rn2(3)) u.scrollspawnchance += rnd(20);
+	if (!rn2(5)) u.scrollspawnchance += rnd(20);
+	if (!rn2(10)) u.scrollspawnchance += rnd(20);
+	if (!rn2(20)) u.scrollspawnchance += rnd(20);
+	if (!rn2(50)) u.scrollspawnchance += rnd(20);
+	if (!rn2(200)) u.scrollspawnchance += rnd(50);
+	if (!rn2(900)) u.scrollspawnchance += rnd(90);
+	if (u.scrollspawnchance > 90) u.scrollspawnchance = 90;
+	if (u.scrollspawnchance < 0) u.scrollspawnchance = 0;
+
+	u.wandspawnchance = 0;
+	if (!rn2(3)) u.wandspawnchance += rnd(10);
+	if (!rn2(5)) u.wandspawnchance += rnd(20);
+	if (!rn2(7)) u.wandspawnchance += rnd(30);
+	if (!rn2(10)) u.wandspawnchance += rnd(50);
+	if (!rn2(60)) u.wandspawnchance += rnd(70);
+	if (!rn2(600)) u.wandspawnchance += rnd(90);
+	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
+	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;

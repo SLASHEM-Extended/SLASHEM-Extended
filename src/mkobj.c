@@ -138,7 +138,7 @@ boolean init, artif;
 struct obj *
 mkobj(oclass, artif)
 char oclass;
-boolean artif;
+boolean artif;  
 {
 	int tprob, i, prob = rnd(5000);
 
@@ -162,6 +162,25 @@ boolean artif;
 		    (tprob -= iprobs->iprob) > 0;
 		    iprobs++);
 		oclass = iprobs->iclass;
+
+		if ((oclass == SCROLL_CLASS) && (rn2(100) < u.scrollspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == POTION_CLASS) && (rn2(100) < u.potionspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == SPBOOK_CLASS) && (rn2(100) < u.bookspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == WAND_CLASS) && (rn2(100) < u.wandspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == AMULET_CLASS) && (rn2(100) < u.amuletspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == RING_CLASS) && (rn2(100) < u.ringspawnchance)) {
+			oclass = COIN_CLASS;
+		}
 	}
 
 	i = bases[(int)oclass];

@@ -1411,6 +1411,41 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Wand identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.musableremovechance) {
+		Sprintf(buf, " %d%% chance", 100 - u.musableremovechance);
+		enl_msg("Monsters ", "will only drop their musable items with", "only dropped their musable items with", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.bookspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.bookspawnchance);
+		enl_msg("Book drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.scrollspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.scrollspawnchance);
+		enl_msg("Scroll drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.ringspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.ringspawnchance);
+		enl_msg("Ring drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.wandspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.wandspawnchance);
+		enl_msg("Wand drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.amuletspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.amuletspawnchance);
+		enl_msg("Amulet drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.potionspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.potionspawnchance);
+		enl_msg("Potion drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}
@@ -3142,6 +3177,41 @@ int final;
 	if (u.idwandpenalty > 3) {
 		Sprintf(buf, " %d", u.idwandpenalty);
 		dump("  Wand identification only worked 3 times out of ", buf);
+	}
+
+	if (u.musableremovechance) {
+		Sprintf(buf, " %d%% chance", 100 - u.musableremovechance);
+		dump("  Monsters only dropped their musable items with", buf);
+	}
+
+	if (u.bookspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.bookspawnchance);
+		dump("  Book drop chance was reduced to", buf);
+	}
+
+	if (u.scrollspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.scrollspawnchance);
+		dump("  Scroll drop chance was reduced to", buf);
+	}
+
+	if (u.ringspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.ringspawnchance);
+		dump("  Ring drop chance was reduced to", buf);
+	}
+
+	if (u.wandspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.wandspawnchance);
+		dump("  Wand drop chance was reduced to", buf);
+	}
+
+	if (u.amuletspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.amuletspawnchance);
+		dump("  Amulet drop chance was reduced to", buf);
+	}
+
+	if (u.potionspawnchance) {
+		Sprintf(buf, " %d%%", 100 - u.potionspawnchance);
+		dump("  Potion drop chance was reduced to", buf);
 	}
 
 	Sprintf(buf, " %d", nartifact_exist() );
