@@ -3997,10 +3997,7 @@ dopois:
 	    case AD_SAMU:
 		hitmsg(mtmp, mattk);
 		/* when the Wiz hits, 1/20 steals the amulet */
-		if (u.uhave.amulet ||
-		     u.uhave.bell || u.uhave.book || u.uhave.menorah
-		     || u.uhave.questart) /* carrying the Quest Artifact */
-		    if (!rn2(20)) stealamulet(mtmp);
+	      if (!rn2(20)) stealamulet(mtmp);
 		break;
 
 	    case AD_TLPT:

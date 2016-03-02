@@ -472,7 +472,7 @@ gotobj:
 	/* evil patch idea by jonadab - levelporting stealers
          he wants them to always levelport if they manage to steal an artifact...
 	   however, if it's an artifact key (those meant for Vlad's Tower), they won't (obvious rule patch) --Amy */
-	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_WARPING);
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
@@ -546,10 +546,6 @@ struct monst *mtmp;
     if(u.uhave.amulet) {
 	real = AMULET_OF_YENDOR;
 	fake = FAKE_AMULET_OF_YENDOR;
-    } else if(u.uhave.questart) {
-	for(otmp = invent; otmp; otmp = otmp->nobj)
-	    if(is_quest_artifact(otmp)) break;
-	if (!otmp) return;	/* should we panic instead? */
     } else if(u.uhave.bell) {
 	real = BELL_OF_OPENING;
 	fake = BELL;
@@ -557,7 +553,12 @@ struct monst *mtmp;
 	real = SPE_BOOK_OF_THE_DEAD;
     } else if(u.uhave.menorah) {
 	real = CANDELABRUM_OF_INVOCATION;
-    } else return;	/* you have nothing of special interest */
+    } else {
+	/* steal any artifact. Based on the reaction of the 3.6.0 devteam on tungtn's complaint about AD_SAMU behavior --Amy */
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+	    if(otmp->oartifact && rn2(2) ) break; /* randomness :D */
+	if (!otmp) return;
+    }
 
     if (!otmp) {
 	/* If we get here, real and fake have been set up. */
