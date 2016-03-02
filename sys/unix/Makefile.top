@@ -128,12 +128,12 @@ CHGRP = chgrp
 
 DATHELP = help hh cmdhelp history opthelp wizhelp gypsy.txt
 
-SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
+SPEC_LEVS = asmod-?.lev baalz-?.lev baalz-??.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	bigrm-??.lev compu.lev exmall-?.lev forge.lev heck-?.lev heck-??.lev \
 	hllma-?.lev hitch.lev intpla-?.lev key.lev palace_e.lev palace_f.lev \
 	rndmaze.lev rndmazea.lev school-?.lev schoolX.lev sheolfil.lev \
 	sheolmid.lev soko?-??.lev town-?.lev unhck-?.lev unhck-??.lev \
-	juiblex.lev knox.lev medus-?.lev minend-?.lev minefil?.lev \
+	juibl-?.lev knox.lev medus-?.lev minend-?.lev minefil?.lev \
 	hellfil?.lev hmint-?.lev hmint-??.lev hminen-?.lev hking-?.lev \
 	hking-??.lev oracleX.lev erats-?.lev hrats-?.lev hstor-?.lev \
 	mking-??.lev eking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
@@ -150,7 +150,7 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev bigrm-?.lev castle-?.lev fakewiz?.lev \
 	hmedu-?.lev hmedu-??.lev ecastl-?.lev hcastl-?.lev \
 	ekobol-?.lev hkobol-?.lev enymp-?.lev hnymp-?.lev \
 	beholder.lev blkmar.lev cav2fill.lev medus-??.lev \
-	grund-?.lev demogorg.lev dispa-?.lev dragons.lev geryon.lev \
+	grund-?.lev demog-?.lev dispa-?.lev dragons.lev geryo-?.lev \
 	guild-?.lev kobold-?.lev lich.lev mall-?.lev mall.lev mking-?.lev \
 	mtemple.lev nymph-?.lev rats-?.lev sea.lev spiders.lev stor-?.lev \
 	tomb.lev yeeno-?.lev frnknstn.lev nightmar.lev hllma-??.lev 

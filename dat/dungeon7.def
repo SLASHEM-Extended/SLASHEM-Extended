@@ -165,15 +165,15 @@ CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
 LEVEL:          "fakewiz1" "F" @ (20, 8)
 LEVEL:          "fakewiz2" "G" @ (20, 8)
 # The demon levels
-LEVEL:          "juiblex" "J" @ (2, 29)
-RNDLEVEL:          "yeeno" "E" @ (2, 29) 2
+RNDLEVEL:          "juibl" "J" @ (2, 29) 2
+RNDLEVEL:          "yeeno" "E" @ (2, 29) 6
 RNDLEVEL:          "orcus" "O" @ (2, 29) 6
-LEVEL:          "demogorg" "D" @ (2, 29)
+RNDLEVEL:          "demog" "D" @ (2, 29) 4
 # The devil levels
-RNDLEVEL:          "baalz" "B" @ (2, 29) 6
-LEVEL:          "geryon" "R" @ (2, 29)
-RNDLEVEL:          "dispa" "S" @ (2, 29) 2
-RNDLEVEL:          "asmod" "A" @ (2, 29) 3
+RNDLEVEL:          "baalz" "B" @ (2, 29) 10
+RNDLEVEL:          "geryo" "R" @ (2, 29) 3
+RNDLEVEL:          "dispa" "S" @ (2, 29) 5
+RNDLEVEL:          "asmod" "A" @ (2, 29) 4
 RNDLEVEL:	"hllma" "H" @ (2, 29) 10
 BRANCH:         "Sheol" @ (2, 29) down
 
