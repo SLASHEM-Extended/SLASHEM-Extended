@@ -257,9 +257,9 @@ register struct monst *mtmp;
 {
 	register struct permonst *ptr = mtmp->data;
 
-	if (!rn2(500) && timebasedlowerchance() ) (void) mongets(mtmp, SCR_STANDARD_ID);
+	if (!rn2(500) && timebasedlowerchance() && (rn2(100) < u.usefulitemchance) ) (void) mongets(mtmp, SCR_STANDARD_ID);
 
-	if (!rn2(60)) (void) mongets(mtmp, SCR_HEALING);
+	if (!rn2(60) && ((rn2(100) < u.usefulitemchance) || (rn2(100) < u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
 
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
@@ -12405,31 +12405,36 @@ register int	mmflags;
 	mtmp->mtraitor  = FALSE;
 
 	/* Everything that can hide under an object will now do so. --Amy */
-      if(x && y && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) /* low chance of getting an object even if nonhiding, too */
-	  (void) mkobj_at(0, x, y, TRUE);
+      if(x && y && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
+
+	  if (rn2(3) && (rn2(100) > u.concealitemchance))
+		(void) mkobj_at(0, x, y, TRUE);
+	  else
+		(void) mkobj_at(COIN_CLASS, x, y, TRUE);
+	}
 
 		/* and even lower chance to get extra objects */
 	if (!rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	}
 	if (!rn2(400) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
 	}
 	if (!rn2(800) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
 	}
 	if (!rn2(1600) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
-	  (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
+	  if (!rn2(81)) (void) mkobj_at(0, x, y, TRUE);
 	}
 
 	/* maybe generate a sleeping monster */

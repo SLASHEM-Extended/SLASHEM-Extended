@@ -1446,6 +1446,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Potion drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance) {
+		Sprintf(buf, " %d%% of the time only", 100 - u.concealitemchance);
+		enl_msg("Concealing monsters ", "are spawned underneath items", "were spawned underneath items", buf);
+	}
+
+	if ((wizard || (!rn2(10)) || final >= 1 ) && u.usefulitemchance) {
+		Sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
+		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}
@@ -3212,6 +3222,16 @@ int final;
 	if (u.potionspawnchance) {
 		Sprintf(buf, " %d%%", 100 - u.potionspawnchance);
 		dump("  Potion drop chance was reduced to", buf);
+	}
+
+	if (u.concealitemchance) {
+		Sprintf(buf, " %d%% of the time only", 100 - u.concealitemchance);
+		dump("  Concealing monsters were spawned underneath items", buf);
+	}
+
+	if (u.usefulitemchance) {
+		Sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
+		dump("  Monster death drops spawned with only", buf);
 	}
 
 	Sprintf(buf, " %d", nartifact_exist() );

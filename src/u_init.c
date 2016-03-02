@@ -5846,6 +5846,25 @@ u_init()
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
 
+	u.concealitemchance = 0;
+	if (!rn2(3)) u.concealitemchance += rnd(20);
+	if (!rn2(5)) u.concealitemchance += rnd(40);
+	if (!rn2(7)) u.concealitemchance += rnd(60);
+	if (!rn2(9)) u.concealitemchance += rnd(80);
+	if (u.concealitemchance > 90) u.concealitemchance = 90;
+	if (u.concealitemchance < 0) u.concealitemchance = 0;
+
+	u.usefulitemchance = 0;
+	if (!rn2(2)) u.usefulitemchance += rnd(10);
+	if (!rn2(5)) u.usefulitemchance += rnd(20);
+	if (!rn2(25)) u.usefulitemchance += rnd(30);
+	if (!rn2(100)) u.usefulitemchance += rnd(40);
+	if (!rn2(250)) u.usefulitemchance += rnd(50);
+	if (!rn2(750)) u.usefulitemchance += rnd(70);
+	if (!rn2(3250)) u.usefulitemchance += rnd(90);
+	if (u.usefulitemchance > 90) u.usefulitemchance = 90;
+	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
+
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;
@@ -19574,6 +19593,25 @@ alter_reality()
 	if (!rn2(600)) u.wandspawnchance += rnd(90);
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
+
+	u.concealitemchance = 0;
+	if (!rn2(3)) u.concealitemchance += rnd(20);
+	if (!rn2(5)) u.concealitemchance += rnd(40);
+	if (!rn2(7)) u.concealitemchance += rnd(60);
+	if (!rn2(9)) u.concealitemchance += rnd(80);
+	if (u.concealitemchance > 90) u.concealitemchance = 90;
+	if (u.concealitemchance < 0) u.concealitemchance = 0;
+
+	u.usefulitemchance = 0;
+	if (!rn2(2)) u.usefulitemchance += rnd(10);
+	if (!rn2(5)) u.usefulitemchance += rnd(20);
+	if (!rn2(25)) u.usefulitemchance += rnd(30);
+	if (!rn2(100)) u.usefulitemchance += rnd(40);
+	if (!rn2(250)) u.usefulitemchance += rnd(50);
+	if (!rn2(750)) u.usefulitemchance += rnd(70);
+	if (!rn2(3250)) u.usefulitemchance += rnd(90);
+	if (u.usefulitemchance > 90) u.usefulitemchance = 90;
+	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;

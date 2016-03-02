@@ -484,6 +484,10 @@ struct you {
 	int wandspawnchance;
 	int amuletspawnchance;
 
+	int concealitemchance;	/* chance for concealing monsters to start with zorkmids instead */
+
+	int usefulitemchance; /* lower spawn chance for miscellaneous useful items */
+
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
 	int frequenttrap;		/* evil patch idea by Amy - trap that is generated more often */
