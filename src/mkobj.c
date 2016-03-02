@@ -178,6 +178,8 @@ boolean artif;
 
 	else if ((objects[u.veryobtainable3].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost3) ) return(mksobj(u.veryobtainable3, TRUE, artif));
 
+	else if ((objects[u.veryobtainable4].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost4) ) return(mksobj(u.veryobtainable4, TRUE, artif));
+
 	else return(mksobj(i, TRUE, artif));
 }
 
@@ -939,6 +941,14 @@ boolean artif;
 		otyp = GOLD_PIECE;
 	}
 
+	if (otyp == u.unobtainable5) {
+		otyp = GOLD_PIECE;
+	}
+
+	if (otyp == u.unobtainable6) {
+		otyp = GOLD_PIECE;
+	}
+
 	if (otyp == u.unobtainablegeno) {
 		otyp = GOLD_PIECE;
 	}
@@ -1471,6 +1481,7 @@ boolean artif;
 	if (otyp == u.alwayscurseditem2) curse(otmp);
 	if (otyp == u.alwayscurseditem3) curse(otmp);
 	if (otyp == u.alwayscurseditem4) curse(otmp);
+	if (otyp == u.alwayscurseditem5) curse(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {

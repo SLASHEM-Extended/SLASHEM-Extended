@@ -1583,6 +1583,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
 	if ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) ) {
 		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		enl_msg("This item ", "is ", "was ", buf );
@@ -1604,6 +1614,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable4].oc_name, obj_descr[u.veryobtainable4].oc_descr, u.veryobtainableboost4);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -1620,6 +1635,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
@@ -3255,6 +3275,12 @@ int final;
 	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
 	if (u.unobtainablegeno != -1) {
 		Sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		dump("  You had genocided this item: ", buf );
@@ -3269,6 +3295,9 @@ int final;
 	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable4].oc_name, obj_descr[u.veryobtainable4].oc_descr, u.veryobtainableboost4);
+	dump("  The RNG hath decreed that this item was ", buf );
+
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
@@ -3279,6 +3308,9 @@ int final;
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);

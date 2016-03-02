@@ -457,6 +457,8 @@ struct you {
 	int unobtainable2;	
 	int unobtainable3;	/* amount of such items must be lower than the amount of candles in existence */
 	int unobtainable4;	
+	int unobtainable5;	
+	int unobtainable6;	
 	int unobtainablegeno;	/* for item genocide */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
@@ -464,11 +466,14 @@ struct you {
 	int veryobtainableboost2;	
 	int veryobtainable3;	
 	int veryobtainableboost3;	
+	int veryobtainable4;	
+	int veryobtainableboost4;	
 
 	int alwayscurseditem;		/* evil patch idea - item type that is always generated cursed */
 	int alwayscurseditem2;
 	int alwayscurseditem3;
 	int alwayscurseditem4;
+	int alwayscurseditem5;
 
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 

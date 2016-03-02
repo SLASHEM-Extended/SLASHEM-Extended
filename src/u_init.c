@@ -5694,38 +5694,54 @@ u_init()
 	u.unobtainable4 = -1;
 	while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
 
+	u.unobtainable5 = -1;
+	while ( (u.unobtainable5 == -1) || (u.unobtainable5 == GOLD_PIECE) || (u.unobtainable5 == STRANGE_OBJECT) || (u.unobtainable5 == AMULET_OF_YENDOR) || (u.unobtainable5 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable5 == BELL_OF_OPENING) || (u.unobtainable5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable5].oc_prob < 1) ) u.unobtainable5 = rn2(NUM_OBJECTS);
+
+	u.unobtainable6 = -1;
+	while ( (u.unobtainable6 == -1) || (u.unobtainable6 == GOLD_PIECE) || (u.unobtainable6 == STRANGE_OBJECT) || (u.unobtainable6 == AMULET_OF_YENDOR) || (u.unobtainable6 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable6 == BELL_OF_OPENING) || (u.unobtainable6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable6].oc_prob < 1) ) u.unobtainable6 = rn2(NUM_OBJECTS);
+
 	u.alwayscurseditem = -1;
-	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == u.unobtainable5) || (u.alwayscurseditem == u.unobtainable6) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem2 = -1;
-	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == u.unobtainable5) || (u.alwayscurseditem2 == u.unobtainable6) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem3 = -1;
-	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == u.unobtainable5) || (u.alwayscurseditem3 == u.unobtainable6) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem4 = -1;
-	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == u.unobtainable5) || (u.alwayscurseditem4 == u.unobtainable6) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
+
+	u.alwayscurseditem5 = -1;
+	while ( (u.alwayscurseditem5 == -1) || (u.alwayscurseditem5 == u.unobtainable) || (u.alwayscurseditem5 == u.unobtainable2) || (u.alwayscurseditem5 == u.unobtainable3) || (u.alwayscurseditem5 == u.unobtainable4) || (u.alwayscurseditem5 == u.unobtainable5) || (u.alwayscurseditem5 == u.unobtainable6) || (u.alwayscurseditem5 == GOLD_PIECE) || (u.alwayscurseditem5 == STRANGE_OBJECT) || (u.alwayscurseditem5 == AMULET_OF_YENDOR) || (u.alwayscurseditem5 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem5 == BELL_OF_OPENING) || (u.alwayscurseditem5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem5].oc_prob < 1) ) u.alwayscurseditem5 = rn2(NUM_OBJECTS);
 
 	u.veryobtainable = -1;
-	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (u.veryobtainable == u.unobtainable3) || (u.veryobtainable == u.unobtainable4) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (u.veryobtainable == u.unobtainable3) || (u.veryobtainable == u.unobtainable4) || (u.veryobtainable == u.unobtainable5) || (u.veryobtainable == u.unobtainable6) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
 	u.veryobtainableboost = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);
 	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
 
 	u.veryobtainable2 = -1;
-	while ( (u.veryobtainable2 == -1) || (u.veryobtainable2 == GOLD_PIECE) || (u.veryobtainable2 == STRANGE_OBJECT) || (u.veryobtainable2 == AMULET_OF_YENDOR) || (u.veryobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable2 == BELL_OF_OPENING) || (u.veryobtainable2 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable2 == u.unobtainable) || (u.veryobtainable2 == u.unobtainable2) || (u.veryobtainable2 == u.unobtainable3) || (u.veryobtainable2 == u.unobtainable4) || (objects[u.veryobtainable2].oc_prob < 1) ) u.veryobtainable2 = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable2 == -1) || (u.veryobtainable2 == GOLD_PIECE) || (u.veryobtainable2 == STRANGE_OBJECT) || (u.veryobtainable2 == AMULET_OF_YENDOR) || (u.veryobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable2 == BELL_OF_OPENING) || (u.veryobtainable2 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable2 == u.unobtainable) || (u.veryobtainable2 == u.unobtainable2) || (u.veryobtainable2 == u.unobtainable3) || (u.veryobtainable2 == u.unobtainable4) || (u.veryobtainable2 == u.unobtainable5) || (u.veryobtainable2 == u.unobtainable6) || (objects[u.veryobtainable2].oc_prob < 1) ) u.veryobtainable2 = rn2(NUM_OBJECTS);
 	u.veryobtainableboost2 = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost2 += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost2 += rnz(100);
 	if (u.veryobtainableboost2 > 1000) u.veryobtainableboost2 = 1000; /* sanity check */
 
 	u.veryobtainable3 = -1;
-	while ( (u.veryobtainable3 == -1) || (u.veryobtainable3 == GOLD_PIECE) || (u.veryobtainable3 == STRANGE_OBJECT) || (u.veryobtainable3 == AMULET_OF_YENDOR) || (u.veryobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable3 == BELL_OF_OPENING) || (u.veryobtainable3 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable3 == u.unobtainable) || (u.veryobtainable3 == u.unobtainable2) || (u.veryobtainable3 == u.unobtainable3) || (u.veryobtainable3 == u.unobtainable4) || (objects[u.veryobtainable3].oc_prob < 1) ) u.veryobtainable3 = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable3 == -1) || (u.veryobtainable3 == GOLD_PIECE) || (u.veryobtainable3 == STRANGE_OBJECT) || (u.veryobtainable3 == AMULET_OF_YENDOR) || (u.veryobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable3 == BELL_OF_OPENING) || (u.veryobtainable3 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable3 == u.unobtainable) || (u.veryobtainable3 == u.unobtainable2) || (u.veryobtainable3 == u.unobtainable3) || (u.veryobtainable3 == u.unobtainable4) || (u.veryobtainable3 == u.unobtainable5) || (u.veryobtainable3 == u.unobtainable6) || (objects[u.veryobtainable3].oc_prob < 1) ) u.veryobtainable3 = rn2(NUM_OBJECTS);
 	u.veryobtainableboost3 = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost3 += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost3 += rnz(100);
 	if (u.veryobtainableboost3 > 1000) u.veryobtainableboost3 = 1000; /* sanity check */
+
+	u.veryobtainable4 = -1;
+	while ( (u.veryobtainable4 == -1) || (u.veryobtainable4 == GOLD_PIECE) || (u.veryobtainable4 == STRANGE_OBJECT) || (u.veryobtainable4 == AMULET_OF_YENDOR) || (u.veryobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable4 == BELL_OF_OPENING) || (u.veryobtainable4 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable4 == u.unobtainable) || (u.veryobtainable4 == u.unobtainable2) || (u.veryobtainable4 == u.unobtainable3) || (u.veryobtainable4 == u.unobtainable4) || (u.veryobtainable4 == u.unobtainable5) || (u.veryobtainable4 == u.unobtainable6) || (objects[u.veryobtainable4].oc_prob < 1) ) u.veryobtainable4 = rn2(NUM_OBJECTS);
+	u.veryobtainableboost4 = (1 + rnz(10));
+	if (!rn2(5)) u.veryobtainableboost4 += rnz(10);
+	if (!rn2(25)) u.veryobtainableboost4 += rnz(100);
+	if (u.veryobtainableboost4 > 1000) u.veryobtainableboost4 = 1000; /* sanity check */
 
 	u.invisotrap = rnd(TRAPNUM-1);
 
@@ -19362,38 +19378,54 @@ alter_reality()
 	u.unobtainable4 = -1;
 	while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
 
+	u.unobtainable5 = -1;
+	while ( (u.unobtainable5 == -1) || (u.unobtainable5 == GOLD_PIECE) || (u.unobtainable5 == STRANGE_OBJECT) || (u.unobtainable5 == AMULET_OF_YENDOR) || (u.unobtainable5 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable5 == BELL_OF_OPENING) || (u.unobtainable5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable5].oc_prob < 1) ) u.unobtainable5 = rn2(NUM_OBJECTS);
+
+	u.unobtainable6 = -1;
+	while ( (u.unobtainable6 == -1) || (u.unobtainable6 == GOLD_PIECE) || (u.unobtainable6 == STRANGE_OBJECT) || (u.unobtainable6 == AMULET_OF_YENDOR) || (u.unobtainable6 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable6 == BELL_OF_OPENING) || (u.unobtainable6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable6].oc_prob < 1) ) u.unobtainable6 = rn2(NUM_OBJECTS);
+
 	u.alwayscurseditem = -1;
-	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == u.unobtainable5) || (u.alwayscurseditem == u.unobtainable6) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem2 = -1;
-	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == u.unobtainable5) || (u.alwayscurseditem2 == u.unobtainable6) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem3 = -1;
-	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == u.unobtainable5) || (u.alwayscurseditem3 == u.unobtainable6) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem4 = -1;
-	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
+	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == u.unobtainable5) || (u.alwayscurseditem4 == u.unobtainable6) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
+
+	u.alwayscurseditem5 = -1;
+	while ( (u.alwayscurseditem5 == -1) || (u.alwayscurseditem5 == u.unobtainable) || (u.alwayscurseditem5 == u.unobtainable2) || (u.alwayscurseditem5 == u.unobtainable3) || (u.alwayscurseditem5 == u.unobtainable4) || (u.alwayscurseditem5 == u.unobtainable5) || (u.alwayscurseditem5 == u.unobtainable6) || (u.alwayscurseditem5 == GOLD_PIECE) || (u.alwayscurseditem5 == STRANGE_OBJECT) || (u.alwayscurseditem5 == AMULET_OF_YENDOR) || (u.alwayscurseditem5 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem5 == BELL_OF_OPENING) || (u.alwayscurseditem5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem5].oc_prob < 1) ) u.alwayscurseditem5 = rn2(NUM_OBJECTS);
 
 	u.veryobtainable = -1;
-	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (u.veryobtainable == u.unobtainable3) || (u.veryobtainable == u.unobtainable4) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable == -1) || (u.veryobtainable == GOLD_PIECE) || (u.veryobtainable == STRANGE_OBJECT) || (u.veryobtainable == AMULET_OF_YENDOR) || (u.veryobtainable == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable == BELL_OF_OPENING) || (u.veryobtainable == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable == u.unobtainable) || (u.veryobtainable == u.unobtainable2) || (u.veryobtainable == u.unobtainable3) || (u.veryobtainable == u.unobtainable4) || (u.veryobtainable == u.unobtainable5) || (u.veryobtainable == u.unobtainable6) || (objects[u.veryobtainable].oc_prob < 1) ) u.veryobtainable = rn2(NUM_OBJECTS);
 	u.veryobtainableboost = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost += rnz(100);
 	if (u.veryobtainableboost > 1000) u.veryobtainableboost = 1000; /* sanity check */
 
 	u.veryobtainable2 = -1;
-	while ( (u.veryobtainable2 == -1) || (u.veryobtainable2 == GOLD_PIECE) || (u.veryobtainable2 == STRANGE_OBJECT) || (u.veryobtainable2 == AMULET_OF_YENDOR) || (u.veryobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable2 == BELL_OF_OPENING) || (u.veryobtainable2 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable2 == u.unobtainable) || (u.veryobtainable2 == u.unobtainable2) || (u.veryobtainable2 == u.unobtainable3) || (u.veryobtainable2 == u.unobtainable4) || (objects[u.veryobtainable2].oc_prob < 1) ) u.veryobtainable2 = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable2 == -1) || (u.veryobtainable2 == GOLD_PIECE) || (u.veryobtainable2 == STRANGE_OBJECT) || (u.veryobtainable2 == AMULET_OF_YENDOR) || (u.veryobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable2 == BELL_OF_OPENING) || (u.veryobtainable2 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable2 == u.unobtainable) || (u.veryobtainable2 == u.unobtainable2) || (u.veryobtainable2 == u.unobtainable3) || (u.veryobtainable2 == u.unobtainable4) || (u.veryobtainable2 == u.unobtainable5) || (u.veryobtainable2 == u.unobtainable6) || (objects[u.veryobtainable2].oc_prob < 1) ) u.veryobtainable2 = rn2(NUM_OBJECTS);
 	u.veryobtainableboost2 = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost2 += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost2 += rnz(100);
 	if (u.veryobtainableboost2 > 1000) u.veryobtainableboost2 = 1000; /* sanity check */
 
 	u.veryobtainable3 = -1;
-	while ( (u.veryobtainable3 == -1) || (u.veryobtainable3 == GOLD_PIECE) || (u.veryobtainable3 == STRANGE_OBJECT) || (u.veryobtainable3 == AMULET_OF_YENDOR) || (u.veryobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable3 == BELL_OF_OPENING) || (u.veryobtainable3 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable3 == u.unobtainable) || (u.veryobtainable3 == u.unobtainable2) || (u.veryobtainable3 == u.unobtainable3) || (u.veryobtainable3 == u.unobtainable4) || (objects[u.veryobtainable3].oc_prob < 1) ) u.veryobtainable3 = rn2(NUM_OBJECTS);
+	while ( (u.veryobtainable3 == -1) || (u.veryobtainable3 == GOLD_PIECE) || (u.veryobtainable3 == STRANGE_OBJECT) || (u.veryobtainable3 == AMULET_OF_YENDOR) || (u.veryobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable3 == BELL_OF_OPENING) || (u.veryobtainable3 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable3 == u.unobtainable) || (u.veryobtainable3 == u.unobtainable2) || (u.veryobtainable3 == u.unobtainable3) || (u.veryobtainable3 == u.unobtainable4) || (u.veryobtainable3 == u.unobtainable5) || (u.veryobtainable3 == u.unobtainable6) || (objects[u.veryobtainable3].oc_prob < 1) ) u.veryobtainable3 = rn2(NUM_OBJECTS);
 	u.veryobtainableboost3 = (1 + rnz(10));
 	if (!rn2(5)) u.veryobtainableboost3 += rnz(10);
 	if (!rn2(25)) u.veryobtainableboost3 += rnz(100);
 	if (u.veryobtainableboost3 > 1000) u.veryobtainableboost3 = 1000; /* sanity check */
+
+	u.veryobtainable4 = -1;
+	while ( (u.veryobtainable4 == -1) || (u.veryobtainable4 == GOLD_PIECE) || (u.veryobtainable4 == STRANGE_OBJECT) || (u.veryobtainable4 == AMULET_OF_YENDOR) || (u.veryobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.veryobtainable4 == BELL_OF_OPENING) || (u.veryobtainable4 == SPE_BOOK_OF_THE_DEAD) || (u.veryobtainable4 == u.unobtainable) || (u.veryobtainable4 == u.unobtainable2) || (u.veryobtainable4 == u.unobtainable3) || (u.veryobtainable4 == u.unobtainable4) || (u.veryobtainable4 == u.unobtainable5) || (u.veryobtainable4 == u.unobtainable6) || (objects[u.veryobtainable4].oc_prob < 1) ) u.veryobtainable4 = rn2(NUM_OBJECTS);
+	u.veryobtainableboost4 = (1 + rnz(10));
+	if (!rn2(5)) u.veryobtainableboost4 += rnz(10);
+	if (!rn2(25)) u.veryobtainableboost4 += rnz(100);
+	if (u.veryobtainableboost4 > 1000) u.veryobtainableboost4 = 1000; /* sanity check */
 
 	u.invisotrap = rnd(TRAPNUM-1);
 
