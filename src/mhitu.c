@@ -2883,7 +2883,7 @@ hitmu(mtmp, mattk)
 			    dmg = 1;
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[otmp->corpsenm].mname);
-			    if (!Stoned) goto do_stone;
+			    if (!Stoned && !Stone_resistance) goto do_stone;
 			}
 
 			/* MRKR: If hit with a burning torch,     */
@@ -3699,7 +3699,7 @@ dopois:
 			    dmg = 1;
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[uwep->corpsenm].mname);
-			    if (!Stoned)
+			    if (!Stoned && !Stone_resistance)
 				goto do_stone;
 			}
 			dmg += dmgval(uwep, &youmonst);
@@ -4873,7 +4873,8 @@ dopois:
 			    dmg += 1;
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[otmp->corpsenm].mname);
-			    if (!Stoned) goto do_stone;
+			    if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+					polymon(PM_STONE_GOLEM)) ) goto do_stone;
 			}
 
 			/* MRKR: If hit with a burning torch,     */
@@ -5598,7 +5599,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if(!rn2(3)) {
 			if (flags.soundok)
 			    You_hear("a hissing noise!");
-do_stone:
+do_stone2:
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
 			    if (!Stoned && !Stone_resistance
@@ -6245,7 +6246,7 @@ do_stone:
 			    pline("%s hits you with the %s corpse.",
 				Monnam(mtmp), mons[uwep->corpsenm].mname);
 			    if (!Stoned)
-				goto do_stone;
+				goto do_stone2;
 			}
 			tmp += dmgval(uwep, &youmonst);
 			
