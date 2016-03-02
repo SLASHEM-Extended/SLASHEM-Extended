@@ -478,6 +478,7 @@ struct you {
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	int fumbleduration;	/* for wand of fumbling */
+	int antimagicshell;	/* for scroll of antimagic */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 

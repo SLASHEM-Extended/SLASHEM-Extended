@@ -85,7 +85,7 @@
 /* Extrinsics only */
 #define HAntimagic		u.uprops[ANTIMAGIC].intrinsic
 #define EAntimagic		u.uprops[ANTIMAGIC].extrinsic
-#define Antimagic		((HAntimagic || EAntimagic || have_magicresstone() || \
+#define Antimagic		((HAntimagic || EAntimagic || u.antimagicshell || have_magicresstone() || \
 				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance)
 #define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 

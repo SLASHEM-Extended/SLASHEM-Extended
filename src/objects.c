@@ -1782,9 +1782,14 @@ OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 		0, TOOL_CLASS, prob, 0, \
 		wt, cost, sdam, ldam, hitbon, 0, wt, clr )
 /* Containers */
-CONTAINER("large box", (char *)0,       1, 0, 0, 1, 175,30,   8, WOOD, HI_WOOD),
-CONTAINER("chest", (char *)0,           1, 0, 0, 1, 175,60,  16, WOOD, HI_WOOD),
-CONTAINER("ice box", (char *)0,         1, 0, 0, 1,  50,90,  42, PLASTIC, CLR_WHITE),
+CONTAINER("large box", "wooden box",    0, 0, 0, 1, 174,30,   8, WOOD, HI_WOOD),
+CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 1,30,   8, WOOD, HI_WOOD),
+CONTAINER("chest", "wooden container",  0, 0, 0, 1, 174,60,  16, WOOD, HI_WOOD),
+CONTAINER("chest of holding", "wooden container",  0, 0, 0, 1, 1,60,  16, WOOD, HI_WOOD),
+CONTAINER("ice box", (char *)0,         0, 0, 0, 1,  47,90,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of holding", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of waterproofing", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
 CONTAINER("sack", "bag",                0, 0, 0, 0, 150, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 100, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 100, 5, 100, CLOTH, HI_CLOTH),
@@ -1802,11 +1807,13 @@ TOOL("lock pick", (char *)0,    1, 0, 0, 0, 375,  0,  20, IRON, HI_METAL),
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
-TOOL("tallow candle", "candle", 0, 1, 0, 0, 248,  0, 100, WAX, CLR_WHITE),
+TOOL("tallow candle", "candle", 0, 1, 0, 0, 246,  0, 100, WAX, CLR_WHITE),
 TOOL("wax candle", "candle",    0, 1, 0, 0, 199,  0, 100, WAX, CLR_WHITE),
 TOOL("magic candle",  "candle", 0, 1, 1, 0,  25,  0, 100, WAX, CLR_WHITE),
 TOOL("Japan-wax candle", "candle", 0, 1, 0, 0, 1, 0, 100, WAX, CLR_WHITE),
 TOOL("oil candle", "candle",    0, 1, 0, 0, 1, 0, 100, WAX, CLR_WHITE),
+TOOL("general candle", "candle", 0, 1, 0, 0, 1, 0, 100, WAX, CLR_WHITE),
+TOOL("natural candle", "candle", 0, 1, 0, 0, 1, 0, 100, WAX, CLR_WHITE),
 TOOL("oil lamp", "lamp",        0, 0, 0, 0, 125, 0,  100, COPPER, CLR_YELLOW),
 TOOL("brass lantern", (char *)0,1, 0, 0, 0,  75, 0,  100, COPPER, CLR_YELLOW),
 TOOL("magic lamp", "lamp",      0, 0, 1, 0,  50, 0,100, COPPER, CLR_YELLOW),
@@ -2272,7 +2279,7 @@ SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1, 
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  75, 300, CLR_BLACK),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  75, 300, CLR_YELLOW),
 SCROLL("gold detection",        "THARR",                P_DIVINATION_SPELL, 1, 115, 300, CLR_BROWN),
-SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 826, 300, CLR_GREEN),
+SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 816, 300, CLR_GREEN),
 SCROLL("inventory id",              "NOW YOU SEE IT",           P_DIVINATION_SPELL, 1,  25, 300, CLR_YELLOW),
 SCROLL("magic mapping",         "ELAM EBOW",            P_DIVINATION_SPELL, 1,  175, 300, CLR_CYAN),
 SCROLL("flood",                 "AQUE BRAGH",           P_DIVINATION_SPELL, 1,   25, 300, CLR_BRIGHT_BLUE),
@@ -2351,6 +2358,9 @@ SCROLL("egoism",	"ITS ALL MINE", P_NONE,  1,  5, 300, CLR_YELLOW),
 SCROLL("rumor",	"BU MISH MISH EMAS", P_NONE,  1,  20, 300, CLR_WHITE),
 SCROLL("message",	"ONA DYSHIT BOLSHE VY UMERET", P_NONE,  1,  20, 300, CLR_BROWN),
 SCROLL("sin",	"TU HAI DEVIATO DAL PERCORSO MORTALE", P_NONE,  1,  5, 300, CLR_BRIGHT_GREEN),
+
+SCROLL("antimagic",	"KARSUS", P_NONE,  1,  5, 300, CLR_BLACK),
+SCROLL("resistance",	"DESREVER TSEPMET", P_NONE,  1,  5, 300, CLR_MAGENTA),
 
 SCROLL("consecration",		"MAY THE FORCE BE WITH YOU",
 								      P_NONE,  1,  25, 300, CLR_BRIGHT_CYAN),
@@ -2895,6 +2905,8 @@ SCROLL((char *)0,               "GOOGLE TRANSLATE DOES NOT KNOW WHAT A BATARANG 
 SCROLL((char *)0,               "TSVETOCHNYYE SHORTY I LEY",  P_NONE,     1,   0, 300, CLR_CYAN),
 SCROLL((char *)0,               "OGRANICHENIYE SAPOGI",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN),
 SCROLL((char *)0,               "ZESE PLASHCH",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
+SCROLL((char *)0,               "SLASH UPOROTYH TO FUCK",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "HLY HLS",  P_NONE,     1,   0, 300, CLR_WHITE),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),

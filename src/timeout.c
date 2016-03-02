@@ -239,6 +239,10 @@ nh_timeout()
 	}
 
 	if (u.fumbleduration) u.fumbleduration--;
+	if (u.antimagicshell) {
+		u.antimagicshell--;
+		if (!u.antimagicshell) pline("You no longer produce an anti-magic shell.");
+	}
 
 	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
@@ -2735,7 +2739,7 @@ unpoly_obj(arg, timeout)
 
 	    while (otmp->where == OBJ_CONTAINED) {
 		otmp = otmp->ocontainer;
-		if (otmp->otyp == BAG_OF_HOLDING) {
+		if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING) {
 		    explodes = mbag_explodes(obj, depthin);
 		    break;
 		}
@@ -2747,7 +2751,7 @@ unpoly_obj(arg, timeout)
 		while (otmp2->where == OBJ_CONTAINED) {
 		    otmp2 = otmp2->ocontainer;
 
-		    if (otmp2->otyp == BAG_OF_HOLDING) 
+		    if (otmp2->otyp == BAG_OF_HOLDING || otmp2->otyp == ICE_BOX_OF_HOLDING || otmp2->otyp == CHEST_OF_HOLDING) 
 			otmp = otmp2;
 		}
 		destroy_mbag(otmp, silent);
@@ -3578,6 +3582,8 @@ long timeout;
 	    case WAX_CANDLE:
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
+	    case NATURAL_CANDLE:
+	    case GENERAL_CANDLE:
 		switch (obj->age) {
 		    case 75:
 			if (canseeit)
@@ -3913,6 +3919,8 @@ begin_burn(obj, already_lit)
 	    case WAX_CANDLE:
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
+	    case NATURAL_CANDLE:
+	    case GENERAL_CANDLE:
 		/* magic times are 75, 15, and 0 */
 		if (obj->age > 75L)
 		    turns = obj->age - 75L;

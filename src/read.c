@@ -5175,6 +5175,57 @@ revid_end:
 
 		break;
 
+	case SCR_ANTIMAGIC:
+
+		if (confused) {
+			u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz(20000);
+			pline("You are prevented from having magic resistance!");
+		}
+
+		if (sobj->cursed) {
+			u.uen = 0;
+			drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
+		}
+
+		if (!confused && !sobj->cursed) {
+			pline("You produce an anti-magic shell.");
+			known = TRUE;
+			u.antimagicshell += rn1( 500 + (500 * bcsign(sobj)), 500);
+		}
+
+		break;
+
+	case SCR_RESISTANCE:
+
+		if (confused) {
+			attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+		}
+
+		if (sobj->cursed) {
+			u.uprops[DEAC_SHOCK_RES].intrinsic += rnz(200);
+			pline("You are prevented from having shock resistance!");
+			u.uprops[DEAC_FIRE_RES].intrinsic += rnz(200);
+			pline("You are prevented from having fire resistance!");
+			u.uprops[DEAC_COLD_RES].intrinsic += rnz(200);
+			pline("You are prevented from having cold resistance!");
+			u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(200);
+			pline("You are prevented from having sleep resistance!");
+			u.uprops[DEAC_ACID_RES].intrinsic += rnz(200);
+			pline("You are prevented from having acid resistance!");
+		}
+
+		if (!confused && !sobj->cursed) {
+			You("feel resistant to elemental attacks!");
+			known = TRUE;
+			   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+			   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+			   HShock_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+			   HSleep_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+			   HAcid_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+		}
+
+		break;
+
 	case SCR_SYMMETRY:
 
 		pline("Fearful Symmetry!");

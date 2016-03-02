@@ -444,14 +444,14 @@ struct obj {
 			 (o)->cobj != (struct obj *)0)
 #define Is_container(o) ((o)->otyp == MEDICAL_KIT || \
 			 (o)->otyp >= LARGE_BOX && (o)->otyp <= BAG_OF_TRICKS)
-#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == CHEST)
+#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
 #ifdef WALLET_O_P
-#define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || \
+#define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
                          ((otmp)->oartifact && \
                           (otmp)->oartifact == ART_WALLET_OF_PERSEUS) || \
   			             (otmp)->otyp == BAG_OF_TRICKS)
 #else
-#define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || \
+#define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
   			 (otmp)->otyp == BAG_OF_TRICKS)
 #endif
 
@@ -512,6 +512,8 @@ struct obj {
 			 (otmp)->otyp == WAX_CANDLE || \
 			 (otmp)->otyp == JAPAN_WAX_CANDLE || \
 			 (otmp)->otyp == OIL_CANDLE || \
+			 (otmp)->otyp == GENERAL_CANDLE || \
+			 (otmp)->otyp == NATURAL_CANDLE || \
 			 (otmp)->otyp == MAGIC_CANDLE)
 /* maximum amount of oil in a potion of oil */
 #define MAX_OIL_IN_FLASK 400
@@ -526,6 +528,8 @@ struct obj {
 				|| (otmp)->otyp == WAX_CANDLE\
 				|| (otmp)->otyp == JAPAN_WAX_CANDLE\
 				|| (otmp)->otyp == OIL_CANDLE\
+				|| (otmp)->otyp == GENERAL_CANDLE\
+				|| (otmp)->otyp == NATURAL_CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 /* object can be ignited */
 #define ignitable(otmp)	((otmp)->otyp == BRASS_LANTERN\
@@ -536,6 +540,8 @@ struct obj {
 				|| (otmp)->otyp == WAX_CANDLE\
 				|| (otmp)->otyp == JAPAN_WAX_CANDLE\
 				|| (otmp)->otyp == OIL_CANDLE\
+				|| (otmp)->otyp == GENERAL_CANDLE\
+				|| (otmp)->otyp == NATURAL_CANDLE\
 				|| (otmp)->otyp == MAGIC_CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 

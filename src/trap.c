@@ -9755,13 +9755,18 @@ xchar x, y;
 	if (Is_container(obj)) {
 	    switch (obj->otyp) {
 	    case ICE_BOX:
+	    case ICE_BOX_OF_HOLDING:
+	    case ICE_BOX_OF_WATERPROOFING:
+	    case ICE_BOX_OF_DIGESTION:
 		continue;		/* Immune */
 		/*NOTREACHED*/
 		break;
 	    case CHEST:
+	    case CHEST_OF_HOLDING:
 		chance = 60;
 		break;
 	    case LARGE_BOX:
+	    case LARGE_BOX_OF_DIGESTION:
 		chance = 55;
 		break;
 	    default:
@@ -9899,7 +9904,7 @@ register boolean force, here;
 			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
-		} else if(Is_container(obj) && !Is_box(obj) &&
+		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
 		} else if (!force && (Luck - luckpenalty + 5 + rnd(20) ) > rn2(20)) {

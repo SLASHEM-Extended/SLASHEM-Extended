@@ -357,7 +357,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml) {
+	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -2136,7 +2136,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if (mattk->adtyp > AD_SPC2)
 	    return(0);
 
-	if (mtmp->mcan) {
+	if (mtmp->mcan || u.antimagicshell) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}

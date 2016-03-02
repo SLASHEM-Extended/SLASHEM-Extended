@@ -105,6 +105,7 @@ register struct obj *otmp;
 	case SCR_REPAIR_ITEM:
 		return(24);
 /*		break; */
+	case SCR_RESISTANCE:
 	case SCR_GENOCIDE:
 	case SCR_CURE:
 	case SCR_SIN:
@@ -131,6 +132,7 @@ register struct obj *otmp;
 		return(40);
 /*		break; */
 	case SCR_CONSECRATION:
+	case SCR_ANTIMAGIC:
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
 	case SCR_ALTER_REALITY:

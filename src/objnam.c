@@ -1694,6 +1694,18 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HELO_CROSSBOW, "ballisty arbaleta" },
 	{ BATARANG, "bitoy bumerang" },
 
+	{ ICE_BOX_OF_HOLDING, "ledovoy korobke kholdinga" },
+	{ ICE_BOX_OF_WATERPROOFING, "korobka l'da gidroizolyatsii" },
+	{ ICE_BOX_OF_DIGESTION, "korobka l'da pishchevareniya" },
+	{ LARGE_BOX_OF_DIGESTION, "bol'shaya korobka pishchevareniya" },
+	{ CHEST_OF_HOLDING, "grud' kholdinga" },
+
+	{ SCR_ANTIMAGIC, "antimagicheskoye" },
+	{ SCR_RESISTANCE, "soprotivleniye" },
+
+	{ GENERAL_CANDLE, "obshchaya svecha" },
+	{ NATURAL_CANDLE, "yestestvennaya svecha" },
+
 	{0, "" }
 };
 
@@ -3066,6 +3078,18 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ MARE_TRIDENT, "marek sacayagimiz" },
 	{ HELO_CROSSBOW, "xalon yayli miltiq" },
 	{ BATARANG, "botsheva bumerang" },
+
+	{ ICE_BOX_OF_HOLDING, "o'tkazish muz qutisini" },
+	{ ICE_BOX_OF_WATERPROOFING, "gidroizolyatsiya bo'yicha muzlatgich" },
+	{ ICE_BOX_OF_DIGESTION, "hazm muzlatgich" },
+	{ LARGE_BOX_OF_DIGESTION, "hazm katta qutisini" },
+	{ CHEST_OF_HOLDING, "o'tkazish ko'krak" },
+
+	{ SCR_ANTIMAGIC, "qarshi sehr" },
+	{ SCR_RESISTANCE, "qarshilik" },
+
+	{ GENERAL_CANDLE, "umumiy sham" },
+	{ NATURAL_CANDLE, "tabiiy sham" },
 
 	{0, "" }
 };

@@ -3998,7 +3998,7 @@ register struct obj *otmp;
 
 	if (!objects[otmp->otyp].oc_merge) return 0;
 
-	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
+	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
 
 	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_DART) || (objects[otmp->otyp].oc_skill == -P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) return 1;
 
@@ -6035,10 +6035,20 @@ struct obj *obj;
 
 			case LARGE_BOX: 
 				pline("A big container that can hold items."); break;
+			case LARGE_BOX_OF_DIGESTION: 
+				pline("Looks like an ordinary large box, until you open it to discover that all the contents have just disappeared!"); break;
 			case CHEST: 
 				pline("A treasure chest that may be filled with loot."); break;
+			case CHEST_OF_HOLDING: 
+				pline("This special treasure chest can decrease the weight of stuff in it. There are a few items that you may not put in though, or it will explode."); break;
 			case ICE_BOX: 
 				pline("This container has the unique ability to keep corpses fresh if they're put in."); break;
+			case ICE_BOX_OF_HOLDING: 
+				pline("A container that keeps corpses fresh and also makes them weigh less. Careful, certain items may not be put into it or it will explode."); break;
+			case ICE_BOX_OF_WATERPROOFING: 
+				pline("You can store corpses in this container, but also other items. The contents will not get wet if you fall into the water either."); break;
+			case ICE_BOX_OF_DIGESTION: 
+				pline("This box keeps corpses fresh, but also eats them sometimes. Other items can also disappear if you put them into it."); break;
 			case SACK: 
 				pline("This is a basic container that can be used to store items."); break;
 			case OILSKIN_SACK:
@@ -6063,6 +6073,10 @@ struct obj *obj;
 				pline("A candle that can be lit."); break;
 			case OIL_CANDLE: 
 				pline("Yet another candle that you can light to, well, get light."); break;
+			case GENERAL_CANDLE: 
+				pline("This candle is rare but not really different from other types of candle - light it to see in the dark."); break;
+			case NATURAL_CANDLE: 
+				pline("A candle made of 100%% natural materials that you can light."); break;
 			case MAGIC_CANDLE: 
 				pline("A permanent light source that might be useful in dark areas."); break;
 			case OIL_LAMP: 
@@ -6584,6 +6598,10 @@ struct obj *obj;
 				pline("This is a very dangerous scroll that will reverse your movement key's directions PERMANENTLY. The only way to reverse its effect is to read another one, so you should be glad I'm not allowing monsters to read them!"); break;
 			case SCR_CREATE_CREATE_SCROLL: 
 				pline("Fairly useless; reading this scroll will recreate it on the ground beneath you. Makes you wonder what the devs were smoking when they invented this item."); break;
+			case SCR_ANTIMAGIC: 
+				pline("This scroll makes you magic resistant for a while. For the entire duration no one can cast spells."); break;
+			case SCR_RESISTANCE: 
+				pline("Grants temporary resistances to fire, cold, shock, acid and sleep."); break;
 
 			case SCR_GAIN_MANA: 
 				pline("Reading this scroll will increase your max mana."); break;

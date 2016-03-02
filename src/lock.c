@@ -60,7 +60,7 @@ lock_action()
 	if (xlock.door && !(xlock.door->doormask & D_LOCKED))
 		return actions[0]+2;	/* "locking the door" */
 	else if (xlock.box && !xlock.box->olocked)
-		return xlock.box->otyp == CHEST ? actions[1]+2 : actions[2]+2;
+		return (xlock.box->otyp == CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1]+2 : actions[2]+2;
 	/* otherwise we're trying to unlock it */
 	else if (xlock.picktyp == LOCK_PICK)
 		return actions[3];	/* "picking the lock" */
@@ -71,7 +71,7 @@ lock_action()
 	else if (xlock.door)
 		return actions[0];	/* "unlocking the door" */
 	else
-		return xlock.box->otyp == CHEST ? actions[1] : actions[2];
+		return (xlock.box->otyp == CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1] : actions[2];
 }
 
 STATIC_PTR
@@ -200,7 +200,7 @@ forcelock()	/* try to force a locked chest */
 		    }
 		    useup(otmp);
 		}
-		if (xlock.box->otyp == ICE_BOX && otmp->otyp == CORPSE) {
+		if ( (xlock.box->otyp == ICE_BOX || xlock.box->otyp == ICE_BOX_OF_HOLDING || xlock.box->otyp == ICE_BOX_OF_WATERPROOFING || xlock.box->otyp == ICE_BOX_OF_DIGESTION) && otmp->otyp == CORPSE) {
 		    otmp->age = monstermoves - otmp->age; /* actual age */
 		    start_corpse_timeout(otmp);
 		}

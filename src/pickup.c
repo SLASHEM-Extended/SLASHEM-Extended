@@ -61,7 +61,7 @@ STATIC_DCL int FDECL(dump_container, (struct obj*, BOOLEAN_P));
 /* in_container() and out_container() from askchain() and use_container(). */
 /* Also used by memu_loot() and container_gone().			   */
 static NEARDATA struct obj *current_container;
-#define Icebox (current_container->otyp == ICE_BOX)
+#define Icebox (current_container->otyp == ICE_BOX || current_container->otyp == ICE_BOX_OF_HOLDING || current_container->otyp == ICE_BOX_OF_WATERPROOFING || current_container->otyp == ICE_BOX_OF_DIGESTION)
 
 static const char moderateloadmsg[] = "You have a little trouble lifting";
 static const char nearloadmsg[] = "You have much trouble lifting";
@@ -1041,7 +1041,7 @@ int *wt_before, *wt_after;
     }
     wt = iw + (int)obj->owt;
     if (adjust_wt)
-	wt -= (container->otyp == BAG_OF_HOLDING) ?
+	wt -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
 		(int)DELTA_CWT(container, obj) : (int)obj->owt;
 #ifndef GOLDOBJ
     if (is_gold)	/* merged gold might affect cumulative weight */
@@ -1087,7 +1087,7 @@ int *wt_before, *wt_after;
 #else
 		ow = (int)GOLD_WT(umoney + qq);
 #endif
-		ow -= (container->otyp == BAG_OF_HOLDING) ?
+		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
 			(int)DELTA_CWT(container, obj) : (int)obj->owt;
 		if (iw + ow >= 0) break;
 		oow = ow;
@@ -1114,7 +1114,7 @@ int *wt_before, *wt_after;
 	    obj->quan = qq;
 	    obj->owt = (unsigned)(ow = weight(obj));
 	    if (adjust_wt)
-		ow -= (container->otyp == BAG_OF_HOLDING) ?
+		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
 			(int)DELTA_CWT(container, obj) : (int)obj->owt;
 	    if (iw + ow >= 0)
 		break;
@@ -2049,7 +2049,7 @@ boolean invobj;
 	}
 
 	/* boxes, boulders, and big statues can't fit into any container */
-	if (obj->otyp == ICE_BOX || Is_box(obj) || obj->otyp == BOULDER ||
+	if (obj->otyp == ICE_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION || Is_box(obj) || obj->otyp == BOULDER ||
 		(obj->otyp == STATUE && bigmonst(&mons[obj->corpsenm]))) {
 		/*
 		 *  xname() uses a static result array.  Save obj's name
@@ -2091,7 +2091,10 @@ boolean invobj;
 			/* mark a non-reviving corpse as such */
 			if (rot_alarm) obj->norevive = 1;
 		}
-	} else if (Is_mbag(current_container) && mbag_explodes(obj, 0)) {
+	}
+
+	/* There are ice boxes of holding --Amy */
+	if (Is_mbag(current_container) && mbag_explodes(obj, 0)) {
 		/* explicitly mention what item is triggering the explosion */
 		pline(
 	      "As you put %s inside, you are blasted by a magical explosion!",
@@ -2418,7 +2421,7 @@ int held;
 		}
 	    }
 	}
-	if (obj->otyp == BAG_OF_DIGESTION && !rn2(obj->blessed ? 20 : (obj->cursed ? 2 : 10))) {
+	if ( (obj->otyp == BAG_OF_DIGESTION || obj->otyp == ICE_BOX_OF_DIGESTION || obj->otyp == LARGE_BOX_OF_DIGESTION) && !rn2(obj->blessed ? 20 : (obj->cursed ? 2 : 10))) {
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
 		if (!evades_destruction(curr) && !stack_too_big(curr)) {
@@ -2763,7 +2766,7 @@ BOOLEAN_P destroy_after;
 		container->owt = weight(container);
 
 		/* we do need to start the timer on these */
-		if (container->otyp == ICE_BOX && !age_is_relative(otmp)) {
+		if ( (container->otyp == ICE_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp)) {
 			otmp->age = monstermoves - otmp->age;
 			if (otmp->otyp == CORPSE) {
 				start_corpse_timeout(otmp);

@@ -1423,6 +1423,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Your remaining amount of free polymorphs ", "is", "was", buf);
 	}
 
+	if (u.antimagicshell > 0) { Sprintf(buf, " %d more turns", u.antimagicshell);
+		enl_msg("Your antimagic shell ", "will last", "would have lasted", buf);
+	}
+
 	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " turn %d", u.monstertimeout);
 		enl_msg("Monster spawn increase ", "start at", "would have started at", buf);
 	}
@@ -3132,6 +3136,12 @@ int final;
 		Sprintf(buf, " %d", u.youpolyamount);
 		dump("  Your remaining amount of free polymorphs was ", buf);
 	}
+
+	if (u.antimagicshell > 0) {
+		Sprintf(buf, " %d more turns", u.antimagicshell);
+		dump("  Your antimagic shell would have lasted", buf);
+	}
+
 
 	Sprintf(buf, " turn %d", u.monstertimeout);
 	dump("  Monster spawn increase started at ", buf);

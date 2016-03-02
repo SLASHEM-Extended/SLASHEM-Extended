@@ -710,6 +710,13 @@ docast()
 {
 	int spell_no;
 
+	if (u.antimagicshell) {
+
+		pline("Your anti-magic shell prevents spellcasting.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if (getspell(&spell_no))
 	    return spelleffects(spell_no, FALSE);
 	return 0;

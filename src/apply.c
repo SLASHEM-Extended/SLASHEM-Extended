@@ -3880,8 +3880,13 @@ doapply()
 			wield_tool(obj, "cast"); }
 		break;
 	case LARGE_BOX:
+	case LARGE_BOX_OF_DIGESTION:
 	case CHEST:
+	case CHEST_OF_HOLDING:
 	case ICE_BOX:
+	case ICE_BOX_OF_HOLDING:
+	case ICE_BOX_OF_DIGESTION:
+	case ICE_BOX_OF_WATERPROOFING:
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
@@ -3973,6 +3978,8 @@ doapply()
 	case MAGIC_CANDLE:
 	case TALLOW_CANDLE:
 	case OIL_CANDLE:
+	case GENERAL_CANDLE:
+	case NATURAL_CANDLE:
 	case JAPAN_WAX_CANDLE:
 		use_candle(&obj);
 		break;

@@ -195,7 +195,10 @@ struct obj *box;
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
+	case ICE_BOX_OF_HOLDING:
+	case ICE_BOX_OF_WATERPROOFING:
 	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
+	case CHEST_OF_HOLDING:
 	case CHEST:		n = (ishaxor ? 10 : 5); break;
 	case LARGE_BOX:		n = (ishaxor ? 6 : 3); break;
 	case SACK:
@@ -204,6 +207,8 @@ struct obj *box;
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
 				/*else FALLTHRU*/
 	case BAG_OF_HOLDING:	n = (ishaxor ? 2 : 1); break;
+	case LARGE_BOX_OF_DIGESTION:
+	case ICE_BOX_OF_DIGESTION:
 	case BAG_OF_DIGESTION:		/* makes sense, doesn't it ? */
 	default:		n = 0; break;
 	}
@@ -216,7 +221,7 @@ struct obj *box;
 		else
 		    otmp->oinvis = otmp->oinvisreal = FALSE;
 	    } else
-	    if (box->otyp == ICE_BOX) {
+	    if (box->otyp == ICE_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
 		 * from usual meaning for objects stored in ice boxes. -KAA
@@ -258,7 +263,7 @@ struct obj *box;
 		    if (otmp->quan > 2L) otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
 		}
-		if (box->otyp == BAG_OF_HOLDING) {
+		if (box->otyp == BAG_OF_HOLDING || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == CHEST_OF_HOLDING) {
 		    if (Is_mbag(otmp)) {
 			otmp->otyp = SACK;
 			otmp->spe = 0;
@@ -1121,6 +1126,8 @@ boolean artif;
 		case WAX_CANDLE:
 		case JAPAN_WAX_CANDLE:
 		case OIL_CANDLE:
+		case NATURAL_CANDLE:
+		case GENERAL_CANDLE:
 			otmp->spe = 1;
 					otmp->age = 20L * /* 400 or 200 */
 					      (long)objects[otmp->otyp].oc_cost;
@@ -1182,10 +1189,13 @@ boolean artif;
 		break;
 #endif
 		case CHEST:
+		case CHEST_OF_HOLDING:
 		case LARGE_BOX:
 			otmp->olocked = !!(rn2(5));
 					otmp->otrapped = !(rn2(10));
 		case ICE_BOX:
+		case ICE_BOX_OF_HOLDING:
+		case ICE_BOX_OF_WATERPROOFING:
 		case SACK:
 		case OILSKIN_SACK:
 		case BAG_OF_HOLDING:
@@ -1585,7 +1595,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	else if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING)
+	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
@@ -1602,7 +1612,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	else if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING)
+	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
@@ -1638,7 +1648,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	else if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING)
+	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	else if (otmp->otyp == FIGURINE) {
 		if (otmp->corpsenm != NON_PM
@@ -1665,7 +1675,7 @@ register struct obj *otmp;
 	/* KMH, balance patch -- healthstones affect healing */
 	else if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING)
+	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 }
 
@@ -1750,7 +1760,7 @@ register struct obj *obj;
 		 *	   as cursed.
 		 */
 #define CEILDIV(x,y)	(((x)+(y)-1)/(y))	/* ceil(x/y) */
-		if (obj->otyp == BAG_OF_HOLDING)
+		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING)
 			cwt = obj->cursed ? (cwt * (obj->oartifact ? 4 : 2)) :
 				CEILDIV(cwt, (obj->oartifact ? 3 : 2) * (obj->blessed ? 2 : 1));
 #undef CEILDIV
