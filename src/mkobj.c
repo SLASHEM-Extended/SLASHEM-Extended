@@ -142,6 +142,13 @@ boolean artif;
 {
 	int tprob, i, prob = rnd(5000);
 
+	if (oclass >= MAXOCLASSES) { /* failsafe --Amy */
+
+		impossible("Error: mkobj() called with invalid object class %d", (int) oclass);
+		oclass = RANDOM_CLASS;
+
+	}
+
 	if(oclass == RANDOM_CLASS) {
 		const struct icp *iprobs =
 #ifdef REINCARNATION
