@@ -2350,6 +2350,10 @@ nh_timeout()
 			if (!Invulnerable)
 				You("are no longer invulnerable.");
 			break;
+		case GLIB:
+			if (!IsGlib)
+				pline("Your %s are no longer slippery.", makeplural(body_part(HAND)) );
+			break;
 		case REFLECTING:
 			if (!Blind)
 				pline("The shimmering globe around you flickers and vanishes.");
