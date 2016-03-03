@@ -1118,7 +1118,7 @@ moveloop()
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
-				if (!rn2(10)) (void) drain_item(otmpE);
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
 		}
@@ -1127,7 +1127,7 @@ moveloop()
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
-				if (!rn2(10)) (void) drain_item(otmpE);
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
 		}
@@ -1136,7 +1136,7 @@ moveloop()
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
-				if (!rn2(10)) (void) drain_item(otmpE);
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
 		}
