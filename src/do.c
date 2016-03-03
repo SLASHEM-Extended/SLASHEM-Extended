@@ -2576,6 +2576,7 @@ boolean at_stairs, falling, portal;
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
+			if (randsp > 1) randsp = rnd(randsp);
 
 			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG exceptionally seems to be on your side..." : "You feel that there's lots of treasure to be found here!");
 
@@ -2595,6 +2596,7 @@ boolean at_stairs, falling, portal;
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
+			if (randsp > 1) randsp = rnd(randsp);
 
 			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG whispers to you: 'Today's your lucky day!'" : "You feel that there's lots of good stuff to be found here!");
 
@@ -2614,6 +2616,7 @@ boolean at_stairs, falling, portal;
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
+			if (randsp > 1) randsp = rnd(randsp);
 
 			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG's voice booms out: 'You were fated to die on this level. DIE!'" : "You feel that the monsters are exceptionally well-armed here!");
 

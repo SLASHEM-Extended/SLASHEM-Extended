@@ -181,6 +181,35 @@ boolean artif;
 		if ((oclass == RING_CLASS) && (rn2(100) < u.ringspawnchance)) {
 			oclass = COIN_CLASS;
 		}
+
+		if ((oclass == SCROLL_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == POTION_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == WAND_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == AMULET_CLASS) && !timebasedlowerchance() ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == SPBOOK_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() && !timebasedlowerchance() ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == GEM_CLASS) && !timebasedlowerchance() && (!timebasedlowerchance() || !timebasedlowerchance() ) ) {
+			oclass = COIN_CLASS;
+		}
+
+		if ((oclass == RING_CLASS) && ( (!timebasedlowerchance() && !timebasedlowerchance() ) || (!timebasedlowerchance() && !timebasedlowerchance() ) ) ) {
+			oclass = COIN_CLASS;
+		}
+
 	}
 
 	i = bases[(int)oclass];

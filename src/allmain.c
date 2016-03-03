@@ -566,6 +566,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
+				if (randsp > 1) randsp = rnd(randsp);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
 
@@ -585,6 +586,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
+				if (randsp > 1) randsp = rnd(randsp);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG loves you!" : "You feel that someone was busy hiding useful items!");
 
@@ -668,6 +670,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
+				if (randsp > 1) randsp = rnd(randsp);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG hates you!" : "You feel that the monsters are coming for you with everything they got!");
 
