@@ -2962,12 +2962,25 @@ identify_pack(id_limit)
 int id_limit;
 {
     struct obj *obj, *the_obj;
+    register struct obj *otmp;
     int n, unid_cnt;
 
     unid_cnt = 0;
     the_obj = 0;		/* if unid_cnt ends up 1, this will be it */
-    for (obj = invent; obj; obj = obj->nobj)
+
+    for (obj = invent; obj; obj = obj->nobj) {
 	if (not_fully_identified(obj)) ++unid_cnt, the_obj = obj;
+
+
+	if (!id_limit && Has_contents(obj)) { /* full inventory id works on containers --Amy */
+
+		for (otmp = obj->cobj; otmp; otmp = otmp->nobj) {
+		    if (not_fully_identified(otmp)) (void) identify(otmp);
+		}
+
+	}
+
+    }
 
     if (!unid_cnt) {
 	You("have already identified all of your possessions.");
