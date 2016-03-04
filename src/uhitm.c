@@ -1479,7 +1479,7 @@ int thrown;
 			    obj->known = 1;	/* (not much point...) */
 #endif
 			    useup_eggs(obj);
-			    if (!munstone(mon, TRUE) && !rn2(4))
+			    if (!munstone(mon, TRUE) && (!rn2(4) || thrown) ) /* always petrify if thrown --Amy */
 				minstapetrify(mon, TRUE);
 			    if (resists_ston(mon)) break;
 			    return (boolean) (mon->mhp > 0);
