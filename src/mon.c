@@ -2610,7 +2610,7 @@ register struct monst *mtmp;
 	    }
 	}
 
-	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone() && !(mtmp->data->geno & G_UNIQ) ) {
+	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone() && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_SCROLLER_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_TRAP_MASTER && tmp != PM_UNFORTUNATE_VICTIM && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
 		case 2:
