@@ -526,9 +526,9 @@ typedef unsigned char	uchar;
 #define DUMP_LOG /* Dumplog support */
 
 #ifdef PUBLIC_SERVER
-#define DUMP_FN "/dump/%n/slex/%d"
+#define DUMP_FN "/dgldir/userdata/%n/slex/dumplog/%d.txt"
 #else
-#define DUMP_FN "dump_%n_%d.txt"    /* Fixed dumpfile name */
+#define DUMP_FN "/tmp/dump_%n_%d.txt"    /* Fixed dumpfile name */
 #endif
 
 #define DUMPMSGS 20
