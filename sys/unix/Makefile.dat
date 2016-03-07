@@ -340,7 +340,7 @@ quest_levs: ../util/lev_comp \
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
 	Suser.des Sexy.des Justice.des Fencer.des Fighter.des	\
 	Slime.des Erdrick.des Anachr.des Druid.des Marine.des \
-	Medium.des Poison.des
+	Medium.des Poison.des Transs.des Unbel.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -446,6 +446,8 @@ quest_levs: ../util/lev_comp \
 	echo ../util/lev_comp Tourist.des ; ../util/lev_comp Tourist.des ; \
 	else rm -f Tou-goal.lev Tou-fil?.lev Tou-loca.lev Tou-strt.lev ; fi
 	../util/lev_comp Trans.des
+	../util/lev_comp Transs.des
+	../util/lev_comp Unbel.des
 	../util/lev_comp Under.des
 	../util/lev_comp Valkyrie.des
 	../util/lev_comp Wandkeep.des
