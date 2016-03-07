@@ -438,6 +438,27 @@ struct you {
 	int frequentspecies10;	
 	int freqspeciesbonus10;	
 
+	int frequentspecies11;	
+	int freqspeciesbonus11;	
+	int frequentspecies12;	
+	int freqspeciesbonus12;	
+	int frequentspecies13;	
+	int freqspeciesbonus13;	
+	int frequentspecies14;	
+	int freqspeciesbonus14;	
+	int frequentspecies15;	
+	int freqspeciesbonus15;	
+	int frequentspecies16;	
+	int freqspeciesbonus16;	
+	int frequentspecies17;	
+	int freqspeciesbonus17;	
+	int frequentspecies18;	
+	int freqspeciesbonus18;	
+	int frequentspecies19;	
+	int freqspeciesbonus19;	
+	int frequentspecies20;	
+	int freqspeciesbonus20;	
+
 	int speedymonster;	/* monster species that is generated with speed */
 	int musemonster;		/* monster species that has a higher chance of generating with musable stuff */
 
@@ -452,6 +473,11 @@ struct you {
 	int nospawnspecies3;
 	int nospawnspecies4;
 	int nospawnspecies5;
+	int nospawnspecies6;
+	int nospawnspecies7;
+	int nospawnspecies8;
+	int nospawnspecies9;
+	int nospawnspecies10;
 
 	int unobtainable;		/* evil patch idea - item type that can't be obtained at all */
 	int unobtainable2;	

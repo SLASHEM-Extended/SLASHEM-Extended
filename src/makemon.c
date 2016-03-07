@@ -14768,6 +14768,16 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies8)) ct += u.freqspeciesbonus8;
 		if (ct > 0 && (mndx == u.frequentspecies9)) ct += u.freqspeciesbonus9;
 		if (ct > 0 && (mndx == u.frequentspecies10)) ct += u.freqspeciesbonus10;
+		if (ct > 0 && (mndx == u.frequentspecies11)) ct += u.freqspeciesbonus;
+		if (ct > 0 && (mndx == u.frequentspecies12)) ct += u.freqspeciesbonus2;
+		if (ct > 0 && (mndx == u.frequentspecies13)) ct += u.freqspeciesbonus3;
+		if (ct > 0 && (mndx == u.frequentspecies14)) ct += u.freqspeciesbonus4;
+		if (ct > 0 && (mndx == u.frequentspecies15)) ct += u.freqspeciesbonus5;
+		if (ct > 0 && (mndx == u.frequentspecies16)) ct += u.freqspeciesbonus6;
+		if (ct > 0 && (mndx == u.frequentspecies17)) ct += u.freqspeciesbonus7;
+		if (ct > 0 && (mndx == u.frequentspecies18)) ct += u.freqspeciesbonus8;
+		if (ct > 0 && (mndx == u.frequentspecies19)) ct += u.freqspeciesbonus9;
+		if (ct > 0 && (mndx == u.frequentspecies20)) ct += u.freqspeciesbonus10;
 
 		if (ct > 0 && (urole.enemy1num != NON_PM) && (mndx == urole.enemy1num)) ct += 125;
 		if (ct > 0 && (urole.enemy2num != NON_PM) && (mndx == urole.enemy2num)) ct += 25;
@@ -14777,6 +14787,11 @@ loopback:
 		if (ct > 0 && (mndx == u.nospawnspecies3)) ct = 0;
 		if (ct > 0 && (mndx == u.nospawnspecies4)) ct = 0;
 		if (ct > 0 && (mndx == u.nospawnspecies5)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies6)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies7)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies8)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies9)) ct = 0;
+		if (ct > 0 && (mndx == u.nospawnspecies10)) ct = 0;
 
 		/*if (ct < 0 || ct > 127)
 		    panic("rndmonst: bad count [#%d: %d]", mndx, ct);*/
@@ -14964,7 +14979,7 @@ int     spc;
 					&& !(uncommonnewfifty && monstr[last] >= 50 && monstr[last] < 60 )
 					&& !(uncommonnewsixty && monstr[last] >= 60 && monstr[last] < 70 )
 					&& !(uncommonnewseventy && monstr[last] >= 70 )
-					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5)
+					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5) && (last != u.nospawnspecies6) && (last != u.nospawnspecies7) && (last != u.nospawnspecies8) && (last != u.nospawnspecies9) && (last != u.nospawnspecies10)
 
 				) {
 		/* consider it */
@@ -14994,6 +15009,16 @@ int     spc;
 		if (last == u.frequentspecies8) num += u.freqspeciesbonus8;
 		if (last == u.frequentspecies9) num += u.freqspeciesbonus9;
 		if (last == u.frequentspecies10) num += u.freqspeciesbonus10;
+		if (last == u.frequentspecies11) num += u.freqspeciesbonus;
+		if (last == u.frequentspecies12) num += u.freqspeciesbonus2;
+		if (last == u.frequentspecies13) num += u.freqspeciesbonus3;
+		if (last == u.frequentspecies14) num += u.freqspeciesbonus4;
+		if (last == u.frequentspecies15) num += u.freqspeciesbonus5;
+		if (last == u.frequentspecies16) num += u.freqspeciesbonus6;
+		if (last == u.frequentspecies17) num += u.freqspeciesbonus7;
+		if (last == u.frequentspecies18) num += u.freqspeciesbonus8;
+		if (last == u.frequentspecies19) num += u.freqspeciesbonus9;
+		if (last == u.frequentspecies20) num += u.freqspeciesbonus10;
 		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
 
 		if ((urole.enemy1num != NON_PM) && (last == urole.enemy1num)) num += 125;
@@ -15025,7 +15050,7 @@ int     spc;
 					&& !(uncommonnewfifty && monstr[first] >= 50 && monstr[first] < 60 )
 					&& !(uncommonnewsixty && monstr[first] >= 60 && monstr[first] < 70 )
 					&& !(uncommonnewseventy && monstr[first] >= 70 )
-					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5)
+					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5) && (first != u.nospawnspecies6) && (first != u.nospawnspecies7) && (first != u.nospawnspecies8) && (first != u.nospawnspecies9) && (first != u.nospawnspecies10)
 				) {
 		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
@@ -15039,6 +15064,16 @@ int     spc;
 		if (first == u.frequentspecies8) num -= u.freqspeciesbonus8;
 		if (first == u.frequentspecies9) num -= u.freqspeciesbonus9;
 		if (first == u.frequentspecies10) num -= u.freqspeciesbonus10;
+		if (first == u.frequentspecies11) num -= u.freqspeciesbonus;
+		if (first == u.frequentspecies12) num -= u.freqspeciesbonus2;
+		if (first == u.frequentspecies13) num -= u.freqspeciesbonus3;
+		if (first == u.frequentspecies14) num -= u.freqspeciesbonus4;
+		if (first == u.frequentspecies15) num -= u.freqspeciesbonus5;
+		if (first == u.frequentspecies16) num -= u.freqspeciesbonus6;
+		if (first == u.frequentspecies17) num -= u.freqspeciesbonus7;
+		if (first == u.frequentspecies18) num -= u.freqspeciesbonus8;
+		if (first == u.frequentspecies19) num -= u.freqspeciesbonus9;
+		if (first == u.frequentspecies20) num -= u.freqspeciesbonus10;
 		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
 		
 		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;

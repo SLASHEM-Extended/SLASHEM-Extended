@@ -1565,6 +1565,66 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies11];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus11);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies12];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus12);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies13];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus13);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies14];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus14);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies15];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus15);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies16];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus16);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies17];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus17);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies18];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus18);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies19];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus19);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.frequentspecies20];
+		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus20);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
@@ -1590,6 +1650,36 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if (wizard || (!rn2(10)) || final >= 1 ) {
 		ptr = &mons[u.nospawnspecies5];
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies6];
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies7];
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies8];
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies9];
+		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if (wizard || (!rn2(10)) || final >= 1 ) {
+		ptr = &mons[u.nospawnspecies10];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
@@ -3318,6 +3408,46 @@ int final;
 	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus10);
 	dump("  The monster species that ", buf );
 
+	ptr = &mons[u.frequentspecies11];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus11);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies12];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus12);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies13];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus13);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies14];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus14);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies15];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus15);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies16];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus16);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies17];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus17);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies18];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus18);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies19];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus19);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.frequentspecies20];
+	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus20);
+	dump("  The monster species that ", buf );
+
 	ptr = &mons[u.nospawnspecies];
 	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 	dump("  The monster species that ", buf );
@@ -3335,6 +3465,26 @@ int final;
 	dump("  The monster species that ", buf );
 
 	ptr = &mons[u.nospawnspecies5];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.nospawnspecies6];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.nospawnspecies7];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.nospawnspecies8];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.nospawnspecies9];
+	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
+	dump("  The monster species that ", buf );
+
+	ptr = &mons[u.nospawnspecies10];
 	Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 	dump("  The monster species that ", buf );
 
