@@ -444,8 +444,14 @@ register boolean special;
 		case PM_TRANSVESTITE:
 		    weapon = SEXY_LEATHER_PUMP;
 		    break;
+		case PM_TRANSSYLVANIAN:
+		    weapon = BLOCK_HEELED_COMBAT_BOOT;
+		    break;
 		case PM_TOPMODEL:
 		    weapon = KNIFE;
+		    break;
+		case PM_UNBELIEVER:
+		    weapon = BLACK_AESTIVALIS;
 		    break;
 		case PM_FAILED_EXISTENCE:
 		    weapon = KNIFE;

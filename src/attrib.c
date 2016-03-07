@@ -126,6 +126,14 @@ const struct innate {
 			{	1, &(AutomaticVulnerabilitiy), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	trs_abil[] = { {   5, &(LevelTrapEffect), "", "" },
+			{	10, &(CaptchaProblem), "", "" },
+			{	15, &(ChaosTerrain), "", "" },
+			{	20, &(PlayerCannotTrainSkills), "", "" },
+			{	25, &(FoodIsAlwaysRotten), "", "" },
+			{	30, &(InventoryLoss), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
 			{	1, &(HAntimagic), "", "" },
 			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
@@ -1330,6 +1338,7 @@ int oldlevel, newlevel;
 #endif	/* CONVICT */
 	case PM_MURDERER:        abil = mur_abil;	break;
 	case PM_FAILED_EXISTENCE:        abil = fai_abil;	break;
+	case PM_TRANSSYLVANIAN:        abil = trs_abil;	break;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_COOK:	abil = coo_abil;	break;
 	case PM_FIREFIGHTER:	abil = fir_abil;	break;

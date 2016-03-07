@@ -3860,7 +3860,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(550)) {
+		switch (rnd(560)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -4412,6 +4412,16 @@ makelevel()
 			case 548: makemaz("Sex-3"); return;
 			case 549: makemaz("Sex-4"); return;
 			case 550: makemaz("Sex-5"); return;
+			case 551: makemaz("Unb-1"); return;
+			case 552: makemaz("Unb-2"); return;
+			case 553: makemaz("Unb-3"); return;
+			case 554: makemaz("Unb-4"); return;
+			case 555: makemaz("Unb-5"); return;
+			case 556: makemaz("Trs-1"); return;
+			case 557: makemaz("Trs-2"); return;
+			case 558: makemaz("Trs-3"); return;
+			case 559: makemaz("Trs-4"); return;
+			case 560: makemaz("Trs-5"); return;
 
 		}
 		break;
@@ -5246,7 +5256,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(550)) {
+		switch (rnd(560)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -5798,6 +5808,16 @@ makelevel()
 			case 548: makemaz("Sex-8"); return;
 			case 549: makemaz("Sex-9"); return;
 			case 550: makemaz("Sex-0"); return;
+			case 551: makemaz("Unb-6"); return;
+			case 552: makemaz("Unb-7"); return;
+			case 553: makemaz("Unb-8"); return;
+			case 554: makemaz("Unb-9"); return;
+			case 555: makemaz("Unb-0"); return;
+			case 556: makemaz("Trs-6"); return;
+			case 557: makemaz("Trs-7"); return;
+			case 558: makemaz("Trs-8"); return;
+			case 559: makemaz("Trs-9"); return;
+			case 560: makemaz("Trs-0"); return;
 
 		}
 		break;
@@ -7048,7 +7068,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(550)) {
+		switch (rnd(560)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -7600,6 +7620,16 @@ makelevel()
 			case 548: makemaz("Sex-3"); return;
 			case 549: makemaz("Sex-4"); return;
 			case 550: makemaz("Sex-5"); return;
+			case 551: makemaz("Unb-1"); return;
+			case 552: makemaz("Unb-2"); return;
+			case 553: makemaz("Unb-3"); return;
+			case 554: makemaz("Unb-4"); return;
+			case 555: makemaz("Unb-5"); return;
+			case 556: makemaz("Trs-1"); return;
+			case 557: makemaz("Trs-2"); return;
+			case 558: makemaz("Trs-3"); return;
+			case 559: makemaz("Trs-4"); return;
+			case 560: makemaz("Trs-5"); return;
 
 		}
 		break;
@@ -8431,7 +8461,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(550)) {
+		switch (rnd(560)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -8983,6 +9013,16 @@ makelevel()
 			case 548: makemaz("Sex-8"); return;
 			case 549: makemaz("Sex-9"); return;
 			case 550: makemaz("Sex-0"); return;
+			case 551: makemaz("Unb-6"); return;
+			case 552: makemaz("Unb-7"); return;
+			case 553: makemaz("Unb-8"); return;
+			case 554: makemaz("Unb-9"); return;
+			case 555: makemaz("Unb-0"); return;
+			case 556: makemaz("Trs-6"); return;
+			case 557: makemaz("Trs-7"); return;
+			case 558: makemaz("Trs-8"); return;
+			case 559: makemaz("Trs-9"); return;
+			case 560: makemaz("Trs-0"); return;
 
 		}
 		break;
@@ -10737,6 +10777,8 @@ coord *tm;
 	    /* bias the frequency of fire traps in Gehennom, but generate them less often
 	     * because all the other traps should also have a chance of spawning --Amy */
 	    kind = FIRE_TRAP;
+	} else if (Role_if(PM_TRANSSYLVANIAN) && !rn2(20) ) {
+	    kind = HEEL_TRAP;
 	} else {
 	    unsigned lvl = level_difficulty();
 

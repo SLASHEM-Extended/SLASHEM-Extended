@@ -1465,11 +1465,11 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\binder.des 	$(DAT)\caveman.des \
 		$(DAT)\flame.des    $(DAT)\healer.des   $(DAT)\jedi.des   $(DAT)\ice.des \
 		$(DAT)\elfreal.des  $(DAT)\knight.des   $(DAT)\monk.des     $(DAT)\psion.des     $(DAT)\necro.des \
-		$(DAT)\acid.des   $(DAT)\spacew.des   $(DAT)\top.des   $(DAT)\rocker.des \
+		$(DAT)\acid.des   $(DAT)\spacew.des   $(DAT)\top.des   $(DAT)\unbel.des   $(DAT)\rocker.des \
 		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\town.des   $(DAT)\samurai.des \
 		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\noble.des 	$(DAT)\valkyrie.des \
 		$(DAT)\electric.des  $(DAT)\poison.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
-		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des \
+		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des   $(DAT)\transs.des \
 		$(DAT)\wizard.des   $(DAT)\sheol.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
 		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
 		$(DAT)\korsair.des    $(DAT)\diver.des   $(DAT)\lunatic.des   $(DAT)\gladia.des \
@@ -1600,6 +1600,8 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/slime.des
 	lev_comp $(DDAT)/erdrick.des
 	lev_comp $(DDAT)/trans.des
+	lev_comp $(DDAT)/unbel.des
+	lev_comp $(DDAT)/transs.des
 	lev_comp $(DDAT)/top.des
 	lev_comp $(DDAT)/act.des
 	lev_comp $(DDAT)/courier.des

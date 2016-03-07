@@ -1211,6 +1211,19 @@ static struct trobj Transvestite[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj Transsylvanian[] = {
+	{ BLOCK_HEELED_COMBAT_BOOT, 5, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ HIPPIE_HEELS, 10, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Unbeliever[] = {
+	{ BLACK_AESTIVALIS, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ CHAIN_MAIL, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ FOOD_RATION, 0, FOOD_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj Topmodel[] = {
 	{ KNIFE, 1, WEAPON_CLASS, 1, 1 },
 	{ RIFLE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
@@ -3537,6 +3550,22 @@ static const struct def_skill Skill_Tra[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Trs[] = {
+    { P_HAMMER, P_GRAND_MASTER },		{ P_PICK_AXE, P_EXPERT },
+    { P_CLUB, P_EXPERT },		    { P_MACE, P_EXPERT },
+    { P_FLAIL, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_SLING, P_EXPERT },
+#ifdef FIREARMS
+    { P_FIREARM, P_EXPERT },
+#endif
+    { P_ATTACK_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },	{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_RIDING, P_MASTER },
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Act[] = {
     { P_PADDLE, P_GRAND_MASTER },		{ P_WHIP, P_EXPERT },
     { P_CLUB, P_EXPERT },		    { P_SHURIKEN, P_EXPERT },
@@ -4676,6 +4705,32 @@ static const struct def_skill Skill_U[] = {
     { P_MARTIAL_ARTS, P_GRAND_MASTER },    { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Unb[] = {
+    { P_DAGGER, P_EXPERT },             { P_LONG_SWORD, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },         { P_BROAD_SWORD, P_MASTER },
+    { P_CLUB, P_EXPERT },              { P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },              { P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_EXPERT },             { P_HAMMER, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },      { P_POLEARMS, P_EXPERT },
+    { P_TWO_HANDED_SWORD, P_EXPERT },	{ P_SCIMITAR, P_EXPERT },
+    { P_SPEAR, P_EXPERT },              { P_JAVELIN, P_EXPERT },
+    { P_BOW, P_EXPERT },			        { P_SLING, P_EXPERT },
+#ifdef FIREARMS
+    { P_FIREARM, P_MASTER },
+#endif
+    { P_CROSSBOW, P_EXPERT },           { P_DART, P_EXPERT },
+    { P_SHURIKEN, P_EXPERT },		{ P_BOOMERANG, P_EXPERT },
+    { P_WHIP, P_EXPERT },               { P_UNICORN_HORN, P_EXPERT },
+    { P_TRIDENT, P_EXPERT },      { P_LANCE, P_EXPERT },
+
+#ifdef STEED
+    { P_RIDING, P_EXPERT },
+#endif
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_MARTIAL_ARTS, P_MASTER },    { P_NONE, 0 }
+};
+
+
 static const struct def_skill Skill_Unt[] = {
     { P_DAGGER, P_EXPERT },             { P_LONG_SWORD, P_EXPERT },
     { P_CLUB, P_EXPERT },              { P_PADDLE, P_EXPERT },
@@ -5050,7 +5105,7 @@ static const char * const hereticgods[] = {
 
 "_JoJo", "_Jyllia", "_Sabrina", "_Sabine", "_Yvara", "_Lenka", "_Evita", "_Liebea", "_Isolde", "_Elli", "_Vilja", "_Sunija", "_Rhea", "_Jasmin", "_Erosina", "_Irmina", "_Melirija", "_Larissa", "_Sysette", "_Miss Haskill", "_Elenya", "_Golden Mary", "_Lara", "_Sandrina", "_Tonilia", "_Claire", "_Lumia", "_Lahira", "_Estrella", "_Maricia", "_Sontaire", "_Marje", "_Jill", "_Trycja", "_Kersey", "_Sally", "_Hannya", "_Svantje", "_Jynnifyr", "_Elke", "_Rinka", "_Nicoletta", "_Betti", "_Ina", "_Heikipa", "_Jora", "_Maitine", "_Esruth", "_Verene", "_Lousie", "_Irinella", "_Amandina", "_Lillie", "_Leodoch", "_Mirella", "_Fisoa", "_Suesska", "_Ann", "_Nurisha", "_Desiree", "_Birgit", "_Elsbeth", "_Lamy", "_Lissie", "_Arabella", "_Anastasia", "_Henrietta", "_Katrin", "_Jana", "_Aniya", "_Yasni", "_Almina", "_Xeni", "_Mirri", "_Eleanor", "_Kirja", "_Inge", "_Helli", "_Lucia", "_Viktorija", "_Simona", "_Natalyana", "_Krista", "_Nellina", "_Raidara", "_Vera", "_Noko", "_Jasajeen", "_Marika", "_Merbek", "_Marianna", "_Sinja", "_Rodotha", "_Natinya", "_Aline", "_Michaela", "_Mare", "_Noenoe", "_Tschulia", "_Lea", "_Sarah", "_Iris", "_Charravalga", "_Fridrika", "_Great Jaguar Claw", "_Lynette", "_Celina", "_Irya", "_Mariya", "_Wendy", "_Katia", "_Tanja", "_Vanessa", "_Anne", "_Lena", "_Jeanetta", "_Rungud", "_Melissa", "_Everella", "_Madeleine", "_Anita", "_Nina", "_Natascha", "_Manola", "_Litta", "_Kiwi", "_Maja", "_Natalje", "_Little Marie", "_Ronja", "_Roswitha", "_Sing", "_Johanetta", "_Julia", "_Julchen", "_Yvonne", "_Magdalena", "_Eveline", "_Bea", "_Beatriz", "_Corina", "_Elif", "_Nadja", "_Sunali", "_Solvejg", "_Thai", "_Meltem", "_Susanne", "_Rita", "_Kati", "_Katinka", "_Mailie", "_Marie", "_Klara", "_Sandra", "_Antonia", "_Chaska", "_Ludgera", "_Laura", "_Eva", "_Maurah", "_Sophie", "_Marian", "_Jil", "_Patricia", "_Kerstin", "_Hanh", "_Antje", "_Jennifer", "_Karin", "_Nicole", "_Bettina", "_Heike", "_Dora", "_Maite", "_Ruth", "_Verena", "_Lou", "_Danielle", "_Amandine", "_Lily", "_Leonie", "_Mira", "_Sofia", "_Christiane", "_Ann Kathrin", "_Njusha", "_Elisabeth", "_Conny", "_Constanze", "_Lisa", "_Anja", "_Yasaman", "_Almut", "_Ksenia", "_Miriam", "_Elena", "_Katharina", "_Helen", "_Victoria", "_Simone", "_Nataliya", "_Kristin", "_Nelly", "_Rejda", "_Nora", "_Jasieen", "_Yacine", "_Marike", "_Merle", "_Marianne", "_Sina", "_Dorothea", "_Tinanya", "_Noemi", "_Giulia", "_Charlotte", "_Friederike", "_Sophia", "_Sue Lyn", "_Juen", "_Ruea", "_Gudrun", "_Ella", "_Manuela", "_Tilla", "_Greta", "_Jane", "_Celia", "_Boese", "_Bad", "_Eliane", "_O'Neill", "_Fenja", "_Silvana", "_Vanasil", "_Sarina", "_Alexia", "_Vida", "_Isis", "_Ilse", "_Melanie", "_Lareena", "_Janina", "_Jannie", "_Micha", "_Chirin", "_Ingrid", "_Tonja", "_Tapia", "_Ligasa", "_Andrea", "_Mia", "_Annemarie", "_Caro", "_Mandarina", "_Ariane", "_Carina", "_Denise", "_Kira", "_Nadine", "_Franzi", "_Amelie", "_Annika", "_Barbara", "_Elsa", "_Isabel", "_Bianca", "_Carmen", "_Hilda", "_Johanna", "_Julietta", "_Linda", "_Petra", "_Sonja", "_Stella", "_Ismella", "_Teresa", "_Sagarah", "_Rosy",
 
-"Cerberus", "Kroo the Kobold King", "_Aphrodite", "Grund the Orc King", "Jumbo the Elephant", "Catoblepas", "The Rat King", "_Girtab", "_Shelob", "Pegasus", "Deep Thought", "Eddie", "Douglas Adams", "Ruggo the Gnome King", "The Largest Giant", "Father Dagon", "_Mother Hydra", "Doctor Frankenstein", "Vlad the Impaler", "Prostetnik Vogon Jeltz", "Marvin", "Zaphod Breeblebrox", "Frankenstein's Monster", "Sizzle", "_Katniss", "Ford Prefect", "Arthur Dent", "Mr. Prosser", "_Medusa", "The Wizard of Yendor", "Croesus", "Charon", "UNIX Kernel", "Juiblex", "Jubilex", "_Fierna", "_Shami-Amourae", "Bael", "_Zuggtmoy", "Baphomet", "_Daughter Lilith", "Mammon", "_Xinivrae", "_Malcanthet", "_Mother Lilith", "Belial", "_Crone Lilith", "_Lynkhab", "Leviathan", "Mephistopheles", "_Baalphegor", "Yeenoghu", "Orcus", "_Shaktari", "Graz'zt", "Geryon", "Dispater", "Baalzebub", "_Pale Night", "Verier", "Asmodeus", "Demogorgon", "Cthulhu", "Death", "Pestilence", "Famine", "War", "_Nightmare", "Beholder", "Vecna", "Lord Carnarvon", "Pelias", "the strange corpse", "Fwagglebrapo", "Vlad the Skewerer", "the diseased heir", "Acidsnort", "Rockin Roller", "Christian Gray", "Pindar", "Shaman Karnov", "Driud the Druid", "Andy Stahl", "Smokey", "Master of Locks", "Harry the Cowboy", "Robert the Lifer", "Master Shifter", "Thorin", "Earendil", "_Elwing", "Sinderion", "Glarthir", "Vivec", "_Elenwen", "High Flame Mage", "The Dev Team", "Top Gunner", "Upper Graduate", "Gordon Freeman", "Snap and Loopin", "Hippocrates", "_Bellatrix Lestrange", "_Celeste", "_Madam Tequila the Clubhouse Owner", "Dave", "The Angry Video Game Nerd", "Guitar Hero", "Mister Mulberry", "Yes Man", "Crowned Drag Queen", "Camp Porter", "Activist Speaker", "Erec", "Dr. Wusiji", "Bilbo Baggins", "High Ice Mage", "King Arthur", "King Chester", "Sir Lancelot", "High Lycanthrope", "_the old Gypsy woman", "Grand Master", "Psi Master", "Dark Lord", "Arch Priest", "Paladin Colvin", "Mayor Cummerbund", "Master Caster", "Blackbeard", "Jacques Cousteau", "Orion", "Tutor", "Master of Thieves", "Master of Assassins", "Lord Sato", "_Tenshi and Meiling", "Senior Otaku", "Master Roshi", "Cato", "Ken Hayabusa", "Marc", "Stunt Double", "Otacon", "Principal Clark", "Mustached Nightshift Supermarket Manager", "Master Librarian", "some guy called Shade", "Commissioner Hunter", "Slave Emperor", "Paintmaster", "_Ajela", "Master Zookeeper", "Upper Augurer", "Master Bookkeeper", "Ancient Sage", "Twoflower", "Van Helsing", "King K. Rool", "_Norn", "_Neferet the Green", "Chief Yeoman Warder", "_The Queen", "The Jedi Master", "Minion of Huhetotl", "Thoth Amon", "Acererak", "_Aglaope", "Chromatic Dragon", "_Warden Arianna", "Transmuter", "Smaug", "Goblin King", "Water Mage", "Lareth", "_Bloody Beauties", "Colin Moriarty", "Esbern", "Eddie the Pyro", "Burglar Ed", "Draco the Sharpshooter", "Mannimarco", "Jaquio", "Grandpa Tank Breaker", "_Seducer Saint", "fearful triceratops", "Bill Gates", "Student Leader", "_Tara Gilesbie", "Harry Potter", "Cyclops", "Gollum", "Earth Mage", "Ixoth", "Sir Lorimar", "Rebel Ringleader", "Master Kaen", "_Master Sabrina", "The Champion of Pompeji", "_Archnemesis", "_Master Brain", "Maugneshaagar", "Blackbeard's Ghost", "Spearathan", "Moby Dick", "Nalzok", "Scorpius", "Master Assassin", "Ashikaga Takauji", "some random guy", "Activist Leader", "Elvis Presley", "_Imelda's Ghost", "Alduin", "Death Metal Orchestra Leader", "Lightningrod", "Amy Bluescreenofdeath", "Dagoth Ur", "Jyggalag", "_Else God-Hater", "Nihilanth", "Ho-oh", "Count Dracula", "Lord Surtur", "Buffy the Vampire Slayer", "Dark One", "Colonel Blood", "Lord Sidious", "_Anastasia Steele", "Dark Goku", "BNP Leader", "Donkey Kong", "Estormo", "Rodney's Twin", "Crabbe and Goyle", "Yet Another Gun Nut", "_Dana Dynamite Beauty Miss", "Bragging Vandal", "Bowser", "_Flandre Scarlet", "Ron Weasley", "Oberon Principal", "Ventos Effigil", "Mysterious Necromancer", "Plaster Blaster", "Joe the Greaser", "The Local Health Inspector", "Rincewind", "Yeldud Twen", "mailer daemon", "Mr. Uncool", "_Lady Elly", "Don Rio the Master Thief", "Pettler", "Farmer Maggot", "Killed Bill", "Upper Bull", "Gruff Co-Worker", "_Irina", "Slime Emperor", "King Lorik", "Dragonlord", "Legendary Hero", "Halbu", "Heffer", "Last Surviving Other Human", "John Romero", "_Rigil", "_Toliman", "_Princess of Moon", "Jedeite", "Birdman", "Evil Robot", "Shinto Priest", "Nine Tailed Fox", "Messenger of SPW", "Dio", "Judo Captain", "Gigock", "Geneworm", "Pitworm",
+"Cerberus", "Kroo the Kobold King", "_Aphrodite", "Grund the Orc King", "Jumbo the Elephant", "Catoblepas", "The Rat King", "_Girtab", "_Shelob", "Pegasus", "Deep Thought", "Eddie", "Douglas Adams", "Ruggo the Gnome King", "The Largest Giant", "Father Dagon", "_Mother Hydra", "Doctor Frankenstein", "Vlad the Impaler", "Prostetnik Vogon Jeltz", "Marvin", "Zaphod Breeblebrox", "Frankenstein's Monster", "Sizzle", "_Katniss", "Ford Prefect", "Arthur Dent", "Mr. Prosser", "_Medusa", "The Wizard of Yendor", "Croesus", "Charon", "UNIX Kernel", "Juiblex", "Jubilex", "_Fierna", "_Shami-Amourae", "Bael", "_Zuggtmoy", "Baphomet", "_Daughter Lilith", "Mammon", "_Xinivrae", "_Malcanthet", "_Mother Lilith", "Belial", "_Crone Lilith", "_Lynkhab", "Leviathan", "Mephistopheles", "_Baalphegor", "Yeenoghu", "Orcus", "_Shaktari", "Graz'zt", "Geryon", "Dispater", "Baalzebub", "_Pale Night", "Verier", "Asmodeus", "Demogorgon", "Cthulhu", "Death", "Pestilence", "Famine", "War", "_Nightmare", "Beholder", "Vecna", "Lord Carnarvon", "Pelias", "the strange corpse", "Fwagglebrapo", "Vlad the Skewerer", "the diseased heir", "Acidsnort", "Rockin Roller", "Christian Gray", "Pindar", "Shaman Karnov", "Driud the Druid", "Andy Stahl", "Smokey", "Master of Locks", "Harry the Cowboy", "Robert the Lifer", "Master Shifter", "Thorin", "Earendil", "_Elwing", "Sinderion", "Glarthir", "Vivec", "_Elenwen", "High Flame Mage", "The Dev Team", "Top Gunner", "Upper Graduate", "Gordon Freeman", "Snap and Loopin", "Hippocrates", "_Bellatrix Lestrange", "_Celeste", "_Madam Tequila the Clubhouse Owner", "Dave", "The Angry Video Game Nerd", "Guitar Hero", "Mister Mulberry", "Yes Man", "Crowned Drag Queen", "Camp Porter", "Activist Speaker", "Erec", "Dr. Wusiji", "Bilbo Baggins", "High Ice Mage", "King Arthur", "King Chester", "Sir Lancelot", "High Lycanthrope", "_the old Gypsy woman", "Grand Master", "Psi Master", "Dark Lord", "Arch Priest", "Paladin Colvin", "Mayor Cummerbund", "Master Caster", "Blackbeard", "Jacques Cousteau", "Orion", "Tutor", "Master of Thieves", "Master of Assassins", "Lord Sato", "_Tenshi and Meiling", "Senior Otaku", "Master Roshi", "Cato", "Ken Hayabusa", "Marc", "Stunt Double", "Otacon", "Principal Clark", "Mustached Nightshift Supermarket Manager", "Master Librarian", "some guy called Shade", "Commissioner Hunter", "Slave Emperor", "Paintmaster", "_Ajela", "Master Zookeeper", "Upper Augurer", "Master Bookkeeper", "Ancient Sage", "Twoflower", "Van Helsing", "King K. Rool", "_Norn", "_Neferet the Green", "Chief Yeoman Warder", "_The Queen", "The Jedi Master", "Minion of Huhetotl", "Thoth Amon", "Acererak", "_Aglaope", "Chromatic Dragon", "_Warden Arianna", "Transmuter", "Smaug", "Goblin King", "Water Mage", "Lareth", "_Bloody Beauties", "Colin Moriarty", "Esbern", "Eddie the Pyro", "Burglar Ed", "Draco the Sharpshooter", "Mannimarco", "Jaquio", "Grandpa Tank Breaker", "_Seducer Saint", "fearful triceratops", "Bill Gates", "Student Leader", "_Tara Gilesbie", "Harry Potter", "Cyclops", "Gollum", "Earth Mage", "Ixoth", "Sir Lorimar", "Rebel Ringleader", "Master Kaen", "_Master Sabrina", "The Champion of Pompeji", "_Archnemesis", "_Master Brain", "Maugneshaagar", "Blackbeard's Ghost", "Spearathan", "Moby Dick", "Nalzok", "Scorpius", "Master Assassin", "Ashikaga Takauji", "some random guy", "Activist Leader", "Elvis Presley", "_Imelda's Ghost", "Alduin", "Death Metal Orchestra Leader", "Lightningrod", "Amy Bluescreenofdeath", "Dagoth Ur", "Jyggalag", "_Else God-Hater", "Nihilanth", "Ho-oh", "Count Dracula", "Lord Surtur", "Buffy the Vampire Slayer", "Dark One", "Colonel Blood", "Lord Sidious", "_Anastasia Steele", "Dark Goku", "BNP Leader", "Donkey Kong", "Estormo", "Rodney's Twin", "Crabbe and Goyle", "Yet Another Gun Nut", "_Dana Dynamite Beauty Miss", "Bragging Vandal", "Bowser", "_Flandre Scarlet", "Ron Weasley", "Oberon Principal", "Ventos Effigil", "Mysterious Necromancer", "Plaster Blaster", "Joe the Greaser", "The Local Health Inspector", "Rincewind", "Yeldud Twen", "mailer daemon", "Mr. Uncool", "_Lady Elly", "Don Rio the Master Thief", "Pettler", "Farmer Maggot", "Killed Bill", "Upper Bull", "Gruff Co-Worker", "_Irina", "Slime Emperor", "King Lorik", "Dragonlord", "Legendary Hero", "Halbu", "Heffer", "Last Surviving Other Human", "John Romero", "_Rigil", "_Toliman", "_Princess of Moon", "Jedeite", "Birdman", "Evil Robot", "Shinto Priest", "Nine Tailed Fox", "Messenger of SPW", "Dio", "Judo Captain", "Gigock", "Geneworm", "Pitworm", "G-cheater", "Melinda Proudfoot", "Helen the Activist Leader", "Morgoth", 
 
 };
 
@@ -6133,14 +6188,14 @@ u_init()
 
 	}
 
-	if (Role_if(PM_FAILED_EXISTENCE)) {
+	if (Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_TRANSSYLVANIAN) ) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
 	/* fail safe - this will be essential for the recursion trap that changes the player's role or race --Amy */
-	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_ERDRICK)) {
+	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_ERDRICK)) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
@@ -7200,6 +7255,17 @@ u_init()
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		break;
+
+	case PM_TRANSSYLVANIAN:
+		ini_inv(Transsylvanian);
+		skill_init(Skill_Trs);
+		break;
+
+	case PM_UNBELIEVER:
+		ini_inv(Unbeliever);
+		skill_init(Skill_Unb);
+		break;
+
 	case PM_TOPMODEL:
 		ini_inv(Topmodel);
 		skill_init(Skill_Top);
@@ -7809,6 +7875,14 @@ u_init()
 		skill_init(Skill_Tra);
 		break;
 
+	case PM_TRANSSYLVANIAN:
+		skill_init(Skill_Trs);
+		break;
+
+	case PM_UNBELIEVER:
+		skill_init(Skill_Unb);
+		break;
+
 	case PM_TOPMODEL:
 		skill_init(Skill_Top);
 		break;
@@ -7912,7 +7986,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(110)) {
+	switch (rnd(112)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -8902,6 +8976,15 @@ u_init()
 		else if(!rn2(5)) ini_inv(Blindfold);
 		else if(!rn2(5)) ini_inv(Magicmarker);
 		break;
+
+	case 111:
+		ini_inv(Transsylvanian);
+		break;
+
+	case 112:
+		ini_inv(Unbeliever);
+		break;
+
 
 	default:	/* impossible */
 		break;
@@ -9059,7 +9142,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(110)) {
+	switch (rnd(112)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -10048,6 +10131,14 @@ u_init()
 		if(!rn2(5)) ini_inv(Lamp);
 		else if(!rn2(5)) ini_inv(Blindfold);
 		else if(!rn2(5)) ini_inv(Magicmarker);
+		break;
+
+	case 111:
+		ini_inv(Transsylvanian);
+		break;
+
+	case 112:
+		ini_inv(Unbeliever);
 		break;
 
 	default:	/* impossible */
@@ -18531,6 +18622,8 @@ int otyp;
      case PM_ACID_MAGE:		skills = Skill_Aci; break;
      case PM_FLAME_MAGE:		skills = Skill_F; break;
      case PM_TRANSVESTITE:	skills = Skill_Tra; break;
+     case PM_TRANSSYLVANIAN:	skills = Skill_Trs; break;
+     case PM_UNBELIEVER:	skills = Skill_Unb; break;
      case PM_TOPMODEL:	skills = Skill_Top; break;
      case PM_FAILED_EXISTENCE:	skills = Skill_Fai; break;
      case PM_GEEK:		skills = Skill_G; break;
@@ -18945,6 +19038,85 @@ register struct trobj *trop;
             if (objX->otyp == KNIFE && (Role_if(PM_FAILED_EXISTENCE) ) ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == BLOCK_HEELED_COMBAT_BOOT && (Role_if(PM_TRANSSYLVANIAN) ) ) {
+                objX->cursed = TRUE;
+                objX->hvycurse = TRUE;
+            }
+            if (objX->otyp == HIPPIE_HEELS && (Role_if(PM_TRANSSYLVANIAN) ) ) {
+                objX->cursed = TRUE;
+                objX->hvycurse = TRUE;
+		    switch (rnd(67)) {
+
+			case 1: objX->enchantment = SPELLS_LOST; break;
+			case 2: objX->enchantment = CASTER_PROBLEM; break;
+			case 3: objX->enchantment = STATUS_FAILURE; break;
+			case 4: objX->enchantment = LUCK_LOSS; break;
+			case 5: objX->enchantment = YELLOW_SPELLS; break;
+			case 6: objX->enchantment = REPEATING_VULNERABILITY; break;
+			case 7: objX->enchantment = INVENTORY_LOST; break;
+			case 8: objX->enchantment = RESPAWN_BUG; break;
+			case 9: objX->enchantment = VERISIERTEFFECT; break;
+			case 10: objX->enchantment = LEVELBUG; break;
+			case 11: objX->enchantment = ALWAYS_EGOTYPES; break;
+			case 12: objX->enchantment = FAST_FORWARD; break;
+			case 13: objX->enchantment = UNIDENTIFY; break;
+			case 14: objX->enchantment = DISPLAY_LOST; break;
+			case 15: objX->enchantment = THIRST; break;
+			case 16: objX->enchantment = BLACK_NG_WALLS; break;
+			case 17: objX->enchantment = DSTW_BUG; break;
+			case 18: objX->enchantment = RANDOM_RUMORS; break;
+			case 19: objX->enchantment = ROT_THIRTEEN; break;
+			case 20: objX->enchantment = ALIGNMENT_FAILURE; break;
+			case 21: objX->enchantment = DEAFNESS; break;
+			case 22: objX->enchantment = MEMORY_LOST; break;
+			case 23: objX->enchantment = FARLOOK_BUG; break;
+			case 24: objX->enchantment = CAPTCHA; break;
+			case 25: objX->enchantment = RECURRING_AMNESIA; break;
+			case 26: objX->enchantment = SENSORY_DEPRIVATION; break;
+			case 27: objX->enchantment = BIGSCRIPT; break;
+			case 28: objX->enchantment = QUIZZES; break;
+			case 29: objX->enchantment = MAPBUG; break;
+			case 30: objX->enchantment = MUTENESS; break;
+			case 31: objX->enchantment = FOOD_IS_ROTTEN; break;
+			case 32: objX->enchantment = MENU_LOST; break;
+			case 33: objX->enchantment = FREE_HAND_LOST; break;
+			case 34: objX->enchantment = CONFUSION_PROBLEM; break;
+			case 35: objX->enchantment = DROP_BUG; break;
+			case 36: objX->enchantment = UNINFORMATION; break;
+			case 37: objX->enchantment = AUTOMATIC_TRAP_CREATION; break;
+			case 38: objX->enchantment = SHADES_OF_GREY; break;
+			case 39: objX->enchantment = BANKBUG; break;
+			case 40: objX->enchantment = TECHBUG; break;
+			case 41: objX->enchantment = CHAOS_TERRAIN; break;
+			case 42: objX->enchantment = AUTO_DESTRUCT; break;
+			case 43: objX->enchantment = SPEED_BUG; break;
+			case 44: objX->enchantment = FAINT_ACTIVE; break;
+			case 45: objX->enchantment = DIFFICULTY_INCREASED; break;
+			case 46: objX->enchantment = WEAKNESS_PROBLEM; break;
+			case 47: objX->enchantment = BISHOP_GRIDBUG; break;
+			case 48: objX->enchantment = STAIRSTRAP; break;
+			case 49: objX->enchantment = RECURRING_DISENCHANT; break;
+			case 50: objX->enchantment = ITEMCURSING; break;
+			case 51: objX->enchantment = FAST_METABOLISM; break;
+			case 52: objX->enchantment = INTRINSIC_LOSS; break;
+			case 53: objX->enchantment = BLOOD_LOSS; break;
+			case 54: objX->enchantment = NASTINESS_EFFECTS; break;
+			case 55: objX->enchantment = BAD_EFFECTS; break;
+			case 56: objX->enchantment = ENGRAVINGBUG; break;
+			case 57: objX->enchantment = SUPERSCROLLER_ACTIVE; break;
+			case 58: objX->enchantment = SKILL_DEACTIVATED; break;
+			case 59: objX->enchantment = STATS_LOWERED; break;
+			case 60: objX->enchantment = TRAINING_DEACTIVATED; break;
+			case 61: objX->enchantment = EXERCISE_DEACTIVATED; break;
+			case 62: objX->enchantment = NORETURN; break;
+			case 63: objX->enchantment = RMB_LOST; break;
+			case 64: objX->enchantment = TELEPORTING_ITEMS; break;
+			case 65: objX->enchantment = MAGIC_DEVICE_BUG; break;
+			case 66: objX->enchantment = BOOKBUG; break;
+			case 67: objX->enchantment = RANDOM_MESSAGES; break;
+
+		    }
+            }
             if (objX->otyp == DAGGER && (Role_if(PM_CAMPERSTRIKER) ) ) {
                 objX->cursed = TRUE;
             }
@@ -19044,6 +19216,85 @@ register struct trobj *trop;
             }
             if (obj->otyp == KNIFE && (Role_if(PM_FAILED_EXISTENCE) ) ) {
                 obj->cursed = TRUE;
+            }
+            if (obj->otyp == BLOCK_HEELED_COMBAT_BOOT && (Role_if(PM_TRANSSYLVANIAN) ) ) {
+                obj->cursed = TRUE;
+                obj->hvycurse = TRUE;
+            }
+            if (obj->otyp == HIPPIE_HEELS && (Role_if(PM_TRANSSYLVANIAN) ) ) {
+                obj->cursed = TRUE;
+                obj->hvycurse = TRUE;
+		    switch (rnd(67)) {
+
+			case 1: obj->enchantment = SPELLS_LOST; break;
+			case 2: obj->enchantment = CASTER_PROBLEM; break;
+			case 3: obj->enchantment = STATUS_FAILURE; break;
+			case 4: obj->enchantment = LUCK_LOSS; break;
+			case 5: obj->enchantment = YELLOW_SPELLS; break;
+			case 6: obj->enchantment = REPEATING_VULNERABILITY; break;
+			case 7: obj->enchantment = INVENTORY_LOST; break;
+			case 8: obj->enchantment = RESPAWN_BUG; break;
+			case 9: obj->enchantment = VERISIERTEFFECT; break;
+			case 10: obj->enchantment = LEVELBUG; break;
+			case 11: obj->enchantment = ALWAYS_EGOTYPES; break;
+			case 12: obj->enchantment = FAST_FORWARD; break;
+			case 13: obj->enchantment = UNIDENTIFY; break;
+			case 14: obj->enchantment = DISPLAY_LOST; break;
+			case 15: obj->enchantment = THIRST; break;
+			case 16: obj->enchantment = BLACK_NG_WALLS; break;
+			case 17: obj->enchantment = DSTW_BUG; break;
+			case 18: obj->enchantment = RANDOM_RUMORS; break;
+			case 19: obj->enchantment = ROT_THIRTEEN; break;
+			case 20: obj->enchantment = ALIGNMENT_FAILURE; break;
+			case 21: obj->enchantment = DEAFNESS; break;
+			case 22: obj->enchantment = MEMORY_LOST; break;
+			case 23: obj->enchantment = FARLOOK_BUG; break;
+			case 24: obj->enchantment = CAPTCHA; break;
+			case 25: obj->enchantment = RECURRING_AMNESIA; break;
+			case 26: obj->enchantment = SENSORY_DEPRIVATION; break;
+			case 27: obj->enchantment = BIGSCRIPT; break;
+			case 28: obj->enchantment = QUIZZES; break;
+			case 29: obj->enchantment = MAPBUG; break;
+			case 30: obj->enchantment = MUTENESS; break;
+			case 31: obj->enchantment = FOOD_IS_ROTTEN; break;
+			case 32: obj->enchantment = MENU_LOST; break;
+			case 33: obj->enchantment = FREE_HAND_LOST; break;
+			case 34: obj->enchantment = CONFUSION_PROBLEM; break;
+			case 35: obj->enchantment = DROP_BUG; break;
+			case 36: obj->enchantment = UNINFORMATION; break;
+			case 37: obj->enchantment = AUTOMATIC_TRAP_CREATION; break;
+			case 38: obj->enchantment = SHADES_OF_GREY; break;
+			case 39: obj->enchantment = BANKBUG; break;
+			case 40: obj->enchantment = TECHBUG; break;
+			case 41: obj->enchantment = CHAOS_TERRAIN; break;
+			case 42: obj->enchantment = AUTO_DESTRUCT; break;
+			case 43: obj->enchantment = SPEED_BUG; break;
+			case 44: obj->enchantment = FAINT_ACTIVE; break;
+			case 45: obj->enchantment = DIFFICULTY_INCREASED; break;
+			case 46: obj->enchantment = WEAKNESS_PROBLEM; break;
+			case 47: obj->enchantment = BISHOP_GRIDBUG; break;
+			case 48: obj->enchantment = STAIRSTRAP; break;
+			case 49: obj->enchantment = RECURRING_DISENCHANT; break;
+			case 50: obj->enchantment = ITEMCURSING; break;
+			case 51: obj->enchantment = FAST_METABOLISM; break;
+			case 52: obj->enchantment = INTRINSIC_LOSS; break;
+			case 53: obj->enchantment = BLOOD_LOSS; break;
+			case 54: obj->enchantment = NASTINESS_EFFECTS; break;
+			case 55: obj->enchantment = BAD_EFFECTS; break;
+			case 56: obj->enchantment = ENGRAVINGBUG; break;
+			case 57: obj->enchantment = SUPERSCROLLER_ACTIVE; break;
+			case 58: obj->enchantment = SKILL_DEACTIVATED; break;
+			case 59: obj->enchantment = STATS_LOWERED; break;
+			case 60: obj->enchantment = TRAINING_DEACTIVATED; break;
+			case 61: obj->enchantment = EXERCISE_DEACTIVATED; break;
+			case 62: obj->enchantment = NORETURN; break;
+			case 63: obj->enchantment = RMB_LOST; break;
+			case 64: obj->enchantment = TELEPORTING_ITEMS; break;
+			case 65: obj->enchantment = MAGIC_DEVICE_BUG; break;
+			case 66: obj->enchantment = BOOKBUG; break;
+			case 67: obj->enchantment = RANDOM_MESSAGES; break;
+
+		    }
             }
             if (obj->otyp == DAGGER && (Role_if(PM_CAMPERSTRIKER) ) ) {
                 obj->cursed = TRUE;

@@ -2865,6 +2865,34 @@ const struct Role roles[] = {
 },
 #endif
 
+{	{"Transsylvanian", 0}, {
+	{"Heel Wearer",    0},
+	{"Stiletto Lover",       0},
+	{"Khmer-Speaking Transvestite",   0},
+	{"Dragshow Attendant",   0},
+	{"Sexy Malemodel",   0},
+	{"Hippie Rocker",   0},
+	{"High-Heel-Loving Guy",   0},
+	{"Androgynous Beauty",   0},
+	{"Fleecy Sex Symbol",      0} },
+	0, 0, 0, /* special deities */
+	"Trs", "Topmodel Boot Camp", "Secret Activist Base",
+	PM_TRANSSYLVANIAN, NON_PM, PM_UNDEAD_TRANSSYLVANIAN, NON_PM, NON_PM,
+	PM_G_CHEATER, PM_ATTENDANT, PM_HELEN_THE_ACTIVIST_LEADER,
+	PM_ACTIVIST, PM_SLUT_WITH_SYPHILIS, S_HUMAN, S_NYMPH,
+	ART_KISS_BOOTS,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 10, 10, 20, 20, 20 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
+	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
+	10, 9, 2, 1, 10, A_INT, SPE_LEVELPORT,   -4
+},
+
 
 {	{"Transvestite", 0}, {
 	{"Clacker",    0},
@@ -2924,6 +2952,34 @@ const struct Role roles[] = {
 	{ 16, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 12, 0,  0, 4,  0, 3 },12,	/* Energy */
 	10, 0, 0, 4, 25, A_INT, SPE_DRAIN_LIFE,   -4
+},
+
+{	{"Unbeliever", 0}, {
+	{"Rookie",    0},
+	{"Soldier",    0},
+	{"Mercenary",    0},
+	{"Veteran",    0},
+	{"Champion",    0},
+	{"Hero",    0},
+	{"Baron",    0},
+	{"Duke",    0},
+	{"Lord",    0} },
+	"No God", "No God", "No God", /* Unbeliever does not believe in gods! */
+	"Unb", "Bree", "Khazad-Doom",
+	PM_UNBELIEVER, NON_PM, PM_UNDEAD_UNBELIEVER, NON_PM, PM_MARTTI_IHRASAARI,
+	PM_MELINDA_PROUDFOOT, PM_SUPER_WARRIOR, PM_MORGOTH,
+	PM_MASTER_LICH, PM_BALOR, S_DEMON, S_LICH,
+	ART_TOME_DARK_SWORD,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30,  5,  5, 25, 30,  5 },
+	/* Init   Lower  Higher */
+	{ 24, 0,  0,12,  4, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 },10,	/* Energy */
+	10, 30, 0, 10,  20, A_INT, SPE_BLANK_PAPER,      -4
 },
 
 {	{"Undead Slayer", 0}, {

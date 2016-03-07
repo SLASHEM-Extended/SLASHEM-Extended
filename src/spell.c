@@ -710,7 +710,7 @@ docast()
 {
 	int spell_no;
 
-	if (u.antimagicshell) {
+	if (u.antimagicshell || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

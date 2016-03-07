@@ -93,7 +93,7 @@ pet_type()
 			default: return (PM_GRAY_UNICORN_FOAL);
 		}
 	}
-	else if (Role_if(PM_TRANSVESTITE))
+	else if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN) )
 		return ( !rn2(5) ? PM_ASIAN_GIRL : !rn2(10) ? PM_ESTRELLA_GIRL : rn2(2) ? PM_LITTLE_GIRL : PM_LITTLE_BOY);
 	else if (Role_if(PM_TOPMODEL))
 		switch (rnd(3)) {   

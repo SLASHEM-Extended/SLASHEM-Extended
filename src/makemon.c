@@ -1982,6 +1982,8 @@ register struct monst *mtmp;
 
 		   case PM_TRANSVESTITE:
 		   case PM_UNDEAD_TRANSVESTITE:
+		   case PM_TRANSSYLVANIAN:
+		   case PM_UNDEAD_TRANSSYLVANIAN:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
@@ -2087,6 +2089,13 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_UNBELIEVER:
+		   case PM_UNDEAD_UNBELIEVER:
+
+			(void)mongets(mtmp, BLACK_AESTIVALIS);
+			(void)mongets(mtmp, CHAIN_MAIL);
+
+		   break;
 
 		   case PM_ELECTRIC_MAGE:
 		   case PM_UNDEAD_ELECTRIC_MAGE:
@@ -3627,7 +3636,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
-		} else if (mm == PM_ACTIVIST_LEADER){
+		} else if (mm == PM_ACTIVIST_LEADER || mm == PM_HELEN_THE_ACTIVIST_LEADER){
 
 			if (mtmp->female) (void)mongets(mtmp, VICTORIAN_UNDERWEAR);
 			else (void)mongets(mtmp, RUFFLED_SHIRT);
@@ -14416,7 +14425,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	if (uncommon2(&mons[mndx]) && rn2(2) && !Race_if(PM_RODNEYAN) ) return TRUE;
@@ -14910,7 +14919,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(20)) mask = (G_NOGEN) & ~spc;
+	if (!rn2(20) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = rn2(2) ? 1 : 0;
 	int uncommonthree = rn2(3) ? 1 : 0;

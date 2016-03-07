@@ -1484,6 +1484,12 @@ dosacrifice()
 	struct monst *mtmp;
 	extern const int monstr[];
 
+	if (Role_if(PM_UNBELIEVER) ) {
+
+		pline("You don't believe in gods! You cannot offer corpses!");
+		return 0;
+	}
+
 	/* KMH, conduct */
 	u.uconduct.gnostic++;
 
@@ -2003,6 +2009,12 @@ boolean praying;	/* false means no messages should be given */
 	return FALSE;
     }
 
+    if (!strncmpi(align_gname(p_aligntyp), "No God", 6) ) {
+	if (praying)
+		pline("You do not believe in gods, so praying is impossible!");
+	return FALSE;
+    }
+
     if (praying)
 	You("begin praying to %s.", align_gname(p_aligntyp));
 
@@ -2336,7 +2348,7 @@ aligntyp alignment;
 	    return gnam;
 	}
 
-	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
+	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
 
     switch (alignment) {
      case A_NONE:	gnam = Moloch; break;
@@ -2395,7 +2407,7 @@ aligntyp alignment;
     const char *gnam, *result = "god";
 
 
-	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
+	if (isheretic || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
 
     switch (alignment) {
      case A_LAWFUL:	gnam = u.hereticlgod; break;

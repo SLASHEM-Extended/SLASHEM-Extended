@@ -85,7 +85,7 @@
 /* Extrinsics only */
 #define HAntimagic		u.uprops[ANTIMAGIC].intrinsic
 #define EAntimagic		u.uprops[ANTIMAGIC].extrinsic
-#define Antimagic		((HAntimagic || EAntimagic || u.antimagicshell || have_magicresstone() || \
+#define Antimagic		((HAntimagic || EAntimagic || u.antimagicshell || Role_if(PM_UNBELIEVER) || have_magicresstone() || \
 				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance)
 #define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -249,7 +249,7 @@
 #define EHallucination		u.uprops[HALLUC].extrinsic
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	(EHalluc_resistance || \
-				 (Upolyd && dmgtype(youmonst.data, AD_HALU)))
+				 (Upolyd && dmgtype(youmonst.data, AD_HALU)) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == SPIKED_BATTLE_BOOT) ) )
 #define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
@@ -544,7 +544,7 @@
 #define HFast			u.uprops[FAST].intrinsic
 #define EFast			u.uprops[FAST].extrinsic
 #define Fast			( (HFast || EFast) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) )
-#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || u.uprops[MULTISHOES].extrinsic ) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) ) ))
+#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || u.uprops[MULTISHOES].extrinsic ) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) ) ))
 #define NoFast	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FAST].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic

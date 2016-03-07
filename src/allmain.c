@@ -878,6 +878,10 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* ents are very slow too --Amy */
 			}
+			if (Role_if(PM_TRANSSYLVANIAN) && (moveamt > 1) && (!uarmf || (uarmf && uarmf->otyp != WEDGE_SANDALS && uarmf->otyp != FEMININE_PUMPS && uarmf->otyp != LEATHER_PEEP_TOES && uarmf->otyp != HIPPIE_HEELS && uarmf->otyp != COMBAT_STILETTOS && uarmf->otyp != SENTIENT_HIGH_HEELED_SHOES && uarmf->otyp != ATSUZOKO_BOOTS) ) ) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* transsylvanian has to wear heels at all times --Amy */
+			}
 
 			/* double and quad attack are teh pwnz0r, so they need to have a downside --Amy */
 			if (Double_attack && moveamt > 1) {
@@ -1097,6 +1101,13 @@ moveloop()
 		}
 
 		if ( Itemcursing && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();

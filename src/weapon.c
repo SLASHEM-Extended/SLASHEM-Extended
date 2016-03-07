@@ -3078,6 +3078,13 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (Role_if(PM_TRANSSYLVANIAN) && weapon && weapon_type(weapon) == P_HAMMER){
+
+		bonus += rnd(2);
+		if (rn2(2) && u.ulevel >= 15) bonus += 1;
+		if (rn2(2) && u.ulevel >= 30) bonus += 1;
+	}
+
 	/* boomerang damage bonus for Batman */
 	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == P_BOOMERANG){
 

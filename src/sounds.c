@@ -1072,11 +1072,17 @@ register struct monst *mtmp;
 		case PM_GEEK:
 		    verbl_msg = "Enematzu memalezu!";
 		    break;
+		case PM_UNBELIEVER:
+		    verbl_msg = "Gods are nonexistant. People should stop believing in them.";
+		    break;
 		case PM_POKEMON:
 		    verbl_msg = "Little strawberry me baby!";
 		    break;
 		case PM_TRANSVESTITE:
 		    verbl_msg = "Look at my heels! Do you think they're beautiful?";
+		    break;
+		case PM_TRANSSYLVANIAN:
+		    verbl_msg = "My block-heeled combat boots are very fleecy!";
 		    break;
 		case PM_TOPMODEL:
 		    verbl_msg = "I'm the chosen one who is going to win the ANTM show!";

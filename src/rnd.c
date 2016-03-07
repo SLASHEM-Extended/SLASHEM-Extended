@@ -666,7 +666,7 @@ randenchantment()
 			return CONFUSION;
 		case 113:
 		case 114:
-			switch (rnd(66)) {
+			switch (rnd(67)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -734,6 +734,7 @@ randenchantment()
 			case 64: return TELEPORTING_ITEMS;
 			case 65: return MAGIC_DEVICE_BUG;
 			case 66: return BOOKBUG;
+			case 67: return RANDOM_MESSAGES;
 			}
 		case 115:
 			return FEARED;

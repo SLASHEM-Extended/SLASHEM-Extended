@@ -5209,6 +5209,238 @@ You again sense %l pleading for help.
 "%p, I see you've had some success, but the evil Wendy
 hasn't been defeated yet! You must kill her for me!"
 %E
+
+#
+#       Transsylvanian
+#
+%Cc Trs 00001
+Back home! %H! Here your pals have been training.
+
+But you immediately notice something is seriously wrong here.
+The activists, who used to be your allies, are now clearly hostile
+towards you! This cannot be right, or can it? You must hurry to
+%l ASAP and find out what the heck is going on!
+%E
+%Cp Trs 00002
+Once again, you are back at %H.
+%E
+%Cp Trs 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Trs 00005
+"Helen and her activists have betrayed us!"
+%E
+%Cp Trs 00006
+"The activists are coming to steal our heels! You must stop them!"
+%E
+%Cp Trs 00007
+"Someone told the activists that we're supposedly doing something illegal,
+and they were stupid enough to believe it!"
+%E
+%Cp Trs 00008
+"Our home may not fall!"
+%E
+%Cp Trs 00009
+"We don't want to have to live in secrecy again!"
+%E
+%Cp Trs 00010
+"Those activists are not coming back. Good job!"
+%E
+%Cp Trs 00011
+"Now we can all go ahead and wear high heels again. Yay!"
+%E
+%Cp Trs 00012
+"No one is ever going to prevent us from crossdressing again."
+%E
+%Cp Trs 00013
+"You showed those Khmer-speaking activists who's boss!"
+%E
+%Cp Trs 00014
+"%l is very proud of you!"
+%E
+%Cc Trs 00015
+"%p! Thank %d you're here! The activists are invading! Quick,
+no time for talking, I'll need to check whether you can defeat them."
+%E
+%Cp Trs 00016
+"I really hope you're ready now %p, the activists can start their
+next attack any moment now!"
+%E
+%Cp Trs 00017
+"If you're not ready now we'll need to forfeit this position! I'll
+check you one last time!"
+%E
+%Cc Trs 00018
+"Argh! Our time is over. Let's all move out and hide. %p, you're
+totally unhelpful! Be gone!"
+%E
+%Cc Trs 00019
+"What? You still didn't learn how to walk in high heels? Train, %p!
+Train until your feet hurt so much that you don't notice you actually
+have any feet! And then come back to me!"
+%E
+%Cc Trs 00020
+"You need to believe strongly in %d or you won't be able to help us!"
+%E
+%Cc Trs 00021
+"Alright %p, I'll tell you what happened. We were in the middle of
+a meeting when suddenly %n and her squad of activists appeared. They
+used to be our friends but something must have gone wrong, since they
+started attacking us with no warning.
+
+I'm sorry to have to say that, but since the activists cannot be
+bargained with, you must go to %i and defeat %n. Only without their
+leader will they stop causing trouble.
+
+Hurry up!"
+%E
+%Cp Trs 00025
+"Don't expect %n to be a pushover."
+%E
+%Cp Trs 00026
+"Others have failed to beat %n, but I know you can do it."
+%E
+%Cp Trs 00027
+"%n is very evil, and butt ugly to boot."
+%E
+%Cp Trs 00028
+"If you keep wearing your heels at all times, you will defeat %n."
+%E
+%Cp Trs 00029
+"May %d guide your steps."
+%E
+%Cp Trs 00030
+"You have come so far, %p. But if you cannot fulfill your task,
+everything will have been for naught."
+%E
+%Cp Trs 00031
+"Come on %p, you know you can do it!"
+%E
+%Cp Trs 00032
+"Get on your way to %i!"
+%E
+%Cp Trs 00033
+"You have to defeat %n, so what are you waiting for?"
+%E
+%Cp Trs 00034
+"Defeat %n! Otherwise, all will be lost!"
+%E
+%Cc Trs 00035
+%i seems to be not too far away from here.
+
+Better approach quickly.
+%E
+%Cp Trs 00036
+Once again, you see %i in the distance.
+%E
+%Cc Trs 00040
+This is %i, where %n and her squad of activists are gathering.
+Find and defeat her, and %l will be safe.
+%E
+%Cp Trs 00041
+Once again you enter %i, looking for %n. Where may she be hiding?
+%E
+%Cc Trs 00050
+"Halt! You're under arrest! Wearing heels as a man is not permitted here!"
+%E
+%Cc Trs 00051
+"Lay off the heels, %p! You're not woman enough for %o!"
+%E
+%Cp Trs 00052
+"No %r should be allowed to wear heels! Only real ladies may wear them!"
+%E
+%Cp Trs 00053
+"Go tell %l to jump off a cliff and die!"
+%E
+%Cp Trs 00060
+"You will fall, crossdresser."
+%E
+%Cp Trs 00061
+"%r, your days of crossdressing will meet their end."
+%E
+%Cp Trs 00062
+"You will be defeated by me, and %l will be next!"
+%E
+%Cp Trs 00063
+"I will bash your head with my fly swatter!"
+%E
+%Cp Trs 00064
+"You're not a woman, %p! You can't possible hope to be able to
+walk around in heels, so admit your defeat and go back home!"
+%E
+%Cp Trs 00065
+"So you're trying to dance around like a clown with your heels?"
+%E
+%Cp Trs 00066
+"%d is just another no-good crossdresser, just like you!"
+%E
+%Cp Trs 00067
+"I'll slap you silly if you put a hand on %o!"
+%E
+%Cp Trs 00068
+"Don't you dare to try to take %o away from me!"
+%E
+%Cp Trs 00069
+"I have already failed once, but that was against an enemy who
+was actually capable of fighting. You, on the other hand, will not
+stand a chance against my might!"
+%E
+%Cc Trs 00070
+Finally, %o are yours. Now, quickly don them to increase
+your beauty score by a factor 3!
+%E
+%Cp Trs 00080
+%n has sustained a mortal wound.
+
+With her last dying breath, she gasps:
+"I... I will stop you yet..."
+Then, silence.
+%E
+%Cc Trs 00081
+%l speaks:
+
+"Wear %o! They're sooooooooo beautiful! <3<3<3<3<3<3<3
+(If you want, I can spam ten more pages with 'smaller than 3'.)"
+%E
+# assumes Orb of Detection (glass object)
+%Cc Trs 00082
+"<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3
+<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3
+<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3
+<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3
+<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3<3
+Okay, I guess that should be enough for now..."
+%E
+%Cc Trs 00090
+"Welcome back, %p! You're still looking great with your heels!"
+%E
+%Cc Trs 00091
+"Yaaaaay! We are going to become immortal! You just need to get
+to %d's high altar and offer that amulet thing!"
+%E
+%Cc Trs 00095
+"You dare betray %d? Why on earth would you do that?
+
+Farewell! We will all be overrun by %n and her activists now!
+You're not suited to wearing heels anyway! Loser."
+%E
+
+%Cp Trs 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Trs 00101
+You again sense %l pleading for help.
+%E
+%Cp Trs 00102
+"%p, I see you've had some success, but the evil %n
+hasn't been defeated yet! If you leave now, we'll still have
+to forfeit %H and allow it to become the activists' new home!"
+%E
+
 #
 #       Topmodel
 #
@@ -6367,6 +6599,298 @@ You couldn't quite make out that last message.
 You again sense %l pleading for help.
 %E
 %Cp Bar 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#       Unbeliever
+#
+%Cc Unb 00001
+Warily you scan your surroundings, all of your senses alert for signs
+of possible danger.  Off in the distance, you can %x the familiar shapes
+of %H.
+
+But why, you think, should %l be there?
+
+Suddenly, the hairs on your neck stand on end as you detect the aura of
+evil magic in the air.
+
+Without thought, you ready your weapon, and mutter under your breath:
+
+    "By %d, there will be blood spilt today."
+%E
+%Cp Unb 00002
+Once again, you near %H.  You know that %l
+will be waiting.
+%E
+%Cp Unb 00003
+Again, and you think possibly for the last time, you approach
+%H.
+%E
+%Cp Unb 00005
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Unb 00006
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Unb 00007
+"There has been little treasure to loot, since the horde arrived."
+%E
+%Cp Unb 00008
+"The horde is mighty in numbers, but they have little courage."
+%E
+%Cp Unb 00009
+"%lC is a strange one, but he has helped defend us."
+%E
+%Cp Unb 00010
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Unb 00011
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Unb 00012
+"Times will be good again, now that the horde is vanquished."
+%E
+%Cp Unb 00013
+"You have brought our clan much honor in defeating %n."
+%E
+%Cp Unb 00014
+"You will be a worthy successor to %l."
+%E
+%Cc Unb 00015
+"Ah, %p.  You have returned at last.  The world is in dire
+need of your help.  There is a great quest you must undertake.
+
+"But first, I must see if you are ready to take on such a challenge."
+%E
+%Cp Unb 00016
+"%p, you are back.  Are you ready now for the challenge?"
+%E
+%Cp Unb 00017
+"Again, you stand before me, %p.  Surely you have prepared yourself."
+%E
+%Cc Unb 00018
+"Pah!  You have betrayed the gods, %p.  You will never attain
+the glory which you aspire to.  Your failure to follow the true path has
+closed this future to you.
+
+"I will protect these people as best I can, but soon %n will overcome
+me and destroy all who once called you %s.  Now begone!"
+%E
+%Cc Unb 00019
+"%p, I fear that you are as yet too inexperienced to face
+%n.  Only %Ra with the help of %d could ever hope to
+defeat him."
+%E
+%Cc Unb 00020
+"%pC!  You have wandered from the path of the %a!
+If you attempt to overcome %n in this state, he will surely
+enslave your soul.  Your only hope, and ours, lies in your purification.
+Go forth, and return when you feel ready."
+%E
+%Cc Unb 00021
+"The world is in great need of your assistance, %p.
+
+"About six months ago, I learned that a mysterious sorcerer, known
+as %n, had begun to gather a large group of cutthroats and brigands
+about him.
+
+"At about the same time, these people you once rode with `liberated' a
+potent magical talisman, %o, from a Turanian caravan.
+
+"%nC and his Black Horde swept down upon %i and defeated
+the people there, driving them out into the desert.  He has taken
+%o, and seeks to bend it to his will.  I detected the
+subtle changes in the currents of fate, and joined these people.
+Then I sent forth a summons for you.
+
+"If %n can bend %o to his will, he will become
+almost indestructible.  He will then be able to enslave the minds of
+men across the world.  You are the only hope.  The gods smile upon you,
+and with %d behind you, you alone can defeat %n.
+
+"You must go to %i.  From there, you can track down
+%n, defeat him, and return %o to us.  Only
+then will the world be safe."
+%E
+%Cp Unb 00025
+"%nC is strong in the dark arts, but not immune to cold steel."
+%E
+%Cp Unb 00026
+"Remember that %n is a great sorcerer.  He lived in the time
+of Atlantis."
+%E
+%Cp Unb 00027
+"If you fail, %p, I will not be able to protect these people long."
+%E
+%Cp Unb 00028
+"To enter %i, you must be very stealthy.  The horde will be on
+guard."
+%E
+%Cp Unb 00029
+"Call upon %d in your time of need."
+%E
+%Cp Unb 00030
+"May %d protect you, and guide your steps."
+%E
+%Cp Unb 00031
+"If you can lay hands upon %o, carry it for good fortune."
+%E
+%Cp Unb 00032
+"I cannot stand against %ns sorcery.  But %d will help you."
+%E
+%Cp Unb 00033
+"Do not fear %n.  I know you can defeat him."
+%E
+%Cp Unb 00034
+"You have a great road to travel, %p, but only after you defeat
+%n."
+%E
+%Cc Unb 00035
+The scent of water comes to you in the desert breeze.  You know that
+you have located %i.
+%E
+%Cp Unb 00036
+Yet again you have a chance to infiltrate %i.
+%E
+%Cc Unb 00040
+The hairs on the nape of your neck lift as you sense an energy in the
+very air around you.  You fight down a primordial panic that seeks to
+make you turn and run.  This is surely the lair of %n.
+%E
+%Cp Unb 00041
+Yet again you feel the air around you heavy with malevolent magical energy.
+%E
+%Cc Unb 00050
+"So.  This is what that second rate sorcerer %l sends to do his bidding.
+I have slain many before you.  You shall give me little sport.
+
+"Prepare to die, %c."
+%E
+%Cp Unb 00051
+"I have wasted too much time on you already.  Now, you shall die."
+%E
+%Cp Unb 00052
+"You return yet again, %c!  Are you prepared for death now?"
+%E
+%Cp Unb 00053
+"I shall have %o back, you pitiful excuse for %ca.
+And your life as well."
+%E
+%Cp Unb 00060
+"My pets will dine on your carcass tonight!"
+%E
+%Cp Unb 00061
+"You are a sorry excuse for %ra."
+%E
+%Cp Unb 00062
+"Run while you can, %c.  My next spell will be your last."
+%E
+%Cp Unb 00063
+"I shall use your very skin to bind my next grimoire."
+%E
+%Cp Unb 00064
+"%d cannot protect you now.  Here, you die."
+%E
+%Cp Unb 00065
+"Your %a nature makes you weak.  You cannot defeat me."
+%E
+%Cp Unb 00066
+"Come, %c.  I shall kill you, then unleash the horde on your tribe."
+%E
+%Cp Unb 00067
+"Once you are dead, my horde shall finish off %l, and your tribe."
+%E
+%Cp Unb 00068
+"Fight, %c, or are you afraid of the mighty %n?"
+%E
+%Cp Unb 00069
+"You have failed, %c.  Now, my victory is complete."
+%E
+%Cc Unb 00070
+As you pick up %o, you feel the power of it
+flowing through your hands.  It seems to be in two or more places
+at once, even though you are holding it.
+%E
+%Cc Unb 00080
+%nC falls to the ground, and utters a last curse at you.  Then his
+body fades slowly, seemingly dispersing into the air around you.  You
+slowly become aware that the overpowering aura of magic in the air has
+begun to fade.
+%E
+%Cc Unb 00081
+When %l sees %o, he smiles, and says:
+
+    Well done, %p.  You have saved the world from certain doom.
+    What, now, should be done with %o?
+
+    These people, brave as they are, cannot hope to guard it from
+    other sorcerers who will detect it, as surely as %n did.
+
+    Take %o with you, %p.  It will guard you in
+    your adventures, and you can best guard it.  You embark on a
+    quest far greater than you realize.
+
+    Remember me, %p, and return when you have triumphed.  I
+    will tell you then of what you must do.  You will understand when the
+    time comes.
+%E
+%Cc Unb 00082
+%l gazes reverently at %o, then back at you.
+
+"You are its keeper now, and the time has come to resume your search
+for the Amulet.  %Z await your return through the
+magic portal which brought you here."
+%E
+%Cp Unb 00090
+"Tell us, %p, have you fared well on your great quest?"
+%E
+%Cc Unb 00091
+"This is wondrous, %p.  I feared that you could not possibly
+succeed in your quest, but here you are in possession of the Amulet
+of Yendor!
+
+"I have studied the texts of the magi constantly since you left.  In
+the Book of Skelos, I found this:
+
+    %d will cause a child to be sent into the world.  This child is to
+    be made strong by trial of battle and magic, for %d has willed it so.
+    It is said that the child of %d will recover the Amulet of Yendor
+    that was stolen from the Creator at the beginning of time.
+
+"As you now possess the amulet, %p, I suspect that the Book
+speaks of you.
+
+    The child of %d will take the Amulet, and travel to the Astral
+    Plane, where the Great Temple of %d is to be found.  The Amulet
+    will be sacrificed to %d, there on His altar.  Then the child will
+    stand by %d as champion of all %cP for eternity.
+
+"This is all I know, %p.  I hope it will help you."
+%E
+%Cc Unb 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Unb 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Unb 00101
+You again sense %l pleading for help.
+%E
+%Cp Unb 00102
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E
