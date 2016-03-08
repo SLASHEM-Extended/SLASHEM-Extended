@@ -531,6 +531,27 @@ typedef unsigned char	uchar;
 #define DUMP_FN "/tmp/dump_%n_%d.txt"    /* Fixed dumpfile name */
 #endif
 
+/* Some public servers have a bug that I call "phantom crash bug". It is most certainly caused by a buffer size being
+ * overrun, but so far I couldn't find where that buffer size is set, and the bug does not appear on all public servers,
+ * just some of them. It does not appear on any of my local Windows or Unix installs. --Amy
+ * If you are compiling the game for a public server and you're sure that it doesn't have the phantom crash bug (this
+ * probably depends on the server architecture, i.e. the exact operating system used, the compile-time flags etc.),
+ * consider commenting out the following lines.
+ * The phantom crash bug is caused by the game displaying a message string that is longer than a certain amount of
+ * characters, probably the limit is 256 or something like that. Once it happened, the current savegame is corrupted.
+ * However, this corruption does not usually make it impossible to load; instead, it screws up the game in subtle ways.
+ * It may crash randomly in the middle of the game, sometimes it crashes on changing dungeon levels and saves the level
+ * you were leaving but not the state of your character, and certain actions will instantly and without fail crash the
+ * game. These actions include any prompts that make the game go through the object or monster array, like wishing for
+ * an object, genociding a monster, or a controlled polymorph. Also, farlooking a random stats monster or otherwise
+ * causing the game to try displaying its name will crash too.
+ * Since this bug is so severe, and no fix for the root cause has been found yet, the PHANTOM_CRASH_BUG flag attempts
+ * to make all messages be shorter than 256 characters, thereby hopefully preventing the bug from striking. */
+
+#ifdef PUBLIC_SERVER
+#define PHANTOM_CRASH_BUG
+#endif
+
 #define DUMPMSGS 20
 
 /* Missingno initialization range, also used in u_init.c and some other places. This determines how many monster records
