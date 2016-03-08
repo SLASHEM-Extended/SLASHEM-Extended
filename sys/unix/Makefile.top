@@ -159,14 +159,14 @@ QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
 SHARE_DATNODLB = $(CNF_SHARE_DATND)
 UNSHARE_DATNODLB =
 SHARE_DATDLB = $(DATHELP) $(CNF_SHARE_DATD)
-UNSHARE_DATDLB = dungeon $(SPEC_LEVS) $(QUEST_LEVS)
+UNSHARE_DATDLB = dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 $(SPEC_LEVS) $(QUEST_LEVS)
 SHARE_DAT = $(SHARE_DATNODLB) $(SHARE_DATDLB)
 UNSHARE_DAT = $(UNSHARE_DATNODLB) $(UNSHARE_DATDLB)
 
 $(GAME):
 	( cd src ; $(MAKE) )
 
-all:	$(GAME) recover Guidebook $(CNF_SHARE_DAT) dungeon spec_levs check-dlb
+all:	$(GAME) recover Guidebook $(CNF_SHARE_DAT) dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 spec_levs check-dlb
 	@echo "Done."
 
 # Note: many of the dependencies below are here to allow parallel make
@@ -202,6 +202,34 @@ spec_levs: $(GAME)
 dungeon: $(GAME)
 	( cd util ; $(MAKE) dgn_comp )
 	( cd dat ; $(MAKE) dungeon )
+
+dungeon2: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon2 )
+
+dungeon3: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon3 )
+
+dungeon4: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon4 )
+
+dungeon5: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon5 )
+
+dungeon6: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon6 )
+
+dungeon7: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon7 )
+
+dungeon8: $(GAME)
+	( cd util ; $(MAKE) dgn_comp )
+	( cd dat ; $(MAKE) dungeon8 )
 
 Guidebook.txt:
 	( cd doc; $(MAKE) Guidebook.txt )
@@ -353,7 +381,7 @@ dofiles-nodlb:
 			$(CHGRP) $(GAMEGRP) $(UNSHARE_DAT) ; \
 			chmod $(FILEPERM) $(UNSHARE_DAT) )
 
-update: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
+update: $(GAME) recover $(CNF_SHARE_DAT) dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 spec_levs Guidebook.txt
 #	(don't yank the old version out from under people who're playing it)
 	-mv $(FILE_AREA_UNSHARE)/$(GAME) $(FILE_AREA_UNSHARE)/$(GAME).old
 #	quest.dat is also kept open and has the same problems over NFS
@@ -369,7 +397,7 @@ update: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
 # and a reminder
 	@echo You may also want to install the man pages via the doc Makefile.
 
-install: $(GAME) recover $(CNF_SHARE_DAT) dungeon spec_levs Guidebook.txt
+install: $(GAME) recover $(CNF_SHARE_DAT) dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 spec_levs Guidebook.txt
 # set up the directories
 # not all mkdirs have -p; those that don't will create a -p directory
 	-mkdir -p $(SHELLDIR)
