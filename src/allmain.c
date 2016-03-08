@@ -955,6 +955,16 @@ moveloop()
 			default: break;
 		    }
 
+			/* being satiated makes you slower... --Amy */
+		    if (u.uhunger >= 3200) moveamt -= (moveamt / 6);
+		    if (u.uhunger >= 4000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 5000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 6000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 7000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 8000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 9000) moveamt -= (moveamt / 5);
+		    if (u.uhunger >= 10000) moveamt -= (moveamt / 5);
+
 		    youmonst.movement += moveamt;
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();

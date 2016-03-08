@@ -4759,7 +4759,7 @@ register int num;
 	    }
 	    else if (u.uhs == SATIATED) { /* less nutrition if already satiated --Amy */
 		int xtranut = num;
-		xtranut /= 2;
+		xtranut /= 3;
 		if (u.uhunger >= 3250) {xtranut *= 3; xtranut /= 2;}
 		if (u.uhunger >= 4000) {xtranut *= 7; xtranut /= 6;}
 		u.uhunger -= xtranut;
