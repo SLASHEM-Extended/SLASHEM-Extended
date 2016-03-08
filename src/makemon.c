@@ -257,9 +257,9 @@ register struct monst *mtmp;
 {
 	register struct permonst *ptr = mtmp->data;
 
-	if (!rn2(500) && timebasedlowerchance() && (rn2(100) < u.usefulitemchance) ) (void) mongets(mtmp, SCR_STANDARD_ID);
+	if (!rn2(500) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) (void) mongets(mtmp, SCR_STANDARD_ID);
 
-	if (!rn2(60) && ((rn2(100) < u.usefulitemchance) || (rn2(100) < u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
+	if (!rn2(60) && ((rn2(100) > u.usefulitemchance) || (rn2(100) > u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
 
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
