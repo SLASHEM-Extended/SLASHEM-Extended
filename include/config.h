@@ -515,7 +515,7 @@ typedef unsigned char	uchar;
 
 #define STATUS_COLORS
 
-#ifndef PUBLIC_SERVER
+#ifndef PHANTOM_CRASH_BUG
 #define EXTENDED_INFO /* potential fix for the "phantom crash bug" by Soviet5lo */
 #endif
 
@@ -533,7 +533,7 @@ typedef unsigned char	uchar;
 
 /* Some public servers have a bug that I call "phantom crash bug". It is most certainly caused by a buffer size being
  * overrun, but so far I couldn't find where that buffer size is set, and the bug does not appear on all public servers,
- * just some of them. It does not appear on any of my local Windows or Unix installs. --Amy
+ * just some of them. It does not appear on any of my local Windows or unix installs. --Amy
  * If you are compiling the game for a public server and you're sure that it doesn't have the phantom crash bug (this
  * probably depends on the server architecture, i.e. the exact operating system used, the compile-time flags etc.),
  * consider commenting out the following lines.
@@ -556,7 +556,7 @@ typedef unsigned char	uchar;
 
 /* Missingno initialization range, also used in u_init.c and some other places. This determines how many monster records
  * past the end of the monster array will be read, and defaults to 10000 which works on Windows and the public server but
- * apparently not on a local Unix or BSD system. I would guess that it all depends on memory allocation. Therefore, I made
+ * apparently not on a local unix or BSD system. I would guess that it all depends on memory allocation. Therefore, I made
  * it configurable. If your compiled game sometimes crashes with a segfault on startup, consider setting this to a lower
  * value. Don't set it too low though or else the missingno will not be very random at all; I recommend trying a value of
  * 2000 and if that fixes the crash, leave it at that value. Only if the crash reappears, consider going to 1000 or
