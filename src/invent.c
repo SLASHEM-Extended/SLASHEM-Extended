@@ -4623,7 +4623,11 @@ struct obj *obj;
 	switch (obj->oclass) {
 
 		case WEAPON_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
+#else
 		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { 
 
@@ -4772,7 +4776,11 @@ struct obj *obj;
 			case CARDBOARD_FAN: 
 				pline("Might as well attack with a trout instead. Just about every weapon in this game does more damage than this paddle!"); break;
 			case OTAMA: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Paddle-class weapon that does next to no damage so you're probably better off fighting barehanded."); break;
+#else
 				pline("Good luck figuring out what this is! But I'll help you: I don't know what an 'otama' is supposed to be either, but it's a paddle-class weapon that does next to no damage so you're probably better off fighting barehanded."); break;
+#endif
 			case INSECT_SQUASHER: 
 				pline("A paddle that does superb damage against small foes but next to no damage against large foes."); break;
 			case SILVER_MACE: 
@@ -4920,7 +4928,11 @@ struct obj *obj;
 			case MARE_TRIDENT: 
 				pline("This trident is made of silver, and does extra damage to eels."); break;
 			case LANCE: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("This thing can be applied to hit monsters that don't stand right next to you. While riding you can joust monsters in melee but that can cause it to break."); break;
+#else
 				pline("Formerly the only weapon that uses the lance skill, this thing can be applied to hit monsters that don't stand right next to you. While riding, you can joust monsters with it by performing standard melee attacks but sometimes the lance breaks if you do so."); break;
+#endif
 			case COURSE_LANCE: 
 				pline("This weapon is a much stronger version of the lance. Apply it to hit monsters from far away, or melee monsters with it while riding to joust (but that can cause the lance to break)."); break;
 			case DROVEN_LANCE: 
@@ -4970,7 +4982,11 @@ struct obj *obj;
 			case FLINTLOCK: 
 				pline("You can theoretically use this firearm to shoot single bullets at monsters, but I'd advise you to use an actual pistol instead."); break;
 			case BFG: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("This bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
+#else
 				pline("An atomic weapon of mass destruction, this bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
+#endif
 			case HAND_BLASTER: 
 				pline("A low-range energy gun with a fairly good rate of fire."); break;
 			case ARM_BLASTER: 
@@ -5050,13 +5066,21 @@ struct obj *obj;
 			case CALTROP: 
 				pline("If you want to train your shuriken skill, throw these at enemies. They deal much less damage than actual shuriken however."); break;
 			case BOOMERANG: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("You can throw this but it flies in a weird pattern, and meleeing monsters with it can cause it to break."); break;
+#else
 				pline("Good luck making this crappy weapon work! The boomerang can theoretically be thrown to hit several enemies in a single turn, but its weird flight pattern means it has situational uses at best and no uses at worst. Using the boomerang in melee will probably cause it to break."); break;
+#endif
 			case SILVER_CHAKRAM: 
 				pline("A silver version of the boomerang. If you guessed that this weapon still sucks, you are right."); break;
 			case BATARANG: 
 				pline("This weapon cannot stun the little poison ivies, but it can kill them! :D Joking aside, it's a far stronger version of the boomerang but it still flies in that weird circle pattern and rarely hits what you aim for."); break;
 			case BULLWHIP: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Pitiful damage, and thick-skinned monsters are immune to it. Applying it allows you to perform certain feats though."); break;
+#else
 				pline("*cue Vampire Killer theme* For some reason, Simon Belmont likes to use this weapon. It's got a totally pitiful damage output, and thick-skinned enemies are even outright immune to it. However, you can apply a bullwhip to perform feats like disarming an enemy."); break;
+#endif
 			case STEEL_WHIP: 
 				pline("A metal version of the bullwhip. While far stronger than a regular bullwhip, this weapon is still a whip and you know that whips suck. Steer clear."); break;
 
@@ -5079,7 +5103,11 @@ struct obj *obj;
 		break;
 
 		case ARMOR_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5513,7 +5541,11 @@ struct obj *obj;
 			case HELM_OF_HUNGER:
 				pline("A helmet that grants good AC and magic cancellation, but you also get the 'hunger' status effect while wearing it, causing you to burn nutrition at a faster rate. It is usually generated cursed."); break;
 			case HELM_OF_STORMS:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This grants resist fire, cold and lightning as well as detect monsters. But the helm covers your entire face so you cannot eat, quaff, levelport or control teleports and monsters respawn faster. Autocurses."); break;
+#else
 				pline("The very powerful Helm of Storms grants its wearer control over the elements, which is to say, resistance to fire, cold and lightning. It also allows you to detect monsters until the helm is removed, but you can't eat, quaff potions, levelport, or control your teleports while wearing it. Monsters also respawn much faster for as long as you wear it. This helm autocurses if you put it on."); break;
+#endif
 			case HELM_OF_DETECT_MONSTERS:
 				pline("When worn, this helm grants you the ability to detect monsters until removed. It also prevents you from eating or quaffing potions, and this helm autocurses every time it is put on."); break;
 			case HELM_OF_DISCOVERY:
@@ -5757,7 +5789,11 @@ struct obj *obj;
 			case SNEAKERS:
 				pline("These shoes are comfortable to wear."); break;
 			case MULTI_SHOES:
+#ifdef PHANTOM_CRASH_BUG
+				pline("They will autocurse when worn and provide all of the following properties: waterwalking, speed, jumping, stealth, hallucination, wounded legs, levitation and fumbling."); break;
+#else
 				pline("Oh boy, better think twice before putting these on... They will autocurse when worn and provide all of the following properties: waterwalking, speed, jumping, stealth, hallucination, wounded legs, levitation and fumbling. Think carefully whether the benefits outweigh the downsides."); break;
+#endif
 			case BOOTS_OF_PLUGSUIT:
 				pline("A rather mundane pair of boots."); break;
 			case ROLLER_BLADE:
@@ -5779,7 +5815,11 @@ struct obj *obj;
 			case ZIPPER_BOOTS:
 				pline("By watching these boots closely, you notice their zippers are trying to touch and damage your skin. They're sharp-edged too, so be careful."); break;
 			case LEVITATION_BOOTS:
+#ifdef PHANTOM_CRASH_BUG
+				pline("You will float into the air if you wear this pair of boots. These are usually generated cursed and prevent you from picking up items or using a set of downstairs."); break;
+#else
 				pline("You will float into the air if you wear this pair of boots. Unlike Castle of the Winds, this is NOT a good thing as these are usually generated cursed and prevent you from picking up items or using a set of downstairs."); break;
+#endif
 
 			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -5789,7 +5829,11 @@ struct obj *obj;
 		break;
 
 		case RING_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a ring. Color: %s. Material: %s. Appearance: %s. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -5872,7 +5916,11 @@ struct obj *obj;
 			case RIN_INCREASE_DAMAGE: 
 				pline("Wearing this ring increases your attack damage by its enchantment value."); break;
 			case RIN_SLOW_DIGESTION: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("If you wear this ring, your natural food consumption rate is disabled. Ring hunger still applies though."); break;
+#else
 				pline("If you wear this ring, your natural food consumption rate is disabled. Keep in mind that ring hunger still applies, so wearing two of these actually causes you to consume more food than you would while wearing just one."); break;
+#endif
 			case RIN_INVISIBILITY: 
 				pline("This powerful ring can be slipped on a finger to turn the wearer invisible."); break;
 			case RIN_POISON_RESISTANCE: 
@@ -5928,7 +5976,13 @@ struct obj *obj;
 		if (obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == AMULET_OF_YENDOR) {
 		pline("This is the amulet of Yendor, a very powerful talisman that radiates power."); break;
 
-		} else pline("%s - This is an amulet. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		} else {
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
+		pline("%s - This is an amulet. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
+		}
 
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
@@ -6042,7 +6096,11 @@ struct obj *obj;
 		break;
 
 		case TOOL_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6167,7 +6225,11 @@ struct obj *obj;
 			case CONDOME: 
 				pline("Wear this to prevent diseases from sexual encounters!"); break;
 			case TOWEL: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Possible uses include: covering your eyes, wiping your hands, throwing it at a monster or wielding it as a melee weapon."); break;
+#else
 				pline("According to Douglas Adams, you can do a lot of stuff with a towel. Possible uses include: covering your eyes, wiping your hands, throwing it at a monster or wielding it as a melee weapon. See for yourself if you find any of these useful. :-)"); break;
+#endif
 			case SADDLE: 
 				pline("Applying this at a tame monster may allow you to ride it. The more tame a monster is, the more likely you are to succeed in saddling it."); break;
 			case LEASH: 
@@ -6175,17 +6237,33 @@ struct obj *obj;
 			case STETHOSCOPE: 
 				pline("This useful tool can be applied at monsters, objects and other things to find out more about them."); break;
 			case TINNING_KIT: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Turns corpses into tins that you can eat. It neutralizes some of the corpse's effects while keeping some of the other ones."); break;
+#else
 				pline("If you want to get rid of corpses, apply this tool. It will also generate tins containing some of the monster's remains, neutralizing some bad effects like rotting or poison, but a tin of cockatrice meat will still turn you to stone."); break;
+#endif
 			case MEDICAL_KIT: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Apply it to swallow a pill. The draw blood and surgery techniques work better if you have this item."); break;
+#else
 				pline("A bag filled with medical tools. Applying it will cause you to swallow a pill and feel deathly sick, or sometimes you can get other effects as well. Some techniques, e.g. draw blood and surgery, will work better if you have this item."); break;
+#endif
 			case TIN_OPENER: 
 				pline("A tool that must be wielded in order to work. It allows you to open tins more quickly. Some players use it to kill Vlad but that's not a good idea in Slash'EM Extended."); break;
 			case CAN_OF_GREASE: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("You can grease your items with this tool, and every item can have up to three layers of grease."); break;
+#else
 				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again. You can apply up to three layers of grease to a single item."); break;
+#endif
 			case FIGURINE: 
 				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
 			case MAGIC_MARKER: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("You can engrave with this tool, or attempt to write scrolls or spellbooks if you have blank ones. Writing items that you know is guaranteed to work."); break;
+#else
 				pline("The magic marker is actually a sort of pen that can be used for engraving. If you have blank scrolls or spellbooks, you can also attempt to write something on them; for a better chance of success, try to write an item that you know."); break;
+#endif
 			case FELT_TIP_MARKER: 
 				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
@@ -6225,7 +6303,11 @@ struct obj *obj;
 		break;
 
 		case FOOD_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a comestible. Color: %s. Material: %s. Appearance: %s. It can be eaten.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6314,7 +6396,11 @@ struct obj *obj;
 			case C_RATION: 
 				pline("Soldiers often carry these rations that can be eaten in one turn. For some reason they contain no meat - how can any real-life soldiers even concentrate on their tasks if they ain't getting no real food?"); break;
 			case TIN: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Open it to see its contents, then decide whether you really want to eat it. They have variable amounts of nutrition."); break;
+#else
 				pline("A tin that may contain some type of food. If you wield a tin opener, you can open it more quickly; after a tin has been opened, you can decide whether you really want to eat it. The nutritional value of a tin is randomized."); break;
+#endif
 
 			case SHEAF_OF_STRAW: 
 				pline("This food tastes better if you're a herbivore."); break;
@@ -6383,7 +6469,11 @@ struct obj *obj;
 			case LUNCH_OF_BOILED_EGG: 
 				pline("This food somehow counts as meat and doesn't give a lot of nutrition."); break;
 			case PIZZA: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("It probably isn't a doener pizza, since eating it doesn't break vegetarian conduct."); break;
+#else
 				pline("It probably isn't a doener pizza, since eating it doesn't break vegetarian conduct. Best served with french fries of course. Good appetite! Oh wait, that was a mistranslation. What's it you say in English? I forgot..."); break;
+#endif
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -6393,7 +6483,11 @@ struct obj *obj;
 		break;
 
 		case POTION_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6542,13 +6636,21 @@ struct obj *obj;
 			case POT_PAN_GALACTIC_GARGLE_BLASTE:
 				pline("If you quaff this, you will feel like having your brain smashed out by a slice of lemon wrapped around a large gold brick."); break;
 			case POT_WATER:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Blessed = holy, cursed = unholy; dipping items in them changes their BUC status. Plain water also has some marginal uses."); break;
+#else
 				pline("Water potions behave differently if they are blessed (holy water) or cursed (unholy water). Quaffing (un)holy water has a variety of effects, and it will alter the blessed/cursed/uncursed status of items dipped into it. Plain water also has some marginal uses."); break;
+#endif
 			case POT_BLOOD:
 				pline("A red liquid that is meant to be quaffed by vampires."); break;
 			case POT_VAMPIRE_BLOOD:
 				pline("Vampires love the taste of this potion, as it gives them nutrition and heals them. Non-vampires may become a vampire if they drink it."); break;
 			case POT_AMNESIA:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This potion causes you or monsters to forget things; for the latter, throw it at them."); break;
+#else
 				pline("The best item in the entire game. Throwing it at monsters can make them forget things, and quaffing a blessed one can cure your sickness and lycanthropy. Be careful though, as you might get hit by a nasty amnesia effect that wipes your memory."); break;
+#endif
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -6558,7 +6660,11 @@ struct obj *obj;
 		break;
 
 		case SCROLL_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a scroll. Color: %s. Material: %s. Appearance: %s. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6608,7 +6714,11 @@ struct obj *obj;
 			case SCR_CREATE_SINK: 
 				pline("Creates a sink underneath you. It won't work if you're not standing on a room or corridor tile."); break;
 			case SCR_SYMMETRY: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("It will reverse your movement key's directions PERMANENTLY. You have to read another one if you want to reverse its effect."); break;
+#else
 				pline("This is a very dangerous scroll that will reverse your movement key's directions PERMANENTLY. The only way to reverse its effect is to read another one, so you should be glad I'm not allowing monsters to read them!"); break;
+#endif
 			case SCR_CREATE_CREATE_SCROLL: 
 				pline("Fairly useless; reading this scroll will recreate it on the ground beneath you. Makes you wonder what the devs were smoking when they invented this item."); break;
 			case SCR_ANTIMAGIC: 
@@ -6625,7 +6735,11 @@ struct obj *obj;
 			case SCR_ENCHANT_WEAPON: 
 				pline("Your wielded weapon's enchantment goes up if you read this scroll. Beware, if the weapon's enchantment is +6 or higher, the weapon may blow up."); break;
 			case SCR_ENCHANT_ARMOR: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Select an armor to enchant. Armors at +4 or higher may evaporate (elven armors will evaporate at +6 or higher)."); break;
+#else
 				pline("You may select one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
+#endif
 			case SCR_REMOVE_CURSE: 
 				pline("This scroll can uncurse some of the items in your inventory if you read it."); break;
 			case SCR_ALTER_REALITY: 
@@ -6637,11 +6751,19 @@ struct obj *obj;
 			case SCR_WARPING: 
 				pline("You will warp to any random dungeon level if you read this scroll. It may deposit you at some fairly dangerous place, too."); break;
 			case SCR_FIRE: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Reading it will burn you and adjacent monsters a little."); break;
+#else
 				pline("The best scroll in the game. You will need this to cure the sliming condition, which is difficult to cure otherwise. It can also damage monsters standing next to you, with the side effect of burning you a little."); break;
+#endif
 			case SCR_EARTH: 
 				pline("Summons some boulders if read. Beware, they might hit your head and damage you."); break;
 			case SCR_DESTROY_ARMOR: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("It randomly destroys a worn piece of armor when read."); break;
+#else
 				pline("A scroll that can be used if you are wearing a cursed piece of armor and want to get rid of it. You can't select the affected piece of armor yourself though; rather, the game randomly destroys one of your worn armor items."); break;
+#endif
 			case SCR_DESTROY_WEAPON: 
 				pline("Wanna get rid of your weapon? Now you can do so."); break;
 			case SCR_AMNESIA: 
@@ -6697,9 +6819,17 @@ struct obj *obj;
 			case SCR_SIN: 
 				pline("Don't read it. That is, unless you want to be hit by a 'deadly sin' effect which is likely to screw your character in some way or another."); break;
 			case SCR_CHARGING: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("You can recharge a chargeable item by reading this. Be careful, recharging an item too many times may cause it to explode."); break;
+#else
 				pline("This scroll can be read to charge an object, which must be in your main inventory and of an item type that can be charged, e.g. a wand. Be careful, recharging an item too many times may cause it to explode."); break;
+#endif
 			case SCR_RANDOM_ENCHANTMENT: 
+#ifdef PHANTOM_CRASH_BUG
+				pline("Pick an item to randomly enchant. For best results, use it on a +0 one. Line length restrictions prevent me from elaborating so just trust me on that one."); break;
+#else
 				pline("Using this scroll will allow you to pick an item that you want to have randomly enchanted. The item in question might get a positive or negative enchantment. However, if the item had a positive enchantment before it will first be set to +0 and get enchanted afterwards, so it's probably better to use it on items that are already +0 or worse."); break;
+#endif
 			case SCR_GENOCIDE: 
 				pline("A powerful magic scroll that can be read to permanently get rid of a monster type and also prevent any more of them to spawn. Not all monster types can be genocided though."); break;
 			case SCR_PUNISHMENT: 
@@ -6785,7 +6915,11 @@ struct obj *obj;
 		break;
 
 		case SPBOOK_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -6814,7 +6948,11 @@ struct obj *obj;
 			case SPE_CURE_STUN:
 				pline("By casting this spell, you can get rid of the stun condition."); break;
 			case SPE_GENOCIDE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Casting this spell might allow you to genocide some monster species. However, it often fails."); break;
+#else
 				pline("Yes, this is not a joke. Casting this spell might allow you to genocide some monster. However, it often fails, and even on the off chance it doesn't, you will only be able to genocide a single monster species."); break;
+#endif
 			case SPE_EXTRA_HEALING:
 				pline("A more powerful healing spell that can heal more hit points than the standard healing spell. Can be cast at yourself or at a monster."); break;
 			case SPE_FULL_HEALING:
@@ -6846,17 +6984,29 @@ struct obj *obj;
 			case SPE_CHEMISTRY:
 				pline("Casting this spell has no effect, but knowing it increases the likelihood of the chemistry set actually working."); break;
 			case SPE_DETECT_FOOT:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This spell makes enemies fall over unconscious."); break;
+#else
 				pline("According to the Sporkhack creator, this spell is supposed to be useless. But this is Slash'EM Extended, where it allows you to make enemies fall over unconscious by... well, just see it for yourself. :D"); break;
+#endif
 			case SPE_CONFUSE_MONSTER:
 				pline("Your melee attacks can confuse monsters if you cast this spell."); break;
 			case SPE_FORBIDDEN_KNOWLEDGE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Learn this spell or cast it and your deity becomes very angry. The latter also grants temporary damage and spell resistance."); break;
+#else
 				pline("Learning this spell causes your deity to become very angry. Casting it angers your deity even more, but grants resistance to damage and spells for a while. The appearance and level of this book are random."); break;
+#endif
 			case SPE_SLOW_MONSTER:
 				pline("This spell fires an invisible beam that slows targets."); break;
 			case SPE_CAUSE_FEAR:
 				pline("Use this spell to make monsters flee from you."); break;
 			case SPE_CHARM_MONSTER:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This powerful spell can sometimes charm adjacent monsters, but they resist often so you may have to cast it repeatedly."); break;
+#else
 				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance prevents this from working sometimes, and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all."); break;
+#endif
 			case SPE_ENCHANT_WEAPON:
 				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up."); break;
 			case SPE_ENCHANT_ARMOR:
@@ -6916,7 +7066,11 @@ struct obj *obj;
 			case SPE_CURSE_ITEMS:
 				pline("Some of your items will become cursed (or unblessed) if you cast this spell."); break;
 			case SPE_CHARACTER_RECURSION:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Permanently transforms your character into another one, deletes your inventory and removes all spells. Be wise! Drop your inventory first!"); break;
+#else
 				pline("DANGER: Casting this spell will transform your character into another one *permanently*. It also deletes your inventory (so you should probably drop it first) and your entire spell list. Be sure you really want this, because it cannot be reverted once done!"); break;
+#endif
 			case SPE_CLONE_MONSTER:
 				pline("Everybody's dream spell, you can now multiply monsters if you want to! Have fun!"); break;
 			case SPE_DESTROY_ARMOR:
@@ -7045,7 +7199,11 @@ struct obj *obj;
 		break;
 
 		case WAND_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a wand. Color: %s. Material: %s. Appearance: %s. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -7124,7 +7282,11 @@ struct obj *obj;
 			case WAN_CREATE_FAMILIAR:
 				pline("Zapping this wand summons a tame monster."); break;
 			case WAN_BAD_EFFECT:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This wand will subject you to a random bad effect if it is zapped."); break;
+#else
 				pline("This wand will subject you to a random bad effect if it is zapped. It doesn't matter WHO zaps it, it's always you who will suffer from its effect. Think that's unfair? Well, suck it up, this game was never designed to be fair in the first place!"); break;
+#endif
 			case WAN_SUMMON_UNDEAD:
 				pline("A wand that summons some undead monsters if it is zapped."); break;
 			case WAN_FEAR:
@@ -7160,7 +7322,11 @@ struct obj *obj;
 			case WAN_MUTATION:
 				pline("Zapping this wand will add mutations if the invisible beam hits a monster. Hitting yourself or an item will polymorph it."); break;
 			case WAN_TELEPORTATION:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Zap monsters, objects or yourself with this to teleport them. On no-teleport levels you can still teleport monsters away by zapping them."); break;
+#else
 				pline("This wand can be zapped at monsters and objects to teleport them to a random empty location on the current dungeon level. Zapping yourself is also possible, but only if you're not on a no-teleport level, so in the case of doubt don't zap yourself, but zap the monster attacking you!"); break;
+#endif
 			case WAN_BANISHMENT:
 				pline("A very powerful wand that banishes monsters to a random dungeon level. You may also zap it at yourself, maybe for getting away from a dangerous opponent."); break;
 			case WAN_CREATE_HORDE:
@@ -7176,13 +7342,21 @@ struct obj *obj;
 			case WAN_WISHING:
 				pline("Probably the most powerful wand in existence, this one allows you to wish for an object every time you zap it. However, it can be recharged at most once."); break;
 			case WAN_ACQUIREMENT:
+#ifdef PHANTOM_CRASH_BUG
+				pline("Can only be recharged once, and allows you to wish for an object class."); break;
+#else
 				pline("A weaker version of the wand of wishing, this wand allows you to wish for an object class. What you receive exactly is determined randomly, and you can't recharge this wand if it has already been recharged one or more times."); break;
+#endif
 			case WAN_CLONE_MONSTER:
 				pline("Zapping this wand at monsters will create a duplicate of that monster. You can also zap yourself, but unless you're polymorphed into a monster it probably won't work."); break;
 			case WAN_CHARGING:
 				pline("A wand that allows you to charge an object if you zap it. Beware, since this wand is so powerful you can't charge it more than once (but you can use it to charge itself if it hasn't been recharged yet)."); break;
 			case WAN_DIGGING:
+#ifdef PHANTOM_CRASH_BUG
+				pline("You can zap walls and other obstacles with this to remove them. It creates hard engravings too, engraving up to 50 characters in a single turn."); break;
+#else
 				pline("Zapping this wand in a direction will try to dig open some walls and other obstacles that are in the way. It can also be used for engraving with good quality, and it can engrave up to 50 characters in a single turn."); break;
+#endif
 			case WAN_MAGIC_MISSILE:
 				pline("This wand can be used to blast the shit out of your enemies by sending a magical ray at them."); break;
 			case WAN_FIRE:
@@ -7261,7 +7435,11 @@ struct obj *obj;
 		break;
 
 		case GEM_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a gem. Color: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -7384,13 +7562,25 @@ struct obj *obj;
 			case VOLCANIC_GLASS_FRAGMENT:
 				pline("This is an obsidian designed to be fired with a sling."); break;
 			case STARLIGHTSTONE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("It's so heavy that it probably overburdens you, and if you can't get rid of it quickly then you're doomed."); break;
+#else
 				pline("You simply don't want to have this stone in your inventory, but considering you're looking at its description you apparently do have one... It's so heavy that it probably overburdens you, and if you can't get rid of it quickly then you're doomed."); break;
+#endif
 			case LOADSTONE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("A very heavy stone that is usually generated cursed. As long as it is cursed, you can't drop it."); break;
+#else
 				pline("A very heavy stone that is usually generated cursed. As long as it is cursed, you can't drop it. Trying to pick one up will ignore all restrictions that would usually prevent you from picking up an item, so be careful!"); break;
+#endif
 			case TOUCHSTONE:
 				pline("Rubbing gems on this stone may allow you to find out more about them."); break;
 			case SALT_CHUNK:
+#ifdef PHANTOM_CRASH_BUG
+				pline("The only thing you can do with it is to dip it into potions, and maybe you get a potion of salt water which is also next to useless."); break;
+#else
 				pline("A very useless gray stone that has been added to the game just to re-obscure the identification of actually useful gray stones. The only thing you can do with it is to dip it into potions, and maybe you get a potion of salt water which is also next to useless."); break;
+#endif
 			case WHETSTONE:
 				pline("This item is meant to be used in conjunction with things that can be sharpened, by rubbing them on it. However, it requires you to be near a source of water."); break;
 			case MANASTONE:
@@ -7400,7 +7590,11 @@ struct obj *obj;
 			case STONE_OF_MAGIC_RESISTANCE:
 				pline("Slotless magic resistance can be obtained by having this stone in your inventory. Beware: if the stone is cursed, you will take double damage from everything!"); break;
 			case LOADBOULDER:
+#ifdef PHANTOM_CRASH_BUG
+				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it. Giants can lift it with no problems though."); break;
+#else
 				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it; if you try to pick it up, you will always do so even if it would overburden you! It's okay to pick one up if you are a giant, though."); break;
+#endif
 			case FLINT:
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
 			case SMALL_PIECE_OF_UNREFINED_MITHR:
@@ -7422,7 +7616,11 @@ struct obj *obj;
 		 	case MEMORY_LOSS_STONE:
 				pline("A stone that curses itself and causes low local memory. This message should never be displayed, yet somehow it is?!"); break;
 		 	case INVENTORY_LOSS_STONE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("A stone that curses itself and causes the memory used for displaying an inventory window to run out. Message shortened because of the phantom crash bug even though it cannot be displayed anyway."); break;
+#else
 				pline("A stone that curses itself and causes the memory used for displaying an inventory window to run out. You cannot view this message in-game because you can't open your inventory while having this stone in there, so you gotta be peeking at the source! --Amy"); break;
+#endif
 		 	case BLACKY_STONE:
 				pline("A stone that curses itself and causes Blacky to close in on you with his NG walls."); break;
 		 	case MENU_BUG_STONE:
@@ -7500,7 +7698,11 @@ struct obj *obj;
 		 	case STAIRSTRAP_STONE:
 				pline("A stone that curses itself and causes stairs to be always trapped."); break;
 			case UNINFORMATION_STONE:
+#ifdef PHANTOM_CRASH_BUG
+				pline("A stone that curses itself and causes insufficient amounts of information. You cannot be reading this message."); break;
+#else
 				pline("A stone that curses itself and causes insufficient amounts of information. This message should never appear on the screen because you can only see it if the stone is in your inventory, and the stone prevents this kind of message from being displayed!"); break;
+#endif
 
 			case STONE_OF_INTRINSIC_LOSS:
 				pline("A stone that curses itself and causes intrinsic loss."); break;
@@ -7556,7 +7758,11 @@ struct obj *obj;
 		break;
 
 		case ROCK_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+#else
 		pline("%s - This is a boulder or statue. Color: %s. Material: %s. Appearance: %s. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -7573,7 +7779,11 @@ struct obj *obj;
 		break;
 
 		case BALL_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+#else
 		pline("%s - This is an iron ball. Color: %s. Material: %s. Appearance: %s. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -7620,7 +7830,11 @@ struct obj *obj;
 		break;
 
 		case CHAIN_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is an iron chain. Color: %s. Material: %s. Appearance: %s. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
@@ -7665,7 +7879,11 @@ struct obj *obj;
 		break;
 
 		case VENOM_CLASS:
+#ifdef PHANTOM_CRASH_BUG
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#else
 		pline("%s - This is a splash of venom. Color: %s. Material: %s. Appearance: %s. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+#endif
 		if (!nn) pline("Unfortunately you don't know more about it.");
 		else { switch (obj->otyp) {
 
