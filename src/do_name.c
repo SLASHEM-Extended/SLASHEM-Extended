@@ -4232,7 +4232,7 @@ static const char * const bogusmons[] = {
 	"Causer of Hurricanes",
 	"Armageddon Mage",
 	"Thundering Earthshaker",
-	"Tal Rascha", "_Blood Raven", "B-a-a-l", /* Diablo 2 */
+	"Tal Rascha", "Blood Raven", "B-a-a-l", /* Diablo 2 */
 
 	"octo", "enraged diggle", "arch diggle", "garg", "poison slug", "dopefish", "Borg drone",
 
@@ -4256,7 +4256,7 @@ static const char * const bogusmons[] = {
 	"Mizar",
 	"Benetnash",
 	"Polaris",
-	"Sol", "_Terra", "_Luna",
+	"Sol", "Terra", "Luna",
 
 	"Mercury",
 	"Venus",
@@ -4267,7 +4267,7 @@ static const char * const bogusmons[] = {
 	"Neptune",
 	"Pluto",
 	"Moon",
-	"_Selene", "Helios", "_Eos",
+	"Selene", "Helios", "Eos",
 
 	"Kageman",
 	"Sonicblastman",
@@ -4289,7 +4289,7 @@ static const char * const bogusmons[] = {
 	"Ryujin Youth",	"Ryujin Maiden",
 	"Kamiko",
 	"Eternal Youth",	"Eternal Maiden",
-	"_Umbrellarina Madeline", "_Medium Deborah", "_Crueltrainer Cindy",
+	"Umbrellarina Madeline", "Medium Deborah", "Crueltrainer Cindy",
 
 	"Arrow Pierced",
 	"Possessed",
