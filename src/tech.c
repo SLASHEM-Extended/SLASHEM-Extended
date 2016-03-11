@@ -2413,8 +2413,8 @@ int tech_no;
 
 				{
 			      /*maybe_tameX(mtmp);*/
-				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 				pline("Gotcha! %s was caught!", mon_nam(mtmp));
+				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 				caught++;
 				t_timeout = rnz(1000);
 				}
@@ -2439,8 +2439,8 @@ int tech_no;
 				else if (rnd(100) < catchrate) pline("Shit! It was so close too!");
 				else {
 				      /*maybe_tameX(mtmp);*/
-					(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 					pline("Gotcha! %s was caught!", mon_nam(mtmp));
+					(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 					caught++;
 					t_timeout = rnz(1000);
 
@@ -2533,8 +2533,8 @@ int tech_no;
 
 				if ( humanoid(mtmp3->data) || mtmp3->data->mlet == S_HUMAN) {
 			      /*maybe_tameX(mtmp3);*/
-				(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 				pline("%s is charmed, and wants to be your friend!", mon_nam(mtmp3));
+				(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 				if (techlev(tech_no) < rnd(100)) caughtX++;
 				t_timeout = rnz(2000);
 				}
