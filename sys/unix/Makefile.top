@@ -139,7 +139,7 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev baalz-??.lev bigrm-?.lev castle-?.lev fakewi
 	mking-??.lev eking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
 	mintn-?.lev oracle.lev orcus-?.lev sanct-?.lev soko?-?.lev \
 	tower?.lev valley-?.lev wizard?.lev ghbgr-?.lev ghbgr-??.lev \
-	astral.lev air.lev earth.lev fire.lev water.lev \
+	astral.lev air.lev earth.lev fire.lev water.lev eking-?.lev \
 	esheo-?.lev hsheo-?.lev ???-?.lev mazes-?.lev mazes-??.lev \
 	emtemple.lev hmtemple.lev ecav2.lev hcav2.lev efrnk.lev hfrnk.lev \
 	etomb.lev htomb.lev espiders.lev hspiders.lev esea.lev hsea.lev \
