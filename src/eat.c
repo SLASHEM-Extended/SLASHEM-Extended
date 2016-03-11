@@ -4403,7 +4403,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		/* Let's throw metallivores a bone here, considering most metal items weigh less now. --Amy
 		   also lithivores, which have to eat low-weight rocks and gems. */
 
-		if (otmp->oclass != COIN_CLASS) {
+		if (otmp->oclass != COIN_CLASS && (u.uhunger < 2500) ) {
 			if (basenutrit && basenutrit < 500) {basenutrit *= 3;}
 			if (basenutrit && basenutrit < 10) {basenutrit = 10;}
 			if (basenutrit < 3) {basenutrit = 3;}
@@ -4610,8 +4610,8 @@ STATIC_OVL int
 bite()
 {
 	int vampirenutrition = 0;
-	if (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) vampirenutrition += rn2(6);
-	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) vampirenutrition += rn2(3);
+	if ( (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(6);
+	if ( (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(3);
 
 	if(victual.canchoke && u.uhunger >= 5000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);
