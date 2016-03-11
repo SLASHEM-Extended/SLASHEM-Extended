@@ -528,7 +528,7 @@ typedef unsigned char	uchar;
 #ifdef PUBLIC_SERVER
 #define DUMP_FN "/dgldir/userdata/%n/slex/dumplog/%d.txt"
 #else
-#define DUMP_FN "/tmp/dump_%n_%d.txt"    /* Fixed dumpfile name */
+#define DUMP_FN "dump_%n_%d.txt"    /* Fixed dumpfile name */
 #endif
 
 /* Some public servers have a bug that I call "phantom crash bug". It is most certainly caused by a buffer size being
