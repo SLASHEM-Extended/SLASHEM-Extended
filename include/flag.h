@@ -26,6 +26,7 @@ struct flag {
 	boolean  autoquiver;	/* Automatically fill quiver */
 
 	boolean  bash_reminder;	/* remind player about bashing with a launcher or non-weapon */
+	boolean  etimed_autosave;	/* automatically save state every 100 turns to ward off phantom crash bugs --Amy */
 
 	boolean  beginner;
 #ifdef MAIL
@@ -227,7 +228,7 @@ struct instance_flags {
 	boolean  menu_tab_sep;	/* Use tabs to separate option menu fields */
 	boolean  menu_requested; /* Flag for overloaded use of 'm' prefix
 				  * on some non-move commands */
-	int bones;
+	boolean bones;
 	boolean use_menu_glyphs;
 	uchar num_pad_mode;
 	int	menu_headings;	/* ATR for menu headings */
