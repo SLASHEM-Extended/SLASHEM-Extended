@@ -251,12 +251,15 @@ static struct Bool_Opt
 	{"tech_description", &flags.tech_description, TRUE, SET_IN_GAME},
 
 	{"tiled_map",     &iflags.wc_tiled_map, PREFER_TILED, DISP_IN_GAME},	/*WC*/
-	{"time", &flags.time, FALSE, SET_IN_GAME},
+	{"time", &flags.time, TRUE, SET_IN_GAME},
 #ifdef TIMED_DELAY
 	{"timed_delay", &flags.nap, TRUE, SET_IN_GAME},
 #else
 	{"timed_delay", (boolean *)0, FALSE, SET_IN_GAME},
 #endif
+
+	{"timed_autosave", &flags.etimed_autosave, TRUE, SET_IN_GAME},
+
 	{"tombstone",&flags.tombstone, TRUE, SET_IN_GAME},
 	{"toptenwin",&flags.toptenwin, FALSE, SET_IN_GAME},
 	{"travel", &iflags.travelcmd, TRUE, SET_IN_GAME},
@@ -2804,7 +2807,6 @@ goodfruit:
 #ifdef SHOW_WEIGHT
 			 || (boolopt[i].addr) == &flags.showweight
 #endif
-			 || (boolopt[i].addr) == &flags.bash_reminder
 			 || (boolopt[i].addr) == &flags.showmc
 			 || (boolopt[i].addr) == &flags.showmovement
 			 || (boolopt[i].addr) == &flags.showlongstats
