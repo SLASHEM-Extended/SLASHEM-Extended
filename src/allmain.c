@@ -2325,6 +2325,12 @@ moveloop()
 	    display_nhwindow(WIN_MAP, FALSE);
 	}
 
+	/* Autosave option by Amy. While this does not actually prevent phantom crash bugs and similar crap,
+	 * it at least means you'll get thrown back at most 100 turns if it does crash. */
+#ifdef INSURANCE
+	if (flags.etimed_autosave && (moves > 1) && (moves % 100 == 0) ) save_currentstate();
+#endif
+
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
 		/* this replaces the code in muse.c that always caused segfaults --Amy */
 
