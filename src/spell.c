@@ -844,30 +844,30 @@ int spell;
     case 0:
     case 1:
     case 2:
-    case 3: make_confused(duration, FALSE);			/* 40% */
+    case 3: make_confused(HConfusion + duration, FALSE);			/* 40% */
 	    break;
     case 4:
     case 5:
-    case 6: make_confused(2L * duration / 3L, FALSE);		/* 30% */
-	    make_stunned(duration / 3L, FALSE);
+    case 6: make_confused(HConfusion + (2L * duration / 3L), FALSE);		/* 30% */
+	    make_stunned(HStun + (duration / 3L), FALSE);
 	    break;
     case 7:
-    case 8: make_stunned(2L * duration / 3L, FALSE);		/* 20% */
-	    make_confused(duration / 3L, FALSE);
+    case 8: make_stunned(HStun + (2L * duration / 3L), FALSE);		/* 20% */
+	    make_confused(HConfusion + (duration / 3L), FALSE);
 	    break;
-    case 9: make_stunned(duration, FALSE);			/* 10% */
+    case 9: make_stunned(HStun + duration, FALSE);			/* 10% */
 	    break;
-    case 10: make_numbed(duration, FALSE);			/* 10% */
+    case 10: make_numbed(HNumbed + duration, FALSE);			/* 10% */
 	    break;
-    case 11: make_frozen(duration, FALSE);			/* 10% */
+    case 11: make_frozen(HFrozen + duration, FALSE);			/* 10% */
 	    break;
-    case 12: make_burned(duration, FALSE);			/* 10% */
+    case 12: make_burned(HBurned + duration, FALSE);			/* 10% */
 	    break;
-    case 13: make_feared(duration, FALSE);			/* 10% */
+    case 13: make_feared(HFeared + duration, FALSE);			/* 10% */
 	    break;
-    case 14: make_blinded(duration, FALSE);			/* 10% */
+    case 14: make_blinded(Blinded + duration, FALSE);			/* 10% */
 	    break;
-    case 15: make_hallucinated(duration, FALSE, 0L);			/* 10% */
+    case 15: make_hallucinated(HHallucination + duration, FALSE, 0L);			/* 10% */
 	    break;
     }
     return;
