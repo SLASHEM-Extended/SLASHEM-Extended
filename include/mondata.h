@@ -79,14 +79,14 @@
 #define has_head(ptr)		(((ptr)->mflags1 & M1_NOHEAD) == 0L)
 #define has_horns(ptr)		(num_horns(ptr) > 0)
 #define is_whirly(ptr)		((ptr)->mlet == S_VORTEX || \
-				 (ptr) == &mons[PM_AIR_ELEMENTAL] || (ptr) == &mons[PM_GREATER_AIR_ELEMENTAL] || (ptr) == &mons[PM_PETTY_AIR_ELEMENTAL])
+				 (ptr) == &mons[PM_AIR_ELEMENTAL] || (ptr) == &mons[PM_GREATER_AIR_ELEMENTAL] || (ptr) == &mons[PM_PETTY_AIR_ELEMENTAL] || (ptr) == &mons[PM_SHAPELESS_AIR_ELEMENTAL] || (ptr) == &mons[PM_TIME_TEMPEST] || (ptr) == &mons[PM_SKY_CRUISER] || (ptr) == &mons[PM_AERIAL_SERVENT] || (ptr) == &mons[PM_ELDER_AIR_ELEMENTAL] || (ptr) == &mons[PM_WIND_ELEMENTAL] || (ptr) == &mons[PM_VILLAGE_FOOL] || (ptr) == &mons[PM_MIST_MAN] || (ptr) == &mons[PM_DUST_ELEMENTAL] || (ptr) == &mons[PM_EGO_DUST_ELEMENTAL] || (ptr) == &mons[PM_STRIP_MINE] || (ptr) == &mons[PM_THEMATIC_AIR_ELEMENTAL] || (ptr) == &mons[PM_HURRICON] || (ptr) == &mons[PM_RUMBLER])
 #define is_fire(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || (ptr) == &mons[PM_FIRE_GOLEM] || \
-				 (ptr) == &mons[PM_FIRE_ELEMENTAL] || (ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL])
+				 (ptr) == &mons[PM_FIRE_ELEMENTAL] || (ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 #define flaming(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || \
 				 (ptr) == &mons[PM_FLAMING_SPHERE] || \
 				 (ptr) == &mons[PM_FIRE_ELEMENTAL] || \
 				 (ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL] || \
-				 (ptr) == &mons[PM_CHARMANDER] || (ptr) == &mons[PM_CHARMELEON] || (ptr) == &mons[PM_FIRE_GOLEM] || (ptr) == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_SALAMANDER])
+				 (ptr) == &mons[PM_CHARMANDER] || (ptr) == &mons[PM_CHARMELEON] || (ptr) == &mons[PM_FIRE_GOLEM] || (ptr) == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_SALAMANDER] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 #define is_silent(ptr)		((ptr)->msound == MS_SILENT)
 #define unsolid(ptr)		(((ptr)->mflags1 & M1_UNSOLID) != 0L)
 #define mindless(ptr)		(((ptr)->mflags1 & M1_MINDLESS) != 0L)
@@ -119,22 +119,7 @@
 #define is_human(ptr)		(((ptr)->mflags2 & M2_HUMAN) != 0L)
 #define is_hobbit(ptr)		(((ptr)->mflags2 & M2_HOBBIT) != 0L)
 #define your_race(ptr)		(((ptr)->mflags2 & urace.selfmask) != 0L)
-#define is_bat(ptr)		((ptr) == &mons[PM_BAT] || \
-				 (ptr) == &mons[PM_GIANT_BAT] || \
-				 (ptr) == &mons[PM_LARGE_BAT] || \
-				 (ptr) == &mons[PM_ZUBAT] || (ptr) == &mons[PM_GOLBAT] || (ptr) == &mons[PM_CROBAT] || \
-				 (ptr) == &mons[PM_HUGE_BAT] || \
-				 (ptr) == &mons[PM_ATHOL] || \
-				 (ptr) == &mons[PM_RHUMBAT] || \
-				 (ptr) == &mons[PM_PETTY_RHUMBAT] || \
-				 (ptr) == &mons[PM_HELLBAT] || \
-				 (ptr) == &mons[PM_MONGBAT] || \
-				 (ptr) == &mons[PM_MOBAT] || \
-				 (ptr) == &mons[PM_HARPY] || \
-				 (ptr) == &mons[PM_BYAKHEE] || \
-				 (ptr) == &mons[PM_GHOST_BAT] || \
-				 (ptr) == &mons[PM_NIGHTGAUNT] || \
-				 (ptr) == &mons[PM_VAMPIRE_BAT])
+#define is_bat(ptr)		((ptr) == &mons[PM_BAT] || (ptr) == &mons[PM_BATMAN] || (ptr) == &mons[PM_GIANT_BAT] || (ptr) == &mons[PM_FAT_BAT] || (ptr) == &mons[PM_FRUIT_BAT] || (ptr) == &mons[PM_HIDDEN_BAT] || (ptr) == &mons[PM_HOUSEBAT] || (ptr) == &mons[PM_ANCESTRAL_BAT] || (ptr) == &mons[PM_GIANT_TAN_BAT] || (ptr) == &mons[PM_LARGE_BAT] || (ptr) == &mons[PM_GIANT_FORCE_BAT] || (ptr) == &mons[PM_ZUBAT] || (ptr) == &mons[PM_GOLBAT] || (ptr) == &mons[PM_CROBAT] || (ptr) == &mons[PM_HUGE_BAT] || (ptr) == &mons[PM_UNDEAD_BAT] || (ptr) == &mons[PM_ATHOL] || (ptr) == &mons[PM_UNDEAD_SWARM_BAT] || (ptr) == &mons[PM_RHUMBAT] || (ptr) == &mons[PM_MINX] || (ptr) == &mons[PM_TATTERED_LURKER] || (ptr) == &mons[PM_PETTY_RHUMBAT] || (ptr) == &mons[PM_RAVENOUS_BAT] || (ptr) == &mons[PM_HELLBAT] || (ptr) == &mons[PM_DESERT_WING] || (ptr) == &mons[PM_DRIVER_BAT] || (ptr) == &mons[PM_MONGBAT] || (ptr) == &mons[PM_DANGEROUS_VAMPIRE_BAT] || (ptr) == &mons[PM_MOBAT] || (ptr) == &mons[PM_MOHAT] || (ptr) == &mons[PM_BLINK] || (ptr) == &mons[PM_HARPY] || (ptr) == &mons[PM_GIANT_BROWN_BAT] || (ptr) == &mons[PM_SONICBAT] || (ptr) == &mons[PM_BYAKHEE] || (ptr) == &mons[PM_MEGABAT] || (ptr) == &mons[PM_GLOOMBAT] || (ptr) == &mons[PM_GHOST_BAT] || (ptr) == &mons[PM_PLAGUE_BAT] || (ptr) == &mons[PM_FELWING] || (ptr) == &mons[PM_NIGHTGAUNT] || (ptr) == &mons[PM_BLACK_BAT] || (ptr) == &mons[PM_BAT_SWARM] || (ptr) == &mons[PM_JUBJUB_BAT] || (ptr) == &mons[PM_VAMPIRE_BAT] || (ptr) == &mons[PM_BLUE_DRAGON_BAT] || (ptr) == &mons[PM_FIRE_WING] || (ptr) == &mons[PM_RED_DRAGON_BAT] || (ptr) == &mons[PM_SOLID_BAT] || (ptr) == &mons[PM_DISENCHANTER_BAT] || (ptr) == &mons[PM_DOOMBAT])
 #define is_bird(ptr)		((ptr)->mlet == S_BAT && !is_bat(ptr))
 #define is_giant(ptr)		(((ptr)->mflags2 & M2_GIANT) != 0L)
 #define is_golem(ptr)		((ptr)->mlet == S_GOLEM)
@@ -259,7 +244,7 @@
 /*	[note: the light ranges above were reduced to 1 for performance...] */
 /*  WAC increased to 3 and 2?*/
 #define likes_lava(ptr)		(ptr == &mons[PM_FIRE_ELEMENTAL] || ptr == &mons[PM_GREATER_FIRE_ELEMENTAL] || \
-				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD])
+				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 #define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LIGHT] || \
 				 (ptr) == &mons[PM_CHEATING_BLACK_LIGHT] || \
@@ -281,29 +266,8 @@
 
 
 #ifdef CONVICT
-# define is_rat(ptr)		((ptr) == &mons[PM_SEWER_RAT] || \
-				 (ptr) == &mons[PM_EVASIVE_SEWER_RAT] || \
-				 (ptr) == &mons[PM_VISOR_SEWER_RAT] || \
-				 (ptr) == &mons[PM_GIANT_RAT] || \
-				 (ptr) == &mons[PM_GIANT_GARBAGE_RAT] || \
-				 (ptr) == &mons[PM_PACK_RAT] || \
-				 (ptr) == &mons[PM_PACKER_RAT] || \
-				 (ptr) == &mons[PM_RABBIT] || \
-				 (ptr) == &mons[PM_PACK_RABBIT] || \
-				 (ptr) == &mons[PM_RABID_RABBIT] || \
-				 (ptr) == &mons[PM_RABID_RAT] || \
-				 (ptr) == &mons[PM_HELLRAT] || \
-				 (ptr) == &mons[PM_DOUR_RAT] || \
-				 (ptr) == &mons[PM_BLACK_RAT] || \
-				 (ptr) == &mons[PM_DISEASED_RAT] || \
-				 (ptr) == &mons[PM_VAPOR_RAT] || \
-				 (ptr) == &mons[PM_GARGANTUAN_RAT] || \
-				 (ptr) == &mons[PM_CHAOS_RAT] || \
-				 (ptr) == &mons[PM_RATTATA] || (ptr) == &mons[PM_RATICATE] || \
-				 (ptr) == &mons[PM_PIKACHU] || (ptr) == &mons[PM_RAICHU] || \
-				 (ptr) == &mons[PM_ENORMOUS_RAT] || \
-				 (ptr) == &mons[PM_EEVEE] || /* actually a hare... */\
-				 (ptr) == &mons[PM_RODENT_OF_UNUSUAL_SIZE])
+# define is_rat(ptr)		((ptr) == &mons[PM_SEWER_RAT] || (ptr) == &mons[PM_EVASIVE_SEWER_RAT] || (ptr) == &mons[PM_VISOR_SEWER_RAT] || (ptr) == &mons[PM_GIANT_RAT] || (ptr) == &mons[PM_GIANT_GARBAGE_RAT] || (ptr) == &mons[PM_PACK_RAT] || (ptr) == &mons[PM_PACKER_RAT] || (ptr) == &mons[PM_RABBIT] || (ptr) == &mons[PM_PACK_RABBIT] || (ptr) == &mons[PM_RABID_RABBIT] || (ptr) == &mons[PM_RABID_RAT] || (ptr) == &mons[PM_HELLRAT] || (ptr) == &mons[PM_DOUR_RAT] || (ptr) == &mons[PM_BLACK_RAT] || (ptr) == &mons[PM_DISEASED_RAT] || (ptr) == &mons[PM_VAPOR_RAT] || (ptr) == &mons[PM_GARGANTUAN_RAT] || (ptr) == &mons[PM_CHAOS_RAT] || (ptr) == &mons[PM_RATTATA] || (ptr) == &mons[PM_RATICATE] || (ptr) == &mons[PM_PIKACHU] || (ptr) == &mons[PM_RAICHU] || (ptr) == &mons[PM_ENORMOUS_RAT] || (ptr) == &mons[PM_EEVEE] || /* actually a hare... */\
+				 (ptr) == &mons[PM_RODENT_OF_UNUSUAL_SIZE] || (ptr) == &mons[PM_SAND_RAT] || (ptr) == &mons[PM_WILD_RABBIT] || (ptr) == &mons[PM_QUILL_RAT] || (ptr) == &mons[PM_PRICK_RAT] || (ptr) == &mons[PM_BUS_DRIVER] || (ptr) == &mons[PM_RAVENOUS_RAT] || (ptr) == &mons[PM_SNOW_RABBIT] || (ptr) == &mons[PM_PETIT_PSEUDO_RAT] || (ptr) == &mons[PM_SPIKE_FIEND] || (ptr) == &mons[PM_QUILL_BEAR] || (ptr) == &mons[PM_PRICK_BEAR] || (ptr) == &mons[PM_PSEUDO_RAT] || (ptr) == &mons[PM_ELECTRIC_RAT] || (ptr) == &mons[PM_NORMAL_PSEUDO_RAT] || (ptr) == &mons[PM_THORN_BEAST] || (ptr) == &mons[PM_SPIKE_GIANT] || (ptr) == &mons[PM_SPIKE_URCHIN] || (ptr) == &mons[PM_FERAL_RAT] || (ptr) == &mons[PM_GIANT_WHITE_RAT] || (ptr) == &mons[PM_MOON_RABBIT] || (ptr) == &mons[PM_FIRE_RAT] || (ptr) == &mons[PM_LARGE_PSEUDO_RAT] || (ptr) == &mons[PM_RAZOR_SPINE] || (ptr) == &mons[PM_BLADE_BACK] || (ptr) == &mons[PM_THORN_BRUTE] || (ptr) == &mons[PM_GREAT_GIANT_RAT] || (ptr) == &mons[PM_EASTERN_RABBIT] || (ptr) == &mons[PM_EASTERN_MOON_RABBIT] || (ptr) == &mons[PM_RAT_THING] || (ptr) == &mons[PM_UNDEAD_RAT] || (ptr) == &mons[PM_RAZOR_BEAST] || (ptr) == &mons[PM_BLADE_URCHIN] || (ptr) == &mons[PM_DESERT_PRICK] || (ptr) == &mons[PM_GIANT_GREY_RAT] || (ptr) == &mons[PM_RAT_SWARM] || (ptr) == &mons[PM_JUNGLE_URCHIN] || (ptr) == &mons[PM_SHRUB_THORN] || (ptr) == &mons[PM_GIANT_URCHIN] || (ptr) == &mons[PM_THORN_RAT] || (ptr) == &mons[PM_SNIPER_FIEND] || (ptr) == &mons[PM_PRICK_MONSTER] || (ptr) == &mons[PM_BIMMELING_RAT] || (ptr) == &mons[PM_AMERICAN_BLACK_RAT])
 #endif /* CONVICT */
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
