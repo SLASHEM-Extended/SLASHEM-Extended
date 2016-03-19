@@ -3318,7 +3318,7 @@ register struct attack *mattk;
 
 	if(mdef->data->msize >= MZ_HUGE) return 0;
 
-	if(u.uhunger < 2000 && !u.uswallow) {
+	if(u.uhunger < 4000 && !u.uswallow) {
 	    for (otmp = mdef->minvent; otmp; otmp = otmp->nobj)
 		(void) snuff_lit(otmp);
 
