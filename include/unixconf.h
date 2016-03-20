@@ -120,7 +120,9 @@
  * FILE_AREA_DOC	For human-readable documentation
  */
 
-/* #define FILE_AREAS */		/* Use file areas */
+#ifdef PUBLIC_SERVER
+#define FILE_AREAS 		/* Use file areas */
+#endif
 
 #ifdef FILE_AREAS
 
@@ -130,24 +132,38 @@
  * many systems still seem to use it.
  */
 
-/* #define FILE_AREA_VAR	"/var/lib/games/slashem/" */
-/* #define FILE_AREA_SAVE	"/var/lib/games/slashem/save/" */
-/* #define FILE_AREA_SHARE	"/usr/lib/games/slashem/" */
-/* #define FILE_AREA_UNSHARE	"/usr/lib/games/slashem/" */
-/* #define FILE_AREA_DOC	"/usr/doc/slashem/" */
+/* #define FILE_AREA_VAR	"/var/lib/games/slex/" */
+/* #define FILE_AREA_SAVE	"/var/lib/games/slex/save/" */
+/* #define FILE_AREA_SHARE	"/usr/lib/games/slex/" */
+/* #define FILE_AREA_UNSHARE	"/usr/lib/games/slex/" */
+/* #define FILE_AREA_DOC	"/usr/doc/slex/" */
 
 /*
  * File areas compatible with FHS 2.0
  */
 
-#define FILE_AREA_VAR		"/var/games/slashem/"
-#define FILE_AREA_SAVE		"/var/games/slashem/save/"
-#define FILE_AREA_SHARE		"/usr/share/games/slashem/"
-#define FILE_AREA_UNSHARE	"/usr/lib/games/slashem/"
-#define FILE_AREA_DOC		"/usr/share/doc/slashem/"
+#ifdef PUBLIC_SERVER
+#define FILE_AREA_VAR		"/games/slex/slexdir/"
+#define FILE_AREA_SAVE		"/games/slex/slexdir/save/"
+#define FILE_AREA_SHARE		"/games/slex/slexdir/"
+#define FILE_AREA_UNSHARE	"/games/slex/slexdir/"
+#define FILE_AREA_DOC		"/games/slex/slexdir/"
+
+#define FILE_AREA_BONES		"/games/slex/slexdir/bones""
+#define FILE_AREA_LEVL		"/games/slex/slexdir/level/"
+
+#else /* PUBLIC_SERVER */
+
+#define FILE_AREA_VAR		"/var/games/slex/"
+#define FILE_AREA_SAVE		"/var/games/slex/save/"
+#define FILE_AREA_SHARE		"/usr/share/games/slex/"
+#define FILE_AREA_UNSHARE	"/usr/lib/games/slex/"
+#define FILE_AREA_DOC		"/usr/share/doc/slex/"
 
 #define FILE_AREA_BONES		FILE_AREA_VAR
 #define FILE_AREA_LEVL		FILE_AREA_VAR
+
+#endif /* PUBLIC_SERVER */
 
 #endif /* FILE_AREAS */
 
