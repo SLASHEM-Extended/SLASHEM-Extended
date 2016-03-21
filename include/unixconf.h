@@ -149,7 +149,7 @@
 #define FILE_AREA_UNSHARE	"/games/slex/slexdir/"
 #define FILE_AREA_DOC		"/games/slex/slexdir/"
 
-#define FILE_AREA_BONES		"/games/slex/slexdir/bones""
+#define FILE_AREA_BONES		"/games/slex/slexdir/bones/"
 #define FILE_AREA_LEVL		"/games/slex/slexdir/level/"
 
 #else /* PUBLIC_SERVER */
