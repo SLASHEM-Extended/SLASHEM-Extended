@@ -526,9 +526,7 @@ make_version()
 #endif
 #ifdef LIGHTSABERS
 			| (1L << 14)
-# ifdef D_SABER
 			| (1L << 15)
-# endif
 #endif
 		/* flag bits and/or other global variables (16..26) */
 #ifdef DISPLAY_LAYERS
@@ -885,15 +883,11 @@ static const char *build_opts[] = {
 		"timed wait for display effects",
 #endif
 #ifdef LIGHTSABERS
-# ifdef D_SABER
-		"lightsabers and dim lightsabers",
-# else
 		"lightsabers",
-# endif
 # ifdef JEDI
 		"Jedi",
 # endif
-#endif
+#endif /* LIGHTSABERS */
 #ifdef FIREARMS
 		"firearms",
 #endif

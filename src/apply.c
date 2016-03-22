@@ -3985,13 +3985,11 @@ doapply()
 		break;
 #ifdef LIGHTSABERS
 	case GREEN_LIGHTSABER:
-#ifdef D_SABER
   	case BLUE_LIGHTSABER:
 #if 0
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
 	case YELLOW_LIGHTSABER:
-#endif
 #endif
 	case RED_LIGHTSABER:
 	case LASER_SWATTER:

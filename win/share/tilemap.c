@@ -151,10 +151,6 @@ struct conditionals {
 	{ OBJ_GLYPH, TORCH, "blue lightsaber" },
 	{ OBJ_GLYPH, TORCH, "red lightsaber" },
 	{ OBJ_GLYPH, TORCH, "red double lightsaber" },
-#else
-#ifndef D_SABER
-	{ OBJ_GLYPH, GREEN_LIGHTSABER, "blue lightsaber" },
-#endif
 #endif
 
 #ifndef TOURIST

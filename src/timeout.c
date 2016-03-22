@@ -3706,13 +3706,11 @@ long timeout;
 			    whose, xname(obj));
 	    	}
 	    case GREEN_LIGHTSABER: 
-#ifdef D_SABER
 	    case BLUE_LIGHTSABER:
 #if 0
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
-#endif
 #endif
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
@@ -3868,13 +3866,11 @@ begin_burn(obj, already_lit)
 		    obj->age--; /* Double power usage */
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
-#ifdef D_SABER
 	    case BLUE_LIGHTSABER:
 #if 0
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
-#endif
 #endif
 	    case GREEN_LIGHTSABER:
 	    	turns = 1;

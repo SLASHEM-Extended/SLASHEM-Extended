@@ -761,12 +761,10 @@ static struct trobj GreenSaber[] = {
 	{ GREEN_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
-#ifdef D_SABER
 static struct trobj BlueSaber[] = {
 	{ BLUE_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
-#endif
 static struct trobj RedSaber[] = {
 	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
@@ -6854,20 +6852,12 @@ u_init()
 #ifdef JEDI
 	case PM_JEDI:
 		ini_inv(Jedi);
-#ifdef D_SABER
 		switch(rnd(3)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
 			default: break;
 		}
-#else
-		switch(rnd(2)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(GreenSaber); break;
-			default: break;
-		}
-#endif
 		if(!rn2(2)) ini_inv(Blindfold);
 		skill_init(Skill_J);
 		knows_class(WEAPON_CLASS);
@@ -8287,20 +8277,12 @@ u_init()
 
 	case 39:
 		ini_inv(Jedi);
-#ifdef D_SABER
 		switch(rnd(3)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
 			default: break;
 		}
-#else
-		switch(rnd(2)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(GreenSaber); break;
-			default: break;
-		}
-#endif
 		if(!rn2(2)) ini_inv(Blindfold);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
@@ -9443,20 +9425,12 @@ u_init()
 
 	case 39:
 		ini_inv(Jedi);
-#ifdef D_SABER
 		switch(rnd(3)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
 			default: break;
 		}
-#else
-		switch(rnd(2)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(GreenSaber); break;
-			default: break;
-		}
-#endif
 		if(!rn2(2)) ini_inv(Blindfold);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);

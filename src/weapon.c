@@ -380,13 +380,11 @@ struct monst *mon;
 
 #ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
-#ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=12; break;
 #if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(11);
@@ -445,13 +443,11 @@ struct monst *mon;
 
 #ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=9; break;
-#ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=8; break;
 #if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(9);
@@ -705,13 +701,11 @@ struct monst *mon;
 
 #ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
-#ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=12; break;
 #if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(11);
@@ -770,13 +764,11 @@ struct monst *mon;
 
 #ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=9; break;
-#ifdef D_SABER
 		case BLUE_LIGHTSABER:   tmp +=8; break;
 #if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 #endif
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(9);
@@ -1535,13 +1527,11 @@ static const NEARDATA short hwep[] = {
 	  LASER_SWATTER,
 #ifdef LIGHTSABERS
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
-#ifdef D_SABER
 	  BLUE_LIGHTSABER,
 #if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 #endif
 	  GREEN_LIGHTSABER,
 #endif
