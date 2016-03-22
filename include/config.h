@@ -572,7 +572,11 @@ typedef unsigned char	uchar;
  * missingno will not be very random at all; I recommend trying a value of 2000
  * and if that fixes the crash, leave it at that value. Only if the crash
  *reappears, consider going to 1000 or even 500. --Amy */
+#ifdef PUBLIC_SERVER
+#define MISSINGNORANGE 2000
+#else
 #define MISSINGNORANGE 10000
+#endif
 
 /* End of Section 5 */
 
