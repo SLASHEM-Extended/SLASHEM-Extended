@@ -2769,6 +2769,7 @@ struct obj *obj;
     if (Fumbling) --proficient;
     if (proficient > 3) proficient = 3;
     if (proficient < 0) proficient = 0;
+	if (Race_if(PM_LEVITATOR) && !proficient) proficient = 1;
 
     if (u.uswallow && attack(u.ustuck)) {
 	There("is not enough room to flick your bullwhip.");
@@ -2804,7 +2805,7 @@ struct obj *obj;
 	    if (otmp && proficient) {
 		You("wrap your bullwhip around %s on the %s.",
 		    an(singular(otmp, xname)), surface(u.ux, u.uy));
-		if (rnl(6) || pickup_object(otmp, 1L, TRUE) < 1)
+		if (rnl(6 - proficient) || pickup_object(otmp, 1L, TRUE) < 1)
 		    pline(msg_slipsfree);
 		return 1;
 	    }
@@ -2909,6 +2910,7 @@ struct obj *obj;
 
 		switch (rn2(proficient + 1)) {
 		case 2:
+		default:
 		    /* to floor near you */
 		    You("yank %s %s to the %s!", s_suffix(mon_nam(mtmp)),
 			onambuf, surface(u.ux, u.uy));
@@ -2952,14 +2954,6 @@ struct obj *obj;
 		    }
 		    otmp = hold_another_object(otmp, "You drop %s!",
 					       doname(otmp), (const char *)0);
-		    break;
-		default:
-		    /* to floor beneath mon */
-		    You("yank %s from %s %s!", the(onambuf),
-			s_suffix(mon_nam(mtmp)), mon_hand);
-		    obj_no_longer_held(otmp);
-		    place_object(otmp, mtmp->mx, mtmp->my);
-		    stackobj(otmp);
 		    break;
 		}
 	    } else {
@@ -3057,7 +3051,7 @@ use_pole (obj)
 	if (obj->otyp == FISHING_POLE) {
 	    fishing = is_pool(cc.x, cc.y);
 	    /* Try a random effect */
-	    switch (rnd(6))
+	    switch (Race_if(PM_LEVITATOR) ? (1 + rnd(4) ) : rnd(6))
 	    {
 		case 1:
 		    /* Snag yourself */
@@ -3280,6 +3274,9 @@ use_grapple (obj)
 	    free((genericptr_t)selected);
 	    destroy_nhwindow(tmpwin);
 	}
+
+	if (Race_if(PM_LEVITATOR) && (tohit < 0) ) tohit = rn2(4);
+	if (Race_if(PM_LEVITATOR) && (tohit > 3) ) tohit = rn2(4);
 
 	/* What did you hit? */
 	switch (tohit) {
@@ -3985,11 +3982,13 @@ doapply()
 		break;
 #ifdef LIGHTSABERS
 	case GREEN_LIGHTSABER:
+#ifdef D_SABER
   	case BLUE_LIGHTSABER:
 #if 0
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
 	case YELLOW_LIGHTSABER:
+#endif
 #endif
 	case RED_LIGHTSABER:
 	case LASER_SWATTER:

@@ -547,6 +547,7 @@ static const struct innate_tech
 
 	fen_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_DISARM, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_VANISH, 1},
@@ -2155,6 +2156,7 @@ int tech_no;
 		    if (roll > 3) roll = 3;
 		    switch (roll) {
 			case 2:
+			default:
 			    /* to floor near you */
 			    You("knock %s %s to the %s!",
 				s_suffix(mon_nam(mtmp)),
@@ -2204,18 +2206,6 @@ int tech_no;
 			    }
 			    obj = hold_another_object(obj, "You drop %s!",
 				    doname(obj), (const char *)0);
-			    break;
-			default:
-			    /* to floor beneath mon */
-			    You("knock %s from %s grasp!", the(xname(obj)),
-				    s_suffix(mon_nam(mtmp)));
-			    if (obj->otyp == CRYSKNIFE &&
-				    (!obj->oerodeproof || !rn2(10))) {
-				obj->otyp = WORM_TOOTH;
-				obj->oerodeproof = 0;
-			    }
-			    place_object(obj, mtmp->mx, mtmp->my);
-			    stackobj(obj);
 			    break;
 		    }
 		} else if (mtmp->mcanmove && !mtmp->msleeping)
