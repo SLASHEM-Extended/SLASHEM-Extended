@@ -1272,6 +1272,10 @@ moveloop()
 					otmpi->rknown = TRUE;
 					pline("You feel that you know more about the contents of your inventory...");
 				}
+				if (!rn2(2000) && Race_if(PM_WEAPON_CUBE) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
 				if (!rn2(1000) && Race_if(PM_CORTEX) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
 					pline("You feel that you know more about the contents of your inventory...");
