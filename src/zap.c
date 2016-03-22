@@ -6603,7 +6603,7 @@ register struct obj *obj;		   /* no texts here! */
 	obj->quan = (long) rn1(60, 7);
 	obj->owt = weight(obj);
 	obj->oclass = GEM_CLASS;
-	obj->known = /*FALSE*/TRUE;
+	obj->known = FALSE;
 	obj->onamelth = 0;		/* no names */
 	obj->oxlth = 0;			/* no extra data */
 	obj->oattached = OATTACHED_NOTHING;
