@@ -5630,7 +5630,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"kick", "kick something", dokick, !IFBURIED},
 	{"call", "call (name) a particular monster", ddocall, IFBURIED},
 	{"callold", "call (name) a particular monster (vanilla)", do_mname, IFBURIED},
-	{"wait", "rest one move while doing nothing", donull, IFBURIED},
+	{"wait", "rest one move while doing nothing", donull, IFBURIED, !AUTOCOMPLETE, "waiting"},
 	{"previous", "toggle through previously displayed game messages", doprev_message, IFBURIED},
 	{"open", "open a door", doopen, !IFBURIED},
 	{"pickup", "pick up things at the current location", dopickup, !IFBURIED},

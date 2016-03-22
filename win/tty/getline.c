@@ -223,10 +223,12 @@ ext_cmd_getlin_hook(base)
 	for (oindex = 0; extcmdlist[oindex].ef_txt != (char *)0; oindex++) {
 		if (!extcmdlist[oindex].autocomplete) continue;
 		if (!strncmpi(base, extcmdlist[oindex].ef_txt, strlen(base))) {
-			if (com_index == -1)	/* no matches yet */
+			if (com_index == -1) {	/* no matches yet */
 			    com_index = oindex;
-			else			/* more than 1 match */
+			} else if (strncmpi(extcmdlist[com_index].ef_txt, extcmdlist[oindex].ef_txt, strlen(extcmdlist[com_index].ef_txt) ) ) {
+				/* more than 1 match */
 			    return FALSE;
+			}
 		}
 	}
 	if (com_index >= 0) {
