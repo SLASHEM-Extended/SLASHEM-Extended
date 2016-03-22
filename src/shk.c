@@ -71,7 +71,6 @@ STATIC_DCL void FDECL(bill_box_content, (struct obj *, BOOLEAN_P, BOOLEAN_P,
 static boolean FDECL(rob_shop, (struct monst *));
 #endif
 
-#ifdef OTHER_SERVICES
 #define NOBOUND         (-1)    /* No lower/upper limit to charge       */
 static void NDECL(shk_other_services);
 static void FDECL(shk_identify, (char *, struct monst *));
@@ -84,7 +83,6 @@ static boolean FDECL(shk_obj_match, (struct obj *, struct monst *));
 /*static int FDECL(shk_class_match, (long class, struct monst *shkp));*/
 static boolean FDECL(shk_offer_price, (char *, long, struct monst *));
 static void FDECL(shk_smooth_charge, (int *, int, int));
-#endif
 
 #ifdef OVLB
 /*
@@ -1564,10 +1562,8 @@ proceed:
 #endif
 			pline(no_money, stashed_gold ? " seem to" : "");
 		 
-#ifdef OTHER_SERVICES
 /*		    else */
 			shk_other_services();
-#endif                
 		
 		} else if(ltmp) {
 		    pline("%s is after blood, not money!", Monnam(shkp));
@@ -1786,7 +1782,6 @@ proceed:
 	return(1);
 }
 
-#ifdef OTHER_SERVICES
 /*
 ** FUNCTION shk_other_services
 **
@@ -1924,7 +1919,6 @@ shk_other_services()
 	                break;
 	    }
 }
-#endif /* OTHER_SERVICES */
 
 #endif /*OVL0*/
 #ifdef OVL3
@@ -5141,7 +5135,6 @@ sasc_bug(struct obj *op, unsigned x){
 }
 #endif
 
-#ifdef OTHER_SERVICES
 static NEARDATA const char identify_types[] = { ALL_CLASSES, 0 };
 static NEARDATA const char weapon_types[] = { WEAPON_CLASS, TOOL_CLASS, 0 };
 static NEARDATA const char armor_types[] = { ARMOR_CLASS, 0 };
@@ -6045,7 +6038,6 @@ check_lower:
 	if (*pcharge < lower) *pcharge=lower;
 }
 
-#endif /* OTHER_SERVICES */
 
 
 #endif /* OVLB */

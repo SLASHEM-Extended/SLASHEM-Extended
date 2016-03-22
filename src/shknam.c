@@ -20,10 +20,8 @@ STATIC_DCL int  FDECL(shkinit, (const struct shclass *,struct mkroom *));
 STATIC_DCL void FDECL(stock_blkmar, 
 		  (const struct shclass *, struct mkroom *, int));
 #endif /* BLACKMARKET */
-#ifdef OTHER_SERVICES
 /* WAC init shk services */
 static void FDECL(init_shk_services, (struct monst *));
-#endif
 
 
 static const char * const shkliquors[] = {
@@ -542,10 +540,8 @@ struct mkroom	*sroom;
 	ESHK(shk)->visitct = 0;
 	ESHK(shk)->following = 0;
 	ESHK(shk)->billct = 0;
-#ifdef OTHER_SERVICES
 	/* WAC init services */
 	init_shk_services(shk);
-#endif
 
   shkmoney = 1000L + 30L*(long)rnd(100);	/* initial capital */
   						/* [CWC] Lets not create the money yet until we see if the
@@ -786,7 +782,6 @@ register int sh;
 }
 #endif /* BLACKMARKET */
 
-#ifdef OTHER_SERVICES
 
 static void
 init_shk_services(shk)
@@ -834,7 +829,6 @@ struct monst *shk;
 
 	return;
 }
-#endif
 
 #endif /* OVLB */
 #ifdef OVL0

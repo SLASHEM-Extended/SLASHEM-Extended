@@ -38,7 +38,6 @@ struct eshk {
 	int visitct;		/* nr of visits by most recent customer */
 	char customer[PL_NSIZ];	/* most recent customer */
 	char shknam[PL_NSIZ];
-#ifdef OTHER_SERVICES
 	long services;          /* Services offered */
 #define SHK_ID_BASIC    01L
 #define SHK_ID_PREMIUM  02L
@@ -47,7 +46,6 @@ struct eshk {
 #define SHK_SPECIAL_A   01000L
 #define SHK_SPECIAL_B   02000L
 #define SHK_SPECIAL_C   04000L
-#endif
 };
 
 #define ESHK(mon)	((struct eshk *)&(mon)->mextra[0])
@@ -55,7 +53,6 @@ struct eshk {
 #define NOTANGRY(mon)	((mon)->mpeaceful)
 #define ANGRY(mon)	(!NOTANGRY(mon))
 
-# ifdef OTHER_SERVICES
 #define SHK_NOMATCH     0       /* Shk !know this class of object       */
 #define SHK_MATCH       1       /* Shk is expert                        */
 #define SHK_GENERAL     2       /* Shk runs a general store             */
@@ -74,6 +71,5 @@ struct eshk {
                 SHK_GENERAL : \
          ((shtypes[ESHK(shkp)->shoptype-SHOPBASE].symb == class) ? \
                 SHK_MATCH : SHK_NOMATCH))
-# endif
 
 #endif /* ESHK_H */
