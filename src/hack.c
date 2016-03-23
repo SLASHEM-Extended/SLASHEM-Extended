@@ -1941,7 +1941,7 @@ domove()
 			return;
 			}
 		}
-		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) {
+		else if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) {
 		if (yn("There is a strong wind above the water. It seems dangerous. Really step there?") != 'y') {
 			nomul(0, 0);
 			flags.move = 0;
