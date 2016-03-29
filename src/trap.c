@@ -2936,6 +2936,7 @@ newegomon:
 
 			/* pseudo is a temporary "false" object containing the spell stats. */
 			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, FALSE);
+			if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_STONE_TO_FLESH; /* minimalist fix */
 			pseudo->blessed = pseudo->cursed = 0;
 			pseudo->quan = 20L;			/* do not let useup get it */
 
@@ -4625,7 +4626,7 @@ newegomon:
 		if (trap->once && i < 1) {
 			You("sense words of ouija board...");
 			display_nhwindow(WIN_MESSAGE, FALSE);
-			enlightenment(0);
+			enlightenment(0, 1);
 			exercise(A_WIS, TRUE);
 			pline_The("feeling subsides.");
 		    deltrap(trap);

@@ -1337,7 +1337,7 @@ const char *start, *middle, *end;
 
 /* KMH, intrinsic patch -- several of these are updated */
 void
-enlightenment(final)
+enlightenment(final, guaranteed)
 int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 {
 	int ltmp;
@@ -1349,7 +1349,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	putstr(en_win, 0, "");
 
 #ifdef ELBERETH
-	if (u.uevent.uhand_of_elbereth) {
+	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
 				"the Hand of Elbereth",
 				"the Envoy of Balance",
@@ -1360,497 +1360,497 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 #endif
 
 	/* note: piousness 20 matches MIN_QUEST_ALIGN (quest.h) */
-	if (u.ualign.record >= 20)	you_are("piously aligned");
-	else if (u.ualign.record > 13)	you_are("devoutly aligned");
-	else if (u.ualign.record > 8)	you_are("fervently aligned");
-	else if (u.ualign.record > 3)	you_are("stridently aligned");
-	else if (u.ualign.record == 3)	you_are("aligned");
-	else if (u.ualign.record > 0)	you_are("haltingly aligned");
-	else if (u.ualign.record == 0)	you_are("nominally aligned");
-	else if (u.ualign.record >= -3)	you_have("strayed");
-	else if (u.ualign.record >= -8)	you_have("sinned");
-	else you_have("transgressed");
+	if ((guaranteed || !rn2(10)) && u.ualign.record >= 20)	you_are("piously aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record > 13)	you_are("devoutly aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record > 8)	you_are("fervently aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record > 3)	you_are("stridently aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record == 3)	you_are("aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record > 0)	you_are("haltingly aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record == 0)	you_are("nominally aligned");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record >= -3)	you_have("strayed");
+	else if ((guaranteed || !rn2(10)) && u.ualign.record >= -8)	you_have("sinned");
+	else if (guaranteed || !rn2(10)) you_have("transgressed");
 #ifdef WIZARD
-	if (wizard || (!rn2(10)) || final >= 1 ) { /* can randomly appear with enlightenment, always after death --Amy */
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1) ) { /* can randomly appear with enlightenment, always after death --Amy */
 		Sprintf(buf, " %d", u.ualign.record);
 		enl_msg("Your alignment ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) { /* can randomly appear with enlightenment, always after death --Amy */
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1) ) { /* can randomly appear with enlightenment, always after death --Amy */
 		Sprintf(buf, " %d", u.alignlim);
 		enl_msg("Your max alignment ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) { /* can randomly appear with enlightenment, always after death --Amy */
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1) ) { /* can randomly appear with enlightenment, always after death --Amy */
 		Sprintf(buf, " %d sins", u.ualign.sins);
 		enl_msg("You ", "carry", "carried", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100)) {
 		Sprintf(buf, " %d", u.idscrollpenalty);
 		enl_msg("Scroll identification only ", "works 100 times out of", "worked 100 times out of", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idpotionpenalty > 3) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idpotionpenalty > 3)) {
 		Sprintf(buf, " %d", u.idpotionpenalty);
 		enl_msg("Potion identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idringpenalty > 4) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idringpenalty > 4)) {
 		Sprintf(buf, " %d", u.idringpenalty);
 		enl_msg("Ring identification only ", "works 4 times out of", "worked 4 times out of", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idamuletpenalty > 15) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idamuletpenalty > 15)) {
 		Sprintf(buf, " %d", u.idamuletpenalty);
 		enl_msg("Amulet identification only ", "works 15 times out of", "worked 15 times out of", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3)) {
 		Sprintf(buf, " %d", u.idwandpenalty);
 		enl_msg("Wand identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.musableremovechance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.musableremovechance)) {
 		Sprintf(buf, " %d%% chance", 100 - u.musableremovechance);
 		enl_msg("Monsters ", "will only drop their musable items with", "only dropped their musable items with", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.bookspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.bookspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.bookspawnchance);
 		enl_msg("Book drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.scrollspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.scrollspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.scrollspawnchance);
 		enl_msg("Scroll drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.ringspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.ringspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.ringspawnchance);
 		enl_msg("Ring drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.wandspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.wandspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.wandspawnchance);
 		enl_msg("Wand drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.amuletspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.amuletspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.amuletspawnchance);
 		enl_msg("Amulet drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.potionspawnchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.potionspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.potionspawnchance);
 		enl_msg("Potion drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance)) {
 		Sprintf(buf, " %d%% of the time only", 100 - u.concealitemchance);
 		enl_msg("Concealing monsters ", "are spawned underneath items", "were spawned underneath items", buf);
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.usefulitemchance) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.usefulitemchance)) {
 		Sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
 		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " %d", nartifact_exist() );
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { Sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}
 
-	if (u.legscratching > 1) { Sprintf(buf, " %d", u.legscratching - 1);
+	if ((guaranteed || !rn2(10)) && u.legscratching > 1) { Sprintf(buf, " %d", u.legscratching - 1);
 		enl_msg("Your leg damage ", "is", "was", buf);
 	}
 
-	if (u.youpolyamount > 0) { Sprintf(buf, " %d", u.youpolyamount);
+	if ((guaranteed || !rn2(10)) && u.youpolyamount > 0) { Sprintf(buf, " %d", u.youpolyamount);
 		enl_msg("Your remaining amount of free polymorphs ", "is", "was", buf);
 	}
 
-	if (u.antimagicshell > 0) { Sprintf(buf, " %d more turns", u.antimagicshell);
+	if ((guaranteed || !rn2(10)) && u.antimagicshell > 0) { Sprintf(buf, " %d more turns", u.antimagicshell);
 		enl_msg("Your antimagic shell ", "will last", "would have lasted", buf);
 	}
 
-	if (Role_if(PM_UNBELIEVER)) {
+	if ((guaranteed || !rn2(10)) && Role_if(PM_UNBELIEVER)) {
 		you_are("producing a permanent antimagic shell");
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " turn %d", u.monstertimeout);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { Sprintf(buf, " turn %d", u.monstertimeout);
 		enl_msg("Monster spawn increase ", "start at", "would have started at", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " turn %d", u.monstertimefinish);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " turn %d", u.monstertimefinish);
 		enl_msg("Monster spawn increase ", "reaches its maximum at", "had reached its maximum at", buf);
 		enl_msg("In this game, Eevee's evolution ", "is ", "was ", mons[u.eeveelution].mname );
 		/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) { Sprintf(buf, " turn %d", u.ascensiontimelimit);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { Sprintf(buf, " turn %d", u.ascensiontimelimit);
 		enl_msg("Your limit for ascension ", "is at", "was at", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		enl_msg("The monster class that cannot be genocided ", "is ", "was ", monexplain[u.ungenocidable] );
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.alwaysinvisible) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 )) && u.alwaysinvisible) {
 		enl_msg("Today, the monster class that always gets generated invisible ", "is ", "was ", monexplain[u.alwaysinvisible] );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
-	if (u.freqcolorbonus && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.freqcolorbonus && (wizard || (!rn2(10)) || final >= 1 ))) {
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
 		enl_msg("The monster color that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies2];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus2);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies3];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus3);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies4];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus4);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies5];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus5);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies6];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus6);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies7];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus7);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies8];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus8);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies9];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus9);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies10];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus10);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies11];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus11);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies12];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus12);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies13];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus13);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies14];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus14);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies15];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus15);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies16];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus16);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies17];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus17);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies18];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus18);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies19];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus19);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.frequentspecies20];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus20);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies2];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies3];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies4];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies5];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies6];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies7];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies8];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies9];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		ptr = &mons[u.nospawnspecies10];
 		Sprintf(buf, "never randomly spawned: %s", ptr->mname);
 		enl_msg("The monster species that ", "is ", "was ", buf );
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.speedymonster) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.speedymonster)) {
 		Sprintf(buf, "always generated with extra speed: %s", monexplain[u.speedymonster]);
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && u.musemonster) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.musemonster)) {
 		Sprintf(buf, "more likely to generate with musable stuff: %s", monexplain[u.musemonster]);
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
-	if (u.minimalism) {Sprintf(buf, " %d", u.minimalism);
+	if ((guaranteed || !rn2(10)) && u.minimalism) {Sprintf(buf, " %d", u.minimalism);
 		enl_msg("Items generate only 1 time in X, and X ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) ) {
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) )) {
 		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		enl_msg("This item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable].oc_name, obj_descr[u.veryobtainable].oc_descr, u.veryobtainableboost);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable2].oc_name, obj_descr[u.veryobtainable2].oc_descr, u.veryobtainableboost2);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable3].oc_name, obj_descr[u.veryobtainable3].oc_descr, u.veryobtainableboost3);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable4].oc_name, obj_descr[u.veryobtainable4].oc_descr, u.veryobtainableboost4);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " turn %d", u.next_check);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " turn %d", u.next_check);
 		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " %d", AEXE(A_STR));
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " %d", AEXE(A_STR));
 		enl_msg("Strength training ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " %d", AEXE(A_DEX));
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " %d", AEXE(A_DEX));
 		enl_msg("Dexterity training ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " %d", AEXE(A_WIS));
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " %d", AEXE(A_WIS));
 		enl_msg("Wisdom training ", "is", "was", buf);
 	}
 
-	if (wizard || (!rn2(10)) || final >= 1 ) {Sprintf(buf, " %d", AEXE(A_CON));
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {Sprintf(buf, " %d", AEXE(A_CON));
 		enl_msg("Constitution training ", "is", "was", buf);
 	}
 #endif
 
-	if (u.negativeprotection) {Sprintf(buf, " %d", u.negativeprotection);
+	if ((guaranteed || !rn2(10)) && u.negativeprotection) {Sprintf(buf, " %d", u.negativeprotection);
 		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
 	}
 
-	if (u.extralives == 1) {
+	if ((guaranteed || !rn2(10)) && u.extralives == 1) {
 		you_have("an extra life");
 	}
 
-	if (u.extralives > 1) {Sprintf(buf, " %d", u.extralives);
+	if ((guaranteed || !rn2(10)) && u.extralives > 1) {Sprintf(buf, " %d", u.extralives);
 		enl_msg("Your amount of extra lives ", "is", "was", buf);
 	}
 
-	if (u.chokhmahdamage) {Sprintf(buf, " %d", u.chokhmahdamage);
+	if ((guaranteed || !rn2(10)) && u.chokhmahdamage) {Sprintf(buf, " %d", u.chokhmahdamage);
 		enl_msg("The escalating chokhmah attack damage ", "is", "was", buf);
 	}
 
 	/*** Resistances to troubles ***/
-	if (Fire_resistance) you_are("fire resistant");
-	if (Cold_resistance) you_are("cold resistant");
-	if (Sleep_resistance) you_are("sleep resistant");
-	if (Disint_resistance) you_are("disintegration-resistant");
-	if (Shock_resistance) you_are("shock resistant");
-	if (Poison_resistance) you_are("poison resistant");
-	if (Drain_resistance) you_are("level-drain resistant");
-	if (Sick_resistance) you_are("immune to sickness");
-	if (Antimagic) you_are("magic-protected");
-	if (Acid_resistance) you_are("acid resistant");
-	if (Fear_resistance) you_are("resistant to fear");
-	if (Stone_resistance)
+	if ((guaranteed || !rn2(10)) && Fire_resistance) you_are("fire resistant");
+	if ((guaranteed || !rn2(10)) && Cold_resistance) you_are("cold resistant");
+	if ((guaranteed || !rn2(10)) && Sleep_resistance) you_are("sleep resistant");
+	if ((guaranteed || !rn2(10)) && Disint_resistance) you_are("disintegration-resistant");
+	if ((guaranteed || !rn2(10)) && Shock_resistance) you_are("shock resistant");
+	if ((guaranteed || !rn2(10)) && Poison_resistance) you_are("poison resistant");
+	if ((guaranteed || !rn2(10)) && Drain_resistance) you_are("level-drain resistant");
+	if ((guaranteed || !rn2(10)) && Sick_resistance) you_are("immune to sickness");
+	if ((guaranteed || !rn2(10)) && Antimagic) you_are("magic-protected");
+	if ((guaranteed || !rn2(10)) && Acid_resistance) you_are("acid resistant");
+	if ((guaranteed || !rn2(10)) && Fear_resistance) you_are("resistant to fear");
+	if ((guaranteed || !rn2(10)) && Stone_resistance)
 		you_are("petrification resistant");
-	if (Invulnerable) {
+	if ((guaranteed || !rn2(10)) && Invulnerable) {
 		Sprintf(buf, "invulnerable");
 	    if (wizard || (!rn2(10)) || final >= 1  ) Sprintf(eos(buf), " (%d)", Invulnerable);
 		you_are(buf);
 	}
 	/*if (u.urealedibility) you_can("recognize detrimental food");*/
 
-	if (u.urealedibility) {
+	if ((guaranteed || !rn2(10)) && u.urealedibility) {
 		Sprintf(buf, "recognize detrimental food");
 	   Sprintf(eos(buf), " (%d)", u.urealedibility);
 		you_can(buf);
@@ -1858,77 +1858,77 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	/*** Troubles ***/
 
-	if (multi) {
+	if ((guaranteed || !rn2(10)) && multi) {
 		Sprintf(buf, "paralyzed.");
 	      Sprintf(eos(buf), " (%d)", multi);
 		you_are(buf);
 	}
 
-	if (Halluc_resistance)
+	if ((guaranteed || !rn2(10)) && Halluc_resistance)
 		enl_msg("You resist", "", "ed", " hallucinations");
 	/*if (final) { */
-	if (Hallucination) {
+	if ((guaranteed || !rn2(10)) && Hallucination) {
 		if (HeavyHallu) Sprintf(buf, "badly hallucinating");
 		else Sprintf(buf, "hallucinating");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HHallucination);
 		you_are(buf);
 	}
-	if (Stunned) {
+	if ((guaranteed || !rn2(10)) && Stunned) {
 		if (HeavyStunned) Sprintf(buf, "badly stunned");
 		else Sprintf(buf, "stunned");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HStun);
 		you_are(buf);
 	}
-	if (Confusion) {
+	if ((guaranteed || !rn2(10)) && Confusion) {
 		if (HeavyConfusion) Sprintf(buf, "badly confused");
 		else Sprintf(buf, "confused");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HConfusion);
 		you_are(buf);
 	}
-	if (Blind) {
+	if ((guaranteed || !rn2(10)) && Blind) {
 		if (HeavyBlind) Sprintf(buf, "badly blinded");
 		else Sprintf(buf, "blinded");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Blinded);
 		you_are(buf);
 	}
-	if (Sick) {
+	if ((guaranteed || !rn2(10)) && Sick) {
 		Sprintf(buf, "sick");
 			if (u.usick_type & SICK_VOMITABLE) Sprintf(eos(buf), " from food poisoning");
 			if (u.usick_type & SICK_NONVOMITABLE) Sprintf(eos(buf), " from illness");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Sick);
 		you_are(buf);
 	}
-	if (Vomiting) {
+	if ((guaranteed || !rn2(10)) && Vomiting) {
 		Sprintf(buf, "nauseated");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Vomiting);
 		you_are(buf);
 	}
-	if (Feared) {
+	if ((guaranteed || !rn2(10)) && Feared) {
 		if (HeavyFeared) Sprintf(buf, "stricken with very strong fear");
 		else Sprintf(buf, "stricken with fear");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HFeared);
 		you_are(buf);
 	}
-	if (Numbed) {
+	if ((guaranteed || !rn2(10)) && Numbed) {
 		if (HeavyNumbed) Sprintf(buf, "badly numbed");
 		else Sprintf(buf, "numbed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HNumbed);
 		you_are(buf);
 	}
-	if (Frozen) {
+	if ((guaranteed || !rn2(10)) && Frozen) {
 		if (HeavyFrozen) Sprintf(buf, "frozen rigid and solid");
 		else Sprintf(buf, "frozen solid");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HFrozen);
 		you_are(buf);
 	}
 
-	if (u.hanguppenalty) {
+	if ((guaranteed || !rn2(10)) && u.hanguppenalty) {
 		Sprintf(buf, "temporarily slower because you tried to hangup cheat");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.hanguppenalty);
 		you_are(buf);
 	}
 
-	if (Burned) {
+	if ((guaranteed || !rn2(10)) && Burned) {
 		if (HeavyBurned) Sprintf(buf, "badly burned");
 		else Sprintf(buf, "burned");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HBurned);
@@ -1936,237 +1936,237 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 		
 #ifdef CONVICT
-        if (Punished) {
+        if ((guaranteed || !rn2(10)) && Punished) {
             you_are("punished");
         }
 #endif /* CONVICT */
 
-        if (u.totter) {
+        if ((guaranteed || !rn2(10)) && u.totter) {
             you_have("inverted directional keys");
         }
 
-        if (sengr_at("Elbereth", u.ux, u.uy) ) {
+        if ((guaranteed || !rn2(10)) && sengr_at("Elbereth", u.ux, u.uy) ) {
             you_are("standing on an active Elbereth engraving");
         }
 
-	if (Stoned) {
+	if ((guaranteed || !rn2(10)) && Stoned) {
 		Sprintf(buf, "turning to stone");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Stoned);
 		you_are(buf);
 	}
-	if (Slimed) {
+	if ((guaranteed || !rn2(10)) && Slimed) {
 		Sprintf(buf, "turning into slime");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Slimed);
 		you_are(buf);
 	}
-	if (Strangled) {
+	if ((guaranteed || !rn2(10)) && Strangled) {
 		Sprintf(buf, (u.uburied) ? "buried" : "being strangled");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Strangled);
 		you_are(buf);
 	}
-	if (Prem_death) {
+	if ((guaranteed || !rn2(10)) && Prem_death) {
 		Sprintf(buf, "going to die prematurely");
 		you_are(buf);
 	}
-	if (IsGlib) {
+	if ((guaranteed || !rn2(10)) && IsGlib) {
 		Sprintf(buf, "slippery %s", makeplural(body_part(FINGER)));
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Glib);
 		you_have(buf);
 	}
 
 
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if ((guaranteed || !rn2(10)) && (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone())) {
 		Sprintf(buf, "the menu bug.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MenuBug);
 		you_have(buf);
 	}
-	if (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) {
+	if ((guaranteed || !rn2(10)) && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone())) {
 		Sprintf(buf, "the speed bug.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SpeedBug);
 		you_have(buf);
 	}
-	if (Superscroller || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone()) {
+	if ((guaranteed || !rn2(10)) && (Superscroller || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone())) {
 		Sprintf(buf, "the superscroller.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Superscroller);
 		you_have(buf);
 	}
-	if (RMBLoss || u.uprops[RMB_LOST].extrinsic || have_rmbstone()) {
+	if ((guaranteed || !rn2(10)) && (RMBLoss || u.uprops[RMB_LOST].extrinsic || have_rmbstone())) {
 		Sprintf(buf, "the following problem: Your right mouse button failed.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RMBLoss);
 		you_have(buf);
 	}
-	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone()) {
+	if ((guaranteed || !rn2(10)) && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone())) {
 		Sprintf(buf, "the following problem: Your display failed.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DisplayLoss);
 		you_have(buf);
 	}
-	if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) {
+	if ((guaranteed || !rn2(10)) && (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone())) {
 		Sprintf(buf, "the following problem: You lost spells.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SpellLoss);
 		you_have(buf);
 	}
-	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone()) {
+	if ((guaranteed || !rn2(10)) && (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone())) {
 		Sprintf(buf, "the following problem: Your spells became yellow.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", YellowSpells);
 		you_have(buf);
 	}
-	if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || have_autodestructstone()) {
+	if ((guaranteed || !rn2(10)) && (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || have_autodestructstone())) {
 		Sprintf(buf, "the following problem: An auto destruct mechanism was initiated.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutoDestruct);
 		you_have(buf);
 	}
-	if (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || have_memorylossstone()) {
+	if ((guaranteed || !rn2(10)) && (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || have_memorylossstone())) {
 		Sprintf(buf, "the following problem: There is low local memory.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MemoryLoss);
 		you_have(buf);
 	}
-	if (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone()) {
+	if ((guaranteed || !rn2(10)) && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone())) {
 		Sprintf(buf, "the following problem: There is not enough memory to create an inventory window.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", InventoryLoss);
 		you_have(buf);
 	}
-	if (BlackNgWalls || u.uprops[BLACK_NG_WALLS].extrinsic || have_blackystone()) {
+	if ((guaranteed || !rn2(10)) && (BlackNgWalls || u.uprops[BLACK_NG_WALLS].extrinsic || have_blackystone())) {
 		Sprintf(buf, "the following problem: Blacky and his NG walls are closing in.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlackNgWalls);
 		you_have(buf);
 	}
-	if (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || have_freehandbugstone()) {
+	if ((guaranteed || !rn2(10)) && (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || have_freehandbugstone())) {
 		Sprintf(buf, "the following problem: Your free hand is less likely to be free.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FreeHandLoss);
 		you_have(buf);
 	}
-	if (Unidentify || u.uprops[UNIDENTIFY].extrinsic || have_unidentifystone()) {
+	if ((guaranteed || !rn2(10)) && (Unidentify || u.uprops[UNIDENTIFY].extrinsic || have_unidentifystone())) {
 		Sprintf(buf, "the following problem: Your possessions sometimes unidentify themselves.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Unidentify);
 		you_have(buf);
 	}
-	if (Thirst || u.uprops[THIRST].extrinsic || have_thirststone()) {
+	if ((guaranteed || !rn2(10)) && (Thirst || u.uprops[THIRST].extrinsic || have_thirststone())) {
 		Sprintf(buf, "a strong sense of thirst.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Thirst);
 		you_have(buf);
 	}
-	if (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || have_unluckystone()) {
+	if ((guaranteed || !rn2(10)) && (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || have_unluckystone())) {
 		Sprintf(buf, "the following problem: You're shitting out of luck (SOL).");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LuckLoss);
 		you_have(buf);
 	}
-	if (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) {
+	if ((guaranteed || !rn2(10)) && (ShadesOfGrey || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone())) {
 		Sprintf(buf, "the following problem: Everything displays in various shades of grey.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ShadesOfGrey);
 		you_have(buf);
 	}
-	if (FaintActive || u.uprops[FAINT_ACTIVE].extrinsic || have_faintingstone()) {
+	if ((guaranteed || !rn2(10)) && (FaintActive || u.uprops[FAINT_ACTIVE].extrinsic || have_faintingstone())) {
 		Sprintf(buf, "the following problem: You randomly faint.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FaintActive);
 		you_have(buf);
 	}
-	if (Itemcursing || u.uprops[ITEMCURSING].extrinsic || have_cursingstone() || have_primecurse() ) {
+	if ((guaranteed || !rn2(10)) && (Itemcursing || u.uprops[ITEMCURSING].extrinsic || have_cursingstone() || have_primecurse() )) {
 		Sprintf(buf, "the following problem: Your inventory gradually fills up with cursed items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
 		you_have(buf);
 	}
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone()) {
+	if ((guaranteed || !rn2(10)) && (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone())) {
 		Sprintf(buf, "the following problem: The difficulty of the game was arbitrarily increased.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DifficultyIncreased);
 		you_have(buf);
 	}
-	if (Deafness || u.uprops[DEAFNESS].extrinsic || have_deafnessstone()) {
+	if ((guaranteed || !rn2(10)) && (Deafness || u.uprops[DEAFNESS].extrinsic || have_deafnessstone())) {
 		Sprintf(buf, "a hearing break.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Deafness);
 		you_have(buf);
 	}
-	if (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone()) {
+	if ((guaranteed || !rn2(10)) && (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone())) {
 		Sprintf(buf, "blood mana.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CasterProblem);
 		you_have(buf);
 	}
-	if (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || have_weaknessstone()) {
+	if ((guaranteed || !rn2(10)) && (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || have_weaknessstone())) {
 		Sprintf(buf, "the following problem: Being weak from hunger damages your health.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WeaknessProblem);
 		you_have(buf);
 	}
-	if (RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone()) {
+	if ((guaranteed || !rn2(10)) && (RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone())) {
 		Sprintf(buf, "the following problem: A rot13 cypher has been activated for lowercase letters.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RotThirteen);
 		you_have(buf);
 	}
-	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone()) {
+	if ((guaranteed || !rn2(10)) && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone())) {
 		Sprintf(buf, "the following problem: You cannot move diagonally.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BishopGridbug);
 		you_have(buf);
 	}
-	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || have_confusionstone()) {
+	if ((guaranteed || !rn2(10)) && (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || have_confusionstone())) {
 		Sprintf(buf, "a confusing problem.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ConfusionProblem);
 		you_have(buf);
 	}
-	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone()) {
+	if ((guaranteed || !rn2(10)) && (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone())) {
 		Sprintf(buf, "the following problem: You cannot drop items.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoDropProblem);
 		you_have(buf);
 	}
-	if (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || have_dstwstone()) {
+	if ((guaranteed || !rn2(10)) && (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || have_dstwstone())) {
 		Sprintf(buf, "the following problem: Your potions don't always work.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DSTWProblem);
 		you_have(buf);
 	}
-	if (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) {
+	if ((guaranteed || !rn2(10)) && (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone())) {
 		Sprintf(buf, "the following problem: You can't cure status effects.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StatusTrapProblem);
 		you_have(buf);
 	}
-	if (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone()) {
+	if ((guaranteed || !rn2(10)) && (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone())) {
 		Sprintf(buf, "the following problem: Your maximum alignment will decrease over time.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlignmentProblem);
 		you_have(buf);
 	}
-	if (StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone()) {
+	if ((guaranteed || !rn2(10)) && (StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone())) {
 		Sprintf(buf, "the following problem: Stairs are always trapped.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StairsProblem);
 		you_have(buf);
 	}
-	if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) {
+	if ((guaranteed || !rn2(10)) && (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone())) {
 		Sprintf(buf, "the following problem: The game gives insufficient amounts of information.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", UninformationProblem);
 		you_have(buf);
 	}
 
-	if (CaptchaProblem || u.uprops[CAPTCHA].extrinsic || have_captchastone()) {
+	if ((guaranteed || !rn2(10)) && (CaptchaProblem || u.uprops[CAPTCHA].extrinsic || have_captchastone())) {
 		Sprintf(buf, "the following problem: You sometimes have to solve captchas.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CaptchaProblem);
 		you_have(buf);
 	}
-	if (FarlookProblem || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) {
+	if ((guaranteed || !rn2(10)) && (FarlookProblem || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone())) {
 		Sprintf(buf, "the following problem: Farlooking peaceful monsters angers them.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FarlookProblem);
 		you_have(buf);
 	}
-	if (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone()) {
+	if ((guaranteed || !rn2(10)) && (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone())) {
 		Sprintf(buf, "the following problem: Killing monsters will cause them to respawn somewhere on the level.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RespawnProblem);
 		you_have(buf);
 	}
 
-	if (BigscriptEffect || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone()) {
+	if ((guaranteed || !rn2(10)) && (BigscriptEffect || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone())) {
 		Sprintf(buf, "BIGscript.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BigscriptEffect);
 		you_have(buf);
 	}
-	if (BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) {
+	if ((guaranteed || !rn2(10)) && (BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone())) {
 		Sprintf(buf, "the following problem: Your money will wander into a mysterious bank.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BankTrapEffect);
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (amount stored: %d)", u.bankcashamount);
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (money limit: %d)", u.bankcashlimit);
 		you_have(buf);
 	} else {
-	  if (u.bankcashamount) {
+	  if ((guaranteed || !rn2(10)) && u.bankcashamount) {
 	    if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "the following amount of cash stored in the bank:");
 		Sprintf(eos(buf), " %d", u.bankcashamount);
 		you_have(buf);
 	    }
 	  }
-	  if (u.bankcashlimit) {
+	  if ((guaranteed || !rn2(10)) && u.bankcashlimit) {
 	    if (wizard || (!rn2(10)) || final >= 1 ) {
 		Sprintf(buf, "the following bank cash limit:");
 		Sprintf(eos(buf), " %d", u.bankcashlimit);
@@ -2174,502 +2174,502 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    }
 	  }
 	}
-	if (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone()) {
+	if ((guaranteed || !rn2(10)) && (MapTrapEffect || u.uprops[MAPBUG].extrinsic || have_mapstone())) {
 		Sprintf(buf, "the following problem: The map doesn't display correctly.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MapTrapEffect);
 		you_have(buf);
 	}
-	if (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) {
+	if ((guaranteed || !rn2(10)) && (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone())) {
 		Sprintf(buf, "the following problem: Your techniques don't work.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TechTrapEffect);
 		you_have(buf);
 	}
-	if (RecurringDisenchant || u.uprops[RECURRING_DISENCHANT].extrinsic || have_disenchantmentstone()) {
+	if ((guaranteed || !rn2(10)) && (RecurringDisenchant || u.uprops[RECURRING_DISENCHANT].extrinsic || have_disenchantmentstone())) {
 		Sprintf(buf, "the following problem: Your possessions disenchant themselves spontaneously.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RecurringDisenchant);
 		you_have(buf);
 	}
-	if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) {
+	if ((guaranteed || !rn2(10)) && (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone())) {
 		Sprintf(buf, "the following problem: Monster respawn speeds up rapidly.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", verisiertEffect);
 		you_have(buf);
 	}
-	if (ChaosTerrain || u.uprops[CHAOS_TERRAIN].extrinsic || have_chaosterrainstone()) {
+	if ((guaranteed || !rn2(10)) && (ChaosTerrain || u.uprops[CHAOS_TERRAIN].extrinsic || have_chaosterrainstone())) {
 		Sprintf(buf, "the following problem: The terrain slowly becomes ever more chaotic.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ChaosTerrain);
 		you_have(buf);
 	}
-	if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
+	if ((guaranteed || !rn2(10)) && (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone())) {
 		Sprintf(buf, "the following problem: You're completely unable to cast spells.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Muteness);
 		you_have(buf);
 	}
-	if (EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone()) {
+	if ((guaranteed || !rn2(10)) && (EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone())) {
 		Sprintf(buf, "the following problem: Monsters don't respect Elbereth.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EngravingDoesntWork);
 		you_have(buf);
 	}
-	if (MagicDeviceEffect || u.uprops[MAGIC_DEVICE_BUG].extrinsic || have_magicdevicestone()) {
+	if ((guaranteed || !rn2(10)) && (MagicDeviceEffect || u.uprops[MAGIC_DEVICE_BUG].extrinsic || have_magicdevicestone())) {
 		Sprintf(buf, "the following problem: Zapping a wand can cause it to explode.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MagicDeviceEffect);
 		you_have(buf);
 	}
-	if (BookTrapEffect || u.uprops[BOOKBUG].extrinsic || have_bookstone()) {
+	if ((guaranteed || !rn2(10)) && (BookTrapEffect || u.uprops[BOOKBUG].extrinsic || have_bookstone())) {
 		Sprintf(buf, "the following problem: Reading spellbooks confuses you.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BookTrapEffect);
 		you_have(buf);
 	}
-	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone()) {
+	if ((guaranteed || !rn2(10)) && (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone())) {
 		Sprintf(buf, "the following problem: Monsters become stronger if many of their species have been generated already.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LevelTrapEffect);
 		you_have(buf);
 	}
-	if (QuizTrapEffect || u.uprops[QUIZZES].extrinsic || have_quizstone()) {
+	if ((guaranteed || !rn2(10)) && (QuizTrapEffect || u.uprops[QUIZZES].extrinsic || have_quizstone())) {
 		Sprintf(buf, "the following problem: You have to partake in the Great NetHack Quiz.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", QuizTrapEffect);
 		you_have(buf);
 	}
 
-	if (FastMetabolismEffect || u.uprops[FAST_METABOLISM].extrinsic || have_metabolicstone()) {
+	if ((guaranteed || !rn2(10)) && (FastMetabolismEffect || u.uprops[FAST_METABOLISM].extrinsic || have_metabolicstone())) {
 		Sprintf(buf, "the following problem: Your food consumption is much faster.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FastMetabolismEffect);
 		you_have(buf);
 	}
 
-	if (NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone()) {
+	if ((guaranteed || !rn2(10)) && (NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone())) {
 		Sprintf(buf, "the following problem: You cannot teleport at all.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoReturnEffect);
 		you_have(buf);
 	}
 
-	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
+	if ((guaranteed || !rn2(10)) && (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone())) {
 		Sprintf(buf, "the following problem: Monsters always spawn with egotypes.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AlwaysEgotypeMonsters);
 		you_have(buf);
 	}
 
-	if (TimeGoesByFaster || u.uprops[FAST_FORWARD].extrinsic || have_fastforwardstone()) {
+	if ((guaranteed || !rn2(10)) && (TimeGoesByFaster || u.uprops[FAST_FORWARD].extrinsic || have_fastforwardstone())) {
 		Sprintf(buf, "the following problem: Time goes by faster.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TimeGoesByFaster);
 		you_have(buf);
 	}
 
-	if (FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) {
+	if ((guaranteed || !rn2(10)) && (FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())) {
 		Sprintf(buf, "the following problem: Your food is always rotten.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FoodIsAlwaysRotten);
 		you_have(buf);
 	}
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) {
+	if ((guaranteed || !rn2(10)) && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 		Sprintf(buf, "the following problem: Your skills are deactivated.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AllSkillsUnskilled);
 		you_have(buf);
 	}
 
-	if (AllStatsAreLower || u.uprops[STATS_LOWERED].extrinsic || have_lowstatstone()) {
+	if ((guaranteed || !rn2(10)) && (AllStatsAreLower || u.uprops[STATS_LOWERED].extrinsic || have_lowstatstone())) {
 		Sprintf(buf, "the following problem: All of your stats are lowered.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AllStatsAreLower);
 		you_have(buf);
 	}
 
-	if (PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+	if ((guaranteed || !rn2(10)) && (PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone())) {
 		Sprintf(buf, "the following problem: You cannot train skills.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", PlayerCannotTrainSkills);
 		you_have(buf);
 	}
 
-	if (PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) {
+	if ((guaranteed || !rn2(10)) && (PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone())) {
 		Sprintf(buf, "the following problem: You cannot exercise your stats.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", PlayerCannotExerciseStats);
 		you_have(buf);
 	}
 
-	if (MCReduction) {
+	if ((guaranteed || !rn2(10)) && MCReduction) {
 		Sprintf(buf, "reduced magic cancellation.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MCReduction);
 		you_have(buf);
 	}
 
-	if (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem || have_intrinsiclossstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[INTRINSIC_LOSS].extrinsic || IntrinsicLossProblem || have_intrinsiclossstone() )) {
 		Sprintf(buf, "a case of random intrinsic loss.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", IntrinsicLossProblem);
 		you_have(buf);
 	}
-	if (u.uprops[TRAP_REVEALING].extrinsic) {
+	if ((guaranteed || !rn2(10)) && u.uprops[TRAP_REVEALING].extrinsic) {
 		Sprintf(buf, "randomly revealing traps");
 		you_are(buf);
 	}
-	if (u.uprops[BLOOD_LOSS].extrinsic || BloodLossProblem || have_bloodlossstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[BLOOD_LOSS].extrinsic || BloodLossProblem || have_bloodlossstone() )) {
 		Sprintf(buf, "bleeding out");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BloodLossProblem);
 		you_are(buf);
 	}
-	if (u.uprops[NASTINESS_EFFECTS].extrinsic || NastinessProblem || have_nastystone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[NASTINESS_EFFECTS].extrinsic || NastinessProblem || have_nastystone() )) {
 		Sprintf(buf, "subjected to random nasty trap effects");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NastinessProblem);
 		you_are(buf);
 	}
-	if (u.uprops[BAD_EFFECTS].extrinsic || BadEffectProblem || have_badeffectstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[BAD_EFFECTS].extrinsic || BadEffectProblem || have_badeffectstone() )) {
 		Sprintf(buf, "subjected to random bad effects");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BadEffectProblem);
 		you_are(buf);
 	}
-	if (u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic || TrapCreationProblem || have_trapcreationstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic || TrapCreationProblem || have_trapcreationstone() )) {
 		Sprintf(buf, "more likely to encounter traps");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TrapCreationProblem);
 		you_are(buf);
 	}
-	if (u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
+	if ((guaranteed || !rn2(10)) && u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
 		Sprintf(buf, "wearing sentient high heels");
 		you_are(buf);
 	}
-	if (u.uprops[REPEATING_VULNERABILITY].extrinsic || AutomaticVulnerabilitiy || have_vulnerabilitystone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[REPEATING_VULNERABILITY].extrinsic || AutomaticVulnerabilitiy || have_vulnerabilitystone() )) {
 		Sprintf(buf, "the risk of temporarily losing intrinsics");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutomaticVulnerabilitiy);
 		you_have(buf);
 	}
-	if (u.uprops[TELEPORTING_ITEMS].extrinsic || TeleportingItems || have_itemportstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[TELEPORTING_ITEMS].extrinsic || TeleportingItems || have_itemportstone() )) {
 		Sprintf(buf, "teleporting items");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TeleportingItems);
 		you_have(buf);
 	}
 
-	if (u.uprops[RECURRING_AMNESIA].extrinsic || RecurringAmnesia || have_amnesiastone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[RECURRING_AMNESIA].extrinsic || RecurringAmnesia || have_amnesiastone() )) {
 		Sprintf(buf, "going to suffer from amnesia now and then");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RecurringAmnesia);
 		you_are(buf);
 	}
 
-	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() )) {
 		Sprintf(buf, "getting your ascension turn limit reduced whenever you take damage");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TurnLimitation);
 		you_are(buf);
 	}
 
-	if (u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() )) {
 		Sprintf(buf, "short-sighted");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WeakSight);
 		you_are(buf);
 	}
 
-	if (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() ) {
+	if ((guaranteed || !rn2(10)) && (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() )) {
 		Sprintf(buf, "reading random messages");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RandomMessages);
 		you_are(buf);
 	}
 
 
-	if (u.uprops[RANDOM_RUMORS].extrinsic) {
+	if ((guaranteed || !rn2(10)) && u.uprops[RANDOM_RUMORS].extrinsic) {
 		Sprintf(buf, "going to listen to random rumors");
 		you_are(buf);
 	}
 
-	if (IncreasedGravity) {
+	if ((guaranteed || !rn2(10)) && IncreasedGravity) {
 		Sprintf(buf, "increased encumbrance due to a stronger gravity.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", IncreasedGravity);
 		you_have(buf);
 	}
 
-	if (NoStaircase) {
+	if ((guaranteed || !rn2(10)) && NoStaircase) {
 		Sprintf(buf, "to wait until you can use staircases again.");
 	      Sprintf(eos(buf), " (%d)", NoStaircase);
 		you_have(buf);
 	}
 
-	if (TimeStopped) {
+	if ((guaranteed || !rn2(10)) && TimeStopped) {
 		Sprintf(buf, "stopped the flow of time.");
 	      Sprintf(eos(buf), " (%d)", TimeStopped);
 		you_have(buf);
 	}
 
-	if (UseTheForce) {
+	if ((guaranteed || !rn2(10)) && UseTheForce) {
 		Sprintf(buf, "able to use the force like a true jedi");
 		you_are(buf);
 	}
 
-	if (u.uprops[SENSORY_DEPRIVATION].extrinsic) {
+	if ((guaranteed || !rn2(10)) && u.uprops[SENSORY_DEPRIVATION].extrinsic) {
 		Sprintf(buf, "sensory deprivation.");
 		you_have(buf);
 	}
 
-	if (NoFire_resistance) {
+	if ((guaranteed || !rn2(10)) && NoFire_resistance) {
 		Sprintf(buf, "prevented from having fire resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FIRE_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoCold_resistance) {
+	if ((guaranteed || !rn2(10)) && NoCold_resistance) {
 		Sprintf(buf, "prevented from having cold resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_COLD_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoSleep_resistance) {
+	if ((guaranteed || !rn2(10)) && NoSleep_resistance) {
 		Sprintf(buf, "prevented from having sleep resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SLEEP_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoDisint_resistance) {
+	if ((guaranteed || !rn2(10)) && NoDisint_resistance) {
 		Sprintf(buf, "prevented from having disintegration resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISINT_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoShock_resistance) {
+	if ((guaranteed || !rn2(10)) && NoShock_resistance) {
 		Sprintf(buf, "prevented from having shock resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SHOCK_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoPoison_resistance) {
+	if ((guaranteed || !rn2(10)) && NoPoison_resistance) {
 		Sprintf(buf, "prevented from having poison resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_POISON_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoDrain_resistance) {
+	if ((guaranteed || !rn2(10)) && NoDrain_resistance) {
 		Sprintf(buf, "prevented from having drain resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DRAIN_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoSick_resistance) {
+	if ((guaranteed || !rn2(10)) && NoSick_resistance) {
 		Sprintf(buf, "prevented from having sickness resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICK_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoAntimagic_resistance) {
+	if ((guaranteed || !rn2(10)) && NoAntimagic_resistance) {
 		Sprintf(buf, "prevented from having magic resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ANTIMAGIC].intrinsic);
 		you_are(buf);
 	}
-	if (NoAcid_resistance) {
+	if ((guaranteed || !rn2(10)) && NoAcid_resistance) {
 		Sprintf(buf, "prevented from having acid resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ACID_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoStone_resistance) {
+	if ((guaranteed || !rn2(10)) && NoStone_resistance) {
 		Sprintf(buf, "prevented from having petrification resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STONE_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoFear_resistance) {
+	if ((guaranteed || !rn2(10)) && NoFear_resistance) {
 		Sprintf(buf, "prevented from having fear resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FEAR_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoSee_invisible) {
+	if ((guaranteed || !rn2(10)) && NoSee_invisible) {
 		Sprintf(buf, "prevented from having see invisible");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEE_INVIS].intrinsic);
 		you_are(buf);
 	}
-	if (NoTelepat) {
+	if ((guaranteed || !rn2(10)) && NoTelepat) {
 		Sprintf(buf, "prevented from having telepathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
 		you_are(buf);
 	}
-	if (NoWarning) {
+	if ((guaranteed || !rn2(10)) && NoWarning) {
 		Sprintf(buf, "prevented from having warning");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_WARNING].intrinsic);
 		you_are(buf);
 	}
-	if (NoSearching) {
+	if ((guaranteed || !rn2(10)) && NoSearching) {
 		Sprintf(buf, "prevented from having automatic searching");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEARCHING].intrinsic);
 		you_are(buf);
 	}
-	if (NoClairvoyant) {
+	if ((guaranteed || !rn2(10)) && NoClairvoyant) {
 		Sprintf(buf, "prevented from having clairvoyance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CLAIRVOYANT].intrinsic);
 		you_are(buf);
 	}
-	if (NoInfravision) {
+	if ((guaranteed || !rn2(10)) && NoInfravision) {
 		Sprintf(buf, "prevented from having infravision");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_INFRAVISION].intrinsic);
 		you_are(buf);
 	}
-	if (NoDetect_monsters) {
+	if ((guaranteed || !rn2(10)) && NoDetect_monsters) {
 		Sprintf(buf, "prevented from having detect monsters");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DETECT_MONSTERS].intrinsic);
 		you_are(buf);
 	}
-	if (NoInvisible) {
+	if ((guaranteed || !rn2(10)) && NoInvisible) {
 		Sprintf(buf, "prevented from having invisibility");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_INVIS].intrinsic);
 		you_are(buf);
 	}
-	if (NoDisplaced) {
+	if ((guaranteed || !rn2(10)) && NoDisplaced) {
 		Sprintf(buf, "prevented from having displacement");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISPLACED].intrinsic);
 		you_are(buf);
 	}
-	if (NoStealth) {
+	if ((guaranteed || !rn2(10)) && NoStealth) {
 		Sprintf(buf, "prevented from having stealth");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STEALTH].intrinsic);
 		you_are(buf);
 	}
-	if (NoJumping) {
+	if ((guaranteed || !rn2(10)) && NoJumping) {
 		Sprintf(buf, "prevented from having jumping");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_JUMPING].intrinsic);
 		you_are(buf);
 	}
-	if (NoTeleport_control) {
+	if ((guaranteed || !rn2(10)) && NoTeleport_control) {
 		Sprintf(buf, "prevented from having teleport control");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPORT_CONTROL].intrinsic);
 		you_are(buf);
 	}
-	if (NoFlying) {
+	if ((guaranteed || !rn2(10)) && NoFlying) {
 		Sprintf(buf, "prevented from having flying");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FLYING].intrinsic);
 		you_are(buf);
 	}
-	if (NoBreathless) {
+	if ((guaranteed || !rn2(10)) && NoBreathless) {
 		Sprintf(buf, "prevented from having magical breathing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MAGICAL_BREATHING].intrinsic);
 		you_are(buf);
 	}
-	if (NoPasses_walls) {
+	if ((guaranteed || !rn2(10)) && NoPasses_walls) {
 		Sprintf(buf, "prevented from having phasing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PASSES_WALLS].intrinsic);
 		you_are(buf);
 	}
-	if (NoSlow_digestion) {
+	if ((guaranteed || !rn2(10)) && NoSlow_digestion) {
 		Sprintf(buf, "prevented from having slow digestion");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SLOW_DIGESTION].intrinsic);
 		you_are(buf);
 	}
-	if (NoHalf_spell_damage) {
+	if ((guaranteed || !rn2(10)) && NoHalf_spell_damage) {
 		Sprintf(buf, "prevented from having half spell damage");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALF_SPDAM].intrinsic);
 		you_are(buf);
 	}
-	if (NoHalf_physical_damage) {
+	if ((guaranteed || !rn2(10)) && NoHalf_physical_damage) {
 		Sprintf(buf, "prevented from having half physical damage");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALF_PHDAM].intrinsic);
 		you_are(buf);
 	}
-	if (NoRegeneration) {
+	if ((guaranteed || !rn2(10)) && NoRegeneration) {
 		Sprintf(buf, "prevented from having regeneration");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_REGENERATION].intrinsic);
 		you_are(buf);
 	}
-	if (NoEnergy_regeneration) {
+	if ((guaranteed || !rn2(10)) && NoEnergy_regeneration) {
 		Sprintf(buf, "prevented from having mana regeneration");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ENERGY_REGENERATION].intrinsic);
 		you_are(buf);
 	}
-	if (NoPolymorph_control) {
+	if ((guaranteed || !rn2(10)) && NoPolymorph_control) {
 		Sprintf(buf, "prevented from having polymorph control");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic);
 		you_are(buf);
 	}
-	if (NoFast) {
+	if ((guaranteed || !rn2(10)) && NoFast) {
 		Sprintf(buf, "prevented from having speed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FAST].intrinsic);
 		you_are(buf);
 	}
-	if (NoReflecting) {
+	if ((guaranteed || !rn2(10)) && NoReflecting) {
 		Sprintf(buf, "prevented from having reflection");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_REFLECTING].intrinsic);
 		you_are(buf);
 	}
-	if (NoKeen_memory) {
+	if ((guaranteed || !rn2(10)) && NoKeen_memory) {
 		Sprintf(buf, "prevented from having keen memory");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_KEEN_MEMORY].intrinsic);
 		you_are(buf);
 	}
-	if (NoSight_bonus) {
+	if ((guaranteed || !rn2(10)) && NoSight_bonus) {
 		Sprintf(buf, "prevented from having a sight bonus");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SIGHT_BONUS].intrinsic);
 		you_are(buf);
 	}
-	if (NoVersus_curses) {
+	if ((guaranteed || !rn2(10)) && NoVersus_curses) {
 		Sprintf(buf, "prevented from having curse resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_VERSUS_CURSES].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoStun_resist) {
+	if ((guaranteed || !rn2(10)) && NoStun_resist) {
 		Sprintf(buf, "prevented from having stun resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUN_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoConf_resist) {
+	if ((guaranteed || !rn2(10)) && NoConf_resist) {
 		Sprintf(buf, "prevented from having confusion resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONF_RES].intrinsic);
 		you_are(buf);
 	}
-	if (NoDouble_attack) {
+	if ((guaranteed || !rn2(10)) && NoDouble_attack) {
 		Sprintf(buf, "prevented from having double attacks");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DOUBLE_ATTACK].intrinsic);
 		you_are(buf);
 	}
-	if (NoQuad_attack) {
+	if ((guaranteed || !rn2(10)) && NoQuad_attack) {
 		Sprintf(buf, "prevented from having quad attacks");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_QUAD_ATTACK].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoFree_action) {
+	if ((guaranteed || !rn2(10)) && NoFree_action) {
 		Sprintf(buf, "prevented from having free action");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREE_ACTION].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoHallu_party) {
+	if ((guaranteed || !rn2(10)) && NoHallu_party) {
 		Sprintf(buf, "prevented from hallu partying");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALLU_PARTY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoDrunken_boxing) {
+	if ((guaranteed || !rn2(10)) && NoDrunken_boxing) {
 		Sprintf(buf, "prevented from drunken boxing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DRUNKEN_BOXING].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoStunnopathy) {
+	if ((guaranteed || !rn2(10)) && NoStunnopathy) {
 		Sprintf(buf, "prevented from having stunnopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUNNOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoNumbopathy) {
+	if ((guaranteed || !rn2(10)) && NoNumbopathy) {
 		Sprintf(buf, "prevented from having numbopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_NUMBOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoFreezopathy) {
+	if ((guaranteed || !rn2(10)) && NoFreezopathy) {
 		Sprintf(buf, "prevented from having freezopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREEZOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoStoned_chiller) {
+	if ((guaranteed || !rn2(10)) && NoStoned_chiller) {
 		Sprintf(buf, "prevented from being a stoned chiller");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STONED_CHILLER].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoCorrosivity) {
+	if ((guaranteed || !rn2(10)) && NoCorrosivity) {
 		Sprintf(buf, "prevented from having corrosivity");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CORROSIVITY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoFear_factor) {
+	if ((guaranteed || !rn2(10)) && NoFear_factor) {
 		Sprintf(buf, "prevented from having an increased fear factor");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FEAR_FACTOR].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoBurnopathy) {
+	if ((guaranteed || !rn2(10)) && NoBurnopathy) {
 		Sprintf(buf, "prevented from having burnopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_BURNOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if (NoSickopathy) {
+	if ((guaranteed || !rn2(10)) && NoSickopathy) {
 		Sprintf(buf, "prevented from having sickopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
 		you_are(buf);
 	}
-	if (NoUseTheForce) {
+	if ((guaranteed || !rn2(10)) && NoUseTheForce) {
 		Sprintf(buf, "prevented from using the force like a real jedi");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
 		you_are(buf);
@@ -2677,7 +2677,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	int shieldblockrate = 0;
 
-	if (uarms) {
+	if ((guaranteed || !rn2(10)) && uarms) {
 
 		switch (uarms->otyp) {
 
@@ -2778,47 +2778,47 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Your chance to block ", "is ", "was ", buf );
 	}
 
-	if (Fumbling) enl_msg("You fumble", "", "d", "");
-	if (Wounded_legs
+	if ((guaranteed || !rn2(10)) && Fumbling) enl_msg("You fumble", "", "d", "");
+	if ((guaranteed || !rn2(10)) && (Wounded_legs
 #ifdef STEED
 	    && !u.usteed
 #endif
-			  ) {
+			  )) {
 		Sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HWounded_legs);
 		you_have(buf);
 	}
 #if defined(WIZARD) && defined(STEED) /*randomly tell this to the player outside of wizard mode too --Amy */
-	if (Wounded_legs && u.usteed && (wizard || !rn2(10) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (Wounded_legs && u.usteed && (wizard || !rn2(10) || final >= 1 ))) {
 	    Strcpy(buf, x_monnam(u.usteed, ARTICLE_YOUR, (char *)0, 
 		    SUPPRESS_SADDLE | SUPPRESS_HALLUCINATION, FALSE));
 	    *buf = highc(*buf);
 	    enl_msg(buf, " has", " had", " wounded legs");
 	}
 #endif
-	if (Sleeping) enl_msg("You ", "fall", "fell", " asleep");
-	if (Hunger) enl_msg("You hunger", "", "ed", " rapidly");
+	if ((guaranteed || !rn2(10)) && Sleeping) enl_msg("You ", "fall", "fell", " asleep");
+	if ((guaranteed || !rn2(10)) && Hunger) enl_msg("You hunger", "", "ed", " rapidly");
 
-	if (have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
-	if (have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
+	if ((guaranteed || !rn2(10)) && have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
+	if ((guaranteed || !rn2(10)) && have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
 
 	/*** Vision and senses ***/
-	if (See_invisible) enl_msg(You_, "see", "saw", " invisible");
-	if (Blind_telepat) you_are("telepathic");
+	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
+	if ((guaranteed || !rn2(10)) && Blind_telepat) you_are("telepathic");
 
-	if (Hallu_party) you_are("hallu partying");
-	if (Drunken_boxing) you_are("a drunken boxer");
-	if (Stunnopathy) you_are("stunnopathic");
-	if (Numbopathy) you_are("numbopathic");
-	if (Freezopathy) you_are("freezopathic");
-	if (Stoned_chiller) you_are("a stoned chiller");
-	if (Corrosivity) you_are("extremely corrosive");
-	if (Fear_factor) you_have("an increased fear factor");
-	if (Burnopathy) you_are("burnopathic");
-	if (Sickopathy) you_are("sickopathic");
+	if ((guaranteed || !rn2(10)) && Hallu_party) you_are("hallu partying");
+	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are("a drunken boxer");
+	if ((guaranteed || !rn2(10)) && Stunnopathy) you_are("stunnopathic");
+	if ((guaranteed || !rn2(10)) && Numbopathy) you_are("numbopathic");
+	if ((guaranteed || !rn2(10)) && Freezopathy) you_are("freezopathic");
+	if ((guaranteed || !rn2(10)) && Stoned_chiller) you_are("a stoned chiller");
+	if ((guaranteed || !rn2(10)) && Corrosivity) you_are("extremely corrosive");
+	if ((guaranteed || !rn2(10)) && Fear_factor) you_have("an increased fear factor");
+	if ((guaranteed || !rn2(10)) && Burnopathy) you_are("burnopathic");
+	if ((guaranteed || !rn2(10)) && Sickopathy) you_are("sickopathic");
 
-	if (Warning) you_are("warned");
-	if (Warn_of_mon && flags.warntype) {
+	if ((guaranteed || !rn2(10)) && Warning) you_are("warned");
+	if ((guaranteed || !rn2(10)) && (Warn_of_mon && flags.warntype)) {
 	    /* [ALI] Add support for undead */
 	    int i, nth = 0;
 	    unsigned long warntype = flags.warntype;
@@ -2853,57 +2853,57 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 #if 0	/* ALI - dealt with under Warn_of_mon */
-	if (Undead_warning) you_are("warned of undead");
+	if ((guaranteed || !rn2(10)) && Undead_warning) you_are("warned of undead");
 #endif
 
-	if (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) you_are("aware of the presence of topmodels");
-	if (Role_if(PM_ACTIVISTOR) && uwep && is_quest_artifact(uwep) ) you_are("aware of the presence of unique monsters");
+	if ((guaranteed || !rn2(10)) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) )) you_are("aware of the presence of topmodels");
+	if ((guaranteed || !rn2(10)) && (Role_if(PM_ACTIVISTOR) && uwep && is_quest_artifact(uwep) )) you_are("aware of the presence of unique monsters");
 	/*if (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");
-	if (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING ) you_are("aware of the presence of undead");*/
-	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING ) you_are("aware of the presence of poisonous monsters");
-	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING ) you_are("aware of the presence of same-race monsters");
-	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING ) you_are("aware of the presence of covetous monsters");
-	if (Role_if(PM_PALADIN) ) you_are("aware of the presence of demons");
-	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
-	if (Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
-	if (Race_if(PM_CORTEX) ) you_are("aware of the presence of unsolid creatures");
-	if (Race_if(PM_CORTEX) ) you_are("aware of the presence of creatures without limbs");
-	if (Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
-	if (Race_if(PM_RODNEYAN) ) you_are("able to sense monsters possessing coveted objects");
-	if (isselfhybrid) you_are("aware of the presence of strong wanderers");
-	if (isselfhybrid) you_are("aware of the presence of monsters that are valid polymorph forms for monsters only");
+	if ((guaranteed || !rn2(10)) && (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING )) you_are("aware of the presence of undead");*/
+	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_POISON_WARNING )) you_are("aware of the presence of poisonous monsters");
+	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING )) you_are("aware of the presence of same-race monsters");
+	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING )) you_are("aware of the presence of covetous monsters");
+	if ((guaranteed || !rn2(10)) && Role_if(PM_PALADIN) ) you_are("aware of the presence of demons");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_CORTEX) ) you_are("aware of the presence of unsolid creatures");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_CORTEX) ) you_are("aware of the presence of creatures without limbs");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_LEVITATOR) ) you_are("aware of the presence of flying monsters");
+	if ((guaranteed || !rn2(10)) && Race_if(PM_RODNEYAN) ) you_are("able to sense monsters possessing coveted objects");
+	if ((guaranteed || !rn2(10)) && isselfhybrid) you_are("aware of the presence of strong wanderers");
+	if ((guaranteed || !rn2(10)) && isselfhybrid) you_are("aware of the presence of monsters that are valid polymorph forms for monsters only");
 
-	if (Searching) you_have("automatic searching");
+	if ((guaranteed || !rn2(10)) && Searching) you_have("automatic searching");
 
-	if (Clairvoyant) {
+	if ((guaranteed || !rn2(10)) && Clairvoyant) {
 		Sprintf(buf, "clairvoyant");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HClairvoyant);
 		you_are(buf);
 	}
 
-	if (Infravision) you_have("infravision");
+	if ((guaranteed || !rn2(10)) && Infravision) you_have("infravision");
 
-	if (u.banishmentbeam) you_are("going to be banished");
-	if (u.levelporting) you_are("going to be levelported");
+	if ((guaranteed || !rn2(10)) && u.banishmentbeam) you_are("going to be banished");
+	if ((guaranteed || !rn2(10)) && u.levelporting) you_are("going to be levelported");
 
-	if (u.inertia) {
+	if ((guaranteed || !rn2(10)) && u.inertia) {
 		Sprintf(buf, "slowed by inertia");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.inertia);
 		you_are(buf);
 	}
 
-	if (Detect_monsters) {
+	if ((guaranteed || !rn2(10)) && Detect_monsters) {
 		Sprintf(buf, "sensing the presence of monsters");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HDetect_monsters);
 		you_are(buf);
 	}
 
-	if (u.umconf) you_are("going to confuse monsters");
+	if ((guaranteed || !rn2(10)) && u.umconf) you_are("going to confuse monsters");
 
-	Sprintf(buf, "%d points of nutrition remaining", u.uhunger); you_have(buf);
+	if (guaranteed || !rn2(10)) Sprintf(buf, "%d points of nutrition remaining", u.uhunger); you_have(buf);
 
 	/*** Appearance and behavior ***/
-	if (Adornment) {
+	if ((guaranteed || !rn2(10)) && Adornment) {
 	    int adorn = 0;
 
 	    if(uleft && uleft->otyp == RIN_ADORNMENT) adorn += uleft->spe;
@@ -2913,32 +2913,32 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    else
 		you_are("adorned");
 	}
-	if (Invisible) you_are("invisible");
-	else if (Invis) you_are("invisible to others");
+	if ((guaranteed || !rn2(10)) && Invisible) you_are("invisible");
+	else if ((guaranteed || !rn2(10)) && Invis) you_are("invisible to others");
 	/* ordinarily "visible" is redundant; this is a special case for
 	   the situation when invisibility would be an expected attribute */
-	else if ((HInvis || EInvis || pm_invisible(youmonst.data)) && BInvis)
+	else if ((guaranteed || !rn2(10)) && ((HInvis || EInvis || pm_invisible(youmonst.data)) && BInvis))
 	    you_are("visible");
-	if (Displaced) you_are("displaced");
-	if (Stealth) you_are("stealthy");
-	if (Aggravate_monster) enl_msg("You aggravate", "", "d", " monsters");
-	if (Conflict) enl_msg("You cause", "", "d", " conflict");
+	if ((guaranteed || !rn2(10)) && Displaced) you_are("displaced");
+	if ((guaranteed || !rn2(10)) && Stealth) you_are("stealthy");
+	if ((guaranteed || !rn2(10)) && Aggravate_monster) enl_msg("You aggravate", "", "d", " monsters");
+	if ((guaranteed || !rn2(10)) && Conflict) enl_msg("You cause", "", "d", " conflict");
 
 	/*** Transportation ***/
-	if (Jumping) you_can("jump");
-	if (Teleportation) you_have("teleportitis");
-	if (Teleport_control) you_have("teleport control");
+	if ((guaranteed || !rn2(10)) && Jumping) you_can("jump");
+	if ((guaranteed || !rn2(10)) && Teleportation) you_have("teleportitis");
+	if ((guaranteed || !rn2(10)) && Teleport_control) you_have("teleport control");
 	/*if (Lev_at_will) you_are("levitating, at will");
-	else if (Levitation) you_are("levitating");*/	/* without control */
+	else if ((guaranteed || !rn2(10)) && Levitation) you_are("levitating");*/	/* without control */
 
-	if (Lev_at_will)  {
+	if ((guaranteed || !rn2(10)) && Lev_at_will)  {
 	    Sprintf(buf, "levitating, at will");
 #ifdef WIZARD
 	    if (wizard || !rn2(10) || final >= 1 ) Sprintf(eos(buf), " (%d)", HLevitation);
 #endif /*same like above --Amy */
 	    you_are(buf);
 	}
-	if (Levitation)  {
+	if ((guaranteed || !rn2(10)) && Levitation)  {
 	    Sprintf(buf, "levitating");
 #ifdef WIZARD
 	    if (wizard || !rn2(10) || final >= 1 ) Sprintf(eos(buf), " (%d)", HLevitation);
@@ -2946,28 +2946,28 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    you_are(buf);
 	}
 
-	else if (Flying) you_can("fly");
-	if (Wwalking) you_can("walk on water");
-	if (Swimming) you_can("swim");        
-	if (Breathless) you_can("survive without air");
-	else if (Amphibious) you_can("breathe water");
-	if (Passes_walls) you_can("walk through walls");
+	else if ((guaranteed || !rn2(10)) && Flying) you_can("fly");
+	if ((guaranteed || !rn2(10)) && Wwalking) you_can("walk on water");
+	if ((guaranteed || !rn2(10)) && Swimming) you_can("swim");        
+	if ((guaranteed || !rn2(10)) && Breathless) you_can("survive without air");
+	else if ((guaranteed || !rn2(10)) && Amphibious) you_can("breathe water");
+	if ((guaranteed || !rn2(10)) && Passes_walls) you_can("walk through walls");
 #ifdef STEED
 	/* If you die while dismounting, u.usteed is still set.  Since several
 	 * places in the done() sequence depend on u.usteed, just detect this
 	 * special case. */
-	if (u.usteed && (final < 2 || strcmp(killer, "riding accident"))) {
+	if ((guaranteed || !rn2(10)) && (u.usteed && (final < 2 || strcmp(killer, "riding accident")))) {
 	    Sprintf(buf, "riding %s", y_monnam(u.usteed));
 	    you_are(buf);
 	}
 #endif
-	if (u.uswallow) {
+	if ((guaranteed || !rn2(10)) && u.uswallow) {
 	    Sprintf(buf, "swallowed by %s", a_monnam(u.ustuck));
 #ifdef WIZARD
 	    if (wizard || !rn2(10) || final >= 1 ) Sprintf(eos(buf), " (%u)", u.uswldtim);
 #endif /*same like above --Amy */
 	    you_are(buf);
-	} else if (u.ustuck) {
+	} else if ((guaranteed || !rn2(10)) && u.ustuck) {
 	    Sprintf(buf, "%s %s",
 		    (Upolyd && sticks(youmonst.data)) ? "holding" : "held by",
 		    a_monnam(u.ustuck));
@@ -2975,28 +2975,28 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	/*** Physical attributes ***/
-	if (u.uhitinc)
+	if ((guaranteed || !rn2(10)) && u.uhitinc)
 	    you_have(enlght_combatinc("to hit", u.uhitinc, final, buf));
-	if (u.udaminc)
+	if ((guaranteed || !rn2(10)) && u.udaminc)
 	    you_have(enlght_combatinc("damage", u.udaminc, final, buf));
-	if (Slow_digestion) you_have("slower digestion");
-	if (Keen_memory)
+	if ((guaranteed || !rn2(10)) && Slow_digestion) you_have("slower digestion");
+	if ((guaranteed || !rn2(10)) && Keen_memory)
 		enl_msg("Your memory ", "is", "was", " keen");
-	if (Sight_bonus) enl_msg("Your sight ", "is", "was", " improved");
-	if (Versus_curses) you_have("curse resistance");
+	if ((guaranteed || !rn2(10)) && Sight_bonus) enl_msg("Your sight ", "is", "was", " improved");
+	if ((guaranteed || !rn2(10)) && Versus_curses) you_have("curse resistance");
 
-	if (Stun_resist) you_have("stun resistance");
-	if (Conf_resist) you_have("confusion resistance");
-	if (Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
-	if (Death_resistance) you_have("resistance to death rays");
-	if (Double_attack) you_have("double attacks");
-	if (Quad_attack) you_have("quad attacks");
+	if ((guaranteed || !rn2(10)) && Stun_resist) you_have("stun resistance");
+	if ((guaranteed || !rn2(10)) && Conf_resist) you_have("confusion resistance");
+	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
+	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
+	if ((guaranteed || !rn2(10)) && Double_attack) you_have("double attacks");
+	if ((guaranteed || !rn2(10)) && Quad_attack) you_have("quad attacks");
 
-	if (Half_physical_damage) you_have("physical resistance");
-	if (Half_spell_damage) you_have("spell resistance");
-	if (Regeneration) enl_msg("You regenerate", "", "d", "");
-	if (Energy_regeneration) you_have("mana regeneration");
-	if (u.uspellprot || Protection) {
+	if ((guaranteed || !rn2(10)) && Half_physical_damage) you_have("physical resistance");
+	if ((guaranteed || !rn2(10)) && Half_spell_damage) you_have("spell resistance");
+	if ((guaranteed || !rn2(10)) && Regeneration) enl_msg("You regenerate", "", "d", "");
+	if ((guaranteed || !rn2(10)) && Energy_regeneration) you_have("mana regeneration");
+	if ((guaranteed || !rn2(10)) && (u.uspellprot || Protection)) {
 	    int prot = 0;
 
 	    if(uleft && uleft->otyp == RIN_PROTECTION) prot += uleft->spe;
@@ -3009,15 +3009,15 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    else
 		you_are("protected");
 	}
-	if (Protection_from_shape_changers)
+	if ((guaranteed || !rn2(10)) && Protection_from_shape_changers)
 		you_are("protected from shape changers");
-	if (Polymorph) you_have("polymorphitis");
-	if (Polymorph_control) you_have("polymorph control");
-	if (u.ulycn >= LOW_PM) {
+	if ((guaranteed || !rn2(10)) && Polymorph) you_have("polymorphitis");
+	if ((guaranteed || !rn2(10)) && Polymorph_control) you_have("polymorph control");
+	if ((guaranteed || !rn2(10)) && (u.ulycn >= LOW_PM)) {
 		Strcpy(buf, an(mons[u.ulycn].mname));
 		you_are(buf);
 	}
-	if (Upolyd && !missingnoprotect) {
+	if ((guaranteed || !rn2(10)) && (Upolyd && !missingnoprotect)) {
 	    if (u.umonnum == u.ulycn) Strcpy(buf, "in beast form");
 	    else Sprintf(buf, "polymorphed into %s", an(youmonst.data->mname));
 #ifdef WIZARD
@@ -3025,21 +3025,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 #endif
 	    you_are(buf);
 	}
-	if (Unchanging) you_can("not change from your current form");
-	if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) you_are(Very_fast ? "very fast" : "fast");
-	if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) you_are(Very_fast ? "very slow" : "slow");
-	if (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) you_are("very fast");
-	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) you_are("very slow");
-	if (Reflecting) you_have("reflection");
-	if (Free_action) you_have("free action");
-	if (Fixed_abil) you_have("fixed abilities");
-	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
+	if ((guaranteed || !rn2(10)) && Unchanging) you_can("not change from your current form");
+	if ((guaranteed || !rn2(10)) && (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone())) you_are(Very_fast ? "very fast" : "fast");
+	if ((guaranteed || !rn2(10)) && (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are(Very_fast ? "very slow" : "slow");
+	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone())) you_are("very fast");
+	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are("very slow");
+	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
+	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
+	if ((guaranteed || !rn2(10)) && Fixed_abil) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
-	if (Lifesaved)
+	if ((guaranteed || !rn2(10)) && Lifesaved)
 		enl_msg("Your life ", "will be", "would have been", " saved");
-	if (Second_chance)
+	if ((guaranteed || !rn2(10)) && Second_chance)
   	  enl_msg("You ","will be", "would have been"," given a second chance");
-	if (u.twoweap) {
+	if ((guaranteed || !rn2(10)) && u.twoweap) {
 	    if (uwep && uswapwep)
 		Sprintf(buf, "wielding two weapons at once");
 	    else if (uwep || uswapwep)
@@ -3052,7 +3052,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	/*** Miscellany ***/
-	if (Luck) {
+	if ((guaranteed || !rn2(10)) && Luck) {
 	    ltmp = abs((int)Luck);
 	    Sprintf(buf, "%s%slucky",
 		    ltmp >= 10 ? "extremely " : ltmp >= 5 ? "very " : "",
@@ -3063,11 +3063,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    you_are(buf);
 	}
 #ifdef WIZARD
-	 else if (wizard || !rn2(10) || final >= 1) enl_msg("Your luck ", "is", "was", " zero");
+	 else if ((guaranteed || !rn2(10)) && (wizard || !rn2(10) || final >= 1)) enl_msg("Your luck ", "is", "was", " zero");
 #endif
-	if (u.moreluck > 0) you_have("extra luck");
-	else if (u.moreluck < 0) you_have("reduced luck");
-	if (carrying(LUCKSTONE) || stone_luck(TRUE)) {
+	if ((guaranteed || !rn2(10)) && (u.moreluck > 0)) you_have("extra luck");
+	else if ((guaranteed || !rn2(10)) && (u.moreluck < 0)) you_have("reduced luck");
+	if ((guaranteed || !rn2(10)) && (carrying(LUCKSTONE) || stone_luck(TRUE))) {
 	    ltmp = stone_luck(FALSE);
 	    if (ltmp <= 0)
 		enl_msg("Bad luck ", "does", "did", " not time out for you");
@@ -3076,7 +3076,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	/* KMH, balance patch -- healthstones affect health */
-	if (u.uhealbonus)
+	if ((guaranteed || !rn2(10)) && u.uhealbonus)
 	{
 		Sprintf(buf, "%s health", u.uhealbonus > 0 ? "extra" :
 			"reduced");
@@ -3089,7 +3089,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	 else if (wizard) enl_msg("Your health bonus ", "is", "was", " zero");
 #endif
 
-	if (recalc_mana() )
+	if ((guaranteed || !rn2(10)) && recalc_mana() )
 	{
 		Sprintf(buf, "%s mana", recalc_mana() > 0 ? "extra" :
 			"reduced");
@@ -3102,7 +3102,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	 else if (wizard) enl_msg("Your mana bonus ", "is", "was", " zero");
 #endif
 
-	if (u.ugangr) {
+	if ((guaranteed || !rn2(10)) && u.ugangr) {
 	    Sprintf(buf, " %sangry with you",
 		    u.ugangr > 6 ? "extremely " : u.ugangr > 3 ? "very " : "");
 #ifdef WIZARD
@@ -3115,7 +3115,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	     * can change the value calculated by can_pray(), potentially
 	     * resulting in a false claim that you could have prayed safely.
 	     */
-	  if (wizard || !wizard) {
+	  if (guaranteed || !rn2(10)) {
 
 	    /* "can [not] safely pray" vs "could [not] have safely prayed" */
 
@@ -5027,7 +5027,7 @@ doattributes()
 	if (!minimal_enlightenment())
 		return 0;
 	if (wizard || discover)
-		enlightenment(0);
+		enlightenment(0, 1);
 	return 0;
 }
 

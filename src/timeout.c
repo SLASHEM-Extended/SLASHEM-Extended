@@ -2441,6 +2441,10 @@ nh_timeout()
 			if (!Flying)
 				pline("You feel less airborne.");
 			break;
+		case CONF_RES:
+			if (!Conf_resist)
+				pline("You no longer resist confusion.");
+			break;
 		case BLACK_NG_WALLS:
 
 			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");

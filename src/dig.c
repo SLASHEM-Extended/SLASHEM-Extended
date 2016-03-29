@@ -1280,7 +1280,8 @@ register struct monst *mtmp;
 
 /* digging via wand zap or spell cast */
 void
-zap_dig()
+zap_dig(bigrange)
+boolean bigrange;
 {
 	struct rm *room;
 	struct monst *mtmp;
@@ -1306,6 +1307,10 @@ zap_dig()
 			s_suffix(mon_nam(mtmp)), mbodypart(mtmp, STOMACH));
 		mtmp->mhp *= 4;
 		mtmp->mhp /= 5; /* prevent easy Jubilex killing --Amy */
+		if (bigrange) {
+			mtmp->mhp *= 3;
+			mtmp->mhp /= 5;
+		}
 		if (mtmp->mhp < 1) mtmp->mhp = 1; /* fixes the bug where killing gray newts causes error messages */
 		expels(mtmp, mtmp->data, !is_animal(mtmp->data));
 	    }
@@ -1353,7 +1358,7 @@ zap_dig()
 	maze_dig = level.flags.is_maze_lev && !Is_earthlevel(&u.uz);
 	zx = u.ux + u.dx;
 	zy = u.uy + u.dy;
-	digdepth = rn1(18, 8);
+	digdepth = bigrange ? rn1(18, 8) : 1;
 	tmp_at(DISP_BEAM, cmap_to_glyph(S_digbeam));
 	while (--digdepth >= 0) {
 	    if (!isok(zx,zy)) break;

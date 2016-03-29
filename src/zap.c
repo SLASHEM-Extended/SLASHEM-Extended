@@ -167,6 +167,7 @@ struct obj *otmp;
 			break;	/* skip makeknown */
 		} else if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
 			dmg = d(2,12) + rnz(u.ulevel);
+			if (otyp == WAN_STRIKING) dmg += rnz(u.ulevel);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
@@ -222,6 +223,10 @@ struct obj *otmp;
 			dmg = rnd(8);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
+			if (otyp == WAN_UNDEAD_TURNING) {
+				dmg += rnz(u.ulevel);
+				dmg *= (2 + rn2(2));
+			}
 			flags.bypasses = TRUE;	/* for make_corpse() */
 			if (!resist(mtmp, otmp->oclass, dmg, NOTELL)) {
 			    if (mtmp->mhp > 0) monflee(mtmp, rnd(10), FALSE, TRUE);
@@ -629,9 +634,11 @@ struct obj *otmp;
 		   * right back to Slash v3 (and probably to v1).
 		   */
 		  otyp == WAN_HEALING ?  d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp) :
-		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + rnz(u.ulevel) + 10 * !!bcsign(otmp) :
-		  otyp == WAN_FULL_HEALING ?  d(5,8) + rnz(u.ulevel) + 20 * !!bcsign(otmp) :
-		  otyp == SPE_HEALING ? rnd(10) +4 + rnz(u.ulevel) : d(3,8)+6 + rnz(u.ulevel);
+		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + rnz(u.ulevel) + rnz(u.ulevel) + 10 * !!bcsign(otmp) :
+		  otyp == WAN_FULL_HEALING ?  d(5,8) + rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel) + 20 * !!bcsign(otmp) :
+		  otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : 
+		  otyp == SPE_EXTRA_HEALING ? rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel)) : 
+		  rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel)) ;
 		if (mtmp->mhp > mtmp->mhpmax) {
 		    if (otmp->oclass == WAND_CLASS)
 			mtmp->mhpmax++;
@@ -715,7 +722,8 @@ struct obj *otmp;
 		dmg = rnd(8);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
-		
+		if (otyp ==	WAN_DRAINING) dmg *= 2;
+
 		if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
@@ -738,6 +746,7 @@ struct obj *otmp;
 		dmg = rnd(8);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
+		if (otyp ==	WAN_TIME) dmg *= 2;
 		
 		mtmp->mhp -= dmg;
 		mtmp->mhpmax -= dmg;
@@ -2519,7 +2528,7 @@ struct obj *obj, *otmp;
 		switch (objects[obj->otyp].oc_class) {
 		    case ROCK_CLASS:	/* boulders and statues */
 			if (obj->otyp == BOULDER) {
-			    obj = poly_obj(obj, HUGE_CHUNK_OF_MEAT);
+			    obj = poly_obj(obj, rnd(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT);
 			    goto smell;
 			} else if (obj->otyp == STATUE) {
 			    xchar oox, ooy;
@@ -3203,8 +3212,11 @@ newboss:
 			if (!Blind) known = TRUE;
 			break;
 		case WAN_SECRET_DOOR_DETECTION:
-		case SPE_DETECT_UNSEEN:
 			if(!findit()) return;
+			if (!Blind) known = TRUE;
+			break;
+		case SPE_DETECT_UNSEEN:
+			if(!finditX()) return;
 			if (!Blind) known = TRUE;
 			break;
 		case WAN_TRAP_DISARMING:
@@ -3333,7 +3345,7 @@ newboss:
 			known = TRUE;
 			You_feel("self-knowledgeable...");
 			display_nhwindow(WIN_MESSAGE, FALSE);
-			enlightenment(FALSE);
+			enlightenment(FALSE, TRUE);
 			pline_The("feeling subsides.");
 			exercise(A_WIS, TRUE);
 			break;
@@ -3375,8 +3387,8 @@ newboss:
 			break;
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;
-			pline("You grasp some bits from the current map!");
-			do_mappingX();
+			pline("A map coalesces in your mind!");
+			do_mapping();
 			break;
 		case WAN_STINKING_CLOUD:
 		      {  coord cc;
@@ -3437,8 +3449,38 @@ newboss:
 			You_feel("like someone is helping you!");
 			register struct obj *obj;
 
-			for(obj = invent; obj ; obj = obj->nobj)
-				if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj);
+			for(obj = invent; obj ; obj = obj->nobj) {
+
+				long wornmask;
+				if (obj->oclass == COIN_CLASS) continue;
+				wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
+				if (wornmask) {
+				    /* handle a couple of special cases; we don't
+				       allow auxiliary weapon slots to be used to
+				       artificially increase number of worn items */
+				    if (obj == uswapwep) {
+					if (!u.twoweap) wornmask = 0L;
+				    } else if (obj == uquiver) {
+					if (obj->oclass == WEAPON_CLASS) {
+					    /* mergeable weapon test covers ammo,
+					       missiles, spears, daggers & knives */
+					    if (!objects[obj->otyp].oc_merge) 
+						wornmask = 0L;
+					} else if (obj->oclass == GEM_CLASS) {
+					    /* possibly ought to check whether
+					       alternate weapon is a sling... */
+					    if (!uslinging()) wornmask = 0L;
+					} else {
+					    /* weptools don't merge and aren't
+					       reasonable quivered weapons */
+					    wornmask = 0L;
+					}
+				    }
+				}
+
+				if ( (!rn2(5) || wornmask) && obj->cursed && !stack_too_big(obj))
+					uncurse(obj);
+			}
 
 			break;
 		case WAN_PUNISHMENT:
@@ -3480,7 +3522,7 @@ newboss:
 			case 7 : 
 				You_feel("self-knowledgeable...");
 				display_nhwindow(WIN_MESSAGE, FALSE);
-				enlightenment(FALSE);
+				enlightenment(FALSE, TRUE);
 				pline_The("feeling subsides.");
 				exercise(A_WIS, TRUE);
 				break;
@@ -4938,8 +4980,10 @@ struct obj *obj;
 
 	} else {
 	    /* neither immediate nor directionless */
-	    if (otyp == WAN_DIGGING || otyp == SPE_DIG)
-		zap_dig();
+	    if (otyp == WAN_DIGGING)
+		zap_dig(TRUE);
+	    else if (otyp == SPE_DIG)
+		zap_dig(FALSE);
 /*		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_FINGER_OF_DEATH)*/
 		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
 			/* WAC --
@@ -4969,20 +5013,20 @@ struct obj *obj;
 	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_SOLAR_BEAM)
         {
 		buzz(otyp - WAN_MAGIC_MISSILE,
-		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5),
+		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
 			/*} else if (obj->otyp == WAN_ACID) {
 			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
         }
 
 	    else if (otyp == WAN_POISON) {
-		buzz((int)(26), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
-		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(u.ulevel) / 6) : damagetype == 20 ? 2 + (rnz(u.ulevel) / 10) : damagetype == 28 ? 8 + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) : damagetype == 20 ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : damagetype == 28 ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -4993,7 +5037,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == WAN_DISINTEGRATION_BEAM) {
-		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(24), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -5004,7 +5048,7 @@ struct obj *obj;
 
 	    else if (otyp == WAN_VENOM_SCATTERING) {
 
-		buzz(36, 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz(36, 7 + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -5193,6 +5237,8 @@ struct obj **obj_p;			/* object tossed/used */
 	    bhitpos.y += ddy;
 	    x = bhitpos.x; y = bhitpos.y;
 
+	    /*pline("x %d, y %d", bhitpos.x, bhitpos.y);*/
+
 	    if(!isok(x, y)) {
 		bhitpos.x -= ddx;
 		bhitpos.y -= ddy;
@@ -5335,7 +5381,26 @@ struct obj **obj_p;			/* object tossed/used */
 		    break;
 		}
 	    }
-	    if(!ZAP_POS(typ) || closed_door(bhitpos.x, bhitpos.y)) {
+	    if(weapon == ZAPPED_WAND && obj->otyp == WAN_OPENING) {
+		if (rn2(2) && (typ >= STONE) && (typ <= DBWALL) && ((levl[bhitpos.x][bhitpos.y].wall_info & W_NONDIGGABLE) == 0) ) {
+			levl[bhitpos.x][bhitpos.y].typ = CORR;
+			unblock_point(bhitpos.x,bhitpos.y);
+			newsym(bhitpos.x,bhitpos.y);
+
+		}
+	    }
+
+	    if(weapon == ZAPPED_WAND && obj->otyp == WAN_LOCKING) {
+		if (rn2(2) && ((levl[bhitpos.x][bhitpos.y].wall_info & W_NONDIGGABLE) == 0) && (typ == ROOM || typ == CORR) ) {
+
+			levl[bhitpos.x][bhitpos.y].typ = STONE;
+			block_point(bhitpos.x,bhitpos.y);
+			del_engr_at(bhitpos.x,bhitpos.y);
+			newsym(bhitpos.x,bhitpos.y);
+		}
+	    }
+
+	    if( (!ZAP_POS(typ) && !(obj->otyp == WAN_OPENING))  || closed_door(bhitpos.x, bhitpos.y)) {
 		bhitpos.x -= ddx;
 		bhitpos.y -= ddy;
 		break;
@@ -6961,7 +7026,7 @@ int damage, tell;
 	    case SCROLL_CLASS:	alev =  9 + Role_if(PM_INTEL_SCRIBE) ? u.ulevel : Role_if(PM_LIBRARIAN) ? (u.ulevel / 2) : (u.ulevel / 3);	 break;
 	    case POTION_CLASS:	alev =  6 + Role_if(PM_DRUNK) ? u.ulevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (u.ulevel / 2) : (u.ulevel / 4);	 break;
 	    case RING_CLASS:	alev =  5 + Role_if(PM_LADIESMAN) ? (u.ulevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (u.ulevel / 3) : (u.ulevel / 5);	 break;
-	    default:		alev = u.ulevel; break;	/* spell */
+	    default:		alev = rnd(u.ulevel); break;	/* spell */
 	}
 	/* defense level */
 	dlev = (int)mtmp->m_lev;

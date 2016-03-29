@@ -916,6 +916,8 @@ boolean atme;
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 3;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
+	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
@@ -1078,15 +1080,16 @@ boolean atme;
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
 	pseudo = mksobj(spellid(spell), FALSE, FALSE);
+	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(spell); /* minimalist fix */
 	pseudo->blessed = pseudo->cursed = 0;
 	pseudo->quan = 20L;			/* do not let useup get it */
 
 	/* WAC -- If skilled enough,  will act like a blessed version */
 	if (role_skill >= P_SKILLED) { /* made it depend on skill level --Amy */
-		if (!rn2(4) && role_skill == P_SKILLED) pseudo->blessed = 1;
-		if (!rn2(3) && role_skill == P_EXPERT) pseudo->blessed = 1;
-		if (!rn2(2) && role_skill == P_MASTER) pseudo->blessed = 1;
-		if (role_skill == P_GRAND_MASTER) pseudo->blessed = 1;
+		if (!rn2(10) && role_skill == P_SKILLED) pseudo->blessed = 1;
+		if (!rn2(8) && role_skill == P_EXPERT) pseudo->blessed = 1;
+		if (!rn2(6) && role_skill == P_MASTER) pseudo->blessed = 1;
+		if (!rn2(5) && role_skill == P_GRAND_MASTER) pseudo->blessed = 1;
 	}
 
 #ifdef ALLEG_FX
@@ -1157,6 +1160,12 @@ boolean atme;
 			} else weffects(pseudo);
 		} else weffects(pseudo);
 		update_inventory();	/* spell may modify inventory */
+		if (pseudo->otyp == SPE_TELEPORT_AWAY || pseudo->otyp == SPE_POLYMORPH || pseudo->otyp == SPE_MUTATION) {
+			if (!rn2(5)) {
+				pline("The magical energy goes out of control!");
+				badeffect();
+			}
+		}
 		break;
 	/* these are all duplicates of scroll effects */
 	case SPE_REMOVE_CURSE:
@@ -1200,7 +1209,7 @@ boolean atme;
 
 	case SPE_ENTRAPPING:
 
-		trap_detect((struct obj *)0);
+		trap_detectX((struct obj *)0);
 		exercise(A_WIS, TRUE);
 
 		break;
@@ -1395,7 +1404,7 @@ boolean atme;
 		    obfree(pseudo, (struct obj *)0);
 		    return 0;
 		}
-		(void) create_gas_cloud(cc.x, cc.y, 3, 8);
+		(void) create_gas_cloud(cc.x, cc.y, 2, 5);
 		break;
 		}
 		break;
@@ -1405,7 +1414,11 @@ boolean atme;
 		else TimeStopped += rnd(3 + spell_damage_bonus(spellid(spell)) );
 		break;
 	case SPE_LEVELPORT:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) {
+			level_tele();
+			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");
+			badeffect();
+		}
 		else pline("Hmm... that level teleport spell didn't do anything.");
 
 		break;
@@ -1424,6 +1437,11 @@ boolean atme;
 		d_level newlevel;
 		get_level(&newlevel, newlev);
 		goto_level(&newlevel, TRUE, FALSE, FALSE);
+
+		if (rn2(2)) {
+			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");
+			badeffect();
+		}
 
 		break;
 	case SPE_TRAP_CREATION:
@@ -1472,11 +1490,15 @@ boolean atme;
 		if (!Blind && !u.usleep) Your(vision_clears);
 		break;
 	case SPE_CREATE_FAMILIAR:
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		else {
+			pline("The summoned monster does not seem to be friendly!");
+			(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
+		}
 		break;
 	case SPE_CLAIRVOYANCE:
 		if (!BClairvoyant)
-		    do_vicinity_map();
+		    do_vicinity_mapX();
 		/* at present, only one thing blocks clairvoyance */
 		else if (uarmh && uarmh->otyp == CORNUTHAUM)
 		    You("sense a pointy hat on top of your %s.",
@@ -1506,7 +1528,7 @@ boolean atme;
 	case SPE_MAGICTORCH:
 		if(!(HSight_bonus & INTRINSIC)) {
 			You("can see in the dark!");
-			incr_itimeout(&HSight_bonus, rn1(200, 100) +
+			incr_itimeout(&HSight_bonus, rn1(20, 10) +
 				spell_damage_bonus(spellid(spell))*20);
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1567,14 +1589,15 @@ boolean atme;
 	
 		    HConfusion = HHallucination = 0L;
 		    for (t = ftrap; t != 0; t = t->ntrap) {
+			if (!rn2(15)) continue;
 			if (!t->hiddentrap) t->tseen = 1;
 			map_trap(t, TRUE);
 		    }
-		    do_mapping();
+		    do_mappingY();
 		    HConfusion = save_Hconf;
 		    HHallucination = save_Hhallu;
 		    pline("You feel knowledgable!");
-		    object_detect((struct obj *)0, 0);
+		    object_detect(pseudo, 0);
 		} else
 		    pline("The map refuses to reveal its secrets.");
 		break;
@@ -1673,7 +1696,7 @@ boolean atme;
 	case SPE_ENLIGHTEN: 
 		You("feel self-knowledgeable...");
 		display_nhwindow(WIN_MESSAGE, FALSE);
-		enlightenment(FALSE);
+		enlightenment(FALSE, FALSE);
 		pline("The feeling subsides.");
 		exercise(A_WIS, TRUE);
 		break;
@@ -1685,7 +1708,7 @@ boolean atme;
 		struct monst *mtmp;
 
 
-		if (role_skill >= P_SKILLED) cnt += (role_skill - P_BASIC);
+		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
 			mtmp = make_helper((pseudo->otyp == SPE_FLAME_SPHERE) ?
 					PM_FLAMING_SPHERE : PM_FREEZING_SPHERE, u.ux, u.uy);
@@ -1702,7 +1725,7 @@ boolean atme;
 		struct monst *mtmp;
 
 
-		if (role_skill >= P_SKILLED) cnt += (role_skill - P_BASIC);
+		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
 			mtmp = make_helper(PM_SHOCKING_SPHERE, u.ux, u.uy);
 			if (!mtmp) continue;
@@ -1718,7 +1741,7 @@ boolean atme;
 		struct monst *mtmp;
 
 
-		if (role_skill >= P_SKILLED) cnt += (role_skill - P_BASIC);
+		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
 			mtmp = make_helper(PM_ACID_SPHERE, u.ux, u.uy);
 			if (!mtmp) continue;
@@ -1734,7 +1757,7 @@ boolean atme;
 	case SPE_PASSWALL:
 		if (!Passes_walls)
 			You_feel("ethereal.");
-		incr_itimeout(&HPasses_walls, rn1(100, 50));
+		incr_itimeout(&HPasses_walls, rn1(10, 5));
 		break;
 
 	case SPE_DETECT_FOOT:
@@ -2212,10 +2235,33 @@ int spell;
 
 	}
 
+	switch (spellev(spell)) {
+
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		default:
+			break;
+		case 5:
+			chance -= 10;
+			break;
+		case 6:
+			chance -= 30;
+			break;
+		case 7:
+			chance -= 60;
+			break;
+		case 8:
+			chance -= 100;
+			break;
+
+	}
+
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
-	if (chance < (issoviet ? 0 : 10) ) chance = (issoviet ? 0 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
+	if (chance < (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10) ) chance = (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;
 }

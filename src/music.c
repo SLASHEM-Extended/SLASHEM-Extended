@@ -433,6 +433,38 @@ struct obj *instr;
 	case TOOLED_HORN:		/* Awaken or scare monsters */
 	    You("produce a frightful, grave sound.");
 	    awaken_monsters(u.ulevel * 30);
+
+	    switch (rn2(16)) {
+		    case 0:
+		    case 1:
+		    case 2:
+		    case 3: make_confused(HConfusion + 12, FALSE);			/* 40% */
+			    break;
+		    case 4:
+		    case 5:
+		    case 6: make_confused(HConfusion + (2L * 12 / 3L), FALSE);		/* 30% */
+			    make_stunned(HStun + (12 / 3L), FALSE);
+			    break;
+		    case 7:
+		    case 8: make_stunned(HStun + (2L * 12 / 3L), FALSE);		/* 20% */
+			    make_confused(HConfusion + (12 / 3L), FALSE);
+			    break;
+		    case 9: make_stunned(HStun + 12, FALSE);			/* 10% */
+			    break;
+		    case 10: make_numbed(HNumbed + 12, FALSE);			/* 10% */
+			    break;
+		    case 11: make_frozen(HFrozen + 12, FALSE);			/* 10% */
+			    break;
+		    case 12: make_burned(HBurned + 12, FALSE);			/* 10% */
+			    break;
+		    case 13: make_feared(HFeared + 12, FALSE);			/* 10% */
+			    break;
+		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
+			    break;
+		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+	    }
+
 	    exercise(A_WIS, FALSE);
 	    break;
 	case BUGLE:			/* Awaken & attract soldiers */
@@ -496,6 +528,41 @@ struct obj *instr;
 	case LEATHER_DRUM:		/* Awaken monsters */
 	    You("beat a deafening row!");
 	    awaken_monsters(u.ulevel * 40);
+	    Deafness += (u.ulevel * 40);
+	    flags.soundok = 0;
+
+	    switch (rn2(48)) {
+		    case 0:
+		    case 1:
+		    case 2:
+		    case 3: make_confused(HConfusion + 12, FALSE);			/* 40% */
+			    break;
+		    case 4:
+		    case 5:
+		    case 6: make_confused(HConfusion + (2L * 12 / 3L), FALSE);		/* 30% */
+			    make_stunned(HStun + (12 / 3L), FALSE);
+			    break;
+		    case 7:
+		    case 8: make_stunned(HStun + (2L * 12 / 3L), FALSE);		/* 20% */
+			    make_confused(HConfusion + (12 / 3L), FALSE);
+			    break;
+		    case 9: make_stunned(HStun + 12, FALSE);			/* 10% */
+			    break;
+		    case 10: make_numbed(HNumbed + 12, FALSE);			/* 10% */
+			    break;
+		    case 11: make_frozen(HFrozen + 12, FALSE);			/* 10% */
+			    break;
+		    case 12: make_burned(HBurned + 12, FALSE);			/* 10% */
+			    break;
+		    case 13: make_feared(HFeared + 12, FALSE);			/* 10% */
+			    break;
+		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
+			    break;
+		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    default: break;
+	    }
+
 	    exercise(A_WIS, FALSE);
 	    break;
 	default:

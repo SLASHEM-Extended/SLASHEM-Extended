@@ -1894,7 +1894,7 @@ arti_invoke(obj)
 	    break;
 	  }
 	case ENLIGHTENING:
-	    enlightenment(0);
+	    enlightenment(0, 1);
 	    break;
 	case CREATE_AMMO: {
 	    struct obj *otmp = mksobj(ARROW, TRUE, FALSE);

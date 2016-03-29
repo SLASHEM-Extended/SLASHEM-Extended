@@ -2147,6 +2147,7 @@ register struct obj	*sobj;
 		struct obj *wonderscroll;
 		wonderscroll = mkobj(SCROLL_CLASS,FALSE);
 		if (wonderscroll) sobj->otyp = wonderscroll->otyp;
+		if (sobj->otyp == GOLD_PIECE) sobj->otyp = SCR_RUMOR; /* minimalist fix */
 		obfree(wonderscroll, (struct obj *)0);
 
 	}
@@ -2467,6 +2468,8 @@ register struct obj	*sobj;
 			Blind ? (const char *)"tingle" : hcolor(NH_RED),
 			u.umconf ? " even more" : "");
 			u.umconf++;
+			if (sobj->otyp == SCR_CONFUSE_MONSTER) u.umconf++;
+			if (sobj->otyp == SCR_CONFUSE_MONSTER) incr_itimeout(&HConf_resist, rnd(200));
 		    } else {
 			if (Blind)
 			    Your("%s tingle %s sharply.",
@@ -2482,11 +2485,48 @@ register struct obj	*sobj;
 			    u.umconf++;
 			else
 			    u.umconf += rn1(8, 2);
+			if (sobj->otyp == SCR_CONFUSE_MONSTER) incr_itimeout(&HConf_resist, rnd(500));
 		    }
 		}
 		break;
 	case SPE_CAUSE_FEAR:
 		if (confused) break;
+		if (!rn2(5)) {
+
+			pline("The spell effect backlashes!");
+
+		    switch (rn2(16)) {
+		    case 0:
+		    case 1:
+		    case 2:
+		    case 3: make_confused(HConfusion + 12, FALSE);			/* 40% */
+			    break;
+		    case 4:
+		    case 5:
+		    case 6: make_confused(HConfusion + (2L * 12 / 3L), FALSE);		/* 30% */
+			    make_stunned(HStun + (12 / 3L), FALSE);
+			    break;
+		    case 7:
+		    case 8: make_stunned(HStun + (2L * 12 / 3L), FALSE);		/* 20% */
+			    make_confused(HConfusion + (12 / 3L), FALSE);
+			    break;
+		    case 9: make_stunned(HStun + 12, FALSE);			/* 10% */
+			    break;
+		    case 10: make_numbed(HNumbed + 12, FALSE);			/* 10% */
+			    break;
+		    case 11: make_frozen(HFrozen + 12, FALSE);			/* 10% */
+			    break;
+		    case 12: make_burned(HBurned + 12, FALSE);			/* 10% */
+			    break;
+		    case 13: make_feared(HFeared + 12, FALSE);			/* 10% */
+			    break;
+		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
+			    break;
+		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    }
+
+		}
 	case SCR_SCARE_MONSTER:
 	    {	register int ct = 0;
 		register struct monst *mtmp;
@@ -2637,7 +2677,7 @@ register struct obj	*sobj;
 			     is_nastygraystone(obj) ||
 			     (obj->otyp == LEASH && obj->leashmon)) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
-			    else uncurse(obj);
+			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj);
 			}
 		    }
 		}
@@ -2648,6 +2688,7 @@ register struct obj	*sobj;
 	case SPE_CREATE_MONSTER:
 		if (confused) break;
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
+		if (!rn2(4)) makerandomtrap();
 
 		break;
 	case SCR_CREATE_MONSTER:
@@ -4498,11 +4539,18 @@ retry:
 	case SPE_DETECT_FOOD:
 		if (confused) break;
 	case SCR_FOOD_DETECTION:
+		if (sobj->otyp == SCR_FOOD_DETECTION) u.uhunger += (20 + (sobj->blessed * 30));
 		if (food_detect(sobj))
 			return(1);	/* nothing detected */
 		break;
 	case SPE_IDENTIFY:
 		if (confused) break;
+		if (!rn2(100)) {
+
+			forget(3);
+			pline("Oh, no! Your mind has gone blank!");
+			return(1);
+		}
 		cval = rnd(4);
 		if (rn2(7)) cval = 1; /* hardcore nerf by Amy */
 		goto id;
@@ -4719,10 +4767,12 @@ retry:
 		    break;
 		}
 		if(!(sobj->oartifact)){
-		pline("A map coalesces in your mind!");
+		if (sobj->otyp == SPE_MAGIC_MAPPING) pline("You grasp some bits from the current map!");
+		else pline("A map coalesces in your mind!");
 		cval = (sobj->cursed && !confused);
 		if(cval) HConfusion = 1;	/* to screw up map */
-		do_mapping();
+		if (sobj->otyp == SPE_MAGIC_MAPPING) do_mappingX();
+		else do_mapping();
 		if (sobj->blessed && !cval) /* objects, too, pal! */
 		  object_detect(sobj,0);
 		if(cval) {
@@ -5409,11 +5459,11 @@ do_it:
 	} else
 #endif
 
-		if (rn2(10)) {
+		if (rn2(10) || (obj && obj->oclass==SPBOOK_CLASS) ) {
 
 	    do_clear_area(u.ux,u.uy,
 		obj->oartifact ? 12 :
-		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
+		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : (obj && obj->oclass==SPBOOK_CLASS) ? 3 : 5,
 		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
 
 		}

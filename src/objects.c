@@ -2974,7 +2974,7 @@ SPELL("destroy armor", "destructive",   P_ENCHANTMENT_SPELL, 5,    3, 2, 1, NODI
 SPELL("slow monster",    "light green", P_ENCHANTMENT_SPELL, 130,  2, 2, 1, IMMEDIATE, CLR_BRIGHT_GREEN),
 SPELL("inertia",    "grass green",      P_ENCHANTMENT_SPELL, 5,   25, 7, 1, IMMEDIATE, CLR_BRIGHT_GREEN),
 SPELL("cause fear",      "light blue",  P_ENCHANTMENT_SPELL, 50,   3, 3, 1, NODIR,     CLR_BRIGHT_BLUE),
-SPELL("charm monster",   "magenta",     P_ENCHANTMENT_SPELL, 50,   3, 3, 1, IMMEDIATE, CLR_MAGENTA),
+SPELL("charm monster",   "magenta",     P_ENCHANTMENT_SPELL, 50,   3, 4, 1, IMMEDIATE, CLR_MAGENTA),
 SPELL("enchant weapon",  "dull",        P_ENCHANTMENT_SPELL, 30,   8, 7, 1, NODIR,     CLR_WHITE),
 SPELL("enchant armor",   "thin",        P_ENCHANTMENT_SPELL, 30,   8, 7, 1, NODIR,     CLR_WHITE),
 SPELL("charging",   "stellar",          P_ENCHANTMENT_SPELL, 25,   8, 7, 1, NODIR,     CLR_WHITE),

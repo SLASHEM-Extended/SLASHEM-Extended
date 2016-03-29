@@ -2916,12 +2916,40 @@ struct obj *otmp;
 	learn_egg_type(otmp->corpsenm);
 }
 
+void
+maybe_fully_identify_obj(otmp)
+struct obj *otmp;
+{
+	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
+	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
+	else if (otmp->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+	else if (otmp->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+      else if (rn2(3)) makeknown(otmp->otyp);
+    if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+    if (rn2(3)) otmp->known = 1;
+    if (rn2(3)) otmp->dknown = 1;
+    if (rn2(3)) otmp->bknown = 1;
+    if (rn2(3)) otmp->rknown = 1;
+    if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
+	learn_egg_type(otmp->corpsenm);
+}
+
 /* ggetobj callback routine; identify an object and give immediate feedback */
 int
 identify(otmp)
 struct obj *otmp;
 {
     fully_identify_obj(otmp);
+    prinv((char *)0, otmp, 0L);
+    return 1;
+}
+
+int
+identifyless(otmp)
+struct obj *otmp;
+{
+    maybe_fully_identify_obj(otmp);
     prinv((char *)0, otmp, 0L);
     return 1;
 }
@@ -2975,7 +3003,7 @@ int id_limit;
 	if (!id_limit && Has_contents(obj)) { /* full inventory id works on containers --Amy */
 
 		for (otmp = obj->cobj; otmp; otmp = otmp->nobj) {
-		    if (not_fully_identified(otmp)) (void) identify(otmp);
+		    if (rn2(5) && not_fully_identified(otmp)) (void) identifyless(otmp);
 		}
 
 	}
@@ -2992,7 +3020,7 @@ int id_limit;
 
 	    /* TODO:  use fully_identify_obj and cornline/menu/whatever here */
 	    for (obj = invent; obj; obj = obj->nobj)
-		if (not_fully_identified(obj)) (void) identify(obj);
+		if (rn2(5) && not_fully_identified(obj)) (void) identifyless(obj);
 
 	}
     } else {
@@ -6165,7 +6193,7 @@ struct obj *obj;
 			case MAGIC_FLUTE: 
 				pline("An instrument that generates charming sounds to lull your enemies into sleeping."); break;
 			case TOOLED_HORN: 
-				pline("A noisy instrument that will wake up monsters. Sometimes it will scare them, too."); break;
+				pline("A noisy instrument that will wake up monsters. Sometimes it will scare them, too. But it will always cause nasty side effects for you so be careful!"); break;
 			case FROST_HORN: 
 				pline("This instrument can shoot bolts of ice."); break;
 			case TEMPEST_HORN: 
@@ -6183,7 +6211,7 @@ struct obj *obj;
 			case BUGLE:
 				pline("This instrument can be played to wake up soldiers."); break;
 			case LEATHER_DRUM: 
-				pline("Using this instrument causes nearby monsters to wake up."); break;
+				pline("Using this instrument causes nearby monsters to wake up. It also makes noise that causes you to become deaf for a while."); break;
 			case DRUM_OF_EARTHQUAKE: 
 				pline("A magic drum that causes the entire dungeon level to shake violently, creating lots of pits."); break;
 			case LAND_MINE: 
@@ -6681,7 +6709,7 @@ struct obj *obj;
 			case SCR_LIGHT: 
 				pline("Illuminates the area around you."); break;
 			case SCR_FOOD_DETECTION: 
-				pline("Reading this scroll allows you to detect comestibles on the current level."); break;
+				pline("Reading this scroll allows you to detect comestibles on the current level. It also fills your stomach a little."); break;
 			case SCR_GOLD_DETECTION: 
 				pline("All piles of gold on the entire level are revealed to you if you read this."); break;
 			case SCR_IDENTIFY: 
@@ -6729,7 +6757,7 @@ struct obj *obj;
 			case SCR_GAIN_MANA: 
 				pline("Reading this scroll will increase your max mana."); break;
 			case SCR_CONFUSE_MONSTER: 
-				pline("Your melee attacks have a chance to confuse monsters after reading this scroll."); break;
+				pline("Your melee attacks have a chance to confuse monsters after reading this scroll. Also, it grants temporary confusion resistance."); break;
 			case SCR_SCARE_MONSTER: 
 				pline("Reading this scroll is a waste. Its real purpose is to lie on the ground, keeping monsters away from it. However, it degrades every time you pick it up."); break;
 			case SCR_ENCHANT_WEAPON: 
@@ -6926,7 +6954,7 @@ struct obj *obj;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters."); break;
+				pline("Casting this spell summons random monsters. Beware, it might also create a trap on the current dungeon level."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
@@ -6958,27 +6986,27 @@ struct obj *obj;
 			case SPE_FULL_HEALING:
 				pline("This spell can be aimed at yourself or a monster to heal a large amount of hit points."); break;
 			case SPE_RESTORE_ABILITY:
-				pline("If your attributes have been damaged, this spell may restore them to their previous values."); break;
+				pline("If your attributes have been damaged, this spell may gradually restore them."); break;
 			case SPE_CREATE_FAMILIAR:
-				pline("Casting this spell summons a monster that fights on your side."); break;
+				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware..."); break;
 			case SPE_LIGHT:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:
-				pline("Allows you to see all monsters on the current dungeon level."); break;
+				pline("Allows you to see some of the monsters on the current dungeon level."); break;
 			case SPE_DETECT_FOOD:
 				pline("This spell shows you the food items on the current level."); break;
 			case SPE_CLAIRVOYANCE:
-				pline("You will become clairvoyant for a period of time by casting this."); break;
+				pline("You can see part of your surroundings by casting this."); break;
 			case SPE_DETECT_UNSEEN:
-				pline("A spell that grants you the ability to see invisible things."); break;
+				pline("A spell that may detect hidden things close by, e.g. traps or invisible monsters."); break;
 			case SPE_IDENTIFY:
-				pline("Casting this spell allows you to identify some objects in your inventory."); break;
+				pline("Casting this spell allows you to identify some objects in your inventory. Careful: very rarely this spell can backlash, causing amnesia!"); break;
 			case SPE_DETECT_TREASURE:
-				pline("This spell detects objects on the current level."); break;
+				pline("This spell detects some of the objects on the current level."); break;
 			case SPE_MAGIC_MAPPING:
-				pline("A spell that reveals what the current dungeon level looks like, unless it's a non-mappable special level."); break;
+				pline("A spell that reveals fragments of what the current dungeon level looks like, unless it's a non-mappable special level."); break;
 			case SPE_ENTRAPPING:
-				pline("Casting this spell allows you to detect traps on the level."); break;
+				pline("Casting this spell allows you to detect traps on the level, but each cast only reveals a few of them at once."); break;
 			case SPE_FINGER:
 				pline("This spell fires an invisible beam that shows you the attributes of monsters hit by it."); break;
 			case SPE_CHEMISTRY:
@@ -7000,7 +7028,7 @@ struct obj *obj;
 			case SPE_SLOW_MONSTER:
 				pline("This spell fires an invisible beam that slows targets."); break;
 			case SPE_CAUSE_FEAR:
-				pline("Use this spell to make monsters flee from you."); break;
+				pline("Use this spell to make monsters flee from you. Occasionally it backlashes, afflicting you with a standard status effect."); break;
 			case SPE_CHARM_MONSTER:
 #ifdef PHANTOM_CRASH_BUG
 				pline("This powerful spell can sometimes charm adjacent monsters, but they resist often so you may have to cast it repeatedly."); break;
@@ -7026,7 +7054,7 @@ struct obj *obj;
 			case SPE_INSULATE:
 				pline("This spell provides temporary shock resistance when cast."); break;
 			case SPE_REMOVE_CURSE:
-				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory."); break;
+				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only."); break;
 			case SPE_TURN_UNDEAD:
 				pline("Fires an invisible beam that makes undead monsters flee and revives dead monsters."); break;
 			case SPE_ANTI_DISINTEGRATION:
@@ -7044,7 +7072,7 @@ struct obj *obj;
 			case SPE_HASTE_SELF:
 				pline("This spell allows you to move at very fast speed for a period of time."); break;
 			case SPE_ENLIGHTEN:
-				pline("A spell that displays your current resistances, whether it is safe to pray, etc."); break;
+				pline("A spell that displays your current resistances, whether it is safe to pray, etc. It only ever displays a small fraction of info though, so you may need to cast it repeatedly."); break;
 			case SPE_INVISIBILITY:
 				pline("Use this spell if you want to turn invisible for a period of time."); break;
 			case SPE_DISINTEGRATION_BEAM:
@@ -7058,7 +7086,7 @@ struct obj *obj;
 			case SPE_MAKE_VISIBLE:
 				pline("Any monster or item hit by the invisible beam of this spell will lose its invisibility; no effect on things that are already visible."); break;
 			case SPE_WARPING:
-				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination."); break;
+				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination. This spell also backlashes fairly frequently, causing undesirable effects."); break;
 			case SPE_TRAP_CREATION:
 				pline("You will create some traps around you by casting this spell."); break;
 			case SPE_STUN_MONSTER:
@@ -7082,13 +7110,13 @@ struct obj *obj;
 			case SPE_LEVITATION:
 				pline("This spell allows you to levitate for a while."); break;
 			case SPE_TELEPORT_AWAY:
-				pline("A spell that can be used to fire teleport beams at yourself, monsters and objects."); break;
+				pline("A spell that can be used to fire teleport beams at yourself, monsters and objects. It occasionally backfires though, causing nasty side effects."); break;
 			case SPE_PASSWALL:
 				pline("Casting this spell allows you to walk through walls for a limited amount of time. Beware, certain special levels have walls that resist this ability."); break;
 			case SPE_POLYMORPH:
-				pline("A spell that can be cast at stuff to polymorph it."); break;
+				pline("A spell that can be cast at stuff to polymorph it. It occasionally backfires though, causing nasty side effects."); break;
 			case SPE_MUTATION:
-				pline("A spell that has several uses. Zapping it at yourself will polymorph you, zapping it at objects will polymorph them, and if you zap a monster, it will gain mutations."); break;
+				pline("A spell that has several uses. Zapping yourself will polymorph you, zapping objects will polymorph them, and if you zap a monster, it will gain mutations. Backlashes occasionally."); break;
 			case SPE_KNOCK:
 				pline("This spell opens things like locked doors or chests."); break;
 			case SPE_FLAME_SPHERE:
@@ -7173,7 +7201,7 @@ struct obj *obj;
 			case SPE_PARALYSIS:
 				pline("You can shoot paralysis beams by casting this spell."); break;
 			case SPE_LEVELPORT:
-				pline("If you cast this spell, you will teleport to a random dungeon level in your current branch unless there's something that prevents you from levelporting."); break;
+				pline("If you cast this spell, you will teleport to a random dungeon level in your current branch. However, it always backlashes after teleporting you, causing nasty side effects! Beware!"); break;
 			case SPE_BANISHING_FEAR:
 				pline("A spell that cures the 'fear' status conditions. At higher spell levels it allows you to resist fear for a period of time."); break;
 			case SPE_CURE_FREEZE:
@@ -7189,7 +7217,7 @@ struct obj *obj;
 			case SPE_GAIN_LEVEL:
 				pline("An absurdly powerful spell that may increase your character level. However, it often fails."); break;
 			case SPE_MAP_LEVEL:
-				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level and show all objects as well as all traps."); break;
+				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level and show most objects as well as traps."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -7218,7 +7246,7 @@ struct obj *obj;
 			case WAN_HEALING: 
 				pline("Zapping this wand at a living creature will heal it. You can also zap yourself with it."); break;
 			case WAN_LOCKING: 
-				pline("If you zap this wand at something that can be locked, e.g. a door or chest, it will be locked. It can also transform broken doorways into fully functional locked doors."); break;
+				pline("If you zap this wand at something that can be locked, e.g. a door or chest, it will be locked. It can also transform broken doorways into fully functional locked doors and open floor into walls."); break;
 			case WAN_MAKE_INVISIBLE: 
 				pline("Zap this wand at something to make that 'something' invisible!"); break;
 			case WAN_MAKE_VISIBLE: 
@@ -7230,7 +7258,7 @@ struct obj *obj;
 			case WAN_PUNISHMENT: 
 				pline("A wand that chains you to a heavy iron ball if you zap it, or if you're already punished, your iron ball gets heavier."); break;
 			case WAN_OPENING: 
-				pline("This wand fires invisible beams that can open locks."); break;
+				pline("This wand fires invisible beams that can open locks and remove walls."); break;
 			case WAN_PROBING: 
 				pline("Zapping this wand at a monster shows information about it, including its inventory contents."); break;
 			case WAN_SECRET_DOOR_DETECTION: 

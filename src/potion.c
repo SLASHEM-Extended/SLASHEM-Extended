@@ -2049,6 +2049,7 @@ peffects(otmp)
 		struct obj *wonderpot;
 		wonderpot = mkobj(POTION_CLASS,FALSE);
 		if (wonderpot) otmp->otyp = wonderpot->otyp;
+		if (otmp->otyp == GOLD_PIECE) otmp->otyp = POT_WATER; /* minimalist fix */
 		obfree(wonderpot, (struct obj *)0);
 		unkn++;
 
@@ -2081,7 +2082,8 @@ peffects(otmp)
 			lim = AMAX(i);
 			if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 			if (ABASE(i) < lim) {
-			    ABASE(i) = lim;
+			    if (otmp->otyp == SPE_RESTORE_ABILITY) ABASE(i)++;
+			    else ABASE(i) = lim;
 			    flags.botl = 1;
 			    /* only first found if not blessed */
 			    if (!otmp->blessed) break;
@@ -2313,7 +2315,7 @@ peffects(otmp)
 			}
 			You_feel("self-knowledgeable...");
 			display_nhwindow(WIN_MESSAGE, FALSE);
-			enlightenment(0);
+			enlightenment(0, 1);
 			pline_The("feeling subsides.");
 			exercise(A_WIS, TRUE);
 		}
@@ -2555,6 +2557,10 @@ peffects(otmp)
 			i = 20;
 		    else
 			i = rn1(40,21);
+		    if (otmp->otyp == SPE_DETECT_MONSTERS) {
+			if (HDetect_monsters >= 300L) i = rnd(2);
+			else i = rnd(5);
+		    }
 		    incr_itimeout(&HDetect_monsters, i);
 		    for (x = 1; x < COLNO; x++) {
 			for (y = 0; y < ROWNO; y++) {
@@ -2736,7 +2742,8 @@ peffects(otmp)
 			unkn++;
 		}
 		exercise(A_DEX, TRUE);
-		incr_itimeout(&HFast, rn1(10, 100 + 60 * bcsign(otmp)));
+		if (otmp->otyp == SPE_HASTE_SELF) incr_itimeout(&HFast, rn1(10, 10 + 10 * bcsign(otmp)));
+		else incr_itimeout(&HFast, rn1(10, 100 + 60 * bcsign(otmp)));
 		break;
 	case POT_BLINDNESS:
 		if(Blind) nothing++;
@@ -2927,9 +2934,9 @@ peffects(otmp)
 		} else
 			nothing++;
 		if (otmp->blessed) {
-		    incr_itimeout(&HLevitation, rn1(50,250));
+		    incr_itimeout(&HLevitation, rn1(50,(otmp->otyp == SPE_LEVITATION) ? 50 : 250));
 		    HLevitation |= I_SPECIAL;
-		} else incr_itimeout(&HLevitation, rn1(140,10));
+		} else incr_itimeout(&HLevitation, rn1((otmp->otyp == SPE_LEVITATION) ? 30 : 140,10));
 		spoteffects(FALSE);	/* for sinks */
 		break;
 	case POT_GAIN_ENERGY:			/* M. Stephenson */
