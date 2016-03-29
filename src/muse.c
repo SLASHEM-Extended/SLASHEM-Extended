@@ -1670,6 +1670,7 @@ mon_tele:
 		mreadmsg(mtmp, otmp);
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		rloc(mtmp, FALSE);
+		if (oseen) makeknown(SCR_RELOCATION);
 
 		return 2;
 	    }
@@ -1740,14 +1741,11 @@ mon_tele:
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
 
-		if (!objects[SCR_WARPING].oc_name_known
-			&& !objects[SCR_WARPING].oc_uname)
-		    docall(otmp);
-
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		if (u.uevent.udemigod) { (void) rloc(mtmp, FALSE); return 2; }
 		u_teleport_monB(mtmp, TRUE);
+		if (oseen) makeknown(SCR_WARPING);
 
 		return 2;
 	    }
@@ -1791,6 +1789,7 @@ mon_tele:
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (oseen) makeknown(WAN_DIGGING);
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		if (IS_FURNITURE(levl[mtmp->mx][mtmp->my].typ) ||
 		    IS_DRAWBRIDGE(levl[mtmp->mx][mtmp->my].typ) ||
 		    (is_drawbridge_wall(mtmp->mx, mtmp->my) >= 0) ||
@@ -1819,7 +1818,6 @@ mon_tele:
 		/* we made sure that there is a level for mtmp to go to */
 		migrate_to_level(mtmp, ledger_no(&u.uz) + 1,
 				 MIGR_RANDOM, (coord *)0);
-		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/	/* segfaults possible... --Amy */
 		return 2;
 	    }
 	case MUSE_WAN_CREATE_HORDE:
@@ -5269,6 +5267,7 @@ newboss:
 
 		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 	      if (mon && canspotmon(mon)) known = TRUE;
+		if (known) makeknown(otmp->otyp);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 
