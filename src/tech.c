@@ -1041,6 +1041,72 @@ dotechmenu(how, tech_no)
 	return FALSE;
 }
 
+#ifdef DUMP_LOG
+void 
+dump_techniques()
+{
+
+	winid tmpwin;
+	int i, n, len, tlevel;
+	char buf[BUFSZ];
+	const char *prefix;
+
+	if (techid(0) == NO_TECH) {
+	    dump("", "You didn't know any techniques.");
+	    dump("", "");
+	    return;
+	}
+	dump("", "Techniques known in the end");
+
+	Sprintf(buf, "    %-17s Level  Status", "Name");
+	dump("  ",buf);
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
+	    tlevel = techlev(i);
+	    if (!techtout(i) && tlevel > 0) {
+		/* Ready to use */
+		prefix = "";
+	    } else {
+		prefix = "    ";
+	    }
+		if (!iflags.menu_tab_sep) {		
+		    Sprintf(buf, "%s%-20s %2d%c%c%c   %s(%i)",
+			    prefix, techname(i), tlevel,
+			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
+			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
+			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
+			    tech_inuse(techid(i)) ? "Active" :
+			    tlevel <= 0 ? "Beyond recall" :
+			    can_limitbreak() ? "LIMIT" :
+			    !techtout(i) ? "Prepared" : 
+			    techtout(i) > 10000 ? "Huge timeout" :
+			    techtout(i) > 1000 ? "Not Ready" :
+			    techtout(i) > 100 ? "Reloading" : "Soon",
+			    techtout(i));
+			dump("  ", buf);
+		} else {
+		    Sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
+			    prefix, techname(i), tlevel,
+			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
+			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
+			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
+			    tech_inuse(techid(i)) ? "Active" :
+			    tlevel <= 0 ? "Beyond recall" :
+			    can_limitbreak() ? "LIMIT" :
+			    !techtout(i) ? "Prepared" : 
+			    techtout(i) > 10000 ? "Huge timeout" :
+			    techtout(i) > 1000 ? "Not Ready" :
+			    techtout(i) > 100 ? "Reloading" : "Soon",
+			    techtout(i));
+			dump("  ", buf);
+	    } 
+	}
+      dump("", "");
+
+} /* dump_techniques */
+#endif
+
 static int
 get_tech_no(tech)
 int tech;
