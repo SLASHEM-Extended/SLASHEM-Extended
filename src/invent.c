@@ -3936,6 +3936,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->cursed != otmp->cursed || obj->blessed != otmp->blessed ||
 	    obj->hvycurse != otmp->hvycurse || obj->prmcurse != otmp->prmcurse ||
 	    obj->no_charge != otmp->no_charge ||
+	    obj->selfmade != otmp->selfmade  ||
 	    obj->obroken != otmp->obroken ||
 	    obj->otrapped != otmp->otrapped ||
 	    obj->lamplit != otmp->lamplit ||
