@@ -4347,6 +4347,7 @@ boolean ordinary;
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
 		   makeknown(WAN_EXTRA_HEALING);
+		break;
 		case WAN_FULL_HEALING:
 		   You("feel restored to health.");
 		   healup(d(10,20) + rnz(u.ulevel),0,0,0);
