@@ -196,6 +196,10 @@ struct obj *otmp;
 		}
 		break;
 	case WAN_INERTIA:
+		mtmp->mcanmove = 0;
+		mtmp->mfrozen = rnd(2);
+		mtmp->mstrategy &= ~STRAT_WAITFORU;
+		/* fall through */
 	case SPE_INERTIA:
 		mon_adjust_speed(mtmp, -1, otmp);
 		m_dowear(mtmp, FALSE); /* might want speed boots */
