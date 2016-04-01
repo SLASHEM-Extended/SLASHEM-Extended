@@ -977,6 +977,7 @@ int how;
 		 !wizard &&
 #endif
 		 !discover) {
+	  u.hangupcheat = 666; /* Not "game over" yet, so let's prevent filthy cheaters from doing their thing --Amy */
 	  if(yn("Continue in explore mode?") == 'y') {
 	    enter_explore_mode();
 	    if (discover) goexplore = TRUE;
@@ -988,6 +989,7 @@ int how;
      */
 
 die:
+	u.hangupcheat = 0;
 	if (!goexplore) {
 	program_state.gameover = 1;
 	/* in case of a subsequent panic(), there's no point trying to save */

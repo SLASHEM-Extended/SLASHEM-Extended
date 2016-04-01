@@ -1025,6 +1025,20 @@ moveloop()
 
 		}
 
+		/* safety check in case the hero somehow manages to survive genociding themselves --Amy */
+		if (!Upolyd && ((mvitals[urole.malenum].mvflags & G_GENOD) ||
+				(urole.femalenum != NON_PM &&
+				(mvitals[urole.femalenum].mvflags & G_GENOD)) ||
+				(mvitals[urace.malenum].mvflags & G_GENOD) ||
+				(urace.femalenum != NON_PM &&
+				(mvitals[urace.femalenum].mvflags & G_GENOD)))) {
+
+		    killer_format = KILLED_BY;
+		    killer = "genocidal existence failure";
+		    done(GENOCIDED);
+
+		}
+
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
 			if (ttmp && ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
 				pline(fauxmessage());
@@ -3693,6 +3707,13 @@ boolean new_game;	/* false => restoring an old game */
 
 	u.stethocheat = moves;
 
+	if (!new_game && !wizard && !discover && (u.hangupcheat >= 666)) {
+
+		discover = TRUE;
+		pline("Filthy hangup cheater! The ability to enter explore mode after death is not meant to be abused! Be glad that I'm lenient and allow you to play on in explore mode instead of simply killing you outright... --Amy");
+
+	}
+
 	if (!new_game && (u.hangupcheat > 1)) { /* filthy cheater! */
 
 		u.ublesscnt += rnz(2000);
@@ -3755,7 +3776,7 @@ boolean new_game;	/* false => restoring an old game */
 			if (u.mhmax < 1) rehumanize();
 		}
 
-		u.hangupcheat--;
+		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
 	}
 
