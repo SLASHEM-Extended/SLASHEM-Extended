@@ -564,19 +564,9 @@ typedef unsigned char	uchar;
 
 /* Missingno initialization range, also used in u_init.c and some other places.
  * This determines how many monster records past the end of the monster array
- * will be read, and defaults to 10000 which works on Windows and the public
- * server but apparently not on a local unix or BSD system. I would guess that
- * it all depends on memory allocation. Therefore, I made it configurable. If
- * your compiled game sometimes crashes with a segfault on startup, consider
- * setting this to a lower value. Don't set it too low though or else the
- * missingno will not be very random at all; I recommend trying a value of 2000
- * and if that fixes the crash, leave it at that value. Only if the crash
- *reappears, consider going to 1000 or even 500. --Amy */
-#ifdef PUBLIC_SERVER
+ * will be read, and defaults to 2000 which should work everywhere.
+ * On Windows you can probably use 10000 without any ill effects. --Amy */
 #define MISSINGNORANGE 2000
-#else
-#define MISSINGNORANGE 10000
-#endif
 
 /* End of Section 5 */
 
