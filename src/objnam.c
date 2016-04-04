@@ -3260,8 +3260,16 @@ char *FDECL((*func), (OBJ_P));
 
 	long save_Blinded = Blinded;
 	Blinded = 1;
+
+	/* eyes of the overworld were overpowered enough already --Amy */
+	boolean save_blindfox = flags.blindfox;
+	if (!flags.blindfox) {
+		flags.blindfox = 1;
+	}
+
 	str = (*func)(obj);
 	Blinded = save_Blinded;
+	flags.blindfox = save_blindfox;
 	return str;
 }
 
