@@ -505,6 +505,21 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			dmg = 0;
 		}
 		break;
+	    case AD_DRST:
+		pline("You're poisoned.");
+		if(Poison_resistance && rn2(20) ) {
+			shieldeff(u.ux, u.uy);
+			pline("But you resist the effects.");
+			dmg = 0;
+		}
+		break;
+	    case AD_LITE:
+		pline("You're irradiated by light.");
+		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
+			dmg *= 2; /* vampires are susceptible to sunlight --Amy */
+			pline("Your pale skin is seared!");
+		}
+		break;
 	    case AD_DISN:
 		verbalize("Avada Kedavra!");
 		if((Antimagic && rn2(20) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance || Invulnerable || (Stoned_chiller && Stoned)) {

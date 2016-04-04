@@ -10,17 +10,17 @@
 
 #define pm_resistance(ptr,typ)	(((ptr)->mresists & (typ)) != 0)
 
-#define resists_fire(mon)	((((mon)->mintrinsics & MR_FIRE) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_FIRE)) || (mon)->egotype_elementalist)
-#define resists_cold(mon)	((((mon)->mintrinsics & MR_COLD) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_COLD)) || (mon)->egotype_elementalist)
-#define resists_sleep(mon)	((((mon)->mintrinsics & MR_SLEEP) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_SLEE))|| (mon)->egotype_watcher)
+#define resists_fire(mon)	((((mon)->mintrinsics & MR_FIRE) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_FIRE)) || (attackdamagetype((mon)->data, AT_MAGC, AD_FIRE)) || (mon)->egotype_elementalist)
+#define resists_cold(mon)	((((mon)->mintrinsics & MR_COLD) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_COLD)) || (attackdamagetype((mon)->data, AT_MAGC, AD_COLD)) || (mon)->egotype_elementalist)
+#define resists_sleep(mon)	((((mon)->mintrinsics & MR_SLEEP) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_SLEE))|| (attackdamagetype((mon)->data, AT_MAGC, AD_SLEE)) || (mon)->egotype_watcher)
 #define resists_disint(mon)	((((mon)->mintrinsics & MR_DISINT) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_DISN)) || (mon)->egotype_resistor)
-#define resists_elec(mon)	((((mon)->mintrinsics & MR_ELEC) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ELEC)) || (mon)->egotype_elementalist)
-#define resists_poison(mon)	((((mon)->mintrinsics & MR_POISON) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_DRST)) || (mon)->egotype_poisoner)
-#define resists_acid(mon)	((((mon)->mintrinsics & MR_ACID) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ACID)) || (mon)->egotype_acidspiller)
+#define resists_elec(mon)	((((mon)->mintrinsics & MR_ELEC) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ELEC)) || (attackdamagetype((mon)->data, AT_MAGC, AD_ELEC)) || (mon)->egotype_elementalist)
+#define resists_poison(mon)	((((mon)->mintrinsics & MR_POISON) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_DRST)) || (attackdamagetype((mon)->data, AT_MAGC, AD_DRST)) || (mon)->egotype_poisoner)
+#define resists_acid(mon)	((((mon)->mintrinsics & MR_ACID) != 0) || (attackdamagetype((mon)->data, AT_BREA, AD_ACID)) || (attackdamagetype((mon)->data, AT_MAGC, AD_ACID)) || (mon)->egotype_acidspiller)
 #define resists_ston(mon)	((((mon)->mintrinsics & MR_STONE) != 0) || (mon)->egotype_resistor)
 
 #define resists_drain(mon)      ((((mon)->mintrinsics & MR_DRAIN) != 0) || (mon)->egotype_watcher)
-#define resists_death(mon)      ((((mon)->mintrinsics & MR_DEATH) != 0) || (mon)->egotype_resistor)
+#define resists_death(mon)      ((((mon)->mintrinsics & MR_DEATH) != 0) || (attackdamagetype((mon)->data, AT_MAGC, AD_DISN)) || (mon)->egotype_resistor)
 
 #define need_one(mon)           (((mon)->mintrinsics & MR_PLUSONE) != 0)
 #define need_two(mon)           (((mon)->mintrinsics & MR_PLUSTWO) != 0)
