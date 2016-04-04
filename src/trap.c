@@ -701,7 +701,6 @@ struct monst *victim;
 	static NEARDATA const char * const action[] = { "smoulder", "rust", "rot", "corrode" };
 	static NEARDATA const char * const msg[] =  { "burnt", "rusted", "rotten", "corroded" };
 	boolean vulnerable = FALSE;
-	boolean grprot = FALSE;
 	boolean is_primary = TRUE;
 	boolean vismon = (victim != &youmonst) && canseemon(victim);
 	int erosion;
@@ -712,13 +711,11 @@ struct monst *victim;
 		case 0: vulnerable = is_flammable(otmp);
 			break;
 		case 1: vulnerable = is_rustprone(otmp);
-			grprot = TRUE;
 			break;
 		case 2: vulnerable = is_rottable(otmp);
 			is_primary = FALSE;
 			break;
 		case 3: vulnerable = is_corrodeable(otmp);
-			grprot = TRUE;
 			is_primary = FALSE;
 			break;
 	}
@@ -736,7 +733,7 @@ struct monst *victim;
 			  vtense(ostr, "are"));
 	    }
 	} else if (erosion < MAX_ERODE) {
-	    if (grprot && otmp->greased) {
+	    if (otmp->greased) {
 		grease_protect(otmp,ostr,victim);
 	    } else if (otmp->oerodeproof || (otmp->blessed && !rnl(4))) {
 		if (flags.verbose) {
@@ -814,7 +811,6 @@ struct monst *victim;
 	static NEARDATA const char * const action[] = { "smoulder", "rust", "rot", "corrode" };
 	static NEARDATA const char * const msg[] =  { "burnt", "rusted", "rotten", "corroded" };
 	boolean vulnerable = TRUE;
-	boolean grprot = FALSE;
 	boolean is_primary = TRUE;
 	boolean vismon = (victim != &youmonst) && canseemon(victim);
 	int erosion;
@@ -825,13 +821,11 @@ struct monst *victim;
 		case 0: vulnerable = TRUE;
 			break;
 		case 1: vulnerable = TRUE;
-			grprot = TRUE;
 			break;
 		case 2: vulnerable = TRUE;
 			is_primary = FALSE;
 			break;
 		case 3: vulnerable = TRUE;
-			grprot = TRUE;
 			is_primary = FALSE;
 			break;
 	}
@@ -849,7 +843,7 @@ struct monst *victim;
 			  vtense(ostr, "are"));
 	    }
 	} else if (erosion < MAX_ERODE) {
-	    if (grprot && otmp->greased) {
+	    if (otmp->greased) {
 		grease_protect(otmp,ostr,victim);
 	    } else if (otmp->blessed && !rnl(4)) {
 		if (flags.verbose) {
