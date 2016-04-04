@@ -3436,7 +3436,7 @@ newboss:
 			You_feel("insightful!");
 			if (invent) {
 			    /* rn2(5) agrees w/seffects() */
-			    identify_pack(rn2(5));
+			    identify_pack(rn2(5), 0);
 			}
 			exercise(A_WIS, TRUE);
 			break;
@@ -3564,7 +3564,7 @@ newboss:
 				You_feel("insightful!");
 				if (invent) {
 				    /* rn2(5) agrees w/seffects() */
-				    identify_pack(rn2(5));
+				    identify_pack(rn2(5), 0);
 				}
 				exercise(A_WIS, TRUE);
 				break;

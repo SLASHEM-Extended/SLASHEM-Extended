@@ -822,7 +822,7 @@ specialpower()      /* Special class abilites [modified by Tom] */
 		} else if(invent) {
 		    int ret;
 			You("examine your possessions.");
-			identify_pack(1);
+			identify_pack(1, 0);
 /*WAC this should be better - made like scroll of identify*/
 /* KMH -- also commented out use of 'ret' without initialization */
 /*                  ret = ggetobj("identify", identify, 1, FALSE);*/
@@ -1002,7 +1002,7 @@ specialpower()      /* Special class abilites [modified by Tom] */
 STATIC_PTR int
 wiz_identify()
 {
-	if (wizard)	identify_pack(0);
+	if (wizard)	identify_pack(0, 1);
 	else		pline("Unavailable command '^I'.");
 	return 0;
 }

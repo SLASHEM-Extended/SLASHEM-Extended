@@ -1004,7 +1004,7 @@ E void FDECL(fully_identify_obj, (struct obj *));
 E void FDECL(maybe_fully_identify_obj, (struct obj *));
 E int FDECL(identify, (struct obj *));
 E int FDECL(identifyless, (struct obj *));
-E void FDECL(identify_pack, (int));
+E void FDECL(identify_pack, (int, BOOLEAN_P));
 E int FDECL(askchain, (struct obj **,const char *,int,int (*)(OBJ_P),
 			int (*)(OBJ_P),int,const char *));
 E void FDECL(prinv, (const char *,struct obj *,long));

@@ -2986,8 +2986,9 @@ int id_limit;
 
 /* dialog with user to identify a given number of items; 0 means all */
 void
-identify_pack(id_limit)
+identify_pack(id_limit, wizmodeflag)
 int id_limit;
+boolean wizmodeflag;
 {
     struct obj *obj, *the_obj;
     register struct obj *otmp;
@@ -3003,7 +3004,10 @@ int id_limit;
 	if (!id_limit && Has_contents(obj)) { /* full inventory id works on containers --Amy */
 
 		for (otmp = obj->cobj; otmp; otmp = otmp->nobj) {
-		    if (rn2(5) && not_fully_identified(otmp)) (void) identifyless(otmp);
+		    if ( (rn2(5) || wizmodeflag) && not_fully_identified(otmp)) {
+			if (wizmodeflag) (void) identify(otmp);
+			else (void) identifyless(otmp);
+			}
 		}
 
 	}
@@ -3020,7 +3024,10 @@ int id_limit;
 
 	    /* TODO:  use fully_identify_obj and cornline/menu/whatever here */
 	    for (obj = invent; obj; obj = obj->nobj)
-		if (rn2(5) && not_fully_identified(obj)) (void) identifyless(obj);
+		if ( (rn2(5) || wizmodeflag) && not_fully_identified(obj)) {
+			if (wizmodeflag) (void) identify(obj);
+			else (void) identifyless(obj);
+		}
 
 	}
     } else {

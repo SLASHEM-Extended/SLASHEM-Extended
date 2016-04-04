@@ -4576,7 +4576,7 @@ retry:
 		makeknown(SCR_IDENTIFY);
 	id:
 		if(invent && !confused) {
-		    identify_pack(cval);
+		    identify_pack(cval, 0);
 		}
 		return(1);
 	case SCR_INVENTORY_ID: /* always identifies the player's entire inventory --Amy */
@@ -4591,7 +4591,7 @@ retry:
 		else useupf(sobj, 1L);
 
 		if(invent && !confused) {
-		    identify_pack(0);
+		    identify_pack(0, 0);
 		}
 		return(1);
 	case SCR_STANDARD_ID: /* always identifies exactly one item --Amy */
@@ -4602,7 +4602,7 @@ retry:
 		else useupf(sobj, 1L);
 
 		if(invent) {
-		    identify_pack(1);
+		    identify_pack(1, 0);
 		}
 		return(1);
 	case SCR_HEALING: /* a basic healing item that can be used to - who would have guessed? - cure wounds! --Amy */
