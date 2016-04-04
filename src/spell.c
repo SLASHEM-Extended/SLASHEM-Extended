@@ -901,7 +901,10 @@ boolean atme;
 	    Your("knowledge of this spell is twisted.");
 	    pline("It invokes nightmarish images in your mind...");
 	    spell_backfire(spell);
-	    return(0);
+	    if (!rn2(25)) {
+		badeffect();
+	    }
+	    return(1);
 	} else if (spellknow(spell) <= 100) {
 	    You("strain to recall the spell.");
 	} else if (spellknow(spell) <= 1000) {
