@@ -742,7 +742,7 @@ int mclass;			/* monster class, 0 for all */
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (!mclass || mtmp->data->mlet == mclass ||
 		(mtmp->data == &mons[PM_LONG_WORM] && mclass == S_WORM_TAIL))
-		    if ((mtmp->mx > 0) && ( !(otmp->oclass == SPBOOK_CLASS) || rn2(2) ) ) {
+		    if ((mtmp->mx > 0) && ( !(otmp && otmp->oclass == SPBOOK_CLASS) || rn2(2) ) ) {
 		    	if (mclass && def_monsyms[mclass] == ' ')
 				show_glyph(mtmp->mx,mtmp->my,
 					detected_mon_to_glyph(mtmp));
