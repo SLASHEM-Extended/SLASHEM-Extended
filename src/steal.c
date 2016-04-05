@@ -321,17 +321,16 @@ gotobj:
 	}
 
 
-	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+		if (otmp->cursed) {
+			otmp->bknown = 1;
+			pline("%s tries to take off your %s, which appears to be cursed.", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp)); 
+			if (yn("Allow it to be taken?") != 'y')
+			return(0);
+		} else {
 		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 		return(0);
-	}
-	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
-		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
-		return(0);
-	}
-	if ( (rnd(50) < ACURR(A_CHA)) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
-		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
-		return(0);
+		}
 	}
 
 	if(otmp->o_id == stealoid) return(0);
