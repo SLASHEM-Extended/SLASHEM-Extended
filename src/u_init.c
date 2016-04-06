@@ -10898,7 +10898,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -10958,7 +10958,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11018,7 +11018,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11078,7 +11078,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11140,7 +11140,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11200,7 +11200,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11260,7 +11260,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11319,7 +11319,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11381,7 +11381,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11441,7 +11441,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11501,7 +11501,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11561,7 +11561,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11622,7 +11622,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11682,7 +11682,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11742,7 +11742,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11802,7 +11802,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11865,7 +11865,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11925,7 +11925,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -11986,7 +11986,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12044,7 +12044,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12105,7 +12105,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12164,7 +12164,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12222,7 +12222,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12282,7 +12282,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12340,7 +12340,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12399,7 +12399,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12458,7 +12458,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12518,7 +12518,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12578,7 +12578,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12638,7 +12638,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12700,7 +12700,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12760,7 +12760,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12820,7 +12820,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12880,7 +12880,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -12941,7 +12941,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13001,7 +13001,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13061,7 +13061,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13121,7 +13121,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13183,7 +13183,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13243,7 +13243,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13303,7 +13303,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2) {
+		while (attkptr->adtyp == AD_ENDS) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13362,7 +13362,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2) {
+		while (attkptr->adtyp == AD_ENDS) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13420,7 +13420,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13481,7 +13481,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13542,7 +13542,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13603,7 +13603,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13664,7 +13664,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13725,7 +13725,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13786,7 +13786,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13847,7 +13847,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13908,7 +13908,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -13967,7 +13967,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14026,7 +14026,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14085,7 +14085,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14144,7 +14144,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14205,7 +14205,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14266,7 +14266,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14329,7 +14329,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14392,7 +14392,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14454,7 +14454,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14515,7 +14515,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14576,7 +14576,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14637,7 +14637,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14698,7 +14698,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14759,7 +14759,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14820,7 +14820,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14881,7 +14881,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -14942,7 +14942,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15003,7 +15003,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15064,7 +15064,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15125,7 +15125,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15195,7 +15195,7 @@ u_init()
 		attkptr = &multigrue->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15207,7 +15207,7 @@ u_init()
 		attkptr = &randomeye->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15220,7 +15220,7 @@ u_init()
 		attkptr = &randommimic->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15233,7 +15233,7 @@ u_init()
 		attkptr = &randommimicb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15243,7 +15243,7 @@ u_init()
 		attkptr = &randompiercer->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15252,7 +15252,7 @@ u_init()
 		attkptr = &randompiercerb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15261,7 +15261,7 @@ u_init()
 		attkptr = &randompiercerc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15274,7 +15274,7 @@ u_init()
 		attkptr = &randomvortex->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15286,7 +15286,7 @@ u_init()
 		attkptr = &randomfungus->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15299,7 +15299,7 @@ u_init()
 		attkptr = &randomfungusb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15312,7 +15312,7 @@ u_init()
 		attkptr = &randomfungusba->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15325,7 +15325,7 @@ u_init()
 		attkptr = &randomfungusbb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15338,7 +15338,7 @@ u_init()
 		attkptr = &randomfungusbc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15351,7 +15351,7 @@ u_init()
 		attkptr = &randomfungusbd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15364,7 +15364,7 @@ u_init()
 		attkptr = &randomfungusbe->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15376,7 +15376,7 @@ u_init()
 		attkptr = &randomfungusc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15389,7 +15389,7 @@ u_init()
 		attkptr = &randomfungusd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15402,7 +15402,7 @@ u_init()
 		attkptr = &randomfungusda->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15415,7 +15415,7 @@ u_init()
 		attkptr = &randomfungusdb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15428,7 +15428,7 @@ u_init()
 		attkptr = &randomfungusdc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15441,7 +15441,7 @@ u_init()
 		attkptr = &randomfungusdd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15454,7 +15454,7 @@ u_init()
 		attkptr = &randomfungusde->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15466,7 +15466,7 @@ u_init()
 		attkptr = &randomfunguse->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15479,7 +15479,7 @@ u_init()
 		attkptr = &randomfungusf->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15492,7 +15492,7 @@ u_init()
 		attkptr = &randomfungusg->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15505,7 +15505,7 @@ u_init()
 		attkptr = &randomfungush->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15518,7 +15518,7 @@ u_init()
 		attkptr = &randomfungusi->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15530,7 +15530,7 @@ u_init()
 		attkptr = &randomfungusj->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15543,7 +15543,7 @@ u_init()
 		attkptr = &randomfungusk->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15556,7 +15556,7 @@ u_init()
 		attkptr = &randomfungusl->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15569,7 +15569,7 @@ u_init()
 		attkptr = &randomfungusm->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15582,7 +15582,7 @@ u_init()
 		attkptr = &randomfungusn->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15595,7 +15595,7 @@ u_init()
 		attkptr = &randomtroll->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15605,7 +15605,7 @@ u_init()
 		attkptr = &randomeel->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15615,7 +15615,7 @@ u_init()
 		attkptr = &randomdragon->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15625,7 +15625,7 @@ u_init()
 		attkptr = &shadowwarrior->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15635,7 +15635,7 @@ u_init()
 		attkptr = &shadowwarriorX->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15645,7 +15645,7 @@ u_init()
 		attkptr = &randomdragonb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15658,7 +15658,7 @@ u_init()
 		attkptr = &randomdragonc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15671,7 +15671,7 @@ u_init()
 		attkptr = &randomdragond->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15684,7 +15684,7 @@ u_init()
 		attkptr = &randomdragone->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15696,7 +15696,7 @@ u_init()
 		attkptr = &randomdragonf->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15708,7 +15708,7 @@ u_init()
 		attkptr = &randomdragong->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15720,7 +15720,7 @@ u_init()
 		attkptr = &randomdragonh->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15732,7 +15732,7 @@ u_init()
 		attkptr = &randomdragoni->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15744,7 +15744,7 @@ u_init()
 		attkptr = &randomdragonj->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15756,7 +15756,7 @@ u_init()
 		attkptr = &randomdragonk->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -15779,7 +15779,7 @@ u_init()
 		attkptr = &randomflyfish->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15789,7 +15789,7 @@ u_init()
 		attkptr = &randomturret->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -15813,7 +15813,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15864,7 +15864,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -15915,7 +15915,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16409,7 +16409,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossa->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16430,7 +16430,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16459,7 +16459,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossb->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16480,7 +16480,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16509,7 +16509,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossc->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16530,7 +16530,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16565,7 +16565,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossd->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16586,7 +16586,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16604,7 +16604,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosse->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16625,7 +16625,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16660,7 +16660,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossf->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16681,7 +16681,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16703,7 +16703,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossg->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16724,7 +16724,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16753,7 +16753,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossh->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16774,7 +16774,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16809,7 +16809,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossi->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16830,7 +16830,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16859,7 +16859,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossj->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16880,7 +16880,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16909,7 +16909,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossk->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16930,7 +16930,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16965,7 +16965,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossl->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -16986,7 +16986,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17008,7 +17008,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossm->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17029,7 +17029,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17047,7 +17047,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossn->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17068,7 +17068,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17103,7 +17103,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosso->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17124,7 +17124,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17159,7 +17159,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossp->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17180,7 +17180,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17205,7 +17205,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossq->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17227,7 +17227,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossr->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17249,7 +17249,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosss->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17270,7 +17270,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17294,7 +17294,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosst->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17315,7 +17315,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17337,7 +17337,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossu->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17358,7 +17358,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17387,7 +17387,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossv->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17408,7 +17408,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17433,7 +17433,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossw->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17454,7 +17454,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17483,7 +17483,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossx->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17504,7 +17504,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17533,7 +17533,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossy->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17554,7 +17554,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17576,7 +17576,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossz->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17597,7 +17597,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17632,7 +17632,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaa->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17653,7 +17653,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17688,7 +17688,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossab->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17709,7 +17709,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17731,7 +17731,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossac->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17752,7 +17752,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17781,7 +17781,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossad->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17802,7 +17802,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17831,7 +17831,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossae->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17852,7 +17852,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17874,7 +17874,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaf->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17896,7 +17896,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossag->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17917,7 +17917,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17939,7 +17939,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossah->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17960,7 +17960,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -17982,7 +17982,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossai->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18003,7 +18003,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18038,7 +18038,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaj->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18060,7 +18060,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossak->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18082,7 +18082,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossal->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18103,7 +18103,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18138,7 +18138,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossam->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18159,7 +18159,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18188,7 +18188,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossan->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18209,7 +18209,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18227,7 +18227,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossao->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18248,7 +18248,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18276,7 +18276,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossap->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18304,7 +18304,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaq->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18325,7 +18325,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18350,7 +18350,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossar->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18372,7 +18372,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossas->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18397,7 +18397,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossat->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18418,7 +18418,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18446,7 +18446,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossau->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18467,7 +18467,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18502,7 +18502,7 @@ u_init()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossav->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -18523,7 +18523,7 @@ u_init()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20474,7 +20474,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20534,7 +20534,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20594,7 +20594,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20654,7 +20654,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20716,7 +20716,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20776,7 +20776,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20836,7 +20836,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20895,7 +20895,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -20957,7 +20957,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21017,7 +21017,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21077,7 +21077,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21137,7 +21137,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21198,7 +21198,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21258,7 +21258,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21318,7 +21318,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21378,7 +21378,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21441,7 +21441,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21501,7 +21501,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21562,7 +21562,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21620,7 +21620,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21681,7 +21681,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21740,7 +21740,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21798,7 +21798,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21858,7 +21858,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21916,7 +21916,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -21975,7 +21975,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22034,7 +22034,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22094,7 +22094,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22154,7 +22154,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22214,7 +22214,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22276,7 +22276,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22336,7 +22336,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22396,7 +22396,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22456,7 +22456,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22517,7 +22517,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22577,7 +22577,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22637,7 +22637,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22697,7 +22697,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22759,7 +22759,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22819,7 +22819,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22879,7 +22879,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2) {
+		while (attkptr->adtyp == AD_ENDS) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22938,7 +22938,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2) {
+		while (attkptr->adtyp == AD_ENDS) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -22996,7 +22996,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23057,7 +23057,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23118,7 +23118,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23179,7 +23179,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23240,7 +23240,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23301,7 +23301,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23362,7 +23362,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23423,7 +23423,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23484,7 +23484,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23543,7 +23543,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23602,7 +23602,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23661,7 +23661,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23720,7 +23720,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23781,7 +23781,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23842,7 +23842,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23905,7 +23905,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -23968,7 +23968,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24030,7 +24030,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24091,7 +24091,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24152,7 +24152,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24213,7 +24213,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24274,7 +24274,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24335,7 +24335,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24396,7 +24396,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24457,7 +24457,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24518,7 +24518,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24579,7 +24579,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24640,7 +24640,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24701,7 +24701,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -24771,7 +24771,7 @@ alter_reality()
 		attkptr = &multigrue->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24783,7 +24783,7 @@ alter_reality()
 		attkptr = &randomeye->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24796,7 +24796,7 @@ alter_reality()
 		attkptr = &randommimic->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24809,7 +24809,7 @@ alter_reality()
 		attkptr = &randommimicb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24819,7 +24819,7 @@ alter_reality()
 		attkptr = &randompiercer->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24828,7 +24828,7 @@ alter_reality()
 		attkptr = &randompiercerb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24837,7 +24837,7 @@ alter_reality()
 		attkptr = &randompiercerc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24850,7 +24850,7 @@ alter_reality()
 		attkptr = &randomvortex->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24862,7 +24862,7 @@ alter_reality()
 		attkptr = &randomfungus->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24875,7 +24875,7 @@ alter_reality()
 		attkptr = &randomfungusb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24888,7 +24888,7 @@ alter_reality()
 		attkptr = &randomfungusba->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24901,7 +24901,7 @@ alter_reality()
 		attkptr = &randomfungusbb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24914,7 +24914,7 @@ alter_reality()
 		attkptr = &randomfungusbc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24927,7 +24927,7 @@ alter_reality()
 		attkptr = &randomfungusbd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24940,7 +24940,7 @@ alter_reality()
 		attkptr = &randomfungusbe->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24952,7 +24952,7 @@ alter_reality()
 		attkptr = &randomfungusc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24965,7 +24965,7 @@ alter_reality()
 		attkptr = &randomfungusd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24978,7 +24978,7 @@ alter_reality()
 		attkptr = &randomfungusda->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -24991,7 +24991,7 @@ alter_reality()
 		attkptr = &randomfungusdb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25004,7 +25004,7 @@ alter_reality()
 		attkptr = &randomfungusdc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25017,7 +25017,7 @@ alter_reality()
 		attkptr = &randomfungusdd->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25030,7 +25030,7 @@ alter_reality()
 		attkptr = &randomfungusde->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25042,7 +25042,7 @@ alter_reality()
 		attkptr = &randomfunguse->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25055,7 +25055,7 @@ alter_reality()
 		attkptr = &randomfungusf->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25068,7 +25068,7 @@ alter_reality()
 		attkptr = &randomfungusg->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25081,7 +25081,7 @@ alter_reality()
 		attkptr = &randomfungush->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25094,7 +25094,7 @@ alter_reality()
 		attkptr = &randomfungusi->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25106,7 +25106,7 @@ alter_reality()
 		attkptr = &randomfungusj->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25119,7 +25119,7 @@ alter_reality()
 		attkptr = &randomfungusk->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25132,7 +25132,7 @@ alter_reality()
 		attkptr = &randomfungusl->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25145,7 +25145,7 @@ alter_reality()
 		attkptr = &randomfungusm->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25158,7 +25158,7 @@ alter_reality()
 		attkptr = &randomfungusn->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25171,7 +25171,7 @@ alter_reality()
 		attkptr = &randomtroll->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25181,7 +25181,7 @@ alter_reality()
 		attkptr = &randomeel->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25191,7 +25191,7 @@ alter_reality()
 		attkptr = &randomdragon->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25201,7 +25201,7 @@ alter_reality()
 		attkptr = &shadowwarrior->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25211,7 +25211,7 @@ alter_reality()
 		attkptr = &shadowwarriorX->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25221,7 +25221,7 @@ alter_reality()
 		attkptr = &randomdragonb->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25234,7 +25234,7 @@ alter_reality()
 		attkptr = &randomdragonc->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25247,7 +25247,7 @@ alter_reality()
 		attkptr = &randomdragond->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25260,7 +25260,7 @@ alter_reality()
 		attkptr = &randomdragone->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25272,7 +25272,7 @@ alter_reality()
 		attkptr = &randomdragonf->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25284,7 +25284,7 @@ alter_reality()
 		attkptr = &randomdragong->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25296,7 +25296,7 @@ alter_reality()
 		attkptr = &randomdragonh->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25308,7 +25308,7 @@ alter_reality()
 		attkptr = &randomdragoni->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25320,7 +25320,7 @@ alter_reality()
 		attkptr = &randomdragonj->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25332,7 +25332,7 @@ alter_reality()
 		attkptr = &randomdragonk->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = rnd(9);
 		}
 
@@ -25355,7 +25355,7 @@ alter_reality()
 		attkptr = &randomflyfish->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25365,7 +25365,7 @@ alter_reality()
 		attkptr = &randomturret->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 
@@ -25389,7 +25389,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -25440,7 +25440,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -25491,7 +25491,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -25985,7 +25985,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossa->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26006,7 +26006,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26035,7 +26035,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossb->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26056,7 +26056,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26085,7 +26085,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossc->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26106,7 +26106,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26141,7 +26141,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossd->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26162,7 +26162,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26180,7 +26180,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosse->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26201,7 +26201,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26236,7 +26236,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossf->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26257,7 +26257,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26279,7 +26279,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossg->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26300,7 +26300,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26329,7 +26329,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossh->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26350,7 +26350,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26385,7 +26385,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossi->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26406,7 +26406,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26435,7 +26435,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossj->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26456,7 +26456,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26485,7 +26485,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossk->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26506,7 +26506,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26541,7 +26541,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossl->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26562,7 +26562,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26584,7 +26584,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossm->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26605,7 +26605,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26623,7 +26623,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossn->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26644,7 +26644,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26679,7 +26679,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosso->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26700,7 +26700,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26735,7 +26735,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossp->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26756,7 +26756,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26781,7 +26781,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossq->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26803,7 +26803,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossr->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26825,7 +26825,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosss->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26846,7 +26846,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26870,7 +26870,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbosst->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26891,7 +26891,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26913,7 +26913,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossu->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26934,7 +26934,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26963,7 +26963,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossv->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -26984,7 +26984,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27009,7 +27009,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossw->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27030,7 +27030,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27059,7 +27059,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossx->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27080,7 +27080,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27109,7 +27109,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossy->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27130,7 +27130,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27152,7 +27152,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossz->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27173,7 +27173,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27208,7 +27208,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaa->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27229,7 +27229,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27264,7 +27264,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossab->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27285,7 +27285,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27307,7 +27307,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossac->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27328,7 +27328,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27357,7 +27357,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossad->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27378,7 +27378,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27407,7 +27407,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossae->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27428,7 +27428,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27450,7 +27450,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaf->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27472,7 +27472,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossag->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27493,7 +27493,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27515,7 +27515,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossah->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27536,7 +27536,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27558,7 +27558,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossai->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27579,7 +27579,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27614,7 +27614,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaj->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27636,7 +27636,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossak->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27658,7 +27658,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossal->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27679,7 +27679,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27714,7 +27714,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossam->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27735,7 +27735,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27764,7 +27764,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossan->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27785,7 +27785,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27803,7 +27803,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossao->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27824,7 +27824,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27852,7 +27852,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossap->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27880,7 +27880,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossaq->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27901,7 +27901,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27926,7 +27926,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossar->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27948,7 +27948,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossas->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27973,7 +27973,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossat->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -27994,7 +27994,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -28022,7 +28022,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossau->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -28043,7 +28043,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -28078,7 +28078,7 @@ alter_reality()
 	for (i = 0; i < 2; i++) {
 		attkptr = &randbossav->mattk[i];
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
@@ -28099,7 +28099,7 @@ alter_reality()
 			attkptr->aatyp = AT_WEAP;
 		}
 		attkptr->adtyp = AD_ENDS;
-		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_SPC2 || attkptr->adtyp == AD_WERE) {
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */

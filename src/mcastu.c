@@ -520,6 +520,56 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			pline("Your pale skin is seared!");
 		}
 		break;
+	    case AD_SPC2:
+		pline("Your %s spins wildly.", body_part(HEAD) );
+
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+				make_confused(HConfusion + dmg, FALSE);
+				break;
+			case 4:
+			case 5:
+			case 6:
+				make_stunned(HStun + dmg, FALSE);
+				break;
+			case 7:
+				make_confused(HConfusion + dmg, FALSE);
+				make_stunned(HStun + dmg, FALSE);
+				break;
+			case 8:
+				make_hallucinated(HHallucination + dmg, FALSE, 0L);
+				break;
+			case 9:
+				make_feared(HFeared + dmg, FALSE);
+				break;
+			case 10:
+				make_numbed(HNumbed + dmg, FALSE);
+				break;
+
+		}
+		if (!rn2(200)) {
+			forget(rnd(5));
+			pline("You forget some important things...");
+		}
+		if (!rn2(200)) {
+			losexp("psionic drain", FALSE, TRUE);
+		}
+		if (!rn2(200)) {
+			adjattrib(A_INT, -1, 1);
+			adjattrib(A_WIS, -1, 1);
+		}
+		if (!rn2(200)) {
+			pline("You scream in pain!");
+			wake_nearby();
+		}
+		if (!rn2(200)) {
+			badeffect();
+		}
+
+		break;
 	    case AD_DISN:
 		verbalize("Avada Kedavra!");
 		if((Antimagic && rn2(20) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance || Invulnerable || (Stoned_chiller && Stoned)) {

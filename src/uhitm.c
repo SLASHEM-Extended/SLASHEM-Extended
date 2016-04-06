@@ -4867,6 +4867,60 @@ uchar aatyp;
 			    attrcurse();
 			}
 			break;
+
+	  case AD_SPC2:
+
+			pline("%s's corrupted mind backlashes your attack!", Monnam(mon) );
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + tmp, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + tmp, FALSE);
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + tmp, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + tmp, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + tmp, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+			mdamageu(mon, tmp);
+
+		break;
+
 	  case AD_SLOW:
 		if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
 		    u_slow_down();

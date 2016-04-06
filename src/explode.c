@@ -287,6 +287,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		case 8: str = "pure energy irradiation";
 			adtyp = AD_LITE;
 			break;
+		case 9: str = "psionic energy";
+			adtyp = AD_SPC2;
+			break;
 		default: impossible("explosion base type %d?", type); return;
 	}
 
@@ -307,6 +310,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    switch(adtyp) {
 			case AD_PHYS:                        
 			case AD_LITE:                        
+			case AD_SPC2:                        
 				break;
 			case AD_MAGM:
 				explmask = !!Antimagic;
@@ -346,6 +350,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    switch(adtyp) {
 			case AD_PHYS:                        
 			case AD_LITE:                        
+			case AD_SPC2:                        
 				break;
 			case AD_MAGM:
 				explmask |= resists_magm(mtmp);

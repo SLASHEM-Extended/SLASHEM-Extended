@@ -1122,7 +1122,7 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_BREA:
-			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_LITE) ) )
+			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
 			else if ( (rnd(5) > 3) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
 			{  
@@ -4607,6 +4607,62 @@ dopois:
 		    attrcurse();
 		}
 		break;
+
+	    case AD_SPC2:
+		hitmsg(mtmp, mattk);
+		if(!mtmp->mcan && !rn2(4)) {
+
+			pline("Your mind is blasted by psionic energy.");
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + dmg, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + dmg, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + dmg, FALSE);
+					make_stunned(HStun + dmg, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + dmg, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + dmg, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + dmg, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
+		}
+		break;
+
 	    case AD_STUN:
 		hitmsg(mtmp, mattk);
 		if(!mtmp->mcan && !rn2(4)) {
@@ -5242,6 +5298,57 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				if (flags.soundok) You_hear("a chuckling laughter.");
 			    attrcurse();
 			}
+			break;
+
+	      case AD_SPC2:
+			pline("You feel something focusing on your mind!");
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + tmp, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + tmp, FALSE);
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + tmp, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + tmp, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + tmp, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
 			break;
 
 		case AD_SLEE:
@@ -6997,6 +7104,223 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 		}
 		break;
+
+	    case AD_SPC2:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(7))
+ 		{
+			char visageword[BUFSZ]; /* from ToME */
+			Strcpy(visageword, "bad"); /* fail safe --Amy */
+
+			if (!Hallucination) switch(rnd(20)) {
+
+				case 1:
+					Strcpy(visageword, "abominable");
+					break;
+				case 2:
+					Strcpy(visageword, "abysmal");
+					break;
+				case 3:
+					Strcpy(visageword, "appalling");
+					break;
+				case 4:
+					Strcpy(visageword, "baleful");
+					break;
+				case 5:
+					Strcpy(visageword, "blasphemous");
+					break;
+				case 6:
+					Strcpy(visageword, "disgusting");
+					break;
+				case 7:
+					Strcpy(visageword, "dreadful");
+					break;
+				case 8:
+					Strcpy(visageword, "filthy");
+					break;
+				case 9:
+					Strcpy(visageword, "grisly");
+					break;
+				case 10:
+					Strcpy(visageword, "hideous");
+					break;
+				case 11:
+					Strcpy(visageword, "hellish");
+					break;
+				case 12:
+					Strcpy(visageword, "horrible");
+					break;
+				case 13:
+					Strcpy(visageword, "infernal");
+					break;
+				case 14:
+					Strcpy(visageword, "loathsome");
+					break;
+				case 15:
+					Strcpy(visageword, "nightmarish");
+					break;
+				case 16:
+					Strcpy(visageword, "repulsive");
+					break;
+				case 17:
+					Strcpy(visageword, "sacrilegious");
+					break;
+				case 18:
+					Strcpy(visageword, "terrible");
+					break;
+				case 19:
+					Strcpy(visageword, "unclean");
+					break;
+				case 20:
+					Strcpy(visageword, "unspeakable");
+					break;
+
+			} else switch(rnd(22)) {
+
+				case 1:
+					Strcpy(visageword, "silly");
+					break;
+				case 2:
+					Strcpy(visageword, "hilarious");
+					break;
+				case 3:
+					Strcpy(visageword, "absurd");
+					break;
+				case 4:
+					Strcpy(visageword, "insipid");
+					break;
+				case 5:
+					Strcpy(visageword, "ridiculous");
+					break;
+				case 6:
+					Strcpy(visageword, "laughable");
+					break;
+				case 7:
+					Strcpy(visageword, "ludicrous");
+					break;
+				case 8:
+					Strcpy(visageword, "far-out");
+					break;
+				case 9:
+					Strcpy(visageword, "groovy");
+					break;
+				case 10:
+					Strcpy(visageword, "postmodern");
+					break;
+				case 11:
+					Strcpy(visageword, "fantastic");
+					break;
+				case 12:
+					Strcpy(visageword, "dadaistic");
+					break;
+				case 13:
+					Strcpy(visageword, "cubistic");
+					break;
+				case 14:
+					Strcpy(visageword, "cosmic");
+					break;
+				case 15:
+					Strcpy(visageword, "awesome");
+					break;
+				case 16:
+					Strcpy(visageword, "incomprehensible");
+					break;
+				case 17:
+					Strcpy(visageword, "fabulous");
+					break;
+				case 18:
+					Strcpy(visageword, "amazing");
+					break;
+				case 19:
+					Strcpy(visageword, "incredible");
+					break;
+				case 20:
+					Strcpy(visageword, "chaotic");
+					break;
+				case 21:
+					Strcpy(visageword, "wild");
+					break;
+				case 22:
+					Strcpy(visageword, "preposterous");
+					break;
+
+			}
+
+		pline("You behold the %s visage of %s!", visageword, mon_nam(mtmp));
+		if (Hallucination && rn2(2) ) switch (rnd(5)) {
+
+			case 1:
+				pline("Wow, cosmic, man!");
+				break;
+			case 2:
+				pline("Rad!");
+				break;
+			case 3:
+				pline("Groovy!");
+				break;
+			case 4:
+				pline("Cool!");
+				break;
+			case 5:
+				pline("Far out!");
+				break;
+
+		}
+
+		/* In ToME, hallucination completely prevents the effects "because you can't see the monster clearly enough".
+		 * Here, allow hallu to prevent it most of the time, but we don't want the character to be completely immune. --Amy */
+		if (Hallucination && rn2(3)) break;
+
+		    stop_occupation();
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + dmgplus + 5, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + dmgplus + 5, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + dmgplus + 5, FALSE);
+					make_stunned(HStun + dmgplus + 5, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + dmgplus + 5, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + dmgplus + 5, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + dmgplus + 5, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
+		}
+		break;
+
 	    case AD_MAGM:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{

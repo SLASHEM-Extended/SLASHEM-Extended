@@ -29,8 +29,9 @@ struct spell {
 #define ZT_POISON_GAS           (AD_DRST-1)
 #define ZT_ACID                 (AD_ACID-1)
 #define ZT_LITE                 (AD_LITE-1)
+#define ZT_SPC2			  (AD_SPC2-1)
 
-#define ZT_LAST                 (ZT_LITE) /*For checking of spells of a type*/
+#define ZT_LAST                 (ZT_SPC2) /*For checking of spells of a type*/
 #define ZT_FIRST                (ZT_MAGIC_MISSILE)
 /* 8 and 9 are currently unassigned */
 

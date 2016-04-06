@@ -2070,7 +2070,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(287);
+			monstercolor = rnd(288);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += 12;
@@ -7279,7 +7279,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(287);
+			monstercolor = rnd(288);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += 12;

@@ -1445,7 +1445,7 @@ get_description_of_damage_type(uchar id)
 		case AD_ELEC: return "shock damage";
 		case AD_DRST: return "drains strength";
 		case AD_ACID: return "acid damage";
-		case AD_SPC2: return "for extension of buzz()";
+		case AD_SPC2: return "psybeam";
 		case AD_BLND: return "blinds";
 		case AD_STUN: return "stuns";
 		case AD_SLOW: return "slows";

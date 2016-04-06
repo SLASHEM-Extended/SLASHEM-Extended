@@ -483,7 +483,7 @@ struct monst *magr, *mdef;
 struct attack *mattk;
 {
     /* if new breath types are added, change AD_ACID to max type */
-    int typ = mattk->adtyp == AD_RBRE ? rnd(AD_LITE) : mattk->adtyp;
+    int typ = mattk->adtyp == AD_RBRE ? rnd(AD_SPC2) : mattk->adtyp;
     int mhp;
 
     if (linedup(mdef->mx, mdef->my, magr->mx, magr->my)) {
@@ -495,7 +495,7 @@ struct attack *mattk;
 		    You_hear("a cough.");
 	    }
 	} else if (!magr->mspec_used && rn2(3)) {
-	    if (typ >= AD_MAGM && typ <= AD_LITE) {
+	    if (typ >= AD_MAGM && typ <= AD_SPC2) {
 		if (canseemon(magr))
 		    pline("%s breathes %s!", Monnam(magr), breathwep[typ-1]);
 		mhp = mdef->mhp;

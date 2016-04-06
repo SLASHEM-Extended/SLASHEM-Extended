@@ -189,6 +189,7 @@ const int zapcolors[NUM_ZAP] = {
     CLR_YELLOW,		/* 6 - poison gas */
     CLR_GREEN,		/* 7 - acid */
     CLR_BRIGHT_CYAN,		/* 8 - solar beam */
+    CLR_MAGENTA,		/* 9 - psybeam */
 };
 #endif /* text color */
 

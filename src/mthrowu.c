@@ -29,10 +29,10 @@ NEARDATA const char *breathwep[] = {
 				"poison gas",
 				"acid",
 				"light",
-				"strange breath #9"
+				"a psionic blast"
 };
 
-NEARDATA const char *hallubreathwep[] = {"fragments", "fire", "frost", "sleep gas", "a disintegration blast", "lightning", "poison gas", "acid", "light", "strange breath #9", "sizzle", "nexus", "slaying", "vomit", "nausea", "repetition", "nether", "chaos", "confusion", "smoke", "--More-- You have died. DYWYPI?", "darkness", "sound", "gravity", "vibration", "penetration", "spitballs", "fart gas", "stinking gas", "slow gas", "rainbows", "air", "balloons", "nitrogen", "chloroform", "prussic acid", "ozone", "spill", "litter", "garbage", "trash", "heat", "cold", "ice", "water", "earth", "hell", "sky", "astral", "stars", "asterisks", "exclamation marks!!!", "feathers", "springs", "fog", "dew", "snow", "drugs", "rock'n'roll", "smog", "sludge", "waste", "temperature", "humidity", "vortices", "clouds"
+NEARDATA const char *hallubreathwep[] = {"fragments", "fire", "frost", "sleep gas", "a disintegration blast", "lightning", "poison gas", "acid", "light", "strange breath #9", "sizzle", "nexus", "slaying", "vomit", "nausea", "repetition", "nether", "chaos", "confusion", "smoke", "--More-- You have died. DYWYPI?", "darkness", "sound", "gravity", "vibration", "penetration", "spitballs", "fart gas", "stinking gas", "slow gas", "rainbows", "air", "balloons", "nitrogen", "chloroform", "prussic acid", "ozone", "spill", "litter", "garbage", "trash", "heat", "cold", "ice", "water", "earth", "hell", "sky", "astral", "stars", "asterisks", "exclamation marks!!!", "feathers", "springs", "fog", "dew", "snow", "drugs", "rock'n'roll", "smog", "sludge", "waste", "temperature", "humidity", "vortices", "clouds", "a psionic blast"
 
 };
 
@@ -1026,9 +1026,9 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 	register struct attack  *mattk;
 {
 	/* if new breath types are added, change AD_ACID to max type */
-	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_LITE) : mattk->adtyp ;
+	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_SPC2) : mattk->adtyp ;
 
-	if (typ < AD_MAGM || typ > AD_LITE) typ = rnd(AD_LITE); /* for shambling horrors etc. --Amy */
+	if (typ < AD_MAGM || typ > AD_SPC2) typ = rnd(AD_SPC2); /* for shambling horrors etc. --Amy */
 
 	if(lined_up(mtmp)) {
 
@@ -1043,7 +1043,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 	    }
 	    if(!mtmp->mspec_used && rn2(3)) {
 
-		if((typ >= AD_MAGM) && (typ <= AD_LITE)) {
+		if((typ >= AD_MAGM) && (typ <= AD_SPC2)) {
 
 			/* angband has the infamous "it breathes" deaths --Amy */
 
@@ -1104,10 +1104,10 @@ register struct attack  *mattk;
 xchar ax, ay;
 {
 	/* if new breath types are added, change AD_ACID to max type */
-	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_LITE) : mattk->adtyp ;
+	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_SPC2) : mattk->adtyp ;
 
 
-	if((typ >= AD_MAGM) && (typ <= AD_LITE)) {
+	if((typ >= AD_MAGM) && (typ <= AD_SPC2)) {
 		if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
 				Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);

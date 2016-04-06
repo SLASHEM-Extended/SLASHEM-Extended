@@ -1084,7 +1084,7 @@ register int x, y, typ, replacechance;
 				/* no AD_DISN, thanks */
 				/* edit by Amy - wimp! I'll allow this trap to zap death and disintegration rays. :P */
 
-				switch (rnd(96)) {
+				switch (rnd(100)) {
 
 				case 1: 
 				case 2: 
@@ -1253,6 +1253,19 @@ register int x, y, typ, replacechance;
 				break;
 				case 96: 
 				ttmp->launch_otyp = -40-(AD_DISN-1);
+				break;
+
+				case 97: 
+				ttmp->launch_otyp = -10-(AD_SPC2-1);
+				break;
+				case 98: 
+				ttmp->launch_otyp = -20-(AD_SPC2-1);
+				break;
+				case 99:
+				ttmp->launch_otyp = -30-(AD_SPC2-1);
+				break;
+				case 100: 
+				ttmp->launch_otyp = -40-(AD_SPC2-1);
 				break;
 
 				default:
@@ -6903,7 +6916,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(287);
+			monstercolor = rnd(288);
 
 			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
 
@@ -7156,7 +7169,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(287);
+			monstercolor = rnd(288);
 
 			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
 

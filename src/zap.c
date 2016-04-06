@@ -66,7 +66,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"poison ray",
 	"acid ray",
 	"solar beam",
-	"",
+	"psybeam",
 
 	"magic missile",	/* Spell equivalents must be 10-19 */
 	"fireball",
@@ -77,7 +77,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"blast of poison gas",  /*WAC New spells acid + poison*/
 	"stream of acid",
 	"solar beam",
-	"",
+	"psybeam",
 
 	"blast of missiles",	/* Dragon breath equivalents 20-29*/
 	"blast of fire",
@@ -88,7 +88,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"blast of poison gas",
 	"blast of acid",
 	"solar beam",
-	"",
+	"psybeam",
 
 	"magical blast",        /* Megaspell equivalents must be 30-39 */
 	"fireball",             /*Should be same as explosion names*/
@@ -99,7 +99,7 @@ const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"poison gas cloud",
 	"splash of acid",
 	"pure irradiation",
-	""
+	"psi ball"
 };
 
 /* Yells for Megaspells*/
@@ -124,7 +124,7 @@ const char *yell_types[] = {    /*10 different beam types*/
 		 */
 	"The anger of the Mad Chemist!", /* Acid */
 	"Feel the power of the Sun itself!",
-	""
+	"The might of Arceus will crush you!" /* Psybeam */
 };
 
 
@@ -3820,6 +3820,7 @@ int min, range, skilldmg;
 	{
 	case ZT_MAGIC_MISSILE:
 	case ZT_DEATH:
+	case ZT_SPC2:
 	    expl_type = EXPL_MAGICAL;
 	    break;
 	case ZT_FIRE:
@@ -5695,6 +5696,16 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		pline("The light ray sears %s's pale skin!",mon_nam(mon));
 		}
 		break;
+	case ZT_SPC2:
+		if (dmgtype(mon->data, AD_SPC2) ) {
+		    sho_shieldeff = TRUE;
+		    break;
+		}
+		tmp = d(nd,7);
+		pline("The beam confuses %s!",mon_nam(mon));
+		mon->mconf = TRUE;
+		if (Role_if(PM_PSION)) mon->mstun = TRUE;
+		break;
 	}
 	if (sho_shieldeff) shieldeff(mon->mx, mon->my);
 	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart))
@@ -5881,6 +5892,57 @@ xchar sx, sy;
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 		dam *= 2; /* vampires are susceptible to sunlight --Amy */
 		pline("Your pale skin is seared by the light ray!");
+		}
+
+	    break;
+	case ZT_SPC2:
+
+		dam = d(nd,7);
+		pline("Your mind is hit by psionic waves!");
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+				make_confused(HConfusion + dam, FALSE);
+				break;
+			case 4:
+			case 5:
+			case 6:
+				make_stunned(HStun + dam, FALSE);
+				break;
+			case 7:
+				make_confused(HConfusion + dam, FALSE);
+				make_stunned(HStun + dam, FALSE);
+				break;
+			case 8:
+				make_hallucinated(HHallucination + dam, FALSE, 0L);
+				break;
+			case 9:
+				make_feared(HFeared + dam, FALSE);
+				break;
+			case 10:
+				make_numbed(HNumbed + dam, FALSE);
+				break;
+
+		}
+		if (!rn2(200)) {
+			forget(rnd(5));
+			pline("You forget some important things...");
+		}
+		if (!rn2(200)) {
+			losexp("psionic drain", FALSE, TRUE);
+		}
+		if (!rn2(200)) {
+			adjattrib(A_INT, -1, 1);
+			adjattrib(A_WIS, -1, 1);
+		}
+		if (!rn2(200)) {
+			pline("You scream in pain!");
+			wake_nearby();
+		}
+		if (!rn2(200)) {
+			badeffect();
 		}
 
 	    break;
