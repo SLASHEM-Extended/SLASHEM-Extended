@@ -2864,11 +2864,12 @@ register struct obj	*sobj;
 			case 5: /* lust */
 				if (invent) {
 					pline("Your belongings leave your body!");
+				    int itemportchance = 10 + rn2(21);
 				    for (otmpi = invent; otmpi; otmpi = otmpii) {
 
 				      otmpii = otmpi->nobj;
 
-					if (!rn2(10) && !stack_too_big(otmpi) ) {
+					if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
 
 						if (otmpi->owornmask & W_ARMOR) {
 						    if (otmpi == uskin) {

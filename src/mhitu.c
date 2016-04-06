@@ -3505,11 +3505,12 @@ dopois:
 		if (rn2(3)) break;
 		pline("You are surrounded by a purple glow!");
 		if (invent) {
+		    int itemportchance = 10 + rn2(21);
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -7451,11 +7452,12 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you and curses.", Monnam(mtmp));
 		    stop_occupation();
 		if (invent) {
+		    int itemportchance = 10 + rn2(21);
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {

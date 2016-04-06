@@ -5164,11 +5164,12 @@ uchar aatyp;
 		if (!rn2(3)) {
 		if (flags.soundok) You_hear("a scattering sound!");
 		if (invent) {
+		    int itemportchance = 10 + rn2(21);
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
