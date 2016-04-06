@@ -4737,7 +4737,7 @@ uchar aatyp;
 		pushplayer();
 		break;
 	  case AD_DRIN:
-	    if(!rn2(10)) {
+	    if(!rn2(3)) {
 		    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
 			int lifesaved = 0;
 			struct obj *wore_amulet = uamul;
@@ -5085,8 +5085,8 @@ uchar aatyp;
 	      case AD_SITM:	/* for now these are the same */
 	      case AD_SEDU:
 	      case AD_SSEX:
-		      if(  (rnd(100) > ACURR(A_CHA)) &&  malive && ( ((mon->female) && !flags.female && !rn2(5) ) || ((!mon->female) && flags.female && !rn2(15) ) || 
-				((mon->female) && flags.female && !rn2(25) ) || ((!mon->female) && !flags.female && !rn2(25) ) )
+		      if(  (rnd(100) > ACURR(A_CHA)) && malive && ( ((mon->female) && !flags.female && !rn2(2) ) || ((!mon->female) && flags.female && !rn2(3) ) || 
+				((mon->female) && flags.female && !rn2(5) ) || ((!mon->female) && !flags.female && !rn2(5) ) )
 	
 			) 		{
 			pline("You feel a tug on your backpack!");
@@ -5114,7 +5114,7 @@ uchar aatyp;
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(5) && !stack_too_big(otmpi) ) {
+			if (!rn2(10) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -5434,7 +5434,6 @@ uchar aatyp;
 		}
 
 		break;
-
 
 	      case AD_SLEE:
 

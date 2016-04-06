@@ -3502,13 +3502,14 @@ dopois:
 	    case AD_STTP:
 
 		hitmsg(mtmp, mattk);
+		if (rn2(3)) break;
 		pline("You are surrounded by a purple glow!");
 		if (invent) {
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(5) && !stack_too_big(otmpi) ) {
+			if (!rn2(10) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -7130,7 +7131,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(5) && !stack_too_big(otmpi) ) {
+			if (!rn2(10) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
