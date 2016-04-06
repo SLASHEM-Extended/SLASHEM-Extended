@@ -12364,11 +12364,6 @@ register int	mmflags;
 
 	}
 
-	if (ptr == &mons[PM_DARK_GOKU] || ptr == &mons[PM_FRIEZA]) { /* credits go to Bug Sniper for this idea --Amy */
-		mtmp->mhpmax += 9000;
-		mtmp->mhp += 9000;
-	}
-
 	if (ptr == &mons[PM__S_SECRET_CAR] || ptr == &mons[PM_OAK_SAGE] || ptr == &mons[PM__S_____NIX] || ptr == &mons[PM_TANK_WARRIOR] || ptr == &mons[PM__S_RAT_MAN] || ptr == &mons[PM__S_UFO] ) { /* supposed to be extra annoying --Amy */
 		mtmp->mhpmax *= 5;
 		mtmp->mhp *= 5;
@@ -12376,15 +12371,32 @@ register int	mmflags;
 	}
 
 	if (ptr->geno & G_UNIQ) {
-		mtmp->mhpmax *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+		if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax);
+		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 2);
+		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 3);
+		else mtmp->mhpmax += rnd(mtmp->mhpmax * 4);
+		if (!rn2(10)) {
+			mtmp->mhpmax /= 2;
+			if (mtmp->mhpmax < 2) mtmp->mhpmax = 2;
+		}
 		mtmp->mhp = mtmp->mhpmax;
-
 	}
 
 	if (Role_if(PM_CAMPERSTRIKER) && (ptr->geno & G_UNIQ) ) {
-		mtmp->mhpmax *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+		if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax);
+		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 2);
+		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 3);
+		else mtmp->mhpmax += rnd(mtmp->mhpmax * 4);
+		if (!rn2(10)) {
+			mtmp->mhpmax /= 2;
+			if (mtmp->mhpmax < 2) mtmp->mhpmax = 2;
+		}
 		mtmp->mhp = mtmp->mhpmax;
+	}
 
+	if (ptr == &mons[PM_DARK_GOKU] || ptr == &mons[PM_FRIEZA]) { /* credits go to Bug Sniper for this idea --Amy */
+		mtmp->mhpmax += 9000;
+		mtmp->mhp += 9000;
 	}
 
 	/* Assign power */
