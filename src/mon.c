@@ -256,6 +256,7 @@ register struct monst *mtmp;
 
 	switch(mndx) {
 	    case PM_GRAY_DRAGON:
+	    case PM_MERCURIAL_DRAGON:
 	    case PM_SILVER_DRAGON:
 	    case PM_SHIMMERING_DRAGON:
 	    case PM_DEEP_DRAGON:
@@ -268,6 +269,11 @@ register struct monst *mtmp;
 	    case PM_GOLDEN_DRAGON:
 	    case PM_STONE_DRAGON:
 	    case PM_CYAN_DRAGON:
+	    case PM_RAINBOW_DRAGON:
+	    case PM_BLOOD_DRAGON:
+	    case PM_PLAIN_DRAGON:
+	    case PM_SKY_DRAGON:
+	    case PM_WATER_DRAGON:
 	    case PM_YELLOW_DRAGON:
 		/* Make dragon scales.  This assumes that the order of the */
 		/* dragons is the same as the order of the scales.	   */
@@ -315,12 +321,41 @@ register struct monst *mtmp;
 	    case PM_LONG_WORM:
 		(void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE);
 		goto default_1;
-	    case PM_KILLER_TRIPE_RATION:            
+	    case PM_KILLER_TRIPE_RATION:
+	    case PM_PERSONALIZED_KILLER_TRIPE_RATION:
 		(void) mksobj_at(TRIPE_RATION, x, y, TRUE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
+	    case PM_KILLER_APPLE:
+	    case PM_IWBTG_APPLE:
+		(void) mksobj_at(APPLE, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_EVIL_ORANGE:
+		(void) mksobj_at(ORANGE, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_FLOATING_LEMON:
+		(void) mksobj_at(LEMON, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_FLOATING_MELON:
+		(void) mksobj_at(MELON, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_RAVENOUS_CREAM_PIE:
+	    case PM_KOP_BRANDED_RAVENOUS_CREAM_PIE:
+		(void) mksobj_at(CREAM_PIE, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
 	    case PM_KILLER_FOOD_RATION:
+	    case PM_ROTTEN_FOOD_RATION:
 		(void) mksobj_at(FOOD_RATION, x, y, TRUE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_BAD_EGG:
+	    case PM_PORTER_BAD_EGG:
+		(void) mksobj_at(EGG, x, y, TRUE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
