@@ -5450,7 +5450,7 @@ int final;
 	    dump("", buf);
 	}
 	if (u.uconduct.unvegetarian) {
-	    sprintf(buf, "  You eaten food with animal by-products %ld time%s", 
+	    sprintf(buf, "  You eaten meat %ld time%s", 
 		u.uconduct.unvegetarian, plur(u.uconduct.unvegetarian));
 	    dump("", buf);
 	}
