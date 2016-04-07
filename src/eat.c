@@ -13,6 +13,89 @@
 # endif
 #endif
 
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_MATTER_SPELL		(-13)
+#define PN_BARE_HANDED		(-14)
+#define PN_MARTIAL_ARTS		(-15)
+#define PN_RIDING		(-16)
+#define PN_TWO_WEAPONS		(-17)
+#ifdef LIGHTSABERS
+#define PN_LIGHTSABER		(-18)
+#endif
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+#ifdef LIGHTSABERS
+	PN_LIGHTSABER,
+#endif
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+#ifdef STEED
+	PN_RIDING,
+#endif
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "matter spells",
+    "bare-handed combat",
+    "martial arts",
+    "riding",
+    "two-handed combat",
+#ifdef LIGHTSABERS
+    "lightsaber"
+#endif
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 STATIC_PTR int NDECL(eatmdone);
 STATIC_PTR int NDECL(eatfood);
 STATIC_PTR void FDECL(costly_tin, (const char*));
@@ -2429,8 +2512,25 @@ register int pm;
 		  }
 		}
 
+	/* Or eating item-stealers. --Amy */
+
+		if (dmgtype(ptr, AD_SITM) || dmgtype(ptr, AD_SEDU) || dmgtype(ptr, AD_SSEX) ) {
+		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
+			if (!rn2(dmgtype(ptr, AD_SSEX) ? 3 : 10)) {
+				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+				(void) adjattrib(A_CHA, 1, FALSE);
+			}
+		  }
+		}
+
 	/* luck is also harder to get; eating luck-reducing monsters sometimes grants a boost --Amy */
 		if (dmgtype(ptr, AD_LUCK) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+			change_luck(1);
+			pline("You feel lucky.");
+		}
+
+	/* or rarely, random attack monsters --Amy */
+		if (dmgtype(ptr, AD_RBRE) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 525 : 175) && rn2(4) ) ) {
 			change_luck(1);
 			pline("You feel lucky.");
 		}
@@ -2449,6 +2549,36 @@ register int pm;
 			pline("You feel smarter!");
 			(void) adjattrib(A_INT, 1, 2);
 		  }
+		}
+
+	/* skill cap reducing monsters very rarely grant something good too --Amy */
+		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 1050 : 350) && rn2(2) ) ) {
+
+			pline("You feel the RNG's touch...");
+
+			int skillimprove = rnd(P_NUM_SKILLS);
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else pline("You feel no different than before.");
+
 		}
 
 	/* eating anything that spouts fake messages will give another one --Amy */
