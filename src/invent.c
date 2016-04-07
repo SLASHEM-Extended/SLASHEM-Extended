@@ -6994,7 +6994,7 @@ struct obj *obj;
 			case SPE_FULL_HEALING:
 				pline("This spell can be aimed at yourself or a monster to heal a large amount of hit points."); break;
 			case SPE_RESTORE_ABILITY:
-				pline("If your attributes have been damaged, this spell may gradually restore them."); break;
+				pline("If your attributes have been damaged, this spell may gradually restore them. Occasionally it fails though."); break;
 			case SPE_CREATE_FAMILIAR:
 				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware..."); break;
 			case SPE_LIGHT:

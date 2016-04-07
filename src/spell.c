@@ -922,6 +922,12 @@ boolean atme;
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
 
+	/* slight mana cost decrease if you're very skilled, to make skill matter more --Amy */
+	if (role_skill == P_SKILLED) { energy *= 19; energy /= 20;}
+	if (role_skill == P_EXPERT) { energy *= 18; energy /= 20;}
+	if (role_skill == P_MASTER) { energy *= 17; energy /= 20;}
+	if (role_skill == P_GRAND_MASTER) { energy *= 16; energy /= 20;}
+
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
@@ -948,8 +954,10 @@ boolean atme;
 
 
 	/* Casting any sort of magic as a mahou shoujo or naga does not cause hunger */
+	/* Amy edit: but if you're satiated, you always use the standard amount of nutrition. That way, hungerless casting
+	 * does not rob you of the ability to get out of satiated status by repeatedly casting spells. */
 
-		if (!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) ) {
+		if ((!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) ) || u.uhunger > 2500 ) {
 		hungr = energy * 2;
 
 			/* If hero is a wizard, their current intelligence
@@ -967,6 +975,7 @@ boolean atme;
 			 */
 			intell = acurr(A_INT);
 			if (!Role_if(PM_WIZARD)) intell = 10;
+			if (u.uhunger > 2500) intell = 10;
 			switch (intell) {
 				case 25: case 24: case 23: case 22:
 				case 21: case 20: case 19: case 18:
@@ -1018,6 +1027,9 @@ boolean atme;
 	}
 
 	/* come on, you should be able to cast using less nutrition if your skill is higher! --Amy */
+
+	if (u.uhunger <= 2500) { /* But only if you're not satiated (see above) */
+
 	if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
 	if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
 	if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
@@ -1032,6 +1044,8 @@ boolean atme;
 	if ( spellknow(spell) >= 50000) {hungr *= 9; hungr /= 10;}
 	if ( spellknow(spell) >= 60000) {hungr *= 9; hungr /= 10;}
 	if ( spellknow(spell) >= 70000) {hungr *= 9; hungr /= 10;}
+
+	}
 
 	if (hungr < 0) hungr = 0; /* fail safe */
 
@@ -2167,21 +2181,21 @@ int spell;
 
 	/* casting it often (and thereby keeping it in memory) should also improve chances... */
 	if ( spellknow(spell) >= 20000) splcaster -= 1;
-	if ( spellknow(spell) >= 23333) splcaster -= 1;
-	if ( spellknow(spell) >= 26666) splcaster -= 1;
-	if ( spellknow(spell) >= 30000) splcaster -= 1;
-	if ( spellknow(spell) >= 33333) splcaster -= 1;
+	if (( spellknow(spell) >= 23333) && (spellev(spell) < 5) ) splcaster -= 1;
+	if (( spellknow(spell) >= 26666) && (spellev(spell) < 6) ) splcaster -= 1;
+	if (( spellknow(spell) >= 30000) && (spellev(spell) < 7) ) splcaster -= 1;
+	if (( spellknow(spell) >= 33333) && (spellev(spell) < 8) ) splcaster -= 1;
 	if ( spellknow(spell) >= 36666) splcaster -= 1;
-	if ( spellknow(spell) >= 40000) splcaster -= 1;
-	if ( spellknow(spell) >= 43333) splcaster -= 1;
-	if ( spellknow(spell) >= 46666) splcaster -= 1;
-	if ( spellknow(spell) >= 50000) splcaster -= 1;
+	if (( spellknow(spell) >= 40000) && (spellev(spell) < 5) ) splcaster -= 1;
+	if (( spellknow(spell) >= 43333) && (spellev(spell) < 6) ) splcaster -= 1;
+	if (( spellknow(spell) >= 46666) && (spellev(spell) < 7) ) splcaster -= 1;
+	if (( spellknow(spell) >= 50000) && (spellev(spell) < 8) ) splcaster -= 1;
 	if ( spellknow(spell) >= 53333) splcaster -= 1;
-	if ( spellknow(spell) >= 56666) splcaster -= 1;
-	if ( spellknow(spell) >= 60000) splcaster -= 1;
-	if ( spellknow(spell) >= 63333) splcaster -= 1;
-	if ( spellknow(spell) >= 66666) splcaster -= 1;
-	if ( spellknow(spell) >= 70000) splcaster -= 1;
+	if (( spellknow(spell) >= 56666) && (spellev(spell) < 5) ) splcaster -= 1;
+	if (( spellknow(spell) >= 60000) && (spellev(spell) < 6) ) splcaster -= 1;
+	if (( spellknow(spell) >= 63333) && (spellev(spell) < 7) ) splcaster -= 1;
+	if (( spellknow(spell) >= 66666) && (spellev(spell) < 8) ) splcaster -= 1;
+	if ( spellknow(spell) >= 69000) splcaster -= 1;
 
 	skill = max(skill,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	difficulty= (spellev(spell)-1) * 3 - ((skill * 6) + (u.ulevel/3) + 1);
