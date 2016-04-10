@@ -234,7 +234,10 @@
  */
 
 #define MAIL			/* Deliver mail during the game */
+
+#ifdef PUBLIC_SERVER		/* No reason to have mail except on a server. */
 #define SIMPLE_MAIL		/* dgamelaunch simple mail */
+#endif
 
 /* The Andrew Message System does mail a little differently from normal
  * UNIX.  Mail is deposited in the user's own directory in ~/Mailbox
