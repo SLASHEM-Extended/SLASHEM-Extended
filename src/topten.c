@@ -37,7 +37,7 @@ static long final_fpos;
 #define POINTSMIN	1	/* must be > 0 */
 #define ENTRYMAX	10000	/* must be >= 10 */
 
-#if !defined(MICRO) && !defined(MAC) && !defined(WIN32)
+#if !defined(MICRO) && !defined(MAC) && !defined(WIN32) && !defined(PUBLIC_SERVER)
 #define PERS_IS_UID		/* delete for PERSMAX per name; now per uid */
 #endif
 struct toptenentry {
