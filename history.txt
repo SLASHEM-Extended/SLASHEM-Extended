@@ -4,7 +4,7 @@ History file by Elijah Stone (Elronnd)
                +------------------------------------------+
                |                                          |
                |  A history of NetHack, and of Slash'EM   |
-               |  and of what cam before, and what after. |
+               | and of what came before, and what after. |
                |                                          |
                +------------------------------------------+
 
