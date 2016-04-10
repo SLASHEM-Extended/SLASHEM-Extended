@@ -29,7 +29,7 @@ History file by Elijah Stone (Elronnd)
   | NetHack |
   +---------+
 
-	Mike stephenson took this Hack and developed it together with a bunch of people over the web.  This group consisted of -- and to this day consist of -- a mythical group of people knows as the NetHack DevTeam, or just the DevTeam.  Secretive, releasing late and infrequently, they were nonetheless revered.  But eventually this came to a head.  People had been for some time releasing patches and making variants of NetHack, but none of them ever became popular.  Until one did.  Two variants of NetHack, NetHack-- (previously named NetHack++, but later renamed to avoid confusion that it was written in C++) and NetHack Plus came together to form the a variant called SLASH, short for Super Lotsa Added Stuff Hack.  This SLASH, combined with a patch called the Wizard patch which enhanced spell-casting, came together to form Slash'EM: Super Lotsa Added Stuff Hack -- Extended Magic, a variant maintained by Warren Cheung and Tom Proudfoot.
+	Mike stephenson took this Hack and developed it together with a bunch of people over the web.  This group consisted of -- and to this day consists of -- a mythical group of people knows as the NetHack DevTeam, or just the DevTeam.  Secretive, releasing late and infrequently, they were nonetheless revered.  But eventually this came to a head.  People had been for some time releasing patches and making variants of NetHack, but none of them ever became popular.  Until one did.  Two variants of NetHack, NetHack-- (previously named NetHack++, but later renamed to avoid confusion that it was written in C++) and NetHack Plus came together to form the a variant called SLASH, short for Super Lotsa Added Stuff Hack.  This SLASH, combined with a patch called the Wizard patch which enhanced spell-casting, came together to form Slash'EM: Super Lotsa Added Stuff Hack -- Extended Magic, a variant maintained by Warren Cheung and Tom Proudfoot.
 
 
   +----------+
@@ -50,4 +50,4 @@ History file by Elijah Stone (Elronnd)
   | SlashTHEM |
   +-----------+
 
-	SlashTHEM, short for Super Lotsa Added Stuff -- The Heavily Extended Mod, developed by an unnamed entity known in IRC as "Soviet5lo," was created to "fix" Slash'EM Extended.  It provides bug fixes, balance "improvements," and a much milder codebase, with a monst.c less than a third of Slash'EM Extended's.
+	SlashTHEM, short for Super Lotsa Added Stuff -- The Heavily Extended Mod, developed by an unnamed entity known in IRC as "Soviet5lo," was created to "fix" Slash'EM Extended.  It provides "bug fixes" ("Remember, it's not a bug, it's a feature"), balance "improvements" (which simply made gameplay much easier for the player), and a much milder codebase, with a monst.c less than a third of Slash'EM Extended's.
