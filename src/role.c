@@ -4491,6 +4491,19 @@ const struct Race races[] = {
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
 },
+{	"rougelike", "rougelike", "angles of satin", "Rog",
+	{0, 0},
+	PM_ROUGELIKE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"scurrier", "scurrier", "scurriership", "Scu",  /* by jonadab */
 	{0, 0},
       PM_SCURRIER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5338,7 +5351,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(18)) {
+			switch (rnd(19)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -5376,12 +5389,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridminimalist = 1; break;
 				case 18:
 					flags.hybridnastinator = 1; break;
+				case 19:
+					flags.hybridrougelike = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(18)) {
+				switch (rnd(19)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -5436,6 +5451,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 18:
 						if (!(flags.hybridnastinator)) {flags.hybridnastinator = 1; flags.hybridization++; break;
+						}
+					case 19:
+						if (!(flags.hybridrougelike)) {flags.hybridrougelike = 1; flags.hybridization++; break;
 						}
 	
 				}

@@ -1617,14 +1617,14 @@ static const uchar IBM_r_oc_syms[MAXOCLASSES] = {	/* a la EPYX Rogue */
 	ILLOBJ_SYM,
 #  if defined(MSDOS) || defined(OS2) || ( defined(WIN32) && !defined(MSWIN_GRAPHICS) )
 	0x18,			/* weapon: up arrow */
-/*	0x0a, */ ARMOR_SYM,	/* armor:  Vert rect with o */
-/*	0x09, */ RING_SYM,	/* ring:   circle with arrow */
+	0x0a, /* ARMOR_SYM,*/	/* armor:  Vert rect with o */
+	0x09, /* RING_SYM,*/	/* ring:   circle with arrow */
 /* 5*/	0x0c,			/* amulet: "female" symbol */
-	TOOL_SYM,
+	/*TOOL_SYM*/0x06,
 	0x05,			/* food:   club (as in cards) */
 	0xad,			/* potion: upside down '!' */
 	0x0e,			/* scroll: musical note */
-/*10*/	SPBOOK_SYM,
+/*10*/	/*SPBOOK_SYM*/0x0d,
 	0xe7,			/* wand:   greek tau */
 	0x0f,			/* gold:   yes it's the same as gems */
 	0x0f,			/* gems:   fancy '*' */

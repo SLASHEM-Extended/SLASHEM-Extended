@@ -325,11 +325,19 @@ boolean dresistance;	/* level drain resistance can protect you */
 	u.uhpmax -= rn2(3);
 	u.uhpmax -= rnz(2);
 	u.uhpmax -= rnz(3); /* making the drain for gain exploit much harder to perform --Amy */
+	if (u.ulevel >= 19) u.uhpmax -= rnd(2);
+	if (u.ulevel >= 24) u.uhpmax -= rnd(2);
+	if (u.ulevel >= 27) u.uhpmax -= rnd(3);
+	if (u.ulevel >= 29) u.uhpmax -= rnd(10);
 	if (u.uhpmax < 1) u.uhpmax = 1;
 	u.uhp -= num;
 	u.uhp -= rn2(3);
 	u.uhp -= rnz(3);
 	u.uhp -= rnz(2);
+	if (u.ulevel >= 19) u.uhp -= rnd(2);
+	if (u.ulevel >= 24) u.uhp -= rnd(2);
+	if (u.ulevel >= 27) u.uhp -= rnd(3);
+	if (u.ulevel >= 29) u.uhp -= rnd(10);
 	if (u.uhp < 1) u.uhp = 1;
 	else if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 
@@ -467,6 +475,11 @@ boolean incr;	/* true iff via incremental experience growth */
 	if (num < 0) num = 0;
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	num += rn2(3);
+	if (u.ulevel >= 19) num += rnd(2);
+	if (u.ulevel >= 24) num += rnd(2);
+	if (u.ulevel >= 27) num += rnd(3);
+	if (u.ulevel >= 29) num += rnd(10);
+
 	u.uhpmax += num;
 	u.uhp += num;
 

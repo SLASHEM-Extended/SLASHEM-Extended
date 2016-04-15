@@ -259,7 +259,16 @@
 #define WEAKSIGHT 230
 #define RANDOM_MESSAGES 231
 
-#define SECOND_CHANCE		232
+#define ELEMENT_RES 232
+#define PSI_RES 233
+#define DEAC_PSI_RES 234
+
+#define WONDERLEGS 235
+#define GLIB_COMBAT 236
+#define DEAC_WONDERLEGS 237
+#define DEAC_GLIB_COMBAT 238
+
+#define SECOND_CHANCE		239
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

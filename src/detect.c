@@ -1562,7 +1562,7 @@ register int aflag;
 	      for(y = u.uy-1; y < u.uy+2; y++) {
 		if(!isok(x,y)) continue;
 		if(x != u.ux || y != u.uy) {
-		    if (Blind && !aflag) feel_location(x,y);
+		    if (Blind && (!aflag || !rn2(4)) ) feel_location(x,y);
 		    if(levl[x][y].typ == SDOOR) {
 			if(rnl(7-fund) && rn2(5) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
@@ -1570,7 +1570,7 @@ register int aflag;
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0);
-			if (Blind && !aflag)
+			if (Blind && (!aflag || !rn2(4)) )
 			    feel_location(x,y);	/* make sure it shows up */
 			else
 			    newsym(x,y);
@@ -1585,7 +1585,7 @@ register int aflag;
 			newsym(x,y);
 		    } else {
 		/* Be careful not to find anything in an SCORR or SDOOR */
-			if((mtmp = m_at(x, y)) && !aflag) {
+			if((mtmp = m_at(x, y)) && (!aflag || !rn2(4)) ) {
 			    if(mtmp->m_ap_type) {
 				seemimic(mtmp);
 		find:		exercise(A_WIS, TRUE);
@@ -1619,7 +1619,7 @@ register int aflag;
 			/* see if an invisible monster has moved--if Blind,
 			 * feel_location() already did it
 			 */
-			if (!aflag && !mtmp && !Blind &&
+			if ( (!aflag || !rn2(4)) && !mtmp && !Blind &&
 				    memory_is_invisible(x, y)) {
 			    unmap_object(x,y);
 			    newsym(x,y);

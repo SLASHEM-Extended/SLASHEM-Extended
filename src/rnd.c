@@ -506,7 +506,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(133)) {
+	switch (rnd(134)) {
 
 		case 1:
 		case 2:
@@ -776,6 +776,8 @@ randenchantment()
 			return (rn2(20) ? POISON_RES : DOUBLE_ATTACK);
 		case 133:
 			return (rn2(100) ? TELEPORT : QUAD_ATTACK);
+		case 134:
+			return PSI_RES;
 		default:
 			return POISON_RES;
 

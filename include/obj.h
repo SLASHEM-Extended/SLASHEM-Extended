@@ -380,6 +380,9 @@ struct obj {
 || (otmp)->otyp == WAN_PARALYSIS\
 || (otmp)->otyp == WAN_CURSE_ITEMS\
 || (otmp)->otyp == WAN_AMNESIA\
+|| (otmp)->otyp == WAN_LEVITATION\
+|| (otmp)->otyp == WAN_PSYBEAM\
+|| (otmp)->otyp == WAN_HYPER_BEAM\
 || (otmp)->otyp == WAN_BAD_LUCK\
 || (otmp)->otyp == WAN_REMOVE_RESISTANCE\
 || (otmp)->otyp == WAN_CORROSION\

@@ -521,6 +521,13 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		}
 		break;
 	    case AD_SPC2:
+		if (Psi_resist && rn2(20)) {
+			shieldeff(u.ux, u.uy);
+			pline("Something focuses on your mind, but you resist the effects.");
+			dmg = 0;
+			break;
+		}
+
 		pline("Your %s spins wildly.", body_part(HEAD) );
 
 		switch (rnd(10)) {
@@ -1752,7 +1759,7 @@ newboss:
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(117)) {
+	switch (rnd(120)) {
 
 		case 1:
 		case 2:
@@ -2032,6 +2039,18 @@ newboss:
 		case 117:
 			u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(dmg);
 			pline("You are prevented from having quad attacks!");
+			break;
+		case 118:
+			u.uprops[DEAC_PSI_RES].intrinsic += rnz(dmg);
+			pline("You are prevented from having psi resistance!");
+			break;
+		case 119:
+			u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(dmg);
+			pline("You are prevented from having wonderlegs!");
+			break;
+		case 120:
+			u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(dmg);
+			pline("You are prevented from having glib combat!");
 			break;
 	}
 	dmg = 0;

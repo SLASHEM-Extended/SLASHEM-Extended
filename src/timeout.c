@@ -554,7 +554,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(117)) {
+		switch (rnd(120)) {
 
 			case 1:
 			case 2:
@@ -834,13 +834,25 @@ nh_timeout()
 			case 117:
 				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
 				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
+				pline("You are prevented from having glib combat!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(117)) {
+		switch (rnd(120)) {
 
 			case 1:
 			case 2:
@@ -1120,13 +1132,25 @@ nh_timeout()
 			case 117:
 				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
 				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
+				pline("You are prevented from having glib combat!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(117)) {
+		switch (rnd(120)) {
 
 			case 1:
 			case 2:
@@ -1406,6 +1430,18 @@ nh_timeout()
 			case 117:
 				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
 				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
+				pline("You are prevented from having glib combat!");
 				break;
 			}
 	}
@@ -2621,6 +2657,9 @@ nh_timeout()
 		case DEAC_CONF_RES:
 			pline("You are no longer prevented from having confusion resistance.");
 			break;
+		case DEAC_PSI_RES:
+			pline("You are no longer prevented from having psi resistance.");
+			break;
 		case DEAC_DOUBLE_ATTACK:
 			pline("You are no longer prevented from having double attacks.");
 			break;
@@ -2662,6 +2701,12 @@ nh_timeout()
 			break;
 		case DEAC_SICKOPATHY:
 			pline("You are no longer prevented from having sickopathy.");
+			break;
+		case DEAC_WONDERLEGS:
+			pline("You are no longer prevented from having wonderlegs.");
+			break;
+		case DEAC_GLIB_COMBAT:
+			pline("You are no longer prevented from having glib combat.");
 			break;
 
 		}

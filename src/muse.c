@@ -2825,6 +2825,9 @@ struct monst *mtmp;
 #define MUSE_WAN_SIN 98
 #define MUSE_WAN_INERTIA 99
 #define MUSE_WAN_TIME 100
+#define MUSE_WAN_LEVITATION 101
+#define MUSE_WAN_PSYBEAM 102
+#define MUSE_WAN_HYPER_BEAM 103
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2899,10 +2902,20 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SOLAR_BEAM;
                     }
+		    nomore(MUSE_WAN_PSYBEAM);                    
+		    if(obj->otyp == WAN_PSYBEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_PSYBEAM;
+                    }
 		    nomore(MUSE_WAN_POISON);
 		    if(obj->otyp == WAN_POISON && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_POISON;
+                    }
+		    nomore(MUSE_WAN_HYPER_BEAM);
+		    if(obj->otyp == WAN_HYPER_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_HYPER_BEAM;
                     }
 		    nomore(MUSE_WAN_CHROMATIC_BEAM);
 		    if(obj->otyp == WAN_CHROMATIC_BEAM && obj->spe > 0) {
@@ -3300,6 +3313,11 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_CURSE_ITEMS && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_CURSE_ITEMS;
+		}
+		nomore(MUSE_WAN_LEVITATION);
+		if(obj->otyp == WAN_LEVITATION && obj->spe > 0 && !Levitation ) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_LEVITATION;
 		}
 		nomore(MUSE_WAN_BAD_LUCK);
 		if(obj->otyp == WAN_BAD_LUCK && obj->spe > 0) {
@@ -3984,6 +4002,7 @@ struct monst *mtmp;
 	case MUSE_WAN_FIREBALL:
 	case MUSE_WAN_ACID:
 	case MUSE_WAN_SOLAR_BEAM:
+	case MUSE_WAN_PSYBEAM:
 	case MUSE_WAN_FIRE:
 	case MUSE_WAN_COLD:
 	case MUSE_WAN_LIGHTNING:
@@ -4003,7 +4022,7 @@ struct monst *mtmp;
 
 		/* Monsters zapping wands will be more dangerous later in the game. --Amy */
 		buzz((int)(-30 - (otmp->otyp - WAN_MAGIC_MISSILE)),
-			(otmp->otyp == WAN_MAGIC_MISSILE) ? 2 + (rnd(monster_difficulty()) / 10) : (otmp->otyp == WAN_SOLAR_BEAM) ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+			(otmp->otyp == WAN_MAGIC_MISSILE) ? 2 + (rnd(monster_difficulty()) / 10) : (otmp->otyp == WAN_SOLAR_BEAM) ? 8 + (rnd(monster_difficulty()) / 4) : (otmp->otyp == WAN_PSYBEAM) ? 7 + (rnd(monster_difficulty()) / 5) : 6 + (rnd(monster_difficulty()) / 8),
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -4020,6 +4039,22 @@ struct monst *mtmp;
 		m_using = TRUE;
 
 		buzz((int)(-26), 7 + (rnd(monster_difficulty()) / 6),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_HYPER_BEAM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+
+		buzz((int)(-20), 6 + (rnd(monster_difficulty()) / 3),
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -5338,6 +5373,19 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_LEVITATION:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		incr_itimeout(&HLevitation, rnd(100) );
+		pline("You float up!");
+
+		if (oseen) makeknown(WAN_LEVITATION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_AMNESIA:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -6191,7 +6239,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(98)) {
+	switch (rn2(101)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -6291,6 +6339,9 @@ struct monst *mtmp;
 		case 95: return WAN_SIN;
 		case 96: return WAN_INERTIA;
 		case 97: return WAN_TIME;
+		case 98: return WAN_LEVITATION;
+		case 99: return WAN_PSYBEAM;
+		case 100: return WAN_HYPER_BEAM;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -6716,7 +6767,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -6843,6 +6894,8 @@ skipmsg:
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -6854,7 +6907,7 @@ skipmsg:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -6981,6 +7034,8 @@ skipmsg:
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
@@ -7736,6 +7791,7 @@ struct obj *obj;
 		    typ == WAN_MAKE_VISIBLE ||
 		    typ == WAN_CURSE_ITEMS ||
 		    typ == WAN_AMNESIA ||
+		    typ == WAN_LEVITATION ||
 		    typ == WAN_IMMOBILITY ||
 		    typ == WAN_EGOISM ||
 		    typ == WAN_MUTATION ||
@@ -7752,6 +7808,7 @@ struct obj *obj;
 		    typ == WAN_STUN_MONSTER ||
 		    typ == WAN_SLIMING ||
 		    typ == WAN_POISON ||
+		    typ == WAN_HYPER_BEAM ||
 		    typ == WAN_CHROMATIC_BEAM ||
 		    typ == WAN_DISINTEGRATION_BEAM ||
 		    typ == WAN_LYCANTHROPY ||
@@ -7910,7 +7967,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "armor");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SILVER_DRAGON] || mon->data == &mons[PM_OLD_SILVER_DRAGON] || mon->data == &mons[PM_VERY_OLD_SILVER_DRAGON] || mon->data == &mons[PM_AUREAL] || mon->data == &mons[PM_ANCIENT_SILVER_DRAGON] ||
+	} else if (mon->data == &mons[PM_SILVER_DRAGON] || mon->data == &mons[PM_OLD_SILVER_DRAGON] || mon->data == &mons[PM_VERY_OLD_SILVER_DRAGON] || mon->data == &mons[PM_AUREAL] || mon->data == &mons[PM_SILVER_DRACONIAN] || mon->data == &mons[PM_ANCIENT_SILVER_DRAGON] ||
 		mon->data == &mons[PM_CHROMATIC_DRAGON]) {
 	    /* Silver dragons only reflect when mature; babies do not */
 	    if (str)
@@ -7921,7 +7978,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_ARIANE] || mon->data == &mons[PM_KSENIA] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
+	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_ARIANE] || mon->data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] || mon->data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] || mon->data == &mons[PM_IT] || mon->data == &mons[PM_KSENIA] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
 		/* in ADOM this thing would absorb bolts instead */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
@@ -7994,16 +8051,17 @@ const char *fmt, *str;
 	    	pline(fmt, str, "gauntlets");
 	    	/*makeknown(GAUNTLETS_OF_REFLECTION);*/
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SILVER_DRAGON] || youmonst.data == &mons[PM_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_AUREAL] || youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON]) {
+	} else if (youmonst.data == &mons[PM_SILVER_DRAGON] || youmonst.data == &mons[PM_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] || youmonst.data == &mons[PM_AUREAL] || youmonst.data == &mons[PM_SILVER_DRACONIAN] || youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON]) {
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_ARIANE] || youmonst.data == &mons[PM_KSENIA] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
+	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] || youmonst.data == &mons[PM_ARIANE] || youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] || youmonst.data == &mons[PM_KSENIA] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
 	    if (fmt && str)
 	    	pline(fmt, str, "surface");
 	    return TRUE;
 	} else if (youmonst.data == &mons[PM_DIAMOND_GOLEM]
 	         || youmonst.data == &mons[PM_SAPPHIRE_GOLEM]
+	         || youmonst.data == &mons[PM_IT]
 	         || youmonst.data == &mons[PM_CRYSTAL_GOLEM]) {
 	    if (fmt && str)
 	    	pline(fmt, str, "body");

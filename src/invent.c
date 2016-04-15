@@ -321,6 +321,11 @@ struct obj *obj;
 	} else if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
 		if (u.uhave.menorah) impossible("already have candelabrum?");
 		u.uhave.menorah = 1;
+		if (!u.menoraget) {
+			u.menoraget = 1;
+			u.uhpmax += rnd(50);
+			if (Upolyd) u.mhmax += rnd(50);
+		}
 #ifdef RECORD_ACHIEVE
                 achieve.get_candelabrum = 1;
 #ifdef LIVELOGFILE
@@ -330,6 +335,11 @@ struct obj *obj;
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
 		u.uhave.bell = 1;
+		if (!u.silverbellget) {
+			u.silverbellget = 1;
+			u.uhpmax += rnd(50);
+			if (Upolyd) u.mhmax += rnd(50);
+		}
 #ifdef RECORD_ACHIEVE
                 achieve.get_bell = 1;
 #ifdef LIVELOGFILE
@@ -339,6 +349,11 @@ struct obj *obj;
 	} else if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 		if (u.uhave.book) impossible("already have the book?");
 		u.uhave.book = 1;
+		if (!u.bookofthedeadget) {
+			u.bookofthedeadget = 1;
+			u.uhpmax += rnd(50);
+			if (Upolyd) u.mhmax += rnd(50);
+		}
 #ifdef RECORD_ACHIEVE
                 achieve.get_book = 1;
 #ifdef LIVELOGFILE
@@ -355,6 +370,22 @@ struct obj *obj;
 		if(obj->oartifact == ART_TREASURY_OF_PROTEUS){
 			u.ukinghill = TRUE;
 		}
+		if((obj->oartifact == ART_KEY_OF_CHAOS) && !u.chaoskeyget) {
+			u.chaoskeyget = 1;
+			u.uhpmax += rnd(10);
+			if (Upolyd) u.mhmax += rnd(10);
+		}
+		if((obj->oartifact == ART_KEY_OF_NEUTRALITY) && !u.neutralkeyget) {
+			u.neutralkeyget = 1;
+			u.uhpmax += rnd(10);
+			if (Upolyd) u.mhmax += rnd(10);
+		}
+		if((obj->oartifact == ART_KEY_OF_LAW) && !u.lawfulkeyget) {
+			u.lawfulkeyget = 1;
+			u.uhpmax += rnd(10);
+			if (Upolyd) u.mhmax += rnd(10);
+		}
+
 		set_artifact_intrinsic(obj, 1, W_ART);
 	
 	}
@@ -2264,6 +2295,7 @@ register const char *let,*word;
 			|| otmp->otyp == PRINTED_SHIRT
 			|| otmp->otyp == BATH_TOWEL
 			|| otmp->otyp == PLUGSUIT
+			|| otmp->otyp == SWIMSUIT
 			|| otmp->otyp == MEN_S_UNDERWEAR
 			|| otmp->otyp == HAWAIIAN_SHIRT
 			|| otmp->otyp == BLACK_DRESS
@@ -5153,6 +5185,8 @@ struct obj *obj;
 				pline("A shirt that can be worn under a suit of armor. It can be read."); break;
 			case PRINTED_SHIRT: 
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
+			case SWIMSUIT: 
+				pline("A plastic shirt that allows you to swim in water. It can be read."); break;
 			case BATH_TOWEL: 
 				pline("Putting this on does nothing special, but it counts as a shirt so you can wear it in addition to whatever other armor you're wearing. It can be read."); break;
 			case PLUGSUIT: 
@@ -5247,6 +5281,8 @@ struct obj *obj;
 				pline("This suit of metal armor offers very little protection."); break;
 			case LEATHER_ARMOR: 
 				pline("A basic suit of armor that offers little protection."); break;
+			case TROLL_LEATHER_ARMOR: 
+				pline("A suit of armor that offers little protection, but also regenerates your hit points much faster."); break;
 			case LEATHER_JACKET: 
 				pline("This thing is only useful if you don't have a better suit of armor."); break;
 			case GENTLEMAN_S_SUIT: 
@@ -5295,6 +5331,8 @@ struct obj *obj;
 				pline("This armor offers great protection as well as petrification resistance."); break;
 			case CYAN_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as fear resistance."); break;
+			case PSYCHIC_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as ESP."); break;
 			case YELLOW_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as acid resistance."); break;
 			case RAINBOW_DRAGON_SCALE_MAIL: 
@@ -5335,6 +5373,8 @@ struct obj *obj;
 				pline("This armor offers moderate protection as well as petrification resistance."); break;
 			case CYAN_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as fear resistance."); break;
+			case PSYCHIC_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as ESP."); break;
 			case YELLOW_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as acid resistance."); break;
 			case RAINBOW_DRAGON_SCALES: 
@@ -5391,6 +5431,8 @@ struct obj *obj;
 				pline("Wearing this cloak will confuse you, but it also has good armor class and maximum magic cancellation."); break;
 			case CLOAK_OF_WARMTH: 
 				pline("Wearing this cloak grants cold resistance and maximum magic cancellation."); break;
+			case TROLL_HIDE: 
+				pline("Wearing this cloak grants regeneration and maximum magic cancellation."); break;
 			case CLOAK_OF_GROUNDING: 
 				pline("Wearing this cloak grants shock resistance and medium magic cancellation."); break;
 
@@ -5588,6 +5630,10 @@ struct obj *obj;
 				pline("This helmet grants automatic searching if you wear it."); break;
 			case HELM_OF_AMNESIA:
 				pline("This helm causes amnesia. It provides very good AC and maximum magic cancellation."); break;
+			case HELM_OF_TELEPORTATION:
+				pline("Put it on to get teleportitis. Usually generated cursed."); break;
+			case HELM_OF_TELEPORT_CONTROL:
+				pline("Control your teleports by wearing this helm."); break;
 			case BIGSCRIPT_HELM:
 				pline("This helm causes BIGscript. It provides low AC and no magic cancellation."); break;
 			case QUIZ_HELM:
@@ -5621,9 +5667,9 @@ struct obj *obj;
 			case OILSKIN_GLOVES:
 				pline("This pair of gloves will cause you to drop your weapon, and you'll be unable to re-equip it. They provide some AC and maximum magic cancellation, but these gloves autocurse if you put them on."); break;
 
-			case GLOVES_OF_SAFEGUARD:
+			case GAUNTLETS_OF_SAFEGUARD:
 				pline("A pair of gauntlets that allows you to swim in water."); break;
-			case GLOVES_OF_PLUGSUIT:
+			case GAUNTLETS_OF_PLUGSUIT:
 				pline("Wearing this pair of gloves does nothing special."); break;
 			case COMMANDER_GLOVES:
 				pline("They sure look good but unfortunately these gloves are actually rather plain."); break;
@@ -5646,9 +5692,9 @@ struct obj *obj;
 				pline("This pair of gloves causes confusing problems. They provide extremely good AC."); break;
 			case UNDROPPABLE_GLOVES:
 				pline("This pair of gloves causes drop bugs. They provide moderately good AC and maximum magic cancellation."); break;
-			case GLOVES_OF_MISSING_INFORMATION:
+			case GAUNTLETS_OF_MISSING_INFORMATI:
 				pline("This pair of gloves causes a lack of feedback. They provide good AC and maximum magic cancellation."); break;
-			case GLOVES_OF_TRAP_CREATION:
+			case GAUNTLETS_OF_TRAP_CREATION:
 				pline("This pair of gloves causes traps to be generated. They provide good AC and medium magic cancellation."); break;
 			case SADO_MASO_GLOVES:
 				pline("This pair of gloves causes fifty shades of grey. They provide low AC and low magic cancellation."); break;
@@ -5669,6 +5715,10 @@ struct obj *obj;
 				pline("A pair of gloves made of metal. They offer good protection."); break;
 			case GAUNTLETS_OF_SWIMMING:
 				pline("Magic gloves that allow the wearer to swim."); break;
+			case GAUNTLETS_OF_FREE_ACTION:
+				pline("You want paralysis resistance, right? Well, you just found a way to get it!"); break;
+			case GAUNTLETS_OF_GOOD_FORTUNE:
+				pline("This pair of gloves acts as a luckstone when worn."); break;
 			case GAUNTLETS_OF_DEXTERITY:
 				pline("Depending on their enchantment, these gloves can increase or decrease your dexterity if you wear them."); break;
 			case SMALL_SHIELD:
@@ -5739,6 +5789,8 @@ struct obj *obj;
 				pline("A shield made from dragon hide that provides petrification resistance as well as protection."); break;
 			case CYAN_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides fear resistance as well as protection."); break;
+			case PSYCHIC_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides ESP as well as protection."); break;
 			case YELLOW_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides acid resistance as well as protection."); break;
 			case RAINBOW_DRAGON_SCALE_SHIELD:
@@ -5787,6 +5839,8 @@ struct obj *obj;
 				pline("This footwear causes increased difficulty. They provide mediocre AC and medium magic cancellation."); break;
 			case BOOTS_OF_WEAKNESS:
 				pline("This footwear causes weakness. They provide good AC and medium magic cancellation."); break;
+			case BOOTS_OF_FREEDOM:
+				pline("A pair of very comfortable boots that cause attempts to paralyze you to fail."); break;
 			case GRIDBUG_CONDUCT_BOOTS:
 				pline("This footwear forces its wearer to adhere to the grid bug conduct. They provide extremely good AC and maximum magic cancellation."); break;
 			case DISENCHANTING_BOOTS:
@@ -5997,6 +6051,18 @@ struct obj *obj;
 				pline("While wearing this ring, you can control your polymorphs and specify what monster you would like to become."); break;
 			case RIN_TELEPORT_CONTROL: 
 				pline("While wearing this ring, you can control your teleports and specify where you want to go."); break;
+			case RIN_DOOM: 
+				pline("This ring sets your luck to -13. It will autocurse when worn."); break;
+			case RIN_ELEMENTS: 
+				pline("A rare ring that grants you the fire, cold and shock resistances."); break;
+			case RIN_LIGHT: 
+				pline("Improve your sight by wearing this ring!"); break;
+			case RIN_MAGIC_RESISTANCE: 
+				pline("If you want magic resistance, this is one way of getting it."); break;
+			case RIN_MATERIAL_STABILITY: 
+				pline("Disintegration resistance is what this ring grants to the wearer."); break;
+			case RIN_MIND_SHIELDING: 
+				pline("One of very few ways to get psi resistance is putting this baby on one of your fingers."); break;
 
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
@@ -6123,6 +6189,10 @@ struct obj *obj;
 				pline("This amulet increases your food consumption when worn. It is usually generated cursed."); break;
 			case AMULET_OF_POWER:
 				pline("A magical amulet that grants energy regeneration if you wear it."); break;
+			case AMULET_OF_INSOMNIA:
+				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
+			case AMULET_OF_MENTAL_STABILITY:
+				pline("Put on this amulet to get confusion resistance."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
@@ -7147,6 +7217,10 @@ struct obj *obj;
 				pline("Casting this spell repairs some of your armor. You may choose which item to repair."); break;
 			case SPE_REPAIR_WEAPON:
 				pline("Casting this spell repairs your weapon."); break;
+			case SPE_PSYBEAM:
+				pline("A spell that zaps monsters with psybeams, dealing damage and confusing everything hit by them. Psi-using monsters are immune."); break;
+			case SPE_HYPER_BEAM:
+				pline("Fires a more powerful magic missile."); break;
 			case SPE_MAGIC_MISSILE:
 				pline("A spell that fires a blue ray to do some damage to an enemy."); break;
 			case SPE_FIREBALL:
@@ -7447,6 +7521,14 @@ struct obj *obj;
 				pline("This wand is very powerful - every zap will increase your character level by 1."); break;
 			case WAN_MANA:
 				pline("Zapping this wand will restore some of your mana."); break;
+			case WAN_LEVITATION:
+				pline("If anyone zaps this wand, you will levitate, but not at will."); break;
+			case WAN_DEBUGGING:
+				pline("Can be zapped to reboot your character. This means you will unpolymorph if you were polymorphed, and get your stats/level rerolled."); break;
+			case WAN_HYPER_BEAM:
+				pline("An attack wand that fires a very powerful beam. Unfortunately, monsters can still resist it, but if they don't, it deals massive damage."); break;
+			case WAN_PSYBEAM:
+				pline("Fires psychic beams at monsters if zapped. Only monsters that possess psi attacks will resist it, all others take full damage and will also be confused."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

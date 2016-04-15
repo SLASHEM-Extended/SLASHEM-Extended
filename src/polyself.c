@@ -632,6 +632,17 @@ int	mntmp;
 	u.mhmax += rnz(u.ulevel);
 	u.mhmax += rnz(u.ulevel);
 	u.mhmax += rnz(ACURR(A_CON));
+	if (u.ulevel >= 10) {
+		u.mhmax += rnd(u.ulevel - 9 + mons[u.umonnum].mlevel );
+		if (ACURR(A_CON) > 6) u.mhmax += ((u.ulevel + mons[u.umonnum].mlevel) * (ACURR(A_CON) / 7) );
+	}
+	if (u.menoraget) u.mhmax += rnd(50);
+	if (u.silverbellget) u.mhmax += rnd(50);
+	if (u.bookofthedeadget) u.mhmax += rnd(50);
+	if (u.chaoskeyget) u.mhmax += rnd(10);
+	if (u.neutralkeyget) u.mhmax += rnd(10);
+	if (u.lawfulkeyget) u.mhmax += rnd(10);
+
 	u.mh = u.mhmax;
 
 	if (u.ulevel < mlvl && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD)) {
@@ -2020,6 +2031,9 @@ int atyp;
 	    case CYAN_DRAGON_SCALE_MAIL:
 	    case CYAN_DRAGON_SCALES:
 		return PM_CYAN_DRAGON;
+	    case PSYCHIC_DRAGON_SCALE_MAIL:
+	    case PSYCHIC_DRAGON_SCALES:
+		return PM_PSYCHIC_DRAGON;
 	    case YELLOW_DRAGON_SCALE_MAIL:
 	    case YELLOW_DRAGON_SCALES:
 		return PM_YELLOW_DRAGON;

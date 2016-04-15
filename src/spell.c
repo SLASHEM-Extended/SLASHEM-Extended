@@ -1125,6 +1125,7 @@ boolean atme;
 	case SPE_LIGHTNING:
 	case SPE_ACID_STREAM:
 	case SPE_SOLAR_BEAM:
+	case SPE_PSYBEAM:
 	case SPE_POISON_BLAST:
 		if (tech_inuse(T_SIGIL_TEMPEST)) {
 		    weffects(pseudo);
@@ -1161,6 +1162,7 @@ boolean atme;
 	case SPE_DISINTEGRATION_BEAM:
 	case SPE_CHROMATIC_BEAM:
 	case SPE_PETRIFY:
+	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;

@@ -931,6 +931,11 @@ moveloop()
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
 
+			if (Wonderlegs && Wounded_legs) {
+				moveamt *= 5;
+				moveamt /= 4;
+			}
+
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
 			     * -------------------------
@@ -2346,7 +2351,8 @@ moveloop()
 	/* Autosave option by Amy. While this does not actually prevent phantom crash bugs and similar crap,
 	 * it at least means you'll get thrown back at most 100 turns if it does crash. */
 #ifdef INSURANCE
-	if (flags.etimed_autosave && (moves > 1) && (moves % 100 == 0) ) save_currentstate();
+	if (flags.xtimed_autosave && (moves > 1) && (moves % 20 == 0) ) save_currentstate();
+	else if (flags.etimed_autosave && (moves > 1) && (moves % 100 == 0) ) save_currentstate();
 #endif
 
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
@@ -2585,6 +2591,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridamerican) Sprintf(eos(xtrabuf), "american ");
 	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
 	if (flags.hybridnastinator) Sprintf(eos(xtrabuf), "nastinator ");
+	if (flags.hybridrougelike) Sprintf(eos(xtrabuf), "rougelike ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -2593,6 +2600,7 @@ boolean new_game;	/* false => restoring an old game */
 		flags.startingrace = flags.initrace;
 	}
 
+	if (isrougelike) assign_rogue_graphics(TRUE);
 
 #if 0
     pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."
@@ -2744,6 +2752,8 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DESTROY_ARMOR].oc_name = "unichtozhit' dospekhi";
 	obj_descr[SPE_INERTIA].oc_name = "inertsiya";
 	obj_descr[SPE_TIME].oc_name = "vremya";
+	obj_descr[SPE_PSYBEAM].oc_name = "psikho luch";
+	obj_descr[SPE_HYPER_BEAM].oc_name = "giper luch";
 
 	{
 
@@ -3080,6 +3090,13 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden box")) OBJ_DESCR(objects[i]) = "derevyannaya korobka";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden container")) OBJ_DESCR(objects[i]) = "derevyannyy konteyner";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cooling box")) OBJ_DESCR(objects[i]) = "korobka okhlazhdeniya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "psychic dragonhide shield")) OBJ_DESCR(objects[i]) = "psikhicheskaya drakon'yey shchit";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spinning helmet")) OBJ_DESCR(objects[i]) = "spina shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "disgusting cloak")) OBJ_DESCR(objects[i]) = "otvratitel'noye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "comfortable gloves")) OBJ_DESCR(objects[i]) = "udobnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow gloves")) OBJ_DESCR(objects[i]) = "zheltyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy boots")) OBJ_DESCR(objects[i]) = "flis sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "space helmet")) OBJ_DESCR(objects[i]) = "kosmicheskiy shlem";
 
 	}
 	}
@@ -3210,6 +3227,8 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DESTROY_ARMOR].oc_name = "sovuti halok";
 	obj_descr[SPE_INERTIA].oc_name = "dangasalik";
 	obj_descr[SPE_TIME].oc_name = "vaqt";
+	obj_descr[SPE_PSYBEAM].oc_name = "psixologik nur";
+	obj_descr[SPE_HYPER_BEAM].oc_name = "hiper ish nur";
 
 	{
 
@@ -3546,6 +3565,13 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden box")) OBJ_DESCR(objects[i]) = "yog'och qutisini";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden container")) OBJ_DESCR(objects[i]) = "yog'och idish";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cooling box")) OBJ_DESCR(objects[i]) = "sovutish qutisini";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "psychic dragonhide shield")) OBJ_DESCR(objects[i]) = "ruhiy ajdar yashirish qalqon";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spinning helmet")) OBJ_DESCR(objects[i]) = "yigiruv dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "disgusting cloak")) OBJ_DESCR(objects[i]) = "jirkanch plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "comfortable gloves")) OBJ_DESCR(objects[i]) = "qulay qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow gloves")) OBJ_DESCR(objects[i]) = "sariq qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy boots")) OBJ_DESCR(objects[i]) = "tozalamoq chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "space helmet")) OBJ_DESCR(objects[i]) = "kosmik dubulg'a";
 
 	}
 	}

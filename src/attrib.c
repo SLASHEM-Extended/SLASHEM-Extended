@@ -706,6 +706,8 @@ const struct innate {
 		     {   1, &(HFear_factor), "", "" },
 		     {   1, &(HBurnopathy), "", "" },
 		     {   1, &(HSickopathy), "", "" },
+		     {   1, &(HWonderlegs), "", "" },
+		     {   1, &(HGlib_combat), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	wra_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -910,6 +912,8 @@ boolean parameter; /* So I can't think up of a good name.  So sue me. --KAA */
 
 	/* STEPHEN WHITE'S NEW CODE */
 	if (uarmh && uarmh->otyp == FEDORA && !uarmh->cursed) bonchance += 2;
+
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_GOOD_FORTUNE && !uarmg->cursed) bonchance += 2;
 
 	u.moreluckpts = bonchance;
 	

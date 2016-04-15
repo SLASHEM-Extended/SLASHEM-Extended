@@ -225,7 +225,7 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
-	|| scroll->otyp == PLUGSUIT || scroll->otyp == MEN_S_UNDERWEAR
+	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
@@ -5119,7 +5119,7 @@ revid_end:
 		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
-		acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
+		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 

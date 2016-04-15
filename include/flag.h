@@ -27,6 +27,7 @@ struct flag {
 
 	boolean  bash_reminder;	/* remind player about bashing with a launcher or non-weapon */
 	boolean  etimed_autosave;	/* automatically save state every 100 turns to ward off phantom crash bugs --Amy */
+	boolean  xtimed_autosave;	/* automatically save state every 100 turns to ward off phantom crash bugs --Amy */
 
 	boolean  beginner;
 #ifdef MAIL
@@ -186,6 +187,7 @@ struct flag {
 	boolean hybridamerican;
 	boolean hybridminimalist;
 	boolean hybridnastinator;
+	boolean hybridrougelike;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 

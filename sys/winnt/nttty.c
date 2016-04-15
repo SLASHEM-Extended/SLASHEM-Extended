@@ -43,6 +43,7 @@ int FDECL(process_keystroke, (INPUT_RECORD *, boolean *,
  * CreateFile
  * GetConsoleScreenBufferInfo
  * GetStdHandle
+ * GetVersion
  * SetConsoleCursorPosition
  * SetConsoleTextAttribute
  * SetConsoleCtrlHandler
@@ -156,6 +157,8 @@ static WORD attr = (FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED);
 static DWORD ccount, acount;
 static COORD cursor = {0,0};
 
+static BOOL is_nt;
+
 /*
  * Called after returning from ! or ^Z
  */
@@ -165,6 +168,7 @@ gettty()
 #ifndef TEXTCOLOR
 	int k;
 #endif
+	is_nt = (GetVersion() & 0x80000000) == 0;
 	erase_char = '\b';
 	kill_char = 21;		/* cntl-U */
 	iflags.cbreak = TRUE;

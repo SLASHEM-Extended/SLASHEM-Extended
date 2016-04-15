@@ -866,6 +866,8 @@ boolean called;
 	    if (mtmp->egotype_exploder) Sprintf(eos(buf), " Exploder");
 	    if (mtmp->egotype_unskillor) Sprintf(eos(buf), " Unskillor");
 	    if (mtmp->egotype_blinker) Sprintf(eos(buf), " Blinker");
+	    if (mtmp->egotype_psychic) Sprintf(eos(buf), " Psychic");
+	    if (mtmp->egotype_abomination) Sprintf(eos(buf), " Abomination");
 
 	}
 

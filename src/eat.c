@@ -1189,6 +1189,10 @@ register struct permonst *ptr;
 		return(dmgtype(ptr, AD_BURN) );
 	    case SICKOPATHY:
 		return(dmgtype(ptr, AD_DISE) );
+	    case WONDERLEGS:
+		return(dmgtype(ptr, AD_LEGS) );
+	    case GLIB_COMBAT:
+		return(dmgtype(ptr, AD_GLIB) );
 
 	    default:
 		return(FALSE);
@@ -1492,6 +1496,22 @@ register struct permonst *ptr;
 			    "that you just ate some really wacky stuff! What the heck was in there?" :
 			    "ill for a moment, but get the feeling that you know more about diseases now.");
 			HSickopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case WONDERLEGS:
+		if(!(HWonderlegs & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
+			    "like having your legs scratched up and down by sexy leather pumps.");
+			HWonderlegs |= FROMOUTSIDE;
+		}
+		break;
+	    case GLIB_COMBAT:
+		if(!(HGlib_combat & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
+			    "the fliction in your hands disappearing.");
+			HGlib_combat |= FROMOUTSIDE;
 		}
 		break;
 
@@ -2401,6 +2421,7 @@ register int pm;
 	    case PM_GREATER_DIMMER:
 	    case PM_TERRIBLE_ORB:
 	    case PM_PSYCH_ORB:
+	    case PM_MASTER_BLASTER:
 	    case PM_NECROMORB:
 	    case PM_EVIL_ORB:
 	    case PM_NERF_ORB:
@@ -2436,8 +2457,10 @@ register int pm;
 	    case PM_GIANT_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:
+	    case PM_ELDRITCH_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
+	    case PM_MIND_BEAMER:
 		case PM_COCKATRICE:
 		case PM_PETTY_COCKATRICE:
 		case PM_BASILISK:
@@ -2448,6 +2471,9 @@ register int pm;
 		case PM_KERRISIN:
 		case PM_GIANT_COCKATFLAYER_EELLICH:
 		case PM_REGENERATING_MIND_FLAYER:
+		case PM_PSYCHO_MIND_FLAYER:
+		case PM_PSYCH_FLAYER:
+		case PM_PASSIVE_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 #if 0
 		int     temp;
@@ -2585,6 +2611,26 @@ register int pm;
 		if (dmgtype(ptr, AD_FAKE)) {
 			pline(fauxmessage());
 			if (!rn2(3)) pline(fauxmessage());
+		}
+
+	/* AD_HEAL monsters are rare; let's make them give one extra max HP --Amy */
+		if (dmgtype(ptr, AD_HEAL)) {
+			if (Upolyd) {
+				u.mh++;
+				u.mhmax++;
+			} else {
+				u.uhp++;
+				u.uhpmax++;
+			}
+		    You_feel("vitalized.");
+		    flags.botl = 1;
+		}
+
+	/* And since I'm nice, do a similar thing for mana --Amy */
+		if (dmgtype(ptr, AD_MANA)) {
+			u.uenmax++;
+			pline("You feel a mild buzz.");
+		    flags.botl = 1;
 		}
 
 		 count = 0;	/* number of possible intrinsics */
@@ -3867,6 +3913,16 @@ struct obj *otmp;
 	    case AMULET_VERSUS_STONE:
 		/* no message--this gives no permanent effect */
 		(void)uunstone();
+		break;
+	    case RIN_DOOM:
+		u.uluck = LUCKMIN;
+		pline("You start a trip on the road to nowhere.");
+		break;
+	    case RIN_ELEMENTS:
+		accessory_has_effect(otmp);
+		HFire_resistance |= FROMOUTSIDE;
+		HCold_resistance |= FROMOUTSIDE;
+		HShock_resistance |= FROMOUTSIDE;
 		break;
 	    case RIN_SUSTAIN_ABILITY:
 	    /*case AMULET_OF_FLYING:*/ /* Intrinsic flying not supported --ALI */

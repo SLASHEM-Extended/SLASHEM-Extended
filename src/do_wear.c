@@ -133,6 +133,7 @@ Boots_on()
 	case BOOTS_OF_PLUGSUIT:
 	case FIELD_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
+	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
 		break;
 	case BOOTS_OF_MOLASSES:
@@ -307,6 +308,7 @@ Boots_off()
 	case BOOTS_OF_PLUGSUIT:
 	case FIELD_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
+	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
@@ -350,6 +352,7 @@ Cloak_on()
 	case CLOAK_OF_QUENCHING:
 	case CLOAK_OF_CONFUSION:
 	case MANACLOAK:
+	case TROLL_HIDE:
 	case PLASTEEL_CLOAK:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
@@ -482,6 +485,7 @@ Cloak_off()
 	case CLOAK_OF_DISPLACEMENT:
 	case CLOAK_OF_CONFUSION:
 	case MANACLOAK:
+	case TROLL_HIDE:
 	case POISONOUS_CLOAK:
 	case CLOAK_OF_DEATH:
 	case OILSKIN_CLOAK:
@@ -608,6 +612,8 @@ Helmet_on()
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case HELM_OF_TELEPORTATION:
+	case HELM_OF_TELEPORT_CONTROL:
 	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_TELEPATHY:
 	case HELM_OF_DISCOVERY:
@@ -801,6 +807,8 @@ Helmet_off()
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case HELM_OF_TELEPORTATION:
+	case HELM_OF_TELEPORT_CONTROL:
 	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_DISCOVERY:
 	    break;
@@ -866,11 +874,12 @@ Gloves_on()
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
-	case GLOVES_OF_SAFEGUARD:
-	case GLOVES_OF_PLUGSUIT:
+	case GAUNTLETS_OF_SAFEGUARD:
+	case GAUNTLETS_OF_PLUGSUIT:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
+	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
 	case GAUNTLETS_OF_NO_FLICTION:
@@ -889,13 +898,18 @@ Gloves_on()
 	case UNWIELDY_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
-	case GLOVES_OF_MISSING_INFORMATION:
-	case GLOVES_OF_TRAP_CREATION:
+	case GAUNTLETS_OF_MISSING_INFORMATI:
+	case GAUNTLETS_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
 		if (!uarmg->cursed) curse(uarmg);
+		break;
+
+	case GAUNTLETS_OF_GOOD_FORTUNE:
+	    set_moreluck();
+	    flags.botl = 1;
 		break;
 
 	case GAUNTLETS_OF_SWIMMING:
@@ -944,23 +958,30 @@ Gloves_off()
 	case UNWIELDY_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
-	case GLOVES_OF_MISSING_INFORMATION:
-	case GLOVES_OF_TRAP_CREATION:
+	case GAUNTLETS_OF_MISSING_INFORMATI:
+	case GAUNTLETS_OF_TRAP_CREATION:
 	case SADO_MASO_GLOVES:
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
-	case GLOVES_OF_SAFEGUARD:
-	case GLOVES_OF_PLUGSUIT:
+	case GAUNTLETS_OF_SAFEGUARD:
+	case GAUNTLETS_OF_PLUGSUIT:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
+	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
 	case GAUNTLETS_OF_NO_FLICTION:
 	    break;
+	case GAUNTLETS_OF_GOOD_FORTUNE:
+	    setworn((struct obj *)0, W_ARMG);
+	    set_moreluck();
+	    flags.botl = 1;
+	    return 0;
+
 	case GAUNTLETS_OF_SWIMMING:
 	    if (u.uinwater) {
 	       You("begin to thrash about!");
@@ -1052,6 +1073,7 @@ Shield_on()
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
+	case PSYCHIC_DRAGON_SCALE_SHIELD:
 	case RAINBOW_DRAGON_SCALE_SHIELD:
 	case BLOOD_DRAGON_SCALE_SHIELD:
 	case PLAIN_DRAGON_SCALE_SHIELD:
@@ -1105,6 +1127,7 @@ Shield_off()
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
+	case PSYCHIC_DRAGON_SCALE_SHIELD:
 	case RAINBOW_DRAGON_SCALE_SHIELD:
 	case BLOOD_DRAGON_SCALE_SHIELD:
 	case PLAIN_DRAGON_SCALE_SHIELD:
@@ -1458,8 +1481,12 @@ register struct obj *obj;
 	case RIN_SUSTAIN_ABILITY:
 	case MEAT_RING:
 		break;
+	case RIN_LIGHT:
+		vision_full_recalc = 1;
+		break;
 	case RIN_HALLUCINATION:
 	case RIN_CURSE:
+	case RIN_DOOM:
 
 		if (!obj->cursed) {
 		    if (Blind)
@@ -1643,6 +1670,9 @@ boolean gone;
 	case RIN_SLOW_DIGESTION:
 	case RIN_SUSTAIN_ABILITY:
 	case MEAT_RING:
+		break;
+	case RIN_LIGHT:
+		vision_full_recalc = 1;
 		break;
 	case RIN_SLEEPING:
 		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
@@ -2083,6 +2113,8 @@ register struct obj *otmp;
 			(void) Cloak_off();
 		else if(is_shield(otmp))
 			(void) Shield_off();
+		else if(is_gloves(otmp)) /* good fortune */
+			(void) Gloves_off();
 		else if (is_helmet(otmp))
 			/* [Finn E. Theodorsen] For fedoras */
 			(void) Helmet_off();

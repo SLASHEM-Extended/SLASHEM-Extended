@@ -2593,6 +2593,13 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONF_RES].intrinsic);
 		you_are(buf);
 	}
+
+	if ((guaranteed || !rn2(10)) && NoPsi_resist) {
+		Sprintf(buf, "prevented from having psi resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PSI_RES].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoDouble_attack) {
 		Sprintf(buf, "prevented from having double attacks");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DOUBLE_ATTACK].intrinsic);
@@ -2669,6 +2676,19 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
 		you_are(buf);
 	}
+
+	if ((guaranteed || !rn2(10)) && NoWonderlegs) {
+		Sprintf(buf, "prevented from having wonderlegs");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_WONDERLEGS].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoGlib_combat) {
+		Sprintf(buf, "prevented from having glib combat");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_GLIB_COMBAT].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoUseTheForce) {
 		Sprintf(buf, "prevented from using the force like a real jedi");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
@@ -2751,6 +2771,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
+		case PSYCHIC_DRAGON_SCALE_SHIELD:
 		case RAINBOW_DRAGON_SCALE_SHIELD:
 		case BLOOD_DRAGON_SCALE_SHIELD:
 		case PLAIN_DRAGON_SCALE_SHIELD:
@@ -2816,6 +2837,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && Fear_factor) you_have("an increased fear factor");
 	if ((guaranteed || !rn2(10)) && Burnopathy) you_are("burnopathic");
 	if ((guaranteed || !rn2(10)) && Sickopathy) you_are("sickopathic");
+	if ((guaranteed || !rn2(10)) && Wonderlegs) you_have("wonderlegs");
+	if ((guaranteed || !rn2(10)) && Glib_combat) you_are("a glibbery fighter");
 
 	if ((guaranteed || !rn2(10)) && Warning) you_are("warned");
 	if ((guaranteed || !rn2(10)) && (Warn_of_mon && flags.warntype)) {
@@ -2987,6 +3010,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && Stun_resist) you_have("stun resistance");
 	if ((guaranteed || !rn2(10)) && Conf_resist) you_have("confusion resistance");
+	if ((guaranteed || !rn2(10)) && Psi_resist) you_have("psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
 	if ((guaranteed || !rn2(10)) && Double_attack) you_have("double attacks");
@@ -3583,7 +3607,7 @@ int final;
 
 	if (u.negativeprotection) {
 		Sprintf(buf, " %d", u.negativeprotection);
-		dump("Your protection was reduced by", buf);
+		dump("  Your protection was reduced by", buf);
 	}
 
 	if (u.extralives == 1) {
@@ -3592,12 +3616,12 @@ int final;
 
 	if (u.extralives > 1) {
 		Sprintf(buf, " %d", u.extralives);
-		dump("Your amount of extra lives was", buf);
+		dump("  Your amount of extra lives was", buf);
 	}
 
 	if (u.chokhmahdamage) {
 		Sprintf(buf, " %d", u.chokhmahdamage);
-		dump("The escalating chokhmah attack damage was", buf);
+		dump("  The escalating chokhmah attack damage was", buf);
 	}
 
 	/*** Resistances to troubles ***/
@@ -4343,6 +4367,11 @@ int final;
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONF_RES].intrinsic);
 		dump(youwere, buf);
 	}
+	if (NoPsi_resist) {
+		Sprintf(buf, "prevented from having psi resistance");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PSI_RES].intrinsic);
+		dump(youwere, buf);
+	}
 	if (NoDouble_attack) {
 		Sprintf(buf, "prevented from having double attacks");
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DOUBLE_ATTACK].intrinsic);
@@ -4419,6 +4448,18 @@ int final;
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
 		dump(youwere, buf);
 	}
+
+	if (NoWonderlegs) {
+		Sprintf(buf, "prevented from having wonderlegs");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_WONDERLEGS].intrinsic);
+		dump(youwere, buf);
+	}
+	if (NoGlib_combat) {
+		Sprintf(buf, "prevented from having glib combat");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_GLIB_COMBAT].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (NoUseTheForce) {
 		Sprintf(buf, "prevented from using the force like a real jedi");
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
@@ -4501,6 +4542,7 @@ int final;
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
+		case PSYCHIC_DRAGON_SCALE_SHIELD:
 		case RAINBOW_DRAGON_SCALE_SHIELD:
 		case BLOOD_DRAGON_SCALE_SHIELD:
 		case PLAIN_DRAGON_SCALE_SHIELD:
@@ -4567,6 +4609,8 @@ int final;
 	if (Fear_factor) dump(youhad, "an increased fear factor");
 	if (Burnopathy) dump(youwere, "burnopathic");
 	if (Sickopathy) dump(youwere, "sickopathic");
+	if (Wonderlegs) dump(youhad, "wonderlegs");
+	if (Glib_combat) dump(youwere, "a glibbery fighter");
 
 	if (Warning) dump(youwere, "warned");
 	if (Warn_of_mon && flags.warntype) {
@@ -4701,6 +4745,7 @@ int final;
 
 	if (Stun_resist) dump(youhad, "stun resistance");
 	if (Conf_resist) dump(youhad, "confusion resistance");
+	if (Psi_resist) dump(youhad, "psi resistance");
 	if (Extra_wpn_practice) dump("  ", "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");
 	if (Double_attack) dump(youhad, "double attacks");
@@ -4808,8 +4853,7 @@ int final;
 	    dump("  ", buf2);
 	}
 
-	    Sprintf(buf, "You could have %s%ssafely pray%s", u.ugangr ? "not " : can_pray(FALSE) ? "" : "not ",
-		    final ? "have " : "", final ? "ed" : "");
+	    Sprintf(buf, "You could %s have safely prayed", u.ugangr ? "not " : can_pray(FALSE) ? "" : "not ");
 	    Sprintf(eos(buf), " (%d)", u.ublesscnt);
 	    dump("  ", buf);
 
@@ -4865,7 +4909,7 @@ minimal_enlightenment()
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) Sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else Sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);

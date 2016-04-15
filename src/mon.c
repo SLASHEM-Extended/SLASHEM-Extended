@@ -32,11 +32,11 @@ STATIC_DCL void FDECL(kill_eggs, (struct obj *));
 #ifdef REINCARNATION
 #define LEVEL_SPECIFIC_NOCORPSE(mdat) \
 	 ( (Is_rogue_level(&u.uz) && rn2(2)) || \
-	   ( (level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
+	   ( (level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && \
 	    mdat != &mons[PM_VECNA] && rn2(3)))
 #else
 #define LEVEL_SPECIFIC_NOCORPSE(mdat) \
-	   ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && \
+	   ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && \
 	    mdat != &mons[PM_VECNA] && rn2(3))
 #endif
 
@@ -269,6 +269,7 @@ register struct monst *mtmp;
 	    case PM_GOLDEN_DRAGON:
 	    case PM_STONE_DRAGON:
 	    case PM_CYAN_DRAGON:
+	    case PM_PSYCHIC_DRAGON:
 	    case PM_RAINBOW_DRAGON:
 	    case PM_BLOOD_DRAGON:
 	    case PM_PLAIN_DRAGON:
@@ -491,6 +492,7 @@ register struct monst *mtmp;
 	    case PM_ZOMBOCAT:
 	    case PM_HAUNTED_TIGER:
 	    case PM_UNDEAD_MIND_FLAYER:
+	    case PM_ELDRITCH_MIND_FLAYER:
 	    case PM_UNDEAD_NYMPH:
 	    case PM_SKELETTOCROTTA:
 	    case PM_UNDEAD_RAT:
@@ -2614,6 +2616,12 @@ register struct monst *mtmp;
 		BlackNgWalls = 0L;
 	}
 
+	if (tmp == PM_MOLDOUX__THE_DEFENCELESS_MOLD) {
+		pline("This monster was under the protection of a Great Wyrm of Power!");
+		verbalize("Harharhar mortal, now you DIE!!!");
+	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, NO_MM_FLAGS);
+	}
+
 	if (tmp == PM_GUNNHILD_S_GENERAL_STORE) {	/* create traps on the level, disregarding special probability checks */
 
 		while (rn2(25)) {
@@ -2868,11 +2876,11 @@ boolean was_swallowed;			/* digestion */
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
-	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	/* make it even less likely later in the game, because monsters are spawning more often anyway */
-	if (!timebasedlowerchance() && !timebasedlowerchance() && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!timebasedlowerchance() && !timebasedlowerchance() && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	if (mon->egotype_troll || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_KATNISS]
@@ -3433,7 +3441,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
 		if (!rn2(250) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 		if (!rn2(100) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
-		if (!rn2(200) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
+		if (!rn2(120) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
 		if (!rn2(40) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);
 
 		if (!rn2(500) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);

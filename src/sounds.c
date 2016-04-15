@@ -1204,7 +1204,24 @@ register struct monst *mtmp;
 	    pline_msg = "seems to mutter a cantrip.";
 	    break;
 	case MS_NURSE:
-	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+
+	    {
+		int nursehpcost = u.nurseextracost;
+		if (Upolyd) nursehpcost /= 5;
+	
+		if (u.ugold >= nursehpcost) {
+			verbalize("I can inject extra health into you for %d dollars if you want.", nursehpcost);
+			if (yn("Accept the offer?") == 'y') {
+				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+				u.ugold -= nursehpcost;
+				if (!Upolyd) u.uhpmax++;
+				else u.mhmax++;
+				u.nurseextracost += 50;
+				if (u.nurseextracost < 1000) u.nurseextracost = 1000; /* fail safe */
+			}
+		}
+
+	    else if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
 		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";
@@ -1217,6 +1234,9 @@ register struct monst *mtmp;
 		verbl_msg = "Take off your shirt, please.";
 #endif
 	    else verbl_msg = "Relax, this won't hurt a bit.";
+
+	    }
+
 	    break;
 	case MS_GUARD:
 #ifndef GOLDOBJ

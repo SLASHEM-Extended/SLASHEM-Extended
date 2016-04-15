@@ -149,6 +149,8 @@ int prop;
 			return "stun resistance";
 		case CONF_RES:
 			return "confusion resistance";
+		case PSI_RES:
+			return "psi resistance";
 		case EXTRA_WEAPON_PRACTICE:
 			return "practice";
 		case DTBEEM_RES:
@@ -951,8 +953,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ UNWIELDY_GLOVES, "gromozdkiye perchatki" },
 	{ CONFUSING_GLOVES, "zaputannoy perchatki" },
 	{ UNDROPPABLE_GLOVES, "perchatki kotoryye ne mogut byt' udaleny" },
-	{ GLOVES_OF_MISSING_INFORMATION, "perchatki nedostayushchey informatsii" },
-	{ GLOVES_OF_TRAP_CREATION, "perchatki sozdaniya lovushki" },
+	{ GAUNTLETS_OF_MISSING_INFORMATI, "perchatki nedostayushchey informatsii" },
+	{ GAUNTLETS_OF_TRAP_CREATION, "perchatki sozdaniya lovushki" },
 	{ SADO_MASO_GLOVES, "sadistskiye perchatki" },
 	{ AUTODESTRUCT_DE_VICE_BOOTS, "avtomaticheskoye ustroystvo unichtozheniye" },
 	{ SPEEDBUG_BOOTS, "skorost' oshibka sapogi" },
@@ -1495,8 +1497,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ PLAIN_DRAGON_SCALE_SHIELD, "ravniny drakon masshtab shchit" },
 	{ SKY_DRAGON_SCALE_SHIELD, "nebo masshtab drakon shchit" },
 	{ WATER_DRAGON_SCALE_SHIELD, "voda drakon masshtab shchit" },
-	{ GLOVES_OF_SAFEGUARD, "perchatki garantii" },
-	{ GLOVES_OF_PLUGSUIT, "perchatki plagina kostyum" },
+	{ GAUNTLETS_OF_SAFEGUARD, "perchatki garantii" },
+	{ GAUNTLETS_OF_PLUGSUIT, "perchatki plagina kostyum" },
 	{ COMMANDER_GLOVES, "komandir perchatki" },
 	{ FIELD_GLOVES, "polevyye perchatki" },
 	{ GAUNTLETS, "rukavitsy" },
@@ -1705,6 +1707,32 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ GENERAL_CANDLE, "obshchaya svecha" },
 	{ NATURAL_CANDLE, "yestestvennaya svecha" },
+
+	{ RIN_DOOM, "gibel'" },
+	{ RIN_ELEMENTS, "elementy" },
+	{ RIN_LIGHT, "legkiy" },
+	{ WAN_LEVITATION, "levitatsiya" },
+	{ PSYCHIC_DRAGON_SCALE_MAIL, "psikhicheskaya cheshuya drakona pochta" },
+	{ PSYCHIC_DRAGON_SCALE_SHIELD, "psikhicheskaya cheshuya drakona shchit" },
+	{ PSYCHIC_DRAGON_SCALES, "Psikhicheskiye cheshuyu drakona" },
+	{ WAN_PSYBEAM, "psikho luch" },
+	{ SPE_PSYBEAM, "psikho luch" },
+	{ HELM_OF_TELEPORTATION, "shlem teleportatsii" },
+	{ SWIMSUIT, "kupal'nik" },
+	{ TROLL_LEATHER_ARMOR, "troll' kozhanyy dospekh" },
+	{ TROLL_HIDE, "troll' skryt'" },
+	{ GAUNTLETS_OF_FREE_ACTION, "perchatki svobodnogo deystviya" },
+	{ GAUNTLETS_OF_GOOD_FORTUNE, "perchatki udachi" },
+	{ BOOTS_OF_FREEDOM, "sapogi svobody" },
+	{ AMULET_OF_INSOMNIA, "amulet of bessonnitsa" },
+	{ RIN_MAGIC_RESISTANCE, "soprotivleniye magii" },
+	{ RIN_MATERIAL_STABILITY, "material'naya stabil'nost'" },
+	{ RIN_MIND_SHIELDING, "um ekranirovaniye" },
+	{ AMULET_OF_MENTAL_STABILITY, "amulet of psikhicheskaya ustoychivost'" },
+	{ WAN_DEBUGGING, "otladka" },
+	{ WAN_HYPER_BEAM, "giper luch" },
+	{ SPE_HYPER_BEAM, "giper luch" },
+	{ HELM_OF_TELEPORT_CONTROL, "kormilo upravleniya teleporta" },
 
 	{0, "" }
 };
@@ -2322,7 +2350,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ MENU_NOSE_GLOVES, "menyu burun qo'lqop" },
 	{ SPEEDBUG_BOOTS, "tezlik xato chizilmasin" },
 	{ RIN_SUPERSCROLLING, "katta o'tish" },
-	{ GLOVES_OF_TRAP_CREATION, "makr yaratish sportchisi" },
+	{ GAUNTLETS_OF_TRAP_CREATION, "makr yaratish sportchisi" },
 	{ SENTIENT_HIGH_HEELED_SHOES, "ongli yuqori poshnalar" },
 	{ VULNERABILITY_CLOAK, "zaiflik plash" },
 	{ UNWIELDY_GLOVES, "katta sportchisi" },
@@ -2344,7 +2372,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HEAVY_STATUS_CLOAK, "og'ir holat plash" },
 	{ HELM_OF_BAD_ALIGNMENT, "yomon muvofiq dubulg'a" },
 	{ STAIRWELL_STOMPING_BOOTS, "shirin oyoq osti chizilmasin" },
-	{ GLOVES_OF_MISSING_INFORMATION, "etishmayotgan ma'lumotlar sportchisi" },
+	{ GAUNTLETS_OF_MISSING_INFORMATI, "etishmayotgan ma'lumotlar sportchisi" },
 	{ WHISPERING_HELMET, "pichirlardi zarbdan" },
 
 	{ STONE_OF_INTRINSIC_LOSS, "ichki zarar tosh" },
@@ -2880,8 +2908,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ PLAIN_DRAGON_SCALE_SHIELD, "tekis ajdaho yashirishqalqon" },
 	{ SKY_DRAGON_SCALE_SHIELD, "havo ajdaho yashirish qalqon" },
 	{ WATER_DRAGON_SCALE_SHIELD, "suv ajdaho yashirish qalqon" },
-	{ GLOVES_OF_SAFEGUARD, "himoya qilish sportchisi" },
-	{ GLOVES_OF_PLUGSUIT, "vilkasi kostyumi qo'lqop" },
+	{ GAUNTLETS_OF_SAFEGUARD, "himoya qilish sportchisi" },
+	{ GAUNTLETS_OF_PLUGSUIT, "vilkasi kostyumi qo'lqop" },
 	{ COMMANDER_GLOVES, "qo'mondoni qo'lqop" },
 	{ FIELD_GLOVES, "maydon sportchisi" },
 	{ GAUNTLETS, "qo'lqop" },
@@ -3090,6 +3118,32 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ GENERAL_CANDLE, "umumiy sham" },
 	{ NATURAL_CANDLE, "tabiiy sham" },
+
+	{ RIN_DOOM, "halokat" },
+	{ RIN_ELEMENTS, "elementlar" },
+	{ RIN_LIGHT, "yorug'lik" },
+	{ WAN_LEVITATION, "suzuvchi" },
+	{ PSYCHIC_DRAGON_SCALE_MAIL, "ruhiy ajdar ko'lamli zirh" },
+	{ PSYCHIC_DRAGON_SCALE_SHIELD, "ruhiy ajdar ko'lamli qalqon" },
+	{ PSYCHIC_DRAGON_SCALES, "ruhiy ajdar tarozilari" },
+	{ WAN_PSYBEAM, "psixologik nur" },
+	{ SPE_PSYBEAM, "psixologik nur" },
+	{ HELM_OF_TELEPORTATION, "teletasinmasi rul" },
+	{ SWIMSUIT, "mayo" },
+	{ TROLL_LEATHER_ARMOR, "troll charm zirh" },
+	{ TROLL_HIDE, "troll yashir" },
+	{ GAUNTLETS_OF_FREE_ACTION, "bepul harakatlar qo'lqop" },
+	{ GAUNTLETS_OF_GOOD_FORTUNE, "yaxshi boylik qo'lqop" },
+	{ BOOTS_OF_FREEDOM, "erkinlik chizilmasin" },
+	{ AMULET_OF_INSOMNIA, "amulet of uyqusizlik" },
+	{ RIN_MAGIC_RESISTANCE, "sehrli qarshilik" },
+	{ RIN_MATERIAL_STABILITY, "moddiy barqarorlik" },
+	{ RIN_MIND_SHIELDING, "aqli himoya" },
+	{ AMULET_OF_MENTAL_STABILITY, "amulet of ruhiy barqarorlik" },
+	{ WAN_DEBUGGING, "xato topish" },
+	{ WAN_HYPER_BEAM, "hiper ish nur" },
+	{ SPE_HYPER_BEAM, "hiper ish nur" },
+	{ HELM_OF_TELEPORT_CONTROL, "coezgue nazorat rul" },
 
 	{0, "" }
 };
@@ -4919,6 +4973,7 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-7, "sandals") ||
                            !BSTRCMPI(bp, p-9, "mocassins") ||
                            !BSTRCMPI(bp, p-8, "sneakers") ||
+                           !BSTRCMPI(bp, p-8, "elements") ||
                            !BSTRCMPI(bp, p-5, "pumps") ||
                            !BSTRCMPI(bp, p-5, "heels") ||
                            !BSTRCMPI(bp, p-14, "shoulder rings") ||

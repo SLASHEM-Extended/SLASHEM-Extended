@@ -3430,6 +3430,8 @@ wand_explode(obj, hero_broke)
     case WAN_OBJECTION:
     case WAN_DETECT_MONSTERS:
     case WAN_IDENTIFY:
+    case WAN_LEVITATION:
+    case WAN_DEBUGGING:
     case WAN_REMOVE_CURSE:
     case WAN_PUNISHMENT:
     case WAN_OPENING:
@@ -3446,10 +3448,13 @@ wand_explode(obj, hero_broke)
     case WAN_MISFIRE:
     case WAN_LIGHTNING:
     case WAN_CHARGING:
+    case WAN_PSYBEAM:
+    case WAN_SOLAR_BEAM:
 	dmg *= 4;
 	goto wanexpl;
     case WAN_COLD:
 	expltype = EXPL_FROSTY;
+    case WAN_HYPER_BEAM:
 	dmg *= 2;
     case WAN_MAGIC_MISSILE:
     wanexpl:

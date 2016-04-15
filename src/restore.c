@@ -892,7 +892,7 @@ register int fd;
 	if (!wizard && !discover)
 		(void) delete_savefile();
 #ifdef REINCARNATION
-	if (Is_rogue_level(&u.uz)) assign_rogue_graphics(TRUE);
+	if (isrougelike || Is_rogue_level(&u.uz)) assign_rogue_graphics(TRUE);
 #endif
 #ifdef USE_TILES
 	substitute_tiles(&u.uz);

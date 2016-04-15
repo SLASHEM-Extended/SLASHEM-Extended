@@ -259,6 +259,7 @@ static struct Bool_Opt
 #endif
 
 	{"timed_autosave", &flags.etimed_autosave, TRUE, SET_IN_GAME},
+	{"quick_autosave", &flags.xtimed_autosave, FALSE, SET_IN_GAME},
 
 	{"tombstone",&flags.tombstone, TRUE, SET_IN_GAME},
 	{"toptenwin",&flags.toptenwin, FALSE, SET_IN_GAME},
@@ -2772,7 +2773,7 @@ goodfruit:
 			     */
 			    if (!initial && u.uz.dlevel &&
 			      Is_rogue_level(&u.uz))
-				assign_rogue_graphics(FALSE);
+				assign_rogue_graphics(isrougelike);
 # endif
 			    need_redraw = TRUE;
 # ifdef TERMLIB

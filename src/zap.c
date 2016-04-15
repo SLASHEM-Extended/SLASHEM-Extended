@@ -270,7 +270,7 @@ struct obj *otmp;
 	case WAN_MUTATION:
 	case SPE_MUTATION:
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -397,6 +397,8 @@ struct obj *otmp;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 
 		break;
@@ -750,7 +752,7 @@ struct obj *otmp;
 		dmg = rnd(8);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
-		if (otyp ==	WAN_TIME) dmg *= 2;
+		if (otyp ==	WAN_TIME) dmg *= 4;
 		
 		mtmp->mhp -= dmg;
 		mtmp->mhpmax -= dmg;
@@ -2102,7 +2104,7 @@ poly_obj(obj, id)
 
 	case WAND_CLASS:
 	    while(otmp->otyp == WAN_WISHING || otmp->otyp == WAN_POLYMORPH || otmp->otyp == WAN_MUTATION || otmp->otyp == WAN_ACQUIREMENT)
-		otmp->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
+		otmp->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 	    /* altering the object tends to degrade its quality
 	       (analogous to spellbook `read count' handling) */
 	    if ((int)otmp->recharged < rn2(7))	/* recharge_limit */
@@ -2485,6 +2487,8 @@ struct obj *obj, *otmp;
 	case SPE_SLOW_MONSTER:
 	case WAN_INERTIA:
 	case SPE_INERTIA:
+	case WAN_STUN_MONSTER:
+	case SPE_STUN_MONSTER:
 	case WAN_SPEED_MONSTER:
 	case WAN_HASTE_MONSTER:
 	case WAN_NOTHING:
@@ -3339,7 +3343,7 @@ newboss:
 			if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
-			acqo->otyp = rnd_class(WAN_LIGHT, WAN_SOLAR_BEAM);
+			acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 			acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	
@@ -3432,6 +3436,20 @@ newboss:
 			trap_detect((struct obj *)0);
 			exercise(A_WIS, TRUE);
 			break;
+
+		case WAN_LEVITATION:
+			known = TRUE;
+			incr_itimeout(&HLevitation, rnd(100) );
+			pline("You float up!");
+			break;
+
+		case WAN_DEBUGGING:
+			known = TRUE;
+			You("need reboot.");
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
+			break;
+
 		case WAN_IDENTIFY:
 			known = TRUE;
 			You_feel("insightful!");
@@ -3929,6 +3947,117 @@ boolean ordinary;
 			You("irradiate yourself!");
 			damage = d(8,8);
 		   break;
+		case SPE_PSYBEAM:
+			if (Psi_resist && rn2(20) ) {
+				pline("You blast yourself with soothing psychic energy.");
+				break;
+			}
+			You("blast yourself with psychic energy!");
+			damage = d(12,7);
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + damage, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + damage, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + damage, FALSE);
+					make_stunned(HStun + damage, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + damage, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + damage, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + damage, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
+        	    break;
+		case WAN_PSYBEAM:
+		    makeknown(WAN_PSYBEAM);
+			if (Psi_resist && rn2(20) ) {
+				pline("You blast yourself with soothing psychic energy.");
+				break;
+			}
+			You("blast yourself with psychic energy!");
+			damage = d(8,7);
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + damage, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + damage, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + damage, FALSE);
+					make_stunned(HStun + damage, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + damage, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + damage, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + damage, FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
+		   break;
 		case SPE_CHROMATIC_BEAM:
 			You("blast yourself with magical energy!");
 			damage = d(15,10);
@@ -4051,6 +4180,19 @@ boolean ordinary;
 			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yourself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yourself!" : "Idiot!  You've shot yourself!");
 		    }
 		    break;
+
+		case WAN_HYPER_BEAM:
+		    makeknown(WAN_HYPER_BEAM);
+		case SPE_HYPER_BEAM:
+		    if(Antimagic && rn2(20)) {
+			shieldeff(u.ux, u.uy);
+			pline_The("beam bounces!");
+		    } else {
+			damage = d(12,6);
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yourself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yourself!" : "Idiot!  You've shot yourself!");
+		    }
+		    break;
+
 		case WAN_POLYMORPH:
 		    if (!Unchanging)
 		    	makeknown(WAN_POLYMORPH);
@@ -4742,7 +4884,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    mdef->mcan = TRUE;
 
 		/* successfully cancelling a monster removes all egotypes --Amy */
-		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = 0;
+		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = 0;
 
 	    if (is_were(mdef->data) && mdef->data->mlet != S_HUMAN)
 		were_change(mdef);
@@ -4949,7 +5091,7 @@ struct obj *obj;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
 	int skilldmg = 0; /*WAC - Skills damage bonus*/
 
-	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
+	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_CHROMATIC_BEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
@@ -4992,7 +5134,7 @@ struct obj *obj;
 	    else if (otyp == SPE_DIG)
 		zap_dig(FALSE);
 /*		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_FINGER_OF_DEATH)*/
-		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_SOLAR_BEAM)
+		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM)
 			/* WAC --
 			 * Include effect for Mega Large Fireball/Cones of Cold.
 			 * Include effect for Lightning cast.
@@ -5000,12 +5142,12 @@ struct obj *obj;
 			 * Added slight delay before fireworks. */
 
 			if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_SOLAR_BEAM))
+		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_PSYBEAM))
 		            && (tech_inuse(T_SIGIL_TEMPEST))) {
 				/* sigil of tempest */                     
 				throwstorm(obj, skilldmg, 2 , 2);
 			} else if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_SOLAR_BEAM))
+		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_PSYBEAM))
 					/*WAC - use sigil of discharge */
 		            && (tech_inuse(T_SIGIL_DISCHARGE))) {
 				You("yell \"%s\"",yell_types[otyp - SPE_MAGIC_MISSILE]);
@@ -5017,10 +5159,10 @@ struct obj *obj;
 					u.ulevel / 2 + 1 + skilldmg,
 		     u.ux, u.uy, u.dx, u.dy);
 
-	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_SOLAR_BEAM)
+	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM)
         {
 		buzz(otyp - WAN_MAGIC_MISSILE,
-		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
+		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
 			/*} else if (obj->otyp == WAN_ACID) {
 			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
@@ -5028,6 +5170,16 @@ struct obj *obj;
 
 	    else if (otyp == WAN_POISON) {
 		buzz((int)(26), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == WAN_HYPER_BEAM) {
+		buzz((int)(20), 6 + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_HYPER_BEAM) {
+		buzz((int)(20), (u.ulevel * 3 / 2) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -5898,6 +6050,12 @@ xchar sx, sy;
 	    break;
 	case ZT_SPC2:
 
+		if (Psi_resist && rn2(20)) {
+			shieldeff(sx, sy);
+			pline("You aren't affected.");
+			dam = 0;
+		} else {
+
 		dam = d(nd,7);
 		pline("Your mind is hit by psionic waves!");
 		switch (rnd(10)) {
@@ -5944,6 +6102,8 @@ xchar sx, sy;
 		}
 		if (!rn2(200)) {
 			badeffect();
+		}
+
 		}
 
 	    break;

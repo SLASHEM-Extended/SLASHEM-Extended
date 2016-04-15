@@ -2513,6 +2513,52 @@ swingweapon:
 
 	}
 
+	if (mtmp->egotype_psychic) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SPC2;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_abomination) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_GAZE;
+		a->adtyp = AD_SPC2;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+			    if (a->aatyp != AT_KICK ||
+				    !thick_skinned(youmonst.data))
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_multiplicator) {
 
 		if (!range2 && (!rn2(5)) ) {
@@ -3873,7 +3919,7 @@ dopois:
 			}
 
 			if (is_pool(mtmp->mx,mtmp->my) && !Swimming
-			    && !Amphibious && !rn2(3) ) { /* greatly lowered chance of getting drowned --Amy */
+			    && !Amphibious && !Breathless && !rn2(3) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&
 				(levl[mtmp->mx][mtmp->my].typ != WATER) &&
@@ -4611,7 +4657,7 @@ dopois:
 
 	    case AD_SPC2:
 		hitmsg(mtmp, mattk);
-		if(!mtmp->mcan && !rn2(4)) {
+		if(!mtmp->mcan && !rn2(4) && (!Psi_resist || !rn2(20)) ) {
 
 			pline("Your mind is blasted by psionic energy.");
 
@@ -5302,6 +5348,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_SPC2:
+			if (Psi_resist && rn2(20) ) break;
+
 			pline("You feel something focusing on your mind!");
 
 			switch (rnd(10)) {
@@ -6929,6 +6977,64 @@ common:
 
 		break;
 
+	    case AD_SPC2:
+
+		if (!Psi_resist || !rn2(20)) {
+
+			pline("Your %s is spinning!", body_part(HEAD) );
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+				make_confused(HConfusion + tmp, FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + tmp, FALSE);
+					make_stunned(HStun + tmp, FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + tmp, FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + tmp, FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + tmp, FALSE);
+					break;
+
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1);
+				adjattrib(A_WIS, -1, 1);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+
+		}
+
+	      mdamageu(mtmp, tmp); /* still does damage even if you resist psi --Amy */
+
+		break;
+
 	    case AD_STUN:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
@@ -7270,6 +7376,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		/* In ToME, hallucination completely prevents the effects "because you can't see the monster clearly enough".
 		 * Here, allow hallu to prevent it most of the time, but we don't want the character to be completely immune. --Amy */
 		if (Hallucination && rn2(3)) break;
+		if (Psi_resist && rn2(20) ) break;
 
 		    stop_occupation();
 
@@ -7417,6 +7524,17 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 			    losexp("life drainage", FALSE, TRUE);
 				if (!rn2(2)) mdamageu(mtmp, dmgplus);
+			}
+		}
+		break;
+
+	    case AD_STCK:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		{ 
+			if (!u.ustuck && !sticks(youmonst.data)) {
+				setustuck(mtmp);
+				pline("%s gazes to hold you in place!", Monnam(mtmp));
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 		break;
@@ -9658,6 +9776,9 @@ register struct monst *mon;
 		u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 	}
 
 	if (!rn2(250) && !(ublindf && ublindf->otyp == CONDOME) ) {

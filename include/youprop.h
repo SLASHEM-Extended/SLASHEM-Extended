@@ -28,13 +28,13 @@
 /* With intrinsics and extrinsics */
 #define HFire_resistance	u.uprops[FIRE_RES].intrinsic
 #define EFire_resistance	u.uprops[FIRE_RES].extrinsic
-#define Fire_resistance		((HFire_resistance || EFire_resistance || u.uprops[STORM_HELM].extrinsic || \
+#define Fire_resistance		((HFire_resistance || EFire_resistance || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_fire(&youmonst) || is_fire_resistant(youmonst.data)) && !Race_if(PM_TROLLOR) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
 #define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
-#define Cold_resistance		((HCold_resistance || ECold_resistance || u.uprops[STORM_HELM].extrinsic || \
+#define Cold_resistance		((HCold_resistance || ECold_resistance || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_cold(&youmonst) || is_cold_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoCold_resistance )
 #define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -52,7 +52,7 @@
 
 #define HShock_resistance	u.uprops[SHOCK_RES].intrinsic
 #define EShock_resistance	u.uprops[SHOCK_RES].extrinsic
-#define Shock_resistance	((HShock_resistance || EShock_resistance || u.uprops[STORM_HELM].extrinsic || \
+#define Shock_resistance	((HShock_resistance || EShock_resistance || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_elec(&youmonst) || is_elec_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoShock_resistance )
 #define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -327,6 +327,14 @@
 #define Sickopathy	(HSickopathy && !NoSickopathy)
 #define NoSickopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SICKOPATHY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HWonderlegs	u.uprops[WONDERLEGS].intrinsic
+#define Wonderlegs	(HWonderlegs && !NoWonderlegs)
+#define NoWonderlegs	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_WONDERLEGS].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HGlib_combat	u.uprops[GLIB_COMBAT].intrinsic
+#define Glib_combat	(HGlib_combat && !NoGlib_combat)
+#define NoGlib_combat	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_GLIB_COMBAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #define HWarning		u.uprops[WARNING].intrinsic
 #define EWarning		u.uprops[WARNING].extrinsic
 #define Warning			(( (HWarning || EWarning) && !NoWarning && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoWarning && ((uarmf && uarmf->otyp == WEDGE_SANDALS) || (uarmf && uarmf->otyp == FEMININE_PUMPS) || (uarmf && uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && uarmf->otyp == HIPPIE_HEELS) || (uarmf && uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf && uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf && uarmf->otyp == COMBAT_STILETTOS) )))
@@ -556,6 +564,9 @@
 				  youmonst.data == &mons[PM_SHAMBLING_MOUND] ||\
 				  youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] ||\
 				  youmonst.data == &mons[PM_SILVER_WOLF] ||\
+				  youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] ||\
+				  youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] ||\
+				  youmonst.data == &mons[PM_IT] ||\
 				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
 				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
 				  youmonst.data == &mons[PM_MIRROR_MONSTER] ||\
@@ -581,6 +592,7 @@
 				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
 				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
+				  youmonst.data == &mons[PM_SILVER_DRACONIAN] ||\
 				  youmonst.data == &mons[PM_AUREAL] ||\
 				  youmonst.data == &mons[PM_ARIANE] ||\
 				  youmonst.data == &mons[PM_KSENIA] ||\
@@ -621,6 +633,11 @@
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
 #define Conf_resist		((HConf_resist || EConf_resist) && !NoConf_resist)
 #define NoConf_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONF_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HPsi_resist		u.uprops[PSI_RES].intrinsic
+#define EPsi_resist		u.uprops[PSI_RES].extrinsic
+#define Psi_resist		((HPsi_resist || EPsi_resist) && !NoPsi_resist)
+#define NoPsi_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PSI_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HDouble_attack		u.uprops[DOUBLE_ATTACK].intrinsic
 #define EDouble_attack		u.uprops[DOUBLE_ATTACK].extrinsic

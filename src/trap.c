@@ -2306,7 +2306,7 @@ unsigned trflags;
 	        numX = d(3, 3) + rnd((monster_difficulty() / 3) + 1);
 
 		  if (Swimming) {pline("You fell into a pool of water, but thankfully you can swim."); numX = 0;}
-		  else if (Amphibious) {pline("You fell into a pool of water, but you aren't drowning."); numX = 0;}
+		  else if (Amphibious || Breathless) {pline("You fell into a pool of water, but you aren't drowning."); numX = 0;}
 	        else pline("You fell into a pool of water!");
 
 			if (!rn2(20)) { /* A higher chance would be incredibly annoying. --Amy */
@@ -5668,7 +5668,7 @@ newegomon:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(117)) {
+				 switch (rnd(120)) {
 
 					case 1:
 					case 2:
@@ -5949,6 +5949,18 @@ newegomon:
 						u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having quad attacks!");
 						break;
+					case 118:
+						u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having psi resistance!");
+						break;
+					case 119:
+						u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having wonderlegs!");
+						break;
+					case 120:
+						u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having glib combat!");
+						break;
 				}
 
 			}
@@ -6114,7 +6126,7 @@ newegomon:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(117)) {
+		 switch (rnd(120)) {
 
 			case 1:
 			case 2:
@@ -6394,6 +6406,18 @@ newegomon:
 			case 117:
 				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having glib combat!");
 				break;
 			}
 
@@ -10244,7 +10268,7 @@ drown()
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && is_pool(u.ux-u.dx,u.uy-u.dy) &&
-	    (Swimming || Amphibious)) {
+	    (Swimming || Amphibious || Breathless)) {
 		/* water effects on objects every now and then */
 		if (!rn2(5)) inpool_ok = TRUE;
 		else return(FALSE);
@@ -10254,7 +10278,7 @@ drown()
 	    You("%s into the %swater%c",
 		Is_waterlevel(&u.uz) ? "plunge" : "fall",
 		sparkle,
-		Amphibious || Swimming ? '.' : '!');
+		Amphibious || Breathless || Swimming ? '.' : '!');
 	    if (!Swimming && !Is_waterlevel(&u.uz))
 		    You("sink like %s.",
 			Hallucination ? "the Titanic" : "a rock");
@@ -10288,7 +10312,7 @@ drown()
 		unleash_all();
 	}
 
-	if (Amphibious || Swimming) {
+	if (Amphibious || Breathless || Swimming) {
 		if (Amphibious) {
 			if (flags.verbose)
 				pline("But you aren't drowning.");

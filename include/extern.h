@@ -91,7 +91,7 @@ E int FDECL(artifact_wet, (struct obj *, BOOLEAN_P));
 E void FDECL(arti_speak, (struct obj *));
 E boolean FDECL(artifact_light, (struct obj *));
 E long FDECL(spec_m2, (struct obj *));
-E boolean FDECL(artifact_has_invprop, (struct obj *,UCHAR_P));
+E boolean FDECL(artifact_has_invprop, (struct obj *,int));
 E long FDECL(arti_cost, (struct obj *));
 E void FDECL(arti_poly_contents, (struct obj *));
 

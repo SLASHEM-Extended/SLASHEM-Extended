@@ -483,6 +483,26 @@ giveback:
 	      case RIN_CURSE:
 		    pline("A malignant aura seems to surround the sink...");
 		    break;
+
+	      case RIN_DOOM:
+		    pline("You behold the unspeakable visage of the sink!");
+		    break;
+	      case RIN_ELEMENTS:
+		    pline("The sink emits a three-colored flash!");
+		    break;
+	      case RIN_LIGHT:
+		    pline("The sink shines brightly for a few seconds!");
+		    break;
+	      case RIN_MAGIC_RESISTANCE:
+		    pline("The sink is momentarily surrounded by an anti-magic shell.");
+		    break;
+	      case RIN_MATERIAL_STABILITY:
+		    pline("The sink seems to be reintegrating.");
+		    break;
+	      case RIN_MIND_SHIELDING:
+		    pline("A purple aura surrounds the sink.");
+		    break;
+
 	      case RIN_BLOOD_LOSS:
 		    pline("The sink looks like it's crying...");
 		    break;
@@ -1304,8 +1324,8 @@ boolean at_stairs, falling, portal;
 	}
 
 #ifdef REINCARNATION
-	if (Is_rogue_level(newlevel) || Is_rogue_level(&u.uz))
-		assign_rogue_graphics(Is_rogue_level(newlevel));
+	if (Is_rogue_level(newlevel) || Is_rogue_level(&u.uz) || isrougelike)
+		assign_rogue_graphics(isrougelike || Is_rogue_level(newlevel));
 #endif
 #ifdef USE_TILES
 	substitute_tiles(newlevel);

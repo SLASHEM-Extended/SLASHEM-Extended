@@ -2992,6 +2992,12 @@ struct obj *weapon;
 
 	}
 
+	if (Glib_combat && IsGlib && ((type == P_BARE_HANDED_COMBAT) || (type == P_MARTIAL_ARTS)) ) {
+
+		bonus += rnd(u.ulevel);
+
+	}
+
     } /* Misc skills aren't usually called by weapons */
 
 #ifdef STEED

@@ -257,7 +257,7 @@ register struct monst *mtmp;
 {
 	register struct permonst *ptr = mtmp->data;
 
-	if (!rn2(500) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) (void) mongets(mtmp, SCR_STANDARD_ID);
+	if (!rn2(250) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) (void) mongets(mtmp, SCR_STANDARD_ID);
 
 	if (!rn2(60) && ((rn2(100) > u.usefulitemchance) || (rn2(100) > u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
 
@@ -617,6 +617,7 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_WEAK_GUARD] || ptr == &mons[PM_POSSESSED_GUARD]) { (void) mongets(mtmp, VOULGE); (void) mongets(mtmp, SCALE_MAIL); }
 
 		if (ptr == &mons[PM_PSYCHO_GUARD]) { (void) mongets(mtmp, GUISARME); (void) mongets(mtmp, CHAIN_MAIL); }
+		if (ptr == &mons[PM_EXTREME_PSYCHO_GUARD]) { (void) mongets(mtmp, GUISARME); (void) mongets(mtmp, CHAIN_MAIL); }
 
 		if (ptr == &mons[PM_BAD_GUARD] || ptr == &mons[PM_DARK_LORD_GUARD]) { (void) mongets(mtmp, BILL_GUISARME); (void) mongets(mtmp, SPLINT_MAIL); }
 
@@ -631,6 +632,9 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_TWISTED_SYLPH]) {(void) mongets(mtmp, WAN_CREATE_MONSTER); (void) mongets(mtmp, POT_FULL_HEALING); (void) mongets(mtmp, WAN_FIREBALL); (void) mongets(mtmp, WAN_BAD_EFFECT);}
 
 		if (ptr == &mons[PM_DARK_RONIN] || ptr == &mons[PM_FEMALE_RONIN]) {(void) mongets(mtmp, KATANA); (void) mongets(mtmp, LARGE_SHIELD); (void) mongets(mtmp, YUMI); m_initthrow(mtmp, YA, 30);}
+
+		if (ptr == &mons[PM_ELVEN_ARCHER]) {(void) mongets(mtmp, ELVEN_BOW); m_initthrow(mtmp, ELVEN_ARROW, 25);}
+		if (ptr == &mons[PM_HIGH_ELVEN_RANGER]) {(void) mongets(mtmp, ELVEN_BOW); m_initthrow(mtmp, ELVEN_ARROW, 50); m_initthrow(mtmp, ELVEN_ARROW, 50);}
 
 		if (ptr == &mons[PM_BAAL_SPY] || ptr == &mons[PM_HOSTILE_POW]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 
@@ -7229,6 +7233,15 @@ register struct monst *mtmp;
 				m_initthrow(mtmp, ROCKET, 20);
 			}
 
+			if(ptr == &mons[PM_OREMORJ__THE_CYBERDEMON_LORD]) {
+			      (void)mongets(mtmp, ROCKET_LAUNCHER);
+			      (void)mongets(mtmp, ROCKET_LAUNCHER);
+			      (void)mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 20);
+				m_initthrow(mtmp, ROCKET, 20);
+				m_initthrow(mtmp, ROCKET, 20);
+			}
+
 			if (ptr == &mons[PM_AURORA_BOMBER]) {
 				(void) mongets(mtmp, ROCKET_LAUNCHER);
 			  	m_initthrow(mtmp, ROCKET, 3);
@@ -7833,6 +7846,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_FILTHY_GUTTERSNIPE]) (void) mongets(mtmp, WAN_BAD_LUCK);
 		if (mtmp->data == &mons[PM_INCONTINENT_NYMPH]) (void) mongets(mtmp, POT_URINE);
+		if (mtmp->data == &mons[PM_FREAKING_DRYAD]) (void) mongets(mtmp, SCR_GROWTH);
+		if (mtmp->data == &mons[PM_PHASER_GIANT_OREAD]) (void) mongets(mtmp, BOULDER);
+		if (mtmp->data == &mons[PM_OBNOXIOUS_NAIAD]) (void) mongets(mtmp, SCR_FLOOD);
 		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if(!rn2(2)) (void) mongets(mtmp, MIRROR);
 		if(!rn2(/*2*/10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
@@ -12498,7 +12514,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12625,11 +12641,13 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12756,6 +12774,8 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 		}
 
@@ -12764,7 +12784,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12891,10 +12911,12 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13021,6 +13043,8 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 		}
 
@@ -13029,7 +13053,7 @@ register int	mmflags;
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13156,10 +13180,12 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13286,6 +13312,8 @@ register int	mmflags;
 			case 124: mtmp->egotype_exploder = 1; break;
 			case 125: mtmp->egotype_unskillor = 1; break;
 			case 126: mtmp->egotype_blinker = 1; break;
+			case 127: mtmp->egotype_psychic = 1; break;
+			case 128: mtmp->egotype_abomination = 1; break;
 		}
 		}
 
@@ -13302,6 +13330,7 @@ register int	mmflags;
 			if (mndx == PM_OLOG_HAI_MIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_OLOG_HAI_PERMAMIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_TROLL_PERMAMIMIC_MUMMY) set_mimic_sym(mtmp);
+			if (mndx == PM_NETHERWORLD_TROLL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_GREMLIN:
@@ -14045,6 +14074,7 @@ register int	mmflags;
 		case S_GRUE:
 
 	      if (mndx == PM__S_____NIX) mtmp->msleeping = 1;
+			if (mndx == PM_IT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 
@@ -15452,6 +15482,7 @@ int type;
 		case PM_ANIMATED_LEATHER_PEEP_TOE: return 250;
 		case PM_IRON_GOLEM: return 240;
 		case PM_TIN_MAN: return 240;
+		case PM_THE_BORSHIN: return 240;
 		case PM_IRON_MAN: return 240;
 		case PM_ARGENTUM_GOLEM: return 240;
 		case PM_ICE_GOLEM: return 240;

@@ -667,10 +667,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
-		flags.pickup_thrown && curr->was_thrown)
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) )
 #else
 	    if ((!*otypes || index(otypes, curr->oclass) ||
-		flags.pickup_thrown && curr->was_thrown ||
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
 #endif
@@ -681,10 +681,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 #ifndef AUTOPICKUP_EXCEPTIONS
 		if (!*otypes || index(otypes, curr->oclass) ||
-			flags.pickup_thrown && curr->was_thrown) {
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ) {
 #else
 		if ((!*otypes || index(otypes, curr->oclass) ||
-			flags.pickup_thrown && curr->was_thrown ||
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ||
 			is_autopickup_exception(curr, TRUE)) &&
 			!is_autopickup_exception(curr, FALSE)) {
 #endif

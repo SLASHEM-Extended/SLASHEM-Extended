@@ -2082,7 +2082,7 @@ arti_speak(obj)
 boolean
 artifact_has_invprop(otmp, inv_prop)
 struct obj *otmp;
-uchar inv_prop;
+/*uchar*/int inv_prop;
 {
 	const struct artifact *arti = get_artifact(otmp);
 

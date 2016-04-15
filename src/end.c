@@ -1516,6 +1516,9 @@ boolean want_dump;
     register int i, lev;
     int ntypes = 0, max_lev = 0, nkilled;
     long total_killed = 0L;
+    long total_born = 0L;
+    long bosses_killed = 0L;
+    long bosses_born = 0L;
     char c;
     winid klwin;
     char buf[BUFSZ];
@@ -1524,6 +1527,9 @@ boolean want_dump;
     for (i = LOW_PM; i < NUMMONS; i++) {
 	if (mvitals[i].died || program_state.gameover || wizard ) ntypes++;
 	total_killed += (long)mvitals[i].died;
+	total_born += (long)mvitals[i].born;
+	if (mons[i].geno & G_UNIQ) bosses_killed += (long)mvitals[i].died;
+	if (mons[i].geno & G_UNIQ) bosses_born += (long)mvitals[i].born;
 	if (mons[i].mlevel > max_lev) max_lev = mons[i].mlevel;
     }
 
@@ -1583,6 +1589,21 @@ boolean want_dump;
 	    if (ntypes > 1) {
 		putstr(klwin, 0, "");
 		Sprintf(buf, "%ld creatures vanquished.", total_killed);
+		putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+		if (want_dump)  dump("  ", buf);
+#endif
+		if (program_state.gameover || wizard) Sprintf(buf, "%ld creatures born.", total_born);
+		putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+		if (want_dump)  dump("  ", buf);
+#endif
+		Sprintf(buf, "%ld bosses vanquished.", bosses_killed);
+		putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+		if (want_dump)  dump("  ", buf);
+#endif
+		if (program_state.gameover || wizard) Sprintf(buf, "%ld bosses born.", bosses_born);
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);

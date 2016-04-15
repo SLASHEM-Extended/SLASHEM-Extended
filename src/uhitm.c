@@ -4870,6 +4870,7 @@ uchar aatyp;
 
 	  case AD_SPC2:
 
+			if (Psi_resist && rn2(20)) break;
 			pline("%s's corrupted mind backlashes your attack!", Monnam(mon) );
 
 			switch (rnd(10)) {

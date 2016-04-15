@@ -341,7 +341,7 @@ drinkfountain()
 			/* evil patch idea by jonadab:
 			   fountains have a small percentage chance of killing you outright, flavored as drowning */
 
-			if (!Amphibious && !Swimming && !rn2(20) ) {
+			if (!Amphibious && !Swimming && !Breathless && !rn2(20) ) {
 
 				pline("You drown...");
 				    killer_format = KILLED_BY_AN;

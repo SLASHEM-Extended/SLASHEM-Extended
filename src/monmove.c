@@ -638,7 +638,7 @@ register struct monst *mtmp;
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
-		if (mtmp->mpeaceful &&
+		if ( (mtmp->mpeaceful || (Psi_resist && rn2(20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0)))
 			pline("It feels quite soothing.");
 		else {
@@ -719,6 +719,12 @@ register struct monst *mtmp;
 			}
 		}
 	}
+
+	/* occasionally hint at the presence of psychic beings, if you are telepathic --Amy */
+	if (dmgtype(mdat, AD_SPC2) && !rn2(200) && Blind_telepat) {
+		You(Hallucination ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
+	}
+
 toofar:
 
 	/* If monster is nearby you, and has to wield a weapon, do so.   This

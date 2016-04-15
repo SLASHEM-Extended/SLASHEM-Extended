@@ -1315,6 +1315,8 @@ doengrave()
 		    case WAN_DETECT_MONSTERS:
 		    case WAN_OBJECTION:
 		    case WAN_IDENTIFY:
+		    case WAN_LEVITATION:
+		    case WAN_DEBUGGING:
 		    case WAN_REMOVE_CURSE:
 		    case WAN_PUNISHMENT:
 		    case WAN_WISHING:
@@ -1389,7 +1391,21 @@ doengrave()
 		    case WAN_SOLAR_BEAM:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
-				   "The engraving on the %s shines brightly for a moment!",
+				   "The bugs on the %s shine brightly for a moment!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_PSYBEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s seem utterly confused!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_HYPER_BEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s are vaporized!",
 				   surface(u.ux, u.uy));
 			}
 			break;

@@ -415,14 +415,14 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = 0;
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = 0;
 
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
 			    if (!rn2(10)) {
 
-				switch (rnd(18)) {
+				switch (rnd(19)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -496,11 +496,15 @@ give_up:	/* Quit */
 						if (!Race_if(PM_NASTINATOR)) {flags.hybridnastinator = 1; flags.hybridization++;
 						}
 						break;
+					case 19:
+						if (!Race_if(PM_ROUGELIKE)) {flags.hybridrougelike = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(18)) {
+					switch (rnd(19)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -574,6 +578,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridnastinator)) {
 								flags.hybridnastinator = 1; flags.hybridization++; break;
 							}	
+						case 19:
+							if (!(flags.hybridrougelike)) {
+								flags.hybridrougelike = 1; flags.hybridization++; break;
+							}	
 					}
 				}
 
@@ -583,7 +591,7 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(18)) {
+				switch (rnd(19)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -675,12 +683,17 @@ give_up:	/* Quit */
 						flags.hybridnastinator = 1; flags.hybridization++;
 						}
 						break;
+					case 19:
+						if (!Race_if(PM_ROUGELIKE)) {
+						flags.hybridrougelike = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(18)) {
+					switch (rnd(19)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -754,6 +767,10 @@ give_up:	/* Quit */
 							if (!(flags.hybridnastinator)) {
 								flags.hybridnastinator = 1; flags.hybridization++; break;
 							}	
+						case 19:
+							if (!(flags.hybridrougelike)) {
+								flags.hybridrougelike = 1; flags.hybridization++; break;
+							}	
 
 					}
 				}
@@ -814,6 +831,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_NASTINATOR)) {if (yn("Add the nastinator hybrid race to your character?") == 'y')
 					{flags.hybridnastinator = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_ROUGELIKE)) {if (yn("Add the rougelike hybrid race to your character?") == 'y')
+					{flags.hybridrougelike = 1; flags.hybridization++;}
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */

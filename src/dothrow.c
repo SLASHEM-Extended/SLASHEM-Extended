@@ -1104,11 +1104,13 @@ int thrown;
 		pline("%s!", Tobjnam(obj, "misfire"));
 	    else {
 		/* only slip if it's greased or meant to be thrown */
-		if (obj->greased || throwing_weapon(obj))
+		/* Amy edit: well, the item is cursed, so it should malfunction no matter what. See monsters throwing
+		 * cursed potions, which also causes them to slip. */
+		/*if (obj->greased || throwing_weapon(obj))*/
 		    /* BUG: this message is grammatically incorrect if obj has
 		       a plural name; greased gloves or boots for instance. */
 		    pline("%s as you throw it!", Tobjnam(obj, "slip"));
-		else slipok = FALSE;
+		/*else slipok = FALSE;*/
 	    }
 	    if (slipok) {
 		u.dx = rn2(3)-1;
@@ -1565,6 +1567,9 @@ int thrown;
 		break;
 	    case GAUNTLETS_OF_PANIC:
 		tmp -= 1;
+		break;
+	    case GAUNTLETS_OF_FREE_ACTION:
+		tmp += 1;
 		break;
 	    case LEATHER_GLOVES:
 	    case GAUNTLETS_OF_SWIMMING:            

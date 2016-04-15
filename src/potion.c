@@ -1050,7 +1050,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(117)) {
+		switch (rnd(120)) {
 
 			case 1:
 			case 2:
@@ -1330,6 +1330,18 @@ badeffect()
 			case 117:
 				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
 				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
+				pline("You are prevented from having glib combat!");
 				break;
 			}
 		break;
@@ -3299,10 +3311,10 @@ healup(nhp, nxtra, curesick, cureblind)
 	if (nhp) {
 		if (Upolyd) {
 			u.mh += nhp;
-			if(!rn2(10) || (u.mh > u.mhmax)) u.mh = (u.mhmax += nxtra);
+			if(!rn2(2) || (u.mh > u.mhmax)) u.mh = (u.mhmax += nxtra);
 		} else {
 			u.uhp += nhp;
-			if(!rn2(10) || (u.uhp > u.uhpmax)) u.uhp = (u.uhpmax += nxtra);
+			if(!rn2(2) || (u.uhp > u.uhpmax)) u.uhp = (u.uhpmax += nxtra);
 		}
 	}
 	if(cureblind)	make_blinded(0L,TRUE);
@@ -3589,7 +3601,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(126)) {
+		switch (rnd(128)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -3716,6 +3728,8 @@ boolean your_fault;
 			case 124: mon->egotype_exploder = 1; break;
 			case 125: mon->egotype_unskillor = 1; break;
 			case 126: mon->egotype_blinker = 1; break;
+			case 127: mon->egotype_psychic = 1; break;
+			case 128: mon->egotype_abomination = 1; break;
 		}
 
   		break;
