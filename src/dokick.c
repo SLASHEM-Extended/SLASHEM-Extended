@@ -807,9 +807,10 @@ dokick()
 		    You("kick %s.", mon_nam(u.usteed));
 		    kick_steed();
 		    return 1;
-		} else {
+		}/* else {
 		    return 0;
-		}
+		}*/
+	/* your legs are not fucking welded to the horse, so you should be able to kick monsters too!!! --Amy */
 #endif
 	} else if (Wounded_legs) {
 		/* note: jump() has similar code */
