@@ -214,7 +214,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -871,6 +871,8 @@ register int pm;
 	    case PM_LIZARD_EEL:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_BLUE_LIZARD:
+	    case PM_SWAMP_LIZARD:
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_MIMIC_LIZARD:
 	    case PM_HIDDEN_LIZARD:
@@ -988,6 +990,8 @@ struct monst *mon;
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
+      case PM_BLUE_LIZARD:
+	case PM_SWAMP_LIZARD:
 	case PM_ANTI_STONE_LIZARD:
     case PM_MIMIC_LIZARD:
     case PM_HIDDEN_LIZARD:
@@ -2304,6 +2308,8 @@ register int pm;
 	    case PM_KARMIC_LIZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_BLUE_LIZARD:
+	    case PM_SWAMP_LIZARD:
 	    case PM_LIZARD_EEL:
 	    case PM_LIZARD_KING:
 	    case PM_EEL_LIZARD:

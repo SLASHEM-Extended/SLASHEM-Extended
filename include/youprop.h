@@ -567,6 +567,7 @@
 				  youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] ||\
 				  youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] ||\
 				  youmonst.data == &mons[PM_IT] ||\
+				  youmonst.data == &mons[PM_MUNCHKIN] ||\
 				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
 				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
 				  youmonst.data == &mons[PM_MIRROR_MONSTER] ||\
@@ -595,6 +596,10 @@
 				  youmonst.data == &mons[PM_SILVER_DRACONIAN] ||\
 				  youmonst.data == &mons[PM_AUREAL] ||\
 				  youmonst.data == &mons[PM_ARIANE] ||\
+				  youmonst.data == &mons[PM_NATALIYA_S_WEDGE_SANDAL] ||\
+				  youmonst.data == &mons[PM_ELENA_S_COMBAT_BOOT] ||\
+				  youmonst.data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT] ||\
+				  youmonst.data == &mons[PM_RHEA_S_LADY_PUMP] ||\
 				  youmonst.data == &mons[PM_KSENIA] ||\
 				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_DIAMOND_GOLEM])) && !NoReflecting && !Race_if(PM_ANGBANDER) )

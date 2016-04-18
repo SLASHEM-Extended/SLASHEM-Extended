@@ -1031,6 +1031,7 @@ register struct obj *obj;
 		mon->data == &mons[PM_GIANT_SHOGGOTH] ||
 		mon->data == &mons[PM_TASMANIAN_ZOMBIE] ||
 		mon->data == &mons[PM_MINOCUBE] ||
+		mon->data == &mons[PM_THEME_TERMITE] ||
 		mon->data == &mons[PM_GELATINOUS_DICE] ||
 		mon->data == &mons[PM_WEAPON_CUBE] ||
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
