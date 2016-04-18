@@ -4205,15 +4205,36 @@ select_newcham_form(mon)
 struct monst *mon;
 {
 	int mndx = NON_PM;
+	struct permonst *pm;
 
 	switch (mon->cham) {
 	    case CHAM_SANDESTIN:
 	    case CHAM_CHAOS_SHAPECHANGER:
 	    case CHAM_DOPPLEZON:
-		if (!rn2(7)) mndx = pick_nasty();
+		if (!rn2(7)) {
+sandestinchoice:
+			mndx = pick_nasty();
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandestinchoice;
+			if (uncommon2(pm) && !rn2(4)) goto sandestinchoice;
+			if (uncommon3(pm) && !rn2(3)) goto sandestinchoice;
+			if (uncommon5(pm) && !rn2(2)) goto sandestinchoice;
+			if (uncommon7(pm) && rn2(3)) goto sandestinchoice;
+			if (uncommon10(pm) && rn2(5)) goto sandestinchoice;
+		}
 		break;
 	    case CHAM_WARPER:
-		if (!rn2(7)) mndx = rn2(NUMMONS);
+		if (!rn2(7)) {
+warperchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto warperchoice;
+			if (uncommon2(pm) && !rn2(4)) goto warperchoice;
+			if (uncommon3(pm) && !rn2(3)) goto warperchoice;
+			if (uncommon5(pm) && !rn2(2)) goto warperchoice;
+			if (uncommon7(pm) && rn2(3)) goto warperchoice;
+			if (uncommon10(pm) && rn2(5)) goto warperchoice;
+		}
 		break;
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_MISSINGNO:
@@ -4223,10 +4244,19 @@ struct monst *mon;
 					    PM_ARCHEOLOGIST);
 		break;
 	    case CHAM_CHAMELEON:
-		if (!rn2(7)) mndx = pick_animal();
-		break;
 	    case CHAM_GIANT_CHAMELEON:
-		if (!rn2(7)) mndx = pick_animal();
+		if (!rn2(7)) {
+chameleonchoice:
+			mndx = pick_animal();
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chameleonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto chameleonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto chameleonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto chameleonchoice;
+			if (uncommon7(pm) && rn2(3)) goto chameleonchoice;
+			if (uncommon10(pm) && rn2(5)) goto chameleonchoice;
+		}
+
 		break;
 	    case CHAM_ORDINARY:
 	      {
@@ -4257,7 +4287,17 @@ struct monst *mon;
 		if (tries==5) pline(thats_enough_tries);
 	}
 #endif /*WIZARD*/
-	if (mndx == NON_PM) mndx = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
+	if (mndx == NON_PM) {
+findrandomform:
+		mndx = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
+		pm = &mons[mndx];
+		if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto findrandomform;
+		if (uncommon2(pm) && !rn2(4)) goto findrandomform;
+		if (uncommon3(pm) && !rn2(3)) goto findrandomform;
+		if (uncommon5(pm) && !rn2(2)) goto findrandomform;
+		if (uncommon7(pm) && rn2(3)) goto findrandomform;
+		if (uncommon10(pm) && rn2(5)) goto findrandomform;
+	}
 	return mndx;
 }
 
