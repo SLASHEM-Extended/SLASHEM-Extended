@@ -5055,7 +5055,7 @@ revid_end:
 		known = TRUE;
 		pline("You have found a scroll of wishing!");
 		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
-			pline("Unfortuantely, nothing happens.");
+			pline("Unfortunately, nothing happens.");
 			break;
 		}
 		makewish();
@@ -5068,7 +5068,7 @@ revid_end:
 		acquireditem = 0;
 		pline("You have found a scroll of acquirement!");
 		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
-			pline("Unfortuantely, nothing happens.");
+			pline("Unfortunately, nothing happens.");
 			break;
 		}
 

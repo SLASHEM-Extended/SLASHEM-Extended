@@ -2923,7 +2923,9 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && u.umconf) you_are("going to confuse monsters");
 
-	if (guaranteed || !rn2(10)) Sprintf(buf, "%d points of nutrition remaining", u.uhunger); you_have(buf);
+	if (guaranteed || !rn2(10)) {
+		Sprintf(buf, "%d points of nutrition remaining", u.uhunger); you_have(buf);
+	}
 
 	/*** Appearance and behavior ***/
 	if ((guaranteed || !rn2(10)) && Adornment) {

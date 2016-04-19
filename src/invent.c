@@ -5651,7 +5651,7 @@ struct obj *obj;
 			case DIMMER_HELMET:
 				pline("This helm causes weak sight. It provides good AC and medium magic cancellation."); break;
 			case HELM_OF_SENSORY_DEPRIVATION:
-				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellatin."); break;
+				pline("This helm causes blindness, hallucination and confusion and is usually generated cursed. However, it also provides extremely good AC and medium magic cancellation."); break;
 			case HELM_OF_TELEPATHY:
 				pline("Wearing this helmet conveys 'weak' telepathy that displays monsters close by, and 'good' telepathy that displays all monsters on the level if you are blind."); break;
 			case PLASTEEL_GLOVES:
