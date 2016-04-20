@@ -14005,6 +14005,7 @@ register int	mmflags;
 
 			if (mndx == PM_KURAST_BOO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THE_INVISIBLE_MAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 		case S_EYE:
@@ -15528,6 +15529,8 @@ int type;
 		case PM_BANANA_PEEL_GOLEM: return 80;
 		case PM_WOOD_GOLEM: return 100;
 		case PM_BARNACLE_COVERED_GOLEM: return 120;
+		case PM_CLANKING_CHAINS: return 120;
+		case PM_SPOOKY_PORTRAIT: return 150;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;

@@ -856,6 +856,7 @@ register int pm;
 	    case PM_LIZARD_MAN:
 	    case PM_LIZARD_KING:
 	    case PM_CAVE_LIZARD:
+	    case PM_PREHISTORIC_CAVE_LIZARD:
 	    case PM_CHAOS_LIZARD:
 	    case PM_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
@@ -873,6 +874,7 @@ register int pm;
 	    case PM_GRASS_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_SWAMP_LIZARD:
+	    case PM_SPITTING_LIZARD:
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_MIMIC_LIZARD:
 	    case PM_HIDDEN_LIZARD:
@@ -986,12 +988,14 @@ struct monst *mon;
 	case PM_LIZARD_MAN:
 	case PM_LIZARD_KING:
 	case PM_CAVE_LIZARD:
+	case PM_PREHISTORIC_CAVE_LIZARD:
 	case PM_CHAOS_LIZARD:
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
       case PM_BLUE_LIZARD:
 	case PM_SWAMP_LIZARD:
+	case PM_SPITTING_LIZARD:
 	case PM_ANTI_STONE_LIZARD:
     case PM_MIMIC_LIZARD:
     case PM_HIDDEN_LIZARD:
@@ -2296,6 +2300,8 @@ register int pm;
 			You("seem faster.");
 		}
 		break;
+	    case PM_PREHISTORIC_CAVE_LIZARD:
+			lesshungry(500); /* fall thru */
 	    case PM_GIANT_LIZARD:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
@@ -2310,6 +2316,7 @@ register int pm;
 	    case PM_GRASS_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_SWAMP_LIZARD:
+	    case PM_SPITTING_LIZARD:
 	    case PM_LIZARD_EEL:
 	    case PM_LIZARD_KING:
 	    case PM_EEL_LIZARD:
