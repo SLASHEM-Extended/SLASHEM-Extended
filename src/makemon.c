@@ -15531,6 +15531,7 @@ int type;
 		case PM_BARNACLE_COVERED_GOLEM: return 120;
 		case PM_CLANKING_CHAINS: return 120;
 		case PM_SPOOKY_PORTRAIT: return 150;
+		case PM_HAUNTED_TEAPOT: return 200;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
