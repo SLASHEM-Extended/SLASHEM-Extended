@@ -220,7 +220,7 @@
 #define LIVELOG_BONES_KILLER	/* Report if a ghost of a former player is 
                                * killed - Patric Mueller (15 Aug 2009) */ 
 
-#ifdef PUBLIC_SERVER
+#ifdef LIVELOGFILE
 #define LIVELOG_SHOUT
 #endif
 
