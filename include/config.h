@@ -217,10 +217,9 @@
 #define PANICLOG "paniclog"	/* log of panic and impossible events */
 #define LIVELOGFILE "livelog" /* live game progress log file */
 
+#ifdef LIVELOGFILE
 #define LIVELOG_BONES_KILLER	/* Report if a ghost of a former player is 
                                * killed - Patric Mueller (15 Aug 2009) */ 
-
-#ifdef LIVELOGFILE
 #define LIVELOG_SHOUT
 #endif
 
