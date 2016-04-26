@@ -224,11 +224,18 @@ getlock()
 			goto gotlock;
 		    }
 		} else if (c == 'y' || c == 'Y') {
-			if(eraseoldlocks())
-				goto gotlock;
-			else {
-				unlock_file_area(HLOCK_AREA, HLOCK);
-				error("Couldn't destroy old game.");
+			c = yn_function("ARE YOU SURE??? Confirm with 'j' that you really want to delete your game!", "jn", 'n');
+			if (c == 'j' || c == 'J') {
+
+				if(eraseoldlocks())
+					goto gotlock;
+				else {
+					unlock_file_area(HLOCK_AREA, HLOCK);
+					error("Couldn't destroy old game.");
+				}
+			} else {
+			unlock_file_area(HLOCK_AREA, HLOCK);
+			error("%s", "");
 			}
 		} else {
 			unlock_file_area(HLOCK_AREA, HLOCK);
