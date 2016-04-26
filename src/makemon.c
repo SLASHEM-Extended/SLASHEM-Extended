@@ -894,6 +894,13 @@ register struct monst *mtmp;
 			  mongets(mtmp, CHAIN_MAIL);
 			  break;
 
+			case PM_GERMAN_SNIPER:
+			  	w1 = SNIPER_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  mongets(mtmp, PLATE_MAIL);
+			  break;
+
 			case PM_RIFLEMAN:
 			case PM_EVASIVE_RIFLEMAN:
 			  	w1 = SHOTGUN;
@@ -7452,6 +7459,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_DIVINE_SUMMONER]) (void) mongets(mtmp, SCR_SUMMON_ELM);
 		if (ptr == &mons[PM_CELESTIAL_SUMMONER]) (void) mongets(mtmp, WAN_SUMMON_ELM);
 
+		if (ptr == &mons[PM_ABALLINO]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+		if (ptr == &mons[PM_GENERAL_ZAROFF]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+		if (ptr == &mons[PM_GENERAL_HEATHERSTONE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+
 		if (ptr == &mons[PM_STONER]) (void) mongets(mtmp, SCR_STONING);
 		if (ptr == &mons[PM_DESTROYER]) (void) mongets(mtmp, SCR_DESTROY_ARMOR);
 		if (ptr == &mons[PM_REAL_PUNISHER]) (void) mongets(mtmp, SCR_PUNISHMENT);
@@ -7602,6 +7613,8 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_IMP:
+
+		if (mtmp->data == &mons[PM_ARROGANCE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
 		if (mtmp->data == &mons[PM_ARCH_VILE]) (void) mongets(mtmp, WAN_CREATE_HORDE);
 		if (mtmp->data == &mons[PM_ANJA_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
@@ -7881,6 +7894,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_GNOMISH_SLIME_MAGE]) (void) mongets(mtmp, POT_SLIME);
 		if (mtmp->data == &mons[PM_NASTY_GRIFFIN]) (void) mongets(mtmp, SCR_MEGALOAD);
 		if (mtmp->data == &mons[PM_GNOME_ROGUE_LEADER]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (mtmp->data == &mons[PM_NAUTILUS_STEERSMAN]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (mtmp->data == &mons[PM_NAUTILUS_NEER_DO_WELL]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 
 		if (!rn2(5)) { (void)mongets(mtmp, GNOMISH_HELM); }
 		if (!rn2(10)) { (void)mongets(mtmp, GNOMISH_BOOTS); }
@@ -7999,6 +8014,7 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_FIRE_METROID]) (void) mongets(mtmp, SCR_FLOODING);
 		if(ptr == &mons[PM_CARNIVOROUS_BAG]) (void) mongets(mtmp, BAG_OF_TRICKS);
+		if(ptr == &mons[PM_TRAPPER_CART]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 
 		break;
 
@@ -8375,6 +8391,11 @@ register struct	monst	*mtmp;
 		}
 
 		if (monsndx(ptr) == PM_INCINERATOR) m_initthrow(mtmp, FRAG_GRENADE, 12);
+		if (monsndx(ptr) == PM_STEAM_POWERED_PISTOL_SENTRY) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, BULLET, 50); }
+		if (monsndx(ptr) == PM_STEAM_POWERED_RIFLE_SENTRY) { (void) mongets(mtmp, RIFLE); m_initthrow(mtmp, BULLET, 50); }
+		if (monsndx(ptr) == PM_STEAM_POWERED_SHOTGUN_SENTRY) { (void) mongets(mtmp, SHOTGUN); m_initthrow(mtmp, SHOTGUN_SHELL, 50); }
+		if (monsndx(ptr) == PM_GATLING_AUTOMATA) { (void) mongets(mtmp, HEAVY_MACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
+		if (monsndx(ptr) == PM_BOMB_CARRYING_ORNITHOPTER_AUTOMATON) m_initthrow(mtmp, FRAG_GRENADE, 20);
 
 	      if (monsndx(ptr) == PM_CLOCKWORK_AUTOMATON) {
 	        (void) mongets(mtmp, rn2(2)? BROADSWORD : SCIMITAR);
@@ -8598,6 +8619,11 @@ register struct	monst	*mtmp;
 	    case S_ANGEL:
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
+		}
+
+		if (monsndx(ptr) == PM_MARTIAN_MISSILE_WALKER) {
+			(void) mongets(mtmp,ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 10);
 		}
 
 		if (mtmp->data == &mons[PM_VICTORIA_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
@@ -15532,6 +15558,9 @@ int type;
 		case PM_CLANKING_CHAINS: return 120;
 		case PM_SPOOKY_PORTRAIT: return 150;
 		case PM_HAUNTED_TEAPOT: return 200;
+		case PM_ANIMATED_HOURGLASS: return 225;
+		case PM_GRINDER: return 300;
+		case PM_MORBID_MIRROR: return 310;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
@@ -15653,6 +15682,8 @@ int type;
 		case PM_FINNISH_EXPLORER: return 400;
 		case PM_ARCTIC_WONDERER: return 400;
 		case PM_FRANKENSTEIN_S_MONSTER: return 400;
+		case PM_M_LING__MONTGOMERY_S_ATTENDANT: return 400;
+		case PM_PINOCCHIO: return 400;
 		case PM_GOLEM: return 400;
 		case PM_BLOODY_BEAUTIES: return 500;
 		case PM_KASTORTRANSPORT: return 500;
