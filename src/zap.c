@@ -1384,8 +1384,8 @@ register struct obj *obj;
 		/* case RIN_PROTECTION:  not needed */
 	}
 	if (objects[obj->otyp].oc_magic
-	    || (obj->spe && (obj->oclass == ARMOR_CLASS ||
-			     obj->oclass == WEAPON_CLASS || is_weptool(obj)))
+	    || (obj->spe && (obj->oclass == ARMOR_CLASS || obj->oclass == GEM_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == BALL_CLASS ||
+			     obj->oclass == WEAPON_CLASS || obj->oclass == TOOL_CLASS || is_weptool(obj)))
 	    || obj->otyp == POT_ACID || obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON) {
 	    if (obj->spe != ((obj->oclass == WAND_CLASS) ? -1 : 0) &&
 	       obj->otyp != WAN_CANCELLATION &&
