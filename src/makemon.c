@@ -15392,7 +15392,18 @@ struct monst *mtmp, *victim;
 	    max_increase = rnd((int)victim->m_lev + 1);
 	    if (mtmp->mhpmax + max_increase > hp_threshold + 1)
 		max_increase = max((hp_threshold + 1) - mtmp->mhpmax, 0);
+		if (max_increase > 1) max_increase = rnd(max_increase); /* nerf by Amy, since it was going way too fast */
+		if (mtmp->m_lev > 14) {
+		if (rnd(mtmp->m_lev) > 14) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 24) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 34) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 39) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 43) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 46) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 48) max_increase = 0;
+		}
 	    cur_increase = (max_increase > 1) ? rn2(max_increase) : 0;
+
 	} else {
 	    /* a gain level potion or wraith corpse; always go up a level
 	       unless already at maximum (49 is hard upper limit except
