@@ -151,12 +151,12 @@ use_saddle(otmp)
 	    chance -= 20;
 	/*else */if (uarmg &&
 		(s = OBJ_DESCR(objects[uarmg->otyp])) != (char *)0 &&
-		!strncmp(s, "riding ", 7))
+		( !strcmp(s, "riding gloves") || !strcmp(s, "yezda perchatki") || !strcmp(s, "kopgina qo'lqop") ) )
 	    /* Bonus for wearing "riding" (but not fumbling) gloves */
 	    chance += 10;
 	/*else */if (uarmf &&
 		(s = OBJ_DESCR(objects[uarmf->otyp])) != (char *)0 &&
-		!strncmp(s, "riding ", 7))
+		( !strcmp(s, "riding boots") || !strcmp(s, "sapogi dlya verkhovoy yezdy") || !strcmp(s, "kopgina chizilmasin") ) )
 	    /* ... or for "riding boots" */
 	    chance += 10; /* Amy edit: allowed those bonuses to stack. */
 	if (otmp->cursed)

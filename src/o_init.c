@@ -391,9 +391,14 @@ find_skates()
     register int i;
     register const char *s;
 
-    for (i = SPEED_BOOTS; i <= LEVITATION_BOOTS; i++)
+    for (i = SPEED_BOOTS; i <= LEVITATION_BOOTS; i++) {
 	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "snow boots"))
 	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zimniye sapogi"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "qor chizilmasin"))
+	    return i;
+    }
 
     impossible("snow boots not found?");
     return -1;	/* not 0, or caller would try again each move */
