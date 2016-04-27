@@ -7461,6 +7461,7 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_ABALLINO]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_GENERAL_ZAROFF]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+		if (ptr == &mons[PM_JACK_THE_RIPPER]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_GENERAL_HEATHERSTONE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
 		if (ptr == &mons[PM_STONER]) (void) mongets(mtmp, SCR_STONING);
@@ -8010,6 +8011,16 @@ register struct	monst	*mtmp;
 
 		break;
 
+	    case S_KOP:
+
+		if (ptr == &mons[PM_NAZI_ROCKETEER]) {
+			 (void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 25);
+		}
+
+
+		break;
+
 	    case S_TRAPPER:
 
 		if (mtmp->data == &mons[PM_FIRE_METROID]) (void) mongets(mtmp, SCR_FLOODING);
@@ -8394,7 +8405,11 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_STEAM_POWERED_PISTOL_SENTRY) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, BULLET, 50); }
 		if (monsndx(ptr) == PM_STEAM_POWERED_RIFLE_SENTRY) { (void) mongets(mtmp, RIFLE); m_initthrow(mtmp, BULLET, 50); }
 		if (monsndx(ptr) == PM_STEAM_POWERED_SHOTGUN_SENTRY) { (void) mongets(mtmp, SHOTGUN); m_initthrow(mtmp, SHOTGUN_SHELL, 50); }
+		if (monsndx(ptr) == PM_STEAM_POWERED_ROCKET_SENTRY) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 50); }
+		if (monsndx(ptr) == PM_STEAM_POWERED_MISSILE_SENTRY) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 50); m_initthrow(mtmp, FRAG_GRENADE, 50); }
+		if (monsndx(ptr) == PM_NAZI_PANTHER_TANK) { (void) mongets(mtmp, HEAVY_MACHINE_GUN); (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
 		if (monsndx(ptr) == PM_GATLING_AUTOMATA) { (void) mongets(mtmp, HEAVY_MACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
+		if (monsndx(ptr) == PM_MOBILE_REPLICATING_MACHINE_GUN_AUTOMATA_TYPE_IX) { (void) mongets(mtmp, HEAVY_MACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
 		if (monsndx(ptr) == PM_BOMB_CARRYING_ORNITHOPTER_AUTOMATON) m_initthrow(mtmp, FRAG_GRENADE, 20);
 
 	      if (monsndx(ptr) == PM_CLOCKWORK_AUTOMATON) {
@@ -8499,6 +8514,14 @@ register struct	monst	*mtmp;
 		for (i = STRANGE_OBJECT; i < NUM_OBJECTS; i++) {
 			register const char *zn;
 			if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "opera cloak")) {
+				if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
+				break;
+			}
+			if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "nakidka")) {
+				if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
+				break;
+			}
+			if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "operasi plash")) {
 				if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
 				break;
 			}
@@ -15369,7 +15392,18 @@ struct monst *mtmp, *victim;
 	    max_increase = rnd((int)victim->m_lev + 1);
 	    if (mtmp->mhpmax + max_increase > hp_threshold + 1)
 		max_increase = max((hp_threshold + 1) - mtmp->mhpmax, 0);
+		if (max_increase > 1) max_increase = rnd(max_increase); /* nerf by Amy, since it was going way too fast */
+		if (mtmp->m_lev > 14) {
+		if (rnd(mtmp->m_lev) > 14) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 24) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 34) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 39) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 43) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 46) max_increase = 0;
+		if (rnd(mtmp->m_lev) > 48) max_increase = 0;
+		}
 	    cur_increase = (max_increase > 1) ? rn2(max_increase) : 0;
+
 	} else {
 	    /* a gain level potion or wraith corpse; always go up a level
 	       unless already at maximum (49 is hard upper limit except
