@@ -224,6 +224,17 @@ getlock()
 			goto gotlock;
 		    } else {
 			unlock_file_area(HLOCK_AREA, HLOCK);
+
+			if (iflags.window_inited) {
+			    pline("Recovery failed. On a public server this may be caused by disconnects, in which case you may need to wait some minutes until file lock is cleared. Terminating now. Please contact Amy or Elronnd if the problem persists.");
+			} else {
+			    (void) printf("\nRecovery failed. On a public server this may be caused by disconnects,");
+			    (void) printf("\nin which case you may need to wait some minutes until file lock is cleared.");
+			    (void) printf("\nTerminating now. Please contact Amy or Elronnd if the problem persists.");
+			    (void) fflush(stdout);
+			    c = getchar();
+			}
+
 			error("Recovery failed. Terminating now. Contact Amy or Elronnd if the problem persists.");
 		    }
 		} else if (c == 'y' || c == 'Y') {
