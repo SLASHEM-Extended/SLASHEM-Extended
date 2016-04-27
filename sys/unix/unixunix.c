@@ -224,7 +224,23 @@ getlock()
 			goto gotlock;
 		    }
 		} else if (c == 'y' || c == 'Y') {
-			c = yn_function("ARE YOU SURE??? Confirm with 'j' that you really want to delete your game!", "jn", 'n');
+
+			if(iflags.window_inited) {
+				c = yn_function("ARE YOU SURE??? Confirm with 'j' that you really want to delete your game!", "jn", 'n');
+			} else {
+			    (void) printf("\nARE YOU SURE??? Hit 'j' to confirm that you really want to delete your game!\n");
+			    (void) printf("\n  j - Really delete your game (THIS IS PERMANENT)");
+			    (void) printf("\n  n - Cancel");
+			    (void) printf("\n  ");
+			    (void) printf("\n\n  => ");
+			    (void) fflush(stdout);
+			    do {
+				c = getchar();
+			    } while (!index("jJnN", c) && c != -1);
+			    (void) printf("\e[7A"); /* cursor up 7 */
+			    (void) printf("\e[J"); /* clear from cursor down */
+
+			}
 			if (c == 'j' || c == 'J') {
 
 				if(eraseoldlocks())
