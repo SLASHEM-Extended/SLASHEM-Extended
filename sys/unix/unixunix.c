@@ -222,6 +222,9 @@ getlock()
 			    c = getchar();
 			}
 			goto gotlock;
+		    } else {
+			unlock_file_area(HLOCK_AREA, HLOCK);
+			error("Recovery failed. Terminating now. Contact Amy or Elronnd if the problem persists.");
 		    }
 		} else if (c == 'y' || c == 'Y') {
 
