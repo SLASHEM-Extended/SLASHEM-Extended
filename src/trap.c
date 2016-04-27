@@ -3779,7 +3779,7 @@ newegomon:
 		}
 		if (!Passes_walls)
 		    u.utrap = rn1(6,2);
-		    if (ttype == SHIT_PIT) u.utrap += rnd(7);
+		    if (ttype == SHIT_PIT) u.utrap += rnd(rnd(6) );
 		    if (ttype == GIANT_CHASM) u.utrap += rnd(75);
 		u.utraptype = TT_PIT;
 #ifdef STEED
@@ -9552,6 +9552,13 @@ struct obj *box;        /* at the moment only for floor traps */
 		if (!uarmf) {
 			pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
 			num *= 2;
+		}
+
+		if (uarmf ? !rn2(20) : !rn2(15)) {
+			HFumbling = FROMOUTSIDE | rnd(5);
+			incr_itimeout(&HFumbling, rnd(2));
+			u.fumbleduration += rnz(uarmf ? 30 : 20);
+
 		}
 
 		if (!rn2(20)) u_slow_down();

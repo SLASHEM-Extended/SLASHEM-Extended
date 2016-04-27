@@ -1770,6 +1770,13 @@ domove()
 					num *= 2;
 				}
 
+				if (uarmf ? !rn2(20) : !rn2(15)) {
+					HFumbling = FROMOUTSIDE | rnd(5);
+					incr_itimeout(&HFumbling, rnd(2));
+					u.fumbleduration += rnz(uarmf ? 30 : 20);
+
+				}
+
 				if (!rn2(20)) u_slow_down();
 
 				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
