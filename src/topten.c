@@ -71,7 +71,6 @@ STATIC_DCL void FDECL(readentry, (FILE *,struct toptenentry *));
 STATIC_DCL void FDECL(writeentry, (FILE *,struct toptenentry *));
 STATIC_DCL void FDECL(free_ttlist, (struct toptenentry *));
 #ifdef XLOGFILE
-STATIC_DCL void FDECL(munge_xlstring, (char *dest, char *src, int n));
 STATIC_DCL void FDECL(write_xlentry, (FILE *,struct toptenentry *));
 #endif
 STATIC_DCL int FDECL(classmon, (char *,BOOLEAN_P));
@@ -319,30 +318,8 @@ struct toptenentry *tt;
 }
 
 #ifdef XLOGFILE
-#define SEP ":"
-#define SEPC ':'
-
-/* copy a maximum of n-1 characters from src to dest, changing ':' and '\n'
- * to '_'; always null-terminate. */
-STATIC_OVL void
-munge_xlstring(dest, src, n)
-char *dest;
-char *src;
-int n;
-{
-  int i;
-
-  for(i = 0; i < (n - 1) && src[i] != '\0'; i++) {
-    if(src[i] == SEPC || src[i] == '\n')
-      dest[i] = '_';
-    else
-      dest[i] = src[i];
-  }
-
-  dest[i] = '\0';
-
-  return;
-}
+/* Use \t instead of ":" so that we don't have to mangle anything else (3.6.0)*/
+#define XLOG_SEP "\t"
 
 STATIC_OVL void
 write_xlentry(rfile,tt)
@@ -355,66 +332,64 @@ struct toptenentry *tt;
   /* Log all of the data found in the regular logfile */
   (void)fprintf(rfile,
                 "version=slex-%d.%d.%d"
-                SEP "points=%ld"
-                SEP "deathdnum=%d"
-                SEP "deathlev=%d"
-                SEP "maxlvl=%d"
-                SEP "hp=%d"
-                SEP "maxhp=%d"
-                SEP "deaths=%d"
-                SEP "deathdate=%d"
-                SEP "birthdate=%d"
-                SEP "uid=%d",
+                XLOG_SEP "points=%ld"
+                XLOG_SEP "deathdnum=%d"
+                XLOG_SEP "deathlev=%d"
+                XLOG_SEP "maxlvl=%d"
+                XLOG_SEP "hp=%d"
+                XLOG_SEP "maxhp=%d"
+                XLOG_SEP "deaths=%d"
+                XLOG_SEP "deathdate=%d"
+                XLOG_SEP "birthdate=%d"
+                XLOG_SEP "uid=%d",
                 tt->ver_major, tt->ver_minor, tt->patchlevel,
                 tt->points, tt->deathdnum, tt->deathlev,
                 tt->maxlvl, tt->hp, tt->maxhp, tt->deaths,
                 tt->deathdate, tt->birthdate, tt->uid);
 
   (void)fprintf(rfile,
-                SEP "role=%s"
-                SEP "race=%s"
-                SEP "gender=%s"
-                SEP "align=%s",
+                XLOG_SEP "role=%s"
+                XLOG_SEP "race=%s"
+                XLOG_SEP "gender=%s"
+                XLOG_SEP "align=%s",
                 tt->plrole, tt->plrace, tt->plgend, tt->plalign);
    
-  (void)fprintf(rfile, SEP "hybrid=%s", hybrid_strcode());
+  (void)fprintf(rfile, XLOG_SEP "hybrid=%s", hybrid_strcode());
 
-   munge_xlstring(buf, plname, DTHSZ + 1);
-  (void)fprintf(rfile, SEP "name=%s", buf);
+  (void)fprintf(rfile, XLOG_SEP "name=%s", buf);
 
-   munge_xlstring(buf, tt->death, DTHSZ + 1);
-  (void)fprintf(rfile, SEP "death=%s", buf);
+  (void)fprintf(rfile, XLOG_SEP "death=%s", buf);
 
 #ifdef RECORD_CONDUCT
-  (void)fprintf(rfile, SEP "conduct=0x%lx", 0x1fffL & ~encodeconduct());
+  (void)fprintf(rfile, XLOG_SEP "conduct=0x%lx", 0x1fffL & ~encodeconduct());
 #endif
 
 #ifdef RECORD_TURNS
-  (void)fprintf(rfile, SEP "turns=%ld", moves);
+  (void)fprintf(rfile, XLOG_SEP "turns=%ld", moves);
 #endif
 
 #ifdef RECORD_ACHIEVE
-  (void)fprintf(rfile, SEP "achieve=0x%lx", encodeachieve());
+  (void)fprintf(rfile, XLOG_SEP "achieve=0x%lx", encodeachieve());
 #endif
 
 #ifdef RECORD_REALTIME
-  (void)fprintf(rfile, SEP "realtime=%ld", (long)realtime_data.realtime);
+  (void)fprintf(rfile, XLOG_SEP "realtime=%ld", (long)realtime_data.realtime);
 #endif
 
 #ifdef RECORD_START_END_TIME
-  (void)fprintf(rfile, SEP "starttime=%ld", (long)u.ubirthday);
-  (void)fprintf(rfile, SEP "endtime=%ld", (long)deathtime);
+  (void)fprintf(rfile, XLOG_SEP "starttime=%ld", (long)u.ubirthday);
+  (void)fprintf(rfile, XLOG_SEP "endtime=%ld", (long)deathtime);
 #endif
 
 #ifdef RECORD_GENDER0
-  (void)fprintf(rfile, SEP "gender0=%s", genders[flags.initgend].filecode);
+  (void)fprintf(rfile, XLOG_SEP "gender0=%s", genders[flags.initgend].filecode);
 #endif
 
 #ifdef RECORD_ALIGN0
-  (void)fprintf(rfile, SEP "align0=%s", 
+  (void)fprintf(rfile, XLOG_SEP "align0=%s", 
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
-  (void)fprintf(rfile, SEP "modes="); 
+  (void)fprintf(rfile, XLOG_SEP "modes="); 
   (void)fprintf(rfile, (wizard ? "wizard" : 
                         discover ? "explore" : 
                         "normal")); 
@@ -438,8 +413,8 @@ struct toptenentry *tt;
 
 }
 
-#undef SEP
-#undef SEPC
+#undef XLOG_SEP
+#undef XLOG_SEPC
 #endif /* XLOGFILE */
 
 STATIC_OVL void
