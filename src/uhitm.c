@@ -5979,7 +5979,7 @@ struct attack *mattk;		/* null means we find one internally */
 	if (obj && carried(obj)) update_inventory();
 }
 
-difeasemu(mon)
+int difeasemu(mon)
 struct permonst *mon;
 {
 	if (Sick_resistance) {

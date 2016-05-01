@@ -1175,6 +1175,7 @@ insidemon()
 
 struct permonst *
 colormon(color)
+int color;
 {
 
 	register struct permonst *ptr;
@@ -1197,6 +1198,7 @@ colormon(color)
 
 struct permonst *
 specialtensmon(type)
+int type;
 {
 
 	register struct permonst *ptr;

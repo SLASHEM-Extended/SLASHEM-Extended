@@ -1771,7 +1771,6 @@ random_banish_level()
 }
 
 
-
 /* you teleport a monster (via wand, spell, or poly'd q.mechanic attack);
    return false iff the attempt fails */
 boolean
@@ -1828,7 +1827,6 @@ boolean give_feedback;
 	}
 	return TRUE;
 }
-/*teleport.c*/
 
 boolean
 u_teleport_monB(mtmp, give_feedback)
@@ -1854,7 +1852,6 @@ boolean give_feedback;
 
 	return TRUE;
 }
-/*teleport.c*/
 
 /* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy */
 void
@@ -1902,3 +1899,5 @@ newtry:
 		doredraw();
 		return;
 }
+
+/*teleport.c*/
