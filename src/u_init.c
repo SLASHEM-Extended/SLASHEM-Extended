@@ -15649,7 +15649,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonb->mcolor = rnd(15);
@@ -15662,7 +15662,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonc->mcolor = rnd(15);
@@ -15675,7 +15675,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragond->mcolor = rnd(15);
@@ -15688,7 +15688,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragone->mcolor = rnd(15);
@@ -15700,7 +15700,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonf->mcolor = rnd(15);
@@ -15712,7 +15712,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragong->mcolor = rnd(15);
@@ -15724,7 +15724,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonh->mcolor = rnd(15);
@@ -15736,7 +15736,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragoni->mcolor = rnd(15);
@@ -15748,7 +15748,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonj->mcolor = rnd(15);
@@ -15760,7 +15760,7 @@ u_init()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonk->mcolor = rnd(15);
@@ -25231,7 +25231,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonb->mcolor = rnd(15);
@@ -25244,7 +25244,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonc->mcolor = rnd(15);
@@ -25257,7 +25257,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragond->mcolor = rnd(15);
@@ -25270,7 +25270,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragone->mcolor = rnd(15);
@@ -25282,7 +25282,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonf->mcolor = rnd(15);
@@ -25294,7 +25294,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragong->mcolor = rnd(15);
@@ -25306,7 +25306,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonh->mcolor = rnd(15);
@@ -25318,7 +25318,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragoni->mcolor = rnd(15);
@@ -25330,7 +25330,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonj->mcolor = rnd(15);
@@ -25342,7 +25342,7 @@ alter_reality()
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
-			attkptr->adtyp = rnd(9);
+			attkptr->adtyp = rnd(10);
 		}
 
 		randomdragonk->mcolor = rnd(15);
