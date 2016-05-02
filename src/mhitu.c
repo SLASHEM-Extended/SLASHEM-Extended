@@ -6256,7 +6256,7 @@ do_stone2:
 						(void) mpickobj(mtmp,optr,FALSE);
 					}
 					if(!rn2(6) && uarmg && !uwep){
-						You_feel("%a pull on your gloves!");
+						You_feel("a pull on your gloves!");
 						if( rnd(40) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
