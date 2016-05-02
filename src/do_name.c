@@ -1643,7 +1643,7 @@ static const char * const bogusmons[] = {
 "Big Bird",
 "Big, Round, kind of greyish Golem",
 "Bill Gates",
-"Bill O’Reilly",
+"Bill O'Reilly",
 "Björk",
 "Black Cat",
 "Black Knight (with limbs)",
