@@ -14447,6 +14447,10 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
+	if (u.uprops[GHOST_WORLD].extrinsic || GhostWorld || have_ghostlystone() ) {
+		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
+	}
+
 	if (mtmp->data->mlet == u.alwaysinvisible) mtmp->minvis = mtmp->perminvis = 1;
 
 	if (!rn2(!(u.monstertimefinish % 13334) ? 3 : !(u.monstertimefinish % 1334) ? 10 : !(u.monstertimefinish % 134) ? 30 : 100) && mtmp->minvis) mtmp->minvisreal = TRUE;

@@ -5601,6 +5601,11 @@ int rolenum, racenum, gendnum, pickhow;
 void
 recursioneffect()
 {
+	u.temprecursion = 0;
+	u.temprecursiontime = 0;
+	u.oldrecursionrole = -1;
+	u.oldrecursionrace = -1;
+
 	if (!rn2(4)) {
 
 	flags.initrole = randrole();
@@ -5626,6 +5631,47 @@ recursioneffect()
 
 	pline("You suddenly feel like your genes got exchanged!");
 	pline("You're a %s now!", urace.noun);
+
+	}
+}
+
+void
+temprecursioneffect()
+{
+	u.temprecursiontime = rnz(2500 + rnd(5000));
+	u.temprecursion = 1;
+
+	if (!rn2(4)) {
+
+		u.oldrecursionrole = flags.initrole;
+		u.oldrecursionrace = flags.initrace;
+		flags.initrole = randrole();
+		flags.initrace = randrace(flags.initrole);
+		urole = roles[flags.initrole];
+		urace = races[flags.initrace];
+
+		pline("You temporarily feel like someone else!");
+		pline("You're temporarily a %s %s now!", urace.noun, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+	} else if (!rn2(2)) {
+
+		u.oldrecursionrole = flags.initrole;
+		u.oldrecursionrace = -1;
+		flags.initrole = randrole();
+		urole = roles[flags.initrole];
+
+		pline("You suddenly feel like trying another profession for a while!");
+		pline("You're temporarily a %s now!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+	} else {
+
+		u.oldrecursionrace = flags.initrace;
+		u.oldrecursionrole = -1;
+		flags.initrace = randrace(flags.initrole);
+		urace = races[flags.initrace];
+
+		pline("You suddenly feel a genetic injection!");
+		pline("You're temporarily a %s now!", urace.noun);
 
 	}
 }

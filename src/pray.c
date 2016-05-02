@@ -1255,9 +1255,37 @@ water_prayer(bless_water)
 	      ((other || changed > 1L) ? "s" : ""), (changed > 1L ? "" : "s"),
 	      (bless_water ? hcolor(NH_LIGHT_BLUE) : hcolor(NH_BLACK)));
     }
-		if /*!*/ (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {levl[u.ux][u.uy].typ = ROOM;
-		pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
-		newsym(u.ux,u.uy);}
+
+		if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
+
+			if (!rn2(5)) badeffect();
+			if (!rn2(3)) (void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(5)) (void) makemon(mkclass(S_MIMIC,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_XAN,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_MUMMY,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_GOLEM,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_GRUE,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(10)) (void) makemon(mkclass(S_RUBMONST,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(15)) (void) makemon(mkclass(S_NYMPH,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
+			if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
+
+		}
+
+		if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+			levl[u.ux][u.uy].typ = ROOM;
+			pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
+			newsym(u.ux,u.uy);
+		} else if (!rn2(10) && (!Is_astralevel(&u.uz)) && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) ) {
+			levl[u.ux][u.uy].typ = ROOM;
+			pline_The("altar suddenly vanishes!");
+			newsym(u.ux,u.uy);
+		}
 
     return((boolean)(changed > 0L));
 }
@@ -1872,9 +1900,36 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
 	consume_offering(otmp);
 
-	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {levl[u.ux][u.uy].typ = ROOM;
-	pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
-	newsym(u.ux,u.uy);}
+	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
+
+		if (!rn2(5)) badeffect();
+		if (!rn2(3)) (void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(5)) (void) makemon(mkclass(S_MIMIC,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_XAN,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_MUMMY,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_GOLEM,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_GRUE,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(10)) (void) makemon(mkclass(S_RUBMONST,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(15)) (void) makemon(mkclass(S_NYMPH,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
+		if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
+
+	}
+
+	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+		levl[u.ux][u.uy].typ = ROOM;
+		pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
+		newsym(u.ux,u.uy);
+	} else if (!rn2(10) && (!Is_astralevel(&u.uz)) && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) ) {
+		levl[u.ux][u.uy].typ = ROOM;
+		pline_The("altar suddenly vanishes!");
+		newsym(u.ux,u.uy);
+	}
 
 	if (Role_if(PM_POLITICIAN) && !rn2(5)) {
 

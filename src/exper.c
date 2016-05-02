@@ -269,6 +269,8 @@ void
 more_experienced(exp, rexp)
 	register int exp, rexp;
 {
+	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() ) return;
+
 	u.uexp += exp;
 	u.urexp += 4*exp + rexp;
 	if(exp || flags.showscore) flags.botl = 1;

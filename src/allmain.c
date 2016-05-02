@@ -878,7 +878,7 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* ents are very slow too --Amy */
 			}
-			if (Role_if(PM_TRANSSYLVANIAN) && (moveamt > 1) && (!uarmf || (uarmf && uarmf->otyp != WEDGE_SANDALS && uarmf->otyp != FEMININE_PUMPS && uarmf->otyp != LEATHER_PEEP_TOES && uarmf->otyp != HIPPIE_HEELS && uarmf->otyp != COMBAT_STILETTOS && uarmf->otyp != SENTIENT_HIGH_HEELED_SHOES && uarmf->otyp != ATSUZOKO_BOOTS) ) ) {
+			if (Role_if(PM_TRANSSYLVANIAN) && (moveamt > 1) && (!PlayerInHighHeels) ) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* transsylvanian has to wear heels at all times --Amy */
 			}
@@ -1067,6 +1067,11 @@ moveloop()
 					 if (rn2(2)) poisoned("spores", A_STR, "fumarole spores", 30);
 			       }
 
+			}
+
+			if (ttmp && ttmp->ttyp == VENTILATOR && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
+				if (!rn2(3)) pline("Air currents blow in your %s!", body_part(FACE));
+				pushplayer();
 			}
 
 			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(50)) {
@@ -1650,7 +1655,45 @@ moveloop()
 
 		}
 
-		if ((u.uhave.amulet || Clairvoyant) &&
+		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
+			if (u.dehydrationtime < 1) u.dehydrationtime = moves + 1001;
+			if ((u.dehydrationtime - moves) == 100) pline("You are beginning to feel thirsty.");
+			if ((u.dehydrationtime - moves) == 0) pline("You are dehydrated, your vision begins to blur...");
+		} else {
+			u.dehydrationtime = 0;
+		}
+
+		if ((u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
+			pline("You suddenly have to take a shit!");
+			int crapduration = 5;
+			if (uarm && objects[uarm->otyp].oc_delay) {
+				pline("Taking off your armor is going to take a while...");
+				crapduration += objects[uarm->otyp].oc_delay;
+			}
+			if (uarmc && objects[uarmc->otyp].oc_delay) {
+				pline("You need to remove your cloak...");
+				crapduration += objects[uarmc->otyp].oc_delay;
+			}
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			if (u.uhs == 0) morehungry(rn2(400)+200);
+			nomovemsg = "You are done shitting.";
+			nomul(-crapduration, "while taking a shit");
+
+			if (!rn2(5)) {
+				pline("You did not watch out, and stepped into your own shit.");
+			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+				HFumbling = FROMOUTSIDE | rnd(5);
+				incr_itimeout(&HFumbling, rnd(2));
+				u.fumbleduration += rnz(30);
+				if (!uarmf) losehp(rnd(u.ulevel * 5), "diarrhea", KILLED_BY);
+			}
+		}
+
+		if (( (u.uhave.amulet && !rn2(5)) || Clairvoyant) &&
 		    !In_endgame(&u.uz) && !BClairvoyant &&
 		    !(moves % 15) && !rn2(2))
 			do_vicinity_map();
@@ -2799,6 +2842,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_TIME].oc_name = "vremya";
 	obj_descr[SPE_PSYBEAM].oc_name = "psikho luch";
 	obj_descr[SPE_HYPER_BEAM].oc_name = "giper luch";
+	obj_descr[SPE_FIRE_BOLT].oc_name = "ogon' snaryadom";
 
 	{
 
@@ -3142,6 +3186,36 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow gloves")) OBJ_DESCR(objects[i]) = "zheltyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy boots")) OBJ_DESCR(objects[i]) = "flis sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "space helmet")) OBJ_DESCR(objects[i]) = "kosmicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "godless cloak")) OBJ_DESCR(objects[i]) = "bezbozhnaya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "guzzle helmet")) OBJ_DESCR(objects[i]) = "shlem obzhora";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ghostly cloak")) OBJ_DESCR(objects[i]) = "prizrachnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "water-pipe helmet")) OBJ_DESCR(objects[i]) = "shlem kal'yannym";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "thick-soled boots")) OBJ_DESCR(objects[i]) = "tolstoy podoshve sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mechanical helmet")) OBJ_DESCR(objects[i]) = "mekhanicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wafer-thin cloak")) OBJ_DESCR(objects[i]) = "tonchayshaya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polnish gloves")) OBJ_DESCR(objects[i]) = "pol'skiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clunky heels")) OBJ_DESCR(objects[i]) = "neuklyuzhiye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge boots")) OBJ_DESCR(objects[i]) = "klin sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "translucent helmet")) OBJ_DESCR(objects[i]) = "poluprozrachnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "faded mittens")) OBJ_DESCR(objects[i]) = "vytsvetshiye varezhki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "jarring cloak")) OBJ_DESCR(objects[i]) = "sotryaseniye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "politician cloak")) OBJ_DESCR(objects[i]) = "politik plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteoric helmet")) OBJ_DESCR(objects[i]) = "meteoricheskoye shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hugging boots")) OBJ_DESCR(objects[i]) = "obnimat'sya sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "void cloak")) OBJ_DESCR(objects[i]) = "nedeystvitel'nym plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anachorononononaut helmet")) OBJ_DESCR(objects[i]) = "anakhronizmom shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fin boots")) OBJ_DESCR(objects[i]) = "plavnik sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "straitjacket cloak")) OBJ_DESCR(objects[i]) = "smiritel'naya rubashka plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "angelic cloak")) OBJ_DESCR(objects[i]) = "angel'skoye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "full helmet")) OBJ_DESCR(objects[i]) = "polnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "evil cloak")) OBJ_DESCR(objects[i]) = "zlo plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "winter stilettos")) OBJ_DESCR(objects[i]) = "zima stilety";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "aluminium helmet")) OBJ_DESCR(objects[i]) = "shlem iz alyuminiya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demonic cloak")) OBJ_DESCR(objects[i]) = "demonicheskaya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anti-government helmet")) OBJ_DESCR(objects[i]) = "antipravitel'stvennaya shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clumsy gloves")) OBJ_DESCR(objects[i]) = "neuklyuzhiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle boots")) OBJ_DESCR(objects[i]) = "botil'ony";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frequent helmet")) OBJ_DESCR(objects[i]) = "chastyy shlem";
 
 	}
 	}
@@ -3274,6 +3348,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_TIME].oc_name = "vaqt";
 	obj_descr[SPE_PSYBEAM].oc_name = "psixologik nur";
 	obj_descr[SPE_HYPER_BEAM].oc_name = "hiper ish nur";
+	obj_descr[SPE_FIRE_BOLT].oc_name = "yong'in mermilerinin";
 
 	{
 
@@ -3617,6 +3692,37 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow gloves")) OBJ_DESCR(objects[i]) = "sariq qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy boots")) OBJ_DESCR(objects[i]) = "tozalamoq chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "space helmet")) OBJ_DESCR(objects[i]) = "kosmik dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "godless cloak")) OBJ_DESCR(objects[i]) = "xudosiz plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "guzzle helmet")) OBJ_DESCR(objects[i]) = "zarbdan ko'p yemoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ghostly cloak")) OBJ_DESCR(objects[i]) = "diniy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "water-pipe helmet")) OBJ_DESCR(objects[i]) = "suv-quvur dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "thick-soled boots")) OBJ_DESCR(objects[i]) = "qalin-asoslangan chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mechanical helmet")) OBJ_DESCR(objects[i]) = "mexanik dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wafer-thin cloak")) OBJ_DESCR(objects[i]) = "juda ham yupqa plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polnish gloves")) OBJ_DESCR(objects[i]) = "polsha qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clunky heels")) OBJ_DESCR(objects[i]) = "qisqa ko'chirish to'piqlarni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge boots")) OBJ_DESCR(objects[i]) = "xanjar chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "translucent helmet")) OBJ_DESCR(objects[i]) = "shaffof dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "faded mittens")) OBJ_DESCR(objects[i]) = "so'nib sportchisi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "jarring cloak")) OBJ_DESCR(objects[i]) = "g'azablantiradigan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "politician cloak")) OBJ_DESCR(objects[i]) = "siyosatchi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteoric helmet")) OBJ_DESCR(objects[i]) = "meteorik dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hugging boots")) OBJ_DESCR(objects[i]) = "havola etdi chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "void cloak")) OBJ_DESCR(objects[i]) = "haqiqiy emas plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anachorononononaut helmet")) OBJ_DESCR(objects[i]) = "eskilik sarqiti dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fin boots")) OBJ_DESCR(objects[i]) = "kanatcik chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "straitjacket cloak")) OBJ_DESCR(objects[i]) = "tor kamzul plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "angelic cloak")) OBJ_DESCR(objects[i]) = "farishtalarning plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "full helmet")) OBJ_DESCR(objects[i]) = "bilan to'la dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "evil cloak")) OBJ_DESCR(objects[i]) = "ham yomon plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "winter stilettos")) OBJ_DESCR(objects[i]) = "qish sandal chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "aluminium helmet")) OBJ_DESCR(objects[i]) = "alyuminiy dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demonic cloak")) OBJ_DESCR(objects[i]) = "jinlarning plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anti-government helmet")) OBJ_DESCR(objects[i]) = "aksil-hukumat dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clumsy gloves")) OBJ_DESCR(objects[i]) = "qo'pol qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle boots")) OBJ_DESCR(objects[i]) = "bilagi zo'r chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frequent helmet")) OBJ_DESCR(objects[i]) = "tez-tez zarbdan";
+
 
 	}
 	}

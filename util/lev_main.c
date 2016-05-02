@@ -348,6 +348,28 @@ static struct {
 	{ "weak sight",	WEAK_SIGHT_TRAP },
 	{ "random message",	RANDOM_MESSAGE_TRAP },
 
+	{ "desecration",	DESECRATION_TRAP },
+	{ "starvation",	STARVATION_TRAP },
+	{ "dropless",	DROPLESS_TRAP },
+	{ "low effect",	LOW_EFFECT_TRAP },
+	{ "invis",	INVISIBLE_TRAP },
+	{ "ghost world",	GHOST_WORLD_TRAP },
+	{ "dehydration",	DEHYDRATION_TRAP },
+	{ "hate",	HATE_TRAP },
+	{ "spacewars",	SPACEWARS_TRAP },
+	{ "temporary recursion",	TEMPORARY_RECURSION_TRAP },
+	{ "totter",	TOTTER_TRAP },
+	{ "nonintrinsic",	NONINTRINSICAL_TRAP },
+	{ "dropcurse",	DROPCURSE_TRAP },
+	{ "nakedness",	NAKEDNESS_TRAP },
+	{ "antilevel",	ANTILEVEL_TRAP },
+	{ "ventilator",	VENTILATOR },
+	{ "stealer",	STEALER_TRAP },
+	{ "rebellion",	REBELLION_TRAP },
+	{ "crap",	CRAP_TRAP },
+	{ "misfire",	MISFIRE_TRAP },
+	{ "walls",	TRAP_OF_WALLS },
+
 	{ "trap percents", TRAP_PERCENTS },
 	{ 0, 0 }
 };

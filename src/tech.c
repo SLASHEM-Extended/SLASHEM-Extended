@@ -2567,7 +2567,7 @@ int tech_no;
 			return 0;
 		}
 
-		if (!uarmf || (uarmf && uarmf->otyp != WEDGE_SANDALS && uarmf->otyp != FEMININE_PUMPS && uarmf->otyp != LEATHER_PEEP_TOES && uarmf->otyp != COMBAT_STILETTOS && uarmf->otyp != SENTIENT_HIGH_HEELED_SHOES && uarmf->otyp != HIPPIE_HEELS) ) {
+		if (!PlayerInHighHeels) {
 		    pline("You must be wearing high heels for that.");
 			return 0;
 		}

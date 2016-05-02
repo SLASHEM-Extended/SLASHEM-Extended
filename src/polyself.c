@@ -1518,6 +1518,28 @@ dospinweb()
 		case WEAK_SIGHT_TRAP:
 		case RANDOM_MESSAGE_TRAP:
 
+		case DESECRATION_TRAP:
+		case STARVATION_TRAP:
+		case DROPLESS_TRAP:
+		case LOW_EFFECT_TRAP:
+		case INVISIBLE_TRAP:
+		case GHOST_WORLD_TRAP:
+		case DEHYDRATION_TRAP:
+		case HATE_TRAP:
+		case SPACEWARS_TRAP:
+		case TEMPORARY_RECURSION_TRAP:
+		case TOTTER_TRAP:
+		case NONINTRINSICAL_TRAP:
+		case DROPCURSE_TRAP:
+		case NAKEDNESS_TRAP:
+		case ANTILEVEL_TRAP:
+		case VENTILATOR:
+		case STEALER_TRAP:
+		case REBELLION_TRAP:
+		case CRAP_TRAP:
+		case MISFIRE_TRAP:
+		case TRAP_OF_WALLS:
+
 			dotrap(ttmp, 0);
 			return(1);
 		default:

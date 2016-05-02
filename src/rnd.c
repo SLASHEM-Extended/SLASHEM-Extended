@@ -668,7 +668,7 @@ randenchantment()
 			return CONFUSION;
 		case 113:
 		case 114:
-			switch (rnd(67)) {
+			switch (rnd(87)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -737,6 +737,26 @@ randenchantment()
 			case 65: return MAGIC_DEVICE_BUG;
 			case 66: return BOOKBUG;
 			case 67: return RANDOM_MESSAGES;
+			case 68: return DESECRATION;
+			case 69: return STARVATION_EFFECT;
+			case 70: return NO_DROPS_EFFECT;
+			case 71: return LOW_EFFECTS;
+			case 72: return INVIS_TRAPS_EFFECT;
+			case 73: return GHOST_WORLD;
+			case 74: return DEHYDRATION;
+			case 75: return HATE_TRAP_EFFECT;
+			case 76: return TOTTER_EFFECT;
+			case 77: return NONINTRINSIC_EFFECT;
+			case 78: return DROPCURSES_EFFECT;
+			case 79: return NAKEDNESS;
+			case 80: return ANTILEVELING;
+			case 81: return ITEM_STEALING_EFFECT;
+			case 82: return REBELLION_EFFECT;
+			case 83: return CRAP_EFFECT;
+			case 84: return PROJECTILES_MISFIRE;
+			case 85: return WALL_TRAP_EFFECT;
+			case 86: return TURNLIMITATION;
+			case 87: return WEAKSIGHT;
 			}
 		case 115:
 			return FEARED;

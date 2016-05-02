@@ -2358,6 +2358,113 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() )) {
+		Sprintf(buf, "the following problem: Altars malfunction whenever you try to use them");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Desecration);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || have_starvationstone() )) {
+		Sprintf(buf, "not going to get corpses from defeated enemies");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StarvationEffect);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() )) {
+		Sprintf(buf, "not going to get death drops from monsters");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoDropsEffect);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || have_loweffectstone() )) {
+		Sprintf(buf, "reduced power of magical effects");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LowEffects);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() )) {
+		Sprintf(buf, "not going to see traps");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", InvisibleTrapsEffect);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[GHOST_WORLD].extrinsic || GhostWorld || have_ghostlystone() )) {
+		Sprintf(buf, "in a ghost world");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", GhostWorld);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() )) {
+		Sprintf(buf, "going to become dehydrated");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Dehydration);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || have_hatestone() )) {
+		Sprintf(buf, "the following problem: Pets hate you with a fiery passion.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HateTrapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() )) {
+		Sprintf(buf, "the following problem: Your directional keys got swapped.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TotterTrapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )) {
+		Sprintf(buf, "unable to get intrinsics from eating corpses");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Nonintrinsics);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() )) {
+		Sprintf(buf, "the following problem: Dropping items causes them to autocurse.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Dropcurses);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[NAKEDNESS].extrinsic || Nakedness || have_nakedstone() )) {
+		Sprintf(buf, "effectively naked");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Nakedness);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() )) {
+		Sprintf(buf, "unable to gain experience");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Antileveling);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() )) {
+		Sprintf(buf, "more likely to have your items stolen");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ItemStealingEffect);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() )) {
+		Sprintf(buf, "the following problem: Pets can spontaneously rebel and become hostile.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Rebellions);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() )) {
+		Sprintf(buf, "diarrhea");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CrapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) {
+		Sprintf(buf, "the following problem: Your projectiles often misfire.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ProjectilesMisfire);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() )) {
+		Sprintf(buf, "the following problem: Dungeon regrowth is excessively fast.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WallTrapping);
+		you_have(buf);
+	}
 
 	if ((guaranteed || !rn2(10)) && u.uprops[RANDOM_RUMORS].extrinsic) {
 		Sprintf(buf, "going to listen to random rumors");
@@ -2912,6 +3019,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && u.inertia) {
 		Sprintf(buf, "slowed by inertia");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.inertia);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.temprecursion) {
+		Sprintf(buf, "under the effect of temporary recursion");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.temprecursiontime);
 		you_are(buf);
 	}
 
@@ -4110,6 +4223,114 @@ int final;
 		dump(youhad, buf);
 	}
 
+	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
+		Sprintf(buf, "the following problem: Altars malfunction whenever you try to use them");
+	      Sprintf(eos(buf), " (%d)", Desecration);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || have_starvationstone() ) {
+		Sprintf(buf, "not going to get corpses from defeated enemies");
+	      Sprintf(eos(buf), " (%d)", StarvationEffect);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) {
+		Sprintf(buf, "not going to get death drops from monsters");
+	      Sprintf(eos(buf), " (%d)", NoDropsEffect);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || have_loweffectstone() ) {
+		Sprintf(buf, "reduced power of magical effects");
+	      Sprintf(eos(buf), " (%d)", LowEffects);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
+		Sprintf(buf, "not going to see traps");
+	      Sprintf(eos(buf), " (%d)", InvisibleTrapsEffect);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[GHOST_WORLD].extrinsic || GhostWorld || have_ghostlystone() ) {
+		Sprintf(buf, "in a ghost world");
+	      Sprintf(eos(buf), " (%d)", GhostWorld);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
+		Sprintf(buf, "going to become dehydrated");
+	      Sprintf(eos(buf), " (%d)", Dehydration);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || have_hatestone() ) {
+		Sprintf(buf, "the following problem: Pets hate you with a fiery passion.");
+	      Sprintf(eos(buf), " (%d)", HateTrapEffect);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() ) {
+		Sprintf(buf, "the following problem: Your directional keys got swapped.");
+	      Sprintf(eos(buf), " (%d)", TotterTrapEffect);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) {
+		Sprintf(buf, "unable to get intrinsics from eating corpses");
+	      Sprintf(eos(buf), " (%d)", Nonintrinsics);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() ) {
+		Sprintf(buf, "the following problem: Dropping items causes them to autocurse.");
+	      Sprintf(eos(buf), " (%d)", Dropcurses);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[NAKEDNESS].extrinsic || Nakedness || have_nakedstone() ) {
+		Sprintf(buf, "effectively naked");
+	      Sprintf(eos(buf), " (%d)", Nakedness);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() ) {
+		Sprintf(buf, "unable to gain experience");
+	      Sprintf(eos(buf), " (%d)", Antileveling);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+		Sprintf(buf, "more likely to have your items stolen");
+	      Sprintf(eos(buf), " (%d)", ItemStealingEffect);
+		dump(youwere, buf);
+	}
+
+	if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) {
+		Sprintf(buf, "the following problem: Pets can spontaneously rebel and become hostile.");
+	      Sprintf(eos(buf), " (%d)", Rebellions);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() ) {
+		Sprintf(buf, "diarrhea");
+	      Sprintf(eos(buf), " (%d)", CrapEffect);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) {
+		Sprintf(buf, "the following problem: Your projectiles often misfire.");
+	      Sprintf(eos(buf), " (%d)", ProjectilesMisfire);
+		dump(youhad, buf);
+	}
+
+	if (u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() ) {
+		Sprintf(buf, "the following problem: Dungeon regrowth is excessively fast.");
+	      Sprintf(eos(buf), " (%d)", WallTrapping);
+		dump(youhad, buf);
+	}
+
 	if (u.uprops[RECURRING_AMNESIA].extrinsic || RecurringAmnesia || have_amnesiastone() ) {
 		Sprintf(buf, "going to suffer from amnesia now and then");
 	      Sprintf(eos(buf), " (%d)", RecurringAmnesia);
@@ -4656,6 +4877,12 @@ int final;
 	if (u.inertia) {
 		Sprintf(buf, "slowed by inertia");
 	      Sprintf(eos(buf), " (%d)", u.inertia);
+		dump(youwere, buf);
+	}
+
+	if (u.temprecursion) {
+		Sprintf(buf, "under the effect of temporary recursion");
+	   	Sprintf(eos(buf), " (%d)", u.temprecursiontime);
 		dump(youwere, buf);
 	}
 
@@ -6902,7 +7129,7 @@ char sym;
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
 
-	if (u.totter) {
+	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() ) {
 
 		u.dx = -u.dx;
 		u.dy = -u.dy;

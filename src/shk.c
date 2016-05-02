@@ -3790,6 +3790,28 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != WEAK_SIGHT_TRAP
 				&& ttmp->ttyp != RANDOM_MESSAGE_TRAP
 
+				&& ttmp->ttyp != DESECRATION_TRAP
+				&& ttmp->ttyp != STARVATION_TRAP
+				&& ttmp->ttyp != DROPLESS_TRAP
+				&& ttmp->ttyp != LOW_EFFECT_TRAP
+				&& ttmp->ttyp != INVISIBLE_TRAP
+				&& ttmp->ttyp != GHOST_WORLD_TRAP
+				&& ttmp->ttyp != DEHYDRATION_TRAP
+				&& ttmp->ttyp != HATE_TRAP
+				&& ttmp->ttyp != SPACEWARS_TRAP
+				&& ttmp->ttyp != TEMPORARY_RECURSION_TRAP
+				&& ttmp->ttyp != TOTTER_TRAP
+				&& ttmp->ttyp != NONINTRINSICAL_TRAP
+				&& ttmp->ttyp != DROPCURSE_TRAP
+				&& ttmp->ttyp != NAKEDNESS_TRAP
+				&& ttmp->ttyp != ANTILEVEL_TRAP
+				&& ttmp->ttyp != VENTILATOR
+				&& ttmp->ttyp != STEALER_TRAP
+				&& ttmp->ttyp != REBELLION_TRAP
+				&& ttmp->ttyp != CRAP_TRAP
+				&& ttmp->ttyp != MISFIRE_TRAP
+				&& ttmp->ttyp != TRAP_OF_WALLS
+
 				&& (ttmp->ttyp != DEATH_TRAP ||
 				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )
 

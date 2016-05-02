@@ -1098,7 +1098,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || obj->greased) && (u.dx || u.dy) && !rn2(7)) {
+	if ((obj->cursed || obj->greased || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1565,10 +1565,14 @@ int thrown;
 	    case GAUNTLETS_OF_FUMBLING:
 		tmp -= 3;
 		break;
+	    case GAUNTLETS_OF_MISFIRING:
+		tmp -= 5;
+		break;
 	    case GAUNTLETS_OF_PANIC:
 		tmp -= 1;
 		break;
 	    case GAUNTLETS_OF_FREE_ACTION:
+	    case ELVEN_GAUNTLETS:
 		tmp += 1;
 		break;
 	    case LEATHER_GLOVES:

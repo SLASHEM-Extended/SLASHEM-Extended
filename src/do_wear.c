@@ -135,6 +135,10 @@ Boots_on()
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
+	case BOOTS_OF_TOTAL_STABILITY:
+	case BOOTS_OF_DISPLACEMENT:
+	case BOOTS_OF_SWIMMING:
+	case ANTI_CURSE_BOOTS:
 		break;
 	case BOOTS_OF_MOLASSES:
 		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
@@ -158,6 +162,9 @@ Boots_on()
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
 	case LIMITATION_BOOTS:
+	case PET_STOMPING_PLATFORM_BOOTS:
+	case ASS_KICKER_BOOTS:
+	case DEMENTIA_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
@@ -309,6 +316,9 @@ Boots_off()
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
 	case LIMITATION_BOOTS:
+	case PET_STOMPING_PLATFORM_BOOTS:
+	case ASS_KICKER_BOOTS:
+	case DEMENTIA_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 	case RUBBER_BOOTS:
@@ -318,6 +328,10 @@ Boots_off()
 	case FIELD_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
+	case BOOTS_OF_TOTAL_STABILITY:
+	case BOOTS_OF_DISPLACEMENT:
+	case BOOTS_OF_SWIMMING:
+	case ANTI_CURSE_BOOTS:
 	case FREEZING_BOOTS:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
@@ -381,6 +395,13 @@ Cloak_on()
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
 	case CLOAK_OF_MATADOR:
+
+	case CLOAK_OF_AGGRAVATION:
+	case CLOAK_OF_MAGICAL_BREATHING:
+	case CLOAK_OF_STAT_LOCK:
+	case WING_CLOAK:
+	case CLOAK_OF_PREMATURE_DEATH:
+	case ANTIDEATH_CLOAK:
 		break;
 	case CLOAK_OF_FUMBLING:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
@@ -450,6 +471,9 @@ Cloak_on()
 	case EGOIST_CLOAK:
 	case CLOAK_OF_TIME:
 	case CHATBOX_CLOAK:
+	case HERETIC_CLOAK:
+	case EERIE_CLOAK:
+	case CLOAK_OF_NAKEDNESS:
 	case HEAVY_STATUS_CLOAK:
 	case CLOAK_OF_LUCK_NEGATION:
 	case YELLOW_SPELL_CLOAK:
@@ -458,6 +482,14 @@ Cloak_on()
 	case CLOAK_OF_RESPAWNING:
 
 		if (!uarmc->cursed) curse(uarmc);
+		break;
+
+	case CLOAK_OF_CONFLICT:
+
+		if (!uarmc->cursed) {
+			curse(uarmc);
+			pline("Your cloak is surrounded by a black aura.");
+		}
 		break;
 
 	case OILSKIN_CLOAK:
@@ -506,6 +538,15 @@ Cloak_off()
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
+
+	case CLOAK_OF_AGGRAVATION:
+	case CLOAK_OF_CONFLICT:
+	case CLOAK_OF_MAGICAL_BREATHING:
+	case CLOAK_OF_STAT_LOCK:
+	case WING_CLOAK:
+	case CLOAK_OF_PREMATURE_DEATH:
+	case ANTIDEATH_CLOAK:
+
 	case CLOAK_OF_UNSPELLING:
 	case ANTI_CASTER_CLOAK:
 	case HEAVY_STATUS_CLOAK:
@@ -519,6 +560,9 @@ Cloak_off()
 	case EGOIST_CLOAK:
 	case CLOAK_OF_TIME:
 	case CHATBOX_CLOAK:
+	case HERETIC_CLOAK:
+	case EERIE_CLOAK:
+	case CLOAK_OF_NAKEDNESS:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:
@@ -628,7 +672,20 @@ Helmet_on()
 	case HELM_OF_DISCOVERY:
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
+	case BOOGEYMAN_HELMET:
 	case HELM_OF_HUNGER:
+	case HELM_OF_TRUE_SIGHT:
+	case HELM_OF_WARNING:
+	case HELM_OF_DETOXIFICATION:
+	case TINFOIL_HELMET:
+	case PARANOIA_HELMET:
+		break;
+	case HELM_OF_NO_DIGESTION:
+		if (!uarmh->prmcurse) {
+			pline("%s, and is blasted by a terrible black aura!", Tobjnam(uarmh, "vibrate"));
+		    curse(uarmh);
+			uarmh->hvycurse = uarmh->prmcurse = 1;
+		}
 		break;
 	case FLACK_HELMET:
 	case MINING_HELM:
@@ -731,6 +788,9 @@ Helmet_on()
 	case MUTING_HELM:
 	case ULCH_HELMET:
 	case DIMMER_HELMET:
+	case HELM_OF_STARVATION:
+	case QUAFFER_HELMET:
+	case INCORRECTLY_ADJUSTED_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -790,6 +850,13 @@ Helmet_off()
 	case ORCISH_HELM:
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
+	case BOOGEYMAN_HELMET:
+	case HELM_OF_TRUE_SIGHT:
+	case HELM_OF_WARNING:
+	case HELM_OF_DETOXIFICATION:
+	case HELM_OF_NO_DIGESTION:
+	case TINFOIL_HELMET:
+	case PARANOIA_HELMET:
 	case HELM_OF_HUNGER:
 	case HELM_OF_STORMS:
 	case HELM_OF_DETECT_MONSTERS:
@@ -809,6 +876,9 @@ Helmet_off()
 	case MUTING_HELM:
 	case ULCH_HELMET:
 	case DIMMER_HELMET:
+	case HELM_OF_STARVATION:
+	case QUAFFER_HELMET:
+	case INCORRECTLY_ADJUSTED_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
@@ -888,6 +958,7 @@ Gloves_on()
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
+	case ELVEN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
@@ -913,6 +984,8 @@ Gloves_on()
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
+	case GAUNTLETS_OF_STEALING:
+	case GAUNTLETS_OF_MISFIRING:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -973,6 +1046,8 @@ Gloves_off()
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
+	case GAUNTLETS_OF_STEALING:
+	case GAUNTLETS_OF_MISFIRING:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
 	case GAUNTLETS_OF_SAFEGUARD:
@@ -980,6 +1055,7 @@ Gloves_off()
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
+	case ELVEN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
@@ -1276,6 +1352,10 @@ Amulet_on()
 	case AMULET_OF_EXPLOSION:
 	case AMULET_OF_ANTI_TELEPORTATION:
 	case AMULET_OF_WRONG_SEEING:
+	case AMULET_OF_WEAK_MAGIC:
+	case AMULET_OF_DIRECTIONAL_SWAP:
+	case AMULET_OF_SUDDEN_CURSE:
+	case AMULET_OF_ANTI_EXPERIENCE:
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
 
@@ -1513,6 +1593,9 @@ register struct obj *obj;
 	case RIN_NASTINESS:
 	case RIN_BAD_EFFECT:
 	case RIN_SUPERSCROLLING:
+	case RIN_ANTI_DROP:
+	case RIN_ENSNARING:
+	case RIN_DIARRHEA:
 	case RIN_DISENGRAVING:
 	case RIN_NO_SKILL:
 	case RIN_LOW_STATS:
@@ -2661,6 +2744,7 @@ find_ac()
 	if (Race_if(PM_ORC) && uarmc && uarmc->otyp == ORCISH_CLOAK ) uac -= 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
+	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmg && uarmg->otyp == ELVEN_GAUNTLETS) uac -= 1;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_HELM) uac -= 1;
@@ -2683,10 +2767,13 @@ find_ac()
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 
+	if (u.uprops[NAKEDNESS].extrinsic || Nakedness || have_nakedstone() ) uac = 10;
+
 	if(uac != u.uac){
 		u.uac = uac;
 		flags.botl = 1;
 	}
+
 }
 
 #endif /* OVL0 */

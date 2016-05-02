@@ -1316,8 +1316,10 @@ register int x, y, typ, replacechance;
 	}
 	ttmp->hiddentrap = 0;
 	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
+	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
+	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else ttmp->tseen = 0;
@@ -1710,6 +1712,11 @@ unsigned trflags;
 
 	nomul(0, 0);
 
+	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
+		trap->tseen = 0;
+		trap->hiddentrap = 1;
+	}
+
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
 			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
@@ -1734,7 +1741,7 @@ unsigned trflags;
 		return;
 	    }
 	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
-		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && !forcebungle &&
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
@@ -5302,6 +5309,173 @@ newegomon:
 
 		 break;
 
+		 case DESECRATION_TRAP:
+
+			if (Desecration) break;
+
+			Desecration = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case VENTILATOR:
+
+			if (Hallucination)
+				You_hear("air current noises, and a remark by Amy about how sexy they are.");
+			else
+				You_hear("air current noises.");
+
+		 break;
+
+		 case SPACEWARS_TRAP:
+
+			makespacewarstrap();
+			while (rn2(4)) makespacewarstrap();
+
+			(void) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
+			while (rn2(5)) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
+
+			if (!rn2(100)) pline("You see:");
+
+			deltrap(trap); /* only triggers once */
+
+		 break;
+
+		 case STARVATION_TRAP:
+
+			if (StarvationEffect) break;
+
+			StarvationEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DROPLESS_TRAP:
+
+			if (NoDropsEffect) break;
+
+			NoDropsEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case LOW_EFFECT_TRAP:
+
+			if (LowEffects) break;
+
+			LowEffects = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case INVISIBLE_TRAP:
+
+			if (InvisibleTrapsEffect) break;
+
+			InvisibleTrapsEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case GHOST_WORLD_TRAP:
+
+			if (GhostWorld) break;
+
+			GhostWorld = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DEHYDRATION_TRAP:
+
+			if (Dehydration) break;
+
+			Dehydration = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case HATE_TRAP:
+
+			if (HateTrapEffect) break;
+
+			HateTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TOTTER_TRAP:
+
+			if (TotterTrapEffect) break;
+
+			TotterTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case NONINTRINSICAL_TRAP:
+
+			if (Nonintrinsics) break;
+
+			Nonintrinsics = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DROPCURSE_TRAP:
+
+			if (Dropcurses) break;
+
+			Dropcurses = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case NAKEDNESS_TRAP:
+
+			if (Nakedness) break;
+
+			Nakedness = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ANTILEVEL_TRAP:
+
+			if (Antileveling) break;
+
+			Antileveling = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case STEALER_TRAP:
+
+			if (ItemStealingEffect) break;
+
+			ItemStealingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case REBELLION_TRAP:
+
+			if (Rebellions) break;
+
+			Rebellions = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case CRAP_TRAP:
+
+			if (CrapEffect) break;
+
+			CrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case MISFIRE_TRAP:
+
+			if (ProjectilesMisfire) break;
+
+			ProjectilesMisfire = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TRAP_OF_WALLS:
+
+			if (WallTrapping) break;
+
+			WallTrapping = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case LOW_STATS_TRAP:
 
 			if (AllStatsAreLower) break;
@@ -5623,6 +5797,14 @@ newegomon:
 			pline("CLICK! You have triggered a trap!");
 			deltrap(trap);
 			recursioneffect();
+		break;
+
+		case TEMPORARY_RECURSION_TRAP:
+			if (!u.temprecursion) {
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			temprecursioneffect();
+			}
 		break;
 
 		 case INTRINSIC_LOSS_TRAP:
@@ -5999,7 +6181,7 @@ newegomon:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(67)) {
+			switch (rnd(85)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -6094,6 +6276,24 @@ newegomon:
 				case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
+				case 68: Desecration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 69: StarvationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 70: NoDropsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 71: LowEffects += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 72: InvisibleTrapsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 73: GhostWorld += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 74: Dehydration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 75: HateTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 76: TotterTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 77: Nonintrinsics += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 78: Dropcurses += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 79: Nakedness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 80: Antileveling += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 81: ItemStealingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 82: Rebellions += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			}
 
 			if (NastinessProblem) break;
@@ -6659,7 +6859,7 @@ newegomon:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -6728,6 +6928,24 @@ newegomon:
 			TurnLimitation = 0L;
 			WeakSight = 0L;
 			RandomMessages = 0L;
+			Desecration = 0L;
+			StarvationEffect = 0L;
+			NoDropsEffect = 0L;
+			LowEffects = 0L;
+			InvisibleTrapsEffect = 0L;
+			GhostWorld = 0L;
+			Dehydration = 0L;
+			HateTrapEffect = 0L;
+			TotterTrapEffect = 0L;
+			Nonintrinsics = 0L;
+			Dropcurses = 0L;
+			Nakedness = 0L;
+			Antileveling = 0L;
+			ItemStealingEffect = 0L;
+			Rebellions = 0L;
+			CrapEffect = 0L;
+			ProjectilesMisfire = 0L;
+			WallTrapping = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -8927,6 +9145,28 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case LIMITATION_TRAP:
 		case WEAK_SIGHT_TRAP:
 		case RANDOM_MESSAGE_TRAP:
+
+		case DESECRATION_TRAP:
+		case STARVATION_TRAP:
+		case DROPLESS_TRAP:
+		case LOW_EFFECT_TRAP:
+		case INVISIBLE_TRAP:
+		case GHOST_WORLD_TRAP:
+		case DEHYDRATION_TRAP:
+		case HATE_TRAP:
+		case SPACEWARS_TRAP:
+		case TEMPORARY_RECURSION_TRAP:
+		case TOTTER_TRAP:
+		case NONINTRINSICAL_TRAP:
+		case DROPCURSE_TRAP:
+		case NAKEDNESS_TRAP:
+		case ANTILEVEL_TRAP:
+		case VENTILATOR:
+		case STEALER_TRAP:
+		case REBELLION_TRAP:
+		case CRAP_TRAP:
+		case MISFIRE_TRAP:
+		case TRAP_OF_WALLS:
 
 		case SPINED_BALL_TRAP:
 		case PENDULUM_TRAP:

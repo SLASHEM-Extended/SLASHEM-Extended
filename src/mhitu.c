@@ -4026,7 +4026,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && (dmgtype(youmonst.data, AD_SEDU)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) && (dmgtype(youmonst.data, AD_SEDU)
 #ifdef SEDUCE
 			|| dmgtype(youmonst.data, AD_SSEX)
 #endif
@@ -4057,7 +4057,7 @@ dopois:
 		    break;
 		}
 
-		if (!rn2(3)) {
+		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
 			pline("You feel a tug on your knapsack"); break;
 		}
 
@@ -4070,7 +4070,28 @@ dopois:
 		}
 
 		buf[0] = '\0';
-		if (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
+
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+			switch (steal(mtmp, buf)) {
+		  case -1:
+			return 2;
+		  case 0:
+			break;
+		  default:
+			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && !rn2(4))
+			    (void) rloc(mtmp, FALSE);
+			if (is_animal(mtmp->data) && *buf) {
+			    if (canseemon(mtmp))
+				pline("%s tries to %s away with %s.",
+				      Monnam(mtmp),
+				      locomotion(mtmp->data, "run"),
+				      buf);
+			}
+			monflee(mtmp, rnd(10), FALSE, FALSE);
+			return 3;
+			};
+
+		} else if (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) )
 /* male characters are more susceptible to nymphs --Amy */
 			{ switch (steal(mtmp, buf)) {
@@ -5868,12 +5889,25 @@ do_stone2:
 	    case AD_STTP:
 		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
 
-		if (!rn2(3)) {
+		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
 			pline("You feel a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
-		if ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
+
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+			switch (steal(mtmp, buf)) {
+		  case -1:
+			return 2;
+		  case 0:
+			break;
+		  default:
+			if ( !tele_restrict(mtmp) && !rn2(4) )
+			    (void) rloc(mtmp, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE);
+			return 3;
+			};
+		} else if ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) )
 			{ 
 			switch (steal(mtmp, buf)) {
@@ -8096,9 +8130,25 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
 
-	      if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
+		    stop_occupation();
+		buf[0] = '\0';
+			switch (steal(mtmp, buf)) {
+		  case -1:
+			return 2;
+		  case 0:
+			break;
+		  default:
+			if ( !tele_restrict(mtmp) && !rn2(4))
+			    (void) rloc(mtmp, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE);
+			return 3;
+			};
+
+		} else if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) )
 
@@ -9877,9 +9927,34 @@ register struct monst *mon;
 	      u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
 	}
 
+	if (!rn2(5000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted brain rot from having unprotected intercourse with your lover!");
+	      u.uprops[LOW_EFFECTS].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(4000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted dehydration from having unprotected intercourse with your lover!");
+	      u.uprops[DEHYDRATION].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(5000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted alexithymia from having unprotected intercourse with your lover!");
+	      u.uprops[HATE_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted hydroanemia from having unprotected intercourse with your lover!");
 	      u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted lung cancer from having unprotected intercourse with your lover!");
+	      u.uprops[NONINTRINSIC_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(25000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted Tourette's syndrome from having unprotected intercourse with your lover!");
+	      u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
 	}
 
 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
@@ -9902,6 +9977,11 @@ register struct monst *mon;
 	      u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
 	}
 
+	if (!rn2(400) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
+	      u.uprops[CRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted deafness from having unprotected intercourse with your lover!");
 	      u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
@@ -9917,9 +9997,24 @@ register struct monst *mon;
 	      u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
 	}
 
+	if (!rn2(2000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted loss of will from having unprotected intercourse with your lover!");
+	      u.uprops[ITEM_STEALING_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(4000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted incontinence from having unprotected intercourse with your lover!");
+	      u.uprops[REBELLION_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted migraine from having unprotected intercourse with your lover!");
 	      u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(20000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted mongoloism (trisomia-13) from having unprotected intercourse with your lover!");
+	      u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
 	}
 
  	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
@@ -9940,6 +10035,11 @@ register struct monst *mon;
  	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted parkinson from having unprotected intercourse with your lover!");
 	      u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
+	}
+
+ 	if (!rn2(2000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted jazzy hands from having unprotected intercourse with your lover!");
+	      u.uprops[PROJECTILES_MISFIRE].intrinsic |= FROMOUTSIDE;
 	}
 
  	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
@@ -9986,6 +10086,11 @@ register struct monst *mon;
  	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
 		pline("Ulch - you contracted magic vacuum from having unprotected intercourse with your lover!");
 	      u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
+	}
+
+ 	if (!rn2(10000) && !(ublindf && ublindf->otyp == CONDOME) ) {
+		pline("Ulch - you contracted brittle bones from having unprotected intercourse with your lover!");
+	      u.uprops[NAKEDNESS].intrinsic |= FROMOUTSIDE;
 	}
 
  	if (!rn2(1000) && !(ublindf && ublindf->otyp == CONDOME) ) {

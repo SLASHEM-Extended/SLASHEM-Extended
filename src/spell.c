@@ -1164,6 +1164,7 @@ boolean atme;
 	case SPE_DISINTEGRATION_BEAM:
 	case SPE_CHROMATIC_BEAM:
 	case SPE_PETRIFY:
+	case SPE_FIRE_BOLT:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {

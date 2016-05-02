@@ -501,6 +501,28 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "weak sight trap", C(CLR_YELLOW)},	/* trap */
 	{'^', "random message trap", C(CLR_WHITE)},	/* trap */
 
+	{'^', "desecration trap", C(CLR_BLACK)},	/* trap */
+	{'^', "starvation trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "dropless trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "low effect trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "invisible trap", C(CLR_WHITE)},	/* trap */
+	{'^', "ghost world trap", C(CLR_WHITE)},	/* trap */
+	{'^', "dehydration trap", C(CLR_CYAN)},	/* trap */
+	{'^', "hate trap", C(CLR_BLACK)},	/* trap */
+	{'^', "spacewars trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "temporary recursion trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "totter trap", C(CLR_GREEN)},	/* trap */
+	{'^', "nonintrinsical trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "dropcurse trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "nakedness trap", C(CLR_BROWN)},	/* trap */
+	{'^', "antilevel trap", C(CLR_BLACK)},	/* trap */
+	{'^', "ventilator", C(CLR_BLACK)},	/* trap */
+	{'^', "stealer trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "rebellion trap", C(CLR_WHITE)},	/* trap */
+	{'^', "crap trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "misfire trap", C(CLR_RED)},	/* trap */
+	{'^', "trap of walls", C(CLR_ORANGE)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -823,6 +845,28 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_weak_sight_trap),
 	g_FILLER(S_random_message_trap),
 
+	g_FILLER(S_desecration_trap),
+	g_FILLER(S_starvation_trap),
+	g_FILLER(S_dropless_trap),
+	g_FILLER(S_low_effect_trap),
+	g_FILLER(S_invisible_trap),
+	g_FILLER(S_ghost_world_trap),
+	g_FILLER(S_dehydration_trap),
+	g_FILLER(S_hate_trap),
+	g_FILLER(S_spacewars_trap),
+	g_FILLER(S_temporary_recursion_trap),
+	g_FILLER(S_totter_trap),
+	g_FILLER(S_nonintrinsical_trap),
+	g_FILLER(S_dropcurse_trap),
+	g_FILLER(S_nakedness_trap),
+	g_FILLER(S_antilevel_trap),
+	g_FILLER(S_ventilator),
+	g_FILLER(S_stealer_trap),
+	g_FILLER(S_rebellion_trap),
+	g_FILLER(S_crap_trap),
+	g_FILLER(S_misfire_trap),
+	g_FILLER(S_trap_of_walls),
+
 	g_FILLER(S_trap_percents),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1136,6 +1180,28 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_weak_sight_trap),
 	g_FILLER(S_random_message_trap),
 
+	g_FILLER(S_desecration_trap),
+	g_FILLER(S_starvation_trap),
+	g_FILLER(S_dropless_trap),
+	g_FILLER(S_low_effect_trap),
+	g_FILLER(S_invisible_trap),
+	g_FILLER(S_ghost_world_trap),
+	g_FILLER(S_dehydration_trap),
+	g_FILLER(S_hate_trap),
+	g_FILLER(S_spacewars_trap),
+	g_FILLER(S_temporary_recursion_trap),
+	g_FILLER(S_totter_trap),
+	g_FILLER(S_nonintrinsical_trap),
+	g_FILLER(S_dropcurse_trap),
+	g_FILLER(S_nakedness_trap),
+	g_FILLER(S_antilevel_trap),
+	g_FILLER(S_ventilator),
+	g_FILLER(S_stealer_trap),
+	g_FILLER(S_rebellion_trap),
+	g_FILLER(S_crap_trap),
+	g_FILLER(S_misfire_trap),
+	g_FILLER(S_trap_of_walls),
+
 	g_FILLER(S_trap_percents),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1446,6 +1512,28 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_limitation_trap),
 	g_FILLER(S_weak_sight_trap),
 	g_FILLER(S_random_message_trap),
+
+	g_FILLER(S_desecration_trap),
+	g_FILLER(S_starvation_trap),
+	g_FILLER(S_dropless_trap),
+	g_FILLER(S_low_effect_trap),
+	g_FILLER(S_invisible_trap),
+	g_FILLER(S_ghost_world_trap),
+	g_FILLER(S_dehydration_trap),
+	g_FILLER(S_hate_trap),
+	g_FILLER(S_spacewars_trap),
+	g_FILLER(S_temporary_recursion_trap),
+	g_FILLER(S_totter_trap),
+	g_FILLER(S_nonintrinsical_trap),
+	g_FILLER(S_dropcurse_trap),
+	g_FILLER(S_nakedness_trap),
+	g_FILLER(S_antilevel_trap),
+	g_FILLER(S_ventilator),
+	g_FILLER(S_stealer_trap),
+	g_FILLER(S_rebellion_trap),
+	g_FILLER(S_crap_trap),
+	g_FILLER(S_misfire_trap),
+	g_FILLER(S_trap_of_walls),
 
 	g_FILLER(S_trap_percents),
 	g_FILLER(S_vbeam),
@@ -1948,6 +2036,28 @@ boolean is_rlevel;
 	    showsyms[S_limitation_trap] = 0x04;
 	    showsyms[S_weak_sight_trap] = 0x04;
 	    showsyms[S_random_message_trap] = 0x04;
+
+	    showsyms[S_desecration_trap] = 0x04;
+	    showsyms[S_starvation_trap] = 0x04;
+	    showsyms[S_dropless_trap] = 0x04;
+	    showsyms[S_low_effect_trap] = 0x04;
+	    showsyms[S_invisible_trap] = 0x04;
+	    showsyms[S_ghost_world_trap] = 0x04;
+	    showsyms[S_dehydration_trap] = 0x04;
+	    showsyms[S_hate_trap] = 0x04;
+	    showsyms[S_spacewars_trap] = 0x04;
+	    showsyms[S_temporary_recursion_trap] = 0x04;
+	    showsyms[S_totter_trap] = 0x04;
+	    showsyms[S_nonintrinsical_trap] = 0x04;
+	    showsyms[S_dropcurse_trap] = 0x04;
+	    showsyms[S_nakedness_trap] = 0x04;
+	    showsyms[S_antilevel_trap] = 0x04;
+	    showsyms[S_ventilator] = 0x04;
+	    showsyms[S_stealer_trap] = 0x04;
+	    showsyms[S_rebellion_trap] = 0x04;
+	    showsyms[S_crap_trap] = 0x04;
+	    showsyms[S_misfire_trap] = 0x04;
+	    showsyms[S_trap_of_walls] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
 #endif

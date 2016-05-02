@@ -4225,7 +4225,7 @@ struct monst *mtmp;
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(67)) {
+		switch (rnd(85)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -4319,6 +4319,25 @@ struct monst *mtmp;
 			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
+			case 68: Desecration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 69: StarvationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 70: NoDropsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 71: LowEffects += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 72: InvisibleTrapsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 73: GhostWorld += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 74: Dehydration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 75: HateTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 76: TotterTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 77: Nonintrinsics += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 78: Dropcurses += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 79: Nakedness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 80: Antileveling += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 81: ItemStealingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 82: Rebellions += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 		}

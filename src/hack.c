@@ -328,6 +328,7 @@ boolean update;  /* do newsym() */
    int i, j, count, randchance=0;
 	register struct monst *mtmp;
 
+trap_of_walls:
    if (!rn2(100)) (void) seed_tree(-1,-1);
    if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
@@ -415,6 +416,8 @@ boolean update;  /* do newsym() */
 	}
 
    }
+
+   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() ) && rn2(100)) goto trap_of_walls;
 }
 
 /* catch up with growths when returning to a previously visited level */

@@ -1076,6 +1076,12 @@ boolean guaranteed;
 		{
 		return((struct monst *)0);
 		}
+
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || have_hatestone() ) {
+        	pline("%s hates you too much!", Monnam(mtmp));
+		return((struct monst *)0);
+	}
+
 	/* worst case, at least it'll be peaceful. */
 	mtmp->mpeaceful = 1;
 	mtmp->mtraitor  = 0;	/* No longer a traitor */
@@ -1093,6 +1099,7 @@ boolean guaranteed;
         return((struct monst *)0);
         }
 #endif
+
 
 	/* If we cannot tame it, at least it's no longer afraid. */
 	mtmp->mflee = 0;

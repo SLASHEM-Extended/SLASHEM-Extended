@@ -975,6 +975,25 @@ E boolean NDECL(have_respawnstone);
 E boolean NDECL(have_captchastone);
 E boolean NDECL(have_farlookstone);
 
+E boolean NDECL(have_nonsacredstone);
+E boolean NDECL(have_starvationstone);
+E boolean NDECL(have_droplessstone);
+E boolean NDECL(have_loweffectstone);
+E boolean NDECL(have_invisostone);
+E boolean NDECL(have_ghostlystone);
+E boolean NDECL(have_dehydratingstone);
+E boolean NDECL(have_hatestone);
+E boolean NDECL(have_directionswapstone);
+E boolean NDECL(have_nonintrinsicstone);
+E boolean NDECL(have_dropcursestone);
+E boolean NDECL(have_nakedstone);
+E boolean NDECL(have_antilevelstone);
+E boolean NDECL(have_stealerstone);
+E boolean NDECL(have_rebelstone);
+E boolean NDECL(have_shitstone);
+E boolean NDECL(have_misfirestone);
+E boolean NDECL(have_wallstone);
+
 E boolean NDECL(have_metabolicstone);
 E boolean NDECL(have_noreturnstone);
 E boolean NDECL(have_egostone);
@@ -2205,6 +2224,7 @@ E boolean FDECL(load_special, (const char *));
 E int NDECL(randomtrap);
 E void NDECL(makerandomtrap);
 E void NDECL(makegirlytrap);
+E void NDECL(makespacewarstrap);
 
 /* ### spell.c ### */
 

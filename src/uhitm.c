@@ -5161,7 +5161,23 @@ uchar aatyp;
 	      case AD_SITM:	/* for now these are the same */
 	      case AD_SEDU:
 	      case AD_SSEX:
-		      if(  (rnd(100) > ACURR(A_CHA)) && malive && ( ((mon->female) && !flags.female && !rn2(2) ) || ((!mon->female) && flags.female && !rn2(3) ) || 
+
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+				pline("You feel a tug on your backpack!");
+				buf[0] = '\0';
+				switch (steal(mon, buf)) {
+			  case -1:
+				return 2;
+			  case 0:
+				break;
+			  default:
+				if ( !tele_restrict(mon))
+				    (void) rloc(mon, FALSE);
+				monflee(mon, rnd(10), FALSE, FALSE);
+				return 3;
+				};
+
+			} else if(  (rnd(100) > ACURR(A_CHA)) && malive && ( ((mon->female) && !flags.female && !rn2(2) ) || ((!mon->female) && flags.female && !rn2(3) ) || 
 				((mon->female) && flags.female && !rn2(5) ) || ((!mon->female) && !flags.female && !rn2(5) ) )
 	
 			) 		{

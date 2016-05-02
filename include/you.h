@@ -601,6 +601,24 @@ struct you {
 	boolean nastinator65;
 	boolean nastinator66;
 	boolean nastinator67;
+	boolean nastinator68;
+	boolean nastinator69;
+	boolean nastinator70;
+	boolean nastinator71;
+	boolean nastinator72;
+	boolean nastinator73;
+	boolean nastinator74;
+	boolean nastinator75;
+	boolean nastinator76;
+	boolean nastinator77;
+	boolean nastinator78;
+	boolean nastinator79;
+	boolean nastinator80;
+	boolean nastinator81;
+	boolean nastinator82;
+	boolean nastinator83;
+	boolean nastinator84;
+	boolean nastinator85;
 
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 
@@ -619,6 +637,13 @@ struct you {
 
 	int bankcashamount; /* for bank trap */
 	int bankcashlimit;
+
+	int dehydrationtime;
+
+	boolean temprecursion; /* temporary recursion trap */
+	int oldrecursionrole;
+	int oldrecursionrace;
+	int temprecursiontime;
 
 	boolean totter;	/* scroll of symmetry toggles this */
 

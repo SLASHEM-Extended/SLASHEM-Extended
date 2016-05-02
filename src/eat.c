@@ -1076,6 +1076,9 @@ intrinsic_possible(type, ptr)
 int type;
 register struct permonst *ptr;
 {
+
+	if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) return(FALSE);
+
 	switch (type) {
 	    case ACID_RES:
 #ifdef DEBUG
@@ -1568,6 +1571,8 @@ register int pm;
 		break;
 	    case PM_GORGON:
 	    case PM_ATTRACTIVE_TROVE:
+
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10)) {
 				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
@@ -1579,6 +1584,7 @@ register int pm;
 
 	    case PM_DRACOLISK:
 	    case PM_CHARISMA_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			pline("You feel more %s!", flags.female ? "pretty" : "attractive");
 			(void) adjattrib(A_CHA, 1, FALSE);
@@ -1587,6 +1593,7 @@ register int pm;
 
 	    case PM_STONING_MONSTER:
 	    case PM_TOUGH_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CON) < ATTRMAX(A_CON)) {
 			pline("You feel tougher!");
 			(void) adjattrib(A_CON, 1, FALSE);
@@ -1603,6 +1610,7 @@ register int pm;
 	    case PM_MASTER_NEWT:
 	    case PM_ASPHYNX:
 	    case PM_RUBBER_CHICKEN:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		/* MRKR: "eye of newt" may give small magical energy boost */
 		if (rn2(3)/* || 3 * u.uen <= 2 * u.uenmax*/) {
 		    int old_uen = u.uen; /* Some slight changes to this code. --Amy */
@@ -1619,6 +1627,7 @@ register int pm;
 		break;
 	    case PM_POWER_TROVE:
 	    case PM_EIGHT_FOOTED_SNAKE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      {int old_uen = u.uen;
 		if (rn2(3)) {
 		    u.uen += rnd(3);
@@ -1645,6 +1654,7 @@ register int pm;
 	    case PM_MASTER_TWEN:
 	    case PM_YELDUD_TWEN:
 	    case PM_PORTER_RUBBER_CHICKEN:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) {
 			u.mh++;
 			u.mhmax++;
@@ -1657,6 +1667,7 @@ register int pm;
 		break;
 	    case PM_VITALITY_TROVE:
 	    case PM_MUTATED_UNDEAD_COCKATRICE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) {
 			u.mh++;
 			u.mh += rnd(2);
@@ -1687,11 +1698,13 @@ register int pm;
 	    case PM_PETRO_GROWTH:
 	    case PM_PETRO_COLONY:
 	    case PM_CLAIRVOYANT_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		    You("feel clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
 	    case PM_STONING_SPHERE:
 	    case PM_LEVELING_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      You("feel that was a smart thing to do.");
 		pluslvl(FALSE);
 
@@ -1709,6 +1722,7 @@ register int pm;
 	    case PM_GREATER_BASILISK:
 	    case PM_ETHEREAL_TROVE:
 	    case PM_CENTAURTRICE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		switch(rnd(10)) {                
 		case 1:
 		    You("feel that was a bad idea.");
@@ -1762,6 +1776,7 @@ register int pm;
 	    case PM_PETRO_CENTIPEDE:
 	    case PM_PSEUDO_MEDUSA:
 	    case PM____TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		pline("You feel appropriately 42!");
 		switch(rnd(10)) {                
 		case 1:
@@ -2004,12 +2019,14 @@ register int pm;
 	    case PM_NURSE:
 	    case PM_HEALING_TROVE:
 	    case PM_GORGON_FLY:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) u.mh = u.mhmax;
 		else u.uhp = u.uhpmax;
 		flags.botl = 1;
 		break;
 	    case PM_HIDDEN_ENGULFITRICE:
 	    case PM_HIDDEN_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 
 		if (!(HInvis & INTRINSIC)) You_feel("hidden!");
 		HInvis |= FROMOUTSIDE;
@@ -2030,6 +2047,7 @@ register int pm;
 	    case PM_PETRO_MIMIC:
 	    case PM_PETRO_PERMAMIMIC:
 	    case PM_INVISO_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if(!Invis) {
 			set_itimeout(&HInvis, (long)rn1(100, 50));
 			if (!Blind && !BInvis) self_invis_message();
@@ -2291,6 +2309,7 @@ register int pm;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
 			HFast &= ~INTRINSIC;
@@ -2421,6 +2440,7 @@ register int pm;
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
 	    case PM_MEDUSA_S_PET_FISH:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		gainstr((struct obj *)0, 0);
 		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
@@ -2443,6 +2463,7 @@ register int pm;
 	    case PM_ALAKAZAM:
 	    case PM_SMART_TROVE:
 	    case PM_CURSING_ORB: {
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(5)) {
@@ -2488,6 +2509,7 @@ register int pm;
 		case PM_PSYCH_FLAYER:
 		case PM_PASSIVE_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 #if 0
 		int     temp;
 		temp = urole.attrmax[A_INT];
@@ -2517,7 +2539,7 @@ register int pm;
 			pline ("Oh wow!  Great stuff!");
 			make_hallucinated(HHallucination + rnz(200),FALSE,0L);
 		}
-		if(is_giant(ptr) && !rn2(4)) {gainstr((struct obj *)0, 0); pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!"); }
+		if(is_giant(ptr) && !rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {gainstr((struct obj *)0, 0); pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!"); }
 
 		/* Check the monster for all of the intrinsics.  If this
 		 * monster can give more than one, pick one to try to give
@@ -2544,7 +2566,7 @@ register int pm;
 
 		if (ptr->mlet == S_NYMPH) {
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
-			if (!rn2(10)) {
+			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
 				(void) adjattrib(A_CHA, 1, FALSE);
 			}
@@ -2555,7 +2577,7 @@ register int pm;
 
 		if (dmgtype(ptr, AD_SITM) || dmgtype(ptr, AD_SEDU) || dmgtype(ptr, AD_SSEX) ) {
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
-			if (!rn2(dmgtype(ptr, AD_SSEX) ? 3 : 10)) {
+			if (!rn2(dmgtype(ptr, AD_SSEX) ? 3 : 10)  && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
 				(void) adjattrib(A_CHA, 1, FALSE);
 			}
@@ -2563,19 +2585,19 @@ register int pm;
 		}
 
 	/* luck is also harder to get; eating luck-reducing monsters sometimes grants a boost --Amy */
-		if (dmgtype(ptr, AD_LUCK) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+		if (dmgtype(ptr, AD_LUCK) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 			change_luck(1);
 			pline("You feel lucky.");
 		}
 
 	/* or rarely, random attack monsters --Amy */
-		if (dmgtype(ptr, AD_RBRE) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 525 : 175) && rn2(4) ) ) {
+		if (dmgtype(ptr, AD_RBRE) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 525 : 175) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 			change_luck(1);
 			pline("You feel lucky.");
 		}
 
 	/* and since mind flayers are so rare, improve INT gain a bit --Amy */
-		if (dmgtype(ptr, AD_DRIN) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+		if (dmgtype(ptr, AD_DRIN) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			pline("You feel smarter!");
 			(void) adjattrib(A_INT, 1, 2);
@@ -2583,7 +2605,7 @@ register int pm;
 		}
 
 	/* psi-based enemies grant INT too --Amy */
-		if (dmgtype(ptr, AD_SPC2) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) ) ) {
+		if (dmgtype(ptr, AD_SPC2) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			pline("You feel smarter!");
 			(void) adjattrib(A_INT, 1, 2);
@@ -2591,7 +2613,7 @@ register int pm;
 		}
 
 	/* skill cap reducing monsters very rarely grant something good too --Amy */
-		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 1050 : 350) && rn2(2) ) ) {
+		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 1050 : 350) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 
 			pline("You feel the RNG's touch...");
 
@@ -2627,7 +2649,7 @@ register int pm;
 		}
 
 	/* AD_HEAL monsters are rare; let's make them give one extra max HP --Amy */
-		if (dmgtype(ptr, AD_HEAL)) {
+		if (dmgtype(ptr, AD_HEAL) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			if (Upolyd) {
 				u.mh++;
 				u.mhmax++;
@@ -2640,7 +2662,7 @@ register int pm;
 		}
 
 	/* And since I'm nice, do a similar thing for mana --Amy */
-		if (dmgtype(ptr, AD_MANA)) {
+		if (dmgtype(ptr, AD_MANA) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			u.uenmax++;
 			pline("You feel a mild buzz.");
 		    flags.botl = 1;
@@ -4462,7 +4484,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		return 0;
 	}
 #ifdef JEDI
-	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
+	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_NO_DIGESTION || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 		pline("The %s covers your whole face.", xname(uarmh));
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

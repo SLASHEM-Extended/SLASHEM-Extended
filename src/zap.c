@@ -4126,6 +4126,7 @@ boolean ordinary;
 
 		case WAN_FIRE:
 		    makeknown(WAN_FIRE);
+		case SPE_FIRE_BOLT:
 		case FIRE_HORN:
 		    if (Fire_resistance) {
 			shieldeff(u.ux, u.uy);
@@ -5201,7 +5202,12 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_DISINTEGRATION_BEAM) {
-		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_FIRE_BOLT) {
+		buzz((int)(24), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7260,6 +7266,9 @@ int damage, tell;
 	    case RING_CLASS:	alev =  5 + Role_if(PM_LADIESMAN) ? (u.ulevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (u.ulevel / 3) : (u.ulevel / 5);	 break;
 	    default:		alev = rnd(u.ulevel); break;	/* spell */
 	}
+
+	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || have_loweffectstone() ) alev = 1;
+
 	/* defense level */
 	dlev = (int)mtmp->m_lev;
 	if (dlev > 50) dlev = 50;

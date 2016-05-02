@@ -89,7 +89,7 @@ struct objclass {
 #define ARM_SHIRT	6
 #define ARM_SUIT	0
 
-	uchar	oc_oprop;		/* property (invis, &c.) conveyed */
+	/*uchar*/int	oc_oprop;		/* property (invis, &c.) conveyed */
 	char	oc_class;		/* object class */
 	int	oc_delay;		/* delay when using such an object */
 	uchar	oc_color;		/* color of the object */

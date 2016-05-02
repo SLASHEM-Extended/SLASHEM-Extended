@@ -263,6 +263,7 @@ struct obj {
 #define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
 				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
 				|| (otmp)->otyp == ELVEN_CLOAK\
+				|| (otmp)->otyp == ELVEN_GAUNTLETS\
 				|| (otmp)->otyp == ELVEN_HELM\
 				|| (otmp)->otyp == HIGH_ELVEN_HELM\
 				|| (otmp)->otyp == ELVEN_TOGA\
@@ -549,70 +550,7 @@ struct obj {
 				|| (otmp)->otyp == POT_OIL)
 
 /* special stones */
-#define is_nastygraystone(obj)	((obj)->otyp == RIGHT_MOUSE_BUTTON_STONE || \
-				 (obj)->otyp == DISPLAY_LOSS_STONE || \
-				 (obj)->otyp == SPELL_LOSS_STONE || \
-				 (obj)->otyp == YELLOW_SPELL_STONE || \
-				 (obj)->otyp == AUTO_DESTRUCT_STONE || \
-				 (obj)->otyp == MEMORY_LOSS_STONE || \
-				 (obj)->otyp == INVENTORY_LOSS_STONE || \
-				 (obj)->otyp == BLACKY_STONE || \
-				 (obj)->otyp == MENU_BUG_STONE || \
-				 (obj)->otyp == SPEEDBUG_STONE || \
-				 (obj)->otyp == SUPERSCROLLER_STONE || \
-				 (obj)->otyp == FREE_HAND_BUG_STONE || \
-				 (obj)->otyp == UNIDENTIFY_STONE || \
-				 (obj)->otyp == STONE_OF_THIRST || \
-				 (obj)->otyp == UNLUCKY_STONE || \
-				 (obj)->otyp == SHADES_OF_GREY_STONE || \
-				 (obj)->otyp == STONE_OF_FAINTING || \
-				 (obj)->otyp == STONE_OF_CURSING || \
-				 (obj)->otyp == STONE_OF_DIFFICULTY || \
-				 (obj)->otyp == DEAFNESS_STONE || \
-				 (obj)->otyp == ANTIMAGIC_STONE || \
-				 (obj)->otyp == WEAKNESS_STONE || \
-				 (obj)->otyp == ROT_THIRTEEN_STONE || \
-				 (obj)->otyp == BISHOP_STONE || \
-				 (obj)->otyp == CONFUSION_STONE || \
-				 (obj)->otyp == DROPBUG_STONE || \
-				 (obj)->otyp == DSTW_STONE || \
-				 (obj)->otyp == STATUS_STONE || \
-				 (obj)->otyp == ALIGNMENT_STONE || \
-				 (obj)->otyp == STAIRSTRAP_STONE || \
-				 (obj)->otyp == STONE_OF_INTRINSIC_LOSS || \
-				 (obj)->otyp == BLOOD_LOSS_STONE || \
-				 (obj)->otyp == BAD_EFFECT_STONE || \
-				 (obj)->otyp == TRAP_CREATION_STONE || \
-				 (obj)->otyp == STONE_OF_VULNERABILITY || \
-				 (obj)->otyp == ITEM_TELEPORTING_STONE || \
-				 (obj)->otyp == NASTY_STONE || \
-				 (obj)->otyp == FARLOOK_STONE || \
-				 (obj)->otyp == CAPTCHA_STONE || \
-				 (obj)->otyp == RESPAWN_STONE || \
-				 (obj)->otyp == AMNESIA_STONE || \
-				 (obj)->otyp == BIGSCRIPT_STONE || \
-				 (obj)->otyp == BANK_STONE || \
-				 (obj)->otyp == MAP_STONE || \
-				 (obj)->otyp == TECHNIQUE_STONE || \
-				 (obj)->otyp == DISENCHANTMENT_STONE || \
-				 (obj)->otyp == VERISIERT_STONE || \
-				 (obj)->otyp == CHAOS_TERRAIN_STONE || \
-				 (obj)->otyp == MUTENESS_STONE || \
-				 (obj)->otyp == ENGRAVING_STONE || \
-				 (obj)->otyp == MAGIC_DEVICE_STONE || \
-				 (obj)->otyp == BOOK_STONE || \
-				 (obj)->otyp == LEVEL_STONE || \
-				 (obj)->otyp == QUIZ_STONE || \
-				 (obj)->otyp == METABOLIC_STONE || \
-				 (obj)->otyp == STONE_OF_NO_RETURN || \
-				 (obj)->otyp == EGOSTONE || \
-				 (obj)->otyp == FAST_FORWARD_STONE || \
-				 (obj)->otyp == ROTTEN_STONE || \
-				 (obj)->otyp == UNSKILLED_STONE || \
-				 (obj)->otyp == LOW_STAT_STONE || \
-				 (obj)->otyp == TRAINING_STONE || \
-				 (obj)->otyp == EXERCISE_STONE || \
-				 (obj)->otyp == UNINFORMATION_STONE )
+#define is_nastygraystone(obj)	( ((obj)->otyp >= RIGHT_MOUSE_BUTTON_STONE) && ((obj)->otyp <= NASTY_STONE) )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \

@@ -24,7 +24,7 @@
 #define maybe_polyd(if_so,if_not)	(Upolyd ? (if_so) : (if_not))
 
 
-#define PlayerInHighHeels	(uarmf && ( (uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (OBJ_DESCR(objects[uarmf->otyp]) && ( (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) ) )
+#define PlayerInHighHeels	(uarmf && ( (uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (OBJ_DESCR(objects[uarmf->otyp]) && ( (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) ) )
 
 /*** Resistances to troubles ***/
 /* With intrinsics and extrinsics */
@@ -244,6 +244,25 @@
 #define WeakSight		u.uprops[WEAKSIGHT].intrinsic
 #define RandomMessages		u.uprops[RANDOM_MESSAGES].intrinsic
 
+#define Desecration		u.uprops[DESECRATION].intrinsic
+#define StarvationEffect		u.uprops[STARVATION_EFFECT].intrinsic
+#define NoDropsEffect		u.uprops[NO_DROPS_EFFECT].intrinsic
+#define LowEffects		u.uprops[LOW_EFFECTS].intrinsic
+#define InvisibleTrapsEffect		u.uprops[INVIS_TRAPS_EFFECT].intrinsic
+#define GhostWorld		u.uprops[GHOST_WORLD].intrinsic
+#define Dehydration		u.uprops[DEHYDRATION].intrinsic
+#define HateTrapEffect		u.uprops[HATE_TRAP_EFFECT].intrinsic
+#define TotterTrapEffect		u.uprops[TOTTER_EFFECT].intrinsic
+#define Nonintrinsics		u.uprops[NONINTRINSIC_EFFECT].intrinsic
+#define Dropcurses		u.uprops[DROPCURSES_EFFECT].intrinsic
+#define Nakedness		u.uprops[NAKEDNESS].intrinsic
+#define Antileveling		u.uprops[ANTILEVELING].intrinsic
+#define ItemStealingEffect		u.uprops[ITEM_STEALING_EFFECT].intrinsic
+#define Rebellions		u.uprops[REBELLION_EFFECT].intrinsic
+#define CrapEffect		u.uprops[CRAP_EFFECT].intrinsic
+#define ProjectilesMisfire		u.uprops[PROJECTILES_MISFIRE].intrinsic
+#define WallTrapping		u.uprops[WALL_TRAP_EFFECT].intrinsic
+
 #define TimeStopped		u.uprops[TIME_STOPPED].intrinsic
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */
@@ -252,7 +271,7 @@
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	(EHalluc_resistance || \
 				 (Upolyd && dmgtype(youmonst.data, AD_HALU)) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == SPIKED_BATTLE_BOOT) ) )
-#define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie )
+#define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
 
@@ -287,7 +306,7 @@
 #define Blind_telepat		( ((HTelepat || ETelepat || telepathic(youmonst.data)) && !NoTelepat && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoTelepat && PlayerInHighHeels ))
 
 #define Unblind_telepat		(ETelepat && !NoTelepat)
-#define NoTelepat	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoTelepat	( (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0))) || (uarmh && uarmh->otyp == TINFOIL_HELMET) )
 
 #define HHallu_party	u.uprops[HALLU_PARTY].intrinsic
 #define Hallu_party	(HHallu_party && !NoHallu_party)

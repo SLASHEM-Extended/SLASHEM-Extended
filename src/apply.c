@@ -4309,6 +4309,24 @@ doapply()
 	case TURN_LIMIT_STONE:
 	case WEAK_SIGHT_STONE:
 	case CHATTER_STONE:
+ 	case NONSACRED_STONE:
+ 	case STARVATION_STONE:
+ 	case DROPLESS_STONE:
+ 	case LOW_EFFECT_STONE:
+ 	case INVISO_STONE:
+ 	case GHOSTLY_STONE:
+ 	case DEHYDRATING_STONE:
+ 	case STONE_OF_HATE:
+ 	case DIRECTIONAL_SWAP_STONE:
+ 	case NONINTRINSICAL_STONE:
+ 	case DROPCURSE_STONE:
+ 	case STONE_OF_NAKED_STRIPPING:
+ 	case ANTILEVEL_STONE:
+ 	case STEALER_STONE:
+ 	case REBEL_STONE:
+ 	case SHIT_STONE:
+ 	case STONE_OF_MISFIRING:
+ 	case STONE_OF_PERMANENCE:
 
 	case SALT_CHUNK:
 	case SILVER_SLINGSTONE:
@@ -4464,6 +4482,25 @@ doapply()
 		TurnLimitation = 0L;
 		WeakSight = 0L;
 		RandomMessages = 0L;
+
+		Desecration = 0L;
+		StarvationEffect = 0L;
+		NoDropsEffect = 0L;
+		LowEffects = 0L;
+		InvisibleTrapsEffect = 0L;
+		GhostWorld = 0L;
+		Dehydration = 0L;
+		HateTrapEffect = 0L;
+		TotterTrapEffect = 0L;
+		Nonintrinsics = 0L;
+		Dropcurses = 0L;
+		Nakedness = 0L;
+		Antileveling = 0L;
+		ItemStealingEffect = 0L;
+		Rebellions = 0L;
+		CrapEffect = 0L;
+		ProjectilesMisfire = 0L;
+		WallTrapping = 0L;
 
 		break;
 	case GOD_O_METER:
