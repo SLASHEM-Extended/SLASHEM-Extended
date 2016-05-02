@@ -4728,7 +4728,7 @@ struct obj *obj;
 			case WOODEN_STAKE: 
 				pline("A quite powerful dagger. It can be thrown."); break;
 			case GREAT_DAGGER: 
-				pline("The strongest dagger in the game. It can be thrown."); break;
+				pline("Used to be the strongest dagger in the game, but now gets surpassed by droven daggers. Still stronger than the average dagger though. It can be thrown."); break;
 			case WORM_TOOTH: 
 				pline("A crappy knife that can be turned into a very powerful knife if enchanted. It can be thrown."); break;
 			case KNIFE: 
