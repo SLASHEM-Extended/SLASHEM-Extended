@@ -10417,8 +10417,8 @@ register boolean force, here;
 			{
 			    
 				pline("One of your objects was destroyed by rust!");
-				if (obj == uball) unpunish;
-				if (obj == uchain) unpunish;
+				if (obj == uball) unpunish();
+				if (obj == uchain) unpunish();
 				delobj(obj);
 				update_inventory();
 			    
@@ -11186,14 +11186,14 @@ struct trap *ttmp;
 	pline("You bash %s's sexy butt.", farttrapnames[ttmp->launch_otyp]);
 	diceroll = rnd(30);
 
-	if (ttmp->launch_otyp == 2) diceroll - rnd(20);
-	if (ttmp->launch_otyp == 5) diceroll - rnd(10);
-	if (ttmp->launch_otyp == 12) diceroll - rnd(10);
-	if (ttmp->launch_otyp == 20) diceroll - rnd(5);
-	if (ttmp->launch_otyp == 25) diceroll - rnd(5);
-	if (ttmp->launch_otyp == 28) diceroll - rnd(30);
-	if (ttmp->launch_otyp == 29) diceroll - rnd(20);
-	if (ttmp->launch_otyp == 39) diceroll - rnd(15);
+	if (ttmp->launch_otyp == 2) diceroll -= rnd(20);
+	if (ttmp->launch_otyp == 5) diceroll -= rnd(10);
+	if (ttmp->launch_otyp == 12) diceroll -= rnd(10);
+	if (ttmp->launch_otyp == 20) diceroll -= rnd(5);
+	if (ttmp->launch_otyp == 25) diceroll -= rnd(5);
+	if (ttmp->launch_otyp == 28) diceroll -= rnd(30);
+	if (ttmp->launch_otyp == 29) diceroll -= rnd(20);
+	if (ttmp->launch_otyp == 39) diceroll -= rnd(15);
 
 	if (ttmp->launch_otyp < 12) diceroll -= rnd(diceroll);
 	else if (!rn2(2) && ttmp->launch_otyp < 31) diceroll -= rnd(diceroll);
