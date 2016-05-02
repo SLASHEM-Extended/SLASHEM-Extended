@@ -7714,7 +7714,7 @@ struct obj *obj;
 			case SLEEPSTONE:
 				pline("A gray stone that is usually generated cursed. If you carry it in your open inventory, you will fall asleep even if you are sleep resistant. It also halves the chance of waking up from combat."); break;
 			case STONE_OF_MAGIC_RESISTANCE:
-				pline("Slotless magic resistance can be obtained by having this stone in your inventory. Beware: if the stone is cursed, you will take double damage from everything!"); break;
+				pline("Slotless magic resistance can be obtained by having this stone in your inventory. Beware:  it will curse itself after a while, and if the stone is cursed, you will take double damage from everything!"); break;
 			case LOADBOULDER:
 #ifdef PHANTOM_CRASH_BUG
 				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it. Giants can lift it with no problems though."); break;

@@ -2164,6 +2164,21 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
 
+	/* stone of magic resistance is teh uber, and means that if you wish for MR you'll never pick something else.
+	 * So I decided to be mean (like always :P) and make it so that the stone curses itself after a while. --Amy */
+	if (!rn2(2000)) {
+
+		register struct obj *otmpX;
+	
+		for(otmpX = invent; otmpX; otmpX = otmpX->nobj) {
+			if(otmpX->otyp == STONE_OF_MAGIC_RESISTANCE) {
+				if (otmpX->blessed) unbless(otmpX);
+				else curse(otmpX);
+			}
+		}
+
+	}
+
 	if (!rn2(7500) && Role_if(PM_BLEEDER)) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
