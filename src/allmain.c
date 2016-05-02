@@ -974,8 +974,12 @@ moveloop()
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
 
+		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+
 		    monstermoves++;
 		    moves++;
+
+		    }
 
 			if (u.uprops[FAST_FORWARD].extrinsic) {
 
@@ -1051,7 +1055,11 @@ moveloop()
 			}
 
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
-			       if (!Strangled && !Breathless) {
+
+				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+					 pline("A cloud of spores surrounds you!");
+
+				 } else if (!Strangled && !Breathless) {
 					 pline("You inhale a cloud of spores!");
 					 poisoned("spores", A_STR, "fumarole spores", 30);
 			       } else {
@@ -1248,6 +1256,18 @@ moveloop()
 
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'lqop purkash") ) && !rn2(2000) ) {
+		    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sindirishi qo'lqop") ) && (u.uexp > 100) && !rn2(1000) ) {
+			pline("Your vampiric gloves drain your experience!");
+			u.uexp -= (u.uexp / 100);
+			if (u.uexp < newuexp(u.ulevel - 1)) {
+			      losexp("vampiric experience drain", TRUE, FALSE);
+			}
+		}
+
 		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic) && !BlackNgWalls && !rn2(100) ) {
 
 			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
@@ -1303,6 +1323,24 @@ moveloop()
 					otmpi->dknown = TRUE;
 					pline("You feel that you know more about the contents of your inventory...");
 				}
+
+				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->known) {
+					otmpi->known = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->bknown) {
+					otmpi->bknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->rknown) {
+					otmpi->rknown = TRUE;
+					pline("You feel that you know more about the contents of your inventory...");
+				}
+
 			    }
 			}
 
@@ -1638,7 +1676,12 @@ moveloop()
 
 		    if (flags.bypasses) clear_bypasses();
 		    if(IsGlib) glibr();
+
+		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+
 		    nh_timeout();
+		    }
+
 		    run_regions();
 
 #ifdef DUNGEON_GROWTH
@@ -1646,6 +1689,8 @@ moveloop()
 #endif
 
 		    if (u.ublesscnt)  u.ublesscnt--;
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
 		    
 		    if(flags.time && !flags.run)
 			flags.botl = 1;

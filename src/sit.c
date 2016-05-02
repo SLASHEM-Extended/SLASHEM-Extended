@@ -245,7 +245,7 @@ dosit()
 	    /* must be WWalking */
 	    You(sit_message, "lava");
 	    burn_away_slime();
-	    if (likes_lava(youmonst.data) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
+	    if (likes_lava(youmonst.data) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
 		pline_The("lava feels warm.");
 		return 1;
 	    }

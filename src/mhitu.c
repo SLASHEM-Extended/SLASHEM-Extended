@@ -36,6 +36,16 @@ STATIC_DCL void FDECL(hitmsg,(struct monst *,struct attack *));
 /* changed to a parameter to mhitu. */
 static int dieroll;
 
+boolean
+player_shades_of_grey()
+{
+	if (!uarmg) return FALSE;
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "grey-shaded gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sero-zatenennykh perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kulrang-soyali qo'lqop") ) ) return TRUE;
+	return FALSE;
+
+}
+
+
 #ifdef OVL1
 
 STATIC_OVL void
@@ -63,7 +73,7 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
-			if (flags.female && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if (flags.female && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
 				pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -85,7 +95,7 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_BITE:
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
-			if (!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
+			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
 			if (!Drain_resistance || !rn2(20)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
 		      losexp("life drainage", FALSE, TRUE);
@@ -96,7 +106,7 @@ on the first floor, especially when you're playing as something with drain resis
 			pline("%s kicks you%c", Monnam(mtmp),
 				    thick_skinned(youmonst.data) ? '.' : '!');
 
-			if (!flags.female && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if (!flags.female && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
 				pline("%s's kick painfully slams into your nuts!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -107,14 +117,14 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 
 			struct obj *footwear = which_armor(mtmp, W_ARMF);
-			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s sandals against your shins! It hurts!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(1,monsterlev), "sandal to the shin bone", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s dancing shoes against your shins! You stagger...", Monnam(mtmp), mhis(mtmp) );
@@ -122,14 +132,14 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(1, "soft dancing shoe", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slides %s mocassins over your %ss, opening your arteries and squirting %s everywhere!", Monnam(mtmp), mhis(mtmp), body_part(HAND), body_part(BLOOD) );
 				    incr_itimeout(&Glib, monsterlev);
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SOFT_SNEAKERS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SOFT_SNEAKERS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s hits your %s with %s sneakers!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
@@ -137,7 +147,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(d(1,monsterlev), "soft sneaker to the hand", KILLED_BY_AN);
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIPPIE_HEELS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIPPIE_HEELS) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(15);
@@ -254,7 +264,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s leather peep-toes against your shins!", Monnam(mtmp), mhis(mtmp) );
@@ -277,7 +287,7 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
-			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s scratches up and down your %ss with %s heels!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
@@ -305,7 +315,7 @@ on the first floor, especially when you're playing as something with drain resis
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 			}
-			if (!rn2(3) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
@@ -317,7 +327,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_STNG:
 			pline("%s stings you!", Monnam(mtmp));
-			if ((!rn2((u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 200 : (u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) && (!issoviet || !rn2(5)) ) {
 			pline("You are bleeding out from your stinging injury!");
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -331,7 +341,7 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_BUTT:
 			pline("%s butts you!", Monnam(mtmp));
 
-			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2((u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
+			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 25 : (u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
 			    if (Free_action) {
 				You("feel a slight shaking.");            
 			    } else {
@@ -350,7 +360,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_SCRA:
 			pline("%s scratches you!", Monnam(mtmp));
-			if ((!rn2((u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 125)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 75 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 125)) && (!issoviet || !rn2(5)) ) {
 			pline("One of your arteries bursts open! You suffer from %s loss!", body_part(BLOOD));
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -364,7 +374,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_LASH:
 			pline("%s lashes you!", Monnam(mtmp));
-			if ((!rn2((u.ualign.type == A_LAWFUL) ? 15 : (u.ualign.type == A_NEUTRAL) ? 20 : 10)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 5 : (u.ualign.type == A_LAWFUL) ? 15 : (u.ualign.type == A_NEUTRAL) ? 20 : 10)) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("Your %s spins in confusion.", body_part(HEAD));
@@ -375,7 +385,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
-			if (!rn2(5) && (!issoviet || !rn2(5)) ) {
+			if (!rn2(player_shades_of_grey() ? 3 : 5) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("You can't think straight as your every muscle is aching!");
@@ -385,7 +395,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_TUCH:
 			pline("%s touches you!", Monnam(mtmp));
-			if (!issoviet || !rn2(5)) losehp(1, "icy touch", KILLED_BY_AN);
+			if (!issoviet || !rn2(5)) losehp(player_shades_of_grey() ? 2 : 1, "icy touch", KILLED_BY_AN);
 
 			if (mtmp->data == &mons[PM_BLACK_DEATH]) { /* lose one maximum HP --Amy */
 
@@ -400,7 +410,7 @@ on the first floor, especially when you're playing as something with drain resis
 				        s_suffix(Monnam(mtmp)));
 			if (!issoviet || !rn2(5)) {
 			monsterlev = ((mtmp->m_lev) + 1);
-			monsterlev /= 5;
+			monsterlev /= player_shades_of_grey() ? 2 : 5;
 			if (monsterlev <= 0) monsterlev = 1;
 			losehp((monsterlev), "sucking tentacle attack", KILLED_BY_AN);
 			}
@@ -1215,11 +1225,11 @@ swingweapon:
 				    hittmp = hitval(otmp, &youmonst);
 				    tmp += hittmp;
 				    mswings(mtmp, otmp);
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
 					pline("The massive wedge heel thunders painfully on your %s!", body_part(HEAD));
 					losehp(rnd(4),"a wedged little-girl sandal",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER && (tmp > rnd(20+i)) ) {
 					pline("The soft leather sneaker actually feels quite soothing.");
 
 					if (Upolyd) u.mh++; /* heal one hit point */
@@ -1228,12 +1238,12 @@ swingweapon:
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS && (tmp > rnd(20+i)) ) {
 					pline("The unyielding plateau boot bonks your %s!", body_part(HEAD));
 					losehp(rnd(10),"a sturdy plateau boot for girls",KILLED_BY);
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT && (tmp > rnd(20+i)) ) {
 
 					if (flags.female) {
 						pline("The massive heel hits your %s. Wow, this feels soothing and lovely!", body_part(HEAD));
@@ -1261,7 +1271,7 @@ swingweapon:
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT && (tmp > rnd(20+i)) ) {
 					pline("Uff! Your %s got hit hard!", body_part(HEAD));
 					losehp(rnd(12),"a hugging boot",KILLED_BY);
 						if (Upolyd) u.mhmax--; /* lose one hit point */
@@ -1270,7 +1280,7 @@ swingweapon:
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA && (tmp > rnd(20+i)) ) {
 					pline("Argh! The unyielding piece of wood painfully lands on your %s!", body_part(HEAD));
 					losehp(rnd(15),"a wooden Japanese sandal",KILLED_BY);
 
@@ -1286,7 +1296,7 @@ swingweapon:
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE && (tmp > rnd(20+i)) ) {
 
 					if (Role_if(PM_COURIER)) pline("The lacquered dancing shoe harmlessly scratches you.");
 					else {pline("The lacquered dancing shoe scratches your %s!", body_part(HEAD));
@@ -1335,15 +1345,15 @@ swingweapon:
 						}
 					}
 
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
 					pline("Your %s is hit painfully by the high heel!", body_part(HEAD));
 					losehp(rnd(12),"a high-heeled sandal",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP && (tmp > rnd(20+i)) ) {
 					pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
 					losehp(rnd(20),"a sexy leather pump",KILLED_BY);
 					}
-					if (!rn2(3) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT && (tmp > rnd(20+i)) ) {
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT && (tmp > rnd(20+i)) ) {
 					pline("Ouch! The spiked boot soles bore themselves into your skin!");
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
@@ -2770,6 +2780,12 @@ struct attack *mattk;
                        (mattk->adtyp == AD_WRAP) ?
                       "swings itself around of" : "grabs");
                 return TRUE;
+	} else if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slippery gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "skol'zkiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sirg'anchiq qo'lqop") ) && rn2(10) ) {
+                pline("%s %s you, but your slippery gloves allow you to slip free!",
+                       Monnam(mtmp),
+                       (mattk->adtyp == AD_WRAP) ?
+                      "swings itself around of" : "grabs");
+                return TRUE;
 	}
 	return FALSE;
 }
@@ -3816,6 +3832,9 @@ dopois:
 		    } else {
 			if (flags.soundok)
 			    You_hear("%s hissing!", s_suffix(mon_nam(mtmp)));
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+	
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
  do_stone:
@@ -5796,6 +5815,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if(!rn2(3)) {
 			if (flags.soundok)
 			    You_hear("a hissing noise!");
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+
 do_stone2:
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
@@ -7134,6 +7155,12 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		while (atttypB == AD_ENDS ||atttypB == AD_RBRE || atttypB == AD_SPC2 || atttypB == AD_WERE) {
 			atttypB = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) ) {
+		/* cut down on message spam - only display it 1 out of 10 times --Amy */
+		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));
+		return 0;
 	}
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */

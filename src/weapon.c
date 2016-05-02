@@ -1164,6 +1164,17 @@ struct monst *mon;
 
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fencing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ograzhdeniya perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qilichbozlik qo'lqop") ) ) {
+			if ( (objects[otmp->otyp].oc_skill == P_SHORT_SWORD) || (objects[otmp->otyp].oc_skill == P_BROAD_SWORD) || (objects[otmp->otyp].oc_skill == P_LONG_SWORD) || (objects[otmp->otyp].oc_skill == P_TWO_HANDED_SWORD) || (objects[otmp->otyp].oc_skill == P_SCIMITAR) || (objects[otmp->otyp].oc_skill == P_SABER) || (objects[otmp->otyp].oc_skill == P_DAGGER) ) {
+			bonus += Role_if(PM_FENCER) ? 2 : 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_BASIC) bonus += Role_if(PM_FENCER) ? 2 : 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_SKILLED) bonus += Role_if(PM_FENCER) ? 2 : 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_EXPERT) bonus += Role_if(PM_FENCER) ? 2 : 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_MASTER) bonus += Role_if(PM_FENCER) ? 2 : 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_GRAND_MASTER) bonus += Role_if(PM_FENCER) ? 2 : 1;
+			}
+		}
+
 	    /* polearms versus golems */
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
 

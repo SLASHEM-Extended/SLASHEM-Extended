@@ -139,6 +139,8 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "urush chizilmasin") ) ) dmg += 5;
+
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
 
@@ -215,6 +217,23 @@ register boolean clumsy;
 			    if (mintrap(mon) == 2) trapkilled = TRUE;
 			}
 		}
+	}
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platosi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platformalar chizilmasin") ) && !rn2(3) ) {
+		if (!mon->mstun) 	{
+			if (rn2(3)) pline("%s is stunned by your strong kick!", Monnam(mon));
+			else if (rn2(10)) pline("You stomp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+			else pline("You stomp %s's %s with your lovely boots!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+		}
+		mon->mstun = TRUE;
+	}
+
+    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) ) {
+		if (!mon->mstun) 	{
+			pline("Your velcro boots joyously scratch along %s's %s, drawing lots of %s!", mon_nam(mon), makeplural(mbodypart(mon,LEG)), mbodypart(mon,BLOOD) );
+		}
+		mon->mstun = TRUE;
+
 	}
 
 	(void) passive(mon, TRUE, mon->mhp > 0, AT_KICK);
@@ -314,6 +333,8 @@ register xchar x, y;
 	i = -inv_weight();
 	j = weight_cap();
 
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) i += 6000;
+
 	if(i < (j*3)/10) {
 		if(!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) {
 			if(martial() && !rn2(2)) goto doit;
@@ -329,6 +350,9 @@ register xchar x, y;
 
 	else if (uarm && objects[uarm->otyp].oc_bulky && ACURR(A_DEX) < rnd(25))
 		clumsy = TRUE;
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) clumsy = FALSE;
+
 doit:
 	You("kick %s.", mon_nam(mon));
 	if(!rn2(clumsy ? 3 : 4) && (clumsy || !bigmonst(mon->data)) &&
@@ -1070,6 +1094,10 @@ dokick()
 		    if (rn2(3)) {
 			if ( !rn2(6) && !(mvitals[PM_KILLER_BEE].mvflags & G_GONE) )
 			    You_hear("a low buzzing."); /* a warning */
+		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
+			pline("You kick the tree. Nothing happens.");
+			return(1);
+		    } else
 			goto ouch;
 		    }
 		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) &&
@@ -1114,6 +1142,10 @@ dokick()
 			maploc->looted |= TREE_SWARM;
 			return(1);
 		    }
+		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
+			pline("You kick the tree. Nothing happens.");
+			return(1);
+		    } else
 		    goto ouch;
 		}
 #ifdef SINKS

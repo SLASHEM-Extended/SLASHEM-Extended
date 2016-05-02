@@ -2196,6 +2196,12 @@ unsigned trflags;
 
 	    case SLP_GAS_TRAP:
 		seetrap(trap);
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
 		if(Sleep_resistance || breathless(youmonst.data)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
@@ -2223,6 +2229,12 @@ unsigned trflags;
 
 	    case POISON_GAS_TRAP:
 		seetrap(trap);
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		    pline("A cloud of gas surrounds you!");
+		    break;
+		}
+
 		if(breathless(youmonst.data)) {
 		    pline("A cloud of gas surrounds you!");
 		    break;
@@ -2238,6 +2250,12 @@ unsigned trflags;
 
 	    case SLOW_GAS_TRAP:
 		seetrap(trap);
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		    pline("A cloud of foggy gas shoots out at you!");
+		    break;
+		}
+
 		if(breathless(youmonst.data)) {
 		    pline("A cloud of foggy gas shoots out at you!");
 		    break;
@@ -9539,6 +9557,8 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		if (Stoned) fix_petrification();
 
+		if (!rn2(10) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) ) {
+
 	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
 	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
@@ -9548,6 +9568,8 @@ struct obj *box;        /* at the moment only for floor traps */
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
 	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+
+		}
 
 		if (!uarmf) {
 			pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
@@ -9561,7 +9583,18 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		}
 
-		if (!rn2(20)) u_slow_down();
+		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) {
+		    if (!(HFast & INTRINSIC)) {
+			if (!Fast)
+			    You("speed up.");
+			else
+			    Your("quickness feels more natural.");
+			makeknown(WAN_SPEED_MONSTER);
+			exercise(A_DEX, TRUE);
+		    }
+		    HFast |= FROMOUTSIDE;
+
+		} else if (!rn2(20)) u_slow_down();
 
 		if ( !rn2(100) || (!Free_action && !rn2(10)))	{
 			You("inhale the intense smell of shit! The world spins and goes dark.");
@@ -9570,6 +9603,7 @@ struct obj *box;        /* at the moment only for floor traps */
 			exercise(A_DEX, FALSE);
 		}
 
+	  if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) num /= 4;
         if (num) losehp(num, "heap of shit", KILLED_BY_AN);
 
 }
@@ -9981,6 +10015,10 @@ register boolean force, here;
 
 		if (stack_too_big(obj)) continue;
 
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(4) ) continue;
+
+		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
+
 		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
 		} else if(obj->greased) {
@@ -10172,6 +10210,8 @@ register boolean force, here;
 		(void) snuff_lit(obj);
 
 		if (stack_too_big(obj)) continue;
+
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
 
 		/* important quest items are immune */
 		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS) continue;
@@ -11825,6 +11865,7 @@ lava_effects()
 
     if (likes_lava(youmonst.data)) return FALSE;
     if (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) return FALSE;
+    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) return FALSE;
 
     if (!Fire_resistance) {
 

@@ -7010,6 +7010,10 @@ register int osym, dmgtyp;
 #endif
 	    switch(dmgtyp) {
 		case AD_COLD:
+
+		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) {skip++; break;
+			}
+
 		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {
 			quan = obj->quan;
 			dindx = 0;

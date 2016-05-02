@@ -272,16 +272,65 @@ nh_timeout()
 
 	}
 
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "explosive boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "vzryvnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "portlovchi chizilmasin") ) && !rn2(10000) ) {
+	      useup(uarmf);
+		pline("KAABLAMM!!! Your explosive boots suddenly detonate!");
+		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnz(u.ulevel * 5), 0, EXPL_FIERY);
+		losehp(rnz(u.ulevel * 5), "exploding TNT boots", KILLED_BY);
+	    set_wounded_legs(LEFT_SIDE, HWounded_legs + 1000);
+	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
+	}
+
 	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
 
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
 	    }
+
+	}
+
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "radio helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "translyatsii shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzatuvchi zarbdan") ) ) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) ) {
+			    slip_or_trip();
+	}
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fors chizilmasin") ) && !rn2(1000) ) {
+
+		pline("Your persian boots demand a sacrifice for allowing you to wear them.");
+		pline("You allow them to scratch over the full length of your shins with their zippers.");
+		if (Upolyd) losehp( (u.mhmax / 2) + 2, "persian zipper boots", KILLED_BY);
+		else losehp( (u.uhpmax / 2) + 2, "persian zipper boots", KILLED_BY);
+		pline("Your %s are covered with deep wounds and you lose lots of %s!", makeplural(body_part(LEG)), body_part(BLOOD) );
+		if (!rn2(5)) {
+			u.uhpmax++;
+			if (Upolyd) u.mhmax++;
+			pline("But then the persian boots gently enclose your sweet %s again, and you feel much better.", makeplural(body_part(FOOT)));
+		}
+
+	}
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) && !rn2(1000) ) {
+	    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(50) );
+	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50) );
+		pline("Your velcro boots decide to scratch up and down your shins with their lash, opening terrible wounds.");
+		losehp( rnz(u.ulevel + 2), "bloodthirsty velcro boots", KILLED_BY);
 
 	}
 
@@ -2092,6 +2141,19 @@ nh_timeout()
 	if (!rn2(500) && have_bloodlossstone() ) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deadly cloak") && !rn2(1000) ) {
+		pline("Your deadly cloak saps your life!");
+		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
+	}
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smertel'noy plashch") && !rn2(1000) ) {
+		pline("Your deadly cloak saps your life!");
+		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
+	}
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'ldiradigan plash") && !rn2(1000) ) {
+		pline("Your deadly cloak saps your life!");
+		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
 	}
 
 	if ( (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || have_weaknessstone() ) && u.uhunger < 201) {

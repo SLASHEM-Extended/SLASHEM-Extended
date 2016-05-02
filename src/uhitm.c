@@ -826,6 +826,9 @@ martial_dmg()
             uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms))
                 damage *= 2;
         else damage += 2;
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks qo'lqoplari") ) ) damage += 1;
+
         return (damage);
 }
 
@@ -5069,6 +5072,9 @@ uchar aatyp;
 	    switch(atttypC) {
 
 	      case AD_DRST:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_STR, "spore cloud", 30);
@@ -5078,6 +5084,9 @@ uchar aatyp;
 	       }
 	      break;
 	      case AD_DRDX:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_DEX, "spore cloud", 30);
@@ -5087,6 +5096,9 @@ uchar aatyp;
 	       }
 	      break;
 	      case AD_DRCO:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_CON, "spore cloud", 30);
@@ -5096,6 +5108,9 @@ uchar aatyp;
 	       }
 	      break;
 	      case AD_WISD:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_WIS, "spore cloud", 30);
@@ -5105,6 +5120,9 @@ uchar aatyp;
 	       }
 	      break;
 	      case AD_DRCH:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_CHA, "spore cloud", 30);
@@ -5114,6 +5132,9 @@ uchar aatyp;
 	       }
 	      break;
 	      case AD_POIS:
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", rn2(A_MAX), "spore cloud", 30);

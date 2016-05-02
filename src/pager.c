@@ -259,6 +259,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0)
 		    ways_seen++;
+		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mtmp)->mhp % 9 == 0)
+		    ways_seen++;
 		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
@@ -362,6 +364,10 @@ lookat(x, y, buf, monbuf)
 
 		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0) {
 			Strcat(monbuf, "stunnopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mtmp)->mhp % 9 == 0) {
+			Strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {

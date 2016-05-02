@@ -930,6 +930,8 @@ boolean atme;
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
+	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { energy *= 9; energy /= 10;}
+
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
 		You("are too hungry to cast that spell.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

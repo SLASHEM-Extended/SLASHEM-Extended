@@ -1471,6 +1471,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			otmp->dknown = TRUE;
 			return TRUE;
 		} else {
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "to'liq dubulg'a") ) ) {
+				pline("%s slices into your %s.",
+				      wepdesc, body_part(NECK));
+				return TRUE;
+
+			}
+
 			if (!has_head(youmonst.data) || Role_if(PM_COURIER)) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);

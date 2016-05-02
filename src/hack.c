@@ -1480,7 +1480,10 @@ domove()
 		if (on_ice) {
 		    static int skates = 0;
 		    if (!skates) skates = find_skates();
+		    static int skates2 = 0;
+		    if (!skates2) skates2 = find_skates2();
 		    if ((uarmf && uarmf->otyp == skates)
+			    || (uarmf && uarmf->otyp == skates2)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))
@@ -1756,6 +1759,9 @@ domove()
 			           num = d(1, 2) + rnd((monster_difficulty() / 7) + 1);
 			      }
 				if (Stoned) fix_petrification();
+
+				if (!rn2(10) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) ) {
+
 				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
 				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
@@ -1765,6 +1771,9 @@ domove()
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
 				if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+
+				}
+
 				if (!uarmf) {
 					pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
 					num *= 2;
@@ -1777,7 +1786,18 @@ domove()
 
 				}
 
-				if (!rn2(20)) u_slow_down();
+				if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) {
+				    if (!(HFast & INTRINSIC)) {
+					if (!Fast)
+					    You("speed up.");
+					else
+					    Your("quickness feels more natural.");
+					makeknown(WAN_SPEED_MONSTER);
+					exercise(A_DEX, TRUE);
+				    }
+				    HFast |= FROMOUTSIDE;
+
+				} else if (!rn2(20)) u_slow_down();
 
 				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
 					You("inhale the intense smell of shit! The world spins and goes dark.");
@@ -1786,6 +1806,7 @@ domove()
 					exercise(A_DEX, FALSE);
 				}
 
+			      if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) num /= 4;
 			      if (num) losehp(num, "heap of shit", KILLED_BY_AN);
 
 			}
@@ -2158,6 +2179,7 @@ domove()
 
 	if(u.ux0 != u.ux || u.uy0 != u.uy) {
 	    u.umoved = TRUE;
+
 	    /* Clean old position -- vision_recalc() will print our new one. */
 	    newsym(u.ux0,u.uy0);
 	    /* Since the hero has moved, adjust what can be seen/unseen. */
@@ -2988,7 +3010,7 @@ dopickup()
 			|| (Flying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
+	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }

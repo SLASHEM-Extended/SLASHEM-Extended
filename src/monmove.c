@@ -1414,6 +1414,8 @@ not_special:
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin") ) && !rn2(3) ) appr = 1; 
+
 	    if (is_unicorn(ptr) && level.flags.noteleport) {
 		/* on noteleport levels, perhaps we cannot avoid hero */
 		for(i = 0; i < cnt; i++)

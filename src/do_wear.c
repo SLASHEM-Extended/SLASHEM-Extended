@@ -210,6 +210,15 @@ Boots_on()
 		break;
 	default: impossible(unknown_type, c_boots, uarmf->otyp);
     }
+
+    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) ) {
+	      if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("The velcro boots constrict your %s, and you can't take them off again!", makeplural(body_part(FOOT)) );
+		}
+
+    }
+
     return 0;
 }
 
