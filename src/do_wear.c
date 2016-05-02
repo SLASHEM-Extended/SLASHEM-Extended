@@ -503,6 +503,15 @@ Cloak_on()
 #endif
 	default: impossible(unknown_type, c_cloak, uarmc->otyp);
     }
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "straitjacket cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smiritel'naya rubashka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tor kamzul plash") ) ) {
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("An aura of evil darkness surrounds your cloak as you put it on!");
+		}
+	}
+
     return 0;
 }
 

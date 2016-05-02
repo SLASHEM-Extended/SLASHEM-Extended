@@ -15754,6 +15754,8 @@ register struct permonst *ptr;
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "siyosatchi plash") ) ) return FALSE;
+
 	aligntyp mal = ptr->maligntyp, ual = u.ualign.type;
 
 	if (always_peaceful(ptr)) return TRUE;
@@ -15796,6 +15798,9 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_FLYFISH && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
 	if (ptr->mlet == S_RUSTMONST && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
 	if ((is_swimmer(ptr) || (ptr)->mflags1 & M1_AMPHIBIOUS) && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
+
+	if (ptr->mlet == S_ANGEL && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angelic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angel'skoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "farishtalarning plash") ) ) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_DEMON && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonicheskaya plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinlarning plash") ) ) && rn2(2)) return TRUE;
 
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 

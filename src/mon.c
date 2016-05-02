@@ -2698,8 +2698,9 @@ register struct monst *mtmp;
 #endif
 
 	if (mtmp->data->mlet == S_KOP) {
+
 	    /* Dead Kops may come back. */
-	    switch(rnd(10)) {
+	    switch(rnd( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) ? 20 : 10)) {
 		case 1:	     /* returns near the stairs */
 			(void) makemon(mtmp->data,xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
@@ -2757,6 +2758,10 @@ register struct monst *mtmp;
 		pline("The twit quickly called the kops, and it seems they're out to get you!");
 		copcnt = rnd(monster_difficulty() ) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
 
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);

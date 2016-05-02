@@ -3728,7 +3728,7 @@ newegomon:
 
 	    case SHIT_TRAP:
 
-		if (Levitation || Flying) { /* ground-based trap, obviously */
+		if ((Levitation || Flying) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -10689,6 +10689,12 @@ drown()
 		pline("But in vain.");
 	}
 	u.uinwater = 1;
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) {
+	pline("Your fin boots prevent you from drowning.");
+	return(FALSE);
+	}
+
 	You("drown.");
 	/* [ALI] Vampires return to vampiric form on drowning.
 	 */

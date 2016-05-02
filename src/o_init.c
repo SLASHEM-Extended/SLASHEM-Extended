@@ -423,6 +423,25 @@ find_skates2()
     return -1;	/* not 0, or caller would try again each move */
 }
 
+int
+find_skates3()
+{
+    register int i;
+    register const char *s;
+
+    for (i = SPEED_BOOTS; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "winter stilettos"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zima stilety"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "qish sandal chizilmasin"))
+	    return i;
+    }
+
+    impossible("snow boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
 void
 oinit()			/* level dependent initialization */
 {

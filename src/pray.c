@@ -656,6 +656,10 @@ aligntyp resp_god;
 	if (!rn2(10)) copcnt /= 3;
 	if (copcnt < 1) copcnt = 1;
 
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+		copcnt = (copcnt / 2) + 1;
+	}
+
       while(--copcnt >= 0) {
 		(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 	} /* while */
@@ -2208,6 +2212,12 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
       angrygods(u.ualign.type);
 	return(0);
     }
+
+	if (uarmc && !rn2(10) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "godless cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bezbozhnaya plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xudosiz plash") ) ) {
+
+	angrygods(u.ualign.type);
+	return(0);
+	}
 
     if (p_type == 0) {
 	if(on_altar() && u.ualign.type != alignment)

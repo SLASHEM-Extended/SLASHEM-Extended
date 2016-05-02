@@ -357,7 +357,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || Role_if(PM_UNBELIEVER) ) {
+	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") ) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -2220,7 +2220,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if (mattk->adtyp > AD_SPC2)
 	    return(0);
 
-	if (mtmp->mcan || u.antimagicshell || Role_if(PM_UNBELIEVER) ) {
+	if (mtmp->mcan || u.antimagicshell || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") ) && !rn2(5)) ) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}

@@ -3938,7 +3938,7 @@ dopois:
 			}
 
 			if (is_pool(mtmp->mx,mtmp->my) && !Swimming
-			    && !Amphibious && !Breathless && !rn2(3) ) { /* greatly lowered chance of getting drowned --Amy */
+			    && !Amphibious && !Breathless && !rn2(3) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&
 				(levl[mtmp->mx][mtmp->my].typ != WATER) &&

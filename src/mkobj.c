@@ -140,7 +140,7 @@ mkobj(oclass, artif)
 char oclass;
 boolean artif;  
 {
-	int tprob, i, prob = rnd(5000);
+	int tprob, i, j, prob = rnd(5000);
 
 	if (oclass >= MAXOCLASSES) { /* failsafe --Amy */
 
@@ -227,6 +227,27 @@ boolean artif;
 	else if ((objects[u.veryobtainable3].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost3) ) return(mksobj(u.veryobtainable3, TRUE, artif));
 
 	else if ((objects[u.veryobtainable4].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost4) ) return(mksobj(u.veryobtainable4, TRUE, artif));
+
+	else if (!rn2(50) && oclass == ARMOR_CLASS) {
+
+		for (j = STRANGE_OBJECT; j < NUM_OBJECTS; j++) {
+			register const char *zn;
+			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "frequent helmet")) {
+				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
+				break;
+			}
+			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "chastyy shlem")) {
+				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
+				break;
+			}
+			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "tez-tez zarbdan")) {
+				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
+				break;
+			}
+		}
+
+		return (mksobj(j, TRUE, artif));
+	}
 
 	else return(mksobj(i, TRUE, artif));
 }

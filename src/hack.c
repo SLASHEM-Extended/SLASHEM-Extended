@@ -1485,8 +1485,11 @@ domove()
 		    if (!skates) skates = find_skates();
 		    static int skates2 = 0;
 		    if (!skates2) skates2 = find_skates2();
+		    static int skates3 = 0;
+		    if (!skates3) skates3 = find_skates3();
 		    if ((uarmf && uarmf->otyp == skates)
 			    || (uarmf && uarmf->otyp == skates2)
+			    || (uarmf && uarmf->otyp == skates3)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))

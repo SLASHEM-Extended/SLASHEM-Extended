@@ -709,6 +709,12 @@ playersteal()
 		else if (uarm && uarm->owt < 325) chanch -= 15;
 		else if (uarm && uarm->owt < 375) chanch -= 20;
 		else if (uarm)                    chanch -= 25;
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "polnish gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "pol'skiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "polsha qo'lqop") ) ) {
+			if (chanch < 5) chanch = 5;
+			chanch *= 2;
+		}
+
 		if (chanch < 5) chanch = 5;
 		if (chanch > 95) chanch = 95;
 		if (rnd(100) < chanch || mdat->mtame) {

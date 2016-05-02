@@ -603,6 +603,10 @@ moveloop()
 				int copcnt = rnd(monster_difficulty() ) + 1;
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
+				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
 			      while(--copcnt >= 0) {
 					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, MM_ANGRY|MM_ADJACENTOK);
 					else (void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
@@ -1661,6 +1665,19 @@ moveloop()
 			if ((u.dehydrationtime - moves) == 0) pline("You are dehydrated, your vision begins to blur...");
 		} else {
 			u.dehydrationtime = 0;
+		}
+
+		if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ghostly cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "prizrachnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "diniy plash") ) ) {
+			coord mm;   
+			mm.x = u.ux;   
+			mm.y = u.uy;   
+
+			tt_mname(&mm, FALSE, 0);
+			pline("An enormous ghost appears next to you!");
+			You("are frightened to death, and unable to move.");
+		    nomul(-3, "frightened to death");
+			make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
+		    nomovemsg = "You regain your composure.";
 		}
 
 		if ((u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {

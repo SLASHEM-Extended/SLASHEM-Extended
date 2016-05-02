@@ -1620,6 +1620,7 @@ E void NDECL(synch_cursor);
 E void NDECL(init_objects);
 E int NDECL(find_skates);
 E int NDECL(find_skates2);
+E int NDECL(find_skates3);
 E void NDECL(oinit);
 E void FDECL(savenames, (int,int));
 E void FDECL(restnames, (int));

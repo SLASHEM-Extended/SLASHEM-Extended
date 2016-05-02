@@ -341,7 +341,7 @@ drinkfountain()
 			/* evil patch idea by jonadab:
 			   fountains have a small percentage chance of killing you outright, flavored as drowning */
 
-			if (!Amphibious && !Swimming && !Breathless && !rn2(20) ) {
+			if (!Amphibious && !Swimming && !Breathless && !rn2(20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
 
 				pline("You drown...");
 				    killer_format = KILLED_BY_AN;

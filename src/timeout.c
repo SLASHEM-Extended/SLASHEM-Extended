@@ -2246,6 +2246,12 @@ nh_timeout()
 		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
 	}
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jarring cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sotryaseniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "g'azablantiradigan plash") ) && !rn2(1000) ) {
+		wake_nearby();
+		aggravate();
+		pline("Your cloak emits a grating, annoying sound.");
+	}
+
 	if ( (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || have_weaknessstone() ) && u.uhunger < 201) {
 
 		if (!rn2(20)) {

@@ -5094,6 +5094,7 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-13, "strange rings") ||
                            !BSTRCMPI(bp, p-10, "aestivalis") ||
                            !BSTRCMPI(bp, p-16, "combat stilettos") ||
+                           !BSTRCMPI(bp, p-16, "winter stilettos") ||
                            !BSTRCMPI(bp, p-4, "loss") ||
                            !BSTRCMPI(bp, p-5, "stats") ||
                            !BSTRCMPI(bp, p-5, "wings") ||

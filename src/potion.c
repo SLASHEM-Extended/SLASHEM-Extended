@@ -963,6 +963,10 @@ badeffect()
 		if (!rn2(10)) copcnt /= 3;
 		if (copcnt < 1) copcnt = 1;
 	
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 		} /* while */
@@ -1948,6 +1952,11 @@ dodrink()
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;
 		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
 		return 1;
 	    }
 #ifdef SINKS
@@ -1956,6 +1965,11 @@ dodrink()
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;
 		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
 		return 1;
 	    }
 	    else if (IS_TOILET(levl[u.ux][u.uy].typ)) {
@@ -1963,6 +1977,11 @@ dodrink()
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;
 		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
 		return 1;
 	    }
 #endif
@@ -1970,6 +1989,11 @@ dodrink()
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;
 		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
 	    return 1;
 	}
 	if(!otmp) return(0);
@@ -2030,6 +2054,10 @@ register struct obj *otmp;
 
 	if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 		u.dehydrationtime = moves + 1001;
+	}
+
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		morehungry(-10);
 	}
 
 	if((retval = peffects(otmp)) >= 0) return(retval);
