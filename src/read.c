@@ -5201,7 +5201,7 @@ revid_end:
 		} else if (sobj->blessed) {
 			ual = u.ualign.type;
 			a = (ual==A_LAWFUL) ? 'l' : ((ual==A_NEUTRAL) ? 'n' : 'c');
-			c = yn_function("Which alignment do you want to consectrate the altar to?","lncm",a);
+			c = yn_function("Which alignment do you want to consecrate the altar to?","lncm",a);
 			al = A_NONE;
 			switch (c) {
 				case 'l':
