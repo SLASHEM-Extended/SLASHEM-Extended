@@ -9377,7 +9377,7 @@ struct attack *mattk;
 	boolean agrinvis, defperc;
 	xchar genagr, gendef;
 
-	if (is_animal(magr->data)) return (0);
+	if (rn2(5) && is_animal(magr->data)) return (0); /* Oh come on. In Elona snails can have sex with humans too. --Amy */
 	if(magr == &youmonst) {
 		pagr = youmonst.data;
 		agrinvis = (Invis != 0);
@@ -9416,7 +9416,8 @@ struct attack *mattk;
 	if(genagr == 1 - gendef)
 		return 1;
 	else
-		return (pagr->mlet == S_NYMPH) ? 2 : 0;
+		/* Not everyone is straight... --Amy */
+		return (!rn2(25)) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
 }
 
 int
@@ -9431,7 +9432,8 @@ struct attack *mattk;
 	boolean agrinvis, defperc;
 	xchar genagr, gendef;
 
-	if (is_animal(magr->data)) return (0);
+	if (rn2(5) && is_animal(magr->data)) return (0); /* Oh come on. In Elona snails can have sex with humans too. --Amy */
+
 	if(magr == &youmonst) {
 		pagr = youmonst.data;
 		agrinvis = (Invis != 0);
@@ -9466,11 +9468,12 @@ struct attack *mattk;
 
 	/*if (mattk && mattk->adtyp != AD_SSEX && mattk->adtyp != AD_SEDU && mattk->adtyp != AD_SITM && pagr->mlet != S_NYMPH
 && pagr != &mons[PM_INCUBUS] && pagr != &mons[PM_SUCCUBUS]) return 0;*/
-	
+
 	if(genagr == 1 - gendef)
 		return 1;
 	else
-		return (pagr->mlet == S_NYMPH) ? 2 : 0;
+		/* Not everyone is straight... --Amy */
+		return (!rn2(25)) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
 }
 
 #endif /* OVL1 */

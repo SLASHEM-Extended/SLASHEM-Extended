@@ -13634,6 +13634,7 @@ register int	mmflags;
 		case S_FELINE:
 			if (rn2(2) && mndx == PM_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEFORMED_CAT) set_mimic_sym(mtmp);
+			if (mndx == PM_LINUS_THE_CAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 
 		case S_KOBOLD:
@@ -15565,8 +15566,12 @@ int type;
 {
 	switch(type) {
 		case PM_KARAKASA: return 30;
+		case PM_DARK_FEMALE_ANDROID: return 30;
 		case PM_LIVING_IRON_CHAIN: return 30;
+		case PM_BLACK_CHAMELEON: return 35;
+		case PM_UGLY_STICK: return 35;
 		case PM_PAPER_GOLEM: return 36;
+		case PM_GREY_CYBORG: return 36;
 		case PM_STRAW_GOLEM: return 40;
 		case PM_GARGOYLE: return 46;
 		case PM_FLYING_SCIMITAR: return 50;

@@ -2016,7 +2016,9 @@ register int pm;
 		    display_nhwindow(WIN_MAP, TRUE);
 		}
 		break;
+	    case PM_NOVICE_NURSE:
 	    case PM_NURSE:
+	    case PM_EXPERIENCED_NURSE:
 	    case PM_HEALING_TROVE:
 	    case PM_GORGON_FLY:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
