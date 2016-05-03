@@ -414,7 +414,6 @@ struct toptenentry *tt;
 }
 
 #undef XLOG_SEP
-#undef XLOG_SEPC
 #endif /* XLOGFILE */
 
 STATIC_OVL void
