@@ -6104,6 +6104,8 @@ struct obj *obj;
 				pline("Don't bother wearing these things. Find a better pair of footwear instead."); break;
 			case HIGH_BOOTS:
 				pline("These boots offer moderate protection when worn."); break;
+			case IRON_SHOES:
+				pline("Dwarves like to wear these, but they aren't actually dwarven. They provide relatively good AC."); break;
 			case CRYSTAL_BOOTS:
 				pline("A pair of boots that offers high armor class."); break;
 			case WEDGE_SANDALS:
