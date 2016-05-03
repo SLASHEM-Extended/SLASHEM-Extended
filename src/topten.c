@@ -71,7 +71,6 @@ STATIC_DCL void FDECL(readentry, (FILE *,struct toptenentry *));
 STATIC_DCL void FDECL(writeentry, (FILE *,struct toptenentry *));
 STATIC_DCL void FDECL(free_ttlist, (struct toptenentry *));
 #ifdef XLOGFILE
-STATIC_DCL void FDECL(munge_xlstring, (char *dest, char *src, int n)); 
 STATIC_DCL void FDECL(write_xlentry, (FILE *,struct toptenentry *));
 #endif
 STATIC_DCL int FDECL(classmon, (char *,BOOLEAN_P));
@@ -319,28 +318,6 @@ struct toptenentry *tt;
 }
 
 #ifdef XLOGFILE
-/* copy a maximum of n-1 characters from src to dest, changing ':' and '\n'  
- * to '_'; always null-terminate. */  
-STATIC_OVL void  
-munge_xlstring(dest, src, n)  
-char *dest;  
-char *src;  
-int n;  
-{  
-  int i;  
-  
-  for(i = 0; i < (n - 1) && src[i] != '\0'; i++) {  
-    if(src[i] == SEPC || src[i] == '\n')  
-      dest[i] = '_';  
-    else  
-      dest[i] = src[i];  
-  }  
-  
-  dest[i] = '\0';  
-  
-  return;  
-}  
-
 /* Use \t instead of ":" so that we don't have to mangle anything else (3.6.0)*/
 #define XLOG_SEP "\t"
 
@@ -379,11 +356,9 @@ struct toptenentry *tt;
    
   (void)fprintf(rfile, XLOG_SEP "hybrid=%s", hybrid_strcode());
 
-  munge_xlstring(buf, plname, DTHSZ + 1); 
-  (void)fprintf(rfile, XLOG_SEP "name=%s", buf);
+  (void)fprintf(rfile, XLOG_SEP "name=%s", plname);
 
-  munge_xlstring(buf, tt->death, DTHSZ + 1); 
-  (void)fprintf(rfile, XLOG_SEP "death=%s", buf);
+  (void)fprintf(rfile, XLOG_SEP "death=%s", tt->death);
 
 #ifdef RECORD_CONDUCT
   (void)fprintf(rfile, XLOG_SEP "conduct=0x%lx", 0x1fffL & ~encodeconduct());
