@@ -2539,9 +2539,10 @@ int enhance_skill(boolean want_dump)
 	    }
 
 #ifdef DUMP_LOG
-	    if (want_dump)
-		dump("","Your skills at the end");
-	    else {
+	    if (want_dump) {
+		Sprintf(buf2,"Your skills at the end (%d slot%s left)", u.weapon_slots, plur(u.weapon_slots)),
+		dump("",buf2);
+	    } else {
 #endif
 	    win = create_nhwindow(NHW_MENU);
 	    start_menu(win);
@@ -2594,9 +2595,14 @@ int enhance_skill(boolean want_dump)
 			     skill_ranges[pass].name, MENU_UNSELECTED);
 #ifdef DUMP_LOG
 		if (want_dump) {
-		    if (P_SKILL(i) > P_UNSKILLED) {
-		 	Sprintf(buf2,"%-*s [%s]",
-			    longest, P_NAME(i),skill_level_name(i, buf));
+		    if (P_SKILL(i) >= P_UNSKILLED) {
+
+			(void) skill_level_name(i, sklnambuf);
+			(void) skill_level_name_max(i, sklnambuftwo);
+
+		 	Sprintf(buf2,"%-*s [%s] %s (%d of %d)",
+			    longest, P_NAME(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
+			    practice_needed_to_advance(P_SKILL(i), i) );
 			dump("    ",buf2);
 			logged=TRUE;
 		    } else if (i == skill_ranges[pass].last && !logged) {
