@@ -939,6 +939,8 @@ register struct obj *obj;
 	/* KMH -- Koalas can only eat eucalyptus */
 	if (mon->data == &mons[PM_KOALA])
 		return (obj->otyp == EUCALYPTUS_LEAF ? DOGFOOD : APPORT);
+	if (mon->data == &mons[PM_GIANT_KOALA])
+		return (obj->otyp == EUCALYPTUS_LEAF ? DOGFOOD : APPORT);
 
 	switch(obj->oclass) {
 	case FOOD_CLASS:
@@ -1024,6 +1026,7 @@ register struct obj *obj;
 		/* KMH -- Taz likes organics, too! */
 	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
 		mon->data == &mons[PM_FLYING_GELATINOUS_CUBE] ||
+		mon->data == &mons[PM_FANTASTIC_GELATINOUS_CUBE] ||
 		mon->data == &mons[PM_STOUT_GELATINOUS_CUBE] ||
 		mon->data == &mons[PM_AMUSING_TYPE] ||
 		mon->data == &mons[PM_SHOGGOTH] ||
@@ -1033,6 +1036,7 @@ register struct obj *obj;
 		mon->data == &mons[PM_MINOCUBE] ||
 		mon->data == &mons[PM_THEME_TERMITE] ||
 		mon->data == &mons[PM_GELATINOUS_DICE] ||
+		mon->data == &mons[PM_KING_GORGE__LORD_OF_THE_GLUTTONS] ||
 		mon->data == &mons[PM_WEAPON_CUBE] ||
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
 		mon->data == &mons[PM_OOZE_ELEMENTAL] ||

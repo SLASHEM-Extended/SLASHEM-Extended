@@ -214,7 +214,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_FANTASTIC_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_KING_GORGE__LORD_OF_THE_GLUTTONS || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -223,6 +223,8 @@ register struct obj *obj;
 
 	/* Koalas only eat Eucalyptus leaves */
 	if (u.umonnum == PM_KOALA)
+		return (boolean)(obj->otyp == EUCALYPTUS_LEAF);
+	if (u.umonnum == PM_GIANT_KOALA)
 		return (boolean)(obj->otyp == EUCALYPTUS_LEAF);
 
 	/* Ghouls, ghasts only eat corpses */

@@ -7613,9 +7613,17 @@ register struct	monst	*mtmp;
 
 		break;
 
+	    case S_PIERCER:
+
+		if (mtmp->data == &mons[PM_JIGEN_DAISUKE]) { (void) mongets(mtmp, ROCKET_LAUNCHER); (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); }
+		break;
+
 	    case S_IMP:
 
 		if (mtmp->data == &mons[PM_ARROGANCE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+		if (mtmp->data == &mons[PM_METAL_EMBATTLED_GIGANTIC_ULTIMATE_MIKI_IMPALER]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 7);}
+		if (mtmp->data == &mons[PM_MACROSS_VALKARIE]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10);}
+		if (mtmp->data == &mons[PM_THE_WING_ZERO]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 20);}
 
 		if (mtmp->data == &mons[PM_ARCH_VILE]) (void) mongets(mtmp, WAN_CREATE_HORDE);
 		if (mtmp->data == &mons[PM_ANJA_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
@@ -7652,6 +7660,7 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_JULCHEN_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_JOHANETTA_S_POINTY_GIRL_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
+		if (mtmp->data == &mons[PM_THE_BLACK_LADY]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		break;
 
 	    case S_BAD_COINS:
@@ -8454,6 +8463,7 @@ register struct	monst	*mtmp;
 #else
 		mkmonmoney(mtmp, (long) d(level_difficulty(), 30));
 #endif
+		if (monsndx(ptr) == PM_LUPIN_THE_THIRD) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
 		if (monsndx(ptr) == PM_CORPSE_SHREDDER) m_initthrow(mtmp, FRAG_GRENADE, 3);
 		if (monsndx(ptr) == PM_CORNUCHULA) m_initthrow(mtmp, FRAG_GRENADE, 4);
@@ -8561,6 +8571,7 @@ register struct	monst	*mtmp;
 
 		if(ptr == &mons[PM_CHARGING_KINDNESS] || ptr == &mons[PM_ARMORED_BUNDLE_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (mtmp->data == &mons[PM_CONNY_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
+		if (mtmp->data == &mons[PM_BENGE_BARBAROIS]) { (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WAN_TRAP_CREATION); }
 
 		if(ptr == &mons[PM_FRIEDERIKE_S_SOFT_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
 
@@ -15599,10 +15610,12 @@ int type;
 		case PM_WOOD_GOLEM: return 100;
 		case PM_BARNACLE_COVERED_GOLEM: return 120;
 		case PM_CLANKING_CHAINS: return 120;
+		case PM_SOOTBALL: return 140;
 		case PM_SPOOKY_PORTRAIT: return 150;
 		case PM_HAUNTED_TEAPOT: return 200;
 		case PM_ANIMATED_HOURGLASS: return 225;
 		case PM_GRINDER: return 300;
+		case PM_MINI_ROBO_KY: return 300;
 		case PM_MORBID_MIRROR: return 310;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
