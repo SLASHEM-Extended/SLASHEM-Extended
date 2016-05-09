@@ -2081,6 +2081,8 @@ register int pm;
 	    case PM_ULTIMATE_MIMIC:
 	    case PM_EMPEROR_MIMIC:
 	    case PM_DOOR_MIMIC:
+	    case PM_DEMONIC_DOOR:
+	    case PM_SATANIC_DOOR:
 	    case PM_CLOAKER:
 	    case PM_CHEST_MIMIC:
 	    case PM_UNKNOWN_MIMIC:

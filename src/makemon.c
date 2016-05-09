@@ -7618,6 +7618,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_JIGEN_DAISUKE]) { (void) mongets(mtmp, ROCKET_LAUNCHER); (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); }
 		break;
 
+	    case S_GOLEM:
+		if (mtmp->data == &mons[PM_ROBO_KY]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); }
+
+		break;
+
 	    case S_IMP:
 
 		if (mtmp->data == &mons[PM_ARROGANCE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
@@ -8484,6 +8489,7 @@ register struct	monst	*mtmp;
           case S_VORTEX: 
 
 	      if (ptr == &mons[PM_EVELINE_S_SWEET_WEDGE_SANDAL]) { mongets(mtmp, WEDGE_SANDALS); mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); }
+		if (monsndx(ptr) == PM_NICHOLAS_D__WOLFWOOD) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); }
 
 	    break;
 
@@ -15743,6 +15749,7 @@ int type;
 		case PM_GOLEM: return 400;
 		case PM_BLOODY_BEAUTIES: return 500;
 		case PM_KASTORTRANSPORT: return 500;
+		case PM_ROBO_KY: return 750;
 		case PM_INVULNERABLE_GOLEM: return 2000;
 		case PM_WAX_GOLEM: return 40;
 		case PM_WRAP_GOLEM: return 40;
@@ -16178,6 +16185,12 @@ assign_sym:
 	}
 
 	if (mtmp->data == &mons[PM_DOOR_MIMIC] || mtmp->data == &mons[PM_DOOR_PERMAMIMIC]) {
+		s_sym = MAXOCLASSES;
+		ap_type = M_AP_FURNITURE;
+		appear = S_hcdoor;
+	}
+
+	if (mtmp->data == &mons[PM_DEMONIC_DOOR] || mtmp->data == &mons[PM_SATANIC_DOOR]) {
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_hcdoor;
