@@ -3663,7 +3663,7 @@ register struct obj *otmp;
 	case WAN_DRAINING:	/* KMH */
 		tmp = d(2,6);
 		if (mtmp == &youmonst) {
-			if (Drain_resistance) {
+			if (Drain_resistance && !rn2(4) ) {
 				shieldeff(u.ux, u.uy);
 				pline("Boing!");
 			} else
@@ -4726,7 +4726,7 @@ struct monst *mtmp;
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(20) )
+					if(!Drain_resistance || !rn2(4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -5713,7 +5713,7 @@ newboss:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(20) )
+					if(!Drain_resistance || !rn2(4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}

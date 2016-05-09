@@ -3007,7 +3007,7 @@ newegomon:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		if (!Drain_resistance || !rn2(20) ) {
+		if (!Drain_resistance || !rn2(4) ) {
 			pline("A malevolent black glow suddenly surrounds you...");
 			losexp("life drainage", FALSE, TRUE);
 		}
@@ -3271,7 +3271,7 @@ newegomon:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(20) )
+					if(!Drain_resistance || !rn2(4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}

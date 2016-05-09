@@ -4392,7 +4392,7 @@ uchar aatyp;
 			nomul(-2, "being levelwarped");
 			return(0);
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
@@ -4930,12 +4930,12 @@ uchar aatyp;
 		    u_slow_down();
 		break;
         case AD_DRLI:
-			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
         case AD_VAMP:
-			if (!Drain_resistance || !rn2(20) ) {
+			if (!Drain_resistance || !rn2(4) ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
@@ -5521,7 +5521,7 @@ uchar aatyp;
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(20) )
+			if(!Drain_resistance || !rn2(4) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -5717,7 +5717,7 @@ uchar aatyp;
 
 		    mdamageu(mon, tmp);
 
-			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 

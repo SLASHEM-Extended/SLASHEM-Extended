@@ -96,7 +96,7 @@ on the first floor, especially when you're playing as something with drain resis
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
 			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
-			if (!Drain_resistance || !rn2(20)) {
+			if (!Drain_resistance || !rn2(4)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
 		      losexp("life drainage", FALSE, TRUE);
 			}
@@ -3358,7 +3358,7 @@ dopois:
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(20) )
+			if(!Drain_resistance || !rn2(4) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -3518,7 +3518,7 @@ dopois:
 			destroy_item(RING_CLASS, AD_ELEC);
 		}
 
-		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
 
@@ -3537,7 +3537,7 @@ dopois:
 			    	EDOG(mtmp)->hungrytime += ((int)((youmonst.data)->cnutrit / 20) + 1);
 		}
 		
-		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
 		break;
@@ -3747,7 +3747,7 @@ dopois:
 			    	EDOG(mtmp)->hungrytime += ((int)((youmonst.data)->cnutrit / 20) + 1);
 		}
 		
-		if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
 		break;
@@ -4158,7 +4158,7 @@ dopois:
 			}
 
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
@@ -5552,13 +5552,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_DRLI:
 			pline("It sucks you!");
 /* Imagine the facial expression of a player who thinks this is the mind flayer's amnesia attack. --Amy */
-			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
 	      case AD_VAMP:
 			pline("It sucks you!");
-			if (!Drain_resistance || !rn2(20) ) {
+			if (!Drain_resistance || !rn2(4) ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
@@ -5790,7 +5790,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(20) )
+			if(!Drain_resistance || !rn2(4) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -6326,7 +6326,7 @@ do_stone2:
 				nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
 			}
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
@@ -6640,7 +6640,7 @@ do_stone2:
 			}
 		    }
 
-			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 
@@ -6998,7 +6998,7 @@ common:
 
 	    case AD_DRLI:
 
-		if (!Drain_resistance || !rn2(20) )
+		if (!Drain_resistance || !rn2(4) )
 		    losexp("draining explosion", FALSE, TRUE);
 		break;
 
@@ -7568,7 +7568,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      case AD_DRLI:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
-			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(7) && (!Drain_resistance || !rn2(4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 			    losexp("life drainage", FALSE, TRUE);
@@ -7580,7 +7580,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      case AD_VAMP:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
  		{
-			if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 			    losexp("life drainage", FALSE, TRUE);
@@ -8090,7 +8090,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(20) )
+			if(!Drain_resistance || !rn2(4) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -8335,7 +8335,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
 			}
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(20) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		}
@@ -8773,7 +8773,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (dmg) mdamageu(mtmp, dmg);
 
-			if (!rn2(7) && (!Drain_resistance || !rn2(20) )  ) {
+			if (!rn2(7) && (!Drain_resistance || !rn2(4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 
@@ -9663,7 +9663,7 @@ register struct monst *mon;
 				flags.botl = 1;
 				break;
 			case 3:
-				if (!Drain_resistance || !rn2(20) ) {
+				if (!Drain_resistance || !rn2(4) ) {
 				    You_feel("out of shape.");
 				    losexp("overexertion", FALSE, TRUE);
 				} else {
