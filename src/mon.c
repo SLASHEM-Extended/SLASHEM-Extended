@@ -513,6 +513,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KAPTAIN:
 	    case PM_UNDEAD_KCHIEF:
 	    case PM_UNDEAD_KATCHER:
+	    case PM_UNDEAD_KRIMINOLOGIST:
 	    case PM_UNDEAD_SNAKE:
 	    case PM_UNDEAD_EGO_SNAKE:
 	    case PM_UNDEAD_NAGA:

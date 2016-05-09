@@ -1638,7 +1638,7 @@ start_corpse_timeout(body)
 			}
 		}
 
-	} else if (mons[body->corpsenm].mlet == S_FUNGUS || body->corpsenm == PM_ROT_WALKER || body->corpsenm == PM_RED_DEATH || body->corpsenm == PM_BONE_DEMON || body->corpsenm == PM_LITCH_DEMON || body->corpsenm == PM_UNDEAD_BALROG || body->corpsenm == PM_ROT_CONVERTER || body->corpsenm == PM_RUST_CONVERTER || body->corpsenm == PM_SARAH_S_HUGGING_BOOT || body->corpsenm == PM_CONNY_S_COMBAT_BOOT || body->corpsenm == PM_VERENA_S_STILETTO_SANDAL || body->corpsenm == PM_VAMPIRE_TROLL || body->corpsenm == PM_REANIMATED_HORDE || body->corpsenm == PM_PROWLING_DEAD_POTATO || body->corpsenm == PM_UNHOLY_CORPSE || body->corpsenm == PM_DEFILED_WARRIOR ||
+	} else if (mons[body->corpsenm].mlet == S_FUNGUS || body->corpsenm == PM_ROT_WALKER || body->corpsenm == PM_RED_DEATH || body->corpsenm == PM_BONE_DEMON || body->corpsenm == PM_LITCH_DEMON || body->corpsenm == PM_UNDEAD_BALROG || body->corpsenm == PM_ROT_CONVERTER || body->corpsenm == PM_RUST_CONVERTER || body->corpsenm == PM_GRETA_S_HUGGING_BOOT || body->corpsenm == PM_SARAH_S_HUGGING_BOOT || body->corpsenm == PM_CONNY_S_COMBAT_BOOT || body->corpsenm == PM_VANESSA_S_THICK_LADY_SHOE || body->corpsenm == PM_VERENA_S_WORN_OUT_COMBAT_BOOT || body->corpsenm == PM_VERENA_S_STILETTO_SANDAL || body->corpsenm == PM_SUE_LYN_S_THICK_WINTER_BOOT || body->corpsenm == PM_VAMPIRE_TROLL || body->corpsenm == PM_REANIMATED_HORDE || body->corpsenm == PM_PROWLING_DEAD_POTATO || body->corpsenm == PM_UNHOLY_CORPSE || body->corpsenm == PM_DEFILED_WARRIOR ||
 		((((mtmp = get_mtraits(body, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll)
 		 ) {
 		/* Fungi come back with a vengeance - if you don't eat it or

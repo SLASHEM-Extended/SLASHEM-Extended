@@ -2077,6 +2077,7 @@ register int pm;
 	    case PM_STAIRWAY_TO_HELL:
 	    case PM_POTION_MIMIC:
 	    case PM_TOME_OF_DESTRUCTION:
+	    case PM_TOME_OF_DIVINE_WRATH:
 	    case PM_LESSER_MIMIC:
 	    case PM_ULTIMATE_MIMIC:
 	    case PM_EMPEROR_MIMIC:
@@ -2114,6 +2115,7 @@ register int pm;
 	    case PM_STAIRWAY_TO_HEAVEN:
 	    case PM_POTION_PERMAMIMIC:
 	    case PM_TOME_OF_ANNIHILATION:
+	    case PM_TOME_OF_NETHER_WRATH:
 	    case PM_LESSER_PERMAMIMIC:
 	    case PM_ULTIMATE_PERMAMIMIC:
 	    case PM_EMPEROR_PERMAMIMIC:
@@ -2147,6 +2149,7 @@ register int pm;
 	    case PM_MIMIC_NYMPH:
 	    case PM_MIMIC_ANT:
 	    case PM_MIMICRY_RUBBER:
+	    case PM_UNKNOWN_ESCALATION_RUBBER:
 	    case PM_CAMO_FISH:
 	    case PM_MINOTAUR_MIMIC:
 	    case PM_FLYING_CAMO_FISH:
@@ -2158,6 +2161,7 @@ register int pm;
 	    case PM_INSPECTOR_KOMMISSIONER:
 	    case PM_INSPECTOR_KCHIEF:
 	    case PM_INSPECTOR_KATCHER:
+	    case PM_INSPECTOR_KRIMINOLOGIST:
 	    case PM_FATA_MORGANA:
 	    case PM_UNIDENTIFIED_KOBOLD_SHAMAN:
 	    case PM_CURSED_SPIRIT:
@@ -2178,6 +2182,7 @@ register int pm;
 	    case PM_WARDER_KOMMISSIONER:
 	    case PM_WARDER_KCHIEF:
 	    case PM_WARDER_KATCHER:
+	    case PM_WARDER_KRIMINOLOGIST:
 	    case PM_HEHEHE_HE_GUY:
 	    case PM_ELECTRODE:
 	    case PM_DEFORMED_CAT:
@@ -2445,10 +2450,16 @@ register int pm;
 
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
+	    case PM_GRAVITY_CHICKEN:
 	    case PM_MEDUSA_S_PET_FISH:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		gainstr((struct obj *)0, 0);
 		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
+		break;
+
+	    case PM_NEXUS_CHICKEN:
+
+		pline("This corpse can grant both teleportitis and teleport control. It can also petrify you, though.");
 		break;
 
 		/* non-mind flayers that emit mental blasts sometimes give INT boosts, too --Amy */
@@ -2468,6 +2479,7 @@ register int pm;
 	    case PM_KADABRA:
 	    case PM_ALAKAZAM:
 	    case PM_SMART_TROVE:
+	    case PM_FLYING_COCKATRICE:
 	    case PM_CURSING_ORB: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 
