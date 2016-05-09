@@ -3217,7 +3217,7 @@ charge_saber()
 		You("channel the force into %s.", the(xname(uwep)));
 
 	// yes no return above, it's a bonus :)
-	uwep->age+=u.uen*((techlev(T_CHARGE_SABER)/rnd(10))+51); /* improved results by Amy */
+	uwep->age+=u.uen*(( (techlev(T_CHARGE_SABER) + rnd(5 + techlev(T_CHARGE_SABER)) ) /rnd(10))+3); /* improved results by Amy */
 	u.uen=0;
 	flags.botl=1;
 	return(0);
