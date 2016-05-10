@@ -828,7 +828,7 @@ cast_reflection()
 		else
 			You_feel("smooth.");
 	}
-	incr_itimeout(&HReflecting, rn1(10, HReflecting ? 20 : 100));
+	incr_itimeout(&HReflecting, rn1(10, HReflecting ? 4 : 30));
 }
 
 
@@ -1225,6 +1225,13 @@ boolean atme;
 		if (!rn2(n)) {
 		    pseudo->blessed = 0;
 		    (void) seffects(pseudo);
+		    if (u.uenmax > 0) {
+			    u.uenmax -= 1;
+			    pline("The strain from casting such a powerful spell drains your maximum mana.");
+		    } else {
+			    pline("Casting such a powerful spell from hitpoints causes strong backlash.");
+			    badeffect(); badeffect(); badeffect(); badeffect(); badeffect();
+		    }
 		} else
 		    Your("enchantment failed!");
 		break;
@@ -1536,15 +1543,13 @@ boolean atme;
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You("feel healthy ..... for the moment at least.");
-			incr_itimeout(&HPoison_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ANTI_DISINTEGRATION:
 		if(!(HDisint_resistance & INTRINSIC)) {
 			You("feel quite firm for a while.");
-			incr_itimeout(&HDisint_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_MAGICTORCH:
@@ -1557,15 +1562,13 @@ boolean atme;
 	case SPE_DISPLACEMENT:
 		if(!(HDisplaced & INTRINSIC)) {
 			pline("Your image is displaced!");
-			incr_itimeout(&HDisplaced, rn1(200, 100) +
-				spell_damage_bonus(spellid(spell))*20);
+			incr_itimeout(&HDisplaced, Displaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You("feel resistant to sickness.");
-			incr_itimeout(&HSick_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_GENOCIDE:
@@ -1632,15 +1635,13 @@ boolean atme;
 	case SPE_ACIDSHIELD:
 		if(!(HAcid_resistance & INTRINSIC)) {
 			You("are resistant to acid now. Your items, however, are not.");
-			incr_itimeout(&HAcid_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HAcid_resistance, Acid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_PETRIFICATION:
 		if(!(HStone_resistance & INTRINSIC)) {
 			You("feel more limber. Let's eat some cockatrice meat!");
-			incr_itimeout(&HStone_resistance, rn1(200, 100) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_SLEEP:
@@ -1649,22 +1650,19 @@ boolean atme;
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
-			incr_itimeout(&HSleep_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HSleep_resistance, Sleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_FLYING:
 		if(!(HFlying & INTRINSIC)) {
 			You("start flying!");
-			incr_itimeout(&HFlying, rn1(70, 5) +
-				spell_damage_bonus(spellid(spell))*20);
+			incr_itimeout(&HFlying, Flying ? (rnd(4) + spell_damage_bonus(spellid(spell))) : (rn1(20, 25) + spell_damage_bonus(spellid(spell))*20));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You("feel warmer.");
-			incr_itimeout(&HCold_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_HEAT:
@@ -1673,8 +1671,7 @@ boolean atme;
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You("feel colder.");
-			incr_itimeout(&HFire_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_INSULATE:
@@ -1683,8 +1680,7 @@ boolean atme;
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
-			incr_itimeout(&HShock_resistance, rn1(1000, 500) +
-				spell_damage_bonus(spellid(spell))*100);
+			incr_itimeout(&HShock_resistance, Shock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 
@@ -1916,6 +1912,13 @@ boolean atme;
 	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
 		boostknow(spell, -(rnd(100000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
+
+		boostknow(spell, -(rnd(25000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
