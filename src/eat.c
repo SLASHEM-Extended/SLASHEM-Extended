@@ -857,6 +857,7 @@ register int pm;
 		break;
 	    case PM_LIZARD:
 	    case PM_ROCK_LIZARD:
+	    case PM_BLACK_LIZARD:
 	    case PM_BABY_CAVE_LIZARD:
 	    case PM_NIGHT_LIZARD:
 	    case PM_LIZARD_MAN:
@@ -1013,6 +1014,7 @@ struct monst *mon;
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
 	case PM_KARMIC_LIZARD:
+	case PM_BLACK_LIZARD:
 	case PM_MONSTER_LIZARD:
 	case PM_FIRE_LIZARD:
 	case PM_LIGHTNING_LIZARD:
@@ -2386,6 +2388,7 @@ register int pm;
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
 	    case PM_FIRE_LIZARD:
+	    case PM_BLACK_LIZARD:
 	    case PM_LIGHTNING_LIZARD:
 	    case PM_ICE_LIZARD:
 			lesshungry(120);
