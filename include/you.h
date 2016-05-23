@@ -620,6 +620,40 @@ struct you {
 	boolean nastinator84;
 	boolean nastinator85;
 
+	char	starlit1[BUFSZ];
+	char	starlit2[BUFSZ];
+	char	starlit3[BUFSZ];
+
+	char	strshamblerx[BUFSZ];
+	char	strshamblerxa[BUFSZ];
+	char	strpokshamblert[BUFSZ];
+	char	strpokshamblertp[BUFSZ];
+	char	strshamblerz[BUFSZ];
+	char	strshamblerza[BUFSZ];
+
+	char	strandommimic[BUFSZ];
+	char	strandommimicb[BUFSZ];
+
+	char	strandomkopb[BUFSZ];
+
+	char	strandomfungus[BUFSZ];
+	char	strandomfungusb[BUFSZ];
+	char	strandomfungusc[BUFSZ];
+	char	strandomfungusd[BUFSZ];
+	char	strandomfunguse[BUFSZ];
+	char	strandomfungusf[BUFSZ];
+	char	strandomfungusg[BUFSZ];
+	char	strandomfungush[BUFSZ];
+	char	strandomfungusi[BUFSZ];
+	char	strandomfungusj[BUFSZ];
+	char	strandomfungusk[BUFSZ];
+	char	strandomfungusl[BUFSZ];
+
+	char	strandomdragonb[BUFSZ];
+	char	strandomdragonc[BUFSZ];
+	char	strandombdragonb[BUFSZ];
+	char	strandombdragonc[BUFSZ];
+
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */

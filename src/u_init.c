@@ -5158,6 +5158,13 @@ u_init()
 	struct permonst* shamblertp = &mons[PM_PETTY_GRUNTHACK_HORROR];
 	struct permonst* shamblertpa = &mons[PM_PETTY_ACEHACK_HORROR];
 
+	struct permonst* rshamblerx = &mons[PM_INTERHACK_HORROR_X];
+	struct permonst* rshamblerxa = &mons[PM_NHTNG_HORROR_X];
+	struct permonst* rpokshamblert = &mons[PM_SUIKUN_X];
+	struct permonst* rpokshamblertp = &mons[PM_HOUOU_X];
+	struct permonst* rshamblerz = &mons[PM_STONE_COLD_HORROR_X];
+	struct permonst* rshamblerza = &mons[PM_PETROGRAPHY_HORROR_X];
+
 	struct permonst* shamblerz = &mons[PM_STONE_COLD_HORROR];
 	struct permonst* shamblerza = &mons[PM_PETROGRAPHY_HORROR];
 
@@ -5206,6 +5213,8 @@ u_init()
 	struct permonst* randomeye = &mons[PM_MYSTIC_EYE];
 	struct permonst* randommimic = &mons[PM_UNKNOWN_MIMIC];
 	struct permonst* randommimicb = &mons[PM_UNKNOWN_PERMAMIMIC];
+	struct permonst* rrandommimic = &mons[PM_UNKNOWN_MIMIC_X];
+	struct permonst* rrandommimicb = &mons[PM_UNKNOWN_PERMAMIMIC_X];
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
@@ -5234,8 +5243,23 @@ u_init()
 	struct permonst* randomfungusl = &mons[PM_NONDESCRIPT_STALK];
 	struct permonst* randomfungusm = &mons[PM_NONDESCRIPT_SPORE];
 	struct permonst* randomfungusn = &mons[PM_NONDESCRIPT_COLONY];
+
+	struct permonst* rrandomfungusa = &mons[PM_COLORLESS_MOLD_X];
+	struct permonst* rrandomfungusb = &mons[PM_COLORLESS_FUNGUS_X];
+	struct permonst* rrandomfungusc = &mons[PM_COLORLESS_PATCH_X];
+	struct permonst* rrandomfungusd = &mons[PM_COLORLESS_FORCE_FUNGUS_X];
+	struct permonst* rrandomfunguse = &mons[PM_COLORLESS_FORCE_PATCH_X];
+	struct permonst* rrandomfungusf = &mons[PM_COLORLESS_WARP_FUNGUS_X];
+	struct permonst* rrandomfungusg = &mons[PM_COLORLESS_WARP_PATCH_X];
+	struct permonst* rrandomfungush = &mons[PM_COLORLESS_GROWTH_X];
+	struct permonst* rrandomfungusi = &mons[PM_COLORLESS_MUSHROOM_X];
+	struct permonst* rrandomfungusj = &mons[PM_COLORLESS_STALK_X];
+	struct permonst* rrandomfungusk = &mons[PM_COLORLESS_SPORE_X];
+	struct permonst* rrandomfungusl = &mons[PM_COLORLESS_COLONY_X];
+
 	struct permonst* randomkop = &mons[PM_ONG_SEPHIRAH];
 	struct permonst* randomkopb = &mons[PM_KRONG_SEPHIRAH];
+	struct permonst* rrandomkopb = &mons[PM_KRONG_SEPHIRAH_X];
 	struct permonst* randomkopc = &mons[PM_ZAKRONG_SEPHIRAH];
 	struct permonst* randomtroll = &mons[PM_SPECIAL_TROLL];
 	struct permonst* randomeel = &mons[PM_TEETHFISH];
@@ -5268,6 +5292,11 @@ u_init()
 	struct permonst* randombdragonj = &mons[PM_BABY_GLOWING_DRAGON];
 	struct permonst* randombdragonk = &mons[PM_BABY_GUIVRE];
 
+	struct permonst* rrandomdragonb = &mons[PM_ADULT_TATZELWORM_X];
+	struct permonst* rrandomdragonc = &mons[PM_ADULT_AMPHITERE_X];
+	struct permonst* rrandombdragonb = &mons[PM_BABY_TATZELWORM_X];
+	struct permonst* rrandombdragonc = &mons[PM_BABY_AMPHITERE_X];
+
 	struct permonst* pokshamblerl = &mons[PM_PUPURIN];
 	struct permonst* pokshamblerla = &mons[PM_SAPUSAUR];
 	struct permonst* pokshamblerm = &mons[PM_ODDOSHISHI];
@@ -5294,6 +5323,10 @@ u_init()
 	struct permonst* starliti = &mons[PM_ORANGE_STARLIT_SKY];
 	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
+
+	struct permonst* starlitl = &mons[PM_MISNAMED_STARLIT_SKY];
+	struct permonst* starlitm = &mons[PM_WRONG_NAMED_STARLIT_SKY];
+	struct permonst* starlitn = &mons[PM_ERRONEOUS_STARLIT_SKY];
 
 	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
 	struct permonst* starlitv = &mons[PM_ETHEREAL_MISSINGNO];
@@ -5347,6 +5380,7 @@ u_init()
 	struct permonst* randbossau = &mons[PM_SCHALOTTE];
 	struct permonst* randbossav = &mons[PM_MAY_BRITT];
 
+	static char buf[BUFSZ];
 
 	struct attack* attkptr;
 	int no_extra_food = FALSE;
@@ -11887,7 +11921,133 @@ u_init()
 	shamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	/* what a horrible night to have a curse */
+	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
+	rshamblerz->mmove = rn2(20)+9;				/* slow to very fast */
+	rshamblerz->ac = rn2(40)-29;				/* any AC */
+	rshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &rshamblerz->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+	}
+	rshamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerz->cnutrit = rnd(2000);					/* see above */
+	rshamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerz->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerz->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerz->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerz->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerz->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerz->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerz->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
+	rshamblerz->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerz->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerz->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerz->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerz->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerz->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerz, buf, sizeof(buf) );
+	rshamblerz->mname = u.strshamblerz;
+
+	/* second one */
+	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
+	rshamblerza->mmove = rn2(20)+9;				/* slow to very fast */
+	rshamblerza->ac = rn2(40)-29;				/* any AC */
+	rshamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerza->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &rshamblerza->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+	}
+	rshamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerza->cnutrit = rnd(2000);					/* see above */
+	rshamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerza->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerza->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerza->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerza->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerza->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerza->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerza->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerza->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerza->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerza->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerza->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerza, buf, sizeof(buf) );
+	rshamblerza->mname = u.strshamblerza;
 
 
 	/* what a horrible night to have a curse */
@@ -12306,6 +12466,130 @@ u_init()
 	pokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	pokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	/* what a horrible night to have a curse */
+	/*pokshambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	rpokshamblert->mmove = rn2(14)+9;				/* slow to very fast */
+	rpokshamblert->ac = rn2(31)-20;				/* any AC */
+	rpokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
+	rpokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rpokshamblert->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rpokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rpokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rpokshamblert->cnutrit = rnd(2000);					/* see above */
+	rpokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblert->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rpokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rpokshamblert->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rpokshamblert->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rpokshamblert->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblert->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	rpokshamblert->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblert->mflags2 |= (1 << rn2(31));
+	}
+	rpokshamblert->mflags2 &= ~M2_MERC;				/* no guards */
+	rpokshamblert->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rpokshamblert->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rpokshamblert->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strpokshamblert, buf, sizeof(buf) );
+	rpokshamblert->mname = u.strpokshamblert;
+
+	/* what a horrible night to have a curse */
+	/*pokshambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	rpokshamblertp->mmove = rn2(14)+9;				/* slow to very fast */
+	rpokshamblertp->ac = rn2(31)-20;				/* any AC */
+	rpokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
+	rpokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rpokshamblertp->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rpokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rpokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rpokshamblertp->cnutrit = rnd(2000);					/* see above */
+	rpokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblertp->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rpokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rpokshamblertp->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rpokshamblertp->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rpokshamblertp->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblertp->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	rpokshamblertp->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
+
+	rpokshamblertp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblertp->mflags2 |= (1 << rn2(31));
+	}
+	rpokshamblertp->mflags2 &= ~M2_MERC;				/* no guards */
+	rpokshamblertp->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rpokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rpokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strpokshamblertp, buf, sizeof(buf) );
+	rpokshamblertp->mname = u.strpokshamblertp;
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
@@ -12844,6 +13128,134 @@ u_init()
 	shamblerxa->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	shamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	rshamblerx->mmove = rn2(9)+9;				/* slow to very fast */
+	rshamblerx->ac = rn2(18)-7;				/* any AC */
+	rshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &rshamblerx->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	rshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerx->cnutrit = rnd(2000);					/* see above */
+	rshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerx->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerx->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerx->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerx->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerx->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerx->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerx->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerx->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerx->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerx->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerx->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerx->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerx->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerx, buf, sizeof(buf) );
+	rshamblerx->mname = u.strshamblerx;
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	rshamblerxa->mmove = rn2(9)+9;				/* slow to very fast */
+	rshamblerxa->ac = rn2(18)-7;				/* any AC */
+	rshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &rshamblerxa->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	rshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerxa->cnutrit = rnd(2000);					/* see above */
+	rshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerxa->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerxa->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerxa->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerxa->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerxa->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerxa->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerxa->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerxa->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerxa->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerxa->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerxa->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerxa, buf, sizeof(buf) );
+	rshamblerxa->mname = u.strshamblerxa;
 
 	/* what a horrible night to have a curse */
 	/*pokshambler->mlevel += rnd(16)-7;*/				/* shuffle level */
@@ -15259,6 +15671,14 @@ u_init()
 
 	}
 
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandommimic, buf, sizeof(buf) );
+	rrandommimic->mname = u.strandommimic;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandommimicb, buf, sizeof(buf) );
+	rrandommimicb->mname = u.strandommimicb;
+
 	randommimic->mmove = rnd(10)+2;
 	randommimic->ac = 5-rnd(20);
 	randommimic->mr = rn2(101);
@@ -15634,6 +16054,208 @@ u_init()
 
 	}
 
+	rrandomfungusa->ac = 10-rnd(30);
+	rrandomfungusa->mr = rn2(101);
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomfungusa->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungus, buf, sizeof(buf) );
+	rrandomfungusa->mname = u.strandomfungus;
+
+	rrandomfungusb->mmove = rnd(12);
+	rrandomfungusb->ac = 10-rnd(30);
+	rrandomfungusb->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusb, buf, sizeof(buf) );
+	rrandomfungusb->mname = u.strandomfungusb;
+
+	rrandomfungusc->mmove = rnd(12);
+	rrandomfungusc->ac = 10-rnd(30);
+	rrandomfungusc->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusc, buf, sizeof(buf) );
+	rrandomfungusc->mname = u.strandomfungusc;
+
+	rrandomfungusd->mmove = rnd(12);
+	rrandomfungusd->ac = 10-rnd(30);
+	rrandomfungusd->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
+	rrandomfungusd->mname = u.strandomfungusd;
+
+	rrandomfunguse->mmove = rnd(12);
+	rrandomfunguse->ac = 10-rnd(30);
+	rrandomfunguse->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfunguse->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfunguse, buf, sizeof(buf) );
+	rrandomfunguse->mname = u.strandomfunguse;
+
+	rrandomfungusf->mmove = rnd(12);
+	rrandomfungusf->ac = 10-rnd(30);
+	rrandomfungusf->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusf, buf, sizeof(buf) );
+	rrandomfungusf->mname = u.strandomfungusf;
+
+	rrandomfungusg->mmove = rnd(12);
+	rrandomfungusg->ac = 10-rnd(30);
+	rrandomfungusg->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusg, buf, sizeof(buf) );
+	rrandomfungusg->mname = u.strandomfungusg;
+
+	rrandomfungush->ac = 10-rnd(30);
+	rrandomfungush->mr = rn2(101);
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomfungush->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungush, buf, sizeof(buf) );
+	rrandomfungush->mname = u.strandomfungush;
+
+	rrandomfungusi->mmove = rnd(12);
+	rrandomfungusi->ac = 10-rnd(30);
+	rrandomfungusi->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusi->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusi, buf, sizeof(buf) );
+	rrandomfungusi->mname = u.strandomfungusi;
+
+	rrandomfungusj->mmove = rnd(12);
+	rrandomfungusj->ac = 10-rnd(30);
+	rrandomfungusj->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusj->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusj, buf, sizeof(buf) );
+	rrandomfungusj->mname = u.strandomfungusj;
+
+	rrandomfungusk->mmove = rnd(12);
+	rrandomfungusk->ac = 10-rnd(30);
+	rrandomfungusk->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusk->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusk, buf, sizeof(buf) );
+	rrandomfungusk->mname = u.strandomfungusk;
+
+	rrandomfungusl->mmove = rnd(12);
+	rrandomfungusl->ac = 10-rnd(30);
+	rrandomfungusl->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusl->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusl, buf, sizeof(buf) );
+	rrandomfungusl->mname = u.strandomfungusl;
+
 	randomtroll->mmove = rnd(6)+10;
 	randomtroll->ac = 0-rnd(20);
 	randomtroll->mr = rn2(101);
@@ -15821,6 +16443,51 @@ u_init()
 	randombdragonj->mcolor = randomdragonj->mcolor;
 	randombdragonk->mcolor = randomdragonk->mcolor;
 
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomdragonb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
+		}
+
+		rrandomdragonb->mcolor = rnd(15);
+		if (rrandomdragonb->mcolor == 4) rrandomdragonb->mcolor = 12;
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomdragonb, buf, sizeof(buf) );
+	rrandomdragonb->mname = u.strandomdragonb;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomdragonc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
+		}
+
+		rrandomdragonc->mcolor = rnd(15);
+		if (rrandomdragonc->mcolor == 4) rrandomdragonc->mcolor = 12;
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomdragonc, buf, sizeof(buf) );
+	rrandomdragonc->mname = u.strandomdragonc;
+
+	rrandombdragonb->mcolor = rrandomdragonb->mcolor;
+	rrandombdragonc->mcolor = rrandomdragonc->mcolor;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandombdragonb, buf, sizeof(buf) );
+	rrandombdragonb->mname = u.strandombdragonb;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandombdragonc, buf, sizeof(buf) );
+	rrandombdragonc->mname = u.strandombdragonc;
+
 	for (i = 1; i < 2; i++) {
 		attkptr = &randomflyfish->mattk[i];
 
@@ -15942,6 +16609,61 @@ u_init()
 	randomkopb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	randomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	rrandomkopb->mmove = rn2(14)+9;				/* slow to very fast */
+	rrandomkopb->ac = rn2(31)-20;				/* any AC */
+	rrandomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rrandomkopb->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rrandomkopb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rrandomkopb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rrandomkopb->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rrandomkopb->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rrandomkopb->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		rrandomkopb->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	rrandomkopb->mflags2 = M2_HUMAN|M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rrandomkopb->mflags2 |= (1 << rn2(31));
+	}
+	rrandomkopb->mflags2 &= ~M2_MERC;				/* no guards */
+	rrandomkopb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rrandomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rrandomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomkopb, buf, sizeof(buf) );
+	rrandomkopb->mname = u.strandomkopb;
 
 	randomkopc->mmove = rn2(20)+9;				/* slow to very fast */
 	randomkopc->ac = rn2(40)-29;				/* any AC */
@@ -16348,6 +17070,100 @@ u_init()
 	starlitk->mflags2 &= ~M2_WERE;
 	starlitk->mflags2 &= ~M2_PNAME;
 	starlitk->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel > 5)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitl->mmove = mons[starlitmonster].mmove;
+	starlitl->ac = mons[starlitmonster].ac;
+	starlitl->mr = mons[starlitmonster].mr;
+	starlitl->maligntyp = mons[starlitmonster].maligntyp;
+	starlitl->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitl->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitl->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitl->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitl->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitl->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitl->cwt = mons[starlitmonster].cwt;
+	starlitl->cnutrit = mons[starlitmonster].cnutrit;
+	starlitl->msound = mons[starlitmonster].msound;
+	starlitl->msize = mons[starlitmonster].msize;
+	starlitl->mresists = mons[starlitmonster].mresists;
+	starlitl->mflags1 = mons[starlitmonster].mflags1;
+	starlitl->mflags2 = mons[starlitmonster].mflags2;
+	starlitl->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitl->mflags2 &= ~M2_NOPOLY;
+	starlitl->mflags2 &= ~M2_MERC;
+	starlitl->mflags2 &= ~M2_WERE;
+	starlitl->mflags2 &= ~M2_PNAME;
+	starlitl->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit1, buf, sizeof(buf) );
+	starlitl->mname = u.starlit1;
+
+	starlitm->mmove = mons[starlitmonster].mmove;
+	starlitm->ac = mons[starlitmonster].ac;
+	starlitm->mr = mons[starlitmonster].mr;
+	starlitm->maligntyp = mons[starlitmonster].maligntyp;
+	starlitm->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitm->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitm->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitm->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitm->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitm->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitm->cwt = mons[starlitmonster].cwt;
+	starlitm->cnutrit = mons[starlitmonster].cnutrit;
+	starlitm->msound = mons[starlitmonster].msound;
+	starlitm->msize = mons[starlitmonster].msize;
+	starlitm->mresists = mons[starlitmonster].mresists;
+	starlitm->mflags1 = mons[starlitmonster].mflags1;
+	starlitm->mflags2 = mons[starlitmonster].mflags2;
+	starlitm->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitm->mflags2 &= ~M2_NOPOLY;
+	starlitm->mflags2 &= ~M2_MERC;
+	starlitm->mflags2 &= ~M2_WERE;
+	starlitm->mflags2 &= ~M2_PNAME;
+	starlitm->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit2, buf, sizeof(buf) );
+	starlitm->mname = u.starlit2;
+
+	starlitn->mmove = mons[starlitmonster].mmove;
+	starlitn->ac = mons[starlitmonster].ac;
+	starlitn->mr = mons[starlitmonster].mr;
+	starlitn->maligntyp = mons[starlitmonster].maligntyp;
+	starlitn->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitn->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitn->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitn->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitn->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitn->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitn->cwt = mons[starlitmonster].cwt;
+	starlitn->cnutrit = mons[starlitmonster].cnutrit;
+	starlitn->msound = mons[starlitmonster].msound;
+	starlitn->msize = mons[starlitmonster].msize;
+	starlitn->mresists = mons[starlitmonster].mresists;
+	starlitn->mflags1 = mons[starlitmonster].mflags1;
+	starlitn->mflags2 = mons[starlitmonster].mflags2;
+	starlitn->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitn->mflags2 &= ~M2_NOPOLY;
+	starlitn->mflags2 &= ~M2_MERC;
+	starlitn->mflags2 &= ~M2_WERE;
+	starlitn->mflags2 &= ~M2_PNAME;
+	starlitn->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit3, buf, sizeof(buf) );
+	starlitn->mname = u.starlit3;
 
 	/* and a total train wreck... */
 	starlitmonster = -1;
@@ -19470,6 +20286,13 @@ alter_reality()
 	struct permonst* shamblertp = &mons[PM_PETTY_GRUNTHACK_HORROR];
 	struct permonst* shamblertpa = &mons[PM_PETTY_ACEHACK_HORROR];
 
+	struct permonst* rshamblerx = &mons[PM_INTERHACK_HORROR_X];
+	struct permonst* rshamblerxa = &mons[PM_NHTNG_HORROR_X];
+	struct permonst* rpokshamblert = &mons[PM_SUIKUN_X];
+	struct permonst* rpokshamblertp = &mons[PM_HOUOU_X];
+	struct permonst* rshamblerz = &mons[PM_STONE_COLD_HORROR_X];
+	struct permonst* rshamblerza = &mons[PM_PETROGRAPHY_HORROR_X];
+
 	struct permonst* shamblerz = &mons[PM_STONE_COLD_HORROR];
 	struct permonst* shamblerza = &mons[PM_PETROGRAPHY_HORROR];
 
@@ -19518,6 +20341,8 @@ alter_reality()
 	struct permonst* randomeye = &mons[PM_MYSTIC_EYE];
 	struct permonst* randommimic = &mons[PM_UNKNOWN_MIMIC];
 	struct permonst* randommimicb = &mons[PM_UNKNOWN_PERMAMIMIC];
+	struct permonst* rrandommimic = &mons[PM_UNKNOWN_MIMIC_X];
+	struct permonst* rrandommimicb = &mons[PM_UNKNOWN_PERMAMIMIC_X];
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
@@ -19546,8 +20371,22 @@ alter_reality()
 	struct permonst* randomfungusl = &mons[PM_NONDESCRIPT_STALK];
 	struct permonst* randomfungusm = &mons[PM_NONDESCRIPT_SPORE];
 	struct permonst* randomfungusn = &mons[PM_NONDESCRIPT_COLONY];
+	struct permonst* rrandomfungusa = &mons[PM_COLORLESS_MOLD_X];
+	struct permonst* rrandomfungusb = &mons[PM_COLORLESS_FUNGUS_X];
+	struct permonst* rrandomfungusc = &mons[PM_COLORLESS_PATCH_X];
+	struct permonst* rrandomfungusd = &mons[PM_COLORLESS_FORCE_FUNGUS_X];
+	struct permonst* rrandomfunguse = &mons[PM_COLORLESS_FORCE_PATCH_X];
+	struct permonst* rrandomfungusf = &mons[PM_COLORLESS_WARP_FUNGUS_X];
+	struct permonst* rrandomfungusg = &mons[PM_COLORLESS_WARP_PATCH_X];
+	struct permonst* rrandomfungush = &mons[PM_COLORLESS_GROWTH_X];
+	struct permonst* rrandomfungusi = &mons[PM_COLORLESS_MUSHROOM_X];
+	struct permonst* rrandomfungusj = &mons[PM_COLORLESS_STALK_X];
+	struct permonst* rrandomfungusk = &mons[PM_COLORLESS_SPORE_X];
+	struct permonst* rrandomfungusl = &mons[PM_COLORLESS_COLONY_X];
+
 	struct permonst* randomkop = &mons[PM_ONG_SEPHIRAH];
 	struct permonst* randomkopb = &mons[PM_KRONG_SEPHIRAH];
+	struct permonst* rrandomkopb = &mons[PM_KRONG_SEPHIRAH_X];
 	struct permonst* randomkopc = &mons[PM_ZAKRONG_SEPHIRAH];
 	struct permonst* randomtroll = &mons[PM_SPECIAL_TROLL];
 	struct permonst* randomeel = &mons[PM_TEETHFISH];
@@ -19580,6 +20419,11 @@ alter_reality()
 	struct permonst* randombdragonj = &mons[PM_BABY_GLOWING_DRAGON];
 	struct permonst* randombdragonk = &mons[PM_BABY_GUIVRE];
 
+	struct permonst* rrandomdragonb = &mons[PM_ADULT_TATZELWORM_X];
+	struct permonst* rrandomdragonc = &mons[PM_ADULT_AMPHITERE_X];
+	struct permonst* rrandombdragonb = &mons[PM_BABY_TATZELWORM_X];
+	struct permonst* rrandombdragonc = &mons[PM_BABY_AMPHITERE_X];
+
 	struct permonst* pokshamblerl = &mons[PM_PUPURIN];
 	struct permonst* pokshamblerla = &mons[PM_SAPUSAUR];
 	struct permonst* pokshamblerm = &mons[PM_ODDOSHISHI];
@@ -19606,6 +20450,10 @@ alter_reality()
 	struct permonst* starliti = &mons[PM_ORANGE_STARLIT_SKY];
 	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
+
+	struct permonst* starlitl = &mons[PM_MISNAMED_STARLIT_SKY];
+	struct permonst* starlitm = &mons[PM_WRONG_NAMED_STARLIT_SKY];
+	struct permonst* starlitn = &mons[PM_ERRONEOUS_STARLIT_SKY];
 
 	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
 	struct permonst* starlitv = &mons[PM_ETHEREAL_MISSINGNO];
@@ -19658,6 +20506,8 @@ alter_reality()
 	struct permonst* randbossat = &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE];
 	struct permonst* randbossau = &mons[PM_SCHALOTTE];
 	struct permonst* randbossav = &mons[PM_MAY_BRITT];
+
+	static char buf[BUFSZ];
 
 	struct attack* attkptr;
 
@@ -21505,7 +22355,133 @@ alter_reality()
 	shamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	/* what a horrible night to have a curse */
+	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
+	rshamblerz->mmove = rn2(20)+9;				/* slow to very fast */
+	rshamblerz->ac = rn2(40)-29;				/* any AC */
+	rshamblerz->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerz->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &rshamblerz->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+	}
+	rshamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerz->cnutrit = rnd(2000);					/* see above */
+	rshamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerz->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerz->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerz->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerz->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerz->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerz->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerz->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
 
+	rshamblerz->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerz->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerz->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerz->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerz->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerz->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerz, buf, sizeof(buf) );
+	rshamblerz->mname = u.strshamblerz;
+
+	/* second one */
+	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
+	rshamblerza->mmove = rn2(20)+9;				/* slow to very fast */
+	rshamblerza->ac = rn2(40)-29;				/* any AC */
+	rshamblerza->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerza->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &rshamblerza->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+	}
+	rshamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerza->cnutrit = rnd(2000);					/* see above */
+	rshamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerza->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerza->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerza->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerza->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerza->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerza->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerza->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerza->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerza->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerza->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerza->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerza, buf, sizeof(buf) );
+	rshamblerza->mname = u.strshamblerza;
 
 
 	/* what a horrible night to have a curse */
@@ -21924,6 +22900,130 @@ alter_reality()
 	pokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	pokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	/* what a horrible night to have a curse */
+	/*pokshambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	rpokshamblert->mmove = rn2(14)+9;				/* slow to very fast */
+	rpokshamblert->ac = rn2(31)-20;				/* any AC */
+	rpokshamblert->mr = rn2(5)*25;				/* varying amounts of MR */
+	rpokshamblert->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rpokshamblert->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rpokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rpokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rpokshamblert->cnutrit = rnd(2000);					/* see above */
+	rpokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblert->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rpokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rpokshamblert->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rpokshamblert->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rpokshamblert->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblert->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	rpokshamblert->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblert->mflags2 |= (1 << rn2(31));
+	}
+	rpokshamblert->mflags2 &= ~M2_MERC;				/* no guards */
+	rpokshamblert->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rpokshamblert->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rpokshamblert->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strpokshamblert, buf, sizeof(buf) );
+	rpokshamblert->mname = u.strpokshamblert;
+
+	/* what a horrible night to have a curse */
+	/*pokshambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	rpokshamblertp->mmove = rn2(14)+9;				/* slow to very fast */
+	rpokshamblertp->ac = rn2(31)-20;				/* any AC */
+	rpokshamblertp->mr = rn2(5)*25;				/* varying amounts of MR */
+	rpokshamblertp->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rpokshamblertp->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rpokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rpokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rpokshamblertp->cnutrit = rnd(2000);					/* see above */
+	rpokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblertp->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rpokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rpokshamblertp->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rpokshamblertp->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rpokshamblertp->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblertp->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	rpokshamblertp->mflags1 &= ~M1_CARNIVORE;				/* must be herbivore */
+
+	rpokshamblertp->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rpokshamblertp->mflags2 |= (1 << rn2(31));
+	}
+	rpokshamblertp->mflags2 &= ~M2_MERC;				/* no guards */
+	rpokshamblertp->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rpokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rpokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strpokshamblertp, buf, sizeof(buf) );
+	rpokshamblertp->mname = u.strpokshamblertp;
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
@@ -22462,6 +23562,134 @@ alter_reality()
 	shamblerxa->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	shamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	rshamblerx->mmove = rn2(9)+9;				/* slow to very fast */
+	rshamblerx->ac = rn2(18)-7;				/* any AC */
+	rshamblerx->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerx->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &rshamblerx->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	rshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerx->cnutrit = rnd(2000);					/* see above */
+	rshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerx->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerx->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerx->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerx->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerx->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerx->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerx->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerx->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerx->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerx->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerx->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerx->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerx->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerx, buf, sizeof(buf) );
+	rshamblerx->mname = u.strshamblerx;
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	rshamblerxa->mmove = rn2(9)+9;				/* slow to very fast */
+	rshamblerxa->ac = rn2(18)-7;				/* any AC */
+	rshamblerxa->mr = rn2(5)*25;				/* varying amounts of MR */
+	rshamblerxa->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &rshamblerxa->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	rshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	rshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	rshamblerxa->cnutrit = rnd(2000);					/* see above */
+	rshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerxa->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rshamblerxa->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rshamblerxa->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rshamblerxa->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerxa->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*rshamblerxa->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*rshamblerxa->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	rshamblerxa->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rshamblerxa->mflags2 |= (1 << rn2(31));
+	}
+	rshamblerxa->mflags2 &= ~M2_MERC;				/* no guards */
+	rshamblerxa->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rshamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rshamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strshamblerxa, buf, sizeof(buf) );
+	rshamblerxa->mname = u.strshamblerxa;
 
 	/* what a horrible night to have a curse */
 	/*pokshambler->mlevel += rnd(16)-7;*/				/* shuffle level */
@@ -24877,6 +26105,14 @@ alter_reality()
 
 	}
 
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandommimic, buf, sizeof(buf) );
+	rrandommimic->mname = u.strandommimic;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandommimicb, buf, sizeof(buf) );
+	rrandommimicb->mname = u.strandommimicb;
+
 	randommimic->mmove = rnd(10)+2;
 	randommimic->ac = 5-rnd(20);
 	randommimic->mr = rn2(101);
@@ -25252,6 +26488,208 @@ alter_reality()
 
 	}
 
+	rrandomfungusa->ac = 10-rnd(30);
+	rrandomfungusa->mr = rn2(101);
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomfungusa->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungus, buf, sizeof(buf) );
+	rrandomfungusa->mname = u.strandomfungus;
+
+	rrandomfungusb->mmove = rnd(12);
+	rrandomfungusb->ac = 10-rnd(30);
+	rrandomfungusb->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusb, buf, sizeof(buf) );
+	rrandomfungusb->mname = u.strandomfungusb;
+
+	rrandomfungusc->mmove = rnd(12);
+	rrandomfungusc->ac = 10-rnd(30);
+	rrandomfungusc->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusc, buf, sizeof(buf) );
+	rrandomfungusc->mname = u.strandomfungusc;
+
+	rrandomfungusd->mmove = rnd(12);
+	rrandomfungusd->ac = 10-rnd(30);
+	rrandomfungusd->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
+	rrandomfungusd->mname = u.strandomfungusd;
+
+	rrandomfunguse->mmove = rnd(12);
+	rrandomfunguse->ac = 10-rnd(30);
+	rrandomfunguse->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfunguse->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfunguse, buf, sizeof(buf) );
+	rrandomfunguse->mname = u.strandomfunguse;
+
+	rrandomfungusf->mmove = rnd(12);
+	rrandomfungusf->ac = 10-rnd(30);
+	rrandomfungusf->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusf, buf, sizeof(buf) );
+	rrandomfungusf->mname = u.strandomfungusf;
+
+	rrandomfungusg->mmove = rnd(12);
+	rrandomfungusg->ac = 10-rnd(30);
+	rrandomfungusg->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusg, buf, sizeof(buf) );
+	rrandomfungusg->mname = u.strandomfungusg;
+
+	rrandomfungush->ac = 10-rnd(30);
+	rrandomfungush->mr = rn2(101);
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomfungush->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungush, buf, sizeof(buf) );
+	rrandomfungush->mname = u.strandomfungush;
+
+	rrandomfungusi->mmove = rnd(12);
+	rrandomfungusi->ac = 10-rnd(30);
+	rrandomfungusi->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusi->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusi, buf, sizeof(buf) );
+	rrandomfungusi->mname = u.strandomfungusi;
+
+	rrandomfungusj->mmove = rnd(12);
+	rrandomfungusj->ac = 10-rnd(30);
+	rrandomfungusj->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusj->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusj, buf, sizeof(buf) );
+	rrandomfungusj->mname = u.strandomfungusj;
+
+	rrandomfungusk->mmove = rnd(12);
+	rrandomfungusk->ac = 10-rnd(30);
+	rrandomfungusk->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusk->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusk, buf, sizeof(buf) );
+	rrandomfungusk->mname = u.strandomfungusk;
+
+	rrandomfungusl->mmove = rnd(12);
+	rrandomfungusl->ac = 10-rnd(30);
+	rrandomfungusl->mr = rn2(101);
+	for (i = 0; i < 2; i++) {
+		attkptr = &rrandomfungusl->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomfungusl, buf, sizeof(buf) );
+	rrandomfungusl->mname = u.strandomfungusl;
+
 	randomtroll->mmove = rnd(6)+10;
 	randomtroll->ac = 0-rnd(20);
 	randomtroll->mr = rn2(101);
@@ -25439,6 +26877,51 @@ alter_reality()
 	randombdragonj->mcolor = randomdragonj->mcolor;
 	randombdragonk->mcolor = randomdragonk->mcolor;
 
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomdragonb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
+		}
+
+		rrandomdragonb->mcolor = rnd(15);
+		if (rrandomdragonb->mcolor == 4) rrandomdragonb->mcolor = 12;
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomdragonb, buf, sizeof(buf) );
+	rrandomdragonb->mname = u.strandomdragonb;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &rrandomdragonc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
+		}
+
+		rrandomdragonc->mcolor = rnd(15);
+		if (rrandomdragonc->mcolor == 4) rrandomdragonc->mcolor = 12;
+
+	}
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomdragonc, buf, sizeof(buf) );
+	rrandomdragonc->mname = u.strandomdragonc;
+
+	rrandombdragonb->mcolor = rrandomdragonb->mcolor;
+	rrandombdragonc->mcolor = rrandomdragonc->mcolor;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandombdragonb, buf, sizeof(buf) );
+	rrandombdragonb->mname = u.strandombdragonb;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandombdragonc, buf, sizeof(buf) );
+	rrandombdragonc->mname = u.strandombdragonc;
+
 	for (i = 1; i < 2; i++) {
 		attkptr = &randomflyfish->mattk[i];
 
@@ -25560,6 +27043,61 @@ alter_reality()
 	randomkopb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	randomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	rrandomkopb->mmove = rn2(14)+9;				/* slow to very fast */
+	rrandomkopb->ac = rn2(31)-20;				/* any AC */
+	rrandomkopb->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &rrandomkopb->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	rrandomkopb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		rrandomkopb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		rrandomkopb->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	rrandomkopb->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	rrandomkopb->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		rrandomkopb->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	rrandomkopb->mflags2 = M2_HUMAN|M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		rrandomkopb->mflags2 |= (1 << rn2(31));
+	}
+	rrandomkopb->mflags2 &= ~M2_MERC;				/* no guards */
+	rrandomkopb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	rrandomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	rrandomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.strandomkopb, buf, sizeof(buf) );
+	rrandomkopb->mname = u.strandomkopb;
 
 	randomkopc->mmove = rn2(20)+9;				/* slow to very fast */
 	randomkopc->ac = rn2(40)-29;				/* any AC */
@@ -25974,6 +27512,100 @@ alter_reality()
 		starlitmonster = (NUMMONS + rnd(MISSINGNORANGE));
 		starlitattempts++;
 	}
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel > 5)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitl->mmove = mons[starlitmonster].mmove;
+	starlitl->ac = mons[starlitmonster].ac;
+	starlitl->mr = mons[starlitmonster].mr;
+	starlitl->maligntyp = mons[starlitmonster].maligntyp;
+	starlitl->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitl->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitl->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitl->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitl->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitl->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitl->cwt = mons[starlitmonster].cwt;
+	starlitl->cnutrit = mons[starlitmonster].cnutrit;
+	starlitl->msound = mons[starlitmonster].msound;
+	starlitl->msize = mons[starlitmonster].msize;
+	starlitl->mresists = mons[starlitmonster].mresists;
+	starlitl->mflags1 = mons[starlitmonster].mflags1;
+	starlitl->mflags2 = mons[starlitmonster].mflags2;
+	starlitl->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitl->mflags2 &= ~M2_NOPOLY;
+	starlitl->mflags2 &= ~M2_MERC;
+	starlitl->mflags2 &= ~M2_WERE;
+	starlitl->mflags2 &= ~M2_PNAME;
+	starlitl->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit1, buf, sizeof(buf) );
+	starlitl->mname = u.starlit1;
+
+	starlitm->mmove = mons[starlitmonster].mmove;
+	starlitm->ac = mons[starlitmonster].ac;
+	starlitm->mr = mons[starlitmonster].mr;
+	starlitm->maligntyp = mons[starlitmonster].maligntyp;
+	starlitm->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitm->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitm->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitm->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitm->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitm->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitm->cwt = mons[starlitmonster].cwt;
+	starlitm->cnutrit = mons[starlitmonster].cnutrit;
+	starlitm->msound = mons[starlitmonster].msound;
+	starlitm->msize = mons[starlitmonster].msize;
+	starlitm->mresists = mons[starlitmonster].mresists;
+	starlitm->mflags1 = mons[starlitmonster].mflags1;
+	starlitm->mflags2 = mons[starlitmonster].mflags2;
+	starlitm->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitm->mflags2 &= ~M2_NOPOLY;
+	starlitm->mflags2 &= ~M2_MERC;
+	starlitm->mflags2 &= ~M2_WERE;
+	starlitm->mflags2 &= ~M2_PNAME;
+	starlitm->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit2, buf, sizeof(buf) );
+	starlitm->mname = u.starlit2;
+
+	starlitn->mmove = mons[starlitmonster].mmove;
+	starlitn->ac = mons[starlitmonster].ac;
+	starlitn->mr = mons[starlitmonster].mr;
+	starlitn->maligntyp = mons[starlitmonster].maligntyp;
+	starlitn->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitn->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitn->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitn->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitn->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitn->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitn->cwt = mons[starlitmonster].cwt;
+	starlitn->cnutrit = mons[starlitmonster].cnutrit;
+	starlitn->msound = mons[starlitmonster].msound;
+	starlitn->msize = mons[starlitmonster].msize;
+	starlitn->mresists = mons[starlitmonster].mresists;
+	starlitn->mflags1 = mons[starlitmonster].mflags1;
+	starlitn->mflags2 = mons[starlitmonster].mflags2;
+	starlitn->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitn->mflags2 &= ~M2_NOPOLY;
+	starlitn->mflags2 &= ~M2_MERC;
+	starlitn->mflags2 &= ~M2_WERE;
+	starlitn->mflags2 &= ~M2_PNAME;
+	starlitn->mflags2 &= ~M2_PEACEFUL;
+
+	Sprintf(buf, generate_garbage_string() );
+	(void) strncpy(u.starlit3, buf, sizeof(buf) );
+	starlitn->mname = u.starlit3;
 
 	starlitu->mmove = mons[starlitmonster].mmove;
 	starlitu->ac = mons[starlitmonster].ac;

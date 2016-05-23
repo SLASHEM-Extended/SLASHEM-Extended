@@ -1639,7 +1639,7 @@ align_str(alignment)
 const char *
 hybrid_str()
 {
-    char string[BUFSZ];
+    static char string[BUFSZ];
     *string = '\0';
 	if (flags.hybridangbander) Sprintf(eos(string), "angbander ");
 	if (flags.hybridaquarian) Sprintf(eos(string), "aquarian ");
@@ -1663,13 +1663,13 @@ hybrid_str()
 
 	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike)) Sprintf(eos(string), "none ");
 
-    return string;
+    return (string);
 }
 
 const char *
 hybrid_strcode()
 {
-    char string[BUFSZ];
+    static char string[BUFSZ];
     *string = '\0';
 	if (flags.hybridangbander) Sprintf(eos(string), "Agb");
 	if (flags.hybridaquarian) Sprintf(eos(string), "Aqu");
@@ -1693,7 +1693,281 @@ hybrid_strcode()
 
 	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike)) Sprintf(eos(string), "none");
 
-    return string;
+    return (string);
+}
+
+const char *
+generate_garbage_string()
+{
+    static char string[BUFSZ];
+    *string = '\0';
+	int stringlength = rnd(25);
+	if (!rn2(10)) stringlength += rnd(25);
+
+pickletter:
+	switch (rnd(255)) {
+		case 1: Sprintf(eos(string), ""); break;
+		case 2: Sprintf(eos(string), ""); break;
+		case 3: Sprintf(eos(string), ""); break;
+		case 4: Sprintf(eos(string), ""); break;
+		case 5: Sprintf(eos(string), ""); break;
+		case 6: Sprintf(eos(string), ""); break;
+		case 7: Sprintf(eos(string), " "); break;
+		case 8: Sprintf(eos(string), ""); break;
+		case 9: Sprintf(eos(string), "	"); break;
+		case 10: Sprintf(eos(string), " "); break;
+		case 11: Sprintf(eos(string), " "); break;
+		case 12: Sprintf(eos(string), ""); break;
+		case 13: Sprintf(eos(string), " "); break;
+		case 14: Sprintf(eos(string), ""); break;
+		case 15: Sprintf(eos(string), ""); break;
+		case 16: Sprintf(eos(string), ""); break;
+		case 17: Sprintf(eos(string), ""); break;
+		case 18: Sprintf(eos(string), ""); break;
+		case 19: Sprintf(eos(string), ""); break;
+		case 20: Sprintf(eos(string), ""); break;
+		case 21: Sprintf(eos(string), ""); break;
+		case 22: Sprintf(eos(string), ""); break;
+		case 23: Sprintf(eos(string), ""); break;
+		case 24: Sprintf(eos(string), ""); break;
+		case 25: Sprintf(eos(string), ""); break;
+		case 26: Sprintf(eos(string), ""); break;
+		case 27: Sprintf(eos(string), ""); break;
+		case 28: Sprintf(eos(string), ""); break;
+		case 29: Sprintf(eos(string), ""); break;
+		case 30: Sprintf(eos(string), ""); break;
+		case 31: Sprintf(eos(string), ""); break;
+		case 32: Sprintf(eos(string), " "); break;
+		case 33: Sprintf(eos(string), "!"); break;
+		case 34: Sprintf(eos(string), "\""); break;
+		case 35: Sprintf(eos(string), "#"); break;
+		case 36: Sprintf(eos(string), "$"); break;
+		case 37: Sprintf(eos(string), " "); break; /* note by Amy - % can cause problems */
+		case 38: Sprintf(eos(string), "&"); break;
+		case 39: Sprintf(eos(string), "'"); break;
+		case 40: Sprintf(eos(string), "("); break;
+		case 41: Sprintf(eos(string), ")"); break;
+		case 42: Sprintf(eos(string), "*"); break;
+		case 43: Sprintf(eos(string), "+"); break;
+		case 44: Sprintf(eos(string), ","); break;
+		case 45: Sprintf(eos(string), "-"); break;
+		case 46: Sprintf(eos(string), "."); break;
+		case 47: Sprintf(eos(string), "/"); break;
+		case 48: Sprintf(eos(string), "0"); break;
+		case 49: Sprintf(eos(string), "1"); break;
+		case 50: Sprintf(eos(string), "2"); break;
+		case 51: Sprintf(eos(string), "3"); break;
+		case 52: Sprintf(eos(string), "4"); break;
+		case 53: Sprintf(eos(string), "5"); break;
+		case 54: Sprintf(eos(string), "6"); break;
+		case 55: Sprintf(eos(string), "7"); break;
+		case 56: Sprintf(eos(string), "8"); break;
+		case 57: Sprintf(eos(string), "9"); break;
+		case 58: Sprintf(eos(string), ":"); break;
+		case 59: Sprintf(eos(string), ";"); break;
+		case 60: Sprintf(eos(string), "<"); break;
+		case 61: Sprintf(eos(string), "="); break;
+		case 62: Sprintf(eos(string), ">"); break;
+		case 63: Sprintf(eos(string), "?"); break;
+		case 64: Sprintf(eos(string), "@"); break;
+		case 65: Sprintf(eos(string), "A"); break;
+		case 66: Sprintf(eos(string), "B"); break;
+		case 67: Sprintf(eos(string), "C"); break;
+		case 68: Sprintf(eos(string), "D"); break;
+		case 69: Sprintf(eos(string), "E"); break;
+		case 70: Sprintf(eos(string), "F"); break;
+		case 71: Sprintf(eos(string), "G"); break;
+		case 72: Sprintf(eos(string), "H"); break;
+		case 73: Sprintf(eos(string), "I"); break;
+		case 74: Sprintf(eos(string), "J"); break;
+		case 75: Sprintf(eos(string), "K"); break;
+		case 76: Sprintf(eos(string), "L"); break;
+		case 77: Sprintf(eos(string), "M"); break;
+		case 78: Sprintf(eos(string), "N"); break;
+		case 79: Sprintf(eos(string), "O"); break;
+		case 80: Sprintf(eos(string), "P"); break;
+		case 81: Sprintf(eos(string), "Q"); break;
+		case 82: Sprintf(eos(string), "R"); break;
+		case 83: Sprintf(eos(string), "S"); break;
+		case 84: Sprintf(eos(string), "T"); break;
+		case 85: Sprintf(eos(string), "U"); break;
+		case 86: Sprintf(eos(string), "V"); break;
+		case 87: Sprintf(eos(string), "W"); break;
+		case 88: Sprintf(eos(string), "X"); break;
+		case 89: Sprintf(eos(string), "Y"); break;
+		case 90: Sprintf(eos(string), "Z"); break;
+		case 91: Sprintf(eos(string), "["); break;
+		case 92: Sprintf(eos(string), " "); break;
+		case 93: Sprintf(eos(string), "]"); break;
+		case 94: Sprintf(eos(string), "^"); break;
+		case 95: Sprintf(eos(string), "_"); break;
+		case 96: Sprintf(eos(string), "`"); break;
+		case 97: Sprintf(eos(string), "a"); break;
+		case 98: Sprintf(eos(string), "b"); break;
+		case 99: Sprintf(eos(string), "c"); break;
+		case 100: Sprintf(eos(string), "d"); break;
+		case 101: Sprintf(eos(string), "e"); break;
+		case 102: Sprintf(eos(string), "f"); break;
+		case 103: Sprintf(eos(string), "g"); break;
+		case 104: Sprintf(eos(string), "h"); break;
+		case 105: Sprintf(eos(string), "i"); break;
+		case 106: Sprintf(eos(string), "j"); break;
+		case 107: Sprintf(eos(string), "k"); break;
+		case 108: Sprintf(eos(string), "l"); break;
+		case 109: Sprintf(eos(string), "m"); break;
+		case 110: Sprintf(eos(string), "n"); break;
+		case 111: Sprintf(eos(string), "o"); break;
+		case 112: Sprintf(eos(string), "p"); break;
+		case 113: Sprintf(eos(string), "q"); break;
+		case 114: Sprintf(eos(string), "r"); break;
+		case 115: Sprintf(eos(string), "s"); break;
+		case 116: Sprintf(eos(string), "t"); break;
+		case 117: Sprintf(eos(string), "u"); break;
+		case 118: Sprintf(eos(string), "v"); break;
+		case 119: Sprintf(eos(string), "w"); break;
+		case 120: Sprintf(eos(string), "x"); break;
+		case 121: Sprintf(eos(string), "y"); break;
+		case 122: Sprintf(eos(string), "z"); break;
+		case 123: Sprintf(eos(string), "{"); break;
+		case 124: Sprintf(eos(string), "|"); break;
+		case 125: Sprintf(eos(string), "}"); break;
+		case 126: Sprintf(eos(string), "~"); break;
+		case 127: Sprintf(eos(string), ""); break;
+		case 128: Sprintf(eos(string), "€"); break;
+		case 129: Sprintf(eos(string), ""); break;
+		case 130: Sprintf(eos(string), "‚"); break;
+		case 131: Sprintf(eos(string), "ƒ"); break;
+		case 132: Sprintf(eos(string), "„"); break;
+		case 133: Sprintf(eos(string), "…"); break;
+		case 134: Sprintf(eos(string), "†"); break;
+		case 135: Sprintf(eos(string), "‡"); break;
+		case 136: Sprintf(eos(string), "ˆ"); break;
+		case 137: Sprintf(eos(string), "‰"); break;
+		case 138: Sprintf(eos(string), "Š"); break;
+		case 139: Sprintf(eos(string), "‹"); break;
+		case 140: Sprintf(eos(string), "Œ"); break;
+		case 141: Sprintf(eos(string), ""); break;
+		case 142: Sprintf(eos(string), "Ž"); break;
+		case 143: Sprintf(eos(string), ""); break;
+		case 144: Sprintf(eos(string), ""); break;
+		case 145: Sprintf(eos(string), "‘"); break;
+		case 146: Sprintf(eos(string), "’"); break;
+		case 147: Sprintf(eos(string), "“"); break;
+		case 148: Sprintf(eos(string), "”"); break;
+		case 149: Sprintf(eos(string), "•"); break;
+		case 150: Sprintf(eos(string), "–"); break;
+		case 151: Sprintf(eos(string), "—"); break;
+		case 152: Sprintf(eos(string), "˜"); break;
+		case 153: Sprintf(eos(string), "™"); break;
+		case 154: Sprintf(eos(string), "š"); break;
+		case 155: Sprintf(eos(string), "›"); break;
+		case 156: Sprintf(eos(string), "œ"); break;
+		case 157: Sprintf(eos(string), ""); break;
+		case 158: Sprintf(eos(string), "ž"); break;
+		case 159: Sprintf(eos(string), "Ÿ"); break;
+		case 160: Sprintf(eos(string), " "); break;
+		case 161: Sprintf(eos(string), "¡"); break;
+		case 162: Sprintf(eos(string), "¢"); break;
+		case 163: Sprintf(eos(string), "£"); break;
+		case 164: Sprintf(eos(string), "¤"); break;
+		case 165: Sprintf(eos(string), "¥"); break;
+		case 166: Sprintf(eos(string), "¦"); break;
+		case 167: Sprintf(eos(string), "§"); break;
+		case 168: Sprintf(eos(string), "¨"); break;
+		case 169: Sprintf(eos(string), "©"); break;
+		case 170: Sprintf(eos(string), "ª"); break;
+		case 171: Sprintf(eos(string), "«"); break;
+		case 172: Sprintf(eos(string), "¬"); break;
+		case 173: Sprintf(eos(string), "­"); break;
+		case 174: Sprintf(eos(string), "®"); break;
+		case 175: Sprintf(eos(string), "¯"); break;
+		case 176: Sprintf(eos(string), "°"); break;
+		case 177: Sprintf(eos(string), "±"); break;
+		case 178: Sprintf(eos(string), "²"); break;
+		case 179: Sprintf(eos(string), "³"); break;
+		case 180: Sprintf(eos(string), "´"); break;
+		case 181: Sprintf(eos(string), "µ"); break;
+		case 182: Sprintf(eos(string), "¶"); break;
+		case 183: Sprintf(eos(string), "·"); break;
+		case 184: Sprintf(eos(string), "¸"); break;
+		case 185: Sprintf(eos(string), "¹"); break;
+		case 186: Sprintf(eos(string), "º"); break;
+		case 187: Sprintf(eos(string), "»"); break;
+		case 188: Sprintf(eos(string), "¼"); break;
+		case 189: Sprintf(eos(string), "½"); break;
+		case 190: Sprintf(eos(string), "¾"); break;
+		case 191: Sprintf(eos(string), "¿"); break;
+		case 192: Sprintf(eos(string), "À"); break;
+		case 193: Sprintf(eos(string), "Á"); break;
+		case 194: Sprintf(eos(string), "Â"); break;
+		case 195: Sprintf(eos(string), "Ã"); break;
+		case 196: Sprintf(eos(string), "Ä"); break;
+		case 197: Sprintf(eos(string), "Å"); break;
+		case 198: Sprintf(eos(string), "Æ"); break;
+		case 199: Sprintf(eos(string), "Ç"); break;
+		case 200: Sprintf(eos(string), "È"); break;
+		case 201: Sprintf(eos(string), "É"); break;
+		case 202: Sprintf(eos(string), "Ê"); break;
+		case 203: Sprintf(eos(string), "Ë"); break;
+		case 204: Sprintf(eos(string), "Ì"); break;
+		case 205: Sprintf(eos(string), "Í"); break;
+		case 206: Sprintf(eos(string), "Î"); break;
+		case 207: Sprintf(eos(string), "Ï"); break;
+		case 208: Sprintf(eos(string), "Ð"); break;
+		case 209: Sprintf(eos(string), "Ñ"); break;
+		case 210: Sprintf(eos(string), "Ò"); break;
+		case 211: Sprintf(eos(string), "Ó"); break;
+		case 212: Sprintf(eos(string), "Ô"); break;
+		case 213: Sprintf(eos(string), "Õ"); break;
+		case 214: Sprintf(eos(string), "Ö"); break;
+		case 215: Sprintf(eos(string), "×"); break;
+		case 216: Sprintf(eos(string), "Ø"); break;
+		case 217: Sprintf(eos(string), "Ù"); break;
+		case 218: Sprintf(eos(string), "Ú"); break;
+		case 219: Sprintf(eos(string), "Û"); break;
+		case 220: Sprintf(eos(string), "Ü"); break;
+		case 221: Sprintf(eos(string), "Ý"); break;
+		case 222: Sprintf(eos(string), "Þ"); break;
+		case 223: Sprintf(eos(string), "ß"); break;
+		case 224: Sprintf(eos(string), "à"); break;
+		case 225: Sprintf(eos(string), "á"); break;
+		case 226: Sprintf(eos(string), "â"); break;
+		case 227: Sprintf(eos(string), "ã"); break;
+		case 228: Sprintf(eos(string), "ä"); break;
+		case 229: Sprintf(eos(string), "å"); break;
+		case 230: Sprintf(eos(string), "æ"); break;
+		case 231: Sprintf(eos(string), "ç"); break;
+		case 232: Sprintf(eos(string), "è"); break;
+		case 233: Sprintf(eos(string), "é"); break;
+		case 234: Sprintf(eos(string), "ê"); break;
+		case 235: Sprintf(eos(string), "ë"); break;
+		case 236: Sprintf(eos(string), "ì"); break;
+		case 237: Sprintf(eos(string), "í"); break;
+		case 238: Sprintf(eos(string), "î"); break;
+		case 239: Sprintf(eos(string), "ï"); break;
+		case 240: Sprintf(eos(string), "ð"); break;
+		case 241: Sprintf(eos(string), "ñ"); break;
+		case 242: Sprintf(eos(string), "ò"); break;
+		case 243: Sprintf(eos(string), "ó"); break;
+		case 244: Sprintf(eos(string), "ô"); break;
+		case 245: Sprintf(eos(string), "õ"); break;
+		case 246: Sprintf(eos(string), "ö"); break;
+		case 247: Sprintf(eos(string), "÷"); break;
+		case 248: Sprintf(eos(string), "ø"); break;
+		case 249: Sprintf(eos(string), "ù"); break;
+		case 250: Sprintf(eos(string), "ú"); break;
+		case 251: Sprintf(eos(string), "û"); break;
+		case 252: Sprintf(eos(string), "ü"); break;
+		case 253: Sprintf(eos(string), "ý"); break;
+		case 254: Sprintf(eos(string), "þ"); break;
+		case 255: Sprintf(eos(string), "ÿ"); break;
+		default:  Sprintf(eos(string), " "); break;
+
+	}
+
+	if (stringlength-- > 0) goto pickletter;
+
+    return (string);
 }
 
 void

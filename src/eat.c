@@ -2087,6 +2087,8 @@ register int pm;
 	    case PM_CLOAKER:
 	    case PM_CHEST_MIMIC:
 	    case PM_UNKNOWN_MIMIC:
+	    case PM_UNKNOWN_MIMIC_X:
+	    case PM_UNKNOWN_PERMAMIMIC_X:
 	    case PM_BULLY_MIMIC:
 	    case PM_UNDEAD_MIMIC:
 	    case PM_ICE_MIMIC:

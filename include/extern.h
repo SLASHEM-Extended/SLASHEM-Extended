@@ -1819,6 +1819,7 @@ E void VDECL(impossible, (const char *,...)) PRINTF_F(1,2);
 E const char *FDECL(align_str, (ALIGNTYP_P));
 E const char *NDECL(hybrid_str);
 E const char *NDECL(hybrid_strcode);
+E const char *NDECL(generate_garbage_string);
 E void FDECL(mstatusline, (struct monst *));
 E void FDECL(mstatuslinebl, (struct monst *));
 E void NDECL(ustatusline);

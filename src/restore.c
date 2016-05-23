@@ -418,6 +418,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
 
+	mread(fd, (genericptr_t) &mons[PM_SUIKUN_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_HOUOU_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
+
 	mread(fd, (genericptr_t) &mons[PM_STARLIT_SKY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_DARK_STARLIT_SKY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_BLACK_STARLIT_SKY], sizeof(struct permonst));
@@ -429,6 +436,10 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_ORANGE_STARLIT_SKY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
 
 	mread(fd, (genericptr_t) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_ETHEREAL_MISSINGNO], sizeof(struct permonst));
@@ -478,6 +489,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
@@ -494,6 +507,18 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
@@ -508,6 +533,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_TEETHFISH], sizeof(struct permonst));
@@ -538,6 +564,11 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
 
 	mread(fd, (genericptr_t) &mons[PM_PUPURIN], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SAPUSAUR], sizeof(struct permonst));
