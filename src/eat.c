@@ -1938,6 +1938,10 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESOLDIERANT;
 		break;
+	    case PM_HUMAN_WEREBAT:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBAT;
+		break;
 	    case PM_HUMAN_WEREGRIDBUG:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGRIDBUG;
@@ -2049,6 +2053,9 @@ register int pm;
 	    case PM_THE_HIDDEN:
 	    case PM_INVISIBLE_BADGUY:
 	    case PM_UNSEEN_POTATO:
+	    case PM_CAMOUFLAGED_WATCHER:
+	    case PM_HIDDEN_TRACKER:
+	    case PM_SILENT_KILLER:
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
 	    case PM_PAIN_MASTER:

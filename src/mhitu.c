@@ -4311,6 +4311,7 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREMINDFLAYER) u.ulycn = PM_WEREMINDFLAYER;
 			if (u.ulycn == PM_HUMAN_WERECOCKATRICE) u.ulycn = PM_WERECOCKATRICE;
 			if (u.ulycn == PM_HUMAN_WERESOLDIERANT) u.ulycn = PM_WERESOLDIERANT;
+			if (u.ulycn == PM_HUMAN_WEREBAT) u.ulycn = PM_WEREBAT;
 			if (u.ulycn == PM_HUMAN_WEREPIRANHA) u.ulycn = PM_WEREPIRANHA;
 			if (u.ulycn == PM_HUMAN_WEREEEL) u.ulycn = PM_WEREEEL;
 			if (u.ulycn == PM_HUMAN_WEREFLYFISH) u.ulycn = PM_WEREFLYFISH;

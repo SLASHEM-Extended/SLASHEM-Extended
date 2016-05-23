@@ -591,6 +591,7 @@
 				  youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] ||\
 				  youmonst.data == &mons[PM_IT] ||\
 				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
+				  youmonst.data == &mons[PM_REFLECTION] ||\
 				  youmonst.data == &mons[PM_MUNCHKIN] ||\
 				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
 				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
