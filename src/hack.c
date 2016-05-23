@@ -1692,8 +1692,10 @@ domove()
 		newsym(x, y);
 		nomul(0, 0);
 		if (expl) {
-		    u.mh = -1;		/* dead in the current form */
-		    rehumanize();
+	    	    if (!Race_if(PM_UNGENOMOLD)) {
+		      u.mh = -1;		/* dead in the current form */
+			rehumanize();
+		    } else polyself(FALSE);
 		}
 		return;
 	}
@@ -3349,9 +3351,11 @@ int k_format; /* WAC k_format is an int */
 	if (Upolyd) {
 		u.mh -= n;
 		if (u.mhmax < u.mh) u.mhmax = u.mh;
-		if (u.mh < 1)
-		    rehumanize();
-		else if (n > 0 && u.mh*10 < u.mhmax && Unchanging)
+		if (u.mh < 1) {
+
+	    	    rehumanize();
+
+		} else if (n > 0 && u.mh*10 < u.mhmax && Unchanging)
 		    maybe_wail();
 
 #ifdef SHOW_DMG                

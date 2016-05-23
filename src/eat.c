@@ -2057,6 +2057,7 @@ register int pm;
 	    case PM_UNSEEN_POTATO:
 	    case PM_CAMOUFLAGED_WATCHER:
 	    case PM_HIDDEN_TRACKER:
+	    case PM_UNSEEN_SERVANT:
 	    case PM_SILENT_KILLER:
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
@@ -2088,6 +2089,8 @@ register int pm;
 		break;
 	    case PM_BURNING_MIMIC:
 	    case PM_SCROLL_MIMIC:
+	    case PM_WAND_MIMIC:
+	    case PM_WAND_PERMAMIMIC:
 	    case PM_RING_MIMIC:
 	    case PM_STAIRWAY_TO_HELL:
 	    case PM_POTION_MIMIC:
@@ -2128,7 +2131,23 @@ register int pm;
 	    case PM_STEALER_MIMIC:
 	    case PM_BURNING_PERMAMIMIC:
 	    case PM_SCROLL_PERMAMIMIC:
+	    case PM_STAFF_PERMAMIMIC:
+	    case PM_STAFF_MIMIC:
+	    case PM_ROD_PERMAMIMIC:
+	    case PM_ROD_MIMIC:
+	    case PM_MAGIC_BOOK_PERMAMIMIC:
+	    case PM_MAGIC_BOOK_MIMIC:
+	    case PM_PRAYER_BOOK_PERMAMIMIC:
+	    case PM_PRAYER_BOOK_MIMIC:
+	    case PM_SONG_BOOK_PERMAMIMIC:
+	    case PM_SONG_BOOK_MIMIC:
 	    case PM_RING_PERMAMIMIC:
+	    case PM_MAP_PERMAMIMIC:
+	    case PM_MAP_MIMIC:
+	    case PM_RUNESTONE_PERMAMIMIC:
+	    case PM_RUNESTONE_MIMIC:
+	    case PM_CLOAK_PERMAMIMIC:
+	    case PM_CLOAK_MIMIC:
 	    case PM_STAIRWAY_TO_HEAVEN:
 	    case PM_POTION_PERMAMIMIC:
 	    case PM_TOME_OF_ANNIHILATION:
@@ -2137,6 +2156,8 @@ register int pm;
 	    case PM_ULTIMATE_PERMAMIMIC:
 	    case PM_EMPEROR_PERMAMIMIC:
 	    case PM_DOOR_PERMAMIMIC:
+	    case PM_SMALL_DOOR_PERMAMIMIC:
+	    case PM_SMALL_DOOR_MIMIC:
 	    case PM_PERMACLOAKER:
 	    case PM_CHEST_PERMAMIMIC:
 	    case PM_UNKNOWN_PERMAMIMIC:

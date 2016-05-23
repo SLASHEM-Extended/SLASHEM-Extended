@@ -5578,6 +5578,8 @@ struct obj *obj;
 				pline("This armor offers great protection as well as %s.", enchname(objects[BRASS_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case AMETHYST_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as %s.", enchname(objects[AMETHYST_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case PURPLE_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[PURPLE_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case DIAMOND_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as %s.", enchname(objects[DIAMOND_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case EMERALD_DRAGON_SCALE_MAIL: 
@@ -5636,6 +5638,8 @@ struct obj *obj;
 				pline("This armor offers moderate protection as well as %s.", enchname(objects[BRASS_DRAGON_SCALES].oc_oprop) ); break;
 			case AMETHYST_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as %s.", enchname(objects[AMETHYST_DRAGON_SCALES].oc_oprop) ); break;
+			case PURPLE_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[PURPLE_DRAGON_SCALES].oc_oprop) ); break;
 			case DIAMOND_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as %s.", enchname(objects[DIAMOND_DRAGON_SCALES].oc_oprop) ); break;
 			case EMERALD_DRAGON_SCALES: 
@@ -6115,6 +6119,8 @@ struct obj *obj;
 				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[BRASS_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
 			case AMETHYST_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[AMETHYST_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case PURPLE_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[PURPLE_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
 			case DIAMOND_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[DIAMOND_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
 			case EMERALD_DRAGON_SCALE_SHIELD: 

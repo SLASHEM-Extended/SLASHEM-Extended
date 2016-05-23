@@ -2153,7 +2153,7 @@ STATIC_PTR int
 in_container(obj)
 register struct obj *obj;
 {
-	in_container_(obj,TRUE);
+	return in_container_(obj,TRUE);
 }
 
 

@@ -2053,6 +2053,9 @@ int atyp;
 	    case AMETHYST_DRAGON_SCALE_MAIL:
 	    case AMETHYST_DRAGON_SCALES:
 		return PM_AMETHYST_DRAGON;
+	    case PURPLE_DRAGON_SCALE_MAIL:
+	    case PURPLE_DRAGON_SCALES:
+		return PM_PURPLE_DRAGON;
 	    case DIAMOND_DRAGON_SCALE_MAIL:
 	    case DIAMOND_DRAGON_SCALES:
 		return PM_DIAMOND_DRAGON;
@@ -2293,7 +2296,8 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		    }
 		    you_were();
 		} else {
-		    rehumanize();
+	    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
+			else polyself(FALSE);
 		}
 		return 1;
 	    }

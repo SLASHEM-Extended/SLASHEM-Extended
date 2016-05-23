@@ -3059,6 +3059,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sapphire dragonhide shield")) OBJ_DESCR(objects[i]) = "sapfir drakon'yey shchit";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond dragonhide shield")) OBJ_DESCR(objects[i]) = "almaznyy drakon'yey shchit";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "amethyst dragonhide shield")) OBJ_DESCR(objects[i]) = "ametist drakon'yey shchit";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple dragonhide shield")) OBJ_DESCR(objects[i]) = "fioletovyy drakon'yey shchit";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polished silver shield")) OBJ_DESCR(objects[i]) = "polirovannyy serebryanyy shchit";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white boots")) OBJ_DESCR(objects[i]) = "belyye sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "walking shoes")) OBJ_DESCR(objects[i]) = "obuv' dlya khod'by";
@@ -3578,6 +3579,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sapphire dragonhide shield")) OBJ_DESCR(objects[i]) = "ko'kish yoqut ajdaho yashir qalqoni";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond dragonhide shield")) OBJ_DESCR(objects[i]) = "olmos ajdaho yashir qalqoni";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "amethyst dragonhide shield")) OBJ_DESCR(objects[i]) = "ametist ajdaho yashir qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple dragonhide shield")) OBJ_DESCR(objects[i]) = "safsar ajdaho yashir qalqoni";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polished silver shield")) OBJ_DESCR(objects[i]) = "sayqallangan kumush qalqon";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white boots")) OBJ_DESCR(objects[i]) = "oq chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "walking shoes")) OBJ_DESCR(objects[i]) = "poyabzal yurish";

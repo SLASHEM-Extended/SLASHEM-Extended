@@ -95,6 +95,8 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_BITE:
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
+			if (rn2(25) && moves < 1000) break; /* players are getting killed unfairly... --Amy */
+
 			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
 			if (!Drain_resistance || !rn2(4)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
@@ -7402,6 +7404,23 @@ common:
 		}
 
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist psi --Amy */
+
+		break;
+
+	    case AD_SLIM:
+
+		if (flaming(youmonst.data)) {
+		    pline_The("slime burns away!");
+		} else if (Unchanging || slime_on_touch(youmonst.data)) {
+		    You("are unaffected.");
+		} else if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 100L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimy explosion";
+		} else
+		    pline("Yuck!");
 
 		break;
 

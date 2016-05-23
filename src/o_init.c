@@ -324,6 +324,10 @@ register char oclass;
 	objects[SAPPHIRE_DRAGON_SCALE_MAIL].oc_oprop = objects[SAPPHIRE_DRAGON_SCALES].oc_oprop = objects[SAPPHIRE_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
 	objects[RUBY_DRAGON_SCALE_MAIL].oc_oprop = objects[RUBY_DRAGON_SCALES].oc_oprop = objects[RUBY_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
 
+	objects[PURPLE_DRAGON_SCALE_MAIL].oc_oprop = randenchantment();
+	objects[PURPLE_DRAGON_SCALES].oc_oprop = randenchantment();
+	objects[PURPLE_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+
 	objects[RANDOMIZED_HELMET].oc_oprop = randenchantment();
 	objects[HIGH_STILETTOS].oc_oprop = randenchantment();
 	objects[UNKNOWN_GAUNTLETS].oc_oprop = randenchantment();

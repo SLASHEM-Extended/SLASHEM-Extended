@@ -3318,7 +3318,8 @@ peffects(otmp)
 			if (u.ulycn != -1 && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 				You("feel purified.");
 				if (!Unchanging && (u.umonnum == u.ulycn) ) {
-					rehumanize();
+			    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
+					else polyself(FALSE);
 				}
 				u.ulycn = -1;
 			}

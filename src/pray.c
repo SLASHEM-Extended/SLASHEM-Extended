@@ -2184,7 +2184,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
 		 "Vile creature, thou durst call upon me?" :
 		 "Walk no more, perversion of nature!");
 	You_feel("like you are falling apart.");
-	if (Upolyd) {
+	if (Upolyd && !Race_if(PM_UNGENOMOLD) ) {
 	    /* KMH, balance patch -- Gods have mastery over unchanging */
 	rehumanize();
 	}

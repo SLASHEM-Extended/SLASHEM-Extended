@@ -4014,8 +4014,11 @@ register struct monst *mtmp;
 			if (mm == PM_CLOCK_GOLEM) (void)mongets(mtmp, WAN_TIME);
 
 			if (mm == PM_FLYING_SCIMITAR) (void)mongets(mtmp, SCIMITAR);
+			if (mm == PM_WHIRLING_HATCHET) (void)mongets(mtmp, AXE);
 			if (mm == PM_CURSED_SWORD) (void)mongets(mtmp, ELVEN_SHORT_SWORD);
+			if (mm == PM_ANIMATED_DAGGER) (void)mongets(mtmp, rn2(20) ? DAGGER : SILVER_DAGGER);
 			if (mm == PM_SWORD_FAMILIAR) (void)mongets(mtmp, SHORT_SWORD);
+			if (mm == PM_HAMMER_OF_THE_UNDERWORLD) (void)mongets(mtmp, MALLET);
 			if (mm == PM_HYPERTYPE) (void)mongets(mtmp, WAN_TRAP_CREATION);
 			if (mm == PM_LEVEL____ENEMY) (void)mongets(mtmp, SCR_TRAP_CREATION);
 			if (mm == PM_SECURITY_BOT) {(void)mongets(mtmp, ASSAULT_RIFLE);
@@ -4783,6 +4786,24 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_MASTER_PUNISHER]) (void) mongets(mtmp, WAN_PUNISHMENT);
 		if (ptr == &mons[PM_MAUD_BADASS]) (void) mongets(mtmp, WAN_AMNESIA);
 
+		if (ptr == &mons[PM_NOVICE_ARCHER] || ptr == &mons[PM_APPRENTICE_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 25);
+		}
+
+		if (ptr == &mons[PM_SHARPSHOOTER]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 25);
+			m_initthrow(mtmp, ARROW, 25);
+			m_initthrow(mtmp, ARROW, 25);
+		}
+
+		if (ptr == &mons[PM_SLINGSHOOTER]) {
+			(void) mongets(mtmp, SLING);
+			m_initthrow(mtmp, ROCK, 25);
+			m_initthrow(mtmp, ROCK, 25);
+		}
+
 		if (monsndx(ptr) == PM_ENCLAVE_SOLDIER || monsndx(ptr) == PM_EVASIVE_ENCLAVE_SOLDIER) {
 			mongets(mtmp, HAND_BLASTER);
 			mongets(mtmp, FULL_PLATE_MAIL);
@@ -5082,11 +5103,17 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_POTION_MIMIC]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (mtmp->data == &mons[PM_SCROLL_MIMIC]) (void) mongets(mtmp, SCR_TELEPORTATION);
 		if (mtmp->data == &mons[PM_RING_MIMIC]) (void) mongets(mtmp, RIN_TIMELY_BACKUP);
+		if (mtmp->data == &mons[PM_POTION_PERMAMIMIC]) (void) mongets(mtmp, POT_FULL_HEALING);
+		if (mtmp->data == &mons[PM_SCROLL_PERMAMIMIC]) (void) mongets(mtmp, SCR_TELEPORTATION);
+		if (mtmp->data == &mons[PM_RING_PERMAMIMIC]) (void) mongets(mtmp, RIN_TIMELY_BACKUP);
 		if (mtmp->data == &mons[PM_CLOAKER]) (void) mongets(mtmp, ELVEN_CLOAK);
+		if (mtmp->data == &mons[PM_PERMACLOAKER]) (void) mongets(mtmp, ELVEN_CLOAK);
 
 		/* jonadab wants these things to spawn mumak; I'll just let them spawn random stuff with a scroll. --Amy */
 		if (mtmp->data == &mons[PM_LARGE_SPAWN_MIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
 		if (mtmp->data == &mons[PM_GIANT_SPAWN_MIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (mtmp->data == &mons[PM_LARGE_SPAWN_PERMAMIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (mtmp->data == &mons[PM_GIANT_SPAWN_PERMAMIMIC]) (void) mongets(mtmp, SCR_CREATE_MONSTER);
 
 		break;
 
@@ -5523,6 +5550,11 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_TRAPPER:
+
+		if (ptr == &mons[PM_DEMOLITIONS_EXPERT]) {
+			m_initthrow(mtmp, FRAG_GRENADE, 15);
+			(void) mongets(mtmp, SCR_TRAP_CREATION);
+		}
 
 		if (mtmp->data == &mons[PM_FIRE_METROID]) (void) mongets(mtmp, SCR_FLOODING);
 		if(ptr == &mons[PM_CARNIVOROUS_BAG]) (void) mongets(mtmp, BAG_OF_TRICKS);
@@ -6025,6 +6057,14 @@ register struct	monst	*mtmp;
 	  		m_initthrow(mtmp, BULLET, 20);
 		}
 
+		if (ptr == &mons[PM_GOBLIN_DART_THROWER]) {
+	  		m_initthrow(mtmp, DART, 35);
+		}
+
+		if (ptr == &mons[PM_GOBLIN_GRENADIER]) {
+	  		m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
+
 		if (ptr == &mons[PM_SMUT_ORC]) {
 			if (!rn2(3)) (void) mongets(mtmp, WAN_SUMMON_SEXY_GIRL);
 			else if (!rn2(2)) (void) mongets(mtmp, SCR_GIRLINESS);
@@ -6492,6 +6532,7 @@ register struct	monst	*mtmp;
 	    case S_HUMANOID:
 
 		if (ptr == &mons[PM_DWARVEN_MESSENGER]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
+		if (ptr == &mons[PM_LEGENDARY_HOBBIT_ROGUE]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 
  		break;
 
@@ -11872,7 +11913,7 @@ register int	mmflags;
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
+			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
@@ -13367,6 +13408,7 @@ int type;
 {
 	switch(type) {
 		case PM_KARAKASA: return 30;
+		case PM_ANIMATED_LIMB: return 30;
 		case PM_DARK_FEMALE_ANDROID: return 30;
 		case PM_LIVING_IRON_CHAIN: return 30;
 		case PM_BLACK_CHAMELEON: return 35;
@@ -13377,6 +13419,7 @@ int type;
 		case PM_GARGOYLE: return 46;
 		case PM_FLYING_SCIMITAR: return 50;
 		case PM_CLOTH_GOLEM: return 50;
+		case PM_ANIMATED_TORCH: return 50;
 		case PM_PLUSH_BEAR_GOLEM: return 50;
 		case PM_INTERCEPTOR_DOLL: return 50;
 
@@ -13386,6 +13429,7 @@ int type;
 		case PM_VENOM_ATRONACH: return 200;
 
 		case PM_CURSED_SWORD: return 100;
+		case PM_ANIMATED_DAGGER: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_ROPE_GOLEM: return 60;
 		case PM_TIN_SOLDIER: return 60;
@@ -13443,8 +13487,10 @@ int type;
 
 		case PM_DEATH_SWORD: return 250;
 		case PM_CLOCK_GOLEM: return 250;
+		case PM_WHIRLING_HATCHET: return 250;
 		case PM_HELLBLADE: return 320;
 		case PM_BLADE_BARRIER: return 550;
+		case PM_BLADE_OF_CHAOS: return 550;
 		case PM_CELESTIAL_CLARION: return 400;
 
 		case PM_ANIMATED_COPPER_STATUE: return 237;
@@ -13479,6 +13525,8 @@ int type;
 		case PM_SANDMAN: return 150;
 		case PM_TONE_GOLEM: return 150;
 		case PM_BLOOD_GOLEM: return 200;
+		case PM_HAUNTED_HELMET: return 200;
+		case PM_KNOBBLE_STICK: return 200;
 		case PM_GUTS_GOLEM: return 200;
 		case PM_SMOKE_GOLEM: return 200;
 		case PM_CLAY_STATUE: return 150;
@@ -13530,6 +13578,7 @@ int type;
 		case PM_DROLEM: return 440;
 		case PM_JNR: return 400;
 		case PM_LEAD_GOLEM: return 400;
+		case PM_BLADE_OF_SLAUGHTER: return 450;
 		case PM_DIFFICULT_LEAD_GOLEM: return 400;
 		case PM_ANIMATED_PROSTITUTE_SHOE: return 400;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
@@ -13559,6 +13608,7 @@ int type;
 		case PM_ANIMATED_WINTER_STILETTO: return 500;
 		case PM_ROBO_KY: return 750;
 		case PM_INVULNERABLE_GOLEM: return 2000;
+		case PM_HAMMER_OF_THE_UNDERWORLD: return 1000;
 		case PM_WAX_GOLEM: return 40;
 		case PM_WRAP_GOLEM: return 40;
 		case PM_TIN_GOLEM: return 40;
@@ -13962,7 +14012,7 @@ assign_sym:
 		}
 	}
 
-	if (mtmp->data == &mons[PM_CLOAKER] || mtmp->data == &mons[PM_PERMACLOAKER]) {
+	if (mtmp->data == &mons[PM_CLOAKER] || mtmp->data == &mons[PM_PERMACLOAKER] || mtmp->data == &mons[PM_CLOAK_MIMIC] || mtmp->data == &mons[PM_CLOAK_PERMAMIMIC]) {
 		s_sym = ARMOR_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT);
@@ -13974,10 +14024,40 @@ assign_sym:
 		appear = rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE);
 	}
 
-	if (mtmp->data == &mons[PM_SCROLL_MIMIC] || mtmp->data == &mons[PM_SCROLL_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_RUNESTONE_MIMIC] || mtmp->data == &mons[PM_RUNESTONE_PERMAMIMIC]) {
+		s_sym = GEM_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(DILITHIUM_CRYSTAL, JADE);
+	}
+
+	if (mtmp->data == &mons[PM_SCROLL_MIMIC] || mtmp->data == &mons[PM_SCROLL_PERMAMIMIC] || mtmp->data == &mons[PM_MAP_MIMIC] || mtmp->data == &mons[PM_MAP_PERMAMIMIC]) {
 		s_sym = SCROLL_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS);
+	}
+
+	if (mtmp->data == &mons[PM_STAFF_MIMIC] || mtmp->data == &mons[PM_STAFF_PERMAMIMIC]) {
+		s_sym = SCROLL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = QUARTERSTAFF;
+	}
+
+	if (mtmp->data == &mons[PM_MAGIC_BOOK_MIMIC] || mtmp->data == &mons[PM_MAGIC_BOOK_PERMAMIMIC] || mtmp->data == &mons[PM_PRAYER_BOOK_MIMIC] || mtmp->data == &mons[PM_PRAYER_BOOK_PERMAMIMIC] || mtmp->data == &mons[PM_SONG_BOOK_MIMIC] || mtmp->data == &mons[PM_SONG_BOOK_PERMAMIMIC]) {
+		s_sym = SPBOOK_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(SPE_FORCE_BOLT, SPE_PSYBEAM);
+	}
+
+	if (mtmp->data == &mons[PM_ROD_MIMIC] || mtmp->data == &mons[PM_ROD_PERMAMIMIC]) {
+		s_sym = SCROLL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = STAR_ROD;
+	}
+
+	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC]) {
+		s_sym = SCROLL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 	}
 
 	if (mtmp->data == &mons[PM_RING_MIMIC] || mtmp->data == &mons[PM_RING_PERMAMIMIC]) {
@@ -13992,7 +14072,7 @@ assign_sym:
 		appear = CHEST;
 	}
 
-	if (mtmp->data == &mons[PM_DOOR_MIMIC] || mtmp->data == &mons[PM_DOOR_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_DOOR_MIMIC] || mtmp->data == &mons[PM_DOOR_PERMAMIMIC] || mtmp->data == &mons[PM_SMALL_DOOR_MIMIC] || mtmp->data == &mons[PM_SMALL_DOOR_PERMAMIMIC]) {
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_hcdoor;

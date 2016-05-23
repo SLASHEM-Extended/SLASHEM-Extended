@@ -1826,6 +1826,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_RANDOM_EFFECTS, "sluchaynyye effekty" },
 	{ RIN_SPECIAL_EFFECTS, "spetseffekty" },
 
+	{ PURPLE_DRAGON_SCALE_SHIELD, "fioletovyy drakon masshtaba shchit" },
+	{ PURPLE_DRAGON_SCALES, "fioletovyy drakon vesy" },
+	{ PURPLE_DRAGON_SCALE_MAIL, "fioletovyy drakon masshtab pochta" },
+
 	{0, "" }
 };
 
@@ -3330,6 +3334,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_INFINITY, "amulet of cheksizlik" },
 	{ RIN_RANDOM_EFFECTS, "tasodifiy ta'sir" },
 	{ RIN_SPECIAL_EFFECTS, "maxsus effektlar" },
+
+	{ PURPLE_DRAGON_SCALE_SHIELD, "safsar ajdaho ko'lamli qalqon" },
+	{ PURPLE_DRAGON_SCALES, "safsar ajdaho tarozilari" },
+	{ PURPLE_DRAGON_SCALE_MAIL, "safsar ajdaho ko'lamli zirh" },
 
 	{0, "" }
 };

@@ -385,7 +385,7 @@ boolean purify;
 		    done(DIED);
 		} else {
 		    You_feel("very bad!");
-		    if (in_wereform)
+		    if (in_wereform && !Race_if(PM_UNGENOMOLD) )
 			rehumanize();
 		    (void) adjattrib(A_STR, -rn1(3,3), 2);
 		    (void) adjattrib(A_CON, -rn1(3,3), 1);
@@ -399,8 +399,10 @@ boolean purify;
 	    upermonst.mflags2 &= ~M2_WERE;
 	}
 	if (!Unchanging && in_wereform &&
-		(!Polymorph_control || yn("Remain in beast form?") == 'n'))
-	    rehumanize();
+		(!Polymorph_control || yn("Remain in beast form?") == 'n')) {
+    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
+		else polyself(FALSE);
+	}
 }
 
 #endif /* OVLB */

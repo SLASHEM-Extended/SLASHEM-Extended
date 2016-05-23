@@ -4872,13 +4872,22 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (Unchanging)
 		    Your("amulet grows hot for a moment, then cools.");
 		else {
-		    u.uhp -= mons[u.umonnum].mlevel;
-		    if (self_cancel) {
-			u.uhpmax -= mons[u.umonnum].mlevel;
-			if (u.uhpmax < 1) u.uhpmax = 1;
-		    }
-		    u.mh = 0;
-		    rehumanize();
+
+			/* whoops! Lorskel lost a promising character to this. Let's fix it. --Amy */
+			if (Race_if(PM_UNGENOMOLD)) {
+				pline("You're hit by negative resonance waves!");
+				badeffect();
+
+			} else {
+
+			    u.uhp -= mons[u.umonnum].mlevel;
+			    if (self_cancel) {
+				u.uhpmax -= mons[u.umonnum].mlevel;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+			    }
+			    u.mh = 0;
+			    rehumanize();
+			}
 		}
 	    }
 	} else {

@@ -242,6 +242,7 @@
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_GOLD_DRACONIAN]) ? 1 : \
+				 ((ptr) == &mons[PM_ANIMATED_TORCH]) ? 1 : \
 				 ((ptr) == &mons[PM_WAX_GOLEM]) ? 1 : 0)
 /*	[note: the light ranges above were reduced to 1 for performance...] */
 /*  WAC increased to 3 and 2?*/
@@ -315,7 +316,7 @@
 				((ptr)->mlet == S_PUDDING &&         \
 				 (ptr) != &mons[PM_BLACK_PUDDING]))
 /* For vampires */
-#define has_blood(ptr)		( (!vegetarian(ptr) || Race_if(PM_SUCKING_FIEND) ) && \
+#define has_blood(ptr)		( (!vegetarian(ptr) || (ptr)->mlet == S_EEL || (ptr)->mlet == S_FLYFISH || Race_if(PM_SUCKING_FIEND) ) && \
 				   (ptr)->mlet != S_GOLEM && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
 
