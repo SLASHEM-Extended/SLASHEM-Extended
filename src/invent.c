@@ -5568,6 +5568,22 @@ struct obj *obj;
 				pline("This armor offers great protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as shock resistance."); break;
+			case COPPER_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[COPPER_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case PLATINUM_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[PLATINUM_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case BRASS_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[BRASS_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case AMETHYST_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[AMETHYST_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case DIAMOND_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[DIAMOND_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case EMERALD_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[EMERALD_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case SAPPHIRE_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[SAPPHIRE_DRAGON_SCALE_MAIL].oc_oprop) ); break;
+			case RUBY_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as %s.", enchname(objects[RUBY_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case GREEN_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as poison resistance."); break;
 			case GOLDEN_DRAGON_SCALE_MAIL: 
@@ -5610,6 +5626,22 @@ struct obj *obj;
 				pline("This armor offers moderate protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as shock resistance."); break;
+			case COPPER_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[COPPER_DRAGON_SCALES].oc_oprop) ); break;
+			case PLATINUM_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[PLATINUM_DRAGON_SCALES].oc_oprop) ); break;
+			case BRASS_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[BRASS_DRAGON_SCALES].oc_oprop) ); break;
+			case AMETHYST_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[AMETHYST_DRAGON_SCALES].oc_oprop) ); break;
+			case DIAMOND_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[DIAMOND_DRAGON_SCALES].oc_oprop) ); break;
+			case EMERALD_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[EMERALD_DRAGON_SCALES].oc_oprop) ); break;
+			case SAPPHIRE_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[SAPPHIRE_DRAGON_SCALES].oc_oprop) ); break;
+			case RUBY_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[RUBY_DRAGON_SCALES].oc_oprop) ); break;
 			case GREEN_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as poison resistance."); break;
 			case GOLDEN_DRAGON_SCALES: 
@@ -6073,6 +6105,22 @@ struct obj *obj;
 				pline("A shield made from dragon hide that provides disintegration resistance as well as protection."); break;
 			case BLUE_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides shock resistance as well as protection."); break;
+			case COPPER_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[COPPER_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case PLATINUM_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[PLATINUM_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case BRASS_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[BRASS_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case AMETHYST_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[AMETHYST_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case DIAMOND_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[DIAMOND_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case EMERALD_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[EMERALD_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case SAPPHIRE_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[SAPPHIRE_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
+			case RUBY_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[RUBY_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
 			case GREEN_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides poison resistance as well as protection."); break;
 			case GOLDEN_DRAGON_SCALE_SHIELD:

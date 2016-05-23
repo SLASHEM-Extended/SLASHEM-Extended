@@ -7640,6 +7640,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_JACK_THE_RIPPER]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_GENERAL_HEATHERSTONE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
+		if (ptr == &mons[PM_FOOTPAD]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (ptr == &mons[PM_THIEF]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+
 		if (ptr == &mons[PM_STONER]) (void) mongets(mtmp, SCR_STONING);
 		if (ptr == &mons[PM_DESTROYER]) (void) mongets(mtmp, SCR_DESTROY_ARMOR);
 		if (ptr == &mons[PM_REAL_PUNISHER]) (void) mongets(mtmp, SCR_PUNISHMENT);
@@ -8145,6 +8148,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_HARROWBARK_BOO]) m_initthrow(mtmp, ELVEN_SPEAR, 5);
 
 		if (mtmp->data == &mons[PM_QUIVER_SLOT]) { (void) mongets(mtmp, BOW); m_initthrow(mtmp, ARROW, 25);}
+
+		if (mtmp->data == &mons[PM_MACHIEVALLIAN_MOSS]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 
 		if (mtmp->data == &mons[PM_ROSY_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
 
@@ -8992,6 +8997,9 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_OGRE:
+
+		if (monsndx(ptr) == PM_HIDEOUS_OGRE_MAGE) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (monsndx(ptr) == PM_GROTESQUE_OGRE_SHAMAN) (void) mongets(mtmp, SCR_TRAP_CREATION);
 
 		if (ptr == &mons[PM_CUTTER_OGRE]) {
 			(void) mongets(mtmp, CUTTING_LASER);
@@ -16240,6 +16248,9 @@ int type;
 		case PM_BRONZE_GOLEM: return 80;
 		case PM_BANANA_PEEL_GOLEM: return 80;
 		case PM_WOOD_GOLEM: return 100;
+		case PM_WOODEN_GOLEM: return 100;
+		case PM_SCARECROW: return 100;
+		case PM_WOODEN_FIGURINE: return 110;
 		case PM_BARNACLE_COVERED_GOLEM: return 120;
 		case PM_CLANKING_CHAINS: return 120;
 		case PM_SOOTBALL: return 140;
@@ -16353,6 +16364,7 @@ int type;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
 		case PM_JNR: return 400;
+		case PM_LEAD_GOLEM: return 400;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;

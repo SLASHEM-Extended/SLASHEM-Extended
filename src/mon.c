@@ -268,6 +268,14 @@ register struct monst *mtmp;
 	    case PM_WHITE_DRAGON:
 	    case PM_BLACK_DRAGON:
 	    case PM_BLUE_DRAGON:
+	    case PM_COPPER_DRAGON:
+	    case PM_PLATINUM_DRAGON:
+	    case PM_BRASS_DRAGON:
+	    case PM_AMETHYST_DRAGON:
+	    case PM_DIAMOND_DRAGON:
+	    case PM_EMERALD_DRAGON:
+	    case PM_SAPPHIRE_DRAGON:
+	    case PM_RUBY_DRAGON:
 	    case PM_GREEN_DRAGON:
 	    case PM_GOLDEN_DRAGON:
 	    case PM_STONE_DRAGON:

@@ -17,11 +17,9 @@ static boolean FDECL(wishymatch, (const char *,const char *,BOOLEAN_P));
 static char *NDECL(nextobuf);
 static void FDECL(add_erosion_words, (struct obj *, char *));
 
-STATIC_DCL char *FDECL(enchname, (int) );
-
 STATIC_DCL char *FDECL(xname2, (struct obj *));
 
-STATIC_OVL char *
+char *
 enchname(prop)
 int prop;
 {
@@ -1791,6 +1789,33 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ BOOGEYMAN_HELMET, "bugimen shlem" },
 	{ SPE_FIRE_BOLT, "ogon' snaryadom" },
 
+	{ PLATINUM_DRAGON_SCALE_SHIELD, "platiny cheshuya drakona shchit" },
+	{ BRASS_DRAGON_SCALE_SHIELD, "latun' cheshuya drakona shchit" },
+	{ COPPER_DRAGON_SCALE_SHIELD, "mednyy shchit cheshuya drakona" },
+	{ EMERALD_DRAGON_SCALE_SHIELD, "izumrudnaya cheshuya drakona shchit" },
+	{ RUBY_DRAGON_SCALE_SHIELD, "rubin cheshuya drakona shchit" },
+	{ SAPPHIRE_DRAGON_SCALE_SHIELD, "sapfirovoye cheshuya drakona shchit" },
+	{ DIAMOND_DRAGON_SCALE_SHIELD, "almaznyy cheshuya drakona shchit" },
+	{ AMETHYST_DRAGON_SCALE_SHIELD, "ametist cheshuya drakona shchit" },
+
+	{ PLATINUM_DRAGON_SCALES, "platiny drakona vesy" },
+	{ BRASS_DRAGON_SCALES, "latuni drakona vesy" },
+	{ COPPER_DRAGON_SCALES, "med' drakona vesy" },
+	{ EMERALD_DRAGON_SCALES, "izumrud drakona vesy" },
+	{ RUBY_DRAGON_SCALES, "rubinovyy drakon vesy" },
+	{ SAPPHIRE_DRAGON_SCALES, "sapfirovyy drakon vesy" },
+	{ DIAMOND_DRAGON_SCALES, "almaz drakona vesy" },
+	{ AMETHYST_DRAGON_SCALES, "ametist drakona vesy" },
+
+	{ PLATINUM_DRAGON_SCALE_MAIL, "platiny drakona masshtab pochty" },
+	{ BRASS_DRAGON_SCALE_MAIL, "latun' cheshuya drakona pochta" },
+	{ COPPER_DRAGON_SCALE_MAIL, "mednyy drakon masshtab pochty" },
+	{ EMERALD_DRAGON_SCALE_MAIL, "izumrudnaya cheshuya drakona pochta" },
+	{ RUBY_DRAGON_SCALE_MAIL, "rubinovogo drakona masshtab pochta" },
+	{ SAPPHIRE_DRAGON_SCALE_MAIL, "sapfirovyy drakon masshtab pochta" },
+	{ DIAMOND_DRAGON_SCALE_MAIL, "almazov drakona masshtab pochty" },
+	{ AMETHYST_DRAGON_SCALE_MAIL, "ametist cheshuya drakona pochta" },
+
 	{0, "" }
 };
 
@@ -3258,6 +3283,33 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ STONE_OF_PERMANENCE, "turar tosh" },
 	{ BOOGEYMAN_HELMET, "yomon odam dubulg'a" },
 	{ SPE_FIRE_BOLT, "yong'in mermilerinin" },
+
+	{ PLATINUM_DRAGON_SCALE_SHIELD, "platina ajdaho ko'lamli qalqon" },
+	{ BRASS_DRAGON_SCALE_SHIELD, "jez ajdaho ko'lamli qalqon" },
+	{ COPPER_DRAGON_SCALE_SHIELD, "mis ajdaho ko'lamli qalqon" },
+	{ EMERALD_DRAGON_SCALE_SHIELD, "zumrad ajdaho ko'lamli qalqon" },
+	{ RUBY_DRAGON_SCALE_SHIELD, "yoqut ajdaho ko'lamli qalqon" },
+	{ SAPPHIRE_DRAGON_SCALE_SHIELD, "ko'kish yoqut ajdaho ko'lamli qalqon" },
+	{ DIAMOND_DRAGON_SCALE_SHIELD, "olmos ajdaho ko'lamli qalqon" },
+	{ AMETHYST_DRAGON_SCALE_SHIELD, "ametist ajdaho ko'lamli qalqon" },
+
+	{ PLATINUM_DRAGON_SCALES, "platina ajdaho tarozilari" },
+	{ BRASS_DRAGON_SCALES, "jez ajdaho tarozilari" },
+	{ COPPER_DRAGON_SCALES, "mis ajdaho tarozilari" },
+	{ EMERALD_DRAGON_SCALES, "zumrad ajdaho tarozilari" },
+	{ RUBY_DRAGON_SCALES, "yoqut ajdaho tarozilari" },
+	{ SAPPHIRE_DRAGON_SCALES, "ko'kish yoqut ajdaho tarozilari" },
+	{ DIAMOND_DRAGON_SCALES, "olmos ajdaho tarozilari" },
+	{ AMETHYST_DRAGON_SCALES, "ametist toshlarni ajdaho tarozilari" },
+
+	{ PLATINUM_DRAGON_SCALE_MAIL, "platina ajdaho ko'lamli zirh" },
+	{ BRASS_DRAGON_SCALE_MAIL, "jez ajdaho ko'lamli zirh" },
+	{ COPPER_DRAGON_SCALE_MAIL, "mis ajdaho ko'lamli zirh" },
+	{ EMERALD_DRAGON_SCALE_MAIL, "zumrad ajdaho ko'lamli zirh" },
+	{ RUBY_DRAGON_SCALE_MAIL, "yoqut ajdaho ko'lamli zirh" },
+	{ SAPPHIRE_DRAGON_SCALE_MAIL, "ko'kish yoqut ajdaho ko'lamli zirh" },
+	{ DIAMOND_DRAGON_SCALE_MAIL, "olmos ajdaho ko'lamli zirh" },
+	{ AMETHYST_DRAGON_SCALE_MAIL, "ametist ajdaho ko'lamli zirh" },
 
 	{0, "" }
 };

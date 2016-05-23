@@ -315,6 +315,15 @@ register char oclass;
 		first = last;
 	}
 
+	objects[COPPER_DRAGON_SCALE_MAIL].oc_oprop = objects[COPPER_DRAGON_SCALES].oc_oprop = objects[COPPER_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[PLATINUM_DRAGON_SCALE_MAIL].oc_oprop = objects[PLATINUM_DRAGON_SCALES].oc_oprop = objects[PLATINUM_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[BRASS_DRAGON_SCALE_MAIL].oc_oprop = objects[BRASS_DRAGON_SCALES].oc_oprop = objects[BRASS_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[AMETHYST_DRAGON_SCALE_MAIL].oc_oprop = objects[AMETHYST_DRAGON_SCALES].oc_oprop = objects[AMETHYST_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[DIAMOND_DRAGON_SCALE_MAIL].oc_oprop = objects[DIAMOND_DRAGON_SCALES].oc_oprop = objects[DIAMOND_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[EMERALD_DRAGON_SCALE_MAIL].oc_oprop = objects[EMERALD_DRAGON_SCALES].oc_oprop = objects[EMERALD_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[SAPPHIRE_DRAGON_SCALE_MAIL].oc_oprop = objects[SAPPHIRE_DRAGON_SCALES].oc_oprop = objects[SAPPHIRE_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+	objects[RUBY_DRAGON_SCALE_MAIL].oc_oprop = objects[RUBY_DRAGON_SCALES].oc_oprop = objects[RUBY_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
+
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_cost = (objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level * 100);
 
