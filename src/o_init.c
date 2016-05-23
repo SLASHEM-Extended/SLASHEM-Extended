@@ -112,14 +112,17 @@ shuffle(o_low, o_high, domaterial)
 	int color;
 
 	for (num_to_shuffle = 0, j=o_low; j <= o_high; j++)
-		if (!objects[j].oc_name_known) num_to_shuffle++;
+		/*if (!objects[j].oc_name_known) num_to_shuffle++;*/
+		if (OBJ_DESCR(objects[j])) num_to_shuffle++;
 	if (num_to_shuffle < 2) return;
 
 	for (j=o_low; j <= o_high; j++) {
-		if (objects[j].oc_name_known) continue;
+		/*if (objects[j].oc_name_known) continue;*/
+		if (!OBJ_DESCR(objects[j])) continue;
 		do
 			i = j + rn2(o_high-j+1);
-		while (objects[i].oc_name_known);
+		/*while (objects[i].oc_name_known);*/
+		while (!OBJ_DESCR(objects[i]));
 		sw = objects[j].oc_descr_idx;
 		objects[j].oc_descr_idx = objects[i].oc_descr_idx;
 		objects[i].oc_descr_idx = sw;

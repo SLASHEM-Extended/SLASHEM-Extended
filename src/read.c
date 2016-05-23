@@ -1257,6 +1257,14 @@ forget_objects(percent)
 	if (count > 1) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++)
 	    forget_single_object(indices[i]);
+
+	if (!rn2(5)) {
+
+		init_objects();
+		if (wizard) pline("init_objects done!");
+
+	}
+
 }
 
 
@@ -1371,10 +1379,10 @@ int howmuch;
 	forget_traps();
 
 	/* 1 in 3 chance of forgetting some levels */
-	if (!rn2(3)) forget_levels(rn2(10));
+	if (!rn2(3)) forget_levels(rnd(10));
 
 	/* 1 in 10 chance of forgeting some objects */
-	if (!rn2(10)) forget_objects(rn2(10));
+	if (!rn2(5)) forget_objects(rnd(10));
 
 	if (howmuch & ALL_SPELLS) losespells();
 	/*

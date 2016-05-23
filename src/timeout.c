@@ -610,8 +610,8 @@ nh_timeout()
 					/* adjattrib gives dunce cap message when appropriate */
 					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-					if (!rn2(3)) forget_levels(5);	/* lose memory of 25% of levels */
-					if (!rn2(10)) forget_objects(5);	/* lose memory of 25% of objects */
+					if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
+					if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
 
 						}
