@@ -592,6 +592,9 @@
 				  youmonst.data == &mons[PM_IT] ||\
 				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
 				  youmonst.data == &mons[PM_REFLECTION] ||\
+				  youmonst.data == &mons[PM_IRIS_S_SILVER_PUMP] ||\
+				  youmonst.data == &mons[PM_DESIREE_S_COMBAT_BOOT] ||\
+				  youmonst.data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] ||\
 				  youmonst.data == &mons[PM_MUNCHKIN] ||\
 				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
 				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\

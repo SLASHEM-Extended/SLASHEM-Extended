@@ -888,6 +888,7 @@ register int pm;
 	    case PM_CLINGING_LIZARD:
 	    case PM_DEFORMED_LIZARD:
 	    case PM_MEDUSA:
+	    case PM_HANH_S_BLOCK_HEELED_SANDAL:
 		if (Stoned) fix_petrification();
 		break;
 	    case PM_KATNISS: /* bad idea --Amy */
@@ -1609,6 +1610,7 @@ register int pm;
 
 		break;
 
+	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
 	    case PM_ENERGY_TROVE:
 	    case PM_GRAY_NEWT:
@@ -2358,6 +2360,7 @@ register int pm;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
+	    case PM_MINI_CHICKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
@@ -2478,6 +2481,16 @@ register int pm;
 		    polyself(FALSE);
 		}
 		break;
+	    case PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT:
+
+		if(!(HPolymorph & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "able to take on different shapes! Yeah! Let's transform into something fun!" :
+			    "unstable.");
+			HPolymorph  |= FROMOUTSIDE;
+		}
+
+		break;
 	    case PM_GENETIC_ENGINEER: /* Robin Johnson -- special msg */
 	    case PM_ARMED_COCKATRICE:
 	    case PM_PETROLICH:
@@ -2485,6 +2498,13 @@ register int pm;
 		    You("undergo a freakish metamorphosis!");
 		    polyself(FALSE);
 		}
+		break;
+
+	    case PM_BETTINA_S_COMBAT_BOOT:
+
+		pline("Ulch - the heel was tainted!");
+	      make_sick(rn1(25,25), "a tainted combat boot", TRUE, SICK_VOMITABLE);
+
 		break;
 
 	    case PM_OLOG_HAI_GORGON:

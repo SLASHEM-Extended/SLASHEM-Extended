@@ -633,6 +633,42 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_SCHALOTTE], sizeof(struct permonst));
 	mread(fd, (genericptr_t) &mons[PM_MAY_BRITT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROXY_GRETA], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA], sizeof(struct permonst));
+
+	mread(fd, (genericptr_t) &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_EMMELIE_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LUISA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_REBECCA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_JANINE_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BUNDLY_ANN_S_SOFT_SANDAL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LISELOTTE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LISELOTTE_S_SOFT_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MAY_BRITT_S_FLUFFY_SANDAL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ROXY_GRETA_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_EMMA_S_ANKLE_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_ALIDA_S_COLORFUL_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_VILEA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_HANNAH_S_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_AMELJE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_AMELJE_S_SANDAL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MELANIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_MARIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FANNY_S_VELCRO_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FANNY_S_BRAND_NEW_SNEAKER], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
+	mread(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
 
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
