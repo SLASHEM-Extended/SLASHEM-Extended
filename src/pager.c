@@ -3258,6 +3258,7 @@ static NEARDATA const char * const fake_plines[] = {
 const char *
 fauxmessage()
 {
+	if (!rn2(20)) return (generate_garbage_string());
 	return (fake_plines[rn2(SIZE(fake_plines))]);
 }
 

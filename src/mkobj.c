@@ -1093,7 +1093,7 @@ boolean artif;
 		if (artif && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(50))
-		    otmp = oname(otmp, fauxartinames[rn2(SIZE(fauxartinames))] );
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 #ifdef FIREARMS
 		if (otmp->otyp == STICK_OF_DYNAMITE) {
 			otmp->age = (otmp->cursed ? rn2(15) + 2 : 
@@ -1433,7 +1433,7 @@ boolean artif;
 		if (artif && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(100))
-		    otmp = oname(otmp, fauxartinames[rn2(SIZE(fauxartinames))] );
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 		/* simulate lacquered armor for samurai */
 		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) &&
 		    (moves <= 1 || In_quest(&u.uz))) {

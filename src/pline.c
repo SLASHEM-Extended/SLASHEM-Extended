@@ -1236,7 +1236,7 @@ pline VA_DECL(const char *, line)
 && !program_state.exiting
 #endif
 
-) line = fake_plines[rn2(SIZE(fake_plines))];
+) line = rn2(20) ? fake_plines[rn2(SIZE(fake_plines))] : generate_garbage_string();
 
 	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 
