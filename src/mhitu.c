@@ -124,6 +124,62 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(d(1,monsterlev), "sandal to the shin bone", KILLED_BY_AN);
 			}
 
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == ATSUZOKO_BOOTS) ) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				pline("%s slams %s plateau soles against your shins, and stomps your %s!", Monnam(mtmp), mhis(mtmp), makeplural(body_part(FOOT)) );
+				losehp(d(1,monsterlev), "being kicked by an atsuzoko boot", KILLED_BY);
+				make_stunned(HStun + (monsterlev * rnd(3)), FALSE);
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIGH_STILETTOS) ) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(10);
+				pline("%s slams against your shins with %s sandals, and also scratches over the full length of your %s with %s heel!", Monnam(mtmp), mhis(mtmp), body_part(LEG), mhis(mtmp) );
+
+				if (!rn2(5)) {
+				if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+				else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+				pline("You're bleeding!");
+				}
+
+				losehp(d(1,monsterlev), "an unyielding stiletto sandal", KILLED_BY);
+				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+			    set_wounded_legs(side, HWounded_legs + monsterlev);
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == ROLLER_BLADE) ) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				pline("%s rolls over you with %s roller blades!", Monnam(mtmp), mhis(mtmp) );
+				badeffect();
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == PET_STOMPING_PLATFORM_BOOTS) ) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(5);
+				pline("%s smashes your %s with %s platform boots!", Monnam(mtmp), makeplural(body_part(TOE)), mhis(mtmp) );
+				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+			    set_wounded_legs(side, HWounded_legs + monsterlev);
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == ASS_KICKER_BOOTS) ) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(10);
+				pline("%s kicks you in the ass!", Monnam(mtmp) );
+				morehungry(monsterlev);
+
+			}
+
+
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -320,6 +376,264 @@ on the first floor, especially when you're playing as something with drain resis
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(4,monsterlev), "kung-fu attack", KILLED_BY_AN);
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(5);
+				pline("Those weird high heels look like they should make %s's %s hurt... but they definitely hurt you, and you feel an icy chill!", mon_nam(mtmp), makeplural(mbodypart(mtmp,FOOT)) );
+				make_frozen(HFrozen+monsterlev,FALSE);
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "xanjar chizilmasin") ) ) ) {
+
+				pline("The wedge heel feels very soft and lovely. In fact, you enjoyed %s's kick.", mon_nam(mtmp));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+
+			    if (Upolyd) {
+				u.mh += monsterlev;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			    } else {
+				u.uhp += monsterlev;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			    }
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				int comboscratch = 1;
+				if (!rn2(5)) comboscratch += rnd(3);
+				monsterlev *= comboscratch;
+
+				if (comboscratch == 1) pline("%s scratches down your %s with %s stiletto heel!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
+				else if (comboscratch == 2) pline("%s scratches down your %s with %s stiletto heel, then pauses for a moment and scratches back up!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
+				else if (comboscratch == 3) pline("%s scratches down your %s with %s stiletto heel, then pauses for a moment and scratches back up and down again!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
+				else if (comboscratch == 4) pline("%s scratches down your %s with %s stiletto heel, and up and down again, and finally the heel scratches back up in an extremely painful way!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
+
+				losehp(d(1,monsterlev), "sharp-edged winter stilettos", KILLED_BY);
+
+
+				if (comboscratch == 1) {
+					if (u.legscratching <= 5)
+				    	    pline("Little skin rashes are developing on your shins. It actually feels soothing.");
+					else if (u.legscratching <= 10)
+				    	    pline("You see that the high heel scratched a bit of skin off your shins.");
+					else if (u.legscratching <= 20)
+					    pline("The heel actually managed to hurt your %s, and you're bleeding a little!", body_part(LEG));
+					else if (u.legscratching <= 40)
+					    pline("The lovely heel is causing your %s to flow! It's dangerous!", body_part(BLOOD));
+					else
+					    pline("The wonderful winter stiletto is smeared with %s - your %s...", body_part(BLOOD), body_part(BLOOD));
+				}
+				else if (comboscratch == 2) {
+					if (u.legscratching <= 5)
+				    	    pline("When the heel scratched back up again, you noticed your unprotected skin getting hurt.");
+					else if (u.legscratching <= 10)
+				    	    pline("You love the fact that the heel ripped off some of your skin.");
+					else if (u.legscratching <= 20)
+					    pline("Wow, the high heel has caused a bloody wound with their scratching combo!");
+					else if (u.legscratching <= 40)
+					    pline("Actually, you think it's unfair that the heel is scratching back up over your already bloody shin.");
+					else
+					    pline("Whoa, the tender stiletto heel is merciless, and freely scratches up and down your badly bleeding %s!", body_part(LEG) );
+				}
+				else if (comboscratch == 3) {
+					if (u.legscratching <= 5)
+				    	    pline("Your skin is scratched very beautifully by the lovely stiletto heel.");
+					else if (u.legscratching <= 10)
+				    	    pline("The female high-heeled combat boot destroyed large amounts of your skin!");
+					else if (u.legscratching <= 20)
+					    pline("You see your %s squirting while the unfair high heel abuses your %s with their scratching combos!", body_part(BLOOD), body_part(LEG));
+					else if (u.legscratching <= 40)
+					    pline("Wow, the winter stiletto is truly able to cause lots of damage, drawing your %s and continually scratching over your terrible open wounds!", body_part(BLOOD));
+					else
+					    pline("The %s shoots out of your %s like a fountain while the incredibly tender heel keeps slitting your veins in a very merciless way!", body_part(BLOOD), body_part(LEG));
+				}
+				else if (comboscratch == 4) {
+					if (u.legscratching <= 5)
+				    	    pline("You love the beautiful female combat boot and the fact that your %s are very susceptible to scratches.", body_part(LEG) );
+					else if (u.legscratching <= 10)
+				    	    pline("Scratching wounds appear on your %s, and you're curious to see how much more damage those wonderful heels can cause to you!", body_part(LEG));
+					else if (u.legscratching <= 20)
+					    pline("Your %s is covered by pretty scratching wounds, some of which are bleeding! The feminine leather boots are really good when it comes to causing damage!", body_part(LEG));
+					else if (u.legscratching <= 40)
+					    pline("The blood-smeared heel just doesn't seem to stop scratching up and down your shins, even though you're badly bleeding and suffering immense pain!");
+					else {
+					    pline("Your %s covers the floor, your %ss, and of course also the sexy stiletto heels that keep scratching up and down with their beautiful, yet very destructive combos.", body_part(BLOOD), body_part(LEG) );
+						pline("These high heels will kill you if you allow them to continue. But on the other hand, they're soooooo cute and lovely, and they look like they would spare you if you're hurt badly enough...");
+					}
+				}
+
+				losehp(u.legscratching, "bleedout from leg scratches", KILLED_BY_AN);
+				u.legscratching += comboscratch;
+				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+			    exercise(A_STR, FALSE);
+			    exercise(A_DEX, FALSE);
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qisqa ko'chirish to'piqlarni") ) ) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rn2(20) ? rnd(10) : rnd(20);
+				pline("Argh! Those clunky heels hurt like hell!");
+				losehp(d(1,monsterlev), "big fat clunky heel", KILLED_BY_AN);
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "bilagi zo'r chizilmasin") ) ) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+
+				if (!flags.female && !rn2(3) ) { 
+					pline("%s kicks right into your nuts with the heel of %s ankle boot!", Monnam(mtmp), mhis(mtmp) );
+					losehp(d(2,monsterlev), "ankle boot to the nuts", KILLED_BY_AN);
+
+					if (multi >= 0 && !rn2(5)) {
+						pline("You can't breathe!");            
+						nomovemsg = "Finally you get yourself back together.";
+						nomul(-5, "knocked out by an ankle boot");
+						exercise(A_DEX, FALSE);
+				    }
+				}
+
+				else {
+
+					pline("%s scratches up and down your %ss with %s heels!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
+					losehp(d(2,monsterlev), "leg-scratch from ankle boots", KILLED_BY_AN);
+
+					if (u.legscratching <= 5)
+				    	    pline("It stings a little.");
+					else if (u.legscratching <= 10)
+				    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+					else if (u.legscratching <= 20)
+					    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
+					else if (u.legscratching <= 40)
+					    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
+					else
+					    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
+
+					losehp(u.legscratching, "bleedout from leg scratches", KILLED_BY_AN);
+					u.legscratching++;
+					register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+					  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+				    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+				    exercise(A_STR, FALSE);
+				    exercise(A_DEX, FALSE);
+
+				}
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				randomkick = rnd(12);
+				if (randomkick == 1) {
+				pline("%s steps on your %s with %s block heels!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
+				    incr_itimeout(&Glib, 20); /* painfully jamming your fingers */
+				losehp(d(1,monsterlev), "lovely block-heeled boot", KILLED_BY_AN);
+				}
+				if (randomkick == 2) {
+				pline("%s jams your %ss with %s wonderful high-heeled combat boots!", Monnam(mtmp), body_part(TOE), mhis(mtmp) );
+
+				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+			    exercise(A_STR, FALSE);
+			    exercise(A_DEX, FALSE);
+
+				losehp(d(1,monsterlev), "block-heeled lady boot", KILLED_BY_AN);
+				}
+
+				if (randomkick == 3) {
+					if (!flags.female) { 
+					pline("%s kicks right into your nuts with %s soft block heel!", Monnam(mtmp), mhis(mtmp) );
+
+					losehp(d(2,monsterlev), "block heel to the nuts", KILLED_BY_AN);
+					}
+
+					else {
+					pline("%s gently strokes you with %s soft block heel.", Monnam(mtmp), mhis(mtmp) );
+					if (Upolyd) u.mh += monsterlev; /* heal some hit points */
+					else u.uhp += monsterlev; /* heal some hit points */
+					pline("It feels very soothing.");
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+
+				}
+
+				if (randomkick == 4) {
+				pline("%s painfully stomps your body with %s fleecy combat boots!", Monnam(mtmp), mhis(mtmp) );
+				u.uhp -= 1;
+				u.uhpmax -= 1;
+				u.uen -= 1;
+				u.uenmax -= 1;
+				losehp(d(3,monsterlev), "being stomped by a fleecy combat boot", KILLED_BY);
+				}
+
+				if (randomkick == 5) {
+				pline("The beautiful block heel kicks your ass, which feels very fleecy-soft.");
+				morehungry(monsterlev * 5);
+
+				}
+
+				if (randomkick == 6) {
+				pline("The massive heel hits your optical nerve, and suddenly you can't see a thing." );
+				make_blinded(Blinded+monsterlev,FALSE);
+				}
+
+				if (randomkick == 7) {
+				pline("Suddenly %s fully hits your %s with %s massive block heel.", mon_nam(mtmp), body_part(HEAD), mhis(mtmp) );
+				make_confused(HConfusion+monsterlev,FALSE);
+				}
+
+				if (randomkick == 8) {
+				pline("You sustain a critical hit by the sexy high heel.");
+				make_stunned(HStun+monsterlev,FALSE);
+				}
+
+				if (randomkick == 9) {
+				if (!rn2(25)) {
+					pline("The lovely block heel was contaminated! Seems they're not really as lovely as you thought!" );
+					    make_sick(rn1(25,25), "contaminated block heel", TRUE, SICK_VOMITABLE);
+					losehp(d(1,monsterlev), "unclean block heel", KILLED_BY_AN);
+					}
+				else {
+				pline("You're hit by a poisoned part of %s's footwear!", mon_nam(mtmp));
+						poisoned("block heel", A_STR, "poisoned block heel", 8);
+					losehp(d(1,monsterlev), "impregnated block heel", KILLED_BY_AN);
+					}
+				}
+
+				if (randomkick == 10) {
+				pline("Ow, %s is stomping you repeatedly with %s wonderful combat boots!", mon_nam(mtmp), mhis(mtmp));
+				make_numbed(HNumbed+monsterlev,FALSE);
+				}
+
+				if (randomkick == 11) {
+				pline("The sexy block heel scrapes quite some skin off your shins!");
+				make_burned(HBurned+monsterlev,FALSE);
+				}
+
+				if (randomkick == 12) {
+				pline("You are hit by %s's high-heeled female footwear, and suddenly become afraid of %s like the little coward you are. Wimp. :-P", l_monnam(mtmp), mhis(mtmp));
+				make_feared(HFeared+monsterlev,FALSE);
+				}
+
 			}
 
 			if (!rn2(250)) pushplayer();
