@@ -1277,6 +1277,10 @@ moveloop()
 			}
 		}
 
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "RNG helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem gsch") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "RNG dubulg'a") ) && !rn2(100000) ) {
+			badeffect();
+		}
+
 		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic) && !BlackNgWalls && !rn2(100) ) {
 
 			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
@@ -3242,6 +3246,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle boots")) OBJ_DESCR(objects[i]) = "botil'ony";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frequent helmet")) OBJ_DESCR(objects[i]) = "chastyy shlem";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "RNG helmet")) OBJ_DESCR(objects[i]) = "shlem gsch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "block-heeled boots")) OBJ_DESCR(objects[i]) = "blok kablukakh sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "awesome gloves")) OBJ_DESCR(objects[i]) = "udivitel'nyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shrouded cloak")) OBJ_DESCR(objects[i]) = "okutana plashch";
+
 	}
 	}
 
@@ -3755,6 +3764,10 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clumsy gloves")) OBJ_DESCR(objects[i]) = "qo'pol qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle boots")) OBJ_DESCR(objects[i]) = "bilagi zo'r chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frequent helmet")) OBJ_DESCR(objects[i]) = "tez-tez zarbdan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "RNG helmet")) OBJ_DESCR(objects[i]) = "RNG dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "block-heeled boots")) OBJ_DESCR(objects[i]) = "blok-o'tish chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "awesome gloves")) OBJ_DESCR(objects[i]) = "ajoyib qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shrouded cloak")) OBJ_DESCR(objects[i]) = "kafan plash";
 
 
 	}

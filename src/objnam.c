@@ -1816,6 +1816,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ DIAMOND_DRAGON_SCALE_MAIL, "almazov drakona masshtab pochty" },
 	{ AMETHYST_DRAGON_SCALE_MAIL, "ametist cheshuya drakona pochta" },
 
+	{ RANDOMIZED_HELMET, "randomizirovannoye shlem" },
+	{ HIGH_STILETTOS, "vysokiye stilety" },
+	{ UNKNOWN_GAUNTLETS, "neizvestnyye rukovitsakh" },
+	{ MISSING_CLOAK, "nedostayushcheye plashch" },
+
+	{ AMULET_OF_THE_RNG, "amulet of gsch" },
+	{ AMULET_OF_INFINITY, "amulet of beskonechnost'" },
+	{ RIN_RANDOM_EFFECTS, "sluchaynyye effekty" },
+	{ RIN_SPECIAL_EFFECTS, "spetseffekty" },
+
 	{0, "" }
 };
 
@@ -3310,6 +3320,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SAPPHIRE_DRAGON_SCALE_MAIL, "ko'kish yoqut ajdaho ko'lamli zirh" },
 	{ DIAMOND_DRAGON_SCALE_MAIL, "olmos ajdaho ko'lamli zirh" },
 	{ AMETHYST_DRAGON_SCALE_MAIL, "ametist ajdaho ko'lamli zirh" },
+
+	{ RANDOMIZED_HELMET, "borilayotgan dubulg'a" },
+	{ HIGH_STILETTOS, "yuqori sandal chizilmasin" },
+	{ UNKNOWN_GAUNTLETS, "noma'lum qo'lqop" },
+	{ MISSING_CLOAK, "yo'qolgan plash" },
+
+	{ AMULET_OF_THE_RNG, "amulet of tasodifiy soni ishlab chiqaruvchi" },
+	{ AMULET_OF_INFINITY, "amulet of cheksizlik" },
+	{ RIN_RANDOM_EFFECTS, "tasodifiy ta'sir" },
+	{ RIN_SPECIAL_EFFECTS, "maxsus effektlar" },
 
 	{0, "" }
 };
@@ -5146,12 +5166,14 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-13, "strange rings") ||
                            !BSTRCMPI(bp, p-10, "aestivalis") ||
                            !BSTRCMPI(bp, p-16, "combat stilettos") ||
+                           !BSTRCMPI(bp, p-14, "high stilettos") ||
                            !BSTRCMPI(bp, p-16, "winter stilettos") ||
                            !BSTRCMPI(bp, p-4, "loss") ||
                            !BSTRCMPI(bp, p-5, "stats") ||
                            !BSTRCMPI(bp, p-5, "wings") ||
                            !BSTRCMPI(bp, p-5, "cards") ||
                            !BSTRCMPI(bp, p-6, "clouds") ||
+                           !BSTRCMPI(bp, p-7, "effects") ||
                            !BSTRCMPI(bp, p-6, "sweets") ||
                            !BSTRCMPI(bp, p-4, "boss") ||
                            !BSTRCMPI(bp, p-5, "glass") ||

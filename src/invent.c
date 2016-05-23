@@ -6267,6 +6267,15 @@ struct obj *obj;
 				pline("You will float into the air if you wear this pair of boots. Unlike Castle of the Winds, this is NOT a good thing as these are usually generated cursed and prevent you from picking up items or using a set of downstairs."); break;
 #endif
 
+			case RANDOMIZED_HELMET: 
+				pline("The RNG created this helmet; it grants %s, has %d points of AC and provides a MC of %d.", enchname(objects[RANDOMIZED_HELMET].oc_oprop), objects[RANDOMIZED_HELMET].a_ac, objects[RANDOMIZED_HELMET].a_can ); break;
+			case HIGH_STILETTOS: 
+				pline("This pair of shoes is very high-heeled. Wearing it gives you %s, and also %d points of AC and %d points of MC!", enchname(objects[HIGH_STILETTOS].oc_oprop), objects[HIGH_STILETTOS].a_ac, objects[HIGH_STILETTOS].a_can ); break;
+			case UNKNOWN_GAUNTLETS: 
+				pline("The random enchantment of this gloves is %s today. AC is %d, and MC is %d.", enchname(objects[UNKNOWN_GAUNTLETS].oc_oprop), objects[UNKNOWN_GAUNTLETS].a_ac, objects[UNKNOWN_GAUNTLETS].a_can ); break;
+			case MISSING_CLOAK: 
+				pline("A randomly generated cloak. Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[MISSING_CLOAK].oc_oprop), objects[MISSING_CLOAK].a_ac, objects[MISSING_CLOAK].a_can ); break;
+
 			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 
 			}
@@ -6425,6 +6434,10 @@ struct obj *obj;
 				pline("Disintegration resistance is what this ring grants to the wearer."); break;
 			case RIN_MIND_SHIELDING: 
 				pline("One of very few ways to get psi resistance is putting this baby on one of your fingers."); break;
+			case RIN_RANDOM_EFFECTS: 
+				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_RANDOM_EFFECTS].oc_oprop) ); break;
+			case RIN_SPECIAL_EFFECTS: 
+				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_SPECIAL_EFFECTS].oc_oprop) ); break;
 
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
@@ -6563,6 +6576,11 @@ struct obj *obj;
 				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
 			case AMULET_OF_MENTAL_STABILITY:
 				pline("Put on this amulet to get confusion resistance."); break;
+
+			case AMULET_OF_INFINITY: 
+				pline("This is a special amulet, because nobody knows the effect in advance - but you now know that it is %s!", enchname(objects[AMULET_OF_INFINITY].oc_oprop) ); break;
+			case AMULET_OF_THE_RNG: 
+				pline("This is a special amulet, because nobody knows the effect in advance - but you now know that it is %s!", enchname(objects[AMULET_OF_THE_RNG].oc_oprop) ); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

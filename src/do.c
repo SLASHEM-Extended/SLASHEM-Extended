@@ -537,6 +537,10 @@ giveback:
 	      case RIN_MATERIAL_STABILITY:
 		    pline("The sink seems to be reintegrating.");
 		    break;
+	      case RIN_RANDOM_EFFECTS:
+	      case RIN_SPECIAL_EFFECTS:
+		    pline("You are not sure if there is anything happening to the sink at all.");
+		    break;
 	      case RIN_MIND_SHIELDING:
 		    pline("A purple aura surrounds the sink.");
 		    break;

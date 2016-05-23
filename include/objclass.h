@@ -62,7 +62,7 @@ struct objclass {
 #define GEMSTONE	20
 #define MINERAL		21
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD)
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE)
 #define is_metallic(otmp)	(objects[(otmp)->otyp].oc_material >= IRON && \
 				 objects[(otmp)->otyp].oc_material <= MITHRIL)
 #define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL  )

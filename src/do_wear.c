@@ -135,6 +135,7 @@ Boots_on()
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
+	case HIGH_STILETTOS:
 	case BOOTS_OF_TOTAL_STABILITY:
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
@@ -328,6 +329,7 @@ Boots_off()
 	case FIELD_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
+	case HIGH_STILETTOS:
 	case BOOTS_OF_TOTAL_STABILITY:
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
@@ -375,6 +377,7 @@ Cloak_on()
 	case CLOAK_OF_QUENCHING:
 	case CLOAK_OF_CONFUSION:
 	case MANACLOAK:
+	case MISSING_CLOAK:
 	case TROLL_HIDE:
 	case PLASTEEL_CLOAK:
 	/* KMH, balance patch -- removed */
@@ -575,6 +578,7 @@ Cloak_off()
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:
+	case MISSING_CLOAK:
 	case AYANAMI_WRAPPING:
 	case RUBBER_APRON:
 	case KITCHEN_APRON:
@@ -661,6 +665,7 @@ Helmet_on()
 	case HELM_OF_STEEL:
 	case SEDGE_HAT:
 	case SKULLCAP:
+	case RANDOMIZED_HELMET:
 	case CRYSTAL_HELM:
 	case DENTED_POT:
 	case ELVEN_LEATHER_HELM:
@@ -846,6 +851,7 @@ Helmet_off()
 
 	case SEDGE_HAT:
 	case SKULLCAP:
+	case RANDOMIZED_HELMET:
 	case CRYSTAL_HELM:
 	case HELM_OF_STEEL:
 	case DENTED_POT:
@@ -968,6 +974,7 @@ Gloves_on()
 	case FIELD_GLOVES:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
+	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
@@ -1065,6 +1072,7 @@ Gloves_off()
 	case FIELD_GLOVES:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
+	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:

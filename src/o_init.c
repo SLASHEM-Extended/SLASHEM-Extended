@@ -324,6 +324,42 @@ register char oclass;
 	objects[SAPPHIRE_DRAGON_SCALE_MAIL].oc_oprop = objects[SAPPHIRE_DRAGON_SCALES].oc_oprop = objects[SAPPHIRE_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
 	objects[RUBY_DRAGON_SCALE_MAIL].oc_oprop = objects[RUBY_DRAGON_SCALES].oc_oprop = objects[RUBY_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
 
+	objects[RANDOMIZED_HELMET].oc_oprop = randenchantment();
+	objects[HIGH_STILETTOS].oc_oprop = randenchantment();
+	objects[UNKNOWN_GAUNTLETS].oc_oprop = randenchantment();
+	objects[MISSING_CLOAK].oc_oprop = randenchantment();
+
+	objects[RANDOMIZED_HELMET].a_can = rnd(10) ? 0 : rnd(3);
+	objects[HIGH_STILETTOS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[UNKNOWN_GAUNTLETS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[MISSING_CLOAK].a_can = rn2(4);
+
+	objects[RANDOMIZED_HELMET].a_ac = 0;
+	if (rn2(10)) objects[RANDOMIZED_HELMET].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[RANDOMIZED_HELMET].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+	}
+	objects[HIGH_STILETTOS].a_ac = 0;
+	if (rn2(10)) objects[HIGH_STILETTOS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[HIGH_STILETTOS].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+	}
+	objects[UNKNOWN_GAUNTLETS].a_ac = 0;
+	if (rn2(10)) objects[UNKNOWN_GAUNTLETS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[UNKNOWN_GAUNTLETS].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+	}
+	objects[MISSING_CLOAK].a_ac = 0;
+	if (rn2(10)) objects[MISSING_CLOAK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[MISSING_CLOAK].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+	}
+
+	objects[RIN_RANDOM_EFFECTS].oc_oprop = randenchantment();
+	objects[RIN_SPECIAL_EFFECTS].oc_oprop = randenchantment();
+	objects[AMULET_OF_THE_RNG].oc_oprop = randenchantment();
+	objects[AMULET_OF_INFINITY].oc_oprop = randenchantment();
+
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_cost = (objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level * 100);
 
