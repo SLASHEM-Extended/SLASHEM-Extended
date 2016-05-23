@@ -3055,6 +3055,11 @@ SCROLL((char *)0,               "OGRANICHENIYE SAPOGI",  P_NONE,     1,   0, 300
 SCROLL((char *)0,               "ZESE PLASHCH",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
 SCROLL((char *)0,               "SLASH UPOROTYH TO FUCK",  P_NONE,     1,   0, 300, CLR_MAGENTA),
 SCROLL((char *)0,               "HLY HLS",  P_NONE,     1,   0, 300, CLR_WHITE),
+SCROLL((char *)0,               "AMYBSOD IS A HARLOT ACCORDING TO ARRHYTHMIA",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "VEGETARIANISM IS AN EATING DISORDER",  P_NONE,     1,   0, 300, CLR_BROWN),
+SCROLL((char *)0,               "IF YOUR NAME IS LORSKEL YOU WILL PLAY V165E",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
+SCROLL((char *)0,               "GERMANY SCORED DEAD LAST IN THE EFC TWICE IN A ROW",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA), /* eurovision farce contest */
+SCROLL((char *)0,               "EUROVISION FARCE CONTEST",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),

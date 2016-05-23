@@ -238,6 +238,10 @@ register struct obj *obj;
 
 	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_TROVE && (!Race_if(PM_VAMGOYLE) || Upolyd) )
 		return (boolean)(obj->otyp == CORPSE && (!obj->odrained || obj->oeaten > drainlevel(obj)));
+	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_EEL && (!Race_if(PM_VAMGOYLE) || Upolyd) )
+		return (boolean)(obj->otyp == CORPSE && (!obj->odrained || obj->oeaten > drainlevel(obj)));
+	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && mons[obj->corpsenm].mlet == S_FLYFISH && (!Race_if(PM_VAMGOYLE) || Upolyd) )
+		return (boolean)(obj->otyp == CORPSE && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
 	if ((is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && (!Race_if(PM_VAMGOYLE) || Upolyd) )
 		return (boolean)(obj->otyp == CORPSE &&
@@ -2021,6 +2025,8 @@ register int pm;
 	    case PM_NOVICE_NURSE:
 	    case PM_NURSE:
 	    case PM_EXPERIENCED_NURSE:
+	    case PM_SEXY_NURSE:
+	    case PM_TOPLESS_NURSE:
 	    case PM_HEALING_TROVE:
 	    case PM_GORGON_FLY:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;

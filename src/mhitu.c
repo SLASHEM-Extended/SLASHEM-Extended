@@ -125,7 +125,7 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == ATSUZOKO_BOOTS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s plateau soles against your shins, and stomps your %s!", Monnam(mtmp), mhis(mtmp), makeplural(body_part(FOOT)) );
@@ -133,7 +133,7 @@ on the first floor, especially when you're playing as something with drain resis
 				make_stunned(HStun + (monsterlev * rnd(3)), FALSE);
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIGH_STILETTOS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(10);
@@ -152,7 +152,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == ROLLER_BLADE) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ROLLER_BLADE) || mtmp->data == &mons[PM_ANIMATED_ROLLER_BLADE]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s rolls over you with %s roller blades!", Monnam(mtmp), mhis(mtmp) );
@@ -203,7 +203,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(d(1,monsterlev), "soft sneaker to the hand", KILLED_BY_AN);
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == HIPPIE_HEELS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(15);
@@ -378,7 +378,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(d(4,monsterlev), "kung-fu attack", KILLED_BY_AN);
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "tartibsizlik chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] ) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -388,7 +388,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "xanjar chizilmasin") ) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "xanjar chizilmasin") ) ) || mtmp->data == &mons[PM_TOPLESS_NURSE]) ) {
 
 				pline("The wedge heel feels very soft and lovely. In fact, you enjoyed %s's kick.", mon_nam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -404,7 +404,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] ) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -536,7 +536,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] ) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;

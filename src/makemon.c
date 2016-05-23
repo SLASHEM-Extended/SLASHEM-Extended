@@ -3286,13 +3286,9 @@ register struct monst *mtmp;
 		    otmp->spe = max(otmp->spe, spe2);
 		    (void) mpickobj(mtmp, otmp, TRUE);
 
-			(void) tamedog(mtmp, (struct obj *)0, TRUE); /* supposed to start out tame */
-
 		} else if (mm == PM_KATNISS){
 
 			(void)mongets(mtmp, ELVEN_SPEAR);
-
-			(void) tamedog(mtmp, (struct obj *)0, TRUE); /* supposed to start out tame */
 
 		} else if (mm == PM_ARABELLA){
 
@@ -3439,6 +3435,9 @@ register struct monst *mtmp;
 		} else if (mm == PM_JAPANESE_GIRL){
 			(void)mongets(mtmp, WOODEN_GETA);
 
+		} else if (mm == PM_ANIME_GIRL){
+			(void)mongets(mtmp, ATSUZOKO_BOOTS);
+
 		} else if (mm == PM_KOREAN_GIRL){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
@@ -3470,6 +3469,20 @@ register struct monst *mtmp;
 		} else if (mm == PM_DARK_LADY){
 			(void)mongets(mtmp, LACQUERED_DANCING_SHOE);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
+
+		} else if (mm == PM_SEXY_CHILD_MODEL){
+			(void)mongets(mtmp, HIGH_STILETTOS);
+
+		} else if (mm == PM_SEXY_MODEL){
+			(void)mongets(mtmp, HIGH_STILETTOS);
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+
+		} else if (mm == PM_SKATER_GIRL){
+			(void)mongets(mtmp, ROLLER_BLADE);
+
+		} else if (mm == PM_SKATER_WOMAN){
+			(void)mongets(mtmp, ROLLER_BLADE);
+			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 
 		} else if (mm == PM_MYSTERIOUS_GIRL){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
@@ -3683,6 +3696,13 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, WOODEN_GETA);
 			(void)mongets(mtmp, WEDGE_SANDALS);
 
+		} else if (mm == PM_ANIME_WOMAN){
+			(void)mongets(mtmp, ATSUZOKO_BOOTS);
+			(void)mongets(mtmp, WOODEN_GETA);
+
+		} else if (mm == PM_MANGA_WOMAN){
+			(void)mongets(mtmp, WOODEN_GETA);
+
 		} else if (mm == PM_KOREAN_WOMAN){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void)mongets(mtmp, HIPPIE_HEELS);
@@ -3714,6 +3734,13 @@ register struct monst *mtmp;
 		} else if (mm == PM_JAPANESE_LADY){
 			(void)mongets(mtmp, WOODEN_GETA);
 			(void)mongets(mtmp, SOFT_SNEAKERS);
+
+		} else if (mm == PM_ANIME_LADY){
+			(void)mongets(mtmp, ATSUZOKO_BOOTS);
+			(void)mongets(mtmp, WOODEN_GETA);
+
+		} else if (mm == PM_MANGA_LADY){
+			(void)mongets(mtmp, WOODEN_GETA);
 
 		} else if (mm == PM_KOREAN_LADY){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
@@ -3976,6 +4003,10 @@ register struct monst *mtmp;
 			else if (mm == PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
 			else if (mm == PM_ANIMATED_LEATHER_PEEP_TOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_ANIMATED_COMBAT_STILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
+			else if (mm == PM_ANIMATED_ATSUZOKO_BOOT) (void)mongets(mtmp, ATSUZOKO_BOOTS);
+			else if (mm == PM_ANIMATED_STILETTO_SANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
+			else if (mm == PM_ANIMATED_ROLLER_BLADE) (void)mongets(mtmp, ROLLER_BLADE);
+			else if (mm == PM_ANIMATED_PROSTITUTE_SHOE) (void)mongets(mtmp, HIPPIE_HEELS);
 
 			if (mm == PM_ATHENA_GUARDIAN) (void)mongets(mtmp, HEAVY_HAMMER);
 			if (mm == PM_ATHENA_GIANT) (void)mongets(mtmp, MALLET);
@@ -11785,6 +11816,10 @@ register int	mmflags;
 		case S_GHOST:
 			if (mtmp->data == &mons[PM_CURSED_SPIRIT]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_DEVILISH_SPIRIT]) set_mimic_sym(mtmp);
+
+			if (mndx == PM_SHADOW_SHAPE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_TOP_SECRET_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+
 			break;
 		case S_QUADRUPED:
 			if (mtmp->data == &mons[PM_BLENDING_TITANOTHERE]) set_mimic_sym(mtmp);
@@ -12299,16 +12334,28 @@ register int	mmflags;
 
 	if (mndx == PM_UNFORTUNATE_VICTIM && in_mklev ) { /* These are supposed to spawn already dead. --Amy */
 			monkilled(mtmp, "", AD_PHYS);
+			return((struct monst *)0);
 	} 
 
-	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER) monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
+	if (mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER) {
+		monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
+		return((struct monst *)0);
+	}
 
 	if (mndx == PM_SHOCKING_SPHERE && Role_if(PM_ACID_MAGE) && Is_nemesis(&u.uz) ) {
 			(void) mon_spec_polyX(mtmp,  &mons[PM_LIGHTNING_PROOF_WALL], 0L, FALSE, FALSE, FALSE, FALSE);
 	} 
 
 	/* Kop characters sometimes receive pets --Amy */
-	if (mtmp->mpeaceful && Race_if(PM_KOP) && !rn2(10) && sgn(u.ualign.type) == sgn(mtmp->data->maligntyp) && (mtmp->data->mr < rnd(100) ) ) { (void) tamedog(mtmp, (struct obj *)0, FALSE); return((struct monst *)0); }
+	if (mtmp->mpeaceful && Race_if(PM_KOP) && !rn2(10) && sgn(u.ualign.type) == sgn(mtmp->data->maligntyp) && (mtmp->data->mr < rnd(100) ) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (mndx == PM_SIZZLE || mndx == PM_KATNISS) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
 
 	if (!in_mklev)
 	    newsym(mtmp->mx,mtmp->my);	/* make sure the mon shows up */
@@ -13365,6 +13412,7 @@ int type;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
+		case PM_TOWER_STATUE: return 72;
 		case PM_SUPER_WOODEN_STATUE: return 360; /* quite unbalanced; players who can't handle them should run away */
 		case PM_VANISHING_POINT: return 72;
 		case PM_LEVEL____ENEMY: return 72;
@@ -13390,6 +13438,7 @@ int type;
 		case PM_AMUSING_THIRTEEN_GRADER: return 137;
 		case PM_SECURITY_BOT: return 137;
 		case PM_ANIMATED_MARBLE_STATUE: return 199;
+		case PM_ULTRA_STATUE: return 199;
 
 		case PM_DEATH_SWORD: return 250;
 		case PM_CLOCK_GOLEM: return 250;
@@ -13398,9 +13447,17 @@ int type;
 		case PM_CELESTIAL_CLARION: return 400;
 
 		case PM_ANIMATED_COPPER_STATUE: return 237;
+		case PM_GREAT_PROJECTION_STATUE: return 237;
+		case PM_LEAD_STATUE: return 237;
 		case PM_ANIMATED_SILVER_STATUE: return 273;
+		case PM_FLYER_STATUE: return 273;
+		case PM_ANIMAYION_STATUE: return 273;
 		case PM_ANIMATED_GOLDEN_STATUE: return 324;
+		case PM_STEELHAMMER: return 324;
+		case PM_THUNDER_HAMMER: return 324;
 		case PM_ANIMATED_PLATINUM_STATUE: return 388;
+		case PM_SUPERCASH_ROAD_STATUE: return 388;
+		case PM_THE_ULTIMATE_TANK: return 388;
 
 		case PM_ATHENA_BLOCKER: return 1000;
 		case PM_ATHENA_BASHER: return 300;
@@ -13437,8 +13494,11 @@ int type;
 		case PM_SCOURGE_OF_THE_UNKNOWN_GOD: return 180;
 		case PM_AQUATIC_GOLEM: return 190;
 		case PM_BONE_GOLEM: return 200;
+		case PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT: return 200;
+		case PM_ANIMATED_IRREGULAR_HEEL: return 233;
 		case PM_SAURON_THE_IMPRISONED: return 200;
 		case PM_ANIMATED_LEATHER_PEEP_TOE: return 250;
+		case PM_ANIMATED_ROLLER_BLADE: return 260;
 		case PM_IRON_GOLEM: return 240;
 		case PM_TIN_MAN: return 240;
 		case PM_THE_BORSHIN: return 240;
@@ -13461,12 +13521,16 @@ int type;
 		case PM_MITHRIL_GOLEM: return 300;
 		case PM_TILL: return 300;
 		case PM_ARSENAL: return 300;
+		case PM_ANIMATED_ATSUZOKO_BOOT: return 320;
 		case PM_EOG_GOLEM: return 340;
 		case PM_SILENT_WATCHER: return 350;
+		case PM_ANIMATED_STILETTO_SANDAL: return 350;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
 		case PM_JNR: return 400;
 		case PM_LEAD_GOLEM: return 400;
+		case PM_DIFFICULT_LEAD_GOLEM: return 400;
+		case PM_ANIMATED_PROSTITUTE_SHOE: return 400;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;
@@ -13491,6 +13555,7 @@ int type;
 		case PM_GOLEM: return 400;
 		case PM_BLOODY_BEAUTIES: return 500;
 		case PM_KASTORTRANSPORT: return 500;
+		case PM_ANIMATED_WINTER_STILETTO: return 500;
 		case PM_ROBO_KY: return 750;
 		case PM_INVULNERABLE_GOLEM: return 2000;
 		case PM_WAX_GOLEM: return 40;
