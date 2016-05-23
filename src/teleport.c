@@ -1720,8 +1720,10 @@ random_teleport_level()
 	/* Get a random value relative to the current dungeon */
 	/* Range is 1 to current+3, current not counting */
 	/* Amy edit: somehow this is just stupid. Why not make it so that your deepest level counts? */
-	nlev = rn2(/*cur_depth*/deepest_lev_reached(TRUE) + 3 - min_depth) + min_depth;
+	if (In_quest(&u.uz)) nlev = dungeons[u.uz.dnum].depth_start + rnd(6);
+	else { nlev = rn2(/*cur_depth*/deepest_lev_reached(TRUE) + 3 - min_depth) + min_depth;
 	if (nlev >= cur_depth) nlev++;
+	}
 
 	if (nlev > max_depth) {
 	    nlev = max_depth;
