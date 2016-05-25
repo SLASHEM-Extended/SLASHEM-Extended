@@ -418,7 +418,7 @@ void
 tty_delay_output()
 {
 #ifdef TIMED_DELAY
-	if (flags.nap) {
+	if (flags.sparkle) {
 	    (void) fflush(stdout);
 	    msleep(50);		/* sleep for 50 milliseconds */
 	    return;

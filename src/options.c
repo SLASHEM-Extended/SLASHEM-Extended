@@ -252,11 +252,6 @@ static struct Bool_Opt
 
 	{"tiled_map",     &iflags.wc_tiled_map, PREFER_TILED, DISP_IN_GAME},	/*WC*/
 	{"time", &flags.time, TRUE, SET_IN_GAME},
-#ifdef TIMED_DELAY
-	{"timed_delay", &flags.nap, TRUE, SET_IN_GAME},
-#else
-	{"timed_delay", (boolean *)0, FALSE, SET_IN_GAME},
-#endif
 
 	{"timed_autosave", &flags.etimed_autosave, TRUE, SET_IN_GAME},
 	{"quick_autosave", &flags.xtimed_autosave, FALSE, SET_IN_GAME},
