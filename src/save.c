@@ -154,10 +154,13 @@ int sig_unused;
 	if (!program_state.done_hup++) {
 	    if (program_state.something_worth_saving) {
 
-		u.hangupcheat++;
-		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
-		if (multi) u.hangupparalysis += abs(multi);
-		if (u.hangupparalysis > 5) u.hangupparalysis = 5; /* sanity check */
+        if (u.hangupcheat) {
+    		u.hangupcheat++;
+    		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
+    		if (multi) u.hangupparalysis += abs(multi);
+    		if (u.hangupparalysis > 5) u.hangupparalysis = 5; /* sanity check */
+        }
+
 		(void) dosave0();
 
 		}
@@ -278,6 +281,8 @@ dosave0()
 	    co_false();
 	}
 #endif /* MFLOPPY */
+
+    if (u.hangupcheat < 2) u.hangupcheat = 0;
 
 	store_version(fd);
 #ifdef STORE_PLNAME_IN_FILE

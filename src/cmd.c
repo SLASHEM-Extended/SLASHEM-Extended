@@ -6928,11 +6928,17 @@ register char *cmd;
 	boolean do_walk, do_rush, prefix_seen, bad_command,
 		firsttime = (cmd == 0);
 
+
 	iflags.menu_requested = FALSE;
 	if (firsttime) {
 		flags.nopick = 0;
 		cmd = parse();
 	}
+
+    if (*cmd && !u.hangupcheat) {
+        u.hangupcheat = 1;
+    }
+
 	if (*cmd == DOESCAPE) { /* <esc> key - user might be panicking */
 		/* Bring up the menu */
 		if (multi || !flags.menu_on_esc || !(domenusystem())) {

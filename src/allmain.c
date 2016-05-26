@@ -2421,6 +2421,8 @@ moveloop()
 
 	u.umoved = FALSE;
 
+   if (u.hangupcheat) u.hangupcheat = 0;
+
 	if (multi > 0) {
 	    lookaround();
 	    if (!multi) {
@@ -3939,7 +3941,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (!new_game && (u.hangupcheat > 1)) { /* filthy cheater! */
+	if (!new_game && (u.hangupcheat > 2)) { /* filthy cheater! */
 
 		u.ublesscnt += rnz(2000);
 		change_luck(-3);
