@@ -4398,7 +4398,7 @@ uchar aatyp;
 		break;
 
 	  case AD_THIR:
-		if(mhit && rn2(3)) {
+		if(malive && mhit && rn2(3)) {
 			pline("Your %s is sucked!", body_part(BLOOD) );
 			mon->mhp += tmp;
 			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
