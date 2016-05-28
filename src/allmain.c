@@ -2421,7 +2421,7 @@ moveloop()
 
 	u.umoved = FALSE;
 
-   if (u.hangupcheat) u.hangupcheat = 0;
+   if (u.hangupcheat && !multi) u.hangupcheat = 0;
 
 	if (multi > 0) {
 	    lookaround();
