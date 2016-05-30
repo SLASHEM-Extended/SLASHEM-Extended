@@ -451,6 +451,9 @@ long mask;	/* nonzero if resistance status should change by mask */
 
 	    flags.botl = 1;
 	    if (talk) pline(message, verb);
+
+	    (void) doredraw();
+
 	}
 	return changed;
 }
