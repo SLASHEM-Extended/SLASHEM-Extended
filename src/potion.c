@@ -4468,6 +4468,99 @@ register struct obj *o1, *o2;
 	  case OBSIDIAN:
 	    potion_descr = "effervescent";
 	    break;
+
+		/* more by Amy */
+	  case CIRMOCLINE:
+	    potion_descr = "thaumaturgic";
+	    break;
+	  case DIOPTASE:
+	    potion_descr = "shining";
+	    break;
+	  case MORGANITE:
+	    potion_descr = "incandescent";
+	    break;
+	  case ORTHOCLASE:
+	    potion_descr = "freezing";
+	    break;
+	  case ANDALUSITE:
+	    potion_descr = "squishy";
+	    break;
+	  case PERIDOT:
+	    potion_descr = "greasy";
+	    break;
+	  case CHAROITE:
+	    potion_descr = "slimy";
+	    break;
+	  case AMAZONITE:
+	    potion_descr = "soapy";
+	    break;
+	  case SODALITH:
+	    potion_descr = "ochre";
+	    break;
+	  case VIVIANITE:
+	    potion_descr = "steamy";
+	    break;
+	  case EPIDOTE:
+	    potion_descr = "gooey";
+	    break;
+	  case CHALCEDON:
+	    potion_descr = "silver";
+	    break;
+	  case CHRYSOCOLLA:
+	    potion_descr = "dangerous";
+	    break;
+	  case MALACHITE:
+	    potion_descr = "creepy";
+	    break;
+	  case COVELLINE:
+	    potion_descr = "distilled";
+	    break;
+	  case ROSE_QUARTZ:
+	    potion_descr = "warping";
+	    break;
+	  case KUNZITE:
+	    potion_descr = "unnatural";
+	    break;
+	  case SPINEL:
+	    potion_descr = "venomous";
+	    break;
+	  case CYAN_STONE:
+	    potion_descr = "colorless";
+	    break;
+	  case LAPIS_LAZULI:
+	    potion_descr = "alchemical";
+	    break;
+	  case MOONSTONE:
+	    potion_descr = "fluorescent";
+	    break;
+	  case PREHNITE:
+	    potion_descr = "illuminated";
+	    break;
+	  case DISTHENE:
+	    potion_descr = "bright";
+	    break;
+	  case APOPHYLLITE:
+	    potion_descr = "carcinogenic";
+	    break;
+	  case TOURMALINE:
+	    potion_descr = "liquid";
+	    break;
+	  case RHODOCHROSITE:
+	    potion_descr = "buzzing";
+	    break;
+	  case ANHYDRITE:
+	    potion_descr = "concocted";
+	    break;
+	  case HALITE:
+	    potion_descr = "blue";
+	    break;
+	  case MARBLE:
+	    potion_descr = "gray";
+	    break;
+	  case MORION:
+	    potion_descr = "plaid";
+	    break;
+
 	  default: potion_descr = NULL;
 	  }
 
@@ -4865,17 +4958,54 @@ register struct obj *obj;
 			if (!rn2(2)) obj->otyp = ELVEN_SHORT_SWORD;
 			else obj->otyp = DARK_ELVEN_SHORT_SWORD;
 			break;
+		case IRON_SABER:
+			if (!rn2(2)) obj->otyp = SILVER_SABER;
+			else obj->otyp = GOLDEN_SABER;
+			break;
+		case GOLDEN_SABER:
+		case SILVER_SABER:
+			obj->otyp = IRON_SABER;
 		case BROADSWORD:
 			obj->otyp = ELVEN_BROADSWORD;
 			break;
 		case ELVEN_BROADSWORD:
 			obj->otyp = BROADSWORD;
 			break;
+		case MOP:
+			obj->otyp = SPECIAL_MOP;
+			break;
+		case SPECIAL_MOP:
+			obj->otyp = MOP;
+			break;
 		case CLUB:
 			obj->otyp = AKLYS;
 			break;
 		case AKLYS:
 			obj->otyp = CLUB;
+			break;
+		case SICKLE:
+			obj->otyp = ELVEN_SICKLE;
+			break;
+		case ELVEN_SICKLE:
+			obj->otyp = SICKLE;
+			break;
+		case FIRE_HOOK:
+			obj->otyp = PLATINUM_FIRE_HOOK;
+			break;
+		case PLATINUM_FIRE_HOOK:
+			obj->otyp = FIRE_HOOK;
+			break;
+		case ATHAME:
+			obj->otyp = MERCURIAL_ATHAME;
+			break;
+		case MERCURIAL_ATHAME:
+			obj->otyp = ATHAME;
+			break;
+		case SUGUHANOKEN:
+			obj->otyp = GREAT_HOUCHOU;
+			break;
+		case GREAT_HOUCHOU:
+			obj->otyp = SUGUHANOKEN;
 			break;
 		case WAR_HAMMER:
 			obj->otyp = HEAVY_HAMMER;
