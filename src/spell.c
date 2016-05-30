@@ -1528,9 +1528,14 @@ boolean atme;
 		break;
 	case SPE_CREATE_FAMILIAR:
 		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
-		else {
+		else if (!rn2(2) {
 			pline("The summoned monster does not seem to be friendly!");
 			(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
+		} else if (rn2(4)) {
+			pline("The spell fizzled out!");
+		} else {
+			pline("The spell backfired!");
+			badeffect();
 		}
 		break;
 	case SPE_CLAIRVOYANCE:
