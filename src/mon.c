@@ -1190,6 +1190,12 @@ movemon()
 
 	if (minliquid(mtmp)) continue;
 
+	/* if permamimics are ever not cloaked, e.g. because they got created by another monster polymorphing,
+	 * cloak them again. --Amy */
+	if ((permamimic(mtmp->data) || mtmp->egotype_permamimic ) && !mtmp->m_ap_type ) {
+		set_mimic_sym(mtmp);
+	}
+
 	if (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) {
 	    /* unwatched mimics and piercers may hide again  [MRS] */
 	    if(restrap(mtmp))   continue;
