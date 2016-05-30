@@ -998,7 +998,7 @@ dodown()
 		    (u.ux == sstairs.sx && u.uy == sstairs.sy && !sstairs.up)),
 		ladder_down = (u.ux == xdnladder && u.uy == ydnladder);
 
-	if (NoStaircase && (stairs_down || ladder_down) ) {
+	if (NoStaircase && u.uhave.amulet && (stairs_down || ladder_down) ) {
 
 		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
@@ -1110,7 +1110,7 @@ doup()
 		return(0);
 	}
 
-	if (NoStaircase) {
+	if (NoStaircase && !u.uhave.amulet ) {
 
 		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
