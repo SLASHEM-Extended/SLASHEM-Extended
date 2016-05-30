@@ -3492,6 +3492,11 @@ boolean your_fault;
 				    obj->cursed ? " a lot" : "");
 		    losehp(d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8),
 				    "potion of acid", KILLED_BY_AN);
+		/* these things are way too weak and don't scale with monster difficulty at all! Let's change this! --Amy */
+			if (obj->blessed) losehp(rnd( (monster_difficulty() + 3) / 4), "potion of acid", KILLED_BY_AN);
+			else if (obj->cursed) losehp(rnd( (monster_difficulty() + 3) / 2), "potion of acid", KILLED_BY_AN);
+			else losehp(rnd( (monster_difficulty() + 3) / 3), "potion of acid", KILLED_BY_AN);
+
 		}
 		if (Stoned) fix_petrification();
 		break;
