@@ -1160,12 +1160,15 @@ boolean guaranteed;
 	    mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion ||
 	    /* KMH -- Added gypsy */
 	    mtmp->isgyp ||
-	    (is_covetous(mtmp->data) && rn2(50) ) || (is_human(mtmp->data) && rn2(4) ) ||
-	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && rn2(10) ) ||
+	    (is_covetous(mtmp->data) && (issoviet || rn2(50) ) ) || (is_human(mtmp->data) && (issoviet || rn2(4) ) ) ||
+	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && (issoviet || rn2(10) ) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
 	    cannot_be_tamed(mtmp->data) ||
 	    (obj && dogfood(mtmp, obj) >= MANFOOD)) {
 
+	/* In Soviet Russia, people only know dogs, cats and maybe horses. Everything else cannot be tamed, and variety
+	 * is also something that absolutely no one likes. Communism means everyone gets the same, so you can't have an
+	 * exotic pet! If you do then you'll "vanish" silently, like all the other lawbreakers. --Amy */
 
 		/* Attire charm technique and certain other methods set the guaranteed flag,
 		 * which allows players to tame humans and certain other monsters. --Amy */

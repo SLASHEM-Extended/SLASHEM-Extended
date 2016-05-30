@@ -1281,6 +1281,11 @@ water_prayer(bless_water)
 
 		}
 
+		if (issoviet && !rn2(50)) {
+			pline("Tip bloka l'da reshayet nakazat' vas. Khar Khar Khar Khar Khar Khar Khar!");
+			badeffect();
+		}
+
 		if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 			levl[u.ux][u.uy].typ = ROOM;
 			pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
@@ -1923,6 +1928,11 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
 
+	}
+
+	if (issoviet && !rn2(50)) {
+		pline("Tip bloka l'da reshayet nakazat' vas. Khar Khar Khar Khar Khar Khar Khar!");
+		badeffect();
 	}
 
 	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {

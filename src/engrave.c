@@ -900,11 +900,11 @@ register xchar x,y,cnt;
 
 	}
 
-      if (sobj_at(SCR_SCARE_MONSTER, x, y) && !rn2(50) ) {
+      if (sobj_at(SCR_SCARE_MONSTER, x, y) && !rn2(issoviet ? 1000 : 50) ) {
 
 	/* scare monster scrolls might randomly disappear --Amy */
 
-		if (!rn2(10)) pline(Hallucination ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
+		if (!rn2(10)) pline(issoviet ? "Vy chuvstvuyete nekotoruyu ekstremal'nuyu zharu! Popytka Soveta SSSR sokhranit' ispug monstr svitkov obratnyy effekt, kha-kha-kha!" : Hallucination ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
 		(void) burn_floor_paper(x, y, TRUE, FALSE); /* The actual chance of this removing the scroll is about 3%. */
 
 	}

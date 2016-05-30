@@ -811,7 +811,7 @@ break_armor()
 		Your("armor falls off!");
 		(void) Armor_gone();
 		dropx(otmp); /*WAC Drop instead of destroy*/
-	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && rn2(2)/* && !otmp->cursed*/) ) {
+	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)/* && !otmp->cursed*/) ) {
 		if (donning(otmp)) cancel_don();
 
 		if (!otmp->cursed) {
@@ -823,7 +823,8 @@ break_armor()
 
 	    } else {
 		if (donning(otmp)) cancel_don();
-		You("break out of your armor!");
+		if (!issoviet) You("break out of your armor!");
+		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
 		exercise(A_STR, FALSE);
 		(void) Armor_gone();
 		useup(otmp);
@@ -834,7 +835,7 @@ break_armor()
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
-	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && rn2(2)/* && !otmp->cursed*/) ) {
+	    } else if ((controlled_change/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)/* && !otmp->cursed*/) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)/* && !otmp->cursed*/) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)/* && !otmp->cursed*/) ) {
 
 		if (!otmp->cursed) {
 
@@ -845,14 +846,15 @@ break_armor()
 		}
 
 	    } else {
-		Your("%s tears apart!", cloak_simple_name(otmp));
+		if (!issoviet) Your("%s tears apart!", cloak_simple_name(otmp));
+		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
 		(void) Cloak_off();
 		useup(otmp);
 	    }
 	}
 #ifdef TOURIST
 	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmu) != 0) {
-	    if ((controlled_change/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_MEDIUM && rn2(20)/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_LARGE && rn2(5) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_HUGE && rn2(3) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize > MZ_HUGE && rn2(2) /*&& !otmp->cursed*/ && !uskin) ) {
+	    if ((controlled_change/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2) /*&& !otmp->cursed*/ && !uskin) ) {
 
 		if (!otmp->cursed) {
 
@@ -862,7 +864,8 @@ break_armor()
 		}
 
 	    } else {                
-		Your("shirt rips to shreds!");
+		if (!issoviet) Your("shirt rips to shreds!");
+		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
 		useup(uarmu);
 	    }
 	}

@@ -3516,10 +3516,10 @@ xkilled(mtmp, dest)
 
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE);
 
-		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && mdat != &mons[PM_GREMLIN] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) /*&& !(mvitals[mndx].mvflags & G_NOCORPSE) && !(nohands(mdat))*/
+		if (!rn2( (Race_if(PM_DROW) ? 50 : Race_if(PM_DOPPELGANGER) ? 75 : 16) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && mdat != &mons[PM_GREMLIN] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
-					/*&& mdat->mlet != S_KOP*/
+					&& (!issoviet || (mdat->mlet != S_KOP))
 							) { /* allow death drops for every monster type --Amy */
 			int typ;
 

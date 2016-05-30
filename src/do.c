@@ -307,6 +307,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 
 	}
 
+	if (issoviet && !rn2(50)) {
+		pline("Tip bloka l'da reshayet nakazat' vas. Khar Khar Khar Khar Khar Khar Khar!");
+		badeffect();
+	}
+
 	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */

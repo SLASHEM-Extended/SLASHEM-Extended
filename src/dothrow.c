@@ -1867,10 +1867,12 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				if (!rn2(3)) change_luck(rnd(4) );
+				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 4 : rnd(4) );
+				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
 				Strcat(buf,maybeluck);
-				if (!rn2(5)) change_luck(rnd(2) );
+				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
+				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
 			Strcat(buf,nogood);
@@ -1881,10 +1883,12 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				if (!rn2(3)) change_luck(rnd(2) );
+				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 2 : rnd(2) );
+				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
 				Strcat(buf,maybeluck);
-				if (!rn2(5)) change_luck(rnd(2) );
+				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
+				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
 			Strcat(buf,nogood);
@@ -1895,10 +1899,10 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				Strcat(buf,addluck);
-				if (!rn2(3)) change_luck(1);
+				if (!rn2(issoviet ? 2 : 3)) change_luck(1);
 			} else {
 				Strcat(buf,maybeluck);
-				if (!rn2(5)) change_luck(1);
+				if (!rn2(issoviet ? 3 : 5)) change_luck(1);
 			}
 		} else {
 			Strcat(buf,noluck);

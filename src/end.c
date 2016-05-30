@@ -1050,8 +1050,12 @@ die:
 	 * smiling... :-)  -3.
 	 */
 	if (Frozen) pline("Your body shatters and melts into ice cubes."); /* Diablo 2 */
-	if (moves <= 2 && how < PANICKED)	/* You die... --More-- */
+	if (moves <= 1 && how < PANICKED)	/* You die... --More-- */
 	    pline("Do not pass go.  Do not collect 200 %s.", currency(200L));
+	else if (moves == 2 && how < PANICKED) {
+	    if (!issoviet) pline("Do not pass go.  Do not collect 200 %s.", currency(200L));
+	    else pline("Nekotoryye pizda nazvali sovetskiy reshil, chto vy ne mozhete poluchit' zabavnoye soobshcheniye pryamo seychas.");
+	}
 	/* I'll allow you to see this message if you die on your second turn, too. --Amy */
 
 	if (have_windows) wait_synch();	/* flush screen output */

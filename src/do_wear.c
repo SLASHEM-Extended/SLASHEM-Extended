@@ -2758,12 +2758,15 @@ find_ac()
 	}
 
 	/* A higher-level player will have a small AC boost to compensate for monsters being more dangerous. --Amy */
-	if (u.ulevel >= 5) uac -= 1;
-	if (u.ulevel >= 10) uac -= 1;
-	if (u.ulevel >= 15) uac -= 1;
-	if (u.ulevel >= 20) uac -= 1;
-	if (u.ulevel >= 25) uac -= 1;
-	if (u.ulevel >= 30) uac -= 1;
+	/* In Soviet Russia, the player is just supposed to have no chance. --Amy */
+	if (!issoviet) {
+		if (u.ulevel >= 5) uac -= 1;
+		if (u.ulevel >= 10) uac -= 1;
+		if (u.ulevel >= 15) uac -= 1;
+		if (u.ulevel >= 20) uac -= 1;
+		if (u.ulevel >= 25) uac -= 1;
+		if (u.ulevel >= 30) uac -= 1;
+	}
 
 	/* After all, a couatl or archon can still hit a -40 AC player without any problems... */
 

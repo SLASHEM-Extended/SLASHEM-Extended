@@ -1062,7 +1062,8 @@ boolean atme;
 
 	chance = percent_success(spell);
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && rn2(10) ) || (rnd(100) > chance)) {
-		pline("You fail to cast the spell correctly.");
+		if (!issoviet) pline("You fail to cast the spell correctly.");
+		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 #ifdef ALLEG_FX
@@ -2289,6 +2290,8 @@ int spell;
 			break;
 
 	}
+
+	if (issoviet) chance -= 30;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;

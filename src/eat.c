@@ -1622,6 +1622,12 @@ register int pm;
 	    case PM_RUBBER_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		/* MRKR: "eye of newt" may give small magical energy boost */
+
+		if (issoviet && rn2(3)) {
+			pline("Sovetskaya ne khochet, chtoby vy, chtoby poluchit' magicheskuyu silu! Vasha zhizn' otstoy!");
+			break;
+		}
+
 		if (rn2(3)/* || 3 * u.uen <= 2 * u.uenmax*/) {
 		    int old_uen = u.uen; /* Some slight changes to this code. --Amy */
 		    u.uen += rnd(3);

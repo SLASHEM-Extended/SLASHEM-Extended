@@ -504,9 +504,9 @@ register struct monst *priest;
 		if(coaligned) adjalign(-1);
 	    } else if(offer < (issoviet ? (u.ulevel * 200) : 2000) ) {
 #ifndef GOLDOBJ
-		if(u.ugold > (offer * 2L)) verbalize("Cheapskate.");
+		if(u.ugold > (offer * 2L)) verbalize(issoviet ? "lol u sposobstvovali slishkom malo govorit sovetskiy mat' iz ada." : "Cheapskate.");
 #else
-		if(money_cnt(invent) > (offer * 2L)) verbalize("Cheapskate.");
+		if(money_cnt(invent) > (offer * 2L)) verbalize(issoviet ? "lol u sposobstvovali slishkom malo govorit sovetskiy mat' iz ada." : "Cheapskate.");
 #endif
 		else {
 		    verbalize("I thank thee for thy contribution.");

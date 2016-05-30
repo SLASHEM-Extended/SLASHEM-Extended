@@ -199,7 +199,10 @@ int rx, ry, *resp;
 	 * on actual instances of the monsters, and we're dealing with just an index
 	 * so we can avoid things like "a owlbear", etc. */
 	if ((otmp = sobj_at(EGG,rx,ry)) != 0) {
-		if (Hallucination || !rn2(20) ) { /* Let's make it fail sometimes. --Amy */
+		if (issoviet && rn2(10)) {
+			pline("Sovetskaya skazal, chto ne mozhet vernut' nedopustimoye monstra, no ya vernus' iskazhennyy yego pryamo seychas!");
+			pline("You listen to the egg and guess... %s?", generate_garbage_string() );
+		} else if (Hallucination || !rn2(20) ) { /* Let's make it fail sometimes. --Amy */
 			pline("You listen to the egg and guess... %s?",rndmonnam());
 		} else {
 			if (stale_egg(otmp) || otmp->corpsenm == NON_PM || rn2(2) ) {
@@ -1943,7 +1946,7 @@ degradeagain:
 	for (val = 0; val < val_limit; val++) {
 	    idx = trouble_list[val];
 
-		if (rn2(20) < chance)	/* KMH */
+		if (rn2(issoviet ? 10 : 20) < chance)	/* KMH */
 	    switch (idx) {
 	    case prop2trbl(SICK):
 		make_sick(0L, (char *) 0, TRUE, SICK_ALL);
@@ -2010,6 +2013,12 @@ degradeagain:
 	    pline(Hallucination ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
 	else if (!did_prop)
 	    pline("Nothing seems to happen.");
+
+	if (issoviet && !rn2(3)) {
+		/* Harharharharharharhar harharhar harhar! --Amy */
+		pline("Tip bloka l'da govorit, chto slesh im eto der'mo!");
+		badeffect();
+	}
 
 	flags.botl = (did_attr || did_prop || did_atno);
 #undef PROP_COUNT
@@ -3745,8 +3754,9 @@ use_chemistry_set(struct obj *chemset)
 
 	/* We will allow the player to make a potion occasionally, even if they don't know the spell. --Amy */
 
-	if (!spell_known(SPE_CHEMISTRY) && (rn2(3)) ) {
-		pline("Huh? You don't understand anything about such stuff!");
+	if (!spell_known(SPE_CHEMISTRY) && (issoviet || rn2(3)) ) {
+		if (!issoviet) pline("Huh? You don't understand anything about such stuff!");
+		else pline("Sovetskiy upal iz sredney shkoly iz-za yego nesposobnosti delat' khimiyu. On ne khochet, chtoby vy byli sposobny delat' chto-to on ne mog.");
 		if (chemset->spe > 0) chemset->spe -= 1;
 		return;
 

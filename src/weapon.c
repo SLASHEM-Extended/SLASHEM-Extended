@@ -1910,6 +1910,9 @@ abon()		/* attack bonus for strength & dexterity */
 	}
 	if (Upolyd) sbon += (adj_lev(&mons[u.umonnum]) - 3);
 
+	/* In Soviet Russia, strength and dexterity bonuses are lower because seriously, who needs bonuses??? --Amy */
+	if (issoviet && sbon > 1) sbon /= 2;
+
 	return(sbon);
 }
 
@@ -1924,23 +1927,49 @@ dbon()		/* damage bonus for strength */
 
 	if (Upolyd) return(0);
 	/* [Tom] I lowered this a little */
-	if (str < 5) return(-2);
-	else if (str < 8) return(-1);
-	else if (str < 10) return(0);
-	else if (str < 14) return(1);
-	else if (str < 18) return(2);
-	else if (str == 18) return(3);		/* up to 18 */
-	else if (str < STR18(30)) return(4);          /* up to 18/99 */
-	else if (str < STR18(66)) return(4);          /* up to 18/99 */
-	else if (str < STR18(100)) return(5);          /* up to 18/99 */
-	else if (str == STR18(100)) return(6);         /* 18/00 */
-	else if (str == STR19(19)) return(7);         /* 19 */
-	else if (str == STR19(20)) return(7);         /* 20 */
-	else if (str == STR19(21)) return(7);         /* 21 */
-	else if (str == STR19(22)) return(8);         /* 22 */
-	else if (str == STR19(23)) return(8);         /* 23 */
-	else if (str == STR19(24)) return(8);        /* 24 */
-	else return(9);
+
+	if (!issoviet) {
+
+		if (str < 5) return(-2);
+		else if (str < 8) return(-1);
+		else if (str < 10) return(0);
+		else if (str < 14) return(1);
+		else if (str < 18) return(2);
+		else if (str == 18) return(3);		/* up to 18 */
+		else if (str < STR18(30)) return(4);          /* up to 18/99 */
+		else if (str < STR18(66)) return(4);          /* up to 18/99 */
+		else if (str < STR18(100)) return(5);          /* up to 18/99 */
+		else if (str == STR18(100)) return(6);         /* 18/00 */
+		else if (str == STR19(19)) return(7);         /* 19 */
+		else if (str == STR19(20)) return(7);         /* 20 */
+		else if (str == STR19(21)) return(7);         /* 21 */
+		else if (str == STR19(22)) return(8);         /* 22 */
+		else if (str == STR19(23)) return(8);         /* 23 */
+		else if (str == STR19(24)) return(8);        /* 24 */
+		else return(9);
+
+	} else {
+
+		if (str < 5) return(-5);
+		else if (str < 8) return(-4);
+		else if (str < 10) return(-3);
+		else if (str < 14) return(-2);
+		else if (str < 18) return(-1);
+		else if (str == 18) return(0);		/* up to 18 */
+		else if (str < STR18(30)) return(1);          /* up to 18/99 */
+		else if (str < STR18(66)) return(1);          /* up to 18/99 */
+		else if (str < STR18(100)) return(2);          /* up to 18/99 */
+		else if (str == STR18(100)) return(2);         /* 18/00 */
+		else if (str == STR19(19)) return(3);         /* 19 */
+		else if (str == STR19(20)) return(3);         /* 20 */
+		else if (str == STR19(21)) return(3);         /* 21 */
+		else if (str == STR19(22)) return(4);         /* 22 */
+		else if (str == STR19(23)) return(4);         /* 23 */
+		else if (str == STR19(24)) return(4);        /* 24 */
+		else return(5);
+
+	}
+
 }
 
 /* copy the skill level name into the given buffer */

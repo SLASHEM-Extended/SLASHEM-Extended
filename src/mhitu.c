@@ -1411,7 +1411,7 @@ mattacku(mtmp)
 
 			if (!range2 && mtmp->egotype_engulfer) {
 			    if(foundyou) {
-				if((u.uswallow || tmp > (j = rnd(20+i))) && rn2(10)) { /* 10% chance to miss --Amy */
+				if((u.uswallow || tmp > (j = rnd(20+i))) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
 				    /* Force swallowing monster to be
 				     * displayed even when player is
 				     * moving away */
@@ -1462,7 +1462,7 @@ mattacku(mtmp)
 		case AT_ENGL:
 			if (!range2) {
 			    if(foundyou) {
-				if((u.uswallow || tmp > (j = rnd(20+i))) && rn2(10)) { /* 10% chance to miss --Amy */
+				if((u.uswallow || tmp > (j = rnd(20+i))) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
 				    /* Force swallowing monster to be
 				     * displayed even when player is
 				     * moving away */
@@ -3911,7 +3911,7 @@ dopois:
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		break;
 
 	    case AD_STTP:
@@ -4365,7 +4365,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (youmonst.data->mlet == mdat->mlet) break;
 		if(mtmp->mcan) break;
-		if (!rn2(3)) {
+		if (!issoviet && !rn2(3)) {
 			pline("You feel a tug on your purse"); break;
 		}
 		if (rn2(10)) {stealgold(mtmp);
@@ -4388,7 +4388,7 @@ dopois:
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
 		    "brags about the goods some dungeon explorer provided" :
 		    "makes some remarks about how difficult theft is lately");
-			if (!rn2(4) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+			if ( (issoviet || !rn2(4)) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 			return 3;
 		} else if (mtmp->mcan) {
 		    if (!Blind) {
@@ -4405,13 +4405,13 @@ dopois:
 			    do_charm ? "unaffected" : "uninterested");
 		    }
 		    if(rn2(3)) {
-			if (!rn2(4) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+			if ( (issoviet || !rn2(4)) && !tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 			return 3;
 		    }
 		    break;
 		}
 
-		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
 			pline("You feel a tug on your knapsack"); break;
 		}
 
@@ -4432,7 +4432,7 @@ dopois:
 		  case 0:
 			break;
 		  default:
-			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && !rn2(4))
+			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
 			    if (canseemon(mtmp))
@@ -4445,8 +4445,8 @@ dopois:
 			return 3;
 			};
 
-		} else if (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
-			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) )
+		} else if (issoviet || (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
+			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 /* male characters are more susceptible to nymphs --Amy */
 			{ switch (steal(mtmp, buf)) {
 		  case -1:
@@ -4454,7 +4454,7 @@ dopois:
 		  case 0:
 			break;
 		  default:
-			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && !rn2(4))
+			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
 			    if (canseemon(mtmp))
@@ -4471,7 +4471,7 @@ dopois:
 #ifdef SEDUCE
 	    case AD_SSEX:
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && rn2(2) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || rn2(2) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -5544,9 +5544,9 @@ dopois:
 /*	Negative armor class reduces damage done instead of fully protecting
  *	against hits.
  */
-	if (dmg && u.uac < /*-1*/0) {  /* damage reduction will start at -1 rather than -11 AC now --Amy */
+	if (dmg && u.uac < /*-1*/ (issoviet ? -20 : 0) ) {  /* damage reduction will start at -1 rather than -11 AC now --Amy */
 		int tempval;
-		tempval = rnd(-(u.uac)/5+1);
+		tempval = rnd(-(issoviet ? (u.uac - 20) : u.uac)/5+1);
 		if (tempval < 1)  tempval = 1;
 		if (tempval > 20) tempval = 20; /* max limit increased --Amy */
 		dmg -= tempval;
@@ -6228,7 +6228,7 @@ do_stone2:
 	    case AD_SGLD:
 		    pline("It shakes you!");
 
-		if (!rn2(3)) {
+		if (!issoviet && !rn2(3)) {
 			pline("You feel a tug on your purse"); break;
 		}
 
@@ -6243,7 +6243,7 @@ do_stone2:
 	    case AD_STTP:
 		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
 
-		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
 			pline("You feel a tug on your knapsack"); break;
 		}
 
@@ -6256,13 +6256,13 @@ do_stone2:
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && !rn2(4) )
+			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
-		} else if ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
-			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) )
+		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
+			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 			{ 
 			switch (steal(mtmp, buf)) {
 		  case -1:
@@ -6270,7 +6270,7 @@ do_stone2:
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && !rn2(4) )
+			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
@@ -7622,7 +7622,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 	    case AD_CURS:
 	    case AD_LITE:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5) ) )
  		{
 		pline("%s gives you a mean look!", Monnam(mtmp));
 		    stop_occupation();
@@ -7645,7 +7645,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SPC2:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(7))
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(7)) )
  		{
 			char visageword[BUFSZ]; /* from ToME */
 			Strcpy(visageword, "bad"); /* fail safe --Amy */
@@ -7862,7 +7862,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_MAGM:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
 		pline("%s's eye color suddenly changes!", Monnam(mtmp));
 		    stop_occupation();
@@ -7877,7 +7877,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 	    break;
 	    case AD_DISN:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4)) )
  		{
 		if (!rn2(20))  {
 		pline("%s's gaze seems to drill right into you!", Monnam(mtmp));
@@ -7916,10 +7916,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 	      break;
 	    case AD_ACID:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
 
-		if(!rn2(3)) {
+		if(!rn2(issoviet ? 2 : 3)) {
 		pline("%s sends a terrifying gaze at you!", Monnam(mtmp));
 		    stop_occupation();
 		    if (Acid_resistance && rn2(20)) {
@@ -7937,9 +7937,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	      case AD_DRLI:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
-			if (!rn2(7) && (!Drain_resistance || !rn2(4) )  ) {
+			if (!rn2(issoviet ? 3 : 7) && (!Drain_resistance || !rn2(4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 			    losexp("life drainage", FALSE, TRUE);
@@ -7949,9 +7949,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	      case AD_VAMP:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
-			if (!rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
+			if (!rn2(issoviet ? 2 : 3) && (!Drain_resistance || !rn2(4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 			    losexp("life drainage", FALSE, TRUE);
@@ -7961,7 +7961,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_STCK:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
@@ -7971,8 +7971,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
-	    case AD_WEBS: 
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(3))
+	    case AD_WEBS:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(3)) )
  		{
 			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
 		    stop_occupation();
@@ -7990,14 +7990,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 
 		}
 		break;
 
 	    case AD_STTP:
 
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(25) ) )
  		{
 		pline("%s gazes at you and curses.", Monnam(mtmp));
 		    stop_occupation();
@@ -8055,16 +8055,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	      case AD_DREN:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
 			pline("%s seems to drain your energy with its gaze!", Monnam(mtmp));
 		    stop_occupation();
-			if (!rn2(4)) {drain_en(10); if (!rn2(5)) drain_en(dmgplus);
+			if (!rn2(issoviet ? 1 : 4)) {drain_en(10); if (!rn2(5)) drain_en(dmgplus);
 			}
 		}
 		break;
 	    case AD_NGRA:
-		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {
@@ -8079,7 +8079,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_GLIB:
-		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(10))
+		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(10)) )
  		{
 
 		/* hurt the player's hands --Amy */
@@ -8091,7 +8091,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DARK:
-		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4))
+		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4)) )
  		{
 
 		/* create darkness around the player --Amy */
@@ -8102,7 +8102,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_LEGS:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5) ) )
  		{
 			{ register long sideX = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 	
@@ -8115,8 +8115,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
-	    case AD_SLIM:    
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(15))
+	    case AD_SLIM:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(15) ) )
  		{
 
 		pline("%s hurls some disgusting green goo at you!", Monnam(mtmp));
@@ -8137,7 +8137,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_CALM:	/* KMH -- koala attack */
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
 		pline("%s gazes at you softly.", Monnam(mtmp));
 		    stop_occupation();
@@ -8145,7 +8145,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(25)) )
  		{
 		pline("%s gazes at your belongings!", Monnam(mtmp));
 		    stop_occupation();
@@ -8160,7 +8160,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SHRD:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(25)) )
  		{
 		pline("%s shoots shards at your belongings!", Monnam(mtmp));
 		    stop_occupation();
@@ -8176,7 +8176,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_POLY:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20)) )
  		{
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
@@ -8198,7 +8198,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CONF:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int conf = d(3,4);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (conf + rn2(6));
@@ -8213,7 +8213,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_FAMN:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4))) 		{
 		pline("%s gazes at you with its hungry eyes!", Monnam(mtmp));
 		    stop_occupation();
 		exercise(A_CON, FALSE);
@@ -8230,7 +8230,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DEPR:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) 		{
 		pline("%s gazes at you with depressing sorrow in its eyes!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8349,7 +8349,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_WRAT:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4))) 		{
 		pline("%s gazes at you with its angry eyes!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8370,7 +8370,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
 
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4))) 		{
 		pline("%s gazes at you with its apathetic eyes!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8440,7 +8440,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DFOO:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(4)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4))) 		{
 		pline("%s gazes at you with its glistening eyes!", Monnam(mtmp));
 		    stop_occupation();
 		if (!rn2(3)) {
@@ -8469,11 +8469,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SGLD:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && rn2(5))
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)))
  		{
 			pline("%s uses a telepathic gaze!", Monnam(mtmp));
 		    stop_occupation();
-			if (!rn2(3)) {
+			if (!issoviet && !rn2(3)) {
 				pline("You feel a tug on your purse"); break;
 			}
 			if (rn2(10)) stealgold(mtmp);
@@ -8501,7 +8501,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
 
 		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
@@ -8513,15 +8513,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && !rn2(4))
+			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
 
-		} else if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
+		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
-			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) )
+			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) ) )
 
 		) 		{
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
@@ -8533,7 +8533,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && !rn2(4))
+			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
@@ -8541,7 +8541,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_RUST:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		pline("%s squirts water at you!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8560,7 +8560,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_LETH:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(50))) 		{
 		pline("%s squirts sparkling water at you!", Monnam(mtmp));
 		    stop_occupation();
 		if (!rn2(3)) {
@@ -8573,7 +8573,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_WET:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(50))) 		{
 		pline("%s squirts cold water at you!", Monnam(mtmp));
 		    stop_occupation();
 		if (!rn2(3)) {
@@ -8585,7 +8585,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SUCK:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20))) 		{
 		pline("%s uses a vacuum cleaner on you! Or is that a gluon gun?", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8670,7 +8670,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_CNCL:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(50))) 		{
 		pline("%s throws a blinky gaze at you!", Monnam(mtmp));
 		    stop_occupation();
 		if (!rn2(3)) {
@@ -8680,7 +8680,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_BANI:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(100)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(100))) 		{
 		if (!rn2(3)) {
 			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
@@ -8697,7 +8697,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_WEEP:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(40)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(40))) 		{
 		/* if vampire biting (and also a pet) */
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -8713,7 +8713,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DCAY:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		pline("%s flings organic matter at you!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -8732,21 +8732,21 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_CORR:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		pline("%s throws corrosive stuff at you!", Monnam(mtmp));
 		    stop_occupation();
 		hurtarmor(AD_CORR);
 		}
 		break;
 	    case AD_WTHR:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		pline("%s telepathically messes with your clothes!", Monnam(mtmp));
 		    stop_occupation();
 		witherarmor();
 		}
 		break;
 	    case AD_LUCK:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(20)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20))) 		{
 		pline("%s's terrifying gaze makes you feel like you'll never be able to experience luck again!", Monnam(mtmp));
 		    stop_occupation();
 		change_luck(-1);
@@ -8755,7 +8755,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STUN:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int stun = d(2,6);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (stun + rn2(6));
@@ -8768,7 +8768,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_NUMB:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int numb = d(2,6);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (numb + rn2(6));
@@ -8782,7 +8782,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_FRZE:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(25)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
 		    int frze = d(2,6);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (frze + rn2(6));
@@ -8796,7 +8796,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_BURN:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int burn = d(2,6);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (burn + rn2(6));
@@ -8810,7 +8810,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_FEAR:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
-		   mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int fearing = d(2,6);
 
 		    mtmp->mspec_used = mtmp->mspec_used + (fearing + rn2(6));
@@ -8823,7 +8823,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_BLND:
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
-			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && !rn2(6) ) {
+			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
 
 		    You("are blinded by %s radiance!",
@@ -8840,7 +8840,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_FIRE:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(2,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
@@ -8871,7 +8871,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_NEXU:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(25)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
 		    pline("%s attacks you with a nether gaze!", Monnam(mtmp));
 		    stop_occupation();
 		int dmg = dmgplus;
@@ -8923,7 +8923,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SOUN:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(10)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
 		    pline("%s sends a deafening wave of sound in your direction!", Monnam(mtmp));
 		    stop_occupation();
 		if (Deafness) dmgplus /= 2;
@@ -8936,7 +8936,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_GRAV:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(25)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
 		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
 		    stop_occupation();
 
@@ -8953,7 +8953,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_INER:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(35)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(35))) {
 		    pline("%s gazes at you, and your body doesn't feel like moving around anymore...", Monnam(mtmp));
 		    stop_occupation();
 	      u_slow_down();
@@ -8966,7 +8966,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_TIME:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(50)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(50))) {
 		    pline("%s gazes at you, and sucks the essence of life out of you...", Monnam(mtmp));
 		    stop_occupation();
 
@@ -9039,7 +9039,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_PLAS:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(15)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
 
 			    pline("%s attacks you with a plasma gaze!", Monnam(mtmp));
 		    int dmg = dmgplus;
@@ -9062,7 +9062,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_MANA:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(20)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
 		    pline("%s attacks you with a mana gaze, the damage of which is completely unresistable!", Monnam(mtmp));
 		    stop_occupation();
 		drain_en(dmgplus);
@@ -9072,7 +9072,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_SKIL:
 		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
-		  mtmp->mcansee && !mtmp->mspec_used && !rn2(1000)) {
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(1000))) {
 		    pline("%s tries to drain your skills with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 		    skillcaploss();
@@ -9082,7 +9082,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_LAVA:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(3,6);
 		    if (!rn2(3)) dmg += dmgplus;
 
@@ -9108,7 +9108,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_AXUS:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(2,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
@@ -9155,7 +9155,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_COLD:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(2,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
@@ -9174,7 +9174,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_ELEC:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(2,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
@@ -9196,7 +9196,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_MALK:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(3,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
@@ -9221,7 +9221,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_UVUU:{
 
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(50)) 		{
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(50))) 		{
 		pline("%s used HORN DRILL!", Monnam(mtmp));
 		    stop_occupation();
 
@@ -9266,7 +9266,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    break;
 
        case AD_DRIN:
-     if(!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee && !rn2(10) &&
+     if(!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee && (issoviet || !rn2(10)) &&
         (!ublindf || ublindf->otyp != TOWEL)  &&
         !mtmp->mspec_used){
        pline("%s screeches at you!", Monnam(mtmp));
@@ -9301,7 +9301,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SLOW:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee &&
 		   (HFast & (INTRINSIC|TIMEOUT)) &&
-		   !defends(AD_SLOW, uwep) && !rn2(4)) {
+		   !defends(AD_SLOW, uwep) && (issoviet || !rn2(4))) {
 
 		    pline("%s uses a slowing gaze!",Monnam(mtmp));
 		    stop_occupation();
@@ -9313,7 +9313,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 #endif
 	    case AD_SLEE:
 		if(!mtmp->mcan && canseemon(mtmp) &&
-				mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+				mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    if (Displaced && rn2(3)) {
 			if (!Blind) pline("%s gazes at your displaced image!",Monnam(mtmp));
 			    break;
@@ -9347,7 +9347,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_DETH:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(18)) {
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(18))) {
 		    if (Displaced && rn2(3)) {
 			if (!Blind) pline("%s gazes at your displaced image!",Monnam(mtmp));
 			    break;
@@ -9392,7 +9392,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_PHYS:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && rn2(3)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || rn2(3))) {
 	                if (Displaced && rn2(3)) {
 	                        if (!Blind) pline("%s gazes at your displaced image!",Monnam(mtmp));
 	                        break;
@@ -9409,7 +9409,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        break;
 
 	    case AD_THIR:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s sucks off your life force!", Monnam(mtmp));
 		    stop_occupation();
 			mtmp->mhp += (1 + dmgplus) ;
@@ -9420,7 +9420,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_CHKH:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                   pline("%s gazes at you and screams the word 'DIE!'", Monnam(mtmp));
 		    stop_occupation();
 			dmgplus += u.chokhmahdamage;
@@ -9431,7 +9431,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_HODS:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                   pline("%s summons a mirror image of you, which promptly attacks you!", Monnam(mtmp));
 		    stop_occupation();
 		 if(uwep){
@@ -9468,37 +9468,37 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DRST:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", A_STR, mtmp->data->mname, 30);
 	        }
 	        break;
 	    case AD_DRDX:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", A_DEX, mtmp->data->mname, 30);
 	        }
 	        break;
 	    case AD_DRCO:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", A_CON, mtmp->data->mname, 30);
 	        }
 	        break;
 	    case AD_WISD:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", A_WIS, mtmp->data->mname, 30);
 	        }
 	        break;
 	    case AD_DRCH:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", A_CHA, mtmp->data->mname, 30);
 	        }
 	        break;
 	    case AD_POIS:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 	                poisoned("The gaze", rn2(A_MAX), mtmp->data->mname, 30);
 	        }
@@ -9506,7 +9506,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_NPRO:
 
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(25)) {
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(25))) {
                 pline("%s gives you an excruciating look!", Monnam(mtmp));
 		    stop_occupation();
 			u.negativeprotection++;
@@ -9516,7 +9516,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
           case AD_DISE:
 		if (rn2(3)) break; /* lower chance for normal disease, so pestilence attack is unique --Amy */
           case AD_PEST:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) {
 	                pline("%s leers down on you!", Monnam(mtmp));
 		    stop_occupation();
 			(void) digeasemu(mtmp); /* plus the normal damage */
@@ -9524,7 +9524,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        break;
 
 	    case AD_CHRN:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(12)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) {
 	                pline("%s gazes at you and curses horribly.", Monnam(mtmp));
 		    stop_occupation();
 
@@ -9558,7 +9558,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_HALU:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !rn2(5)) 		{
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		    boolean chg;
 		    if (!Hallucination)
 			You("suddenly see a mess of colors!");
@@ -9568,7 +9568,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 	    case AD_PLYS:
-	        if(!mtmp->mcan && multi >= 0 && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && multi >= 0 && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares at you!", Monnam(mtmp));
 	                if (Free_action) You("stiffen momentarily.");
 	                else {
@@ -9580,7 +9580,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        }
 	        break;
 	    case AD_TLPT:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(15)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
 	                pline("%s stares blinkingly at you!", Monnam(mtmp));
 		    stop_occupation();
 	                if(flags.verbose)
@@ -9600,7 +9600,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_DISP:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && !rn2(5)) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s telepathically tries to move you around!", Monnam(mtmp));
 		    stop_occupation();
 		pushplayer();
@@ -9636,7 +9636,7 @@ register int n;
 	}
 
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */
-	if (rn2(ABASE(A_CON))) {
+	if (!issoviet && rn2(ABASE(A_CON))) {
 	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
 	if (!rn2(10) && n >= 1 && u.ulevel >= 10) {n = n / 3; if (n < 1) n = 1;}
 	if (!rn2(20) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}

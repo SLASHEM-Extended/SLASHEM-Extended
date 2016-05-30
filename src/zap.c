@@ -3455,7 +3455,8 @@ newboss:
 			You_feel("insightful!");
 			if (invent) {
 			    /* rn2(5) agrees w/seffects() */
-			    identify_pack(rn2(5), 0);
+			    if (issoviet) pline("Sovet reshil, chto etot vopros byl slishkom silen, khotya eto ne bylo, poetomu on identifitsiruyet tol'ko odin punkt kazhdyy raz.");
+			    identify_pack(issoviet ? 1 : rn2(5), 0);
 			}
 			exercise(A_WIS, TRUE);
 			break;
@@ -6168,7 +6169,7 @@ boolean u_caused;
 		scrquan = obj->quan;	/* number present */
 		delquan = 0;		/* number to destroy */
 		for (i = scrquan; i > 0; i--)
-		    if (!rn2(33)) delquan++;
+		    if (!rn2(issoviet ? 1 : 33)) delquan++;
 		if (delquan) {
 		    /* save name before potential delobj() */
 		    if (give_feedback) {

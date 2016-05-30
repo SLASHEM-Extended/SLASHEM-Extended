@@ -412,6 +412,14 @@ register struct monst *mtmp;
                     penalty for unskilled vs no penalty for non-
                     weapon objects.
     } */
+
+	/* In Soviet Russia, convicts are treated with disdain and indifference. They are intentionally chained to
+	 * special "unwieldy" balls and chains, which don't make good weapons and are therefore less likely to be used
+	 * by the convicts in an attempt to break out of prison and/or kill the guards. Or, in other words, the convict
+	 * is supposed to suck for some reason, but only in the early game because later on you'll max out your skill
+	 * anyway and therefore won't be missing anymore. --Amy */
+    if (uwep && (uwep->oclass == CHAIN_CLASS || uwep->oclass == BALL_CLASS) && issoviet) tmp -= 4;
+
 #endif /* CONVICT */
 #if 0
 	if(Role_if(PM_MONK) && !Upolyd) {
@@ -956,7 +964,7 @@ int thrown;
 	if(!thrown && no_obj) {      /* attack with bare hands */
 	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
 		objenchant = u.ulevel/4;
-	    noeffect = objenchant < canhitmon && rn2(3);
+	    noeffect = objenchant < canhitmon && (issoviet || rn2(3)) ;
 	    if (martial_bonus()) {
 		if (mdat == &mons[PM_SHADE]) {
 		    tmp = rn2(3);
@@ -1085,7 +1093,7 @@ int thrown;
 
 		if (Race_if(PM_POISONER)) ispoisoned = TRUE;
 
-	    noeffect = objenchant < canhitmon && !ispoisoned && rn2(3);
+	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
 
 	    Strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
@@ -1181,8 +1189,9 @@ int thrown;
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
 		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
-			You("strike %s from behind!", mon_nam(mon));
-			tmp += rnd(rnd(u.ulevel)); /* nerf by Amy */
+			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
+			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
+			tmp += issoviet ? u.ulevel : rnd(rnd(u.ulevel)); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if (dieroll == 2 && obj == uwep &&
 			  !u.twoweap &&
@@ -1736,7 +1745,8 @@ int thrown;
 	    if (silvermsg)
 		tmp = 8;
 	    else {
-		Your("attack doesn't seem to harm %s.", mon_nam(mon));
+		if (!issoviet) Your("attack doesn't seem to harm %s.", mon_nam(mon));
+		else pline("Etot monstr ne mozhet byt' povrezhden, potomu chto Sovetskiy khochet nesmotrya vas.");
 		hittxt = TRUE;
 		tmp = 0;
 	    }
@@ -2160,8 +2170,9 @@ int thrown;
 		pline(fmt, whom);
 	}
 
-	if (needpoismsg)
+	if (needpoismsg) {
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
+	}
 	if (poiskilled) {
 		pline_The("poison was deadly...");
 		if (!already_killed) xkilled(mon, 0);
@@ -3198,8 +3209,9 @@ register struct attack *mattk;
 	if ( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) && Upolyd && tmp) tmp += rnd(u.ulevel); /* come on, werewolves need some love too! --Amy */
 
 	mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
-	if (rn2(3) && tmp && noeffect && !DEADMONSTER(mdef)) {
-	     You("don't seem to harm %s.", mon_nam(mdef));
+	if ( (rn2(3) || issoviet) && tmp && noeffect && !DEADMONSTER(mdef)) {
+	     if (!issoviet) You("don't seem to harm %s.", mon_nam(mdef));
+	     else pline("Etot monstr ne mozhet byt' povrezhden, potomu chto Sovetskiy khochet nesmotrya vas.");
 	     tmp = 0;
 	     return 1;
 	}
@@ -4962,7 +4974,7 @@ uchar aatyp;
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		break;
 
 	  case AD_DREN:
@@ -5184,8 +5196,8 @@ uchar aatyp;
 				return 3;
 				};
 
-			} else if(  (rnd(100) > ACURR(A_CHA)) && malive && ( ((mon->female) && !flags.female && !rn2(2) ) || ((!mon->female) && flags.female && !rn2(3) ) || 
-				((mon->female) && flags.female && !rn2(5) ) || ((!mon->female) && !flags.female && !rn2(5) ) )
+			} else if ( issoviet || (  (rnd(100) > ACURR(A_CHA)) && malive && ( ((mon->female) && !flags.female && !rn2(2) ) || ((!mon->female) && flags.female && !rn2(3) ) || 
+				((mon->female) && flags.female && !rn2(5) ) || ((!mon->female) && !flags.female && !rn2(5) ) ) )
 	
 			) 		{
 			pline("You feel a tug on your backpack!");

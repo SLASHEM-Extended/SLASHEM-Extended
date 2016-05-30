@@ -1823,14 +1823,25 @@ moveloop()
 
 			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
-			if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
-			if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
-			if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
-			if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 10;
-			if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 2;
-			if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
-			if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
-			if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
+			if (!issoviet) {
+				if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
+				if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
+				if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
+				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 10;
+				if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 2;
+				if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
+				if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
+				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
+			} else {
+				if (P_SKILL(P_RIDING) == P_SKILLED) efflev -= 2;
+				if (P_SKILL(P_RIDING) == P_EXPERT) efflev -= 5;
+				if (P_SKILL(P_RIDING) == P_MASTER) efflev -= 7;
+				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev -= 10;
+				if (P_SKILL(P_RIDING) == P_SKILLED) effcon -= 2;
+				if (P_SKILL(P_RIDING) == P_EXPERT) effcon -= 5;
+				if (P_SKILL(P_RIDING) == P_MASTER) effcon -= 7;
+				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon -= 10;
+			}
 
 			}
 
@@ -1937,14 +1948,14 @@ moveloop()
 		    }
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
+			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
 
 				u.uen += rnz(2 + u.ulevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
 			}
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
+			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
 				u.uen += rnz(2 + u.ulevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -1952,7 +1963,7 @@ moveloop()
 
 			}
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
+			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
 
 				u.uen += rnd(recalc_mana());
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -1966,14 +1977,14 @@ moveloop()
 				flags.botl = 1;
 			}
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
+			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */
-		    if ( !Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
+		    if ( !Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
 			(u.ulevel >= 5 && !rn2(200)) ||
 			(u.ulevel >= 10 && !rn2(100)) ||
 			(u.ulevel >= 15 && !rn2(50)) ||
@@ -1989,7 +2000,7 @@ moveloop()
 			/* Having a spell school at skilled will improve mana regeneration.
 			 * Having a spell school at expert will improve it by even more. --Amy */
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!(issoviet || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
@@ -2726,6 +2737,8 @@ boolean new_game;	/* false => restoring an old game */
 	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME);
+
+	if (issoviet) pline("Tip bloka l'da zhelayet udachi vam... on on on.");
 
 	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
 

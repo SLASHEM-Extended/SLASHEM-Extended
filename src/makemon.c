@@ -13525,6 +13525,9 @@ rndmonst()
 	    if (!rn2(1000)) maxmlev *= 4;
 	    if (!rn2(10000)) maxmlev = 127;
 		if (maxmlev > 127) maxmlev = 127; /* maxmlev is an int, but better safe than sorry. --Amy */
+	    if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
+		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
 #ifdef REINCARNATION
 	    upper = Is_rogue_level(&u.uz);
 #endif
@@ -14241,6 +14244,9 @@ int type;
 		case PM_BLADE_BARRIER: return 550;
 		case PM_BLADE_OF_CHAOS: return 550;
 		case PM_CELESTIAL_CLARION: return 400;
+		case PM_CANNON_GOLEM: return 400;
+		case PM_MISHAPEN_GOLEM: return 400;
+		case PM_FROST_GOLEM: return 400;
 
 		case PM_ANIMATED_COPPER_STATUE: return 237;
 		case PM_GREAT_PROJECTION_STATUE: return 237;
@@ -14327,6 +14333,8 @@ int type;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
 		case PM_JNR: return 400;
+		case PM_COAL_GOLEM: return 400;
+		case PM_COPPER_GOLEM: return 400;
 		case PM_LEAD_GOLEM: return 400;
 		case PM_BLADE_OF_SLAUGHTER: return 450;
 		case PM_DIFFICULT_LEAD_GOLEM: return 400;
@@ -14347,6 +14355,8 @@ int type;
 		case PM_EBONY_GOLEM: return 400;
 		case PM_CENTER_OF_ALL: return 400;
 		case PM_TIME_GOLEM: return 400;
+		case PM_LION_SHAPED_GOLEM: return 450;
+		case PM_DAZZLING_GOLEM: return 450;
 		case PM_FINNISH_EXPLORER: return 400;
 		case PM_ARCTIC_WONDERER: return 400;
 		case PM_FRANKENSTEIN_S_MONSTER: return 400;

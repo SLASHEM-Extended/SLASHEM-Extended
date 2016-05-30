@@ -31,13 +31,13 @@ boolean
 can_saddle(mtmp)
 	struct monst *mtmp;
 {
-	return 1; /*just remove all those annoying restrictions and allow everything to be saddled --Amy*/
-	/*struct permonst *ptr = mtmp->data;
+	if (!issoviet) return 1; /*just remove all those annoying restrictions and allow everything to be saddled --Amy*/
+	struct permonst *ptr = mtmp->data;
 
 	return (index(steeds, ptr->mlet) && (ptr->msize >= MZ_MEDIUM) &&
 			(!humanoid(ptr) || ptr->mlet == S_CENTAUR) &&
 			!amorphous(ptr) && !noncorporeal(ptr) &&
-			!is_whirly(ptr) && !unsolid(ptr));*/
+			!is_whirly(ptr) && !unsolid(ptr));
 }
 
 
@@ -112,7 +112,8 @@ use_saddle(otmp)
 	    return 1;
 	}
 	if (!can_saddle(mtmp)) {
-		You_cant("saddle such a creature.");
+		if (!issoviet) You_cant("saddle such a creature.");
+		else pline("Ublyudka, kotoryy nazyvayet sebya sovetskiy ne khochet, chtoby vy yezdit' eto sushchestvo.");
 		return 1;
 	}
 
@@ -187,12 +188,17 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	return (mtmp->mtame /*&& humanoid(youmonst.data) &&
+	if (!issoviet) return (mtmp->mtame /*&& humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) */);
+
+	return (mtmp->mtame && humanoid(youmonst.data) &&
+			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
+			(!Underwater || is_swimmer(mtmp->data)) );
+
 }
 /* Removed a lot of annoying restrictions that don't serve any purpose anyway other than annoying the player. --Amy */
-
+/* In Soviet Russia, you cannot ride freely because seriously, the player isn't supposed to be able to ride. --Amy */
 
 int
 doride()
@@ -328,7 +334,8 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	if (!can_saddle(mtmp) || !can_ride(mtmp)) {
-	    You_cant("ride such a creature.");
+	    if (!issoviet) You_cant("ride such a creature.");
+	    else pline("Ublyudka, kotoryy nazyvayet sebya sovetskiy ne khochet, chtoby vy yezdit' eto sushchestvo.");
 	    return (0);
 	}
 
