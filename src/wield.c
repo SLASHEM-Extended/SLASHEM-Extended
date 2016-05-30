@@ -816,7 +816,7 @@ boolean fade_scrolls;
 
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[target->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "yangi qo'lqop") ) && rn2(4) ) return;
 
-	if (target->greased) {
+	if (target->greased && (!issoviet || !rn2(2)) ) {
 	    grease_protect(target,(char *)0,victim);
 	} else if (target->oclass == SCROLL_CLASS) {
 	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_MANA && target->otyp != SCR_CURE && target->otyp != SCR_PHASE_DOOR
@@ -849,11 +849,12 @@ boolean fade_scrolls;
 	    }
 	    if (target->oerodeproof) target->rknown = TRUE;
 	} else if (erosion < MAX_ERODE) {
-	    if (victim == &youmonst)
+	    if (victim == &youmonst) {
 		Your("%s%s!", aobjnam(target, acid_dmg ? "corrode" : "rust"),
 		    erosion+1 == MAX_ERODE ? " completely" :
 		    erosion ? " further" : "");
-	    else if (vismon)
+		if (issoviet && target->greased) pline("Sovetskiy khochet vash detal' byt' povrezhden, nesmotrya na smazku, potomu chto on takoy mudak!");
+	    } else if (vismon)
 		pline("%s's %s%s!", Monnam(victim),
 		    aobjnam(target, acid_dmg ? "corrode" : "rust"),
 		    erosion+1 == MAX_ERODE ? " completely" :

@@ -296,7 +296,9 @@ boolean dresistance;	/* level drain resistance can protect you */
 	if (dresistance && Drain_resistance && rn2(5) ) return;
 
 	/* level drain is too strong. Let's nerf it a bit. --Amy */
-	if (!force && (u.uexp > 320) && u.ulevel > 1) {
+	/* In Soviet Russia, level drain will always drain at least one level, because fuck you, stupid player. You're
+	 * not supposed to stand a chance in this game. --Amy */
+	if (!force && (u.uexp > 320) && !issoviet && u.ulevel > 1) {
 		expdrain = newuexp(u.ulevel) - newuexp(u.ulevel - 1);
 		expdrain /= 5;
 		expdrain = rnz(expdrain);

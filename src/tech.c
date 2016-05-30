@@ -2376,7 +2376,8 @@ int tech_no;
 		break;
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
-		t_timeout = rnz(5000);
+		t_timeout = rnz(issoviet ? 1500 : 5000);
+		if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
 		break;            	
             case T_SPIRIT_BOMB:
 	    	if (uwep || (u.twoweap && uswapwep)) {

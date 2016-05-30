@@ -3934,6 +3934,20 @@ boolean new_game;	/* false => restoring an old game */
 
 	u.stethocheat = moves;
 
+	if (!new_game && issoviet) {
+
+		/* In Soviet Russia, modders simply assume that everything the Amy does is bullshit. They do not actually
+		 * think before reverting her changes, they just do it. And so they reintroduce the old bug that caused
+		 * monster spawn increase timers to be re-initialized every time the player saves and restores. It is simply
+		 * unbelievable. --Amy */
+
+	      u.monstertimeout = rnz(10000)+rnz(15000);
+		while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
+	      u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+		while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+
+	}
+
 	if (!new_game && !wizard && !discover && (u.hangupcheat >= 666)) {
 
 		discover = TRUE;

@@ -3280,7 +3280,12 @@ boolean wizmodeflag;
 	if (not_fully_identified(obj)) ++unid_cnt, the_obj = obj;
 
 
-	if (!id_limit && Has_contents(obj)) { /* full inventory id works on containers --Amy */
+	if (!id_limit && !issoviet && Has_contents(obj)) { /* full inventory id works on containers --Amy */
+	/* In Soviet Russia, people HATE user-friendly interfaces. They would even go so far as to disallow having more than
+	 * 52 items in open inventory, but of course I'm not implementing that stupidity ever again. Still, somehow they
+	 * seem to like it if you have to put as many fully identified objects away before you read that blessed scroll,
+	 * so you can maximize the amount of non-identified ones, only to have bad luck and not actually get everything
+	 * IDed. And then they can repeat the entire ordeal when they find the next ID scroll. --Amy */
 
 		for (otmp = obj->cobj; otmp; otmp = otmp->nobj) {
 		    if ( (rn2(5) || wizmodeflag) && not_fully_identified(otmp)) {

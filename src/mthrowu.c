@@ -963,7 +963,7 @@ struct monst *mtmp;
 #endif
 	    m_shot.o = otmp->otyp;
 	} else {
-	    if (flags.soundok) You_hear("a flinging sound."); /* at least tell the player that something's happening --Amy */
+	    if (flags.soundok && !issoviet) You_hear("a flinging sound."); /* at least tell the player that something's happening --Amy */
 	    m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
 	}
 
@@ -1017,7 +1017,7 @@ register struct attack *mattk;
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))
 			pline("%s spits venom!", Monnam(mtmp));
-		    else if (flags.soundok) You_hear("a spitting sound.");
+		    else if (flags.soundok && !issoviet) You_hear("a spitting sound.");
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby),
 			distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy), otmp);
 		    nomul(0, 0);
@@ -1083,10 +1083,15 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			return(0);
 			}
 
+		/* In Soviet Russia, no player may ever know anything. Whether it's a dragon breathing at you,
+		 * a gnome trying to shoot you with his crossbow, or a cobra spitting venom... "if you can't see it,
+		 * it doesn't exist". Or rather, "if there was no message about it in SLASH'EM then there may not be one
+		 * here either". Yes, it's unbelievable, but that's what they are thinking. --Amy */
+
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
 			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
-		    else if (flags.soundok) You_hear("an exhaling sound.");
+		    else if (flags.soundok && !issoviet) You_hear("an exhaling sound.");
 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),

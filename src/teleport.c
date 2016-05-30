@@ -485,7 +485,9 @@ boolean trapok;
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 
-	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	/* In Soviet Russia, water is considered safe as long as you can swim, because hehehe. --Amy */
+
+	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;

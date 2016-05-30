@@ -83,7 +83,7 @@ boolean undirected;
 
 	    pline("%s points %s.", Monnam(mtmp), point_msg);
 	} else if ((!(moves % 4) || !rn2(4))) {
-	    if (flags.soundok) Norep("You hear a mumbled curse.");
+	    if (flags.soundok && !issoviet) Norep("You hear a mumbled curse.");
 	}
 }
 
@@ -445,7 +445,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		  (Displaced && (mtmp->mux != u.ux || mtmp->muy != u.uy)) ?
 		  " at your displaced image" :
 		  " at you");
-	} else if (flags.soundok) You_hear("a mumbled incantation.");
+	} else if (flags.soundok && !issoviet) You_hear("a mumbled incantation.");
 
 /*
  *	As these are spells, the damage is related to the level
@@ -975,8 +975,10 @@ int spellnum;
 	    shieldeff(u.ux, u.uy);
 	    You_feel("momentarily weakened.");
 	} else {
-	    You("suddenly feel weaker!");
+	    if (issoviet) pline("Vy chuvstvuyete sebya slabeye! Iosif Putin reshil, chto lyudi boryutsya protiv rezhima, dolzhny byt' nakazany i sovetskiy Pyat' Lo soglasilsya s nim!");
+	    else You("suddenly feel weaker!");
 	    dmg = rnd(mtmp->m_lev - 5);	/* nerf by Amy - why did this always do the maximum amount??? */
+	    if (issoviet) dmg = mtmp->m_lev - rnd(5);
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    losestr(rnd(dmg));
 	    if (u.uhp < 1)
@@ -1262,10 +1264,10 @@ int spellnum;
 	    dmg = d(8, 6);
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	burn_away_slime();
-	if (!rn2(33)) (void) burnarmor(&youmonst);
-		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, AD_FIRE);
+	if (!rn2(issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, AD_FIRE);
 	(void) burn_floor_paper(u.ux, u.uy, TRUE, FALSE);
 	break;
     case CLC_LIGHTNING:
@@ -1288,8 +1290,8 @@ int spellnum;
 	} else
 	    dmg = d(8, 6);
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(15)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 	break;
     }
     case CLC_CURSE_ITEMS:
@@ -1641,8 +1643,10 @@ int spellnum;
 	    if (multi >= 0)
 		You("are frozen in place!");
 	    /* new calculations by Amy because otherwise this spell would be uber imba */
-	    dmg = rnd( 2 + rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev ) ;
+	    if (!issoviet) dmg = rnd( 2 + rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev ) ;
+	    else dmg = 4 + (int)mtmp->m_lev;;
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    if (issoviet) pline("Teper' vy mertvy. Sovetskaya smeyetsya, potomu chto vy, veroyatno, vlozhili dvesti chasov v etot kharakter.");
 	    nomul(-dmg, "paralyzed by a monster spell");
 	}
 	nomovemsg = 0;
@@ -2230,7 +2234,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 		if(canseemon(mtmp))
 		    pline("%s zaps you with a %s!", Monnam(mtmp),
 			  flash_types[ad_to_typ(mattk->adtyp)]);
-		else if (flags.soundok) You_hear("a buzzing sound.");
+		else if (flags.soundok && !issoviet) You_hear("a buzzing sound.");
 		buzz(-ad_to_typ(mattk->adtyp), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 		     mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
 	    } else impossible("Monster spell %d cast", mattk->adtyp-1);

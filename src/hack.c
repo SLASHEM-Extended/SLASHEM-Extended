@@ -394,6 +394,12 @@ trap_of_walls:
 		}
 		/*pline("coord %d,%d, count %d, chance %d",randomx, randomy, count, randchance);*/
 
+		/* In Soviet Russia, digging out an entire level should be permanent, like Moscow's Scorched Earth strategy
+		 * in World War II. You should have no way of restoring any area to its previous condition, no matter what.
+		 * And of course there are no pick-axes either, or any other methods of removing newly created walls. --Amy */
+
+		if (issoviet) randchance *= 100;
+
 		if (!rn2(randchance) && (!In_sokoban(&u.uz) || !sobj_at(BOULDER, randomx, randomy) ) ) {
 
 
@@ -1513,7 +1519,11 @@ domove()
 		    return;
 		}
 #endif
-		if( (Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))
+
+	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
+	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
+
+		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))
 			/* toned down so it's less crippling --Amy */
 #ifdef STEED
 			|| (u.usteed && u.usteed->mconf)

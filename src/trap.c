@@ -733,7 +733,7 @@ struct monst *victim;
 			  vtense(ostr, "are"));
 	    }
 	} else if (erosion < MAX_ERODE) {
-	    if (otmp->greased) {
+	    if (otmp->greased && (!issoviet || !rn2(2)) ) {
 		grease_protect(otmp,ostr,victim);
 	    } else if (otmp->oerodeproof || (otmp->blessed && !rnl(4))) {
 		if (flags.verbose) {
@@ -745,12 +745,13 @@ struct monst *victim;
 			      mon_nam(victim), ostr, vtense(ostr, "are"));
 		}
 	    } else {
-		if (victim == &youmonst)
+		if (victim == &youmonst) {
 		    Your("%s %s%s!", ostr,
 			 vtense(ostr, action[type]),
 			 erosion+1 == MAX_ERODE ? " completely" :
 			    erosion ? " further" : "");
-		else if (vismon)
+			if (issoviet && otmp->greased) pline("Sovetskiy khochet vash detal' byt' povrezhden, nesmotrya na smazku, potomu chto on takoy mudak!");
+		} else if (vismon)
 		    pline("%s's %s %s%s!", Monnam(victim), ostr,
 			vtense(ostr, action[type]),
 			erosion+1 == MAX_ERODE ? " completely" :
@@ -843,7 +844,7 @@ struct monst *victim;
 			  vtense(ostr, "are"));
 	    }
 	} else if (erosion < MAX_ERODE) {
-	    if (otmp->greased) {
+	    if (otmp->greased && (!issoviet || !rn2(2)) ) {
 		grease_protect(otmp,ostr,victim);
 	    } else if (otmp->blessed && !rnl(4)) {
 		if (flags.verbose) {
@@ -855,12 +856,13 @@ struct monst *victim;
 			      mon_nam(victim), ostr, vtense(ostr, "are"));
 		}
 	    } else {
-		if (victim == &youmonst)
+		if (victim == &youmonst) {
 		    Your("%s %s%s!", ostr,
 			 vtense(ostr, action[type]),
 			 erosion+1 == MAX_ERODE ? " completely" :
 			    erosion ? " further" : "");
-		else if (vismon)
+			if (issoviet && otmp->greased) pline("Sovetskiy khochet vash detal' byt' povrezhden, nesmotrya na smazku, potomu chto on takoy mudak!");
+		} else if (vismon)
 		    pline("%s's %s %s%s!", Monnam(victim), ostr,
 			vtense(ostr, action[type]),
 			erosion+1 == MAX_ERODE ? " completely" :
@@ -2158,7 +2160,7 @@ unsigned trflags;
 			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
 			if (Deafness) dmg /= 2;
 			make_stunned(HStun + dmg, TRUE);
-			if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+			if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 	      	if (dmg) losehp(dmg, "noise trap", KILLED_BY_AN);
 
 		    seetrap(trap);
@@ -3436,19 +3438,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3495,19 +3497,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3536,19 +3538,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3594,19 +3596,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3639,19 +3641,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3694,19 +3696,19 @@ newegomon:
 				break;
 			case 2: /* shock */
 			if(Shock_resistance) dmg = 0;
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3949,8 +3951,8 @@ newegomon:
 			    break;
 			} else
 			    losehp(d(4, 4) + rnd((monster_difficulty() / 2) + 1), "electric shock", KILLED_BY_AN);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			break;
 		      }
 		case 5:
@@ -4592,10 +4594,16 @@ newegomon:
 			  Monnam(u.usteed));
 		else
 #endif
-		if (!rn2(10) && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
+
+		/* In Soviet Russia, magic portals have to always work. The government does not tolerate faulty portals.
+		 * And of course the government does not think portal-hopping (which is analogous to stairdancing, but that
+		 * is reigned in by my stairs trap code) is cheating in any way, no, for them it's completely legal to
+		 * lure out the Ludios soldiers one by one. Sigh. --Amy */
+
+		if (!rn2(10) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
 			pushplayer();
-		} else if (rn2(3) && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
+		} else if (rn2(3) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
 		} else
 		domagicportal(trap);
@@ -6845,8 +6853,8 @@ newegomon:
 					/* adjattrib gives dunce cap message when appropriate */
 					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-					if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
-					if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
+					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
 
 						}
@@ -9713,7 +9721,7 @@ struct obj *box;        /* at the moment only for floor traps */
         else
                 losehp(num, "freezing cloud", KILLED_BY_AN);
 			if (!rn2(10)) make_frozen(HFrozen + (num * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (!rn2(33)) /* new calculations --Amy */        destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */        destroy_item(POTION_CLASS, AD_COLD);
 }
 
 STATIC_OVL void
@@ -9738,8 +9746,8 @@ struct obj *box;        /* at the moment only for floor traps */
         else
                 losehp(num, "lightning trap", KILLED_BY_AN);
 			if (!rn2(3)) make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
-		    if (!rn2(33)) destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(33)) destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) destroy_item(RING_CLASS, AD_ELEC);
 }
 
 STATIC_OVL void
@@ -9764,8 +9772,8 @@ struct obj *box;        /* at the moment only for floor traps */
         else
                 losehp(num, "volt trap", KILLED_BY_AN);
 		    make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
-		    if (!rn2(10)) destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(10)) destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 2 : 10)) destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 2 : 10)) destroy_item(RING_CLASS, AD_ELEC);
 			if (!rn2(3)) {
 				if (!Free_action) {
 				    pline("You are frozen in place!");
@@ -9904,10 +9912,10 @@ struct obj *box;	/* null for floor trap */
 	burn_away_slime();
 
 	/*if ( burnarmor(&youmonst) || !rn2(33))*/ /* new calculation -- Amy */ {
-	    if (!rn2(33)) destroy_item(SCROLL_CLASS, AD_FIRE);
-	    if (!rn2(33)) destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    if (!rn2(33)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(33)) burnarmor(&youmonst);
+	    if (!rn2(issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(issoviet ? 6 : 33)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(issoviet ? 2 : 33)) burnarmor(&youmonst);
 	}
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
@@ -9966,10 +9974,10 @@ struct obj *box;	/* null for floor trap */
 
 	burn_away_slime();
 
-	    if (!rn2(5)) destroy_item(SCROLL_CLASS, AD_FIRE);
-	    if (!rn2(5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    if (!rn2(5)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(5)) burnarmor(&youmonst);
+	    if (!rn2(issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(issoviet ? 2 : 5)) burnarmor(&youmonst);
 
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
@@ -10253,7 +10261,7 @@ register boolean force, here;
 
 		(void) snuff_lit(obj);
 
-		if (stack_too_big(obj)) continue;
+		if (stack_too_big(obj) && !issoviet) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(4) ) continue;
 
@@ -10266,7 +10274,7 @@ register boolean force, here;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
-		} else if (!force && (Luck - luckpenalty + 5 + rnd(20) ) > rn2(20)) {
+		} else if (!force && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:
 			 *	max luck (full moon):	 5%
 			 *	max luck (elsewhen):	10%
@@ -10276,7 +10284,7 @@ register boolean force, here;
 			 *  Amy edit: extra rnd(20) boost for the chance, so a single misstep won't necessarily blank everything
 			 */
 			continue;
-		} else if (obj->blessed && rn2(4) ) { /* blessed items get an extra saving throw --Amy */
+		} else if (obj->blessed && rn2(issoviet ? 2 : 4) ) { /* blessed items get an extra saving throw --Amy */
 			continue;
 		/* An oil skin cloak protects your body armor  */
 		} else if( obj->oclass == ARMOR_CLASS
@@ -11661,9 +11669,10 @@ boolean force;
 		    }
 #endif
 		    if((otmp->otrapped && (force || (!confused
-				&& rn2(MAXULEV + 1 - rn2(u.ulevel) ) < 10)))
+				&& rn2(MAXULEV + 1 - (issoviet ? u.ulevel : rn2(u.ulevel) ) ) < 10)))
 		       || (!force && confused && !rn2(3))) {
-			You("find a trap on %s!", the(xname(otmp)));
+			if (!issoviet) You("find a trap on %s!", the(xname(otmp)));
+			else pline("Tip bloka l'da polozhit' lovushku na etoy grudi, no on takzhe sdelal eto tak, chto vy vsegda mozhete nayti yego, chto v etom sluchaye vy sdelali.");
 			if (!confused) exercise(A_WIS, TRUE);
 
 			switch (ynq("Disarm it?")) {
@@ -11894,8 +11903,8 @@ boolean disarm;
 			    dmg = 0;
 			} else
 			    dmg = d(4, 4);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 			if (dmg) losehp(dmg, "electric shock", KILLED_BY_AN);
 			break;
 		      }
@@ -12188,9 +12197,9 @@ burn_stuff:
 	(void) Boots_off();
 	useup(obj);
     }
-		    if (!rn2(15)) /* new calculations --Amy */    destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(15)) /* new calculations --Amy */    destroy_item(SPBOOK_CLASS, AD_FIRE);
-		    if (!rn2(15)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_FIRE);
     return(FALSE);
 }
 

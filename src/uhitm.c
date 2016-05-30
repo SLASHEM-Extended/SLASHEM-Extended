@@ -348,7 +348,9 @@ register struct monst *mtmp;
 		maybe_polyd(youmonst.data->mlevel, u.ulevel);
 
 	/* another extra boost --Amy */
-	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+	/* In Soviet Russia, to-hit bonuses generally get trashed. Nobody needs to be able to hit a -40 AC monster anyway,
+	 * and if you do, well, tough luck! Communism isn't prepared to handle such rare situations! --Amy */
+	if (!issoviet && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
 	if (Feared) tmp -= rn2(21); /* being feared reduces to-hit by something between 0 and 20 --Amy */
 
@@ -828,6 +830,11 @@ martial_dmg()
         else damage += 2;
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks qo'lqoplari") ) ) damage += 1;
+
+	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
+	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */
+
+	  if (issoviet && (damage > 1) && !rn2(4)) damage = 1;
 
         return (damage);
 }
@@ -4452,7 +4459,7 @@ uchar aatyp;
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
 		if (Deafness) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
-		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -4544,11 +4551,11 @@ uchar aatyp;
 			pline("You are suddenly extremely hot!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);
@@ -4588,8 +4595,8 @@ uchar aatyp;
 		if (!rn2(3)) {
 			pline("Sparkling water splashes over you!");
 			lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));
-			if (!rn2(5)) forget_objects(rnd(10));
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
 		break;
 	    case AD_WET:
@@ -4774,8 +4781,8 @@ uchar aatyp;
 
 			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
-			if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
 		    } else tmp = 0;
 

@@ -1691,8 +1691,8 @@ swingweapon:
 					/* adjattrib gives dunce cap message when appropriate */
 					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-					if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
-					if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
+					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
 
 						}
@@ -3409,11 +3409,11 @@ hitmu(mtmp, mattk)
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(33))
+			    if (!rn2(issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(33))
+			    if (!rn2(issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(50))
+			    if (!rn2(issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -3532,9 +3532,9 @@ hitmu(mtmp, mattk)
 			pline_The("zap doesn't shock you!");
 			dmg = 0;
 		    }
-		    if (!rn2(10)) /* high voltage - stronger than ordinary shock attack --Amy */
+		    if (!rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(10))
+		    if (!rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
 		}
 		break;
@@ -3567,11 +3567,11 @@ hitmu(mtmp, mattk)
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (!rn2(issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(20))
+		    if (!rn2(issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(30))
+		    if (!rn2(issoviet ? 6 : 30))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		    if (rn2(3)) hurtarmor(AD_LAVA);
@@ -3612,11 +3612,11 @@ hitmu(mtmp, mattk)
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(50))
+		    if (!rn2(issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		} /*else dmg = 0;*/
@@ -3630,7 +3630,7 @@ hitmu(mtmp, mattk)
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		} /*else dmg = 0;*/
 		break;
@@ -3643,10 +3643,10 @@ hitmu(mtmp, mattk)
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
 		} /*else dmg = 0;*/
 		break;
@@ -3779,8 +3779,8 @@ dopois:
 		/* adjattrib gives dunce cap message when appropriate */
 		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-		if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
-		if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
+		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		exercise(A_WIS, FALSE);
 		break;
 	    case AD_PLYS:
@@ -3842,11 +3842,11 @@ dopois:
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(50))
+		    if (!rn2(issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		}
@@ -3856,7 +3856,7 @@ dopois:
 			pline_The("frost doesn't seem cold!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		if (uncancelled) {
@@ -3865,9 +3865,9 @@ dopois:
 			pline_The("zap doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
 		}
 
@@ -4695,8 +4695,8 @@ dopois:
 		if (!rn2(3)) {
 			pline("Sparkling water washes over you!");
 			lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));
-			if (!rn2(5)) forget_objects(rnd(10));
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
 		break;
 
@@ -4775,7 +4775,7 @@ dopois:
 		pline("Your ears are blasted by hellish noise!");
 		if (Deafness) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
-		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -4876,11 +4876,11 @@ dopois:
 			pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -5509,11 +5509,11 @@ dopois:
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(33))
+			    if (!rn2(issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(33))
+			    if (!rn2(issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(50))
+			    if (!rn2(issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -6419,7 +6419,7 @@ do_stone2:
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
 		if (Deafness) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
-		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -6516,11 +6516,11 @@ do_stone2:
 			pline("It's extremely hot in here!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);
@@ -6553,8 +6553,8 @@ do_stone2:
 		if (!rn2(10)) {
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));
-			if (!rn2(5)) forget_objects(rnd(10));
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
 		break;
 
@@ -7046,8 +7046,8 @@ do_stone2:
 
 			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
 			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));	/* lose memory of 25% of levels */
-			if (!rn2(5)) forget_objects(rnd(10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
 		    } else tmp = 0;
 		    break;
@@ -8566,8 +8566,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(3)) {
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(3)) forget_levels(rnd(10));
-			if (!rn2(5)) forget_objects(rnd(10));
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
 		}
 		break;
@@ -8857,11 +8857,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if ((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(50))
+		    if (!rn2(issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -8928,7 +8928,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		if (Deafness) dmgplus /= 2;
 		make_stunned(HStun + dmgplus, TRUE);
-		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		}
 		break;
@@ -9046,11 +9046,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(5))
+		    if (!rn2(issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -9093,11 +9093,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (!rn2(issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(20))
+		    if (!rn2(issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -9119,27 +9119,27 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
 		    burn_away_slime();
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(50))
+		    if (!rn2(issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (Cold_resistance && rn2(20)) {
 			pline_The("cold doesn't freeze you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 
 		    if (Shock_resistance && rn2(20)) {
 			pline_The("gaze doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -9166,7 +9166,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    /*if ((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -9185,10 +9185,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -9211,9 +9211,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline_The("gaze doesn't shock you!");
 			dmg = 0;
 		    }
-		    if (!rn2(10)) /* high voltage - stronger than ordinary shock attack --Amy */
+		    if (!rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(10))
+		    if (!rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}

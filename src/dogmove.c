@@ -107,7 +107,7 @@ struct obj *obj;
 	 */
 	if (obj->oclass == FOOD_CLASS) {
 	    if(obj->otyp == CORPSE) {
-		mtmp->meating = 2 + (mons[obj->corpsenm].cwt >> 8);
+		mtmp->meating = (issoviet ? 5 : 2) + (mons[obj->corpsenm].cwt >> (issoviet ? 6 : 8) );
 		nutrit = mons[obj->corpsenm].cnutrit;
 	    } else {
 		mtmp->meating = objects[obj->otyp].oc_delay;
@@ -156,6 +156,8 @@ boolean devour;
 	int nutrit;
 	boolean vis = (cansee(x, y) || cansee(mtmp->mx, mtmp->my));
 	boolean vampiric = is_vampire(mtmp->data);
+	struct permonst *fptr = &mons[obj->corpsenm];
+	struct monst *potentialpet;
 
 	if(edog->hungrytime < monstermoves)
 	    edog->hungrytime = monstermoves;
@@ -194,11 +196,16 @@ boolean devour;
 	/* hack: observe the action if either new or old location is in view */
 	/* However, invisible monsters should still be "it" even though out of
 	   sight locations should not. */
-	if (vis)
+	if (vis) {
 	    pline("%s %s %s.", mon_visible(mtmp) ? noit_Monnam(mtmp) : "It",
 		  vampiric ? "drains" : devour ? "devours" : "eats",
 		  (obj->oclass == FOOD_CLASS) ?
 			singular(obj, doname) : doname(obj));
+		if (issoviet && (obj->otyp == CORPSE) && (fptr->cnutrit < 1) ) pline("On on on-kha-kha-kha ya smeyus' nad vami truslivogo smertnyy! - Tip bloka l'da.");
+
+		if (issoviet && (obj->otyp == CORPSE) && ((((potentialpet = get_mtraits(obj, FALSE)) != (struct monst *)0) ) && potentialpet->mtame) ) pline("on on on vash pitomets teper' ushel navsegda, potomu chto ya vsemogushchiy tip bloka l'da ya velichayshiy!");
+
+	}
 	/* It's a reward if it's DOGFOOD and the player dropped/threw it. */
 	/* We know the player had it if invlet is set -dlc */
 	if(dogfood(mtmp,obj) == DOGFOOD && obj->invlet)
@@ -367,7 +374,7 @@ int udist;
 		    return dog_eat(mtmp, obj, omx, omy, FALSE);
 
 		/* [Tom] demonic & undead pets don't mind cursed items */                
-		if(can_carry(mtmp, obj) && !Has_contents(obj) &&
+		if(can_carry(mtmp, obj) && (issoviet || !Has_contents(obj)) &&
 		  !(obj == uchain) && !(obj == uball) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
 		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
@@ -897,7 +904,9 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them
 	   well screw it, just completely prevent them from attacking shopkeepers, priests and vault guards --Amy */
-			 (mtmp2->isshk ) || (mtmp2->isgd ) || (mtmp2->ispriest ) ||
+	/* In Soviet Russia, pets are totally stupid (in fact, even more so than modders). They simply attack everything,
+	 * even if it's something the player might want to use. --Amy */
+			 (!issoviet && mtmp2->isshk ) || (!issoviet && mtmp2->isgd ) || (!issoviet && mtmp2->ispriest ) ||
 			   (touch_petrifies(mtmp2->data) &&
 				!resists_ston(mtmp)))
 			continue;

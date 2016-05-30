@@ -260,14 +260,14 @@ use_stethoscope(obj)
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
-			if (obj->blessed)
+			if (obj->blessed && !issoviet)
 			mstatuslinebl(u.ustuck);
 			else
 			mstatusline(u.ustuck);
 
 		} else
 
-			if (obj->blessed)
+			if (obj->blessed && !issoviet)
 			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
 			else
 			mstatusline(u.usteed);
@@ -278,7 +278,7 @@ use_stethoscope(obj)
 #endif
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
-		if (obj->blessed)
+		if (obj->blessed && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
 		mstatusline(u.ustuck);
@@ -286,7 +286,7 @@ use_stethoscope(obj)
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
 
-		if (obj->blessed)
+		if (obj->blessed && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
 		mstatusline(u.ustuck);
@@ -308,7 +308,7 @@ use_stethoscope(obj)
 		You_hear("your heart beat.");
 		return res;
 	}
-	if ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))) confdir();
+	if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
 	if (!u.dx && !u.dy) {
 		ustatusline();
 		return res;
@@ -328,10 +328,11 @@ use_stethoscope(obj)
 		return 0;
 		}
 
-		if (obj->blessed)
+		if (obj->blessed && !issoviet)
 		mstatuslinebl(mtmp);
 		else
 		mstatusline(mtmp);
+		if (obj->blessed && issoviet) pline("Sovetskaya ne khochet stetoskopa, chtoby byt' poleznym.");
 
 		if (mtmp->mundetected) {
 			mtmp->mundetected = 0;
@@ -2751,7 +2752,7 @@ struct obj *obj;
     }
     if (!getdir((char *)0)) return res;
 
-    if ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8))) confdir();
+    if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
     rx = u.ux + u.dx;
     ry = u.uy + u.dy;
 

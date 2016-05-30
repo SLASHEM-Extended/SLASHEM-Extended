@@ -3505,7 +3505,12 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	}
 
 	/* delay is weight dependent */
-	victual.reqtime = 2 + (mons[mnum].cwt >> 8); /* speed up --Amy */
+	/* In Soviet Russia, food is so scarce that you will always want to take your sweet time eating it. Who cares that
+	 * it takes 75 turns to eat a dragon corpse, or that you'll faint at least thrice until the slow eating speed
+	 * finally bumps you out of "Fainting" and back into "Weak" territory? And who wants to defeat Famine, anyway?
+	 * Nah, let's make everything completely fucked up, at least if the player has no K-rations. --Amy */
+
+	victual.reqtime = (issoviet ? 5 : 2) + (mons[mnum].cwt >> (issoviet ? 6 : 8) ); /* speed up --Amy */
 	if (otmp->odrained) {
 		if (victual.reqtime) {
 			victual.reqtime = rounddiv(victual.reqtime, 5);
@@ -3513,9 +3518,14 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		}
 	}
 
+	/* In Soviet Russia, food is so scarce, even if you do find some it's often rotten. And the fungi that cause the
+	 * food to rot also don't care about weird stuff like "blessings", no those aren't allowed to offer protection at
+	 * all. So you can save your holy waters, halleluja! --Amy */
+
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&
-			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (!rn2(20) && !otmp->blessed) ) ) {
+			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) ) ) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
+
 	    if (rottenfood(otmp)) {
 		otmp->orotten = TRUE;
 		(void)touchfood(otmp);
@@ -4856,7 +4866,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (otmp->otyp != FORTUNE_COOKIE &&
 		(otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() ||
 		 (((monstermoves - otmp->age) > (int) otmp->blessed ? 50:30) &&
-		(otmp->orotten || (!rn2(20) && !otmp->blessed) )))) {
+		(otmp->orotten || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) )))) {
 
 		if (rottenfood(otmp)) {
 		    otmp->orotten = TRUE;
@@ -5063,14 +5073,19 @@ register int num;
 		    }
 		}
 	    }
-	    else if (u.uhs == SATIATED) { /* less nutrition if already satiated --Amy */
+
+		/* In Soviet Russia, food is so scarce, people will gladly overeat themselves to death. After all, it's only
+		 * the dumb people who want to eat a black dragon corpse while satiated, and no dumb people live in Russia.
+		 * So it's completely fine if everything always gives full nutrition. --Amy */
+
+	    else if (!issoviet && (u.uhs == SATIATED)) { /* less nutrition if already satiated --Amy */
 		int xtranut = num;
 		xtranut /= 3;
 		if (u.uhunger >= 3250) {xtranut *= 3; xtranut /= 2;}
 		if (u.uhunger >= 4000) {xtranut *= 7; xtranut /= 6;}
 		u.uhunger -= xtranut;
 	    }
-	    else if (u.uhs != SATIATED) { /* extra nutrition because corpses are more rare now --Amy */
+	    else if (!issoviet && (u.uhs != SATIATED)) { /* extra nutrition because corpses are more rare now --Amy */
 		int xtranut = num;
 		xtranut *= rnd((u.uhs >= FAINTING) ? 100 : (u.uhs == WEAK) ? 85 : (u.uhs == HUNGRY) ? 70 : 1);
 		xtranut /= 100;

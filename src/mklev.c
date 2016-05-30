@@ -10400,15 +10400,18 @@ mineralize()
 
 	/* determine if it is even allowed;
 	   almost all special levels are excluded */
-/*	if (In_hell(&u.uz) || In_V_tower(&u.uz) ||
+	if (issoviet && (In_hell(&u.uz) || In_V_tower(&u.uz) ||
 #ifdef REINCARNATION
 		Is_rogue_level(&u.uz) ||
 #endif
 		level.flags.arboreal ||
 		((sp = Is_special(&u.uz)) != 0 && !Is_oracle_level(&u.uz)
 					&& (!In_mines(&u.uz) || sp->flags.town)
-	    )) return;*/
+	    ))) return;
 	/* Amy edit - let's just ditch that. If players want to dig for items, let them do so! */
+	/* In Soviet Russia, restrictions are par for the course. Therefore it's strictly forbidden to hide gold and gems
+	 * in the walls of special levels. Violators of this rule are punished with at least 20 years in the
+	 * detention camp. --Amy */
 
 	/* basic level-related probabilities */
 	goldprob = 20 + depth(&u.uz) / 3;

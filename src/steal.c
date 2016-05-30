@@ -307,21 +307,24 @@ nothing_to_steal:
 #endif
 
 gotobj:
-	if (stack_too_big(otmp)) {
+	if (stack_too_big(otmp) && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect them!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
 		return (0);
 	}
 
 	/* artifacts resist stealing because I'm nice --Amy */
-	if (rn2(10) && otmp->oartifact) {
+	if (rn2(10) && otmp->oartifact && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect it!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
 		return (0);
 	}
 
+	/* In Soviet Russia, you don't need no saving throw, since you're probably so naughty you'd jump at any chance to
+	 * have "fun" with a woman. Even if said "fun" means losing all that you have. And of course, Russian women are also
+	 * the absolute temptresses who will MAKE you undress whether you want it or not. --Amy */
 
-	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && !issoviet && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
 		if (otmp->cursed) {
 			otmp->bknown = 1;
 			pline("%s tries to take off your %s, which appears to be cursed.", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp)); 
@@ -337,7 +340,7 @@ gotobj:
 
 #ifdef STEED
 	/* I took the liberty of making saddles less likely to be stolen, because riding sucks enough as it is. --Amy */
-	if (rn2(5) && otmp == usaddle) return (0);
+	if (rn2(5) && !issoviet && otmp == usaddle) return (0);
 	if (otmp == usaddle) dismount_steed(DISMOUNT_FELL);
 #endif
 

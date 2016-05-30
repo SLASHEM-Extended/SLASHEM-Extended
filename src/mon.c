@@ -3253,11 +3253,19 @@ xkilled(mtmp, dest)
 		redisp = TRUE;
 	}
 #endif
+
+	/* In Soviet Russia, you may certainly never get something from a monster if it dies while you're engulfed by it
+	 * or while the monster is in a wall. After all, that would be a violation of the Kreml's regulations. Not that the
+	 * items generated that way would do any harm to anyone, but of course "rules are rules"... --Amy */
+
+	if (issoviet && (x == u.ux) && (y == u.uy) ) goto sovietnothing;
+
 	if((!accessible(x, y) && !is_pool(x, y)) ||
 	   (x == u.ux && y == u.uy)) {
 	    /* might be mimic in wall or corpse in lava or on player's spot */
 	    redisp = TRUE;
 	    if(wasinside) spoteffects(TRUE);
+	    if (issoviet) goto sovietnothing;
 	} /*else*/ if(/*x != u.ux || y != u.uy && */!attacktype(mdat, AT_MULTIPLY) && (!mtmp->isspell) && (!mtmp->egotype_multiplicator) ) { /* multipliers could otherwise be farmed */
 		/* might be here after swallowed */
 
@@ -3610,6 +3618,9 @@ xkilled(mtmp, dest)
 		if (corpse_chance(mtmp, (struct monst *)0, FALSE))
 			(void) make_corpse(mtmp);
 	}
+
+sovietnothing:
+
 	/*if(redisp)*/ newsym(x,y);
 cleanup:
 	/* punish bad behaviour */
@@ -3950,7 +3961,7 @@ register struct monst *mtmp;
     if(mtmp->data->msound == MS_SOUND || mtmp->egotype_sounder) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
-		if (!rn2(5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
     }
 

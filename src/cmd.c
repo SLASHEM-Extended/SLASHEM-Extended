@@ -7243,7 +7243,7 @@ const char *s;
 		}
 		return 0;
 	}
-	if(!u.dz && ((Stunned && !rn2(Stun_resist ? 8 : 2)) || (Confusion && !rn2(Conf_resist ? 40 : 8)))) confdir();
+	if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
 	return 1;
 }
 

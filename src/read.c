@@ -1258,10 +1258,11 @@ forget_objects(percent)
 	for (i = 0; i < count; i++)
 	    forget_single_object(indices[i]);
 
-	if (!rn2(5)) {
+	if (!rn2(issoviet ? 25 : 5)) {
 
 		init_objects();
 		if (wizard) pline("init_objects done!");
+		if (issoviet) pline("Tip bloka l'da reshil randomizirovat' vse! Khi khi!");
 
 	}
 
@@ -1379,10 +1380,10 @@ int howmuch;
 	forget_traps();
 
 	/* 1 in 3 chance of forgetting some levels */
-	if (!rn2(3)) forget_levels(rnd(10));
+	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
 
 	/* 1 in 10 chance of forgeting some objects */
-	if (!rn2(5)) forget_objects(rnd(10));
+	if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));
 
 	if (howmuch & ALL_SPELLS) losespells();
 	/*

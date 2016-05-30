@@ -4108,8 +4108,8 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(12,6));
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -4141,15 +4141,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(33)) (void) burnarmor(&youmonst);
+		    if (!rn2(issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(33)) /* new calculations --Amy */
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(33))
+		    if (!rn2(issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(50))
+		    if (!rn2(issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    break;
 
@@ -4166,7 +4166,7 @@ boolean ordinary;
 			You("imitate a popsicle!");
 			damage = d(12,6);
 		    }
-		    if (!rn2(33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 		    break;
 
@@ -4850,7 +4850,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    for (otmp = (youdefend ? invent : mdef->minvent);
 			    otmp; otmp = otmp->nobj)
 		/* extra saving throw for blessed objects --Amy */
-		if (self_cancel || !rn2(otmp->blessed ? 100 : 24)) {
+		if (self_cancel || !rn2(issoviet ? 24 : otmp->blessed ? 100 : 24)) {
 		    cancel_item(otmp);
 		    did_cancel = TRUE;
 		}
@@ -5940,10 +5940,10 @@ xchar sx, sy;
 		Slimed = 0;
 	    }
 	    burn_away_slime();
-	    if (!rn2(33)) (burnarmor(&youmonst));	/* "body hit" */
-		if (!rn2(33)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(33)) destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
+		if (!rn2(issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		if (!rn2(issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 	    break;
 	case ZT_COLD:
 	    if (Cold_resistance && rn2(20)) {
@@ -5953,7 +5953,7 @@ xchar sx, sy;
 	    } else {
 		dam = d(nd, 6);
 	    }
-	    if (!rn2(75)) destroy_item(POTION_CLASS, AD_COLD);
+	    if (!rn2(issoviet ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
 	    break;
 	case ZT_SLEEP:
 	    if (Sleep_resistance && rn2(20)) {
@@ -6030,8 +6030,8 @@ xchar sx, sy;
 		dam = d(nd, 6);
 		exercise(A_CON, FALSE);
 	    }
-	    if (!rn2(100)) destroy_item(WAND_CLASS, AD_ELEC);
-	    if (!rn2(100)) destroy_item(RING_CLASS, AD_ELEC);
+	    if (!rn2(issoviet ? 20 : 100)) destroy_item(WAND_CLASS, AD_ELEC);
+	    if (!rn2(issoviet ? 20 : 100)) destroy_item(RING_CLASS, AD_ELEC);
 	    break;
 	case ZT_POISON_GAS:
 	    poisoned("blast", A_DEX, "poisoned blast", 15);
@@ -6051,7 +6051,7 @@ xchar sx, sy;
 	    /* using two weapons at once makes both of them more vulnerable */
 	    if (!rn2(u.twoweap ? 3 : 6)) erode_obj(uwep, TRUE, TRUE);
 	    if (u.twoweap && !rn2(3)) erode_obj(uswapwep, TRUE, TRUE);
-	    if (!rn2(6)) erode_armor(&youmonst, TRUE);
+	    if (!rn2(issoviet ? 2 : 6)) erode_armor(&youmonst, TRUE);
 	    break;
 	case ZT_LITE:
 
@@ -6205,8 +6205,10 @@ int type;
 {
     int chance = rn2(20);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
-    if (!rn2(2)) spell_bonus += rnd(u.ulevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
-    if (!rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
+    if (!issoviet && !rn2(2)) spell_bonus += rnd(u.ulevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
+    if (!issoviet && !rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
+	/* In Soviet Russia, nobody needs a spell bonus of any kind. It's cool if your death rays miss Rodney 90% of the
+	 * time! And it's also cool if your wands of magic missile are absolute trash in the late game! --Amy */
 
     /* small chance for naked target to avoid being hit */
     if (!chance) return rnd(10) < ac+spell_bonus;
@@ -6550,7 +6552,7 @@ register int dx,dy;
 	    } else {
 		pline("%s whizzes by you!", The(fltxt));
 	    }
-	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst) && !rn2(3) ) {
+	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst) && (issoviet || !rn2(3)) ) {
 		You(are_blinded_by_the_flash);
 		make_blinded((long)d(nd,5),FALSE);
 		if (!Blind) Your(vision_clears);

@@ -13223,11 +13223,13 @@ int mndx;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
-	if (uncommon2(&mons[mndx]) && rn2(2) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon3(&mons[mndx]) && rn2(3) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon5(&mons[mndx]) && rn2(5) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon7(&mons[mndx]) && rn2(7) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon10(&mons[mndx]) && rn2(10) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
+
+	if (uncommon2(&mons[mndx]) && issoviet ? !rn2(3) : rn2(2) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
 	if (monstr[mndx] >= 10 && monstr[mndx] < 15 && !rn2(10)) return TRUE;
 	if (monstr[mndx] >= 15 && monstr[mndx] < 20 && !rn2(5)) return TRUE;
@@ -13716,11 +13718,25 @@ int     spc;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
 	if (!rn2(20) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
 
-	int uncommontwo = rn2(2) ? 1 : 0;
-	int uncommonthree = rn2(3) ? 1 : 0;
-	int uncommonfive = rn2(5) ? 1 : 0;
-	int uncommonseven = rn2(7) ? 1 : 0;
-	int uncommonten = rn2(10) ? 1 : 0;
+	int uncommontwo = 0;
+	int uncommonthree = 0;
+	int uncommonfive = 0;
+	int uncommonseven = 0;
+	int uncommonten = 0;
+
+	if (!issoviet) {
+		uncommontwo = rn2(2) ? 1 : 0;
+		uncommonthree = rn2(3) ? 1 : 0;
+		uncommonfive = rn2(5) ? 1 : 0;
+		uncommonseven = rn2(7) ? 1 : 0;
+		uncommonten = rn2(10) ? 1 : 0;
+	} else {
+		uncommontwo = !rn2(3) ? 1 : 0;
+		uncommonthree = rn2(2) ? 1 : 0;
+		uncommonfive = rn2(3) ? 1 : 0;
+		uncommonseven = rn2(4) ? 1 : 0;
+		uncommonten = rn2(5) ? 1 : 0;
+	}
 
 	int uncommonnewten = !rn2(10) ? 1 : 0;
 	int uncommonnewfifteen = !rn2(5) ? 1 : 0;

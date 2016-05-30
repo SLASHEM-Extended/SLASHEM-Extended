@@ -648,7 +648,14 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i)) {
 		decrnknow(i);
-		if (spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+
+		/* In Soviet Russia, people do not use magic very often, and so they definitely don't need any of those
+		 * completely superfluous messages telling them about spell memory. They already trashed the actual spell
+		 * memory display in the menu, so why the heck would they suddenly want to get messages about it? Hell no,
+		 * they prefer to suddenly discover their cure sickness spell was forgotten just as they're about to
+		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
+
+		if (!issoviet && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
 	    }
 	return;
 }
