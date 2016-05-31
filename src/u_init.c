@@ -10741,6 +10741,7 @@ u_init()
                 case 4: ini_inv(TrollItemD); break;
 		    default: break;
 		}
+		break;
 	case PM_OGRO:
           ini_inv(OgroItem);		
 		break;
