@@ -1079,6 +1079,18 @@ boolean artif;
 			otmp->quan = 40;
 			if (!rn2(5)) otmp->quan *= (1 + rnd(4));
 		}
+		if (is_lower_multigen(otmp) && !is_multigen(otmp) && !issoviet && !rn2(50) ) otmp->quan += rn2(6);
+
+		/* occasionally make bigger stacks of stackable weapons --Amy */
+		if (!issoviet && !rn2(is_multigen(otmp) ? 20 : is_lower_multigen(otmp) ? 100 : 1000) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+		/* In Soviet Russia, it's completely unthinkable to find a stack of more than the standard rn1(12,12) arrows.
+		 * Or darts or whatever other ranged weapon it is. Because it's not allowed to luck into a huge stack of
+		 * 100 +8 arrows or something. The standard amount must be sufficient for everyone in communism! --Amy */
+
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);

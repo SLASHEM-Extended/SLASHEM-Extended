@@ -3139,6 +3139,13 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 2;
 	}
 
+	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == -P_BOOMERANG){
+
+		bonus += 2;
+		if (u.ulevel >= 15) bonus += 2;
+		if (u.ulevel >= 30) bonus += 2;
+	}
+
 	/* more boomerang damage bonus */
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
@@ -3147,6 +3154,11 @@ struct obj *weapon;
 	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(10);
 	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(20);
 	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(40);
+
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(10);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(40);
 
 	}
 

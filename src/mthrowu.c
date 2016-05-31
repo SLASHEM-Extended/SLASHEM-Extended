@@ -851,7 +851,7 @@ struct monst *mtmp;
 
 	/* Multishot calculations */
 	multishot = 1;
-	if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG ||
+	if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
 		skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) && !mtmp->mconf) {
 	    /* Assumes lords are skilled, princes are expert */
 	    if (is_prince(mtmp->data)) multishot += 2;

@@ -202,6 +202,8 @@ struct obj {
 #define is_multigen(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill >= -P_SHURIKEN && \
 			 objects[(otmp)->otyp].oc_skill <= -P_BOW)
+#define is_lower_multigen(otmp)	((otmp)->oclass == WEAPON_CLASS && \
+			 (objects[(otmp)->otyp].oc_skill == -P_BOOMERANG || objects[(otmp)->otyp].oc_skill == P_BOOMERANG || objects[(otmp)->otyp].oc_skill == P_SPEAR || objects[(otmp)->otyp].oc_skill == P_DAGGER || objects[(otmp)->otyp].oc_skill == P_KNIFE || objects[(otmp)->otyp].oc_skill == P_JAVELIN ) )
 #ifdef FIREARMS
 #define is_unpoisonable_firearm_ammo(otmp)	\
 			 (is_bullet(otmp) || (otmp)->otyp == STICK_OF_DYNAMITE)
