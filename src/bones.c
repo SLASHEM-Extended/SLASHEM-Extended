@@ -166,13 +166,13 @@ struct obj *cont;
 		/* still blessed? Roll for a chance to make it uncursed. --Amy */
 		if(rn2(5) && otmp->blessed) unbless(otmp);
 
-		if (mtmp)
+		if (otmp && rn2(2)) delobj(otmp); /* prevent bones finders from getting everything --Amy */
+		else if (mtmp)
 			(void) add_to_minv(mtmp, otmp);
 		else if (cont)
 			(void) add_to_container(cont, otmp);
 		else
 			place_object(otmp, u.ux, u.uy);
-		if (rn2(2)) delobj(otmp); /* prevent bones finders from getting everything --Amy */
 	}
 #ifndef GOLDOBJ
 	if(u.ugold) {
