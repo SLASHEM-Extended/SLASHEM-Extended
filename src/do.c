@@ -1202,6 +1202,8 @@ save_currentstate()
 {
 	int fd;
 
+	if (u.hangupcheat < 2) u.hangupcheat = 0;
+
 	if (flags.ins_chkpt) {
 		/* write out just-attained level, with pets and everything */
 		fd = currentlevel_rewrite();
