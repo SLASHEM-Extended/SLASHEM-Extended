@@ -49,6 +49,7 @@ struct flag {
 	boolean  friday13;	/* it's Friday the 13th */
 	boolean  groundhogday;	/* KMH -- February 2 */
 	boolean  help;		/* look in data file for info about stuff */
+    boolean  hitpointbar; /* colourful hit point status bar */
 	boolean  ignintr;	/* ignore interrupts */
 #ifdef INSURANCE
 	boolean  ins_chkpt;	/* checkpoint as appropriate */

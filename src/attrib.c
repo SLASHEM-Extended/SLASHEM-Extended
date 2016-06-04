@@ -1714,4 +1714,19 @@ register int n;
 
 #endif /* OVL2 */
 
+
+/** Returns the hitpoints of your current form. */
+int
+uhp()
+{
+	return (Upolyd ? u.mh : u.uhp);
+}
+
+/** Returns the maximal hitpoints of your current form. */
+int
+uhpmax()
+{
+	return (Upolyd ? u.mhmax : u.uhpmax);
+}
+
 /*attrib.c*/
