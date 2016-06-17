@@ -5212,12 +5212,12 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_DISINTEGRATION_BEAM) {
-		buzz((int)(21), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_FIRE_BOLT) {
-		buzz((int)(24), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
