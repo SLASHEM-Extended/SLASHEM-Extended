@@ -3184,7 +3184,7 @@ makelevel()
 	    case 19:
 	    case 20:
 
-		switch (rnd(87)) {
+		switch (rnd(96)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -3273,6 +3273,15 @@ makelevel()
 			case 85: makemaz("unhck-85"); return;
 			case 86: makemaz("unhck-86"); return;
 			case 87: makemaz("unhck-87"); return;
+			case 88: makemaz("unhck-88"); return;
+			case 89: makemaz("unhck-89"); return;
+			case 90: makemaz("unhck-90"); return;
+			case 91: makemaz("unhck-91"); return;
+			case 92: makemaz("unhck-92"); return;
+			case 93: makemaz("unhck-93"); return;
+			case 94: makemaz("unhck-94"); return;
+			case 95: makemaz("unhck-95"); return;
+			case 96: makemaz("unhck-96"); return;
 
 		}
 		break;
@@ -3350,15 +3359,18 @@ makelevel()
 	    case 30:
 	    case 31:
 
-		switch (rnd(7)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("minend-1"); return;
-			case 2: makemaz("minend-2"); return;
-			case 3: makemaz("minend-3"); return;
-			case 4: makemaz("minend-4"); return;
-			case 5: makemaz("minend-5"); return;
-			case 6: makemaz("minend-6"); return;
-			case 7: makemaz("minend-7"); return;
+			case 1: makemaz("mnend-1"); return;
+			case 2: makemaz("mnend-2"); return;
+			case 3: makemaz("mnend-3"); return;
+			case 4: makemaz("mnend-4"); return;
+			case 5: makemaz("mnend-5"); return;
+			case 6: makemaz("mnend-6"); return;
+			case 7: makemaz("mnend-7"); return;
+			case 8: makemaz("mnend-8"); return;
+			case 9: makemaz("mnend-9"); return;
+			case 10: makemaz("mnend-10"); return;
 
 		}
 		break;
@@ -3366,7 +3378,7 @@ makelevel()
 	    case 32:
 	    case 33:
 
-		switch (rnd(17)) {
+		switch (rnd(18)) {
 
 			case 1: makemaz("eking-1"); return;
 			case 2: makemaz("eking-2"); return;
@@ -3385,6 +3397,7 @@ makelevel()
 			case 15: makemaz("eking-15"); return;
 			case 16: makemaz("eking-16"); return;
 			case 17: makemaz("eking-17"); return;
+			case 18: makemaz("eking-18"); return;
 
 		}
 		break;
@@ -4585,7 +4598,7 @@ makelevel()
 	    case 19:
 	    case 20:
 
-		switch (rnd(87)) {
+		switch (rnd(96)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -4674,6 +4687,15 @@ makelevel()
 			case 85: makemaz("heck-85"); return;
 			case 86: makemaz("heck-86"); return;
 			case 87: makemaz("heck-87"); return;
+			case 88: makemaz("heck-88"); return;
+			case 89: makemaz("heck-89"); return;
+			case 90: makemaz("heck-90"); return;
+			case 91: makemaz("heck-91"); return;
+			case 92: makemaz("heck-92"); return;
+			case 93: makemaz("heck-93"); return;
+			case 94: makemaz("heck-94"); return;
+			case 95: makemaz("heck-95"); return;
+			case 96: makemaz("heck-96"); return;
 
 		}
 		break;
@@ -4751,15 +4773,18 @@ makelevel()
 	    case 30:
 	    case 31:
 
-		switch (rnd(7)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("hminen-1"); return;
-			case 2: makemaz("hminen-2"); return;
-			case 3: makemaz("hminen-3"); return;
-			case 4: makemaz("hminen-4"); return;
-			case 5: makemaz("hminen-5"); return;
-			case 6: makemaz("hminen-6"); return;
-			case 7: makemaz("hminen-7"); return;
+			case 1: makemaz("hmnend-1"); return;
+			case 2: makemaz("hmnend-2"); return;
+			case 3: makemaz("hmnend-3"); return;
+			case 4: makemaz("hmnend-4"); return;
+			case 5: makemaz("hmnend-5"); return;
+			case 6: makemaz("hmnend-6"); return;
+			case 7: makemaz("hmnend-7"); return;
+			case 8: makemaz("hmnend-8"); return;
+			case 9: makemaz("hmnend-9"); return;
+			case 10: makemaz("hmnend-10"); return;
 
 		}
 		break;
@@ -4767,7 +4792,7 @@ makelevel()
 	    case 32:
 	    case 33:
 
-		switch (rnd(17)) {
+		switch (rnd(18)) {
 
 			case 1: makemaz("hking-1"); return;
 			case 2: makemaz("hking-2"); return;
@@ -4786,6 +4811,7 @@ makelevel()
 			case 15: makemaz("hking-15"); return;
 			case 16: makemaz("hking-16"); return;
 			case 17: makemaz("hking-17"); return;
+			case 18: makemaz("hking-18"); return;
 
 		}
 		break;
@@ -6392,7 +6418,7 @@ makelevel()
 	    case 19:
 	    case 20:
 
-		switch (rnd(87)) {
+		switch (rnd(96)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -6481,6 +6507,15 @@ makelevel()
 			case 85: makemaz("unhck-85"); return;
 			case 86: makemaz("unhck-86"); return;
 			case 87: makemaz("unhck-87"); return;
+			case 88: makemaz("unhck-88"); return;
+			case 89: makemaz("unhck-89"); return;
+			case 90: makemaz("unhck-90"); return;
+			case 91: makemaz("unhck-91"); return;
+			case 92: makemaz("unhck-92"); return;
+			case 93: makemaz("unhck-93"); return;
+			case 94: makemaz("unhck-94"); return;
+			case 95: makemaz("unhck-95"); return;
+			case 96: makemaz("unhck-96"); return;
 
 		}
 		break;
@@ -6558,15 +6593,18 @@ makelevel()
 	    case 30:
 	    case 31:
 
-		switch (rnd(7)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("minend-1"); return;
-			case 2: makemaz("minend-2"); return;
-			case 3: makemaz("minend-3"); return;
-			case 4: makemaz("minend-4"); return;
-			case 5: makemaz("minend-5"); return;
-			case 6: makemaz("minend-6"); return;
-			case 7: makemaz("minend-7"); return;
+			case 1: makemaz("mnend-1"); return;
+			case 2: makemaz("mnend-2"); return;
+			case 3: makemaz("mnend-3"); return;
+			case 4: makemaz("mnend-4"); return;
+			case 5: makemaz("mnend-5"); return;
+			case 6: makemaz("mnend-6"); return;
+			case 7: makemaz("mnend-7"); return;
+			case 8: makemaz("mnend-8"); return;
+			case 9: makemaz("mnend-9"); return;
+			case 10: makemaz("mnend-10"); return;
 
 		}
 		break;
@@ -6574,7 +6612,7 @@ makelevel()
 	    case 32:
 	    case 33:
 
-		switch (rnd(17)) {
+		switch (rnd(18)) {
 
 			case 1: makemaz("eking-1"); return;
 			case 2: makemaz("eking-2"); return;
@@ -6593,6 +6631,7 @@ makelevel()
 			case 15: makemaz("eking-15"); return;
 			case 16: makemaz("eking-16"); return;
 			case 17: makemaz("eking-17"); return;
+			case 18: makemaz("eking-18"); return;
 
 		}
 		break;
@@ -7790,7 +7829,7 @@ makelevel()
 	    case 19:
 	    case 20:
 
-		switch (rnd(87)) {
+		switch (rnd(96)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -7879,6 +7918,15 @@ makelevel()
 			case 85: makemaz("heck-85"); return;
 			case 86: makemaz("heck-86"); return;
 			case 87: makemaz("heck-87"); return;
+			case 88: makemaz("heck-88"); return;
+			case 89: makemaz("heck-89"); return;
+			case 90: makemaz("heck-90"); return;
+			case 91: makemaz("heck-91"); return;
+			case 92: makemaz("heck-92"); return;
+			case 93: makemaz("heck-93"); return;
+			case 94: makemaz("heck-94"); return;
+			case 95: makemaz("heck-95"); return;
+			case 96: makemaz("heck-96"); return;
 
 		}
 		break;
@@ -7956,15 +8004,18 @@ makelevel()
 	    case 30:
 	    case 31:
 
-		switch (rnd(7)) {
+		switch (rnd(10)) {
 
-			case 1: makemaz("hminen-1"); return;
-			case 2: makemaz("hminen-2"); return;
-			case 3: makemaz("hminen-3"); return;
-			case 4: makemaz("hminen-4"); return;
-			case 5: makemaz("hminen-5"); return;
-			case 6: makemaz("hminen-6"); return;
-			case 7: makemaz("hminen-7"); return;
+			case 1: makemaz("hmnend-1"); return;
+			case 2: makemaz("hmnend-2"); return;
+			case 3: makemaz("hmnend-3"); return;
+			case 4: makemaz("hmnend-4"); return;
+			case 5: makemaz("hmnend-5"); return;
+			case 6: makemaz("hmnend-6"); return;
+			case 7: makemaz("hmnend-7"); return;
+			case 8: makemaz("hmnend-8"); return;
+			case 9: makemaz("hmnend-9"); return;
+			case 10: makemaz("hmnend-10"); return;
 
 		}
 		break;
@@ -7972,7 +8023,7 @@ makelevel()
 	    case 32:
 	    case 33:
 
-		switch (rnd(17)) {
+		switch (rnd(18)) {
 
 			case 1: makemaz("hking-1"); return;
 			case 2: makemaz("hking-2"); return;
@@ -7991,6 +8042,7 @@ makelevel()
 			case 15: makemaz("hking-15"); return;
 			case 16: makemaz("hking-16"); return;
 			case 17: makemaz("hking-17"); return;
+			case 18: makemaz("hking-18"); return;
 
 		}
 		break;
@@ -10773,6 +10825,11 @@ coord *tm;
 
 	/* no traps in pools */
 	if (tm && is_pool(tm->x,tm->y)) return;
+
+	if (num < -1) {
+		num += 256; /* sucky workaround --Amy */
+		if (num == MAGIC_PORTAL) num = 0;
+	}
 
 	if (num > 0 && num < TRAPNUM) {
 	    kind = num;

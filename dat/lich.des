@@ -2,7 +2,7 @@
 # Vecna's dungeon
 #
 
-LEVEL: "lich"
+LEVEL: "lich-1"
 MESSAGE: "You feel deathly cold."
 RANDOM_MONSTERS: 'L','W','V'
 
@@ -151,3 +151,511 @@ MONSTER: 'Z', random, random, hostile
 MONSTER: 'Z', random, random, hostile
 
 RANDOM_CORRIDORS
+
+# Vecna's Noteleport Corridors by Amy
+MAZE:"lich-2",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,lethe
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+############################################################################
+###         LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL         }}}}}}}}}}}}}}}}}}}}}}}}}
+########                LLLLLLLLLLLLLLLLLLLLL           }}}}}}}}}}}}}}}}}}}}
+#####################          LLLLLLLLLLLLLLLLLL            }}}}}}}}}}}}}}}
+       }}}}}}}}}   ##########              LLLLLLLLLLLL            }}}}}}}}}
+    }}}}}}}}}}}}}          #############            LLL   #######       }}}}
+}}}}}}}}      }}}}}}}                 ############      ####   #######      
+}}}}}     ###     }}}   ###########            ###########     LL   ########
+}}      ### ####      ###         ###########               LLLLLL         #
+   ######      ########   LLLLLL            ###############        #########
+####      }}}    }}}}}  LLLLL##############               ##########   LLL  
+#        }}}}}}              #            ##############             LLLLLL 
+##############################                        #############  LLLLLLL
+                                }}}}}}}}}}}}}}}}}                 #      LLL
+###################################################################  }}    L
+#                           LLLLLLLLL                                }}}}}  
+######                                   }}}}}}}}}}}}}}}}}}          }}}}}}}
+     #############      LLLLLLLLLLLL   ############################    }}}  
+     LLLL     #############################################      ###########
+LLLLLLLLL                      ####################################        #
+ENDMAP
+
+RANDOM_MONSTERS: 'L','W','V'
+NON_DIGGABLE:(00,00,75,19)
+BRANCH:(75,19,75,19),(00,00,00,00)
+
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: 'L', "Vecna", (75,00), hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+# Vecna's Bigroom by Amy
+MAZE:"lich-3",' '
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+BRANCH:(00,00,75,20),(00,00,00,00)
+REGION:(00,00,75,20),unlit,"ordinary"
+
+OBJECT: random,random,random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+MONSTER: 'L', "Vecna", random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'V', random, random, hostile
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+# Vecna's Deathtrap by Amy
+MAZE:"lich-4",' '
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|................................-----------...............................|
+|. . . . . . . . . . . . . . . . |.C.....C.| . . . . . . . . . . . . . . . |
+|................................|CC.LLL.CC|...............................|
+|. . . . . . . . . . . . . . . . |.........| . . . . . . . . . . . . . . . |
+|................................|.L.....L.|...............................|
+|. . . . . . . . . . . . . . . . |.........| . . . . . . . . . . . . . . . |
+|................................|CC.LLL.CC|...............................|
+|. . . . . . . . . . . . . . . . |.C.....C.| . . . . . . . . . . . . . . . |
+|................................-----------...............................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+RANDOM_PLACES:(38,06),(38,12),(34,09),(42,09)
+BRANCH:(38,09,38,09),(00,00,00,00)
+REGION:(00,00,75,20),unlit,"ordinary"
+REGION:(34,06,42,12),lit,"ordinary"
+
+MONSTER: 'L', "Vecna", place[0], hostile
+MONSTER: 'L', random, (38,09), hostile
+MONSTER: 'L', random, (35,06), hostile
+MONSTER: 'L', random, (34,07), hostile
+MONSTER: 'L', random, (35,07), hostile
+MONSTER: 'L', random, (41,06), hostile
+MONSTER: 'L', random, (41,07), hostile
+MONSTER: 'L', random, (42,07), hostile
+MONSTER: 'L', random, (34,11), hostile
+MONSTER: 'L', random, (35,11), hostile
+MONSTER: 'L', random, (35,12), hostile
+MONSTER: 'L', random, (42,11), hostile
+MONSTER: 'L', random, (41,11), hostile
+MONSTER: 'L', random, (41,12), hostile
+MONSTER: 'o', "goblin", (34,06), hostile
+MONSTER: 'o', "goblin", (42,06), hostile
+MONSTER: 'o', "goblin", (42,12), hostile
+MONSTER: 'o', "goblin", (34,12), hostile
+TRAP: "polymorph", (34,06)
+TRAP: "polymorph", (42,06)
+TRAP: "polymorph", (42,12)
+TRAP: "polymorph", (34,12)
+OBJECT: '/', "polymorph", (34,06)
+OBJECT: '/', "polymorph", (42,06)
+OBJECT: '/', "polymorph", (42,12)
+OBJECT: '/', "polymorph", (34,12)
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "ventilator", (38,10)
+TRAP: "ventilator", (38,08)
+TRAP: "ventilator", (39,09)
+TRAP: "ventilator", (37,09)
+TRAP: "fumarole", (37,08)
+TRAP: "fumarole", (37,10)
+TRAP: "fumarole", (39,08)
+TRAP: "fumarole", (39,10)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+

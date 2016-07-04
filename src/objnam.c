@@ -6459,6 +6459,7 @@ typfnd:
 	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
 	        otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
 	        otmp->oartifact == ART_KEY_OF_LAW ||
+	        otmp->oartifact == ART_GAUNTLET_KEY ||
 	        otmp->oartifact == ART_HAND_OF_VECNA ||
 	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
 	        otmp->oartifact == ART_NIGHTHORN ||

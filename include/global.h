@@ -385,9 +385,9 @@ struct version_info {
 #define COLNO	80
 #define ROWNO	21
 
-#define MAXNROFROOMS	40	/* max number of rooms per level */
+#define MAXNROFROOMS	60	/* max number of rooms per level */
 #define MAX_SUBROOMS	24	/* max # of subrooms in a given room */
-#define DOORMAX		120	/* max number of doors per level */
+#define DOORMAX		125	/* max number of doors per level */
 
 #define BUFSZ		/*256*/2048	/* for getlin buffers */
 #define ENGBUFSZ		256 /* for engravings */

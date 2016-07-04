@@ -104,9 +104,9 @@ LEVEL:		"rndmazea" "Q" @ (5, 35) 30
 RNDLEVEL:	"intpla" "J" @ (5, 35) 30 5
 LEVEL:		"makemais" "C" @ (5, 35) 30
 LEVEL:		"makemase" "D" @ (5, 35) 30
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
-RNDLEVEL:          "unhck" "X" @ (5, 35) 30 87
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 96
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 96
+RNDLEVEL:          "unhck" "X" @ (5, 35) 30 96
 LEVEL:          "forge" "F" @ (5, 35) 20
 LEVEL:          "hitch" "H" @ (5, 35) 5
 LEVEL:		"compu" "P" @ (5, 35) 10 
@@ -177,11 +177,11 @@ RNDLEVEL:          "asmod" "A" @ (2, 29) 95 4
 RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
 BRANCH:         "Sheol" @ (3, 27) down
 
-RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
-RNDLEVEL:          "heck" "Q" @ (2, 29) 90 87
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
 RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 50
@@ -199,8 +199,8 @@ ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
 RNDLEVEL:	"mintn" "T" @ (3, 2) 98 21
 LEVELDESC:	town
-RNDLEVEL:	"minend" "E" @ (-2, 0) 95 7
-RNDLEVEL:		"mking" "M" @ (-1, 0) 90 17
+RNDLEVEL:	"mnend" "E" @ (-2, 0) 95 10
+RNDLEVEL:		"mking" "M" @ (-1, 0) 90 18
 
 
 ### The Quest Dungeon ###
@@ -219,17 +219,17 @@ LEVEL:  	"x-goal" "none" @ (-1, 0)
 DUNGEON:		"Lawful Quest" "none" (1, 0)
 ALIGNMENT:		lawful
 DESCRIPTION:	mazelike
-LEVEL:			"nightmar" "none" @ (1, 0)
+RNDLEVEL:			"night" "none" @ (1, 0) 4
 
 DUNGEON:		"Neutral Quest" "none" (1, 0)
 ALIGNMENT:		neutral
 DESCRIPTION:	mazelike
-LEVEL:			"beholder" "none" @ (1, 0)
+RNDLEVEL:			"behol" "none" @ (1, 0) 4
 
 DUNGEON:		"Chaotic Quest" "none" (1, 0)
 ALIGNMENT:		chaotic
 DESCRIPTION:	mazelike
-LEVEL:			"lich" "none" @ (1, 0)
+RNDLEVEL:			"lich" "none" @ (1, 0) 4
 
 #
 # Sokoban
@@ -248,7 +248,7 @@ RNDLEVEL:		"soko4" "D" @ (4, 0) 95 28
 DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
-RNDLEVEL:          "unhck" "X" @ (2, 0) 5 87
+RNDLEVEL:          "unhck" "X" @ (2, 0) 5 96
 RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 50
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
@@ -269,13 +269,13 @@ ALIGNMENT:      unaligned
 LEVEL:          "knox" "K" @ (-1, 0) 50
 
 ### The Wyrm Caves ###
-DUNGEON:        "The Wyrm Caves" "D" (1, 0)
+DUNGEON:        "The Wyrm Caves" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "dragons" "D" @ (1, 0) 30
 
 ### The Black Market ###
-DUNGEON:        "One-eyed Sam's Market" "D" (1, 0)
+DUNGEON:        "One-eyed Sam's Market" "X" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "blkmar" "D" @ (1, 0) 20

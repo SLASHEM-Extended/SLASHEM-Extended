@@ -366,6 +366,11 @@ A("The Key of Chaos", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
+A("The Gauntlet Key", SKELETON_KEY,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK,        NO_DFNS,        NO_CARY,
+	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
 
 /*** The artifacts for the quest dungeon, all self-willed ***/
 

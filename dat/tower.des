@@ -114,8 +114,8 @@ MAP
 |.---.........---.|--
 |.|.S.........S.|.+.|
 |.---S---S---S---.|--
-|...|.|.|.|.|.|...|
----.---.---.---.---
+|...|.|.|.|.|.|...+.|
+---.---.---.---.-----
   |.............|  
   ---------------  
 ENDMAP
@@ -129,6 +129,9 @@ DOOR:locked,(14,05)
 
 DOOR:locked,(18,07),"The Key Of Access"
 OBJECT:'+',"godmode",(19,07)
+
+DOOR:locked,(18,09),"The Gauntlet Key"
+OBJECT:'?',"wishing",(19,07)
 
 # Let's put a dragon behind the door, just for the fun...
 MONSTER:'D',random,(13,05)

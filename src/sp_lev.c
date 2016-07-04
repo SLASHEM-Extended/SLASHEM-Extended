@@ -3038,6 +3038,7 @@ struct mkroom	*croom;
 	tm.y = y;
 
 	mktrap(t->type, 1, (struct mkroom*) 0, &tm);
+	/*pline("traptest %d", t->type);*/
     }
 }
 

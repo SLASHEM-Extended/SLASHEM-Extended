@@ -6,7 +6,7 @@
 #	The Beholder's dungeon.
 #
 
-MAZE: "beholder",' '
+MAZE: "behol-1",' '
 GEOMETRY: center,center
 #0        1         2         3         4         5         6
 #1234567890123456789012345678901234567890123456789012345678901234567890
@@ -96,3 +96,387 @@ MONSTER: random,random,random
 MONSTER: random,random,random
 MONSTER: random,random,random
 MONSTER: random,random,random
+
+# "Duke It Out" beholder level variant by Amy
+LEVEL: "behol-2"
+
+ROOM: "ordinary" , unlit, random, random, (05,05)
+OBJECT: random,random,random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , unlit, random, random, (20,10)
+NAME: "central"
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: 'e', "Beholder", random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+  
+ROOM: "ordinary" , random, random, random, random
+#STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+RANDOM_CORRIDORS
+
+# "Eye of the Beholder" map by Amy
+
+MAZE: "behol-3",' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+          #########################################################
+             ---+---               ---+---               ---+---
+           ---.....---           ---.....---           ---.....---
+          --.........--         --.........--         --.........--
+          |...-----...|         |...-----...|         |...-----...|
+          |...|   |...|         |...|   |...|         |...|   |...|
+          |..--   --..|         |..--   --..|         |..--   --..|
+          |..-------..|         |..-------..|         |..-------..|
+          |...........|         |...........|         |...........|
+          |...........|         |...........|         |...........|
+          |..----------         |..----------         |..----------
+          |..--                 |..--                 |..--
+          |...--                |...--                |...--
+          |....-----            |....-----            |....-----
+          --.......|            --.......|            --.......|
+           --......|             --......|             --......|
+            --------              --------              --------
+
+
+
+............................................................................
+ENDMAP
+RANDOM_MONSTERS: 'e','F'
+RANDOM_PLACES:(38,15),(16,15),(60,15)
+BRANCH:(40,00,40,00),(0,0,0,0)
+
+REGION:(38,03,38,03),lit,"random shop",filled,true
+
+DOOR:closed,(38,01)
+DOOR:closed,(16,01)
+DOOR:closed,(60,01)
+
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'e', "Beholder", place[0]
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+MONSTER: '8', random, (00,20), asleep
+MONSTER: '8', random, (02,20), asleep
+MONSTER: '8', random, (04,20), asleep
+MONSTER: '8', random, (06,20), asleep
+MONSTER: '8', random, (08,20), asleep
+MONSTER: '8', random, (10,20), asleep
+MONSTER: '8', random, (12,20), asleep
+MONSTER: '8', random, (14,20), asleep
+MONSTER: '8', random, (16,20), asleep
+MONSTER: '8', random, (18,20), asleep
+MONSTER: '8', random, (20,20), asleep
+MONSTER: '8', random, (22,20), asleep
+MONSTER: '8', random, (24,20), asleep
+MONSTER: '8', random, (26,20), asleep
+MONSTER: '8', random, (28,20), asleep
+MONSTER: '8', random, (30,20), asleep
+MONSTER: '8', random, (32,20), asleep
+MONSTER: '8', random, (34,20), asleep
+MONSTER: '8', random, (36,20), asleep
+MONSTER: '8', random, (38,20), asleep
+MONSTER: '8', random, (40,20), asleep
+MONSTER: '8', random, (42,20), asleep
+MONSTER: '8', random, (44,20), asleep
+MONSTER: '8', random, (46,20), asleep
+MONSTER: '8', random, (48,20), asleep
+MONSTER: '8', random, (50,20), asleep
+MONSTER: '8', random, (52,20), asleep
+MONSTER: '8', random, (54,20), asleep
+MONSTER: '8', random, (56,20), asleep
+MONSTER: '8', random, (58,20), asleep
+MONSTER: '8', random, (60,20), asleep
+MONSTER: '8', random, (62,20), asleep
+MONSTER: '8', random, (64,20), asleep
+MONSTER: '8', random, (66,20), asleep
+MONSTER: '8', random, (68,20), asleep
+MONSTER: '8', random, (70,20), asleep
+MONSTER: '8', random, (72,20), asleep
+MONSTER: '8', random, (74,20), asleep
+
+WALLIFY
+
+# Beholder UFO by Amy
+MAZE: "behol-4",' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                            ------------------                            
+                    ---------................---------                    
+              -------................................-------              
+         ------.........---------........---------.........------         
+      ----........-------       |........|       -------........----      
+    ---......------             |........|             ------......---    
+  ---.....----            -------........-------            ----.....---  
+---.....---       ---------....................---------       ---.....---
+|.......|    ------....................................------    |.......|
+|.......|    |..............................................|    |.......|
+|.......|    ------....................................------    |.......|
+---.....---       ---------....................---------       ---.....---
+  ---.....----            -------........-------            ----.....---  
+    ---......------             |........|             ------......---    
+      ----........-------       |........|       -------........----      
+         ------.........---------........---------.........------         
+              -------................................-------              
+                    ---------................---------                    
+                            ------------------                            
+ENDMAP
+REGION:(00,00,73,18),unlit,"ordinary"
+
+MONSTER: 'e', "Beholder", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

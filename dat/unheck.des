@@ -10060,3 +10060,1759 @@ DOOR:locked,(54,16)
 DOOR:locked,(44,18)
 DOOR:locked,(48,18)
 DOOR:locked,(52,18)
+
+MAZE:"unhck-88",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,spooky
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.|..........................................................................
+.----------------------------------------S----------------------------------
+.|.........+.|...........S.+.|.S........|.|......|.+...........+..........|.
+.|+|-----|+|.|...........|.|.|.|........|.|......|.|---------------------+|.
+.|.|.....|.|.|...........|.|.|.|........|.|......S.-------------..........|.
+.|.|.....|.|.|...........|.|.|.|........|.|......|.+.........+.-----------|.
+.|.|.....|.|.-------------.|.|.---------|.|---------------+|+|.+..........|.
+.|.|---S-|.|.+...........+.|.|.+........+.+........+.......|.|.|--------|+|.
+.|.|.....|.|.-----|+|--S-|.|.|.------------------------+---|.|.|.+.|....|.S.
+.S.|---|+|.|.|....|.|....|.|.|.|...........|.S.....|.......|.|.|.|.|....|.|.
+.|.|...|.|.|.S....|.|....|.|.|.|...........S.|----+|--------.|.|.|.S....|.|.
+.|.|...|.|.|.|....|.|....|.+.|.|...........|.|...|.+.......+.|.|.|.|....|.|.
+.|.|...|.|+|+|----|.---------|+|------------.|...S.|--------.|.|.|.|....|.|.
+.|.|...|.|......+.|.+........+.............+.|...|.|.......|.|.|.|.|....|.|.
+.|.|...|.--------.|.-----------|+|---S---|+|.|...|.|.......|.|.+.|.|....|.|.
+.|.|...|.|......|.|.|..........|.|.......|.|.|----------S--|+|----+|....|.|.
+.|.|...|.S......|.|.|..........|.|.......|.|.+.........+...........|....|.|.
+.|+|S--|+-------|.|.S..........|.---------.|-------+---|+----------------+|.
+.|.....|........+.|.|..........|.+.......+.|...........|.........+........|.
+-------------------------------------S-------------------------------------.
+..........................................................................|.
+ENDMAP
+
+RANDOM_PLACES:(00,00),(00,20),(75,00),(75,20),(16,03),(55,13),(37,15),(15,15),(22,09),(04,04)
+
+STAIR:random,up
+STAIR:random,down
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+REGION:(50,11,50,14),unlit,"randomroom"
+REGION:(12,02,12,11),unlit,"randomroom"
+REGION:(17,13,17,18),unlit,"randomroom"
+REGION:(04,04,08,06),unlit,"randomroom"
+REGION:(04,10,06,16),unlit,"randomroom"
+REGION:(10,15,15,16),unlit,"randomroom"
+REGION:(14,02,24,05),unlit,"randomroom"
+REGION:(14,09,17,11),unlit,"randomroom"
+REGION:(21,09,24,11),unlit,"randomroom"
+REGION:(21,15,30,18),unlit,"randomroom"
+REGION:(32,02,39,05),unlit,"randomroom"
+REGION:(32,09,42,11),unlit,"randomroom"
+REGION:(34,15,40,16),unlit,"randomroom"
+REGION:(43,02,48,05),unlit,"randomroom"
+REGION:(46,11,48,14),unlit,"randomroom"
+REGION:(52,13,58,14),unlit,"randomroom"
+REGION:(68,08,71,16),unlit,"randomroom"
+REGION:(43,07,50,07),unlit,"randomroom"
+REGION:(44,09,44,16),unlit,"randomroom"
+REGION:(44,18,54,18),unlit,"randomroom"
+REGION:(46,16,54,16),unlit,"randomroom"
+REGION:(46,09,50,09),unlit,"randomroom"
+REGION:(50,02,50,05),unlit,"randomroom"
+REGION:(52,02,62,02),unlit,"randomroom"
+REGION:(52,05,60,05),unlit,"randomroom"
+REGION:(52,07,58,07),unlit,"randomroom"
+REGION:(52,09,58,09),unlit,"randomroom"
+REGION:(52,11,58,11),unlit,"randomroom"
+REGION:(60,07,60,14),unlit,"randomroom"
+REGION:(56,16,66,16),unlit,"randomroom"
+REGION:(56,18,64,18),unlit,"randomroom"
+REGION:(66,18,73,18),unlit,"randomroom"
+REGION:(64,02,73,02),unlit,"randomroom"
+REGION:(64,04,73,04),unlit,"randomroom"
+REGION:(64,06,73,06),unlit,"randomroom"
+REGION:(64,08,64,14),unlit,"randomroom"
+REGION:(66,08,66,14),unlit,"randomroom"
+REGION:(73,08,73,16),unlit,"randomroom"
+REGION:(02,02,10,02),unlit,"randomroom"
+REGION:(02,04,02,16),unlit,"randomroom"
+REGION:(02,18,06,18),unlit,"randomroom"
+REGION:(04,08,08,08),unlit,"randomroom"
+REGION:(08,10,08,16),unlit,"randomroom"
+REGION:(08,18,15,18),unlit,"randomroom"
+REGION:(10,04,10,11),unlit,"randomroom"
+REGION:(10,13,15,13),unlit,"randomroom"
+REGION:(14,07,24,07),unlit,"randomroom"
+REGION:(19,09,19,18),unlit,"randomroom"
+REGION:(21,13,28,13),unlit,"randomroom"
+REGION:(26,02,26,11),unlit,"randomroom"
+REGION:(28,02,28,11),unlit,"randomroom"
+REGION:(30,02,30,11),unlit,"randomroom"
+REGION:(30,13,42,13),unlit,"randomroom"
+REGION:(32,07,39,07),unlit,"randomroom"
+REGION:(41,02,41,07),unlit,"randomroom"
+REGION:(32,15,32,18),unlit,"randomroom"
+REGION:(42,15,42,18),unlit,"randomroom"
+REGION:(34,18,40,18),unlit,"randomroom"
+
+MONSTER:'u',random,place[1],asleep
+
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'y',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+MONSTER:'n',random,random,hostile
+
+ENGRAVING:place[2],random,"The Eternal Darkness"
+ENGRAVING:place[3],random,"Here's looking at you, kid."
+ENGRAVING:place[4],random,"I find your lack of fate disturbing."
+ENGRAVING:place[5],random,"You don't stand a chance!"
+ENGRAVING:place[6],random,"This is your grave."
+ENGRAVING:place[7],random,"You got Boned by Yhelothar."
+ENGRAVING:place[8],random,"Do you want your possessions identified?"
+ENGRAVING:place[9],random,"The colors are very fleecy."
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+OBJECT:'[',"cloak of fumbling",random
+OBJECT:'[',"cloak of unspelling",random
+OBJECT:'[',"anti caster cloak",random
+OBJECT:'[',"cloak of luck negation",random
+OBJECT:'[',"yellow spell cloak",random
+OBJECT:'[',"cloak of inventorylessness",random
+OBJECT:'[',"cloak of respawning",random
+OBJECT:'[',"eerie cloak",random
+OBJECT:'[',"helm of lose identification",random
+OBJECT:'[',"helm of obscured display",random
+OBJECT:'[',"blacky helmet",random
+OBJECT:'[',"helm of bad alignment",random
+OBJECT:'[',"out of memory helmet",random
+OBJECT:'[',"helm of amnesia",random
+OBJECT:'[',"oilskin gloves",random
+OBJECT:'[',"menu nose gloves",random
+OBJECT:'[',"unwieldy gloves",random
+OBJECT:'[',"confusing gloves",random
+OBJECT:'[',"gauntlets of missing information",random
+OBJECT:'[',"gauntlets of trap creation",random
+OBJECT:'[',"sado maso gloves",random
+OBJECT:'[',"chaos gloves",random
+OBJECT:'[',"zipper boots",random
+OBJECT:'[',"autodestruct de vice boots",random
+OBJECT:'[',"speedbug boots",random
+OBJECT:'[',"boots of fainting",random
+OBJECT:'[',"gridbug conduct boots",random
+OBJECT:'[',"disenchanting boots",random
+OBJECT:'[',"pet-stomping platform boots",random
+OBJECT:'[',"dementia boots",random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+OBJECT:'[',random,random
+
+DOOR:locked,(31,02)
+DOOR:locked,(60,15)
+DOOR:locked,(61,05)
+DOOR:locked,(63,02)
+DOOR:locked,(63,06)
+DOOR:locked,(63,14)
+DOOR:locked,(65,08)
+DOOR:locked,(65,18)
+DOOR:locked,(67,10)
+DOOR:locked,(73,03)
+DOOR:locked,(73,07)
+DOOR:locked,(73,17)
+DOOR:locked,(74,08)
+DOOR:locked,(37,14)
+DOOR:locked,(37,19)
+DOOR:locked,(40,07)
+DOOR:locked,(41,01)
+DOOR:locked,(42,07)
+DOOR:locked,(42,14)
+DOOR:locked,(41,18)
+DOOR:locked,(43,10)
+DOOR:locked,(43,13)
+DOOR:locked,(45,09)
+DOOR:locked,(45,16)
+DOOR:locked,(49,04)
+DOOR:locked,(49,12)
+DOOR:locked,(50,10)
+DOOR:locked,(51,02)
+DOOR:locked,(51,05)
+DOOR:locked,(51,07)
+DOOR:locked,(51,11)
+DOOR:locked,(51,17)
+DOOR:locked,(55,08)
+DOOR:locked,(55,16)
+DOOR:locked,(56,15)
+DOOR:locked,(56,17)
+DOOR:locked,(58,06)
+DOOR:locked,(59,11)
+DOOR:locked,(60,06)
+DOOR:locked,(02,03)
+DOOR:locked,(01,09)
+DOOR:locked,(02,17)
+DOOR:locked,(07,07)
+DOOR:locked,(08,09)
+DOOR:locked,(08,17)
+DOOR:locked,(09,16)
+DOOR:locked,(10,03)
+DOOR:locked,(10,12)
+DOOR:locked,(11,02)
+DOOR:locked,(12,12)
+DOOR:locked,(13,10)
+DOOR:locked,(13,07)
+DOOR:locked,(16,13)
+DOOR:locked,(16,18)
+DOOR:locked,(19,08)
+DOOR:locked,(20,13)
+DOOR:locked,(20,17)
+DOOR:locked,(23,08)
+DOOR:locked,(25,02)
+DOOR:locked,(25,07)
+DOOR:locked,(27,02)
+DOOR:locked,(27,11)
+DOOR:locked,(29,13)
+DOOR:locked,(30,12)
+DOOR:locked,(31,07)
+DOOR:locked,(32,14)
+DOOR:locked,(33,18)
+
+MAZE:"unhck-89",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,spooky,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|. L..L.CT.C.TI..}.. L} L.}C .T.CT..CT.L }LC}C F}C.L.C LT .TC..L}.CL.}.C.}.|
+|I. TFL.IF TI.C TI.F. TI. F F.IF. IF...FL..FL. .TFL TILF .FI. T. .TF TLF..L|
+|FL FT.F}I.C}I..F}.F}}}. IL}.F.. LT}  .}I .C}.} ..} . }CLC }.  FCITI. FC.. |
+|}IT.F.I.C I.TCFI.T .F..LFI..FC}LI.FTL.I.FT.TI.CLF.T. F CITCI. TLFCI. TFL}T|
+|} .}L.TITTI.}..FCCFLCC.LC.CLF.F...TFIL..F ..T }I. I} ..CLI.TF}.L..F... } T|
+|TI.C. FLF FF F.  F.}FL.F.LF. FF  F TFFFCF FC..F.F.}}C}.I.T TI.LT}C. .}}CLC|
+|FCITI. FC.. FL FT.F}I.C}I..F}.F}}}. ------. LT}  .}I .C}.} ..} . }CLC }.  |
+|LITF.C.F T}IF C}. FFLF}.. F}CLI .TT}|....|FI.. L FFLF.F}.}L.} C TF T.. }} |
+|FTI.LT.IF. . CL. T.}LT}..}.I} TFLLFL|....|F  TIC}TTC}}}. CL. . .F.FL}.L  L|
+|}C.} }.T}I.IFLFC. LFCLT. F.C. I.F...|....|L .CL. C}. F C.F} CL.FL. C}.CLL}|
+|FITF}F.C}. .FC}F.IF}. ..FC}. F. FI T|....|FLC}. FL. F. FFC .FFC.FCLLC.F.} |
+|}.CL}I LTI.TTI..I. F...F.FF..FT TII.------L.L.}. CL.. C F..FTF.CTF}C.}}.CL|
+|}F .}}.CL }.}..ITF... FL}F.F. FFL .C}FCL FCLTFLCII.FLC..F.FL..TC}LFCF. TLT|
+|..CL. F}.F.T. }. I}..}ILI.T}LF. F.F}F. .CL. }.}CL.  }C.  TTT C}T..C}. .T} |
+|F..IT...I..  TI}. IT}.}}. I.}CI..}I.CL}FL.C }.F.CLF.FLFC}}. FI.T}.}. T}.. |
+|TI.LT.IF. . CL. T.}LT}..}.I} TFLLFLCL..FLF  TIC}TTC}}}. CL. . .F.FL}.L  LF|
+|C}. I}.TI.TCL.CL.F}C}. L.}} L}.. L}. F}. F. FLLFCLF}. L.}. C  T.}}I.ILF.LF|
+|}C.T}.TTII.FF.L}. F}. F}. F}C.F C}}.LC.TI. TI.C}TTII}} }. CL}. LF .}}FF.FI|
+----------------------------------------------------------------------------
+ENDMAP
+RANDOM_PLACES:(01,14),(74,01)
+NON_DIGGABLE:(00,00,75,19)
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,75,19),unlit,"ordinary"
+
+REGION:(18,02,18,02),unlit,"randomroom"
+REGION:(52,03,52,03),unlit,"randomroom"
+REGION:(65,15,65,15),unlit,"randomroom"
+REGION:(24,17,24,17),unlit,"randomroom"
+REGION:(06,04,06,04),unlit,"randomroom"
+
+ENGRAVING:random,random,"iter vehemens ad necem"
+ENGRAVING:random,random,"You hear gutteral voices chanting."
+ENGRAVING:random,random,"You hear drums beating ominously!"
+ENGRAVING:random,random,"The drums are beating faster!"
+ENGRAVING:random,random,"You hear somebody screaming for help!"
+ENGRAVING:random,random,"You will not get in!"
+ENGRAVING:random,random,"You think you're clever, huh?"
+ENGRAVING:random,random,"You hear someone scream: 'No! Stop! The Knife! Aaaaaahhhh!'"
+ENGRAVING:random,random,"You've been detected by a security camera! Har har har!"
+ENGRAVING:random,random,"Bwarharharharharharhar!"
+ENGRAVING:random,random,"All your personal files are encrypted cryptographically strong!"
+ENGRAVING:random,random,"Without the original key, recovery of your files is impossible!"
+ENGRAVING:random,random,"The engraving shines so brigtly, you're blinded permanently!"
+ENGRAVING:random,random,"The master mind flayer's tentacles suck you!"
+ENGRAVING:random,random,"You suddenly don't feel the void in your head any more."
+ENGRAVING:random,random,"There's an inventorylessness trap on this dungeon level."
+
+TRAP: random, (38,01)
+TRAP: random, (39,02)
+TRAP: random, (41,02)
+TRAP: random, (40,03)
+TRAP: random, (41,03)
+TRAP: random, (38,04)
+TRAP: random, (41,04)
+TRAP: random, (39,05)
+TRAP: random, (39,06)
+TRAP: random, (39,13)
+TRAP: random, (39,14)
+TRAP: random, (41,15)
+TRAP: random, (38,16)
+TRAP: random, (40,17)
+TRAP: random, (41,18)
+TRAP: "alarm", (39,01)
+TRAP: "alarm", (40,02)
+TRAP: "alarm", (38,03)
+TRAP: "alarm", (40,04)
+TRAP: "alarm", (40,05)
+TRAP: "alarm", (41,06)
+TRAP: "alarm", (40,13)
+TRAP: "alarm", (41,13)
+TRAP: "alarm", (42,14)
+TRAP: "alarm", (40,15)
+TRAP: "alarm", (40,16)
+TRAP: "alarm", (41,16)
+TRAP: "alarm", (38,17)
+TRAP: "alarm", (39,18)
+TRAP: "alarm", (40,18)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER: 'L', random, (38,08), hostile, asleep
+OBJECT: '?', random, (38,08)
+MONSTER: 'L', random, (38,09), hostile, asleep
+OBJECT: '?', random, (38,09)
+MONSTER: 'L', random, (38,10), hostile, asleep
+OBJECT: '?', random, (38,10)
+MONSTER: 'L', random, (38,11), hostile, asleep
+OBJECT: '?', random, (38,11)
+MONSTER: 'L', random, (39,08), hostile, asleep
+OBJECT: '/', random, (39,08)
+MONSTER: 'L', random, (39,09), hostile, asleep
+OBJECT: '/', random, (39,09)
+MONSTER: 'L', random, (39,10), hostile, asleep
+OBJECT: '/', random, (39,10)
+MONSTER: 'L', random, (39,11), hostile, asleep
+OBJECT: '/', random, (39,11)
+MONSTER: 'L', random, (40,08), hostile, asleep
+OBJECT: '!', random, (40,08)
+MONSTER: 'L', random, (40,09), hostile, asleep
+OBJECT: '!', random, (40,09)
+MONSTER: 'L', random, (40,10), hostile, asleep
+OBJECT: '!', random, (40,10)
+MONSTER: 'L', random, (40,11), hostile, asleep
+OBJECT: '!', random, (40,11)
+MONSTER: 'L', random, (41,08), hostile, asleep
+OBJECT: random, random, (41,08)
+MONSTER: 'L', random, (41,09), hostile, asleep
+OBJECT: random, random, (41,09)
+MONSTER: 'L', random, (41,10), hostile, asleep
+OBJECT: random, random, (41,10)
+MONSTER: 'L', random, (41,11), hostile, asleep
+OBJECT: random, random, (41,11)
+
+MONSTER: 'L', random, (01,01), hostile
+MONSTER: 'L', random, (74,18), hostile
+
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'v', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+MONSTER: 'E', random, random
+
+OBJECT: '?', "create monster", random
+OBJECT: '/', "create monster", random
+OBJECT: '?', "create victim", random
+OBJECT: '/', "create horde", random
+OBJECT: '=', "timely backup", random
+OBJECT: '?', "summon undead", random
+OBJECT: '/', "summon undead", random
+OBJECT: '/', "reduce max hitpoints", random
+OBJECT: '!', "amnesia", random
+OBJECT: '!', "cyanide", random
+OBJECT: '?', "trap creation", random
+OBJECT: '?', "create trap", random
+OBJECT: '?', "flood", random
+OBJECT: '?', "lava", random
+OBJECT: '?', "barrhing", random
+OBJECT: '?', "lockout", random
+OBJECT: '/', "banishment", random
+OBJECT: '!', "cancellation", random
+OBJECT: '!', "slime", random
+OBJECT: '?', "bad effect", random
+OBJECT: '/', "bad effect", random
+OBJECT: '/', "clone monster", random
+OBJECT: '?', "destroy weapon", random
+OBJECT: '?', "destroy armor", random
+OBJECT: '?', "stoning", random
+OBJECT: '?', "amnesia", random
+OBJECT: '/', "stoning", random
+OBJECT: '/', "curse items", random
+OBJECT: '/', "amnesia", random
+OBJECT: '/', "levitation", random
+OBJECT: '/', "remove resistance", random
+OBJECT: '/', "bad luck", random
+OBJECT: '/', "corrosion", random
+OBJECT: '/', "starvation", random
+OBJECT: '/', "confusion", random
+OBJECT: '/', "sliming", random
+OBJECT: '/', "lycanthropy", random
+OBJECT: '/', "fumbling", random
+OBJECT: '/', "punishment", random
+OBJECT: '?', "punishment", random
+OBJECT: '?', "summon boss", random
+OBJECT: '?', "bullshit", random
+OBJECT: '?', "chaos terrain", random
+OBJECT: '?', "nastiness", random
+OBJECT: '?', "demonology", random
+OBJECT: '?', "elementalism", random
+OBJECT: '?', "girliness", random
+OBJECT: '/', "summon sexy girl", random
+OBJECT: '?', "group summoning", random
+OBJECT: '?', "summon ghost", random
+OBJECT: '?', "megaload", random
+OBJECT: '?', "enrage", random
+OBJECT: '/', "tidal wave", random
+OBJECT: '?', "antimatter", random
+OBJECT: '?', "summon elm", random
+OBJECT: '/', "summon elm", random
+OBJECT: '/', "drain mana", random
+OBJECT: '/', "finger bending", random
+OBJECT: '?', "immobility", random
+OBJECT: '/', "immobility", random
+OBJECT: '?', "flooding", random
+OBJECT: '?', "egoism", random
+OBJECT: '/', "egoism", random
+OBJECT: '?', "sin", random
+OBJECT: '/', "sin", random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+OBJECT: '/', random, random
+OBJECT: '?', random, random
+OBJECT: '!', random, random
+
+MONSTER:'u',random,(74,01),asleep
+
+MAZE:"unhck-90",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,spooky,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..............................FF|........LLLL.................|...........|
+|-C-C-C-C-C-C-C-C-C-C-C-C-C-C-C-F|.|+-------LLL................|...........|
+|..............................|FF.|.......|LLLL...............|...........|
+|..............................|----.......|LLLLL..............+...........|
+|..............................|...|.......|LLLLLL.............|...........|
+|..............................|...|.......|LLLLLLL............|...........|
+|..............................|...|.......|LLLLLLLL...........|...........|
+|..............................|...-----------------------------------}----|
+|..............................|...+....................|}}}}}}}}}}}}|}|--}|
+|---------------------------------+|....................|}}}}}}}}}}}}|}|-}}|
+|TTTT+.............................|....................|..........}}.}}}}}|
+|-+--|.............................|....................|.}}}}}}}.}}.}.}}}}|
+|....|.............................|....................|.}}}}}}}.}}.}..}}}|
+|....|.............................|....................|}.}}}}}}..}.}...}}|
+|....|.............................|....................|}}.}}}}}}}..-----}|
+|....|.............................|....................|}}}.}}}}}}}.|...}}|
+|....|.............................|....................|}}}}..}}}}}}|..}}}|
+|....|.............................|....................|......}}}}}}|.}}}}|
+|....|.............................|....................+......}}}}}}|}}}}}|
+----------------------------------------------------------------------------
+ENDMAP
+RANDOM_PLACES:(36,19),(55,09)
+
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(01,03,30,09),lit,"angelhall"
+REGION:(36,03,42,07),lit,"cocknest"
+REGION:(64,01,74,07),lit,"humanhall"
+REGION:(36,09,42,19),lit,"randomroom"
+REGION:(43,09,49,19),lit,"randomroom"
+REGION:(50,09,55,19),lit,"randomroom"
+REGION:(06,11,34,19),lit,"insideroom"
+REGION:(01,13,04,19),lit,"random shop"
+REGION:(01,13,04,19),lit,"armory"
+REGION:(01,13,04,19),lit,"temple"
+ALTAR:(01,19),align[0],shrine
+
+CONTAINER:'(',"chest",(16,09)
+OBJECT:'?',"barrhing",contained
+OBJECT:'!',"confusion",contained
+CONTAINER:'(',"chest",(40,05)
+OBJECT:'?',"lava",contained
+OBJECT:'!',"confusion",contained
+CONTAINER:'(',"chest",(74,01)
+OBJECT:'?',"flood",contained
+OBJECT:'!',"confusion",contained
+CONTAINER:'(',"chest",(06,19)
+OBJECT:'?',"growth",contained
+OBJECT:'!',"confusion",contained
+
+MONSTER:'u',random,(01,19),asleep
+
+ENGRAVING:random,random,"You ain't getting out of here alive."
+ENGRAVING:random,random,"Think you're halfway through this level? Ha! You better think again."
+ENGRAVING:random,random,"I am watching you fail. --Amy"
+ENGRAVING:random,random,"Your ttyrec will be visible to everyone, so please encounter a glorious YASD!"
+ENGRAVING:random,random,"An enormous ghost appears next to you!"
+ENGRAVING:random,random,"Vecna was here!"
+ENGRAVING:random,random,"Vlad the Impaler was here!"
+ENGRAVING:random,random,"ad aerarium"
+ENGRAVING:random,random,"Nightmare's Gauntlet is by far the hardest Nightmare level variant."
+ENGRAVING:random,random,"The Key of Law is safe and no mere adventurer is gonna get it."
+
+TRAP: "alarm", (10,01)
+TRAP: "board", (11,01)
+TRAP: "alarm", (12,01)
+TRAP: "board", (13,01)
+TRAP: "alarm", (14,01)
+TRAP: "board", (15,01)
+TRAP: "alarm", (16,01)
+TRAP: "board", (17,01)
+TRAP: "alarm", (18,01)
+TRAP: "board", (19,01)
+TRAP: "alarm", (20,01)
+TRAP: "board", (21,01)
+TRAP: "alarm", (22,01)
+TRAP: "board", (23,01)
+TRAP: "alarm", (24,01)
+TRAP: "board", (25,01)
+TRAP: "alarm", (26,01)
+TRAP: "board", (27,01)
+TRAP: "alarm", (28,01)
+TRAP: "board", (29,01)
+TRAP: "alarm", (30,01)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+OBJECT: ')', random, random
+OBJECT: '(', random, random
+
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: 'A', random, random,hostile
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+DOOR:locked,(02,12)
+DOOR:locked,(05,11)
+DOOR:locked,(34,10)
+DOOR:locked,(36,02)
+DOOR:locked,(35,09)
+DOOR:locked,(56,19)
+DOOR:locked,(63,04)
+
+OBJECT:'(',"skeleton key",place[0],blessed,0
+
+LEVEL: "unhck-91"
+
+ROOM: "ordinary" , unlit, random, random, (05,05)
+OBJECT: random,random,random
+STAIR:random,up
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , unlit, random, random, (20,10)
+NAME: "central"
+STAIR:random,down
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+  
+ROOM: "ordinary" , random, random, random, random
+#STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+MONSTER: 'e', random, random, hostile
+
+RANDOM_CORRIDORS
+
+MAZE: "unhck-92",' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+          #########################################################
+             ---+---               ---+---               ---+---
+           ---.....---           ---.....---           ---.....---
+          --.........--         --.........--         --.........--
+          |...-----...|         |...-----...|         |...-----...|
+          |...|   |...|         |...|   |...|         |...|   |...|
+          |..--   --..|         |..--   --..|         |..--   --..|
+          |..-------..|         |..-------..|         |..-------..|
+          |...........|         |...........|         |...........|
+          |...........|         |...........|         |...........|
+          |..----------         |..----------         |..----------
+          |..--                 |..--                 |..--
+          |...--                |...--                |...--
+          |....-----            |....-----            |....-----
+          --.......|            --.......|            --.......|
+           --......|             --......|             --......|
+            --------              --------              --------
+
+
+
+............................................................................
+ENDMAP
+RANDOM_MONSTERS: 'e','F'
+RANDOM_PLACES:(38,15),(16,15),(60,15)
+STAIR:random,up
+STAIR:random,down
+
+REGION:(38,03,38,03),lit,"random shop",filled,true
+
+DOOR:closed,(38,01)
+DOOR:closed,(16,01)
+DOOR:closed,(60,01)
+
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+TRAP: random,random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'e', random, place[0]
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+MONSTER: '8', random, (00,20), asleep
+MONSTER: '8', random, (02,20), asleep
+MONSTER: '8', random, (04,20), asleep
+MONSTER: '8', random, (06,20), asleep
+MONSTER: '8', random, (08,20), asleep
+MONSTER: '8', random, (10,20), asleep
+MONSTER: '8', random, (12,20), asleep
+MONSTER: '8', random, (14,20), asleep
+MONSTER: '8', random, (16,20), asleep
+MONSTER: '8', random, (18,20), asleep
+MONSTER: '8', random, (20,20), asleep
+MONSTER: '8', random, (22,20), asleep
+MONSTER: '8', random, (24,20), asleep
+MONSTER: '8', random, (26,20), asleep
+MONSTER: '8', random, (28,20), asleep
+MONSTER: '8', random, (30,20), asleep
+MONSTER: '8', random, (32,20), asleep
+MONSTER: '8', random, (34,20), asleep
+MONSTER: '8', random, (36,20), asleep
+MONSTER: '8', random, (38,20), asleep
+MONSTER: '8', random, (40,20), asleep
+MONSTER: '8', random, (42,20), asleep
+MONSTER: '8', random, (44,20), asleep
+MONSTER: '8', random, (46,20), asleep
+MONSTER: '8', random, (48,20), asleep
+MONSTER: '8', random, (50,20), asleep
+MONSTER: '8', random, (52,20), asleep
+MONSTER: '8', random, (54,20), asleep
+MONSTER: '8', random, (56,20), asleep
+MONSTER: '8', random, (58,20), asleep
+MONSTER: '8', random, (60,20), asleep
+MONSTER: '8', random, (62,20), asleep
+MONSTER: '8', random, (64,20), asleep
+MONSTER: '8', random, (66,20), asleep
+MONSTER: '8', random, (68,20), asleep
+MONSTER: '8', random, (70,20), asleep
+MONSTER: '8', random, (72,20), asleep
+MONSTER: '8', random, (74,20), asleep
+
+WALLIFY
+
+MAZE: "unhck-93",' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                            ------------------                            
+                    ---------................---------                    
+              -------................................-------              
+         ------.........---------........---------.........------         
+      ----........-------       |........|       -------........----      
+    ---......------             |........|             ------......---    
+  ---.....----            -------........-------            ----.....---  
+---.....---       ---------....................---------       ---.....---
+|.......|    ------....................................------    |.......|
+|.......|    |..............................................|    |.......|
+|.......|    ------....................................------    |.......|
+---.....---       ---------....................---------       ---.....---
+  ---.....----            -------........-------            ----.....---  
+    ---......------             |........|             ------......---    
+      ----........-------       |........|       -------........----      
+         ------.........---------........---------.........------         
+              -------................................-------              
+                    ---------................---------                    
+                            ------------------                            
+ENDMAP
+REGION:(00,00,73,18),unlit,"ordinary"
+STAIR:random,up
+STAIR:random,down
+
+MONSTER: 'e', random, random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', "gas spore", random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+MONSTER: 'e', random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE:"unhck-94",' '
+FLAGS:noteleport,hardfloor,nommap,shortsighted,lethe
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+############################################################################
+###         LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL         }}}}}}}}}}}}}}}}}}}}}}}}}
+########                LLLLLLLLLLLLLLLLLLLLL           }}}}}}}}}}}}}}}}}}}}
+#####################          LLLLLLLLLLLLLLLLLL            }}}}}}}}}}}}}}}
+       }}}}}}}}}   ##########              LLLLLLLLLLLL            }}}}}}}}}
+    }}}}}}}}}}}}}          #############            LLL   #######       }}}}
+}}}}}}}}      }}}}}}}                 ############      ####   #######      
+}}}}}     ###     }}}   ###########            ###########     LL   ########
+}}      ### ####      ###         ###########               LLLLLL         #
+   ######      ########   LLLLLL            ###############        #########
+####      }}}    }}}}}  LLLLL##############               ##########   LLL  
+#        }}}}}}              #            ##############             LLLLLL 
+##############################                        #############  LLLLLLL
+                                }}}}}}}}}}}}}}}}}                 #      LLL
+###################################################################  }}    L
+#                           LLLLLLLLL                                }}}}}  
+######                                   }}}}}}}}}}}}}}}}}}          }}}}}}}
+     #############      LLLLLLLLLLLL   ############################    }}}  
+     LLLL     #############################################      ###########
+LLLLLLLLL                      ####################################        #
+ENDMAP
+
+RANDOM_MONSTERS: 'L','W','V'
+NON_DIGGABLE:(00,00,75,19)
+STAIR:random,up
+STAIR:random,down
+
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: '8', random, random, hostile
+MONSTER: 'L', random, (75,00), hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+MAZE:"unhck-95",' '
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+STAIR:random,up
+STAIR:random,down
+REGION:(00,00,75,20),unlit,"ordinary"
+
+OBJECT: random,random,random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT:'(',"chest",random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '!', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '?', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+OBJECT: '+', random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'V', random, random, hostile
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+OBJECT: random, random, random
+MONSTER: 'L', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE:"unhck-96",' '
+MESSAGE: "You feel deathly cold."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|................................-----------...............................|
+|. . . . . . . . . . . . . . . . |.C.....C.| . . . . . . . . . . . . . . . |
+|................................|CC.LLL.CC|...............................|
+|. . . . . . . . . . . . . . . . |.........| . . . . . . . . . . . . . . . |
+|................................|.L.....L.|...............................|
+|. . . . . . . . . . . . . . . . |.........| . . . . . . . . . . . . . . . |
+|................................|CC.LLL.CC|...............................|
+|. . . . . . . . . . . . . . . . |.C.....C.| . . . . . . . . . . . . . . . |
+|................................-----------...............................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+|. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . |
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+RANDOM_PLACES:(38,06),(38,12),(34,09),(42,09)
+STAIR:random,up
+STAIR:random,down
+REGION:(00,00,75,20),unlit,"ordinary"
+REGION:(34,06,42,12),lit,"ordinary"
+
+MONSTER: 'L', random, place[0], hostile
+MONSTER: 'L', random, (38,09), hostile
+MONSTER: 'L', random, (35,06), hostile
+MONSTER: 'L', random, (34,07), hostile
+MONSTER: 'L', random, (35,07), hostile
+MONSTER: 'L', random, (41,06), hostile
+MONSTER: 'L', random, (41,07), hostile
+MONSTER: 'L', random, (42,07), hostile
+MONSTER: 'L', random, (34,11), hostile
+MONSTER: 'L', random, (35,11), hostile
+MONSTER: 'L', random, (35,12), hostile
+MONSTER: 'L', random, (42,11), hostile
+MONSTER: 'L', random, (41,11), hostile
+MONSTER: 'L', random, (41,12), hostile
+MONSTER: 'o', "goblin", (34,06), hostile
+MONSTER: 'o', "goblin", (42,06), hostile
+MONSTER: 'o', "goblin", (42,12), hostile
+MONSTER: 'o', "goblin", (34,12), hostile
+TRAP: "polymorph", (34,06)
+TRAP: "polymorph", (42,06)
+TRAP: "polymorph", (42,12)
+TRAP: "polymorph", (34,12)
+OBJECT: '/', "polymorph", (34,06)
+OBJECT: '/', "polymorph", (42,06)
+OBJECT: '/', "polymorph", (42,12)
+OBJECT: '/', "polymorph", (34,12)
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'L', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'W', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'V', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+MONSTER: 'Z', random, random, hostile
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "teleport", random
+TRAP: "ventilator", (38,10)
+TRAP: "ventilator", (38,08)
+TRAP: "ventilator", (39,09)
+TRAP: "ventilator", (37,09)
+TRAP: "fumarole", (37,08)
+TRAP: "fumarole", (37,10)
+TRAP: "fumarole", (39,08)
+TRAP: "fumarole", (39,10)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+

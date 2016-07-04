@@ -120,6 +120,7 @@ boolean restore;
 				   otmp->oartifact == ART_KEY_OF_CHAOS ||
 				   otmp->oartifact == ART_NIGHTHORN ||
 				   otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
+				   otmp->oartifact == ART_GAUNTLET_KEY ||
 				   otmp->oartifact == ART_HAND_OF_VECNA ||
 				   otmp->oartifact == ART_THIEFBANE) {
 			    /* Guaranteed artifacts become ordinary objects */

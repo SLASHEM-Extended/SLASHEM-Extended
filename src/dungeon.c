@@ -606,10 +606,10 @@ struct level_map {
 } level_map[] = {
 	{ "air",	&air_level },
 	{ "asmod",	&asmodeus_level },
-	{ "demogorg",   &demogorgon_level },
-	{ "geryon",     &geryon_level },
-	{ "dispater",   &dispater_level },
-	{ "yeenoghu",   &yeenoghu_level },
+	{ "demog",   &demogorgon_level },
+	{ "geryo",     &geryon_level },
+	{ "dispa",   &dispater_level },
+	{ "yeeno",   &yeenoghu_level },
 	{ "astral",	&astral_level },
 	{ "baalz",	&baalzebub_level },
 	{ "bigrm",	&bigroom_level },
@@ -617,7 +617,7 @@ struct level_map {
 	{ "earth",	&earth_level },
 	{ "fakewiz1",	&portal_level },
 	{ "fire",	&fire_level },
-	{ "juiblex",	&juiblex_level },
+	{ "juibl",	&juiblex_level },
 	{ "knox",	&knox_level },
 #ifdef BLACKMARKET        
 	{ "blkmar",     &blackmarket_level },
@@ -640,11 +640,11 @@ struct level_map {
 	{ "wizard1",	&wiz1_level },
 	{ "wizard2",	&wiz2_level },
 	{ "wizard3",	&wiz3_level },
-	{ "nightmar",	&lawful_quest_level },
-	{ "beholder",	&neutral_quest_level },
+	{ "night",	&lawful_quest_level },
+	{ "behol",	&neutral_quest_level },
 	{ "lich",	&chaotic_quest_level },
 #ifdef RECORD_ACHIEVE
-        { "minend",     &mineend_level },
+        { "mnend",     &mineend_level },
         { "soko1",      &sokoend_level },
 #endif
 	{ X_START,	&qstart_level },
