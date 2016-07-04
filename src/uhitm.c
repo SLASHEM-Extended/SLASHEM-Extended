@@ -1869,7 +1869,7 @@ int thrown;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5)) {
 
-			switch (rnd(232)) {
+			switch (rnd(268)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -2103,6 +2103,42 @@ int thrown;
 			case 230: pline("You pull at %s's ear.", mon_nam(mon)); break;
 			case 231: pline("You scream an insult at %s.", mon_nam(mon)); break;
 			case 232: pline("You scowl at %s.", mon_nam(mon)); break;
+			case 233: pline("%s says: 'Now you can however which expierience!'", Monnam(mon)); break;
+			case 234: pline("%s was scratched by your sword and is really angry now.", Monnam(mon)); break;
+			case 235: pline("Now %s becomes however correctly sourly!", mon_nam(mon)); break;
+			case 236: pline("You stab %s fully into the belly!", mon_nam(mon)); break;
+			case 237: pline("Your sexy leather pumps scratch up and down %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, LEG))); break;
+			case 238: pline("You draw %s by sliding your female mocassins over %s's %s.", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, HAND))); break;
+			case 239: pline("With your Nike sneakers, you place a strong kick into %s's eggs.", mon_nam(mon)); break;
+			case 240: pline("You scratch open %s's skin with your velcro shoes.", mon_nam(mon)); break;
+			case 241: pline("You blast %s with a fire bolt.", mon_nam(mon)); break;
+			case 242: pline("You chill %s with a frost bolt.", mon_nam(mon)); break;
+			case 243: pline("You dig into %s's body with your pick-axe.", mon_nam(mon)); break;
+			case 244: pline("Keep attacking %s and you may earn a trophy!", mon_nam(mon)); break;
+			case 245: pline("You slap %s, generating a ringing sound.", mon_nam(mon)); break;
+			case 246: pline("You claw %s's %s with your fingernails.", mon_nam(mon), mbodypart(mon, FACE)); break;
+			case 247: pline("You sting %s in the %s with your scalpel.", mon_nam(mon), mbodypart(mon, FINGERTIP)); break;
+			case 248: pline("%s gets %s cancer from your attack!", Monnam(mon), mbodypart(mon, LUNG)); break;
+			case 249: pline("You whack %s's %s with your high heel.", mon_nam(mon), mbodypart(mon, HEAD)); break;
+			case 250: pline("You kick %s in the shin with your plateau sandals.", mon_nam(mon)); break;
+			case 251: pline("You hit %s over the %s with your massive wedge-heeled sandal.", mon_nam(mon), mbodypart(mon, HEAD)); break;
+			case 252: pline("Being a member of %s allows you to hit!", urace.coll); break;
+			case 253: pline("And yet again you hit!"); break;
+			case 254: pline("Unlike Unnethack, this variant allows you to actually hit monsters, and so you do."); break;
+			case 255: pline("Thankfully you're not playing dnethack with its screwy to-hit calculations, so you hit %s.", mon_nam(mon)); break;
+			case 256: pline("Your character is more skilled than it could be if this were Nethack Fourk, and so your weapon passes the to-hit check!"); break;
+			case 257: pline("Vanilla Nethack would have made you miss this attack, but here, you hit %s.", mon_nam(mon)); break;
+			case 258: pline("If this were FIQhack, %s would totally own you. But you're playing something much better, and so %s loses health.", mon_nam(mon), mon_nam(mon)); break;
+			case 259: pline("You sting/strike/slit/<insert other attack verb here> %s!", mon_nam(mon)); break;
+			case 260: pline("You hit %s with a thrown rock!", mon_nam(mon)); break;
+			case 261: pline("Clash! You rammed %s.", mon_nam(mon)); break;
+			case 262: pline("You damage %s's clothing!", mon_nam(mon)); break;
+			case 263: pline("You break %s's eyeglasses!", mon_nam(mon)); break;
+			case 264: pline("%s fails to duck under your swing!", Monnam(mon)); break;
+			case 265: pline("You fart %s in the %s!", mon_nam(mon), mbodypart(mon, FACE)); break;
+			case 266: pline("You smash a heavy object into %s's upper body.", mon_nam(mon)); break;
+			case 267: pline("You throw a chair at %s and hit!", mon_nam(mon)); break;
+			case 268: pline("You grab %s's %s and smash it against a wall!", mon_nam(mon), mbodypart(mon, HEAD)); break;
 
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
@@ -2191,7 +2227,7 @@ int thrown;
 
 			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
-				switch (rnd(231)) {
+				switch (rnd(276)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -2424,6 +2460,51 @@ int thrown;
 				case 229: pline("You cleave %s in half.", mon_nam(mon)); break;
 				case 230: pline("%s's %s flies off in a wide trajectory.", Monnam(mon), mbodypart(mon,HEAD)); break;
 				case 231: pline("%s is driven several feet into the ground under your blow!", Monnam(mon)); break;
+				case 232: pline("You make %s flatly.", mon_nam(mon)); break;
+				case 233: pline("You hack %s to pieces.", mon_nam(mon)); break;
+				case 234: pline("%s was completely annihilated!", Monnam(mon)); break;
+				case 235: pline("You make %s fully finished!", mon_nam(mon)); break;
+				case 236: pline("Your dagger cuts through %s's %s!", mon_nam(mon), mbodypart(mon, NECK)); break;
+				case 237: pline("You use the bastard sword to kill %s.", mon_nam(mon)); break;
+				case 238: pline("You instakill %s by teleporting into it.", mon_nam(mon)); break;
+				case 239: pline("You split %s's skull with your high-heeled footwear!", mon_nam(mon)); break;
+				case 240: pline("Your leather peep-toes broke %s's %s!", mon_nam(mon), mbodypart(mon, LEG)); break;
+				case 241: pline("You shoot %s with a death ray!", mon_nam(mon)); break;
+				case 242: pline("You fire a wide-angle disintegration beam at %s!", mon_nam(mon)); break;
+				case 243: pline("You invoke a mana storm and kill %s.", mon_nam(mon)); break;
+				case 244: pline("By defeating %s you earned a trophy! Well done!", mon_nam(mon)); break;
+				case 245: pline("%s's nuts are flattened by your combat stilettos!", Monnam(mon)); break;
+				case 246: pline("Gategoal! Goalgate!"); break;
+				case 247: pline("You purged the world of the filthy heretic that is %s.", mon_nam(mon)); break;
+				case 248: pline("Your hammer breaks %s's %s.", mon_nam(mon), mbodypart(mon, SPINE)); break;
+				case 249: pline("With the power of %s, you defeat %s!", urace.coll, mon_nam(mon)); break;
+				case 250: pline("KAMEHAMEHA! %s is finished.", Monnam(mon)); break;
+				case 251: pline("%s jumps out the window and plummets to death!", Monnam(mon)); break;
+				case 252: pline("You push %s into a lake of lava.", mon_nam(mon)); break;
+				case 253: pline("You perform a DDOS attack on %s, who disconnects from the server.", mon_nam(mon)); break;
+				case 254: pline("%s gets a segmentation fault!", Monnam(mon)); break;
+				case 255: pline("The %s its program crashed!", mon_nam(mon)); break;
+				case 256: pline("%s encounters an access violation and is removed from the game!", Monnam(mon)); break;
+				case 257: pline("%s forgot to watch its hit points and now they're empty!", Monnam(mon)); break;
+				case 258: pline("%s ran out of health and tries to discuss with the game master but is ultimately eliminated.", Monnam(mon)); break;
+				case 259: pline("%s gets banned for breaking the game rules!", Monnam(mon)); break;
+				case 260: pline("The game is running low on memory. We're removing %s to free some space.", mon_nam(mon)); break;
+				case 261: pline("Your Tsurugi of Muramasa bisects %s!", mon_nam(mon)); break;
+				case 262: pline("%s catches your knife with its temple!", Monnam(mon)); break;
+				case 263: pline("1-hit KO!"); break;
+				case 264: pline("And the winner is... %s!", plname); break;
+				case 265: pline("Dazhe tip bloka l'da pozdravlyayet vas, khar khar."); break;
+				case 266: pline("Vy ne tip bloka l'da, no vy vse ravno pobedili %s!", mon_nam(mon)); break;
+				case 267: pline("You send %s back to where it belongs!", mon_nam(mon)); break;
+				case 268: pline("You zap %s with a wand of banishment!", mon_nam(mon)); break;
+				case 269: pline("%s is sent to vanilla in order to bother players other than you!", Monnam(mon)); break;
+				case 270: pline("Bzzzzzt! %s is warped to the dnethack game that's running on nethack.dank.ninja right now!", Monnam(mon)); break;
+				case 271: pline("Your wand of cross-variant teleportation transfers %s to nethack.alt.org!", mon_nam(mon)); break;
+				case 272: pline("You take down %s and immerse its %s in a heap of dog shit!", mon_nam(mon), mbodypart(mon, FACE)); break;
+				case 273: pline("You resole %s's ass!", mon_nam(mon)); break;
+				case 274: pline("You put a mine into %s's trouser pocket and wait for it to explode.", mon_nam(mon)); break;
+				case 275: pline("%s fails to block your finishing move!", Monnam(mon)); break;
+				case 276: pline("As it turns out, %s is the biggest weaking of this dungeon.", mon_nam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -3763,7 +3844,7 @@ register int roll;
 		You("pretend to be friendly to %s.", mon_nam(mdef));
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(289)) {
+		switch (rnd(351)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -4054,6 +4135,68 @@ register int roll;
 		case 287: pline("%s makes a nasty %s.", Monnam(mdef), mbodypart(mdef, FACE)); break;
 		case 288: pline("%s gnashes his teeth.", Monnam(mdef)); break;
 		case 289: pline("%s lets out a gurgling laugh.", Monnam(mdef)); break;
+		case 290: pline("%s laughs at your low to-hit rating.", Monnam(mdef)); break;
+		case 291: pline("You swing and swing but miss the mark every time!"); break;
+		case 292: pline("Are you drunk or why do you never land a hit?"); break;
+		case 293: pline("You should really try to aim better!"); break;
+		case 294: pline("A wimp like you will never hit %s in melee.", mon_nam(mdef)); break;
+		case 295: pline("%s blocks your attack and prepares a vicious counter.", Monnam(mdef)); break;
+		case 296: pline("%s will make you fixed and finished, you!", Monnam(mdef)); break;
+		case 297: pline("The Amy gave too much AC to %s and therefore you don't hit! Hahaha!", mon_nam(mdef)); break;
+		case 298: pline("You are the greatest failure under the sun!"); break;
+		case 299: pline("%s says: 'Nyah-nyah, you'll never hit me!'", Monnam(mdef)); break;
+		case 300: pline("%s hides underneath an item, preventing you from hitting!", Monnam(mdef)); break;
+		case 301: pline("%s decides that play-time is over and you will be killed now.", Monnam(mdef)); break;
+		case 302: pline("A boulder (thrown by you) bounces off %s's %shelmet and deals no damage.", mon_nam(mdef), which_armor(mdef, W_ARMH) ? "" : "nonexistant "); break;
+		case 303: pline("You'll never get the Junethack trophies if you continue playing that badly!"); break;
+		case 304: pline("%s says: 'You N'wah!'", Monnam(mdef)); break;
+		case 305: pline("%s shoots a gate against you!", Monnam(mdef)); break;
+		case 306: pline("%s quickly builds a wall between you and it, so your attack fails!", Monnam(mdef)); break;
+		case 307: pline("%s is the real identity of Donald Trump!", Monnam(mdef)); break;
+		case 308: pline("%s says: 'Allahu Akbar!'", Monnam(mdef)); break;
+		case 309: pline("%s will fuck you up, you bad player!", Monnam(mdef)); break;
+		case 310: pline("%s knows for a fact that you will not win this game!", Monnam(mdef)); break;
+		case 311: pline("Your weapon rusts and fails to damage %s!", mon_nam(mdef)); break;
+		case 312: pline("%s smashes your sword apart! Hahahahahahaha!", Monnam(mdef)); break;
+		case 313: pline("%s's armor gets stronger from deflecting your strike!", Monnam(mdef)); break;
+		case 314: pline("%s's shield of reflection sends your attack right back at you!", Monnam(mdef)); break;
+		case 315: pline("LOL, you missed again!"); break;
+		case 316: pline("I laugh at your puny attempts to hit %s!", mon_nam(mdef)); break;
+		case 317: pline("Ha, ha, ha, you really think such an attack could hit..."); break;
+		case 318: pline("You missed again! If I were you I'd really train my to-hit!"); break;
+		case 319: pline("You made yourself into the trousers because you're so afraid of %s.", mon_nam(mdef)); break;
+		case 320: pline("%s laughs: 'Bwarharhar you won't win bwarharhar!'", Monnam(mdef)); break;
+		case 321: pline("You try to kick %s but hit the wall. Ouch!", mon_nam(mdef)); break;
+		case 322: pline("You try to assault %s but slip on a heap of dog shit.", mon_nam(mdef)); break;
+		case 323: pline("A weakling %s cannot hit in melee, and you know that!", urole.name.m); break;
+		case 324: pline("Do you fight like a girl on purpose?"); break;
+		case 325: pline("Do you even want to hit anything? It sure doesn't look that way!"); break;
+		case 326: pline("Your %s remains hanging at %s's high heel, and you sustain %sy scratches!", body_part(LEG), mon_nam(mdef), body_part(BLOOD)); break;
+		case 327: pline("Your attack attempts are stopped in their tracks as %s kicks you in the nuts.", mon_nam(mdef)); break;
+		case 328: pline("Your boss suddenly enters the room. Startled, you hit the wrong direction key and waste a turn."); break;
+		case 329: pline("If your math teacher knew that 9 out of 10 of your attacks are missing..."); break;
+		case 330: pline("Did you really not notice yet that you're never hitting %s? ROFL.", mon_nam(mdef)); break;
+		case 331: pline("%s is a deluxe troll!", Monnam(mdef)); break;
+		case 332: pline("%s pulls down your trousers, ha-ha!", Monnam(mdef)); break;
+		case 333: pline("%s says: 'Catch me nevertheless, you old hole!'", Monnam(mdef)); break;
+		case 334: pline("%s is an asshole because it always evades your attacks!", Monnam(mdef)); break;
+		case 335: pline("The cowardly woman of %s runs away instead of letting you hit it!", mon_nam(mdef)); break;
+		case 336: pline("%s preaches some boring sermon to you, causing you to fall asleep instead of attacking!", Monnam(mdef)); break;
+		case 337: pline("%s is laughing all the time, and the distraction causes you to miss!", Monnam(mdef)); break;
+		case 338: pline("You attack %s 6 times and do not meet!", mon_nam(mdef)); break;
+		case 339: pline("%s punches you into the %s.", Monnam(mdef), body_part(STOMACH)); break;
+		case 340: pline("%s stomps your %s with its plateau boots.", Monnam(mdef), makeplural(body_part(TOE))); break;
+		case 341: pline("%s slams a wooden sandal against your %s, and the beautiful pain prevents you from retaliating.", Monnam(mdef), body_part(LEG)); break;
+		case 342: pline("%s is much better than you!", Monnam(mdef)); break;
+		case 343: pline("Unlike you, %s is really strong! Didn't you know that?", mon_nam(mdef)); break;
+		case 344: pline("You game lags for a moment, and so you don't hit %s but it hits you in reverse.", mon_nam(mdef)); break;
+		case 345: pline("Your %s slips, like it always does.", body_part(HAND)); break;
+		case 346: pline("Hahaha, it's really fun to watch you futilely swing that little sword around."); break;
+		case 347: pline("Is your sword made of paper or what? It would explain why you're unable to hurt %s!", mon_nam(mdef)); break;
+		case 348: pline("Now come on, you need a better weapon. Your current one is even less effective than a wet trout!"); break;
+		case 349: pline("You fumble around with your dagger, missing %s's %s.", mon_nam(mdef), mbodypart(mdef, FACE)); break;
+		case 350: pline("You shoot %s with your pistol, but the bullet glances off its bullet-proof vest!", mon_nam(mdef)); break;
+		case 351: pline("You try to stab your spear in %s's %s, but cannot penetrate the steel plate covering it!", mon_nam(mdef), mbodypart(mdef, LEG)); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
