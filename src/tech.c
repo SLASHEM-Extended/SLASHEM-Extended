@@ -2163,7 +2163,7 @@ int tech_no;
             		return(0);
             	}
 		You("direct your internal energy to restoring your body!");
-                techt_inuse(tech_no) = techlev(tech_no)*2 + 4;
+                techt_inuse(tech_no) = techlev(tech_no)*10 + 4;
                 t_timeout = rnz(1500);
 		break;	
 	    case T_DISARM:
