@@ -134,7 +134,7 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev baalz-??.lev bigrm-?.lev castle-?.lev fakewi
 	rndmaze.lev rndmazea.lev school-?.lev schoolX.lev sheolfil.lev \
 	sheolmid.lev soko?-??.lev town-?.lev unhck-?.lev unhck-??.lev \
 	juibl-?.lev knox.lev medus-?.lev mnend-?.lev minefil?.lev \
-	mnend-??.lev hmnen-??.lev \
+	mnend-??.lev hmnen-??.lev levgn-?.lev levgn-??.lev levgx-?.lev levgx-??.lev \
 	hellfil?.lev hmint-?.lev hmint-??.lev hmnen-?.lev hking-?.lev \
 	hking-??.lev oracleX.lev erats-?.lev hrats-?.lev hstor-?.lev \
 	mking-??.lev eking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
@@ -150,7 +150,7 @@ SPEC_LEVS = asmod-?.lev baalz-?.lev baalz-??.lev bigrm-?.lev castle-?.lev fakewi
 	hitchE.lev compuE.lev keyE.lev emedu-?.lev emedu-??.lev \
 	hmedu-?.lev hmedu-??.lev ecastl-?.lev hcastl-?.lev \
 	ekobol-?.lev hkobol-?.lev enymp-?.lev hnymp-?.lev \
-	behol-?.lev blkmar.lev cav2fill.lev medus-??.lev \
+	behol-?.lev blkmar.lev cav2fill.lev medus-??.lev emptb-?.lev emptb-??.lev \
 	grund-?.lev demog-?.lev dispa-?.lev dragons.lev geryo-?.lev \
 	guild-?.lev kobold-?.lev lich.lev mall-?.lev mall.lev mking-?.lev \
 	mtemple.lev nymph-?.lev rats-?.lev sea.lev spiders.lev stor-?.lev \

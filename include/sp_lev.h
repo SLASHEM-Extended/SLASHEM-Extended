@@ -13,7 +13,7 @@
 #define W_ANY		(W_NORTH|W_SOUTH|W_EAST|W_WEST)
 
     /* MAP limits */
-#define MAP_X_LIM	76
+#define MAP_X_LIM	79
 #define MAP_Y_LIM	21
 
     /* Per level flags */

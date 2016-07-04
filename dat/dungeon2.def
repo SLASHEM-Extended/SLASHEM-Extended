@@ -103,6 +103,13 @@ LEVEL:          "hitch" "H" @ (5, 35) 5
 LEVEL:		"compu" "P" @ (5, 35) 10 
 LEVEL:		"key" "L" @ (5, 35) 10
 
+RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
+RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
+RNDLEVEL:		"levgn" "V" @ (2, 38) 10 95
+RNDLEVEL:		"emptb" "E" @ (2, 38) 20 50
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
 
 # The famous Fort Ludios...
 BRANCH:			"Fort Ludios" @ (23, 4) portal
@@ -189,6 +196,8 @@ RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 50
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
+
+RNDLEVEL:		"levgx" "T" @ (2, 29) 90 95
 
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)

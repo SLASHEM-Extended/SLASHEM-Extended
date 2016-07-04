@@ -263,7 +263,8 @@ spec_levs: ../util/lev_comp \
 	nymph.des oracle.des rats.des rndmaze.des rndmazea.des		\
 	sea.des sheol.des sokoban.des spiders.des stor-1.des		\
 	stor-2.des stor-3.des tomb.des tower.des town.des unheck.des	\
-	yendor.des ghbigrm.des gehenX.des kwests.des mazes.des
+	yendor.des ghbigrm.des gehenX.des kwests.des mazes.des levgn.des	\
+	levgx.des emptbgr.des
 	../util/lev_comp beholder.des
 	../util/lev_comp bigroom.des
 	../util/lev_comp blkmar.des
@@ -316,6 +317,9 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp yendor.des
 	../util/lev_comp ghbigrm.des
 	../util/lev_comp mazes.des
+	../util/lev_comp levgn.des
+	../util/lev_comp levgx.des
+	../util/lev_comp emptbgr.des
 	touch spec_levs
 
 quest_levs: ../util/lev_comp \

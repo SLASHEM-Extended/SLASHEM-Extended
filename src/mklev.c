@@ -3104,7 +3104,7 @@ makelevel()
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
 
 
-	    switch (rnd(100)) {
+	    switch (rnd(105)) {
 
 	    case 1:
 	    case 2:
@@ -4512,13 +4512,119 @@ makelevel()
 		}
 		break;
 
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+		case 105:
+		switch (rnd(95)) {
+
+			case 1: makemaz("levgn-1"); return;
+			case 2: makemaz("levgn-2"); return;
+			case 3: makemaz("levgn-3"); return;
+			case 4: makemaz("levgn-4"); return;
+			case 5: makemaz("levgn-5"); return;
+			case 6: makemaz("levgn-6"); return;
+			case 7: makemaz("levgn-7"); return;
+			case 8: makemaz("levgn-8"); return;
+			case 9: makemaz("levgn-9"); return;
+			case 10: makemaz("levgn-10"); return;
+			case 11: makemaz("levgn-11"); return;
+			case 12: makemaz("levgn-12"); return;
+			case 13: makemaz("levgn-13"); return;
+			case 14: makemaz("levgn-14"); return;
+			case 15: makemaz("levgn-15"); return;
+			case 16: makemaz("levgn-16"); return;
+			case 17: makemaz("levgn-17"); return;
+			case 18: makemaz("levgn-18"); return;
+			case 19: makemaz("levgn-19"); return;
+			case 20: makemaz("levgn-20"); return;
+			case 21: makemaz("levgn-21"); return;
+			case 22: makemaz("levgn-22"); return;
+			case 23: makemaz("levgn-23"); return;
+			case 24: makemaz("levgn-24"); return;
+			case 25: makemaz("levgn-25"); return;
+			case 26: makemaz("levgn-26"); return;
+			case 27: makemaz("levgn-27"); return;
+			case 28: makemaz("levgn-28"); return;
+			case 29: makemaz("levgn-29"); return;
+			case 30: makemaz("levgn-30"); return;
+			case 31: makemaz("levgn-31"); return;
+			case 32: makemaz("levgn-32"); return;
+			case 33: makemaz("levgn-33"); return;
+			case 34: makemaz("levgn-34"); return;
+			case 35: makemaz("levgn-35"); return;
+			case 36: makemaz("levgn-36"); return;
+			case 37: makemaz("levgn-37"); return;
+			case 38: makemaz("levgn-38"); return;
+			case 39: makemaz("levgn-39"); return;
+			case 40: makemaz("levgn-40"); return;
+			case 41: makemaz("levgn-41"); return;
+			case 42: makemaz("levgn-42"); return;
+			case 43: makemaz("levgn-43"); return;
+			case 44: makemaz("levgn-44"); return;
+			case 45: makemaz("levgn-45"); return;
+			case 46: makemaz("levgn-46"); return;
+			case 47: makemaz("levgn-47"); return;
+			case 48: makemaz("levgn-48"); return;
+			case 49: makemaz("levgn-49"); return;
+			case 50: makemaz("levgn-50"); return;
+			case 51: makemaz("levgn-51"); return;
+			case 52: makemaz("levgn-52"); return;
+			case 53: makemaz("levgn-53"); return;
+			case 54: makemaz("levgn-54"); return;
+			case 55: makemaz("levgn-55"); return;
+			case 56: makemaz("levgn-56"); return;
+			case 57: makemaz("levgn-57"); return;
+			case 58: makemaz("levgn-58"); return;
+			case 59: makemaz("levgn-59"); return;
+			case 60: makemaz("levgn-60"); return;
+			case 61: makemaz("levgn-61"); return;
+			case 62: makemaz("levgn-62"); return;
+			case 63: makemaz("levgn-63"); return;
+			case 64: makemaz("levgn-64"); return;
+			case 65: makemaz("levgn-65"); return;
+			case 66: makemaz("levgn-66"); return;
+			case 67: makemaz("levgn-67"); return;
+			case 68: makemaz("levgn-68"); return;
+			case 69: makemaz("levgn-69"); return;
+			case 70: makemaz("levgn-70"); return;
+			case 71: makemaz("levgn-71"); return;
+			case 72: makemaz("levgn-72"); return;
+			case 73: makemaz("levgn-73"); return;
+			case 74: makemaz("levgn-74"); return;
+			case 75: makemaz("levgn-75"); return;
+			case 76: makemaz("levgn-76"); return;
+			case 77: makemaz("levgn-77"); return;
+			case 78: makemaz("levgn-78"); return;
+			case 79: makemaz("levgn-79"); return;
+			case 80: makemaz("levgn-80"); return;
+			case 81: makemaz("levgn-81"); return;
+			case 82: makemaz("levgn-82"); return;
+			case 83: makemaz("levgn-83"); return;
+			case 84: makemaz("levgn-84"); return;
+			case 85: makemaz("levgn-85"); return;
+			case 86: makemaz("levgn-86"); return;
+			case 87: makemaz("levgn-87"); return;
+			case 88: makemaz("levgn-88"); return;
+			case 89: makemaz("levgn-89"); return;
+			case 90: makemaz("levgn-90"); return;
+			case 91: makemaz("levgn-91"); return;
+			case 92: makemaz("levgn-92"); return;
+			case 93: makemaz("levgn-93"); return;
+			case 94: makemaz("levgn-94"); return;
+			case 95: makemaz("levgn-95"); return;
+
+		}
+		break;
+
           }
 
 	}
 
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
-	    switch (rnd(100)) {
+	    switch (rnd(105)) {
 
 	    case 1:
 	    case 2:
@@ -5918,6 +6024,112 @@ makelevel()
 			case 45: makemaz("mazes-45"); return;
 			case 46: makemaz("mazes-46"); return;
 
+		}
+		break;
+
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+		case 105:
+
+		switch (rnd(95)) {
+
+			case 1: makemaz("levgx-1"); return;
+			case 2: makemaz("levgx-2"); return;
+			case 3: makemaz("levgx-3"); return;
+			case 4: makemaz("levgx-4"); return;
+			case 5: makemaz("levgx-5"); return;
+			case 6: makemaz("levgx-6"); return;
+			case 7: makemaz("levgx-7"); return;
+			case 8: makemaz("levgx-8"); return;
+			case 9: makemaz("levgx-9"); return;
+			case 10: makemaz("levgx-10"); return;
+			case 11: makemaz("levgx-11"); return;
+			case 12: makemaz("levgx-12"); return;
+			case 13: makemaz("levgx-13"); return;
+			case 14: makemaz("levgx-14"); return;
+			case 15: makemaz("levgx-15"); return;
+			case 16: makemaz("levgx-16"); return;
+			case 17: makemaz("levgx-17"); return;
+			case 18: makemaz("levgx-18"); return;
+			case 19: makemaz("levgx-19"); return;
+			case 20: makemaz("levgx-20"); return;
+			case 21: makemaz("levgx-21"); return;
+			case 22: makemaz("levgx-22"); return;
+			case 23: makemaz("levgx-23"); return;
+			case 24: makemaz("levgx-24"); return;
+			case 25: makemaz("levgx-25"); return;
+			case 26: makemaz("levgx-26"); return;
+			case 27: makemaz("levgx-27"); return;
+			case 28: makemaz("levgx-28"); return;
+			case 29: makemaz("levgx-29"); return;
+			case 30: makemaz("levgx-30"); return;
+			case 31: makemaz("levgx-31"); return;
+			case 32: makemaz("levgx-32"); return;
+			case 33: makemaz("levgx-33"); return;
+			case 34: makemaz("levgx-34"); return;
+			case 35: makemaz("levgx-35"); return;
+			case 36: makemaz("levgx-36"); return;
+			case 37: makemaz("levgx-37"); return;
+			case 38: makemaz("levgx-38"); return;
+			case 39: makemaz("levgx-39"); return;
+			case 40: makemaz("levgx-40"); return;
+			case 41: makemaz("levgx-41"); return;
+			case 42: makemaz("levgx-42"); return;
+			case 43: makemaz("levgx-43"); return;
+			case 44: makemaz("levgx-44"); return;
+			case 45: makemaz("levgx-45"); return;
+			case 46: makemaz("levgx-46"); return;
+			case 47: makemaz("levgx-47"); return;
+			case 48: makemaz("levgx-48"); return;
+			case 49: makemaz("levgx-49"); return;
+			case 50: makemaz("levgx-50"); return;
+			case 51: makemaz("levgx-51"); return;
+			case 52: makemaz("levgx-52"); return;
+			case 53: makemaz("levgx-53"); return;
+			case 54: makemaz("levgx-54"); return;
+			case 55: makemaz("levgx-55"); return;
+			case 56: makemaz("levgx-56"); return;
+			case 57: makemaz("levgx-57"); return;
+			case 58: makemaz("levgx-58"); return;
+			case 59: makemaz("levgx-59"); return;
+			case 60: makemaz("levgx-60"); return;
+			case 61: makemaz("levgx-61"); return;
+			case 62: makemaz("levgx-62"); return;
+			case 63: makemaz("levgx-63"); return;
+			case 64: makemaz("levgx-64"); return;
+			case 65: makemaz("levgx-65"); return;
+			case 66: makemaz("levgx-66"); return;
+			case 67: makemaz("levgx-67"); return;
+			case 68: makemaz("levgx-68"); return;
+			case 69: makemaz("levgx-69"); return;
+			case 70: makemaz("levgx-70"); return;
+			case 71: makemaz("levgx-71"); return;
+			case 72: makemaz("levgx-72"); return;
+			case 73: makemaz("levgx-73"); return;
+			case 74: makemaz("levgx-74"); return;
+			case 75: makemaz("levgx-75"); return;
+			case 76: makemaz("levgx-76"); return;
+			case 77: makemaz("levgx-77"); return;
+			case 78: makemaz("levgx-78"); return;
+			case 79: makemaz("levgx-79"); return;
+			case 80: makemaz("levgx-80"); return;
+			case 81: makemaz("levgx-81"); return;
+			case 82: makemaz("levgx-82"); return;
+			case 83: makemaz("levgx-83"); return;
+			case 84: makemaz("levgx-84"); return;
+			case 85: makemaz("levgx-85"); return;
+			case 86: makemaz("levgx-86"); return;
+			case 87: makemaz("levgx-87"); return;
+			case 88: makemaz("levgx-88"); return;
+			case 89: makemaz("levgx-89"); return;
+			case 90: makemaz("levgx-90"); return;
+			case 91: makemaz("levgx-91"); return;
+			case 92: makemaz("levgx-92"); return;
+			case 93: makemaz("levgx-93"); return;
+			case 94: makemaz("levgx-94"); return;
+			case 95: makemaz("levgx-95"); return;
 		}
 		break;
 
@@ -6338,7 +6550,7 @@ makelevel()
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
-	    switch (rnd(100)) {
+	    switch (rnd(105)) {
 
 	    case 1:
 	    case 2:
@@ -7746,10 +7958,116 @@ makelevel()
 		}
 		break;
 
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+		case 105:
+		switch (rnd(95)) {
+
+			case 1: makemaz("levgn-1"); return;
+			case 2: makemaz("levgn-2"); return;
+			case 3: makemaz("levgn-3"); return;
+			case 4: makemaz("levgn-4"); return;
+			case 5: makemaz("levgn-5"); return;
+			case 6: makemaz("levgn-6"); return;
+			case 7: makemaz("levgn-7"); return;
+			case 8: makemaz("levgn-8"); return;
+			case 9: makemaz("levgn-9"); return;
+			case 10: makemaz("levgn-10"); return;
+			case 11: makemaz("levgn-11"); return;
+			case 12: makemaz("levgn-12"); return;
+			case 13: makemaz("levgn-13"); return;
+			case 14: makemaz("levgn-14"); return;
+			case 15: makemaz("levgn-15"); return;
+			case 16: makemaz("levgn-16"); return;
+			case 17: makemaz("levgn-17"); return;
+			case 18: makemaz("levgn-18"); return;
+			case 19: makemaz("levgn-19"); return;
+			case 20: makemaz("levgn-20"); return;
+			case 21: makemaz("levgn-21"); return;
+			case 22: makemaz("levgn-22"); return;
+			case 23: makemaz("levgn-23"); return;
+			case 24: makemaz("levgn-24"); return;
+			case 25: makemaz("levgn-25"); return;
+			case 26: makemaz("levgn-26"); return;
+			case 27: makemaz("levgn-27"); return;
+			case 28: makemaz("levgn-28"); return;
+			case 29: makemaz("levgn-29"); return;
+			case 30: makemaz("levgn-30"); return;
+			case 31: makemaz("levgn-31"); return;
+			case 32: makemaz("levgn-32"); return;
+			case 33: makemaz("levgn-33"); return;
+			case 34: makemaz("levgn-34"); return;
+			case 35: makemaz("levgn-35"); return;
+			case 36: makemaz("levgn-36"); return;
+			case 37: makemaz("levgn-37"); return;
+			case 38: makemaz("levgn-38"); return;
+			case 39: makemaz("levgn-39"); return;
+			case 40: makemaz("levgn-40"); return;
+			case 41: makemaz("levgn-41"); return;
+			case 42: makemaz("levgn-42"); return;
+			case 43: makemaz("levgn-43"); return;
+			case 44: makemaz("levgn-44"); return;
+			case 45: makemaz("levgn-45"); return;
+			case 46: makemaz("levgn-46"); return;
+			case 47: makemaz("levgn-47"); return;
+			case 48: makemaz("levgn-48"); return;
+			case 49: makemaz("levgn-49"); return;
+			case 50: makemaz("levgn-50"); return;
+			case 51: makemaz("levgn-51"); return;
+			case 52: makemaz("levgn-52"); return;
+			case 53: makemaz("levgn-53"); return;
+			case 54: makemaz("levgn-54"); return;
+			case 55: makemaz("levgn-55"); return;
+			case 56: makemaz("levgn-56"); return;
+			case 57: makemaz("levgn-57"); return;
+			case 58: makemaz("levgn-58"); return;
+			case 59: makemaz("levgn-59"); return;
+			case 60: makemaz("levgn-60"); return;
+			case 61: makemaz("levgn-61"); return;
+			case 62: makemaz("levgn-62"); return;
+			case 63: makemaz("levgn-63"); return;
+			case 64: makemaz("levgn-64"); return;
+			case 65: makemaz("levgn-65"); return;
+			case 66: makemaz("levgn-66"); return;
+			case 67: makemaz("levgn-67"); return;
+			case 68: makemaz("levgn-68"); return;
+			case 69: makemaz("levgn-69"); return;
+			case 70: makemaz("levgn-70"); return;
+			case 71: makemaz("levgn-71"); return;
+			case 72: makemaz("levgn-72"); return;
+			case 73: makemaz("levgn-73"); return;
+			case 74: makemaz("levgn-74"); return;
+			case 75: makemaz("levgn-75"); return;
+			case 76: makemaz("levgn-76"); return;
+			case 77: makemaz("levgn-77"); return;
+			case 78: makemaz("levgn-78"); return;
+			case 79: makemaz("levgn-79"); return;
+			case 80: makemaz("levgn-80"); return;
+			case 81: makemaz("levgn-81"); return;
+			case 82: makemaz("levgn-82"); return;
+			case 83: makemaz("levgn-83"); return;
+			case 84: makemaz("levgn-84"); return;
+			case 85: makemaz("levgn-85"); return;
+			case 86: makemaz("levgn-86"); return;
+			case 87: makemaz("levgn-87"); return;
+			case 88: makemaz("levgn-88"); return;
+			case 89: makemaz("levgn-89"); return;
+			case 90: makemaz("levgn-90"); return;
+			case 91: makemaz("levgn-91"); return;
+			case 92: makemaz("levgn-92"); return;
+			case 93: makemaz("levgn-93"); return;
+			case 94: makemaz("levgn-94"); return;
+			case 95: makemaz("levgn-95"); return;
+
+		}
+		break;
+	
           }
 
 		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
-	    switch (rnd(100)) {
+	    switch (rnd(105)) {
 
 	    case 1:
 	    case 2:
@@ -9152,6 +9470,112 @@ makelevel()
 		}
 		break;
 
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+		case 105:
+
+		switch (rnd(95)) {
+
+			case 1: makemaz("levgx-1"); return;
+			case 2: makemaz("levgx-2"); return;
+			case 3: makemaz("levgx-3"); return;
+			case 4: makemaz("levgx-4"); return;
+			case 5: makemaz("levgx-5"); return;
+			case 6: makemaz("levgx-6"); return;
+			case 7: makemaz("levgx-7"); return;
+			case 8: makemaz("levgx-8"); return;
+			case 9: makemaz("levgx-9"); return;
+			case 10: makemaz("levgx-10"); return;
+			case 11: makemaz("levgx-11"); return;
+			case 12: makemaz("levgx-12"); return;
+			case 13: makemaz("levgx-13"); return;
+			case 14: makemaz("levgx-14"); return;
+			case 15: makemaz("levgx-15"); return;
+			case 16: makemaz("levgx-16"); return;
+			case 17: makemaz("levgx-17"); return;
+			case 18: makemaz("levgx-18"); return;
+			case 19: makemaz("levgx-19"); return;
+			case 20: makemaz("levgx-20"); return;
+			case 21: makemaz("levgx-21"); return;
+			case 22: makemaz("levgx-22"); return;
+			case 23: makemaz("levgx-23"); return;
+			case 24: makemaz("levgx-24"); return;
+			case 25: makemaz("levgx-25"); return;
+			case 26: makemaz("levgx-26"); return;
+			case 27: makemaz("levgx-27"); return;
+			case 28: makemaz("levgx-28"); return;
+			case 29: makemaz("levgx-29"); return;
+			case 30: makemaz("levgx-30"); return;
+			case 31: makemaz("levgx-31"); return;
+			case 32: makemaz("levgx-32"); return;
+			case 33: makemaz("levgx-33"); return;
+			case 34: makemaz("levgx-34"); return;
+			case 35: makemaz("levgx-35"); return;
+			case 36: makemaz("levgx-36"); return;
+			case 37: makemaz("levgx-37"); return;
+			case 38: makemaz("levgx-38"); return;
+			case 39: makemaz("levgx-39"); return;
+			case 40: makemaz("levgx-40"); return;
+			case 41: makemaz("levgx-41"); return;
+			case 42: makemaz("levgx-42"); return;
+			case 43: makemaz("levgx-43"); return;
+			case 44: makemaz("levgx-44"); return;
+			case 45: makemaz("levgx-45"); return;
+			case 46: makemaz("levgx-46"); return;
+			case 47: makemaz("levgx-47"); return;
+			case 48: makemaz("levgx-48"); return;
+			case 49: makemaz("levgx-49"); return;
+			case 50: makemaz("levgx-50"); return;
+			case 51: makemaz("levgx-51"); return;
+			case 52: makemaz("levgx-52"); return;
+			case 53: makemaz("levgx-53"); return;
+			case 54: makemaz("levgx-54"); return;
+			case 55: makemaz("levgx-55"); return;
+			case 56: makemaz("levgx-56"); return;
+			case 57: makemaz("levgx-57"); return;
+			case 58: makemaz("levgx-58"); return;
+			case 59: makemaz("levgx-59"); return;
+			case 60: makemaz("levgx-60"); return;
+			case 61: makemaz("levgx-61"); return;
+			case 62: makemaz("levgx-62"); return;
+			case 63: makemaz("levgx-63"); return;
+			case 64: makemaz("levgx-64"); return;
+			case 65: makemaz("levgx-65"); return;
+			case 66: makemaz("levgx-66"); return;
+			case 67: makemaz("levgx-67"); return;
+			case 68: makemaz("levgx-68"); return;
+			case 69: makemaz("levgx-69"); return;
+			case 70: makemaz("levgx-70"); return;
+			case 71: makemaz("levgx-71"); return;
+			case 72: makemaz("levgx-72"); return;
+			case 73: makemaz("levgx-73"); return;
+			case 74: makemaz("levgx-74"); return;
+			case 75: makemaz("levgx-75"); return;
+			case 76: makemaz("levgx-76"); return;
+			case 77: makemaz("levgx-77"); return;
+			case 78: makemaz("levgx-78"); return;
+			case 79: makemaz("levgx-79"); return;
+			case 80: makemaz("levgx-80"); return;
+			case 81: makemaz("levgx-81"); return;
+			case 82: makemaz("levgx-82"); return;
+			case 83: makemaz("levgx-83"); return;
+			case 84: makemaz("levgx-84"); return;
+			case 85: makemaz("levgx-85"); return;
+			case 86: makemaz("levgx-86"); return;
+			case 87: makemaz("levgx-87"); return;
+			case 88: makemaz("levgx-88"); return;
+			case 89: makemaz("levgx-89"); return;
+			case 90: makemaz("levgx-90"); return;
+			case 91: makemaz("levgx-91"); return;
+			case 92: makemaz("levgx-92"); return;
+			case 93: makemaz("levgx-93"); return;
+			case 94: makemaz("levgx-94"); return;
+			case 95: makemaz("levgx-95"); return;
+		}
+		break;
+	
           }
 
 		}

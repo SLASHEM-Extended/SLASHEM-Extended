@@ -931,7 +931,7 @@ char *map;
 	/* Store the map into the mazepart structure */
 
 	if(max_len > MAP_X_LIM || max_hig > MAP_Y_LIM) {
-	    Sprintf(msg, "Map too large! (max %d x %d)", MAP_X_LIM, MAP_Y_LIM);
+	    Sprintf(msg, "Map too large! (max %d x %d, is %d x %d)", MAP_X_LIM, MAP_Y_LIM, max_len, max_hig);
 	    yyerror(msg);
 	}
 
