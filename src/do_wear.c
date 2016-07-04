@@ -1475,7 +1475,8 @@ Amulet_on()
 		break;
 	/* KMH, balance patch -- added */
 	case AMULET_VERSUS_STONE:
-		uunstone();
+		/*uunstone();*/
+		/* unbalanced. You could do it indefinitely. --Amy */
 		break;
 	case AMULET_OF_FLYING:
 		if (!(EFlying & ~W_AMUL) && !is_flyer(youmonst.data)) {
