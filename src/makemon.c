@@ -1351,6 +1351,8 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, ROCK);
 		     (void)mongets(mtmp, ROCK);
 
+			break;
+
 		   case PM_MURDERER:
 		   case PM_UNDEAD_MURDERER:
 		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
