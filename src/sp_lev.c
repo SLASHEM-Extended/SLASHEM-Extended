@@ -2475,9 +2475,10 @@ struct mkroom	*croom;
 }
 
 boolean
-check_room(lowx, ddx, lowy, ddy, vault)
+check_room(lowx, ddx, lowy, ddy, vault, anywhere)
 xchar *lowx, *ddx, *lowy, *ddy;
 boolean vault;
+boolean anywhere;
 {
 	register int x,y,hix = *lowx + *ddx, hiy = *lowy + *ddy;
 	register struct rm *lev;
@@ -2513,6 +2514,13 @@ boolean vault;
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
+
+	}
+
+	if (anywhere) {
+
+		xlim = xlim - rnd(10);
+		ylim = ylim - rnd(10);
 
 	}
 
@@ -2562,12 +2570,13 @@ chk:
  */
 
 boolean
-create_room(x,y,w,h,xal,yal,rtype,rlit, canbeshaped)
+create_room(x,y,w,h,xal,yal,rtype,rlit, canbeshaped, anywhere)
 xchar	x,y;
 xchar	w,h;
 xchar	xal,yal;
 xchar	rtype, rlit;
 boolean canbeshaped;
+boolean anywhere;
 {
     /*  
      * numeric args that are -1 mean random  
@@ -2612,6 +2621,13 @@ boolean canbeshaped;
 
 		xlim = xlim - 10;
 		ylim = ylim - 10;
+
+	}
+
+	if (anywhere) {
+
+		xlim = xlim - rnd(10);
+		ylim = ylim - rnd(10);
 
 	}
 
@@ -2707,7 +2723,7 @@ boolean canbeshaped;
 			    yabs = rn1(3, 2);
 			    if(nroom < 4 && dy>1) dy--;
 		        }
-			if (!check_room(&xabs, &dx, &yabs, &dy, vault)) {
+			if (!check_room(&xabs, &dx, &yabs, &dy, vault, anywhere)) {
 				r1 = 0;
 				continue;
 			}
@@ -4543,7 +4559,7 @@ room *r, *pr;
 	} else {
 		aroom = &rooms[nroom];
 		okroom = create_room(r->x, r->y, r->w, r->h, r->xalign,
-				     r->yalign, rtype, r->rlit, FALSE);
+				     r->yalign, rtype, r->rlit, FALSE, FALSE);
 		r->mkr = aroom;
 	}
 

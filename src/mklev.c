@@ -69,7 +69,7 @@ STATIC_DCL void FDECL(finddpos,(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
 STATIC_DCL void FDECL(mkinvpos, (XCHAR_P,XCHAR_P,int));
 STATIC_DCL void FDECL(mk_knox_portal, (XCHAR_P,XCHAR_P));
 
-#define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE, FALSE)
+#define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE, FALSE, FALSE)
 #define init_vault()	vault_x = -1
 #define do_vault()	(vault_x != -1)
 static xchar		vault_x, vault_y;
@@ -2015,6 +2015,7 @@ makerooms()
 	/* make rooms until satisfied */
 	/* rnd_rect() will returns 0 if no more rects are available... */
 	while(nroom < MAXNROFROOMS && rnd_rect()) {
+
 		if(nroom >= (MAXNROFROOMS/6) && rn2(2) && !tried_vault) {
 			tried_vault = TRUE;
 			if (create_vault()) {
@@ -2023,7 +2024,7 @@ makerooms()
 				rooms[nroom].hx = -1;
 			}
 		} else
-		    if (!create_room(-1, -1, -1, -1, -1, -1, OROOM, -1, TRUE) && !rn2(10) )
+		    if (!create_room(-1, -1, -1, -1, -1, -1, OROOM, -1, TRUE, FALSE) && !rn2(10) )
 			return;
 	}
 	return;
@@ -2118,6 +2119,8 @@ boolean nxcor;
 void
 makecorridors()
 {
+	/*pline("makecorridors");*/
+
 	int a, b, i;
 	boolean any = TRUE;
 
@@ -2143,6 +2146,13 @@ makecorridors()
 		if(b >= a) b += 2;
 		join(a, b, TRUE);
 	    }
+
+	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
+
 }
 
 /* ALI - Artifact doors: Track doors in maze levels as well */
@@ -9147,7 +9157,7 @@ makelevel()
 #endif
 		w = 1;
 		h = 1;
-		if (check_room(&vault_x, &w, &vault_y, &h, TRUE)) {
+		if (check_room(&vault_x, &w, &vault_y, &h, TRUE, FALSE)) {
 		    fill_vault:
 			add_room(vault_x, vault_y, vault_x+w,
 				 vault_y+h, TRUE, VAULT, FALSE, FALSE);
@@ -9159,7 +9169,7 @@ makelevel()
 		} else if(rnd_rect() && create_vault()) {
 			vault_x = rooms[nroom].lx;
 			vault_y = rooms[nroom].ly;
-			if (check_room(&vault_x, &w, &vault_y, &h, TRUE))
+			if (check_room(&vault_x, &w, &vault_y, &h, TRUE, FALSE))
 				goto fill_vault;
 			else
 				rooms[nroom].hx = -1;

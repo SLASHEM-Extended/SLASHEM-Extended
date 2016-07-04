@@ -2217,9 +2217,9 @@ E int FDECL(assign_soundcard, (char *));
 
 /* ### sp_lev.c ### */
 
-E boolean FDECL(check_room, (xchar *,xchar *,xchar *,xchar *,BOOLEAN_P));
+E boolean FDECL(check_room, (xchar *,xchar *,xchar *,xchar *,BOOLEAN_P, BOOLEAN_P));
 E boolean FDECL(create_room, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,
-			      XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P));
+			      XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P, BOOLEAN_P));
 E void FDECL(create_secret_door, (struct mkroom *,XCHAR_P));
 E boolean FDECL(dig_corridor, (coord *,coord *,BOOLEAN_P,SCHAR_P,SCHAR_P));
 E void FDECL(fill_room, (struct mkroom *,BOOLEAN_P));
