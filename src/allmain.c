@@ -2482,9 +2482,10 @@ moveloop()
 
 	/* Autosave option by Amy. While this does not actually prevent phantom crash bugs and similar crap,
 	 * it at least means you'll get thrown back at most 100 turns if it does crash. */
+	/* edit: set to prime numbers so you'll still get the autosave while pulling an iron ball et. al. */
 #ifdef INSURANCE
-	if (flags.xtimed_autosave && (moves > 1) && (moves % 20 == 0) ) save_currentstate();
-	else if (flags.etimed_autosave && (moves > 1) && (moves % 100 == 0) ) save_currentstate();
+	if (flags.xtimed_autosave && (moves > 1) && (moves % 19 == 0) ) save_currentstate();
+	else if (flags.etimed_autosave && (moves > 1) && (moves % 97 == 0) ) save_currentstate();
 #endif
 
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
