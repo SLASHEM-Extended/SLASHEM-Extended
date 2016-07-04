@@ -922,7 +922,9 @@ boolean atme;
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
+	if (spellid(spell) == SPE_TIME_STOP) energy *= 2;
 	if (spellid(spell) == SPE_PETRIFY) { energy *= 5; energy /= 2;}
+	if (spellid(spell) == SPE_GODMODE) { energy *= 5; energy /= 2;}
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 3;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
