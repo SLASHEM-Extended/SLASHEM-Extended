@@ -2026,8 +2026,10 @@ E void FDECL(genl_outrip, (winid,int));
 /* ### rnd.c ### */
 
 E int FDECL(rn2, (int));
+E int FDECL(rn3, (int));
 E int FDECL(rnl, (int));
 E int FDECL(rnd, (int));
+E int FDECL(rno, (int));
 E int FDECL(d, (int,int));
 E int FDECL(rne, (int));
 E int FDECL(rnz, (int));

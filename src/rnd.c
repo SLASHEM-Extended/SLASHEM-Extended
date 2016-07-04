@@ -42,6 +42,22 @@ register int x;
 #endif
 }
 
+int
+rn3(x)		/* like rn2, but the result is more likely to be a lower number --Amy */
+register int x;
+{
+	int y;
+	if (x <= 0) {
+		impossible("rn3(%d) attempted - returning zero", x);
+		return(0);
+	}
+	y = RND(x);
+	if (!rn2(2) && (y > 1)) y /= 2;
+	if (y < 0) y = 0; /* fail safe */
+	return (y);
+
+}
+
 #endif /* OVL0 */
 #ifdef OVLB
 
@@ -96,6 +112,21 @@ register int x;
 	}
 	return(RND(x)+1);
 #endif
+}
+
+int
+rno(x)		/* like rnd, but the result is more likely to be a lower number --Amy */
+register int x;
+{
+	int y;
+	if (x <= 0) {
+		impossible("rno(%d) attempted - returning 1", x);
+		return(1);
+	}
+	y = RND(x)+1;
+	if (!rn2(2) && (y > 1)) y /= 2;
+	if (y < 1) y = 1; /* fail safe */
+	return (y);
 }
 
 #endif /* OVL0 */

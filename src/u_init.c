@@ -14090,12 +14090,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerc->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerc->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerc->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerc->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerc->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14113,7 +14113,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerc->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerc->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14151,12 +14151,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerd->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerd->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerd->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerd->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerd->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerd->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerd->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14174,7 +14174,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerd->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerd->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14212,12 +14212,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayere->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayere->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayere->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayere->ac = rn2(21)-10;				/* any AC */
 	shamblerplayere->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayere->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayere->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14235,7 +14235,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayere->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayere->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14273,12 +14273,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerf->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerf->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerf->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerf->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerf->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerf->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerf->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14296,7 +14296,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerf->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerf->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14334,12 +14334,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerg->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerg->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerg->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerg->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerg->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerg->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14357,7 +14357,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerg->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerg->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14395,12 +14395,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerh->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerh->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerh->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerh->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerh->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerh->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14418,7 +14418,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerh->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerh->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14456,12 +14456,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayeri->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayeri->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayeri->ac = rn2(21)-10;				/* any AC */
 	shamblerplayeri->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeri->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayeri->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14479,7 +14479,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayeri->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeri->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14517,12 +14517,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerj->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerj->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerj->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerj->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerj->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerj->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14540,7 +14540,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerj->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerj->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14578,12 +14578,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerk->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerk->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerk->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerk->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerk->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerk->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14601,7 +14601,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerk->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerk->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14637,12 +14637,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerl->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerl->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerl->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerl->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14660,7 +14660,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14696,12 +14696,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerm->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerm->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerm->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerm->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14719,7 +14719,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14755,12 +14755,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayern->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayern->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayern->ac = rn2(31)-20;				/* any AC */
 	shamblerplayern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayern->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14778,7 +14778,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14814,12 +14814,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayero->mmove = rn2(18)+9;				/* slow to very fast */
+	shamblerplayero->mmove = rn3(18)+9;				/* slow to very fast */
 	shamblerplayero->ac = rn2(35)-24;				/* any AC */
 	shamblerplayero->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayero->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(6); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayero->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14837,7 +14837,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+		attkptr->damd = rn3(20)+2;				/* either too high or too low */
 	}
 	shamblerplayero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14875,12 +14875,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerp->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerp->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerp->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerp->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14898,7 +14898,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14936,12 +14936,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerq->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerq->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerq->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerq->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerq->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerq->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -14959,7 +14959,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerq->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerq->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -14999,12 +14999,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerr->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerr->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerr->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerr->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15022,7 +15022,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15062,12 +15062,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayers->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayers->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayers->ac = rn2(40)-29;				/* any AC */
 	shamblerplayers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayers->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15085,7 +15085,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15124,12 +15124,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayert->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayert->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayert->ac = rn2(41)-30;				/* any AC */
 	shamblerplayert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayert->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15147,7 +15147,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15185,12 +15185,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayeru->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayeru->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayeru->ac = rn2(42)-31;				/* any AC */
 	shamblerplayeru->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeru->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeru->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15208,7 +15208,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayeru->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeru->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15246,12 +15246,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerv->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayerv->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayerv->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerv->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerv->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerv->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15269,7 +15269,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerv->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerv->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15307,12 +15307,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerw->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayerw->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayerw->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerw->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerw->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerw->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15330,7 +15330,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerw->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerw->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15368,12 +15368,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerx->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerx->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerx->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerx->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15391,7 +15391,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15429,12 +15429,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayery->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayery->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayery->ac = rn2(42)-31;				/* any AC */
 	shamblerplayery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayery->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15452,7 +15452,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15490,12 +15490,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerz->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerz->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerz->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerz->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15513,7 +15513,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15551,12 +15551,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayeraa->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayeraa->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayeraa->ac = rn2(43)-32;				/* any AC */
 	shamblerplayeraa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeraa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeraa->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15574,7 +15574,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayeraa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeraa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15612,12 +15612,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerab->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerab->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerab->ac = rn2(44)-33;				/* any AC */
 	shamblerplayerab->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerab->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerab->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15635,7 +15635,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerab->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerab->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15673,12 +15673,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerac->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerac->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerac->ac = rn2(44)-33;				/* any AC */
 	shamblerplayerac->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerac->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerac->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15696,7 +15696,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(26)+2;				/* either too high or too low */
+		attkptr->damd = rn3(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerac->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerac->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15734,12 +15734,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerad->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerad->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerad->ac = rn2(46)-36;				/* any AC */
 	shamblerplayerad->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerad->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerad->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15757,7 +15757,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(26)+2;				/* either too high or too low */
+		attkptr->damd = rn3(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerad->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerad->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15795,12 +15795,12 @@ u_init()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerae->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerae->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerae->ac = rn2(46)-36;				/* any AC */
 	shamblerplayerae->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerae->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerae->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -15818,7 +15818,7 @@ u_init()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(27)+2;				/* either too high or too low */
+		attkptr->damd = rn3(27)+2;				/* either too high or too low */
 	}
 	shamblerplayerae->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerae->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -15853,7 +15853,6 @@ u_init()
 	shamblerplayerae->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerplayerae->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayerae->mflags2 &= ~M2_NOPOLY;				/* polymorph ok for monsters */
-
 
 	if (!rn2(10)) {
 	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
@@ -26200,12 +26199,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerc->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerc->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerc->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerc->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerc->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerc->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerc->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26223,7 +26222,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerc->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerc->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26261,12 +26260,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerd->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerd->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerd->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerd->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerd->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerd->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerd->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26284,7 +26283,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerd->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerd->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26322,12 +26321,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayere->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayere->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayere->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayere->ac = rn2(21)-10;				/* any AC */
 	shamblerplayere->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayere->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayere->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26345,7 +26344,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayere->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayere->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26383,12 +26382,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerf->mlevel += rnd(12)-3;*/				/* shuffle level */
-	shamblerplayerf->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayerf->mmove = rn3(10)+9;				/* slow to very fast */
 	shamblerplayerf->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerf->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerf->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerf->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26406,7 +26405,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(10)+2;				/* either too high or too low */
+		attkptr->damd = rn3(10)+2;				/* either too high or too low */
 	}
 	shamblerplayerf->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerf->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26444,12 +26443,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerg->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerg->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerg->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerg->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerg->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerg->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26467,7 +26466,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerg->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerg->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26505,12 +26504,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerh->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerh->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerh->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerh->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerh->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerh->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26528,7 +26527,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerh->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerh->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26566,12 +26565,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayeri->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayeri->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayeri->ac = rn2(21)-10;				/* any AC */
 	shamblerplayeri->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeri->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayeri->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26589,7 +26588,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayeri->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeri->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26627,12 +26626,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(15)-9;*/				/* shuffle level */
-	shamblerplayerj->mmove = rn2(9)+9;				/* slow to very fast */
+	shamblerplayerj->mmove = rn3(9)+9;				/* slow to very fast */
 	shamblerplayerj->ac = rn2(21)-10;				/* any AC */
 	shamblerplayerj->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerj->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(4); i++) {
+	for (i = 0; i < rno(4); i++) {
 		attkptr = &shamblerplayerj->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26650,7 +26649,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(6)+2;				/* either too high or too low */
+		attkptr->damd = rn3(6)+2;				/* either too high or too low */
 	}
 	shamblerplayerj->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerj->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26688,12 +26687,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerk->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerk->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerk->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerk->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerk->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerk->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26711,7 +26710,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerk->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerk->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26747,12 +26746,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerl->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerl->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerl->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerl->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerl->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerl->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26770,7 +26769,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26806,12 +26805,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayerm->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayerm->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayerm->ac = rn2(31)-20;				/* any AC */
 	shamblerplayerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerm->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayerm->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26829,7 +26828,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26865,12 +26864,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
-	shamblerplayern->mmove = rn2(14)+9;				/* slow to very fast */
+	shamblerplayern->mmove = rn3(14)+9;				/* slow to very fast */
 	shamblerplayern->ac = rn2(31)-20;				/* any AC */
 	shamblerplayern->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayern->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(5); i++) {
+	for (i = 0; i < rno(5); i++) {
 		attkptr = &shamblerplayern->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26888,7 +26887,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+		attkptr->damd = rn3(15)+2;				/* either too high or too low */
 	}
 	shamblerplayern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26924,12 +26923,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayero->mmove = rn2(18)+9;				/* slow to very fast */
+	shamblerplayero->mmove = rn3(18)+9;				/* slow to very fast */
 	shamblerplayero->ac = rn2(35)-24;				/* any AC */
 	shamblerplayero->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayero->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < rnd(6); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayero->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -26947,7 +26946,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+		attkptr->damd = rn3(20)+2;				/* either too high or too low */
 	}
 	shamblerplayero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -26985,12 +26984,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerp->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerp->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerp->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerp->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerp->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerp->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27008,7 +27007,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27046,12 +27045,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerq->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerq->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerq->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerq->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerq->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerq->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27069,7 +27068,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerq->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerq->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27109,12 +27108,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerr->mmove = rn2(20)+9;				/* slow to very fast */
+	shamblerplayerr->mmove = rn3(20)+9;				/* slow to very fast */
 	shamblerplayerr->ac = rn2(40)-29;				/* any AC */
 	shamblerplayerr->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerr->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerr->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27132,7 +27131,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27172,12 +27171,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayers->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayers->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayers->ac = rn2(40)-29;				/* any AC */
 	shamblerplayers->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayers->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayers->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27195,7 +27194,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27234,12 +27233,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayert->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayert->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayert->ac = rn2(41)-30;				/* any AC */
 	shamblerplayert->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayert->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayert->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27257,7 +27256,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27295,12 +27294,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayeru->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayeru->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayeru->ac = rn2(42)-31;				/* any AC */
 	shamblerplayeru->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeru->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(5) + 1); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeru->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27318,7 +27317,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayeru->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeru->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27356,12 +27355,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerv->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayerv->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayerv->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerv->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerv->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerv->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27379,7 +27378,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerv->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerv->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27417,12 +27416,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerw->mmove = rn2(21)+9;				/* slow to very fast */
+	shamblerplayerw->mmove = rn3(21)+9;				/* slow to very fast */
 	shamblerplayerw->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerw->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerw->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerw->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27440,7 +27439,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerw->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerw->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27478,12 +27477,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerx->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerx->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerx->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerx->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerx->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerx->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27501,7 +27500,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(24)+2;				/* either too high or too low */
+		attkptr->damd = rn3(24)+2;				/* either too high or too low */
 	}
 	shamblerplayerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27539,12 +27538,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayery->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayery->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayery->ac = rn2(42)-31;				/* any AC */
 	shamblerplayery->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayery->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayery->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27562,7 +27561,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27600,12 +27599,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerz->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerz->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerz->ac = rn2(42)-31;				/* any AC */
 	shamblerplayerz->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerz->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerz->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27623,7 +27622,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27661,12 +27660,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayeraa->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayeraa->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayeraa->ac = rn2(43)-32;				/* any AC */
 	shamblerplayeraa->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayeraa->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayeraa->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27684,7 +27683,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayeraa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeraa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27722,12 +27721,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerab->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerab->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerab->ac = rn2(44)-33;				/* any AC */
 	shamblerplayerab->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerab->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerab->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27745,7 +27744,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(25)+2;				/* either too high or too low */
+		attkptr->damd = rn3(25)+2;				/* either too high or too low */
 	}
 	shamblerplayerab->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerab->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27783,12 +27782,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerac->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerac->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerac->ac = rn2(44)-33;				/* any AC */
 	shamblerplayerac->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerac->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerac->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27806,7 +27805,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(26)+2;				/* either too high or too low */
+		attkptr->damd = rn3(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerac->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerac->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27844,12 +27843,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerad->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerad->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerad->ac = rn2(46)-36;				/* any AC */
 	shamblerplayerad->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerad->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerad->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27867,7 +27866,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(26)+2;				/* either too high or too low */
+		attkptr->damd = rn3(26)+2;				/* either too high or too low */
 	}
 	shamblerplayerad->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerad->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27905,12 +27904,12 @@ alter_reality()
 
 	/* what a horrible night to have a curse */
 	/*pokshamblerxt->mlevel += rnd(24)-6;*/				/* shuffle level */
-	shamblerplayerae->mmove = rn2(22)+9;				/* slow to very fast */
+	shamblerplayerae->mmove = rn3(22)+9;				/* slow to very fast */
 	shamblerplayerae->ac = rn2(46)-36;				/* any AC */
 	shamblerplayerae->mr = rn2(5)*25;				/* varying amounts of MR */
 	shamblerplayerae->maligntyp = rn2(21)-10;			/* any alignment */
 	/* attacks...?  */
-	for (i = 0; i < (rnd(4) + 2); i++) {
+	for (i = 0; i < rno(6); i++) {
 		attkptr = &shamblerplayerae->mattk[i];
 		/* restrict it to certain types of attacks */
 		attkptr->aatyp = AT_MULTIPLY;
@@ -27928,7 +27927,7 @@ alter_reality()
 			attkptr->adtyp = randattack();
 		}
 		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
-		attkptr->damd = rnd(27)+2;				/* either too high or too low */
+		attkptr->damd = rn3(27)+2;				/* either too high or too low */
 	}
 	shamblerplayerae->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerae->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
@@ -27963,7 +27962,6 @@ alter_reality()
 	shamblerplayerae->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerplayerae->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayerae->mflags2 &= ~M2_NOPOLY;				/* polymorph ok for monsters */
-
 
 	if (!rn2(10)) {
 	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
