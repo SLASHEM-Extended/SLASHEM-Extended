@@ -1065,6 +1065,10 @@ boolean atme;
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (!rn2(100)) { /* evil patch idea by Amy: failure effect */
+			pline("In fact, you cast the spell incorrectly in a way that causes bad stuff to happen...");
+			badeffect();
+		}
 
 #ifdef ALLEG_FX
                 if (iflags.usealleg) alleg_aura(u.ux, u.uy, P_ATTACK_SPELL-1);
