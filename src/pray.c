@@ -1286,7 +1286,7 @@ water_prayer(bless_water)
 			badeffect();
 		}
 
-		if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+		if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 			levl[u.ux][u.uy].typ = ROOM;
 			pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
 			newsym(u.ux,u.uy);
@@ -1935,7 +1935,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		badeffect();
 	}
 
-	if (!rn2(100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+	if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
 		newsym(u.ux,u.uy);
@@ -1943,6 +1943,9 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!");
 		newsym(u.ux,u.uy);
+	} else if (!rn2(findpriest(temple_occupied(u.urooms)) ? 5000 : 100) && !issoviet && (!Is_astralevel(&u.uz))) {
+		levl[u.ux][u.uy].altarmask = !rn2(4) ? Align2amask(A_CHAOTIC) : !rn2(3) ? Align2amask(A_NEUTRAL) : !rn2(2) ? Align2amask(A_LAWFUL) : Align2amask(A_NONE);
+		pline("The altar rotates and seems to be changing.");
 	}
 
 	if (Role_if(PM_POLITICIAN) && !rn2(5)) {
