@@ -284,6 +284,37 @@ fnd:
 		adjalign(-1);		/* Liar! */
 	}
 
+	if (!rn2(10) || (strncmpi(buf, plname, (int) strlen(plname)) != 0) ) {
+		boolean rumoristrue = rn2(2);
+		verbalize("I don't believe you. We will have to do a quiz to verify your identity.");
+		verbalize("You will now tell me whether the following rumor is true or not!");
+
+		if (rumoristrue) outrumor(1, BY_OTHER);
+		else outrumor(-1, BY_OTHER);
+
+		if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
+
+			if (rumoristrue) {
+				verbalize("Ah-ha, you obviously lied! You don't even know the simplest facts! Well here's another one: You will die now, intruder.");
+				setmangry(guard);
+				return;
+			} else {
+				verbalize("You're right, this rumor was false. Sorry that I assumed you were lying to me.");
+			}
+
+		} else { /* player said it's true */
+			if (rumoristrue) {
+				verbalize("Correct! I see you actually gave me your true identity.");
+			} else {
+				verbalize("Of course not! Are you really that stupid? Do you know what happens to unwanted intruders in this vault? They die, and so will you now.");
+				setmangry(guard);
+				return;
+			}
+
+		}
+
+	}
+
 	if (!strcmpi(buf, "Croesus") || !strcmpi(buf, "Kroisos")
 #ifdef TOURIST
 		|| !strcmpi(buf, "Creosote")
