@@ -228,6 +228,38 @@ boolean artif;
 
 	else if ((objects[u.veryobtainable4].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost4) ) return(mksobj(u.veryobtainable4, TRUE, artif));
 
+	else if ((objects[u.veryobtainable5].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost5) ) return(mksobj(u.veryobtainable5, TRUE, artif));
+
+	else if ((objects[u.veryobtainable6].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost6) ) return(mksobj(u.veryobtainable6, TRUE, artif));
+
+	else if ((objects[u.veryobtainable7].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost7) ) return(mksobj(u.veryobtainable7, TRUE, artif));
+
+	else if ((objects[u.veryobtainable8].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost8) ) return(mksobj(u.veryobtainable8, TRUE, artif));
+
+	else if ((objects[u.veryobtainable9].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost9) ) return(mksobj(u.veryobtainable9, TRUE, artif));
+
+	else if ((objects[u.veryobtainable10].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost10) ) return(mksobj(u.veryobtainable10, TRUE, artif));
+
+	else if ((objects[u.veryobtainable11].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost11) ) return(mksobj(u.veryobtainable11, TRUE, artif));
+
+	else if ((objects[u.veryobtainable12].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost12) ) return(mksobj(u.veryobtainable12, TRUE, artif));
+
+	else if ((objects[u.veryobtainable13].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost13) ) return(mksobj(u.veryobtainable13, TRUE, artif));
+
+	else if ((objects[u.veryobtainable14].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost14) ) return(mksobj(u.veryobtainable14, TRUE, artif));
+
+	else if ((objects[u.veryobtainable15].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost15) ) return(mksobj(u.veryobtainable15, TRUE, artif));
+
+	else if ((objects[u.veryobtainable16].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost16) ) return(mksobj(u.veryobtainable16, TRUE, artif));
+
+	else if ((objects[u.veryobtainable17].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost17) ) return(mksobj(u.veryobtainable17, TRUE, artif));
+
+	else if ((objects[u.veryobtainable18].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost18) ) return(mksobj(u.veryobtainable18, TRUE, artif));
+
+	else if ((objects[u.veryobtainable19].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost19) ) return(mksobj(u.veryobtainable19, TRUE, artif));
+
+	else if ((objects[u.veryobtainable20].oc_class == oclass) && (rnd(5000) < u.veryobtainableboost20) ) return(mksobj(u.veryobtainable20, TRUE, artif));
+
 	else if (!rn2(50) && oclass == ARMOR_CLASS) {
 
 		for (j = STRANGE_OBJECT; j < NUM_OBJECTS; j++) {

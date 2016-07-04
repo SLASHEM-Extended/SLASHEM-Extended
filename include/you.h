@@ -493,12 +493,44 @@ struct you {
 	int unobtainablegeno;	/* for item genocide */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
-	int veryobtainable2;	
-	int veryobtainableboost2;	
-	int veryobtainable3;	
-	int veryobtainableboost3;	
-	int veryobtainable4;	
-	int veryobtainableboost4;	
+	int veryobtainable2;
+	int veryobtainableboost2;
+	int veryobtainable3;
+	int veryobtainableboost3;
+	int veryobtainable4;
+	int veryobtainableboost4;
+	int veryobtainable5;
+	int veryobtainableboost5;
+	int veryobtainable6;
+	int veryobtainableboost6;
+	int veryobtainable7;
+	int veryobtainableboost7;
+	int veryobtainable8;
+	int veryobtainableboost8;
+	int veryobtainable9;
+	int veryobtainableboost9;
+	int veryobtainable10;
+	int veryobtainableboost10;
+	int veryobtainable11;
+	int veryobtainableboost11;
+	int veryobtainable12;
+	int veryobtainableboost12;
+	int veryobtainable13;
+	int veryobtainableboost13;
+	int veryobtainable14;
+	int veryobtainableboost14;
+	int veryobtainable15;
+	int veryobtainableboost15;
+	int veryobtainable16;
+	int veryobtainableboost16;
+	int veryobtainable17;
+	int veryobtainableboost17;
+	int veryobtainable18;
+	int veryobtainableboost18;
+	int veryobtainable19;
+	int veryobtainableboost19;
+	int veryobtainable20;
+	int veryobtainableboost20;
 
 	int alwayscurseditem;		/* evil patch idea - item type that is always generated cursed */
 	int alwayscurseditem2;

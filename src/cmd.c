@@ -1788,6 +1788,86 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable5].oc_name, obj_descr[u.veryobtainable5].oc_descr, u.veryobtainableboost5);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable6].oc_name, obj_descr[u.veryobtainable6].oc_descr, u.veryobtainableboost6);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable7].oc_name, obj_descr[u.veryobtainable7].oc_descr, u.veryobtainableboost7);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable8].oc_name, obj_descr[u.veryobtainable8].oc_descr, u.veryobtainableboost8);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable9].oc_name, obj_descr[u.veryobtainable9].oc_descr, u.veryobtainableboost9);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable10].oc_name, obj_descr[u.veryobtainable10].oc_descr, u.veryobtainableboost10);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable11].oc_name, obj_descr[u.veryobtainable11].oc_descr, u.veryobtainableboost11);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable12].oc_name, obj_descr[u.veryobtainable12].oc_descr, u.veryobtainableboost12);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable13].oc_name, obj_descr[u.veryobtainable13].oc_descr, u.veryobtainableboost13);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable14].oc_name, obj_descr[u.veryobtainable14].oc_descr, u.veryobtainableboost14);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable15].oc_name, obj_descr[u.veryobtainable15].oc_descr, u.veryobtainableboost15);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable16].oc_name, obj_descr[u.veryobtainable16].oc_descr, u.veryobtainableboost16);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable17].oc_name, obj_descr[u.veryobtainable17].oc_descr, u.veryobtainableboost17);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable18].oc_name, obj_descr[u.veryobtainable18].oc_descr, u.veryobtainableboost18);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable19].oc_name, obj_descr[u.veryobtainable19].oc_descr, u.veryobtainableboost19);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable20].oc_name, obj_descr[u.veryobtainable20].oc_descr, u.veryobtainableboost20);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -3745,6 +3825,54 @@ int final;
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable4].oc_name, obj_descr[u.veryobtainable4].oc_descr, u.veryobtainableboost4);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable5].oc_name, obj_descr[u.veryobtainable5].oc_descr, u.veryobtainableboost5);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable6].oc_name, obj_descr[u.veryobtainable6].oc_descr, u.veryobtainableboost6);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable7].oc_name, obj_descr[u.veryobtainable7].oc_descr, u.veryobtainableboost7);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable8].oc_name, obj_descr[u.veryobtainable8].oc_descr, u.veryobtainableboost8);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable9].oc_name, obj_descr[u.veryobtainable9].oc_descr, u.veryobtainableboost9);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable10].oc_name, obj_descr[u.veryobtainable10].oc_descr, u.veryobtainableboost10);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable11].oc_name, obj_descr[u.veryobtainable11].oc_descr, u.veryobtainableboost11);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable12].oc_name, obj_descr[u.veryobtainable12].oc_descr, u.veryobtainableboost12);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable13].oc_name, obj_descr[u.veryobtainable13].oc_descr, u.veryobtainableboost13);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable14].oc_name, obj_descr[u.veryobtainable14].oc_descr, u.veryobtainableboost14);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable15].oc_name, obj_descr[u.veryobtainable15].oc_descr, u.veryobtainableboost15);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable16].oc_name, obj_descr[u.veryobtainable16].oc_descr, u.veryobtainableboost16);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable17].oc_name, obj_descr[u.veryobtainable17].oc_descr, u.veryobtainableboost17);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable18].oc_name, obj_descr[u.veryobtainable18].oc_descr, u.veryobtainableboost18);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable19].oc_name, obj_descr[u.veryobtainable19].oc_descr, u.veryobtainableboost19);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable20].oc_name, obj_descr[u.veryobtainable20].oc_descr, u.veryobtainableboost20);
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
