@@ -1643,16 +1643,24 @@ mon_tele:
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
+				if (!objects[SCR_TELEPORTATION].oc_name_known &&
+				!objects[SCR_TELEPORTATION].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			nlev = random_teleport_level();
 			if (nlev == depth(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
+				if (!objects[SCR_TELEPORTATION].oc_name_known &&
+				!objects[SCR_TELEPORTATION].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			get_level(&flev, nlev);
@@ -1686,16 +1694,24 @@ mon_tele:
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
+				if (!objects[SCR_TELE_LEVEL].oc_name_known &&
+				!objects[SCR_TELE_LEVEL].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			nlev = random_teleport_level();
 			if (nlev == depth(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
+				if (!objects[SCR_TELE_LEVEL].oc_name_known &&
+				!objects[SCR_TELE_LEVEL].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			get_level(&flev, nlev);
@@ -1711,27 +1727,29 @@ mon_tele:
 		mzapmsg(mtmp, otmp, TRUE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		if (oseen) makeknown(WAN_TELE_LEVEL);
 		how = WAN_TELE_LEVEL;
 			int nlev;
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
+				}
 			    return 2;
 			}
 			nlev = random_teleport_level();
 			if (nlev == depth(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
+				}
 			    return 2;
 			}
 			get_level(&flev, nlev);
 			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM,
 				(coord *)0);
-			if (oseen) makeknown(SCR_TELE_LEVEL);
 
 		return 2;
 
@@ -1763,16 +1781,24 @@ mon_tele:
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
+				if (!objects[SCR_ROOT_PASSWORD_DETECTION].oc_name_known &&
+				!objects[SCR_ROOT_PASSWORD_DETECTION].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			nlev = random_teleport_level();
 			if (nlev == depth(&u.uz)) {
-			    if (vismon)
+			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
+				if (!objects[SCR_ROOT_PASSWORD_DETECTION].oc_name_known &&
+				!objects[SCR_ROOT_PASSWORD_DETECTION].oc_uname)
+				    docall(otmp);
+				}
 			    return 2;
 			}
 			get_level(&flev, nlev);
@@ -3761,6 +3787,7 @@ register struct obj *otmp;
 				break;
 		}
 		if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
+			if (zap_oseen) makeknown(WAN_TIME);
 
 			break;
 		} else {
@@ -3813,14 +3840,17 @@ register struct obj *otmp;
 		if (mtmp == &youmonst) {
 			You("suddenly panic!");
 			make_feared(HFeared + rnd(50 + (monster_difficulty() * 5) ),TRUE);
+			if (zap_oseen) makeknown(WAN_FEAR);
 			break;
 		} else {
 
 			if (!is_undead(mtmp->data) && (!mtmp->egotype_undead) &&
 			    !resist(mtmp, otmp->oclass, 0, NOTELL) &&
 			    (!mtmp->mflee || mtmp->mfleetim)) {
-			     if (canseemon(mtmp))
+			     if (canseemon(mtmp)) {
 				 pline("%s suddenly panics!", Monnam(mtmp));
+				 makeknown(WAN_FEAR);
+				}
 			     monflee(mtmp, rnd(10), FALSE, TRUE);
 			}
 			break;
@@ -3832,6 +3862,8 @@ register struct obj *otmp;
 	case WAN_SLOW_MONSTER:
 		if (mtmp == &youmonst) {
 			u_slow_down();
+			if (zap_oseen)
+				makeknown(WAN_SLOW_MONSTER);
 			break;
 		} else {
 
@@ -3857,6 +3889,8 @@ register struct obj *otmp;
 			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+			if (zap_oseen)
+				makeknown(WAN_INERTIA);
 			break;
 		} else {
 
