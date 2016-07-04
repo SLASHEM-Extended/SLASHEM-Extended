@@ -661,6 +661,7 @@ register const char *word;
 			pline("For some reason, you cannot %s%s the stone%s!",
 			      word, obj->corpsenm ? " any of" : "",
 			      plur(obj->quan));
+			if (Hallucination) pline("Your fault for picking it up, you damn idiot!"); /* YANI by Yasdorian */
 		}
 		obj->corpsenm = 0;		/* reset */
 		obj->bknown = 1;
