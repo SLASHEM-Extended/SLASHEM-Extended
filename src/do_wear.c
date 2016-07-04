@@ -2762,10 +2762,17 @@ find_ac()
 	if (!issoviet) {
 		if (u.ulevel >= 5) uac -= 1;
 		if (u.ulevel >= 10) uac -= 1;
+		if (u.ulevel >= 14) uac -= 1;
 		if (u.ulevel >= 15) uac -= 1;
 		if (u.ulevel >= 20) uac -= 1;
 		if (u.ulevel >= 25) uac -= 1;
 		if (u.ulevel >= 30) uac -= 1;
+		if (u.menoraget) uac -= 1;
+		if (u.bookofthedeadget) uac -= 1;
+		if (u.silverbellget) uac -= 1;
+		if (u.chaoskeyget && u.neutralkeyget && u.lawfulkeyget) uac -= 1;
+		if (u.medusaremoved) uac -= 1;
+		if (u.luckstoneget && u.sokobanfinished) uac -= 1;
 	}
 
 	/* After all, a couatl or archon can still hit a -40 AC player without any problems... */

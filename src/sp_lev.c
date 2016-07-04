@@ -3381,7 +3381,7 @@ struct mkroom	*croom;
          * the player obtained the prize. */
         if(otmp->otyp == LUCKSTONE && Is_mineend_level(&u.uz)) {
                 otmp->record_achieve_special = 1;
-        } else if((otmp->otyp == AMULET_OF_REFLECTION ||
+        } else if((otmp->otyp == AMULET_OF_REFLECTION || otmp->otyp == GAUNTLETS_OF_REFLECTION || otmp->otyp == RIN_POLYMORPH_CONTROL || otmp->otyp == RIN_TELEPORT_CONTROL || otmp->otyp == SHIELD_OF_MOBILITY || otmp->otyp == HELM_OF_DRAIN_RESISTANCE || otmp->otyp == CYAN_DRAGON_SCALE_MAIL || otmp->otyp == FLYING_BOOTS ||
                    otmp->otyp == BAG_OF_HOLDING) && 
                   Is_sokoend_level(&u.uz)) {
                 otmp->record_achieve_special = 1;

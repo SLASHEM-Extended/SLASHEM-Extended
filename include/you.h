@@ -507,6 +507,9 @@ struct you {
 	int chaoskeyget;
 	int neutralkeyget;
 	int lawfulkeyget;
+	int luckstoneget;
+	int sokobanfinished;
+	int medusaremoved;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
 

@@ -303,6 +303,12 @@ register struct monst *mtmp;
 		if (rn2(2)) goto default_1;
 		/* fall through */
 	    case PM_WHITE_UNICORN:
+	    case PM_WINGED_WHITE_UNICORN:
+	    case PM_WINGED_GRAY_UNICORN:
+	    case PM_WINGED_BLACK_UNICORN:
+	    case PM_BEIGE_UNICORN:
+	    case PM_CONCRETE_UNICORN:
+	    case PM_ANTHRAZITE_UNICORN:
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
@@ -324,6 +330,9 @@ register struct monst *mtmp;
 	    case PM_BIG_WHITE_UNICORN:
 	    case PM_BIG_GRAY_UNICORN:
 	    case PM_BIG_BLACK_UNICORN:
+	    case PM_PETTY_BIG_WHITE_UNICORN:
+	    case PM_PETTY_BIG_GRAY_UNICORN:
+	    case PM_PETTY_BIG_BLACK_UNICORN:
 		if (mtmp->mrevived && rn2(20)) {
 			if (canseemon(mtmp))
 			   pline("%s recently regrown horn crumbles to dust.",
@@ -2786,6 +2795,13 @@ register struct monst *mtmp;
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 		} /* while */
 
+	}
+
+      if(mtmp->data == &mons[PM_MEDUSA] && !u.medusaremoved) {
+		u.medusaremoved = 1;
+		u.uhpmax += rnd(20);
+		u.uenmax += rnd(20);
+		if (Upolyd) u.mhmax += rnd(20);
 	}
 
 #ifdef RECORD_ACHIEVE

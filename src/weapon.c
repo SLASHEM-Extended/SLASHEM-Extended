@@ -1910,6 +1910,21 @@ abon()		/* attack bonus for strength & dexterity */
 	}
 	if (Upolyd) sbon += (adj_lev(&mons[u.umonnum]) - 3);
 
+	if (!rn2(2) && u.ulevel > 14) sbon += 1;
+	if (u.menoraget) sbon += 1;
+	if (u.bookofthedeadget) sbon += 1;
+	if (u.silverbellget) sbon += 1;
+	if (!rn2(3) && u.chaoskeyget) sbon += 1;
+	if (!rn2(3) && u.neutralkeyget) sbon += 1;
+	if (!rn2(3) && u.lawfulkeyget) sbon += 1;
+	if (!rn2(2) && u.medusaremoved) sbon += 1;
+	if (!rn2(5) && u.luckstoneget) sbon += 1;
+	if (!rn2(5) && u.sokobanfinished) sbon += 1;
+	if (!rn2(5) && u.ulevel > 10) sbon += 1;
+	if (!rn2(5) && u.ulevel > 17) sbon += 1;
+	if (!rn2(5) && u.ulevel > 23) sbon += 1;
+	if (!rn2(5) && u.ulevel > 29) sbon += 1;
+
 	/* In Soviet Russia, strength and dexterity bonuses are lower because seriously, who needs bonuses??? --Amy */
 	if (issoviet && sbon > 1) sbon /= 2;
 
@@ -3165,8 +3180,19 @@ struct obj *weapon;
 	/* add a little damage bonus for higher-level characters so the stronger monsters aren't too overpowered --Amy */
 
 	if (u.ulevel >= 10) bonus += 1;
+	if (u.ulevel >= 14) bonus += rn2(2);
 	if (u.ulevel >= 20) bonus += 1;
 	if (u.ulevel >= 30) bonus += 1;
+
+	if (!rn2(5) && u.menoraget) bonus += rnd(5);
+	if (!rn2(5) && u.bookofthedeadget) bonus += rnd(5);
+	if (!rn2(5) && u.silverbellget) bonus += rnd(5);
+	if (!rn2(4) && u.chaoskeyget) bonus += 1;
+	if (!rn2(4) && u.neutralkeyget) bonus += 1;
+	if (!rn2(4) && u.lawfulkeyget) bonus += 1;
+	if (!rn2(2) && u.medusaremoved) bonus += 1;
+	if (!rn2(7) && u.luckstoneget) bonus  += 1;
+	if (!rn2(7) && u.sokobanfinished) bonus += 1;
 
 	/* damage bonus for using racial equipment */
 

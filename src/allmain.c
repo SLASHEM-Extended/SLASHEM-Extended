@@ -1987,10 +1987,20 @@ moveloop()
 		    if ( !Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
 			(u.ulevel >= 5 && !rn2(200)) ||
 			(u.ulevel >= 10 && !rn2(100)) ||
+			(u.ulevel >= 14 && !rn2(100)) ||
 			(u.ulevel >= 15 && !rn2(50)) ||
 			(u.ulevel >= 20 && !rn2(30)) ||
 			(u.ulevel >= 25 && !rn2(20)) ||
-			(u.ulevel >= 30 && !rn2(10))
+			(u.ulevel >= 30 && !rn2(10)) ||
+			(u.menoraget && !rn2(200)) ||
+			(u.bookofthedeadget && !rn2(200)) ||
+			(u.silverbellget && !rn2(200)) ||
+			(u.chaoskeyget && !rn2(500)) ||
+			(u.neutralkeyget && !rn2(500)) ||
+			(u.lawfulkeyget && !rn2(500)) ||
+			(u.medusaremoved && !rn2(250)) ||
+			(u.luckstoneget && !rn2(1000)) ||
+			(u.sokobanfinished && !rn2(1000))
 			)
 			)
 			u.uen += 1;
