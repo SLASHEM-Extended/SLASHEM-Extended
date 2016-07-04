@@ -3413,6 +3413,12 @@ register struct attack *mattk;
 		    tmp = 0;
 		}
 		break;
+	    case AD_SPEL:
+		/* obvious rule patch because the rodneyan race is way too overpowered otherwise --Amy */
+		if (Race_if(PM_RODNEYAN) && !Upolyd && (rnd(u.ulevel + 100) < 100)) tmp = 0;
+
+		break;
+
 	    default:	/*tmp = 0;*/ /*making uncommon polymorph forms with weird attacks like AD_DARK stronger. --Amy*/
 		break;
 	}
