@@ -4391,7 +4391,7 @@ newegomon:
 
 	    case ANTI_MAGIC:
 		seetrap(trap);
-		if(Antimagic) {
+		if(Antimagic && rn2(2) ) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("momentarily lethargic.");
 		} else drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
@@ -4406,7 +4406,7 @@ newegomon:
 
 	    case OUT_OF_MAGIC_TRAP:
 		seetrap(trap);
-		if(Antimagic && rn2(3) ) {
+		if(Antimagic && !rn2(5) ) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("momentarily lethargic.");
 		} else if (u.uen > ((u.uenmax / 9) + 1)) {
