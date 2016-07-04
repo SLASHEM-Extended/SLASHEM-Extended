@@ -3427,6 +3427,16 @@ weight_cap()
 	if (carrcap < 500) carrcap = 500;
 	}
 
+	if (u.menoraget) carrcap += 200;
+	if (u.bookofthedeadget) carrcap += 250;
+	if (u.silverbellget) carrcap += 150;
+	if (u.chaoskeyget) carrcap += 50;
+	if (u.neutralkeyget) carrcap += 50;
+	if (u.lawfulkeyget) carrcap += 50;
+	if (u.medusaremoved) carrcap += 150;
+	if (u.luckstoneget) carrcap += 50;
+	if (u.sokobanfinished) carrcap += 50;
+
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 
@@ -3434,8 +3444,10 @@ weight_cap()
 #ifdef STEED
 			|| (u.usteed && strongmonst(u.usteed->data))
 #endif
-	)
-		carrcap = MAX_CARR_CAP;
+	) {
+		carrcap += 2000;
+		if(carrcap > MAX_CARR_CAP) carrcap = MAX_CARR_CAP;
+	}
 	else {
 		if(carrcap > MAX_CARR_CAP) carrcap = MAX_CARR_CAP;
 		if (!Flying) {

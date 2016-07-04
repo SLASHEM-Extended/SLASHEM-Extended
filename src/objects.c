@@ -1944,14 +1944,14 @@ OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 		0, TOOL_CLASS, prob, 0, \
 		wt, cost, sdam, ldam, hitbon, 0, wt, clr )
 /* Containers */
-CONTAINER("large box", "wooden box",    0, 0, 0, 1, 174,30,   8, WOOD, HI_WOOD),
-CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 1,30,   8, WOOD, HI_WOOD),
-CONTAINER("chest", "wooden container",  0, 0, 0, 1, 174,60,  16, WOOD, HI_WOOD),
-CONTAINER("chest of holding", "wooden container",  0, 0, 0, 1, 1,60,  16, WOOD, HI_WOOD),
-CONTAINER("ice box", "cooling box",         0, 0, 0, 1,  47,90,  42, PLASTIC, CLR_WHITE),
-CONTAINER("ice box of holding", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
-CONTAINER("ice box of waterproofing", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
-CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   1,90,  42, PLASTIC, CLR_WHITE),
+CONTAINER("large box", "wooden box",    0, 0, 0, 1, 174,500,   8, WOOD, HI_WOOD),
+CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 1,500,   8, WOOD, HI_WOOD),
+CONTAINER("chest", "wooden container",  0, 0, 0, 1, 174,750,  16, WOOD, HI_WOOD),
+CONTAINER("chest of holding", "wooden container",  0, 0, 0, 1, 1,750,  16, WOOD, HI_WOOD),
+CONTAINER("ice box", "cooling box",         0, 0, 0, 1,  47,400,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of holding", "cooling box", 0, 0, 0, 1,   1,400,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of waterproofing", "cooling box", 0, 0, 0, 1,   1,400,  42, PLASTIC, CLR_WHITE),
+CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   1,400,  42, PLASTIC, CLR_WHITE),
 CONTAINER("sack", "bag",                0, 0, 0, 0, 150, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 100, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 100, 5, 100, CLOTH, HI_CLOTH),
@@ -3569,7 +3569,7 @@ ROCK("healthstone", "gray",			0, 40,  0,   60, 15, 15, 1, 10, 7, MINERAL, CLR_GR
 ROCK("manastone", "gray",			0, 5,   0,   60, 15, 15, 1, 10, 4, MINERAL, CLR_GRAY),
 ROCK("stone of magic resistance", "gray",	0, 5,   0,   60, 35, 35, 1, 10, 8, MINERAL, CLR_GRAY),
 ROCK("sleepstone", "gray",			0, 5,   0,   60, 25, 25, 1, 10, 5, MINERAL, CLR_GRAY),
-ROCK("loadboulder", "gray",			0, 5,  6000, 60, 75, 75, 1, 6000, 7, MINERAL, CLR_GRAY),
+ROCK("loadboulder", "gray",			0, 5,  9000, 60, 75, 75, 1, 9000, 7, MINERAL, CLR_GRAY),
 ROCK("loadstone", "gray",			0, 40, 1200, 60, 40, 40, 1, 1200, 6, MINERAL, CLR_GRAY),
 ROCK("touchstone", "gray",			0, 30,  0,   60, 15, 15, 1, 10, 6, MINERAL, CLR_GRAY),
 
@@ -3673,7 +3673,7 @@ ROCK("silver slingstone", "gray", 		0, 5,   0,   60, 20, 20, 0, 10, 5, SILVER, C
 ROCK("talc", "gray",				0, 1,   0, 60, 10, 10, 0, 10, 1, MINERAL, CLR_GRAY),
 ROCK("graphite", "gray",			0, 1,   0, 60, 10, 10, 0, 10, 1, MINERAL, CLR_GRAY),
 ROCK("volcanic glass fragment", "gray",	0, 1,   0, 60, 25, 25, 0, 10, 5, GEMSTONE,CLR_GRAY), /* FHS obsidian */
-ROCK("starlightstone", "gray",		0, 1,5000, 60, 20, 20, 1, 10, 6, MINERAL, CLR_GRAY),
+ROCK("starlightstone", "gray",		0, 1,5000, 60, 20, 20, 1, 5000, 6, MINERAL, CLR_GRAY),
 ROCK("flint", "gray",				0, 60,  0,   60, 20, 20, 0, 10, 7, MINERAL, CLR_GRAY),
 ROCK("rock", (char *)0,				1,2100, 0,    0, 5, 5, 0, 10, 7, MINERAL, CLR_GRAY),
 #undef GEM
@@ -3686,7 +3686,7 @@ ROCK("rock", (char *)0,				1,2100, 0,    0, 5, 5, 0, 10, 7, MINERAL, CLR_GRAY),
  * on a specific type and may act as containers (both affect weight).
  */
 OBJECT(OBJ("boulder",(char *)0), BITS(1,0,0,0,0,0,0,0,1,0,0,P_NONE,MINERAL), 0,
-		ROCK_CLASS,   500, 0, 6000,  0, 20, 20, 0, 0, 1000, HI_MINERAL),
+		ROCK_CLASS,   500, 0, 9000,  0, 20, 20, 0, 0, 1000, HI_MINERAL),
 OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MINERAL), 0,
 		ROCK_CLASS,  4500, 0, 2500,  0, 20, 20, 0, 0, 200, CLR_WHITE),
 
@@ -3716,13 +3716,13 @@ OBJECT(OBJ("heavy conundrum ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_
 OBJECT(OBJ("heavy concrete ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
 		BALL_CLASS,  5, 0,  2400, 10, 55, 55, 0, 0,  200, CLR_BRIGHT_GREEN),
 OBJECT(OBJ("impossibly heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
-		BALL_CLASS,  40, 0,  12000, 10, 75, 75, 0, 0,  200, CLR_BLACK),
+		BALL_CLASS,  40, 0,  18000, 10, 75, 75, 0, 0,  200, CLR_BLACK),
 OBJECT(OBJ("impossibly heavy glass ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,GLASS), 0,
-		BALL_CLASS,  20, 0,  12000, 10, 75, 75, 0, 0,  200, CLR_BRIGHT_BLUE),
+		BALL_CLASS,  20, 0,  18000, 10, 75, 75, 0, 0,  200, CLR_BRIGHT_BLUE),
 OBJECT(OBJ("impossibly heavy mineral ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
-		BALL_CLASS,  20, 0,  12000, 10, 75, 75, 0, 0,  200, CLR_WHITE),
+		BALL_CLASS,  20, 0,  18000, 10, 75, 75, 0, 0,  200, CLR_WHITE),
 OBJECT(OBJ("impossibly heavy elysium ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
-		BALL_CLASS,  20, 0,  12000, 10, 75, 75, 0, 0,  200, CLR_MAGENTA),
+		BALL_CLASS,  20, 0,  18000, 10, 75, 75, 0, 0,  200, CLR_MAGENTA),
 
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
 		CHAIN_CLASS, 3735, 0,  120,  0,  4,  4, 0, 0,  200, HI_METAL),
@@ -3741,29 +3741,29 @@ OBJECT(OBJ("clay chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINE
 		CHAIN_CLASS, 100, 0,  240,  0,  8,  8, 0, 0,  200, CLR_BROWN),
 
 OBJECT(OBJ("scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
-		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_MAGENTA),
+		CHAIN_CLASS, 50, 0,  500,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_MAGENTA),
 OBJECT(OBJ("elysium scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
-		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_CYAN),
+		CHAIN_CLASS, 50, 0,  500,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_CYAN),
 OBJECT(OBJ("granite scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
-		CHAIN_CLASS, 50, 0,  360,  0,  15,  15, 0, 0,  200, CLR_GREEN),
+		CHAIN_CLASS, 50, 0,  500,  0,  15,  15, 0, 0,  200, CLR_GREEN),
 
 OBJECT(OBJ("nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
 /* spelled wrong on purpose, as the samurai has another item with that name --Amy */
-		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_BRIGHT_GREEN),
+		CHAIN_CLASS, 5, 0,  800,  0,  24,  24, 0, 0,  200, CLR_BRIGHT_GREEN),
 
 OBJECT(OBJ("conundrum nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
-		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_RED),
+		CHAIN_CLASS, 5, 0,  800,  0,  24,  24, 0, 0,  200, CLR_RED),
 OBJECT(OBJ("concrete nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
-		CHAIN_CLASS, 5, 0,  480,  0,  24,  24, 0, 0,  200, CLR_ORANGE),
+		CHAIN_CLASS, 5, 0,  800,  0,  24,  24, 0, 0,  200, CLR_ORANGE),
 
 OBJECT(OBJ("hostage chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,IRON), 0,
-		CHAIN_CLASS, 40, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_BLACK),
+		CHAIN_CLASS, 40, 0,  1500,  0,  32,  32, 0, 0,  200, CLR_BLACK),
 OBJECT(OBJ("glass hostage chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,GLASS), 0,
-		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_BRIGHT_BLUE),
+		CHAIN_CLASS, 20, 0,  1500,  0,  32,  32, 0, 0,  200, CLR_BRIGHT_BLUE),
 OBJECT(OBJ("mineral hostage chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MINERAL), 0,
-		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_WHITE),
+		CHAIN_CLASS, 20, 0,  1500,  0,  32,  32, 0, 0,  200, CLR_WHITE),
 OBJECT(OBJ("elysium hostage chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,DRAGON_HIDE), 0,
-		CHAIN_CLASS, 20, 0,  1200,  0,  32,  32, 0, 0,  200, CLR_MAGENTA),
+		CHAIN_CLASS, 20, 0,  1500,  0,  32,  32, 0, 0,  200, CLR_MAGENTA),
 
 /* extra balls and chains for convict mainly (he can advance flail skill by swinging them) --Amy */
 
