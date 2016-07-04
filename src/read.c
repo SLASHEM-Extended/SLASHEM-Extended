@@ -4606,6 +4606,10 @@ retry:
 		if(invent && !confused) {
 		    identify_pack(cval, 0);
 		}
+		if (!rn2(5) && sobj->otyp == SPE_IDENTIFY) {
+			pline("The spell backlashes!");
+			badeffect();
+		}
 		return(1);
 	case SCR_INVENTORY_ID: /* always identifies the player's entire inventory --Amy */
 		makeknown(SCR_INVENTORY_ID);

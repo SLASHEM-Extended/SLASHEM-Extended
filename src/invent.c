@@ -7497,7 +7497,7 @@ struct obj *obj;
 			case SPE_DETECT_UNSEEN:
 				pline("A spell that may detect hidden things close by, e.g. traps or invisible monsters."); break;
 			case SPE_IDENTIFY:
-				pline("Casting this spell allows you to identify some objects in your inventory. Careful: very rarely this spell can backlash, causing amnesia!"); break;
+				pline("Casting this spell allows you to identify some objects in your inventory. Careful: very rarely this spell can backlash, causing random bad effects or occasionally amnesia!"); break;
 			case SPE_DETECT_TREASURE:
 				pline("This spell detects some of the objects on the current level."); break;
 			case SPE_MAGIC_MAPPING:
