@@ -5549,6 +5549,8 @@ u_init()
 
 	u.alwaysinvisible = 0;
 	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	u.alwayshidden = 0;
+	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
 
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
 	u.freqmonsterbonus = rne(4);
@@ -22068,6 +22070,8 @@ alter_reality()
 
 	u.alwaysinvisible = 0;
 	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	u.alwayshidden = 0;
+	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
 
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
 	u.freqmonsterbonus = rne(4);

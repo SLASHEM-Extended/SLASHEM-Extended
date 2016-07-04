@@ -1524,6 +1524,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Today, the monster class that always gets generated invisible ", "is ", "was ", monexplain[u.alwaysinvisible] );
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 )) && u.alwayshidden) {
+		enl_msg("Today, the monster class that always gets generated hidden ", "is ", "was ", monexplain[u.alwayshidden] );
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
 		enl_msg("The monster class that ", "is ", "was ", buf );
@@ -3559,6 +3563,10 @@ int final;
 
 	if (u.alwaysinvisible) {
 		dump("  Today, this monster class was always generated invisible: ", monexplain[u.alwaysinvisible] );
+	}
+
+	if (u.alwayshidden) {
+		dump("  Today, this monster class was always generated hidden: ", monexplain[u.alwayshidden] );
 	}
 
 	Sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
