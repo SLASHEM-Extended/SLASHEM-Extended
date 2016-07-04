@@ -1932,7 +1932,7 @@ moveloop()
 		    
 		    /* KMH -- OK to regenerate if you don't move */
 		    if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
-				((Energy_regeneration && !rn2(5)) || /* greatly nerfed overpowered wizard artifact --Amy */
+				((Energy_regeneration && !rn2(3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
 				(!(moves%((MAXULEV + 15 - u.ulevel) *                                    
@@ -2601,6 +2601,7 @@ newgame()
 	init_dungeons();	/* must be before u_init() to avoid rndmonst()
 				 * creating odd monsters for any tins and eggs
 				 * in hero's initial inventory */
+
 	init_artifacts();	/* before u_init() in case $WIZKIT specifies
 				 * any artifacts */
 	u_init();
