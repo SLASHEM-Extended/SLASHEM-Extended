@@ -407,6 +407,7 @@ struct you {
 	int ungenocidable;	/* evil patch idea by jonadab - monster class that can't be genocided at all */
 
 	int alwaysinvisible;	/* evil patch idea by alpha123 - monster class that's always invisible */
+	int alwayshidden;
 
 	int minimalism;		/* chance that an item is generated is only 1 in X for minimalist race */
 
@@ -467,6 +468,10 @@ struct you {
 	int idringpenalty;
 	int idamuletpenalty;
 	int idwandpenalty;
+	int idarmorpenalty;
+	int idspellbookpenalty;
+	int idtoolpenalty;
+	int idgempenalty;
 
 	int nospawnspecies;	/* nice patch idea by Amy - monster species that isn't randomly generated */
 	int nospawnspecies2;

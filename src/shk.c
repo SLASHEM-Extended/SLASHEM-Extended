@@ -5313,18 +5313,26 @@ shk_identify(slang, shkp)
 	if (ident_type == 'p') {
 		if (obj->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
-		else if (obj->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
-		else if (obj->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == RING_CLASS && (!(obj->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+		else if (obj->oclass == AMULET_CLASS && (!(obj->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) )&& rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
 		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+		else if (obj->oclass == ARMOR_CLASS && (!(obj->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
+		else if (obj->oclass == SPBOOK_CLASS && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
+		else if (obj->oclass == GEM_CLASS && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
+		else if (obj->oclass == TOOL_CLASS && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
 		else makeknown(obj->otyp);
 		identify(obj);
 	} else { 
 		/* Basic */
 		if (obj->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
-		else if (obj->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
-		else if (obj->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == RING_CLASS && (!(obj->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+		else if (obj->oclass == AMULET_CLASS && (!(obj->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) )&& rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
 		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
+		else if (obj->oclass == ARMOR_CLASS && (!(obj->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
+		else if (obj->oclass == SPBOOK_CLASS && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
+		else if (obj->oclass == GEM_CLASS && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
+		else if (obj->oclass == TOOL_CLASS && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
 		else makeknown(obj->otyp);
 		obj->dknown = 1;
     		prinv((char *)0, obj, 0L); /* Print result */

@@ -5130,6 +5130,7 @@ static const char * const chaoticgods[] = {
 void
 u_init()
 {
+
 	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus, randpantheon, starlitmonster, starlitattempts;
 	register struct permonst *ptr;
 	struct permonst* shamblerm = &mons[PM_NITROHACK_HORROR];
@@ -6139,6 +6140,18 @@ u_init()
 	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
+	u.idarmorpenalty = rnd(30); /* if rnd(this) is greater than 15, the armor isn't ided */
+	if (!rn2(7)) u.idarmorpenalty += rnz(15);
+	if (!rn2(50)) u.idarmorpenalty += rnz(30);
+	u.idspellbookpenalty = rnd(16); /* if rnd(this) is greater than 2, the spellbook isn't ided */
+	if (!rn2(7)) u.idspellbookpenalty += rnz(8);
+	if (!rn2(50)) u.idspellbookpenalty += rnz(16);
+	u.idgempenalty = rnd(200); /* if rnd(this) is greater than 100, the gem isn't ided */
+	if (!rn2(7)) u.idgempenalty += rnz(100);
+	if (!rn2(50)) u.idgempenalty += rnz(200);
+	u.idtoolpenalty = rnd(12); /* if rnd(this) is greater than 5, the tool isn't ided */
+	if (!rn2(7)) u.idtoolpenalty += rnz(6);
+	if (!rn2(50)) u.idtoolpenalty += rnz(12);
 
 	u.musableremovechance = 0;
 	if (!rn2(3)) u.musableremovechance += rnd(20);
@@ -22629,6 +22642,18 @@ alter_reality()
 	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
+	u.idarmorpenalty = rnd(30); /* if rnd(this) is greater than 15, the armor isn't ided */
+	if (!rn2(7)) u.idarmorpenalty += rnz(15);
+	if (!rn2(50)) u.idarmorpenalty += rnz(30);
+	u.idspellbookpenalty = rnd(16); /* if rnd(this) is greater than 2, the spellbook isn't ided */
+	if (!rn2(7)) u.idspellbookpenalty += rnz(8);
+	if (!rn2(50)) u.idspellbookpenalty += rnz(16);
+	u.idgempenalty = rnd(200); /* if rnd(this) is greater than 100, the gem isn't ided */
+	if (!rn2(7)) u.idgempenalty += rnz(100);
+	if (!rn2(50)) u.idgempenalty += rnz(200);
+	u.idtoolpenalty = rnd(12); /* if rnd(this) is greater than 5, the tool isn't ided */
+	if (!rn2(7)) u.idtoolpenalty += rnz(6);
+	if (!rn2(50)) u.idtoolpenalty += rnz(12);
 
 	u.musableremovechance = 0;
 	if (!rn2(3)) u.musableremovechance += rnd(20);

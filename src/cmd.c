@@ -1417,6 +1417,26 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Wand identification only ", "works 3 times out of", "worked 3 times out of", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idarmorpenalty > 15)) {
+		Sprintf(buf, " %d", u.idarmorpenalty);
+		enl_msg("Armor identification only ", "works 15 times out of", "worked 15 times out of", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idspellbookpenalty > 2)) {
+		Sprintf(buf, " %d", u.idspellbookpenalty);
+		enl_msg("Spellbook identification only ", "works 2 times out of", "worked 2 times out of", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idgempenalty > 100)) {
+		Sprintf(buf, " %d", u.idgempenalty);
+		enl_msg("Gem identification only ", "works 100 times out of", "worked 100 times out of", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idtoolpenalty > 5)) {
+		Sprintf(buf, " %d", u.idtoolpenalty);
+		enl_msg("Tool identification only ", "works 5 times out of", "worked 5 times out of", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.musableremovechance)) {
 		Sprintf(buf, " %d%% chance", 100 - u.musableremovechance);
 		enl_msg("Monsters ", "will only drop their musable items with", "only dropped their musable items with", buf);
@@ -3435,6 +3455,26 @@ int final;
 	if (u.idwandpenalty > 3) {
 		Sprintf(buf, " %d", u.idwandpenalty);
 		dump("  Wand identification only worked 3 times out of ", buf);
+	}
+
+	if (u.idarmorpenalty > 15) {
+		Sprintf(buf, " %d", u.idarmorpenalty);
+		dump("  Armor identification only worked 15 times out of ", buf);
+	}
+
+	if (u.idspellbookpenalty > 2) {
+		Sprintf(buf, " %d", u.idspellbookpenalty);
+		dump("  Spellbook identification only worked 2 times out of", buf);
+	}
+
+	if (u.idgempenalty > 100) {
+		Sprintf(buf, " %d", u.idgempenalty);
+		dump("  Gem identification only worked 100 times out of", buf);
+	}
+
+	if (u.idtoolpenalty > 5) {
+		Sprintf(buf, " %d", u.idtoolpenalty);
+		dump("  Tool identification only worked 5 times out of", buf);
 	}
 
 	if (u.musableremovechance) {
