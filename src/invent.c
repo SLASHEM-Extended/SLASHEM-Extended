@@ -4966,7 +4966,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { 
 
 			switch (obj->otyp) {
@@ -5446,7 +5446,128 @@ struct obj *obj;
 #else
 		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tartibsizlik chizilmasin"))))
+			pline("These boots have weird-shaped high heels, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "keng dunyo veb-zarbdan"))))
+			pline("A special helmet that provides internet access. Watching the webcams can occasionally show you the movement of monsters on the current dungeon level.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xanjar chizilmasin"))))
+			pline("These boots are super-comfortable thanks to their beautifully massive wedge heels!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qish sandal chizilmasin"))))
+			pline("The epitome of beauty and elegance, these very high stiletto boots even allow you to walk on ice without slipping.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qisqa ko'chirish to'piqlarni"))))
+			pline("You notice that these boots are characterized by extra thick, clunky heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bilagi zo'r chizilmasin"))))
+			pline("Ankle boots are a type of high-heeled footwear.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok-o'tish chizilmasin"))))
+			pline("You love the fleecy block heels of this pair of boots, because they are very kind and gentle.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiric cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vampir plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sindirishi plash"))))
+			pline("Wearing this cloak will give you the special effect of resisting drain life effects 1 out of 10 times.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "aluminium helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem iz alyuminiya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "alyuminiy dubulg'a"))))
+			pline("Prevents telepathy while you wear it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shrouded cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "okutana plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kafan plash"))))
+			pline("Occasionally, this cloak creates a displaced image to fool monsters if you wear it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "aksil-hukumat dubulg'a"))))
+			pline("Do you hate the government and especially the kops? Now you can put on this helmet, and they will spawn less often and in smaller groups!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "filtrlangan zarbdan"))))
+			pline("A helmet with a gas filter that protects you a bit from inhaling noxious gases.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'lqop purkash"))))
+			pline("Beware, these gloves are made of liquid graffiti. They are very slippery. Expect to drop your weapon at inopportune moments.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sindirishi qo'lqop"))))
+			pline("You should not wear this pair of gloves if you don't really have to, because they will continuously drain your experience.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "RNG helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem gsch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "RNG dubulg'a"))))
+			pline("Very rarely, the RNG will make random bad stuff happen if you put on this helmet.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sirli plash"))))
+			pline("Wearing this cloak grants you Angband-style pseudo identification for the objects in your main inventory!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "prizrachnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "diniy plash"))))
+			pline("The spirits of the deceased may be summoned to haunt you while you wear this.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qulay qo'lqop"))))
+			pline("A pair of gloves that is really comfortable and causes your prayer timeout to be faster, so you can pray more often.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "to'liq dubulg'a"))))
+			pline("Your entire head will be covered by this helm. This protects you from beheading attacks.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "polnish gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pol'skiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polsha qo'lqop"))))
+			pline("Yes I know, it's called 'polish', but that word is ambiguous... anyway, the #borrow command works better if you wear this pair of gloves.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "cirt chizilmasin"))))
+			pline("Warning: This pair of boots will constrict itself around your feet with its velcro lashes, and they will hurt you from time to time while worn. However, if you kick a monster with them, the lashes will scratch up and down the monster's legs, which is a lot of fun.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "straitjacket cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "smiritel'naya rubashka plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tor kamzul plash"))))
+			pline("Don't expect this cloak to come off easily once you put it on.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "urush chizilmasin"))))
+			pline("Battle boots power up your kicks to do more damage.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "platosi chizilmasin"))))
+			pline("If you kick someone with this pair of beautiful platform boots, you will sometimes stomp their toes, causing the target to be stunned!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "platformalar chizilmasin"))))
+			pline("You like plateau boots? Of course you do! You can kick monsters with them, which will occasionally cause you to stomp their toes flat (stunning the monster).");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jangovar chizilmasin"))))
+			pline("This is a pair of boots that improves your kicking prowess: it greatly reduces the chance that your kick is 'clumsy'.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rmon chizilmasin"))))
+			pline("Are you annoyed by the fact that kicking a tree often hurts your legs? Well, with this special footwear that cannot happen any longer!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'pol qo'lqop"))))
+			pline("Clumsy gloves are just what they say on the tin. Your ranged weapons will occasionally misfire while wearing these, and have a significant to-hit penalty.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kanatcik chizilmasin"))))
+			pline("You cannot drown while you have these fins around your feet.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "profilli chizilmasin"))))
+			pline("Profiled soles are lovely, and stepping into dog shit with them is fun because it's so much work to clean them again! :D Well, actually you will speed up if you step into a heap of shit while wearing them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "issiq chizilmasin"))))
+			pline("This pair of boots can withstand temperatures of up to 9000 degrees. Wearing them allows you to swim in lava unharmed.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siyosatchi plash"))))
+			pline("Nobody likes politicians. So if you dress like one, nobody will like you either.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "angelic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "angel'skoye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "farishtalarning plash"))))
+			pline("This lovely cloak makes you look like an angel! Which has the effect that most other angels will not attack you.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "demonic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "demonicheskaya plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jinlarning plash"))))
+			pline("Demons are more likely to be peaceful if you don this cloak, because it makes you look like one of them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "haqiqiy emas plash"))))
+			pline("The void cloak generates a weak aura of anti-magic around you, making it harder for monsters to cast spells.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "grey-shaded gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sero-zatenennykh perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kulrang-soyali qo'lqop"))))
+			pline("Are you into BDSM? If you wear these gloves, your chances of sexual pleasure will go up! You can get your nuts kicked, be whacked over the head with sexy high heels, have your legs scratched up and down until it bleeds etc.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slippery gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "skol'zkiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sirg'anchiq qo'lqop"))))
+			pline("Slippery gloves are similar to slippery cloaks, often allowing you to slip free of monsters' holding attacks.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qotib plash"))))
+			pline("If you hear the cockatrice's hissing, you will often turn to stone. But this lithic cloak allows you to resist most of the time.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "akslantirish qo'lqop"))))
+			pline("A pair of gloves that's like a mirror. Monsters that try to use their gaze on you will sometimes gaze at the gloves, keeping you safe from the effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "visored helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zabralom shlema") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soyabon zarbdan"))))
+			pline("The visor keeps you safe from blindness attacks.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "orange visored helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oranzhevyy shlem zabralom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "apelsin soyabon zarbdan"))))
+			pline("Your eyes are protected from blinding attacks while wearing this helmet.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamalak chizilmasin"))))
+			pline("A pair of boots that is so colorful, it alerts every monster to your presence.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "snow boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zimniye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qor chizilmasin"))))
+			pline("Walking on ice will not cause you to slip with these boots.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "winter boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi zimniye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qish chizilmasin"))))
+			pline("These boots can walk on any type of ice, no matter how slippery.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "suv-quvur dubulg'a"))))
+			pline("Wanna do the liquid diet conduct? Now you can - while wearing this helmet, every time you quaff anything you'll gain some nutrition!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "godless cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bezbozhnaya plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xudosiz plash"))))
+			pline("Wearing this cloak means that praying can anger your god, even if it's actually safe to pray.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yaponiya ucube rido"))))
+			pline("Only a Mahou Shoujo will benefit from the special effect of this cloak, everyone else isn't Japanese enough. What is the effect? Reduced spellcasting costs! Now your Mahou Shoujo can cast even more spells in the same time!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "riding gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yezda perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopgina qo'lqop"))))
+			pline("Riding your automobile (steed) becomes much easier with this pair of gloves.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "riding boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi dlya verkhovoy yezdy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopgina chizilmasin"))))
+			pline("You wanna ride a motorcycle? With these boots, you almost cannot fail! They also help when you're trying to ride something else. :-)");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "explosive boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vzryvnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "portlovchi chizilmasin"))))
+			pline("DANGER: This pair of boots is filled with TNT. Wearing them for too long will cause them to detonate.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "radio helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "translyatsii shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uzatuvchi zarbdan"))))
+			pline("The Dungeons of Doom radio broadcast will sometimes inform you of the location of traps, but the only way to listen to it is by putting on this helm.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fors chizilmasin"))))
+			pline("If you ask this very beautiful pair of leather boots whether you may wear them, they will tell you that yes, you may, but you'll have to allow their long zippers to slit your legs from time to time.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadly cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "smertel'noy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'ldiradigan plash"))))
+			pline("The deadly cloak will try to kill you while you wear it, but thankfully all it ever does is occasionally causing a small amount of damage.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "jarring cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sotryaseniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "g'azablantiradigan plash"))))
+			pline("Something isn't right with this cloak... it emits jarring noises from time to time...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "havola etdi chizilmasin"))))
+			pline("They're actually called 'hiking boots', and they love to step into dog shit with their profiled soles. Have fun cleaning them again!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop"))))
+			pline("This pair of gloves is highly resistant to erosion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tueplue zarbdan"))))
+			pline("The ultimate diving equipment. Wearing this helmet will protect your entire inventory from getting wet!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks qo'lqoplari"))))
+			pline("Practising kung-fu or marital arts? Your chances of successfully fighting off your spouse will go up while wearing these!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fencing gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ograzhdeniya perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qilichbozlik qo'lqop"))))
+			pline("If your main weapon type is swords you will want to wear these gloves for bonus damage. This is especially true if you actually are a Fencer.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tozalamoq chizilmasin"))))
+			pline("Your potions will be kept safe from cold because these leather boots are so wonderfully fleecy. Yes, this makes sense! The fleeciness keeps the cold weather out!");
+
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case HAWAIIAN_SHIRT: 
@@ -6320,7 +6441,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a ring. Color: %s. Material: %s. Appearance: %s. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case RIN_ADORNMENT: 
@@ -6492,7 +6613,7 @@ struct obj *obj;
 #endif
 		}
 
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case AMULET_OF_CHANGE: 
@@ -6626,7 +6747,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case LARGE_BOX: 
@@ -6833,7 +6954,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a comestible. Color: %s. Material: %s. Appearance: %s. It can be eaten.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case TRIPE_RATION: 
@@ -7013,7 +7134,18 @@ struct obj *obj;
 #else
 		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "milky") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hallowed") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "spiritual"))))
+			pline("Careful, sometimes a ghost may come out if you quaff this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "smoky")))
+			pline("A djinni may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vapor")))
+			pline("A dao may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sizzling")))
+			pline("An efreeti may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuming")))
+			pline("A marid may live in this potion.");
+
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case POT_BOOZE:
@@ -7190,7 +7322,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a scroll. Color: %s. Material: %s. Appearance: %s. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case SCR_CREATE_MONSTER: 
@@ -7445,7 +7577,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case SPE_FORCE_BOLT:
@@ -7735,7 +7867,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a wand. Color: %s. Material: %s. Appearance: %s. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case WAN_LIGHT: 
@@ -7960,7 +8092,7 @@ struct obj *obj;
 
 		case COIN_CLASS:
 		pline("%s - This is a coin. ",xname(obj) );
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case GOLD_PIECE: 
@@ -7979,7 +8111,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a gem. Color: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case DILITHIUM_CRYSTAL:
@@ -8340,7 +8472,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a boulder or statue. Color: %s. Material: %s. Appearance: %s. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case BOULDER: 
@@ -8361,7 +8493,7 @@ struct obj *obj;
 #else
 		pline("%s - This is an iron ball. Color: %s. Material: %s. Appearance: %s. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case HEAVY_IRON_BALL: 
@@ -8412,7 +8544,7 @@ struct obj *obj;
 #else
 		pline("%s - This is an iron chain. Color: %s. Material: %s. Appearance: %s. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case IRON_CHAIN: 
@@ -8461,7 +8593,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a splash of venom. Color: %s. Material: %s. Appearance: %s. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case BLINDING_VENOM: 
@@ -8482,7 +8614,7 @@ struct obj *obj;
 
 		case ILLOBJ_CLASS:
 		pline("%s - This is an illegal object. You shouldn't be able to get these at all.",xname(obj) );
-		if (!nn) pline("Unfortunately you don't know more about it.");
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case STRANGE_OBJECT: 

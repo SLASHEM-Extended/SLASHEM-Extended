@@ -1810,7 +1810,6 @@ domove()
 					    You("speed up.");
 					else
 					    Your("quickness feels more natural.");
-					makeknown(WAN_SPEED_MONSTER);
 					exercise(A_DEX, TRUE);
 				    }
 				    HFast |= FROMOUTSIDE;

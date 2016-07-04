@@ -9837,7 +9837,6 @@ struct obj *box;        /* at the moment only for floor traps */
 			    You("speed up.");
 			else
 			    Your("quickness feels more natural.");
-			makeknown(WAN_SPEED_MONSTER);
 			exercise(A_DEX, TRUE);
 		    }
 		    HFast |= FROMOUTSIDE;
