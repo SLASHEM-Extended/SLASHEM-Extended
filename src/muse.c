@@ -4087,6 +4087,7 @@ struct monst *mtmp;
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
 		buzz((int)(-20), 6 + (rnd(monster_difficulty()) / 3),
 			mtmp->mx, mtmp->my,
