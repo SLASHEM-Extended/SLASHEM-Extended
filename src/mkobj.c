@@ -611,7 +611,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(119)) {
+	switch (rnd(170)) {
 
 		case 1:
 		case 2:
@@ -620,203 +620,254 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 		case 4:
 		case 5:
 		case 6:
-			return SCR_CREATE_MONSTER;
 		case 7:
 		case 8:
-			return SCR_CREATE_VICTIM;
 		case 9:
 		case 10:
-			return WAN_CREATE_HORDE;
+			return SCR_CREATE_MONSTER;
 		case 11:
-			return RIN_TIMELY_BACKUP;
 		case 12:
-			return SCR_ROOT_PASSWORD_DETECTION;
 		case 13:
+			return SCR_CREATE_VICTIM;
 		case 14:
 		case 15:
-			return SCR_SUMMON_UNDEAD;
+			return WAN_CREATE_HORDE;
 		case 16:
 		case 17:
 		case 18:
-			return WAN_SUMMON_UNDEAD;
+			return RIN_TIMELY_BACKUP;
 		case 19:
-			return SCR_WARPING;
 		case 20:
-			return WAN_REDUCE_MAX_HITPOINTS;
 		case 21:
-			return WAN_INCREASE_MAX_HITPOINTS;
+			return SCR_ROOT_PASSWORD_DETECTION;
 		case 22:
 		case 23:
-			return POT_AMNESIA;
 		case 24:
-			return POT_CYANIDE;
 		case 25:
-			return POT_RADIUM;
 		case 26:
 		case 27:
-			return SCR_TRAP_CREATION;
 		case 28:
-			return SCR_CREATE_TRAP;
+			return SCR_SUMMON_UNDEAD;
 		case 29:
 		case 30:
-			return WAN_TRAP_CREATION;
 		case 31:
-			return SCR_FLOOD;
+			return WAN_SUMMON_UNDEAD;
 		case 32:
-			return SCR_LAVA;
+			return SCR_WARPING;
 		case 33:
-			return SCR_GROWTH;
+			return WAN_REDUCE_MAX_HITPOINTS;
 		case 34:
-			return SCR_BARRHING;
+			return WAN_INCREASE_MAX_HITPOINTS;
 		case 35:
-			return SCR_LOCKOUT;
 		case 36:
-			return WAN_BANISHMENT;
+			return POT_AMNESIA;
 		case 37:
+			return POT_CYANIDE;
 		case 38:
+			return POT_RADIUM;
 		case 39:
-			return POT_HALLUCINATION;
 		case 40:
 		case 41:
-			return POT_ICE;
 		case 42:
+			return SCR_TRAP_CREATION;
 		case 43:
 		case 44:
-			return POT_STUNNING;
+			return SCR_CREATE_TRAP;
 		case 45:
 		case 46:
+			return WAN_TRAP_CREATION;
 		case 47:
-			return POT_NUMBNESS;
+			return SCR_FLOOD;
 		case 48:
-			return POT_URINE;
+			return SCR_LAVA;
 		case 49:
-			return POT_CANCELLATION;
+			return SCR_GROWTH;
 		case 50:
-			return POT_SLIME;
+			return SCR_BARRHING;
 		case 51:
+			return SCR_LOCKOUT;
 		case 52:
-			return SCR_BAD_EFFECT;
+			return WAN_BANISHMENT;
 		case 53:
-			return WAN_BAD_EFFECT;
 		case 54:
 		case 55:
 		case 56:
-			return POT_FIRE;
 		case 57:
-			return WAN_GAIN_LEVEL;
 		case 58:
-			return WAN_MUTATION;
 		case 59:
-			return WAN_CLONE_MONSTER;
+			return POT_HALLUCINATION;
 		case 60:
-			return SCR_DESTROY_ARMOR;
 		case 61:
-			return SCR_DESTROY_WEAPON;
 		case 62:
-			return SCR_STONING;
+			return POT_ICE;
 		case 63:
-			return SCR_AMNESIA;
 		case 64:
 		case 65:
-			return BAG_OF_TRICKS;
 		case 66:
-			return WAN_STONING;
 		case 67:
-			return WAN_DISINTEGRATION;
 		case 68:
-			return WAN_PARALYSIS;
 		case 69:
-			return WAN_CURSE_ITEMS;
+			return POT_STUNNING;
 		case 70:
-			return WAN_AMNESIA;
 		case 71:
-			return WAN_BAD_LUCK;
 		case 72:
-			return WAN_REMOVE_RESISTANCE;
 		case 73:
-			return WAN_CORROSION;
 		case 74:
-			return WAN_STARVATION;
 		case 75:
-			return WAN_CONFUSION;
 		case 76:
-			return WAN_SLIMING;
+			return POT_NUMBNESS;
 		case 77:
-			return WAN_LYCANTHROPY;
+			return POT_URINE;
 		case 78:
-			return WAN_FUMBLING;
+			return POT_CANCELLATION;
 		case 79:
-			return WAN_PUNISHMENT;
+			return POT_SLIME;
 		case 80:
 		case 81:
-			return SCR_PUNISHMENT;
 		case 82:
 		case 83:
 		case 84:
-			return SCR_SUMMON_BOSS;
 		case 85:
+			return SCR_BAD_EFFECT;
 		case 86:
+			return WAN_BAD_EFFECT;
 		case 87:
-			return SCR_WOUNDS;
 		case 88:
 		case 89:
-			return SCR_BULLSHIT;
 		case 90:
-			return SCR_CHAOS_TERRAIN;
 		case 91:
-			return SCR_NASTINESS;
 		case 92:
-			return SCR_DEMONOLOGY;
 		case 93:
-			return SCR_ELEMENTALISM;
+			return POT_FIRE;
 		case 94:
-			return SCR_GIRLINESS;
+			return WAN_GAIN_LEVEL;
 		case 95:
-			return WAN_SUMMON_SEXY_GIRL;
+			return WAN_MUTATION;
 		case 96:
+			return WAN_CLONE_MONSTER;
 		case 97:
+			return SCR_DESTROY_ARMOR;
 		case 98:
-			return SCR_GROUP_SUMMONING;
+			return SCR_DESTROY_WEAPON;
 		case 99:
+			return SCR_STONING;
 		case 100:
-			return WAN_STUN_MONSTER;
+			return SCR_AMNESIA;
 		case 101:
-			return SCR_SUMMON_GHOST;
 		case 102:
-			return SCR_MEGALOAD;
+			return BAG_OF_TRICKS;
 		case 103:
-			return SCR_ENRAGE;
+			return WAN_STONING;
 		case 104:
-			return WAN_TIDAL_WAVE;
+			return WAN_DISINTEGRATION;
 		case 105:
-			return SCR_ANTIMATTER;
+			return WAN_PARALYSIS;
 		case 106:
-			return SCR_SUMMON_ELM;
+			return WAN_CURSE_ITEMS;
 		case 107:
-			return WAN_SUMMON_ELM;
+			return WAN_AMNESIA;
 		case 108:
-			return WAN_DRAIN_MANA;
+			return WAN_BAD_LUCK;
 		case 109:
-			return WAN_FINGER_BENDING;
+			return WAN_REMOVE_RESISTANCE;
 		case 110:
-			return SCR_IMMOBILITY;
+			return WAN_CORROSION;
 		case 111:
-			return WAN_IMMOBILITY;
+			return WAN_STARVATION;
 		case 112:
-			return SCR_FLOODING;
+			return WAN_CONFUSION;
 		case 113:
-			return SCR_EGOISM;
+			return WAN_SLIMING;
 		case 114:
-			return WAN_EGOISM;
+			return WAN_LYCANTHROPY;
 		case 115:
-			return SCR_SIN;
+			return WAN_FUMBLING;
 		case 116:
-			return WAN_SIN;
+			return WAN_PUNISHMENT;
 		case 117:
-			return WAN_INERTIA;
 		case 118:
-			return WAN_TIME;
+			return SCR_PUNISHMENT;
 		case 119:
+		case 120:
+		case 121:
+		case 122:
+		case 123:
+			return SCR_SUMMON_BOSS;
+		case 124:
+		case 125:
+		case 126:
+		case 127:
+		case 128:
+		case 129:
+		case 130:
+			return SCR_WOUNDS;
+		case 131:
+		case 132:
+			return SCR_BULLSHIT;
+		case 133:
+			return SCR_CHAOS_TERRAIN;
+		case 134:
+			return SCR_NASTINESS;
+		case 135:
+			return SCR_DEMONOLOGY;
+		case 136:
+			return SCR_ELEMENTALISM;
+		case 137:
+			return SCR_GIRLINESS;
+		case 138:
+			return WAN_SUMMON_SEXY_GIRL;
+		case 139:
+		case 140:
+		case 141:
+		case 142:
+		case 143:
+			return SCR_GROUP_SUMMONING;
+		case 144:
+		case 145:
+		case 146:
+			return WAN_STUN_MONSTER;
+		case 147:
+			return SCR_SUMMON_GHOST;
+		case 148:
+			return SCR_MEGALOAD;
+		case 149:
+			return SCR_ENRAGE;
+		case 150:
+			return WAN_TIDAL_WAVE;
+		case 151:
+			return SCR_ANTIMATTER;
+		case 152:
+		case 153:
+			return SCR_SUMMON_ELM;
+		case 154:
+			return WAN_SUMMON_ELM;
+		case 155:
+			return WAN_DRAIN_MANA;
+		case 156:
+			return WAN_FINGER_BENDING;
+		case 157:
+		case 158:
+		case 159:
+			return SCR_IMMOBILITY;
+		case 160:
+			return WAN_IMMOBILITY;
+		case 161:
+			return SCR_FLOODING;
+		case 162:
+		case 163:
+		case 164:
+			return SCR_EGOISM;
+		case 165:
+			return WAN_EGOISM;
+		case 166:
+			return SCR_SIN;
+		case 167:
+			return WAN_SIN;
+		case 168:
+			return WAN_INERTIA;
+		case 169:
+			return WAN_TIME;
+		case 170:
 			return WAN_LEVITATION;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;

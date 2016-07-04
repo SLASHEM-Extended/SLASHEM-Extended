@@ -177,7 +177,7 @@ int
 randattack()
 {
 
-	switch (rnd(227)) {
+	switch (rnd(276)) {
 
 		case 1:
 		case 2:
@@ -189,311 +189,360 @@ randattack()
 		case 8:
 		case 9:
 		case 10:
-			return AD_PHYS;
 		case 11:
 		case 12:
 		case 13:
-			return AD_MAGM;
 		case 14:
 		case 15:
+			return AD_PHYS;
 		case 16:
 		case 17:
 		case 18:
-			return AD_FIRE;
+			return AD_MAGM;
 		case 19:
 		case 20:
 		case 21:
 		case 22:
 		case 23:
-			return AD_COLD;
 		case 24:
 		case 25:
+			return AD_FIRE;
 		case 26:
 		case 27:
 		case 28:
-			return AD_SLEE;
 		case 29:
-			return AD_DISN;
 		case 30:
 		case 31:
 		case 32:
+			return AD_COLD;
 		case 33:
 		case 34:
-			return AD_ELEC;
 		case 35:
 		case 36:
 		case 37:
+			return AD_SLEE;
 		case 38:
+			return AD_DISN;
 		case 39:
-			return AD_DRST;
 		case 40:
 		case 41:
 		case 42:
 		case 43:
 		case 44:
-			return AD_ACID;
 		case 45:
+			return AD_ELEC;
 		case 46:
 		case 47:
-			return AD_LITE;
 		case 48:
 		case 49:
 		case 50:
 		case 51:
 		case 52:
-			return AD_BLND;
+			return AD_DRST;
 		case 53:
 		case 54:
 		case 55:
 		case 56:
 		case 57:
-			return AD_STUN;
 		case 58:
-			return (rnd(5) ? AD_SLOW : AD_INER);
+			return AD_ACID;
 		case 59:
 		case 60:
-			return AD_SLOW;
 		case 61:
+			return AD_LITE;
 		case 62:
-			return AD_PLYS;
 		case 63:
-			return (rnd(7) ? AD_DRLI : AD_TIME);
 		case 64:
-			return AD_DRLI;
 		case 65:
 		case 66:
 		case 67:
-			return AD_DREN;
 		case 68:
+			return AD_BLND;
 		case 69:
 		case 70:
 		case 71:
-			return AD_LEGS;
 		case 72:
-			return AD_STON;
 		case 73:
 		case 74:
+			return AD_STUN;
 		case 75:
-			return AD_STCK;
+			return (rnd(5) ? AD_SLOW : AD_INER);
 		case 76:
 		case 77:
+			return AD_SLOW;
 		case 78:
-			return AD_SGLD;
 		case 79:
+			return AD_PLYS;
 		case 80:
+			return (rnd(7) ? AD_DRLI : AD_TIME);
 		case 81:
-			return AD_SITM;
+			return AD_DRLI;
 		case 82:
 		case 83:
 		case 84:
-			return AD_SEDU;
 		case 85:
+			return AD_DREN;
 		case 86:
 		case 87:
-			return AD_TLPT;
 		case 88:
 		case 89:
 		case 90:
-			return AD_RUST;
+			return AD_LEGS;
 		case 91:
+			return AD_STON;
 		case 92:
 		case 93:
 		case 94:
 		case 95:
-			return AD_CONF;
 		case 96:
-			return AD_DGST;
+			return AD_STCK;
 		case 97:
-			return AD_HEAL;
 		case 98:
 		case 99:
 		case 100:
-			return AD_WRAP;
 		case 101:
+			return AD_SGLD;
 		case 102:
 		case 103:
-			return AD_DRDX;
 		case 104:
 		case 105:
 		case 106:
-			return AD_DRCO;
+			return AD_SITM;
 		case 107:
 		case 108:
-			return AD_DRIN;
 		case 109:
 		case 110:
-			return AD_DISE;
 		case 111:
+			return AD_SEDU;
 		case 112:
 		case 113:
-			return AD_DCAY;
 		case 114:
-			return AD_SSEX;
 		case 115:
 		case 116:
+			return AD_TLPT;
 		case 117:
 		case 118:
 		case 119:
-			return AD_HALU;
+			return AD_RUST;
 		case 120:
-			return AD_DETH;
 		case 121:
-			return AD_PEST;
 		case 122:
-			return AD_FAMN;
 		case 123:
-			return AD_SLIM;
 		case 124:
 		case 125:
 		case 126:
-			return AD_CALM;
+			return AD_CONF;
 		case 127:
+			return AD_DGST;
 		case 128:
-			return AD_ENCH;
 		case 129:
-			return AD_POLY;
+			return AD_HEAL;
 		case 130:
 		case 131:
 		case 132:
-			return AD_CORR;
+			return AD_WRAP;
 		case 133:
 		case 134:
 		case 135:
-			return AD_TCKL;
+			return AD_DRDX;
 		case 136:
 		case 137:
 		case 138:
-			return AD_NGRA;
+			return AD_DRCO;
 		case 139:
 		case 140:
+			return AD_DRIN;
 		case 141:
-			return AD_GLIB;
 		case 142:
+			return AD_DISE;
 		case 143:
 		case 144:
-			return AD_DARK;
 		case 145:
-			return AD_WTHR;
+			return AD_DCAY;
 		case 146:
+			return AD_SSEX;
 		case 147:
-			return AD_LUCK;
 		case 148:
 		case 149:
 		case 150:
 		case 151:
+			return AD_HALU;
 		case 152:
-			return AD_NUMB;
+			return AD_DETH;
 		case 153:
+			return AD_PEST;
 		case 154:
+			return AD_FAMN;
 		case 155:
+			return AD_SLIM;
 		case 156:
-			return AD_FRZE;
 		case 157:
 		case 158:
 		case 159:
-			return AD_DISP;
+			return AD_CALM;
 		case 160:
 		case 161:
+			return AD_ENCH;
 		case 162:
+			return AD_POLY;
 		case 163:
 		case 164:
-			return AD_BURN;
 		case 165:
+			return AD_CORR;
 		case 166:
 		case 167:
 		case 168:
+			return AD_TCKL;
 		case 169:
-			return AD_FEAR;
 		case 170:
-			return AD_NPRO;
 		case 171:
 		case 172:
-			return AD_POIS;
 		case 173:
+			return AD_NGRA;
 		case 174:
 		case 175:
-			return AD_THIR;
 		case 176:
+			return AD_GLIB;
 		case 177:
 		case 178:
-			return AD_LAVA;
 		case 179:
 		case 180:
 		case 181:
+			return AD_DARK;
 		case 182:
+			return AD_WTHR;
 		case 183:
-			return AD_FAKE;
 		case 184:
-			return (rn2(5) ? AD_WET : AD_LETH);
+			return AD_LUCK;
 		case 185:
-			return AD_CNCL;
 		case 186:
-			return AD_BANI;
 		case 187:
 		case 188:
 		case 189:
-			return AD_WISD;
 		case 190:
-			return AD_SHRD;
 		case 191:
-			return AD_SUCK;
+			return AD_NUMB;
 		case 192:
 		case 193:
 		case 194:
-			return AD_MALK;
 		case 195:
-			return (rn2(10) ? AD_DRIN : AD_UVUU);
+			return AD_FRZE;
 		case 196:
 		case 197:
-			return AD_ABDC;
 		case 198:
-			return AD_AXUS;
 		case 199:
+			return AD_DISP;
 		case 200:
 		case 201:
 		case 202:
 		case 203:
-			return AD_CHKH;
 		case 204:
 		case 205:
+			return AD_BURN;
 		case 206:
-			return AD_HODS;
 		case 207:
 		case 208:
-			return AD_CHRN;
 		case 209:
-			return (rn2(3) ? AD_WEEP : AD_NEXU);
 		case 210:
-			return AD_VAMP;
 		case 211:
+			return AD_FEAR;
 		case 212:
+			return AD_NPRO;
 		case 213:
-			return AD_WEBS;
 		case 214:
-			return AD_STTP;
+			return AD_POIS;
 		case 215:
-			return AD_DEPR;
 		case 216:
-			return AD_WRAT;
 		case 217:
-			return AD_LAZY;
 		case 218:
+			return AD_THIR;
 		case 219:
 		case 220:
-			return AD_DRCH;
 		case 221:
-			return AD_DFOO;
+			return AD_LAVA;
 		case 222:
-			return AD_GRAV;
 		case 223:
-			return AD_SOUN;
 		case 224:
-			return AD_MANA;
 		case 225:
-			return AD_PLAS;
 		case 226:
-			return AD_SKIL;
 		case 227:
+		case 228:
+			return AD_FAKE;
+		case 229:
+			return (rn2(5) ? AD_WET : AD_LETH);
+		case 230:
+			return AD_CNCL;
+		case 231:
+			return AD_BANI;
+		case 232:
+		case 233:
+		case 234:
+			return AD_WISD;
+		case 235:
+			return AD_SHRD;
+		case 236:
+			return AD_SUCK;
+		case 237:
+		case 238:
+		case 239:
+			return AD_MALK;
+		case 240:
+			return (rn2(10) ? AD_DRIN : AD_UVUU);
+		case 241:
+		case 242:
+			return AD_ABDC;
+		case 243:
+			return AD_AXUS;
+		case 244:
+		case 245:
+		case 246:
+		case 247:
+		case 248:
+		case 249:
+			return AD_CHKH;
+		case 250:
+		case 251:
+		case 252:
+		case 253:
+			return AD_HODS;
+		case 254:
+		case 255:
+			return AD_CHRN;
+		case 256:
+			return (rn2(3) ? AD_WEEP : AD_NEXU);
+		case 257:
+			return AD_VAMP;
+		case 258:
+		case 259:
+		case 260:
+		case 261:
+		case 262:
+			return AD_WEBS;
+		case 263:
+			return AD_STTP;
+		case 264:
+			return AD_DEPR;
+		case 265:
+			return AD_WRAT;
+		case 266:
+			return AD_LAZY;
+		case 267:
+		case 268:
+		case 269:
+			return AD_DRCH;
+		case 270:
+			return AD_DFOO;
+		case 271:
+			return AD_GRAV;
+		case 272:
+			return AD_SOUN;
+		case 273:
+			return AD_MANA;
+		case 274:
+			return AD_PLAS;
+		case 275:
+			return AD_SKIL;
+		case 276:
 			return AD_SPC2;
 		default:
 			return AD_PHYS;
