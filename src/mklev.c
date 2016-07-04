@@ -2016,7 +2016,7 @@ makerooms()
 	/* rnd_rect() will returns 0 if no more rects are available... */
 	while(nroom < MAXNROFROOMS && rnd_rect()) {
 
-		if(nroom >= (MAXNROFROOMS/6) && rn2(2) && !tried_vault) {
+		if(nroom >= 7 && rn2(2) && !tried_vault) {
 			tried_vault = TRUE;
 			if (create_vault()) {
 				vault_x = rooms[nroom].lx;
