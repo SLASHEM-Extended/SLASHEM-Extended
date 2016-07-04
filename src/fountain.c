@@ -350,6 +350,13 @@ drinkfountain()
 
 			}
 
+			/* evil patch idea by jonadab: 
+			   Drinking from a fountain can cause the fountain to overflow, turning the tile into a pool. */
+			if (!rn2(10)) {
+				levl[u.ux][u.uy].typ = POOL;
+				if (!Wwalking && !Flying && !Levitation) drown();
+			}
+
 			break;
 
 		default:
