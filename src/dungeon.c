@@ -1688,6 +1688,27 @@ level_difficulty()
 
 	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
 
+	/* generally increase monster difficulty gradually as the game goes on --Amy */
+	if (!rn2(2) && moves > 10000) retvalue++;
+	if (!rn2(2) && moves > 20000) retvalue++;
+	if (!rn2(2) && moves > 30000) retvalue++;
+	if (!rn2(2) && moves > 40000) retvalue++;
+	if (!rn2(2) && moves > 50000) retvalue++;
+	if (!rn2(2) && moves > 60000) retvalue++;
+	if (!rn2(2) && moves > 70000) retvalue++;
+	if (!rn2(2) && moves > 80000) retvalue++;
+	if (!rn2(2) && moves > 90000) retvalue++;
+	if (!rn2(2) && moves > 100000) retvalue++;
+	if (!rn2(2) && moves > 200000) retvalue++;
+	if (!rn2(2) && moves > 300000) retvalue++;
+	if (!rn2(2) && moves > 400000) retvalue++;
+	if (!rn2(2) && moves > 500000) retvalue++;
+	if (!rn2(2) && moves > 600000) retvalue++;
+	if (!rn2(2) && moves > 700000) retvalue++;
+	if (!rn2(2) && moves > 800000) retvalue++;
+	if (!rn2(2) && moves > 900000) retvalue++;
+	if (!rn2(2) && moves > 1000000) retvalue++;
+
 	/* later in the game, low-level monsters will be less common */
 	if (moves > 1000 && retvalue < 2 && rn2(2) ) retvalue = 2;
 	if (moves > 2000 && retvalue < 2) retvalue = 2;
