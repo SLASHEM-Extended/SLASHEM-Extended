@@ -139,11 +139,7 @@
 #define can_breathe(ptr)	attacktype(ptr, AT_BREA)
 #define cantwield(ptr)		(nohands(ptr) || verysmall(ptr) || \
 				 (ptr)->mlet == S_ANT)
-#define could_twoweap(ptr)	((ptr)->mattk[1].aatyp == AT_WEAP && \
-			((ptr) != youmonst.data || \
-			P_MAX_SKILL(P_TWO_WEAPON_COMBAT) >= P_SKILLED || \
-			P_MAX_SKILL(P_TWO_WEAPON_COMBAT) >= P_BASIC && \
-			(Race_if(PM_DWARF) || Race_if(PM_HUMAN))))
+#define could_twoweap(ptr)	((ptr)->mattk[1].aatyp == AT_WEAP)
 #define cantweararm(ptr)	(breakarm(ptr) || sliparm(ptr))
 #define throws_rocks(ptr)	(((ptr)->mflags2 & M2_ROCKTHROW) != 0L)
 #define type_is_pname(ptr)	(((ptr)->mflags2 & M2_PNAME) != 0L)
