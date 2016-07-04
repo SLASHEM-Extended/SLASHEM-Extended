@@ -3377,10 +3377,12 @@ healup(nhp, nxtra, curesick, cureblind)
 	if (nhp) {
 		if (Upolyd) {
 			u.mh += nhp;
-			if(!rn2(2) || (u.mh > u.mhmax)) u.mh = (u.mhmax += nxtra);
+			if(u.mh > u.mhmax) u.mh = (u.mhmax += nxtra);
+			else if (!rn2(2)) u.mhmax += nxtra;
 		} else {
 			u.uhp += nhp;
-			if(!rn2(2) || (u.uhp > u.uhpmax)) u.uhp = (u.uhpmax += nxtra);
+			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
+			else if (!rn2(2)) u.uhpmax += nxtra;
 		}
 	}
 	if(cureblind)	make_blinded(0L,TRUE);
