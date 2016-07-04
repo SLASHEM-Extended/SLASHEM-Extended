@@ -208,6 +208,13 @@ char borg_input(void);
 #endif
 #ifdef OVL1
 
+STATIC_VAR NEARDATA const char *names[] = { 0,
+	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets",
+	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
+	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
+	"Chains", "Venoms"
+};
+
 STATIC_PTR int
 doprev_message()
 {
@@ -1867,6 +1874,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && (u.veryobtainclass1 > 0) ) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass1], u.veryobtainclass1boost);
+		enl_msg("The RNG hath decreed that this item class ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && (u.veryobtainclass2 > 0) ) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass2], u.veryobtainclass2boost);
+		enl_msg("The RNG hath decreed that this item class ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && (u.veryobtainclass3 > 0) ) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass3], u.veryobtainclass3boost);
+		enl_msg("The RNG hath decreed that this item class ", "is ", "was ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
@@ -3518,32 +3540,32 @@ int final;
 
 	if (u.idscrollpenalty > 100) {
 		Sprintf(buf, " %d", u.idscrollpenalty);
-		dump("  Scroll identification only worked 100 times out of ", buf);
+		dump("  Scroll identification only worked 100 times out of", buf);
 	}
 
 	if (u.idpotionpenalty > 3) {
 		Sprintf(buf, " %d", u.idpotionpenalty);
-		dump("  Potion identification only worked 3 times out of ", buf);
+		dump("  Potion identification only worked 3 times out of", buf);
 	}
 
 	if (u.idringpenalty > 4) {
 		Sprintf(buf, " %d", u.idringpenalty);
-		dump("  Ring identification only worked 4 times out of ", buf);
+		dump("  Ring identification only worked 4 times out of", buf);
 	}
 
 	if (u.idamuletpenalty > 15) {
 		Sprintf(buf, " %d", u.idamuletpenalty);
-		dump("  Amulet identification only worked 15 times out of ", buf);
+		dump("  Amulet identification only worked 15 times out of", buf);
 	}
 
 	if (u.idwandpenalty > 3) {
 		Sprintf(buf, " %d", u.idwandpenalty);
-		dump("  Wand identification only worked 3 times out of ", buf);
+		dump("  Wand identification only worked 3 times out of", buf);
 	}
 
 	if (u.idarmorpenalty > 15) {
 		Sprintf(buf, " %d", u.idarmorpenalty);
-		dump("  Armor identification only worked 15 times out of ", buf);
+		dump("  Armor identification only worked 15 times out of", buf);
 	}
 
 	if (u.idspellbookpenalty > 2) {
@@ -3874,6 +3896,21 @@ int final;
 
 	Sprintf(buf, "generated more often: %s (%s, freq bonus %d)", obj_descr[u.veryobtainable20].oc_name, obj_descr[u.veryobtainable20].oc_descr, u.veryobtainableboost20);
 	dump("  The RNG hath decreed that this item was ", buf );
+
+	if (u.veryobtainclass1 > 0) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass1], u.veryobtainclass1boost);
+		dump("  The RNG hath decreed that this item class was ", buf );
+	}
+
+	if (u.veryobtainclass2 > 0) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass2], u.veryobtainclass2boost);
+		dump("  The RNG hath decreed that this item class was ", buf );
+	}
+
+	if (u.veryobtainclass3 > 0) {
+		Sprintf(buf, "generated more often: %s (freq bonus %d)", names[u.veryobtainclass3], u.veryobtainclass3boost);
+		dump("  The RNG hath decreed that this item class was ", buf );
+	}
 
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );

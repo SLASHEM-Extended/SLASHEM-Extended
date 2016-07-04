@@ -532,6 +532,13 @@ struct you {
 	int veryobtainable20;
 	int veryobtainableboost20;
 
+	int veryobtainclass1;		/* item class that is generated more often */
+	int veryobtainclass1boost;	/* frequency added */
+	int veryobtainclass2;
+	int veryobtainclass2boost;
+	int veryobtainclass3;
+	int veryobtainclass3boost;
+
 	int alwayscurseditem;		/* evil patch idea - item type that is always generated cursed */
 	int alwayscurseditem2;
 	int alwayscurseditem3;

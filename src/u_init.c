@@ -6215,6 +6215,72 @@ u_init()
 	if (!rn2(25)) u.veryobtainableboost20 += rnd(100);
 	if (u.veryobtainableboost20 > 1000) u.veryobtainableboost20 = 1000; /* sanity check */
 
+	u.veryobtainclass1 = -1;
+	if (!rn2(2)) {
+		if (!rn2(1000)) u.veryobtainclass1 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass1 = RING_CLASS; break;
+			case 4: u.veryobtainclass1 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass1 = WAND_CLASS; break;
+			case 6: u.veryobtainclass1 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass1 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass1 = POTION_CLASS; break;
+			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass1 = GEM_CLASS; break;
+		}
+		u.veryobtainclass1boost = rnd(100);
+	}
+
+	u.veryobtainclass2 = -1;
+	if (!rn2(5)) {
+		if (!rn2(1000)) u.veryobtainclass2 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass2 = RING_CLASS; break;
+			case 4: u.veryobtainclass2 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass2 = WAND_CLASS; break;
+			case 6: u.veryobtainclass2 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass2 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass2 = POTION_CLASS; break;
+			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass2 = GEM_CLASS; break;
+		}
+		u.veryobtainclass2boost = rnd(100);
+	}
+
+	u.veryobtainclass3 = -1;
+	if (!rn2(10)) {
+		if (!rn2(1000)) u.veryobtainclass3 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass3 = RING_CLASS; break;
+			case 4: u.veryobtainclass3 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass3 = WAND_CLASS; break;
+			case 6: u.veryobtainclass3 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass3 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass3 = POTION_CLASS; break;
+			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass3 = GEM_CLASS; break;
+		}
+		u.veryobtainclass3boost = rnd(100);
+	}
+
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
@@ -22848,6 +22914,72 @@ alter_reality()
 	if (!rn2(5)) u.veryobtainableboost20 += rnd(10);
 	if (!rn2(25)) u.veryobtainableboost20 += rnd(100);
 	if (u.veryobtainableboost20 > 1000) u.veryobtainableboost20 = 1000; /* sanity check */
+
+	u.veryobtainclass1 = -1;
+	if (!rn2(2)) {
+		if (!rn2(1000)) u.veryobtainclass1 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass1 = RING_CLASS; break;
+			case 4: u.veryobtainclass1 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass1 = WAND_CLASS; break;
+			case 6: u.veryobtainclass1 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass1 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass1 = POTION_CLASS; break;
+			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass1 = GEM_CLASS; break;
+		}
+		u.veryobtainclass1boost = rnd(100);
+	}
+
+	u.veryobtainclass2 = -1;
+	if (!rn2(5)) {
+		if (!rn2(1000)) u.veryobtainclass2 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass2 = RING_CLASS; break;
+			case 4: u.veryobtainclass2 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass2 = WAND_CLASS; break;
+			case 6: u.veryobtainclass2 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass2 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass2 = POTION_CLASS; break;
+			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass2 = GEM_CLASS; break;
+		}
+		u.veryobtainclass2boost = rnd(100);
+	}
+
+	u.veryobtainclass3 = -1;
+	if (!rn2(10)) {
+		if (!rn2(1000)) u.veryobtainclass3 = BALL_CLASS;
+		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
+		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
+		else switch (rnd(11)) {
+			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
+			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
+			case 3: u.veryobtainclass3 = RING_CLASS; break;
+			case 4: u.veryobtainclass3 = AMULET_CLASS; break;
+			case 5: u.veryobtainclass3 = WAND_CLASS; break;
+			case 6: u.veryobtainclass3 = SPBOOK_CLASS; break;
+			case 7: u.veryobtainclass3 = SCROLL_CLASS; break;
+			case 8: u.veryobtainclass3 = POTION_CLASS; break;
+			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
+			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
+			case 11: u.veryobtainclass3 = GEM_CLASS; break;
+		}
+		u.veryobtainclass3boost = rnd(100);
+	}
 
 	u.invisotrap = rnd(TRAPNUM-1);
 

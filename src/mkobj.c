@@ -163,6 +163,16 @@ boolean artif;
 		    iprobs++);
 		oclass = iprobs->iclass;
 
+		if ((u.veryobtainclass1 > 0) && (rn2(1000) < u.veryobtainclass1boost)) {
+			oclass = u.veryobtainclass1;
+		}
+		else if ((u.veryobtainclass2 > 0) && (rn2(1000) < u.veryobtainclass2boost)) {
+			oclass = u.veryobtainclass2;
+		}
+		else if ((u.veryobtainclass3 > 0) && (rn2(1000) < u.veryobtainclass3boost)) {
+			oclass = u.veryobtainclass3;
+		}
+
 		if ((oclass == SCROLL_CLASS) && (rn2(100) < u.scrollspawnchance)) {
 			oclass = COIN_CLASS;
 		}
