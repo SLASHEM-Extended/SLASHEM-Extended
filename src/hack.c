@@ -328,7 +328,6 @@ boolean update;  /* do newsym() */
    int i, j, count, randchance=0;
 	register struct monst *mtmp;
 
-trap_of_walls:
    if (!rn2(100)) (void) seed_tree(-1,-1);
    if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
@@ -338,6 +337,7 @@ trap_of_walls:
      (void) drop_ripe_treefruit(-1,-1, showmsg, update);
    (void) water_current(-1,-1, rn2(8), 
 			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);
+trap_of_walls:
 
 	/* evil patch idea by Amy: occasionally, corridors and room squares will "grow" back into solid rock or walls.
 	 * Depending on the # of surrounding squares that are blocked, give a higher or lower chance to place a new wall.
