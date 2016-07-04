@@ -1404,7 +1404,7 @@ mattacku(mtmp)
 			    } else wildmiss(mtmp, mattk);
 			}
 
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer ){  
+			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -1439,12 +1439,13 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) )
-				sum[i]= hitmu(mtmp, mattk);
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) ) {
+				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
+				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && (rnd(5) > 3) ){  
+			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -1487,7 +1488,7 @@ mattacku(mtmp)
 		case AT_BREA:
 			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
-			else if ( (rnd(5) > 3) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -1500,7 +1501,7 @@ mattacku(mtmp)
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 
-			else if ( (rnd(5) > 3) && lined_up(mtmp) && !(mattk->adtyp == AD_TCKL) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -3263,6 +3264,8 @@ hitmu(mtmp, mattk)
 	/* Monsters with AD_RBRE will choose a random attack instead. --Amy */
 
 	atttyp = mattk->adtyp;
+
+	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
 	if (atttyp == AD_RBRE) {
 		while (atttyp == AD_ENDS ||atttyp == AD_RBRE || atttyp == AD_SPC2 || atttyp == AD_WERE) {
