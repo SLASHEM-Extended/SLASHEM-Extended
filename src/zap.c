@@ -2827,7 +2827,7 @@ newboss:
 
 		case WAN_FUMBLING:
 
-			HFumbling = FROMOUTSIDE | rnd(100);
+			HFumbling = FROMOUTSIDE | rnd(5);
 			incr_itimeout(&HFumbling, rnd(20));
 			u.fumbleduration += rnz(1000);
 

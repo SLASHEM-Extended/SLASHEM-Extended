@@ -1110,10 +1110,11 @@ get_generation_description_of_monster_type(struct permonst * ptr, char * temp_bu
 {
 	int many = 0;
 	if ((ptr->geno & G_NOGEN) == 0) {
-		strcat(temp_buf, "Normally appears ");
+/*		strcat(temp_buf, "Normally appears ");
 		many = append(temp_buf, ((ptr->geno & G_NOHELL) == 0) && ((ptr->geno & G_HELL) == 0), "everywhere", many);
 		many = append(temp_buf, (ptr->geno & G_NOHELL), "outside Gehennon", many);
-		many = append(temp_buf, (ptr->geno & G_HELL), "in Gehennon", many);
+		many = append(temp_buf, (ptr->geno & G_HELL), "in Gehennon", many);*/
+		many = append(temp_buf, !(ptr->geno & G_NOGEN), "Normal generation", many);
 	} else {
 		many = append(temp_buf, (ptr->geno & G_NOGEN), "Special generation", many);
 	}
@@ -1122,6 +1123,8 @@ get_generation_description_of_monster_type(struct permonst * ptr, char * temp_bu
 	many = append(temp_buf, (ptr->geno & G_SGROUP), " in groups", many);
 	many = append(temp_buf, (ptr->geno & G_LGROUP), " in large groups", many);
 	many = append(temp_buf, (ptr->geno & G_VLGROUP), " in very large groups", many);
+	many = append(temp_buf, (ptr->geno & G_RGROUP), " in random groups", many);
+	many = append(temp_buf, (ptr->geno & G_PLATOON), " of escorts", many);
 	if ((ptr->geno & G_NOGEN) == 0) {
 		char frequency[BUFSZ] = "";
 		Sprintf(frequency, ", with frequency %d.", (ptr->geno & G_FREQ));
@@ -1540,6 +1543,15 @@ get_description_of_damage_type(uchar id)
 		case AD_GRAV: return "gravity";
 		case AD_INER: return "inertia";
 		case AD_SKIL: return "skill point drain";
+
+		case AD_VENO: return "toxic venom";
+		case AD_DREA: return "dream eater";
+		case AD_NAST: return "nastiness";
+		case AD_BADE: return "bad effect";
+		case AD_SLUD: return "sludge";
+		case AD_ICUR: return "item cursing";
+		case AD_VULN: return "vulnerability";
+		case AD_FUMB: return "fumbling";
 
 		case AD_ENDS: return "placeholder attack";
 		default:

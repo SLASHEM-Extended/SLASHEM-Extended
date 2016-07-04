@@ -326,6 +326,9 @@ register struct monst *mtmp;
 	    case PM_NIGHTMARE_UNICORN:
 	    case PM_UNICORN_OF_AMBER:
 	    case PM_RAINBOW_UNICORN:
+	    case PM_DESATURATED_UNICORN:
+	    case PM_DULL_UNICORN:
+	    case PM_POWERLESS_UNICORN:
 	    case PM_BIG_PURPLE_UNICORN:
 	    case PM_BIG_WHITE_UNICORN:
 	    case PM_BIG_GRAY_UNICORN:
@@ -2624,6 +2627,8 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESMASHER], -1);
 	else if (mtmp->data == &mons[PM_WERENYMPH])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERENYMPH], -1);
+	else if (mtmp->data == &mons[PM_WEREBEE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBEE], -1);
 	else if (mtmp->data == &mons[PM_WEREMIMIC])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREMIMIC], -1);
 	else if (mtmp->data == &mons[PM_WEREPERMAMIMIC])

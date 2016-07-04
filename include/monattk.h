@@ -145,7 +145,17 @@
 /* evil patch idea by jonadab: */
 #define AD_SKIL		91	/* 1 in 1000 chance to reduce the cap on one of your skills */
 
-#define AD_ENDS		92	/* placeholder */
+/* some other more or less evil ideas: */
+#define AD_VENO		92	/* strong poison: tries to damage all six of the player's stats */
+#define AD_DREA		93	/* dream eater: 4x damage if player sleeps or is otherwise unable to move */
+#define AD_NAST		94	/* nasty trap effect */
+#define AD_BADE		95	/* random bad effect */
+#define AD_SLUD		96	/* corrosive sludge: tries to corrode the player's entire inventory */
+#define AD_ICUR		97	/* replicates the "curse items" monster spell */
+#define AD_VULN		98	/* temporarily deactivate the player's positive intrinsics */
+#define AD_FUMB		99	/* fumbling-inducing attack */
+
+#define AD_ENDS		100	/* placeholder */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

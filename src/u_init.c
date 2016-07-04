@@ -6224,7 +6224,9 @@ u_init()
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */
 	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
+	else if (u.monstertimefinish % 29 == 0) u.eeveelution = PM_SPIRITEON;
 	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;
+	else if (u.monstertimefinish % 19 == 0) u.eeveelution = PM_VENOMEON;
 	else if (u.monstertimefinish % 15 == 0) u.eeveelution = PM_SYLVEON;
 	else if (u.monstertimefinish % 13 == 0) u.eeveelution = PM_GLACEON;
 	else if (u.monstertimefinish % 11 == 0) u.eeveelution = PM_LEAFEON;

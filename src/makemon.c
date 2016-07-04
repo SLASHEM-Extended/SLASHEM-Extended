@@ -97,6 +97,7 @@ register int x, y, n;
 	if (!(u.monstertimefinish % 837) ) kindred = rn2(2) ? 0 : 1;
 	if (!(u.monstertimefinish % 4337) ) kindred = rn2(20) ? 1 : 0;
 
+	if (mtmp->data->geno & G_PLATOON) kindred = 1;
 	if (mtmp->data->geno & G_UNIQ) kindred = 1; /* uniques are created with others of their kin, instead of clones of themselves */
 	struct monst *mon;
 #if defined(__GNUC__) && (defined(HPUX) || defined(DGUX))
@@ -731,6 +732,21 @@ register struct monst *mtmp;
 
 		    int w1 = 0, w2 = 0;
 		    switch (mm) {
+			case PM_ILLUSIONARY_SOLDIER:
+
+				(void) mongets(mtmp, LEATHER_GLOVES);
+				{
+					struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE);
+
+					otmpS->spe = 0;
+					otmpS->quan = 1;
+					otmpS->owt = 30;
+					otmpS->corpsenm = PM_COCKATRICE;
+					start_corpse_timeout(otmpS); /* gotta make sure they time out after a while! --Amy */
+					(void) mpickobj(mtmp,otmpS, TRUE);
+				}
+				/* fall through */
+
 			case PM_SOLDIER:
 #ifdef FIREARMS
 			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
@@ -4464,6 +4480,7 @@ register struct monst *mtmp;
 
 			if(ptr == &mons[PM_KOBOLD_DIGGER]) (void) mongets(mtmp, WAN_DIGGING);
 			if(ptr == &mons[PM_KOBOLD_ALCHEMIST]) (void) mongets(mtmp, POT_CYANIDE);
+			if(ptr == &mons[PM_INSANE_KOBOLD]) (void) mongets(mtmp, WAN_STONING);
 
                 /* WAC gets orcish 1:4, otherwise darts
                         (used to be darts 1:4)
@@ -4865,6 +4882,7 @@ register struct	monst	*mtmp;
 			case PM_PRISON_GUARD: mac = -2; break;
 #endif /* CONVICT */
 			case PM_SOLDIER: mac = 3; break;
+			case PM_ILLUSIONARY_SOLDIER: mac = 3; break;
 			case PM_SERGEANT: mac = 0; break;
 			case PM_LIEUTENANT: mac = -2; break;
 			case PM_CAPTAIN: mac = -3; break;
@@ -5002,6 +5020,7 @@ register struct	monst	*mtmp;
 
 	    case S_GOLEM:
 		if (mtmp->data == &mons[PM_ROBO_KY]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); }
+		if (mtmp->data == &mons[PM_TGWTG]) { (void) mongets(mtmp, SUBMACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
 
 		break;
 
@@ -5400,6 +5419,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_FILTHY_GUTTERSNIPE]) (void) mongets(mtmp, WAN_BAD_LUCK);
 		if (mtmp->data == &mons[PM_INCONTINENT_NYMPH]) (void) mongets(mtmp, POT_URINE);
 		if (mtmp->data == &mons[PM_FREAKING_DRYAD]) (void) mongets(mtmp, SCR_GROWTH);
+		if (mtmp->data == &mons[PM_DIGGING_NYMPH]) (void) mongets(mtmp, WAN_DIGGING);
 		if (mtmp->data == &mons[PM_PHASER_GIANT_OREAD]) (void) mongets(mtmp, BOULDER);
 		if (mtmp->data == &mons[PM_OBNOXIOUS_NAIAD]) (void) mongets(mtmp, SCR_FLOOD);
 		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -5494,6 +5514,7 @@ register struct	monst	*mtmp;
 	    case S_DOG:
 
 		if (mtmp->data == &mons[PM_CRAPDOG]) (void) mongets(mtmp, SCR_BULLSHIT);
+		if (mtmp->data == &mons[PM_ELEMENTAL_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_SUE_LYN_S_THICK_WINTER_BOOT]) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
 
 		if (mtmp->data == &mons[PM_BOW_WOLF]) {
@@ -6299,6 +6320,7 @@ register struct	monst	*mtmp;
 		}*/
 
 		if (ptr == &mons[PM_HEAVY_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
+		if (monsndx(ptr) == PM_ICELANDIC_GUN_CHICK) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, BULLET, 30); }
 
 		if (ptr == &mons[PM_SUPER_ELEMENTAL]) (void) mongets(mtmp, SCR_ELEMENTALISM);
 
@@ -6552,6 +6574,13 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_DWARVEN_MESSENGER]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
 		if (ptr == &mons[PM_LEGENDARY_HOBBIT_ROGUE]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (ptr == &mons[PM_CZECH_GIRL]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_VIETNAMESE_BEAUTY]) (void) mongets(mtmp, HIGH_STILETTOS);
+		if (ptr == &mons[PM_SWEET_SISTER]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_LOVELY_GIRL]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp, HIGH_STILETTOS);
+		}
 
  		break;
 
@@ -6587,6 +6616,12 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BULLET, 10);
 
 		}
+
+		if (ptr == &mons[PM_NONEXISTANT_COP]) {
+			(void)mongets(mtmp, RUBBER_HOSE);
+			m_initthrow(mtmp, CREAM_PIE, 2);
+		}
+
 		if (mtmp->data == &mons[PM_SARAH_S_HUGGING_BOOT]) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, DANCING_SHOES); }
 
  		break;
@@ -6599,6 +6634,11 @@ register struct	monst	*mtmp;
 			mpickobj(mtmp,otmp, TRUE);
 		}
 
+		if (ptr == &mons[PM_RICHEST_MAN_OF_THE_WORLD]) {
+		    mtmp->mgold += (long)rn1(20, 200);
+		}
+
+		if (ptr == &mons[PM_WICKED_WOODS]) (void) mongets(mtmp, SCR_GROWTH);
 		if (ptr == &mons[PM_ARCTIS_INHABITANT]) (void) mongets(mtmp, SCR_ICE);
 		if (ptr == &mons[PM_FALLING_BALL_DRAGON]) (void) mongets(mtmp, HEAVY_IRON_BALL);
 		if (ptr == &mons[PM_TELEPHONING_BALL_DRAGON]) (void) mongets(mtmp, HEAVY_IRON_BALL);
@@ -13056,7 +13096,7 @@ register int	mmflags;
 	    if (count_wsegs(mtmp)) place_worm_tail_randomly(mtmp, x, y);
 	}
 	set_malign(mtmp);		/* having finished peaceful changes */
-	if(anymon || (ptr->geno & G_UNIQ) || !rn2((ptr->geno & G_VLGROUP) ? 500 : (ptr->geno & G_LGROUP) ? 200 : (ptr->geno & G_SGROUP) ? 50 : 5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
+	if(anymon || (ptr->geno & G_UNIQ) || !rn2((ptr->geno & G_VLGROUP) ? 500 : (ptr->geno & G_LGROUP) ? 200 : (ptr->geno & G_RGROUP) ? 100 : (ptr->geno & G_SGROUP) ? 50 : 5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
 	    if ((ptr->geno & G_SGROUP) && allow_special && rn2(2)) {
 		if (!rn2(5000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(800))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -13074,6 +13114,12 @@ register int	mmflags;
 		else if(!rn2(20))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
+	    } else if(ptr->geno & G_RGROUP && allow_special && rn2(5) ) {
+		if (!rn2(100))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(10))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(5))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(5))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
@@ -13569,7 +13615,7 @@ loopback:
 #endif
 		if (elemlevel && wrong_elem_type(ptr) && rn2(20) ) continue;
 		if (uncommon(mndx)) continue;
-		if (Inhell && (ptr->geno & G_NOHELL)) continue;
+		/*if (Inhell && (ptr->geno & G_NOHELL)) continue;*/
 		ct = (int)(ptr->geno & G_FREQ);
 
 		/* mystics have different generation frequencies. I decided that it depends on their gender, too. --Amy */
@@ -14231,6 +14277,7 @@ int type;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
+		case PM_SOW_STUPID_GUY: return 72;
 		case PM_TOWER_STATUE: return 72;
 		case PM_SUPER_WOODEN_STATUE: return 360; /* quite unbalanced; players who can't handle them should run away */
 		case PM_VANISHING_POINT: return 72;
@@ -14253,10 +14300,13 @@ int type;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
 		case PM_ANIMATED_IRON_STATUE: return 137;
+		case PM_BEST_TEACHER_EVER: return 137;
+		case PM_TGWTG: return 137;
 		case PM_THE_FOREVER_TRAIN: return 137;
 		case PM_AMUSING_THIRTEEN_GRADER: return 137;
 		case PM_SECURITY_BOT: return 137;
 		case PM_ANIMATED_MARBLE_STATUE: return 199;
+		case PM_SCHOOL_DIRECTOR: return 199;
 		case PM_ULTRA_STATUE: return 199;
 
 		case PM_DEATH_SWORD: return 250;

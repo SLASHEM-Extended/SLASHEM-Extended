@@ -1039,6 +1039,7 @@ register struct obj *obj;
 		mon->data == &mons[PM_KING_GORGE__LORD_OF_THE_GLUTTONS] ||
 		mon->data == &mons[PM_WEAPON_CUBE] ||
 		mon->data == &mons[PM_GELATINOUS_GLOB] ||
+		mon->data == &mons[PM_FAT_BULLY] ||
 		mon->data == &mons[PM_OOZE_ELEMENTAL] ||
 		mon->data == &mons[PM_GELATINOUS_THIEF] ||
 	    	mon->data == &mons[PM_TASMANIAN_DEVIL] || mon->egotype_organivore) && is_organic(obj))

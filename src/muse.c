@@ -2070,7 +2070,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(288);
+			monstercolor = rnd(296);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += 12;
@@ -5535,7 +5535,7 @@ newboss:
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
 		pline("You start trembling...");
-		HFumbling = FROMOUTSIDE | rnd(100);
+		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(1000);
 
@@ -7456,7 +7456,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(288);
+			monstercolor = rnd(296);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += 12;

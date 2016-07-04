@@ -214,7 +214,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_FANTASTIC_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_KING_GORGE__LORD_OF_THE_GLUTTONS || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_FANTASTIC_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_FAT_BULLY || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_KING_GORGE__LORD_OF_THE_GLUTTONS || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
 			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
@@ -1624,6 +1624,7 @@ register int pm;
 	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
 	    case PM_RUBBER_CHICKEN:
+	    case PM_NASTY_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		/* MRKR: "eye of newt" may give small magical energy boost */
 
@@ -1649,6 +1650,7 @@ register int pm;
 	    case PM_ULTIMATE_NEWT:
 	    case PM_HUGE_NEWT:
 	    case PM_EIGHT_FOOTED_SNAKE:
+	    case PM_NASTY_TURBO_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      {int old_uen = u.uen;
 		if (rn2(3)) {
@@ -1815,12 +1817,14 @@ register int pm;
 	    case PM_PETRO_GROWTH:
 	    case PM_PETRO_COLONY:
 	    case PM_CLAIRVOYANT_TROVE:
+	    case PM_RANDOM_COCKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		    You("feel clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
 	    case PM_STONING_SPHERE:
 	    case PM_LEVELING_TROVE:
+	    case PM_DREAMER_COCKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      You("feel that was a smart thing to do.");
 		pluslvl(FALSE);
@@ -2045,6 +2049,10 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERENYMPH;
 		break;
+	    case PM_HUMAN_WEREBEE:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEE;
+		break;
 	    case PM_HUMAN_WERESOLDIERANT:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESOLDIERANT;
@@ -2138,6 +2146,7 @@ register int pm;
 		}
 		break;
 	    case PM_NOVICE_NURSE:
+	    case PM_CONTROL_NURSE:
 	    case PM_NURSE:
 	    case PM_EXPERIENCED_NURSE:
 	    case PM_SEXY_NURSE:
@@ -2674,6 +2683,7 @@ register int pm;
 	    case PM_MINOR_MIND_FLAYER:
 	    case PM_LOW_MIND_FLAYER:
 	    case PM_LARGE_MIND_FLAYER:
+	    case PM_EVIL_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:
@@ -2681,6 +2691,7 @@ register int pm;
 	    case PM_ELDRITCH_MIND_FLAYER:
 	    case PM_GIGANTIC_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
+	    case PM_NASTY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
 	    case PM_MIND_BEAMER:
 		case PM_COCKATRICE:
@@ -2858,6 +2869,29 @@ register int pm;
 			u.uenmax++;
 			pline("You feel a mild buzz.");
 		    flags.botl = 1;
+		}
+
+	/* Dream eaters, on the other hand, are bad to eat. --Amy */
+		if (dmgtype(ptr, AD_DREA) && !multi) {
+		    pline("Suddenly you have a nightmare!");
+		    nomul(-5, "scared by a nightmare");
+		    nomovemsg = 0;
+		}
+
+	/* Nastiness monsters are definitely not good to eat either. --Amy */
+		if (dmgtype(ptr, AD_NAST) ) {
+			if (Upolyd) {
+				u.mhmax--;
+			}
+			u.uhpmax--;
+			losehp(10, "eating a nasty corpse", KILLED_BY);
+		    pline("Your health was damaged!");
+		    flags.botl = 1;
+		}
+
+	/* Eating bad effect monsters causes another bad effect --Amy */
+		if (dmgtype(ptr, AD_BADE) ) {
+			badeffect();
 		}
 
 		 count = 0;	/* number of possible intrinsics */
@@ -4139,7 +4173,7 @@ struct obj *otmp;
 	    case AMULET_OF_FUMBLING: /* another bad idea! */
 		if (!(HFumbling & FROMOUTSIDE))
 		    accessory_has_effect(otmp);
-		HFumbling = FROMOUTSIDE | rnd(100);
+		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(1000);
 		break;

@@ -1287,7 +1287,7 @@ boolean atme;
 		break;
 	case SPE_FUMBLING:
 		if (!Fumbling) pline("You start fumbling.");
-		HFumbling = FROMOUTSIDE | rnd(100);
+		HFumbling = FROMOUTSIDE | rnd(5);
 		set_itimeout(&HFumbling, 2);
 		u.fumbleduration += rnz(1000);
 		break;

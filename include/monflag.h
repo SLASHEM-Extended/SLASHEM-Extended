@@ -258,8 +258,10 @@
 /* for mons[].geno (constant during game) */
 #define G_VLGROUP	0x8000		/* appear in very large groups normally */
 #define G_UNIQ		0x4000		/* generated only once */
-#define G_NOHELL	0x2000		/* not generated in "hell" */
-#define G_HELL		0x1000		/* generated only in "hell" */
+/*#define G_NOHELL	0x2000*/		/* not generated in "hell" */
+/*#define G_HELL		0x1000*/		/* generated only in "hell" */
+#define G_PLATOON	0x2000		/* if group spawn, this monster is spawned with random same-class monsters */
+#define G_RGROUP		0x1000		/* appears in random groups normally */
 #define G_NOGEN		0x0800		/* generated only specially */
 #define G_SGROUP	0x0400		/* appear in small groups normally */
 #define G_LGROUP	0x0200		/* appear in large groups normally */

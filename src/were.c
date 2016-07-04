@@ -77,6 +77,8 @@ int pm;
 	    case PM_HUMAN_WERESMASHER: return(PM_WERESMASHER);
 	    case PM_WERENYMPH:       return(PM_HUMAN_WERENYMPH);
 	    case PM_HUMAN_WERENYMPH: return(PM_WERENYMPH);
+	    case PM_WEREBEE:       return(PM_HUMAN_WEREBEE);
+	    case PM_HUMAN_WEREBEE: return(PM_WEREBEE);
 	    case PM_WERECOW:       return(PM_HUMAN_WERECOW);
 	    case PM_HUMAN_WERECOW: return(PM_WERECOW);
 	    case PM_WEREBEAR:       return(PM_HUMAN_WEREBEAR);
@@ -274,6 +276,11 @@ char *genbuf;
 		case PM_HUMAN_WERENYMPH:
 			typ = rn2(5) ? PM_WOOD_NYMPH : PM_WATER_NYMPH ;
 			if (genbuf) Strcpy(genbuf, "nymph");
+			break;
+		case PM_WEREBEE:
+		case PM_HUMAN_WEREBEE:
+			typ = PM_KILLER_BEE;
+			if (genbuf) Strcpy(genbuf, "bee");
 			break;
 		case PM_WEREMIMIC:
 		case PM_HUMAN_WEREMIMIC:

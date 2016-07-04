@@ -1836,7 +1836,7 @@ int thrown;
 		abuse_dog(mon);
 		monflee(mon, 10 * rnd(tmp), FALSE, FALSE);
 	}
-	if((mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
+	if((mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
 		   && obj /* && obj == uwep -- !thrown and obj == weapon */
 		   && !thrown
 		   && objects[obj->otyp].oc_material == IRON
@@ -4328,6 +4328,471 @@ uchar aatyp;
 		}
 		break;
 
+	  case AD_DREA:
+		if (multi < 0) {
+			tmp *= 4;
+			pline("Your dream is eaten!");
+			mdamageu(mon, tmp);
+		}
+		break;
+
+	  case AD_BADE:
+
+		badeffect();
+
+		break;
+
+	  case AD_FUMB:
+
+		pline("You stumble!");
+		HFumbling = FROMOUTSIDE | rnd(5);
+		incr_itimeout(&HFumbling, rnd(20));
+		u.fumbleduration += rnz(10 * (tmp + 1) );
+
+		break;
+
+	    case AD_VULN:
+
+		 switch (rnd(120)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having fire resistance!");
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				u.uprops[DEAC_COLD_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having cold resistance!");
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having sleep resistance!");
+				break;
+			case 16:
+			case 17:
+				u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having disintegration resistance!");
+				break;
+			case 18:
+			case 19:
+			case 20:
+			case 21:
+			case 22:
+				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having shock resistance!");
+				break;
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+				u.uprops[DEAC_POISON_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having poison resistance!");
+				break;
+			case 28:
+			case 29:
+			case 30:
+				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having drain resistance!");
+				break;
+			case 31:
+			case 32:
+				u.uprops[DEAC_SICK_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having sickness resistance!");
+				break;
+			case 33:
+			case 34:
+				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having magic resistance!");
+				break;
+			case 35:
+			case 36:
+			case 37:
+			case 38:
+				u.uprops[DEAC_ACID_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having acid resistance!");
+				break;
+			case 39:
+			case 40:
+				u.uprops[DEAC_STONE_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having petrification resistance!");
+				break;
+			case 41:
+				u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having fear resistance!");
+				break;
+			case 42:
+			case 43:
+			case 44:
+				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having see invisible!");
+				break;
+			case 45:
+			case 46:
+			case 47:
+				u.uprops[DEAC_TELEPAT].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having telepathy!");
+				break;
+			case 48:
+			case 49:
+			case 50:
+				u.uprops[DEAC_WARNING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having warning!");
+				break;
+			case 51:
+			case 52:
+			case 53:
+				u.uprops[DEAC_SEARCHING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having automatic searching!");
+				break;
+			case 54:
+				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having clairvoyance!");
+				break;
+			case 55:
+			case 56:
+			case 57:
+			case 58:
+			case 59:
+				u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having infravision!");
+				break;
+			case 60:
+				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having detect monsters!");
+				break;
+			case 61:
+			case 62:
+			case 63:
+				u.uprops[DEAC_INVIS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having invisibility!");
+				break;
+			case 64:
+				u.uprops[DEAC_DISPLACED].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having displacement!");
+				break;
+			case 65:
+			case 66:
+			case 67:
+				u.uprops[DEAC_STEALTH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having stealth!");
+				break;
+			case 68:
+				u.uprops[DEAC_JUMPING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having jumping!");
+				break;
+			case 69:
+			case 70:
+			case 71:
+				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having teleport control!");
+				break;
+			case 72:
+				u.uprops[DEAC_FLYING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having flying!");
+				break;
+			case 73:
+				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having magical breathing!");
+				break;
+			case 74:
+				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having phasing!");
+				break;
+			case 75:
+			case 76:
+				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having slow digestion!");
+				break;
+			case 77:
+				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having half spell damage!");
+				break;
+			case 78:
+				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having half physical damage!");
+				break;
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+			case 83:
+				u.uprops[DEAC_REGENERATION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having regeneration!");
+				break;
+			case 84:
+			case 85:
+				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having mana regeneration!");
+				break;
+			case 86:
+			case 87:
+			case 88:
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having polymorph control!");
+				break;
+			case 89:
+			case 90:
+			case 91:
+			case 92:
+			case 93:
+				u.uprops[DEAC_FAST].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having speed!");
+				break;
+			case 94:
+			case 95:
+			case 96:
+				u.uprops[DEAC_REFLECTING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having reflection!");
+				break;
+			case 97:
+			case 98:
+			case 99:
+				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having free action!");
+				break;
+			case 100:
+				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from hallu partying!");
+				break;
+			case 101:
+				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from drunken boxing!");
+				break;
+			case 102:
+				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having stunnopathy!");
+				break;
+			case 103:
+				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having numbopathy!");
+				break;
+			case 104:
+				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having freezopathy!");
+				break;
+			case 105:
+				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from being a stoned chiller!");
+				break;
+			case 106:
+				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having corrosivity!");
+				break;
+			case 107:
+				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having an increased fear factor!");
+				break;
+			case 108:
+				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having burnopathy!");
+				break;
+			case 109:
+				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having glib combat!");
+				break;
+		}
+
+		break;
+
+	    case AD_ICUR:
+		if (!rn2(3)) {
+			You_feel("as if you need some help.");
+			rndcurse();
+		}
+		break;
+
+	    case AD_SLUD:
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_NAST:
+
+		if (!rn2(15)) {
+			pline("Nasty!");
+
+			switch (rnd(85)) {
+
+				case 1: RMBLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 3: DSTWProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 4: StatusTrapProblem += rnz( (tmp + 2) * rnd(100) ); 
+					if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+					if (HStun) set_itimeout(&HeavyStunned, HStun);
+					if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+					break;
+				case 5: Superscroller += rnz( (tmp + 2) * rnd(100) * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+					(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+					break;
+				case 6: MenuBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 7: FreeHandLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 8: Unidentify += rnz( (tmp + 2) * rnd(100) ); break;
+				case 9: Thirst += rnz( (tmp + 2) * rnd(100) ); break;
+				case 10: LuckLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 11: ShadesOfGrey += rnz( (tmp + 2) * rnd(100) ); break;
+				case 12: FaintActive += rnz( (tmp + 2) * rnd(100) ); break;
+				case 13: Itemcursing += rnz( (tmp + 2) * rnd(100) ); break;
+				case 14: DifficultyIncreased += rnz( (tmp + 2) * rnd(100) ); break;
+				case 15: Deafness += rnz( (tmp + 2) * rnd(100) ); flags.soundok = 0; break;
+				case 16: CasterProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 17: WeaknessProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 18: RotThirteen += rnz( (tmp + 2) * rnd(100) ); break;
+				case 19: BishopGridbug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 20: UninformationProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 21: StairsProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 22: AlignmentProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 23: ConfusionProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 24: SpeedBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 25: DisplayLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 26: SpellLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 27: YellowSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 28: AutoDestruct += rnz( (tmp + 2) * rnd(100) ); break;
+				case 29: MemoryLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 30: InventoryLoss += rnz( (tmp + 2) * rnd(100) ); break;
+				case 31: {
+	
+					if (BlackNgWalls) break;
+	
+					BlackNgWalls = 1000 - (tmp * 3);
+					if (BlackNgWalls < 100) BlackNgWalls = 100;
+					(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+					break;
+				}
+				case 32: IntrinsicLossProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 33: BloodLossProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 34: BadEffectProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 35: TrapCreationProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 36: AutomaticVulnerabilitiy += rnz( (tmp + 2) * rnd(100) ); break;
+				case 37: TeleportingItems += rnz( (tmp + 2) * rnd(100) ); break;
+				case 38: NastinessProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 39: CaptchaProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 40: FarlookProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 41: RespawnProblem += rnz( (tmp + 2) * rnd(100) ); break;
+				case 42: RecurringAmnesia += rnz( (tmp + 2) * rnd(100) ); break;
+				case 43: BigscriptEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 44: {
+					BankTrapEffect += rnz( (tmp + 2) * rnd(100) );
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 46: TechTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 47: RecurringDisenchant += rnz( (tmp + 2) * rnd(100) ); break;
+				case 48: verisiertEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 49: ChaosTerrain += rnz( (tmp + 2) * rnd(100) ); break;
+				case 50: Muteness += rnz( (tmp + 2) * rnd(100) ); break;
+				case 51: EngravingDoesntWork += rnz( (tmp + 2) * rnd(100) ); break;
+				case 52: MagicDeviceEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 53: BookTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 54: LevelTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 55: QuizTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 56: FastMetabolismEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 57: NoReturnEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 58: AlwaysEgotypeMonsters += rnz( (tmp + 2) * rnd(100) ); break;
+				case 59: TimeGoesByFaster += rnz( (tmp + 2) * rnd(100) ); break;
+				case 60: FoodIsAlwaysRotten += rnz( (tmp + 2) * rnd(100) ); break;
+				case 61: AllSkillsUnskilled += rnz( (tmp + 2) * rnd(100) ); break;
+				case 62: AllStatsAreLower += rnz( (tmp + 2) * rnd(100) ); break;
+				case 63: PlayerCannotTrainSkills += rnz( (tmp + 2) * rnd(100) ); break;
+				case 64: PlayerCannotExerciseStats += rnz( (tmp + 2) * rnd(100) ); break;
+				case 65: TurnLimitation += rnz( (tmp + 2) * rnd(100) ); break;
+				case 66: WeakSight += rnz( (tmp + 2) * rnd(100) ); break;
+				case 67: RandomMessages += rnz( (tmp + 2) * rnd(100) ); break;
+
+				case 68: Desecration += rnz( (tmp + 2) * rnd(100) ); break;
+				case 69: StarvationEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 70: NoDropsEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 71: LowEffects += rnz( (tmp + 2) * rnd(100) ); break;
+				case 72: InvisibleTrapsEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 73: GhostWorld += rnz( (tmp + 2) * rnd(100) ); break;
+				case 74: Dehydration += rnz( (tmp + 2) * rnd(100) ); break;
+				case 75: HateTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 76: TotterTrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 77: Nonintrinsics += rnz( (tmp + 2) * rnd(100) ); break;
+				case 78: Dropcurses += rnz( (tmp + 2) * rnd(100) ); break;
+				case 79: Nakedness += rnz( (tmp + 2) * rnd(100) ); break;
+				case 80: Antileveling += rnz( (tmp + 2) * rnd(100) ); break;
+				case 81: ItemStealingEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 82: Rebellions += rnz( (tmp + 2) * rnd(100) ); break;
+				case 83: CrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 84: ProjectilesMisfire += rnz( (tmp + 2) * rnd(100) ); break;
+				case 85: WallTrapping += rnz( (tmp + 2) * rnd(100) ); break;
+			}
+
+		}
+
+		break;
+
 	  case AD_CHKH:
 		if (mhit) {
 			pline("WHACK! You feel like you just got whipped!");
@@ -5162,6 +5627,28 @@ uchar aatyp;
 		 if (rn2(2)) poisoned("spores", rn2(A_MAX), "spore cloud", 30);
 	       }
 	      break;
+	    case AD_VENO:
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(3) ) break;
+
+	       if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of superpoisonous gas!");
+		} else {
+			pline("A cloud of superpoisonous gas surrounds you!");
+		}
+
+	       if ((!Strangled && !Breathless) || rn2(3)) {
+		if (!Poison_resistance) pline("You're badly poisoned!");
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		 poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
+		}
+
+		break;
+
 	      case AD_STCK:
 	      case AD_WRAP:
 			if (malive && !u.ustuck && !sticks(youmonst.data)) {

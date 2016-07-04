@@ -3989,7 +3989,7 @@ newegomon:
 
 	    case FUMBLING_TRAP:
 		pline("A green glow surrounds you...");
-		HFumbling = FROMOUTSIDE | rnd(100);
+		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(10 * (monster_difficulty() + 1) );
 		seetrap(trap);
@@ -7186,7 +7186,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(288);
+			monstercolor = rnd(296);
 
 			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
 
@@ -7439,7 +7439,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(288);
+			monstercolor = rnd(296);
 
 			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
 
@@ -11202,6 +11202,7 @@ struct trap *ttmp;
 	if (ttmp->launch_otyp == 28) diceroll -= rnd(30);
 	if (ttmp->launch_otyp == 29) diceroll -= rnd(20);
 	if (ttmp->launch_otyp == 39) diceroll -= rnd(15);
+	if (diceroll < 1) diceroll = 1; /* fail safe */
 
 	if (ttmp->launch_otyp < 12) diceroll -= rnd(diceroll);
 	else if (!rn2(2) && ttmp->launch_otyp < 31) diceroll -= rnd(diceroll);

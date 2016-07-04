@@ -177,7 +177,7 @@ int
 randattack()
 {
 
-	switch (rnd(276)) {
+	switch (rnd(283)) {
 
 		case 1:
 		case 2:
@@ -544,6 +544,20 @@ randattack()
 			return AD_SKIL;
 		case 276:
 			return AD_SPC2;
+		case 277:
+			return AD_VENO;
+		case 278:
+			return AD_DREA;
+		case 279:
+			return (rn2(20) ? AD_BADE : AD_NAST);
+		case 280:
+			return AD_SLUD;
+		case 281:
+			return AD_ICUR;
+		case 282:
+			return AD_VULN;
+		case 283:
+			return AD_FUMB;
 		default:
 			return AD_PHYS;
 
