@@ -360,7 +360,7 @@ mount_steed(mtmp, force)
 	    }
 	    You("slip while trying to get on %s.", mon_nam(mtmp));
 
-	    Sprintf(buf, "slipped while mounting %s",
+	    Sprintf(buf, "slipped while mounting a monster (%s)",
 		    /* "a saddled mumak" or "a saddled pony called Dobbin" */
 		    x_monnam(mtmp, ARTICLE_A, (char *)0,
 			SUPPRESS_IT|SUPPRESS_INVISIBLE|SUPPRESS_HALLUCINATION,

@@ -613,7 +613,7 @@ xchar x, y;
 		
 		/*You("turn to stone...");
 		killer_format = KILLED_BY;
-		Sprintf(kbuf, "kicking %s without boots",
+		Sprintf(kbuf, "kicking a monster corpse (%s) without boots",
 			an(killer_cxname(kickobj, TRUE)));
 		killer = kbuf;
 		done(STONING);	*/

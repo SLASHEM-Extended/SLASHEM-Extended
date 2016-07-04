@@ -634,7 +634,7 @@ aligntyp resp_god;
 
 	You("fry to a crisp.");
 	killer_format = KILLED_BY;
-	Sprintf(killerbuf, "the wrath of %s", align_gname(resp_god));
+	Sprintf(killerbuf, "the wrath of a deity (%s)", align_gname(resp_god));
 	killer = killerbuf;
 	done(DIED);
 }

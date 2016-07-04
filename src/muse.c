@@ -3455,7 +3455,7 @@ register struct obj *otmp;
 			    pline_The("wand hits you!");
 			    tmp = d(2,12);
 			    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
-			    losehp(tmp, "wand", KILLED_BY_AN);
+			    losehp(tmp, "wand of striking", KILLED_BY_AN);
 			} else pline_The("wand misses you.");
 			stop_occupation();
 			nomul(0, 0);

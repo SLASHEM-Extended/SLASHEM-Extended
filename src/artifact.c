@@ -684,7 +684,7 @@ touch_artifact(obj,mon)
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
 	dmg = d((Antimagic ? 6 : 8), (self_willed ? 10 : 6));
 	/*if (wizard) pline("damage calc");*/
-	Sprintf(buf, "touching %s", oart->name);
+	Sprintf(buf, "touching an artifact (%s)", oart->name);
 	/*if (wizard) pline("sprintf");*/
 	losehp(dmg, buf, KILLED_BY);
 	/*if (wizard) pline("losehp done");*/

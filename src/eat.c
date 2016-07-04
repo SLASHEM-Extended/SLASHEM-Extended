@@ -825,7 +825,7 @@ register int pm;
 	if (touch_petrifies(&mons[pm]) || pm == PM_MEDUSA) {
 	    if (!Stone_resistance &&
 		!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-		/* Sprintf(killer_buf, "tasting %s meat", mons[pm].mname);
+		/* Sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
 		killer_format = KILLED_BY;
 		killer = killer_buf;
 		You("turn to stone.");
@@ -834,7 +834,7 @@ register int pm;
 		    victual.eating = FALSE;
 		return; */
 		if (!Stoned) Stoned = 7;
-		Sprintf(killer_buf, "tasting %s meat", mons[pm].mname);
+		Sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
 		delayed_killer = killer_buf;
 		
 	    }
@@ -952,7 +952,7 @@ register int pm;
 	    case PM_DEPRESSION:
 		{ char buf[BUFSZ];
 		    pline("Eating that is instantly fatal.");
-		    Sprintf(buf, "unwisely ate the body of %s",
+		    Sprintf(buf, "unwisely ate the body of a monster (%s)",
 			    mons[pm].mname);
 		    killer = buf;
 		    killer_format = NO_KILLER_PREFIX;
@@ -4523,7 +4523,7 @@ register struct obj *otmp;
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) Stoned = 7;
 			killer_format = KILLED_BY_AN;
-			Sprintf(killer_buf, "%s egg", mons[otmp->corpsenm].mname);
+			Sprintf(killer_buf, "petrifying egg (%s)", mons[otmp->corpsenm].mname);
 			delayed_killer = killer_buf;
 		    }
 		}

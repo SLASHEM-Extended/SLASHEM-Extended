@@ -288,7 +288,9 @@ register struct monst *mtmp;
 	    You("were hosed!");
 	mark_synch();	/* flush buffered screen output */
 	buf[0] = '\0';
-	killer_format = KILLED_BY_AN;
+	Strcat(buf, "a monster (");
+
+	killer_format = KILLED_BY;
 	if (!Blind || Blind_telepat || Blind) {        
 	/* "killed by the high priest of Crom" is okay, "killed by the high
 	   priest" alone isn't */
@@ -337,6 +339,7 @@ register struct monst *mtmp;
 		Strcat(buf,", while blind");
 		if (multi) Strcat(buf," and helpless");
 	}
+	Strcat(buf, ")");
 	if(mtmp->data == &mons[PM_SOLDIER_ANT]) Strcat(buf, "    Go Team Ant!");
 
 	killer = buf;

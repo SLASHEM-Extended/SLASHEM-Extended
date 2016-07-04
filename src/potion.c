@@ -2276,7 +2276,7 @@ peffects(otmp)
 		else {
 			make_sick(Sick ? Sick/2L + 1L : 10, "urine potion", TRUE, SICK_VOMITABLE);
 			losestr(rnd(10));
-			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY_AN);
+			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY);
 
 		}
 
@@ -3192,7 +3192,7 @@ peffects(otmp)
 		losestr(rnd(10));
 		pline(Hallucination ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16),
-					"drinking cyanide", KILLED_BY_AN);
+					"drinking cyanide", KILLED_BY);
 		break;
 	case POT_RADIUM:
 		pline(Hallucination ? "For some reason, that potion tastes... orange. Yes, the color orange, not the fruit." : "This was radioactive radium!");

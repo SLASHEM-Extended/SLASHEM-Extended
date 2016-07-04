@@ -563,7 +563,7 @@ on the first floor, especially when you're playing as something with drain resis
 					else
 					    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
 
-					losehp(u.legscratching, "bleedout from leg scratches", KILLED_BY_AN);
+					losehp(u.legscratching, "bleedout from leg scratches", KILLED_BY);
 					u.legscratching++;
 					register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 					  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";

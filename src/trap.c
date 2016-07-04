@@ -2896,7 +2896,7 @@ newegomon:
 
 		}
 
-		losehp(quicksanddamage,"being pulled into quicksand",KILLED_BY_AN);
+		losehp(quicksanddamage,"being pulled into quicksand",KILLED_BY);
 
 		pline("Wheeeew! At last you managed to pull yourself out of the quicksand.");
 
@@ -4841,8 +4841,8 @@ newegomon:
 					flags.botl = 1;
 					bot();
 				    You(Hallucination ? "fired the last match, and ascended with your grandmother..." : "faint from starvation, and died...");
-					killer_format = KILLED_BY_AN;
-					killer = "caught in smell of gorgeous dinners which can't get";
+					killer_format = KILLED_BY;
+					killer = "being caught in smell of gorgeous dinners which can't get";
 					done(DIED);
 				    } else {
 					You_feel("hungry%s.", (u.uhunger > 500) ? " a bit" : "");

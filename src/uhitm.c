@@ -3575,7 +3575,7 @@ register struct attack *mattk;
 			if (is_rider(mdef->data) || is_deadlysin(mdef->data)) {
 			 pline("Unfortunately, digesting any of it is fatal.");
 			    end_engulf();
-			    Sprintf(msgbuf, "unwisely tried to eat %s",
+			    Sprintf(msgbuf, "unwisely tried to eat a monster (%s)",
 				    mdef->data->mname);
 			    killer = msgbuf;
 			    killer_format = NO_KILLER_PREFIX;
