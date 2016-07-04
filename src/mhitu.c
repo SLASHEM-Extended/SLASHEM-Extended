@@ -10284,7 +10284,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		   couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee &&
 		   multi >= 0 && !rn2(5) && !Sleep_resistance) {
 
-		    fall_asleep(-rnd(rn2(10) ? 10 : (10+dmgplus) ), TRUE);
+		    fall_asleep(-rnd((rn2(10) ? 10 : (10+dmgplus)) ), TRUE);
 		    pline("%s gaze makes you very sleepy...",
 			  s_suffix(Monnam(mtmp)));
 		}
@@ -10330,7 +10330,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (Sleep_resistance && rn2(20)) {
 			pline("You yawn.");
 		    } else {
-			nomul(-rnd(rn2(10) ? 10 : (10+dmgplus) ), "sleeping from a monster's gaze");
+			nomul(-rnd( (rn2(10) ? 10 : (10+dmgplus)) ), "sleeping from a monster's gaze");
 			u.usleep = 1;
 			nomovemsg = "You wake up.";
 			if (Blind)  You("are put to sleep!");

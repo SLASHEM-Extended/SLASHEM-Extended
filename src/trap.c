@@ -3806,7 +3806,7 @@ newegomon:
 		}
 		if (!Passes_walls)
 		    u.utrap = rn1(6,2);
-		    if (ttype == SHIT_PIT) u.utrap += rnd(rnd(6) );
+		    if (ttype == SHIT_PIT) u.utrap += rnd((rnd(6)) );
 		    if (ttype == GIANT_CHASM) u.utrap += rnd(75);
 		u.utraptype = TT_PIT;
 #ifdef STEED

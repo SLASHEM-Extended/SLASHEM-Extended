@@ -1193,7 +1193,7 @@ int thrown;
 		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
-			tmp += issoviet ? u.ulevel : rnd(rnd(u.ulevel)); /* nerf by Amy */
+			tmp += issoviet ? u.ulevel : rnd((rnd(u.ulevel))); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if (dieroll == 2 && obj == uwep &&
 			  !u.twoweap &&
