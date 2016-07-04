@@ -69,13 +69,16 @@ unsigned gpflags;
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
 				    Swimming || Amphibious) ? is_badpos : -1;
-		else	return (is_flyer(mdat) || mtmp->egotype_flying || is_swimmer(mdat) ||
+		else	return (is_flyer(mdat) /*|| mtmp->egotype_flying*/ || is_swimmer(mdat) ||
 				    is_clinger(mdat)) ? is_badpos : -1;
+		/* note by Amy: the egotype check causes eternal phantom bugs in this function. According to FIQ, mtmp is
+		 * never initialized correctly due to being a filler monster, instead of the actual one teleported. */
+
 	    } else if (is_lava(x,y)) {
 		if (mtmp == &youmonst)
 		    return HLevitation ? is_badpos : -1;
 		else
-		    return (is_flyer(mdat) || mtmp->egotype_flying || likes_lava(mdat)) ?
+		    return (is_flyer(mdat) /*|| mtmp->egotype_flying*/ || likes_lava(mdat)) ?
 			    is_badpos : -1;
 	    }
 	    if (passes_walls(mdat) && may_passwall(x,y)) return is_badpos;
