@@ -3203,8 +3203,8 @@ struct obj *otmp;
 {
 	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
-	else if (otmp->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
-	else if (otmp->oclass == AMULET_CLASS && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == RING_CLASS && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+	else if (otmp->oclass == AMULET_CLASS && (!(otmp->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) ) && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
 	else if (otmp->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
       else makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
