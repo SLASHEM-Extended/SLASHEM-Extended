@@ -5204,6 +5204,16 @@ register struct	monst	*mtmp;
 		mpickobj(mtmp,otmpX, TRUE);
 		}
 
+		if (mtmp->data == &mons[PM_PETTY_GIANT_ERROR]) {
+		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+		otmpX->spe = 0;
+		otmpX->quan = 3;
+		otmpX->owt = weight(otmpX);
+		otmpX->corpsenm = egg_type_from_parent(rndmonnum(), FALSE);
+		attach_egg_hatch_timeout(otmpX);
+		mpickobj(mtmp,otmpX, TRUE);
+		}
+
 		if (mtmp->data == &mons[PM_GIANT_LAMPREY]) {
 		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
 		otmpX->spe = 0;
@@ -5462,6 +5472,10 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_GREAT_PARALYSATOR_FLY]) (void) mongets(mtmp, WAN_PARALYSIS);
 		if (mtmp->data == &mons[PM_TEAM_NASTYTRAP_MEMBER]) (void) mongets(mtmp, SCR_NASTINESS);
+
+		if (mtmp->data == &mons[PM_JELLY_BEE]) (void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
+		if (mtmp->data == &mons[PM_CROWNED_QUEEN_BEE]) (void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
+		if (mtmp->data == &mons[PM_GIANT_JELLY_BEE]) (void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
 
 		if (mtmp->data == &mons[PM_MARIKE_S_WORN_OUT_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_JEANETTA_S_LITTLE_GIRL_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
@@ -12589,6 +12603,7 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_DSCHIIM_RUBBER]) set_mimic_sym(mtmp);
 			if (mndx == PM_CAMO_RUBBER) set_mimic_sym(mtmp);
 			if (mndx == PM_WIPER_RUBBER) set_mimic_sym(mtmp);
+			if (mndx == PM_PETTY_WIPER_RUBBER) set_mimic_sym(mtmp);
 
 			if (mndx == PM_CLEAR_ICKY_THING) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
@@ -14201,10 +14216,12 @@ int type;
 		case PM_WOOD_GOLEM: return 100;
 		case PM_WOODEN_GOLEM: return 100;
 		case PM_SCARECROW: return 100;
+		case PM_PETTY_SCARECROW: return 100;
 		case PM_WOODEN_FIGURINE: return 110;
 		case PM_BARNACLE_COVERED_GOLEM: return 120;
 		case PM_CLANKING_CHAINS: return 120;
 		case PM_SOOTBALL: return 140;
+		case PM_PETTY_SOOTBALL: return 140;
 		case PM_SPOOKY_PORTRAIT: return 150;
 		case PM_HAUNTED_TEAPOT: return 200;
 		case PM_ANIMATED_HOURGLASS: return 225;
@@ -14277,9 +14294,11 @@ int type;
 		case PM_WEATWIND: return 199;
 		case PM_FLESH_GOLEM: return 120;
 		case PM_BRAIN_GOLEM: return 120;
+		case PM_PETTY_BRAIN_GOLEM: return 120;
 		case PM_SPELL_GOLEM: return 130;
 		case PM_GROVE_GUARDIAN: return 170;
 		case PM_STATUE_GARGOYLE: return 140;
+		case PM_STATUE_GOLEM: return 140;
 		case PM_CLAY_GOLEM: return 150;
 		case PM_SEMBLANCE: return 150;
 		case PM_SANDMAN: return 150;

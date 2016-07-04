@@ -334,6 +334,9 @@ struct permonst *ptr;
     case PM_BALROG:
 	return 2;
     case PM_WHITE_UNICORN:
+    case PM_WINGED_WHITE_UNICORN:
+    case PM_WINGED_GRAY_UNICORN:
+    case PM_WINGED_BLACK_UNICORN:
     case PM_GRAY_UNICORN:
     case PM_BLACK_UNICORN:
     case PM_SMOKY_QUARTZ_UNICORN:
@@ -355,9 +358,15 @@ struct permonst *ptr;
     case PM_BIG_WHITE_UNICORN:
     case PM_BIG_GRAY_UNICORN:
     case PM_BIG_BLACK_UNICORN:
+    case PM_PETTY_BIG_WHITE_UNICORN:
+    case PM_PETTY_BIG_GRAY_UNICORN:
+    case PM_PETTY_BIG_BLACK_UNICORN:
     case PM_UNDEAD_UNICORN:
     case PM_DISGUISED_UNDEAD_UNICORN:
     case PM_KI_RIN:
+    case PM_BEIGE_UNICORN:
+    case PM_CONCRETE_UNICORN:
+    case PM_ANTHRAZITE_UNICORN:
 	return 1;
     default:
 	break;

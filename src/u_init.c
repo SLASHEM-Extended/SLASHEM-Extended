@@ -194,11 +194,10 @@ static struct trobj DQSlime[] = {
 };
 
 static struct trobj Cook[] = {
-	{ T_SHIRT, 2, ARMOR_CLASS, 1, 0 },
-	{ LEATHER_JACKET, 0, ARMOR_CLASS, 1, 0 },
-	{ LOW_BOOTS, 0, ARMOR_CLASS, 1, 0 },
-	{ BAG_OF_HOLDING, 0, TOOL_CLASS, 1, 0 },
-	{ BELL, 0, TOOL_CLASS, 1, 0 },
+	{ ROBE, 2, ARMOR_CLASS, 1, 0 },
+	{ FOOD_RATION, 0, FOOD_CLASS, 2, 0 },
+	{ UNDEF_TYP, 0, FOOD_CLASS, 2, 0 },
+	{ KNIFE, 2, WEAPON_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 

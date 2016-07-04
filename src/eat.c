@@ -1618,6 +1618,10 @@ register int pm;
 	    case PM_REMORHAZ:
 	    case PM_DEMINEWT:
 	    case PM_MASTER_NEWT:
+	    case PM_EMPEROR_NEWT:
+	    case PM_LARGE_NEWT:
+	    case PM_SENSEI_NEWT:
+	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
 	    case PM_RUBBER_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
@@ -1642,6 +1646,8 @@ register int pm;
 		}
 		break;
 	    case PM_POWER_TROVE:
+	    case PM_ULTIMATE_NEWT:
+	    case PM_HUGE_NEWT:
 	    case PM_EIGHT_FOOTED_SNAKE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      {int old_uen = u.uen;
@@ -1663,11 +1669,33 @@ register int pm;
 		}
 		}
 		break;
+	    case PM_GIGANTIC_NEWT:
+	    case PM_BONUS_MANA_TROVE:
+	    case PM_KILLERTRICE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
+	      {int old_uen = u.uen;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+			u.uenmax++; u.uenmax++; u.uenmax++;
+		if (old_uen != u.uen) {
+		    You_feel("a mild buzz.");
+		    flags.botl = 1;
+		}
+		}
+		break;
 	    case PM_TWEN:
 	    case PM_HEALTH_TROVE:
 	    case PM_GRAY_TWEN:
 	    case PM_DEMITWEN:
 	    case PM_MASTER_TWEN:
+	    case PM_GRANDMASTER_TWEN:
+	    case PM_LARGE_TWEN:
+	    case PM_EMPEROR_TWEN:
+	    case PM_SENSEI_TWEN:
 	    case PM_YELDUD_TWEN:
 	    case PM_PORTER_RUBBER_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
@@ -1683,6 +1711,8 @@ register int pm;
 		break;
 	    case PM_VITALITY_TROVE:
 	    case PM_MUTATED_UNDEAD_COCKATRICE:
+	    case PM_ULTIMATE_TWEN:
+	    case PM_HUGE_TWEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) {
 			u.mh++;
@@ -1695,6 +1725,77 @@ register int pm;
 			u.uhp += rnd(2);
 			u.uhpmax++;
 			u.uhpmax += rnd(2);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		    You_feel("vitalized.");
+		    flags.botl = 1;
+		break;
+
+	    case PM_GIGANTIC_TWEN:
+	    case PM_KILLER_CHICKEN:
+	    case PM_HITPOINT_TROVE:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
+		if (Upolyd) {
+			u.mh++;
+			u.mh++;
+			u.mh++;
+			u.mh += rnd(10);
+			u.mhmax++;
+			u.mhmax++;
+			u.mhmax++;
+			u.mhmax += rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		} else {
+			u.uhp++;
+			u.uhp++;
+			u.uhp++;
+			u.uhp += rnd(10);
+			u.uhpmax++;
+			u.uhpmax++;
+			u.uhpmax++;
+			u.uhpmax += rnd(10);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		    You_feel("vitalized.");
+		    flags.botl = 1;
+		break;
+
+	    case PM_KILLER_TURBO_CHICKEN:
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
+
+	      {int old_uen = u.uen;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+		    u.uen += rnd(4);
+		    if (rn2(3)) u.uenmax++;
+			u.uenmax++; u.uenmax++; u.uenmax++;
+		if (old_uen != u.uen) {
+		    You_feel("a mild buzz.");
+		    flags.botl = 1;
+		}
+		}
+
+		if (Upolyd) {
+			u.mh++;
+			u.mh++;
+			u.mh++;
+			u.mh += rnd(10);
+			u.mhmax++;
+			u.mhmax++;
+			u.mhmax++;
+			u.mhmax += rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		} else {
+			u.uhp++;
+			u.uhp++;
+			u.uhp++;
+			u.uhp += rnd(10);
+			u.uhpmax++;
+			u.uhpmax++;
+			u.uhpmax++;
+			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		    You_feel("vitalized.");
@@ -2569,12 +2670,16 @@ register int pm;
 
 	    case PM_INTELLIGENT_TROVE:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_HUGE_MIND_FLAYER:
 	    case PM_MINOR_MIND_FLAYER:
+	    case PM_LOW_MIND_FLAYER:
+	    case PM_LARGE_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:
 	    case PM_ELDRITCH_MIND_FLAYER:
+	    case PM_GIGANTIC_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
 	    case PM_MIND_BEAMER:
@@ -2584,7 +2689,11 @@ register int pm;
 		case PM_PETTY_MIND_FLAYER:
 		case PM_ICKY_FACE:
 		case PM_BRAIN_EATER:
+		case PM_LARGE_BRAIN_EATER:
+		case PM_PESKY_BRAIN_EATER:
 		case PM_MIND_SUCKER:
+		case PM_LARGE_MIND_SUCKER:
+		case PM_PESKY_MIND_SUCKER:
 		case PM_KERRISIN:
 		case PM_GIANT_COCKATFLAYER_EELLICH:
 		case PM_REGENERATING_MIND_FLAYER:
