@@ -912,8 +912,7 @@ break_armor()
 	}
     }
 #ifdef JEDI
-    if ((otmp = uarmh) != 0 && !Race_if(PM_TRANSFORMER) && (youmonst.data == &mons[PM_MIND_FLAYER] ||
-	youmonst.data == &mons[PM_MASTER_MIND_FLAYER])){
+    if ((otmp = uarmh) != 0 && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
 	    if (!otmp->cursed){
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();

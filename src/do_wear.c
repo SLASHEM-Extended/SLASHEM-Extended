@@ -2346,9 +2346,8 @@ boolean noisy;
 	    err++;
 
 #ifdef JEDI
-	} else if (Upolyd && (youmonst.data == &mons[PM_MIND_FLAYER] ||
-			      youmonst.data == &mons[PM_MASTER_MIND_FLAYER]) &&
-			(otmp->otyp == PLASTEEL_HELM || otmp->otyp == HELM_OF_STORMS || otmp->otyp == HELM_OF_DETECT_MONSTERS) ){
+	/* mind flayers cannot wear helmets at all --Amy */
+	} else if (Upolyd && (is_mind_flayer(youmonst.data))) {
 		if (noisy)
 			pline_The("%s won't fit over your tentacles.", xname(otmp));
 		err++;
