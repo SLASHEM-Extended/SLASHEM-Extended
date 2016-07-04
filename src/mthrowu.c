@@ -1091,8 +1091,10 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
 			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
-		    else if (flags.soundok && !issoviet) You_hear("an exhaling sound.");
-
+		    else if (flags.soundok && !issoviet) {
+				if (isangbander) pline("It breathes.");
+				else You_hear("an exhaling sound.");
+			}
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
