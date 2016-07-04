@@ -35,6 +35,8 @@ STATIC_DCL void FDECL(noises,(struct monst *,struct attack *));
 STATIC_DCL void FDECL(missmm,(struct monst *,struct monst *, int, int, struct attack *));
 STATIC_DCL int FDECL(passivemm, (struct monst *, struct monst *, BOOLEAN_P, int));
 
+STATIC_PTR void FDECL(set_lit, (int,int,genericptr_t));
+
 /* Needed for the special case of monsters wielding vorpal blades (rare).
  * If we use this a lot it should probably be a parameter to mdamagem()
  * instead of a global variable.
@@ -406,8 +408,8 @@ meleeattack:
 		    tmp -= hitval(otmp, mdef);
 		break;
 
-	    case AT_HUGS:	/* automatic if prev two attacks succeed */
-		strike = (i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT);
+	    case AT_HUGS:	/* automatic if prev two attacks succeed, but also with a low chance otherwise --Amy */
+		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || !rn2(30));
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
 
@@ -775,6 +777,9 @@ hitmm(magr, mdef, mattk)
 			case AT_BITE:
 				Sprintf(buf,"%s bites", magr_name);
 				break;
+			case AT_CLAW:
+				Sprintf(buf,"%s claws", magr_name);
+				break;
 			case AT_STNG:
 				Sprintf(buf,"%s stings", magr_name);
 				break;
@@ -1097,6 +1102,8 @@ mdamagem(magr, mdef, mattk)
           }
 		break;
 	    case AD_STUN:
+	    case AD_FUMB:
+	    case AD_SOUN:
 		if (magr->mcan) break;
 		if (canseemon(mdef))
 		    pline("%s %s for a moment.", Monnam(mdef),
@@ -1357,13 +1364,20 @@ physical:
 		}
 		hurtmarmor(mdef, AD_RUST);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
-		tmp = 0;
+		if (pd == &mons[PM_IRON_GOLEM]) tmp = 0;
 		break;
+	    case AD_LITE:
+		if (is_vampire(mdef->data)) {
+			tmp *= 2; /* vampires take more damage from sunlight --Amy */
+			if (vis) pline("%s is irradiated!", Monnam(mdef));
+		}
+		break;
+
 	    case AD_CORR:
 		if (magr->mcan) break;
 		hurtmarmor(mdef, AD_CORR);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
-		tmp = 0;
+		/*tmp = 0;*/
 		break;
 	    case AD_DCAY:
 		if (magr->mcan) break;
@@ -1378,7 +1392,7 @@ physical:
 							0 : MM_AGR_DIED));
 		}
 		hurtmarmor(mdef, AD_DCAY);
-		tmp = 0;
+		if (pd == &mons[PM_WOOD_GOLEM] || pd == &mons[PM_LEATHER_GOLEM]) tmp = 0;
 		break;
 	    case AD_STON:
 		if (magr->mcan) break;
@@ -1414,10 +1428,13 @@ physical:
 			    You(brief_feeling, "peculiarly sad");
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
+			tmp = (mattk->adtyp == AD_STON ? 0 : 1);
 		}
-		tmp = (mattk->adtyp == AD_STON ? 0 : 1);
 		break;
 	    case AD_TLPT:
+	    case AD_NEXU:
+	    case AD_BANI:
+	    case AD_ABDC:
 		if (!cancelled && tmp < mdef->mhp && !tele_restrict(mdef)) {
 		    char mdef_Monnam[BUFSZ];
 		    /* save the name before monster teleports, otherwise
@@ -1516,6 +1533,7 @@ physical:
   		}
 		break;
 	    case AD_SLOW:
+	    case AD_INER:
 		if (nohit) break;
 		if(!cancelled && vis && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
@@ -1526,7 +1544,171 @@ physical:
 			pline("%s slows down.", Monnam(mdef));
 		}
 		break;
+	    case AD_LAZY:
+		if (nohit) break;
+		if(!cancelled && vis && mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    mdef->mstrategy &= ~STRAT_WAITFORU;
+		    if (mdef->mspeed != oldspeed && vis)
+			pline("%s slows down.", Monnam(mdef));
+		}
+		if(!cancelled && !rn2(3) && mdef->mcanmove) {
+		    if (vis) {
+			Strcpy(buf, Monnam(mdef));
+			pline("%s is frozen by %s.", buf, mon_nam(magr));
+		    }
+		    mdef->mcanmove = 0;
+		    mdef->mfrozen = rnd(10);
+		    mdef->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+	    case AD_NUMB:
+		if (nohit) break;
+		if(!cancelled && !rn2(10) && vis && mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    mdef->mstrategy &= ~STRAT_WAITFORU;
+		    if (mdef->mspeed != oldspeed && vis)
+			pline("%s is numbed.", Monnam(mdef));
+		}
+		break;
+	    case AD_DARK:
+		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
+		if (vis) pline("A sinister darkness fills the area!");
+		break;
+
+	    case AD_THIR:
+		if (magr->mhp > 0) {
+		magr->mhp += tmp;
+		if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		if (vis) pline("%s feeds on the lifeblood!", Monnam(magr) );
+		}
+
+		break;
+	    case AD_FRZE:
+		if (!resists_cold(mdef) && resists_fire(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is freezing!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_MALK:
+		if (!resists_elec(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is shocked!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_UVUU:
+		if (has_head(mdef->data)) {
+			tmp *= 2;
+			if (!rn2(1000)) {
+				tmp *= 100;
+				if (vis) pline("%s's %s is torn apart!", Monnam(mdef), mbodypart(mdef, HEAD));
+			} else if (vis) pline("%s's %s is spiked!", Monnam(mdef), mbodypart(mdef, HEAD));
+		}
+		break;
+
+	    case AD_GRAV:
+		if (!is_flyer(mdef->data)) {
+			tmp *= 2;
+			if (vis) pline("%s is slammed into the ground!", Monnam(mdef));
+		}
+		break;
+
+	    case AD_CHKH:
+		if (magr->m_lev > mdef->m_lev) tmp += (magr->m_lev - mdef->m_lev);
+		break;
+
+	    case AD_CHRN:
+		if ((tmp > 0) && (mdef->mhpmax > 1)) {
+			mdef->mhpmax--;
+			if (vis) pline("%s feels bad!", Monnam(mdef));
+		}
+		break;
+
+	    case AD_HODS:
+		tmp += mdef->m_lev;
+		break;
+
+	    case AD_BURN:
+		if (resists_cold(mdef) && !resists_fire(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is burning!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_PLAS:
+		if (!resists_fire(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is enveloped by searing plasma radiation!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_SLUD:
+		if (!resists_acid(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is covered with sludge!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_LAVA:
+		if (resists_cold(mdef) && !resists_fire(mdef)) {
+			tmp *= 4;
+			if (vis) pline("%s is scorched!", Monnam(mdef));
+		} else if (!resists_fire(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is severely burned!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_FAKE:
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+
+		break;
+
+	    case AD_WEBS:
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+
+		break;
+
+	    case AD_CNCL:
+		if (rnd(100) > mdef->data->mr) {
+			mdef->mcan = 1;
+			if (vis) pline("%s is covered in sparkling lights!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_FEAR:
+		if (rnd(100) > mdef->data->mr) {
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+			if (vis) pline("%s screams in fear!",Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_DREA:
+		if (!mdef->mcanmove) {
+			tmp *= 4;
+			if (vis) pline("%s's dream is eaten!",Monnam(mdef));
+		}
+
+		break;
+
 	    case AD_CONF:
+	    case AD_SPC2:
 		if (nohit) break;
 		/* Since confusing another monster doesn't have a real time
 		 * limit, setting spec_used would not really be right (though
@@ -1538,6 +1720,11 @@ physical:
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
+	    case AD_WRAT:
+	    case AD_MANA:
+	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
+		break;
+
 	    case AD_DREN:
 		if (nohit) break;
 	    	if (resists_magm(mdef)) {
@@ -1549,6 +1736,7 @@ physical:
 	    	    mon_drain_en(mdef, 
 				((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1);
 	    	}	    
+		break;
 	    case AD_BLND:
 		if (nohit) break;                
 	       
@@ -1566,15 +1754,17 @@ physical:
 		tmp = 0;
 		break;
 	    case AD_HALU:
+	    case AD_DEPR:
 		if (!magr->mcan && haseyes(pd) && mdef->mcansee) {
 		    if (vis) pline("%s looks %sconfused.",
 				    Monnam(mdef), mdef->mconf ? "more " : "");
 		    mdef->mconf = 1;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
-		tmp = 0;
+		/*tmp = 0;*/
 		break;
 	    case AD_CURS:
+	    case AD_ICUR:
 		if (nohit) break;
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
@@ -1635,6 +1825,10 @@ physical:
 		}
 		break;
 	    case AD_DRLI:
+	    case AD_TIME:
+	    case AD_DFOO:
+	    case AD_WEEP:
+	    case AD_VAMP:
 		if (nohit) break;                
 
 		if (!cancelled && magr->mtame && !magr->isminion &&
@@ -1658,6 +1852,7 @@ physical:
 #endif
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
+	    case AD_STTP:
 		if (magr->mcan) break;
 		/* find an object to steal, non-cursed if magr is tame */
 		for (obj = mdef->minvent; obj; obj = obj->nobj)
@@ -1713,6 +1908,9 @@ physical:
 	    case AD_DRST:
 	    case AD_DRDX:
 	    case AD_DRCO:
+	    case AD_POIS:
+	    case AD_WISD:
+	    case AD_DRCH:
 		if (nohit) break;
 		
 		if (!cancelled && !rn2(8)) {
@@ -1732,6 +1930,25 @@ physical:
 		    }
 		}
 		break;
+	    case AD_VENO:
+		if (nohit) break;
+		
+		if (!cancelled && !rn2(3)) {
+		    if (resists_poison(mdef)) {
+			if (vis)
+			    pline_The("poison doesn't seem to affect %s.",
+				mon_nam(mdef));
+		    } else {
+			pline("%s is badly poisoned!", Monnam(mdef));
+			if (rn2(10)) tmp += rn1(20,12);
+			else {
+			    if (vis) pline_The("poison was deadly...");
+			    tmp = mdef->mhp;
+			}
+		    }
+		}
+		break;
+
 	    case AD_DRIN:
 		if (notonhead || !has_head(pd)) {
 		    if (vis) pline("%s doesn't seem harmed.", Monnam(mdef));
@@ -2182,6 +2399,19 @@ int aatyp;
 	break;
     }
     return w_mask;
+}
+
+STATIC_PTR void
+set_lit(x,y,val)
+int x, y;
+genericptr_t val;
+{
+	if (val)
+	    levl[x][y].lit = 1;
+	else {
+	    levl[x][y].lit = 0;
+	    snuff_light_source(x, y);
+	}
 }
 
 #endif /* OVLB */
