@@ -1735,6 +1735,7 @@ rndtrap()
 
 	do {
 	    rtrap = rnd(TRAPNUM-1);
+	    if (!rn2(issoviet ? 2 : 3)) rtrap = rnd(ANTI_MAGIC);
 	    switch (rtrap) {
 	     case HOLE:		/* no random holes on special levels */
 	     case MAGIC_PORTAL:	rtrap = ROCKTRAP;
@@ -2029,6 +2030,7 @@ randomtrap()
 
 	do {
 	    rtrap = rnd(TRAPNUM-1);
+	    if (!rn2(issoviet ? 2 : 3)) rtrap = rnd(ANTI_MAGIC);
 		if (rtrap == HOLE && !Is_stronghold(&u.uz) ) rtrap = PIT;
 		if (rtrap == MAGIC_PORTAL) rtrap = PIT;
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = PIT;
