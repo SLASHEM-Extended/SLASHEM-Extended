@@ -1132,7 +1132,7 @@ boolean	at_stairs;
 		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
-			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			(void)nasty((struct monst *)0);
 
 		}
@@ -1168,7 +1168,7 @@ boolean	at_stairs;
 		if (at_stairs && (!rn2(ishaxor ? 250 : 500) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
-			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			(void)nasty((struct monst *)0);
 
 		}
@@ -1212,7 +1212,7 @@ boolean	at_stairs;
 			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) {
 
 				pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
-				NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+				NoStaircase = 10 + rnz(monster_difficulty() + 1);
 				(void)nasty((struct monst *)0);
 
 			}
@@ -1248,7 +1248,7 @@ boolean	at_stairs;
 		if (at_stairs && (!rn2(ishaxor ? 50 : 100) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
-			NoStaircase = 50 + rnz(5 * (monster_difficulty() + 1));
+			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			(void)nasty((struct monst *)0);
 		}
 
