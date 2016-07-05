@@ -1411,7 +1411,7 @@ boolean bigrange;
 		room->doormask = D_NODOOR;
 		unblock_point(zx,zy); /* vision */
 		digdepth -= 2;
-		if (maze_dig) break;
+		if (issoviet && maze_dig) break;
 	    } else if (maze_dig) {
 		if (IS_WALL(room->typ)) {
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
@@ -1421,23 +1421,34 @@ boolean bigrange;
 			}
 			room->typ = /*ROOM*/CORR;
 			unblock_point(zx,zy); /* vision */
-		    } else if (!Blind)
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) break;
+		    } else if (!Blind) {
 			pline_The("wall glows then fades.");
-		    break;
+			break;
+		    }
 		} else if (IS_TREE(room->typ)) { /* check trees before stone */
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
 			room->typ = ROOM;
 			unblock_point(zx,zy); /* vision */
-		    } else if (!Blind)
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) break;
+		    } else if (!Blind) {
 			pline_The("tree shudders but is unharmed.");
-		    break;
+			break;
+		    }
 		} else if (room->typ == STONE || room->typ == SCORR) {
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
 			room->typ = CORR;
 			unblock_point(zx,zy); /* vision */
-		    } else if (!Blind)
+			digdepth--; /* fix stupidity --Amy */
+		/* In Soviet Russia, digging has to be done one block at a time. Faster digging methods are capitalistic
+		 * and evil, so they're not allowed. I wonder how long until they decide to make mazes undiggable... --Amy */
+			if (issoviet) break;
+		    } else if (!Blind) {
 			pline_The("rock glows then fades.");
-		    break;
+			break;
+		    }
 		}
 	    } else if (IS_ROCK(room->typ)) {
 		if (!may_dig(zx,zy)) break;
