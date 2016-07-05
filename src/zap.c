@@ -5766,7 +5766,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		break;
 	case ZT_SLEEP:
 		tmp = 0;
-		(void)sleep_monst(mon, d(nd, 25),
+		(void)sleep_monst(mon, d(nd, 6),
 				type == ZT_WAND(ZT_SLEEP) ? WAND_CLASS : '\0');
 		break;
 	case ZT_DEATH:		/* death/disintegration */
@@ -5890,6 +5890,15 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	if (tmp > 0 && type >= 0 &&
 		resist(mon, type < ZT_SPELL(0) ? WAND_CLASS : '\0', 0, NOTELL))
 	    tmp /= 2;
+
+	/* magic missile spell, which is too strong relative to all others --Amy */
+	if (tmp > 0 && !issoviet && type == 10 && resist(mon, '\0', 0, NOTELL) )
+	/* In Soviet Russia, people have no consideration for game balance. They insist that the magic missile spell,
+	 * despite being a lower level than all other attack spells that shoot damaging beams, absolutely has to do the same
+	 * amount of damage, even though it's already better for another reason and that is the fact that few monsters have
+	 * magic resistance while the elemental resistances (fire, cold etc.) are ubiquitous! --Amy */
+	    tmp /= 2;
+
 	if (tmp < 0) tmp = 0;		/* don't allow negative damage */
 #ifdef WIZ_PATCH_DEBUG
 	pline("zapped monster hp = %d (= %d - %d)", mon->mhp-tmp,mon->mhp,tmp);
