@@ -1656,7 +1656,7 @@ dochat()
 		}
 	}
 
-    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->mnum == PM_NURSE || mtmp->mnum == PM_SUCCUBUS) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Seduce this pretty lady?") == 'y') {
 
