@@ -310,6 +310,8 @@ boolean dresistance;	/* level drain resistance can protect you */
 		}
 	}
 
+	if (issoviet) pline("BWAR KHAR (gryaznyy smekh) govorit, chto tip bloka l'da!");
+
 	if (u.ulevel > 1) {
 		pline("%s level %d.", Goodbye(), u.ulevel--);
 		/* remove intrinsic abilities */
@@ -410,6 +412,7 @@ newexplevel()
 		u.uhp += tmp;
 		u.uhpmax += rnz(2); /*making the game a bit easier --Amy */
 		if (!issoviet && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
+		if (issoviet) pline("Vy dazhe ne poluchayete polnyye linii, potomu chto sovetskiy ne ponimayet, kak rolevyye igry rabotayut!");
 		switch (Role_switch) {
 			case PM_ARCHEOLOGIST: u.uenbase += rnd(4) + 1; break;
 			case PM_BARBARIAN: u.uenbase += rnd(2); break;
@@ -488,6 +491,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	u.uhp += num;
 
 	if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && !issoviet && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
+	if (issoviet) pline("Vy dazhe ne poluchayete polnyye linii, potomu chto sovetskiy ne ponimayet, kak rolevyye igry rabotayut!");
 	/* In Soviet Russia, you don't get full health on leveling up because seriously, who needs that? --Amy */
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */

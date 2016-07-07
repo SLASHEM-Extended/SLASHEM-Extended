@@ -677,14 +677,18 @@ long nmv;		/* number of moves */
  
 			if ((is_animal(mtmp->data) || mindless(mtmp->data) ||
 			    is_demon(mtmp->data)  || is_undead(mtmp->data) || mtmp->egotype_undead ||
-			    is_were(mtmp->data)) && (monstermoves + 5000) > edog->hungrytime) { 
+			    is_were(mtmp->data)) && (issoviet || ((monstermoves + 5000) > edog->hungrytime)) ) { 
 				/* reduce tameness for every 
 				 * 150 moves you are away 
 				 Amy -- edit so that well-satiated pets can be on another level for much longer */
+		/* In Soviet Russia, dogs HATE it if their owners are gone for more than a measly few minutes. They will
+		 * assume that their holders are dead, and not recognize them anymore. No matter how well-fed they were.
+		 * I'm not sure if my improvements were in SLASHTHEM, but probably not, because if they were, I'd bet actual
+		 * money on Soviet reverting it "because the Amy made this change so it must be teh suxx0rz!!!!!111" --Amy */
 			/*struct edog *edog = EDOG(mtmp);*/
 
-				if (mtmp->mtame > nmv/1000) /* increased by Amy */
-					mtmp->mtame -= nmv/1000;
+				if (mtmp->mtame > (nmv / (issoviet ? 150 : 1000))) /* increased by Amy */
+					mtmp->mtame -= (nmv / (issoviet ? 150 : 1000));
 				else mtmp->mtame = 0;
 	}
 	/* check to see if it would have died as a pet; if so, go wild instead

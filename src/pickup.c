@@ -618,7 +618,13 @@ end_query:
 	}
 
 	/* Picking up stuff no longer consumes turns. --Amy */
+	/* See comment in do.c about soviet mode */
 
+	if (issoviet) {
+		if (!rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+		return (n_tried > 0);
+		/* I considered making it "return 1" just to spite the player, but decided to be lenient. */
+	}
 	return /*(n_tried > */0/*)*/;
 }
 

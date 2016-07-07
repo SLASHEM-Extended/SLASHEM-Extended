@@ -3411,6 +3411,7 @@ rottenfood(obj)
 struct obj *obj;
 {
 	pline("Blecch!  Rotten %s!", foodword(obj));
+	if (issoviet) pline("Tip bloka l'da vinovat v etom!");
 	if(!rn2(4)) {
 		if (Hallucination) You_feel("rather trippy.");
 		else You_feel("rather %s.", body_part(LIGHT_HEADED));

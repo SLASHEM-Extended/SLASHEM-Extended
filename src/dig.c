@@ -402,7 +402,16 @@ dig()
 				pline("You cheater!");
 				}
 
-			    lev->typ = ROOM;
+			    if (!issoviet || !rn2(10)) lev->typ = ROOM;
+			    else {
+				pline("V sootvetstvii s tipom bloka l'da eto ne imeyet nikakogo smysla. I poetomu on ne rabotayet. Khar Khar Khar on on on bwar khar khar!");
+				digging.quiet = TRUE; /* suppress misleading message */
+		/* In Soviet Russia, iron bars are supposed to be nigh impenetrable. After all, someone's gotta keep all those
+		 * capitalist prisoners at bay. Therefore, you can try to smash iron bars many times but only rarely it will
+		 * work. Actually, it's supposed to be possible to cut through bars with a lightsaber instead according to
+		 * Soviet, but seriously, fuck that shit, I'm not gonna bother coding that just for an obscure special mode
+		 * that 99.9% of players won't use anyway because they don't understand russian. --Amy */
+			    }
 				(void)wither_dmg(uwep, xname(uwep), rn2(4), TRUE, &youmonst); /* sorry --Amy */
 		if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
 			} else {
@@ -1411,6 +1420,7 @@ boolean bigrange;
 		room->doormask = D_NODOOR;
 		unblock_point(zx,zy); /* vision */
 		digdepth -= 2;
+		if (issoviet && maze_dig) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 		if (issoviet && maze_dig) break;
 	    } else if (maze_dig) {
 		if (IS_WALL(room->typ)) {
@@ -1422,6 +1432,7 @@ boolean bigrange;
 			room->typ = /*ROOM*/CORR;
 			unblock_point(zx,zy); /* vision */
 			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 			if (issoviet) break;
 		    } else if (!Blind) {
 			pline_The("wall glows then fades.");
@@ -1432,6 +1443,7 @@ boolean bigrange;
 			room->typ = ROOM;
 			unblock_point(zx,zy); /* vision */
 			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 			if (issoviet) break;
 		    } else if (!Blind) {
 			pline_The("tree shudders but is unharmed.");
@@ -1444,6 +1456,7 @@ boolean bigrange;
 			digdepth--; /* fix stupidity --Amy */
 		/* In Soviet Russia, digging has to be done one block at a time. Faster digging methods are capitalistic
 		 * and evil, so they're not allowed. I wonder how long until they decide to make mazes undiggable... --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 			if (issoviet) break;
 		    } else if (!Blind) {
 			pline_The("rock glows then fades.");

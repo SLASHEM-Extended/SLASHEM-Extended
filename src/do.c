@@ -727,7 +727,8 @@ register struct obj *obj;
 	    if((obj->oclass == RING_CLASS || obj->otyp == MEAT_RING) &&
 			IS_SINK(levl[u.ux][u.uy].typ)) {
 		dosinkring(obj);
-		return(/*1*/0);
+		if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+		return(issoviet ? 1 : 0);
 	    }
 #endif
 	    if (!can_reach_floor()) {
@@ -740,14 +741,17 @@ register struct obj *obj;
 		freeinv(obj);
 #endif
 		hitfloor(obj);
-		return(/*1*/0);
+		if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+		return(issoviet ? 1 : 0);
 	    }
 	    if (!IS_ALTAR(levl[u.ux][u.uy].typ) && flags.verbose)
 		You("drop %s.", doname(obj));
 	}
 	dropx(obj);
-	return(/*1*/0);
+	if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+	return(issoviet ? 1 : 0);
 	/* Dropping things should no longer consume a turn now. --Amy */
+	/* In Soviet Russia, picking up and dropping things requires time because everything's supposed to be shit. --Amy */
 
 }
 
