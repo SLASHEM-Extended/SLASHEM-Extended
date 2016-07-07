@@ -489,6 +489,9 @@ register struct monst *mtmp;
 		tmp += weapon_hit_bonus(uwep);
 	}
 */
+	if (u.twoweap && (P_RESTRICTED(P_TWO_WEAPON_COMBAT) )) tmp -= (issoviet ? 20 : rnd(20) );
+	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
 	if (tmp < -127) tmp = -127; /* fail safe */
