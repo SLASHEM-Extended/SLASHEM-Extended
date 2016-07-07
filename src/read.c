@@ -1276,8 +1276,8 @@ forget_map(howmuch)
 {
 	register int zx, zy;
 
-	if (In_sokoban(&u.uz) && rn2(20) )
-	    return;
+	/*if (In_sokoban(&u.uz) && rn2(20) )
+	    return;*/
 
 	if (Keen_memory && rn2(20)) return;
 
@@ -1338,7 +1338,7 @@ forget_levels(percent)
 	for (count = 0, i = 0; i <= maxl; i++)
 	    if ((level_info[i].flags & VISITED) &&
 			!(level_info[i].flags & FORGOTTEN) && i != this_lev) {
-		if (ledger_to_dnum(i) == sokoban_dnum)
+		if ((ledger_to_dnum(i) == sokoban_dnum) && rn2(5)) /* evil patch idea by Amy: sometimes delete soko levels */
 		    percent += 2;
 		else
 		    indices[count++] = i;
