@@ -684,7 +684,7 @@ doread()
 	    return(study_book(scroll));
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
-	if(scroll->oartifact) {
+	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
 			pline("Being blind, you cannot see the %s.", the(xname(scroll)));
 			return 0;
@@ -730,7 +730,7 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER && !scroll->oartifact &&
+		if(scroll->otyp != SCR_BLANK_PAPER && (!scroll->oartifact == ART_MARAUDER_S_MAP) &&
 		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_COPYING && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
@@ -4781,7 +4781,7 @@ retry:
 		    make_confused(HConfusion + rnd(30), FALSE);
 		    break;
 		}
-		if (sobj->blessed && !(sobj->oartifact)) {
+		if (sobj->blessed && !(sobj->oartifact == ART_MARAUDER_S_MAP)) {
 		    register int x, y;
 
 		    for (x = 1; x < COLNO; x++)
@@ -4798,7 +4798,7 @@ retry:
 		    make_confused(HConfusion + rnd(30), FALSE);
 		    break;
 		}
-		if(!(sobj->oartifact)){
+		if(!(sobj->oartifact == ART_MARAUDER_S_MAP)){
 		if (sobj->otyp == SPE_MAGIC_MAPPING) pline("You grasp some bits from the current map!");
 		else pline("A map coalesces in your mind!");
 		cval = (sobj->cursed && !confused);

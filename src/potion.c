@@ -3425,8 +3425,8 @@ register const char *txt;
 	if(obj->dknown && !objects[obj->otyp].oc_name_known &&
 						!objects[obj->otyp].oc_uname)
 		docall(obj);
-	if (carried(obj) && !(obj->oartifact)) useup(obj);
-	else if (!(obj->oartifact)) useupf(obj, 1L);
+	if (carried(obj) /*&& !(obj->oartifact)*/) useup(obj);
+	else /*if (!(obj->oartifact))*/ useupf(obj, 1L);
 }
 
 const char *bottlenames[] = {

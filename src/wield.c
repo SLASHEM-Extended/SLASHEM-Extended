@@ -868,7 +868,7 @@ boolean fade_scrolls;
 		target->oeroded2++;
 	    else
 		target->oeroded++;
-	} else if (!target->oartifact) {
+	} else /*if (!target->oartifact)*/ {
 
 		    if (victim == &youmonst) {
 			pline("One of your items got vaporized!"),

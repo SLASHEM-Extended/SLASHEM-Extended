@@ -1272,8 +1272,12 @@ boolean artif;
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse(otmp, 10);
+		if (artif && !rn2(200))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(500))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 		 break;
-	    /* fall into next case */
+	    /* no longer fall into next case --Amy */
 
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
 	case GEM_CLASS:
@@ -1300,6 +1304,11 @@ boolean artif;
 			 else	blessorcurse(otmp, 3);
 			otmp->spe = -rne(2);
 		} else	blessorcurse(otmp, 10);
+
+		if (artif && !rn2(50))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(150))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 
 	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
 		if (issoviet) otmp->spe = 0;
@@ -1456,6 +1465,12 @@ boolean artif;
 		} else	blessorcurse(otmp, 10);
 		break;
 	    }
+
+		if (artif && !rn2(40))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(100))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 	    break;
 	case AMULET_CLASS:
 		if (otmp->otyp == AMULET_OF_YENDOR) flags.made_amulet = TRUE;
@@ -1466,9 +1481,21 @@ boolean artif;
 		   otmp->otyp == AMULET_OF_BLINDNESS ||
 		   otmp->otyp == AMULET_OF_RESTFUL_SLEEP)) {
 			curse(otmp);
-		} else	blessorcurse(otmp, 10);
+		} else {
+			blessorcurse(otmp, 10);
+		}
+		if (artif && !rn2(60))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(140))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
+		break;
 	case VENOM_CLASS:
 		blessorcurse(otmp, 10);
+		if (artif && !rn2(20))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(50))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
@@ -1484,6 +1511,11 @@ boolean artif;
 
 		if (issoviet) otmp->spe = 0;
 
+		if (artif && !rn2(50))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(150))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 	case POTION_CLASS:
 		if (otmp->otyp == POT_OIL)
@@ -1494,11 +1526,22 @@ boolean artif;
 		if (otmp->otyp != SCR_MAIL)
 #endif
 			blessorcurse(otmp, 4);
+
+		if (artif && !rn2(160))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(400))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
 		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(ishaxor ? 10 : 5); 
 		blessorcurse(otmp, 17);
+		if (artif && !rn2(100))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(250))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case ARMOR_CLASS:
@@ -1540,8 +1583,7 @@ boolean artif;
 		else if (artif && !rn2(100))
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 		/* simulate lacquered armor for samurai */
-		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) &&
-		    (moves <= 1 || In_quest(&u.uz))) {
+		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) ) {
 #ifdef UNIXPC
 			/* optimizer bitfield bug */
 			otmp->oerodeproof = 1;
@@ -1594,6 +1636,12 @@ boolean artif;
 		blessorcurse(otmp, 17);
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
+
+		if (artif && !rn2(160))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(500))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 	case RING_CLASS:
 		if(objects[otmp->otyp].oc_charged) {
@@ -1623,6 +1671,12 @@ boolean artif;
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
 			curse(otmp);
 		}
+
+		if (artif && !rn2(50))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(125))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 	case ROCK_CLASS:
 		switch (otmp->otyp) {
@@ -1635,6 +1689,12 @@ boolean artif;
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
 	      blessorcurse(otmp, 7);
+
+		if (artif && !rn2(200))
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		else if (artif && !rn2(500))
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+
 		break;
 	case COIN_CLASS:
 		break;	/* do nothing */
