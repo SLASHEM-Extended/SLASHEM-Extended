@@ -12167,12 +12167,14 @@ register struct attack *mattk;
 		    (void)split_mon(&youmonst, mtmp);
 		break;
 	    case AD_STUN: /* Yellow mold */
+		tmp = 0; /* fall through */
+	    case AD_FUMB:
+	    case AD_SOUN:
 		if (!mtmp->mstun) {
 		    mtmp->mstun = 1;
 		    pline("%s %s.", Monnam(mtmp),
 			  makeplural(stagger(mtmp->data, "stagger")));
 		}
-		tmp = 0;
 		break;
 	    case AD_FIRE: /* Red mold */
 		if (resists_fire(mtmp)) {
@@ -12194,7 +12196,231 @@ register struct attack *mattk;
 		}
 		pline("%s is jolted with your electricity!", Monnam(mtmp));
 		break;
-	    default: tmp = 0;
+	    case AD_LITE:
+		if (is_vampire(mtmp->data)) {
+			tmp *= 2; /* vampires take more damage from sunlight --Amy */
+			pline("%s is irradiated!", Monnam(mtmp));
+		}
+		break;
+	    case AD_TLPT:
+	    case AD_NEXU:
+	    case AD_BANI:
+	    case AD_ABDC:
+		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
+
+		break;
+
+	    case AD_SLEE:
+		if (!mtmp->msleeping && sleep_monst(mtmp, rnd(10), -1)) {
+		    pline("%s is put to sleep.", Monnam(mtmp));
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		    slept_monst(mtmp);
+		}
+		break;
+
+	    case AD_SLOW:
+	    case AD_INER:
+		if(mtmp->mspeed != MSLOW) {
+		    unsigned int oldspeed = mtmp->mspeed;
+
+		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		    if (mtmp->mspeed != oldspeed)
+			pline("%s slows down.", Monnam(mtmp));
+		}
+		break;
+
+	    case AD_LAZY:
+		if(mtmp->mspeed != MSLOW) {
+		    unsigned int oldspeed = mtmp->mspeed;
+
+		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		    if (mtmp->mspeed != oldspeed)
+			pline("%s slows down.", Monnam(mtmp));
+		}
+		if(!rn2(3) && mtmp->mcanmove) {
+		    pline("%s is paralyzed.", Monnam(mtmp));
+		    mtmp->mcanmove = 0;
+		    mtmp->mfrozen = rnd(10);
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+
+	    case AD_NUMB:
+		if(!rn2(10) && mtmp->mspeed != MSLOW) {
+		    unsigned int oldspeed = mtmp->mspeed;
+
+		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		    if (mtmp->mspeed != oldspeed)
+			pline("%s is numbed.", Monnam(mtmp));
+		}
+		break;
+
+	    case AD_DARK:
+		litroomlite(FALSE);
+		pline("A sinister darkness fills the area!");
+		break;
+
+	    case AD_THIR:
+		healup(tmp, 0, FALSE, FALSE);
+		pline("You feel healthier!");
+		break;
+	    case AD_FRZE:
+		if (!resists_cold(mtmp) && resists_fire(mtmp)) {
+			tmp *= 2;
+			pline("%s is suddenly ice-cold!", Monnam(mtmp));
+		}
+		break;
+	    case AD_MALK:
+		if (!resists_elec(mtmp)) {
+			tmp *= 2;
+			pline("%s is jolted by high voltage!", Monnam(mtmp));
+		}
+		break;
+	    case AD_UVUU:
+		if (has_head(mtmp->data)) {
+			tmp *= 2;
+			if (!rn2(1000)) {
+				tmp *= 100;
+				pline("%s's %s is torn apart!", Monnam(mtmp), mbodypart(mtmp, HEAD));
+			} else pline("%s's %s is spiked!", Monnam(mtmp), mbodypart(mtmp, HEAD));
+		}
+		break;
+	    case AD_GRAV:
+		if (!is_flyer(mtmp->data)) {
+			tmp *= 2;
+			pline("%s slams into the ground!", Monnam(mtmp));
+		}
+		break;
+	    case AD_CHKH:
+		if (u.ulevel > mtmp->m_lev) tmp += (u.ulevel - mtmp->m_lev);
+		break;
+	    case AD_CHRN:
+		if ((tmp > 0) && (mtmp->mhpmax > 1)) {
+			mtmp->mhpmax--;
+			pline("%s feels bad!", Monnam(mtmp));
+		}
+		break;
+	    case AD_HODS:
+		tmp += mtmp->m_lev;
+		break;
+	    case AD_BURN:
+		if (resists_cold(mtmp) && !resists_fire(mtmp)) {
+			tmp *= 2;
+			pline("%s is burning!", Monnam(mtmp));
+		}
+		break;
+	    case AD_PLAS:
+		if (!resists_fire(mtmp)) {
+			tmp *= 2;
+			pline("%s is suddenly extremely hot!", Monnam(mtmp));
+		}
+		break;
+	    case AD_SLUD:
+		if (!resists_acid(mtmp)) {
+			tmp *= 2;
+			pline("%s is covered with sludge!", Monnam(mtmp));
+		}
+		break;
+	    case AD_LAVA:
+		if (resists_cold(mtmp) && !resists_fire(mtmp)) {
+			tmp *= 4;
+			pline("%s is scorched by hot lava!", Monnam(mtmp));
+		} else if (!resists_fire(mtmp)) {
+			tmp *= 2;
+			pline("%s is covered with hot lava!", Monnam(mtmp));
+		}
+		break;
+	    case AD_FAKE:
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+		break;
+	    case AD_WEBS:
+		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		break;
+	    case AD_CNCL:
+		if (rnd(100) > mtmp->data->mr) {
+			mtmp->mcan = 1;
+			pline("%s is covered in sparkling lights!", Monnam(mtmp));
+		}
+		break;
+	    case AD_ICUR:
+	    case AD_CURS:
+		if (!rn2(10) && (rnd(100) > mtmp->data->mr)) {
+			mtmp->mcan = 1;
+		}
+		break;
+	    case AD_FEAR:
+		if (rnd(100) > mtmp->data->mr) {
+		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
+			pline("%s is suddenly very afraid!",Monnam(mtmp));
+		}
+		break;
+	    case AD_DREA:
+		if (!mtmp->mcanmove) {
+			tmp *= 4;
+			pline("%s's dream is eaten!",Monnam(mtmp));
+		}
+		break;
+	    case AD_CONF:
+	    case AD_HALU:
+	    case AD_DEPR:
+	    case AD_SPC2:
+		if (!mtmp->mconf) {
+		    pline("%s is suddenly very confused!", Monnam(mtmp));
+		    mtmp->mconf = 1;
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+	    case AD_WRAT:
+	    case AD_MANA:
+	    	    mon_drain_en(mtmp, ((mtmp->m_lev > 0) ? (rnd(mtmp->m_lev)) : 0) + 1 + tmp);
+		break;
+	    case AD_DREN:
+	    	if (!resists_magm(mtmp)) {
+	    	    mon_drain_en(mtmp, ((mtmp->m_lev > 0) ? (rnd(mtmp->m_lev)) : 0) + 1);
+	    	}	    
+		break;
+	    case AD_BLND:
+		    if (mtmp->mcansee)
+			pline("%s is blinded.", Monnam(mtmp));
+		    if ((tmp += mtmp->mblinded) > 127) tmp = 127;
+		    mtmp->mblinded = tmp;
+		    mtmp->mcansee = 0;
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		tmp = 0;
+		break;
+	    case AD_DRLI:
+	    case AD_TIME:
+	    case AD_DFOO:
+	    case AD_WEEP:
+	    case AD_VAMP:
+		if (!resists_drli(mtmp)) {
+			pline("%s suddenly seems weaker!", Monnam(mtmp));
+			if (mtmp->m_lev == 0)
+				tmp = mtmp->mhp;
+			else mtmp->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		break;
+	    case AD_VENO:
+		if (resists_poison(mtmp)) {
+		    pline_The("poison doesn't seem to affect %s.", mon_nam(mtmp));
+		} else {
+			pline("%s is badly poisoned!", Monnam(mtmp));
+			if (rn2(10)) tmp += rn1(20,12);
+			else {
+			    pline_The("poison was deadly...");
+			    tmp = mtmp->mhp;
+			}
+		}
+		break;
+
+
+	    default: /*tmp = 0;*/
 		break;
 	}
 	else tmp = 0;

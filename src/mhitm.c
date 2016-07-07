@@ -1768,7 +1768,7 @@ physical:
 		if (nohit) break;
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
-		if (!magr->mcan && !rn2(10)) {
+		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    if (is_were(pd) && pd->mlet != S_HUMAN)
@@ -1897,7 +1897,7 @@ physical:
 				return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
 			if (magr->data->mlet == S_NYMPH &&
-			    !tele_restrict(magr)) {
+			    !tele_restrict(magr) && !rn2(5) ) {
 			    (void) rloc(magr, FALSE);
 			    if (vis && !canspotmon(magr))
 				pline("%s suddenly disappears!", buf);
@@ -2306,13 +2306,15 @@ int mdead;
 		    (void)split_mon(mdef, magr);
 		break;
 	    case AD_STUN:
+		tmp = 0; /* fall through */
+	    case AD_FUMB:
+	    case AD_SOUN:
 		if (!magr->mstun) {
 		    magr->mstun = 1;
 		    if (canseemon(magr))
 			pline("%s %s...", Monnam(magr),
 			      makeplural(stagger(magr->data, "stagger")));
 		}
-		tmp = 0;
 		break;
 	    case AD_FIRE:
 		if (resists_fire(magr)) {
@@ -2338,6 +2340,240 @@ int mdead;
 		if(canseemon(magr))
 		    pline("%s is jolted with electricity!", Monnam(magr));
 		break;
+
+	    case AD_LITE:
+		if (is_vampire(magr->data)) {
+			tmp *= 2; /* vampires take more damage from sunlight --Amy */
+			if (canseemon(magr)) pline("%s is irradiated!", Monnam(magr));
+		}
+		break;
+	    case AD_TLPT:
+	    case AD_NEXU:
+	    case AD_BANI:
+	    case AD_ABDC:
+		if (!tele_restrict(magr)) (void) rloc(magr, FALSE);
+		break;
+	    case AD_SLEE:
+		if (!magr->msleeping && sleep_monst(magr, rnd(10), -1)) {
+		    if (canseemon(magr)) {
+			pline("%s is put to sleep.", Monnam(magr));
+		    }
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    slept_monst(magr);
+		}
+		break;
+
+	    case AD_SLOW:
+	    case AD_INER:
+		if(magr->mspeed != MSLOW) {
+		    unsigned int oldspeed = magr->mspeed;
+
+		    mon_adjust_speed(magr, -1, (struct obj *)0);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    if (magr->mspeed != oldspeed && canseemon(magr))
+			pline("%s slows down.", Monnam(magr));
+		}
+		break;
+
+	    case AD_LAZY:
+		if(magr->mspeed != MSLOW) {
+		    unsigned int oldspeed = magr->mspeed;
+
+		    mon_adjust_speed(magr, -1, (struct obj *)0);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    if (magr->mspeed != oldspeed && canseemon(magr))
+			pline("%s slows down.", Monnam(magr));
+		}
+		if(!rn2(3) && magr->mcanmove) {
+		    if (canseemon(magr)) {
+			pline("%s is paralyzed.", Monnam(magr));
+		    }
+		    magr->mcanmove = 0;
+		    magr->mfrozen = rnd(10);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+
+	    case AD_NUMB:
+		if(!rn2(10) && magr->mspeed != MSLOW) {
+		    unsigned int oldspeed = magr->mspeed;
+
+		    mon_adjust_speed(magr, -1, (struct obj *)0);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    if (magr->mspeed != oldspeed && canseemon(magr))
+			pline("%s is numbed.", Monnam(magr));
+		}
+		break;
+
+	    case AD_DARK:
+		do_clear_area(magr->mx,magr->my, 7, set_lit, (genericptr_t)((char *)0));
+		if (canseemon(magr)) pline("A sinister darkness fills the area!");
+		break;
+
+	    case AD_THIR:
+		if (mdef->mhp > 0) {
+		mdef->mhp += tmp;
+		if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+		if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
+		}
+		break;
+
+	    case AD_FRZE:
+		if (!resists_cold(magr) && resists_fire(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is suddenly ice-cold!", Monnam(magr));
+		}
+		break;
+	    case AD_MALK:
+		if (!resists_elec(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is jolted by high voltage!", Monnam(magr));
+		}
+		break;
+	    case AD_UVUU:
+		if (has_head(magr->data)) {
+			tmp *= 2;
+			if (!rn2(1000)) {
+				tmp *= 100;
+				if (canseemon(magr)) pline("%s's %s is torn apart!", Monnam(magr), mbodypart(magr, HEAD));
+			} else if (canseemon(magr)) pline("%s's %s is spiked!", Monnam(magr), mbodypart(magr, HEAD));
+		}
+		break;
+	    case AD_GRAV:
+		if (!is_flyer(magr->data)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s slams into the ground!", Monnam(magr));
+		}
+		break;
+	    case AD_CHKH:
+		if (mdef->m_lev > magr->m_lev) tmp += (mdef->m_lev - magr->m_lev);
+		break;
+	    case AD_CHRN:
+		if ((tmp > 0) && (magr->mhpmax > 1)) {
+			magr->mhpmax--;
+			if (canseemon(magr)) pline("%s feels bad!", Monnam(magr));
+		}
+		break;
+	    case AD_HODS:
+		tmp += magr->m_lev;
+		break;
+	    case AD_BURN:
+		if (resists_cold(magr) && !resists_fire(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is burning!", Monnam(magr));
+		}
+		break;
+	    case AD_PLAS:
+		if (!resists_fire(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is suddenly extremely hot!", Monnam(magr));
+		}
+		break;
+	    case AD_SLUD:
+		if (!resists_acid(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is covered with sludge!", Monnam(magr));
+		}
+		break;
+	    case AD_LAVA:
+		if (resists_cold(magr) && !resists_fire(magr)) {
+			tmp *= 4;
+			if (canseemon(magr)) pline("%s is scorched by hot lava!", Monnam(magr));
+		} else if (!resists_fire(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is covered with hot lava!", Monnam(magr));
+		}
+		break;
+	    case AD_FAKE:
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+		break;
+	    case AD_WEBS:
+		(void) maketrap(magr->mx, magr->my, WEB, 0);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		break;
+	    case AD_CNCL:
+		if (rnd(100) > magr->data->mr) {
+			magr->mcan = 1;
+			if (canseemon(magr)) pline("%s is covered in sparkling lights!", Monnam(magr));
+		}
+		break;
+	    case AD_ICUR:
+	    case AD_CURS:
+		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
+			magr->mcan = 1;
+		}
+		break;
+	    case AD_FEAR:
+		if (rnd(100) > magr->data->mr) {
+		     monflee(magr, rnd(1 + tmp), FALSE, TRUE);
+			if (canseemon(magr)) pline("%s is suddenly very afraid!",Monnam(magr));
+		}
+		break;
+	    case AD_DREA:
+		if (!magr->mcanmove) {
+			tmp *= 4;
+			if (canseemon(magr)) pline("%s's dream is eaten!",Monnam(magr));
+		}
+		break;
+	    case AD_CONF:
+	    case AD_HALU:
+	    case AD_DEPR:
+	    case AD_SPC2:
+		if (!magr->mconf) {
+		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
+		    magr->mconf = 1;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+	    case AD_WRAT:
+	    case AD_MANA:
+	    	    mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		break;
+	    case AD_DREN:
+	    	if (!resists_magm(magr)) {
+	    	    mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1);
+	    	}	    
+		break;
+	    case AD_BLND:
+		    if (canseemon(magr) && magr->mcansee)
+			pline("%s is blinded.", Monnam(magr));
+		    if ((tmp += magr->mblinded) > 127) tmp = 127;
+		    magr->mblinded = tmp;
+		    magr->mcansee = 0;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		tmp = 0;
+		break;
+	    case AD_DRLI:
+	    case AD_TIME:
+	    case AD_DFOO:
+	    case AD_WEEP:
+	    case AD_VAMP:
+		if (!resists_drli(magr)) {
+			if (canseemon(magr))
+			    pline("%s suddenly seems weaker!", Monnam(magr));
+			if (magr->m_lev == 0)
+				tmp = magr->mhp;
+			else magr->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		break;
+	    case AD_VENO:
+		if (resists_poison(magr)) {
+			if (canseemon(magr))
+			    pline_The("poison doesn't seem to affect %s.",
+				mon_nam(magr));
+		} else {
+			pline("%s is badly poisoned!", Monnam(magr));
+			if (rn2(10)) tmp += rn1(20,12);
+			else {
+			    if (canseemon(magr)) pline_The("poison was deadly...");
+			    tmp = magr->mhp;
+			}
+		}
+		break;
+
+
 	    default: /*tmp = 0;*/
 		break;
 	}

@@ -2971,7 +2971,7 @@ register struct attack *mattk;
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
-		if (night() && !rn2(10) && !mdef->mcan) {
+		if (night() && !rn2(10) && !mdef->mcan && (rnd(100) > mdef->data->mr) ) {
 		    if (mdef->data == &mons[PM_CLAY_GOLEM]) {
 			if (!Blind)
 			    pline("Some writing vanishes from %s head!",
