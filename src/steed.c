@@ -66,6 +66,7 @@ use_saddle(otmp)
 
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 

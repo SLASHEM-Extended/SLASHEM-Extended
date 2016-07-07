@@ -248,6 +248,7 @@ use_stethoscope(obj)
 		return 0;
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 	if (!getdir((char *)0)) return 0;
