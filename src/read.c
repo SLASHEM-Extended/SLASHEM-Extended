@@ -730,7 +730,7 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER && (!scroll->oartifact == ART_MARAUDER_S_MAP) &&
+		if(scroll->otyp != SCR_BLANK_PAPER && (scroll->oartifact != ART_MARAUDER_S_MAP) &&
 		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_COPYING && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
