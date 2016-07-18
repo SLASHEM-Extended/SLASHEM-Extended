@@ -91,7 +91,7 @@
 #define HAntimagic		u.uprops[ANTIMAGIC].intrinsic
 #define EAntimagic		u.uprops[ANTIMAGIC].extrinsic
 #define Antimagic		((HAntimagic || EAntimagic || u.antimagicshell || Role_if(PM_UNBELIEVER) || have_magicresstone() || \
-				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance)
+				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance && !Race_if(PM_UNMAGIC_FISH))
 #define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HAcid_resistance	u.uprops[ACID_RES].intrinsic

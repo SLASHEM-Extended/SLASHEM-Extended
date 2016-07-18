@@ -2689,7 +2689,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!Fixed_abil) {
+			if (!Fixed_abil && !Race_if(PM_SUSTAINER)) {
 			    poisontell(typ);
 			    (void) adjattrib(typ,
 			    		Poison_resistance ? -1 : -rn1(4,3),
@@ -2790,7 +2790,7 @@ peffects(otmp)
 		if(otmp->cursed) {
 		    pline("Ulch!  That potion tasted foul!");
 		    unkn++;
-		} else if (Fixed_abil) {
+		} else if (Fixed_abil || Race_if(PM_SUSTAINER)) {
 		    nothing++;
 		} else {      /* If blessed, increase all; if not, try up to */
 		    int itmp; /* 6 times to find one which can be increased. */

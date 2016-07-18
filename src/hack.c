@@ -1461,6 +1461,12 @@ domove()
 	    nomul(0, 0);
 	    return;
 	}
+	if (Race_if(PM_ELONA_SNAIL) && uarmf && !PlayerInHighHeels) {
+	    pline("In order to move, snails need to be bare-footed or wearing high heels!");
+	    nomul(0, 0);
+	    return;
+	}
+
 	if(u.uswallow) {
 		u.dx = u.dy = 0;
 		u.ux = x = u.ustuck->mx;

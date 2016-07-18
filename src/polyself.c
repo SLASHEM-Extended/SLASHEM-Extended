@@ -1184,7 +1184,16 @@ dospit()
 	struct obj *otmp;
 	struct attack *mattk;
 
+	if (u.uen < 5) {
+		You("lack the energy to spit - need at least 5 mana!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return(0);
+	}
+
 	if (!getdir((char *)0)) return(0);
+
+	u.uen -= 5;
+
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
 	if (!mattk)
 	    impossible("bad spit attack?");

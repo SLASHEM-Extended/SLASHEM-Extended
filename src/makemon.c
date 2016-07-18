@@ -13054,6 +13054,10 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_VAMPIRE_SHADOWCLOAK]) set_mimic_sym(mtmp);
 			break;
 	}
+
+	/* If you're a unicorn, everything will be fast because they need to be able to match your ultra-high speed. --Amy */
+	if (Race_if(PM_PLAYER_UNICORN)) mon_adjust_speed(mtmp, 2, (struct obj *)0);
+
 	if (mtmp->egotype_mimic || mtmp->egotype_permamimic) set_mimic_sym(mtmp);
 
 	if (standardmimic(ptr) || permamimic(ptr)) set_mimic_sym(mtmp);

@@ -2337,6 +2337,16 @@ boolean noisy;
 	    is_shirt(otmp) ? c_shirt :
 #endif
 	    is_suit(otmp) ? c_suit : 0;
+
+	if (!is_cloak(otmp) && !is_boots(otmp) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
+		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
+		return 0;
+	}
+	if (is_boots(otmp) && noisy && Race_if(PM_ELONA_SNAIL)) {
+		pline("Snails are completely unable to move if they wear boots that aren't high-heeled. If you want to wear these, you should be sure that they are high-heeled because otherwise you're screwed!");
+		if (yn("Are you sure you want to put them on?") != 'y') return 0;
+	}
+
     if (which && cantweararm(youmonst.data) && !Race_if(PM_TRANSFORMER)  &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&

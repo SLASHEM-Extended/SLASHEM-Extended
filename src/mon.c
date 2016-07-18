@@ -317,6 +317,7 @@ register struct monst *mtmp;
 	    case PM_GRAY_UNICORN_FOAL:
 	    case PM_BLACK_UNICORN_FOAL:
 	    case PM_GRAY_UNICORN:
+	    case PM_PLAYER_UNICORN:
 	    case PM_HANDSOME_GRAY_UNICORN:
 	    case PM_BLACK_UNICORN:
 	    case PM_PORTER_BLACK_UNICORN:
@@ -1114,6 +1115,8 @@ struct monst *mon;
     if (mon->egotype_racer) mmove += 12;
 
     if (mmove && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) mmove += 1;
+
+    if (Race_if(PM_PLAYER_UNICORN)) mmove += 3; /* because you have double speed --Amy */
 
     return mmove;
 }

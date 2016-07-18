@@ -881,6 +881,10 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* turtles are very slow too --Amy */
 			}
+			if (Race_if(PM_ELONA_SNAIL) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* ever played Elona? Snail is the best race! :D --Amy */
+			}
 			if (Race_if(PM_LOWER_ENT) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* ents are very slow too --Amy */
@@ -941,6 +945,11 @@ moveloop()
 			if (Wonderlegs && Wounded_legs) {
 				moveamt *= 5;
 				moveamt /= 4;
+			}
+
+			/* unicorns are ultra fast!!! However, they have enough bullshit downsides to reign them in. --Amy */
+			if (Race_if(PM_PLAYER_UNICORN)) {
+				moveamt *= 2;
 			}
 
 			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
@@ -2489,6 +2498,17 @@ moveloop()
 	/* once-per-player-input things go here */
 	/****************************************/
 
+	if (isamnesiac) {
+		register int zx, zy;
+		for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++) {
+			/* Zonk all memory of this location. */
+			levl[zx][zy].seenv = 0;
+			levl[zx][zy].waslit = 0;
+			clear_memory_glyph(zx, zy, S_stone);
+		}
+
+	}
+
 	if ((BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
@@ -2866,6 +2886,9 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
 	if (flags.hybridnastinator) Sprintf(eos(xtrabuf), "nastinator ");
 	if (flags.hybridrougelike) Sprintf(eos(xtrabuf), "rougelike ");
+	if (flags.hybridsegfaulter) Sprintf(eos(xtrabuf), "segfaulter ");
+	if (flags.hybridironman) Sprintf(eos(xtrabuf), "ironman ");
+	if (flags.hybridamnesiac) Sprintf(eos(xtrabuf), "amnesiac ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -2893,6 +2916,8 @@ boolean new_game;	/* false => restoring an old game */
 	if (issoviet) pline("Tip bloka l'da zhelayet udachi vam... on on on.");
 
 	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
+
+	if (issegfaulter) pline("ATTENTION!!! You are playing the segfaulter race, which is deliberately unstable by allowing certain actions to cause segfault panics. These can potentially corrupt your savegame. If you intend to go on playing, you do so at your own peril, and getting an ascension will basically be impossible! Consider using #quit if you rather want to play a stable game. --Amy");
 
 #ifdef PUBLIC_SERVER
 

@@ -327,7 +327,20 @@ int x,y;
 
 	if (mon) mwep = MON_WEP(mon);
 
-	if (obj->otyp == CREAM_PIE || obj->oclass == VENOM_CLASS ||
+	if (issegfaulter) { /* grunthack code --Amy */
+		if (obj->oclass == VENOM_CLASS) {
+			breaks(obj, x, y);
+			if (obj->otyp == SEGFAULT_VENOM) {
+				/* somehow I had to add this to actually make the segfault panics happen...
+				 * I wonder why it crashes in grunthack? */
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+			}
+			return 1;
+
+		} else if (breaks(obj, x, y)) return 1;
+	}
+
+	if (!issegfaulter && (obj->otyp == CREAM_PIE || obj->oclass == VENOM_CLASS ||
 /* WAC added Spoon throw code */
                     (obj->oartifact == ART_HOUCHOU) ||
 #ifdef FIREARMS
@@ -335,7 +348,7 @@ int x,y;
 		    	using the right propellor */
                     (is_bullet(obj)) ||
 #endif
-		    (ohit && obj->otyp == EGG))
+		    (ohit && obj->otyp == EGG)))
 		create = 0;
 	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
 
@@ -1029,7 +1042,9 @@ register struct attack *mattk;
 	    return 0;
 	}
 	if(lined_up(mtmp)) {
-		switch (mattk->adtyp) {
+		if (issegfaulter && rn2(10)) {
+			otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+		} else switch (mattk->adtyp) {
 		    case AD_BLND:
 		    case AD_DRST:
 			otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
@@ -1047,6 +1062,7 @@ register struct attack *mattk;
 			otmp = mksobj(ACID_VENOM, TRUE, FALSE);
 			break;
 		}
+
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))
 			pline("%s spits venom!", Monnam(mtmp));

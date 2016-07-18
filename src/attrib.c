@@ -801,7 +801,7 @@ adjattrib(ndx, incr, msgflg)
 	int	msgflg;	    /* 2 => no message at all, 1 => no message */
 			    /* except encumber, zero => message, and */
 {			    /* negative => conditional (msg if change made) */
-	if (Fixed_abil || !incr) return FALSE;
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || !incr) return FALSE;
 
 	if ((ndx == A_INT || ndx == A_WIS)
 				&& uarmh && uarmh->otyp == DUNCE_CAP) {

@@ -174,6 +174,10 @@ boolean put_away;
 	    pline("As a lich, you cannot wield a two-handed weapon.");
 	/* Yes I know, a lich barbarian will start out wielding that axe. --Amy */
 
+	else if (!is_launcher(wep) && Race_if(PM_ELONA_SNAIL) && !Upolyd )
+	    pline("As a snail, you can only wield launchers.");
+	/* in Elona, launchers have their separate slot, but not so here --Amy */
+
 	else if (wep->oartifact && !touch_artifact(wep, &youmonst)) {
 	    res++;	/* takes a turn even though it doesn't get wielded */
 	} else if (tech_inuse(T_EVISCERATE)) {
@@ -561,6 +565,12 @@ const char *verb;	/* "rub",&c */
 
 	if (bimanual(obj) && Race_if(PM_LICH_WARRIOR) && !Upolyd ) {
 	    pline("As a lich, you cannot wield a two-handed weapon.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return FALSE;
+	}
+
+	if (!is_launcher(obj) && Race_if(PM_ELONA_SNAIL) && !Upolyd ) {
+	    pline("As a snail, you can only wield launchers.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}

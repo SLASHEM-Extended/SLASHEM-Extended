@@ -1463,6 +1463,11 @@ static struct trobj RaceXItem[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj UnmagicFishItem[] = {
+	{ SPE_MAGIC_MISSILE, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj RaceXItemB[] = {
 	{ FRAG_GRENADE, UNDEF_SPE, WEAPON_CLASS, 5, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
@@ -11037,6 +11042,17 @@ u_init()
           ini_inv(RaceXItem);
           ini_inv(RaceXItemB);
 
+		break;
+
+	case PM_UNMAGIC_FISH:
+
+          ini_inv(UnmagicFishItem);
+
+		break;
+
+	case PM_PLAYER_UNICORN:
+
+		HJumping |= FROMOUTSIDE;
 		break;
 
 	case PM_BATMAN:

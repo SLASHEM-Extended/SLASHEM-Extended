@@ -566,7 +566,7 @@ domonability()
 		if (split_mon(&youmonst, (struct monst *)0))
 		    dryup(u.ux, u.uy, TRUE);
 	    } else There("is no fountain here.");
-	} else if (is_unicorn(youmonst.data) && yn("Do you want to cure yourself with your horn?")=='y' ) {
+	} else if ( (is_unicorn(youmonst.data) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
 	} else if (youmonst.data->msound == MS_SHRIEK && yn("Do you want to shriek?")=='y' ) {
@@ -3318,7 +3318,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
-	if ((guaranteed || !rn2(10)) && Fixed_abil) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER))) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if ((guaranteed || !rn2(10)) && Lifesaved)
@@ -5271,7 +5271,7 @@ int final;
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, "reflection");
 	if (Free_action) dump(youhad, "free action");
-	if (Fixed_abil) dump(youhad, "fixed abilities");
+	if (Fixed_abil || Race_if(PM_SUSTAINER)) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
 	if (Lifesaved)
@@ -5387,7 +5387,7 @@ minimal_enlightenment()
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		Sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) Sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else Sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);
