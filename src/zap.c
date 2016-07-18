@@ -1655,6 +1655,9 @@ register struct obj *obj;
 	if (obj_resists(obj, 10, 90))
 	    return (FALSE);
 
+	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
+	    return (FALSE);
+
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */

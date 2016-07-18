@@ -495,6 +495,8 @@ long wp_mask;
 	    mask = &EFire_resistance;
 	else if (dtyp == AD_COLD)
 	    mask = &ECold_resistance;
+	else if (dtyp == AD_ACID)
+	    mask = &EAcid_resistance;
 	else if (dtyp == AD_ELEC)
 	    mask = &EShock_resistance;
 	else if (dtyp == AD_MAGM)
@@ -763,6 +765,10 @@ struct monst *mtmp;
 	    switch(weap->attk.adtyp) {
 		case AD_FIRE:
 			if (yours ? Fire_resistance : resists_fire(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_ACID:
+			if (yours ? Acid_resistance : resists_acid(mtmp))
 			    retval = FALSE;
 			break;
 		case AD_COLD:
