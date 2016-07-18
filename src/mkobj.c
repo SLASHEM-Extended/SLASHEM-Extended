@@ -1348,6 +1348,8 @@ boolean artif;
 					break;
 		case BRASS_LANTERN:
 		case OIL_LAMP:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = 1;
 					otmp->age = (long) rn1(500,1000);
 					if (ishaxor) otmp->age *= 2;
@@ -1372,6 +1374,8 @@ boolean artif;
 #endif
 		case RED_LIGHTSABER:
 		case LASER_SWATTER:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->lamplit = 0;
 			otmp->age = (long) rn1(500,1000);
 			if (ishaxor) otmp->age *= 2;
@@ -1407,12 +1411,21 @@ boolean artif;
 		case EXPENSIVE_CAMERA:
 #endif
 		case TINNING_KIT:
-		case MAGIC_MARKER:
 		case FELT_TIP_MARKER:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
+			otmp->spe = rnd(ishaxor ? 120 : 100);
+			blessorcurse(otmp, 5);
+					break;
+		case MAGIC_MARKER:
+			otmp->recharged = 0;
+			if(!rn2(2)) otmp->recharged = 1;
 			otmp->spe = rnd(ishaxor ? 120 : 100);
 			blessorcurse(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 70 : 35);
 					blessorcurse(otmp, 10);
 					break;
@@ -1426,15 +1439,21 @@ boolean artif;
 					blessorcurse(otmp, 2);
 					break;*/
 		case CRYSTAL_BALL:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rn1(10,3);
 					blessorcurse(otmp, 2);
 					break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(30);
 			blessorcurse(otmp, 5);
 					break;
  		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 80 : 40);
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
  					blessorcurse(otmp,4);
  					break;
 		case FIGURINE:	{	int tryct2 = 0;
@@ -1457,6 +1476,8 @@ boolean artif;
 		/* KMH, balance patch -- removed
 		case PAN_PIPE_OF_SUMMONING:
 		case PAN_PIPE_OF_THE_SEWERS: */
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 30 : 15);
 			blessorcurse(otmp, 10);
 					break;
@@ -1543,6 +1564,8 @@ boolean artif;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
 		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(ishaxor ? 10 : 5); 
+		otmp->recharged = 0;
+		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse(otmp, 17);
 		if (artif && !rn2(100))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);

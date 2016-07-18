@@ -983,6 +983,14 @@ int curse_bless;
 #ifdef TOURIST
 	    case EXPENSIVE_CAMERA:
 #endif
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) stripspe(obj);
 		else if (rechrg && obj->otyp == MAGIC_MARKER) {	/* previously recharged */
 		    obj->recharged = 1;	/* override increment done above */
@@ -1017,6 +1025,14 @@ int curse_bless;
 		break;
 	    case OIL_LAMP:
 	    case BRASS_LANTERN:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) {
 		    stripspe(obj);
 		    if (obj->lamplit) {
@@ -1046,6 +1062,14 @@ int curse_bless;
 	    case RED_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) {
 		    if (obj->lamplit) {
 			end_burn(obj, TRUE);
@@ -1065,6 +1089,14 @@ int curse_bless;
 		break;
 #endif
 	    case CRYSTAL_BALL:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
 		    obj->spe = 6;
@@ -1080,6 +1112,14 @@ int curse_bless;
 	    case BAG_OF_TRICKS:
 	    case CAN_OF_GREASE:
 	    case CHEMISTRY_SET:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
 
@@ -1099,6 +1139,14 @@ int curse_bless;
 	    case TEMPEST_HORN:
 	    case FIRE_HORN:
 	    case DRUM_OF_EARTHQUAKE:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
 		if (is_cursed) {
 		    stripspe(obj);
 		} else if (is_blessed) {
