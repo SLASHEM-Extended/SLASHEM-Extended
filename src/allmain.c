@@ -847,6 +847,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rim fuqarosi kavushlari") ) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
+				moveamt /= 2;
+
 			if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1) /* And soviets, since they get enough features that make the game easier than it's supposed to be. */
 				moveamt /= 2;
 
@@ -939,6 +942,12 @@ moveloop()
 				moveamt *= 5;
 				moveamt /= 4;
 			}
+
+			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += NORMAL_SPEED / 2;
+
+			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += NORMAL_SPEED / 2;
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -1267,6 +1276,60 @@ moveloop()
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'lqop purkash") ) && !rn2(2000) ) {
 		    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fatal gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fatal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "halokatli qo'lqop") ) && !rn2(10000) ) {
+			pline("Fatal attraction!");
+
+		{
+			for(otmpii = otmpi =invent; otmpii ; otmpi = otmpii) {
+				otmpii = otmpi->nobj;
+				if (objects[(otmpi)->otyp].oc_material == IRON ) {
+
+					if (otmpi->owornmask & W_ARMOR) {
+					    if (otmpi == uskin) {
+						skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+					    }
+					    if (otmpi == uarm) (void) Armor_off();
+					    else if (otmpi == uarmc) (void) Cloak_off();
+					    else if (otmpi == uarmf) (void) Boots_off();
+					    else if (otmpi == uarmg) (void) Gloves_off();
+					    else if (otmpi == uarmh) (void) Helmet_off();
+					    else if (otmpi == uarms) (void) Shield_off();
+	#ifdef TOURIST
+					    else if (otmpi == uarmu) (void) Shirt_off();
+	#endif
+					    /* catchall -- should never happen */
+					    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+					} else if (otmpi ->owornmask & W_AMUL) {
+					    Amulet_off();
+					} else if (otmpi ->owornmask & W_RING) {
+					    Ring_gone(otmpi);
+					} else if (otmpi ->owornmask & W_TOOL) {
+					    Blindf_off(otmpi);
+					} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+					    if (otmpi == uwep)
+						uwepgone();
+					    if (otmpi == uswapwep)
+						uswapwepgone();
+					    if (otmpi == uquiver)
+						uqwepgone();
+					}
+	
+					if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+					    unpunish();
+					} else if (otmpi->owornmask) {
+					/* catchall */
+					    setnotworn(otmpi);
+					}
+
+				dropx(otmpi);
+
+				}
+			}
+		}
+			scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+
 		}
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sindirishi qo'lqop") ) && (u.uexp > 100) && !rn2(1000) ) {
@@ -1684,6 +1747,35 @@ moveloop()
 		    nomovemsg = "You regain your composure.";
 		}
 
+		if (!rn2(1000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chilling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pugayushchim plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovutgichli plash") ) ) {
+			make_frozen(HFrozen + rnd(50),TRUE);
+		}
+
+		if (!rn2(2000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "homicidal cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smertonosnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "halokatli plash") ) ) {
+			makerandomtrap();
+		}
+
+		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
+			if (!rn2(500)) {
+				pline("You receive an electric shock from your cloak!");
+				make_confused(HConfusion + rnd(10),TRUE);
+			}
+			if (!rn2(500)) {
+				pline("You receive a static shock from your cloak!");
+				make_numbed(HNumbed + rnd(10),TRUE);
+			}
+		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(10000) ) {
+			pline("Bugs are alerted to your position.");
+			int ammount;
+			ammount = rnd(15);
+			while (ammount--) {
+		 	    (void) makemon(mkclass(S_XAN,0), u.ux, u.uy, NO_MM_FLAGS);
+			}
+
+		}
+
 		if ((u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
 			pline("You suddenly have to take a shit!");
 			int crapduration = 5;
@@ -1828,19 +1920,23 @@ moveloop()
 				if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
 				if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
 				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 10;
+				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev += 12;
 				if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 2;
 				if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
 				if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
 				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
+				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon += 12;
 			} else {
 				if (P_SKILL(P_RIDING) == P_SKILLED) efflev -= 2;
 				if (P_SKILL(P_RIDING) == P_EXPERT) efflev -= 5;
 				if (P_SKILL(P_RIDING) == P_MASTER) efflev -= 7;
 				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev -= 10;
+				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev -= 12;
 				if (P_SKILL(P_RIDING) == P_SKILLED) effcon -= 2;
 				if (P_SKILL(P_RIDING) == P_EXPERT) effcon -= 5;
 				if (P_SKILL(P_RIDING) == P_MASTER) effcon -= 7;
 				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon -= 10;
+				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon -= 12;
 			}
 
 			}
@@ -2032,6 +2128,11 @@ moveloop()
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2048,6 +2149,11 @@ moveloop()
 			flags.botl = 1;
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
@@ -2072,6 +2178,11 @@ moveloop()
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2088,6 +2199,11 @@ moveloop()
 			flags.botl = 1;
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
@@ -2112,6 +2228,11 @@ moveloop()
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2132,6 +2253,11 @@ moveloop()
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2148,6 +2274,11 @@ moveloop()
 			flags.botl = 1;
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
@@ -2268,6 +2399,15 @@ moveloop()
 			}
 
 			if (Race_if(PM_RODNEYAN) && !rn2(1000)) {	/* levelteleportitis --Amy */
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+				else pline("You feel very disoriented but decide to move on.");
+
+			}
+
+			if (uarmh && !rn2(1000) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
@@ -2891,6 +3031,19 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_PSYBEAM].oc_name = "psikho luch";
 	obj_descr[SPE_HYPER_BEAM].oc_name = "giper luch";
 	obj_descr[SPE_FIRE_BOLT].oc_name = "ogon' snaryadom";
+	obj_descr[SPE_INFERNO].oc_name = "ad";
+	obj_descr[SPE_ICE_BEAM].oc_name = "ledyanoy luch";
+	obj_descr[SPE_THUNDER].oc_name = "grom";
+	obj_descr[SPE_SLUDGE].oc_name = "otstoy";
+	obj_descr[SPE_TOXIC].oc_name = "toksichnyy";
+	obj_descr[SPE_NETHER_BEAM].oc_name = "luch pustoty";
+	obj_descr[SPE_AURORA_BEAM].oc_name = "polyarnyye siyaniya lucha";
+	obj_descr[SPE_GRAVITY_BEAM].oc_name = "gravitatsionnyy luch";
+	obj_descr[SPE_CHLOROFORM].oc_name = "khloroform";
+	obj_descr[SPE_DREAM_EATER].oc_name = "pozhiratel' snov";
+	obj_descr[SPE_BUBBLEBEAM].oc_name = "puzyr' luch";
+	obj_descr[SPE_GOOD_NIGHT].oc_name = "dobroy nochi";
+	obj_descr[SPE_FIXING].oc_name = "fiksatsiya";
 
 	{
 
@@ -3278,6 +3431,25 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "block-heeled boots")) OBJ_DESCR(objects[i]) = "blok kablukakh sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "awesome gloves")) OBJ_DESCR(objects[i]) = "udivitel'nyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shrouded cloak")) OBJ_DESCR(objects[i]) = "okutana plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fingerless gloves")) OBJ_DESCR(objects[i]) = "mitenki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "energizer cloak")) OBJ_DESCR(objects[i]) = "antidepressant plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mantle of coat")) OBJ_DESCR(objects[i]) = "mantiya pal'to";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chilling cloak")) OBJ_DESCR(objects[i]) = "pugayushchim plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bug-tracking helmet")) OBJ_DESCR(objects[i]) = "oshibka otslezhivaniya shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fatal gloves")) OBJ_DESCR(objects[i]) = "fatal'nyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "beautiful heels")) OBJ_DESCR(objects[i]) = "krasivyye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "electrostatic cloak")) OBJ_DESCR(objects[i]) = "elektrostaticheskoye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeping helmet")) OBJ_DESCR(objects[i]) = "placha shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runic gloves")) OBJ_DESCR(objects[i]) = "runa rukovitsakh";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "roman sandals")) OBJ_DESCR(objects[i]) = "rimskiye sandalii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "homicidal cloak")) OBJ_DESCR(objects[i]) = "smertonosnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "narrow helmet")) OBJ_DESCR(objects[i]) = "uzkiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spanish gloves")) OBJ_DESCR(objects[i]) = "ispanskiy perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "castlevania boots")) OBJ_DESCR(objects[i]) = "zamok vaney sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greek cloak")) OBJ_DESCR(objects[i]) = "grecheskiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "celtic helmet")) OBJ_DESCR(objects[i]) = "kel'tskaya shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "english gloves")) OBJ_DESCR(objects[i]) = "angliyskiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "korean sandals")) OBJ_DESCR(objects[i]) = "koreyskiye sandalii";
 
 	}
 	}
@@ -3411,6 +3583,19 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_PSYBEAM].oc_name = "psixologik nur";
 	obj_descr[SPE_HYPER_BEAM].oc_name = "hiper ish nur";
 	obj_descr[SPE_FIRE_BOLT].oc_name = "yong'in mermilerinin";
+	obj_descr[SPE_INFERNO].oc_name = "do'zax";
+	obj_descr[SPE_ICE_BEAM].oc_name = "muz nur";
+	obj_descr[SPE_THUNDER].oc_name = "momaqaldiroq";
+	obj_descr[SPE_SLUDGE].oc_name = "baliqli ko'lining";
+	obj_descr[SPE_TOXIC].oc_name = "zaharli";
+	obj_descr[SPE_NETHER_BEAM].oc_name = "juda past nur";
+	obj_descr[SPE_AURORA_BEAM].oc_name = "aurora o'rganish nur";
+	obj_descr[SPE_GRAVITY_BEAM].oc_name = "agar tortishish kuchi nur";
+	obj_descr[SPE_CHLOROFORM].oc_name = "xloroform";
+	obj_descr[SPE_DREAM_EATER].oc_name = "egan orzu";
+	obj_descr[SPE_BUBBLEBEAM].oc_name = "qabariq nur";
+	obj_descr[SPE_GOOD_NIGHT].oc_name = "xayrli tun";
+	obj_descr[SPE_FIXING].oc_name = "ekranga";
 
 	{
 
@@ -3797,6 +3982,25 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "block-heeled boots")) OBJ_DESCR(objects[i]) = "blok-o'tish chizilmasin";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "awesome gloves")) OBJ_DESCR(objects[i]) = "ajoyib qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shrouded cloak")) OBJ_DESCR(objects[i]) = "kafan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fingerless gloves")) OBJ_DESCR(objects[i]) = "kam qo'lqop barmoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "energizer cloak")) OBJ_DESCR(objects[i]) = "energiya plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mantle of coat")) OBJ_DESCR(objects[i]) = "ko'ylagi mantiya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chilling cloak")) OBJ_DESCR(objects[i]) = "sovutgichli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bug-tracking helmet")) OBJ_DESCR(objects[i]) = "hasharotlar-kuzatish dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fatal gloves")) OBJ_DESCR(objects[i]) = "halokatli qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "beautiful heels")) OBJ_DESCR(objects[i]) = "chiroyli ko'chirish to'piqlarni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "electrostatic cloak")) OBJ_DESCR(objects[i]) = "elektrofizikaviy kompyuteringizda ornatilgan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weeping helmet")) OBJ_DESCR(objects[i]) = "yig'lab dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "runic gloves")) OBJ_DESCR(objects[i]) = "runi qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "roman sandals")) OBJ_DESCR(objects[i]) = "rim fuqarosi kavushlari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "homicidal cloak")) OBJ_DESCR(objects[i]) = "halokatli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "narrow helmet")) OBJ_DESCR(objects[i]) = "tor dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spanish gloves")) OBJ_DESCR(objects[i]) = "ispaniya qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "castlevania boots")) OBJ_DESCR(objects[i]) = "qal'a vania chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greek cloak")) OBJ_DESCR(objects[i]) = "yunon plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "celtic helmet")) OBJ_DESCR(objects[i]) = "seltik dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "english gloves")) OBJ_DESCR(objects[i]) = "ingliz tili qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "korean sandals")) OBJ_DESCR(objects[i]) = "janubiy koreyaning kavushlari";
 
 
 	}
@@ -3811,7 +4015,7 @@ boolean new_game;	/* false => restoring an old game */
 
 		while (ammount < 5) {
 
-		switch (rnd(50)) {
+		switch (rnd(51)) {
 
 		case 1: 
 		case 2: 
@@ -3889,6 +4093,8 @@ boolean new_game;	/* false => restoring an old game */
 		    HFast |= FROMOUTSIDE; break;
 		case 48: 
 		    HInvis |= FROMOUTSIDE; break;
+		case 49: 
+		    HManaleech |= FROMOUTSIDE; break;
 		default:
 			break;
 			}

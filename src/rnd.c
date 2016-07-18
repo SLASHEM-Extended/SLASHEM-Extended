@@ -899,6 +899,102 @@ randenchantment()
 
 }
 
+int
+randnastyenchantment()
+{
+	switch (rnd(87)) {
+
+		case 1: return SPELLS_LOST;
+		case 2: return CASTER_PROBLEM;
+		case 3: return STATUS_FAILURE;
+		case 4: return LUCK_LOSS;
+		case 5: return YELLOW_SPELLS;
+		case 6: return REPEATING_VULNERABILITY;
+		case 7: return INVENTORY_LOST;
+		case 8: return RESPAWN_BUG;
+		case 9: return VERISIERTEFFECT;
+		case 10: return LEVELBUG;
+		case 11: return ALWAYS_EGOTYPES;
+		case 12: return FAST_FORWARD;
+		case 13: return UNIDENTIFY;
+		case 14: return DISPLAY_LOST;
+		case 15: return THIRST;
+		case 16: return BLACK_NG_WALLS;
+		case 17: return DSTW_BUG;
+		case 18: return RANDOM_RUMORS;
+		case 19: return ROT_THIRTEEN;
+		case 20: return ALIGNMENT_FAILURE;
+		case 21: return DEAFNESS;
+		case 22: return MEMORY_LOST;
+		case 23: return FARLOOK_BUG;
+		case 24: return CAPTCHA;
+		case 25: return RECURRING_AMNESIA;
+		case 26: return SENSORY_DEPRIVATION;
+		case 27: return BIGSCRIPT;
+		case 28: return QUIZZES;
+		case 29: return MAPBUG;
+		case 30: return MUTENESS;
+		case 31: return FOOD_IS_ROTTEN;
+		case 32: return MENU_LOST;
+		case 33: return FREE_HAND_LOST;
+		case 34: return CONFUSION_PROBLEM;
+		case 35: return DROP_BUG;
+		case 36: return UNINFORMATION;
+		case 37: return AUTOMATIC_TRAP_CREATION;
+		case 38: return SHADES_OF_GREY;
+		case 39: return BANKBUG;
+		case 40: return TECHBUG;
+		case 41: return CHAOS_TERRAIN;
+		case 42: return AUTO_DESTRUCT;
+		case 43: return SPEED_BUG;
+		case 44: return FAINT_ACTIVE;
+		case 45: return DIFFICULTY_INCREASED;
+		case 46: return WEAKNESS_PROBLEM;
+		case 47: return BISHOP_GRIDBUG;
+		case 48: return STAIRSTRAP;
+		case 49: return RECURRING_DISENCHANT;
+		case 50: return ITEMCURSING;
+		case 51: return FAST_METABOLISM;
+		case 52: return INTRINSIC_LOSS;
+		case 53: return BLOOD_LOSS;
+		case 54: return NASTINESS_EFFECTS;
+		case 55: return BAD_EFFECTS;
+		case 56: return ENGRAVINGBUG;
+		case 57: return SUPERSCROLLER_ACTIVE;
+		case 58: return SKILL_DEACTIVATED;
+		case 59: return STATS_LOWERED;
+		case 60: return TRAINING_DEACTIVATED;
+		case 61: return EXERCISE_DEACTIVATED;
+		case 62: return NORETURN;
+		case 63: return RMB_LOST;
+		case 64: return TELEPORTING_ITEMS;
+		case 65: return MAGIC_DEVICE_BUG;
+		case 66: return BOOKBUG;
+		case 67: return RANDOM_MESSAGES;
+		case 68: return DESECRATION;
+		case 69: return STARVATION_EFFECT;
+		case 70: return NO_DROPS_EFFECT;
+		case 71: return LOW_EFFECTS;
+		case 72: return INVIS_TRAPS_EFFECT;
+		case 73: return GHOST_WORLD;
+		case 74: return DEHYDRATION;
+		case 75: return HATE_TRAP_EFFECT;
+		case 76: return TOTTER_EFFECT;
+		case 77: return NONINTRINSIC_EFFECT;
+		case 78: return DROPCURSES_EFFECT;
+		case 79: return NAKEDNESS;
+		case 80: return ANTILEVELING;
+		case 81: return ITEM_STEALING_EFFECT;
+		case 82: return REBELLION_EFFECT;
+		case 83: return CRAP_EFFECT;
+		case 84: return PROJECTILES_MISFIRE;
+		case 85: return WALL_TRAP_EFFECT;
+		case 86: return TURNLIMITATION;
+		case 87: return WEAKSIGHT;
+	}
+
+}
+
 #endif /* OVLB */
 
 /*rnd.c*/

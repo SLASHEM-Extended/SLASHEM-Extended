@@ -152,7 +152,7 @@ xchar x, y;
 boolean isyou;
 {
 	if (IS_FOUNTAIN(levl[x][y].typ) &&
-	    (!rn2(3) || FOUNTAIN_IS_WARNED(x,y))) {
+	    (!rn2(6) || FOUNTAIN_IS_WARNED(x,y))) {
 		if(isyou && in_town(x, y) && !FOUNTAIN_IS_WARNED(x,y)) {
 			struct monst *mtmp;
 			SET_FOUNTAIN_WARNED(x,y);

@@ -47,11 +47,13 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 25;
 
 	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 3;
 	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 7;
 	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 12;
 	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 20;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 28;
 
 	}
 
@@ -64,6 +66,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 25;
 
 	}
 
@@ -76,6 +79,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 7;
+	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
 
 	}
 
@@ -88,6 +92,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
 	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
 	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 7;
+	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
 
 	}
 
@@ -100,6 +105,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 17;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 25;
 
 	}
 
@@ -112,6 +118,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 8;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 15;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 22;
 
 	}
 
@@ -124,6 +131,7 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 10;
 	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 20;
 	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 30;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 40;
 
 	}
 
@@ -136,6 +144,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT) dmg += uarmf->spe;
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_MASTER) dmg += uarmf->spe;
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER) dmg += uarmf->spe;
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_SUPREME_MASTER) dmg += uarmf->spe;
 
 	}
 

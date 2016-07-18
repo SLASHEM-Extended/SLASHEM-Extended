@@ -93,7 +93,7 @@ use_saddle(otmp)
 	    return 1;
 	}
 	ptr = mtmp->data;
-	if (touch_petrifies(ptr) && !uarmg && !Stone_resistance) {
+	if (touch_petrifies(ptr) && (!uarmg || FingerlessGloves) && !Stone_resistance) {
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
@@ -145,6 +145,8 @@ use_saddle(otmp)
 	    chance += 75;	break;
 	case P_GRAND_MASTER:
 	    chance += 100;	break;
+	case P_SUPREME_MASTER:
+	    chance += 150;	break;
 	}
 
 	}

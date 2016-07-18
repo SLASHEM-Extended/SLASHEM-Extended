@@ -400,6 +400,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    incrnknow(i);
+				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gauntlets") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
 			    if (end_delay) {
@@ -421,6 +422,7 @@ learn()
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			incrnknow(i);
+			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'lqop purkash") ) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
@@ -927,6 +929,7 @@ boolean atme;
 	if (spellid(spell) == SPE_GODMODE) { energy *= 5; energy /= 2;}
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 3;
+	if (spellid(spell) == SPE_FIXING) energy *= 3;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
@@ -936,6 +939,7 @@ boolean atme;
 	if (role_skill == P_EXPERT) { energy *= 18; energy /= 20;}
 	if (role_skill == P_MASTER) { energy *= 17; energy /= 20;}
 	if (role_skill == P_GRAND_MASTER) { energy *= 16; energy /= 20;}
+	if (role_skill == P_SUPREME_MASTER) { energy *= 15; energy /= 20;}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
@@ -1046,6 +1050,7 @@ boolean atme;
 	if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
 	if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
 	if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
+	if ( role_skill == P_SUPREME_MASTER) {hungr *= 10; hungr /= 100;}
 
 	/* casting it often (and thereby keeping it in memory) should also reduce hunger... */
 	if ( spellknow(spell) >= 10000) {hungr *= 9; hungr /= 10;}
@@ -1078,7 +1083,7 @@ boolean atme;
 
 		/* Higher spellcasting skills mean failure takes less mana. --Amy */
 
-		u.uen -= ((energy * 50 / ((role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1) ;
+		u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1) ;
 		flags.botl = 1;
 		return(1);
 	}
@@ -1123,6 +1128,7 @@ boolean atme;
 		if (!rn2(8) && role_skill == P_EXPERT) pseudo->blessed = 1;
 		if (!rn2(6) && role_skill == P_MASTER) pseudo->blessed = 1;
 		if (!rn2(5) && role_skill == P_GRAND_MASTER) pseudo->blessed = 1;
+		if (!rn2(4) && role_skill == P_SUPREME_MASTER) pseudo->blessed = 1;
 	}
 
 #ifdef ALLEG_FX
@@ -1228,9 +1234,10 @@ boolean atme;
 		(void) seffects(pseudo);
 		break;
 
-	case SPE_ENCHANT_WEAPON:                
+	case SPE_ENCHANT_WEAPON:
 	case SPE_ENCHANT_ARMOR:
-		if (role_skill >= P_GRAND_MASTER) n = 8;
+		if (role_skill >= P_SUPREME_MASTER) n = 7;
+		else if (role_skill >= P_GRAND_MASTER) n = 8;
 		else if (role_skill >= P_MASTER) n = 9;
 		else if (role_skill >= P_EXPERT) n = 10;
 		else if (role_skill >= P_SKILLED) n = 11;
@@ -1451,6 +1458,23 @@ boolean atme;
 		break;
 		}
 		break;
+	case SPE_FIXING:
+		You("feel revitalized.");
+		if (Stoned) fix_petrification();
+		    if (Slimed) {
+			pline("The slime disappears.");
+			Slimed =0;
+		    }
+		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			make_blinded(0L,FALSE);
+		    make_stunned(0L,TRUE);
+		    make_confused(0L,TRUE);
+		    (void) make_hallucinated(0L,FALSE,0L);
+		    make_numbed(0L,TRUE);
+		    make_feared(0L,TRUE);
+		    make_frozen(0L,TRUE);
+		    make_burned(0L,TRUE);
+		break;
 	case SPE_TIME_STOP:
 		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 		if (rn2(3)) TimeStopped += (rnd(3) + 1);
@@ -1592,7 +1616,8 @@ boolean atme;
 		break;
 	case SPE_GENOCIDE:
 
-		if (role_skill >= P_GRAND_MASTER) n = 15;
+		if (role_skill >= P_SUPREME_MASTER) n = 13;
+		else if (role_skill >= P_GRAND_MASTER) n = 15;
 		else if (role_skill >= P_MASTER) n = 16;
 		else if (role_skill >= P_EXPERT) n = 18;
 		else if (role_skill >= P_SKILLED) n = 20;
@@ -1606,7 +1631,8 @@ boolean atme;
 
 	case SPE_GAIN_LEVEL:
 
-		if (role_skill >= P_GRAND_MASTER) n = 40;
+		if (role_skill >= P_SUPREME_MASTER) n = 38;
+		else if (role_skill >= P_GRAND_MASTER) n = 40;
 		else if (role_skill >= P_MASTER) n = 42;
 		else if (role_skill >= P_EXPERT) n = 44;
 		else if (role_skill >= P_SKILLED) n = 46;
@@ -1620,7 +1646,8 @@ boolean atme;
 
 	case SPE_MAP_LEVEL:
 
-		if (role_skill >= P_GRAND_MASTER) n = 5;
+		if (role_skill >= P_SUPREME_MASTER) n = 4;
+		else if (role_skill >= P_GRAND_MASTER) n = 5;
 		else if (role_skill >= P_MASTER) n = 6;
 		else if (role_skill >= P_EXPERT) n = 7;
 		else if (role_skill >= P_SKILLED) n = 8;
@@ -1928,14 +1955,14 @@ boolean atme;
 
 	}
 
-	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
 		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
-	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
+	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_SUPREME_MASTER ? 30 : role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
 
 		boostknow(spell, -(rnd(25000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
@@ -1943,7 +1970,7 @@ boolean atme;
 	}
 
 	/* charging is way too overpowered, let's add another "bullshit downside" --Amy */
-	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
 		badeffect();
 
@@ -2205,6 +2232,7 @@ int spell;
 	if ( skill == P_EXPERT) splcaster -= 9;
 	if ( skill == P_MASTER) splcaster -= 12;
 	if ( skill == P_GRAND_MASTER) splcaster -= 15;
+	if ( skill == P_SUPREME_MASTER) splcaster -= 18;
 
 	/* casting it often (and thereby keeping it in memory) should also improve chances... */
 	if ( spellknow(spell) >= 20000) splcaster -= 1;

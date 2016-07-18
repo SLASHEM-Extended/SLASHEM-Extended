@@ -1622,7 +1622,7 @@ mon_tele:
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
-		mbhit(mtmp,rn1(8,6),mbhitm,bhito,otmp);
+		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		/* monster learns that teleportation isn't useful here */
 		if (level.flags.noteleport)
 		    mtmp->mtrapseen |= (1 << (TELEP_TRAP-1));
@@ -4169,7 +4169,7 @@ struct monst *mtmp;
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
 		m_using = TRUE;
-		mbhit(mtmp,rn1(8,6),mbhitm,bhito,otmp);
+		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		m_using = FALSE;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;

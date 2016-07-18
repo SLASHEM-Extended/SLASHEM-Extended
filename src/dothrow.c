@@ -149,14 +149,14 @@ int thrown;
 		return(0);
 	}
 	u_wipe_engr(2);
-	if (!uarmg && !Stone_resistance && (obj->otyp == CORPSE &&
+	if ( (!uarmg || FingerlessGloves) && !Stone_resistance && (obj->otyp == CORPSE &&
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s corpse with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
 		Sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
-	if (!uarmg && !Stone_resistance && (obj->otyp == EGG &&
+	if ( (!uarmg || FingerlessGloves) && !Stone_resistance && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s egg with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
@@ -184,6 +184,7 @@ int thrown;
 	    case P_EXPERT:	multishot += 2; break;
 	    case P_MASTER:	multishot += 3; break; /* this might be implemented --Amy */
 	    case P_GRAND_MASTER:	multishot += 4; break;
+	    case P_SUPREME_MASTER:	multishot += 5; break;
 	    }
 
 		}
@@ -223,6 +224,7 @@ int thrown;
 		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_MASTER) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_GRAND_MASTER) multishot++;
+		if (P_SKILL(weapon_type(obj)) >= P_SUPREME_MASTER) multishot++;
 
 		}
 		}
@@ -1742,6 +1744,8 @@ int thrown;
 			/* also save uncursed ones sometimes --Amy */
 		    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
 			broken = 0;
+
+		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)

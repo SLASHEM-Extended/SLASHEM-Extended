@@ -233,13 +233,13 @@ register struct monst *mtmp;
 		}
 		else if (rn2(200)) {
 			(void) mongets(mtmp, rn2(20) ? PISTOL : RIFLE);
-			m_initthrow(mtmp, BULLET, 25);
+			m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 25);
 		}
 		else switch (rnd(100)) {
 			case 1:
 				(void) mongets(mtmp, HEAVY_MACHINE_GUN);
-				m_initthrow(mtmp, BULLET, 50);
-				m_initthrow(mtmp, BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
 				break;
 			case 2:
 				(void) mongets(mtmp, AUTO_SHOTGUN);
@@ -318,8 +318,8 @@ register struct monst *mtmp;
 			case 49:
 			case 50:
 				(void) mongets(mtmp, ASSAULT_RIFLE);
-				m_initthrow(mtmp, BULLET, 50);
-				m_initthrow(mtmp, BULLET, 25);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 25);
 				break;
 			case 51:
 			case 52:
@@ -347,7 +347,7 @@ register struct monst *mtmp;
 			case 74:
 			case 75:
 				(void) mongets(mtmp, SNIPER_RIFLE);
-				m_initthrow(mtmp, BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
 				break;
 			case 76:
 			case 77:
@@ -375,7 +375,7 @@ register struct monst *mtmp;
 			case 99:
 			case 100:
 				(void) mongets(mtmp, SUBMACHINE_GUN);
-				m_initthrow(mtmp, BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
 				break;
 		}
 
@@ -4488,7 +4488,7 @@ register struct monst *mtmp;
                         (used to be darts 1:4)
                    gets orcish short sword 1:4, otherwise orcish dagger */
                 if (!rn2(4)) m_initthrow(mtmp, ORCISH_SPEAR, 1);
-                   else if (rn2(2)) m_initthrow(mtmp, DART, 20);
+                   else if (rn2(2)) m_initthrow(mtmp, rn2(500) ? DART : DART_OF_DISINTEGRATION, 20);
                 if (!rn2(4)) mongets(mtmp, ORCISH_SHORT_SWORD);
                    else if (rn2(2)) mongets(mtmp, ORCISH_DAGGER);
 		break;
@@ -10797,6 +10797,10 @@ register struct	monst	*mtmp;
 
 	}
 
+	/* "evil" patch idea: 50% of the time, quest leader gets a kyrt shirt that can be enchanted like elven armor.
+	 * I guess the evil part about it is that you'll have to kill your leader if you want it. --Amy */
+	if (!rn2(2) && ptr->msound == MS_LEADER) (void) mongets(mtmp, KYRT_SHIRT);
+
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
 
@@ -11121,6 +11125,15 @@ register int	mmflags;
 	/* Set HP, HPmax */	
 	if (is_golem(ptr)) {
 	    mtmp->mhpmax = mtmp->mhp = golemhp(mndx);
+
+	    if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "celtic helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "kel'tskaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "seltik dubulg'a") ) ) {
+		    mtmp->mhpmax *= 3;
+		    mtmp->mhpmax /= 2;
+		    mtmp->mhp *= 3;
+		    mtmp->mhp /= 2;
+
+	    }
+
 	} else if (mndx == PM_CRITICALLY_INJURED_THIEF || mndx == PM_CRITICALLY_INJURED_JEDI) { 
 		/* can be killed in a single hit --Amy */
 	    mtmp->mhpmax = mtmp->mhp = 1;

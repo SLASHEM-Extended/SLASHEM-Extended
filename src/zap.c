@@ -5129,7 +5129,7 @@ struct obj *obj;
 	    } else if (u.dz) {
 		disclose = zap_updown(obj);
 	    } else {
-		(void) bhit(u.dx,u.dy, rn1(8,6), ZAPPED_WAND,
+		(void) bhit(u.dx,u.dy, EnglandMode ? rn1(10,10) : rn1(8,6), ZAPPED_WAND,
 			    bhitm, bhito, &obj);
 	    }
 	    /* give a clue if obj_zapped */
@@ -5269,6 +5269,7 @@ register int booktype;
 		case P_EXPERT:      tmp +=  2; break;
 		case P_MASTER:      tmp +=  3; break;
 		case P_GRAND_MASTER:      tmp +=  4; break;
+		case P_SUPREME_MASTER:      tmp +=  5; break;
 	}
 
     return tmp;
@@ -5294,6 +5295,7 @@ int skill;
 	case P_EXPERT:      hit_bon =  3; break;
 	case P_MASTER:      hit_bon =  5; break;
 	case P_GRAND_MASTER:      hit_bon =  7; break;
+	case P_SUPREME_MASTER:      hit_bon =  10; break;
     }
 
     if (dex < 4)
@@ -6295,7 +6297,7 @@ register int dx,dy;
 	return;
     }
     if(type < 0) newsym(u.ux,u.uy);
-    range = rn1(7,7);
+    range = EnglandMode ? rn1(10,10) : rn1(7,7);
     if(dx == 0 && dy == 0) range = 1;
     save_bhitpos = bhitpos;
 

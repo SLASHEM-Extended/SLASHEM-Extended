@@ -154,6 +154,242 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) /*|| mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO]*/) ) {
+				pline("%s uses %s stilettos in a very unfair way!", Monnam(mtmp), mhis(mtmp) );
+				if (!rn2(3)) pline("Your %s are scratched to the bone and your %s is squirting everywhere!", makeplural(body_part(LEG)), body_part(BLOOD) );
+				else if (!rn2(2)) pline("Your sensitive sexual organs are squeezed flat and you're gasping for air!");
+				else pline("You feel a vicious impact as the hard heel slams on your %s with full force, and you're seeing asterisks everywhere.", body_part(HEAD) );
+				badeffect();
+				if (!rn2(2)) badeffect();
+				if (!rn2(3)) badeffect();
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) /*|| mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]*/) ) {
+				pline("%s kicks you in the %s with %s very high heel!", Monnam(mtmp), body_part(HEAD), mhis(mtmp) );
+				monsterlev = ((mtmp->m_lev) + 1);
+
+				if (!rn2(3) && !(Role_if(PM_COURIER)) ) {
+					if (!Blind) pline("Everything suddenly goes dark.");
+					make_blinded(Blinded+monsterlev,FALSE);
+					if (!Blind) Your(vision_clears);
+				}
+				if (!rn2(3) && !(Role_if(PM_COURIER)) ) make_stunned(HStun + monsterlev, TRUE);
+				if (!rn2(3) && !(Role_if(PM_COURIER)) ) pushplayer();
+				if (Role_if(PM_COURIER)) pline("But since you don't actually have a head, you're unharmed.");
+				else losehp(monsterlev, "sky-high heel", KILLED_BY_AN);
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) /*|| mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]*/) ) {
+
+				monsterlev = ((mtmp->m_lev) + 1);
+
+				pline("The wonderful rainbow-colored female sandal slams against your shins!");
+
+				switch (rnd(29)) {
+					case 1:
+						pline("Wow!");
+						break;
+					case 2:
+						pline("Lovely!");
+						break;
+					case 3:
+						pline("What fleecy colors!");
+						break;
+					case 4:
+						pline("So feminine...");
+						break;
+					case 5:
+						pline("<3");
+						break;
+					case 6:
+						pline("It's painful!");
+						break;
+					case 7:
+						pline("Soothing!");
+						break;
+					case 8:
+						pline("Incredible!");
+						break;
+					case 9:
+						pline("You really like the painful sensation!");
+						break;
+					case 10:
+						pline("They're asian, too!");
+						break;
+					case 11:
+						pline("You think you're in love!");
+						break;
+					case 12:
+						pline("Such a lovely, fleecy pair of sandals!");
+						break;
+					case 13:
+						pline("Sweetheart bundle!");
+						break;
+					case 14:
+						pline("The pain is wonderful!");
+						break;
+					case 15:
+						pline("You're about to get an orgasm!");
+						break;
+					case 16:
+						pline("It's pure lust!");
+						break;
+					case 17:
+						pline("The Amy is envious of you!");
+						break;
+					case 18:
+						pline("You want to wear them too!");
+						break;
+					case 19:
+						pline("You need those beautiful sandals for yourself!");
+						break;
+					case 20:
+						pline("Scintillating rainbows!");
+						break;
+					case 21:
+						pline("Glinting set off by rainbow fluttering fairily in the sky.");
+						break;
+					case 22:
+						pline("Heavenly!");
+						break;
+					case 23:
+						pline("Your sweet %s would like them...", makeplural(body_part(FOOT)));
+						break;
+					case 24:
+						pline("This kick felt wonderful!");
+						break;
+					case 25:
+						pline("You're about to come!");
+						break;
+					case 26:
+						pline("Your sexual organs are getting all wet...");
+						break;
+					case 27:
+						pline("It's like a sign of true love!");
+						break;
+					case 28:
+						pline("Beautifully soft leather... oh wait, they're made of synthetic material!");
+						break;
+					case 29:
+						pline("Red, yellow, green, blue, pink and purple...");
+						break;
+				}
+
+				switch (rnd(85)) {
+
+					case 1: RMBLoss += monsterlev; break;
+					case 2: NoDropProblem += monsterlev; break;
+					case 3: DSTWProblem += monsterlev; break;
+					case 4: StatusTrapProblem += monsterlev; 
+						if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+						if (HStun) set_itimeout(&HeavyStunned, HStun);
+						if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+						if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+						if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+						if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+						if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+						if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+						break;
+					case 5: Superscroller += monsterlev; break;
+					case 6: MenuBug += monsterlev; break;
+					case 7: FreeHandLoss += monsterlev; break;
+					case 8: Unidentify += monsterlev; break;
+					case 9: Thirst += monsterlev; break;
+					case 10: LuckLoss += monsterlev; break;
+					case 11: ShadesOfGrey += monsterlev; break;
+					case 12: FaintActive += monsterlev; break;
+					case 13: Itemcursing += monsterlev; break;
+					case 14: DifficultyIncreased += monsterlev; break;
+					case 15: Deafness += monsterlev; flags.soundok = 0; break;
+					case 16: CasterProblem += monsterlev; break;
+					case 17: WeaknessProblem += monsterlev; break;
+					case 18: RotThirteen += monsterlev; break;
+					case 19: BishopGridbug += monsterlev; break;
+					case 20: UninformationProblem += monsterlev; break;
+					case 21: StairsProblem += monsterlev; break;
+					case 22: AlignmentProblem += monsterlev; break;
+					case 23: ConfusionProblem += monsterlev; break;
+					case 24: SpeedBug += monsterlev; break;
+					case 25: DisplayLoss += monsterlev; break;
+					case 26: SpellLoss += monsterlev; break;
+					case 27: YellowSpells += monsterlev; break;
+					case 28: AutoDestruct += monsterlev; break;
+					case 29: MemoryLoss += monsterlev; break;
+					case 30: InventoryLoss += monsterlev; break;
+					case 31: {
+	
+						if (BlackNgWalls) break;
+	
+						BlackNgWalls = 1000;
+						(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+						break;
+					}
+					case 32: IntrinsicLossProblem += monsterlev; break;
+					case 33: BloodLossProblem += monsterlev; break;
+					case 34: BadEffectProblem += monsterlev; break;
+					case 35: TrapCreationProblem += monsterlev; break;
+					case 36: AutomaticVulnerabilitiy += monsterlev; break;
+					case 37: TeleportingItems += monsterlev; break;
+					case 38: NastinessProblem += monsterlev; break;
+					case 39: CaptchaProblem += monsterlev; break;
+					case 40: FarlookProblem += monsterlev; break;
+					case 41: RespawnProblem += monsterlev; break;
+					case 42: RecurringAmnesia += monsterlev; break;
+					case 43: BigscriptEffect += monsterlev; break;
+					case 44: {
+						BankTrapEffect += monsterlev;
+						if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+						u.bankcashamount += u.ugold;
+						u.ugold = 0;
+	
+						break;
+					}
+					case 45: MapTrapEffect += monsterlev; break;
+					case 46: TechTrapEffect += monsterlev; break;
+					case 47: RecurringDisenchant += monsterlev; break;
+					case 48: verisiertEffect += monsterlev; break;
+					case 49: ChaosTerrain += monsterlev; break;
+					case 50: Muteness += monsterlev; break;
+					case 51: EngravingDoesntWork += monsterlev; break;
+					case 52: MagicDeviceEffect += monsterlev; break;
+					case 53: BookTrapEffect += monsterlev; break;
+					case 54: LevelTrapEffect += monsterlev; break;
+					case 55: QuizTrapEffect += monsterlev; break;
+					case 56: FastMetabolismEffect += monsterlev; break;
+					case 57: NoReturnEffect += monsterlev; break;
+					case 58: AlwaysEgotypeMonsters += monsterlev; break;
+					case 59: TimeGoesByFaster += monsterlev; break;
+					case 60: FoodIsAlwaysRotten += monsterlev; break;
+					case 61: AllSkillsUnskilled += monsterlev; break;
+					case 62: AllStatsAreLower += monsterlev; break;
+					case 63: PlayerCannotTrainSkills += monsterlev; break;
+					case 64: PlayerCannotExerciseStats += monsterlev; break;
+					case 65: TurnLimitation += monsterlev; break;
+					case 66: WeakSight += monsterlev; break;
+					case 67: RandomMessages += monsterlev; break;
+
+					case 68: Desecration += monsterlev; break;
+					case 69: StarvationEffect += monsterlev; break;
+					case 70: NoDropsEffect += monsterlev; break;
+					case 71: LowEffects += monsterlev; break;
+					case 72: InvisibleTrapsEffect += monsterlev; break;
+					case 73: GhostWorld += monsterlev; break;
+					case 74: Dehydration += monsterlev; break;
+					case 75: HateTrapEffect += monsterlev; break;
+					case 76: TotterTrapEffect += monsterlev; break;
+					case 77: Nonintrinsics += monsterlev; break;
+					case 78: Dropcurses += monsterlev; break;
+					case 79: Nakedness += monsterlev; break;
+					case 80: Antileveling += monsterlev; break;
+					case 81: ItemStealingEffect += monsterlev; break;
+					case 82: Rebellions += monsterlev; break;
+					case 83: CrapEffect += monsterlev; break;
+					case 84: ProjectilesMisfire += monsterlev; break;
+					case 85: WallTrapping += monsterlev; break;
+				}
+
+			}
+
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ROLLER_BLADE) || mtmp->data == &mons[PM_ANIMATED_ROLLER_BLADE]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -378,6 +614,30 @@ on the first floor, especially when you're playing as something with drain resis
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(4,monsterlev), "kung-fu attack", KILLED_BY_AN);
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) /*|| mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL]*/ ) ) {
+				if (multi >= 0) {
+					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
+					nomul(-2, "having a sexual orgasm");
+				} else {
+					switch (rnd(13)) {
+						case 1: pline("%s exploits your momentary weakness and kicks your %s with %s high heel.", Monnam(mtmp), body_part(ARM), mhis(mtmp) ); break;
+						case 2: pline("%s exploits your momentary weakness and slams %s high heel right in your %s.", Monnam(mtmp), mhis(mtmp), body_part(FACE) ); break;
+						case 3: pline("%s exploits your momentary weakness and places %s beautiful heel on your %s.", Monnam(mtmp), mhis(mtmp), body_part(FINGER) ); break;
+						case 4: pline("%s exploits your momentary weakness and squeezes your %s with %s oval-shaped heel.", Monnam(mtmp), body_part(FOOT), mhis(mtmp) ); break;
+						case 5: pline("%s exploits your momentary weakness and tries to sever your %s with %s lovely high heel.", Monnam(mtmp), body_part(HAND), mhis(mtmp) ); break;
+						case 6: pline("%s exploits your momentary weakness and aims %s massive heel at your %s.", Monnam(mtmp), mhis(mtmp), body_part(HEAD) ); break;
+						case 7: pline("%s exploits your momentary weakness and slams %s unyielding heel against your %s.", Monnam(mtmp), mhis(mtmp), body_part(LEG) ); break;
+						case 8: pline("%s exploits your momentary weakness and kicks you in the %s with %s female sandal.", Monnam(mtmp), body_part(NECK), mhis(mtmp) ); break;
+						case 9: pline("%s exploits your momentary weakness and tries to crush your %s with %s incredibly beautiful footwear.", Monnam(mtmp), body_part(SPINE), mhis(mtmp) ); break;
+						case 10: pline("%s exploits your momentary weakness and stomps your unprotected %s with %s cyan-striped wood heel.", Monnam(mtmp), body_part(TOE), mhis(mtmp) ); break;
+						case 11: pline("%s exploits your momentary weakness and draws lots of %s with %s razor-sharp high heel.", Monnam(mtmp), body_part(BLOOD), mhis(mtmp) ); break;
+						case 12: pline("%s exploits your momentary weakness and lands a high-heeled kick in your %s.", Monnam(mtmp), body_part(NOSE) ); break;
+						case 13: pline("%s exploits your momentary weakness and places a very fleecy kick into your %s with %s sexy women's sandals.", Monnam(mtmp), body_part(STOMACH), mhis(mtmp) ); break;
+					}
+					badeffect();
+				}
 			}
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "tartibsizlik chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] ) ) {
@@ -1395,7 +1655,7 @@ mattacku(mtmp)
 			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) ) {
 			    if (foundyou) {
-				if(tmp > (j = rnd(20+i))) {
+				if ((tmp > (j = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
 				    if (mattk->aatyp != AT_KICK ||
 					    !thick_skinned(youmonst.data))
 					sum[i] = hitmu(mtmp, mattk);
@@ -1544,10 +1804,10 @@ mattacku(mtmp)
 			break;
 		case AT_WEAP:
 
-			if (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) )
+			if (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) && (tmp > (rnd(20+i))) )
 			hitmu(mtmp, mattk);
 
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer ){  
+			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -1717,7 +1977,7 @@ swingweapon:
 /* The gnome swings her spiked battle boot! Ouch! The spiked boot soles bore themselves into your skin! The spikes were poisoned! The poison was deadly... Do you want your possessions identified? */
 
 				}
-				if(tmp > (j = dieroll = rnd(20+i))) {
+				if((tmp > (j = dieroll = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
 				    sum[i] = hitmu(mtmp, mattk);
 					if (!rn2(75)) pushplayer();
 				}
@@ -3701,7 +3961,7 @@ hitmu(mtmp, mattk)
 	    case AD_VULN:
 		hitmsg(mtmp, mattk);
 
-		 switch (rnd(120)) {
+		 switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -3993,6 +4253,10 @@ hitmu(mtmp, mattk)
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (dmg * rnd(30) ) + 1);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (dmg * rnd(30) ) + 1);
+				pline("You are prevented from having manaleech!");
 				break;
 		}
 
@@ -5096,7 +5360,7 @@ dopois:
 	    case AD_SUCK:
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmg = 0;
 			else{
-				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !(Role_if(PM_COURIER)) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					dmg = 2 * (Upolyd ? u.mh : u.uhp)
@@ -6355,7 +6619,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_VULN:
 				pline("You are covered with aggressive bacteria!");
 
-		 switch (rnd(120)) {
+		 switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -6647,6 +6911,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having manaleech!");
 				break;
 		}
 
@@ -7556,7 +7824,7 @@ do_stone2:
 		pline("You feel like being sucked in by a vacuum cleaner!");
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
 			else{
-				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !(Role_if(PM_COURIER)) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					tmp = 2 * (Upolyd ? u.mh : u.uhp)
@@ -9586,7 +9854,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmgplus = 0;
 			else{
-				if( has_head(youmonst.data) && !Role_if(PM_COURIER) && !uarmh && !rn2(20) && 
+				if( has_head(youmonst.data) && !(Role_if(PM_COURIER)) && !uarmh && !rn2(20) && 
 					((!Upolyd && u.uhp < (u.uhpmax / 10) ) || (Upolyd && u.mh < (u.mhmax / 10) ))
 				){
 					dmgplus += 2 * (Upolyd ? u.mh : u.uhp)
@@ -10499,7 +10767,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s laughs devilishly!", Monnam(mtmp));
 
-		 switch (rnd(120)) {
+		 switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -10791,6 +11059,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
+				pline("You are prevented from having manaleech!");
 				break;
 		}
 		}
@@ -11730,6 +12002,7 @@ register struct monst *mon;
 		u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 	}
 
 	if (!rn2(250) && !(ublindf && ublindf->otyp == CONDOME) ) {
@@ -12053,6 +12326,15 @@ register struct attack *mattk;
 			return 2;
 		}
 
+	}
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
+		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s is electrocuted and dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
 	}
 
 	for(i = 0; ; i++) {

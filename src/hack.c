@@ -2060,6 +2060,13 @@ domove()
 		u.usteed->my = u.uy;
 		exercise_steed();
 	}
+
+	/* exercising high heel skill takes a while... */
+	if (PlayerInHighHeels && (u.uhighheelturns++ >= 100)) {
+	    u.uhighheelturns = 0;
+	    use_skill(P_HIGH_HEELS, 1);
+	}
+
 #endif
 
 	if (displacer) {

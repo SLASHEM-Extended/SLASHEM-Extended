@@ -102,6 +102,7 @@ register struct obj *otmp;
 	case SCR_ERASURE:
 	case SCR_ANTIMATTER:
 	case SCR_MEGALOAD:
+	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:
 		return(24);
 /*		break; */
@@ -109,6 +110,7 @@ register struct obj *otmp;
 	case SCR_GENOCIDE:
 	case SCR_CURE:
 	case SCR_SIN:
+	case SCR_ARMOR_SPECIALIZATION:
 	case SCR_SUMMON_BOSS:
 	case SCR_SUMMON_ELM:
 	case SCR_DEMONOLOGY:

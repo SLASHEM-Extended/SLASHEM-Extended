@@ -1057,7 +1057,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(120)) {
+		switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -1349,6 +1349,10 @@ badeffect()
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
+				pline("You are prevented from having manaleech!");
 				break;
 			}
 		break;

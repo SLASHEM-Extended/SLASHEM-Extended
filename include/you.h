@@ -752,6 +752,7 @@ struct you {
 	struct monst *usteed;
 	long ugallop;
 	int urideturns;
+	int uhighheelturns;
 #endif
 	int	umortality;		/* how many times you died */
 	int ugrave_arise; /* you die and become something aside from a ghost */

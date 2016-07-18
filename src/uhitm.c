@@ -830,8 +830,8 @@ martial_dmg()
          */
 
         if ((Role_if(PM_MONK) && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) )
-                && (P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER)
-                && (u.ulevel > 16)) damage = d(6,2);                                
+                && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
+                && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
         else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
@@ -1149,6 +1149,7 @@ int thrown;
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_MASTER) tmp += rnd(6);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_GRAND_MASTER) tmp += rnd(8);
+			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SUPREME_MASTER) tmp += rnd(10);
 			}
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
@@ -1284,6 +1285,11 @@ int thrown;
 			    tmp = dmgvalX(obj, mon);
 			}
 			if (ammo_and_launcher(obj, launcher)) {
+
+			    if (obj->otyp == ANTIMATTER_BULLET) {
+					tmp += 20;
+			    }
+
 			    if (launcher->oartifact)
 				tmp += spec_dbon(launcher, mon, tmp);
 			    /* Elves and Samurai do extra damage using
@@ -2731,7 +2737,7 @@ struct attack *mattk;
 				       doname(otmp), "You steal: ");
 	    if (otmp->where != OBJ_INVENT) /*continue*/return; /* otherwise you could steal everything the monster has! */
 	    if (otmp->otyp == CORPSE &&
-		    touch_petrifies(&mons[otmp->corpsenm]) && !uarmg) {
+		    touch_petrifies(&mons[otmp->corpsenm]) && (!uarmg || FingerlessGloves)) {
 		char kbuf[BUFSZ];
 
 		Sprintf(kbuf, "stolen %s corpse", mons[otmp->corpsenm].mname);
@@ -4719,7 +4725,7 @@ uchar aatyp;
 
 	    case AD_VULN:
 
-		 switch (rnd(120)) {
+		 switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -5011,6 +5017,10 @@ uchar aatyp;
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having manaleech!");
 				break;
 		}
 
@@ -5642,7 +5652,7 @@ uchar aatyp;
 		if (aatyp == AT_MAGC) protector = W_ARMG;
 
 		if (protector == 0L ||		/* no protection */
-			(protector == W_ARMG && !uarmg && barehanded) ||
+			(protector == W_ARMG && (!uarmg || FingerlessGloves) && barehanded) ||
 			(protector == W_ARMF && !uarmf) ||
 			(protector == W_ARMH && !uarmh) ||
 			(protector == (W_ARMC|W_ARMG) && (!uarmc || !uarmg))) {

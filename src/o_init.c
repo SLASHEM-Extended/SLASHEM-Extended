@@ -338,6 +338,21 @@ register char oclass;
 	objects[UNKNOWN_GAUNTLETS].a_can = rnd(10) ? 0 : rnd(3);
 	objects[MISSING_CLOAK].a_can = rn2(4);
 
+	objects[WONDER_HELMET].a_can = rnd(10) ? 0 : rnd(3);
+	objects[SKY_HIGH_HEELS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[ARCANE_GAUNTLETS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[SPECIAL_CLOAK].a_can = rn2(4);
+
+	objects[POINTED_HELMET].a_can = rnd(10) ? 0 : rnd(3);
+	objects[PREHISTORIC_BOOTS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[PLACEHOLDER_GLOVES].a_can = rnd(10) ? 0 : rnd(3);
+	objects[PLAIN_CLOAK].a_can = rn2(4);
+
+	objects[BOG_STANDARD_HELMET].a_can = rnd(10) ? 0 : rnd(3);
+	objects[SYNTHETIC_SANDALS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[PROTECTIVE_GLOVES].a_can = rnd(10) ? 0 : rnd(3);
+	objects[ARCHAIC_CLOAK].a_can = rn2(4);
+
 	objects[RANDOMIZED_HELMET].a_ac = 0;
 	if (rn2(10)) objects[RANDOMIZED_HELMET].a_ac = 1;
 	while (!rn2(3)) {
@@ -358,11 +373,77 @@ register char oclass;
 	while (!rn2(3)) {
 		if (objects[MISSING_CLOAK].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
 	}
+	objects[SPECIAL_CLOAK].a_ac = 0;
+	if (rn2(10)) objects[SPECIAL_CLOAK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[SPECIAL_CLOAK].a_ac < 20) objects[SPECIAL_CLOAK].a_ac++;
+	}
+	objects[WONDER_HELMET].a_ac = 0;
+	if (rn2(10)) objects[WONDER_HELMET].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[WONDER_HELMET].a_ac < 20) objects[WONDER_HELMET].a_ac++;
+	}
+	objects[ARCANE_GAUNTLETS].a_ac = 0;
+	if (rn2(10)) objects[ARCANE_GAUNTLETS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[ARCANE_GAUNTLETS].a_ac < 20) objects[ARCANE_GAUNTLETS].a_ac++;
+	}
+	objects[SKY_HIGH_HEELS].a_ac = 0;
+	if (rn2(10)) objects[SKY_HIGH_HEELS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[SKY_HIGH_HEELS].a_ac < 20) objects[SKY_HIGH_HEELS].a_ac++;
+	}
+	objects[PLAIN_CLOAK].a_ac = 0;
+	if (rn2(10)) objects[PLAIN_CLOAK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[PLAIN_CLOAK].a_ac < 20) objects[PLAIN_CLOAK].a_ac++;
+	}
+	objects[POINTED_HELMET].a_ac = 0;
+	if (rn2(10)) objects[POINTED_HELMET].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[POINTED_HELMET].a_ac < 20) objects[POINTED_HELMET].a_ac++;
+	}
+	objects[PLACEHOLDER_GLOVES].a_ac = 0;
+	if (rn2(10)) objects[PLACEHOLDER_GLOVES].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[PLACEHOLDER_GLOVES].a_ac < 20) objects[PLACEHOLDER_GLOVES].a_ac++;
+	}
+	objects[PREHISTORIC_BOOTS].a_ac = 0;
+	if (rn2(10)) objects[PREHISTORIC_BOOTS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[PREHISTORIC_BOOTS].a_ac < 20) objects[PREHISTORIC_BOOTS].a_ac++;
+	}
+	objects[ARCHAIC_CLOAK].a_ac = 0;
+	if (rn2(10)) objects[ARCHAIC_CLOAK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[ARCHAIC_CLOAK].a_ac < 20) objects[ARCHAIC_CLOAK].a_ac++;
+	}
+	objects[BOG_STANDARD_HELMET].a_ac = 0;
+	if (rn2(10)) objects[BOG_STANDARD_HELMET].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[BOG_STANDARD_HELMET].a_ac < 20) objects[BOG_STANDARD_HELMET].a_ac++;
+	}
+	objects[PROTECTIVE_GLOVES].a_ac = 0;
+	if (rn2(10)) objects[PROTECTIVE_GLOVES].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[PROTECTIVE_GLOVES].a_ac < 20) objects[PROTECTIVE_GLOVES].a_ac++;
+	}
+	objects[SYNTHETIC_SANDALS].a_ac = 0;
+	if (rn2(10)) objects[SYNTHETIC_SANDALS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[SYNTHETIC_SANDALS].a_ac < 20) objects[SYNTHETIC_SANDALS].a_ac++;
+	}
 
 	objects[RIN_RANDOM_EFFECTS].oc_oprop = randenchantment();
 	objects[RIN_SPECIAL_EFFECTS].oc_oprop = randenchantment();
 	objects[AMULET_OF_THE_RNG].oc_oprop = randenchantment();
 	objects[AMULET_OF_INFINITY].oc_oprop = randenchantment();
+	objects[RIN_DANGER].oc_oprop = randnastyenchantment();
+	objects[AMULET_OF_DANGER].oc_oprop = randnastyenchantment();
+	objects[NASTY_CLOAK].oc_oprop = randnastyenchantment();
+	objects[UNWANTED_HELMET].oc_oprop = randnastyenchantment();
+	objects[EVIL_GLOVES].oc_oprop = randnastyenchantment();
+	objects[UNFAIR_STILETTOS].oc_oprop = randnastyenchantment();
 
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_cost = (objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level * 100);

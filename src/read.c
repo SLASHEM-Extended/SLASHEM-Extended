@@ -32,11 +32,12 @@
 #define PN_BODY_SPELL		(-12)
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
-#define PN_MARTIAL_ARTS		(-15)
-#define PN_RIDING		(-16)
-#define PN_TWO_WEAPONS		(-17)
+#define PN_HIGH_HEELS		(-15)
+#define PN_MARTIAL_ARTS		(-16)
+#define PN_RIDING		(-17)
+#define PN_TWO_WEAPONS		(-18)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-18)
+#define PN_LIGHTSABER		(-19)
 #endif
 
 #ifndef OVLB
@@ -63,7 +64,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED, 	PN_HIGH_HEELS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -87,6 +88,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "body spells",
     "matter spells",
     "bare-handed combat",
+    "high heels",
     "martial arts",
     "riding",
     "two-handed combat",
@@ -223,7 +225,7 @@ doread()
 	    return(1);
 #ifdef TOURIST
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
-	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE
+	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == KYRT_SHIRT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
@@ -730,7 +732,7 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER && (scroll->oartifact != ART_MARAUDER_S_MAP) &&
+		if(scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
 		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_COPYING && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
@@ -2225,7 +2227,7 @@ register struct obj	*sobj;
 			break;
 		}
 		/* elven armor vibrates warningly when enchanted beyond a limit */
-		special_armor = is_elven_armor(otmp) ||
+		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
 		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
 		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
 
@@ -2445,6 +2447,12 @@ register struct obj	*sobj;
 				exercise(A_CON, FALSE);
 				return(1);
 			}
+			if (!(otmp->owornmask & W_ARMOR) ) {
+	
+				strange_feeling(sobj, "You have a feeling of loss.");
+				return(1);
+			}
+
 			otmp->oerodeproof = 1;
 			p_glow2(otmp, NH_PURPLE);
 		}
@@ -2619,6 +2627,9 @@ register struct obj	*sobj;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
@@ -5042,6 +5053,75 @@ retry:
 		You("have found a scroll of undo genocide.");
 		undo_genocide();
 		break;
+
+	case SCR_SECURE_IDENTIFY:
+		known = TRUE;
+		if(confused) {
+			You("identify this as a secure identify scroll.");
+			break;
+		} else {
+			pline("This is a secure identify scroll.");
+
+			otmp = getobj(all_count, "secure identify");
+
+			if (!otmp) {
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (otmp) {
+				makeknown(otmp->otyp);
+				if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+				otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
+				if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
+				learn_egg_type(otmp->corpsenm);
+				prinv((char *)0, otmp, 0L);
+			}
+
+		}
+		break;
+
+	case SCR_ARMOR_SPECIALIZATION:
+		pline("You may enchant a worn piece of armor.");
+		otmp = getobj(all_count, "magically enchant");
+		if(!otmp) {
+			strange_feeling(sobj,"You feel magical for a moment, but the feeling passes.");
+			exercise(A_WIS, FALSE);
+			return(1);
+		}
+		if (!(otmp->owornmask & W_ARMOR) ) {
+
+			strange_feeling(sobj, "You have a feeling of loss.");
+			return(1);
+		}
+
+		if (otmp) {
+			if (confused) {
+				if (sobj->cursed) {
+					if (otmp->spe > -20) {
+						otmp->spe -= 10;
+						p_glow2(otmp, NH_BLACK);
+					}
+				} else {
+					otmp->spe = 0;
+					otmp->blessed = 0;
+					otmp->enchantment = 0;
+					p_glow2(otmp, NH_GREEN);
+				}
+			} else {
+				if (sobj->cursed) {
+					otmp->enchantment = 0;
+					p_glow2(otmp, NH_RED);
+				} else {
+					if (!otmp->enchantment) {
+						otmp->enchantment = randenchantment();
+						p_glow2(otmp, NH_GOLDEN);
+					} else pline("A feeling of loss comes over you.");
+				}
+			}
+		}
+
+		break;
+
 	case SCR_REVERSE_IDENTIFY:
 		known = TRUE;
 		You("have found a scroll of reverse identify.");

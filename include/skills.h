@@ -73,10 +73,11 @@
 
 /* Other types of combat */
 #define P_BARE_HANDED_COMBAT 	(P_LAST_SPELL + 1)
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 2) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 3) /* Finally implemented */
+#define P_HIGH_HEELS 	(P_LAST_SPELL + 2) /* idea by yasdorian :-) */
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 3) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 4) /* Finally implemented */
 #ifdef STEED
-#define P_RIDING		(P_LAST_SPELL + 4) /* How well you control your steed */
+#define P_RIDING		(P_LAST_SPELL + 5) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #else
 #define P_LAST_H_TO_H		P_TWO_WEAPON_COMBAT
@@ -100,7 +101,8 @@
 #define P_EXPERT		4
 #define P_MASTER		5
 #define P_GRAND_MASTER		6
-#define P_LIMIT P_GRAND_MASTER
+#define P_SUPREME_MASTER		7
+#define P_LIMIT P_SUPREME_MASTER
 
 #define practice_needed_to_advance(level,skill) \
    (P_SKILL(skill) == P_ISRESTRICTED ? 500 : \

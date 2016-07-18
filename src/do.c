@@ -576,6 +576,12 @@ giveback:
 		case RIN_SEE_INVISIBLE:
 		    You("see some air in the sink.");
 		    break;
+		case RIN_LEECH:
+		    pline("The sink drains energy from the ring!");
+		    break;
+		case RIN_DANGER:
+		    pline("Terrible things are happening to the sink...");
+		    break;
 		case RIN_INFRAVISION:
 		    pline("The sink seems to glow red for a moment!");
 		    break;

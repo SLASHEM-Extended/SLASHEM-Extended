@@ -1763,7 +1763,7 @@ newboss:
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(120)) {
+	switch (rnd(121)) {
 
 		case 1:
 		case 2:
@@ -2055,6 +2055,10 @@ newboss:
 		case 120:
 			u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(dmg);
 			pline("You are prevented from having glib combat!");
+			break;
+		case 121:
+			u.uprops[DEAC_MANALEECH].intrinsic += rnz(dmg);
+			pline("You are prevented from having manaleech!");
 			break;
 	}
 	dmg = 0;

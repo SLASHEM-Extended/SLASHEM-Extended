@@ -271,6 +271,37 @@ const char *name;	/* if null, then format `obj' */
 			losehp(dam, knm, kprefix);
 			exercise(A_STR, FALSE);
 		}
+
+		/* evil patch: antimatter bullets will damage the player's inventory --Amy */
+		if (obj && obj->otyp == ANTIMATTER_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+
+		/* evil patch: darts of disintegration can disintegrate the player
+		 * only have a 10% chance of actually doing so, because otherwise it would be really unbalanced --Amy */
+		if (obj && obj->otyp == DART_OF_DISINTEGRATION) {
+			if ((!Disint_resistance || !rn2(100) ) && !rn2(10)) {
+				pline("You feel like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+#ifdef TOURIST
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+#endif
+				} else done(DIED);
+	
+			}
+		}
+
 		return(1);
 	}
 }
@@ -324,6 +355,8 @@ int x,y;
 		create = 1;
 	    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
 		create = 1;
+
+	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;
 
 	} else create = 1;
 
@@ -1154,7 +1187,7 @@ register xchar ax, ay, bx, by;
 	if (!tbx && !tby) return FALSE;
 
 	if((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
-	   && distmin(tbx, tby, 0, 0) < BOLT_LIM) {
+	   && distmin(tbx, tby, 0, 0) < (EnglandMode ? 10 : BOLT_LIM)) {
 	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
 	    else if(clear_path(ax,ay,bx,by)) return TRUE;
 	}

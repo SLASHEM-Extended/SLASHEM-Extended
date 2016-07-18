@@ -260,6 +260,11 @@ boolean digest_meal;
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
 	}
+	if (P_SKILL(P_RIDING) == P_SUPREME_MASTER && u.usteed && (mon == u.usteed) ) {
+		if (mon->mhp + 1 >= mon->mhpmax)
+		      mon->mhp = mon->mhpmax;
+		else mon->mhp++;
+	}
 
 	}
 
@@ -628,7 +633,7 @@ register struct monst *mtmp;
 
 	/* [DS] Cthulhu also uses psychic blasts */
 	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU] || mdat == &mons[PM_FLYING_ASSHOLE] ) 
-			&& !rn2(20)) {
+			&& !rn2( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 4 : 20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
 		if (canseemon(mtmp))
@@ -721,7 +726,7 @@ register struct monst *mtmp;
 	}
 
 	/* occasionally hint at the presence of psychic beings, if you are telepathic --Amy */
-	if (dmgtype(mdat, AD_SPC2) && !rn2(200) && Blind_telepat) {
+	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 40 : 200) && Blind_telepat) {
 		You(Hallucination ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
 	}
 
@@ -1413,6 +1418,8 @@ not_special:
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(3) ) appr = 1; 
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin") ) && !rn2(3) ) appr = 1; 
 

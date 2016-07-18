@@ -302,6 +302,11 @@ nh_timeout()
 	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
 	}
 
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "castlevania boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zamok vaney sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qal'a vania chizilmasin") ) && !rn2(1000) ) {
+		pline("You hear a dark orchestral melody, and all the lights go out...");
+		litroomlite(FALSE);
+	}
+
 	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
 
 	    struct trap *t;
@@ -328,8 +333,30 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) ) {
+	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && (rnd(7) > P_SKILL(P_HIGH_HEELS)) ) {
 			    slip_or_trip();
+
+			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling");
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
 	}
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fors chizilmasin") ) && !rn2(1000) ) {
@@ -624,7 +651,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(120)) {
+		switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -916,13 +943,17 @@ nh_timeout()
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
+				pline("You are prevented from having manaleech!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(120)) {
+		switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -1214,13 +1245,17 @@ nh_timeout()
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
+				pline("You are prevented from having manaleech!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(120)) {
+		switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -1512,6 +1547,10 @@ nh_timeout()
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
+				pline("You are prevented from having manaleech!");
 				break;
 			}
 	}
@@ -2190,6 +2229,122 @@ nh_timeout()
 
 	}
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya") ) && !rn2(5000) ) {
+
+		switch (rnd(85)) {
+
+			case 1: RMBLoss += 200; break;
+			case 2: NoDropProblem += 200; break;
+			case 3: DSTWProblem += 200; break;
+			case 4: StatusTrapProblem += 200; 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += 200; break;
+			case 6: MenuBug += 200; break;
+			case 7: FreeHandLoss += 200; break;
+			case 8: Unidentify += 200; break;
+			case 9: Thirst += 200; break;
+			case 10: LuckLoss += 200; break;
+			case 11: ShadesOfGrey += 200; break;
+			case 12: FaintActive += 200; break;
+			case 13: Itemcursing += 200; break;
+			case 14: DifficultyIncreased += 200; break;
+			case 15: Deafness += 200; flags.soundok = 0; break;
+			case 16: CasterProblem += 200; break;
+			case 17: WeaknessProblem += 200; break;
+			case 18: RotThirteen += 200; break;
+			case 19: BishopGridbug += 200; break;
+			case 20: UninformationProblem += 200; break;
+			case 21: StairsProblem += 200; break;
+			case 22: AlignmentProblem += 200; break;
+			case 23: ConfusionProblem += 200; break;
+			case 24: SpeedBug += 200; break;
+			case 25: DisplayLoss += 200; break;
+			case 26: SpellLoss += 200; break;
+			case 27: YellowSpells += 200; break;
+			case 28: AutoDestruct += 200; break;
+			case 29: MemoryLoss += 200; break;
+			case 30: InventoryLoss += 200; break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = 1000;
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += 200; break;
+			case 33: BloodLossProblem += 200; break;
+			case 34: BadEffectProblem += 200; break;
+			case 35: TrapCreationProblem += 200; break;
+			case 36: AutomaticVulnerabilitiy += 200; break;
+			case 37: TeleportingItems += 200; break;
+			case 38: NastinessProblem += 200; break;
+			case 39: CaptchaProblem += 200; break;
+			case 40: FarlookProblem += 200; break;
+			case 41: RespawnProblem += 200; break;
+			case 42: RecurringAmnesia += 200; break;
+			case 43: BigscriptEffect += 200; break;
+			case 44: {
+				BankTrapEffect += 200;
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += 200; break;
+			case 46: TechTrapEffect += 200; break;
+			case 47: RecurringDisenchant += 200; break;
+			case 48: verisiertEffect += 200; break;
+			case 49: ChaosTerrain += 200; break;
+			case 50: Muteness += 200; break;
+			case 51: EngravingDoesntWork += 200; break;
+			case 52: MagicDeviceEffect += 200; break;
+			case 53: BookTrapEffect += 200; break;
+			case 54: LevelTrapEffect += 200; break;
+			case 55: QuizTrapEffect += 200; break;
+			case 56: FastMetabolismEffect += 200; break;
+			case 57: NoReturnEffect += 200; break;
+			case 58: AlwaysEgotypeMonsters += 200; break;
+			case 59: TimeGoesByFaster += 200; break;
+			case 60: FoodIsAlwaysRotten += 200; break;
+			case 61: AllSkillsUnskilled += 200; break;
+			case 62: AllStatsAreLower += 200; break;
+			case 63: PlayerCannotTrainSkills += 200; break;
+			case 64: PlayerCannotExerciseStats += 200; break;
+			case 65: TurnLimitation += 200; break;
+			case 66: WeakSight += 200; break;
+			case 67: RandomMessages += 200; break;
+			case 68: Desecration += 200; break;
+			case 69: StarvationEffect += 200; break;
+			case 70: NoDropsEffect += 200; break;
+			case 71: LowEffects += 200; break;
+			case 72: InvisibleTrapsEffect += 200; break;
+			case 73: GhostWorld += 200; break;
+			case 74: Dehydration += 200; break;
+			case 75: HateTrapEffect += 200; break;
+			case 76: TotterTrapEffect += 200; break;
+			case 77: Nonintrinsics += 200; break;
+			case 78: Dropcurses += 200; break;
+			case 79: Nakedness += 200; break;
+			case 80: Antileveling += 200; break;
+			case 81: ItemStealingEffect += 200; break;
+			case 82: Rebellions += 200; break;
+			case 83: CrapEffect += 200; break;
+			case 84: ProjectilesMisfire += 200; break;
+			case 85: WallTrapping += 200; break;
+		}
+
+	}
+
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
 	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
@@ -2670,7 +2825,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation) {
+			if (u.umoved && !Levitation && (!PlayerInHighHeels || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */
@@ -2880,6 +3035,9 @@ nh_timeout()
 			break;
 		case DEAC_GLIB_COMBAT:
 			pline("You are no longer prevented from having glib combat.");
+			break;
+		case DEAC_MANALEECH:
+			pline("You are no longer prevented from having manaleech.");
 			break;
 
 		}

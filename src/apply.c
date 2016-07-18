@@ -21,6 +21,7 @@ STATIC_DCL boolean FDECL(its_dead, (int,int,int *));
 STATIC_DCL int FDECL(use_stethoscope, (struct obj *));
 STATIC_DCL void FDECL(use_whistle, (struct obj *));
 STATIC_DCL void FDECL(use_magic_whistle, (struct obj *));
+STATIC_DCL void FDECL(use_dark_magic_whistle, (struct obj *));
 STATIC_DCL void FDECL(use_leash, (struct obj *));
 STATIC_DCL int FDECL(use_mirror, (struct obj *));
 STATIC_DCL void FDECL(use_bell, (struct obj **));
@@ -385,7 +386,7 @@ struct obj *obj;
 	You(whistle_str, obj->cursed ? "shrill" : "high");
 	wake_nearby();
 
-	if (obj->cursed) { /* shrill whistling sound wakes up the entire level */
+	if (obj->cursed || !rn2(obj->blessed ? 200 : 50) ) { /* shrill whistling sound wakes up the entire level */
 
 		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (!DEADMONSTER(mtmp)) {
@@ -407,6 +408,10 @@ struct obj *obj;
 	if(obj->cursed && !rn2(2)) {
 		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 		wake_nearby();
+	} else if (!rn2(obj->blessed ? 200 : 50)) {
+		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+		wake_nearby();
+
 	} else {
 		int pet_cnt = 0;
 		You(whistle_str, Hallucination ? "normal" : "strange");
@@ -425,6 +430,37 @@ struct obj *obj;
 		    }
 		}
 		if (pet_cnt > 0) makeknown(obj->otyp);
+	}
+}
+
+/* Dark magic whistle: idea by Amy, sends pets away instead of sending them to you */
+STATIC_OVL void
+use_dark_magic_whistle(obj)
+struct obj *obj;
+{
+	register struct monst *mtmp, *nextmon;
+
+	if(obj->cursed && !rn2(2)) {
+		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		badeffect();
+	} else if (!rn2(obj->blessed ? 200 : 50)) {
+		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		badeffect();
+	} else {
+		You(whistle_str, Hallucination ? "soothing" : "terrifying");
+		for(mtmp = fmon; mtmp; mtmp = nextmon) {
+		    nextmon = mtmp->nmon; /* trap might kill mon */
+		    if (DEADMONSTER(mtmp)) continue;
+		    if (!monnear(mtmp, u.ux, u.uy)) continue;
+		    if (mtmp->mtame) {
+			if (mtmp->mtrapped) {
+			    /* no longer in previous trap (affects mintrap) */
+			    mtmp->mtrapped = 0;
+			    fill_pit(mtmp->mx, mtmp->my);
+			}
+			rloc(mtmp, FALSE);
+		    }
+		}
 	}
 }
 
@@ -1709,7 +1745,7 @@ register struct obj *obj;
 		return;
 	}
 	if (touch_petrifies(&mons[corpse->corpsenm])
-		&& !Stone_resistance && !uarmg) {
+		&& !Stone_resistance && (!uarmg || FingerlessGloves) ) {
 	    char kbuf[BUFSZ];
 
 	    if (poly_when_stoned(youmonst.data))
@@ -2955,7 +2991,7 @@ struct obj *obj;
 		    You("snatch %s %s!", s_suffix(mon_nam(mtmp)), onambuf);
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
-			    !uarmg && !Stone_resistance &&
+			    (!uarmg || FingerlessGloves) && !Stone_resistance &&
 			    !(poly_when_stoned(youmonst.data) &&
 				polymon(PM_STONE_GOLEM))) {
 			char kbuf[BUFSZ];
@@ -3948,9 +3984,29 @@ doapply()
 #endif
 	case MAGIC_WHISTLE:
 		use_magic_whistle(obj);
+		/* Amy edit: because of our design philosophy that says nothing's supposed to be permanent, give a small chance
+		 * of whistles degrading on use. They will never be vaporized, but eventually they'll become cursed. */
+		if (!rn2(50)) {
+			if (obj->blessed) unbless(obj);
+			else curse(obj);
+			pline("Your whistle seems less effective.");
+		}
+		break;
+	case DARK_MAGIC_WHISTLE:
+		use_dark_magic_whistle(obj);
+		if (!rn2(50)) {
+			if (obj->blessed) unbless(obj);
+			else curse(obj);
+			pline("Your whistle seems less effective.");
+		}
 		break;
 	case TIN_WHISTLE:
 		use_whistle(obj);
+		if (!rn2(50)) {
+			if (obj->blessed) unbless(obj);
+			else curse(obj);
+			pline("Your whistle seems less effective.");
+		}
 		break;
 	case EUCALYPTUS_LEAF:
 		/* MRKR: Every Australian knows that a gum leaf makes an */

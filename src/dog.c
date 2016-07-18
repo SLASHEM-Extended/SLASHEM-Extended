@@ -746,6 +746,12 @@ long nmv;		/* number of moves */
 		else mtmp->mhp++;
 	}
 
+	if (P_SKILL(P_RIDING) == P_SUPREME_MASTER && u.usteed && (mtmp == u.usteed) ) {
+		if (mtmp->mhp + 1 >= mtmp->mhpmax)
+		      mtmp->mhp = mtmp->mhpmax;
+		else mtmp->mhp++;
+	}
+
 	}
 }
 

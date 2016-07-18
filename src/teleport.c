@@ -984,6 +984,14 @@ level_tele()
 #endif
 							) {
 	    You_feel("very disoriented for a moment.");
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+			pline("Your helmet does not like the idea of blocked level teleportation!");
+			losexp("weeping helmet", TRUE, FALSE);
+		    /* This ignores level-drain resistance (not a bug). --Amy */
+
+		}
+
 	    return;
 	}
 	if ((Teleport_control && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */

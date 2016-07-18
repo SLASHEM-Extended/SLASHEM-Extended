@@ -20,12 +20,15 @@
 #define PN_BODY_SPELL		(-12)
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
-#define PN_MARTIAL_ARTS		(-15)
-#define PN_RIDING		(-16)
-#define PN_TWO_WEAPONS		(-17)
+#define PN_HIGH_HEELS		(-15)
+#define PN_MARTIAL_ARTS		(-16)
+#define PN_RIDING		(-17)
+#define PN_TWO_WEAPONS		(-18)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-18)
+#define PN_LIGHTSABER		(-19)
 #endif
+
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 #ifndef OVLB
 
@@ -51,7 +54,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED, 	PN_HIGH_HEELS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -75,6 +78,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "body spells",
     "matter spells",
     "bare-handed combat",
+    "high heels",
     "martial arts",
     "riding",
     "two-handed combat",
@@ -122,6 +126,8 @@ take_gold()
 int
 dosit()
 {
+
+	register struct obj *otmp;
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The sit command is currently unavailable!");
@@ -270,7 +276,7 @@ dosit()
 
 	    You(sit_message, defsyms[S_throne].explanation);
 	    if (rnd(6) > 4)  {
-		switch (rnd(19))  {
+		switch (rnd(20))  {
 		    case 1:
 			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
@@ -458,6 +464,8 @@ dosit()
 				    unrestrict_weapon_skill(P_MATTER_SPELL);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_RIDING) && yn("Do you want to learn the riding skill?")=='y') {
 				    unrestrict_weapon_skill(P_RIDING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HIGH_HEELS) && yn("Do you want to learn the high heels skill?")=='y') {
+				    unrestrict_weapon_skill(P_HIGH_HEELS);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
@@ -500,6 +508,9 @@ dosit()
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			break;
@@ -524,6 +535,26 @@ dosit()
 			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
 			break;
 			}
+		    case 20:
+			{
+			pline("You may fully identify an object!");
+
+			otmp = getobj(all_count, "secure identify");
+
+			if (!otmp) {
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (otmp) {
+				makeknown(otmp->otyp);
+				if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+				otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
+				if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
+				learn_egg_type(otmp->corpsenm);
+				prinv((char *)0, otmp, 0L);
+			}
+			}
+
 		    default:	impossible("throne effect");
 				break;
 		}
@@ -534,7 +565,7 @@ dosit()
 		    You_feel("somehow out of place...");
 	    }
 
-	    if (!rn2(3) && IS_THRONE(levl[u.ux][u.uy].typ)) {
+	    if (!rn2(6) && IS_THRONE(levl[u.ux][u.uy].typ)) {
 		/* may have teleported */
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("throne vanishes in a puff of logic.");
@@ -594,6 +625,9 @@ skillcaploss()
 		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
 	} else if (!rn2(100) && P_MAX_SKILL(skilltoreduce) == P_GRAND_MASTER) {
 		P_MAX_SKILL(skilltoreduce) = P_MASTER;
+		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+	} else if (!rn2(200) && P_MAX_SKILL(skilltoreduce) == P_SUPREME_MASTER) {
+		P_MAX_SKILL(skilltoreduce) = P_GRAND_MASTER;
 		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
 	}
 
@@ -719,7 +753,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(188)) {
+	switch(rnd(190)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1368,6 +1402,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HSight_bonus & TIMEOUT) {
 			HSight_bonus &= ~TIMEOUT;
 			You_feel("less perceptive!");
+		}
+		break;
+	case 187:
+	case 188: if (HManaleech & INTRINSIC) {
+			HManaleech &= ~INTRINSIC;
+			You_feel("less magically attuned!");
+		}
+		if (HManaleech & TIMEOUT) {
+			HManaleech &= ~TIMEOUT;
+			You_feel("less magically attuned!");
 		}
 		break;
 	default: break;

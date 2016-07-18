@@ -2696,6 +2696,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEE_INVIS].intrinsic);
 		you_are(buf);
 	}
+	if ((guaranteed || !rn2(10)) && NoManaleech) {
+		Sprintf(buf, "prevented from having manaleech");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MANALEECH].intrinsic);
+		you_are(buf);
+	}
 	if ((guaranteed || !rn2(10)) && NoTelepat) {
 		Sprintf(buf, "prevented from having telepathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
@@ -3073,6 +3078,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	/*** Vision and senses ***/
 	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
+	if ((guaranteed || !rn2(10)) && Manaleech) enl_msg(You_, "leech", "leeched", " mana");
 	if ((guaranteed || !rn2(10)) && Blind_telepat) you_are("telepathic");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are("hallu partying");
@@ -4682,6 +4688,11 @@ int final;
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEE_INVIS].intrinsic);
 		dump(youwere, buf);
 	}
+	if (NoManaleech) {
+		Sprintf(buf, "prevented from having manaleech");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MANALEECH].intrinsic);
+		dump(youwere, buf);
+	}
 	if (NoTelepat) {
 		Sprintf(buf, "prevented from having telepathy");
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
@@ -5057,6 +5068,7 @@ int final;
 
 	/*** Vision and senses ***/
 	if (See_invisible) dump("  ", "You saw invisible");
+	if (Manaleech) dump("  ", "You leeched mana");
 	if (Blind_telepat) dump(youwere, "telepathic");
 
 	if (Hallu_party) dump(youwere, "hallu partying");

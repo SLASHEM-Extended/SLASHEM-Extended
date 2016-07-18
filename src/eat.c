@@ -27,11 +27,12 @@
 #define PN_BODY_SPELL		(-12)
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
-#define PN_MARTIAL_ARTS		(-15)
-#define PN_RIDING		(-16)
-#define PN_TWO_WEAPONS		(-17)
+#define PN_HIGH_HEELS		(-15)
+#define PN_MARTIAL_ARTS		(-16)
+#define PN_RIDING		(-17)
+#define PN_TWO_WEAPONS		(-18)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-18)
+#define PN_LIGHTSABER		(-19)
 #endif
 
 #ifndef OVLB
@@ -58,7 +59,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 		PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED,	PN_HIGH_HEELS, 		PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -82,6 +83,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "body spells",
     "matter spells",
     "bare-handed combat",
+    "high heels",
     "martial arts",
     "riding",
     "two-handed combat",
@@ -2840,6 +2842,9 @@ register int pm;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("You feel no different than before.");
 

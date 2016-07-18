@@ -5876,7 +5876,7 @@ newegomon:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(120)) {
+				 switch (rnd(121)) {
 
 					case 1:
 					case 2:
@@ -6169,6 +6169,10 @@ newegomon:
 						u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having glib combat!");
 						break;
+					case 121:
+						u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having manaleech!");
+						break;
 				}
 
 			}
@@ -6352,7 +6356,7 @@ newegomon:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(120)) {
+		 switch (rnd(121)) {
 
 			case 1:
 			case 2:
@@ -6644,6 +6648,10 @@ newegomon:
 			case 120:
 				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having manaleech!");
 				break;
 			}
 
@@ -10463,6 +10471,8 @@ register boolean force, here;
 		/* important quest items are immune */
 		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS) continue;
 
+		if (rn2(2)) {
+
 			if (obj->oeroded < MAX_ERODE && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
 			else if (obj->oeroded == MAX_ERODE)
@@ -10473,7 +10483,71 @@ register boolean force, here;
 				update_inventory();
 			    
 			}
+		} else {
+
+			if (obj->oeroded2 < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+				obj->oeroded2++;
+			else if (obj->oeroded2 == MAX_ERODE)
+			{
+			    
+				pline("One of your objects withered away!");
+				delobj(obj);
+				update_inventory();
+			    
+			}
 		}
+	}
+}
+
+void
+antimatter_damage(obj, force, here)
+register struct obj *obj;
+register boolean force, here;
+{
+	struct obj *otmp;
+
+	/* Scrolls, spellbooks, potions, weapons and
+	   pieces of armor may get affected by the water */
+	for (; obj; obj = otmp) {
+		otmp = here ? obj->nexthere : obj->nobj;
+
+		(void) snuff_lit(obj);
+
+		if (stack_too_big(obj)) continue;
+
+		if (rn2(10)) continue;
+
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
+
+		/* important quest items are immune */
+		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS) continue;
+
+		if (rn2(2)) {
+
+			if (obj->oeroded < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+				obj->oeroded++;
+			else if (obj->oeroded == MAX_ERODE)
+			{
+			    
+				pline("One of your objects withered away!");
+				delobj(obj);
+				update_inventory();
+			    
+			}
+		} else {
+
+			if (obj->oeroded2 < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+				obj->oeroded2++;
+			else if (obj->oeroded2 == MAX_ERODE)
+			{
+			    
+				pline("One of your objects withered away!");
+				delobj(obj);
+				update_inventory();
+			    
+			}
+		}
+	}
 }
 
 /*
@@ -11455,7 +11529,7 @@ struct trap *ttmp;
 
 
 	/* is it a cockatrice?... */
-	if (touch_petrifies(mtmp->data) && !uarmg && !Stone_resistance) {
+	if (touch_petrifies(mtmp->data) && (!uarmg || FingerlessGloves) && !Stone_resistance) {
 		You("grab the trapped %s using your bare %s.",
 				mtmp->data->mname, makeplural(body_part(HAND)));
 

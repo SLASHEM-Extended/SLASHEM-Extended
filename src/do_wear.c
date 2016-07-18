@@ -140,6 +140,9 @@ Boots_on()
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
+	case SKY_HIGH_HEELS:
+	case PREHISTORIC_BOOTS:
+	case SYNTHETIC_SANDALS:
 		break;
 	case BOOTS_OF_MOLASSES:
 		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
@@ -167,6 +170,7 @@ Boots_on()
 	case ASS_KICKER_BOOTS:
 	case DEMENTIA_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
+	case UNFAIR_STILETTOS:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -335,6 +339,10 @@ Boots_off()
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
 	case FREEZING_BOOTS:
+	case UNFAIR_STILETTOS:
+	case SKY_HIGH_HEELS:
+	case PREHISTORIC_BOOTS:
+	case SYNTHETIC_SANDALS:
 #ifdef JEDI
 	case PLASTEEL_BOOTS:
 #endif
@@ -373,6 +381,8 @@ Cloak_on()
 	case LEO_NEMAEUS_HIDE:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
+	case CLOAK_OF_LEECH:
+	case FILLER_CLOAK:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
 	case CLOAK_OF_CONFUSION:
@@ -398,6 +408,9 @@ Cloak_on()
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
 	case CLOAK_OF_MATADOR:
+	case SPECIAL_CLOAK:
+	case PLAIN_CLOAK:
+	case ARCHAIC_CLOAK:
 
 	case CLOAK_OF_AGGRAVATION:
 	case CLOAK_OF_MAGICAL_BREATHING:
@@ -483,6 +496,7 @@ Cloak_on()
 	case VULNERABILITY_CLOAK:
 	case CLOAK_OF_INVENTORYLESSNESS:
 	case CLOAK_OF_RESPAWNING:
+	case NASTY_CLOAK:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -550,6 +564,8 @@ Cloak_off()
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
+	case CLOAK_OF_LEECH:
+	case FILLER_CLOAK:
 
 	case CLOAK_OF_AGGRAVATION:
 	case CLOAK_OF_CONFLICT:
@@ -558,6 +574,9 @@ Cloak_off()
 	case WING_CLOAK:
 	case CLOAK_OF_PREMATURE_DEATH:
 	case ANTIDEATH_CLOAK:
+	case SPECIAL_CLOAK:
+	case PLAIN_CLOAK:
+	case ARCHAIC_CLOAK:
 
 	case CLOAK_OF_UNSPELLING:
 	case ANTI_CASTER_CLOAK:
@@ -594,6 +613,7 @@ Cloak_off()
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
 	case CLOAK_OF_MATADOR:
+	case NASTY_CLOAK:
 		break;
 	case CLOAK_OF_FUMBLING:
 	    if (!oldprop && !u.fumbleduration && !(HFumbling & ~TIMEOUT))
@@ -693,6 +713,9 @@ Helmet_on()
 	case HELM_OF_DETOXIFICATION:
 	case TINFOIL_HELMET:
 	case PARANOIA_HELMET:
+	case WONDER_HELMET:
+	case POINTED_HELMET:
+	case BOG_STANDARD_HELMET:
 		break;
 	case HELM_OF_NO_DIGESTION:
 		if (!uarmh->prmcurse) {
@@ -809,6 +832,7 @@ Helmet_on()
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
+	case UNWANTED_HELMET:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
@@ -848,6 +872,9 @@ Helmet_off()
 	case HELM_OF_SAFEGUARD:
 	case HELM_OF_UNDERWATER_ACTION:
 	case HELM_OF_JAMMING:
+	case WONDER_HELMET:
+	case POINTED_HELMET:
+	case BOG_STANDARD_HELMET:
 
 	case SEDGE_HAT:
 	case SKULLCAP:
@@ -905,6 +932,7 @@ Helmet_off()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_DISCOVERY:
+	case UNWANTED_HELMET:
 	    break;
 	case FLACK_HELMET:
 	case MINING_HELM:
@@ -976,9 +1004,13 @@ Gloves_on()
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
+	case GAUNTLETS_OF_LEECH:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
 	case GAUNTLETS_OF_NO_FLICTION:
+	case ARCANE_GAUNTLETS:
+	case PLACEHOLDER_GLOVES:
+	case PROTECTIVE_GLOVES:
 		break;
 	case OILSKIN_GLOVES:
 		if (!uarmg->cursed) {
@@ -1002,6 +1034,7 @@ Gloves_on()
 	case CHAOS_GLOVES:
 	case GAUNTLETS_OF_STEALING:
 	case GAUNTLETS_OF_MISFIRING:
+	case EVIL_GLOVES:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -1030,6 +1063,15 @@ Gloves_on()
 		break;
 	default: impossible(unknown_type, c_gloves, uarmg->otyp);
     }
+
+    if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "spanish gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ispanskiy perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ispaniya qo'lqop") ) ) {
+	      if (!uarmg->cursed) {
+			curse(uarmg);
+			pline("Whoops - your %s are squeezed by these gloves!", makeplural(body_part(HAND)) );
+		}
+
+    }
+
     return 0;
 }
 
@@ -1074,9 +1116,14 @@ Gloves_off()
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
 	case GAUNTLETS_OF_FREE_ACTION:
+	case GAUNTLETS_OF_LEECH:
 	case SILVER_GAUNTLETS:
 	case GAUNTLETS_OF_FAST_CASTING:
 	case GAUNTLETS_OF_NO_FLICTION:
+	case EVIL_GLOVES:
+	case ARCANE_GAUNTLETS:
+	case PLACEHOLDER_GLOVES:
+	case PROTECTIVE_GLOVES:
 	    break;
 	case GAUNTLETS_OF_GOOD_FORTUNE:
 	    setworn((struct obj *)0, W_ARMG);
@@ -1393,6 +1440,7 @@ Amulet_on()
 	case AMULET_OF_ANTI_EXPERIENCE:
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
+	case AMULET_OF_DANGER:
 
 		if (uamul && !uamul->cursed) curse(uamul);
 
@@ -1638,6 +1686,7 @@ register struct obj *obj;
 	case RIN_FAILED_TRAINING:
 	case RIN_FAILED_EXERCISE:
 	case RIN_FAST_METABOLISM:
+	case RIN_DANGER:
 
 		if (!obj->cursed) curse(obj);
 
@@ -2618,7 +2667,7 @@ doputon()
 				break;
 			}
 		} while(!mask);
-		if (uarmg && uarmg->cursed) {
+		if (uarmg && !FingerlessGloves && uarmg->cursed) {
 			uarmg->bknown = TRUE;
 		    You("cannot remove your gloves to put on the ring.");
 			return(0);
@@ -2807,6 +2856,24 @@ find_ac()
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
 
+	if (PlayerInHighHeels) { /* extra AC --Amy */
+
+		switch (P_SKILL(P_HIGH_HEELS)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 7; break;
+
+		}
+
+	}
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya")) ) {
+		uac -= 5;
+	}
+
 	if (u.negativeprotection) uac += u.negativeprotection;
 
 	/* Harlow - make sure it doesn't wrap around ;) */
@@ -2981,7 +3048,7 @@ register struct obj *otmp;
 	    if (welded(uwep) && (otmp == uright || bimanual(uwep))) {
 		Sprintf(buf, "free a weapon %s", body_part(HAND));
 		why = uwep;
-	    } else if (uarmg && uarmg->cursed) {
+	    } else if (uarmg && !FingerlessGloves && uarmg->cursed) {
 		Sprintf(buf, "take off your %s", c_gloves);
 		why = uarmg;
 	    }

@@ -455,7 +455,7 @@ boolean forcecontrol;
 		newman();
 	else if(!polymon(mntmp)) { u.wormpolymorph = 0; return; }
 
-	if (!uarmg) selftouch("No longer petrify-resistant, you");
+	if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
 
 	/* now that the polymorph has happened (or not), reset worm that walks variable */
 	u.wormpolymorph = 0;
@@ -1028,7 +1028,7 @@ rehumanize()
 	    u.uhp = (u.uhp/2) + 1;
 	}
 
-	if (!uarmg) selftouch("No longer petrify-resistant, you");
+	if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
 	nomul(0, 0);
 
 	flags.botl = 1;

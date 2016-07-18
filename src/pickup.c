@@ -1354,7 +1354,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 	    return 1;
 #endif
 	} else if (obj->otyp == CORPSE) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& !Stone_resistance && !telekinesis) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -1375,7 +1375,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		return -1;
 	    }
 	} else if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& !Stone_resistance && !telekinesis) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2021,7 +2021,7 @@ boolean invobj;
 	}
 
 	if (obj->otyp == CORPSE) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 		 && !Stone_resistance) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2038,7 +2038,7 @@ boolean invobj;
 	}
 
 	if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 		 && !Stone_resistance) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2191,7 +2191,7 @@ register struct obj *obj;
 	if(obj->oartifact && !touch_artifact(obj,&youmonst)) return 0;
 
 	if (obj->otyp == CORPSE) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 		 && !Stone_resistance) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2208,7 +2208,7 @@ register struct obj *obj;
 	}
 
 	if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && !uarmg
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 		 && !Stone_resistance) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);

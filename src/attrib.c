@@ -72,6 +72,7 @@ const struct innate {
 
 	gam_abil[] = { {	3, &(HSleep_resistance), "awake", "tired" },
 		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more" },
+			{   23, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
@@ -145,6 +146,7 @@ const struct innate {
 		     {  1, &(HCold_resistance), "", "" },
 			{	5, &(HSleep_resistance), "awake", "tired" },
 		     {   15, &(HTeleport_control), "controlled", "helpless" },
+			{   25, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	 0, 0, 0, 0 } },
 
 	fla_abil[] = { {   1, &(HFire_resistance), "", "" },
@@ -156,6 +158,7 @@ const struct innate {
 			{	5, &(AutoDestruct), "", "" },
 			{   6, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
 			{	7, &(DSTWProblem), "", "" },
+			{     9, &(HManaleech), "magically attuned", "no longer magically attuned" },
 			{	10, &(HCorrosivity), "corrosive", "less acidic" },
 			{	12, &(FreeHandLoss), "", "" },
 			{	15, &(HSleep_resistance), "awake", "tired" },
@@ -195,6 +198,7 @@ const struct innate {
 	med_abil[] = { {	1, &(HStealth), "", "" },
 		       {	7, &(HSearching), "perceptive", "unaware" },
 			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	lad_abil[] = { {   1, &(HSleep_resistance), "", "" },
@@ -229,9 +233,11 @@ const struct innate {
 
 	dol_abil[] = { {   1, &(HPoison_resistance), "", "" },
 		     {	3, &(HWarning), "sensitive", "careless" },
+			{   9, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
-	sag_abil[] = { {  10, &(HSearching), "perceptive", "unaware" },
+	sag_abil[] = { {   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
+		     {  10, &(HSearching), "perceptive", "unaware" },
 		     {	17, &(HWarning), "sensitive", "careless" },
 		     {	 0, 0, 0, 0 } },
 
@@ -241,6 +247,7 @@ const struct innate {
 
 	aug_abil[] = { {   1, &(HTelepat), "", "" },
 		     {   1, &(HStealth), "", "" },
+			{   3, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	12, &(HWarning), "sensitive", "careless" },
 		     {   0, 0, 0, 0 } },
 
@@ -282,9 +289,11 @@ const struct innate {
 
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {	15, &(HWarning), "sensitive", "careless" },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	 0, 0, 0, 0 } },
 
 	dru_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+			{   24, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	 0, 0, 0, 0 } },
 
 	sci_abil[] = { {	 1, &(HAcid_resistance), "", "" },
@@ -301,6 +310,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "" },
+			{   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	zoo_abil[] = { {   1, &(HWarning), "", "" },
@@ -344,6 +354,7 @@ const struct innate {
 		     {  10, &(HDetect_monsters), "connected","detached" },
 		     {  15, &(HFlying), "weightless", "grounded" },
 		     {  20, &(HPasses_walls), "ethereal","mundane" },
+			{   25, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	fox_abil[] = { {   1, &(ETelepat), "", "" },
@@ -357,6 +368,7 @@ const struct innate {
 	nec_abil[] = { {   1, &(HDrain_resistance), "", "" },
 		     {   1, &(HSick_resistance), "", "" },
 		     {   3, &(HUndead_warning), "sensitive", "careless" },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	pok_abil[] = { {   1, &(HDisint_resistance), "", "" },
@@ -445,6 +457,7 @@ const struct innate {
 		     {   1, &(HUndead_warning), "", "" },
 		     {   5, &(HPoison_resistance), "hardy", "less healthy" },
 		     {	10, &(HSleep_resistance), "awake", "tired" },
+			{   24, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
@@ -458,6 +471,7 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 			{	10, &(HWarning), "sensitive", "careless" },
 			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
 			{  20, &(HTeleport_control), "controlled","uncontrolled" },
 		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
 		     {	 0, 0, 0, 0 } },
@@ -472,7 +486,8 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 #endif
 
-	wiz_abil[] = { {	15, &(HWarning), "sensitive", "careless" },
+	wiz_abil[] = { {   1, &(HManaleech), "", "" },
+			 {	15, &(HWarning), "sensitive", "careless" },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
 		     {	 0, 0, 0, 0 } },
 
@@ -513,6 +528,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	inc_abil[] = { {	1, &(HAntimagic), "", "" },
+			{   1, &(HManaleech), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	clk_abil[] = { {	1, &(HPoison_resistance), "", "" },
@@ -528,6 +544,7 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HStone_resistance), "", "" },
+			{   1, &(HManaleech), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	cor_abil[] = { {	1, &(HFlying), "", "" },
@@ -535,6 +552,7 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HStone_resistance), "", "" },
+			{   1, &(HManaleech), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	alb_abil[] = { {   1, &(HAntimagic), "", "" },
@@ -672,6 +690,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
 	tro_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -731,6 +750,7 @@ const struct innate {
 
 	jel_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
+			{   1, &(HManaleech), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
@@ -1635,6 +1655,22 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+
+		if (PlayerInHighHeels) {
+
+			switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 5; break;
+				case P_GRAND_MASTER: tmp += 7; break;
+				case P_SUPREME_MASTER: tmp += 10; break;
+
+			}
+
+		}
+
+		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) tmp += 5;
 
 		return((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_INT || x == A_WIS) {

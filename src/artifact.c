@@ -1247,7 +1247,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				hold_another_object(otmp2, "You snatched but dropped %s.",
 						   doname(otmp2), "You steal: ");
 			if (otmp2->otyp == CORPSE &&
-				touch_petrifies(&mons[otmp2->corpsenm]) && !uarmg) {
+				touch_petrifies(&mons[otmp2->corpsenm]) && (!uarmg || FingerlessGloves)) {
 				char kbuf[BUFSZ];
 
 				Sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);

@@ -2035,6 +2035,7 @@ E int FDECL(rne, (int));
 E int FDECL(rnz, (int));
 E int NDECL(randattack);
 E int NDECL(randenchantment);
+E int NDECL(randnastyenchantment);
 
 /* ### role.c ### */
 
@@ -2432,6 +2433,7 @@ E int FDECL(fire_damage, (struct obj *,BOOLEAN_P,BOOLEAN_P,XCHAR_P,XCHAR_P));
 E void FDECL(water_damage, (struct obj *,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(lethe_damage, (struct obj *,BOOLEAN_P,BOOLEAN_P));
 E void FDECL(withering_damage, (struct obj *,BOOLEAN_P,BOOLEAN_P));
+E void FDECL(antimatter_damage, (struct obj *,BOOLEAN_P,BOOLEAN_P));
 E boolean NDECL(drown);
 E void FDECL(mon_drain_en, (struct monst *, int));
 E void FDECL(drain_en, (int));

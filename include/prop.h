@@ -287,7 +287,10 @@
 #define PROJECTILES_MISFIRE 255
 #define WALL_TRAP_EFFECT 256
 
-#define SECOND_CHANCE		257
+#define MANALEECH 257
+#define DEAC_MANALEECH 258
+
+#define SECOND_CHANCE		259
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/
