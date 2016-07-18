@@ -340,6 +340,12 @@ register xchar x, y;
 		return;
 	}
 
+	if (mon->egotype_flickerer) {
+		pline("%s flickers and is impervious to melee attacks!", Monnam(mon));
+		(void) passive(mon, FALSE, 1, TRUE);
+		return;
+	}
+
 	i = -inv_weight();
 	j = weight_cap();
 

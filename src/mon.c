@@ -2506,6 +2506,32 @@ struct monst *mtmp;
 				mon_nam(mtmp));
 		} else
 			return;
+	} else if (mtmp->egotype_lifesaver && rn2(5) ) {
+		visible = u.uswallow && u.ustuck == mtmp ||
+			cansee(mtmp->mx, mtmp->my);
+		if (visible) {
+			pline("But wait...");
+			pline("%s lifesaves!", Monnam(mtmp));
+			if (attacktype(mtmp->data, AT_EXPL)
+			    || attacktype(mtmp->data, AT_BOOM))
+				pline("%s reconstitutes!", Monnam(mtmp));
+			else
+				pline("%s looks much better!", Monnam(mtmp));
+		}
+		mtmp->mcanmove = 1;
+		mtmp->mfrozen = 0;
+		if (mtmp->mtame && !mtmp->isminion) {
+			wary_dog(mtmp, FALSE);
+		}
+		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
+		mtmp->mhp = mtmp->mhpmax;
+		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
+			if (visible)
+			    pline("Unfortunately %s is still genocided...",
+				mon_nam(mtmp));
+		} else
+			return;
+
 	}
 	mtmp->mhp = 0;
 }

@@ -69,6 +69,7 @@ struct monst {
 	Bitfield(minvis,1);	/* currently invisible */
 	Bitfield(minvisreal,1);	/* really invisible - doesn't become visible even if you have see invis --Amy */
 	Bitfield(noegodesc,1);	/* no egotype description --Amy */
+	Bitfield(noegodisplay,1);	/* no egotype display --Amy */
 	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
 	Bitfield(cham,5);	/* shape-changer */
@@ -243,6 +244,21 @@ struct monst {
 	Bitfield(egotype_blinker,1);
 	Bitfield(egotype_psychic,1);
 	Bitfield(egotype_abomination,1);
+	Bitfield(egotype_gazer,1);
+	Bitfield(egotype_seducer,1); /* AD_SSEX */
+	Bitfield(egotype_flickerer,1); /* cannot be damaged in melee by the player */
+	Bitfield(egotype_hitter,1);
+	Bitfield(egotype_piercer,1);
+	Bitfield(egotype_petshielder,1); /* pets do not attack it */
+	Bitfield(egotype_displacer,1);
+	Bitfield(egotype_lifesaver,1); /* 80% chance */
+	Bitfield(egotype_venomizer,1); /* AD_VENO */
+	Bitfield(egotype_dreameater,1); /* AD_DREA */
+	Bitfield(egotype_nastinator,1); /* AD_NAST */
+	Bitfield(egotype_baddie,1); /* AD_BADE */
+	Bitfield(egotype_sludgepuddle,1); /* AD_SLUD */
+	Bitfield(egotype_vulnerator,1); /* AD_VULN */
+	Bitfield(egotype_marysue,1); /* AD_FUMB */
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */

@@ -1018,7 +1018,7 @@ unsigned *ospecial;
 	ch = monsyms[(int)mons[glyph].mlet];
 
 		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) special |= MG_EGOTYPE;
+		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) special |= MG_EGOTYPE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
 	    if (x == u.ux && y == u.uy)

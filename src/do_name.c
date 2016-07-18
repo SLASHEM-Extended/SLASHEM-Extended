@@ -775,7 +775,7 @@ boolean called;
 	    article = ARTICLE_THE;
 	}
 
-	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) {
+	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) {
 
 	    if (mtmp->egotype_thief) Sprintf(eos(buf), " Thief");
 	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " Phazer");
@@ -868,6 +868,21 @@ boolean called;
 	    if (mtmp->egotype_blinker) Sprintf(eos(buf), " Blinker");
 	    if (mtmp->egotype_psychic) Sprintf(eos(buf), " Psychic");
 	    if (mtmp->egotype_abomination) Sprintf(eos(buf), " Abomination");
+	    if (mtmp->egotype_gazer) Sprintf(eos(buf), " Gazer");
+	    if (mtmp->egotype_seducer) Sprintf(eos(buf), " Seducer");
+	    if (mtmp->egotype_flickerer) Sprintf(eos(buf), " Flickerer");
+	    if (mtmp->egotype_hitter) Sprintf(eos(buf), " Hitter");
+	    if (mtmp->egotype_piercer) Sprintf(eos(buf), " Piercer");
+	    if (mtmp->egotype_petshielder) Sprintf(eos(buf), " Petshielder");
+	    if (mtmp->egotype_displacer) Sprintf(eos(buf), " Displacer");
+	    if (mtmp->egotype_lifesaver) Sprintf(eos(buf), " Lifesaver");
+	    if (mtmp->egotype_venomizer) Sprintf(eos(buf), " Venomizer");
+	    if (mtmp->egotype_dreameater) Sprintf(eos(buf), " Dream Eater");
+	    if (mtmp->egotype_nastinator) Sprintf(eos(buf), " Nastinator");
+	    if (mtmp->egotype_baddie) Sprintf(eos(buf), " Baddie");
+	    if (mtmp->egotype_sludgepuddle) Sprintf(eos(buf), " Sludgepuddle");
+	    if (mtmp->egotype_vulnerator) Sprintf(eos(buf), " Vulnerator");
+	    if (mtmp->egotype_marysue) Sprintf(eos(buf), " Mary-Sue");
 
 	}
 

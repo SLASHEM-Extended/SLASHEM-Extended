@@ -1665,8 +1665,10 @@ int thrown;
 
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
-	    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
-	    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
+	    if (!(mon->egotype_flickerer) && !noeffect ) {
+		    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
+		    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
+	    }
 	}
 
 	if (ispoisoned) {
@@ -1761,6 +1763,11 @@ int thrown;
 		hittxt = TRUE;
 		tmp = 0;
 	    }
+	}
+
+	if (mon->egotype_flickerer) {
+		pline("%s flickers and is impervious to melee attacks!", Monnam(mon));
+	      tmp = 0;
 	}
 
         /* WAC Added instant kill from wooden stakes vs vampire */
@@ -3521,6 +3528,12 @@ register struct attack *mattk;
 	     else pline("Etot monstr ne mozhet byt' povrezhden, potomu chto Sovetskiy khochet nesmotrya vas.");
 	     tmp = 0;
 	     return 1;
+	}
+
+	if (mdef->egotype_flickerer && tmp && !DEADMONSTER(mdef)) {
+		pline("%s flickers and is impervious to melee attacks!", Monnam(mdef));
+	      tmp = 0;
+	      return 1;
 	}
 
 #ifdef SHOW_DMG

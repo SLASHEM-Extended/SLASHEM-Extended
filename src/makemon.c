@@ -11303,7 +11303,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -11432,11 +11432,27 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -11565,6 +11581,22 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 		}
 		}
 
@@ -11573,7 +11605,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -11702,10 +11734,26 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -11834,6 +11882,22 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 		}
 		}
 
@@ -11842,7 +11906,7 @@ register int	mmflags;
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -11971,10 +12035,26 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(128)) {
+		switch (rnd(144)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12103,6 +12183,22 @@ register int	mmflags;
 			case 126: mtmp->egotype_blinker = 1; break;
 			case 127: mtmp->egotype_psychic = 1; break;
 			case 128: mtmp->egotype_abomination = 1; break;
+			case 129: mtmp->egotype_gazer = 1; break;
+			case 130: mtmp->egotype_seducer = 1; break;
+			case 131: mtmp->egotype_flickerer = 1; break;
+			case 132:
+			case 133: mtmp->egotype_hitter = 1; break;
+			case 134: mtmp->egotype_piercer = 1; break;
+			case 135: mtmp->egotype_petshielder = 1; break;
+			case 136: mtmp->egotype_displacer = 1; break;
+			case 137: mtmp->egotype_lifesaver = 1; break;
+			case 138: mtmp->egotype_venomizer = 1; break;
+			case 139: mtmp->egotype_nastinator = 1; break;
+			case 140: mtmp->egotype_baddie = 1; break;
+			case 141: mtmp->egotype_dreameater = 1; break;
+			case 142: mtmp->egotype_sludgepuddle = 1; break;
+			case 143: mtmp->egotype_vulnerator = 1; break;
+			case 144: mtmp->egotype_marysue = 1; break;
 		}
 		}
 
@@ -13096,6 +13192,13 @@ register int	mmflags;
 	if (!rn2(!(u.monstertimefinish % 13334) ? 3 : !(u.monstertimefinish % 1334) ? 10 : !(u.monstertimefinish % 134) ? 30 : 100) && mtmp->minvis) mtmp->minvisreal = TRUE;
 
 	if (!rn2(!(u.monstertimefinish % 13239) ? 3 : !(u.monstertimefinish % 1329) ? 10 : !(u.monstertimefinish % 129) ? 30 : 100) ) mtmp->noegodesc = TRUE;
+
+	if (!rn2(!(u.monstertimefinish % 13239) ? 3 : !(u.monstertimefinish % 1329) ? 10 : !(u.monstertimefinish % 129) ? 30 : 100) ) mtmp->noegodisplay = TRUE;
+
+	if (issoviet && rn2(3)) {
+		mtmp->noegodesc = TRUE;
+		if (!rn2(2)) mtmp->noegodisplay = TRUE;
+	}
 
 #ifndef DCC30_BUG
 	if (mndx == PM_LONG_WORM && (mtmp->wormno = get_wormno()) != 0)
