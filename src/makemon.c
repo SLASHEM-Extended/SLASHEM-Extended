@@ -14140,6 +14140,31 @@ register struct permonst *ptr;
 	if (!rn2(2) && (tmp2 < 16) && (level_difficulty() > 99)) { tmp++; tmp2++;}
 	if (!rn2(3) && (tmp2 < 30) && (level_difficulty() > 99)) { tmp++; tmp2++;}
 
+	/* Another adjustment for rodneyans, because they're too strong. Junethack 2016 showed how much too strong, so let's
+	 * give higher levels to monsters which will hopefully enable them to sometimes survive the rodneyan's stronger
+	 * melee attacks! Although I'm fairly sure the rodneyan is still too powerful even with this change. --Amy */
+	if (Race_if(PM_RODNEYAN)) {
+
+		if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 9)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 19)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 11) && (level_difficulty() > 19)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 8) && (level_difficulty() > 29)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 16) && (level_difficulty() > 29)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 10) && (level_difficulty() > 39)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 21) && (level_difficulty() > 39)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 12) && (level_difficulty() > 49)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 24) && (level_difficulty() > 49)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 14) && (level_difficulty() > 74)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 27) && (level_difficulty() > 74)) { tmp++; tmp2++;}
+		if (!rn2(2) && (tmp2 < 16) && (level_difficulty() > 99)) { tmp++; tmp2++;}
+		if (!rn2(3) && (tmp2 < 30) && (level_difficulty() > 99)) { tmp++; tmp2++;}
+		if (!rn2(10)) {
+			tmp += rnd(10);
+			tmp2 += rnd(10);
+		}
+
+	}
+
 	if (tmp2 > 49) tmp2 = 49;		/* hard upper limit */
 	return((tmp > tmp2) ? tmp2 : (tmp > 0 ? tmp : 0)); /* 0 lower limit */
 }
