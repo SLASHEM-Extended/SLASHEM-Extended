@@ -600,6 +600,12 @@
 				  youmonst.data == &mons[PM_IT] ||\
 				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
 				  youmonst.data == &mons[PM_REFLECTION] ||\
+				  youmonst.data == &mons[PM_POISON_CREEPER] ||\
+				  youmonst.data == &mons[PM_PLAGUE_POPPY] ||\
+				  youmonst.data == &mons[PM_CARRION_VINE] ||\
+				  youmonst.data == &mons[PM_CYCLE_OF_LIFE] ||\
+				  youmonst.data == &mons[PM_SOLAR_CREEPER] ||\
+				  youmonst.data == &mons[PM_VINES] ||\
 				  youmonst.data == &mons[PM_IRIS_S_SILVER_PUMP] ||\
 				  youmonst.data == &mons[PM_DESIREE_S_COMBAT_BOOT] ||\
 				  youmonst.data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] ||\

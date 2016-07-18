@@ -1625,6 +1625,7 @@ register int pm;
 	    case PM_MASTER_NEWT:
 	    case PM_EMPEROR_NEWT:
 	    case PM_LARGE_NEWT:
+	    case PM_ORE_NEWT:
 	    case PM_SENSEI_NEWT:
 	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
@@ -1701,6 +1702,7 @@ register int pm;
 	    case PM_MASTER_TWEN:
 	    case PM_GRANDMASTER_TWEN:
 	    case PM_LARGE_TWEN:
+	    case PM_ORE_TWEN:
 	    case PM_EMPEROR_TWEN:
 	    case PM_SENSEI_TWEN:
 	    case PM_YELDUD_TWEN:

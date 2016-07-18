@@ -154,7 +154,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) /*|| mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO]*/) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO]) ) {
 				pline("%s uses %s stilettos in a very unfair way!", Monnam(mtmp), mhis(mtmp) );
 				if (!rn2(3)) pline("Your %s are scratched to the bone and your %s is squirting everywhere!", makeplural(body_part(LEG)), body_part(BLOOD) );
 				else if (!rn2(2)) pline("Your sensitive sexual organs are squeezed flat and you're gasping for air!");
@@ -164,7 +164,7 @@ on the first floor, especially when you're playing as something with drain resis
 				if (!rn2(3)) badeffect();
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) /*|| mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]*/) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) || mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]) ) {
 				pline("%s kicks you in the %s with %s very high heel!", Monnam(mtmp), body_part(HEAD), mhis(mtmp) );
 				monsterlev = ((mtmp->m_lev) + 1);
 
@@ -179,7 +179,7 @@ on the first floor, especially when you're playing as something with drain resis
 				else losehp(monsterlev, "sky-high heel", KILLED_BY_AN);
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) /*|| mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]*/) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 
@@ -616,7 +616,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(d(4,monsterlev), "kung-fu attack", KILLED_BY_AN);
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) /*|| mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL]*/ ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] ) ) {
 				if (multi >= 0) {
 					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
 					nomul(-2, "having a sexual orgasm");

@@ -4022,7 +4022,10 @@ register struct monst *mtmp;
 	    case S_GOLEM:
 		{
 			if (mm == PM_ANIMATED_WEDGE_SANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
+			else if (mm == PM_ANIMATED_SYNTHETIC_SANDAL) (void)mongets(mtmp, SYNTHETIC_SANDALS);
 			else if (mm == PM_ANIMATED_SEXY_LEATHER_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_ANIMATED_UNFAIR_STILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
+			else if (mm == PM_ANIMATED_SKY_HIGH_HEEL) (void)mongets(mtmp, SKY_HIGH_HEELS);
 			else if (mm == PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
 			else if (mm == PM_ANIMATED_LEATHER_PEEP_TOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_ANIMATED_COMBAT_STILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
@@ -4483,6 +4486,9 @@ register struct monst *mtmp;
 			if(ptr == &mons[PM_KOBOLD_DIGGER]) (void) mongets(mtmp, WAN_DIGGING);
 			if(ptr == &mons[PM_KOBOLD_ALCHEMIST]) (void) mongets(mtmp, POT_CYANIDE);
 			if(ptr == &mons[PM_INSANE_KOBOLD]) (void) mongets(mtmp, WAN_STONING);
+			if(ptr == &mons[PM_DISINTEGRATION_KOBOLD]) m_initthrow(mtmp, DART_OF_DISINTEGRATION, 20);
+			if(ptr == &mons[PM_DRILLING_KOBOLD]) m_initthrow(mtmp, DART_OF_DISINTEGRATION, 30);
+			if(ptr == &mons[PM_DISINTEGRATION_MASTER]) m_initthrow(mtmp, DART_OF_DISINTEGRATION, 50);
 
                 /* WAC gets orcish 1:4, otherwise darts
                         (used to be darts 1:4)
@@ -5560,6 +5566,27 @@ register struct	monst	*mtmp;
 	  		m_initthrow(mtmp, BULLET, 20);
 		}
 
+		if (ptr == &mons[PM_ANTIMATTER_KOMMISSIONER]) {
+			(void) mongets(mtmp, FLINTLOCK);
+	  		m_initthrow(mtmp, ANTIMATTER_BULLET, 20);
+		}
+
+		if (ptr == &mons[PM_ANTIMATTER_KCHIEF]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+	  		m_initthrow(mtmp, ANTIMATTER_BULLET, 50);
+		}
+
+		if (ptr == &mons[PM_ANTIMATTER_KATCHER]) {
+			(void) mongets(mtmp, SUBMACHINE_GUN);
+	  		m_initthrow(mtmp, ANTIMATTER_BULLET, 50);
+		}
+
+		if (ptr == &mons[PM_ANTIMATTER_KRIMINOLOGIST]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+	  		m_initthrow(mtmp, ANTIMATTER_BULLET, 50);
+	  		m_initthrow(mtmp, ANTIMATTER_BULLET, 50);
+		}
+
 		if (ptr == &mons[PM_ARMED_KOP_KCHIEF]) {
 			(void) mongets(mtmp, SHOTGUN);
 	  		m_initthrow(mtmp, SHOTGUN_SHELL, 25);
@@ -5588,6 +5615,20 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_ANTITANK_KOP]) (void) mongets(mtmp, nastymusableitem() );
+
+		if (ptr == &mons[PM_NETHER_KOP]) (void) mongets(mtmp, WAN_NETHER_BEAM);
+		if (ptr == &mons[PM_AURORA_KOP]) (void) mongets(mtmp, WAN_AURORA_BEAM);
+		if (ptr == &mons[PM_INFERNAL_KOP]) (void) mongets(mtmp, WAN_INFERNO);
+		if (ptr == &mons[PM_ICY_KOP]) (void) mongets(mtmp, WAN_ICE_BEAM);
+		if (ptr == &mons[PM_THUNDEROUS_KOP]) (void) mongets(mtmp, WAN_THUNDER);
+		if (ptr == &mons[PM_SPILL_KOP]) (void) mongets(mtmp, WAN_SLUDGE);
+		if (ptr == &mons[PM_TOXIC_KOP]) (void) mongets(mtmp, WAN_TOXIC);
+		if (ptr == &mons[PM_GAS_KOP]) (void) mongets(mtmp, WAN_CHLOROFORM);
+		if (ptr == &mons[PM_GRAVITY_KOP]) (void) mongets(mtmp, WAN_GRAVITY_BEAM);
+		if (ptr == &mons[PM_BUBBLING_KOP]) (void) mongets(mtmp, WAN_BUBBLEBEAM);
+		if (ptr == &mons[PM_DREAMING_KOP]) (void) mongets(mtmp, WAN_DREAM_EATER);
+		if (ptr == &mons[PM_NIGHTLY_KOP]) (void) mongets(mtmp, WAN_GOOD_NIGHT);
+		if (ptr == &mons[PM_HYPER_KOP]) (void) mongets(mtmp, WAN_HYPER_BEAM);
 
 		break;
 
@@ -12293,6 +12334,13 @@ register int	mmflags;
 			if (mndx == PM_CORPSER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_ROTTEN_FOOD_RATION]) set_mimic_sym(mtmp);
 
+			if (mndx == PM_POISON_CREEPER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PLAGUE_POPPY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_CARRION_VINE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_CYCLE_OF_LIFE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SOLAR_CREEPER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_VINES) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
 			break;
 
 		case S_WORM:
@@ -14508,6 +14556,7 @@ int type;
 		case PM_SPACE_TRANSPORT: return 199;
 		case PM_WEATWIND: return 199;
 		case PM_FLESH_GOLEM: return 120;
+		case PM_ANIMATED_SYNTHETIC_SANDAL: return 120;
 		case PM_BRAIN_GOLEM: return 120;
 		case PM_PETTY_BRAIN_GOLEM: return 120;
 		case PM_SPELL_GOLEM: return 130;
@@ -14554,6 +14603,7 @@ int type;
 		case PM_GRAVELER: return 250;
 		case PM_THUY_HAN: return 250;
 		case PM_RETRIEVER: return 250;
+		case PM_ANIMATED_BEAUTIFUL_SANDAL: return 250;
 		case PM_TELERETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;
@@ -14581,6 +14631,8 @@ int type;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;
+		case PM_ANIMATED_SKY_HIGH_HEEL: return 300;
+		case PM_ANIMATED_UNFAIR_STILETTO: return 350;
 		case PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP: return 350;
 		case PM_DIAMOND_GOLEM: return 270;
 		case PM_SAPPHIRE_GOLEM: return 280;
