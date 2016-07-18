@@ -137,7 +137,14 @@ boolean put_away;
 	    if (uwep) {
 		You("are empty %s.", body_part(HANDED));
 		setuwep((struct obj *) 0, put_away);
-		res++;
+		/* You can just drop your weapon and pick it back up in zero turns, so unwielding something should not
+		 * take time either.
+		 * Except in Soviet Russia of course, where dropping and picking up items isn't free, because nothing done
+		 * by the player is allowed to be free in communism. --Amy */
+		if (issoviet) {
+			res++;
+			pline("Teper' vy s pustymi rukami. Eto stoit povorot, tak kak tip bloka l'da KHE-KHE nenavidit vas.");
+		}
 	    } else
 		You("are already empty %s.", body_part(HANDED));
 	} else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && wep->otyp == CORPSE
