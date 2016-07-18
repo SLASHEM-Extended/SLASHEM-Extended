@@ -3263,7 +3263,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"A gray stone lands in your inventory! E - A GRAY STONE. YOUR MOVEMENTS ARE SLOWED SLIGHTLY BECAUSE OF YOUR LOAD.",
 	"The gnome throws an inventory loss stone!",
 	"The hobbit shoots a superscroller stone! The superscroller stone hits you!",
-
+	"The invisible choir segfaults, as the program is in disorder. Congratulations mortal, I'll grant thee the gift of #quit!",
+	"Winter is coming! Suddenly, you have no head. You die.",
+	"Jubilex spits a segfault venom! Your game is contaminated - consider using #quit!",
+	"we hate you, we wish you dead, at least we hope you suffer since we don't trust you a bit. i hope you trust as. best wishes, Rodney Co!",
+	"You drop your weapon.",
 
 };
 

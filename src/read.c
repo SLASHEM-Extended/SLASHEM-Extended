@@ -618,6 +618,9 @@ doread()
 "your an idiot",
 "zorkmid",
 "~~It's Time 2 Throw Down~~",
+"Don't worry, be happy! Amy likes all SLEX players! SMILE!!!",
+"I got lobotomized! I'm a member of Amy fan club now!",
+"I participated junethack 2016 -- TROPHY GET!",
 
 	    };
 	    char buf[BUFSZ];

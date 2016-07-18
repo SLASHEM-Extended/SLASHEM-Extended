@@ -8139,6 +8139,8 @@ struct obj *obj;
 				pline("Zapping this wand summons bugs. Don't get your hopes up - the bugs never leave corpses, so you won't be able to use this wand for creating sacrifice fodder."); break;
 			case WAN_WISHING:
 				pline("Probably the most powerful wand in existence, this one allows you to wish for an object every time you zap it. However, it can be recharged at most once."); break;
+			case WAN_DESLEXIFICATION:
+				pline("Certain monsters will be deslexified if you zap them with this wand. It can only be generated if you're playing SLASHTHEM Extended."); break;
 			case WAN_ACQUIREMENT:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Can only be recharged once, and allows you to wish for an object class."); break;
@@ -8763,6 +8765,8 @@ struct obj *obj;
 				pline("If you get hit with this, you'll lose an experience level. Monsters will probably be unphased though."); break;
 			case ACID_VENOM: 
 				pline("Hitting a monster with this thing may deal some acid damage to it."); break;
+			case SEGFAULT_VENOM: 
+				pline("This item is not dangerous in and of itself, but if you're playing the segfaulter race, guess what can happen."); break;
 
  			default: pline("Object information is still a beta feature. One day, this item will also have a description. --Amy"); break;
 

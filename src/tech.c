@@ -866,7 +866,10 @@ learntech(tech, mask, tlevel)
 	    if (tlevel < tech_list[i].t_lev)
 		tech_list[i].t_lev = tlevel;
 	    tech_list[i].t_intrinsic |= mask;
-	    tech_list[i].t_tout = 0; /* Can use immediately*/
+	    /*tech_list[i].t_tout = 0;*/ /* Can use immediately*/
+	    /* should be initialized as 0 if you newly learn it, but be saved as the earlier timeout if you level-drained
+	     * yourself and thereby lost knowledge of the tech. This is to prevent drain-for-gain exploits at XL15 - players
+	     * would certainly find out that you can use secure identify indefinitely that way... --Amy */
 	}
 	else if (tlevel < 0) {
 	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
@@ -1294,7 +1297,7 @@ dotech()
 			break;
 
 		case T_TINKER:
-			pline("You must hold an item in your hand that can be upgraded if you want to use this technique effectively. Also, it takes a very long time to upgrade an object; the duration is decreased slightly if the technique's level is lower, but monsters are still likely to interrupt you.");
+			pline("You must hold an item in your hand that can be upgraded if you want to use this technique effectively. Also, it takes a very long time to upgrade an object; the duration is decreased slightly if the technique's level is lower, but monsters are still likely to interrupt you. And if that happens, the technique will be on timeout anyway, so better lock yourself in a closet first.");
 			break;
 
 		case T_RAGE:
@@ -1729,7 +1732,7 @@ int tech_no;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
 		aggravate();
-                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
+                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/2 + 1)) + 2;
                 t_timeout = rnz(1500);
 		break;
 #ifdef STEED
@@ -2182,6 +2185,7 @@ int tech_no;
 		You("start working on %s",doname(uwep));
 		delay=-150 + techlev(tech_no);
 		set_occupation(tinker, "tinkering", 0);
+		t_timeout = rnz(200);
 		break;
 	    case T_RAGE:     	
 		/*if (Upolyd) {
@@ -2918,6 +2922,12 @@ int tech_no;
         }
         if (!can_limitbreak())
 	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/100);
+	  else if (!rn2(3))
+	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/300);
+	  else if (!rn2(2))
+	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/1000);
+	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
+
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
 	/*By default,  action should take a turn*/

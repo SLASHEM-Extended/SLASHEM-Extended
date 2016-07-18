@@ -431,6 +431,19 @@ struct obj {
 || (otmp)->otyp == WAN_SIN\
 || (otmp)->otyp == WAN_INERTIA\
 || (otmp)->otyp == WAN_TIME\
+|| (otmp)->otyp == WAN_DESLEXIFICATION\
+|| (otmp)->otyp == WAN_INFERNO\
+|| (otmp)->otyp == WAN_ICE_BEAM\
+|| (otmp)->otyp == WAN_THUNDER\
+|| (otmp)->otyp == WAN_SLUDGE\
+|| (otmp)->otyp == WAN_TOXIC\
+|| (otmp)->otyp == WAN_NETHER_BEAM\
+|| (otmp)->otyp == WAN_AURORA_BEAM\
+|| (otmp)->otyp == WAN_GRAVITY_BEAM\
+|| (otmp)->otyp == WAN_CHLOROFORM\
+|| (otmp)->otyp == WAN_DREAM_EATER\
+|| (otmp)->otyp == WAN_BUBBLEBEAM\
+|| (otmp)->otyp == WAN_GOOD_NIGHT\
 || (otmp)->otyp == WAN_HASTE_MONSTER)
 
 				

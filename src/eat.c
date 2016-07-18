@@ -3279,6 +3279,7 @@ opentin()		/* called during each move whilst opening a tin */
 	    /* check for vomiting added by GAN 01/16/87 */
 	    if(tintxts[r].nut < 0) {make_vomiting((long)rn1(15,10), FALSE);
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+			if (!issoviet) lesshungry(tintxts[r].nut);
 		}
 	    else lesshungry(tintxts[r].nut);
 

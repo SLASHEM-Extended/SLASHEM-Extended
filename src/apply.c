@@ -3496,12 +3496,16 @@ wand_explode(obj, hero_broke)
     case WAN_DEATH:
     case WAN_MISFIRE:
     case WAN_LIGHTNING:
+    case WAN_THUNDER:
     case WAN_CHARGING:
     case WAN_PSYBEAM:
+    case WAN_NETHER_BEAM:
     case WAN_SOLAR_BEAM:
+    case WAN_AURORA_BEAM:
 	dmg *= 4;
 	goto wanexpl;
     case WAN_COLD:
+    case WAN_ICE_BEAM:
 	expltype = EXPL_FROSTY;
     case WAN_HYPER_BEAM:
 	dmg *= 2;
@@ -3511,6 +3515,7 @@ wand_explode(obj, hero_broke)
 	makeknown(obj->otyp);	/* explode described the effect */
 	goto discard_broken_wand;
     case WAN_ACID:
+    case WAN_SLUDGE:
 	expltype = EXPL_NOXIOUS;
 	dmg *= 2;
 	explode(u.ux, u.uy, ZT_MAGIC_MISSILE, dmg, WAND_CLASS, expltype);
@@ -3521,6 +3526,7 @@ wand_explode(obj, hero_broke)
  */
 
     case WAN_FIRE:
+    case WAN_INFERNO:
 	dmg *= 2;
     case WAN_FIREBALL:
 	expltype = EXPL_FIERY;
@@ -3530,6 +3536,7 @@ wand_explode(obj, hero_broke)
         docall(obj);
 	goto discard_broken_wand;
     case WAN_STRIKING:
+    case WAN_GRAVITY_BEAM:
 	/* we want this before the explosion instead of at the very end */
 	pline("A wall of force smashes down around you!");
 	dmg = d(1 + obj->spe,6);	/* normally 2d12 */

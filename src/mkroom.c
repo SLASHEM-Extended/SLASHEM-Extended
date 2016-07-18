@@ -1143,13 +1143,13 @@ struct permonst *
 courtmon()
 {
 	int     i = rnz(60) + rnz(3*level_difficulty());
-	if (i > 200)            return(mkclass(S_DRAGON,0));
-	else if (i > 130)       return(mkclass(S_GIANT,0));
+	if (i > 200)      return(mkclass(S_DRAGON,0));
+	else if (i > 130) return(mkclass(S_GIANT,0));
 	else if (i > 85)	return(mkclass(S_TROLL,0));
-	else if (i > 75)	return(mkclass(S_CENTAUR,0));
-	else if (i > 60)	return(mkclass(S_ORC,0));
-	else if (i > 45)	return(&mons[PM_BUGBEAR]);
-	else if (i > 30)	return(&mons[PM_HOBGOBLIN]);
+	else if (i > 75)	return(mkclass(S_JABBERWOCK,0));
+	else if (i > 60)	return(mkclass(S_CENTAUR,0));
+	else if (i > 45)	return(mkclass(S_ORC,0));
+	else if (i > 30)	return(mkclass(S_HUMANOID,0));
 	else if (i > 15)	return(mkclass(S_GNOME,0));
 	else			return(mkclass(S_KOBOLD,0));
 }

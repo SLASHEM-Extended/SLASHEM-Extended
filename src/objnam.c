@@ -537,6 +537,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ROTATING_CHAIN, "vrashchayushchiyesya tsepi" },
 	{ TAIL_SPIKES, "khvost shipy" },
 	{ FAERIE_FLOSS_RHING, "feya muline" },
+	{ SEGFAULT_VENOM, "otrava oshibku segmentatsii" },
 	
 	{ RIN_ADORNMENT, "ukrasheniye" },
 	{ RIN_HUNGER, "golod" },
@@ -2101,6 +2102,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ROTATING_CHAIN, "qaytib zanjir" },
 	{ TAIL_SPIKES, "quyruq tikan" },
 	{ FAERIE_FLOSS_RHING, "maftun qiladigan xom ipak rishtasi" },
+	{ SEGFAULT_VENOM, "segmentatsiyasi aybi zahar" },
 	
 	{ RIN_ADORNMENT, "bezash" },
 	{ RIN_HUNGER, "ochlik" },
@@ -6287,6 +6289,8 @@ typfnd:
 				&& !wizard
 #endif
 	   ) typ = SCR_BLANK_PAPER;
+
+	if (typ == WAN_DESLEXIFICATION && !wizard && !issoviet) typ = WAN_NOTHING;
 
 	if(typ) {
 		otmp = mksobj(typ, TRUE, FALSE);

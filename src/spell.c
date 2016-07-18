@@ -400,7 +400,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    incrnknow(i);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gauntlets") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
 			    if (end_delay) {
@@ -422,7 +422,7 @@ learn()
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			incrnknow(i);
-			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'lqop purkash") ) && !rn2(2) ) incrnknow(i);
+			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
@@ -1155,6 +1155,18 @@ boolean atme;
 		} /* else fall through... */
 	/* these spells are all duplicates of wand effects */
 	case SPE_FORCE_BOLT:
+	case SPE_GRAVITY_BEAM:
+	case SPE_BUBBLEBEAM:
+	case SPE_DREAM_EATER:
+	case SPE_GOOD_NIGHT:
+	case SPE_INFERNO:
+	case SPE_ICE_BEAM:
+	case SPE_THUNDER:
+	case SPE_SLUDGE:
+	case SPE_TOXIC:
+	case SPE_NETHER_BEAM:
+	case SPE_AURORA_BEAM:
+	case SPE_CHLOROFORM:
 	case SPE_SLEEP:
 	case SPE_KNOCK:
 	case SPE_SLOW_MONSTER:

@@ -291,6 +291,12 @@ boolean artif;
 		return (mksobj(j, TRUE, artif));
 	}
 
+	else if (!rn2(100) && issoviet && oclass == WAND_CLASS) {
+
+		return(mksobj(WAN_DESLEXIFICATION, TRUE, artif));
+
+	}
+
 	else return(mksobj(i, TRUE, artif));
 }
 

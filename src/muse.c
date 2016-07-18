@@ -2854,6 +2854,19 @@ struct monst *mtmp;
 #define MUSE_WAN_LEVITATION 101
 #define MUSE_WAN_PSYBEAM 102
 #define MUSE_WAN_HYPER_BEAM 103
+#define MUSE_WAN_DESLEXIFICATION 104
+#define MUSE_WAN_INFERNO 105
+#define MUSE_WAN_ICE_BEAM 106
+#define MUSE_WAN_THUNDER 107
+#define MUSE_WAN_SLUDGE 108
+#define MUSE_WAN_TOXIC 109
+#define MUSE_WAN_NETHER_BEAM 110
+#define MUSE_WAN_AURORA_BEAM 111
+#define MUSE_WAN_GRAVITY_BEAM 112
+#define MUSE_WAN_CHLOROFORM 113
+#define MUSE_WAN_DREAM_EATER 114
+#define MUSE_WAN_BUBBLEBEAM 115
+#define MUSE_WAN_GOOD_NIGHT 116
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -2913,6 +2926,66 @@ struct monst *mtmp;
 /*WAC fixed*/
 /* [Tom] doesn't work...*/
 
+		    nomore(MUSE_WAN_INFERNO);
+		    if(obj->otyp == WAN_INFERNO && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_INFERNO;
+                    }
+		    nomore(MUSE_WAN_ICE_BEAM);
+		    if(obj->otyp == WAN_ICE_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_ICE_BEAM;
+                    }
+		    nomore(MUSE_WAN_THUNDER);
+		    if(obj->otyp == WAN_THUNDER && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_THUNDER;
+                    }
+		    nomore(MUSE_WAN_SLUDGE);
+		    if(obj->otyp == WAN_SLUDGE && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_SLUDGE;
+                    }
+		    nomore(MUSE_WAN_TOXIC);                    
+		    if(obj->otyp == WAN_TOXIC && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_TOXIC;
+                    }
+		    nomore(MUSE_WAN_NETHER_BEAM);
+		    if(obj->otyp == WAN_NETHER_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_NETHER_BEAM;
+                    }
+		    nomore(MUSE_WAN_AURORA_BEAM);
+		    if(obj->otyp == WAN_AURORA_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_AURORA_BEAM;
+                    }
+		    nomore(MUSE_WAN_GRAVITY_BEAM);
+		    if(obj->otyp == WAN_GRAVITY_BEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_GRAVITY_BEAM;
+                    }
+		    nomore(MUSE_WAN_CHLOROFORM);
+		    if(obj->otyp == WAN_CHLOROFORM && obj->spe > 0 && multi >= 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_CHLOROFORM;
+                    }
+		    nomore(MUSE_WAN_DREAM_EATER);
+		    if(obj->otyp == WAN_DREAM_EATER && obj->spe > 0 && multi < 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_DREAM_EATER;
+                    }
+		    nomore(MUSE_WAN_BUBBLEBEAM);
+		    if(obj->otyp == WAN_BUBBLEBEAM && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_BUBBLEBEAM;
+                    }
+		    nomore(MUSE_WAN_GOOD_NIGHT);
+		    if(obj->otyp == WAN_GOOD_NIGHT && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_GOOD_NIGHT;
+                    }
 		    nomore(MUSE_WAN_FIREBALL);                    
 		    if(obj->otyp == WAN_FIREBALL && obj->spe > 0) {
 			m.offensive = obj;
@@ -3360,6 +3433,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SIN;
 		}
+		nomore(MUSE_WAN_DESLEXIFICATION);
+		if(obj->otyp == WAN_DESLEXIFICATION && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_DESLEXIFICATION;
+		}
 		nomore(MUSE_WAN_FINGER_BENDING);
 		if(obj->otyp == WAN_FINGER_BENDING && obj->spe > 0 && !IsGlib) {
 			m.offensive = obj;
@@ -3454,6 +3532,7 @@ register struct obj *otmp;
 			} else if (rnd(20) < 10 + u.uac || !rn2(3) ) { /* good ac will no longer be 100% protection --Amy */
 			    pline_The("wand hits you!");
 			    tmp = d(2,12);
+			    tmp += rnd(monster_difficulty() + 1);
 			    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			    losehp(tmp, "wand of striking", KILLED_BY_AN);
 			} else pline_The("wand misses you.");
@@ -3472,6 +3551,27 @@ register struct obj *otmp;
 			miss("wand", mtmp);
 			if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 				makeknown(WAN_STRIKING);
+		}
+		break;
+	case WAN_GRAVITY_BEAM:
+		reveal_invis = TRUE;
+		if (mtmp == &youmonst) {
+			if (zap_oseen) makeknown(WAN_GRAVITY_BEAM);
+			pline("Gravity warps around you!");
+			tmp = d(6,12);
+			tmp += rnd( (monster_difficulty() * 2) + 1);
+			if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			losehp(tmp, "wand of gravity beam", KILLED_BY_AN);
+			stop_occupation();
+			nomul(0, 0);
+			phase_door(0);
+			pushplayer();
+		} else {
+			tmp = d(6,12);
+			hit("wand", mtmp, exclam(tmp));
+			(void) resist(mtmp, otmp->oclass, tmp, TELL);
+			if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
+				makeknown(WAN_GRAVITY_BEAM);
 		}
 		break;
 	case WAN_TELEPORTATION:
@@ -3859,6 +3959,51 @@ register struct obj *otmp;
 		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 			makeknown(WAN_FEAR);
 		break;
+
+	case WAN_BUBBLEBEAM:
+		if (mtmp == &youmonst) {
+			if (!Swimming && !Amphibious && !Breathless) {
+				pline("You're drowned in a stream of water bubbles and can't breathe!");
+			      tmp = d(4,12);
+			      tmp += rnd(monster_difficulty() + 1);
+			      losehp(tmp, "wand of bubblebeam", KILLED_BY_AN);
+			}
+			if (zap_oseen)
+				makeknown(WAN_BUBBLEBEAM);
+			break;
+		}
+		break;
+
+	case WAN_GOOD_NIGHT:
+		if (mtmp == &youmonst) {
+		    tmp = d(2,12);
+		    tmp += rnd(monster_difficulty() + 1);
+		    if (u.ualign.type == A_LAWFUL) tmp *= 2;
+		    if (u.ualign.type == A_CHAOTIC) tmp /= 2;
+		    if (nonliving(youmonst.data)) tmp /= 2;
+		    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+		    pline("Good night, %s!", plname);
+		    losehp(tmp, "wand of good night", KILLED_BY_AN);
+		    make_blinded(Blinded+rnz(100),FALSE);
+			if (zap_oseen)
+				makeknown(WAN_GOOD_NIGHT);
+			break;
+		}
+		break;
+
+	case WAN_DREAM_EATER:
+		if (mtmp == &youmonst) {
+			tmp = d(10, 10);
+			tmp += rnd( (monster_difficulty() * 4) + 1);
+			pline("Your dream is eaten!");
+			losehp(tmp, "wand of dream eater", KILLED_BY_AN);
+			if (zap_oseen)
+				makeknown(WAN_DREAM_EATER);
+			break;
+		}
+
+		break;
+
 	case WAN_SLOW_MONSTER:
 		if (mtmp == &youmonst) {
 			u_slow_down();
@@ -3954,9 +4099,20 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 		    bhitpos.y -= ddy;
 		    break;
 		}
+
+		if (obj->otyp == WAN_BUBBLEBEAM && !rn2(10) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) ) {
+			levl[x][y].typ = POOL;
+			/* no minliquid or drowning the player because that would be too evil --Amy */
+		}
+
+		if (obj->otyp == WAN_GOOD_NIGHT) {
+			levl[x][y].lit = 0;
+		}
+
 		if (find_drawbridge(&x,&y))
 		    switch (obj->otyp) {
 			case WAN_STRIKING:
+			case WAN_GRAVITY_BEAM:
 			    destroy_drawbridge(x,y);
 		    }
 		if(bhitpos.x==u.ux && bhitpos.y==u.uy) {
@@ -3990,6 +4146,7 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 			case WAN_OPENING:
 			case WAN_LOCKING:
 			case WAN_STRIKING:
+			case WAN_GRAVITY_BEAM:
 			    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
 				makeknown(obj->otyp);
 				/* if a shop door gets broken, add it to
@@ -4082,6 +4239,182 @@ struct monst *mtmp;
 
 		return (mtmp->mhp <= 0) ? 1 : 2;
 
+	case MUSE_WAN_INFERNO:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		pline("Your %s is singed by searing flames!", body_part(FACE));
+		if (Upolyd && u.mhmax > 1) {
+			u.mhmax--;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+		else if (!Upolyd && u.uhpmax > 1) {
+			u.uhpmax--;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		make_blinded(Blinded+rnz(100),FALSE);
+
+		buzz((int)(-21), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_ICE_BEAM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		u_slow_down();
+
+		buzz((int)(-22), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_THUNDER:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		if (!rn2(3) && multi >= 0) nomul(-rnd(3), "paralyzed by thunder");
+		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
+
+		buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_SLUDGE:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		buzz((int)(-27), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_TOXIC:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		if (!Poison_resistance) pline("You're badly poisoned!");
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+
+		buzz((int)(-26), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_NETHER_BEAM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		if (Upolyd && u.mh > 1) u.mh /= 2;
+		else if (!Upolyd && u.uhp > 1) u.uhp /= 2;
+		losehp(1, "nether beam", KILLED_BY_AN);
+
+		buzz((int)(-29), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_AURORA_BEAM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+	      (void) cancel_monst(&youmonst, otmp, FALSE, TRUE, FALSE);
+
+		buzz((int)(-28), 16 + (rnd(monster_difficulty()) / 3),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
+	case MUSE_WAN_CHLOROFORM:
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+		if (oseen) makeknown(otmp->otyp);
+		m_using = TRUE;
+		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		losehp(rnd(monster_difficulty() + 2), "chloroform", KILLED_BY);
+
+		buzz((int)(-23), 8 + (rnd(monster_difficulty()) / 6),
+			mtmp->mx, mtmp->my,
+			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		m_using = FALSE;
+		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		}
+
+		return (mtmp->mhp <= 0) ? 1 : 2;
+
 	case MUSE_WAN_HYPER_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
@@ -4154,6 +4487,10 @@ struct monst *mtmp;
 		return (mtmp->mhp <= 0) ? 1 : 2;
 /*      case MUSE_WAN_TELEPORTATION:*/
 	case MUSE_WAN_STRIKING:
+	case MUSE_WAN_GRAVITY_BEAM:
+	case MUSE_WAN_BUBBLEBEAM:
+	case MUSE_WAN_DREAM_EATER:
+	case MUSE_WAN_GOOD_NIGHT:
 	case MUSE_WAN_SLOW_MONSTER:
 	case MUSE_WAN_INERTIA:
 	case MUSE_WAN_FEAR:
@@ -5879,6 +6216,35 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_DESLEXIFICATION:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if (rn2(2) || !ishaxor) otmp->spe--;
+
+		/* You are being deslexified, because even in soviet mode you're still technically playing slex. --Amy */
+
+		if (Upolyd && u.mh > 1) u.mh /= 2;
+		else if (!Upolyd && u.uhp > 1) u.uhp /= 2;
+		losehp(1, "deslexification beam", KILLED_BY_AN);
+		switch (rnd(10)) { /* These fallthroughs are intentional. --Amy */
+			case 1: badeffect();
+			case 2: badeffect();
+			case 3: badeffect();
+			case 4: badeffect();
+			case 5: badeffect();
+			case 6: badeffect();
+			case 7: badeffect();
+			case 8: badeffect();
+			case 9: badeffect();
+			case 10: badeffect();
+			break;
+		}
+
+		if (oseen) makeknown(WAN_DESLEXIFICATION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_DRAIN_MANA:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -6293,7 +6659,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(202)) {
+	switch (rn2(214)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -6497,6 +6863,19 @@ struct monst *mtmp;
 		case 199: return WAN_FIRE;
 		case 200: return WAN_COLD;
 		case 201: return WAN_LIGHTNING;
+		case 202: return WAN_INFERNO;
+		case 203: return WAN_ICE_BEAM;
+		case 204: return WAN_THUNDER;
+		case 205: return WAN_SLUDGE;
+		case 206: return WAN_TOXIC;
+		case 207: return WAN_NETHER_BEAM;
+		case 208: return WAN_AURORA_BEAM;
+		case 209: return WAN_GRAVITY_BEAM;
+		case 210: return WAN_CHLOROFORM;
+		case 211: return WAN_DREAM_EATER;
+		case 212: return WAN_BUBBLEBEAM;
+		case 213: return WAN_GOOD_NIGHT;
+
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -7920,6 +8299,10 @@ struct obj *obj;
 		return (boolean)(monstr[monsndx(mon->data)] < 6);
 	    if (objects[typ].oc_dir == RAY ||
 		    typ == WAN_STRIKING ||
+		    typ == WAN_GRAVITY_BEAM ||
+		    typ == WAN_BUBBLEBEAM ||
+		    typ == WAN_DREAM_EATER ||
+		    typ == WAN_GOOD_NIGHT ||
 		    typ == WAN_BANISHMENT ||
 		    typ == WAN_TELEPORTATION ||
 		    typ == WAN_CREATE_MONSTER ||
@@ -7955,6 +8338,7 @@ struct obj *obj;
 		    typ == WAN_CORROSION ||
 		    typ == WAN_FUMBLING ||
 		    typ == WAN_SIN ||
+		    typ == WAN_DESLEXIFICATION ||
 		    typ == WAN_FINGER_BENDING ||
 		    typ == WAN_DRAIN_MANA ||
 		    typ == WAN_TIDAL_WAVE ||

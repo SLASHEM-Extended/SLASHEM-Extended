@@ -1360,10 +1360,38 @@ doengrave()
 				   surface(u.ux, u.uy));
 			}
 			break;
+		    case WAN_GRAVITY_BEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs are driven into the %s!",
+				   surface(u.ux, u.uy));
+			}
+			break;
 		    case WAN_STONING:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s turn into gravel!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_DREAM_EATER:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s seem unaffected.", /* because they're not asleep --Amy */
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_BUBBLEBEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s are covered with bubbles!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_GOOD_NIGHT:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s look very drowsy!",
 				   surface(u.ux, u.uy));
 			}
 			break;
@@ -1381,6 +1409,21 @@ doengrave()
 				   surface(u.ux, u.uy));
 			}
 			break;
+		    case WAN_SLUDGE:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s seem to be covered with litter!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_DESLEXIFICATION:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s seem unaffected.",
+				   surface(u.ux, u.uy));
+		/* bugs on the floor are not a slex feature, and therefore the wand does nothing to them --Amy */
+			}
+			break;
 		    case WAN_WIND:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
@@ -1395,10 +1438,24 @@ doengrave()
 				   surface(u.ux, u.uy));
 			}
 			break;
+		    case WAN_AURORA_BEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s are illuminated with rainbow colors!",
+				   surface(u.ux, u.uy));
+			}
+			break;
 		    case WAN_PSYBEAM:
 			if (!Blind) {
 			   Sprintf(post_engr_text,
 				   "The bugs on the %s seem utterly confused!",
+				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_NETHER_BEAM:
+			if (!Blind) {
+			   Sprintf(post_engr_text,
+				   "The bugs on the %s are killed!",
 				   surface(u.ux, u.uy));
 			}
 			break;
@@ -1517,6 +1574,7 @@ doengrave()
 
 		    /* can't tell sleep from death - Eric Backus */
 		    case WAN_SLEEP:
+		    case WAN_CHLOROFORM:
 		    case WAN_DEATH:
 		    case WAN_PARALYSIS:
 			if (!Blind) {
@@ -1530,6 +1588,12 @@ doengrave()
 			if (!Blind)
 			    Strcpy(post_engr_text,
 				"A few ice cubes drop from the wand.");
+			if(!oep || (oep->engr_type != BURN))
+			    break;
+		    case WAN_ICE_BEAM:
+			if (!Blind)
+			    Strcpy(post_engr_text,
+				"A steady stream of ice shoots from the wand.");
 			if(!oep || (oep->engr_type != BURN))
 			    break;
 		    case WAN_CANCELLATION:
@@ -1582,6 +1646,16 @@ doengrave()
 			}
 			break;
 
+		    case WAN_TOXIC:	/*new wand [Sakusha]*/
+			ptext = TRUE;
+			type  = MARK;
+			if(!objects[otmp->otyp].oc_name_known) {
+			    if (flags.verbose)
+				pline("This %s is a wand of toxic!", xname(otmp));
+			    doknown = TRUE;
+			}
+			break;
+
 		    /* type = BURN wands */
 		    case WAN_FIRE:
 			ptext = TRUE;
@@ -1589,6 +1663,18 @@ doengrave()
 			if(!objects[otmp->otyp].oc_name_known) {
 			if (flags.verbose)
 			    pline("This %s is a wand of fire!", xname(otmp));
+			    doknown = TRUE;
+			}
+			Strcpy(post_engr_text,
+				Blind ? "You feel the wand heat up." :
+					"Flames fly from the wand.");
+			break;
+		    case WAN_INFERNO:
+			ptext = TRUE;
+			type  = BURN;
+			if(!objects[otmp->otyp].oc_name_known) {
+			if (flags.verbose)
+			    pline("This %s is a wand of inferno!", xname(otmp));
 			    doknown = TRUE;
 			}
 			Strcpy(post_engr_text,
@@ -1625,6 +1711,22 @@ doengrave()
 			if(!objects[otmp->otyp].oc_name_known) {
 			    if (flags.verbose)
 				pline("This %s is a wand of lightning!",
+					xname(otmp));
+			    doknown = TRUE;
+			}
+			if (!Blind) {
+			    Strcpy(post_engr_text,
+				    "Lightning arcs from the wand.");
+			    doblind = TRUE;
+			} else
+			    Strcpy(post_engr_text, "You hear crackling!");
+			break;
+		    case WAN_THUNDER:
+			ptext = TRUE;
+			type  = BURN;
+			if(!objects[otmp->otyp].oc_name_known) {
+			    if (flags.verbose)
+				pline("This %s is a wand of thunder!",
 					xname(otmp));
 			    doknown = TRUE;
 			}

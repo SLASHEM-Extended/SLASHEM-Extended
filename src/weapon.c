@@ -358,6 +358,7 @@ struct monst *mon;
 		case VOULGE:		tmp += rnd(4); break;
 
 		case ACID_VENOM:
+		case SEGFAULT_VENOM:
 		case HALBERD:
 		case SPETUM:		tmp += rnd(6); break;
 
@@ -457,6 +458,7 @@ struct monst *mon;
 		case RED_LIGHTSABER: 	tmp +=6; break;
 #endif
 
+		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
@@ -679,6 +681,7 @@ struct monst *mon;
 		case VOULGE:		tmp += rnd(4); break;
 
 		case ACID_VENOM:
+		case SEGFAULT_VENOM:
 		case HALBERD:
 		case SPETUM:		tmp += rnd(6); break;
 
@@ -778,6 +781,7 @@ struct monst *mon;
 		case RED_LIGHTSABER: 	tmp +=6; break;
 #endif
 
+		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
