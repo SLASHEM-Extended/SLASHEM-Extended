@@ -157,6 +157,8 @@ int prop;
 			return "double attacks";
 		case QUAD_ATTACK:
 			return "quad attacks";
+		case MANALEECH:
+			return "manaleech";
 		default:
 			return "Team Nastytrap";
 
@@ -3700,8 +3702,8 @@ register struct obj *obj;
 	if (obj->oclass == WEAPON_CLASS && is_poisonable(obj) && obj->opoisoned)
 		Strcpy(buf, "poisoned ");
 
-	if (obj_is_pname(obj))
-	    goto nameit;
+	/*if (obj_is_pname(obj))
+	    goto nameit;*/
 	switch (obj->oclass) {
 	    case AMULET_CLASS:
 		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() )
