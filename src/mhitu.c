@@ -1763,7 +1763,7 @@ mattacku(mtmp)
 			/* Note: breamu takes care of displacement */
 			break;
 		case AT_SPIT:
-			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_TCKL) )
+			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_NAST) )
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 

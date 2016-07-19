@@ -1203,6 +1203,15 @@ dospit()
 		case AD_DRST:
 		    otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
 		    break;
+		case AD_DRLI:
+		    otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
+		    break;
+		case AD_TCKL:
+		    otmp = mksobj(TAIL_SPIKES, TRUE, FALSE);
+		    break;
+		case AD_NAST:
+		    otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+		    break;
 		default:
 		    pline("bad attack type in do_spit");
 		    /* fall through */

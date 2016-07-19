@@ -1052,6 +1052,9 @@ register struct attack *mattk;
 		    case AD_DRLI:
 			otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
 			break;
+		    case AD_NAST:
+			otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+			break;
 		    case AD_TCKL:
 			otmp = mksobj(TAIL_SPIKES, TRUE, FALSE);
 			break;

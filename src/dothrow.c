@@ -949,6 +949,9 @@ boolean hitsroof;
 		pline("%s hits the %s.", Doname2(obj), ceiling(u.ux, u.uy));
 		breakmsg(obj, !Blind);
 		breakobj(obj, u.ux, u.uy, TRUE, TRUE);
+		if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+		}
 		return FALSE;
 	}
 	almost = "";
@@ -1396,6 +1399,9 @@ int thrown;
 		    tmp_at(DISP_END, 0);
 		    breakmsg(obj, cansee(bhitpos.x, bhitpos.y));
 		    breakobj(obj, bhitpos.x, bhitpos.y, TRUE, TRUE);
+			if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
+ 			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+			}
 		    return;
 		}
 		if(flooreffects(obj,bhitpos.x,bhitpos.y,"fall")) return;
@@ -1805,6 +1811,10 @@ int thrown;
 		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == SEGFAULT_VENOM || otyp == TAIL_SPIKES) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
 	    (void) hmon(mon, obj, thrown?thrown:3);
+		if (issegfaulter && otyp == SEGFAULT_VENOM) { /* segfault panic! */
+ 			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+		}
+
 	    return 1;	/* hmon used it up */
 
 	} else if (obj->oclass == POTION_CLASS &&
