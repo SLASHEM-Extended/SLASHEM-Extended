@@ -3212,7 +3212,7 @@ struct obj *otmp;
 	else if (otmp->oclass == GEM_CLASS && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
 	else if (otmp->oclass == TOOL_CLASS && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
       else makeknown(otmp->otyp);
-    if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+    if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
     otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
     if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 	learn_egg_type(otmp->corpsenm);
@@ -3232,7 +3232,7 @@ struct obj *otmp;
 	else if (otmp->oclass == GEM_CLASS && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
 	else if (otmp->oclass == TOOL_CLASS && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
       else if (rn2(3)) makeknown(otmp->otyp);
-    if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+    if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
     if (rn2(3)) otmp->known = 1;
     if (rn2(3)) otmp->dknown = 1;
     if (rn2(3)) otmp->bknown = 1;

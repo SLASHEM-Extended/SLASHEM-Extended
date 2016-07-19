@@ -547,7 +547,7 @@ dosit()
 			}
 			if (otmp) {
 				makeknown(otmp->otyp);
-				if (otmp->oartifact) discover_artifact((xchar)otmp->oartifact);
+				if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
 				otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
 				if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 				learn_egg_type(otmp->corpsenm);

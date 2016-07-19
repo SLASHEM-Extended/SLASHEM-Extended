@@ -19,7 +19,7 @@ STATIC_DCL struct artifact artilist[];
 extern boolean notonhead;	/* for long worms */
 
 #define get_artifact(o) \
-		(((o)&&(o)->oartifact) ? &artilist[(int) ((unsigned char) (o)->oartifact)] : 0)
+		(((o)&&(o)->oartifact) ? &artilist[(int) ((unsigned int) (o)->oartifact)] : 0)
 /* big thanks to Chris, I'd never have found out that the "unsigned char" part would fix the bug where
  * any artifacts after #127 were segfaulting and giving random effects instead of the desired ones... --Amy */
 
@@ -325,7 +325,7 @@ register boolean mod;
 	    for (a = artilist+1; a->otyp; a++)
 		if (a->otyp == otmp->otyp && !strcmp(a->name, name)) {
 		    register int m = a - artilist;
-		    otmp->oartifact = (char)(mod ? m : 0);
+		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
 		    if (mod) {
 			/* Light up Candle of Eternal Flame and
 			 * Holy Spear of Light on creation.

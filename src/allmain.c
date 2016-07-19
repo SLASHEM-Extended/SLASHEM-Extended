@@ -1276,6 +1276,11 @@ moveloop()
 			forget(1 + rn2(5));
 		}
 
+		if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
+			pline("Your evil female battle boot drills into your mind with its spikes!");
+			forget(1 + rn2(5));
+		}
+
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));

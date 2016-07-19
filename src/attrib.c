@@ -1684,6 +1684,14 @@ int x;
 		if (have_lowstatstone()) tmp -= 10;
 
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
+	} else if (x == A_DEX) {
+
+		if (uwep && uwep->oartifact == ART_SUREFIRE_GUN) tmp += (3 + uwep->spe);
+
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+
 	} else {
 
 		if (AllStatsAreLower) tmp -= 10;
