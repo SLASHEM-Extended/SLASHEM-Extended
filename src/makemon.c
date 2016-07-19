@@ -14592,6 +14592,7 @@ int type;
 		case PM_SAURON_THE_IMPRISONED: return 200;
 		case PM_ANIMATED_LEATHER_PEEP_TOE: return 250;
 		case PM_ANIMATED_ROLLER_BLADE: return 260;
+		case PM_IRONMAN: return 240;
 		case PM_IRON_GOLEM: return 240;
 		case PM_TIN_MAN: return 240;
 		case PM_THE_BORSHIN: return 240;
@@ -14666,7 +14667,7 @@ int type;
 		case PM_TIN_GOLEM: return 40;
 		case PM_RESIN_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;
-		default: {impossible("undefined golem %d?",type); return 30;} /* failsafe so undefined golems don't start with zero hp! --Amy */
+		default: {impossible("undefined golem %d?",type); return (mons[type].mlevel * 10);} /* failsafe so undefined golems don't start with zero hp! --Amy */
 	}
 }
 
