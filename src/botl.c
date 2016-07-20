@@ -116,7 +116,7 @@ struct color_option color_option;
 			term_end_attr(i);
 }
 
-static
+/*static*/
 void
 apply_color_option(color_option, newbot2, statusline)
 struct color_option color_option;
@@ -135,7 +135,7 @@ add_colored_text(text, newbot2)
 const char *text;
 char *newbot2;
 {
-	char *nb;
+	register char *nb;
 	struct color_option color_option;
 
 	if (*text == '\0') return;
@@ -305,7 +305,7 @@ botl_player()
 {
     static char player[MAXCO];
     char *nb;
-    int i=0,k;
+    int i=0,k=0;
     char mbot[MAXCO - 15];
 
     Strcpy(player, "");
