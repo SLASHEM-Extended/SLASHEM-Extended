@@ -2365,8 +2365,14 @@ register struct obj	*sobj;
 		}
 		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */
 		if (!otmp->enchantment && !rn2(sobj->blessed ? 10 : 20) && s > 0) {
+
+			long savewornmask;
 			otmp->enchantment = randenchantment();
 			pline("Your %s seems to have gained special magical properties!", xname(otmp) );
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			setworn(otmp, savewornmask);
+
 		}
 
 		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
@@ -5164,7 +5170,11 @@ retry:
 					p_glow2(otmp, NH_RED);
 				} else {
 					if (!otmp->enchantment) {
+						long savewornmask;
 						otmp->enchantment = randenchantment();
+						savewornmask = otmp->owornmask;
+						setworn((struct obj *)0, otmp->owornmask);
+						setworn(otmp, savewornmask);
 						p_glow2(otmp, NH_GOLDEN);
 					} else pline("A feeling of loss comes over you.");
 				}
