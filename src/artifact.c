@@ -542,6 +542,10 @@ long wp_mask;
 	    if(on) ESearching |= wp_mask;
 	    else ESearching &= ~wp_mask;
 	}
+	if (spfx & SPFX_SEEK) {
+	    if(on) ESearching |= wp_mask;
+	    else ESearching &= ~wp_mask;
+	}
 	if (spfx & SPFX_HALRES) {
 	    /* make_hallucinated must (re)set the mask itself to get
 	     * the display right */
