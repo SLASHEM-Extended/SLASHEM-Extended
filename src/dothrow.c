@@ -77,6 +77,7 @@ int thrown;
 	struct obj *otmp;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (Double_attack) multishot *= 2;
 	if (Quad_attack) multishot *= 4;
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;

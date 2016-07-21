@@ -1301,6 +1301,8 @@ struct monst *mon;
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SUPREME_MASTER)) bonus += 5;
 		}
 
+		if (objects[otmp->otyp].oc_skill == P_WHIP && uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) bonus += 10;
+
 	    /* if the weapon is going to get a double damage bonus, adjust
 	       this bonus so that effectively it's added after the doubling */
 	    if (bonus > 1 && otmp->oartifact && spec_dbon(otmp, mon, 25) >= 25)

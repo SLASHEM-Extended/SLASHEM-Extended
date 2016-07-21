@@ -492,6 +492,8 @@ register struct monst *mtmp;
 	if (u.twoweap && (P_RESTRICTED(P_TWO_WEAPON_COMBAT) )) tmp -= (issoviet ? 20 : rnd(20) );
 	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
 
+	if (uarmh && uarmh->oartifact == ART_DARK_NADIR) tmp += 5;
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
 	if (tmp < -127) tmp = -127; /* fail safe */
@@ -843,6 +845,9 @@ martial_dmg()
         else damage += 2;
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks qo'lqoplari") ) ) damage += 1;
+
+	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
+	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
 
 	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
 	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */

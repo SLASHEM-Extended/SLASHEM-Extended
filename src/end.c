@@ -769,11 +769,8 @@ int how;
 		return;
 	}
 
-	/* Troll characters have a chance of reviving. --Amy */
-	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
+	if (uarmg && uarmg->oartifact == ART_COME_BACK_TO_LIFE && rn2(2)) {
 		pline("But wait...");
-	    losexp("failed troll revival", TRUE, FALSE);
-	    losexp("failed troll revival", TRUE, FALSE);
 		pline("You come back to life!");
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
@@ -791,6 +788,24 @@ int how;
 	if (uarmu && how < GENOCIDED && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR) && uarmu->cursed && !rn2(4) ) {
 		pline("But wait...");
 		pline("For some reason, you're not dead!");
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		return;
+
+	}
+
+	/* Troll characters have a chance of reviving. --Amy */
+	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
+		pline("But wait...");
+	    losexp("failed troll revival", TRUE, FALSE);
+	    losexp("failed troll revival", TRUE, FALSE);
+		pline("You come back to life!");
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;

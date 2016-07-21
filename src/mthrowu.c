@@ -153,6 +153,8 @@ const char *name;	/* if null, then format `obj' */
 
 		}
 
+		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarms->cursed) shieldblockrate /= 2;

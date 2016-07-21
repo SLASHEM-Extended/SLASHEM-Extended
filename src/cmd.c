@@ -3039,6 +3039,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		}
 
+		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarms->cursed) shieldblockrate /= 2;
@@ -5027,6 +5029,8 @@ int final;
 		default: shieldblockrate = 0; /* we don't want to call impossible from here --Amy */
 
 		}
+
+		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 

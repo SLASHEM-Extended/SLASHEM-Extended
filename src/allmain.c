@@ -847,6 +847,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1) /* roman clothing just generally slows you down */
+				moveamt /= 2;
+
 			if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rim fuqarosi kavushlari") ) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
 				moveamt /= 2;
 
@@ -952,6 +955,8 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+
 			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
 			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
 			if (PlayerInHighHeels && !rn2(10) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += NORMAL_SPEED / 2;
@@ -1052,6 +1057,16 @@ moveloop()
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (uarmc && (uarmc->oartifact == ART_INA_S_LAB_COAT) && !rn2(100) && multi >= 0) {
+
+			pline("You faint from anorexia.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
 		}
@@ -2422,6 +2437,15 @@ moveloop()
 			}
 
 			if (uarmh && !rn2(1000) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+				else pline("You feel very disoriented but decide to move on.");
+
+			}
+
+			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_BANK_OF_CROSSRO) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");

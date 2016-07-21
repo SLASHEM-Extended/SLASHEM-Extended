@@ -719,7 +719,7 @@ docast()
 {
 	int spell_no;
 
-	if (u.antimagicshell || Role_if(PM_UNBELIEVER) ) {
+	if (u.antimagicshell || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

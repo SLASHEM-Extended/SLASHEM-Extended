@@ -618,7 +618,7 @@ long wp_mask;
 	    vision_full_recalc = 1;
 	}
 	/* KMH -- Reflection when wielded */
-	if ((spfx & SPFX_REFLECT) && (wp_mask & W_WEP)) {
+	if ((spfx & SPFX_REFLECT)) { /* fix by Chris_ANG - why the heck was this on being wielded only??? */
 	    if (on) EReflecting |= wp_mask;
 	    else EReflecting &= ~wp_mask;
 	}

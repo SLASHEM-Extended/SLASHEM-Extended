@@ -529,6 +529,26 @@ Cloak_on()
 		}
 	}
 
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_LAB_COAT) {
+		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
+		curse(uarmc);
+	}
+
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_BROKEN_WINGS) {
+		pline("A terrible black glow surrounds your nonfunctional wings and roots you to the ground.");
+		curse(uarmc);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_RITA_S_DECEPTIVE_MANTLE) {
+		if (!uarmc->cursed) curse(uarmc);
+		if (uarmc->spe > -10) uarmc->spe = -10;
+		/* No message. Quite the deceptive little girl, Rita giggles while her victims happily run around not knowing
+		 * that the item they just equipped became cursed -10. And she especially wants to see your face when you
+		 * open your inventory 1000 turns later and discover what happened! :-P --Amy
+		 * To clarify: Rita does not actually WEAR this thing.	
+		 * She made it to lure in unsuspecting victims of course! */
+	}
+
     return 0;
 }
 
@@ -837,6 +857,25 @@ Helmet_on()
 		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
     }
+
+    if (uarmh && uarmh->oartifact == ART_DARK_NADIR) {
+		if (!uarmh->cursed) {
+		    if (Blind)
+			pline("%s for a moment.", Tobjnam(uarmh, "vibrate"));
+		    else
+			pline("%s %s for a moment.",
+			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
+			curse(uarmh);
+		}
+		litroomlite(FALSE);
+    }
+
+    if (uarmh && uarmh->oartifact == ART_FORMFILLER) {
+		if (!uarmh->cursed) curse(uarmh);
+		uarmh->hvycurse = 1;
+		/* base item is a "nasty" item, and by definition those give no messages upon cursing themselves --Amy */
+    }
+
     return 0;
 }
 
@@ -1070,6 +1109,28 @@ Gloves_on()
 			pline("Whoops - your %s are squeezed by these gloves!", makeplural(body_part(HAND)) );
 		}
 
+    }
+
+    if (uarmg && uarmg->oartifact == ART_AFK_MEANS_ASS_FUCKER) {
+	      if (!uarmg->cursed) {
+			curse(uarmg);
+			pline("afk (ass-fucker)");
+		}
+    }
+
+    if (uarmg && uarmg->oartifact == ART_FLICTIONLESS_COMBAT) {
+	      u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
+		if (!tech_known(T_BLESSING)) {
+		    	learntech(T_BLESSING, FROMOUTSIDE, 1);
+		    	pline("Suddenly, you know how to use the blessing technique!");
+		} else pline("You feel that these gloves would have taught you how to use the blessing technique if you didn't already knew it.");
+    }
+
+    if (uarmg && uarmg->oartifact == ART_ARABELLA_S_BANK_OF_CROSSRO) {
+		if (!uarmg->cursed) curse(uarmg);
+		uarmg->hvycurse = 1;
+		/* She lures you in with her unsuspecting bank, but then you realize that this bank just deletes all of
+		 * your money... and since "banishmentitis" isn't a thing, you gain levelteleportitis instead. --Amy */
     }
 
     return 0;
@@ -1379,6 +1440,11 @@ Armor_on()
 			makeknown(uarm->otyp);
 			break;
 	}
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
+		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+
     return 0;
 }
 
@@ -2883,6 +2949,10 @@ find_ac()
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya")) ) {
 		uac -= 5;
 	}
+
+	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_COW_ENCHANTMENT) uac -= 9;
+	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 

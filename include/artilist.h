@@ -389,7 +389,7 @@ A("Dockside Walk",			WEDGED_LITTLE_GIRL_SANDAL,
 	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
 	PHYS(2,5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Karate Kid",			SOFT_GIRL_SNEAKER,
+A("Karate Kid",			SOFT_GIRL_SNEAKER, /* free action */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
@@ -401,7 +401,7 @@ A("Armor-Piercing Hug",			HUGGING_BOOT,
 	(SPFX_RESTR|SPFX_DEFN|SPFX_PROTEC), 0, 0,
 	PHYS(50,1), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Asian Winter",			HUGGING_BOOT,
+A("Asian Winter",			HUGGING_BOOT, /* aggravate monster */
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
 	COLD(4,9), DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
 
@@ -429,11 +429,11 @@ A("Massive But Lovely",			SEXY_LEATHER_PUMP,
 	(SPFX_RESTR|SPFX_STLTH), 0, 0,
 	PHYS(6,9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Sweetheart Pump",			SEXY_LEATHER_PUMP,
+A("Sweetheart Pump",			SEXY_LEATHER_PUMP, /* psi resistance */
 	(SPFX_RESTR), 0, 0,
 	PHYS(15,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT,
+A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT, /* aggravate monster, can cause amnesia when wielded */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_SEARCH), 0, 0,
 	PHYS(0,16), DFNS(AD_ELEC), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
@@ -453,7 +453,7 @@ A("Fire Leader",			PARTISAN,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_LUCK), 0, 0,
 	FIRE(9,12), NO_DFNS, NO_CARY, UNTRAP, A_NEUTRAL, NON_PM, NON_PM, 11200L ),
 
-A("Fumata Yari",			SPETUM,
+A("Fumata Yari",			SPETUM, /* makes the player very fast when wielded */
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
 	ACID(2,8), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
 
@@ -461,7 +461,7 @@ A("Non-Sucker",			RANSEUR,
 	(SPFX_RESTR), 0, 0,
 	PHYS(6,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Dimoak's Hew",			BARDICHE,
+A("Dimoak's Hew",			BARDICHE, /* blindness resistance */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
@@ -517,7 +517,7 @@ A("Static Stick",			MARE_TRIDENT,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
 	ELEC(4,7), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("The People-Eating Trident",			MANCATCHER,
+A("The People-Eating Trident",			MANCATCHER, /* sight bonus */
 	(SPFX_RESTR|SPFX_DCLAS|SPFX_WARN), 0, S_HUMAN,
 	PHYS(8,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
 
@@ -525,7 +525,7 @@ A("Madeline's Guardian",			PARASOL, /* Pokemon Emerald */
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
-A("Penguin's Thrusting Sword",		UMBRELLA, /* It sure looks like a sword to me! --Amy */
+A("Penguin's Thrusting Sword",		UMBRELLA, /* It sure looks like a sword to me! --Amy also, conveys flying */
 	(SPFX_RESTR), 0, 0,
 	PHYS(12,9), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 500L ),
 
@@ -561,11 +561,11 @@ A("Desert Eagle",			PISTOL,
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Ingram Mac-10",			SUBMACHINE_GUN,
+A("Ingram Mac-10",			SUBMACHINE_GUN, /* makes the player very fast when wielded */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
-A("FN M249 Para",			HEAVY_MACHINE_GUN,
+A("FN M249 Para",			HEAVY_MACHINE_GUN, /* aggravate monster */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -604,6 +604,538 @@ A("Doomguy's Wet Dream",			BFG,
 A("Grand Daddy",			ROCKET_LAUNCHER,
 	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(20,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Extra Firepower",			BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Demon Machine",			DEMON_CROSSBOW, /* infravision when wielded */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(6,6), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("ICBM",			HELO_CROSSBOW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9900L ),
+
+A("Bearkiller",			CROSSBOW_BOLT,
+	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_THICK_HIDE,
+	PHYS(5,25), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Puncture Missile",			DART,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_HUMAN,
+	PHYS(8,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Instant Death",			DART_OF_DISINTEGRATION,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Needle-like the new log",			SHURIKEN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(7,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Catwomanbane",			BATARANG,
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_SPEAK), 0, S_FELINE,
+	PHYS(10,40), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Doctor Jones' Aid",			BULLWHIP,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DCLAS), 0, S_SNAKE,
+	PHYS(5,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Cruel Punisher",			STEEL_WHIP, /* grants aggravate monster */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(2,6), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+
+A("Bristly String",			ROSE_WHIP, /* monsters take 1d4 damage if they melee you */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(3,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Police Brutality",			RUBBER_HOSE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Demonstrants Go Home",			RUBBER_HOSE,
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_DEFN|SPFX_WARN), 0, S_HUMAN,
+	PHYS(6,8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("We Are Not Oppressive",			RUBBER_HOSE,
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	PHYS(8,8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Death To Shoplifters",			RUBBER_HOSE,
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS), 0, S_HUMAN,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Legendary Shirt",			KYRT_SHIRT,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Sexy Convicts",			STRIPED_SHIRT,
+	(SPFX_RESTR|SPFX_ESP|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Nobility Worldwide",			RUFFLED_SHIRT,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Peace Advocate",			RUFFLED_SHIRT, /* free action while worn */
+	(SPFX_RESTR|SPFX_WARN|SPFX_DCLAS), 0, S_HUMAN,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gentle-Soft Clothing",			VICTORIAN_UNDERWEAR, /* poison and disintegration resistance while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Helen's Discarded Shirt",			VICTORIAN_UNDERWEAR, /* aggravate monster while worn */
+	(SPFX_RESTR|SPFX_TCTRL|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Antimagic Shell",			VICTORIAN_UNDERWEAR, /* prevents spellcasting */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Memorial Garments",			VICTORIAN_UNDERWEAR, /* versus curses and keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Total Control",			VICTORIAN_UNDERWEAR, /* resist confusion and stun */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Victoria Is Evil But Pretty",			VICTORIAN_UNDERWEAR, /* polymorph control and manaleech */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Medical Power Armor Prototype",			FULL_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_SPEAK|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, HEALING, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("As Heavy As It Is Ugly",			BRONZE_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Volume Armament",			SPLINT_MAIL, /* superscrolling screen effect */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Fucking Orichalcum",			OLIHARCON_SPLINT_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Stealth Suit",			ELVEN_MITHRIL_COAT,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Little Big Midget",			GNOMISH_SUIT, /* grants free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Cathan's Network",			CHAIN_MAIL, /* increases STR by its enchantment value +3 */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Fly Like An Eagle",			FEATHER_ARMOR, /* flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Pretty Little Magical Girl",			SCHOOL_UNIFORM, /* manaleech if worn by a female char */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Playboy With Ears",			BUNNY_UNIFORM, /* increases CHA by its enchantment value +5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Antisepsis Coat",			NURSE_UNIFORM, /* sickness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Falcet",			SCALE_MAIL,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4400L ),
+
+A("Superescape Mail",			RING_MAIL, /* autocurses when worn, disables fire resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Grayscale Wanderer",			LEATHER_ARMOR, /* shades of grey effect */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_WARN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("CD Rome Arena",			ELVEN_TOGA, /* slows the player down */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Chastity Armor",			CONSORT_S_SUIT, /* prevents you from contracting STD */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Laura Croft's Battlewear",			LEATHER_JACKET, /* like d-type equipment, prevents lava from harming player */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Offense Owns Defense",			ROBE, /* double attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Protection With A Price",			ROBE_OF_WEAKNESS, /* stun resistance and 5 extra points of AC */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Cute Idea",			ORANGE_DRAGON_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("All Hail The Mighty RNG",			PURPLE_DRAGON_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_LUCK|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Ho-Oh's Feathers",			SKY_DRAGON_SCALE_MAIL, /* aggravate monster and conflict */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 20000L ),
+
+A("Upgrade This",			MERCURIAL_DRAGON_SCALES,
+	(SPFX_RESTR|SPFX_SEEK|SPFX_SPEAK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Don Suicune Does Not Approve",			PLATINUM_DRAGON_SCALES, /* aggravate monster and random nasty effects */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Pretty Puff",			SAPPHIRE_DRAGON_SCALES,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Invisible Visibilitity",			MUMMY_WRAPPING, /* the Amy is a troll and makes this thing grant invis :P */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Visible Invisibilitity",			MUMMY_WRAPPING, /* see invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Blackcloak",			ORCISH_CLOAK,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+
+A("Eveline's Lab Coat",			LAB_COAT,
+	(SPFX_RESTR|SPFX_STLTH|SPFX_LUCK), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Ina's Lab Coat",			LAB_COAT, /* hunger, random fainting, and disintegration/sickness resistance; autocurses */
+	(SPFX_RESTR|SPFX_SPEAK|SPFX_SEEK), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Superman's Super Suit",			SUPER_MANTLE, /* quad attacks */
+	(SPFX_RESTR|SPFX_REGEN|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Full Wings",			WINGS_OF_ANGEL, /* flying */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Broken Wings",			DUMMY_WINGS, /* disables the flying intrinsic, aggravates monsters, and causes intrinsic freezing; autocurses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5L ),
+
+A("Acquired Poison Resistance",			POISONOUS_CLOAK, /* poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("It's A Wonderful Failure",			CLOAK_OF_DEATH,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Rita's Deceptive Mantle",			CLOAK_OF_FUMBLING, /* autocurses and sets its enchantment to -10 when worn! */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Stunted Helper",			MANACLOAK,
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Insufficient Protection",			CLOAK_OF_MATADOR,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Memory Aid",			CLOAK_OF_UNSPELLING, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Frequent But Weak Status",			HEAVY_STATUS_CLOAK, /* resist confusion and stun */
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("A Reason To Live",			YELLOW_SPELL_CLOAK, /* deactivates teleport control */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Full Moon Tonight",			VULNERABILITY_CLOAK,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("All-In-One Ascension Kit",			CLOAK_OF_INVENTORYLESSNESS, /* also magic and drain resistance */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Radar Cloak",			CLOAK_OF_RESPAWNING,
+	(SPFX_RESTR|SPFX_ESP|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hostes Ad Pulverem Ferire",			SPAWN_CLOAK, /* increase STR/DEX by enchantment value +5 */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Uberjackal Effect",			ADOM_CLOAK, /* aggravate monster */
+	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Variatio Delectat",			EGOIST_CLOAK, /* does nothing special - just meant to annoy lawful players who hoped for a good sacrifice gift */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Speedrunner's Dream",			CLOAK_OF_TIME, /* makes the player very fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Can't Kill What You Can't See",			EERIE_CLOAK, /* see invis and makes you invisible */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Image Projector",			CLOAK_OF_NAKEDNESS, /* displacement */
+	(SPFX_RESTR|SPFX_TCTRL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Silent Noise",			CLOAK_OF_AGGRAVATION,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dark Angels",			CLOAK_OF_CONFLICT, /* flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
+
+A("Skills Beat Stats",			CLOAK_OF_STAT_LOCK, /* faster skill training */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Baron Von Richthofen's Premiere",			WING_CLOAK,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("RNG's Gamble",			CLOAK_OF_PREMATURE_DEATH,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Fightright",			GNOMISH_HELM,
+	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 200L ),
+
+A("Vitamin B",			HELM_OF_LOSE_IDENTIFICATION,
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 600L ),
+
+A("Spectral Resistance",			COLOR_CONE, /* resist fire, cold, elec, poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 7500L ),
+
+A("Giant WOK",			DENTED_POT,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Playboy Supplement",			BUNNY_EAR, /* increases CHA by its enchantment value +5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Real Speed Devil",			SPEEDWAGON_S_HAT, /* makes the player very fast and adds extra speed sometimes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Royal Tiara",			CROWN,
+	(SPFX_RESTR|SPFX_ESP|SPFX_TCTRL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Functional Radio",			ANTENNA, /* works like radio helmet */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Warner Brother",			PLASTEEL_HELM,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
+
+A("Dark Nadir",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Loving Deity",			HELM_OF_OPPOSITE_ALIGNMENT,
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("COW Enchantment",			HELM_OF_DETECT_MONSTERS, /* 9 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 900L ),
+
+A("Thor's Mythical Helmet",			HELM_OF_STORMS,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Clang Compilation",			HELM_OF_STEEL,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Surface-To-Air Site",			FLACK_HELMET, /* +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Massive Cranium",			CRYSTAL_HELM,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Burger Eater",			HELM_OF_HUNGER,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Omniscient",			HELMET_OF_UNDEAD_WARNING,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Spacewarp",			HELM_OF_TELEPORTATION,
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dictatorship",			HELM_OF_TELEPORT_CONTROL, /* also gives polymorph control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Safe Insecurity",			HELM_OF_OBSCURED_DISPLAY,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("You Are Already Dead",			BLACKY_HELMET, /* also magic and drain resistance */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 20000L ),
+
+A("Shpx Guvf Fuvg",			CYPHER_HELM, /* also unbreathing */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Go Other Place",			HELM_OF_BAD_ALIGNMENT, /* teleportitis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Beeswax Helmet",			SOUNDPROOF_HELMET,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Low Local Memory",			OUT_OF_MEMORY_HELMET, /* free action and drain resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Severe Aggravation",			ANGER_HELM, /* aggravate monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Formfiller",			CAPTCHA_HELM, /* heavily curses itself when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Stone Erosion",			HELM_OF_AMNESIA, /* petrification resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Blinding Fog",			DIMMER_HELMET, /* blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Big Bonnet",			WAR_HAT, /* poison resistance */
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Eulogy's Eulogy",			BOOGEYMAN_HELMET,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Mind Shielding",			TINFOIL_HELMET, /* stun resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Conspiracy Theory",			PARANOIA_HELMET,
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2300L ),
+
+A("Box Fist",			LEATHER_GLOVES, /* +5 unarmed damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Swing Less Cast More",			GAUNTLETS_OF_PANIC,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Molass Tank",			GAUNTLETS_OF_SLOWING, /* 10 extra points of AC */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Science Fliction",			OILSKIN_GLOVES,
+	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("AFK Means Ass-Fucker",			GAUNTLETS_OF_TYPING, /* autocurses, monsters with AD_SEDU or similar attacks have +12 speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Signons Steel Total",			GAUNTLETS_OF_STEEL, /* resist poison, cold, stone */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Double Luck",			GAUNTLETS_OF_GOOD_FORTUNE,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Plug And Pray",			GAUNTLETS_OF_PLUGSUIT,
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Gauntlets of Slaying",			GAUNTLETS, /* increase STR and DEX by enchantment +3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Iris's Precious Metal",			SILVER_GAUNTLETS, /* demons are spawned peaceful 90% of the time while you wear these */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 9000L ),
+
+A("Flictionless Combat",			GAUNTLETS_OF_NO_FLICTION, /* putting them on for the first time gives you the blessing technique but also permanent itemcursing! */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Come Back To Life",			MENU_NOSE_GLOVES, /* 50% chance of life saving while wearing them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("ScrollScrollScroll",			CONFUSING_GLOVES, /* increased drop rate of standard id and similar scrolls */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sealed Knowledge",			GAUNTLETS_OF_MISSING_INFORMATI,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_REFLECT|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fifty Shades Of Fucked Up",			SADO_MASO_GLOVES, /* +5 damage unarmed, +10 damage while wielding a whip */
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Arabella's Bank of Crossroads",			BANKING_GLOVES, /* levelteleportitis, heavily curse themselves when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Out Of Control",			CHAOS_GLOVES, /* give teleportitis and disable tele control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shadowdisk",			SMALL_SHIELD, /* blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Lurtz's Wall",			URUK_HAI_SHIELD, /* 20% boost to block rate, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,
