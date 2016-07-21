@@ -14370,7 +14370,7 @@ register int otyp;
 	int spe;
 
 	if (!otyp) return 0;
-	otmp = mksobj(otyp, TRUE, FALSE);
+	otmp = mksobj(otyp, TRUE, rn2(50) ? FALSE : TRUE);
 	if (otmp) {
 	    if (mtmp->data->mlet == S_DEMON) {
 		/* demons never get blessed objects */
