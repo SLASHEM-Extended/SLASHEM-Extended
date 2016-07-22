@@ -189,6 +189,8 @@ moveloop()
 			/* make sure we don't fall off the bottom */
 			if (monclock < 15) { monclock = 15; }
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) monclock /= 5;
+			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) monclock /= 5;
+			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4;
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
@@ -223,6 +225,8 @@ moveloop()
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 12000) { xtraclock = 12000; }
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
+			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
+			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) xtraclock /= 4;
 			if (ishaxor) xtraclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
@@ -1063,12 +1067,25 @@ moveloop()
 
 		if (uarmc && (uarmc->oartifact == ART_INA_S_LAB_COAT) && !rn2(100) && multi >= 0) {
 
+			if (!strncmpi(plname, "Ina", 3)) {
+			/* There is of course no corresponding real-life Ina. --Amy */
+
+			pline("Your terrible eating disorder causes you to faint.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
+			afternmv = unfaintX;
+
+			} else {
+
 			pline("You faint from anorexia.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from anorexia");
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
+			}
+	
 		}
 
 		/* safety check in case the hero somehow manages to survive genociding themselves --Amy */
@@ -1180,6 +1197,13 @@ moveloop()
 		}
 
 		if ( Itemcursing && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
@@ -1539,6 +1563,44 @@ moveloop()
 			boolean rumoristrue = rn2(2);
 
 			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
+
+			if (rumoristrue) outrumor(1, BY_OTHER);
+			else outrumor(-1, BY_OTHER);
+
+			if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
+
+				if (rumoristrue) {
+
+					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					badeffect();
+
+				} else {
+
+					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+
+				}
+
+			} else { /* player said it's true */
+
+				if (rumoristrue) {
+
+					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+
+				} else {
+
+					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					badeffect();
+
+				}
+
+			}
+
+		}
+
+		if (!rn2(100) && uarmf && uarmf->oartifact == ART_RIDDLE_ME_THIS) {
+			boolean rumoristrue = rn2(2);
+
+			pline("Alright, riddle me this: Is the following rumor true or not?");
 
 			if (rumoristrue) outrumor(1, BY_OTHER);
 			else outrumor(-1, BY_OTHER);

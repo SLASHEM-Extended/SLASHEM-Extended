@@ -2530,6 +2530,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_VAMPIRIC_SNEAKER) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deadly cloak") && !rn2(1000) ) {
 		pline("Your deadly cloak saps your life!");

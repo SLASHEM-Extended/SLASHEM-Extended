@@ -432,6 +432,13 @@ struct obj *instr;
 	    } /* else FALLTHRU */
 	case TOOLED_HORN:		/* Awaken or scare monsters */
 	    You("produce a frightful, grave sound.");
+
+	    if (instr && instr->oartifact == ART_VUVUZELA) {
+		wake_nearby();
+		aggravate();
+		pline("In fact, the sound of your vuvuzela is so annoying, I bet the entire dungeon population wants to flog you now.");
+	    }
+
 	    awaken_monsters(u.ulevel * 30);
 
 	    switch (rn2(16)) {

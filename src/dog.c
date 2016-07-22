@@ -171,6 +171,7 @@ boolean quietly;
 	if (otmp) { /* figurine; resulting monster might not become a pet */
 	    chance = rn2(5);	/* 0==tame, 1==peaceful, 2==hostile */
 	    if (chance > 2) chance = otmp->blessed ? 0 : !otmp->cursed ? 1 : 2;
+	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
 	    /* 0,1,2:  b=60%,20,20; nc=20%,60,20; c=20%,20,60 */
 	    if (chance > 0) {
 		mtmp->mtame = 0;	/* not tame after all */
@@ -1092,7 +1093,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 		}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || have_hatestone() ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || have_hatestone() ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}

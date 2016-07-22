@@ -3044,6 +3044,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 
@@ -3324,7 +3325,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
-	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER))) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) )) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if ((guaranteed || !rn2(10)) && Lifesaved)
@@ -5038,6 +5039,7 @@ int final;
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 
@@ -5282,7 +5284,7 @@ int final;
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, "reflection");
 	if (Free_action) dump(youhad, "free action");
-	if (Fixed_abil || Race_if(PM_SUSTAINER)) dump(youhad, "fixed abilities");
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
 	if (Lifesaved)

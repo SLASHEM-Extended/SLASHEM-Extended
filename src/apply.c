@@ -69,6 +69,15 @@ use_camera(obj)
 		pline(nothing_happens);
 		return (1);
 	}
+	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) {
+		register struct monst *mtmp2;
+		for(mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+		    if (DEADMONSTER(mtmp2)) continue;
+		    if(cansee(mtmp2->mx,mtmp2->my))
+			  monflee(mtmp2, rnd(10), FALSE, FALSE);
+		}
+	}
+
 	consume_obj_charge(obj, TRUE);
 
 	if (obj->cursed && !rn2(2)) {
@@ -88,6 +97,8 @@ use_camera(obj)
 		obj->ox = u.ux,  obj->oy = u.uy;
 		(void) flash_hits_mon(mtmp, obj);
 	}
+	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) pline("Your flash scares nearby monsters!");
+
 	return 1;
 }
 #endif
@@ -135,6 +146,10 @@ use_towel(obj)
 		case 0:
 		    break;
 		}
+	}
+
+	if (obj && obj->oartifact == ART_ANSWER_IS___) {
+		badeffect();
 	}
 
 	if (Glib) {
@@ -879,6 +894,7 @@ struct obj *obj;
 		    pline ("%s admires herself in your mirror.", Monnam(mtmp));
 		    pline ("She takes it!");
 		} else pline ("It steals your mirror!");
+		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND) mtmp->mpeaceful = 1;
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj,FALSE);
@@ -1792,6 +1808,11 @@ register struct obj *obj;
 		else if ( (obj->oeroded == 1 || obj->oeroded2 == 1) && !rn2(10) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
+	    if (obj && obj->oartifact == ART_YASDORIAN_S_TROPHY_GETTER) {
+		can->cursed = 0;
+		can->blessed = 1;
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+	    }
 
 	    can->owt = weight(can);
 	    can->known = 1;
@@ -1829,6 +1850,12 @@ struct obj *obj;
 	    trouble_count, unfixable_trbl, did_prop, did_attr, did_atno;
 	int trouble_list[PROP_COUNT + ATTR_COUNT];
 	int chance;	/* KMH */
+
+	if (obj && obj->oartifact == ART_DARKENING_THING) {
+		if (!rn2(5)) pline("You produce an annoying sound.");
+		wake_nearby();
+		aggravate();
+	}
 
 	/* higher chance for vaporizing the horn as a centaur --Amy */
 	if (obj && !obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
@@ -2282,6 +2309,7 @@ struct obj *obj;
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
 			if (otmp->greased < 3) otmp->greased += 1;
+			if (obj && obj->oartifact == ART_VIBE_LUBE) otmp->greased = 3;
 			if (obj->cursed && !nohands(youmonst.data)) {
 			    incr_itimeout(&Glib, rnd(15));
 			    pline("Some of the grease gets all over your %s.",

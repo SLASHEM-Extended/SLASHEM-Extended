@@ -10273,6 +10273,7 @@ register boolean force, here;
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(4) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 
 		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;

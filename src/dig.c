@@ -316,6 +316,7 @@ dig()
 	}
 
 	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosion(uwep) + u.udaminc + (Drunken_boxing && Confusion);
+	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
 #ifdef LIGHTSABERS

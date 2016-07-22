@@ -231,12 +231,82 @@ Boots_on()
 
     }
 
+    if (uarmf && !Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) {
+		if (!(u.monstertimefinish % 20)) { /* 1 in 20 games */
+			u.temprecursion = 0;
+			u.temprecursiontime = 0;
+			u.oldrecursionrole = -1;
+			u.oldrecursionrace = -1;
+			flags.initrole = 11;
+			urole = roles[11];
+
+			pline("You turn into a Binder!");
+		} else {
+			curse(uarmf);
+			uarmf->hvycurse = 1;
+			u.ugangr += 3;
+			pline("You hear a frightening crash in the distance...");
+		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("A demonic aura envelopes your boots.");
+		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			if (!strncmpi(plname, "Ella", 4)) pline("You finally got your bloodthirsty footwear back! They immediately make sure they won't get separated from you.");
+			else pline("You decided to pretend to be Ella? Now prove it!");
+		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			uarmf->hvycurse = 1;
+			pline("As you put on these erotic mocassins, you immediately get all wet and horny. They're sooooooo cute!!! And they also emit a beguiling (but vile) stench that completely prevents you from resisting their beauty. Thankfully they are enchanted (or cursed?) in a way that makes it very difficult to take them off again.");
+		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
+		pline("Your incredibly beautiful footwear speaks:");
+		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected skin to shreds. Keep wearing us if you want to avoid a bloodbath!", plname);
+    }
+
+    if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT && uarmf->spe < 0) {
+		uarmf->spe = 0;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) {
+		uarmf->hvycurse = 1; /* already autocursed above */
+		pline("Manuela put a terrible curse on this beautiful pair of red block-heeled combat boots.");
+    }
+
+    if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("Your boots feel deathly cold. But seriously, you did expect them to autocurse, right?");
+		}
+    }
+
+
     return 0;
 }
 
 int
 Boots_off()
 {
+    if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
+		pline("You angered your beautiful lilac pumps!");
+		pline("In a terrible blood rush, they scratch up and down your legs again and again. Your blood squirts everywhere while the tender, but very sharp-edged heel is destroying every shred of your skin it can reach.");
+		losexp("being scratched to death by an angry pair of lilac pumps", TRUE, FALSE);
+		pline("Frustrated, the lovely leather pumps settle down.");
+    }
+
     int otyp = uarmf->otyp;
     long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
@@ -354,6 +424,7 @@ Boots_off()
 
 	default: impossible(unknown_type, c_boots, otyp);
     }
+
     cancelled_don = FALSE;
     return 0;
 }
@@ -1303,6 +1374,58 @@ Shield_on()
 	default: impossible(unknown_type, c_shield, uarms->otyp);
     }
 */
+
+    if (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) {
+		if (!uarms->cursed) {
+			curse(uarms);
+			pline("Your dreams are shattered as the shield becomes cursed.");
+		}
+    }
+    if (uarms && uarms->oartifact == ART_BURNING_DISK) {
+		if (!uarms->cursed) {
+			curse(uarms);
+			pline("Searing flames of evilness surround your shield.");
+		}
+
+    }
+    if (uarms && uarms->oartifact == ART_TYPE_OF_ICE_BLOCK_HATES_YO) {
+		if (!uarms->cursed) {
+			curse(uarms);
+			pline("'HAEHAEHAEHAEHAEHAEHAE!!!', the type of ice block says and curses your shield.");
+		}
+
+    }
+    if (uarms && uarms->oartifact == ART_NUMBED_CAN_T_DO) {
+		if (!uarms->cursed) {
+			curse(uarms);
+			pline("A numbing aura surrounds your shield and welds it to your body!");
+		}
+
+    }
+    if (uarms && uarms->oartifact == ART_VENOMAT) {
+		if (!uarms->cursed) {
+			curse(uarms);
+			pline("Looks like you're going to wear this venomous shield for a while...");
+		}
+
+    }
+
+    if (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) {
+		if (!uarms->cursed) {
+			curse(uarms);
+		}
+    }
+    if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) {
+		if (!uarms->cursed) {
+			curse(uarms);
+		}
+    }
+    if (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) {
+		if (!uarms->cursed) {
+			curse(uarms);
+		}
+    }
+
     return 0;
 }
 
@@ -1601,6 +1724,13 @@ Amulet_on()
 		}
 		break;
     }
+
+    if (uamul && uamul->oartifact == ART___TH_NAZGUL) {
+		curse(uamul);
+		uamul->hvycurse = 1;
+		pline("Mortal creatures cannot master such a powerful amulet, and are therefore afflicted by a dark, evil curse!");
+    }
+
 }
 
 void
@@ -1873,6 +2003,27 @@ register struct obj *obj;
 		}
 		break;
     }
+
+    if (obj->oartifact == ART_RING_OF_WOE) {
+		curse(obj);
+		obj->hvycurse = obj->prmcurse = 1;
+		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_EAT_MORE_KITTENS) {
+		if (!obj->cursed) {
+			curse(obj);
+			pline("You become like the antichrist, and in order to prevent you from clearing your name, the ring curses itself.");
+		}
+    }
+
+    if (obj->oartifact == ART_CRYLOCK) {
+		curse(obj);
+		obj->hvycurse = 1;
+		pline("Black tears drop from the ring...");
+    }
+
+
 }
 
 STATIC_OVL void
@@ -2048,6 +2199,17 @@ register struct obj *otmp;
 	    setuqwep((struct obj *) 0);
 	setworn(otmp, W_TOOL);
 	on_msg(otmp);
+
+	if (otmp && otmp->oartifact == ART_BLINDFOLD_OF_MISPELLING) {
+		if (!otmp->cursed) {
+			curse(otmp);
+			pline("Yur bldnflt crrrss tsefl!!!!!111");
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_ANSWER_IS___) {
+		badeffect();
+	}
 
 	if (Blind && !already_blind) {
 	    changed = TRUE;
@@ -2953,6 +3115,12 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_COW_ENCHANTMENT) uac -= 9;
 	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;
+	if (uarms && uarms->oartifact == ART_AEAEAEAEAEGIS) uac -= 10;
+	if (uarms && uarms->oartifact == ART_WHANG_CLINK_CLONK) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) uac -= 5;
+	if (uleft && uleft->oartifact == ART_CRYLOCK) uac -= 10;
+	if (uright && uright->oartifact == ART_CRYLOCK) uac -= 10;
+	if (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) uac -= 5;
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 

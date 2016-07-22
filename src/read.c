@@ -2195,7 +2195,7 @@ register struct obj	*sobj;
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
 
-	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || have_confusionstone() ) {
+	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
 
 	    pline("Suddenly you're very confused!");
 	    make_confused(HConfusion + 2, FALSE);
@@ -2517,6 +2517,12 @@ register struct obj	*sobj;
 	case SPE_CONFUSE_MONSTER:
 		if (confused) break;
 	case SCR_CONFUSE_MONSTER:
+
+		if (sobj->oartifact == ART_IBM_GUILD_MANUAL) {
+		      u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
+			pline("Thomas Biskup hates you and all other players!!!");
+		}
+
 		if(youmonst.data->mlet != S_HUMAN || sobj->cursed) {
 			if(!HConfusion) You_feel("confused.");
 			make_confused(HConfusion + rnd(100),FALSE);

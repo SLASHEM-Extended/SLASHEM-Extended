@@ -2906,7 +2906,7 @@ register struct obj *wand;
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	wand->spe--;
+	if (!rn2(2) || !wand->oartifact) wand->spe--;
 	return 1;
 }
 
@@ -3012,6 +3012,27 @@ newboss:
 			forget( ALL_SPELLS | ALL_MAP);
 			known = TRUE;
 		    exercise(A_WIS, FALSE);
+
+		    if (obj && obj->oartifact == ART_NOT_KNOWN_ANYMORE) {
+			struct obj *otmpSC;
+			pline("You may fully identify an object!");
+
+			otmpSC = getobj(all_count, "secure identify");
+
+			if (!otmpSC) {
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (otmpSC) {
+				makeknown(otmpSC->otyp);
+				if (otmpSC->oartifact) discover_artifact((int)otmpSC->oartifact);
+				otmpSC->known = otmpSC->dknown = otmpSC->bknown = otmpSC->rknown = 1;
+				if (otmpSC->otyp == EGG && otmpSC->corpsenm != NON_PM)
+				learn_egg_type(otmpSC->corpsenm);
+				prinv((char *)0, otmpSC, 0L);
+			}
+
+		    }
 
 		break;
 
@@ -7147,7 +7168,30 @@ register int dx,dy;
 				dy = 0;
 			    }
 
+			} else if (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
 			} else if (uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) {
+
+			    dx = rn1(3, -1);	/*-1, 0, 1*/
+			    dy = rn1(3, -1);	/*-1, 0, 1*/
+
+			} else if (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/
 			    dy = rn1(3, -1);	/*-1, 0, 1*/

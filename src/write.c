@@ -337,6 +337,12 @@ found:
 	}
 	new_obj->blessed = (curseval > 0);
 	new_obj->cursed = (curseval < 0);
+	if (pen && pen->oartifact == ART_PEN_OF_RANDOMNESS) {
+		new_obj->blessed = 0;
+		new_obj->cursed = 0;
+		if (!rn2(3)) new_obj->blessed = 1;
+		else if (!rn2(2)) new_obj->cursed = 1;
+	}
 	new_obj->selfmade = TRUE;
 #ifdef MAIL
 	if (new_obj->otyp == SCR_MAIL) new_obj->spe = 1;

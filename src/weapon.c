@@ -3242,6 +3242,8 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
+
 	if (Role_if(PM_TRANSSYLVANIAN) && weapon && weapon_type(weapon) == P_HAMMER){
 
 		bonus += rnd(2);

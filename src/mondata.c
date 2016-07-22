@@ -313,6 +313,9 @@ boolean
 sticks(ptr)	/* creature sticks other creatures it hits */
 	register struct permonst *ptr;
 {
+	if ((ptr == youmonst.data) && uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS) return 1;
+	/* I guess this can very rarely cause bugs if a monster is the same species as you... --Amy */
+
 	return((boolean)(dmgtype(ptr,AD_STCK) || dmgtype(ptr,AD_WRAP) ||
 		attacktype(ptr,AT_HUGS)));
 }

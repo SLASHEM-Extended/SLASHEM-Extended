@@ -154,6 +154,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (uarms->spe > 0) shieldblockrate += (uarms->spe * 2);
 

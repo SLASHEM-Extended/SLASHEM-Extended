@@ -2336,7 +2336,7 @@ turn_undead()
 		return(0);
 	}
 
-	if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) {
+	if ( (Inhell && !Race_if(PM_HERETIC) || !(uwep && uwep->oartifact == ART_ORTHODOX_MANIFEST) ) || flags.gehenna) {
 	    pline("Since you are in Gehennom, %s won't help you.", u_gname());
 	    aggravate();
 	    return(0);

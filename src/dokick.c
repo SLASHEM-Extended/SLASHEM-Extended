@@ -149,6 +149,8 @@ register boolean clumsy;
 	}
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "urush chizilmasin") ) ) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -191,6 +193,8 @@ register boolean clumsy;
 		    if (dmg > /*1*/0) kick_skill = P_MARTIAL_ARTS; /* fix by Amy */
 		    dmg += rn2(ACURR(A_DEX)/2 + 1);
 		    dmg += weapon_dam_bonus((struct obj *)0);
+			/* marital arts skill is supposed to improve this!!! --Amy */
+		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (P_SKILL(P_MARTIAL_ARTS) * 3);
 		}
 		/* a good kick exercises your dex */
 		exercise(A_DEX, TRUE);
@@ -199,6 +203,7 @@ register boolean clumsy;
 	if (uarmf) dmg += uarmf->spe;
 	dmg += u.udaminc;	/* add ring(s) of increase damage */
 	dmg += (Drunken_boxing && Confusion);
+	if (uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 
 	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 
@@ -243,6 +248,13 @@ register boolean clumsy;
 		}
 		mon->mstun = TRUE;
 
+	}
+
+	if (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS && !sticks(mon->data)) {
+	    setustuck(mon); /* it's now stuck to you */
+	    if (rn2(2)) pline("You hold %s in place by stepping on its %s.", mon_nam(mon), makeplural(mbodypart(mon,TOE)));
+	    else pline("The chewing gum clinging to your dancing shoe soles sticks to %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,FOOT)));
+		/* supposed to give both messages to be more logical, but players dislike message spam... --Amy */
 	}
 
 	(void) passive(mon, TRUE, mon->mhp > 0, AT_KICK);

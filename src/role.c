@@ -27,6 +27,9 @@
 
 /* thanks to CK for pointing out some stat distribution bugs --Amy */
 
+/* IMPORTANT!!! do_wear.c has code for an artifact that turns the player into a Binder by index number. If any new roles
+ * are inserted above the Binder, please update the index number accordingly! --Amy */
+
 const struct Role roles[] = {
 {	{"Acid Mage", 0}, {
 	{"Oozer",         0},

@@ -12530,6 +12530,33 @@ register struct attack *mattk;
 
 	}
 
+	if (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) {
+		pline("%s is damaged by your thorny shield!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && !resists_poison(mtmp)) {
+		pline("%s is poisoned by your black leather pumps!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(10) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+		if (!rn2(50)) {
+			mtmp->mhp = 0;
+			pline("The poison was deadly...");
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));

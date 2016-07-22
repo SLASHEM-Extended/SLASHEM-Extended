@@ -3223,6 +3223,14 @@ opentin()		/* called during each move whilst opening a tin */
 			mons[tin.tin->corpsenm].mname);
 #endif
 
+	    if (tin.tin && tin.tin->oartifact == ART_YASDORIAN_S_PARTLY_EATEN_T) {
+			pline("YEEEEEECH! What the FUCKING HELL was in there???");
+		      u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
+		      u.uprops[ANTIMAGIC].intrinsic |= FROMOUTSIDE;
+			u.uprops[DEAC_SICK_RES].intrinsic += 1000000; /* basically forever */
+			u.uprops[DEAC_POISON_RES].intrinsic += 1000000;
+	    }
+
 	    /* KMH, conduct */
 	    u.uconduct.food++;
 		gluttonous();
@@ -3777,6 +3785,18 @@ struct obj *otmp;
 			  "That food really hit the spot!");
 		else if(u.uhunger <= 1200) pline("That satiated your %s!",
 						body_part(STOMACH));
+
+		if (otmp && otmp->oartifact == ART_HOE_PA) {
+			if (!Cold_resistance) pline("You feel more resistant to cold!");
+			incr_itimeout(&HCold_resistance, rnz(10000));
+			if (!Fire_resistance) pline("You feel more resistant to fire!");
+			incr_itimeout(&HFire_resistance, rnz(10000));
+			if (!Shock_resistance) pline("You feel more resistant to shock!");
+			incr_itimeout(&HShock_resistance, rnz(10000));
+			if (!Poison_resistance) pline("You feel more resistant to poison!");
+			incr_itimeout(&HPoison_resistance, rnz(10000));
+		}
+
 		break;
 	    case TRIPE_RATION:
 		if (carnivorous(youmonst.data) && (!humanoid(youmonst.data)) || 
@@ -4013,6 +4033,11 @@ struct obj *otmp;
 		      ? "bland." :
 		      Hallucination ? "gnarly!" : "delicious!");
 		}
+		if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
+		    pline("Ulch - that was a contaminated egg!");
+		    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
+		}
+
 		break;
 	}
 }
@@ -5382,7 +5407,7 @@ boolean incr;
 	if(newhs != u.uhs) {
 		if(newhs >= WEAK && u.uhs < WEAK) {
 			losestr(1);	/* this may kill you -- see below */
-			if (Fixed_abil || Race_if(PM_SUSTAINER)) u.weakcheat++; /* cheater! */
+			if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) u.weakcheat++; /* cheater! */
 			}
 		else if(newhs < WEAK && u.uhs >= WEAK) {
 			if (!u.weakcheat) losestr(-1); /* otherwise this could be exploited until you have 25 str --Amy */

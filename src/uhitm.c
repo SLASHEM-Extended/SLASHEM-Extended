@@ -1160,7 +1160,9 @@ int thrown;
 			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
 			if (flags.bash_reminder && !rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
+
 		}
+
 		/* not gonna do that stupidity (sorry) where everything unconditionally misses 25%. --Amy 
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
@@ -1614,6 +1616,18 @@ int thrown;
 			if(tmp < 1) tmp = 1;
 			else tmp = rnd(tmp);
 			if(tmp > 10) tmp = 10; /* slight increase --Amy */
+
+			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
+
+			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
+				tmp += 10;
+				if (obj->spe > 0) tmp += obj->spe;
+			}
+
+			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
+				tmp += obj->spe;
+			}
+
 			/*
 			 * Things like silver wands can arrive here so
 			 * so we need another silver check.
@@ -1634,6 +1648,7 @@ int thrown;
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
 		tmp += (Drunken_boxing && Confusion);
+		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
 		 * bonus but you do get an increase-damage bonus.

@@ -2365,6 +2365,17 @@ peffects(otmp)
 		}
 		break;
 	case POT_BOOZE:
+
+		if (otmp->oartifact == ART_BOOMSHINE) {
+			pline("KABOOM!!! You are hit by a massive explosion!");
+			losehp(rnd(50), "exploding boomshine", KILLED_BY);
+		      u.uprops[CONFUSION].intrinsic |= FROMOUTSIDE;
+			HConfusion |= FROMOUTSIDE;
+			HConfusion |= FROMRACE;
+			HConfusion |= FROMEXPER;
+			pline("That was very stupid of you, and your body will never be as it used to be...");
+		}
+
 	case POT_WINE:
 		unkn++;
 
@@ -2689,7 +2700,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!Fixed_abil && !Race_if(PM_SUSTAINER)) {
+			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
 			    poisontell(typ);
 			    (void) adjattrib(typ,
 			    		Poison_resistance ? -1 : -rn1(4,3),
@@ -2790,7 +2801,7 @@ peffects(otmp)
 		if(otmp->cursed) {
 		    pline("Ulch!  That potion tasted foul!");
 		    unkn++;
-		} else if (Fixed_abil || Race_if(PM_SUSTAINER)) {
+		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
 		    nothing++;
 		} else {      /* If blessed, increase all; if not, try up to */
 		    int itmp; /* 6 times to find one which can be increased. */
@@ -3064,6 +3075,12 @@ peffects(otmp)
 		}
 		break;
 	case POT_BANISHING_FEAR:
+		if (otmp->oartifact == ART_CURSED_PARTS) {
+			u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
+			u.uprops[FEAR_RES].intrinsic |= FROMOUTSIDE;
+			pline("You worry about cursed items, but you're not afraid at all anymore.");
+		}
+
 	case SPE_BANISHING_FEAR:
 		{
 			if(otmp->cursed) {
@@ -3114,6 +3131,12 @@ peffects(otmp)
 		unkn++; /* holy/unholy water can burn like acid too */
 		break;
 	case POT_POLYMORPH:
+
+		if (otmp->oartifact == ART_PLANECHANGERS) {
+			HPolymorph |= FROMOUTSIDE;
+			pline("Okay, now you got the intrinsic polymorphitis you wanted.");
+		}
+
 	case POT_MUTATION:
 		You_feel("a little %s.", Hallucination ? "normal" : "strange");
 		if (!Unchanging) polyself(FALSE);

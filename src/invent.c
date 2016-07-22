@@ -496,6 +496,12 @@ added:
 	addinv_core2(obj);
 	carry_obj_effects(&youmonst, obj); /* carrying affects the obj */
 	update_inventory();
+
+	if (obj && obj->oartifact == ART_KHOR_S_CURSE) {
+		curse(obj);
+		if (obj->spe > -5) obj->spe = -5;
+	}
+
 	return(obj);
 }
 /*
@@ -803,6 +809,11 @@ struct obj *obj;
 		recalc_health();
 	} else if (obj->otyp == FIGURINE && obj->timed) {
 		(void) stop_timer(FIG_TRANSFORM, (genericptr_t) obj);
+	}
+
+	if (obj && obj->oartifact == ART_KHOR_S_CURSE) {
+		curse(obj);
+		if (obj->spe > -5) obj->spe = -5;
 	}
 }
 

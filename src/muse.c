@@ -1592,7 +1592,7 @@ struct monst *mtmp;
 		       || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		how = WAN_TELEPORTATION;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 mon_tele:
@@ -1620,7 +1620,7 @@ mon_tele:
 	case MUSE_WAN_TELEPORTATION:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		/* monster learns that teleportation isn't useful here */
@@ -1725,7 +1725,7 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		if (oseen) makeknown(WAN_TELE_LEVEL);
 		how = WAN_TELE_LEVEL;
@@ -1813,7 +1813,7 @@ mon_tele:
 
 		m_flee(mtmp);
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_DIGGING);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		if (IS_FURNITURE(levl[mtmp->mx][mtmp->my].typ) ||
@@ -1852,7 +1852,7 @@ mon_tele:
 		int cnt = 1;
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
 		cnt = rnd(4) + 10;
 		while(cnt--) {
@@ -1872,7 +1872,7 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
@@ -1957,6 +1957,14 @@ mon_tele:
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(BAG_OF_TRICKS);
+
+		if (otmp && otmp->oartifact == ART_VERY_TRICKY_INDEED) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+			mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
+			if (mon && canspotmon(mon) && oseen)
+			    makeknown(BAG_OF_TRICKS);
+		}
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1969,7 +1977,7 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		    switch (rn2(10)+1) {
 		    case 1:
@@ -2004,7 +2012,7 @@ mon_tele:
 	case MUSE_WAN_SUMMON_ELM:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 	      makeknown(WAN_SUMMON_ELM);
 
 		{
@@ -2479,7 +2487,7 @@ newboss:
 	/* [Tom] */
 	case MUSE_WAN_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		i = d(5,2) + 5 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -2490,7 +2498,7 @@ newboss:
 		return 2;
 	case MUSE_WAN_EXTRA_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		i = d(5,4) + 10 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -2501,7 +2509,7 @@ newboss:
 		return 2;
 	case MUSE_WAN_FULL_HEALING:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		i = d(5,8) + 20 * !!bcsign(otmp);
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
@@ -4199,7 +4207,7 @@ struct monst *mtmp;
 	case MUSE_WAN_LIGHTNING:
 	case MUSE_WAN_MAGIC_MISSILE:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 /*WAC Handled later
@@ -4225,7 +4233,7 @@ struct monst *mtmp;
 		return (mtmp->mhp <= 0) ? 1 : 2;
 	case MUSE_WAN_POISON:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
@@ -4241,7 +4249,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_INFERNO:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4269,7 +4277,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_ICE_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4288,7 +4296,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_THUNDER:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4308,7 +4316,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_SLUDGE:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4333,7 +4341,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_TOXIC:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4358,7 +4366,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_NETHER_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4379,7 +4387,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_AURORA_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4398,7 +4406,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_CHLOROFORM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4417,7 +4425,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_HYPER_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
@@ -4436,7 +4444,7 @@ struct monst *mtmp;
 		{
 		int damagetype = -(20 + rn2(8));
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
@@ -4453,7 +4461,7 @@ struct monst *mtmp;
 
 	case MUSE_WAN_DISINTEGRATION_BEAM:
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 
@@ -4504,7 +4512,7 @@ struct monst *mtmp;
 	case MUSE_WAN_DISINTEGRATION:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		m_using = FALSE;
@@ -4513,7 +4521,7 @@ struct monst *mtmp;
 	case MUSE_WAN_BANISHMENT:
 		zap_oseen = oseen;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(10) || !otmp->oartifact)) otmp->spe--;
 		mbhitm(&youmonst,otmp);
 		/*if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);*/ /* This was crashing too often. --Amy */
 		return 2;
@@ -5674,7 +5682,7 @@ struct monst *mtmp;
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 newboss:
 		do {
@@ -5705,7 +5713,7 @@ newboss:
 	case MUSE_WAN_TRAP_CREATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		makeknown(otmp->otyp);
 	      You_feel("endangered!!");
 		{
@@ -5742,7 +5750,7 @@ newboss:
 	case MUSE_WAN_BAD_EFFECT:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		badeffect();
 
@@ -5754,7 +5762,7 @@ newboss:
 	case MUSE_WAN_CURSE_ITEMS:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("A black glow surrounds you...");
 		rndcurse();
@@ -5767,7 +5775,7 @@ newboss:
 	case MUSE_WAN_LEVITATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		incr_itimeout(&HLevitation, rnd(100) );
 		pline("You float up!");
@@ -5780,7 +5788,7 @@ newboss:
 	case MUSE_WAN_AMNESIA:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		You_feel("dizzy!");
 		forget(1 + rn2(5));
@@ -5793,7 +5801,7 @@ newboss:
 	case MUSE_WAN_IMMOBILITY:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		{
 
@@ -5820,7 +5828,7 @@ newboss:
 	case MUSE_WAN_EGOISM:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		{
 
@@ -5860,7 +5868,7 @@ newboss:
 	case MUSE_WAN_BAD_LUCK:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("You feel very unlucky.");
 		change_luck(-1);
@@ -5873,7 +5881,7 @@ newboss:
 	case MUSE_WAN_REMOVE_RESISTANCE:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		attrcurse();
 		while (rn2(3)) {
@@ -5888,7 +5896,7 @@ newboss:
 	case MUSE_WAN_CORROSION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		    register struct obj *objX, *objX2;
 		    for (objX = invent; objX; objX = objX2) {
@@ -5904,7 +5912,7 @@ newboss:
 	case MUSE_WAN_FUMBLING:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("You start trembling...");
 		HFumbling = FROMOUTSIDE | rnd(5);
@@ -5919,7 +5927,7 @@ newboss:
 	case MUSE_WAN_SIN:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		{
 		int dmg = 0;
@@ -6206,7 +6214,7 @@ newboss:
 	case MUSE_WAN_FINGER_BENDING:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
 		incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
@@ -6219,7 +6227,7 @@ newboss:
 	case MUSE_WAN_DESLEXIFICATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		/* You are being deslexified, because even in soviet mode you're still technically playing slex. --Amy */
 
@@ -6248,7 +6256,7 @@ newboss:
 	case MUSE_WAN_DRAIN_MANA:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("You lose  Mana");
 		drain_en(rnz(monster_difficulty() + 1) );
@@ -6261,7 +6269,7 @@ newboss:
 	case MUSE_WAN_TIDAL_WAVE:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("A sudden geyser slams into you from nowhere!");
 		water_damage(invent, FALSE, FALSE);
@@ -6276,7 +6284,7 @@ newboss:
 	case MUSE_WAN_STARVATION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("You feel a hole in your %s!", body_part(STOMACH) );
 		morehungry(rnd(1000));
@@ -6289,7 +6297,7 @@ newboss:
 	case MUSE_WAN_CONFUSION:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if(!Confusion) {
 		    if (Hallucination) {
@@ -6309,7 +6317,7 @@ newboss:
 	case MUSE_WAN_STUN_MONSTER:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		make_stunned(HStun + rn1(35, 115), TRUE);
 
@@ -6321,7 +6329,7 @@ newboss:
 	case MUSE_WAN_SLIMING:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
@@ -6338,7 +6346,7 @@ newboss:
 	case MUSE_WAN_LYCANTHROPY:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
@@ -6353,7 +6361,7 @@ newboss:
 	case MUSE_WAN_PUNISHMENT:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		punishx();
 
@@ -7196,7 +7204,7 @@ skipmsg:
 	case MUSE_POT_INVISIBILITY:
 		if (otmp->otyp == WAN_MAKE_INVISIBLE) {
 		    mzapmsg(mtmp, otmp, TRUE);
-		    if (rn2(2) || !ishaxor) otmp->spe--;
+		    if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		} else
 		    mquaffmsg(mtmp, otmp);
 		/* format monster's name before altering its visibility */
@@ -7224,7 +7232,7 @@ skipmsg:
 	case MUSE_WAN_SPEED_MONSTER:
 	case MUSE_WAN_HASTE_MONSTER:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon_adjust_speed(mtmp, 1, otmp);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
@@ -7232,7 +7240,7 @@ skipmsg:
 	case MUSE_WAN_GAIN_LEVEL:
 
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if (vismon) pline("%s seems more experienced.", Monnam(mtmp));
 		if (oseen) makeknown(WAN_GAIN_LEVEL);
@@ -7245,7 +7253,7 @@ skipmsg:
 	case MUSE_WAN_INCREASE_MAX_HITPOINTS:
 
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if (vismon) pline("%s seems stronger.", Monnam(mtmp));
 		if (oseen) makeknown(WAN_INCREASE_MAX_HITPOINTS);
@@ -7268,7 +7276,7 @@ skipmsg:
 		return 2;
 	case MUSE_WAN_POLYMORPH:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (mtmp->mhp < mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 #if 0
 		(void) newcham(mtmp, muse_newcham_mon(), TRUE, vismon);
@@ -7280,7 +7288,7 @@ skipmsg:
 		return 2;
 	case MUSE_WAN_CLONE_MONSTER:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 	    clone_mon(mtmp, 0, 0);
 		if (oseen) makeknown(WAN_CLONE_MONSTER);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -7454,7 +7462,7 @@ skipmsg:
 
 	case MUSE_WAN_MUTATION:
 		mzapmsg(mtmp, otmp, TRUE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		mtmp->isegotype = 1;
 		switch (rnd(144)) {
@@ -7763,6 +7771,14 @@ newboss:
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(BAG_OF_TRICKS);
+
+		if (otmp && otmp->oartifact == ART_VERY_TRICKY_INDEED) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
+			mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
+			if (mon && canspotmon(mon) && oseen)
+			    makeknown(BAG_OF_TRICKS);
+		}
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7775,7 +7791,7 @@ newboss:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		    switch (rn2(10)+1) {
 		    case 1:
@@ -7810,7 +7826,7 @@ newboss:
 	case MUSE_WAN_SUMMON_ELM_M:
 
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 	      makeknown(WAN_SUMMON_ELM);
 
 		{
@@ -8097,7 +8113,7 @@ newboss:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
@@ -8111,7 +8127,7 @@ newboss:
 		int cnt = 1;
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
 		cnt = rnd(4) + 10;
 		while(cnt--) {

@@ -14688,6 +14688,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
+	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "siyosatchi plash") ) ) return FALSE;
@@ -15160,6 +15161,8 @@ struct obj *bag;
 	consume_obj_charge(bag, TRUE);
 
 	if (!rn2(23)) cnt += rn1(7, 1);
+	if (bag && bag->oartifact == ART_VERY_TRICKY_INDEED) cnt *= 2;
+
 	while (cnt-- > 0) {
 	    if (makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS))
 		gotone = TRUE;

@@ -2930,6 +2930,8 @@ int tech_no;
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
+		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
+
 	/*By default,  action should take a turn*/
 	return(1);
 }

@@ -801,7 +801,7 @@ adjattrib(ndx, incr, msgflg)
 	int	msgflg;	    /* 2 => no message at all, 1 => no message */
 			    /* except encumber, zero => message, and */
 {			    /* negative => conditional (msg if change made) */
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || !incr) return FALSE;
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || !incr) return FALSE;
 
 	if ((ndx == A_INT || ndx == A_WIS)
 				&& uarmh && uarmh->otyp == DUNCE_CAP) {
@@ -1643,6 +1643,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_CATHAN_S_NETWORK) tmp += (3 + uarm->spe);
 		if (uarmc && uarmc->oartifact == ART_HOSTES_AD_PULVEREM_FERIRE) tmp += (5 + uarmc->spe);
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SLAYING) tmp += (3 + uarmg->spe);
+		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -1658,6 +1660,20 @@ int x;
 
 		if (uarm && uarm->oartifact == ART_PLAYBOY_WITH_EARS) tmp += (5 + uarm->spe);
 		if (uarmh && uarmh->oartifact == ART_PLAYBOY_SUPPLEMENT) tmp += (5 + uarmh->spe);
+		if (uarmf && uarmf->oartifact == ART_GNOMISH_BOOBS) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_KOKYO_NO_PAFOMANSUU_OKU) tmp += (5 + uarmf->spe);
+		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
+		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) tmp += (5 + uarmf->spe);
+		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);
+		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_BEAUTIFUL_TOPMODEL) tmp += 25;
+		if (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
+		if (uright && uright->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
+		if (uamul && uamul->oartifact == ART_OH_COME_ON) tmp += 5;
+		if (uamul && uamul->oartifact == ART_NECKLACE_OF_ADORNMENT) tmp += 10;
+		if (uwep && uwep->oartifact == ART_BUNGA_BUNGA && uwep->spe > 0) tmp += (5 + uwep->spe);
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -1686,6 +1702,10 @@ int x;
 		 */
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 
+		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp -= 5; /* reduce both */
+		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
+		if (uwep && uwep->oartifact == ART_KNOW_YOUR_INTRINSICS) tmp += 5; /* boost both */
+
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
@@ -1696,12 +1716,16 @@ int x;
 		if (uwep && uwep->oartifact == ART_SUREFIRE_GUN) tmp += (3 + uwep->spe);
 		if (uarmc && uarmc->oartifact == ART_HOSTES_AD_PULVEREM_FERIRE) tmp += (5 + uarmc->spe);
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SLAYING) tmp += (3 + uarmg->spe);
+		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
+		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 
-	} else {
+	} else { /* A_CON */
+
+		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;

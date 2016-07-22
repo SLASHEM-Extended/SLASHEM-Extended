@@ -163,7 +163,7 @@ lookat(x, y, buf, monbuf)
 	    char *name, monnambuf[BUFSZ];
 	    boolean accurate = !Hallucination;
 
-		if (FarlookProblem || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) wakeup(mtmp);
+		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) wakeup(mtmp);
 
 	    if ( (mtmp->data == &mons[PM_COYOTE] || mtmp->data == &mons[PM_STALKING_COYOTE]) && accurate)
 		name = coyotename(mtmp, monnambuf);
