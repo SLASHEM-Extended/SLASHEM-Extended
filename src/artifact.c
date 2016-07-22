@@ -336,7 +336,7 @@ register boolean mod;
 			if (!artiexist[m] && artifact_light(otmp) &&
 			  otmp->oartifact != ART_SUNSWORD)
 			    begin_burn(otmp, FALSE);
-			otmp->quan = 1; /* guarantee only one of this artifact */
+			/*otmp->quan = 1;*/ /* guarantee only one of this artifact */ /* Amy edit: artifact ammo should not suck... */
 #ifdef UNPOLYPILE	/* Artifacts are immune to unpolypile --ALI */
 			if (is_hazy(otmp)) {
 			    (void) stop_timer(UNPOLY_OBJ, (genericptr_t) otmp);
