@@ -3603,7 +3603,7 @@ register struct obj *obj;
     return((boolean)(obj->dknown && obj->known && obj->onamelth &&
 		     /* Since there aren't any objects which are both
 		        artifacts and unique, the last check is redundant. */
-		     obj->oartifact && !objects[obj->otyp].oc_unique));
+		     (obj->oartifact || obj->fakeartifact) && !objects[obj->otyp].oc_unique));
 }
 
 /* Give the name of an object seen at a distance.  Unlike xname/doname,

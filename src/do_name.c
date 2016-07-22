@@ -318,6 +318,11 @@ register struct obj *obj;
 	if (obj->oartifact) {
 		pline_The("artifact seems to resist the attempt.");
 		return;
+	} else if (obj->fakeartifact) {
+		/* It was lame to be able to sort out fake artifacts by naming them, and besides, I made up so many beautiful
+		 * names for all the fake artifacts! You're not supposed to overwrite them with some gibberish! --Amy */
+		pline_The("artifact seems to resist the attempt.");
+		return;
 	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
 		pline("You cannot rename such a powerful object.");
 		return;

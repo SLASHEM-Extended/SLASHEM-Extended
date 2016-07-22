@@ -721,6 +721,8 @@ struct you {
 
 	int dehydrationtime;
 
+	int fakeartifacts;	/* keeping track of how many fake artifacts got generated */
+
 	boolean temprecursion; /* temporary recursion trap */
 	int oldrecursionrole;
 	int oldrecursionrace;

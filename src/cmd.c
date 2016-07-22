@@ -1493,6 +1493,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { Sprintf(buf, " %d", u.fakeartifacts );
+		enl_msg("Number of fake artifacts generated ", "is", "was", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.legscratching > 1) { Sprintf(buf, " %d", u.legscratching - 1);
 		enl_msg("Your leg damage ", "is", "was", buf);
 	}
@@ -3638,6 +3642,9 @@ int final;
 
 	Sprintf(buf, " %d", nartifact_exist() );
 	dump("  Number of artifacts generated was ", buf);
+
+	Sprintf(buf, " %d", u.fakeartifacts );
+	dump("  Number of fake artifacts generated was ", buf);
 
 	if (u.legscratching > 1) { 
 		Sprintf(buf, " %d", u.legscratching - 1);

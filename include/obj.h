@@ -44,6 +44,7 @@ struct obj {
 	char	oclass;		/* object class */
 	char	invlet;		/* designation in inventory */
 	/*char*/int	oartifact;	/* artifact array index */
+	boolean fakeartifact;	/* so the player cannot rename them */
 	schar 	altmode; 	/* alternate modes - eg. SMG, double Lightsaber */
 				/* WP_MODEs are in decreasing speed */
 #define WP_MODE_AUTO	0	/* Max firing speed */
