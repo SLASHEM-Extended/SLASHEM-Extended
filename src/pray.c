@@ -831,6 +831,36 @@ gcrownu()
     }
 	}
 
+    if (rn2(3) && (!issoviet || !rn2(3))) { 
+	/* It's boring if the crowning gift is always the same, because it means the player is likely to use the same
+	 * artifacts each game. Yes, random crowning gifts may suck, but this is SLASH'EM Extended, where you're never 
+	 * supposed to be guaranteed an awesome item! Randomness and variety ftw! --Amy */
+	/* In Soviet Russia, communism dictates that everyone gets the Stormbringer because the type of ice block said so. */
+
+		obj = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
+		if (obj) {
+		    if (obj->spe < 3) obj->spe = 3;
+		    if (!rn2(2)) obj->spe += rnd(3);
+		    if (!rn2(10)) obj->spe += rnd(7);
+		    if (obj->cursed) uncurse(obj);
+		    if (!obj->blessed) bless(obj);
+		    obj->oerodeproof = TRUE;
+		    dropy(obj);
+		    at_your_feet("An object");
+		    godvoice(u.ualign.type, "Use my gift wisely!");
+		    u.ugifts++;
+		    u.ublesscnt = rnz(300 + (50 * nartifact_exist() ));
+			if (ishaxor) u.ublesscnt /= 2;
+		    exercise(A_WIS, TRUE);
+		    /* make sure we can use this weapon */
+		    unrestrict_weapon_skill(weapon_type(obj));
+		    discover_artifact(obj->oartifact);
+		    return;
+		}
+		pline("But the RNG, being the supreme deity, decided that your coronation/culmination does not actually grant you a gift...");
+	    return;
+    }
+
     class_gift = STRANGE_OBJECT;
     /* 3.3.[01] had this in the A_NEUTRAL case below,
        preventing chaotic wizards from receiving a spellbook */
@@ -2009,7 +2039,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 	    /* The player can gain an artifact */
 	    /* The chance goes down as the number of artifacts goes up */
 	    if (u.ulevel > 2 && u.uluck >= 0 &&
-		!rn2(15 + (3 * u.ugifts) + (3 * nartifacts))) { /* lower chance --Amy */
+		!rn2(10 + (5 * u.ugifts) + (nartifacts))) { /* modified chance --Amy */
 		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
 		if (otmp) {
 		    if (otmp->spe < 0) otmp->spe = 0;

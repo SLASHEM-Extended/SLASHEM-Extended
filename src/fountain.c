@@ -386,8 +386,18 @@ register struct obj *obj;
 	/* Don't grant Excalibur when there's more than one object.  */
 	/* (quantity could be > 1 if merged daggers got polymorphed) */
 
+	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
+		remove_worn_item(obj, FALSE);
+		if (obj == uball) unpunish();
+		useupall(obj);
+		update_inventory();
+		pline("The item rusted away completely!");
+		return;
+	}
+
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
-	    && u.ulevel > 4 && !rn2(8) && !obj->oartifact
+		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
+	    && u.ulevel > 4 && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
 	    && !exist_artifact(LONG_SWORD, artiname(ART_EXCALIBUR))) {
 
 		if (u.ualign.type != A_LAWFUL) {
@@ -541,6 +551,16 @@ register struct obj *obj;
 	    floating_above("toilet");
 	    return;
 	}
+
+	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
+		remove_worn_item(obj, FALSE);
+		if (obj == uball) unpunish();
+		useupall(obj);
+		update_inventory();
+		pline("The item rusted away completely!");
+		return;
+	}
+
 	(void) get_wet(obj, FALSE);
 	/* KMH -- acid and water don't mix */
 	if (obj->otyp == POT_ACID && !stack_too_big(obj)) {
