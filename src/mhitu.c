@@ -9015,7 +9015,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		/*randattack = 1;*/
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) ) {
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		/* cut down on message spam - only display it 1 out of 10 times --Amy */
 		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));
 		return 0;
