@@ -3410,8 +3410,9 @@ static const struct blitz_tab blitzes[] = {
 	{"LL",  2, blitz_dash, T_DASH, BLITZ_START},
 	{"UURRDDL", 7, blitz_e_fist, T_E_FIST, BLITZ_START},
 	{"URURRDDLDL", 10, blitz_e_fist, T_E_FIST, BLITZ_START},
-	{"DDRRDDRR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},
-	{"DRDRDRDR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},
+	/*{"DDRRDDRR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},
+	{"DRDRDRDR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},*/
+	/* removed because it's not balanced and also doesn't really affect the other blitz techs --Amy */
 	{"LRL", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"RLR", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"DDDD", 4, blitz_g_slam, T_G_SLAM, BLITZ_END},
