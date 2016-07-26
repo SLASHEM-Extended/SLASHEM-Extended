@@ -1938,7 +1938,7 @@ moveloop()
 		    if (u.ublesscnt)  u.ublesscnt--;
 		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
+		if (uarmg && u.ublesscnt && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
 		    
 		    if(flags.time && !flags.run)
 			flags.botl = 1;
