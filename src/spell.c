@@ -657,7 +657,7 @@ age_spells()
 		 * they prefer to suddenly discover their cure sickness spell was forgotten just as they're about to
 		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
 
-		if (!issoviet && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+		if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
 	    }
 	return;
 }
