@@ -5333,8 +5333,8 @@ uchar aatyp;
 					int difference = (firstswapstat - secondswapstat);
 					ABASE(secondstat) += difference;
 					ABASE(firststat) -= difference;
-					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
-					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
 					pline("Your stats got scrambled!");
 				}
 				break;

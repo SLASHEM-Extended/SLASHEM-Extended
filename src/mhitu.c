@@ -5708,8 +5708,8 @@ dopois:
 					int difference = (firstswapstat - secondswapstat);
 					ABASE(secondstat) += difference;
 					ABASE(firststat) -= difference;
-					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
-					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
 					pline("Your stats got scrambled!");
 				}
 				break;
@@ -7848,8 +7848,8 @@ do_stone2:
 					int difference = (firstswapstat - secondswapstat);
 					ABASE(secondstat) += difference;
 					ABASE(firststat) -= difference;
-					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
-					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
 					pline("Your stats got scrambled!");
 				}
 				break;
@@ -10363,8 +10363,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					int difference = (firstswapstat - secondswapstat);
 					ABASE(secondstat) += difference;
 					ABASE(firststat) -= difference;
-					if(ABASE(secondstat) > AMAX(secondstat)) AMAX(secondstat) = ABASE(secondstat);
-					if(ABASE(firststat) > AMAX(firststat)) AMAX(firststat) = ABASE(firststat);
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
 					pline("Your stats got scrambled!");
 				}
 				break;
