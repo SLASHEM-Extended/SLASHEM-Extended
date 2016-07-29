@@ -215,7 +215,7 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 	    if ((!by_align ? a->otyp == o_typ :
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
-		(!(a->spfx & SPFX_NOGEN) || unique) && !artiexist[m]) {
+		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !artiexist[m]) {
 		/*
 		 * [ALI] The determination of whether an artifact is
 		 * hostile to the player is a little more complex in
@@ -225,6 +225,8 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 		 * Nevertheless, the rule remains the same: Gods don't
 		 * grant artifacts which would be hostile to the player
 		 * _in their normal form_.
+		 * Amy addition: wand of deslexification cannot be gifted to non-soviet, since that thing is supposed to
+		 * not exist outside of soviet mode.
 		 */
 		boolean hostile = FALSE;
 		if (by_align) {
