@@ -554,6 +554,7 @@ dosit()
 				prinv((char *)0, otmp, 0L);
 			}
 			}
+			break;
 
 		    default:	impossible("throne effect");
 				break;
