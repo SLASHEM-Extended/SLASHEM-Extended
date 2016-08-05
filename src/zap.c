@@ -4677,18 +4677,33 @@ boolean ordinary;
 		    break;
 
 		case WAN_POLYMORPH:
-		    if (!Unchanging)
+		    if (!Unchanging) {
 		    	makeknown(WAN_POLYMORPH);
-		case SPE_POLYMORPH:
-		    if (!Unchanging)
 		    	polyself(FALSE);
+		    }
+		    break;
+		case SPE_POLYMORPH:
+		    if (!Unchanging) {
+		    	polyself(FALSE);
+			if (!rn2(3)) { /* nerf by Amy */
+				pline("The spell backfires!");
+				badeffect();
+			}
+		    }
 		    break;
 		case WAN_MUTATION:
-		    if (!Unchanging)
+		    if (!Unchanging) {
 		    	makeknown(WAN_MUTATION);
-		case SPE_MUTATION:
-		    if (!Unchanging)
 		    	polyself(FALSE);
+		    }
+		    break;
+		case SPE_MUTATION:
+		    if (!Unchanging) {
+			if (!rn2(3)) { /* nerf by Amy */
+				pline("The spell backfires!");
+				badeffect();
+			}
+		    }
 		    break;
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
