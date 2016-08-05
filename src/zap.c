@@ -1846,9 +1846,9 @@ struct obj *obj;
 	else if (obj->cursed)
 		zap_odds = 3;	/* half-life = 2 zaps */
 	else if (obj->blessed)
-		zap_odds = 12;	/* half-life = 8 zaps */
+		zap_odds = 7;	/* half-life = 8 zaps */
 	else
-		zap_odds = 8;	/* half-life = 6 zaps */
+		zap_odds = 5;	/* half-life = 6 zaps */
 
 	/* adjust for "large" quantities of identical things */
 	if(obj->quan > 4L) zap_odds /= 2;
@@ -2011,7 +2011,7 @@ struct obj *obj;
 	if(poly_zapped < 0) {
 	    /* some may metamorphosize */
 	    for(i=obj->quan; i; i--)
-		if (! rn2(Luck + 45)) {
+		if (! rn2(Luck + (25 + rnd(20)))) {
 		    poly_zapped = objects[obj->otyp].oc_material;
 		    break;
 		}
@@ -2133,6 +2133,13 @@ poly_obj(obj, id)
 		otmp = mkobj(obj->oclass, FALSE);
 	    } while (--try_limit > 0 &&
 		  objects[obj->otyp].oc_magic != objects[otmp->otyp].oc_magic);
+	    if (otmp && rn2(3) && objects[otmp->otyp].oc_magic) { /* force the item to become nonmagic --Amy */
+		try_limit = 11;
+	 	do {
+			if (otmp) delobj(otmp);
+			otmp = mkobj(obj->oclass, FALSE);
+		} while (--try_limit > 0 && objects[otmp->otyp].oc_magic);
+	    }
 	} else {
 	    /* literally replace obj with this new thing */
 	    otmp = mksobj(id, FALSE, FALSE);
@@ -2239,6 +2246,11 @@ poly_obj(obj, id)
 	otmp->blessed = obj->blessed;
 	otmp->oeroded = obj->oeroded;
 	otmp->oeroded2 = obj->oeroded2;
+	/* Don't obscure the known fields if they were known for the base item, since that's just an interface screw --Amy */
+	if (obj->known) otmp->known = TRUE;
+	if (obj->dknown) otmp->dknown = TRUE;
+	if (obj->bknown) otmp->bknown = TRUE;
+	if (obj->rknown) otmp->rknown = TRUE;
 	if (!is_flammable(otmp) && !is_rustprone(otmp)) otmp->oeroded = 0;
 	if (!is_corrodeable(otmp) && !is_rottable(otmp)) otmp->oeroded2 = 0;
 	if (is_damageable(otmp))
@@ -2577,6 +2589,11 @@ struct obj *obj, *otmp;
 		if (Is_box(obj)) (void) boxlock(obj, otmp);
 
 		if (obj_shudders(obj)) {
+		    if (cansee(obj->ox, obj->oy))
+			makeknown(otmp->otyp);
+		    do_osshock(obj);
+		    break;
+		} else if (obj_shudders(obj)) { /* huge nerf by Amy */
 		    if (cansee(obj->ox, obj->oy))
 			makeknown(otmp->otyp);
 		    do_osshock(obj);
