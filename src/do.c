@@ -631,7 +631,11 @@ giveback:
 	    trycall(obj);
 	else
 	    You_hear("the ring bouncing down the drainpipe.");
-	if (!rn2(20)) {
+	/* Amy edit: identifying rings is already very hard, so I'll allow rings to get regurgitated every other time. Of
+	 * course this is a no-go in Soviet Russia (like every other change made by the antichrist that is Amy), because
+	 * using unorthodox ways to identify items? No way! Communism dictates that there is exactly one way to identify
+	 * your items, doing anything out of the ordinary invokes the wrath of the Kreml! */
+	if (!rn2(issoviet ? 20 : 2)) {
 		pline_The("sink backs up, leaving %s.", doname(obj));
 		obj->in_use = FALSE;
 		dropx(obj);
