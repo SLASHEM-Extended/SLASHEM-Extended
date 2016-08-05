@@ -1217,7 +1217,7 @@ mdig_tunnel(mtmp)
 register struct monst *mtmp;
 {
 	register struct rm *here;
-	int pile = rnd(12);
+	int pile = rnd(24); /* nerf by Amy - if this is lower than 5, create a pile, used to be rnd(12) */
 
 	here = &levl[mtmp->mx][mtmp->my];
 	if (here->typ == SDOOR)
@@ -1270,11 +1270,11 @@ register struct monst *mtmp;
 	    }
 	} else if (IS_TREE(here->typ)) {
 	    here->typ = ROOM;
-	    if (pile && pile < 5)
+	    if (!rn2(50) && pile && pile < 5) /* it shouldn't be that easy to get tree fruits... --Amy */
 		(void) rnd_treefruit_at(mtmp->mx, mtmp->my);
 	} else {
 	    here->typ = CORR;
-	    if (pile && pile < 5)
+	    if (!rn2(7) && pile && pile < 5) /* if you dig out rock yourself, you don't get boulders or rock either! --Amy */
 	    (void) mksobj_at((pile == 1) ? BOULDER : ROCK,
 			     mtmp->mx, mtmp->my, TRUE, FALSE);
 	}

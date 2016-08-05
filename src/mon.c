@@ -3245,13 +3245,13 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 
-	if (Manaleech) { /* leech mana from killed monsters */
-		u.uen += rnd(mtmp->m_lev + 1);
+	if (Manaleech && !rn2(3) ) { /* leech mana from killed monsters */
+		u.uen += rno(mtmp->m_lev + 1); /* rno instead of rnd, and added rn2 above, due to this property being too unbalanced --Amy */
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energizer cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "antidepressant plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energiya plash")) ) {
-		u.uen += rnd((mtmp->m_lev + 5) / 5);
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energizer cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "antidepressant plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energiya plash")) && !rn2(3) ) {
+		u.uen += rno((mtmp->m_lev + 5) / 5);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
 	}

@@ -1130,28 +1130,39 @@ dokick()
 		    }
 		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) &&
 			  (treefruit = rnd_treefruit_at(x, y))) {
-			long nfruit = 8L-rnl(7), nfall;
-			short frtype = treefruit->otyp;
-			treefruit->quan = nfruit;
-			if (is_plural(treefruit))
-			    pline("Some %s fall from the tree!", xname(treefruit));
-			else
-			    pline("%s falls from the tree!", An(xname(treefruit)));
-			nfall = scatter(x,y,2,MAY_HIT,treefruit);
-			if (nfall != nfruit) {
-			    /* scatter left some in the tree, but treefruit
-			     * may not refer to the correct object */
-			    treefruit = mksobj(frtype, TRUE, FALSE);
-			    treefruit->quan = nfruit-nfall;
-			    pline("%ld %s got caught in the branches.",
-				nfruit-nfall, xname(treefruit));
-			    dealloc_obj(treefruit);
+
+			if (rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
+				pline("The tree's branches are swinging, but apparently it doesn't bear any fruits.");
+				maploc->looted |= TREE_LOOTED;
+				return(1);
+			} else {
+
+				long nfruit = 8L-rnl(7), nfall;
+				if (rn2(3)) nfruit /= 2; /* With the high amount of trees in the game, this is necessary --Amy */
+				if (!rn2(4)) nfruit /= 3;
+				if (nfruit < 1) nfruit = 1;
+				short frtype = treefruit->otyp;
+				treefruit->quan = nfruit;
+				if (is_plural(treefruit))
+				    pline("Some %s fall from the tree!", xname(treefruit));
+				else
+				    pline("%s falls from the tree!", An(xname(treefruit)));
+				nfall = scatter(x,y,2,MAY_HIT,treefruit);
+				if (nfall != nfruit) {
+				    /* scatter left some in the tree, but treefruit
+				     * may not refer to the correct object */
+				    treefruit = mksobj(frtype, TRUE, FALSE);
+				    treefruit->quan = nfruit-nfall;
+				    pline("%ld %s got caught in the branches.",
+					nfruit-nfall, xname(treefruit));
+				    dealloc_obj(treefruit);
+				}
+				exercise(A_DEX, TRUE);
+				exercise(A_WIS, TRUE);	/* discovered a new food source! */
+				newsym(x, y);
+				maploc->looted |= TREE_LOOTED;
+				return(1);
 			}
-			exercise(A_DEX, TRUE);
-			exercise(A_WIS, TRUE);	/* discovered a new food source! */
-			newsym(x, y);
-			maploc->looted |= TREE_LOOTED;
-			return(1);
 		    } else if (!(maploc->looted & TREE_SWARM)) {
 		    	int cnt = rnl(4) + 2;
 			int made = 0;

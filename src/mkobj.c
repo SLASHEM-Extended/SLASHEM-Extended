@@ -2124,12 +2124,16 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+/* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
+ * brings winter - he's like "Väterchen Frost" :-P */
 
 struct obj *
 rnd_treefruit_at(x,y)
 int x, y;
 {
-	return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, FALSE);
+	if (rn2(200) || issoviet) return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, FALSE);
+	else return mksobj_at(treefruitsX[rn2(SIZE(treefruitsX))], x, y, TRUE, FALSE);
 }
 #endif /* OVL0 */
 #ifdef OVLB
