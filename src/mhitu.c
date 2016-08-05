@@ -4119,7 +4119,7 @@ hitmu(mtmp, mattk)
 		    make_blinded(Blinded+(long)dmg,FALSE);
 		    if (!Blind) Your(vision_clears);
 		}
-		dmg = 0;
+		/*dmg = 0;*/ /* why??? --Amy */
 		break;
 
 	    case AD_DREA:
@@ -5061,9 +5061,9 @@ dopois:
 		 */
 		  if (
 #ifdef STEED
-			u.usteed ||
+			(u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
 #endif
-				    Levitation || Flying) {
+				    Levitation || (Flying && !is_flyer(mtmp->data)) ) {
 		    pline("%s tries to reach your %s %s!", Monnam(mtmp),
 			  sidestr, body_part(LEG));
 		    dmg = 0;

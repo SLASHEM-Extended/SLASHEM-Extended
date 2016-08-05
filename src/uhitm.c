@@ -3440,7 +3440,7 @@ register struct attack *mattk;
 			pline("%s looks confused.", Monnam(mdef));
 		    mdef->mconf = 1;
 		}
-		else if (!rn2(3))
+		else if (!rn2(3) && mdef->mconf)
 		{
 		    if (canseemon(mdef))
 			pline("%s is getting more and more confused.",
