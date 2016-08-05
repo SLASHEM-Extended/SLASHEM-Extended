@@ -67,6 +67,8 @@ STATIC_OVL void
 setgemprobs(dlev)
 d_level *dlev;
 {
+	return; /* what's the point of this stupidity anyway??? --Amy */
+
 	int j, first, lev;
 
 	if (dlev)
@@ -97,8 +99,8 @@ d_level *dlev;
 	    }
 
 	for (j = first; j <= LAST_GEM; j++)
-		/* KMH, balance patch -- valuable gems now sum to 325 */
-		objects[j].oc_prob = (336+j-first)/(LAST_GEM+1-first);
+		/* KMH, balance patch -- valuable gems now sum to 612 */
+		objects[j].oc_prob = (612+j-first)/(LAST_GEM+1-first);
 }
 
 /* shuffle descriptions on objects o_low to o_high */
@@ -163,7 +165,7 @@ register char oclass;
 	/* initialize object descriptions */
 	for (i = 0; i < NUM_OBJECTS; i++)
 		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;
-	/* init base; if probs given check that they add up to 5000,
+	/* init base; if probs given check that they add up to 10000,
 	   otherwise compute probs */
 	first = 0;
 	while( first < NUM_OBJECTS ) {
@@ -307,7 +309,7 @@ register char oclass;
 		for(i = first; i < last; i++) sum += objects[i].oc_prob;
 		if(sum == 0) {
 			for(i = first; i < last; i++)
-			    objects[i].oc_prob = (5000+i-first)/(last-first);
+			    objects[i].oc_prob = (10000+i-first)/(last-first);
 			goto check;
 		}
 		if(sum != sum)

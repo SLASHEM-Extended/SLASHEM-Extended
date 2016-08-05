@@ -2225,9 +2225,9 @@ do_objs()
 		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;	/* init */
 		if (!(objnam = tmpdup(OBJ_NAME(objects[i])))) continue;
 
-		/* make sure probabilities add up to 5000 */
+		/* make sure probabilities add up to 10000 */
 		if(objects[i].oc_class != class) {
-			if (sum && sum != 5000) {
+			if (sum && sum != 10000) {
 			    Fprintf(stderr, "prob error for class %d (%d%%)",
 				    class, sum);
 			    (void) fflush(stderr);
@@ -2280,7 +2280,7 @@ do_objs()
 	}
 
 	/* check last set of probabilities */
-	if (sum && sum != 5000) {
+	if (sum && sum != 10000) {
 	    Fprintf(stderr, "prob error for class %d (%d%%)", class, sum);
 	    (void) fflush(stderr);
 	    sumerr = TRUE;
