@@ -1712,9 +1712,9 @@ int thrown;
 		 */
 		if (((objects[otyp].oc_skill < P_NONE && 
 			objects[otyp].oc_skill > -P_BOOMERANG) ||
-			( objects[otyp].oc_skill == P_DAGGER && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
-			( objects[otyp].oc_skill == P_KNIFE && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
-			( objects[otyp].oc_skill == P_SPEAR && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_DAGGER && ((obj->spe < 1) || (obj->spe > 0 && (!rn2(obj->spe + 1) || !rn2(obj->spe + 1))) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_KNIFE && ((obj->spe < 1) || (obj->spe > 0 && (!rn2(obj->spe + 1) || !rn2(obj->spe + 1))) ) && (!obj->oartifact || !rn2(1000)) ) ||
+			( objects[otyp].oc_skill == P_SPEAR && ((obj->spe < 1) || (obj->spe > 0 && (!rn2(obj->spe + 1) || !rn2(obj->spe + 1) || !rn2(obj->spe + 1))) ) && (!obj->oartifact || !rn2(1000)) ) ||
 			( objects[otyp].oc_skill == P_JAVELIN && ((obj->spe < 1) || (obj->spe > 0 && !rn2(obj->spe + 1)) ) && (!obj->oartifact || !rn2(1000)) ) ||
 
 /* low chance for daggers, knives and spears to disappear --Amy */
@@ -1730,7 +1730,7 @@ int thrown;
 		     * but we need ammo to stay around longer on average.
 		     */
 		    int broken, chance;
-		    chance = 2 + greatest_erosion(obj) - obj->spe;	/* base chance increased --Amy */
+		    chance = greatest_erosion(obj) - obj->spe;	/* base chance increased --Amy */
 		    chance -= rnd(2);
 		    if (chance > 1) {
 			if (chance == 3) chance = 2;
@@ -1739,19 +1739,31 @@ int thrown;
 			else if (chance > 5) chance /= 2;
 			broken = rn2(chance);
 		    } else /* continue to survive longer with better enchantment --Amy */
-			broken = !rn2(/*4*/ 2 + obj->spe - greatest_erosion(obj) );
+			broken = !rn2(/*4*/ 3 + obj->spe - greatest_erosion(obj) );
 		    if ( objects[otyp].oc_skill == P_DAGGER )
 			broken = !rn2(40);
 		    if ( objects[otyp].oc_skill == P_SPEAR )
-			broken = !rn2(200);
+			broken = !rn2(75);
 		    if ( objects[otyp].oc_skill == P_KNIFE )
-			broken = !rn2(150);
+			broken = !rn2(80);
 		    if ( objects[otyp].oc_skill == P_JAVELIN )
 			broken = !rn2(1200);
-		    if (obj->blessed && !rnl(4))
+		    if (obj->blessed && !rnl(6))
 			broken = 0;
 			/* also save uncursed ones sometimes --Amy */
-		    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
+		    if (!obj->blessed && !obj->cursed && !rn2(3) && !rnl(6))
+			broken = 0;
+
+			/* allow skill to save ammo --Amy */
+		    if (objects[otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_CROSSBOW && (P_SKILL(P_CROSSBOW) >= P_BASIC) && rn2(P_SKILL(P_CROSSBOW)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_SLING && (P_SKILL(P_SLING) >= P_BASIC) && rn2(P_SKILL(P_SLING)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_DART && (P_SKILL(P_DART) >= P_BASIC) && rn2(P_SKILL(P_DART)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
 			broken = 0;
 
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;

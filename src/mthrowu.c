@@ -356,7 +356,7 @@ int x,y;
 	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
 
 		/* copying over the dothrow.c code, because it makes no sense for blessed +10 ammo to break 2 out of 3 times --Amy */
-	    chance = 2 + greatest_erosion(obj) - obj->spe;
+	    chance = greatest_erosion(obj) - obj->spe;
 	    chance -= rnd(2);
 
 	    if (chance > 1) {
@@ -365,11 +365,22 @@ int x,y;
 		else if (chance == 5) chance = 3;
 		else if (chance > 5) chance /= 2;
 		create = !rn2(chance);
-	    } else create = rn2(2 + obj->spe - greatest_erosion(obj) );
+	    } else create = rn2(3 + obj->spe - greatest_erosion(obj) );
 
-	    if (obj->blessed && !rnl(4))
+	    if (obj->blessed && !rnl(6))
 		create = 1;
-	    if (!obj->blessed && !obj->cursed && !rn2(5) && !rnl(4))
+	    if (!obj->blessed && !obj->cursed && !rn2(3) && !rnl(6))
+		create = 1;
+
+	    if (objects[obj->otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )
+		create = 1;
+	    if (objects[obj->otyp].oc_skill == -P_CROSSBOW && (P_SKILL(P_CROSSBOW) >= P_BASIC) && rn2(P_SKILL(P_CROSSBOW)) )
+		create = 1;
+	    if (objects[obj->otyp].oc_skill == -P_SLING && (P_SKILL(P_SLING) >= P_BASIC) && rn2(P_SKILL(P_SLING)) )
+		create = 1;
+	    if (objects[obj->otyp].oc_skill == -P_DART && (P_SKILL(P_DART) >= P_BASIC) && rn2(P_SKILL(P_DART)) )
+		create = 1;
+	    if (objects[obj->otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
 		create = 1;
 
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;
