@@ -1265,6 +1265,7 @@ moveloop()
 			chaosy = rn2(ROWNO);
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
 				block_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
@@ -1279,6 +1280,7 @@ moveloop()
 			chaosy = rn2(ROWNO);
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
 				block_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
@@ -1293,6 +1295,7 @@ moveloop()
 			chaosy = rn2(ROWNO);
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
 				block_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);

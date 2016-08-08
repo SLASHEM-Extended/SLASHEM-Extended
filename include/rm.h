@@ -553,6 +553,8 @@ extern const struct symdef def_warnsyms[WARNCOUNT];
 #define WM_MASK		0x07	/* wall mode (bottom three bits) */
 #define W_NONDIGGABLE	0x08
 #define W_NONPASSWALL	0x10
+#define W_EASYGROWTH	0x20 /* set this if a wall without W_HARDGROWTH is dug out */
+#define W_HARDGROWTH	0x40 /* set this if a tile without W_EASYGROWTH is made into a new wall */
 
 /*
  * Ladders (in Vlad's tower) may be up or down.
@@ -584,7 +586,7 @@ struct rm {
 #endif
 	schar typ;		/* what is really there */
 	uchar seenv;		/* seen vector */
-	Bitfield(flags,5);	/* extra information for typ */
+	Bitfield(flags,7);	/* extra information for typ */
 	Bitfield(horizontal,1); /* wall/door/etc is horiz. (more typ info) */
 	Bitfield(lit,1);	/* speed hack for lit rooms */
 	Bitfield(waslit,1);	/* remember if a location was lit */

@@ -1310,6 +1310,26 @@ wiz_show_wmodes()
 	}
 	display_nhwindow(win, TRUE);
 	destroy_nhwindow(win);
+
+	win = create_nhwindow(NHW_TEXT);
+	for (y = 0; y < ROWNO; y++) {
+	    for (x = 0; x < COLNO; x++) {
+		lev = &levl[x][y];
+		if (x == u.ux && y == u.uy)
+		    row[x] = '@';
+		else if (lev->wall_info & W_HARDGROWTH)
+		    row[x] = 'H';
+		else if (lev->wall_info & W_EASYGROWTH)
+		    row[x] = 'E';
+		else
+		    row[x] = 'x';
+	    }
+	    row[COLNO] = '\0';
+	    putstr(win, 0, row);
+	}
+	display_nhwindow(win, TRUE);
+	destroy_nhwindow(win);
+
 	return 0;
 }
 

@@ -6215,6 +6215,7 @@ struct obj **obj_p;			/* object tossed/used */
 		if (rn2(2) && (typ >= STONE) && (typ <= DBWALL) && ((levl[bhitpos.x][bhitpos.y].wall_info & W_NONDIGGABLE) == 0) ) {
 			levl[bhitpos.x][bhitpos.y].typ = CORR;
 			unblock_point(bhitpos.x,bhitpos.y);
+			if (!(levl[bhitpos.x][bhitpos.y].wall_info & W_HARDGROWTH)) levl[bhitpos.x][bhitpos.y].wall_info |= W_EASYGROWTH;
 			newsym(bhitpos.x,bhitpos.y);
 
 		}
@@ -6235,6 +6236,7 @@ struct obj **obj_p;			/* object tossed/used */
 
 			levl[bhitpos.x][bhitpos.y].typ = STONE;
 			block_point(bhitpos.x,bhitpos.y);
+			if (!(levl[bhitpos.x][bhitpos.y].wall_info & W_EASYGROWTH)) levl[bhitpos.x][bhitpos.y].wall_info |= W_HARDGROWTH;
 			del_engr_at(bhitpos.x,bhitpos.y);
 			newsym(bhitpos.x,bhitpos.y);
 		}

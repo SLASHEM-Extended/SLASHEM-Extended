@@ -363,32 +363,32 @@ trap_of_walls:
 		switch (count) {
 	
 			case 8:
-				randchance = 1;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 1 : 10;
 				break;
 			case 7:
-				randchance = 2;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 1 : 20;
 				break;
 			case 6:
-				randchance = 1000;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 10 : 10000;
 				break;
 			case 5:
-				randchance = 200;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 5 : 2000;
 				break;
 			case 4:
-				randchance = 50;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 2 : 500;
 				break;
 			case 3:
-				randchance = 10;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 2 : 100;
 				break;
 			case 2:
-				randchance = 3;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 1 : 30;
 				break;
 			case 1:
-				randchance = 2;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 1 : 20;
 				break;
 			case 0:
 			default: /* e.g. if it's 9 */
-				randchance = 1;
+				randchance = (levl[randomx][randomy].wall_info & W_EASYGROWTH) ? 1 : 10;
 				break;
 	
 		}
@@ -403,10 +403,14 @@ trap_of_walls:
 		if (!rn2(randchance) && (!In_sokoban(&u.uz) || !sobj_at(BOULDER, randomx, randomy) ) ) {
 
 
-			if (rn2(3)) doorlockX(randomx, randomy);
+			if (rn2(3)) {
+				doorlockX(randomx, randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			}
 			else {
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 				block_point(randomx,randomy);
 				del_engr_at(randomx, randomy);
 
@@ -866,6 +870,7 @@ still_chewing(x,y)
     }
 
     unblock_point(x, y);	/* vision */
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
     newsym(x, y);
     if (digtxt) You(digtxt);	/* after newsym */
     if (dmgtxt) pay_for_damage(dmgtxt, FALSE);

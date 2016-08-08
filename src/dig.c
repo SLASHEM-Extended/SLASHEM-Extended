@@ -66,6 +66,7 @@ mkcavepos(x, y, dist, waslit, rockit)
     } else if(lev->typ == ROOM) return;
 
     unblock_point(x,y);	/* make sure vision knows this location is open */
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
 
     /* fake out saved state */
     lev->seenv = 0;
@@ -451,6 +452,7 @@ dig()
 
 		if(!does_block(dpx,dpy,&levl[dpx][dpy]))
 		    unblock_point(dpx,dpy);	/* vision:  can see through */
+			if (!(levl[dpx][dpy].wall_info & W_HARDGROWTH)) levl[dpx][dpy].wall_info |= W_EASYGROWTH;
 		if(Blind)
 		    feel_location(dpx, dpy);
 		else
@@ -1228,6 +1230,7 @@ register struct monst *mtmp;
 	    if (*in_rooms(mtmp->mx, mtmp->my, SHOPBASE))
 		add_damage(mtmp->mx, mtmp->my, 0L);
 	    unblock_point(mtmp->mx, mtmp->my);	/* vision */
+		if (!(levl[mtmp->mx][mtmp->my].wall_info & W_HARDGROWTH)) levl[mtmp->mx][mtmp->my].wall_info |= W_EASYGROWTH;
 	    if (here->doormask & D_TRAPPED) {
 		here->doormask = D_NODOOR;
 		if (mb_trapped(mtmp)) {	/* mtmp is killed */
@@ -1281,6 +1284,7 @@ register struct monst *mtmp;
 	newsym(mtmp->mx, mtmp->my);
 	if (!sobj_at(BOULDER, mtmp->mx, mtmp->my))
 	    unblock_point(mtmp->mx, mtmp->my);	/* vision */
+	if (!(levl[mtmp->mx][mtmp->my].wall_info & W_HARDGROWTH)) levl[mtmp->mx][mtmp->my].wall_info |= W_EASYGROWTH;
 
 	return FALSE;
 }
@@ -1432,6 +1436,7 @@ boolean bigrange;
 			}
 			room->typ = /*ROOM*/CORR;
 			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
 			digdepth -= 2; /* fix stupidity --Amy */
 			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 			if (issoviet) break;
@@ -1443,6 +1448,7 @@ boolean bigrange;
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
 			room->typ = ROOM;
 			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
 			digdepth -= 2; /* fix stupidity --Amy */
 			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 			if (issoviet) break;
@@ -1454,6 +1460,7 @@ boolean bigrange;
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
 			room->typ = CORR;
 			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
 			digdepth--; /* fix stupidity --Amy */
 		/* In Soviet Russia, digging has to be done one block at a time. Faster digging methods are capitalistic
 		 * and evil, so they're not allowed. I wonder how long until they decide to make mazes undiggable... --Amy */
@@ -1487,6 +1494,7 @@ boolean bigrange;
 		    digdepth--;
 		}
 		unblock_point(zx,zy); /* vision */
+		if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
 	    }
 	    zx += u.dx;
 	    zy += u.dy;

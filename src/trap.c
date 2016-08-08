@@ -123,6 +123,7 @@ genericptr_t poolcnt;
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
 				block_point(randomx,randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 				del_engr_at(randomx, randomy);
 
 				if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -150,6 +151,7 @@ genericptr_t poolcnt;
 		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
 		else levl[x][y].typ = CROSSWALL;
 		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -190,6 +192,7 @@ genericptr_t poolcnt;
 		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = TREE;
 			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			del_engr_at(randomx, randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -213,6 +216,7 @@ genericptr_t poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = TREE;
 		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -456,6 +460,7 @@ genericptr_t poolcnt;
 		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = randomwalltype();
 			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			del_engr_at(randomx, randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -479,6 +484,7 @@ genericptr_t poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = randomwalltype();
 		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
