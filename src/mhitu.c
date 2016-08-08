@@ -1534,6 +1534,7 @@ mattacku(mtmp)
         if((Invis && !perceives(mdat)) || !mtmp->mcansee) tmp -= 2;
 	if(mtmp->mtrapped) tmp -= 2;
 	if(tmp <= 0) tmp = 1;
+	if (!rn2(2) && (tmp > 1)) tmp /= 2; /* don't make high-level monsters automatically hit you --Amy */
 
 	/* make eels visible the moment they hit/miss us */
 	if(mdat->mlet == S_EEL && mtmp->minvis && !mtmp->minvisreal && cansee(mtmp->mx,mtmp->my) && rn2(5) ) {
