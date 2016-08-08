@@ -1749,6 +1749,277 @@ A("Vuvuzela",			TOOLED_HORN, /* aggravates monsters when applied (idea by yasdor
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+/* The following artifacts are from SLASHTHEM. Many of these had to be redesigned, since all of them can now be generated
+ * randomly. And it takes one overpowered artifact to destroy game balance - as soon as players become aware of its
+ * existence, everyone will wish for it as soon as possible. Also, none of these are associated with any role now. --Amy
+ * Soviet's comments are preserved just for the sake of it; his "temp names" are of course permanent in this variant. */
+
+A("Clarent",			SHORT_SWORD,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_LUCK|SPFX_DFLAG1), 0, M1_THICK_HIDE,
+	PHYS(8,1),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Shadowblade",			KNIFE,
+	(SPFX_RESTR|SPFX_STLTH),0,0,
+	PHYS(5,3),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Yoichi no yumi",                YUMI, /* 5lo: Artifact from dNethack */
+	SPFX_RESTR, 0, 0,
+	PHYS(20,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1200L ),
+
+A("Kiku-ichimonji",                KATANA, /* 5lo: New sacrifice gift for Samurai */
+	SPFX_RESTR, 0, 0,
+	PHYS(4,6),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1200L ),
+
+A("Itlachiayaque",             SHIELD_OF_REFLECTION,
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK,        DFNS(AD_FIRE),        NO_CARY,  0,    A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Queen's Guard",		RAPIER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6,3),	NO_DFNS,	NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("Peacekeeper",		PISTOL,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(4,4),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("Restkeeper",		CLUB,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(4,4),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("Icebiter",			AXE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(6,3),	COLD(0,0),	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("Shock Brand",                LONG_SWORD,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(5,0),	ELEC(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Acid Brand",                 LONG_SWORD,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ACID(5,0),	ACID(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+/* 5lo: Generic artifact since Psions are deferred for now */
+A("Snakeskin",             ROBE,
+    (SPFX_RESTR|SPFX_HALRES|SPFX_PROTEC), 0, 0,
+    NO_ATTK,    ACID(0,0),   NO_CARY,    0, A_NEUTRAL, NON_PM, NON_PM, 700L ),
+
+A("Poseidon's Treasure",	TRIDENT,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(10, 5),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Gladius",		SHORT_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(8,3),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Hrunting",		LONG_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,2),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Debugger",       ATHAME,
+    (SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+    ELEC(5,2),  ELEC(0,0), NO_CARY,     0, A_NEUTRAL, NON_PM, NON_PM, 400L ),
+    
+A("Acidtester",       ATHAME, /* temp name */
+    (SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+    ACID(5,2),  ACID(0,0), NO_CARY,     0, A_NEUTRAL, NON_PM, NON_PM, 400L ),
+
+A("Straightshot",   BOW,
+    SPFX_RESTR, 0, 0,
+    PHYS(10,1),     NO_DFNS,    NO_CARY,    0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+    
+A("Shimmerstaff",   SILVER_KHAKKHARA,
+    SPFX_RESTR, 0, 0,
+    PHYS(8,2),     NO_DFNS,    NO_CARY,    0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Full Metal Jacket",   LEATHER_JACKET, /* Temp name */
+    (SPFX_RESTR|SPFX_DEFN|SPFX_PROTEC|SPFX_HALRES), 0, 0,
+    NO_ATTK,    FIRE(0,0),    NO_CARY,   0, A_NEUTRAL, NON_PM, NON_PM, 1500L ), 
+    
+A("Tesla's Coat", LAB_COAT,
+    (SPFX_RESTR|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
+    NO_ATTK,    ELEC(0,0),  NO_CARY,    0,  A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Oathkeeper", 		STILETTO, /* temp name? */
+    (SPFX_RESTR), 0, 0,
+    PHYS(7,4),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Blackshroud",		CLOAK_OF_PROTECTION,
+    (SPFX_RESTR|SPFX_LUCK|SPFX_WARN),	0,	0,
+    NO_ATTK,	DRLI(0,0),	NO_CARY,	0,	A_NEUTRAL,	NON_PM,	NON_PM, 1500L ),
+
+A("Silvershard", SILVER_DAGGER,
+    (SPFX_RESTR), 0, 0,
+    PHYS(2,0),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Mirror Brand",                 SILVER_LONG_SWORD, /* dNethack */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_REFLECT|SPFX_DALIGN), 0, 0,
+	STUN(5,0),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 3500L ),
+
+/* From Nethack--, This is pretty much a temp for Musicians
+ * Until I can think of something better for them.	
+ * Amy edit: that comment is from Soviet the Type Of Ice Block of course :D */
+A("Dirk", 		DAGGER, 
+	SPFX_RESTR, 	0, 	0,
+	PHYS(5,2),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Tenderizer",                   MALLET,           
+	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+	PHYS(3,3),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+/* 5lo: Some more artifacts... */
+A("Fungisword", LONG_SWORD,
+    (SPFX_RESTR|SPFX_DCLAS|SPFX_HALRES), 0, S_FUNGUS,
+    PHYS(10,0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 400L ),
+    
+A("Diplomat", GOLDEN_SABER,
+    (SPFX_RESTR|SPFX_DFLAG2), 0, M2_PNAME,
+    PHYS(10,12), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+    
+A("Petslayer", CLUB,
+    (SPFX_RESTR|SPFX_DFLAG2), 0, M2_DOMESTIC,
+    PHYS(5,5), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Mouser's Scalpel",			RAPIER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,1),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 600L ),
+    
+A("Graywand",		TWO_HANDED_SWORD,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(3,3),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+    
+A("Heartseeker",		SHORT_SWORD,
+	(SPFX_RESTR),	0, 0,
+	PHYS(3,1),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Cat's Claw",		DAGGER,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_RODENT,
+	PHYS(5,3),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Nightingale",                KATANA,
+	SPFX_RESTR, 0, 0,
+	PHYS(6,1),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+	/* 5lo: Sacrifice gift for Ninja */
+
+A("Bloodmarker",		KNIFE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3,3),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Shawshank",			KNIFE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(9,4),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
+
+A("Spineseeker",	STILETTO,
+	SPFX_RESTR, 0, 0,
+	PHYS(5,2),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
+
+A("Crown Royal Cloak",	LEATHER_CLOAK,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_LUCK), 0, 0,
+	NO_ATTK,	ACID(0,0),	NO_CARY,
+	0,	A_NEUTRAL,	 NON_PM, NON_PM, 1000L),
+
+A("The Gambler's Suit",		COMMANDER_SUIT,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_LUCK), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Wand of Might",		WAN_WISHING,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,	A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Warforger",  HEAVY_HAMMER,   /* giant blacksmithing hammer */
+	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+	PHYS(15,7),	FIRE(0,0),	NO_CARY, /* phys so fire resistance doesn't negate */
+    0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("The Sling of David",                SLING,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_HPHDAM), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("The Golden Whistle of Nora",          MAGIC_WHISTLE, /* 5lo: temp name? Amy edit: you come up with a really good name ONCE and then decide that it's temporary? Seriously??? */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_HPHDAM|SPFX_ESP), 0, 0,
+	NO_ATTK,        NO_DFNS,        NO_CARY,
+	0,         A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Fuma-itto no Ken",                BROADSWORD,    /* 5lo: New quest artifact for Ninja - Credit to Chris as this comes from dNethack with minor changes */
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(8,4),      DFNS(AD_DRLI),     NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("The Pick of the Grave",		PICK_AXE, /* Amy addition: aggravates monsters and causes hunger when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI|SPFX_DEFN|SPFX_REGEN|SPFX_HPHDAM|SPFX_TCTRL), 0, 0,
+	DRLI(8,5),	COLD(0,0),   NO_CARY,
+	0,		A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("The Flute of Slime",          MAGIC_FLUTE, /* 5lo: temp name */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_TCTRL), 0, 0,
+	NO_ATTK,        DFNS(AD_ELEC),        NO_CARY,
+	0,         A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("The Fire Chief Helmet",                FIRE_HELMET, /* Amy edit: weak sight when worn */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_PROTEC|SPFX_HSPDAM|SPFX_HPHDAM), 0, 0,
+	NO_ATTK,      NO_DFNS,        NO_CARY,
+	0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("The Deluxe Yendorian Knife", KNIFE,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_ESP), 0, 0,
+	PHYS(6,10),  	FIRE(0,0), 	NO_CARY,
+	0,  A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("The Harp of Lightning",          MAGIC_HARP, 
+ 	(SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_TCTRL), 0, 0,
+ 	NO_ATTK,        DFNS(AD_ACID),        NO_CARY,
+	0,         A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("The Harp of Harmony",          MAGIC_HARP,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_SPEAK|SPFX_WARN|SPFX_STLTH), 0, 0,
+	NO_ATTK,	DFNS(AD_DRLI),	NO_CARY,
+	0,		A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("The Cudgel of Cuthbert", QUARTERSTAFF, /* 5lo: from Nethack-- 3.1.3 */
+	/* Amy edit: trap of walls and +10 difficulty effect when wielded */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_HALRES|SPFX_REGEN|SPFX_DALIGN|SPFX_WARN|SPFX_HSPDAM), 0, 0,
+	PHYS(5,0),	DFNS(AD_DRLI),	NO_CARY,
+	0,		A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("The Sword of Svyatogor", TWO_HANDED_SWORD, /* way to completely ignore the warrior's elder scrolls origin, Soviet! --Amy */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
+	PHYS(7,4),	COLD(0,0),	NO_CARY,
+	0,	A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("The Tommy Gun of Capone", SUBMACHINE_GUN,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_LUCK|SPFX_INTEL|SPFX_WARN|SPFX_STLTH), 0, 0,
+	PHYS(5,3),        DFNS(AD_FIRE),  NO_CARY,
+	0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("The Whistle of the Warden", MAGIC_WHISTLE,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ESP|SPFX_TCTRL), 0, 0,
+	NO_ATTK,        DFNS(AD_DRLI),  NO_CARY,
+	0, 	A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("The Hand Mirror of Cthylla",	MIRROR, /* 5lo: replaces Pen of the Void */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_TCTRL|SPFX_SEARCH), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,	A_NONE, NON_PM, NON_PM, 5000L),
+
+A("The Scalpel of the Bloodletter",	SCALPEL, /* bleedout when wielded */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_DRLI|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	DRLI(9,5),	NO_DFNS,	NO_CARY,
+	0,	A_NEUTRAL, NON_PM, NON_PM, 2500L),
+
+A("The Gourd of Infinity", HORN_OF_PLENTY,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ESP|SPFX_HSPDAM|SPFX_HALRES), 0, 0,
+	NO_ATTK,    DFNS(AD_DRLI),    NO_CARY,
+	0, A_NEUTRAL,  NON_PM,   NON_PM, 2500L),
+
+A("The Lockpick of Arsene Lupin", LOCK_PICK,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_SPEAK|SPFX_LUCK|SPFX_SEEK|SPFX_ESP|SPFX_STLTH|SPFX_WARN), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,		A_NEUTRAL, NON_PM, NON_PM, 3500L ),
+
+A("The Staff of Withering",	QUARTERSTAFF,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_INTEL|SPFX_DRLI|SPFX_DALIGN), 0, 0,
+	DRLI(3,2),	DFNS(AD_COLD),	NO_CARY,
+	0,	A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
@@ -2057,7 +2328,7 @@ A("Verbal Blade",		ELVEN_SHORT_SWORD,
 	PHYS(5,1),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, PM_ZYBORG, NON_PM, 3000L ),
 
 A("Tome Dark Sword",		BLACK_AESTIVALIS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, SPFX_HSPDAM|SPFX_HPHDAM|SPFX_ESP|SPFX_STLTH,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_ESP|SPFX_STLTH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	ENLIGHTENING, A_NEUTRAL, PM_UNBELIEVER, NON_PM, 1000L ),
 
 A("The Elder Staff",	QUARTERSTAFF,
@@ -2074,7 +2345,7 @@ A("Lovely Pink Pumps",    FEMININE_PUMPS,
 	NO_ATTK,        DRLI(0,0),        NO_CARY,    INVIS, A_NEUTRAL, PM_TRANSVESTITE, NON_PM, 5000L ),
 
 A("Kiss Boots",    HIPPIE_HEELS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), SPFX_EREGEN, SPFX_HSPDAM|SPFX_HPHDAM,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM), SPFX_EREGEN, 0,
 	NO_ATTK,        DRLI(0,0),        NO_CARY,    IDENTIFY, A_NEUTRAL, PM_TRANSSYLVANIAN, NON_PM, 5000L ),
 
 A("Golden High Heels",    LEATHER_PEEP_TOES,

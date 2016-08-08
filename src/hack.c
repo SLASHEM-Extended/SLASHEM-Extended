@@ -427,7 +427,7 @@ trap_of_walls:
 
    }
 
-   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() ) && rn2(100)) goto trap_of_walls;
+   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) ) && rn2(100)) goto trap_of_walls;
 }
 
 /* catch up with growths when returning to a previously visited level */

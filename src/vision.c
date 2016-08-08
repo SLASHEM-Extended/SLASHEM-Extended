@@ -646,13 +646,13 @@ vision_recalc(control)
 	    }
 	}
 
-	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) && u.xray_range < (u.nv_range + Sight_bonus) ) {
+	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < (u.nv_range + Sight_bonus) ) {
 	    if (!(u.nv_range + Sight_bonus) ) {	/* range is 0 */
 		next_array[u.uy][u.ux] |= IN_SIGHT;
 		levl[u.ux][u.uy].seenv = SVALL;
 		next_rmin[u.uy] = min(u.ux, next_rmin[u.uy]);
 		next_rmax[u.uy] = max(u.ux, next_rmax[u.uy]);
-	    } else if (( (u.nv_range + Sight_bonus) > 0) && !(u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) ) {
+	    } else if (( (u.nv_range + Sight_bonus) > 0) && !(u.uprops[WEAKSIGHT].extrinsic || WeakSight || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
 		ranges = circle_ptr(u.nv_range + Sight_bonus);
 
 		for (row = u.uy-(u.nv_range + Sight_bonus); row <= u.uy+(u.nv_range + Sight_bonus); row++) {

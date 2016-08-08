@@ -9637,6 +9637,126 @@ struct obj *obj;
 					pline("Artifact specs: +8 damage."); break;
 				case ART_VUVUZELA:
 					pline("Artifact specs: reflection when wielded, aggravates monsters when applied."); break;
+				case ART_CLARENT:
+					pline("Artifact specs: acts as a luckstone when wielded, +8 to-hit and +1 damage to thick-skinned monsters, lawful."); break;
+				case ART_SHADOWBLADE:
+					pline("Artifact specs: stealth when wielded, +5 to-hit and +3 damage, chaotic."); break;
+				case ART_YOICHI_NO_YUMI:
+					pline("Artifact specs: +20 to-hit and double damage, lawful."); break;
+				case ART_KIKU_ICHIMONJI:
+					pline("Artifact specs: +4 to-hit and +6 damage, lawful."); break;
+				case ART_ITLACHIAYAQUE:
+					pline("Artifact specs: half spell damage and fire resistance when wielded, lawful. No one can spell the name correctly."); break;
+				case ART_QUEEN_S_GUARD:
+					pline("Artifact specs: +6 to-hit and +3 damage, lawful."); break;
+				case ART_PEACEKEEPER:
+					pline("Artifact specs: +4 to-hit and +4 damage to crossaligned monsters, lawful."); break;
+				case ART_RESTKEEPER:
+					pline("Artifact specs: +4 to-hit and +4 damage to crossaligned monsters, lawful. The type of ice block (Soviet5lo) created this item in case someone wants to compile firearms out of SLASHTHEM, which will never happen. :-P"); break;
+				case ART_ICEBITER:
+					pline("Artifact specs: cold resistance when wielded, +6 to-hit and +3 damage to cold-susceptible monsters, lawful."); break;
+				case ART_SHOCK_BRAND:
+					pline("Artifact specs: shock resistance when wielded, +5 to-hit and double damage to shock-susceptible monsters."); break;
+				case ART_ACID_BRAND:
+					pline("Artifact specs: acid resistance when wielded, +5 to-hit and double damage to acid-susceptible monsters."); break;
+				case ART_SNAKESKIN:
+					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the filthy heretic, actually deferred the role for which this artifact was originally intended..."); break;
+				case ART_POSEIDON_S_TREASURE:
+					pline("Artifact specs: +10 to-hit and +5 damage to shock-susceptible monsters, neutral."); break;
+				case ART_GLADIUS:
+					pline("Artifact specs: +8 to-hit and +3 damage, neutral. Someone ought to tell Soviet that he made an artifact sword that's basically called 'sword' (lol)."); break;
+				case ART_HRUNTING:
+					pline("Artifact specs: +4 to-hit and +2 damage, neutral. In SLASHTHEM this thing is associated with the warrior role and the author of that fork completely forgot that the warrior role is Elder Scrolls-themed."); break;
+				case ART_DEBUGGER:
+					pline("Artifact specs: shock resistance when wielded, +5 to-hit and +2 damage to shock-susceptible monsters, neutral."); break;
+				case ART_ACIDTESTER:
+					pline("Artifact specs: acid resistance when wielded, +5 to-hit and +2 damage to acid-susceptible monsters, neutral. According to Soviet the name is temporary."); break;
+				case ART_STRAIGHTSHOT:
+					pline("Artifact specs: +10 to-hit and +1 damage, neutral."); break;
+				case ART_SHIMMERSTAFF:
+					pline("Artifact specs: +8 to-hit and +2 damage, neutral."); break;
+				case ART_FULL_METAL_JACKET:
+					pline("Artifact specs: protection, fire and hallucination resistance when worn, neutral. The original author says that the name of this artifact would be temporary for some reason."); break;
+				case ART_TESLA_S_COAT:
+					pline("Artifact specs: half physical damage and shock resistance when worn, neutral."); break;
+				case ART_OATHKEEPER:
+					pline("Artifact specs: +7 to-hit and +4 damage, neutral. According to Soviet5lo the name is temporary but I decided to keep it."); break;
+				case ART_BLACKSHROUD:
+					pline("Artifact specs: warning, drain resistance and acts as a luckstone when worn, neutral."); break;
+				case ART_SILVERSHARD:
+					pline("Artifact specs: +2 to-hit and double damage."); break;
+				case ART_MIRROR_BRAND:
+					pline("Artifact specs: reflection when wielded, +5 to-hit and double stun damage to crossaligned monsters, neutral."); break;
+				case ART_DIRK:
+					pline("Artifact specs: +5 to-hit and +2 damage, neutral. Soviet admits that he created this artifact because 'he couldn't think of something better for musicians'..."); break;
+				case ART_TENDERIZER:
+					pline("Artifact specs: +3 to-hit and +3 damage, neutral. The idea was probably stolen from Fallout 3."); break;
+				case ART_FUNGISWORD:
+					pline("Artifact specs: hallucination resistance when wielded, +10 to-hit and double damage to fungi, lawful."); break;
+				case ART_DIPLOMAT:
+					pline("Artifact specs: +10 to-hit and +12 damage to monsters with proper names, neutral."); break;
+				case ART_PETSLAYER:
+					pline("Artifact specs: +5 to-hit and +5 damage to domestic creatures, chaotic."); break;
+				case ART_MOUSER_S_SCALPEL:
+					pline("Artifact specs: +5 to-hit and +1 damage, neutral. Misleading name because it's not a scalpel in the first place."); break;
+				case ART_GRAYWAND:
+					pline("Artifact specs: +3 to-hit and +3 damage to cold-susceptible monsters, neutral. Not even remotely a wand. No idea what the original author of this artifact intended."); break;
+				case ART_HEARTSEEKER:
+					pline("Artifact specs: +3 to-hit and +1 damage, neutral."); break;
+				case ART_CAT_S_CLAW:
+					pline("Artifact specs: +5 to-hit and +3 damage to rodents, neutral."); break;
+				case ART_NIGHTINGALE:
+					pline("Artifact specs: +6 to-hit and +1 damage, chaotic. In SLASHTHEM this is the ninja's sacrifice gift, and it's notably much worse than the samurai artifacts."); break;
+				case ART_BLOODMARKER:
+					pline("Artifact specs: +3 to-hit and +3 damage, chaotic."); break;
+				case ART_SHAWSHANK:
+					pline("Artifact specs: +9 to-hit and +4 damage, chaotic. Soviet5lo created it for the Gangster role, being oblivious to the fact that the gangster is based on the Grand Theft Auto series."); break;
+				case ART_SPINESEEKER:
+					pline("Artifact specs: +5 to-hit and +2 damage, chaotic."); break;
+				case ART_CROWN_ROYAL_CLOAK:
+					pline("Artifact specs: protection, acid resistance and acts as a luckstone when worn, neutral."); break;
+				case ART_GAMBLER_S_SUIT:
+					pline("Artifact specs: protection and acts as a luckstone when worn."); break;
+				case ART_WAND_OF_MIGHT:
+					pline("Artifact specs: Someone insisted on putting an artifact wand of wishing in the game and you are the lucky fellow who found it. Congratulations. Now wish for an ascension kit please."); break;
+				case ART_WARFORGER:
+					pline("Artifact specs: fire resistance when wielded, +15 to-hit and +7 damage, neutral. Originally intended to be carried by Durin the Blacksmith, maybe?"); break;
+				case ART_SLING_OF_DAVID:
+					pline("Artifact specs: half physical damage when wielded, +5 to-hit and double damage, neutral. No, Soviet, sling bullets fired by this thing will not instakill giants."); break;
+				case ART_GOLDEN_WHISTLE_OF_NORA:
+					pline("Artifact specs: warning, half physical damage and ESP when wielded, lawful. The type of ice block came up with this beautiful name and says it's TEMPORARY??? I don't wanna know what terrible name it will have in future SLASHTHEM versions."); break;
+				case ART_FUMA_ITTO_NO_KEN:
+					pline("Artifact specs: drain resistance when wielded, +8 to-hit and +4 damage to crossaligned monsters, chaotic."); break;
+				case ART_PICK_OF_THE_GRAVE:
+					pline("Artifact specs: cold resistance, regeneration, half physical damage, teleport control, aggravate monster and hunger when wielded, +8 to-hit and +5 level-drain damage, neutral."); break;
+				case ART_FLUTE_OF_SLIME:
+					pline("Artifact specs: warning, teleport control and shock resistance when wielded, chaotic. According to Soviet the name is temporary, and in this case I agree that it sounds not all that great."); break;
+				case ART_FIRE_CHIEF_HELMET:
+					pline("Artifact specs: warning, protection, half spell damage, half physical damage and weak sight when worn, lawful."); break;
+				case ART_DELUXE_YENDORIAN_KNIFE:
+					pline("Artifact specs: ESP and fire resistance when wielded, +6 to-hit and +10 damage, neutral."); break;
+				case ART_HARP_OF_LIGHTNING:
+					pline("Artifact specs: warning, teleport control and acid resistance when wielded, neutral."); break;
+				case ART_HARP_OF_HARMONY:
+					pline("Artifact specs: warning, stealth and drain resistance when wielded, lawful."); break;
+				case ART_CUDGEL_OF_CUTHBERT:
+					pline("Artifact specs: hallucination and drain resistance plus regeneration, warning, increased monster difficulty, wall trap effect and half spell damage when wielded, +5 to-hit and double damage to crossaligned monsters, lawful."); break;
+				case ART_SWORD_OF_SVYATOGOR:
+					pline("Artifact specs: half physical damage and cold resistance when wielded, +7 to-hit and +4 damage, lawful. No idea what weird mythology 'Svyatogor' comes from, but certainly not The Elder Scrolls, so this has no business being the warrior quest artifact in SLASHTHEM."); break;
+				case ART_TOMMY_GUN_OF_CAPONE:
+					pline("Artifact specs: fire resistance, warning, stealth and acts as a luckstone when wielded, +5 to-hit and +3 damage, chaotic."); break;
+				case ART_WHISTLE_OF_THE_WARDEN:
+					pline("Artifact specs: ESP, teleport control and drain resistance when wielded, lawful."); break;
+				case ART_HAND_MIRROR_OF_CTHYLLA:
+					pline("Artifact specs: teleport control and searching when wielded."); break;
+				case ART_SCALPEL_OF_THE_BLOODLETTER:
+					pline("Artifact specs: regeneration, half physical damage and bleedout when wielded, +9 to-hit and +5 level-drain damage, neutral."); break;
+				case ART_GOURD_OF_INFINITY:
+					pline("Artifact specs: ESP, half spell damage, hallucination and drain resistance when wielded, neutral."); break;
+				case ART_LOCKPICK_OF_ARSENE_LUPIN:
+					pline("Artifact specs: searching, ESP, stealth, warning and acts as a luckstone when wielded, neutral."); break;
+				case ART_STAFF_OF_WITHERING:
+					pline("Artifact specs: cold resistance when wielded, +3 to-hit and +2 level-drain damage to crossaligned monsters, chaotic."); break;
 				case ART_STORMBRINGER:
 					pline("Artifact specs: +5 to-hit and +1 drain life damage, drain resistance when wielded, bloodthirsty, chaotic."); break;
 				case ART_REAVER:
@@ -9676,11 +9796,11 @@ struct obj *obj;
 				case ART_EYE_OF_THE_BEHOLDER:
 					pline("Artifact specs: can be invoked for death gaze, neutral, special quest reward that cannot be wished for."); break;
 				case ART_KEY_OF_NEUTRALITY:
-					pline("Artifact specs: Artifact specs: This key opens specific doors on Vlad's Tower and can only be obtained by beating the neutral quest, which you did! TROPHY GET!"); break;
+					pline("Artifact specs: This key opens specific doors on Vlad's Tower and can only be obtained by beating the neutral quest, which you did! TROPHY GET!"); break;
 				case ART_HAND_OF_VECNA:
 					pline("Artifact specs: regeneration, half physical damage and drain resistance when wielded, cold resistance while carried, can be invoked for summon undead, chaotic, special quest reward that cannot be wished for."); break;
 				case ART_KEY_OF_CHAOS:
-					pline("Artifact specs: Artifact specs: This key opens specific doors on Vlad's Tower and can only be obtained by beating the chaotic quest, which you did! TROPHY GET!"); break;
+					pline("Artifact specs: This key opens specific doors on Vlad's Tower and can only be obtained by beating the chaotic quest, which you did! TROPHY GET!"); break;
 				case ART_GAUNTLET_KEY:
 					pline("Artifact specs: Opens a specific door on a certain variant of the lawful quest, and is obviously lawful itself."); break;
 				case ART_ORB_OF_DETECTION:
@@ -9756,7 +9876,7 @@ struct obj *obj;
 				case ART_VERBAL_BLADE:
 					pline("Artifact specs: +5 to-hit and +1 damage, can behead enemies, neutral, zyborg quest artifact."); break;
 				case ART_TOME_DARK_SWORD:
-					pline("Artifact specs: can be invoked for enlightening, neutral, unbeliever quest artifact."); break;
+					pline("Artifact specs: half spell damage, half physical damage, ESP and stealth when wielded, can be invoked for enlightening, neutral, unbeliever quest artifact."); break;
 				case ART_ELDER_STAFF:
 					pline("Artifact specs: regeneration when wielded, +6 to-hit and double level drain damage, chaotic, death eater quest artifact."); break;
 				case ART_GAUNTLETS_OF_ILLUSION:
@@ -9764,7 +9884,7 @@ struct obj *obj;
 				case ART_LOVELY_PINK_PUMPS:
 					pline("Artifact specs: regeneration while carried, drain resistance when worn, can be invoked for invisibility, neutral, transvestite quest artifact."); break;
 				case ART_KISS_BOOTS:
-					pline("Artifact specs: energy regeneration while carried, drain resistance when worn, can be invoked for identify, neutral, transsylvanian quest artifact."); break;
+					pline("Artifact specs: energy regeneration while carried, drain resistance, half spell damage and half physical damage when worn, can be invoked for identify, neutral, transsylvanian quest artifact."); break;
 				case ART_GOLDEN_HIGH_HEELS:
 					pline("Artifact specs: stealth while carried, acid resistance when worn, can be invoked for levitation, neutral, topmodel quest artifact."); break;
 				case ART_UNOBTAINABLE_BEAUTIES:

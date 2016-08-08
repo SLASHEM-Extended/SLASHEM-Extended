@@ -2534,6 +2534,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && uwep && uwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deadly cloak") && !rn2(1000) ) {
 		pline("Your deadly cloak saps your life!");
@@ -2614,7 +2618,14 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
-
+	if (!rn2(2500) && uwep && uwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 	if (!rn2(2500) && have_bloodlossstone() ) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
@@ -2653,6 +2664,10 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(7500) && BloodLossProblem) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uwep && uwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

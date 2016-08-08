@@ -1739,7 +1739,7 @@ level_difficulty()
 	if (moves > 750000 && retvalue < 125 && rn2(2) ) retvalue = 125;
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() ) retvalue += 10;
+	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) ) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
