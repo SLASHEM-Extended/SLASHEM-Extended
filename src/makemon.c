@@ -431,9 +431,9 @@ register struct monst *mtmp;
 
 	if (!rn2(60) && ((rn2(100) > u.usefulitemchance) || (rn2(100) > u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
 
-	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-	if (!rn2(ishaxor ? 200 : 400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 1000 : 2000)) {
 	struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
@@ -1046,10 +1046,10 @@ register struct monst *mtmp;
 		  switch (mm) {
 		   case PM_ARCHEOLOGIST:
 		   case PM_UNDEAD_ARCHEOLOGIST:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 		     (void)mongets(mtmp, BULLWHIP);
 		     (void)mongets(mtmp, LEATHER_JACKET);
@@ -1064,24 +1064,24 @@ register struct monst *mtmp;
 
 		   case PM_ZOOKEEPER:
 		   case PM_UNDEAD_ZOOKEEPER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 		     (void)mongets(mtmp, BULLWHIP);
 		   break;
 
 		   case PM_ARTIST:
 		   case PM_UNDEAD_ARTIST:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, MALLET);
 		     (void)mongets(mtmp, FEDORA);
@@ -1091,28 +1091,28 @@ register struct monst *mtmp;
 
 		   case PM_GAMER:
 		   case PM_UNDEAD_GAMER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, T_SHIRT);
 
 		   break;
 
 		   case PM_BARBARIAN:
 		   case PM_UNDEAD_BARBARIAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 		     (void)mongets(mtmp, BATTLE_AXE);
 		     if (!rn2(2)) (void)mongets(mtmp, TWO_HANDED_SWORD);
@@ -1126,36 +1126,36 @@ register struct monst *mtmp;
 
 		   case PM_BINDER:
 		   case PM_UNDEAD_BINDER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, VOULGE);
 		     (void)mongets(mtmp, KNIFE);
@@ -1164,24 +1164,24 @@ register struct monst *mtmp;
 
 		   case PM_BLEEDER:
 		   case PM_UNDEAD_BLEEDER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, LAB_COAT);
 		   break;
 
 		   case PM_BARD: case PM_UNDEAD_BARD:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, LEATHER_CLOAK);
 #ifndef GOLDOBJ
@@ -1193,12 +1193,12 @@ register struct monst *mtmp;
 
 		   case PM_CAVEMAN: case PM_CAVEWOMAN:
 		   case PM_UNDEAD_CAVEMAN: case PM_UNDEAD_CAVEWOMAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, CLUB);
 		     if (rn2(3)) {
@@ -1228,16 +1228,16 @@ register struct monst *mtmp;
 
 		   case PM_GEEK:
 		   case PM_UNDEAD_GEEK:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, SILVER_DAGGER);
 		   break;
 		   case PM_ELF:
@@ -1257,10 +1257,10 @@ register struct monst *mtmp;
 		   break;
 		   case PM_FLAME_MAGE:
 		   case PM_UNDEAD_FLAME_MAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
@@ -1274,10 +1274,10 @@ register struct monst *mtmp;
 
 		   case PM_FIREFIGHTER:
 		   case PM_UNDEAD_FIREFIGHTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, AXE);
 		     (void)mongets(mtmp, WAN_FIRE);
@@ -1285,10 +1285,10 @@ register struct monst *mtmp;
 
 		   case PM_ACID_MAGE:
 		   case PM_UNDEAD_ACID_MAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
@@ -1302,12 +1302,12 @@ register struct monst *mtmp;
 
 		   case PM_UNDEAD_ROCKER: /* needs to be filled */
 		   case PM_ROCKER: /* needs to be filled */
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 			(void)mongets(mtmp, SLING);
 			 m_initthrow(mtmp, FLINT, 25);
@@ -1326,22 +1326,22 @@ register struct monst *mtmp;
 
 		   case PM_CONVICT:
 		   case PM_UNDEAD_CONVICT:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, HEAVY_IRON_BALL);
 		     (void)mongets(mtmp, STRIPED_SHIRT);
@@ -1355,22 +1355,22 @@ register struct monst *mtmp;
 
 		   case PM_MURDERER:
 		   case PM_UNDEAD_MURDERER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, HEAVY_IRON_BALL);
 		     (void)mongets(mtmp, STRIPED_SHIRT);
@@ -1386,24 +1386,24 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_SPACEWARS_FIGHTER:
 		   case PM_CAMPERSTRIKER:
 		   case PM_UNDEAD_CAMPERSTRIKER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, GREEN_LIGHTSABER);
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, PLASTEEL_ARMOR);
@@ -1413,24 +1413,24 @@ register struct monst *mtmp;
 
 		   case PM_COURIER:
 		   case PM_UNDEAD_COURIER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, PISTOL);
 			 m_initthrow(mtmp, BULLET, 25);
 		     (void)mongets(mtmp, KNIFE);
@@ -1439,12 +1439,12 @@ register struct monst *mtmp;
 
 		   case PM_ZYBORG:
 		   case PM_UNDEAD_ZYBORG:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, GREEN_LIGHTSABER);
 		     (void)mongets(mtmp, WAN_SOLAR_BEAM);
@@ -1453,12 +1453,12 @@ register struct monst *mtmp;
 
 		   case PM_LUNATIC:
 		   case PM_UNDEAD_LUNATIC:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, STEEL_SHIELD);
 		     (void)mongets(mtmp, STEEL_WHIP);
 
@@ -1466,16 +1466,16 @@ register struct monst *mtmp;
 
 		   case PM_GANGSTER:
 		   case PM_UNDEAD_GANGSTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, SUBMACHINE_GUN);
 			 m_initthrow(mtmp, BULLET, 50);
 			 m_initthrow(mtmp, BULLET, 50);
@@ -1485,26 +1485,26 @@ register struct monst *mtmp;
 
 		   case PM_GUNNER:
 		   case PM_UNDEAD_GUNNER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, ASSAULT_RIFLE);
 		     if (!rn2(5)) (void)mongets(mtmp, SNIPER_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
@@ -1515,26 +1515,26 @@ register struct monst *mtmp;
 
 		   case PM_DOOM_MARINE:
 		   case PM_UNDEAD_DOOM_MARINE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, ASSAULT_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
 		     (void)mongets(mtmp, ARM_BLASTER);
@@ -1552,38 +1552,38 @@ register struct monst *mtmp;
 
 		   case PM_WANDKEEPER:
 		   case PM_UNDEAD_WANDKEEPER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, LAB_COAT);
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, WAN_MAGIC_MISSILE);
@@ -1613,26 +1613,26 @@ register struct monst *mtmp;
 
 		   case PM_DEATH_EATER:
 		   case PM_UNDEAD_DEATH_EATER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 10);
@@ -1648,45 +1648,45 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_MUSICIAN:
 		   case PM_GRADUATE:
 		   case PM_UNDEAD_GRADUATE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		   break;
 
 		   case PM_WARRIOR:
 		   case PM_UNDEAD_WARRIOR:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, MACE);
 		     (void)mongets(mtmp, CROSSBOW);
 			 m_initthrow(mtmp, CROSSBOW_BOLT, 50);
@@ -1698,18 +1698,18 @@ register struct monst *mtmp;
 
 		   case PM_NOBLEMAN:
 		   case PM_UNDEAD_NOBLEMAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, RAPIER);
 		     (void)mongets(mtmp, RUFFLED_SHIRT);
@@ -1720,18 +1720,18 @@ register struct monst *mtmp;
 
 		   case PM_NOBLEWOMAN:
 		   case PM_UNDEAD_NOBLEWOMAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, RAPIER);
 		     (void)mongets(mtmp, VICTORIAN_UNDERWEAR);
@@ -1742,18 +1742,18 @@ register struct monst *mtmp;
 
 		   case PM_DRUNK:
 		   case PM_UNDEAD_DRUNK:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, RUBBER_HOSE);
 
@@ -1761,12 +1761,12 @@ register struct monst *mtmp;
 
 		   case PM_PIRATE:
 		   case PM_UNDEAD_PIRATE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, SCIMITAR);
 		     (void)mongets(mtmp, PISTOL);
 		     (void)mongets(mtmp, KNIFE);
@@ -1779,12 +1779,12 @@ register struct monst *mtmp;
 
 		   case PM_OFFICER:
 		   case PM_UNDEAD_OFFICER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, CLUB);
 		     (void)mongets(mtmp, PISTOL);
 			 m_initthrow(mtmp, BULLET, 50);
@@ -1796,12 +1796,12 @@ register struct monst *mtmp;
 
 		   case PM_GLADIATOR:
 		   case PM_UNDEAD_GLADIATOR:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, SILVER_SPEAR);
 		     (void)mongets(mtmp, SHIELD_OF_REFLECTION);
 
@@ -1809,12 +1809,12 @@ register struct monst *mtmp;
 
 		   case PM_GOFF:
 		   case PM_UNDEAD_GOFF:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, HIPPIE_HEELS);
 		     (void)mongets(mtmp, PISTOL);
@@ -1826,12 +1826,12 @@ register struct monst *mtmp;
 
 		   case PM_AMAZON:
 		   case PM_UNDEAD_AMAZON:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, JAVELIN);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 		     (void)mongets(mtmp, BOW);
@@ -1841,12 +1841,12 @@ register struct monst *mtmp;
 
 		   case PM_DRUID:
 		   case PM_UNDEAD_DRUID:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, CLUB);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 		     (void)mongets(mtmp, BOW);
@@ -1856,12 +1856,12 @@ register struct monst *mtmp;
 
 		   case PM_ALTMER:
 		   case PM_UNDEAD_ALTMER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, WAN_FIRE);
 
@@ -1869,12 +1869,12 @@ register struct monst *mtmp;
 
 		   case PM_BOSMER:
 		   case PM_UNDEAD_BOSMER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, ELVEN_DAGGER);
 		     (void)mongets(mtmp, ELVEN_BOW);
 			 m_initthrow(mtmp, ELVEN_ARROW, 50);
@@ -1883,12 +1883,12 @@ register struct monst *mtmp;
 
 		   case PM_DUNMER:
 		   case PM_UNDEAD_DUNMER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, DARK_ELVEN_DAGGER);
 		     (void)mongets(mtmp, DARK_ELVEN_BOW);
 			 m_initthrow(mtmp, DARK_ELVEN_ARROW, 50);
@@ -1897,12 +1897,12 @@ register struct monst *mtmp;
 
 		   case PM_THALMOR:
 		   case PM_UNDEAD_THALMOR:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, ELVEN_BROADSWORD);
 		     (void)mongets(mtmp, ELVEN_MITHRIL_COAT);
 		     (void)mongets(mtmp, DARK_ELVEN_BOW);
@@ -1912,12 +1912,12 @@ register struct monst *mtmp;
 
 		   case PM_ORDINATOR:
 		   case PM_UNDEAD_ORDINATOR:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, TSURUGI);
 		     (void)mongets(mtmp, RUNESWORD);
 		     (void)mongets(mtmp, DARK_ELVEN_MITHRIL_COAT);
@@ -1926,12 +1926,12 @@ register struct monst *mtmp;
 
 		   case PM_KORSAIR:
 		   case PM_UNDEAD_KORSAIR:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, SCIMITAR);
 
@@ -1939,12 +1939,12 @@ register struct monst *mtmp;
 
 		   case PM_DIVER:
 		   case PM_UNDEAD_DIVER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, TRIDENT);
 		     (void)mongets(mtmp, SPEAR);
@@ -1954,12 +1954,12 @@ register struct monst *mtmp;
 
 		   case PM_CHEVALIER:
 		   case PM_UNDEAD_CHEVALIER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, TRIDENT);
 		     (void)mongets(mtmp, ROBE);
 		     (void)mongets(mtmp, SMALL_SHIELD);
@@ -1970,26 +1970,26 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_TRANSVESTITE:
 		   case PM_TRANSSYLVANIAN:
 		   case PM_UNDEAD_TRANSSYLVANIAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 			(void) mongets(mtmp, rnd_class(WEDGED_LITTLE_GIRL_SANDAL,SPIKED_BATTLE_BOOT));
 			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS));
@@ -2000,26 +2000,26 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_TOPMODEL:
 		   case PM_FAILED_EXISTENCE:
 		   case PM_UNDEAD_FAILED_EXISTENCE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, RIFLE);
@@ -2036,26 +2036,26 @@ register struct monst *mtmp;
 			if (mtmp->female) (void)mongets(mtmp, VICTORIAN_UNDERWEAR);
 			else (void)mongets(mtmp, RUFFLED_SHIRT);
 
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, FLY_SWATTER);
 
@@ -2071,10 +2071,10 @@ register struct monst *mtmp;
 
 		   case PM_ELECTRIC_MAGE:
 		   case PM_UNDEAD_ELECTRIC_MAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
@@ -2088,10 +2088,10 @@ register struct monst *mtmp;
 
 		   case PM_POISON_MAGE:
 		   case PM_UNDEAD_POISON_MAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, SILVER_KHAKKHARA);
 		     (void)mongets(mtmp, POISONOUS_CLOAK);
@@ -2107,18 +2107,18 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_HEALER:
 		   case PM_SCIENTIST:
 		   case PM_UNDEAD_SCIENTIST:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, SCALPEL);
 		     (void)mongets(mtmp, LEATHER_GLOVES);
 		     (void)mongets(mtmp, WAN_HEALING);
@@ -2131,10 +2131,10 @@ register struct monst *mtmp;
 		   break;
 		   case PM_ICE_MAGE:
 		   case PM_UNDEAD_ICE_MAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, QUARTERSTAFF);
 		     (void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
@@ -2151,18 +2151,18 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_YEOMAN:
 		   case PM_KNIGHT:
 		   case PM_UNDEAD_KNIGHT:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, LONG_SWORD);
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, LARGE_SHIELD);
@@ -2177,24 +2177,24 @@ register struct monst *mtmp;
 
 		   case PM_PALADIN:
 		   case PM_UNDEAD_PALADIN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, LONG_SWORD);
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, LARGE_SHIELD);
@@ -2209,24 +2209,24 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_SAIYAN:
 		   case PM_PSION:
 		   case PM_UNDEAD_PSION:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 
 #ifndef GOLDOBJ
@@ -2237,14 +2237,14 @@ register struct monst *mtmp;
 		   break;
 		   case PM_NECROMANCER:
 		   case PM_UNDEAD_NECROMANCER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 		     (void)mongets(mtmp, ATHAME);
 		     (void)mongets(mtmp, SCR_SUMMON_UNDEAD);
@@ -2261,12 +2261,12 @@ register struct monst *mtmp;
 
 		   case PM_JESTER:
 		   case PM_UNDEAD_JESTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, HAWAIIAN_SHIRT);
 		     (void)mongets(mtmp, DUNCE_CAP);
@@ -2278,16 +2278,16 @@ register struct monst *mtmp;
 
 		   case PM_FEAT_MASTER:
 		   case PM_UNDEAD_FEAT_MASTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, FLAIL);
 		     (void)mongets(mtmp, ORCISH_HELM);
@@ -2298,24 +2298,24 @@ register struct monst *mtmp;
 
 		   case PM_FOXHOUND_AGENT:
 		   case PM_UNDEAD_FOXHOUND_AGENT:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, FEDORA);
 		     (void)mongets(mtmp, ELVEN_CLOAK);
@@ -2329,12 +2329,12 @@ register struct monst *mtmp;
 		   case PM_PRIESTESS:
 		   case PM_UNDEAD_PRIEST:
 		   case PM_UNDEAD_PRIESTESS:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, MACE);
 		     (void)mongets(mtmp, rn1(ROBE_OF_WEAKNESS - ROBE + 1, ROBE));
@@ -2356,14 +2356,14 @@ register struct monst *mtmp;
 		   break;
 		   case PM_ROGUE:
 		   case PM_UNDEAD_ROGUE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, SHORT_SWORD);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
@@ -2376,14 +2376,14 @@ register struct monst *mtmp;
 
 		   case PM_ASSASSIN:
 		   case PM_UNDEAD_ASSASSIN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, BOW);
@@ -2395,14 +2395,14 @@ register struct monst *mtmp;
 
 		   case PM_LOCKSMITH:
 		   case PM_UNDEAD_LOCKSMITH:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		   break;
 
@@ -2410,14 +2410,14 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_DQ_SLIME:
 		   case PM_ERDRICK:
 		   case PM_UNDEAD_ERDRICK:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, BATTLE_STAFF);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 		     (void)mongets(mtmp, HELMET);
@@ -2426,14 +2426,14 @@ register struct monst *mtmp;
 
 		   case PM_BULLY:
 		   case PM_UNDEAD_BULLY:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, CLUB);
 		     (void)mongets(mtmp, DUNCE_CAP);
@@ -2443,14 +2443,14 @@ register struct monst *mtmp;
 
 		   case PM_PICKPOCKET:
 		   case PM_UNDEAD_PICKPOCKET:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, LEATHER_GLOVES);
@@ -2462,16 +2462,16 @@ register struct monst *mtmp;
 		   case PM_ELPH:
 		   case PM_UNDEAD_RANGER:
 		   case PM_UNDEAD_ELPH:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, ELVEN_DAGGER);
 		     (void)mongets(mtmp, ELVEN_BOW);
 			    m_initthrow(mtmp, ELVEN_ARROW, 25);
@@ -2480,16 +2480,16 @@ register struct monst *mtmp;
 
 		   case PM_TWELPH:
 		   case PM_UNDEAD_TWELPH:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, DARK_ELVEN_DAGGER);
 		     (void)mongets(mtmp, DARK_ELVEN_BOW);
 			    m_initthrow(mtmp, DARK_ELVEN_ARROW, 25);
@@ -2498,10 +2498,10 @@ register struct monst *mtmp;
 
 		   case PM_GOLDMINER:
 		   case PM_UNDEAD_GOLDMINER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, PICK_AXE);
 		     (void)mongets(mtmp, CROSSBOW);
 			    m_initthrow(mtmp, CROSSBOW_BOLT, 25);
@@ -2510,10 +2510,10 @@ register struct monst *mtmp;
 
 		   case PM_MIDGET:
 		   case PM_UNDEAD_MIDGET:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, DWARVISH_MATTOCK);
 		     (void)mongets(mtmp, DWARVISH_IRON_HELM);
 		     (void)mongets(mtmp, DWARVISH_MITHRIL_COAT);
@@ -2522,10 +2522,10 @@ register struct monst *mtmp;
 
 		   case PM_RINGSEEKER:
 		   case PM_UNDEAD_RINGSEEKER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, SLING);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 			    m_initthrow(mtmp, ROCK, 25);
@@ -2535,28 +2535,28 @@ register struct monst *mtmp;
 
 		   case PM_SHAPESHIFTER:
 		   case PM_UNDEAD_SHAPESHIFTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, WAN_POLYMORPH);
 
 		   break;
 
 		   case PM_NINJA:
 		   case PM_UNDEAD_NINJA:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, SHORT_SWORD);
 		     (void)mongets(mtmp, POT_INVISIBILITY);
 			m_initthrow(mtmp, SHURIKEN, 25);
@@ -2564,16 +2564,16 @@ register struct monst *mtmp;
 
 		   case PM_SAMURAI:
 		   case PM_UNDEAD_SAMURAI:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, KATANA);
 		     if (rn2(2)) (void)mongets(mtmp, SHORT_SWORD);
 		     if (rn2(3)) {
@@ -2590,54 +2590,54 @@ register struct monst *mtmp;
 
 		   case PM_OTAKU:
 		   case PM_UNDEAD_OTAKU:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, KATANA);
 		     (void)mongets(mtmp, T_SHIRT);
 		   break;
 
 		   case PM_LIBRARIAN:
 		   case PM_UNDEAD_LIBRARIAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, ROBE);
 
 		   break;
 
 		   case PM_FIGHTER:
 		   case PM_UNDEAD_FIGHTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, SHORT_SWORD);
 		     (void)mongets(mtmp, SAILOR_BLOUSE);
 		     (void)mongets(mtmp, WAN_POLYMORPH);
@@ -2646,18 +2646,18 @@ register struct monst *mtmp;
 
 		   case PM_FENCER:
 		   case PM_UNDEAD_FENCER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, SHORT_SWORD);
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
@@ -2666,18 +2666,18 @@ register struct monst *mtmp;
 
 		   case PM_MEDIUM:
 		   case PM_UNDEAD_MEDIUM:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, SILVER_DAGGER);
 		     (void)mongets(mtmp, YUMI);
 		     (void)mongets(mtmp, ROBE);
@@ -2687,14 +2687,14 @@ register struct monst *mtmp;
 
 		   case PM_JUSTICE_KEEPER:
 		   case PM_UNDEAD_JUSTICE_KEEPER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, MACE);
 		     (void)mongets(mtmp, SPLINT_MAIL);
 
@@ -2702,23 +2702,23 @@ register struct monst *mtmp;
 
 		   case PM_STAND_USER:
 		   case PM_UNDEAD_STAND_USER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		   break;
 
 		   case PM_SEXYMATE:
 		   case PM_UNDEAD_SEXYMATE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, FEMININE_PUMPS);
 		     (void)mongets(mtmp, SEXY_LEATHER_PUMP);
 
@@ -2726,40 +2726,40 @@ register struct monst *mtmp;
 
 		   case PM_LADIESMAN:
 		   case PM_UNDEAD_LADIESMAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, RUFFLED_SHIRT);
 		     (void)mongets(mtmp, FEDORA);
@@ -2768,20 +2768,20 @@ register struct monst *mtmp;
 
 		   case PM_SUPERMARKET_CASHIER:
 		   case PM_UNDEAD_SUPERMARKET_CASHIER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, LEATHER_JACKET);
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, LOW_BOOTS);
@@ -2790,28 +2790,28 @@ register struct monst *mtmp;
 
 		   case PM_BLOODSEEKER:
 		   case PM_UNDEAD_BLOODSEEKER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, SHORT_SWORD);
 		     (void)mongets(mtmp, WAN_FIRE);
 		     (void)mongets(mtmp, COMBAT_STILETTOS);
@@ -2820,28 +2820,28 @@ register struct monst *mtmp;
 
 		   case PM_SLAVE_MASTER:
 		   case PM_UNDEAD_SLAVE_MASTER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		   break;
 
@@ -2864,20 +2864,20 @@ register struct monst *mtmp;
 
 		   case PM_COOK:
 		   case PM_UNDEAD_COOK:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, ROBE);
 		     (void)mongets(mtmp, KNIFE);
 
@@ -2886,20 +2886,20 @@ register struct monst *mtmp;
 #ifdef TOURIST
 		   case PM_TOURIST:
 		   case PM_UNDEAD_TOURIST:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     m_initthrow(mtmp, DART, 20);
 		     (void)mongets(mtmp, HAWAIIAN_SHIRT);
@@ -2913,36 +2913,36 @@ register struct monst *mtmp;
 #endif
 		   case PM_UNDEAD_SLAYER:
 		   case PM_NON_UNDEAD_SLAYER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, SILVER_SPEAR);
 		     (void)mongets(mtmp, CHAIN_MAIL);
@@ -2955,52 +2955,52 @@ register struct monst *mtmp;
 
 		   case PM_AUGURER:
 		   case PM_UNDEAD_AUGURER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     (void)mongets(mtmp, LEATHER_ARMOR);
 
 		   break;
 
 		   case PM_POLITICIAN:
 		   case PM_UNDEAD_POLITICIAN:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     (void)mongets(mtmp, LEATHER_JACKET);
 		     (void)mongets(mtmp, T_SHIRT);
 		     (void)mongets(mtmp, LOW_BOOTS);
@@ -3009,36 +3009,36 @@ register struct monst *mtmp;
 
 		   case PM_INTEL_SCRIBE:
 		   case PM_UNDEAD_INTEL_SCRIBE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, DAGGER);
 		     if (!rn2(3)) (void)mongets(mtmp, CLOAK_OF_DISPLACEMENT);
@@ -3046,36 +3046,36 @@ register struct monst *mtmp;
 
 		   case PM_MAHOU_SHOUJO:
 		   case PM_UNDEAD_MAHOU_SHOUJO:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, WAN_STRIKING);
 		     if (!rn2(10)) (void)mongets(mtmp, WAN_BANISHMENT);
@@ -3085,36 +3085,36 @@ register struct monst *mtmp;
 
 		   case PM_DOLL_MISTRESS:
 		   case PM_UNDEAD_DOLL_MISTRESS:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, WORM_TOOTH);
 		     (void)mongets(mtmp, DWARVISH_CLOAK);
@@ -3123,36 +3123,36 @@ register struct monst *mtmp;
 
 		   case PM_CRUEL_ABUSER:
 		   case PM_UNDEAD_CRUEL_ABUSER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, BULLWHIP);
 		     (void)mongets(mtmp, KNOUT);
@@ -3164,36 +3164,36 @@ register struct monst *mtmp;
 
 		   case PM_UNDERTAKER:
 		   case PM_UNDEAD_UNDERTAKER:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, SCALPEL);
 		     (void)mongets(mtmp, VICTORIAN_UNDERWEAR);
@@ -3201,12 +3201,12 @@ register struct monst *mtmp;
 
 		   case PM_VALKYRIE:
 		   case PM_UNDEAD_VALKYRIE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 		     (void)mongets(mtmp, LONG_SWORD);
 		     if (!rn2(3)) m_initthrow(mtmp, DAGGER, 4);
@@ -3220,14 +3220,14 @@ register struct monst *mtmp;
 
 		   case PM_SAGE:
 		   case PM_UNDEAD_SAGE:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, MACE);
 		     (void)mongets(mtmp, ROBE);
@@ -3238,14 +3238,14 @@ register struct monst *mtmp;
 
 		   case PM_WIZARD:
 		   case PM_UNDEAD_WIZARD:
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(20)) (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, ATHAME);
 		     (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -3263,24 +3263,24 @@ register struct monst *mtmp;
 		   default:
 		   break;
 		  } 
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if ((int) mtmp->m_lev > rn2(120))
 		     (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if (!rn2(200))
 		     (void) mongets(mtmp, rnd_offensive_item(mtmp));
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if ((int) mtmp->m_lev > rn2(120))
 		     (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if (!rn2(200))
 		     (void) mongets(mtmp, rnd_defensive_item(mtmp));
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if ((int) mtmp->m_lev > rn2(120))
 		     (void) mongets(mtmp, rnd_misc_item(mtmp));
-		  if ((int) mtmp->m_lev > rn2(40))
+		  if (!rn2(200))
 		     (void) mongets(mtmp, rnd_misc_item(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-		     if (!rn2(200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(1000)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		 } /* end of other characters */
 	       /*break;*/
 		else if (ptr->msound == MS_PRIEST ||
@@ -4694,9 +4694,9 @@ register struct monst *mtmp;
 	if (!rn2(ishaxor ? 20 : 40) ) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
 	if (!rn2(ishaxor ? 50 : 100) ) (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
 
-      if ((int) mtmp->m_lev > rn2(200))
+      if ((int) mtmp->m_lev > rn2(500))
 		(void) mongets(mtmp, rnd_offensive_item(mtmp));
-	if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(1200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 }
 
@@ -6747,15 +6747,15 @@ register struct	monst	*mtmp;
 		break;
 	}
 
-	if ((int) mtmp->m_lev > rn2(200))
+	if ((int) mtmp->m_lev > rn2(400))
 		(void) mongets(mtmp, rnd_defensive_item(mtmp));
-	if ((int) mtmp->m_lev > rn2(200))
+	if ((int) mtmp->m_lev > rn2(400))
 		(void) mongets(mtmp, rnd_misc_item(mtmp));
-	if ((int) mtmp->m_lev > rn2(500))
+	if ((int) mtmp->m_lev > rn2(1000))
 		(void) mongets(mtmp, rnd_offensive_item(mtmp));
-	if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-	if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-	if (!rn2(1000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	if (!rn2(1200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+	if (!rn2(3000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 	/* inventory initialization for bosses --Amy */
 
@@ -13310,7 +13310,7 @@ register int	mmflags;
 		m_initxtraitem(mtmp);
 
 		/* for an elemental, monsters get musable items more often --Amy */
-		if (Race_if(PM_ELEMENTAL) && mtmp->data->mmove && (rnd(mtmp->data->mmove) > 5) && !rn2(10)) {
+		if (Race_if(PM_ELEMENTAL) && mtmp->data->mmove && (rnd(mtmp->data->mmove) > 5) && !rn2(25)) {
 
 			switch (rnd(10)) {
 	
@@ -13319,14 +13319,17 @@ register int	mmflags;
 				case 3:
 				case 4:
 				case 5: 
-					mongets(mtmp, rnd_offensive_item(mtmp)); break;
+					if (rn2(20)) mongets(mtmp, rnd_offensive_item(mtmp));
+					else mongets(mtmp, rnd_offensive_item_new(mtmp)); break;
 				case 6:
 				case 7:
 				case 8:
-					mongets(mtmp, rnd_defensive_item(mtmp)); break;
+					if (rn2(20)) mongets(mtmp, rnd_defensive_item(mtmp));
+					else mongets(mtmp, rnd_defensive_item_new(mtmp)); break;
 				case 9:
 				case 10:
-					mongets(mtmp, rnd_misc_item(mtmp)); break;
+					if (rn2(20)) mongets(mtmp, rnd_misc_item(mtmp));
+					else mongets(mtmp, rnd_misc_item_new(mtmp)); break;
 			}
 		}
 
