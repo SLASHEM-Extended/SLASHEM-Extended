@@ -177,6 +177,7 @@ int otyp,oquan;
 	}
 	otmp->owt = weight(otmp);
 	if (otyp == ORCISH_ARROW) otmp->opoisoned = TRUE;
+	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
 
@@ -14428,6 +14429,7 @@ register int otyp;
 
 	    spe = otmp->spe;
 	    if (is_musable(otmp)) otmp->mstartinvent = 1;
+	    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
 	    (void) mpickobj(mtmp, otmp, TRUE);	/* might free otmp */
 	    return(spe);
 	} else return(0);

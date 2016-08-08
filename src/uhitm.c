@@ -2757,7 +2757,11 @@ struct attack *mattk;
 	    }
 	    /* give the object to the character, new function by Amy - see invent.c */
 
-	    if (otmp && otmp->mstartinvent) {
+	    if (otmp && otmp->mstartinvent && !(otmp->oartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) ) {
+			delobj(otmp);
+			return;
+	    }
+	    if (otmp && otmp->mstartinventB && !(otmp->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp)) {
 			delobj(otmp);
 			return;
 	    }

@@ -611,6 +611,7 @@ boolean verbosely;
 	obj->owornmask = 0L;
     }
     obj->mstartinvent = 0;
+    obj->mstartinventB = 0;
     if (verbosely && cansee(omx, omy))
 	pline("%s drops %s.", Monnam(mon), distant_name(obj, doname));
     if (!flooreffects(obj, omx, omy, "fall")) {
@@ -662,7 +663,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		/* special case: pick-axe and unicorn horn are non-worn */
 		/* items that we also want pets to keep 1 of */
 		/* (It is a coincidence that these can also be wielded.) */
-		if (otmp->owornmask || otmp == wep || otmp->mstartinvent ||
+		if (otmp->owornmask || otmp == wep || otmp->mstartinvent || otmp->mstartinventB ||
 		    ((!item1 && otmp->otyp == PICK_AXE) ||
 		     (!item2 && otmp->otyp == UNICORN_HORN && !otmp->cursed))) {
 			if (is_pet) { /* dont drop worn/wielded item */
@@ -678,7 +679,8 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-		if (is_musable(otmp) && otmp->mstartinvent && (!rn2(3) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet && !dmgtype(mtmp->data, AD_SEDU) && !dmgtype(mtmp->data, AD_SITM) && (!dmgtype(mtmp->data, AD_SSEX) || !rn2(3) ) && (!dmgtype(mtmp->data, AD_SGLD) || !rn2(5) ) ) delobj(otmp);
+		if (is_musable(otmp) && otmp->mstartinvent && !(otmp->oartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
+		else if (otmp->mstartinventB && !(otmp->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
 		else mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
 	}
 

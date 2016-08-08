@@ -387,6 +387,8 @@ int x,y;
 
 	} else create = 1;
 
+	if (obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) ) create = 0;
+
 #ifdef FIREARMS
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
@@ -426,6 +428,7 @@ int x,y;
 			(t = t_at(x, y)) && ((t->ttyp == PIT) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == GIANT_CHASM) ||
 			(t->ttyp == SPIKED_PIT)))) {
 		int objgone = 0;
+		obj->mstartinventB = 0;
 
 		if (down_gate(x, y) != -1)
 			objgone = ship_object(obj, x, y, FALSE);

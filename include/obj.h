@@ -108,6 +108,7 @@ struct obj {
 	Bitfield(yours,1);	/* obj is yours (eg. thrown by you) */
 	Bitfield(was_thrown,1); /* thrown by the hero since last picked up */
 	Bitfield(mstartinvent,1); /* item is part of a monster's starting inventory --Amy */
+	Bitfield(mstartinventB,1);
 	/* ? free bits */
 
 	int	corpsenm;	/* type of corpse is mons[corpsenm] */
