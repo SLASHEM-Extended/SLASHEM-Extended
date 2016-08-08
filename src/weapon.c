@@ -1232,6 +1232,10 @@ struct monst *mon;
 			}
 		}
 
+		if (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN && (objects[otmp->otyp].oc_skill == P_AXE)) {
+			bonus += 5;
+		}
+
 	    /* polearms versus golems */
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
 

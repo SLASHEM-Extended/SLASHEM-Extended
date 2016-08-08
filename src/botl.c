@@ -1083,8 +1083,8 @@ bot()
 	if (raw_handler)
 		bot_raw(FALSE);
 	else {
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone()) bot1();
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone()) bot2();
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot1();
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }

@@ -3387,7 +3387,7 @@ int k_format; /* WAC k_format is an int */
 		    maybe_wail();
 
 #ifdef SHOW_DMG                
-		if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
+		if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
 			pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		}
 #endif
@@ -3411,7 +3411,7 @@ int k_format; /* WAC k_format is an int */
 	}
 
 #ifdef SHOW_DMG                
-	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && n > 0) { 
+	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
@@ -3454,9 +3454,12 @@ weight_cap()
 	if (u.medusaremoved) carrcap += 150;
 	if (u.luckstoneget) carrcap += 50;
 	if (u.sokobanfinished) carrcap += 50;
+	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) carrcap -= 250;
 
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
+
+	if (carrcap < 500) carrcap = 500;
 
 	if (Levitation || Is_airlevel(&u.uz)    /* pugh@cornell */
 #ifdef STEED

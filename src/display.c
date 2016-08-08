@@ -761,7 +761,7 @@ newsym(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
-	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
     if (u.uswallow) {

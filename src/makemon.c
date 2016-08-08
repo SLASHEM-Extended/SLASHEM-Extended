@@ -13368,6 +13368,11 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
+	if (mtmp->mpeaceful && is_animal(mtmp->data) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER && !rn2(100)) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
 	if (mndx == PM_SIZZLE || mndx == PM_KATNISS) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
@@ -14751,6 +14756,7 @@ register struct permonst *ptr;
 
 	if (is_undead(ptr) && !mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (is_undead(ptr) && mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(4)) return TRUE;
+	if (is_animal(ptr) && rn2(10) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER) return TRUE;
 
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)

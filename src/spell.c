@@ -2219,6 +2219,10 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
+	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SPELL_POWER) splcaster -= 3;
+	if (uarm && uarm->oartifact == ART_SPIDERSILK) splcaster -= 3;
+	if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) splcaster -= 3;
+	if (uwep && uwep->oartifact == ART_ARYFAERN_KERYM) splcaster -= 3;
 
 	if (Role_if(PM_PALADIN)) splcaster -= 3; /* it is assumed some of their power is granted by the Lord of Light himself */
 
@@ -2313,7 +2317,7 @@ int spell;
 	 */
 	chance = chance * (30-splcaster) / 10;
 
-	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() ) && chance > 0) {
+	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) ) && chance > 0) {
 
 		chance = (chance / u.uhpmax * u.uhp);
 
@@ -2343,6 +2347,7 @@ int spell;
 	}
 
 	if (issoviet) chance -= 30;
+	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;

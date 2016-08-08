@@ -620,6 +620,14 @@ Cloak_on()
 		 * She made it to lure in unsuspecting victims of course! */
 	}
 
+	if (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) {
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("An evil curse goes off as you put on the veil.");
+		}
+	}
+
     return 0;
 }
 
@@ -1526,6 +1534,12 @@ Shirt_on()
 			pline("Your shirt tickles comfortably on your smooth skin!");
 			}
 		}
+
+	}
+
+	if (uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+
+		if (uarmu->spe < 10) uarmu->spe = 10;
 
 	}
 
@@ -3113,7 +3127,11 @@ find_ac()
 	}
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_COW_ENCHANTMENT) uac -= 9;
+	if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_SAINT_KING) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_DARK_LORD) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;
 	if (uarms && uarms->oartifact == ART_AEAEAEAEAEGIS) uac -= 10;
 	if (uarms && uarms->oartifact == ART_WHANG_CLINK_CLONK) uac -= 5;

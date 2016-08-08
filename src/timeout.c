@@ -427,6 +427,12 @@ nh_timeout()
 
 	}
 
+	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+
+		makerandomtrap();
+
+	}
+
 	if (!rn2(200) && have_trapcreationstone() ) {
 
 		makerandomtrap();
@@ -1745,6 +1751,19 @@ nh_timeout()
 
 	}
 
+	if (uwep && uwep->oartifact == ART_MASAMUNE) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (!rn2(1000) && Race_if(PM_WEAPON_TRAPPER)) { /* Harder than hard race that gets random nasty trap effects. --Amy */
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
@@ -2583,6 +2602,19 @@ nh_timeout()
 
 		}
 
+	}
+
+	if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) {
+		u.uhp--;
+		if (!rn2(2)) u.uhp--;
+		if (u.uhp < 10) pline("Tensa Zangetsu causes you to feel weaker!");
+		if (u.uhp < 3) pline("In fact, you feel almost faint...");
+		if (u.uhp < 1) {
+			pline("Tensa Zangetsu sapped your last bit of life and you die. Goodbye.");
+			killer_format = KILLED_BY;
+			killer = "wielding Tensa Zangetsu for too long";
+			done(DIED);
+		}
 	}
 
 	if (!rn2(2500) && Role_if(PM_BLEEDER)) {

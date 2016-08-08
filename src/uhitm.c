@@ -232,7 +232,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -241,7 +241,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -254,7 +254,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -531,9 +531,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -850,6 +850,7 @@ martial_dmg()
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
+	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
 
 	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
 	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */

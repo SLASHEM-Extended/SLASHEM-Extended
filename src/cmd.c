@@ -5416,7 +5416,7 @@ minimal_enlightenment()
 
 	*statline = '\0';
 
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() ) {
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 

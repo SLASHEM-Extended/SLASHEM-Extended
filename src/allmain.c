@@ -851,6 +851,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1) /* roman clothing just generally slows you down */
 				moveamt /= 2;
 
@@ -899,6 +902,10 @@ moveloop()
 			if (Role_if(PM_TRANSSYLVANIAN) && (moveamt > 1) && (!PlayerInHighHeels) ) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* transsylvanian has to wear heels at all times --Amy */
+			}
+			if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
 			}
 
 			/* double and quad attack are teh pwnz0r, so they need to have a downside --Amy */
@@ -1187,6 +1194,16 @@ moveloop()
 
 		}
 
+		if (uarmg && uarmg->oartifact == ART_CLAWS_OF_THE_REVENANCER && !rn2(100) && multi >= 0) {
+
+			pline("You are clawed by your gauntlets and faint.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted due to the revenancer");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
 		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
 
 			pline("You suddenly die.");
@@ -1232,6 +1249,15 @@ moveloop()
 		}
 
 		if (RecurringDisenchant && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
+		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -1288,6 +1314,21 @@ moveloop()
 
 		}
 
+		if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && !rn2(5)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
+				block_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
 		if (have_chaosterrainstone() && !rn2(5)) {
 
 			int chaosx, chaosy;
@@ -1308,6 +1349,11 @@ moveloop()
 			forget(1 + rn2(5));
 		}
 
+		if (uarmh && uarmh->oartifact == ART_DIADEM_OF_AMNESIA && !rn2(1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
 		if (have_amnesiastone() && !rn2(1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
@@ -1324,6 +1370,13 @@ moveloop()
 		}
 
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
@@ -1400,7 +1453,7 @@ moveloop()
 			badeffect();
 		}
 
-		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic) && !BlackNgWalls && !rn2(100) ) {
+		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) ) && !BlackNgWalls && !rn2(100) ) {
 
 			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 			if (!blackngdur ) blackngdur = 500; /* fail safe */

@@ -5185,6 +5185,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
 	    if (HConflict || (EConflict & (~W_ARTI))) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
 	    /* Slow digestion still uses ring hunger */
 	    switch ((int)(moves % 20)) {	/* note: use even cases only */

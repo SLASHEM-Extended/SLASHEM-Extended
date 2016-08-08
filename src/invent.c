@@ -9757,6 +9757,256 @@ struct obj *obj;
 					pline("Artifact specs: searching, ESP, stealth, warning and acts as a luckstone when wielded, neutral."); break;
 				case ART_STAFF_OF_WITHERING:
 					pline("Artifact specs: cold resistance when wielded, +3 to-hit and +2 level-drain damage to crossaligned monsters, chaotic."); break;
+				case ART_BOW_OF_SKADI:
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and +12 damage to cold-susceptible monsters, lawful. In dnethack you can somehow read this weapon (wtf) and learn cone of cold (double wtf)."); break;
+				case ART_CROWN_OF_THE_SAINT_KING:
+					pline("Artifact specs: 5 extra points of AC, lawful. In dnethack it would make pets always follow you but that would be a pain in the butt to code."); break;
+				case ART_HELM_OF_THE_DARK_LORD:
+					pline("Artifact specs: 5 extra points of AC, chaotic. In dnethack it would make pets always follow you but that would be a pain in the butt to code."); break;
+				case ART_SUNBEAM:
+					pline("Artifact specs: drain resistance when wielded, +10 to-hit and double damage."); break;
+				case ART_MOONBEAM:
+					pline("Artifact specs: drain resistance when wielded, +10 to-hit and double damage."); break;
+				case ART_VEIL_OF_LATONA:
+					pline("Artifact specs: drain and magic resistance, reflection, superscroller, black ng walls and confusion when worn, neutral. The bad effects were added because the dnethack version of this item was uber imba."); break;
+				case ART_CARNWENNAN:
+					pline("Artifact specs: warning and stealth when wielded, +5 to-hit and +5 damage to magic-liking monsters, lawful."); break;
+				case ART_SLAVE_TO_ARMOK:
+					pline("Artifact specs: +5 to-hit and double damage to elves, orcs, lords and peaceful creatures, bloodthirsty, lawful. According to Chris, DF Dwarves can be a nasty lot."); break;
+				case ART_DRAGONLANCE:
+					pline("Artifact specs: reflection and warning when wielded, +10 to-hit and +10 damage to dragons."); break;
+				case ART_KINGSLAYER:
+					pline("Artifact specs: warning when wielded, +10 to-hit and +10 damage to lords and princes, chaotic."); break;
+				case ART_PEACE_KEEPER:
+					pline("Artifact specs: warning when wielded, +5 to-hit and +5 damage to always-hostile monsters, lawful."); break;
+				case ART_RHONGOMYNIAD:
+					pline("Artifact specs: +3 to-hit and double damage, lawful."); break;
+				case ART_GILDED_SWORD_OF_Y_HA_TALLA:
+					pline("Artifact specs: +5 to-hit and double stun damage, poison resistance when wielded."); break;
+				case ART_AXE_OF_THE_DWARVISH_LORDS:
+					pline("Artifact specs: teleport control and sight bonus when wielded, +1 to-hit and double damage, lawful."); break;
+				case ART_WINDRIDER:
+					pline("Artifact specs: +1 to-hit and double damage."); break;
+				case ART_ROD_OF_THE_RAM:
+					pline("Artifact specs: +1 to-hit and double damage, neutral."); break;
+				case ART_ATMA_WEAPON:
+					pline("Artifact specs: +6 to-hit and +3 damage to nasty monsters."); break;
+				case ART_LIMITED_MOON:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_BLACK_ARROW:
+					pline("Artifact specs: +1 to-hit and double damage."); break;
+				case ART_TENSA_ZANGETSU:
+					pline("Artifact specs: speed and half spell damage when wielded, massively increases hunger and damages you every turn, +1 to-hit and double damage, neutral."); break;
+				case ART_SODE_NO_SHIRAYUKI:
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double damage to cold-susceptible monsters, lawful."); break;
+				case ART_TOBIUME:
+					pline("Artifact specs: fire resistance when wielded, +1 to-hit and +1 damage to fire-susceptible monsters, chaotic. According to Chris, this artifact is an 'awkward' weapon."); break;
+				case ART_LANCE_OF_LONGINUS:
+					pline("Artifact specs: half spell damage, half physical damage, reflection, magic and drain resistance, stun, confusion, hallucination and freezing when wielded, lawful. Seriously, dnethack artifacts are completely out of whack."); break;
+				case ART_HARKENSTONE:
+					pline("Artifact specs: aggravate monster when wielded, +5 to-hit and double damage, chaotic."); break;
+				case ART_RELEASE_FROM_CARE:
+					pline("Artifact specs: drain resistance when wielded, +1 to-hit and +5 damage, beheads targets."); break;
+				case ART_SILENCE_GLAIVE:
+					pline("Artifact specs: drain resistance when wielded, +1 to-hit and +1 level-drain damage."); break;
+				case ART_GARNET_ROD:
+					pline("Artifact specs: regeneration, energy regeneration, speed and massively increased hunger when wielded."); break;
+				case ART_HELPING_HAND:
+					pline("Artifact specs: searching, warning and stealth when wielded, lawful."); break;
+				case ART_BLADE_SINGER_S_SPEAR:
+					pline("Artifact specs: +6 to-hit and +3 damage."); break;
+				case ART_BLADE_DANCER_S_DAGGER:
+					pline("Artifact specs: +4 to-hit and +2 damage."); break;
+				case ART_LIMB_OF_THE_BLACK_TREE:
+					pline("Artifact specs: fire resistance when wielded, +4 to-hit and +1 damage to fire-susceptible monsters, chaotic."); break;
+				case ART_LASH_OF_THE_COLD_WASTE:
+					pline("Artifact specs: cold resistance when wielded, +4 to-hit and +1 damage to cold-susceptible monsters, chaotic."); break;
+				case ART_RAMIEL:
+					pline("Artifact specs: shock resistance when wielded, +4 to-hit and +1 damage to shock-susceptible monsters, lawful. In dnethack this thing would have a special ranged attack but here you'll probably want to use the 'apply b' tactic."); break;
+				case ART_SPINESEARCHER:
+					pline("Artifact specs: stealth when wielded, +1 to-hit and +3 damage, chaotic."); break;
+				case ART_QUICKSILVER:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_SKY_RENDER:
+					pline("Artifact specs: displacement when wielded, +10 to-hit and +5 damage, lawful."); break;
+				case ART_FLUORITE_OCTAHEDRON:
+					pline("Artifact specs: +5 to-hit and double damage."); break;
+				case ART_TIE_DYE_SHIRT_OF_SHAMBHALA:
+					pline("Artifact specs: sets itself to +10 when worn, creates traps when worn, neutral."); break;
+				case ART_GRANDMASTER_S_ROBE:
+					pline("Artifact specs: 5 extra points of AC and improves marital arts damage by 10, neutral."); break;
+				case ART_DRAGON_PLATE:
+					pline("Artifact specs: magic resistance when worn, but reduces carry capacity and spellcasting success chances, lawful."); break;
+				case ART_BEASTMASTER_S_DUSTER:
+					pline("Artifact specs: animals are usually spawned peaceful and sometimes tame, lawful."); break;
+				case ART_SHIELD_OF_THE_ALL_SEEING:
+					pline("Artifact specs: warning, searching and fire resistance when worn."); break;
+				case ART_SHIELD_OF_YGGDRASIL:
+					pline("Artifact specs: regeneration and poison resistance when worn."); break;
+				case ART_WATER_FLOWERS:
+					pline("Artifact specs: displacement when worn, chaotic. Chris_ANG gave them an interesting activation ability but that wasn't ported over."); break;
+				case ART_HAMMERFEET:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_SHIELD_OF_THE_RESOLUTE_HEA:
+					pline("Artifact specs: half physical damage when worn. No idea why they're called 'shield', because they're no shield at all."); break;
+				case ART_GAUNTLETS_OF_SPELL_POWER:
+					pline("Artifact specs: half spell damage and increased spellcasting chances when worn."); break;
+				case ART_PREMIUM_HEART:
+					pline("Artifact specs: +1 to-hit and double damage. Everyone wishes for this thing in dnethack, I wonder if they're similarly overpowered in slex?"); break;
+				case ART_STORMHELM:
+					pline("Artifact specs: cold and shock resistance when worn, chaotic."); break;
+				case ART_HELLRIDER_S_SADDLE:
+					pline("Artifact specs: supposed to give reflection, see for yourself whether it works!"); break;
+				case ART_ROD_OF_SEVEN_PARTS:
+					pline("Artifact specs: drain resistance when wielded, +7 to-hit and +10 damage to crossaligned monsters, lawful."); break;
+				case ART_FIELD_MARSHAL_S_BATON:
+					pline("Artifact specs: warning when wielded, lawful."); break;
+				case ART_WEREBUSTER:
+					pline("Artifact specs: +10 to-hit and +10 damage to werecreatures."); break;
+				case ART_MASAMUNE:
+					pline("Artifact specs: trap revealing effect when wielded."); break;
+				case ART_BLACK_CRYSTAL:
+					pline("Artifact specs: warning and magic resistance when wielded, +3 to-hit and double damage, chaotic."); break;
+				case ART_WATER_CRYSTAL:
+					pline("Artifact specs: cold resistance when wielded."); break;
+				case ART_FIRE_CRYSTAL:
+					pline("Artifact specs: fire resistance when wielded."); break;
+				case ART_EARTH_CRYSTAL:
+					pline("Artifact specs: half physical damage when wielded."); break;
+				case ART_AIR_CRYSTAL:
+					pline("Artifact specs: shock resistance when wielded."); break;
+				case ART_ANNULUS:
+					pline("Artifact specs: half spell damage and magic resistance when wielded, +5 to-hit and +1 damage, chaotic."); break;
+				case ART_IRON_BALL_OF_LEVITATION:
+					pline("Artifact specs: levitation, drain resistance, stealth, warning and acts as a luckstone when wielded, +5 to-hit and +5 damage to crossaligned monsters, chaotic. In dnethack you can carry magic chests and therefore the entire dungeon by exploiting this thing."); break;
+				case ART_IRON_SPOON_OF_LIBERATION:
+					pline("Artifact specs: magic resistance, stealth, searching and acts as a luckstone when wielded, +5 to-hit and double damage, chaotic."); break;
+				case ART_SILVER_STARLIGHT:
+					pline("Artifact specs: +4 to-hit and +2 damage. In dnethack this weapon would somehow improve your shuriken, which makes no sense."); break;
+				case ART_WRATHFUL_SPIDER:
+					pline("Artifact specs: stealth when wielded, chaotic."); break;
+				case ART_TENTACLE_ROD:
+					pline("Artifact specs: +7 to-hit and +1 damage."); break;
+				case ART_CRESCENT_BLADE:
+					pline("Artifact specs: reflection when wielded, beheads monsters, +4 to-hit and double damage to fire-susceptible monsters, lawful."); break;
+				case ART_DARKWEAVER_S_CLOAK:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_SPIDERSILK:
+					pline("Artifact specs: improved spellcasting chances when worn, chaotic."); break;
+				case ART_WEBWEAVER_S_CROOK:
+					pline("Artifact specs: magic resistance when wielded, +1 to-hit and double damage, lawful."); break;
+				case ART_LOLTH_S_FANG:
+					pline("Artifact specs: drain resistance when wielded, +10 to-hit and +5 damage to acid-susceptible monsters."); break;
+				case ART_WEB_OF_LOLTH:
+					pline("Artifact specs: warning, magic and drain resistance as well as improved spellcasting chances when worn, but slows you down to half speed, chaotic."); break;
+				case ART_CLAWS_OF_THE_REVENANCER:
+					pline("Artifact specs: drain resistance, energy regeneration and fainting when worn, +1 to-hit and +1 level-drain damage, neutral."); break;
+				case ART_LIECLEAVER:
+					pline("Artifact specs: searching, drain and hallucination resistance when wielded, +5 to-hit and +5 damage, lawful."); break;
+				case ART_RUINOUS_DESCENT_OF_STARS:
+					pline("Artifact specs: magic resistance when wielded, +1 to-hit and double damage, chaotic."); break;
+				case ART_SICKLE_MOON:
+					pline("Artifact specs: +1 to-hit and double damage."); break;
+				case ART_ARCOR_KERYM:
+					pline("Artifact specs: drain resistance when wielded, +5 to-hit and double damage, lawful."); break;
+				case ART_ARYFAERN_KERYM:
+					pline("Artifact specs: shock resistance and improved spellcasting chances when wielded, +5 to-hit and +5 damage to shock-susceptible monsters, neutral."); break;
+				case ART_ARYVELAHR_KERYM:
+					pline("Artifact specs: reflection and drain resistance when wielded, +5 to-hit and double damage, chaotic."); break;
+				case ART_ARMOR_OF_KHAZAD_DUM:
+					pline("Artifact specs: magic resistance when worn, lawful."); break;
+				case ART_WAR_MASK_OF_DURIN:
+					pline("Artifact specs: half spell damage, +5 damage with axes and fire, acid and poison resistance when worn, lawful."); break;
+				case ART_DURIN_S_AXE:
+					pline("Artifact specs: searching and drain resistance when wielded, +10 to-hit and +5 damage, lawful."); break;
+				case ART_GLAMDRING:
+					pline("Artifact specs: warning when wielded, +10 to-hit and +5 damage to orcs and demons, lawful. In ToME you will want to use this weapon to kill Uvatha. :-)"); break;
+				case ART_ARMOR_OF_EREBOR:
+					pline("Artifact specs: magic, cold and fire resistance and half physical damage when worn, disables flying and causes chaos terrain, disables reflection occasionally, lawful."); break;
+				case ART_SCEPTRE_OF_LOLTH:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_WEB_OF_THE_CHOSEN:
+					pline("Artifact specs: reflection, half spell damage, acid and shock resistance and slows you down a bit when worn, chaotic."); break;
+				case ART_CLOAK_OF_THE_CONSORT:
+					pline("Artifact specs: half physical damage, cold and drain resistance when worn, but causes display loss most of the time, neutral."); break;
+				case ART_ROGUE_GEAR_SPIRITS:
+					pline("Artifact specs: searching, warning, ESP and fire resistance when wielded, +5 to-hit and double damage, neutral."); break;
+				case ART_MOONBOW_OF_SEHANINE:
+					pline("Artifact specs: +5 to-hit and double damage, chaotic."); break;
+				case ART_SPELLSWORD_OF_CORELLON:
+					pline("Artifact specs: +1 to-hit and +5 damage, chaotic."); break;
+				case ART_WARHAMMER_OF_VANDRIA:
+					pline("Artifact specs: +5 to-hit and double damage, chaotic."); break;
+				case ART_SHIELD_OF_SAINT_CUTHBERT:
+					pline("Artifact specs: half physical damage and half spell damage when worn, lawful."); break;
+				case ART_BELTHRONDING:
+					pline("Artifact specs: stealth and displacement when wielded, +5 to-hit and double damage, chaotic."); break;
+				case ART_ROD_OF_THE_ELVISH_LORDS:
+					pline("Artifact specs: +3 to-hit and double damage, chaotic."); break;
+				case ART_SOL_VALTIVA:
+					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +12 damage to fire-susceptible monsters, chaotic."); break;
+				case ART_STAFF_OF_THE_ARCHMAGI:
+					pline("Artifact specs: searching, cold, fire and shock resistance and acts as a luckstone when wielded, +20 to-hit and +2 stun damage."); break;
+				case ART_ROBE_OF_THE_ARCHMAGI:
+					pline("Artifact specs: reflection, magic resistance, displacement, blood mana and stun when worn."); break;
+				case ART_HAT_OF_THE_ARCHMAGI:
+					pline("Artifact specs: sight bonus and warning when worn."); break;
+				case ART_KUSANAGI_NO_TSURUGI:
+					pline("Artifact specs: energy regeneration, searching, acts as a luckstone, aggravate monster, recurring disenchantment and itemcursing when wielded, beheads monsters, +20 to-hit and +6 damage, lawful."); break;
+				case ART_GENOCIDE:
+					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +10 damage to fire-susceptible monsters, bloodthirsty, lawful."); break;
+				case ART_ROD_OF_DIS:
+					pline("Artifact specs: +10 to-hit and +4 damage, lawful."); break;
+				case ART_AVARICE:
+					pline("Artifact specs: +10 to-hit and +1 damage, lawful. In dnethack this artifact would steal items from monsters but why would I go through the PITA of coding that?!"); break;
+				case ART_FIRE_OF_HEAVEN:
+					pline("Artifact specs: shock and fire resistance when wielded, +1 to-hit and double damage to fire-susceptible monsters, lawful."); break;
+				case ART_DIADEM_OF_AMNESIA:
+					pline("Artifact specs: causes recurring amnesia when worn, lawful. Put it on right now to ease your troubled mind."); break;
+				case ART_THUNDER_S_VOICE:
+					pline("Artifact specs: shock resistance when wielded, +6 to-hit and +3 damage to shock-susceptible monsters, lawful."); break;
+				case ART_SERPENT_S_TOOTH:
+					pline("Artifact specs: poison resistance when wielded, lawful."); break;
+				case ART_UNBLEMISHED_SOUL:
+					pline("Artifact specs: acts as a luckstone when wielded, lawful."); break;
+				case ART_WRATH_OF_HEAVEN:
+					pline("Artifact specs: resist fire and shock when wielded, +1 to-hit and double damage to shock-susceptible monsters, lawful."); break;
+				case ART_ALL_SEEING_EYE_OF_THE_FLY:
+					pline("Artifact specs: undead warning when worn, lawful."); break;
+				case ART_COLD_SOUL:
+					pline("Artifact specs: cold, shock and fire resistance when wielded, lawful."); break;
+				case ART_SCEPTRE_OF_THE_FROZEN_FLOO:
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double damage to cold-susceptible monsters, lawful."); break;
+				case ART_CARESS:
+					pline("Artifact specs: shock resistance when wielded, +1 to-hit and +10 shock damage to elves, humans and dwarves, lawful. Being whipped feels very soothing! <3"); break;
+				case ART_ICONOCLAST:
+					pline("Artifact specs: magic resistance when wielded, +9 to-hit and +9 damage to humans, elves and dwarves, lawful. In dnethack the damage bonus would be +99, which is of course not overpowered at all!"); break;
+				case ART_THREE_HEADED_FLAIL:
+					pline("Artifact specs: speed when wielded, chaotic."); break;
+				case ART_HEARTCLEAVER:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_WRATHFUL_WIND:
+					pline("Artifact specs: cold resistance when wielded, +10 to-hit and double damage to cold-susceptible monsters, chaotic."); break;
+				case ART_STING_OF_THE_POISON_QUEEN:
+					pline("Artifact specs: magic resistance when wielded, +4 to-hit and +6 damage, chaotic."); break;
+				case ART_SCOURGE_OF_LOLTH:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_DOOMSCREAMER:
+					pline("Artifact specs: acid resistance when wielded, +1 to-hit and double damage to acid-susceptible monsters, chaotic."); break;
+				case ART_WAND_OF_ORCUS:
+					pline("Artifact specs: +5 to-hit and +6 drain life damage, bloodthirsty, chaotic. But you're probably going to zap monsters with it so all of those stats are irrelevant anyway."); break;
+				case ART_SWORD_OF_ERATHAOL:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
+				case ART_SABER_OF_SABAOTH:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
+				case ART_SWORD_OF_ONOEL:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
+				case ART_GLAIVE_OF_SHAMSIEL:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
+				case ART_LANCE_OF_URIEL:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
+				case ART_HAMMER_OF_BARQUIEL:
+					pline("Artifact specs: blindness resistance and searching when wielded, +7 to-hit and +5 damage, lawful. This weapon is from a series of identical artifacts that Chris made for dnethack; only their base items differ."); break;
 				case ART_STORMBRINGER:
 					pline("Artifact specs: +5 to-hit and +1 drain life damage, drain resistance when wielded, bloodthirsty, chaotic."); break;
 				case ART_REAVER:
@@ -9828,7 +10078,7 @@ struct obj *obj;
 				case ART_DRAGONCLAN_SWORD:
 					pline("Artifact specs: +3 to-hit and +10 damage, can bisect enemies, lawful, ninja quest artifact."); break;
 				case ART_KILLING_EDGE:
-					pline("Artifact specs: +3 to-hit and +3 damage, can bisect enemies, chaotic assassin quest artifact."); break;
+					pline("Artifact specs: +3 to-hit and +3 damage, can bisect enemies, bloodthirsty, chaotic assassin quest artifact."); break;
 				case ART_BLACK_DEATH:
 					pline("Artifact specs: +5 to-hit and +5 level-drain damage, chaotic undertaker quest artifact."); break;
 				case ART_SLOW_BLADE:
