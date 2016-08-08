@@ -1265,13 +1265,14 @@ die:
    killer is declared a (const char *)
 */
 	if (u.uhave.amulet) Strcat(kilbuf, " (with the Amulet)");
-	else if (how == ESCAPED) {
+	/*else*/ if (how == ESCAPED) {
 	    if (Is_astralevel(&u.uz))	/* offered Amulet to wrong deity */
 		Strcat(kilbuf, " (in celestial disgrace)");
-	    else if (carrying(FAKE_AMULET_OF_YENDOR))
+	    /*else*/ if (carrying(FAKE_AMULET_OF_YENDOR))
 		Strcat(kilbuf, " (with a fake Amulet)");
 		/* don't bother counting to see whether it should be plural */
 	}
+	/* since we're not removing the amulet any longer (this is by design)... had to restore celestial disgrace --Amy */
 
 //	if (!done_stopprint) {
 	    Sprintf(pbuf, "%s %s the %s...", Goodbye(), plname,
