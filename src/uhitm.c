@@ -421,6 +421,8 @@ register struct monst *mtmp;
 	 * is supposed to suck for some reason, but only in the early game because later on you'll max out your skill
 	 * anyway and therefore won't be missing anymore. --Amy */
     if (uwep && (uwep->oclass == CHAIN_CLASS || uwep->oclass == BALL_CLASS) && issoviet) tmp -= 4;
+	/* mini-nerf outside of soviet mode too, because some of these things are possibly overpowered */
+    if (uwep && (uwep->oclass == CHAIN_CLASS || uwep->oclass == BALL_CLASS)) tmp -= rnd(5);
 
 #endif /* CONVICT */
 #if 0
