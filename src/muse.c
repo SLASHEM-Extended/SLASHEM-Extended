@@ -1068,6 +1068,8 @@ struct monst *mtmp;
 	boolean immobile = (mtmp->data->mmove == 0);
 	int fraction;
 
+	if (!issoviet && !rn2(5)) return FALSE;
+
 	/* "Revert some Fake Difficulty. Mindless monsters and animals should not be able to wear armor, nor use potions/scrolls/wands." Dunno why that's supposed to be fake difficulty, but in Soviet Russia, players apparently can't handle dogs zapping wands of lightning or something. Everyone else will have to contend with monsters using items the way they're supposed to. --Amy */
 
 	if ((is_animal(mtmp->data) || mindless(mtmp->data)) && issoviet)
@@ -2896,6 +2898,9 @@ struct monst *mtmp;
 
 	m.offensive = (struct obj *)0;
 	m.has_offense = 0;
+
+	if (!issoviet && !rn2(5)) return FALSE;
+
 	if (mtmp->mpeaceful || ((is_animal(mtmp->data) ||
 				mindless(mtmp->data) || nohands(mtmp->data)) && issoviet) )
 		return FALSE;
@@ -2911,6 +2916,9 @@ struct monst *mtmp;
 	if (!ranged_stuff) return FALSE;
 #define nomore(x) if(m.has_offense==x) continue;
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
+
+		if (m.has_offense && rn2(3)) break; /* don't always use the same offensive pattern --Amy */
+
 		/* nomore(MUSE_WAN_DEATH); */
 		if (!reflection_skip) {
 		    if(obj->otyp == WAN_DEATH && obj->spe > 0) {
@@ -6942,6 +6950,9 @@ struct monst *mtmp;
 
 	m.misc = (struct obj *)0;
 	m.has_misc = 0;
+
+	if (!issoviet && !rn2(5)) return FALSE;
+
 	if ((is_animal(mdat) || mindless(mdat)) && issoviet)
 		return 0;
 	if (u.uswallow && stuck) return FALSE;
@@ -6978,6 +6989,9 @@ struct monst *mtmp;
 
 #define nomore(x) if(m.has_misc==x) continue;
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
+
+		if (m.has_misc && rn2(2)) break; /* don't always use the same misc pattern --Amy */
+
 		/* Monsters shouldn't recognize cursed items; this kludge is */
 		/* necessary to prevent serious problems though... */
 		if(obj->otyp == POT_GAIN_LEVEL && (!obj->cursed ||
@@ -8332,6 +8346,8 @@ struct monst *mon;
 struct obj *obj;
 {
 	int typ = obj->otyp;
+
+	if (!issoviet && !rn2(5)) return FALSE;
 
 	if ((is_animal(mon->data) ||
 		mindless(mon->data) ||
