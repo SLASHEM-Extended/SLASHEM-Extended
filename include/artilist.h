@@ -414,7 +414,7 @@ A("Force India",			WOODEN_GETA,
 	PHYS(20,0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
 A("Stupidity In Motion",			LACQUERED_DANCING_SHOE,
-	(SPFX_RESTR|SPFX_DRLI|SPFX_REFLECT), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI|SPFX_REFLECT), 0, 0,
 	DRLI(1,1), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 6000L ),
 
 A("Sexy Nurse Sandal",			HIGH_HEELED_SANDAL,
@@ -474,7 +474,7 @@ A("Apply B",			HALBERD,
 	PHYS(1,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
 
 A("Cock Application",			BILL_GUISARME,
-	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	(SPFX_ATTK|SPFX_RESTR|SPFX_PROTEC), 0, 0,
 	DRLI(3,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6500L ),
 
 A("Not A Hammer",			LUCERN_HAMMER,
@@ -1634,7 +1634,7 @@ A("Planechangers",			POT_POLYMORPH, /* gives intrinsic polymorphitis */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Sandman Volume 8",			SPE_DRAIN_LIFE, /* all the artifact spellbooks should have +10 melee damage */
-	(SPFX_RESTR|SPFX_DRLI|SPFX_DEFN), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("And Your Mortal World Shall Perish In Flames",			SPE_CURE_BURN,
@@ -1694,7 +1694,7 @@ A("Overleveler",			WAN_STRIKING,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Un-Death",			WAN_UNDEAD_TURNING,
-	(SPFX_RESTR|SPFX_DEFN|SPFX_DRLI), 0, 0,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_DRLI), 0, 0,
 	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Not Known Anymore",			WAN_AMNESIA, /* after the amnesia incident, secure identifies exactly one item for you */
