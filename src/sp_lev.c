@@ -3342,6 +3342,9 @@ struct mkroom	*croom;
 		    impossible("create_object: no container");
 		    break;
 		}
+		if (container && container->otyp == GOLD_PIECE) { /* minimalist fix, though it doesn't completely fix things */
+		    break;
+		}
 		remove_object(otmp);
 		(void) add_to_container(container, otmp);
 		goto o_done;		/* don't stack, but do other cleanup */

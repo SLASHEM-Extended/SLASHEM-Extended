@@ -964,12 +964,12 @@ register struct obj *obj, *merge;
 	 * deleted while still in situ so that we can place any
 	 * indestructible objects they may contain.
 	 */
-	if (Has_contents(obj)) {
+	if (Has_contents(obj) && (yn("BUG: obfree() called on non-empty container. Save a buglog file (this can cause large amounts of lag)?") == 'y') ) { /* minimalists in particular... --Amy */
 	    FILE *fp;
 	    int known;
 	    xchar x, y;
 	    struct obj *otmp;
-	    pline("BUG: obfree() called on non-empty container.  See buglog for details.");
+	    /*pline("BUG: obfree() called on non-empty container.  See buglog for details.");*/
 	    fp = fopen_datafile("buglog", "a", TROUBLEPREFIX);
 	    if (fp) {
 		(void) fprintf(fp,
