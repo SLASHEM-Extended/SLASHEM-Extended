@@ -13477,17 +13477,18 @@ int mndx;
 	if (uncommon7(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !Race_if(PM_RODNEYAN) ) return TRUE;
 	if (uncommon10(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 10 && monstr[mndx] < 15 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 15 && monstr[mndx] < 20 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 20 && monstr[mndx] < 25 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 25 && monstr[mndx] < 30 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 30 && monstr[mndx] < 35 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 35 && monstr[mndx] < 40 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 40 && monstr[mndx] < 45 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 45 && monstr[mndx] < 50 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 50 && monstr[mndx] < 60 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 60 && monstr[mndx] < 70 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 9 && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
