@@ -556,6 +556,7 @@ struct you {
 	int medusaremoved;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
+	int equipmentremovechance;
 
 	int bookspawnchance;	/* lower spawn chance for certain item classes */
 	int scrollspawnchance;

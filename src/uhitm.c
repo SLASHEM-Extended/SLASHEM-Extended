@@ -2762,7 +2762,7 @@ struct attack *mattk;
 			delobj(otmp);
 			return;
 	    }
-	    if (otmp && otmp->mstartinventB && !(otmp->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp)) {
+	    if (otmp && otmp->mstartinventB && !(otmp->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp)) {
 			delobj(otmp);
 			return;
 	    }

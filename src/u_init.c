@@ -6430,6 +6430,14 @@ u_init()
 	if (u.musableremovechance > 90) u.musableremovechance = 90;
 	if (u.musableremovechance < 0) u.musableremovechance = 0;
 
+	u.equipmentremovechance = 0;
+	if (!rn2(3)) u.equipmentremovechance += rnd(13);
+	if (!rn2(4)) u.equipmentremovechance += rnd(30);
+	if (!rn2(6)) u.equipmentremovechance += rnd(50);
+	if (!rn2(30)) u.equipmentremovechance += rnd(70);
+	if (u.equipmentremovechance > 90) u.equipmentremovechance = 90;
+	if (u.equipmentremovechance < 0) u.equipmentremovechance = 0;
+
 	u.bookspawnchance = 0;
 	if (!rn2(20)) u.bookspawnchance += rnd(10);
 	if (!rn2(200)) u.bookspawnchance += rnd(20);
@@ -23139,6 +23147,14 @@ alter_reality()
 	if (!rn2(25)) u.musableremovechance += rnd(90);
 	if (u.musableremovechance > 90) u.musableremovechance = 90;
 	if (u.musableremovechance < 0) u.musableremovechance = 0;
+
+	u.equipmentremovechance = 0;
+	if (!rn2(3)) u.equipmentremovechance += rnd(13);
+	if (!rn2(4)) u.equipmentremovechance += rnd(30);
+	if (!rn2(6)) u.equipmentremovechance += rnd(50);
+	if (!rn2(30)) u.equipmentremovechance += rnd(70);
+	if (u.equipmentremovechance > 90) u.equipmentremovechance = 90;
+	if (u.equipmentremovechance < 0) u.equipmentremovechance = 0;
 
 	u.bookspawnchance = 0;
 	if (!rn2(20)) u.bookspawnchance += rnd(10);

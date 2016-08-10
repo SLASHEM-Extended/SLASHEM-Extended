@@ -1469,6 +1469,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Monsters ", "will only drop their musable items with", "only dropped their musable items with", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.equipmentremovechance)) {
+		Sprintf(buf, " %d%% chance", 100 - u.equipmentremovechance);
+		enl_msg("Monsters ", "will only drop their equipment with", "only dropped their equipment with", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.bookspawnchance)) {
 		Sprintf(buf, " %d%%", 100 - u.bookspawnchance);
 		enl_msg("Book drop chance ", "is reduced to", "was reduced to", buf);
@@ -3619,6 +3624,11 @@ int final;
 	if (u.musableremovechance) {
 		Sprintf(buf, " %d%% chance", 100 - u.musableremovechance);
 		dump("  Monsters only dropped their musable items with", buf);
+	}
+
+	if (u.equipmentremovechance) {
+		Sprintf(buf, " %d%% chance", 100 - u.equipmentremovechance);
+		dump("  Monsters only dropped their equipment with", buf);
 	}
 
 	if (u.bookspawnchance) {

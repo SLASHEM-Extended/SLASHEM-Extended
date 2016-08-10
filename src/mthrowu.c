@@ -387,7 +387,7 @@ int x,y;
 
 	} else create = 1;
 
-	if (obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
 
 #ifdef FIREARMS
 	/* Detonate rockets */
