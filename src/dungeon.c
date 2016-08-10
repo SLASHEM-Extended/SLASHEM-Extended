@@ -1739,6 +1739,14 @@ level_difficulty()
 	if (moves > 750000 && retvalue < 125 && rn2(2) ) retvalue = 125;
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
+	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
+	if ((retvalue > 1) && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
+	if ((retvalue > 1) && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
+	if ((retvalue > 1) && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
+	if ((retvalue > 1) && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
+
+	if (retvalue < 1) retvalue = 1;
+
 	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) ) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 
