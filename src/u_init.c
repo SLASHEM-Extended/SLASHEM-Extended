@@ -5632,12 +5632,18 @@ u_init()
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
 	u.freqmonsterbonus = rne(4);
 	if (!rn2(5)) u.freqmonsterbonus += rne(3);
+	if (!rn2(3)) u.freqmonsterbonus *= 2;
 	if (!rn2(5)) u.freqmonsterbonus *= 2;
+	if (!rn2(8)) u.freqmonsterbonus += rne(4);
 	if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
+	if (!rn2(20)) u.freqmonsterbonus *= 3;
 	if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
+	if (!rn2(200)) u.freqmonsterbonus *= 4;
 	if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
 	if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
+	if (!rn2(5000)) u.freqmonsterbonus *= 5;
 	if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
+	if (!rn2(25000)) u.freqmonsterbonus *= 6;
 	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
 	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
 
@@ -5646,12 +5652,18 @@ u_init()
 	do { u.frequentcolor = rnd(15); } while (u.frequentcolor == CLR_BLUE);
 	u.freqcolorbonus = rne(4);
 	if (!rn2(5)) u.freqcolorbonus += rne(3);
+	if (!rn2(3)) u.freqcolorbonus *= 2;
 	if (!rn2(5)) u.freqcolorbonus *= 2;
+	if (!rn2(8)) u.freqcolorbonus += rne(4);
 	if (!rn2(12)) u.freqcolorbonus *= (1 + rne(15));
+	if (!rn2(20)) u.freqcolorbonus *= 3;
 	if (!rn2(60)) u.freqcolorbonus *= (1 + rne(12));
+	if (!rn2(200)) u.freqcolorbonus *= 4;
 	if (!rn2(360)) u.freqcolorbonus *= (1 + rne(10));
 	if (!rn2(1360)) u.freqcolorbonus *= (1 + rne(8));
+	if (!rn2(5000)) u.freqcolorbonus *= 5;
 	if (!rn2(6360)) u.freqcolorbonus *= (1 + rne(7));
+	if (!rn2(25000)) u.freqcolorbonus *= 6;
 	if (!rn2(36360)) u.freqcolorbonus *= (1 + rne(5));
 	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
 	}
@@ -22347,12 +22359,18 @@ alter_reality()
 	u.frequentmonster = rnd(S_WORM_TAIL - 1);
 	u.freqmonsterbonus = rne(4);
 	if (!rn2(5)) u.freqmonsterbonus += rne(3);
+	if (!rn2(3)) u.freqmonsterbonus *= 2;
 	if (!rn2(5)) u.freqmonsterbonus *= 2;
+	if (!rn2(8)) u.freqmonsterbonus += rne(4);
 	if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
+	if (!rn2(20)) u.freqmonsterbonus *= 3;
 	if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
+	if (!rn2(200)) u.freqmonsterbonus *= 4;
 	if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
 	if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
+	if (!rn2(5000)) u.freqmonsterbonus *= 5;
 	if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
+	if (!rn2(25000)) u.freqmonsterbonus *= 6;
 	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
 	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
 
@@ -22364,12 +22382,18 @@ alter_reality()
 	do { u.frequentcolor = rnd(15); } while (u.frequentcolor == CLR_BLUE);
 	u.freqcolorbonus = rne(4);
 	if (!rn2(5)) u.freqcolorbonus += rne(3);
+	if (!rn2(3)) u.freqcolorbonus *= 2;
 	if (!rn2(5)) u.freqcolorbonus *= 2;
+	if (!rn2(8)) u.freqcolorbonus += rne(4);
 	if (!rn2(12)) u.freqcolorbonus *= (1 + rne(15));
+	if (!rn2(20)) u.freqcolorbonus *= 3;
 	if (!rn2(60)) u.freqcolorbonus *= (1 + rne(12));
+	if (!rn2(200)) u.freqcolorbonus *= 4;
 	if (!rn2(360)) u.freqcolorbonus *= (1 + rne(10));
 	if (!rn2(1360)) u.freqcolorbonus *= (1 + rne(8));
+	if (!rn2(5000)) u.freqcolorbonus *= 5;
 	if (!rn2(6360)) u.freqcolorbonus *= (1 + rne(7));
+	if (!rn2(25000)) u.freqcolorbonus *= 6;
 	if (!rn2(36360)) u.freqcolorbonus *= (1 + rne(5));
 	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
 	}
