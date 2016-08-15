@@ -3712,9 +3712,13 @@ register struct obj *obj;
 			 typ == FAKE_AMULET_OF_YENDOR)
 			/* each must be identified individually */
 			Strcpy(buf, obj->known ? actualn : dn);
-		else if (nn)
+		else if (nn) {
 			Strcpy(buf, actualn);
-		else if (un)
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
+		} else if (un)
 			Sprintf(buf,"amulet called %s", un);
 		else
 			Sprintf(buf,"%s amulet", dn);
@@ -3727,9 +3731,13 @@ register struct obj *obj;
 
 		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() )
 			Strcat(buf, dn ? dn : actualn);
-		else if (nn)
+		else if (nn) {
 			Strcat(buf, actualn);
-		else if (un) {
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
+		} else if (un) {
 			Strcat(buf, dn ? dn : actualn);
 			Strcat(buf, " called ");
 			Strcat(buf, un);
@@ -3772,8 +3780,13 @@ register struct obj *obj;
 
 		if (dn && (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) )
 			Strcat(buf, dn);
-		else if(nn)	Strcat(buf, actualn);
-		else if(un && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) {
+		else if(nn)	{
+			Strcat(buf, actualn);
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
+		} else if(un && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() ) {
 			if(is_boots(obj))
 				Strcpy(buf,"boots");
 			else if(is_gloves(obj))
@@ -3854,6 +3867,10 @@ register struct obj *obj;
 				Strcat(buf, obj->blessed ? "holy " : "unholy ");
 			    }
 			    Strcat(buf, actualn);
+				if (un) {
+					Strcat(buf," called ");
+					Strcat(buf,un);
+				}
 			} else {
 				Strcat(buf, " called ");
 				Strcat(buf, un);
@@ -3869,6 +3886,10 @@ register struct obj *obj;
 		if(nn) {
 			Strcat(buf, " of ");
 			Strcat(buf, actualn);
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
 		} else if(un) {
 			Strcat(buf, " called ");
 			Strcat(buf, un);
@@ -3883,9 +3904,13 @@ register struct obj *obj;
 	case WAND_CLASS:
 		if(!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() )
 			Strcpy(buf, "wand");
-		else if(nn)
+		else if(nn) {
 			Sprintf(buf, "wand of %s", actualn);
-		else if(un)
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
+		} else if(un)
 			Sprintf(buf, "wand called %s", un);
 		else
 			Sprintf(buf, "%s wand", dn);
@@ -3897,6 +3922,10 @@ register struct obj *obj;
 			if (typ != SPE_BOOK_OF_THE_DEAD)
 			    Strcpy(buf, "spellbook of ");
 			Strcat(buf, actualn);
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
 		} else if (un) {
 			Sprintf(buf, "spellbook called %s", un);
 		} else
@@ -3911,6 +3940,11 @@ register struct obj *obj;
 				Sprintf(buf, "%s ring", actualn);
 			else
 			Sprintf(buf, "ring of %s", actualn);
+
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
 		} else if(un)
 			Sprintf(buf, "ring called %s", un);
 		else
@@ -3928,6 +3962,10 @@ register struct obj *obj;
 		} else {
 		    Strcpy(buf, actualn);
 		    if (GemStone(typ)) Strcat(buf, " stone");
+			if (un) {
+				Strcat(buf," called ");
+				Strcat(buf,un);
+			}
 		}
 		break;
 	    }
