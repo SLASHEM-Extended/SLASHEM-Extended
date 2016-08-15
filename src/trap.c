@@ -3093,9 +3093,21 @@ newegomon:
 			struct obj *otmpD;
 			otmpD = some_armor(&youmonst);
 			if(otmpD) {
-			    if(!destroy_arm(otmpD)) {
-				pline("Your skin itches.");
-			    }
+
+				if (otmpD->blessed && rn2(5)) pline("Your body shakes violently!");
+				else if ((otmpD->spe > 1) && (rn2(otmpD->spe)) ) pline("Your body shakes violently!");
+				else if (otmpD->oartifact && rn2(20)) pline("Your body shakes violently!");
+				else if (otmpD->greased) {
+					pline("Your body shakes violently!");
+					 if (!rn2(2)) {
+						pline_The("grease wears off.");
+						otmpD->greased -= 1;
+						update_inventory();
+					 }
+				}
+				else if(!destroy_arm(otmpD)) {
+					pline("Your skin itches.");
+				}
 			} 
 			else pline("Your skin itches.");
 		}
