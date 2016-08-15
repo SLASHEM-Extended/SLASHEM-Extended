@@ -3081,10 +3081,10 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef PUBLIC_SERVER
 
 #ifdef PHANTOM_CRASH_BUG
-	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended IRC channel. :-) --Amy");
+	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. In the very rare case that your previous game crashed by sending you back to the dgamelaunch screen, please contact the server administrator for a restore.");
-	if (new_game) pline("Panics and segfaults aren't the end of the world - in roughly 99%% of all cases, these can be restored into a working savegame file. Have fun playing! You can find me and other players on the IRC channel #slashemextended :-) --Amy");
+	if (new_game) pline("Panics and segfaults aren't the end of the world - in roughly 99%% of all cases, these can be restored into a working savegame file. Have fun playing! You can find me and other players on the IRC channel #slashemextended or #em.slashem.me on Freenode :-) --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
