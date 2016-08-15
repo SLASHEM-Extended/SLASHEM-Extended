@@ -673,7 +673,7 @@ moveloop()
 
 			if (!rn2(nastyitemchance) && !issoviet) {
 
-				randsp = (rn2(14) + 2);
+				randsp = (rn3(14) + 2);
 				if (!rn2(10)) randsp *= 2;
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
@@ -687,7 +687,18 @@ moveloop()
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 					(void) makemon(&mons[PM_BAD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
 			 	      (void) makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK);
+
+					if (!rn2(2)) {
+
+						if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				 	      (void) makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK);
+
+					}
 				}
 
 			}
