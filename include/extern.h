@@ -673,6 +673,8 @@ E void FDECL(rest_engravings, (int));
 E void FDECL(del_engr, (struct engr *));
 E void FDECL(rloc_engr, (struct engr *));
 E void FDECL(make_grave, (int,int,const char *));
+E const char *NDECL(random_mesgX);
+E const char *NDECL(random_epitaph);
 
 /* ### exper.c ### */
 

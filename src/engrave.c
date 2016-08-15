@@ -655,6 +655,12 @@ static const char *random_mesg[] = {
 	"Yes, we'll see a list of races and added roles such trash",
 };
 
+const char *
+random_mesgX()
+{
+	return (random_mesg[rn2(SIZE(random_mesg))]);
+}
+
 char *
 random_engraving(outbuf)
 char *outbuf;
@@ -3605,6 +3611,13 @@ static const char *epitaphs[] = {
 
 
 };
+
+const char *
+random_epitaph()
+{
+	return (epitaphs[rn2(SIZE(epitaphs))]);
+}
+
 
 /* Create a headstone at the given location.
  * The caller is responsible for newsym(x, y).
