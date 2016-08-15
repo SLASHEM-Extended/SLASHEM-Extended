@@ -96,6 +96,7 @@ STATIC_OVL int
 choose_magic_spell(spellval)
 int spellval;
 {
+    if (!issoviet && !rn2(2)) return MGC_PSI_BOLT;
 
     switch (spellval) {
     case 45:
@@ -203,6 +204,8 @@ STATIC_OVL int
 choose_clerical_spell(spellnum)
 int spellnum;
 {
+
+    if (!issoviet && !rn2(2)) return CLC_OPEN_WOUNDS;
 
     switch (spellnum) {
     case 41:
@@ -322,7 +325,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    int cnt = 40;
 
 	    do {
-		spellnum = rn2(ml);
+		spellnum = (issoviet ? rn2(ml) : rn3(ml));
 		/* Casting level is limited by available energy */
 		spellev = spellnum / 7 + 1;
 		if (spellev > 10) spellev = 10;
