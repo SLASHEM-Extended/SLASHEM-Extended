@@ -225,18 +225,20 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		    struct obj *obj;
 		    obj = mksobj(rn2(p_coaligned(priest) ? 2 : 5) ?
 			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
-		    if (p_coaligned(priest))
-			uncurse(obj);
-		    else
-			curse(obj);
-		    (void) mpickobj(priest, obj, TRUE);
-		    m_dowear(priest, TRUE);
-		    if (!(obj->owornmask & W_ARM)) {
-			obj_extract_self(obj);
-			obfree(obj, (struct obj *)0);
-		    } else if (otmp) {
-			obj_extract_self(otmp);
-			obfree(otmp, (struct obj *)0);
+		    if (obj) { /* this should fix a STUPID segfault for minimalist characters --Amy */
+			    if (p_coaligned(priest))
+				uncurse(obj);
+			    else
+				curse(obj);
+			    (void) mpickobj(priest, obj, TRUE);
+			    m_dowear(priest, TRUE);
+			    if (!(obj->owornmask & W_ARM)) {
+				obj_extract_self(obj);
+				obfree(obj, (struct obj *)0);
+			    } else if (otmp) {
+				obj_extract_self(otmp);
+				obfree(otmp, (struct obj *)0);
+			    }
 		    }
 		}
 	}
