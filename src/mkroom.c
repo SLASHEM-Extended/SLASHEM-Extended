@@ -343,6 +343,15 @@ struct mkroom *sroom;
 	struct monst *mon;
 	struct monst *randomon;
 	register struct obj *otmp;
+	boolean specialzoo = 0;
+	int specialzoochance = 50;
+	int specialzootype = 0;
+	if (!rn2(10)) {
+		specialzoo = 1; /* extra items! */
+		specialzoochance = 50 + rnd(50);
+		if (!rn2(5)) specialzoochance /= (1 + rnd(4));
+		if (rn2(5)) specialzootype = 1 + rnd(16);
+	}
 
 	int sleepchance = 10;
 	if (!rn2(10)) sleepchance -= rnd(10);
@@ -518,6 +527,12 @@ struct mkroom *sroom;
 		}
 		switch(type) {
 		    case ZOO:
+			if (specialzoo) {
+				if (specialzoochance > rnd(100)) {
+				    (void) mkobj_at(specialzootype, sx, sy, TRUE);
+				}
+			}
+			/* fall through */
 		    case DRAGONLAIR:
 		    case LEPREHALL:
 			if(sroom->doorct)
