@@ -326,6 +326,7 @@ register struct monst *mtmp;
 		if (mtmp->mnamelth)
 		    Sprintf(eos(buf), " called %s", NAME(mtmp));
 	}
+	Strcat(buf, ")");
 
 	if (multi) {
 	  if (strlen(multi_txt) > 0)
@@ -339,7 +340,6 @@ register struct monst *mtmp;
 		Strcat(buf,", while blind");
 		if (multi) Strcat(buf," and helpless");
 	}
-	Strcat(buf, ")");
 	if(mtmp->data == &mons[PM_SOLDIER_ANT]) Strcat(buf, "    Go Team Ant!");
 
 	killer = buf;
