@@ -27,6 +27,9 @@
 #define MGC_SUMMON_GHOST	18
 #define MGC_MEGALOAD	19
 #define MGC_LEVITATE	20
+#define MGC_NUMB_YOU	21
+#define MGC_BURN_YOU	22
+#define MGC_ESCALATION	23
 
 /* monster cleric spells */
 #define CLC_OPEN_WOUNDS	 0
@@ -43,6 +46,10 @@
 #define CLC_PETRIFY	 11 /* currently unused */
 #define CLC_RANDOM	 12
 #define CLC_VULN_YOU	 13
+#define CLC_SEPARATION	 14
+#define CLC_FEAR_YOU	 15
+#define CLC_FREEZE_YOU	 16
+#define CLC_STAT_DRAIN	 17
 
 STATIC_DCL void FDECL(cursetxt,(struct monst *,BOOLEAN_P));
 STATIC_DCL int FDECL(choose_magic_spell, (int));
@@ -107,6 +114,7 @@ int spellval;
     case 43:
 	return MGC_DEATH_TOUCH;
     case 42:
+	return MGC_ESCALATION;
     case 41:
 	if (!rn2(25)) return MGC_SUMMON_GHOST; /* Should be rare --Amy */
 	else return MGC_CLONE_WIZ;
@@ -124,6 +132,7 @@ int spellval;
 	else if (!rn2(5)) return MGC_MEGALOAD;
 	else return MGC_CREATE_POOL;
     case 34:
+	return MGC_NUMB_YOU;
     case 33:
 	return MGC_CURSE_ITEMS;
     case 32:
@@ -134,9 +143,11 @@ int spellval;
 	else if (!rn2(2)) return MGC_DAMAGE_ARMR;
 	else return MGC_DESTRY_ARMR;
     case 30:
+	return MGC_BURN_YOU;
     case 29:
 	return MGC_WEAKEN_YOU;
     case 28:
+	return MGC_NUMB_YOU;
     case 27:
 	return MGC_DISAPPEAR;
     case 26:
@@ -155,6 +166,7 @@ int spellval;
     case 20:
 	return MGC_DEATH_TOUCH;
     case 19:
+	return MGC_ESCALATION;
     case 18:
 	if (!rn2(25)) return MGC_SUMMON_GHOST; /* Should be rare --Amy */
 	else return MGC_CLONE_WIZ;
@@ -172,6 +184,7 @@ int spellval;
 	else if (!rn2(5)) return MGC_MEGALOAD;
 	else return MGC_CREATE_POOL;
     case 11:
+	return MGC_NUMB_YOU;
     case 10:
 	return MGC_CURSE_ITEMS;
     case 9:
@@ -182,9 +195,11 @@ int spellval;
 	else if (!rn2(2)) return MGC_DAMAGE_ARMR;
 	else return MGC_DESTRY_ARMR;
     case 7:
+	return MGC_BURN_YOU;
     case 6:
 	return MGC_WEAKEN_YOU;
     case 5:
+	return MGC_NUMB_YOU;
     case 4:
 	return MGC_DISAPPEAR;
     case 3:
@@ -216,6 +231,7 @@ int spellnum;
     case 39:
 	return CLC_LIGHTNING;
     case 38:
+	return CLC_STAT_DRAIN;
     case 37:
 	return CLC_CURSE_ITEMS;
     case 36:
@@ -223,12 +239,15 @@ int spellnum;
 	else if (!rn2(3)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 35:
+	return CLC_FREEZE_YOU;
     case 34:
 	return CLC_BLIND_YOU;
     case 33:
+	return CLC_FEAR_YOU;
     case 32:
 	return CLC_PARALYZE;
     case 31:
+	return CLC_SEPARATION;
     case 30:
 	return CLC_CONFUSE_YOU;
     case 29:
@@ -243,6 +262,7 @@ int spellnum;
     case 25:
 	return CLC_LIGHTNING;
     case 24:
+	return CLC_STAT_DRAIN;
     case 23:
 	return CLC_CURSE_ITEMS;
     case 22:
@@ -250,12 +270,15 @@ int spellnum;
 	else if (!rn2(3)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 21:
+	return CLC_FREEZE_YOU;
     case 20:
 	return CLC_BLIND_YOU;
     case 19:
+	return CLC_FEAR_YOU;
     case 18:
 	return CLC_PARALYZE;
     case 17:
+	return CLC_SEPARATION;
     case 16:
 	return CLC_CONFUSE_YOU;
     case 15:
@@ -270,6 +293,7 @@ int spellnum;
     case 11:
 	return CLC_LIGHTNING;
     case 10:
+	return CLC_STAT_DRAIN;
     case 9:
 	return CLC_CURSE_ITEMS;
     case 8:
@@ -277,12 +301,15 @@ int spellnum;
 	else if (!rn2(3)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 7:
+	return CLC_FREEZE_YOU;
     case 6:
 	return CLC_BLIND_YOU;
     case 5:
+	return CLC_FEAR_YOU;
     case 4:
 	return CLC_PARALYZE;
     case 3:
+	return CLC_SEPARATION;
     case 2:
 	return CLC_CONFUSE_YOU;
     case 1:
@@ -587,7 +614,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			pline("But you resist the effects.");
 			dmg = 0;
 		}
-		else if (!rn2(20)) {
+		else if (!Antimagic && !rn2(20)) {
 		    killer_format = KILLED_BY_AN;
 		    killer = "Avada Kedavra curse";
 		    done(DIED);
@@ -999,6 +1026,32 @@ int spellnum;
 	} else
 	    impossible("no reason for monster to cast disappear spell?");
 	break;
+    case MGC_NUMB_YOU:
+	if (Antimagic && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    if (!Numbed)
+		You_feel("numb for a moment.");
+	    make_numbed(1L, FALSE);
+	} else {
+	    You(Numbed ? "feel even more numb!" : "feel numb!");
+	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    make_numbed(HNumbed + dmg, FALSE);
+	}
+	dmg = 0;
+	break;
+    case MGC_BURN_YOU:
+	if (Antimagic && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    if (!Burned)
+		You_feel("ablaze for a moment.");
+	    make_burned(1L, FALSE);
+	} else {
+	    You(Burned ? "are burning more strongly!" : "are burning!");
+	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    make_burned(HBurned + dmg, FALSE);
+	}
+	dmg = 0;
+	break;
     case MGC_STUN_YOU:
 	if ((Antimagic || Free_action) && rn2(20)) {
 	    shieldeff(u.ux, u.uy);
@@ -1111,6 +1164,28 @@ newboss:
 	else
 	    Your("%s suddenly aches very painfully!", body_part(HEAD));
 	break;
+    case MGC_ESCALATION:
+
+	if (Antimagic && rn2(20)) {
+	    shieldeff(u.ux, u.uy);
+	    dmg = (dmg + 1) / 2;
+	}
+	dmg += u.chokhmahdamage;
+
+	u.chokhmahdamage++;
+
+	if (dmg <= 5)
+	    You("get a %sache.", body_part(HEAD));
+	else if (dmg <= 10)
+	    Your("brain is on fire, and the pain seems to be getting stronger!");
+	else if (dmg <= 20)
+	    Your("%s suddenly aches really painfully!", body_part(HEAD));
+	else
+	    Your("%s suddenly aches extremely painfully!", body_part(HEAD));
+	break;
+
+	break;
+
     default:
 	impossible("mcastu: invalid magic spell (%d)", spellnum);
 	dmg = 0;
@@ -1646,7 +1721,7 @@ int spellnum;
 	    if (multi >= 0)
 		You("are frozen in place!");
 	    /* new calculations by Amy because otherwise this spell would be uber imba */
-	    if (!issoviet) dmg = rnd( 2 + rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev ) ;
+	    if (!issoviet) dmg = rnd( 2 + (rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev) ) ;
 	    else dmg = 4 + (int)mtmp->m_lev;;
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (issoviet) pline("Teper' vy mertvy. Sovetskaya smeyetsya, potomu chto vy, veroyatno, vlozhili dvesti chasov v etot kharakter.");
@@ -1672,6 +1747,52 @@ int spellnum;
 	}
 	dmg = 0;
 	break;
+    case CLC_FEAR_YOU:
+	if (Antimagic && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    if (!Feared)
+		You_feel("afraid for a moment.");
+	    make_feared(1L, FALSE);
+	} else {
+	    You(Feared ? "are even more scared!" : "are scared!");
+	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    make_feared(HFeared + dmg, FALSE);
+	}
+	dmg = 0;
+	break;
+    case CLC_FREEZE_YOU:
+	if (Antimagic && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    if (!Frozen)
+		You_feel("frozen for a moment.");
+	    make_frozen(1L, FALSE);
+	} else {
+	    You(Frozen ? "are freezing even more!" : "are freezing!");
+	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    make_frozen(HFrozen + dmg, FALSE);
+	}
+	dmg = 0;
+	break;
+    case CLC_SEPARATION:
+	u.ublesscnt += (dmg * 10);
+	pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
+	dmg = 0;
+	break;
+    case CLC_STAT_DRAIN:		/* drain a random stat */
+	if (Antimagic && rn2(10)) {
+	    shieldeff(u.ux, u.uy);
+	    You_feel("less powerful for a moment, but the feeling passes.");
+	} else {
+	    if (issoviet) pline("Pravitel'stvo prinimayet resheniye umen'shit' vashi ochki statusa, potomu chto vy stanovites' opasnost'.");
+	    else You("feel less powerful!");
+	    dmg = rnd(mtmp->m_lev - 7);
+	    if (issoviet) dmg = mtmp->m_lev - rnd(7);
+	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    adjattrib(rn2(A_MAX), -dmg, 0);
+	}
+	dmg = 0;
+	break;
+
     case CLC_CURE_SELF:
 	if (mtmp->mhp < mtmp->mhpmax) {
 	    if (canseemon(mtmp))
