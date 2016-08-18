@@ -652,7 +652,7 @@ drinksink()
 			break;
 		case 4: do {
 				otmp = mkobj(POTION_CLASS,FALSE);
-				if (otmp->otyp == POT_WATER) {
+				if (otmp && otmp->otyp == POT_WATER) {
 					obfree(otmp, (struct obj *)0);
 					otmp = (struct obj *) 0;
 				}

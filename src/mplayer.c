@@ -97,15 +97,17 @@ short typ;
 
 	if (typ == STRANGE_OBJECT) return;
 	obj = mksobj(typ, FALSE, FALSE);
-	if (!rn2(3)) obj->oerodeproof = 1;
-	if (!rn2(3)) curse(obj);
-	if (!rn2(3)) bless(obj);
-	/* Most players who get to the endgame who have cursed equipment
-	 * have it because the wizard or other monsters cursed it, so its
-	 * chances of having plusses is the same as usual....
-	 */
-	obj->spe = rn2(10) ? (rn2(3) ? rn2(5) : rn1(4,4)) : -rnd(3);
-	(void) mpickobj(mon, obj, TRUE);
+	if (obj) {
+		if (!rn2(3)) obj->oerodeproof = 1;
+		if (!rn2(3)) curse(obj);
+		if (!rn2(3)) bless(obj);
+		/* Most players who get to the endgame who have cursed equipment
+		 * have it because the wizard or other monsters cursed it, so its
+		 * chances of having plusses is the same as usual....
+		 */
+		obj->spe = rn2(10) ? (rn2(3) ? rn2(5) : rn1(4,4)) : -rnd(3);
+		(void) mpickobj(mon, obj, TRUE);
+	}
 }
 
 struct monst *
@@ -519,15 +521,17 @@ register boolean special;
 
 	    if (weapon != STRANGE_OBJECT) {
 		otmp = mksobj(weapon, TRUE, FALSE);
-		otmp->spe = (special ? rn1(5,4) : rn2(4));
-		if (!rn2(3)) otmp->oerodeproof = 1;
-		else if (!rn2(2)) otmp->greased = 1;
-		if (special && rn2(2))
-		    otmp = mk_artifact(otmp, A_NONE);
-		/* mplayers knew better than to overenchant Magicbane */
-		if (otmp->oartifact == ART_MAGICBANE)
-		    otmp->spe = rnd(4);
-		(void) mpickobj(mtmp, otmp, TRUE);
+		if (otmp) {
+			otmp->spe = (special ? rn1(5,4) : rn2(4));
+			if (!rn2(3)) otmp->oerodeproof = 1;
+			else if (!rn2(2)) otmp->greased = 1;
+			if (special && rn2(2))
+			    otmp = mk_artifact(otmp, A_NONE);
+			/* mplayers knew better than to overenchant Magicbane */
+			if (otmp->oartifact == ART_MAGICBANE)
+			    otmp->spe = rnd(4);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		}
 	    }
 
 	    if(special) {

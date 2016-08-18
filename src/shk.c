@@ -3850,9 +3850,11 @@ boolean catchup;	/* restoring a level */
 		/* convert to an object */
 		otmp = mksobj((ttmp->ttyp == LANDMINE) ? LAND_MINE :
 				BEARTRAP, TRUE, FALSE);
-		otmp->quan= 1;
-		otmp->owt = weight(otmp);
-		(void) mpickobj(shkp, otmp, FALSE);
+		if (otmp) {
+			otmp->quan= 1;
+			otmp->owt = weight(otmp);
+			(void) mpickobj(shkp, otmp, FALSE);
+		}
 	    }
 	    deltrap(ttmp);
 	    if(IS_DOOR(tmp_dam->typ)) {

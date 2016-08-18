@@ -2493,11 +2493,13 @@ int tech_no;
 		    u.uexp = newuexp(u.ulevel - 1);
 		}
 		otmp = mksobj(POT_VAMPIRE_BLOOD, FALSE, FALSE);
-		otmp->cursed = obj->cursed;
-		otmp->blessed = obj->blessed;
-		(void) hold_another_object(otmp,
-			"You fill, but have to drop, %s!", doname(otmp),
-			(const char *)0);
+		if (otmp) {
+			otmp->cursed = obj->cursed;
+			otmp->blessed = obj->blessed;
+			(void) hold_another_object(otmp,
+				"You fill, but have to drop, %s!", doname(otmp),
+				(const char *)0);
+		}
 		t_timeout = rnz(1500);
 		break;
 #ifdef JEDI
@@ -2743,16 +2745,18 @@ int tech_no;
 		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
 		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
 		else uammo = mksobj(BULLET, TRUE, FALSE);
-		uammo->quan = techlev(tech_no);
-		/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
-		if (Role_if(PM_GUNNER)) uammo->quan *= 1 + rnd(2);
-		if (ammotype == 5) uammo->quan *= 4;
-		if (ammotype == 4) uammo->quan /= 10;
-		if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
-		uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
-		uammo->owt = weight(uammo);
-		dropy(uammo);
-		stackobj(uammo);
+		if (uammo) {
+			uammo->quan = techlev(tech_no);
+			/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
+			if (Role_if(PM_GUNNER)) uammo->quan *= 1 + rnd(2);
+			if (ammotype == 5) uammo->quan *= 4;
+			if (ammotype == 4) uammo->quan /= 10;
+			if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
+			uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+		}
 
 	      t_timeout = rnz(500);
 	      break;
@@ -2770,15 +2774,17 @@ int tech_no;
 		while (caughtZ == 0) {
 
 			uegg = mksobj(EGG, FALSE, FALSE);
-			uegg->spe = 0;
-			uegg->quan = 1;
-			uegg->owt = weight(uegg);
-			uegg->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
-			uegg->known = uegg->dknown = 1;
-			attach_egg_hatch_timeout(uegg);
-			kill_egg(uegg); /* make sure they're stale --Amy */
-			dropy(uegg);
-			stackobj(uegg);
+			if (uegg) {
+				uegg->spe = 0;
+				uegg->quan = 1;
+				uegg->owt = weight(uegg);
+				uegg->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+				uegg->known = uegg->dknown = 1;
+				attach_egg_hatch_timeout(uegg);
+				kill_egg(uegg); /* make sure they're stale --Amy */
+				dropy(uegg);
+				stackobj(uegg);
+			}
 			if (techlev(tech_no) < rnd(100)) caughtZ++;
 
 		}
@@ -2805,9 +2811,11 @@ int tech_no;
 		while (caughtW == 0) {
 
 			udrink = mksobj(POT_BOOZE, TRUE, FALSE);
-			udrink ->known = udrink ->dknown = 1;
-			dropy(udrink);
-			stackobj(udrink);
+			if (udrink) {
+				udrink->known = udrink->dknown = 1;
+				dropy(udrink);
+				stackobj(udrink);
+			}
 			if (techlev(tech_no) < rnd(40)) caughtW++;
 
 		}

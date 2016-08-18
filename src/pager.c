@@ -408,12 +408,14 @@ lookat(x, y, buf, monbuf)
 	if (!otmp || otmp->otyp != glyph_to_obj(glyph)) {
 	    if (glyph_to_obj(glyph) != STRANGE_OBJECT) {
 		otmp = mksobj(glyph_to_obj(glyph), FALSE, FALSE);
-		if (otmp->oclass == COIN_CLASS)
-		    otmp->quan = 2L; /* to force pluralization */
-		else if (otmp->otyp == SLIME_MOLD)
-		    otmp->spe = current_fruit;	/* give the fruit a type */
-		Strcpy(buf, distant_name(otmp, xname));
-		dealloc_obj(otmp);
+		if (otmp) {
+			if (otmp->oclass == COIN_CLASS)
+			    otmp->quan = 2L; /* to force pluralization */
+			else if (otmp->otyp == SLIME_MOLD)
+			    otmp->spe = current_fruit;	/* give the fruit a type */
+			Strcpy(buf, distant_name(otmp, xname));
+			dealloc_obj(otmp);
+		} else Strcpy(buf, "very weird object");
 	    }
 	} else
 	    Strcpy(buf, distant_name(otmp, xname));

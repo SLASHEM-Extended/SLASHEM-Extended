@@ -1219,6 +1219,7 @@ dospit()
 		    otmp = mksobj(ACID_VENOM, TRUE, FALSE);
 		    break;
 	    }
+	    if (!otmp) return(0);
 	    otmp->spe = 1; /* to indicate it's yours */
 	    throwit(otmp, 0L, FALSE, 0);
 	}

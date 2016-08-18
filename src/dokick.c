@@ -1152,10 +1152,12 @@ dokick()
 				    /* scatter left some in the tree, but treefruit
 				     * may not refer to the correct object */
 				    treefruit = mksobj(frtype, TRUE, FALSE);
-				    treefruit->quan = nfruit-nfall;
-				    pline("%ld %s got caught in the branches.",
-					nfruit-nfall, xname(treefruit));
-				    dealloc_obj(treefruit);
+				    if (treefruit) {
+					    treefruit->quan = nfruit-nfall;
+					    pline("%ld %s got caught in the branches.",
+						nfruit-nfall, xname(treefruit));
+					    dealloc_obj(treefruit);
+				    }
 				}
 				exercise(A_DEX, TRUE);
 				exercise(A_WIS, TRUE);	/* discovered a new food source! */

@@ -131,6 +131,7 @@ boolean init, artif;
 	struct obj *otmp;
 
 	otmp = mksobj(otyp, init, artif);
+	if (!otmp) return (struct obj *)0;
 	place_object(otmp, x, y);
 	return(otmp);
 }

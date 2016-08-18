@@ -769,19 +769,22 @@ register struct monst *mtmp;
 	    case PM_CLAY_GOLEM:
 		obj = mksobj_at(ROCK, x, y, FALSE, FALSE);
 
-		if(!rn2(8)) {
-			obj->spe = rne(2);
-			if (rn2(2)) obj->blessed = rn2(2);
-			 else	blessorcurse(obj, 3);
-		} else if(!rn2(10)) {
-			if (rn2(10)) curse(obj);
-			 else	blessorcurse(obj, 3);
-			obj->spe = -rne(2);
-		} else	blessorcurse(obj, 10);
-
-		obj->quan = (long)(rn2(20) + 50);
-		obj->owt = weight(obj);
+		if (obj) {
+			if(!rn2(8)) {
+				obj->spe = rne(2);
+				if (rn2(2)) obj->blessed = rn2(2);
+				 else	blessorcurse(obj, 3);
+			} else if(!rn2(10)) {
+				if (rn2(10)) curse(obj);
+				 else	blessorcurse(obj, 3);
+				obj->spe = -rne(2);
+			} else	blessorcurse(obj, 10);
+	
+			obj->quan = (long)(rn2(20) + 50);
+			obj->owt = weight(obj);
+		}
 		mtmp->mnamelth = 0;
+		
 		break;
 	    case PM_STONE_GOLEM:
 		obj = mkcorpstat(STATUE, (struct monst *)0,
@@ -1472,19 +1475,22 @@ meatcorpse(mtmp)
 
 			if (mtmp->data == &mons[PM_CORPULENT_DOG] || mtmp->data == &mons[PM_THICK_POTATO] || mtmp->data == &mons[PM_BLACK_MUZZLE] || mtmp->data == &mons[PM_CORPSE_SPITTER] || mtmp->data == &mons[PM_MUZZLE_FIEND] || mtmp->data == &mons[PM_MAW_FIEND] || mtmp->data == &mons[PM_ROCKET_MUZZLE]) {
 
-	otmpB = mksobj(ROCKET, TRUE, FALSE);
-	otmpB->quan = 1;
-	otmpB->owt = weight(otmpB);
-	(void) mpickobj(mtmp, otmpB, FALSE);
-
-			}
+				otmpB = mksobj(ROCKET, TRUE, FALSE);
+				if (otmpB) {
+					otmpB->quan = 1;
+					otmpB->owt = weight(otmpB);
+					(void) mpickobj(mtmp, otmpB, FALSE);
+					}
+				}
 
 			if (mtmp->data == &mons[PM_SPIT_DEMON]) {
 
-	otmpB = mksobj(ROCK, TRUE, FALSE);
-	otmpB->quan = 5;
-	otmpB->owt = weight(otmpB);
-	(void) mpickobj(mtmp, otmpB, FALSE);
+				otmpB = mksobj(ROCK, TRUE, FALSE);
+				if (otmpB) {
+					otmpB->quan = 5;
+					otmpB->owt = weight(otmpB);
+					(void) mpickobj(mtmp, otmpB, FALSE);
+				}
 
 			}
 
@@ -3120,7 +3126,7 @@ register struct monst *mdef;
 	} else
 		otmp = mksobj_at(ROCK, x, y, TRUE, FALSE);
 
-	stackobj(otmp);
+	if (otmp) stackobj(otmp);
 	/* mondead() already does this, but we must do it before the newsym */
 	if(memory_is_invisible(x, y))
 	    unmap_object(x, y);
@@ -3133,7 +3139,7 @@ register struct monst *mdef;
 		if (is_animal(mdef->data))
 			You("%s through an opening in the new %s.",
 				locomotion(youmonst.data, "jump"),
-				xname(otmp));
+				otmp ? xname(otmp) : "item");
 	}
 }
 
@@ -3672,8 +3678,9 @@ xkilled(mtmp, dest)
 			if (!rn2(6561)) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			if (!rn2(19683)) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 			}
+
 			/* Don't create large objects from small monsters */
-			if (otmp) typ = otmp->otyp;
+			/*if (otmp) typ = otmp->otyp;*/
 			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION 
 			    && typ != LEASH
 			    && typ != FIGURINE
@@ -3682,7 +3689,9 @@ xkilled(mtmp, dest)
 				is_spear(otmp) || is_pole(otmp) ||
 				typ == MORNING_STAR)) {
 			    delobj(otmp);
-			} else */redisp = TRUE; /*just always create the object --Amy*/
+			} else */
+
+			redisp = TRUE; /*just always create the object --Amy*/
 		}
 		/* Whether or not it always makes a corpse is, in theory,
 		 * different from whether or not the corpse is "special";

@@ -543,12 +543,13 @@ struct attack *mattk;
 		obj = mksobj(BLINDING_VENOM, TRUE, FALSE);
 		break;
 	    default:
-		impossible("bad attack type in spitmm");
+		pline("bad attack type in spitmm");
 	    /* fall through */
 	    case AD_ACID:
 		obj = mksobj(ACID_VENOM, TRUE, FALSE);
 		break;
 	}
+	if (!obj) return MM_MISS;
 	if (!rn2(BOLT_LIM - distmin(magr->mx, magr->my, mdef->mx, mdef->my))) {
 	    if (canseemon(magr))
 		pline("%s spits venom!", Monnam(magr));
@@ -1089,10 +1090,14 @@ mdamagem(magr, mdef, mattk)
 		    struct obj *virtualcorpse = mksobj(CORPSE, FALSE, FALSE);
 		    int nutrit;
 
-		    virtualcorpse->corpsenm = num;
-		    virtualcorpse->owt = weight(virtualcorpse);
-		    nutrit = dog_nutrition(magr, virtualcorpse);
-		    dealloc_obj(virtualcorpse);
+		    if (virtualcorpse) {
+
+			    virtualcorpse->corpsenm = num;
+			    virtualcorpse->owt = weight(virtualcorpse);
+			    nutrit = dog_nutrition(magr, virtualcorpse);
+			    dealloc_obj(virtualcorpse);
+
+		    }
 
 		    /* only 50% nutrition, 25% of normal eating time */
 		    if (magr->meating > 1) magr->meating = (magr->meating+3)/4;

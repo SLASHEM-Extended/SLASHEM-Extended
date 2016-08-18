@@ -871,11 +871,13 @@ gcrownu()
 	class_gift = SPE_FINGER_OF_DEATH;
  make_splbk:
 	obj = mksobj(class_gift, TRUE, FALSE);
-	bless(obj);
-	obj->bknown = TRUE;
-	at_your_feet("A spellbook");
-	dropy(obj);
-	u.ugifts++;
+	if (obj) {
+		bless(obj);
+		obj->bknown = TRUE;
+		at_your_feet("A spellbook");
+		dropy(obj);
+		u.ugifts++;
+	}
 	/* when getting a new book for known spell, enhance
 	   currently wielded weapon rather than the book */
 	for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
@@ -899,11 +901,13 @@ gcrownu()
 			obj->dknown = TRUE;
 		} else if (!already_exists) {
 			obj = mksobj(SCIMITAR, FALSE, FALSE);
-			obj = oname(obj, artiname(ART_REAVER));
-			obj->spe = 1;
-			at_your_feet("A sword");
-			dropy(obj);
-			u.ugifts++;
+			if (obj) {
+				obj = oname(obj, artiname(ART_REAVER));
+				obj->spe = 1;
+				at_your_feet("A sword");
+				dropy(obj);
+				u.ugifts++;
+			}
 		}
 		/* acquire Reaver's skill regardless of weapon or gift, 
 			although pirates are already good at using scimitars */
@@ -934,11 +938,13 @@ gcrownu()
 	    obj->dknown = TRUE;
 	} else if (!already_exists) {
 	    obj = mksobj(LONG_SWORD, FALSE, FALSE);
-	    obj = oname(obj, artiname(ART_VORPAL_BLADE));
-	    obj->spe = 1;
-	    at_your_feet("A sword");
-	    dropy(obj);
-	    u.ugifts++;
+	    if (obj) {
+		    obj = oname(obj, artiname(ART_VORPAL_BLADE));
+		    obj->spe = 1;
+		    at_your_feet("A sword");
+		    dropy(obj);
+		    u.ugifts++;
+	    }
 	}
 	/* acquire Vorpal Blade's skill regardless of weapon or gift */
 	unrestrict_weapon_skill(P_LONG_SWORD);
@@ -957,11 +963,13 @@ gcrownu()
 	    obj->dknown = TRUE;
 	} else if (!already_exists) {
 	    obj = mksobj(RUNESWORD, FALSE, FALSE);
-	    obj = oname(obj, artiname(ART_STORMBRINGER));
-	    at_your_feet(An(swordbuf));
-	    obj->spe = 1;
-	    dropy(obj);
-	    u.ugifts++;
+	    if (obj) {
+		    obj = oname(obj, artiname(ART_STORMBRINGER));
+		    at_your_feet(An(swordbuf));
+		    obj->spe = 1;
+		    dropy(obj);
+		    u.ugifts++;
+	    }
 	}
 	/* acquire Stormbringer's skill regardless of weapon or gift */
 	unrestrict_weapon_skill(P_BROAD_SWORD);
@@ -1204,6 +1212,7 @@ pleased(g_align)
 	    /* Also, try to grant a spell for which there is a skill slot */
 	    otmp = mkobj(SPBOOK_CLASS, TRUE);
 	    while (--trycnt > 0) {
+		if (!otmp) break;
 		if (otmp->otyp != SPE_BLANK_PAPER) {
 		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
 			if (spl_book[sp_no].sp_id == otmp->otyp) break;

@@ -1905,6 +1905,8 @@ struct mkroom	*croom;
 		otmp = mkobj_at(oclass, x, y, !named);
 	}
 
+	if (!otmp) return;
+
 	if (o->spe != -127)	/* That means NOT RANDOM! */
 	    otmp->spe = (schar)o->spe;
 

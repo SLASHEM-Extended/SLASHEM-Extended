@@ -1082,6 +1082,7 @@ register struct attack *mattk;
 			otmp = mksobj(ACID_VENOM, TRUE, FALSE);
 			break;
 		}
+		if (!otmp) return 0;
 
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))

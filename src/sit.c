@@ -587,16 +587,18 @@ dosit()
 		}
 
 		uegg = mksobj(EGG, FALSE, FALSE);
-		uegg->spe = 1;
-		uegg->quan = 1;
-		uegg->owt = weight(uegg);
-		uegg->corpsenm = egg_type_from_parent(u.umonnum, FALSE);
-		uegg->known = uegg->dknown = 1;
-		attach_egg_hatch_timeout(uegg);
-		You("lay an egg.");
-		dropy(uegg);
-		stackobj(uegg);
-		morehungry((int)objects[EGG].oc_nutrition);
+		if (uegg) {
+			uegg->spe = 1;
+			uegg->quan = 1;
+			uegg->owt = weight(uegg);
+			uegg->corpsenm = egg_type_from_parent(u.umonnum, FALSE);
+			uegg->known = uegg->dknown = 1;
+			attach_egg_hatch_timeout(uegg);
+			You("lay an egg.");
+			dropy(uegg);
+			stackobj(uegg);
+			morehungry((int)objects[EGG].oc_nutrition);
+		}
 	} else if (u.uswallow)
 		There("are no seats in here!");
 	else

@@ -1855,9 +1855,11 @@ moveloop()
 		if (Race_if(PM_BATMAN) && u.ualign.record > 0 && (rnd(300000) < u.ualign.record) ) {
 			struct obj *ubatarang;
 			ubatarang = mksobj(BATARANG, TRUE, FALSE);
-			ubatarang->known = ubatarang->dknown = ubatarang->bknown = ubatarang->rknown = 1;
-			ubatarang->owt = weight(ubatarang);
-			dropy(ubatarang);
+			if (ubatarang) {
+				ubatarang->known = ubatarang->dknown = ubatarang->bknown = ubatarang->rknown = 1;
+				ubatarang->owt = weight(ubatarang);
+				dropy(ubatarang);
+			}
 			pline("The HQ grants you a batarang for your valiant efforts.");
 		}
 

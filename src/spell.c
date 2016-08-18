@@ -1118,6 +1118,11 @@ boolean atme;
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
 	pseudo = mksobj(spellid(spell), FALSE, FALSE);
+	if (!pseudo) {
+		pline("The spell failed spontaneously!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return(1);
+	}
 	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(spell); /* minimalist fix */
 	pseudo->blessed = pseudo->cursed = 0;
 	pseudo->quan = 20L;			/* do not let useup get it */

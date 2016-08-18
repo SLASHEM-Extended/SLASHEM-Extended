@@ -467,9 +467,11 @@ static void make_bottle(boolean certain)
 		otmp = mksobj(BOTTLE,TRUE,TRUE);
 /* We do not transfer curses/blessings, assuming that these a property
 ** of the actual potion, not the bottle. */
-		otmp->cursed = otmp->blessed = FALSE;
-		You("are left with the empty bottle.");
-		hold_another_object(otmp,"Oops! It drops to the floor!",(const char *) 0, (const char *) 0);
+		if (otmp) {
+			otmp->cursed = otmp->blessed = FALSE;
+			You("are left with the empty bottle.");
+			hold_another_object(otmp,"Oops! It drops to the floor!",(const char *) 0, (const char *) 0);
+		}
 	}
 }
 

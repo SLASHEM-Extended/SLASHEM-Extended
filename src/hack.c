@@ -148,20 +148,22 @@ boolean showmsg, update;
 		  }
 	       } else {
 		  otmp = mksobj(herb, TRUE, FALSE);
-		  otmp->quan = 1;
-		  otmp->owt = weight(otmp); 
-		  place_object(otmp, pos.x, pos.y);
-		  if (update) newsym(pos.x,pos.y);
-		  if (cansee(pos.x,pos.y)) {
-		     if (showmsg && flags.verbose) {
-			const char *what;
-			if (herb == CLOVE_OF_GARLIC)
-			  what = "some garlic";
-			else 
-			  what = an(xname(otmp));
-			Norep("Suddenly you notice %s growing on the %s.",
-			      what, surface(pos.x,pos.y));
-		     }
+		  if (otmp) {
+			  otmp->quan = 1;
+			  otmp->owt = weight(otmp); 
+			  place_object(otmp, pos.x, pos.y);
+			  if (update) newsym(pos.x,pos.y);
+			  if (cansee(pos.x,pos.y)) {
+			     if (showmsg && flags.verbose) {
+				const char *what;
+				if (herb == CLOVE_OF_GARLIC)
+				  what = "some garlic";
+				else 
+				  what = an(xname(otmp));
+				Norep("Suddenly you notice %s growing on the %s.",
+				      what, surface(pos.x,pos.y));
+			     }
+			  }
 		  }
 		  return TRUE;
 	       } 

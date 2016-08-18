@@ -3594,6 +3594,11 @@ newboss:
 					    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 	
 			}
+
+			if (!acqo) {
+				pline("Unfortunately, it failed.");
+				break;
+			}
 	
 			/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 	

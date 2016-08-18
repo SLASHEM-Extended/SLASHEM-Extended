@@ -4896,12 +4896,14 @@ struct monst *mtmp;
 		pline("A gray stone appears from nowhere!");
 
 		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
-		ldstone->quan = 1L;
-		ldstone->owt = weight(ldstone);
-		if (!Blind) ldstone->dknown = 1;
 		if (ldstone) {
-		      pline("The stone automatically wanders into your knapsack!");
-			(void) pickup_object(ldstone, 1L, TRUE);
+			ldstone->quan = 1L;
+			ldstone->owt = weight(ldstone);
+			if (!Blind) ldstone->dknown = 1;
+			if (ldstone) {
+			      pline("The stone automatically wanders into your knapsack!");
+				(void) pickup_object(ldstone, 1L, TRUE);
+			}
 		}
 
 		}

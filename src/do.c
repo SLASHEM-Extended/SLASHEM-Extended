@@ -3242,15 +3242,19 @@ final_level()
 					d((int)mtmp->m_lev,10) + 30 + rnd(30);
 		    if ((otmp = select_hwep(mtmp)) == 0) {
 			otmp = mksobj(SILVER_SABER, FALSE, FALSE);
-			if (mpickobj(mtmp, otmp, TRUE))
-			    panic("merged weapon?");
+			if (otmp) {
+				if (mpickobj(mtmp, otmp, TRUE))
+				    panic("merged weapon?");
+			}
 		    }
-		    bless(otmp);
-		    if (otmp->spe < 4) otmp->spe += rnd(4);
-		    if ((otmp = which_armor(mtmp, W_ARMS)) == 0 ||
-			    otmp->otyp != SHIELD_OF_REFLECTION) {
-			(void) mongets(mtmp, AMULET_OF_REFLECTION);
-			m_dowear(mtmp, TRUE);
+		    if (otmp) {
+			    bless(otmp);
+			    if (otmp->spe < 4) otmp->spe += rnd(4);
+			    if ((otmp = which_armor(mtmp, W_ARMS)) == 0 ||
+				    otmp->otyp != SHIELD_OF_REFLECTION) {
+				(void) mongets(mtmp, AMULET_OF_REFLECTION);
+				m_dowear(mtmp, TRUE);
+			    }
 		    }
 		}
 	    }

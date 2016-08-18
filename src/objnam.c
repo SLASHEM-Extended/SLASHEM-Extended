@@ -4000,13 +4000,15 @@ register struct obj *obj;
 
 	if (Hallucination && !program_state.gameover) {
 		hobj = mkobj(obj->oclass, 0);
-		hobj->quan = obj->quan;
-		/* WAC clean up */
-		buf = xname2(hobj);
-		obj_extract_self(hobj);                
-		dealloc_obj(hobj);
+		if (hobj) {
+			hobj->quan = obj->quan;
+			/* WAC clean up */
+			buf = xname2(hobj);
+			obj_extract_self(hobj);                
+			dealloc_obj(hobj);
 
-		return (buf);
+			return (buf);
+		} else return xname2(obj);
 	} else return xname2(obj);
 }
 
@@ -6337,6 +6339,10 @@ typfnd:
 	} else {
 		otmp = mkobj(oclass, FALSE);
 		if (otmp) typ = otmp->otyp;
+	}
+	if (!otmp) {
+		pline("Unfortunately it failed.");
+		return (struct obj *)0;
 	}
 
 	if (islit &&

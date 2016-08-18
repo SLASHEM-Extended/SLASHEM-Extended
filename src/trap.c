@@ -1779,20 +1779,22 @@ unsigned trflags;
 		seetrap(trap);
 		pline("An arrow shoots out at you!");
 		otmp = mksobj(ARROW, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		otmp->opoisoned = 0;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 
@@ -1807,20 +1809,22 @@ unsigned trflags;
 		seetrap(trap);
 		pline("A bolt shoots out at you!");
 		otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		otmp->opoisoned = 0;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 
@@ -1835,17 +1839,19 @@ unsigned trflags;
 		seetrap(trap);
 		pline("BANG! A gun shoots at you!");
 		otmp = mksobj(BULLET, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		otmp->opoisoned = 0;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd(monster_difficulty() + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    obfree(otmp, (struct obj *)0);
+			if (thitu(8 + rnd(monster_difficulty() + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    obfree(otmp, (struct obj *)0);
+			}
 		}
 		break;
 
@@ -1860,20 +1866,22 @@ unsigned trflags;
 		seetrap(trap);
 		pline("A glass arrow shoots out at you!");
 		otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		otmp->opoisoned = 0;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 
@@ -1888,20 +1896,22 @@ unsigned trflags;
 		seetrap(trap);
 		pline("A glass bolt shoots out at you!");
 		otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		otmp->opoisoned = 0;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 
@@ -1945,22 +1955,24 @@ unsigned trflags;
 		seetrap(trap);
 		pline("A little dart shoots out at you!");
 		otmp = mksobj(DART, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		if (!rn2(6)) otmp->opoisoned = 1;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			if (!rn2(6)) otmp->opoisoned = 1;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(7 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
-		    if (otmp->opoisoned)
-			poisoned("dart", A_CON, "little dart", -10);
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
+			    if (otmp->opoisoned)
+				poisoned("dart", A_CON, "little dart", -10);
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 	    case THROWING_STAR_TRAP:
@@ -1974,22 +1986,24 @@ unsigned trflags;
 		seetrap(trap);
 		pline("A shuriken shoots out at you!");
 		otmp = mksobj(SHURIKEN, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
-		if (!rn2(6)) otmp->opoisoned = 1;
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			if (!rn2(6)) otmp->opoisoned = 1;
 #ifdef STEED
-		if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
-		else
+			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			else
 #endif
-		if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
-		    if (otmp->opoisoned)
-			poisoned("shuriken", A_CON, "shuriken", -10);
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
+			    if (otmp->opoisoned)
+				poisoned("shuriken", A_CON, "shuriken", -10);
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 		break;
 	    case ROCKTRAP:
@@ -2004,29 +2018,31 @@ unsigned trflags;
 		    trap->once = 1;
 		    seetrap(trap);
 		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE);
-		    otmp->quan = 1L;
-		    otmp->owt = weight(otmp);
+		    if (otmp) {
+			    otmp->quan = 1L;
+			    otmp->owt = weight(otmp);
 
-		    pline("A trap door in %s opens and %s falls on your %s!",
-			  the(ceiling(u.ux,u.uy)),
-			  an(xname(otmp)),
-			  body_part(HEAD));
+			    pline("A trap door in %s opens and %s falls on your %s!",
+				  the(ceiling(u.ux,u.uy)),
+				  an(xname(otmp)),
+				  body_part(HEAD));
 
-		    if (uarmh) {
-			if(is_metallic(uarmh)) {
-			    pline("Fortunately, you are wearing a hard helmet.");
-			    dmg /= 4;
-			} else if (flags.verbose) {
-			    Your("%s does not protect you.", xname(uarmh));
-			}
+			    if (uarmh) {
+				if(is_metallic(uarmh)) {
+				    pline("Fortunately, you are wearing a hard helmet.");
+				    dmg /= 4;
+				} else if (flags.verbose) {
+				    Your("%s does not protect you.", xname(uarmh));
+				}
+			    }
+
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux,u.uy);	/* map the rock */
+
+			    losehp(dmg, "falling rock", KILLED_BY_AN);
+			    exercise(A_STR, FALSE);
 		    }
-
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux,u.uy);	/* map the rock */
-
-		    losehp(dmg, "falling rock", KILLED_BY_AN);
-		    exercise(A_STR, FALSE);
 		}
 		break;
 
@@ -2035,31 +2051,33 @@ unsigned trflags;
 		    int dmg = rnd(30) + rnd(monster_difficulty() + 1);
 
 		    otmp = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
-		    otmp->quan = 1L;
-		    otmp->owt = weight(otmp);
-
-		    pline("A trap door in %s opens and %s falls on your %s!",
-			  the(ceiling(u.ux,u.uy)),
-			  an(xname(otmp)),
-			  body_part(HEAD));
-
-		    if (uarmh) {
-			if(is_metallic(uarmh)) {
-			    pline("Fortunately, you are wearing a hard helmet.");
-			    dmg /= 2;
-			} else if (flags.verbose) {
-			    Your("%s does not protect you.", xname(uarmh));
-			}
-		    }
-
-		    if (!Blind) otmp->dknown = 1;
 		    if (otmp) {
-		      pline("%s lands in your knapsack!", Doname2(otmp));
-			(void) pickup_object(otmp, 1L, TRUE);
-		    }
+			    otmp->quan = 1L;
+			    otmp->owt = weight(otmp);
 
-		    losehp(dmg, "falling loadstone", KILLED_BY_AN);
-		    exercise(A_STR, FALSE);
+			    pline("A trap door in %s opens and %s falls on your %s!",
+				  the(ceiling(u.ux,u.uy)),
+				  an(xname(otmp)),
+				  body_part(HEAD));
+
+			    if (uarmh) {
+				if(is_metallic(uarmh)) {
+				    pline("Fortunately, you are wearing a hard helmet.");
+				    dmg /= 2;
+				} else if (flags.verbose) {
+				    Your("%s does not protect you.", xname(uarmh));
+				}
+			    }
+
+			    if (!Blind) otmp->dknown = 1;
+			    if (otmp) {
+			      pline("%s lands in your knapsack!", Doname2(otmp));
+				(void) pickup_object(otmp, 1L, TRUE);
+			    }
+
+			    losehp(dmg, "falling loadstone", KILLED_BY_AN);
+			    exercise(A_STR, FALSE);
+			}
 		}
 		deltrap(trap); /* only triggers once */
 		break;
@@ -2069,31 +2087,33 @@ unsigned trflags;
 		    int dmg = rnd(20) + rnd(monster_difficulty() + 1);
 
 		    otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE);
-		    otmp->quan = 1L;
-		    otmp->owt = weight(otmp);
-
-		    pline("A trap door in %s opens and %s falls on your %s!",
-			  the(ceiling(u.ux,u.uy)),
-			  an(xname(otmp)),
-			  body_part(HEAD));
-
-		    if (uarmh) {
-			if(is_metallic(uarmh)) {
-			    pline("Fortunately, you are wearing a hard helmet.");
-			    dmg /= 2;
-			} else if (flags.verbose) {
-			    Your("%s does not protect you.", xname(uarmh));
-			}
-		    }
-
-		    if (!Blind) otmp->dknown = 1;
 		    if (otmp) {
-		      pline("%s lands in your knapsack!", Doname2(otmp));
-			(void) pickup_object(otmp, 1L, TRUE);
-		    }
+			    otmp->quan = 1L;
+			    otmp->owt = weight(otmp);
 
-		    losehp(dmg, "falling loadstone", KILLED_BY_AN);
-		    exercise(A_STR, FALSE);
+			    pline("A trap door in %s opens and %s falls on your %s!",
+				  the(ceiling(u.ux,u.uy)),
+				  an(xname(otmp)),
+				  body_part(HEAD));
+
+			    if (uarmh) {
+				if(is_metallic(uarmh)) {
+				    pline("Fortunately, you are wearing a hard helmet.");
+				    dmg /= 2;
+				} else if (flags.verbose) {
+				    Your("%s does not protect you.", xname(uarmh));
+				}
+			    }
+
+			    if (!Blind) otmp->dknown = 1;
+			    if (otmp) {
+			      pline("%s lands in your knapsack!", Doname2(otmp));
+				(void) pickup_object(otmp, 1L, TRUE);
+			    }
+
+			    losehp(dmg, "falling loadstone", KILLED_BY_AN);
+			    exercise(A_STR, FALSE);
+			}
 		}
 		deltrap(trap); /* only triggers once */
 		break;
@@ -2110,29 +2130,31 @@ unsigned trflags;
 		    trap->once = 1;
 		    seetrap(trap);
 		    otmp = mksobj_at(BOULDER, u.ux, u.uy, TRUE, FALSE);
-		    otmp->quan = 1L;
-		    otmp->owt = weight(otmp);
+		    if (otmp) {
+			    otmp->quan = 1L;
+			    otmp->owt = weight(otmp);
 
-		    pline("A trap door in %s opens and %s falls on your %s!",
-			  the(ceiling(u.ux,u.uy)),
-			  an(xname(otmp)),
-			  body_part(HEAD));
+			    pline("A trap door in %s opens and %s falls on your %s!",
+				  the(ceiling(u.ux,u.uy)),
+				  an(xname(otmp)),
+				  body_part(HEAD));
 
-		    if (uarmh) {
-			if(is_metallic(uarmh)) {
-			    pline("Fortunately, you are wearing a hard helmet.");
-			    dmg /= 2;
-			} else if (flags.verbose) {
-			    Your("%s does not protect you.", xname(uarmh));
+			    if (uarmh) {
+				if(is_metallic(uarmh)) {
+				    pline("Fortunately, you are wearing a hard helmet.");
+				    dmg /= 2;
+				} else if (flags.verbose) {
+				    Your("%s does not protect you.", xname(uarmh));
+				}
+			    }
+
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux,u.uy);	/* map the rock */
+
+			    losehp(dmg, "falling boulder", KILLED_BY_AN);
+			    exercise(A_STR, FALSE);
 			}
-		    }
-
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux,u.uy);	/* map the rock */
-
-		    losehp(dmg, "falling boulder", KILLED_BY_AN);
-		    exercise(A_STR, FALSE);
 		}
 		break;
 
@@ -2977,6 +2999,7 @@ newegomon:
 
 			/* pseudo is a temporary "false" object containing the spell stats. */
 			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, FALSE);
+			if (!pseudo) break;
 			if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_STONE_TO_FLESH; /* minimalist fix */
 			pseudo->blessed = pseudo->cursed = 0;
 			pseudo->quan = 20L;			/* do not let useup get it */
@@ -5075,16 +5098,18 @@ newegomon:
 		seetrap(trap);
 		pline("A stone shoots out at you!");
 		otmp = mksobj(ROCK, TRUE, FALSE);
-		otmp->quan = 1L;
-		otmp->owt = weight(otmp);
+		if (otmp) {
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
 
-		if (thitu(5 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
-		    obfree(otmp, (struct obj *)0);
-		} else {
-		    place_object(otmp, u.ux, u.uy);
-		    if (!Blind) otmp->dknown = 1;
-		    stackobj(otmp);
-		    newsym(u.ux, u.uy);
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
 		}
 
 		break;
@@ -7564,6 +7589,7 @@ int zx,zy;
 			} else {
 				otmp = mksobj(BOULDER,FALSE,FALSE);
 			}
+			if (!otmp) continue;
 
 			if(!rn2(8)) {
 				otmp->spe = rne(2);
@@ -8131,10 +8157,12 @@ long ocount;
 		cc.y = bcc.y = y;
 	} else {
 		otmp = mksobj(otyp, TRUE, FALSE);
-		otmp->quan = ocount;
-		otmp->owt = weight(otmp);
-		place_object(otmp, cc.x, cc.y);
-		stackobj(otmp);
+		if (otmp) {
+			otmp->quan = ocount;
+			otmp->owt = weight(otmp);
+			place_object(otmp, cc.x, cc.y);
+			stackobj(otmp);
+		}
 	}
 	ttmp->launch.x = cc.x;
 	ttmp->launch.y = cc.y;
@@ -8280,11 +8308,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(ARROW, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case BOLT_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8297,11 +8327,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case BULLET_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8314,11 +8346,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(BULLET, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case GLASS_ARROW_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8331,11 +8365,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case GLASS_BOLT_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8348,11 +8384,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case DART_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8365,11 +8403,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(DART, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			if (!rn2(6)) otmp->opoisoned = 1;
-			if (in_sight) seetrap(trap);
-			if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!rn2(6)) otmp->opoisoned = 1;
+				if (in_sight) seetrap(trap);
+				if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case THROWING_STAR_TRAP:
 			if (trap->once && !rn2(15)) {
@@ -8382,11 +8422,13 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(SHURIKEN, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			if (!rn2(6)) otmp->opoisoned = 1;
-			if (in_sight) seetrap(trap);
-			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!rn2(6)) otmp->opoisoned = 1;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
 			break;
 		case ROCKTRAP:
 			if (trap->once && !rn2(15)) {
@@ -8399,12 +8441,14 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(ROCK, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(0, mtmp, otmp, d(2, 6), FALSE))
-			    trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(0, mtmp, otmp, d(2, 6), FALSE))
+				    trapkilled = TRUE;
+			}
 			break;
 
 		case FALLING_BOULDER_TRAP:
@@ -8418,12 +8462,14 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(BOULDER, TRUE, FALSE);
-			otmp->quan = 1L;
-			otmp->owt = weight(otmp);
-			otmp->opoisoned = 0;
-			if (in_sight) seetrap(trap);
-			if (thitm(0, mtmp, otmp, d(6, 6), FALSE))
-			    trapkilled = TRUE;
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(0, mtmp, otmp, d(6, 6), FALSE))
+				    trapkilled = TRUE;
+			}
 			break;
 
 		case SQKY_BOARD:
@@ -10916,17 +10962,19 @@ struct trap *ttmp;
 {
 	struct obj *otmp = mksobj(otyp, TRUE, FALSE);
 	/* [ALI] Only dart traps are capable of being poisonous */
-	if (otyp != DART)
-	    otmp->opoisoned = 0;
-	otmp->quan=cnt;
-	otmp->owt = weight(otmp);
-	/* Only dart traps are capable of being poisonous */
-	if (otyp != DART)
-	    otmp->opoisoned = 0;
-	place_object(otmp, ttmp->tx, ttmp->ty);
-	/* Sell your own traps only... */
-	if (ttmp->madeby_u) sellobj(otmp, ttmp->tx, ttmp->ty);
-	stackobj(otmp);
+	if (otmp) {
+		if (otyp != DART)
+		    otmp->opoisoned = 0;
+		otmp->quan=cnt;
+		otmp->owt = weight(otmp);
+		/* Only dart traps are capable of being poisonous */
+		if (otyp != DART)
+		    otmp->opoisoned = 0;
+		place_object(otmp, ttmp->tx, ttmp->ty);
+		/* Sell your own traps only... */
+		if (ttmp->madeby_u) sellobj(otmp, ttmp->tx, ttmp->ty);
+		stackobj(otmp);
+	}
 	newsym(ttmp->tx, ttmp->ty);
 	deltrap(ttmp);
 }
@@ -11263,7 +11311,8 @@ struct trap *ttmp;
 	    more_experienced(5,0);
 		    newexplevel();
 
-	unkrwrd = mkobj(RANDOM_CLASS, FALSE); dropy(unkrwrd );
+	unkrwrd = mkobj(RANDOM_CLASS, FALSE);
+	if (unkrwrd) dropy(unkrwrd);
 
 	deltrap(ttmp);
 	newsym(trapx, trapy);

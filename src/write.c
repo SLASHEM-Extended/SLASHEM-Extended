@@ -260,6 +260,10 @@ found:
 	u.uconduct.literate++;
 
 	new_obj = mksobj(i, FALSE, FALSE);
+	if (!new_obj) {
+		pline("Scroll creation failed!");
+		return(1);
+	}
 	new_obj->bknown = (paper->bknown && pen->bknown);
 #ifdef INVISIBLE_OBJECTS
 	new_obj->oinvis = paper->oinvis;

@@ -1353,15 +1353,17 @@ die:
 		    if (count == 0L) continue;
 		    if (objects[typ].oc_class != GEM_CLASS || typ <= LAST_GEM) {
 			otmp = mksobj(typ, FALSE, FALSE);
-			makeknown(otmp->otyp);
-			otmp->known = 1;	/* for fake amulets */
-			otmp->dknown = 1;	/* seen it (blindness fix) */
-			otmp->onamelth = 0;
-			otmp->quan = count;
-			Sprintf(pbuf, "%8ld %s (worth %ld %s),",
-				count, xname(otmp),
-				count * (long)objects[typ].oc_cost, currency(2L));
-			obfree(otmp, (struct obj *)0);
+			if (otmp) {
+				makeknown(otmp->otyp);
+				otmp->known = 1;	/* for fake amulets */
+				otmp->dknown = 1;	/* seen it (blindness fix) */
+				otmp->onamelth = 0;
+				otmp->quan = count;
+				Sprintf(pbuf, "%8ld %s (worth %ld %s),",
+					count, xname(otmp),
+					count * (long)objects[typ].oc_cost, currency(2L));
+				obfree(otmp, (struct obj *)0);
+			}
 		    } else {
 			Sprintf(pbuf,
 				"%8ld worthless piece%s of colored glass,",

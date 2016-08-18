@@ -1657,6 +1657,7 @@ arti_invoke(obj)
 	  }
 	case IDENTIFY: {
 		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, FALSE);
+		if (!pseudo) break;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 42L;		/* do not let useup get it */
 		(void) seffects(pseudo);

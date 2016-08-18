@@ -2821,12 +2821,14 @@ register struct obj	*sobj;
 		pline("A gray stone appears from nowhere!");
 
 		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
-		ldstone->quan = 1L;
-		ldstone->owt = weight(ldstone);
-		if (!Blind) ldstone->dknown = 1;
 		if (ldstone) {
-		      pline("The stone automatically wanders into your knapsack!");
-			(void) pickup_object(ldstone, 1L, TRUE);
+			ldstone->quan = 1L;
+			ldstone->owt = weight(ldstone);
+			if (!Blind) ldstone->dknown = 1;
+			if (ldstone) {
+			      pline("The stone automatically wanders into your knapsack!");
+				(void) pickup_object(ldstone, 1L, TRUE);
+			}
 		}
 
 		}
@@ -5298,6 +5300,10 @@ revid_end:
 				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 
 		}
+		if (!acqo) {
+			pline("Unfortunately it failed.");
+			break;
+		}
 
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 
@@ -5439,13 +5445,15 @@ revid_end:
 	case SCR_CREATE_CREATE_SCROLL:
 
 		{
-		struct obj *createdscroll;
-		pline("Now that's weird.");
-	    	known = FALSE;
-	    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE);
-	    	createdscroll->cursed = sobj->cursed;
-	    	createdscroll->hvycurse = sobj->hvycurse;
-	    	createdscroll->prmcurse = sobj->prmcurse;
+			struct obj *createdscroll;
+			pline("Now that's weird.");
+		    	known = FALSE;
+		    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE);
+			if (createdscroll) {
+			    	createdscroll->cursed = sobj->cursed;
+			    	createdscroll->hvycurse = sobj->hvycurse;
+			    	createdscroll->prmcurse = sobj->prmcurse;
+			}
 		}
 
 		break;

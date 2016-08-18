@@ -570,24 +570,36 @@ struct mkroom	*sroom;
 	  shk->data->maligntyp = -1;
 /* black marketeer's equipment */
 	  otmp = mksobj(LONG_SWORD, FALSE, FALSE);
-	  otmp = oname(otmp, artiname(ART_THIEFBANE));
-	  mpickobj(shk, otmp, TRUE);
-	  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  if (otmp) {
+		  otmp = oname(otmp, artiname(ART_THIEFBANE));
+		  mpickobj(shk, otmp, TRUE);
+		  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  }
 	  otmp = mksobj(SHIELD_OF_REFLECTION, FALSE, FALSE);
-	  mpickobj(shk, otmp, TRUE);
-	  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  if (otmp) {
+		  mpickobj(shk, otmp, TRUE);
+		  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  }
 	  otmp = mksobj(GRAY_DRAGON_SCALE_MAIL, FALSE, FALSE);
-	  mpickobj(shk, otmp, TRUE);
-	  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  if (otmp) {
+		  mpickobj(shk, otmp, TRUE);
+		  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  }
 	  otmp = mksobj(SPEED_BOOTS, FALSE, FALSE);
-	  mpickobj(shk, otmp, TRUE);
-	  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  if (otmp) {
+		  mpickobj(shk, otmp, TRUE);
+		  if (otmp->spe < 5) otmp->spe += rnd(5);
+	  }
 	  otmp = mksobj(AMULET_OF_LIFE_SAVING, FALSE, FALSE);
-	  mpickobj(shk, otmp, TRUE);
+	  if (otmp) {
+		  mpickobj(shk, otmp, TRUE);
+	  }
 /* wear armor and amulet */
 	  m_dowear(shk, TRUE);
 	  otmp = mksobj(SKELETON_KEY, FALSE, FALSE);
-	  mpickobj(shk, otmp, TRUE);
+	  if (otmp) {
+		  mpickobj(shk, otmp, TRUE);
+	  }
 	}
 #endif /* BLACKMARKET */
 
@@ -756,6 +768,8 @@ register int sh;
 
 /*        otmp = mksobj_at(typ, sx, sy, TRUE, TRUE);
 	  blkmar_gen[typ]++;*/
+
+	if (!otmp) break;
 
 /* prevent wishing abuse */
 	  if (typ==WAN_WISHING || typ==WAN_ACQUIREMENT) {

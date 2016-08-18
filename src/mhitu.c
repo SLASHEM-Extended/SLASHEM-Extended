@@ -12114,17 +12114,19 @@ register struct monst *mon;
 		}
 
 		uegg = mksobj(EGG, FALSE, FALSE);
-		uegg->spe = (flags.female ? 1 : 0);
-		uegg->quan = 1;
-		uegg->owt = weight(uegg);
-		if (!rn2(2)) uegg->corpsenm = mon->mnum;
-		else if (Upolyd) uegg->corpsenm = u.umonnum;
-		else if (urole.femalenum != NON_PM && !rn2(2)) uegg->corpsenm = urole.femalenum;
-		else uegg->corpsenm = urole.malenum;
-		uegg->known = uegg->dknown = 1;
-		attach_egg_hatch_timeout(uegg);
-		(void) start_timer(1, TIMER_OBJECT, HATCH_EGG, (genericptr_t)uegg);
-		pickup_object(uegg, 1, FALSE);
+		if (uegg) {
+			uegg->spe = (flags.female ? 1 : 0);
+			uegg->quan = 1;
+			uegg->owt = weight(uegg);
+			if (!rn2(2)) uegg->corpsenm = mon->mnum;
+			else if (Upolyd) uegg->corpsenm = u.umonnum;
+			else if (urole.femalenum != NON_PM && !rn2(2)) uegg->corpsenm = urole.femalenum;
+			else uegg->corpsenm = urole.malenum;
+			uegg->known = uegg->dknown = 1;
+			attach_egg_hatch_timeout(uegg);
+			(void) start_timer(1, TIMER_OBJECT, HATCH_EGG, (genericptr_t)uegg);
+			pickup_object(uegg, 1, FALSE);
+		}
 
 	}
 

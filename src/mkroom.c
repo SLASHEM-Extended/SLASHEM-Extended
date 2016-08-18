@@ -663,9 +663,10 @@ struct mkroom *sroom;
 						otmp = mkobj_at(WEAPON_CLASS, sx, sy, FALSE);
 					else
 						otmp = mkobj_at(ARMOR_CLASS, sx, sy, FALSE);
-					otmp->spe = 0;
-					if (is_rustprone(otmp)) otmp->oeroded = rn2(4);
-					else if (is_rottable(otmp)) otmp->oeroded2 = rn2(4);
+					if (otmp) {
+						if (is_rustprone(otmp)) otmp->oeroded = rn2(4);
+						else if (is_rottable(otmp)) otmp->oeroded2 = rn2(4);
+					}
 				}
 			}
 			break;
@@ -697,7 +698,9 @@ struct mkroom *sroom;
 		  (void) mkgold((long) rn1(50 * level_difficulty(),10), mm.x, mm.y);
 		  /* the royal coffers */
 		  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
-		  chest->spe = 2; /* so it can be found later */
+		  if (chest) {
+			  chest->spe = 2; /* so it can be found later */
+		  }
 		  level.flags.has_court = 1;
 		  break;
 		}

@@ -169,6 +169,7 @@ int otyp,oquan;
 	register struct obj *otmp;
 
 	otmp = mksobj(otyp, TRUE, FALSE);
+	if (!otmp) return;
 	otmp->quan = (long) rn1(oquan, 3);
 	if (!issoviet) {
 		if (!rn2(20)) otmp->quan += rnd(otmp->quan);
@@ -437,32 +438,37 @@ register struct monst *mtmp;
 	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 1000 : 2000)) {
-	struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-	otmpX->spe = 0;
-	otmpX->quan = 1;
-	otmpX->owt = weight(otmpX);
-	otmpX->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
-	attach_egg_hatch_timeout(otmpX);
-	kill_egg(otmpX); /* make sure they're stale --Amy */
-	(void) mpickobj(mtmp,otmpX, TRUE);
+		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+		if (otmpX) {
+			otmpX->spe = 0;
+			otmpX->quan = 1;
+			otmpX->owt = weight(otmpX);
+			otmpX->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+			attach_egg_hatch_timeout(otmpX);
+			kill_egg(otmpX); /* make sure they're stale --Amy */
+			(void) mpickobj(mtmp,otmpX, TRUE);
+		}
 	}
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 250 : 500)) {
 
-	struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
+		struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
 
-	otmpY->spe = 0;
-	otmpY->quan = 1;
-	otmpY->owt = /*weight(otmpY)*/30;
-	otmpY->corpsenm = PM_COCKATRICE;
-	start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
-	(void) mpickobj(mtmp,otmpY, TRUE);
+		if (otmpY) {
+			otmpY->spe = 0;
+			otmpY->quan = 1;
+			otmpY->owt = /*weight(otmpY)*/30;
+			otmpY->corpsenm = PM_COCKATRICE;
+			start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
+			(void) mpickobj(mtmp,otmpY, TRUE);
+		}
 
-	struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY),
-	      TRUE, FALSE);
-	otmpZ->quan = 1;
-	otmpZ->owt = weight(otmpZ);
-	(void) mpickobj(mtmp, otmpZ, TRUE);
+		struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY), TRUE, FALSE);
+		if (otmpZ) {
+			otmpZ->quan = 1;
+			otmpZ->owt = weight(otmpZ);
+			(void) mpickobj(mtmp, otmpZ, TRUE);
+		}
 
 	}
 
@@ -739,12 +745,14 @@ register struct monst *mtmp;
 				{
 					struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE);
 
-					otmpS->spe = 0;
-					otmpS->quan = 1;
-					otmpS->owt = 30;
-					otmpS->corpsenm = PM_COCKATRICE;
-					start_corpse_timeout(otmpS); /* gotta make sure they time out after a while! --Amy */
-					(void) mpickobj(mtmp,otmpS, TRUE);
+					if (otmpS) {
+						otmpS->spe = 0;
+						otmpS->quan = 1;
+						otmpS->owt = 30;
+						otmpS->corpsenm = PM_COCKATRICE;
+						start_corpse_timeout(otmpS); /* gotta make sure they time out after a while! --Amy */
+						(void) mpickobj(mtmp,otmpS, TRUE);
+					}
 				}
 				/* fall through */
 
@@ -1315,13 +1323,15 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, PICK_AXE);
 
 			struct obj *otmp = mksobj(EGG,TRUE,FALSE);
-			otmp->spe = 0;
-			otmp->quan = 1;
-			otmp->owt = weight(otmp);
-			otmp->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
-			attach_egg_hatch_timeout(otmp);
-			kill_egg(otmp); /* make sure they're stale --Amy */
-			mpickobj(mtmp,otmp, TRUE);
+			if (otmp) {
+				otmp->spe = 0;
+				otmp->quan = 1;
+				otmp->owt = weight(otmp);
+				otmp->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+				attach_egg_hatch_timeout(otmp);
+				kill_egg(otmp); /* make sure they're stale --Amy */
+				mpickobj(mtmp,otmp, TRUE);
+			}
 
 		   break;
 
@@ -2345,8 +2355,10 @@ register struct monst *mtmp;
 			vials = rn2(4)+1;
 			for (v=0;v<vials;v++) {
 			  otmp = mksobj(POT_WATER, FALSE, FALSE);
-			  bless(otmp);
-			  mpickobj(mtmp, otmp, TRUE);
+			  if (otmp) {
+				  bless(otmp);
+				  mpickobj(mtmp, otmp, TRUE);
+			  }
 			}
 		     }
 #ifndef GOLDOBJ
@@ -3301,14 +3313,15 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_SIZZLE){
 		    otmp = mksobj(LONG_SWORD, FALSE, FALSE);
-
+		    if (otmp) {
 			int spe2;
 			otmp = oname(otmp, artiname(ART_VORPAL_BLADE));
-		    bless(otmp);
-		    otmp->oerodeproof = TRUE;
-		    spe2 = rn2(4);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
+			bless(otmp);
+			otmp->oerodeproof = TRUE;
+			spe2 = rn2(4);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		    }
 
 		} else if (mm == PM_KATNISS){
 
@@ -3892,23 +3905,29 @@ register struct monst *mtmp;
 
 			int spe2;
 		    otmp = mksobj(SCIMITAR, FALSE, FALSE);
-		    curse(otmp);
-		    otmp->oerodeproof = TRUE;
-		    spe2 = d(1,3);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
+		    if (otmp) {
+			curse(otmp);
+			otmp->oerodeproof = TRUE;
+			spe2 = d(1,3);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		    }
 			
 		    otmp = mksobj(LEATHER_JACKET, FALSE, FALSE);
-		    otmp->oerodeproof = TRUE;
-		    spe2 = d(2,3);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
-			
+		    if (otmp) {
+			otmp->oerodeproof = TRUE;
+			spe2 = d(2,3);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		    }
+
 		    otmp = mksobj(SMALL_SHIELD, FALSE, FALSE);
-		    otmp->oerodeproof = TRUE;
-		    spe2 = d(1,3);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
+		    if (otmp) {
+			otmp->oerodeproof = TRUE;
+			spe2 = d(1,3);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		    }
 
 			(void)mongets(mtmp, LEATHER_CLOAK);
 			(void)mongets(mtmp, HIGH_BOOTS);
@@ -3920,7 +3939,7 @@ register struct monst *mtmp;
 
 		    (void)mongets(mtmp, PICK_AXE);
 		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE);
-			(void) mpickobj(mtmp, otmp, TRUE);
+			if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
 	            /*begin_burn(otmp, FALSE);*/
 		}
 #endif /* CONVICT */
@@ -3953,20 +3972,24 @@ register struct monst *mtmp;
 
 			int spe2;
 		    otmp = mksobj(SCIMITAR, FALSE, FALSE);
-		    curse(otmp);
-		    otmp->oerodeproof = TRUE;
+		    if (otmp) {
+			curse(otmp);
+			otmp->oerodeproof = TRUE;
 			otmp->oeroded = 1;
-		    spe2 = d(2,3);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
+			spe2 = d(2,3);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+		    }
 
 		    /* MRKR: Dwarves in the Mines sometimes carry torches */
 
 		    if (In_mines(&u.uz)) {
 		      if (!rn2(4)) {	
 			otmp = mksobj(TORCH, TRUE, FALSE);
-			otmp->quan = 1;
-			(void) mpickobj(mtmp, otmp, TRUE);
+			if (otmp) {
+				otmp->quan = 1;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
 
 			/* If this spot is unlit, light the torch */
 
@@ -4000,23 +4023,26 @@ register struct monst *mtmp;
 		    /* create minion stuff; can't use mongets */
 		    otmp = mksobj(LONG_SWORD, FALSE, FALSE);
 
-		    /* maybe make it special */
-		    if (!rn2(20) || is_lord(ptr))
-			otmp = oname(otmp, artiname(
-				rn2(2) ? ART_DEMONBANE : ART_SUNSWORD));
-		    bless(otmp);
-		    otmp->oerodeproof = TRUE;
-		    spe2 = rn2(4);
-		    otmp->spe = max(otmp->spe, spe2);
-		    (void) mpickobj(mtmp, otmp, TRUE);
+		    if (otmp) {
 
-		    otmp = mksobj(!rn2(4) || is_lord(ptr) ?
+			/* maybe make it special */
+			if (!rn2(20) || is_lord(ptr))
+				otmp = oname(otmp, artiname(rn2(2) ? ART_DEMONBANE : ART_SUNSWORD));
+			bless(otmp);
+			otmp->oerodeproof = TRUE;
+			spe2 = rn2(4);
+			otmp->spe = max(otmp->spe, spe2);
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+			otmp = mksobj(!rn2(4) || is_lord(ptr) ?
 				  SHIELD_OF_REFLECTION : LARGE_SHIELD,
 				  FALSE, FALSE);
-		    otmp->cursed = otmp->hvycurse = otmp->prmcurse = FALSE;
-		    otmp->oerodeproof = TRUE;
-		    otmp->spe = 0;
-		    (void) mpickobj(mtmp, otmp, TRUE);
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = FALSE;
+			otmp->oerodeproof = TRUE;
+			otmp->spe = 0;
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+		    }
 		}
 		break;
 
@@ -4631,12 +4657,16 @@ register struct monst *mtmp;
 
 					struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
 
-					otmpY->spe = 0;
-					otmpY->quan = 1;
-					otmpY->owt = 30;
-					otmpY->corpsenm = PM_COCKATRICE;
-					start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
-					(void) mpickobj(mtmp,otmpY, TRUE);
+					if (otmpY) {
+
+						otmpY->spe = 0;
+						otmpY->quan = 1;
+						otmpY->owt = 30;
+						otmpY->corpsenm = PM_COCKATRICE;
+						start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
+						(void) mpickobj(mtmp,otmpY, TRUE);
+
+					}
 
 				}
 
@@ -4645,13 +4675,17 @@ register struct monst *mtmp;
 		switch (mm) {
 			case PM_DAMNED_PIRATE:
 				otmp = mksobj(SCIMITAR, FALSE, FALSE);
-				curse(otmp);
-				(void) mpickobj(mtmp, otmp, TRUE);
+				if (otmp) {
+					curse(otmp);
+					(void) mpickobj(mtmp, otmp, TRUE);
+				}
 				
 				otmp = mksobj(LEATHER_ARMOR, FALSE, FALSE);
-				curse(otmp);
-				otmp->oeroded = 1;
-				(void) mpickobj(mtmp, otmp, TRUE);
+				if (otmp) {
+					curse(otmp);
+					otmp->oeroded = 1;
+					(void) mpickobj(mtmp, otmp, TRUE);
+				}
 			break;
 		    case PM_BALROG:
 			(void)mongets(mtmp, BULLWHIP);
@@ -4715,8 +4749,10 @@ struct monst *mtmp;
 long amount;
 {
     struct obj *gold = mksobj(GOLD_PIECE, FALSE, FALSE);
-    gold->quan = amount;
-    add_to_minv(mtmp, gold);
+    if (gold) {
+	    gold->quan = amount;
+	    add_to_minv(mtmp, gold);
+    }
 }
 #endif
 
@@ -4742,26 +4778,30 @@ register struct	monst	*mtmp;
 	/* Sometimes, monsters might be generated with eggs. --Amy */
 
 	if (!rn2(lays_eggs(mtmp->data) ? 500 : 1000) ) {
-	struct obj *otmpB = mksobj(EGG,TRUE,FALSE);
-	otmpB->spe = 0;
-	if (!rn2(200)) otmpB->spe = 2;
-	otmpB->quan = 1;
-	while (!rn2(5)) otmpB->quan += 1;
-	otmpB->owt = weight(otmpB);
-	otmpB->corpsenm = egg_type_from_parent(mtmp->mnum, FALSE);
-	attach_egg_hatch_timeout(otmpB);
-	mpickobj(mtmp,otmpB, TRUE);
+		struct obj *otmpB = mksobj(EGG,TRUE,FALSE);
+		if (otmpB) {
+			otmpB->spe = 0;
+			if (!rn2(200)) otmpB->spe = 2;
+			otmpB->quan = 1;
+			while (!rn2(5)) otmpB->quan += 1;
+			otmpB->owt = weight(otmpB);
+			otmpB->corpsenm = egg_type_from_parent(mtmp->mnum, FALSE);
+			attach_egg_hatch_timeout(otmpB);
+			mpickobj(mtmp,otmpB, TRUE);
+		}
 	}
 
 	if (!rn2(5000)) {
-	struct obj *otmpC = mksobj(EGG,TRUE,FALSE);
-	otmpC->spe = 0;
-	if (!rn2(200)) otmpC->spe = 2;
-	otmpC->quan = 1;
-	while (!rn2(25)) otmpC->quan += 1;
-	otmpC->owt = weight(otmpC);
-	attach_egg_hatch_timeout(otmpC);
-	mpickobj(mtmp,otmpC, TRUE);
+		struct obj *otmpC = mksobj(EGG,TRUE,FALSE);
+		if (otmpC) {
+			otmpC->spe = 0;
+			if (!rn2(200)) otmpC->spe = 2;
+			otmpC->quan = 1;
+			while (!rn2(25)) otmpC->quan += 1;
+			otmpC->owt = weight(otmpC);
+			attach_egg_hatch_timeout(otmpC);
+			mpickobj(mtmp,otmpC, TRUE);
+		}
 	}
 
 	switch(ptr->mlet) {
@@ -5153,172 +5193,206 @@ register struct	monst	*mtmp;
 	    case S_WORM:
 
 		if (mtmp->data == &mons[PM_SAND_MAGGOT]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 1;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_SAND_MAGGOT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 1;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_SAND_MAGGOT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_FOREST_MAGGOT]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 1;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_FOREST_MAGGOT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 1;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_FOREST_MAGGOT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_DARK_MAGGOT]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 1;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_DARK_MAGGOT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 1;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_DARK_MAGGOT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_UNDEAD_WORM]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 1;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_UNDEAD_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 1;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_UNDEAD_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_ROCK_WORM]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 2;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_ROCK_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 2;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_ROCK_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_STEEL_MAGGOT]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 2;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_STEEL_MAGGOT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 2;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_STEEL_MAGGOT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_DEVOURER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_DEVOURER, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_DEVOURER, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_GIANT_ERROR]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(rndmonnum(), FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(rndmonnum(), FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_PETTY_GIANT_ERROR]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(rndmonnum(), FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(rndmonnum(), FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_GIANT_LAMPREY]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 4;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_GIANT_LAMPREY, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 4;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_GIANT_LAMPREY, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_CAVE_WORM]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 4;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_CAVE_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 4;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_CAVE_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_CAVE_ERROR]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 4;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_CAVE_ERROR, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 4;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_CAVE_ERROR, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_WORLD_KILLER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 5;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_WORLD_KILLER, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 5;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_WORLD_KILLER, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_SPEEDSTER_MAGGOT]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 7;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_SPEEDSTER_MAGGOT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 7;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_SPEEDSTER_MAGGOT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_NYMPHOMANIAC]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 7;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_NYMPHOMANIAC, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 7;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_NYMPHOMANIAC, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_BIRD_SPAWNER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_ASSERTION_FAILURE, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_ASSERTION_FAILURE, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 		if (mtmp->data == &mons[PM_GLOAM_SPAWNER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_GREENER_SPIRIT, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_GREENER_SPIRIT, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_BREEDER]) (void) mongets(mtmp, EGG);
@@ -5439,8 +5513,10 @@ register struct	monst	*mtmp;
 		if(!rn2(200)) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_NYMPH_QUEEN]) {
 			struct obj *otmp = mksobj(SKELETON_KEY,TRUE,FALSE);
-			otmp = oname(otmp,artiname(ART_KEY_OF_ACCESS));
-			mpickobj(mtmp,otmp, TRUE);
+			if (otmp) {
+				otmp = oname(otmp,artiname(ART_KEY_OF_ACCESS));
+				mpickobj(mtmp,otmp, TRUE);
+			}
 		}
 		break;
 
@@ -5886,8 +5962,9 @@ register struct	monst	*mtmp;
 			if (!rn2(3)) { /* greatly lowered chance --Amy */
 			otmp = mksobj(rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1),
 				      FALSE, FALSE);
-			otmp->quan = rnd(3); /* lower amount */
-			otmp->owt = weight(otmp);
+			if (otmp) {
+				otmp->quan = rnd(3); /* lower amount */
+				otmp->owt = weight(otmp);
 				if(!rn2(8)) {
 					otmp->spe = rne(2);
 					if (rn2(2)) otmp->blessed = rn2(2);
@@ -5897,7 +5974,8 @@ register struct	monst	*mtmp;
 					 else	blessorcurse(otmp, 3);
 					otmp->spe = -rne(2);
 				} else	blessorcurse(otmp, 10);
-			(void) mpickobj(mtmp, otmp, TRUE);
+				(void) mpickobj(mtmp, otmp, TRUE);
+				}
 			}
 
 		    }
@@ -6126,8 +6204,10 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_NAZGUL]) {
 			otmp = mksobj(RIN_INVISIBILITY, FALSE, FALSE);
-			curse(otmp);
-			(void) mpickobj(mtmp, otmp, TRUE);
+			if (otmp) {
+				curse(otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
 		}
 
 		if (ptr == &mons[PM_BLEACH_GHOST]) m_initthrow(mtmp, CALTROP, 50);
@@ -6238,9 +6318,11 @@ register struct	monst	*mtmp;
 		else if (ptr == &mons[PM_ARCH_LICH] && !rn2(3)) {
 			otmp = mksobj(rn2(3) ? ATHAME : QUARTERSTAFF,
 				      TRUE, rn2(13) ? FALSE : TRUE);
-			if (otmp->spe < 2) otmp->spe = rnd(3);
-			if (!rn2(4)) otmp->oerodeproof = 1;
-			(void) mpickobj(mtmp, otmp, TRUE);
+			if (otmp) {
+				if (otmp->spe < 2) otmp->spe = rnd(3);
+				if (!rn2(4)) otmp->oerodeproof = 1;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
 		}
 		else if (ptr == &mons[PM_PHARAO]) {
 		  	(void) mongets(mtmp, (rn2(5) ? ASSAULT_RIFLE : HEAVY_MACHINE_GUN));
@@ -6271,9 +6353,11 @@ register struct	monst	*mtmp;
 	    case S_QUANTMECH:
 		if (monsndx(ptr) == PM_QUANTUM_MECHANIC && !rn2(20)) {
 			otmp = mksobj(LARGE_BOX, FALSE, FALSE);
-			otmp->spe = 1; /* flag for special box */
-			otmp->owt = weight(otmp);
-			(void) mpickobj(mtmp, otmp, TRUE);
+			if (otmp) {
+				otmp->spe = 1; /* flag for special box */
+				otmp->owt = weight(otmp);
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
 		}
 
 		if (monsndx(ptr) == PM_INCINERATOR) m_initthrow(mtmp, FRAG_GRENADE, 12);
@@ -6358,9 +6442,11 @@ register struct	monst	*mtmp;
 	    case S_ELEMENTAL:        
   /*            if(ptr == &mons[PM_WATER_WEIRD]){
 			otmp = mksobj(WAN_WISHING,TRUE,FALSE);
-			otmp->spe=3;
-			otmp->blessed=0;
-			mpickobj(mtmp, otmp, TRUE);
+			if (otmp) {
+				otmp->spe=3;
+				otmp->blessed=0;
+				mpickobj(mtmp, otmp, TRUE);
+			}
 		}*/
 
 		if (ptr == &mons[PM_HEAVY_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
@@ -6552,9 +6638,11 @@ register struct	monst	*mtmp;
 			int t[3] = {DIODE, TRANSISTOR, IC};
 			for (i=0;i<3;i++) {
 				otmp = mksobj(t[i],FALSE,FALSE);
-				otmp->quan = rn2(7) + 1;
-				otmp->owt = weight(otmp);
-				mpickobj(mtmp,otmp, TRUE);
+				if (otmp) {
+					otmp->quan = rn2(7) + 1;
+					otmp->owt = weight(otmp);
+					mpickobj(mtmp,otmp, TRUE);
+				}
 			}
 		}
 		break;
@@ -6565,9 +6653,11 @@ register struct	monst	*mtmp;
 
 		if (monsndx(ptr) == PM_DEEP_THOUGHT) {
 			otmp = mksobj(IC,FALSE,FALSE);
-			otmp->quan = 42;
- 			otmp->owt = weight(otmp);
-			mpickobj(mtmp,otmp, TRUE);
+			if (otmp) {
+				otmp->quan = 42;
+	 			otmp->owt = weight(otmp);
+				mpickobj(mtmp,otmp, TRUE);
+			}
  		}
  		break;
 
@@ -6585,9 +6675,11 @@ register struct	monst	*mtmp;
 
 		if (monsndx(ptr) == PM_ZAPHOD_BREEBLEBROX) {
 			otmp = mksobj(POT_PAN_GALACTIC_GARGLE_BLASTE,FALSE,FALSE);
-			otmp->quan = d(2,4);
-			otmp->owt = weight(otmp);
-			mpickobj(mtmp,otmp, TRUE);
+			if (otmp) {
+				otmp->quan = d(2,4);
+				otmp->owt = weight(otmp);
+				mpickobj(mtmp,otmp, TRUE);
+			}
 		}
 
 		if (ptr == &mons[PM_CHAOS_MONKEY]) { /* idea by deepy */
@@ -6674,8 +6766,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_DRAGON_LORD]) {
 			struct obj *otmp;
 			otmp = mksobj(GRAY_DRAGON_SCALE_MAIL,TRUE,FALSE);
-			otmp = oname(otmp,artiname(ART_SCALES_OF_THE_DRAGON_LORD));
-			mpickobj(mtmp,otmp, TRUE);
+			if (otmp) {
+				otmp = oname(otmp,artiname(ART_SCALES_OF_THE_DRAGON_LORD));
+				if (otmp) mpickobj(mtmp,otmp, TRUE);
+			}
 		}
 
 		if (ptr == &mons[PM_RICHEST_MAN_OF_THE_WORLD]) {
@@ -12967,49 +13061,59 @@ register int	mmflags;
 		if (mndx == PM_PUTRID_DEFILER || mndx == PM_WRETCHED_DEFILER || mndx == PM_FETID_DEFILER || mndx == PM_RANCID_DEFILER || mndx == PM_MOLDY_DEFILER) { mtmp->mflee = 1; mtmp->mfleetim = 120;}
 
 		if (mtmp->data == &mons[PM_PUTRID_DEFILER]) { 
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 3;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_PAIN_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 3;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_PAIN_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 		if (mtmp->data == &mons[PM_WRETCHED_DEFILER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 4;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_TORMENT_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 4;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_TORMENT_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 		if (mtmp->data == &mons[PM_FETID_DEFILER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 5;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_AGONY_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 5;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_AGONY_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 		if (mtmp->data == &mons[PM_RANCID_DEFILER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 6;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_ECSTASY_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 6;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_ECSTASY_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 		if (mtmp->data == &mons[PM_MOLDY_DEFILER]) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
-		otmpX->spe = 0;
-		otmpX->quan = 7;
-		otmpX->owt = weight(otmpX);
-		otmpX->corpsenm = egg_type_from_parent(PM_ANGUISH_WORM, FALSE);
-		attach_egg_hatch_timeout(otmpX);
-		mpickobj(mtmp,otmpX, TRUE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 7;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_ANGUISH_WORM, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
 		}
 
 	        if (rn2(2) && rn2(5) && !u.uhave.amulet) mtmp->msleeping = 1;
@@ -14982,11 +15086,13 @@ register struct monst *mtmp;
 				appear = STRANGE_OBJECT;
 			} else {
 				otmp = mkobj( (char) s_sym, FALSE );
-				appear = otmp->otyp;
-				/* make sure container contents are free'ed */
-				if (Has_contents(otmp))
-					delete_contents(otmp);
-				obfree(otmp, (struct obj *) 0);
+				if (otmp) {
+					appear = otmp->otyp;
+					/* make sure container contents are free'ed */
+					if (Has_contents(otmp))
+						delete_contents(otmp);
+					obfree(otmp, (struct obj *) 0);
+				} else appear = STRANGE_OBJECT;
 			}
 		}
 
@@ -15070,11 +15176,13 @@ assign_sym:
 				appear = STRANGE_OBJECT;
 			} else {
 				otmp = mkobj( (char) s_sym, FALSE );
-				appear = otmp->otyp;
-				/* make sure container contents are free'ed */
-				if (Has_contents(otmp))
-					delete_contents(otmp);
-				obfree(otmp, (struct obj *) 0);
+				if (otmp) {
+					appear = otmp->otyp;
+					/* make sure container contents are free'ed */
+					if (Has_contents(otmp))
+						delete_contents(otmp);
+					obfree(otmp, (struct obj *) 0);
+				} else appear = STRANGE_OBJECT;
 			}
 		}
 	}
