@@ -4074,7 +4074,7 @@ boolean picked_some;
 	const char *dfeature = (char*) 0;
 	char fbuf[BUFSZ], fbuf2[BUFSZ];
 	winid tmpwin;
-	boolean skip_objects = (obj_cnt >= 5), felt_cockatrice = FALSE;
+	boolean skip_objects = (obj_cnt > iflags.pilesize), felt_cockatrice = FALSE;
 
 	if (u.uswallow && u.ustuck) {
 	    struct monst *mtmp = u.ustuck;
