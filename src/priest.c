@@ -199,6 +199,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 
 	priest = makemon(&mons[sanctum ? PM_HIGH_PRIEST : PM_ALIGNED_PRIEST],
 			 sx + 1, sy, NO_MM_FLAGS);
+
 	if (priest) {
 		EPRI(priest)->shroom = (sroom - rooms) + ROOMOFFSET;
 		EPRI(priest)->shralign = Amask2align(levl[sx][sy].altarmask);
@@ -230,12 +231,15 @@ boolean sanctum;   /* is it the seat of the high priest? */
 				uncurse(obj);
 			    else
 				curse(obj);
-			    (void) mpickobj(priest, obj, TRUE);
+			    if (obj) {
+				(void) mpickobj(priest, obj, TRUE);
+			    }
 			    m_dowear(priest, TRUE);
-			    if (!(obj->owornmask & W_ARM)) {
+		/* somehow the bug was still happening... this gold piece check seems to really fix it --Amy */
+			    if (obj && !(obj->otyp == GOLD_PIECE) && !(obj->owornmask & W_ARM)) {
 				obj_extract_self(obj);
 				obfree(obj, (struct obj *)0);
-			    } else if (otmp) {
+			    } else if (otmp && !(otmp->otyp == GOLD_PIECE)) {
 				obj_extract_self(otmp);
 				obfree(otmp, (struct obj *)0);
 			    }
