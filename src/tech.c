@@ -1530,13 +1530,13 @@ int tech_no;
 		}
 		Your("fingernails extend into claws!");
 		aggravate();
-		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/5 + 2;
+		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/2 + 2;
 		t_timeout = rnz(2000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
 		techt_inuse(tech_no) = d(2,8) +
-               		(techlev(tech_no)/5) + 2;
+               		(techlev(tech_no)/2) + 2;
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		t_timeout = rnz(1500);
 		break;
@@ -1703,7 +1703,7 @@ int tech_no;
 			    obfree(otmp, (struct obj *)0);
 			}
 			pline("Using %s, you dress your wounds.", yname(otmp));
-			healup(techlev(tech_no) * (rnd(2)+1) + rn1(5,5),
+			healup(techlev(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlev(tech_no)),
 			  0, FALSE, FALSE);
 		    } else {
 			You("strap your wounds as best you can.");
@@ -1767,7 +1767,7 @@ int tech_no;
 		if (Invisible && Fast) {
 			You("are already quite nimble and undetectable.");
 		}
-                techt_inuse(tech_no) = rn1(50,50) + techlev(tech_no);
+                techt_inuse(tech_no) = rn1(10,10) + (techlev(tech_no) * 2);
 		if (!Invisible) pline("In a puff of smoke,  you disappear!");
 		if (!Fast) You("feel more nimble!");
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
@@ -1898,7 +1898,7 @@ int tech_no;
 	    	You("let out a bloodcurdling roar!");
 	    	aggravate();
 
-		techt_inuse(tech_no) = d(2,6) + (techlev(tech_no)) + 2;
+		techt_inuse(tech_no) = d(2,6) + (techlev(tech_no) * rnd(4)) + 2;
 
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 
@@ -2008,7 +2008,7 @@ int tech_no;
 				int tmp = 1;
 				/* Need to add a to-hit */
 				tmp += d(2,4);
-				tmp += rn2((int) (techlev(tech_no)/5 + 1));
+				tmp += rn2((int) (techlev(tech_no) + 1));
 				if (!Blind) pline_The("acid burns %s!", mon_nam(mtmp));
 				hurtmon(mtmp, tmp);
 			    } else if (!Blind) pline_The("acid doesn't affect %s!", mon_nam(mtmp));
@@ -2042,7 +2042,7 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of tempest!");
-                techt_inuse(tech_no) = d(1,6) + rnd(techlev(tech_no)/5 + 1) + 2;
+                techt_inuse(tech_no) = d(1,6) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
 		return(0);
 		break;
@@ -2057,7 +2057,7 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of control!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/5 + 1) + 2;
+                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
 		return(0);
 		break;
@@ -2072,7 +2072,7 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of discharge!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/5 + 1) + 2;
+                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
 		return(0);
 		break;
@@ -2378,7 +2378,7 @@ int tech_no;
                 	pline("..but %s has no eyes!", mon_nam(mtmp));
                 else if (!mtmp->mcansee)
                 	pline("..but %s cannot see you!", mon_nam(mtmp));
-                if ((rn2(6) + rn2(6) + (techlev(tech_no) - mtmp->m_lev)) > 10) {
+                if ((rn2(6) + rn2(6) + (techlev(tech_no) - mtmp->m_lev)) > rnd(10)) {
 			You("dazzle %s!", mon_nam(mtmp));
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(10);
@@ -3821,7 +3821,7 @@ blitz_spirit_bomb()
 		u.uen = 0;
 	}
 
-	num = 10 + (techlev(tech_no) / 5);
+	num = 10 + techlev(tech_no);
 	num = (u.uen < num ? u.uen : num);
 	
 	u.uen -= num;

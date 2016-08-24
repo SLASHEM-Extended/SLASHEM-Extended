@@ -5102,6 +5102,12 @@ register struct obj *obj;
 		case CHAIN_MAIL:
 			obj->otyp = ORCISH_CHAIN_MAIL;
 			break;
+		case OLIHARCON_SPLINT_MAIL:
+			obj->otyp = SPLINT_MAIL;
+			break;
+		case SPLINT_MAIL:
+			obj->otyp = OLIHARCON_SPLINT_MAIL;
+			break;
 		case STUDDED_LEATHER_ARMOR:
 		case LEATHER_JACKET:
 			obj->otyp = LEATHER_ARMOR;
@@ -5109,6 +5115,21 @@ register struct obj *obj;
 		case LEATHER_ARMOR:
 			obj->otyp = STUDDED_LEATHER_ARMOR;
 			break;
+		case PLATE_MAIL:
+			if (!rn2(2)) obj->otyp = CRYSTAL_PLATE_MAIL;
+			else obj->otyp = BRONZE_PLATE_MAIL;
+			break;
+		case BRONZE_PLATE_MAIL:
+		case CRYSTAL_PLATE_MAIL:
+			obj->otyp = PLATE_MAIL;
+			break;
+		case CAMOUFLAGED_CLOTHES:
+			obj->otyp = SPECIAL_CAMOUFLAGED_CLOTHES;
+			break;
+		case SPECIAL_CAMOUFLAGED_CLOTHES:
+			obj->otyp = CAMOUFLAGED_CLOTHES;
+			break;
+
 		/* robes */
 		case ROBE:
 			if (!rn2(2)) obj->otyp = ROBE_OF_PROTECTION;
@@ -5144,6 +5165,12 @@ register struct obj *obj;
 		case ELVEN_LEATHER_HELM:
 			obj->otyp = FEDORA;
 			break;
+		case ELVEN_HELM:
+			obj->otyp = HIGH_ELVEN_HELM;
+			break;
+		case HIGH_ELVEN_HELM:
+			obj->otyp = ELVEN_HELM;
+			break;
 		case DENTED_POT:
 			obj->otyp = ORCISH_HELM;
 			break;
@@ -5171,6 +5198,12 @@ register struct obj *obj;
 		case GAUNTLETS_OF_DEXTERITY:
 			obj->otyp = LEATHER_GLOVES;
 			break;
+		case GAUNTLETS:
+			obj->otyp = SILVER_GAUNTLETS;
+			break;
+		case SILVER_GAUNTLETS:
+			obj->otyp = GAUNTLETS;
+			break;
 		/* shields */
 		case ELVEN_SHIELD:
 			if (!rn2(2)) obj->otyp = URUK_HAI_SHIELD;
@@ -5193,18 +5226,17 @@ register struct obj *obj;
 		case HIGH_BOOTS:
 			obj->otyp = LOW_BOOTS;
 			break;
+		case SNEAKERS:
+			obj->otyp = SOFT_SNEAKERS;
+			break;
+		case SOFT_SNEAKERS:
+			obj->otyp = SNEAKERS;
+			break;
 		/* NOTE:  Supposedly,  HIGH_BOOTS should upgrade to any of the
 			other magic leather boots (except for fumble).  IRON_SHOES
 			should upgrade to the iron magic boots,  unless
 			the iron magic boots are fumble */
 		/* rings,  amulets */
-		case LARGE_BOX:
-		case ICE_BOX:
-			obj->otyp = CHEST;
-			break;
-		case CHEST:
-			obj->otyp = ICE_BOX;
-			break;
 		case SACK:
 			obj->otyp = rn2(5) ? OILSKIN_SACK : BAG_OF_HOLDING;
 			break;
@@ -5213,6 +5245,19 @@ register struct obj *obj;
 			break;
 		case BAG_OF_HOLDING:
 			obj->otyp = OILSKIN_SACK;
+			break;
+		case CHEST_OF_HOLDING:
+			obj->otyp = CHEST;
+			break;
+		case CHEST:
+			obj->otyp = CHEST_OF_HOLDING;
+			break;
+		case ICE_BOX:
+			obj->otyp = rn2(2) ? ICE_BOX_OF_HOLDING : ICE_BOX_OF_WATERPROOFING;
+			break;
+		case ICE_BOX_OF_HOLDING:
+		case ICE_BOX_OF_WATERPROOFING:
+			obj->otyp = ICE_BOX;
 			break;
 #ifdef TOURIST
 		case TOWEL:
@@ -5289,6 +5334,14 @@ register struct obj *obj;
 		case TINNING_KIT:
 			obj->otyp = TIN_OPENER;
 			break;
+		case EXPENSIVE_CAMERA:
+			obj->otyp = MIRROR;
+			break;
+		case MIRROR:
+			obj->otyp = EXPENSIVE_CAMERA;
+			obj->spe = rn1(30,70);
+			obj->known = 0;
+			break;
 		case CRYSTAL_BALL:
 			/* "ball-point pen" */
 			obj->otyp = MAGIC_MARKER;
@@ -5310,6 +5363,15 @@ register struct obj *obj;
 		case FOOD_RATION:
 		case CRAM_RATION:
 			obj->otyp = LEMBAS_WAFER;
+			break;
+		case CHARRED_BREAD:
+			obj->otyp = BREAD;
+			break;
+		case SLICE_OF_PIZZA:
+			obj->otyp = PIZZA;
+			break;
+		case PIZZA:
+			obj->otyp = SLICE_OF_PIZZA;
 			break;
 		case LOADSTONE:
 			obj->otyp = FLINT;
@@ -5417,7 +5479,7 @@ register struct obj *obj;
 	    puton_worn_item(obj);
 	}
 
-	if (obj->otyp == BAG_OF_HOLDING && Has_contents(obj)) {
+	if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && Has_contents(obj)) {
 	    explodes = FALSE;
 
 	    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
@@ -5427,7 +5489,7 @@ register struct obj *obj;
 		}
 
             if (explodes) {
-		pline("As you upgrade your bag, you are blasted by a magical explosion!");
+		pline("As you upgrade your container, you are blasted by a magical explosion!");
 		delete_contents(obj);
 		if (carried(obj))
 		    useup(obj);
