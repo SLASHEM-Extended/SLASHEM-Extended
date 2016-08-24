@@ -1228,7 +1228,7 @@ movemon()
 	}
 
 	/* continue if the monster died fighting */
-	if (Conflict && !mtmp->iswiz && mtmp->mcansee) {
+	if (Conflict && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will
@@ -1237,6 +1237,7 @@ movemon()
 	     *  The call to fightm() must be _last_.  The monster might
 	     *  have died if it returns 1.
 	     */
+		/* Amy addition: monsters without eyes are now immune, because the Astral Plane is easy enough already! */
 	    if (couldsee(mtmp->mx,mtmp->my) &&
 		(distu(mtmp->mx,mtmp->my) <= /*BOLT_LIM*BOLT_LIM*/ 4) &&
 							fightm(mtmp))

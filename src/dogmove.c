@@ -714,7 +714,8 @@ register int after;	/* this is extra fast monster movement */
 #ifdef STEED
 	/* Let steeds eat and maybe throw rider during Conflict */
 	if (mtmp == u.usteed) {
-	    if (Conflict && !resist(mtmp, RING_CLASS, 0, 0)) {
+	    if (Conflict && (issoviet || !rn2(100)) && !resist(mtmp, RING_CLASS, 0, 0)) {
+		/* happens much less often now, so riding while causing conflict is no longer impossible --Amy */
 		dismount_steed(DISMOUNT_THROWN);
 		return (1);
 	    }

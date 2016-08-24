@@ -153,6 +153,10 @@ fightm(mtmp)		/* have monsters fight each other */
 	/* perhaps the monster will resist Conflict */
 	if(resist(mtmp, RING_CLASS, 0, 0))
 	    return(0);
+	if(resist(mtmp, RING_CLASS, 0, 0))
+	    return(0);
+	if (!rn2(2)) return(0);
+	/* they're now highly resistant to conflict, because otherwise things would be too easy --Amy */
 
 	if(u.ustuck == mtmp) {
 	    /* perhaps we're holding it... */

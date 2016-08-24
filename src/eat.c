@@ -5184,7 +5184,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
-	    if (HConflict || (EConflict & (~W_ARTI))) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (HConflict || EConflict) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
 	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
 	    if (uwep && uwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
