@@ -8866,7 +8866,7 @@ struct obj *obj;
 				case ART_VORPAL_BLADE:
 					pline("Artifact specs: +5 to-hit and +1 damage, beheads targets, neutral."); break;
 				case ART_DISRUPTER:
-					pline("Artifact specs: +5 to-hit and +15 damage ot undead, neutral, priest sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +15 damage to undead, neutral, priest sacrifice gift."); break;
 				case ART_MJOLLNIR:
 					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters, can be thrown with a strength of 25, neutral, valkyrie sacrifice gift."); break;
 				case ART_GAUNTLETS_OF_DEFENSE:
