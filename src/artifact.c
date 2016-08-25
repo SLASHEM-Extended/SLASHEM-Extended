@@ -925,6 +925,24 @@ winid tmpwin;		/* supplied by dodiscover() */
     return i;
 }
 
+void
+dump_artifact_discoveries()
+{
+    int i, m, otyp;
+    char buf[BUFSZ];
+
+    for (i = 0; i < NROFARTIFACTS; i++) {
+	if (artidisco[i] == 0) break;	/* empty slot implies end of list */
+	if (i == 0)
+		    dump("", "  Artifacts");
+	m = artidisco[i];
+	otyp = artilist[m].otyp;
+	Sprintf(buf, "  %s [%s %s]", artiname(m),
+		align_str(artilist[m].alignment), simple_typename(otyp));
+		dump("  ", buf);
+    }
+}
+
 #endif /* OVL1 */
 
 #ifdef OVLB

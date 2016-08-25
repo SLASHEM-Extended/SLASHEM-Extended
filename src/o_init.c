@@ -791,4 +791,66 @@ dodiscovered()				/* free after Robert Viduya */
     return 0;
 }
 
+#ifdef DUMP_LOG
+void 
+dump_discoveries()
+{
+
+    register int i, dis;
+    int	ct = 0;
+    char *s, oclass, prev_class, classes[MAXOCLASSES];
+    char buf[BUFSZ];    /* WAC */
+    winid tmpwin;
+
+    dump("", "Discoveries");
+
+    /* gather "unique objects" into a pseudo-class; note that they'll
+       also be displayed individually within their regular class */
+    for (i = dis = 0; i < SIZE(uniq_objs); i++)
+	if (objects[uniq_objs[i]].oc_name_known) {
+	    if (!dis++)
+		    dump("", "  Unique Items");
+		Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
+		dump("  ", buf);
+	    ++ct;
+	}
+
+    dump_artifact_discoveries();
+
+    /* several classes are omitted from packorder; one is of interest here */
+    Strcpy(classes, flags.inv_order);
+    if (!index(classes, VENOM_CLASS)) {
+	s = eos(classes);
+	*s++ = VENOM_CLASS;
+	*s = '\0';
+    }
+
+    for (s = classes; *s; s++) {
+	oclass = *s;
+	prev_class = oclass + 1;	/* forced different from oclass */
+	for (i = bases[(int)oclass];
+	     i < NUM_OBJECTS && objects[i].oc_class == oclass; i++) {
+	    if ((dis = disco[i]) && interesting_to_discover(dis)) {
+		ct++;
+		if (oclass != prev_class) {
+
+		    Sprintf(buf, "  %s", let_to_name(oclass, FALSE, FALSE));
+		    dump("", buf);
+
+		    prev_class = oclass;
+		}
+		Sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
+				obj_typename(dis));
+		    dump("  ", buf);
+	    }
+	}
+    }
+    if (ct == 0) {
+	dump("", "You haven't discovered anything at all...");
+    }
+    dump("", "");
+
+} /* dump_discoveries */
+#endif
+
 /*o_init.c*/

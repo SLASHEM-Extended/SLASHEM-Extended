@@ -50,6 +50,7 @@ STATIC_DCL boolean FDECL(list_vanquished, (CHAR_P, BOOLEAN_P));
 #ifdef DUMP_LOG
 extern void NDECL(dump_spells);
 extern void NDECL(dump_techniques);
+extern void NDECL(dump_discoveries);
 void FDECL(do_vanquished, (int, BOOLEAN_P, BOOLEAN_P));
 STATIC_DCL void FDECL(list_genocided, (int, BOOLEAN_P, BOOLEAN_P));
 #else
@@ -524,11 +525,22 @@ boolean taken;
 		enlightenment(how >= PANICKED ? 1 : 2, 1); /* final */
 	    if (c == 'q') done_stopprint++;
 	}
+
+	ask = 1; /* if I can figure out how to do it, I'll make it configurable via disclosure and defquery options --Amy */
+	if (!done_stopprint) {
+	    c = ask ? yn_function("Do you want to see your discoveries?",
+				  ynqchars, defquery) : defquery;
+	    if (c != 'q')
+		dodiscovered();
+	    if (c == 'q') done_stopprint++;
+	}
+
 #ifdef DUMP_LOG
 	if (dump_fp) {
 	  dump_enlightenment((int) (how >= PANICKED ? 1 : 2));
 	  dump_spells();
 	  dump_techniques();
+	  dump_discoveries();
 	}
 #endif
 

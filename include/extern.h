@@ -83,6 +83,7 @@ E int FDECL(spec_dbon, (struct obj *,struct monst *,int));
 E void FDECL(discover_artifact, (int));
 E boolean FDECL(undiscovered_artifact, (int));
 E int FDECL(disp_artifact_discoveries, (winid));
+E void NDECL(dump_artifact_discoveries);
 E boolean FDECL(artifact_hit, (struct monst *,struct monst *,
 				struct obj *,int *,int));
 E int NDECL(doinvoke);
