@@ -853,7 +853,23 @@ gcrownu()
 			if (ishaxor) u.ublesscnt /= 2;
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
-		    unrestrict_weapon_skill(weapon_type(obj));
+			if (P_MAX_SKILL(weapon_type(obj)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(weapon_type(obj));
+			} else if (P_MAX_SKILL(weapon_type(obj)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(weapon_type(obj));
+				P_MAX_SKILL(weapon_type(obj)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(weapon_type(obj)) == P_BASIC) {
+				P_MAX_SKILL(weapon_type(obj)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(weapon_type(obj)) == P_SKILLED) {
+				P_MAX_SKILL(weapon_type(obj)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(weapon_type(obj)) == P_EXPERT) {
+				P_MAX_SKILL(weapon_type(obj)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(weapon_type(obj)) == P_MASTER) {
+				P_MAX_SKILL(weapon_type(obj)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(weapon_type(obj)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(weapon_type(obj)) = P_SUPREME_MASTER;
+			}
+
 		    discover_artifact(obj->oartifact);
 		    return;
 		}
@@ -911,7 +927,23 @@ gcrownu()
 		}
 		/* acquire Reaver's skill regardless of weapon or gift, 
 			although pirates are already good at using scimitars */
-		unrestrict_weapon_skill(P_SCIMITAR);
+		if (P_MAX_SKILL(P_SCIMITAR) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(P_SCIMITAR);
+		} else if (P_MAX_SKILL(P_SCIMITAR) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_SCIMITAR);
+			P_MAX_SKILL(P_SCIMITAR) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(P_SCIMITAR) == P_BASIC) {
+			P_MAX_SKILL(P_SCIMITAR) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(P_SCIMITAR) == P_SKILLED) {
+			P_MAX_SKILL(P_SCIMITAR) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(P_SCIMITAR) == P_EXPERT) {
+			P_MAX_SKILL(P_SCIMITAR) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(P_SCIMITAR) == P_MASTER) {
+			P_MAX_SKILL(P_SCIMITAR) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(P_SCIMITAR) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_SCIMITAR) = P_SUPREME_MASTER;
+		}
+
 		if (obj && obj->oartifact == ART_REAVER)
 			discover_artifact(ART_REAVER);
 	}
@@ -926,7 +958,24 @@ gcrownu()
 	    if (obj && obj->oartifact == ART_EXCALIBUR) u.ugifts++;
 	}
 	/* acquire Excalibur's skill regardless of weapon or gift */
-	unrestrict_weapon_skill(P_LONG_SWORD);
+
+	if (P_MAX_SKILL(P_LONG_SWORD) == P_ISRESTRICTED) {
+	    unrestrict_weapon_skill(P_LONG_SWORD);
+	} else if (P_MAX_SKILL(P_LONG_SWORD) == P_UNSKILLED) {
+		unrestrict_weapon_skill(P_LONG_SWORD);
+		P_MAX_SKILL(P_LONG_SWORD) = P_BASIC;
+	} else if (rn2(2) && P_MAX_SKILL(P_LONG_SWORD) == P_BASIC) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_SKILLED;
+	} else if (!rn2(4) && P_MAX_SKILL(P_LONG_SWORD) == P_SKILLED) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_EXPERT;
+	} else if (!rn2(10) && P_MAX_SKILL(P_LONG_SWORD) == P_EXPERT) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_MASTER;
+	} else if (!rn2(100) && P_MAX_SKILL(P_LONG_SWORD) == P_MASTER) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
+	} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+	}
+
 	if (obj && obj->oartifact == ART_EXCALIBUR)
 	    discover_artifact(ART_EXCALIBUR);
 	break;
@@ -947,7 +996,24 @@ gcrownu()
 	    }
 	}
 	/* acquire Vorpal Blade's skill regardless of weapon or gift */
-	unrestrict_weapon_skill(P_LONG_SWORD);
+
+	if (P_MAX_SKILL(P_LONG_SWORD) == P_ISRESTRICTED) {
+	    unrestrict_weapon_skill(P_LONG_SWORD);
+	} else if (P_MAX_SKILL(P_LONG_SWORD) == P_UNSKILLED) {
+		unrestrict_weapon_skill(P_LONG_SWORD);
+		P_MAX_SKILL(P_LONG_SWORD) = P_BASIC;
+	} else if (rn2(2) && P_MAX_SKILL(P_LONG_SWORD) == P_BASIC) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_SKILLED;
+	} else if (!rn2(4) && P_MAX_SKILL(P_LONG_SWORD) == P_SKILLED) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_EXPERT;
+	} else if (!rn2(10) && P_MAX_SKILL(P_LONG_SWORD) == P_EXPERT) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_MASTER;
+	} else if (!rn2(100) && P_MAX_SKILL(P_LONG_SWORD) == P_MASTER) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
+	} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
+		P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+	}
+
 	if (obj && obj->oartifact == ART_VORPAL_BLADE)
 	    discover_artifact(ART_VORPAL_BLADE);
 	break;
@@ -972,7 +1038,24 @@ gcrownu()
 	    }
 	}
 	/* acquire Stormbringer's skill regardless of weapon or gift */
-	unrestrict_weapon_skill(P_BROAD_SWORD);
+
+	if (P_MAX_SKILL(P_BROAD_SWORD) == P_ISRESTRICTED) {
+	    unrestrict_weapon_skill(P_BROAD_SWORD);
+	} else if (P_MAX_SKILL(P_BROAD_SWORD) == P_UNSKILLED) {
+		unrestrict_weapon_skill(P_BROAD_SWORD);
+		P_MAX_SKILL(P_BROAD_SWORD) = P_BASIC;
+	} else if (rn2(2) && P_MAX_SKILL(P_BROAD_SWORD) == P_BASIC) {
+		P_MAX_SKILL(P_BROAD_SWORD) = P_SKILLED;
+	} else if (!rn2(4) && P_MAX_SKILL(P_BROAD_SWORD) == P_SKILLED) {
+		P_MAX_SKILL(P_BROAD_SWORD) = P_EXPERT;
+	} else if (!rn2(10) && P_MAX_SKILL(P_BROAD_SWORD) == P_EXPERT) {
+		P_MAX_SKILL(P_BROAD_SWORD) = P_MASTER;
+	} else if (!rn2(100) && P_MAX_SKILL(P_BROAD_SWORD) == P_MASTER) {
+		P_MAX_SKILL(P_BROAD_SWORD) = P_GRAND_MASTER;
+	} else if (!rn2(200) && P_MAX_SKILL(P_BROAD_SWORD) == P_GRAND_MASTER) {
+		P_MAX_SKILL(P_BROAD_SWORD) = P_SUPREME_MASTER;
+	}
+
 	if (obj && obj->oartifact == ART_STORMBRINGER)
 	    discover_artifact(ART_STORMBRINGER);
 	break;
@@ -995,7 +1078,24 @@ gcrownu()
 	    else if (obj->spe > 2) obj->spe += 1;
 	} else if (obj->spe < 1) obj->spe = 1;
 	/* acquire skill in this weapon */
-	unrestrict_weapon_skill(weapon_type(obj));
+
+	if (P_MAX_SKILL(weapon_type(obj)) == P_ISRESTRICTED) {
+	    unrestrict_weapon_skill(weapon_type(obj));
+	} else if (P_MAX_SKILL(weapon_type(obj)) == P_UNSKILLED) {
+		unrestrict_weapon_skill(weapon_type(obj));
+		P_MAX_SKILL(weapon_type(obj)) = P_BASIC;
+	} else if (rn2(2) && P_MAX_SKILL(weapon_type(obj)) == P_BASIC) {
+		P_MAX_SKILL(weapon_type(obj)) = P_SKILLED;
+	} else if (!rn2(4) && P_MAX_SKILL(weapon_type(obj)) == P_SKILLED) {
+		P_MAX_SKILL(weapon_type(obj)) = P_EXPERT;
+	} else if (!rn2(10) && P_MAX_SKILL(weapon_type(obj)) == P_EXPERT) {
+		P_MAX_SKILL(weapon_type(obj)) = P_MASTER;
+	} else if (!rn2(100) && P_MAX_SKILL(weapon_type(obj)) == P_MASTER) {
+		P_MAX_SKILL(weapon_type(obj)) = P_GRAND_MASTER;
+	} else if (!rn2(200) && P_MAX_SKILL(weapon_type(obj)) == P_GRAND_MASTER) {
+		P_MAX_SKILL(weapon_type(obj)) = P_SUPREME_MASTER;
+	}
+
     } else if (class_gift == STRANGE_OBJECT) {
 	/* opportunity knocked, but there was nobody home... */
 	You_feel("unworthy.");
@@ -2062,7 +2162,24 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 			if (ishaxor) u.ublesscnt /= 2;
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
-		    unrestrict_weapon_skill(weapon_type(otmp));
+
+			if (P_MAX_SKILL(weapon_type(otmp)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(weapon_type(otmp));
+			} else if (P_MAX_SKILL(weapon_type(otmp)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(weapon_type(otmp));
+				P_MAX_SKILL(weapon_type(otmp)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(weapon_type(otmp)) == P_BASIC) {
+				P_MAX_SKILL(weapon_type(otmp)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(weapon_type(otmp)) == P_SKILLED) {
+				P_MAX_SKILL(weapon_type(otmp)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(weapon_type(otmp)) == P_EXPERT) {
+				P_MAX_SKILL(weapon_type(otmp)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(weapon_type(otmp)) == P_MASTER) {
+				P_MAX_SKILL(weapon_type(otmp)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(weapon_type(otmp)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(weapon_type(otmp)) = P_SUPREME_MASTER;
+			}
+
 		    discover_artifact(otmp->oartifact);
 		    return(1);
 		} else {
