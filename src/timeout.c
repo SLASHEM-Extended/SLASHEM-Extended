@@ -2735,7 +2735,10 @@ nh_timeout()
 	if(Slimed) slime_dialogue();
 	if(Vomiting) vomiting_dialogue();
 	if(Strangled) choke_dialogue();
-	if (Sick && (moves % 7 == 0) ) pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : "You still feel deathly sick.");
+	if (Sick && (moves % 7 == 0) ) {
+		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : "You still feel deathly sick.");
+		if (Sickopathy) pline("You have %d turns to live.", Sick);
+	}
 	if(u.mtimedone && !--u.mtimedone) {
 		if (Unchanging || Race_if(PM_UNGENOMOLD) )
 			u.mtimedone = rnd(100*youmonst.data->mlevel + 1);
