@@ -1650,12 +1650,12 @@ boolean want_dump;
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
 #endif
-		Sprintf(buf, "%ld bosses vanquished.", bosses_killed);
+		Sprintf(buf, "%ld boss%s vanquished.", bosses_killed, (bosses_killed==1) ? "" : "es");
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
 #endif
-		if (program_state.gameover || wizard) Sprintf(buf, "%ld bosses born.", bosses_born);
+		if (program_state.gameover || wizard) Sprintf(buf, "%ld boss%s born.", bosses_born, (bosses_killed==1) ? "" : "es");
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
