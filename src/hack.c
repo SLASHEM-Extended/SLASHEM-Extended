@@ -1403,6 +1403,9 @@ ask_about_trap(int x, int y)
 			if (traphere->ttyp == SQKY_BOARD) {
 				return FALSE;
 			}
+			if (traphere->ttyp == SHIT_TRAP && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) {
+				return FALSE;
+			}
 		}
 		return TRUE;
 	}
