@@ -146,7 +146,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o recover.o
 
 CFLAGS = -g -O2
 CFLAGS += -I../include
-LFLAGS =
+LFLAGS = -g
 
 # Only used for the Gnome interface.
 # When including the Gnome interface, you need to include gnome specific

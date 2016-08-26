@@ -91,7 +91,7 @@
 
 CFLAGS = -g -O2
 CFLAGS += -I../include
-LFLAGS =
+LFLAGS = -g
 
 LIBS =
  
