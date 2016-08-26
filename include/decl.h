@@ -43,9 +43,7 @@ E uchar warnsyms[WARNCOUNT];
 E int x_maze_max, y_maze_max;
 E int otg_temp;
 
-#ifdef REDO
 E NEARDATA int in_doagain;
-#endif
 
 E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_oracle_level;
@@ -277,17 +275,10 @@ E char misc_cmds[];
 #define DONOPICKUP		misc_cmds[3]
 #define DORUN_NOPICKUP		misc_cmds[4]
 #define DOESCAPE		misc_cmds[5]
-#ifdef REDO			/* JDS: moved from config.h */
-# undef  DOAGAIN /* remove previous definition from config.h */
-# define DOAGAIN		misc_cmds[6]
-#endif
+#define DOAGAIN			misc_cmds[6]
 
 /* the number of miscellaneous commands */
-#ifdef REDO
 # define MISC_CMD_COUNT		7
-#else
-# define MISC_CMD_COUNT		6
-#endif
 
 E NEARDATA schar tbx, tby;		/* set in mthrowu.c */
 

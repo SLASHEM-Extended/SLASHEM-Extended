@@ -192,11 +192,9 @@ E int NDECL(wiz_wish);
 #endif /* USE_TRAMPOLI */
 E void NDECL(reset_occupations);
 E void FDECL(set_occupation, (int (*)(void),const char *,int));
-#ifdef REDO
 E char NDECL(pgetchar);
 E void FDECL(pushch, (CHAR_P));
 E void FDECL(savech, (CHAR_P));
-#endif
 E void FDECL(rhack, (char *));
 E void NDECL(dokeylist);
 E int NDECL(doextlist);

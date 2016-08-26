@@ -207,9 +207,6 @@ typedef __mode_t mode_t;
 # define O_TRUNC 0x400
 #endif
 
-#ifndef REDO
-# define Getchar nhgetch
-#endif
 #define tgetch vms_getchar
 
 #include "system.h"

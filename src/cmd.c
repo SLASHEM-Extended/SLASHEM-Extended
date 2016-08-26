@@ -280,7 +280,6 @@ int xtime;
 	return;
 }
 
-#ifdef REDO
 
 static char NDECL(popch);
 
@@ -342,7 +341,6 @@ char ch;
 	}
 	return;
 }
-#endif /* REDO */
 
 #endif /* OVL1 */
 #ifdef OVLB
@@ -6573,10 +6571,8 @@ dokeylist(void)
 		 "fight even if you don't see a monster",
 		 "move without picking up objects/fighting",
 		 "run without picking up objects/fighting",
-		 "escape from the current query/action"
-#ifdef REDO
-		 , "redo the previous command"
-#endif
+		 "escape from the current query/action",
+		 "redo the previous command"
 		};
 
 
@@ -7219,7 +7215,6 @@ register char *cmd;
 		return;
 #endif
 	}
-#ifdef REDO
 	if (*cmd == DOAGAIN && !in_doagain && saveq[0]) {
 		in_doagain = TRUE;
 		stail = 0;
@@ -7228,11 +7223,7 @@ register char *cmd;
 		return;
 	}
 	/* Special case of *cmd == ' ' handled better below */
-	if(!*cmd || *cmd == (char)0377)
-#else
-	if(!*cmd || *cmd == (char)0377 || (!flags.rest_on_space && *cmd == ' '))
-#endif
-	{
+	if(!*cmd || *cmd == (char)0377) {
 		nhbell();
 		flags.move = FALSE;
 		return;		/* probably we just had an interrupt */
@@ -7484,20 +7475,13 @@ const char *s;
 	Sprintf(buf, "In what direction? [%s]",
                 (iflags.num_pad ? ndir : sdir));
 
-
-#ifdef REDO
 	if(in_doagain || *readchar_queue)
 	    dirsym = readchar();
-	else
-#endif
-	do {
+	else do {
 	    dirsym = yn_function ((s && *s != '^') ? s : buf, (char *)0, '\0');
 	} while (!movecmd(dirsym) && !index(quitchars, dirsym)
                 && dirsym == '.' && dirsym == 's' && !u.dz);
-
-#ifdef REDO
 	savech(dirsym);
-#endif
 	if(dirsym == '.' || dirsym == 's')
 		u.dx = u.dy = u.dz = 0;
 	else if(!movecmd(dirsym) && !u.dz) {
@@ -7791,14 +7775,12 @@ parse()
 	if (foo == DOESCAPE) {   /* esc cancels count (TH) */
 	    clear_nhwindow(WIN_MESSAGE);
 	    /* multi = */ last_multi = 0;  /* WAC multi is cleared later in rhack */
-# ifdef REDO
 	} else if (foo == DOAGAIN || in_doagain) {
 	    multi = last_multi;
 	} else {
 	    last_multi = multi;
 	    savech(0);	/* reset input queue */
 	    savech((char)foo);
-# endif
 	}
 
 	if (multi) {
@@ -7814,9 +7796,7 @@ parse()
 	    || foo == DONOPICKUP || foo == DORUN_NOPICKUP
 	    || (iflags.num_pad && (foo == '5' || foo == '-'))) {
 	    foo = readchar();
-#ifdef REDO
 	    savech((char)foo);
-#endif
 	    in_line[1] = foo;
 	    in_line[2] = 0;
 	}
@@ -7858,11 +7838,7 @@ readchar()
 	if ( *readchar_queue )
 	    sym = *readchar_queue++;
 	else
-#ifdef REDO
 	    sym = in_doagain ? Getchar() : nh_poskey(&x, &y, &mod);
-#else
-	    sym = Getchar();
-#endif
 
 #ifdef UNIX
 # ifdef NR_OF_EOFS

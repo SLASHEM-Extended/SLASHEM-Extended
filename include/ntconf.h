@@ -179,11 +179,6 @@ int  _RTLENTRY _EXPFUNC read  (int __handle, void _FAR *__buf, unsigned __len);
 #define ALLOCA_HACK	/* used in util/panic.c */
 #endif
 
-#ifndef REDO
-#undef	Getchar
-#define Getchar nhgetch
-#endif
-
 #ifdef _MSC_VER
 #if 0
 #pragma warning(disable:4018)	/* signed/unsigned mismatch */

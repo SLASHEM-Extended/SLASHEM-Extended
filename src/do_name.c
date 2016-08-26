@@ -460,30 +460,20 @@ int
 ddocall()
 {
 	register struct obj *obj;
-#ifdef REDO
 	char	ch;
-#endif
 	char allowall[2];
 
-	switch(
-#ifdef REDO
-		ch =
-#endif
-		ynq("Name an individual object?")) {
+	switch(ch = ynq("Name an individual object?")) {
 	case 'q':
 		break;
 	case 'y':
-#ifdef REDO
 		savech(ch);
-#endif
 		allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 		obj = getobj(allowall, "name");
 		if(obj) do_oname(obj);
 		break;
-	default :
-#ifdef REDO
+	default:
 		savech(ch);
-#endif
 		obj = getobj(callable, "call");
 		if (obj) {
 			/* behave as if examining it in inventory;

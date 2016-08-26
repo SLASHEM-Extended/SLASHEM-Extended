@@ -444,7 +444,6 @@ typedef unsigned char	uchar;
 /* #define ZOUTHERN */	/* KMH -- Zoutherner class and its animals */
 
 /* I/O */
-#define REDO		/* support for redoing last command - DGK */
 #if !defined(MAC)
 # define CLIPPING	/* allow smaller screens -- ERS */
 #endif
@@ -485,10 +484,6 @@ typedef unsigned char	uchar;
 /* #define USER_SOUNDS */   /* Allow user-defined regex mappings from messages to sounds */
                       /* Only supported on Qt with NAS - Network Audio System */
 
-
-#ifdef REDO
-# define DOAGAIN '\001'	/* ^A, the "redo" key used in cmd.c and getline.c */
-#endif
 
 /* #define BORG */            /* Works only under DOS */
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/

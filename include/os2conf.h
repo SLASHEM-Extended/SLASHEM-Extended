@@ -106,11 +106,6 @@
 #include <unistd.h>
 #endif
 
-#ifndef REDO
-# undef	Getchar
-# define Getchar nhgetch
-#endif
-
 #ifdef TIMED_DELAY
 #define msleep(k) _sleep2(k)
 #endif

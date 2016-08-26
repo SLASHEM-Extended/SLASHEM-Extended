@@ -367,9 +367,6 @@
 #define HLOCK	"perm"	/* an empty file used for locking purposes */
 #define HLOCK_AREA	FILE_AREA_VAR
 
-#ifndef REDO
-#define Getchar nhgetch
-#endif
 #define tgetch getchar
 
 /*#define SHELL*/		/* do not delete the '!' command */
