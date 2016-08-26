@@ -585,7 +585,7 @@ struct mkroom *sroom;
 					     sx, sy, TRUE, FALSE);
 			break;
 		    case FUNGUSFARM:
-			if (!rn2(5)) /* lowered chance --Amy */
+			if (!rn2(25)) /* lowered chance --Amy */
 			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE);
 			break;
 		    case MIGOHIVE:
@@ -671,7 +671,7 @@ struct mkroom *sroom;
 			}
 			break;
 		    case ANTHOLE:
-			if(!rn2(3))
+			if(!rn2(15))
 			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE);
 			break;
 		    case ANGELHALL:
