@@ -1934,7 +1934,7 @@ register struct obj *obj;
 
 		break;
 	case RIN_TIMELY_BACKUP:
-		You("feel absolutely safe.");
+		You_feel("absolutely safe.");
 		break;
 	case RIN_INVISIBILITY:
 		if (!oldprop && !HInvis && !BInvis && !Blind) {
@@ -2093,7 +2093,7 @@ boolean gone;
 		break;
 #endif
 	case RIN_TIMELY_BACKUP:
-		You("feel unsafe.");
+		You_feel("unsafe.");
 		break;
 	case RIN_WARNING:
 		see_monsters();
