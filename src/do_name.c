@@ -285,6 +285,8 @@ do_mname()
 	    pline("%s doesn't like being called names!", Monnam(mtmp));
 	else if (mtmp->mnamelth && !mtmp->mtame)
 	    pline("%s doesn't like you enough to allow you to rename %s!", Monnam(mtmp), mhim(mtmp));
+	else if (!(strcmp(buf, "Glorious Dead") ) )
+	    pline("That is an invalid name.");
 	else
 	    (void) christen_monst(mtmp, buf);
 	return(0);
