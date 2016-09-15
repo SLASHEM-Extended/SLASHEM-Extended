@@ -1011,6 +1011,10 @@ E boolean NDECL(have_messagestone);
 
 E boolean NDECL(have_primecurse);
 
+E boolean NDECL(have_morgothiancurse);
+E boolean NDECL(have_topiylinencurse);
+E boolean NDECL(have_blackbreathcurse);
+
 E boolean NDECL(have_mothrelay);
 
 E struct obj *FDECL(o_on, (unsigned int,struct obj *));
@@ -1320,8 +1324,10 @@ E void FDECL(start_corpse_timeout, (struct obj *));
 E void FDECL(bless, (struct obj *));
 E void FDECL(unbless, (struct obj *));
 E void FDECL(curse, (struct obj *));
+E void FDECL(curse_on_creation, (struct obj *));
 E void FDECL(uncurse, (struct obj *));
 E void FDECL(blessorcurse, (struct obj *,int));
+E void FDECL(blessorcurse_on_creation, (struct obj *,int));
 E boolean FDECL(is_flammable, (struct obj *));
 E boolean FDECL(is_rottable, (struct obj *));
 E void FDECL(place_object, (struct obj *,int,int));

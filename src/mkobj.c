@@ -1200,12 +1200,12 @@ boolean artif;
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
-			 else	blessorcurse(otmp, 3);
+			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
-			if (rn2(10)) curse(otmp);
-			 else	blessorcurse(otmp, 3);
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(2);
-		} else	blessorcurse(otmp, 10);
+		} else	blessorcurse_on_creation(otmp, 10);
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
 		if (artif && !rn2(20))
@@ -1237,7 +1237,7 @@ boolean artif;
 			otmp->corpsenm = PM_HUMAN;
 		}
 		/* timer set below */
-		blessorcurse(otmp, 8);
+		blessorcurse_on_creation(otmp, 8);
 		break;
 	    case EGG:
 		otmp->corpsenm = NON_PM;	/* generic egg */
@@ -1250,7 +1250,7 @@ boolean artif;
 		    }
 		}
 		if (!rn2(200)) otmp->spe = 2;
-		blessorcurse(otmp, 8);
+		blessorcurse_on_creation(otmp, 8);
 		break;
 	    case TIN:
 		otmp->corpsenm = NON_PM;	/* empty (so far) */
@@ -1264,12 +1264,12 @@ boolean artif;
 			break;
 		    }
 		}
-		blessorcurse(otmp, 10);
+		blessorcurse_on_creation(otmp, 10);
 		break;
 	    case SLIME_MOLD:
 		otmp->spe = current_fruit;
 		otmp->quan = (long) rnd(15);
-		blessorcurse(otmp, 10);
+		blessorcurse_on_creation(otmp, 10);
 		break;
 	    case APPLE:
 	    case CARROT:
@@ -1281,13 +1281,13 @@ boolean artif;
 	    case MELON:
 	    case KELP_FROND:
 		otmp->quan = (long) rnd(5);
-		blessorcurse(otmp, 10);
+		blessorcurse_on_creation(otmp, 10);
 		break;
 	    }
 	    /*if (otmp->otyp == CORPSE || otmp->otyp == MEAT_RING || otmp->otyp == APPLE || otmp->otyp == CARROT ||
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
-		blessorcurse(otmp, 10);
+		blessorcurse_on_creation(otmp, 10);
 		if (artif && !rn2(200))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(500)) {
@@ -1305,7 +1305,7 @@ boolean artif;
 
 		/* KMH, balance patch -- healthstone replaces rotting/health */
 		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE)
-			{ curse(otmp); break;}
+			{ curse_on_creation(otmp); break;}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
 		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(5,5);
 		else if (otmp->otyp == SMALL_PIECE_OF_UNREFINED_MITHR && rn2(2) ) otmp->quan = (long) rn1(6,6);
@@ -1317,12 +1317,12 @@ boolean artif;
 		if(!rn2(ishaxor ? 4 : 8)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
-			 else	blessorcurse(otmp, 3);
+			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 5 : 10)) {
-			if (rn2(10)) curse(otmp);
-			 else	blessorcurse(otmp, 3);
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(2);
-		} else	blessorcurse(otmp, 10);
+		} else	blessorcurse_on_creation(otmp, 10);
 
 		if (artif && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1353,14 +1353,14 @@ boolean artif;
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
 					      (long)(rn2(2) ? rn2(7) : 0);
-					blessorcurse(otmp, 5);
+					blessorcurse_on_creation(otmp, 5);
 					break;
 	        case TORCH:	        otmp->spe = 0;
 					otmp->age = (long) rn1(300,600);
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = rnd(3);
-					blessorcurse(otmp, 5);
+					blessorcurse_on_creation(otmp, 5);
 					break;
 		case BRASS_LANTERN:
 		case OIL_LAMP:
@@ -1370,13 +1370,13 @@ boolean artif;
 					otmp->age = (long) rn1(500,1000);
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
-					blessorcurse(otmp, 5);
+					blessorcurse_on_creation(otmp, 5);
 					break;
 		case MAGIC_CANDLE:                
 		case MAGIC_LAMP:
 			otmp->spe = 1;
 					otmp->lamplit = 0;
-					blessorcurse(otmp, 2);
+					blessorcurse_on_creation(otmp, 2);
 					break;
 #ifdef LIGHTSABERS
 		case RED_DOUBLE_LIGHTSABER:
@@ -1399,12 +1399,12 @@ boolean artif;
 			if(!rn2(ishaxor ? 3 : 6)) {
 				otmp->spe = rne(2);
 				if (rn2(2)) otmp->blessed = rn2(2);
-				 else	blessorcurse(otmp, 3);
+				 else	blessorcurse_on_creation(otmp, 3);
 			} else if(!rn2(ishaxor ? 4 : 8)) {
-				if (rn2(10)) curse(otmp);
-				 else	blessorcurse(otmp, 3);
+				if (rn2(10)) curse_on_creation(otmp);
+				 else	blessorcurse_on_creation(otmp, 3);
 				otmp->spe = -rne(2);
-			} else	blessorcurse(otmp, 10);
+			} else	blessorcurse_on_creation(otmp, 10);
 
 		break;
 #endif
@@ -1421,7 +1421,7 @@ boolean artif;
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:
 			mkbox_cnts(otmp);
-		blessorcurse(otmp, 8);
+		blessorcurse_on_creation(otmp, 8);
 					break;
 #ifdef TOURIST
 		case EXPENSIVE_CAMERA:
@@ -1431,53 +1431,53 @@ boolean artif;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 120 : 100);
-			blessorcurse(otmp, 5);
+			blessorcurse_on_creation(otmp, 5);
 					break;
 		case MAGIC_MARKER:
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
 			otmp->spe = rnd(ishaxor ? 120 : 100);
-			blessorcurse(otmp, 5);
+			blessorcurse_on_creation(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 70 : 35);
-					blessorcurse(otmp, 10);
+					blessorcurse_on_creation(otmp, 10);
 					break;
 		/* KMH, balance patch -- removed to prevent abuse
-		case ORB_OF_DESTRUCTION:blessorcurse(otmp, 2);
+		case ORB_OF_DESTRUCTION:blessorcurse_on_creation(otmp, 2);
 					break;
 		case ORB_OF_CHARGING:   otmp->spe = rnd(10) + 5;
-					blessorcurse(otmp, 2);
+					blessorcurse_on_creation(otmp, 2);
 					break;
 		case ORB_OF_ENCHANTMENT:otmp->spe = rnd(3) + 1;
-					blessorcurse(otmp, 2);
+					blessorcurse_on_creation(otmp, 2);
 					break;*/
 		case CRYSTAL_BALL:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rn1(10,3);
-					blessorcurse(otmp, 2);
+					blessorcurse_on_creation(otmp, 2);
 					break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(30);
-			blessorcurse(otmp, 5);
+			blessorcurse_on_creation(otmp, 5);
 					break;
  		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 80 : 40);
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
- 					blessorcurse(otmp,4);
+ 					blessorcurse_on_creation(otmp,4);
  					break;
 		case FIGURINE:	{	int tryct2 = 0;
 					do
 					    otmp->corpsenm = rndmonnum();
 					while(is_human(&mons[otmp->corpsenm]) && !rn2(5)
 						&& tryct2++ < 30); /* come on, human figurines should be possible! --Amy */
-					blessorcurse(otmp, 4);
+					blessorcurse_on_creation(otmp, 4);
 					break;
 				}
 		case BELL_OF_OPENING:
@@ -1495,18 +1495,18 @@ boolean artif;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 30 : 15);
-			blessorcurse(otmp, 10);
+			blessorcurse_on_creation(otmp, 10);
 					break;
 		default: /* all the other tools --Amy */
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
-			 else	blessorcurse(otmp, 3);
+			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
-			if (rn2(10)) curse(otmp);
-			 else	blessorcurse(otmp, 3);
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(2);
-		} else	blessorcurse(otmp, 10);
+		} else	blessorcurse_on_creation(otmp, 10);
 		break;
 	    }
 
@@ -1527,9 +1527,9 @@ boolean artif;
 		   otmp->otyp == AMULET_OF_HUNGER ||
 		   otmp->otyp == AMULET_OF_BLINDNESS ||
 		   otmp->otyp == AMULET_OF_RESTFUL_SLEEP)) {
-			curse(otmp);
+			curse_on_creation(otmp);
 		} else {
-			blessorcurse(otmp, 10);
+			blessorcurse_on_creation(otmp, 10);
 		}
 		if (artif && !rn2(60))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1541,7 +1541,7 @@ boolean artif;
 
 		break;
 	case VENOM_CLASS:
-		blessorcurse(otmp, 10);
+		blessorcurse_on_creation(otmp, 10);
 		if (artif && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(50)) {
@@ -1555,12 +1555,12 @@ boolean artif;
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);
-			 else	blessorcurse(otmp, 3);
+			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
-			if (rn2(10)) curse(otmp);
-			 else	blessorcurse(otmp, 3);
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(2);
-		} else	blessorcurse(otmp, 10);
+		} else	blessorcurse_on_creation(otmp, 10);
 
 		if (issoviet) otmp->spe = 0;
 
@@ -1581,7 +1581,7 @@ boolean artif;
 #ifdef MAIL
 		if (otmp->otyp != SCR_MAIL)
 #endif
-			blessorcurse(otmp, 4);
+			blessorcurse_on_creation(otmp, 4);
 
 		if (artif && !rn2(160))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1597,7 +1597,7 @@ boolean artif;
 		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(ishaxor ? 10 : 5); 
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
-		blessorcurse(otmp, 17);
+		blessorcurse_on_creation(otmp, 17);
 		if (artif && !rn2(100))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(250)) {
@@ -1635,14 +1635,14 @@ boolean artif;
 		   otmp->otyp == ROBE_OF_WEAKNESS ||
 		   otmp->otyp == OILSKIN_GLOVES ||
 		   !rn2(ishaxor ? 5 : 11))) {
-			if (rn2(10)) curse(otmp);
-			 else	blessorcurse(otmp, 3);
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(2);
 		} else if(!rn2(ishaxor ? 5 : 8)) {
 			if (rn2(2)) otmp->blessed = rn2(2);
-			 else	blessorcurse(otmp, 3);
+			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = rne(2);
-		} else	blessorcurse(otmp, 10);
+		} else	blessorcurse_on_creation(otmp, 10);
 		if (artif && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(100)) {
@@ -1701,7 +1701,7 @@ boolean artif;
 		if (rn2(2) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
 		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
 
-		blessorcurse(otmp, 17);
+		blessorcurse_on_creation(otmp, 17);
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
@@ -1716,7 +1716,7 @@ boolean artif;
 		break;
 	case RING_CLASS:
 		if(objects[otmp->otyp].oc_charged) {
-		    blessorcurse(otmp, 3);
+		    blessorcurse_on_creation(otmp, 3);
 		    if(rn2(10)) {
 			if(rn2(10) && bcsign(otmp))
 			    otmp->spe = bcsign(otmp) * rne(2);
@@ -1730,7 +1730,7 @@ boolean artif;
 		       else otmp->spe = -(rne(2)+1);
 		    }
 		    /* negative rings are usually cursed */
-		    if (otmp->spe < 0 && rn2(5)) curse(otmp);
+		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
 		} else if(rn2(10) && (otmp->otyp == RIN_TELEPORTATION ||
 			  otmp->otyp == RIN_POLYMORPH ||
 			  otmp->otyp == RIN_AGGRAVATE_MONSTER ||
@@ -1740,7 +1740,7 @@ boolean artif;
 			  otmp->otyp == RIN_CURSE ||
 			  otmp->otyp == RIN_HALLUCINATION ||
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
-			curse(otmp);
+			curse_on_creation(otmp);
 		}
 
 		if (artif && !rn2(50))
@@ -1762,7 +1762,7 @@ boolean artif;
 			    (void) add_to_container(otmp,
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
-	      blessorcurse(otmp, 7);
+	      blessorcurse_on_creation(otmp, 7);
 
 		if (artif && !rn2(200))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1791,15 +1791,15 @@ boolean artif;
 	if (otmp && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
 
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
-	if (iscurser && rn2(5)) curse(otmp);
+	if (iscurser && rn2(5)) curse_on_creation(otmp);
 
-	if (otyp == u.alwayscurseditem) curse(otmp);
-	if (otyp == u.alwayscurseditem2) curse(otmp);
-	if (otyp == u.alwayscurseditem3) curse(otmp);
-	if (otyp == u.alwayscurseditem4) curse(otmp);
-	if (otyp == u.alwayscurseditem5) curse(otmp);
-	if (otyp == u.alwayscurseditem6) curse(otmp);
-	if (otyp == u.alwayscurseditem7) curse(otmp);
+	if (otyp == u.alwayscurseditem) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem2) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem3) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem4) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem5) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem6) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem7) curse_on_creation(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {
@@ -1932,23 +1932,26 @@ register struct obj *otmp;
 #ifdef GOLDOBJ
 	if (otmp->oclass == COIN_CLASS) return;
 #endif
-	if (otmp->prmcurse && !rn2(10) ) {
-		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 	}
-	else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
-		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 	}
-	else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
+	else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 
 	if (otmp->cursed == 0) {
 	otmp->blessed = 1;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	else if (otmp->otyp == HEALTHSTONE)
+	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
-	else if (otmp->otyp == FIGURINE && otmp->timed)
+	if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
 	}
 	return;
@@ -1961,11 +1964,11 @@ register struct obj *otmp;
 	otmp->blessed = 0;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	else if (otmp->otyp == HEALTHSTONE)
+	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
-	else if (otmp->otyp == FIGURINE && otmp->timed)
+	if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
 	return;
 }
@@ -1982,10 +1985,20 @@ register struct obj *otmp;
 	if (otmp->cursed) {
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
 		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
+		else if (otmp->prmcurse && !rn2(250)) {
+			if (!rn2(3)) otmp->morgcurse = 1;
+			else if (!rn2(2)) otmp->evilcurse = 1;
+			else otmp->bbrcurse = 1;
+		}
 	} else {
 		otmp->cursed = 1;
-		if (!otmp->hvycurse && !otmp->prmcurse && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 35)) otmp->hvycurse = 1;
-		if (otmp->hvycurse && !otmp->prmcurse && !rn2(225)) otmp->prmcurse = 1;
+		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(35)) otmp->hvycurse = 1;
+		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(225)) otmp->prmcurse = 1;
+		if (otmp->prmcurse && !rn2(6255)) {
+			if (!rn2(3)) otmp->morgcurse = 1;
+			else if (!rn2(2)) otmp->evilcurse = 1;
+			else otmp->bbrcurse = 1;
+		}
 	}
 
 	/* welded two-handed weapon interferes with some armor removal */
@@ -1997,11 +2010,62 @@ register struct obj *otmp;
 	/* some cursed items need immediate updating */
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
-	else if (otmp->otyp == HEALTHSTONE)
+	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
-	else if (otmp->otyp == FIGURINE) {
+	if (otmp->otyp == FIGURINE) {
+		if (otmp->corpsenm != NON_PM
+		    && !dead_species(otmp->corpsenm,TRUE)
+		    && (carried(otmp) || mcarried(otmp)))
+			attach_fig_transform_timeout(otmp);
+	}
+	return;
+}
+
+/* Special function for objects that get cursed on creation --Amy */
+void
+curse_on_creation(otmp)
+register struct obj *otmp;
+{
+#ifdef GOLDOBJ
+	if (otmp->oclass == COIN_CLASS) return;
+#endif
+	otmp->blessed = 0;
+
+	if (otmp->cursed) { /* should not happen, but oh well */
+		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
+		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
+		else if (otmp->prmcurse && !rn2(250)) {
+			if (!rn2(3)) otmp->morgcurse = 1;
+			else if (!rn2(2)) otmp->evilcurse = 1;
+			else otmp->bbrcurse = 1;
+		}
+	} else {
+		otmp->cursed = 1;
+		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 25)) otmp->hvycurse = 1;
+		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(125)) otmp->prmcurse = 1;
+		if (otmp->prmcurse && !rn2(1255)) {
+			if (!rn2(3)) otmp->morgcurse = 1;
+			else if (!rn2(2)) otmp->evilcurse = 1;
+			else otmp->bbrcurse = 1;
+		}
+	}
+
+	/* welded two-handed weapon interferes with some armor removal */
+	if (otmp == uwep && bimanual(uwep)) reset_remarm();
+	/* rules at top of wield.c state that twoweapon cannot be done
+	   with cursed alternate weapon */
+	if (otmp == uswapwep && u.twoweap)
+	    drop_uswapwep();
+	/* some cursed items need immediate updating */
+	if (carried(otmp) && confers_luck(otmp))
+	    set_moreluck();
+	if (otmp->otyp == HEALTHSTONE)
+	    recalc_health();
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	    otmp->owt = weight(otmp);
+	if (otmp->otyp == FIGURINE) {
 		if (otmp->corpsenm != NON_PM
 		    && !dead_species(otmp->corpsenm,TRUE)
 		    && (carried(otmp) || mcarried(otmp)))
@@ -2014,19 +2078,22 @@ void
 uncurse(otmp)
 register struct obj *otmp;
 {
-	if (otmp->prmcurse && !rn2(10) ) {
-		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 	}
-	else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
-		otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 	}
-	else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
+	else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	}
+	else if (!(otmp->prmcurse) && !otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */
-	else if (otmp->otyp == HEALTHSTONE)
+	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	else if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 }
 
@@ -2047,6 +2114,24 @@ register int chance;
 		bless(otmp);
 	    }
 	} else if (Role_if(PM_CAMPERSTRIKER) && !rn2(chance)) curse(otmp);
+
+	return;
+}
+
+void
+blessorcurse_on_creation(otmp, chance)
+register struct obj *otmp;
+register int chance;
+{
+	if(otmp->blessed || otmp->cursed) return;
+
+	if(!rn2(chance)) {
+	    if(!rn2(3)) {
+		curse_on_creation(otmp);
+	    } else {
+		bless(otmp);
+	    }
+	} else if (Role_if(PM_CAMPERSTRIKER) && !rn2(chance)) curse_on_creation(otmp);
 
 	return;
 }

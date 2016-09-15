@@ -1259,6 +1259,197 @@ moveloop()
 
 		}
 
+		if ( have_morgothiancurse() && !rn2(500) ) { /* was 1 in 50 in ToME */
+			switch (rnd(30)) {
+
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5: /* aggravate monster, long duration */
+					You_feel("that monsters are aware of your presence.");
+					aggravate();
+					aggravate();
+					aggravate();
+					wake_nearby();
+					wake_nearby();
+					wake_nearby();
+					break;
+				case 6:
+				case 7:
+				case 8: /* replication */
+					pline("Oh! You feel that the curse is replicating itself!");
+
+					struct obj *otmpE;
+				      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+						if (otmpE && !stack_too_big(otmpE) && !rn2(10)) {
+							curse(otmpE);
+							otmpE->cursed = otmpE->hvycurse = otmpE->prmcurse = otmpE->morgcurse = 1;
+						}
+					}
+
+					break;
+				case 9:
+				case 10:
+				case 11:
+				case 12: /* curse items */
+					You_feel("as if you need some help.");
+					rndcurse();
+					break;
+				case 13:
+				case 14:
+				case 15: /* level drain, ignoring resists */
+				      losexp("ancient morgothian drainage", FALSE, FALSE);
+					break;
+				case 16:
+				case 17:
+				case 18: /* paralysis: up to 3 turns with free action, up to 13 without */
+					pline("You feel like a statue!");
+					if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse");
+					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse");
+					break;
+				case 19:
+				case 20: /* confusion */
+					pline("Woah! You see 10 little Morgoths dancing before you!");
+					make_confused(HConfusion + rnz(1000), FALSE);
+					break;
+				case 21:
+				case 22:
+				case 23: /* drain a random stat by 5 points */
+					(void) adjattrib(rn2(A_MAX), -5, FALSE);
+					break;
+				case 24: /* amnesia, magnitude 3 */
+					forget(3);
+					break;
+				case 25:
+				case 26:
+				case 27: /* evaporate weapon */
+					if (uwep) {
+						pline("Your weapon seems useless now and disintegrates!");
+						useupall(uwep);
+					}
+					break;
+				case 28: /* summon "thunderlords" */
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+					pline("You suddenly have company.");
+					break;
+				case 29:
+				case 30: /* drain all stats by one */
+					(void) adjattrib(A_STR, -1, FALSE);
+					(void) adjattrib(A_INT, -1, FALSE);
+					(void) adjattrib(A_DEX, -1, FALSE);
+					(void) adjattrib(A_CHA, -1, FALSE);
+					(void) adjattrib(A_CON, -1, FALSE);
+					(void) adjattrib(A_WIS, -1, FALSE);
+					break;
+			}
+		}
+
+		if ( have_topiylinencurse() && !rn2(1000) ) { /* was 1 in 100 in ToME */
+			switch (rnd(27)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5: /* aggravate monster */
+					You_feel("that monsters are aware of your presence.");
+					aggravate();
+					break;
+				case 6:
+				case 7:
+				case 8: /* summon nasties */
+					(void)nasty((struct monst *)0);
+					break;
+				case 9:
+				case 10:
+				case 11:
+				case 12: /* summon vortices */
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    if (!rn2(2)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    if (!rn2(5)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    if (!rn2(12)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+			 	    if (!rn2(27)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+					break;
+				case 13:
+				case 14:
+				case 15: /* level drain */
+					if(!Drain_resistance || !rn2(4) )
+					    losexp("topi ylinen drainage", FALSE, TRUE);
+					break;
+				case 16:
+				case 17:
+				case 18:
+				case 19:
+				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
+					pline("You feel like a statue!");
+					if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse");
+					else nomul(-rnd(13), "paralyzed by topi ylinen's curse");
+					break;
+				case 21:
+				case 22:
+				case 23: /* drain a random stat by 3 points */
+					(void) adjattrib(rn2(A_MAX), -3, FALSE);
+					break;
+				case 24: /* amnesia, magnitude 1-3 */
+					forget(rnd(3));
+					break;
+				case 25: /* summon "cyberdemon" */
+					{
+					int attempts = 0;
+					register struct permonst *ptrZ;
+newboss:
+					do {
+
+						ptrZ = rndmonst();
+						attempts++;
+
+					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+					if (ptrZ && ptrZ->geno & G_UNIQ) {
+						if (wizard) pline("monster generation: %s", ptrZ->mname);
+						(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+					}
+					else if (rn2(50)) {
+						attempts = 0;
+						goto newboss;
+					}
+					pline("Boss monsters appear from nowhere!");
+
+					}
+					break;
+				case 26:
+				case 27: /* drain random stats by one, 50% chance for each of being affected */
+					if (rn2(2)) (void) adjattrib(A_STR, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_DEX, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_CHA, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_CON, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_WIS, -1, FALSE);
+					break;
+			}
+		}
+
+		if ( have_blackbreathcurse() && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
+			if (!rn2(5)) { /* level drain */
+				if(!Drain_resistance || !rn2(4) )
+				    losexp("black breath drainage", FALSE, TRUE);
+				break;
+			} else { /* drain a random stat */
+				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+			}
+		}
+
 		if (RecurringDisenchant && !rn2(1000)) {
 
 			struct obj *otmpE;

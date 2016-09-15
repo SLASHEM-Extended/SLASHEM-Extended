@@ -2239,6 +2239,20 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Itemcursing);
 		you_have(buf);
 	}
+
+	if ((guaranteed || !rn2(10)) && have_morgothiancurse() ) {
+		Sprintf(buf, "afflicted by the Ancient Morgothian Curse.");
+		you_are(buf);
+	}
+	if ((guaranteed || !rn2(10)) && have_topiylinencurse() ) {
+		Sprintf(buf, "afflicted by Topi Ylinen's Curse, a.k.a. the Ancient Foul Curse.");
+		you_are(buf);
+	}
+	if ((guaranteed || !rn2(10)) && have_blackbreathcurse() ) {
+		Sprintf(buf, "filled with the Black Breath.");
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone())) {
 		Sprintf(buf, "the following problem: The difficulty of the game was arbitrarily increased.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DifficultyIncreased);
@@ -4255,6 +4269,19 @@ int final;
 	      Sprintf(eos(buf), " (%d)", Itemcursing);
 		dump(youhad, buf);
 	}
+	if (have_morgothiancurse() ) {
+		Sprintf(buf, "afflicted by the Ancient Morgothian Curse.");
+		dump(youwere, buf);
+	}
+	if (have_topiylinencurse() ) {
+		Sprintf(buf, "afflicted by Topi Ylinen's Curse, a.k.a. the Ancient Foul Curse.");
+		dump(youwere, buf);
+	}
+	if (have_blackbreathcurse() ) {
+		Sprintf(buf, "filled with the Black Breath.");
+		dump(youwere, buf);
+	}
+
 	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone()) {
 		Sprintf(buf, "the following problem: The difficulty of the game was arbitrarily increased.");
 	      Sprintf(eos(buf), " (%d)", DifficultyIncreased);

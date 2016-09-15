@@ -2340,13 +2340,17 @@ register struct obj	*sobj;
 			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
 						otmp->otyp - GRAY_DRAGON_SCALES;
 
-			if (otmp->prmcurse && !rn2(10) ) {
-				otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
 			}
-			else if (!otmp->prmcurse && otmp->hvycurse && !rn2(3) ) {
-				otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
 			}
-			else if (!otmp->prmcurse && !otmp->hvycurse) otmp->cursed = 0;
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+
 
 			if (sobj->blessed) {
 				otmp->spe++;
@@ -2363,7 +2367,7 @@ register struct obj	*sobj;
 			(!Blind && !same_color) ? " " : nul,
 			(Blind || same_color) ? nul : hcolor(sobj->cursed ? NH_BLACK : NH_SILVER),
 			  (s*s>1) ? "while" : "moment");
-		otmp->cursed = (sobj->cursed || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
+		otmp->cursed = (sobj->cursed || ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && rn2(100)) || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
 		if ((!otmp->blessed || sobj->cursed) && !otmp->cursed)
 			otmp->blessed = sobj->blessed;
 		if (s) {
@@ -5505,6 +5509,9 @@ revid_end:
 			    	createdscroll->cursed = sobj->cursed;
 			    	createdscroll->hvycurse = sobj->hvycurse;
 			    	createdscroll->prmcurse = sobj->prmcurse;
+			    	createdscroll->morgcurse = sobj->morgcurse;
+			    	createdscroll->evilcurse = sobj->evilcurse;
+			    	createdscroll->bbrcurse = sobj->bbrcurse;
 			}
 		}
 

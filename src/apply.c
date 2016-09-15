@@ -3876,7 +3876,7 @@ use_chemistry_set(struct obj *chemset)
 	if (new_obj->blessed && new_obj->cursed) {
 		new_obj->blessed = new_obj->cursed = FALSE;
 	}
-	new_obj->hvycurse = new_obj->prmcurse = FALSE;
+	new_obj->hvycurse = new_obj->prmcurse = new_obj->morgcurse = new_obj->evilcurse = new_obj->bbrcurse = FALSE;
 	cost = potion_charge_cost(new_obj);
 	if (cost > chemset->spe) {
 		pline("There is too little material left in your chemistry set!");

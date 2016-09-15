@@ -5656,13 +5656,16 @@ struct monst *shkp;
 		obj->otyp = CRYSKNIFE;
 		Your("weapon seems sharper now.");
 
-		if (obj->prmcurse && !rn2(10) ) {
-			obj->prmcurse = obj->hvycurse = obj->cursed = 0;
+		if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
+			obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 		}
-		else if (!obj->prmcurse && obj->hvycurse && !rn2(3) ) {
-			obj->prmcurse = obj->hvycurse = obj->cursed = 0;
+		else if (obj->prmcurse && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(10) ) {
+			obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 		}
-		else if (!obj->prmcurse && !obj->hvycurse) obj->cursed = 0;
+		else if (!(obj->prmcurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && obj->hvycurse && !rn2(3) ) {
+			obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
+		}
+		else if (!(obj->prmcurse) && !(obj->hvycurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) ) obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 
 		break;
 	    }
@@ -5789,13 +5792,16 @@ shk_armor_works(slang, shkp)
 			obj->otyp = GRAY_DRAGON_SCALE_MAIL +
 						obj->otyp - GRAY_DRAGON_SCALES;
 
-			if (obj->prmcurse && !rn2(10) ) {
-				obj->prmcurse = obj->hvycurse = obj->cursed = 0;
+			if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 			}
-			else if (!obj->prmcurse && obj->hvycurse && !rn2(3) ) {
-				obj->prmcurse = obj->hvycurse = obj->cursed = 0;
+			else if (obj->prmcurse && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(10) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 			}
-			else if (!obj->prmcurse && !obj->hvycurse) obj->cursed = 0;
+			else if (!(obj->prmcurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && obj->hvycurse && !rn2(3) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
+			}
+			else if (!(obj->prmcurse) && !(obj->hvycurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) ) obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
 
 			obj->known = 1;
 			setworn(obj, W_ARM);

@@ -67,6 +67,9 @@ struct obj {
 	Bitfield(blessed,1);
 	Bitfield(hvycurse,1);	/* harder to uncurse than "regular" cursed items --Amy */
 	Bitfield(prmcurse,1);
+	Bitfield(morgcurse,1);	/* Ancient Morgothian curse */
+	Bitfield(evilcurse,1);	/* Topi Ylinen curse */
+	Bitfield(bbrcurse,1);	/* Black Breath curse */
 	Bitfield(unpaid,1);	/* on some bill */
 	Bitfield(no_charge,1);	/* if shk shouldn't charge for this */
 	Bitfield(known,1);	/* exact nature known */

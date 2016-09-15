@@ -4295,9 +4295,14 @@ register struct obj *obj;
 	     * always allow "uncursed potion of water"
 	     */
 	    if (Hallucination ? !rn2(10) : obj->cursed) {
-		if (Hallucination ? !rn2(100) : obj->prmcurse) Strcat(prefix, "prime cursed ");
-		else if (Hallucination ? !rn2(10) : obj->hvycurse) Strcat(prefix, "heavily cursed ");
-		else Strcat(prefix, "cursed ");
+		if (Hallucination ? !rn2(1000) : obj->morgcurse) Strcat(prefix, "morgothian cursed ");
+		if (Hallucination ? !rn2(1000) : obj->evilcurse) Strcat(prefix, "foul cursed ");
+		if (Hallucination ? !rn2(1000) : obj->bbrcurse) Strcat(prefix, "blackbreath cursed ");
+		if (!(obj->morgcurse || obj->evilcurse || obj->bbrcurse)) {
+			if (Hallucination ? !rn2(100) : obj->prmcurse) Strcat(prefix, "prime cursed ");
+			else if (Hallucination ? !rn2(10) : obj->hvycurse) Strcat(prefix, "heavily cursed ");
+			else Strcat(prefix, "cursed ");
+			}
 		}
 	    else if (Hallucination ? !rn2(10) : obj->blessed)
 		Strcat(prefix, "blessed ");
@@ -4666,7 +4671,7 @@ struct obj *obj;
     obj->known = obj->dknown = 1;
     obj->bknown = obj->rknown = obj->greased = 0;
     /* if character is a priest[ess], bknown will get toggled back on */
-    obj->blessed = obj->cursed = obj->hvycurse = obj->prmcurse = 0;
+    obj->blessed = obj->cursed = obj->hvycurse = obj->prmcurse = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
     /* "killed by poisoned <obj>" would be misleading when poison is
        not the cause of death and "poisoned by poisoned <obj>" would
        be redundant when it is, so suppress "poisoned" prefix */

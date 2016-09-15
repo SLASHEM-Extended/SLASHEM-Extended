@@ -1027,6 +1027,42 @@ have_primecurse()
 }
 
 boolean
+have_morgothiancurse()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->morgcurse)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_topiylinencurse()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->evilcurse)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_blackbreathcurse()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->bbrcurse)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_mothrelay()
 {
 	register struct obj *otmp;
@@ -4263,6 +4299,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    (obj->bknown && !otmp->bknown && !(Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) ) ) ||
 	    obj->cursed != otmp->cursed || obj->blessed != otmp->blessed ||
 	    obj->hvycurse != otmp->hvycurse || obj->prmcurse != otmp->prmcurse ||
+	    obj->morgcurse != otmp->morgcurse || obj->evilcurse != otmp->evilcurse || obj->bbrcurse != otmp->bbrcurse ||
 	    obj->no_charge != otmp->no_charge ||
 	    obj->selfmade != otmp->selfmade  ||
 	    obj->obroken != otmp->obroken ||
