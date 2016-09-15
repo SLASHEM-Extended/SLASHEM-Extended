@@ -1796,6 +1796,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) )) {
 		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		enl_msg("This item ", "is ", "was ", buf );
@@ -1938,6 +1943,16 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
@@ -3110,6 +3125,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
 	if ((guaranteed || !rn2(10)) && Manaleech) enl_msg(You_, "leech", "leeched", " mana");
 	if ((guaranteed || !rn2(10)) && Blind_telepat) you_are("telepathic");
+	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", " map amnesia");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are("hallu partying");
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are("a drunken boxer");
@@ -3876,6 +3892,9 @@ int final;
 	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
 	if (u.unobtainablegeno != -1) {
 		Sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		dump("  You had genocided this item: ", buf );
@@ -3969,6 +3988,12 @@ int final;
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
@@ -5110,6 +5135,7 @@ int final;
 	/*** Vision and senses ***/
 	if (See_invisible) dump("  ", "You saw invisible");
 	if (Manaleech) dump("  ", "You leeched mana");
+	if (Map_amnesia) dump("  ", "You had map amnesia");
 	if (Blind_telepat) dump(youwere, "telepathic");
 
 	if (Hallu_party) dump(youwere, "hallu partying");

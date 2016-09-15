@@ -855,6 +855,8 @@ boolean fade_scrolls;
 
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[target->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "yangi qo'lqop") ) && rn2(4) ) return;
 
+	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[target->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[target->otyp]), "shol plash") ) ) return;
+
 	if (target->greased && (!issoviet || !rn2(2)) ) {
 	    grease_protect(target,(char *)0,victim);
 	} else if (target->oclass == SCROLL_CLASS) {

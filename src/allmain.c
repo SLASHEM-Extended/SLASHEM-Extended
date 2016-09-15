@@ -1915,6 +1915,18 @@ moveloop()
 			makerandomtrap();
 		}
 
+		if (!rn2(2000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravity cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravitatsionnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "agar tortishish kuchi plash") ) ) {
+			pline("Gravity warps around you...");
+			phase_door(0);
+			pushplayer();
+			u.uprops[DEAC_FAST].intrinsic += rnd(10);
+			make_stunned(HStun + rnd(10), TRUE);
+		}
+
+		if (!rn2(1000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flash cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flesh-plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bir flesh plash") ) ) {
+			make_blinded(Blinded + rnd(10), TRUE);
+		}
+
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 			if (!rn2(500)) {
 				pline("You receive an electric shock from your cloak!");
@@ -2566,6 +2578,50 @@ moveloop()
 
 			}
 
+			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
+
+				if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella giggling.");
+					break;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					break;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+				register int newlev = rnd(71);
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				pline("You were banished!");
+
+			}
+
+			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polyform cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sopolimer forma plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "belgigacha bo'lgan poli shakli plash") ) ) {
+				if (!HPolymorph_control) HPolymorph_control = 2;
+				You_feel("polyform.");
+				if (!Unchanging) polyself(FALSE);
+			}
+
+			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "contaminated coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zagryaznennoye pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ifloslangan palto") )) {
+				if (Sick_resistance) {
+					You_feel("a slight illness.");
+				} else {
+					make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
+				"contaminated coat", TRUE, SICK_NONVOMITABLE);
+				}
+			    stop_occupation();
+
+			}
+
 			if (uarmh && !rn2(1000) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -2657,7 +2713,7 @@ moveloop()
 	/* once-per-player-input things go here */
 	/****************************************/
 
-	if (isamnesiac) {
+	if (isamnesiac || Map_amnesia) {
 		register int zx, zy;
 		for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++) {
 			/* Zonk all memory of this location. */
@@ -2848,6 +2904,9 @@ moveloop()
 void
 stop_occupation()
 {
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tez safar plash") ) ) return;
+
 	if(occupation) {
 		if (!maybe_finished_meal(TRUE))
 		    You("stop %s.", occtxt);
@@ -3631,6 +3690,76 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "english gloves")) OBJ_DESCR(objects[i]) = "angliyskiye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "korean sandals")) OBJ_DESCR(objects[i]) = "koreyskiye sandalii";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "forgetful cloak")) OBJ_DESCR(objects[i]) = "zabyvchiv plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spider boots")) OBJ_DESCR(objects[i]) = "pauk sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow cloak")) OBJ_DESCR(objects[i]) = "zheltyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "changing cloak")) OBJ_DESCR(objects[i]) = "izmeneniye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black cloak")) OBJ_DESCR(objects[i]) = "chernyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blue cloak")) OBJ_DESCR(objects[i]) = "siniy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "red cloak")) OBJ_DESCR(objects[i]) = "krasnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "green cloak")) OBJ_DESCR(objects[i]) = "zelenyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mauve cloak")) OBJ_DESCR(objects[i]) = "rozovato-lilovyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple cloak")) OBJ_DESCR(objects[i]) = "fioletovyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark cloak")) OBJ_DESCR(objects[i]) = "neyasnymi plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shell cloak")) OBJ_DESCR(objects[i]) = "plashch obolochki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chinese cloak")) OBJ_DESCR(objects[i]) = "kitayskiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray cloak")) OBJ_DESCR(objects[i]) = "seryy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polyform cloak")) OBJ_DESCR(objects[i]) = "sopolimer forma plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "absorbing cloak")) OBJ_DESCR(objects[i]) = "pogloshchayushchiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan cloak")) OBJ_DESCR(objects[i]) = "goluboy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep cloak")) OBJ_DESCR(objects[i]) = "glubokiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blinking cloak")) OBJ_DESCR(objects[i]) = "migayet plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tone cloak")) OBJ_DESCR(objects[i]) = "ton plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "running cloak")) OBJ_DESCR(objects[i]) = "rabotayet plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink cloak")) OBJ_DESCR(objects[i]) = "bakh-rozovyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "birthcloth")) OBJ_DESCR(objects[i]) = "rozhdeniye tkan'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colorless cloak")) OBJ_DESCR(objects[i]) = "bestsvetnaya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frade mantle")) OBJ_DESCR(objects[i]) = "fantazii mantii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavy cloak")) OBJ_DESCR(objects[i]) = "tyazhelyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grass cloak")) OBJ_DESCR(objects[i]) = "plashch trava";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "contaminated coat")) OBJ_DESCR(objects[i]) = "zagryaznennoye pal'to";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "withered cloak")) OBJ_DESCR(objects[i]) = "uvyadshiye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white cloak")) OBJ_DESCR(objects[i]) = "belyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ignorant cloak")) OBJ_DESCR(objects[i]) = "nevezhestvennyye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "avenger cloak")) OBJ_DESCR(objects[i]) = "mstitel' plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gravity cloak")) OBJ_DESCR(objects[i]) = "gravitatsionnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wishful cloak")) OBJ_DESCR(objects[i]) = "zhelayemoye za deystvitel'noye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poke mongo cloak")) OBJ_DESCR(objects[i]) = "sovat' mongo plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "levuntation cloak")) OBJ_DESCR(objects[i]) = "levitatsii plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "enduring cloak")) OBJ_DESCR(objects[i]) = "vyderzhivayushchiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "minded cloak")) OBJ_DESCR(objects[i]) = "myslyashchikh plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quicktravel cloak")) OBJ_DESCR(objects[i]) = "bystryy plashch puteshestviya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "geek cloak")) OBJ_DESCR(objects[i]) = "komp'yutershchik plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "orange cloak")) OBJ_DESCR(objects[i]) = "oranzhevyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pastel cloak")) OBJ_DESCR(objects[i]) = "pastel'nyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nurse cloak")) OBJ_DESCR(objects[i]) = "medsestra plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "slexual cloak")) OBJ_DESCR(objects[i]) = "polovoy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "angband cloak")) OBJ_DESCR(objects[i]) = "plashch sredizem'ye krepost'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy-colored cloak")) OBJ_DESCR(objects[i]) = "vorsistyye tsvetnoy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "concrete cloak")) OBJ_DESCR(objects[i]) = "betonnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anorexia cloak")) OBJ_DESCR(objects[i]) = "yedyat plashch rasstroystvo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flash cloak")) OBJ_DESCR(objects[i]) = "flesh-plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "magenta cloak")) OBJ_DESCR(objects[i]) = "purpurnogo plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "icy cloak")) OBJ_DESCR(objects[i]) = "ledyanoy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "starwars cloak")) OBJ_DESCR(objects[i]) = "zvezdnyye voyny plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tunnel cloak")) OBJ_DESCR(objects[i]) = "tunnel'naya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dnethack cloak")) OBJ_DESCR(objects[i]) = "podzemeliy i vnezemnyye plashch vzlomat'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barley cloak")) OBJ_DESCR(objects[i]) = "yachmen' plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "taiga cloak")) OBJ_DESCR(objects[i]) = "tayga plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boxing gown")) OBJ_DESCR(objects[i]) = "plat'ye boks";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "team splat cloak")) OBJ_DESCR(objects[i]) = "vosklitsatel'nyy znak plashch komanda";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eldritch cloak")) OBJ_DESCR(objects[i]) = "sverkh'yestestvennyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow robe")) OBJ_DESCR(objects[i]) = "zheltyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple robe")) OBJ_DESCR(objects[i]) = "bagryanitse";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white robe")) OBJ_DESCR(objects[i]) = "belyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black robe")) OBJ_DESCR(objects[i]) = "chernyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray robe")) OBJ_DESCR(objects[i]) = "seryy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan robe")) OBJ_DESCR(objects[i]) = "zelenovato-goluboy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "octarine robe")) OBJ_DESCR(objects[i]) = "vos'moy tsvet khalata";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown robe")) OBJ_DESCR(objects[i]) = "korichnevyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "camo robe")) OBJ_DESCR(objects[i]) = "kamuflyazhnaya roba";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink robe")) OBJ_DESCR(objects[i]) = "rozovyy khalat";
+
 	}
 	}
 
@@ -4182,6 +4311,75 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "english gloves")) OBJ_DESCR(objects[i]) = "ingliz tili qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "korean sandals")) OBJ_DESCR(objects[i]) = "janubiy koreyaning kavushlari";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "forgetful cloak")) OBJ_DESCR(objects[i]) = "unutuvchan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spider boots")) OBJ_DESCR(objects[i]) = "o'rgimchak chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow cloak")) OBJ_DESCR(objects[i]) = "sariq plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "changing cloak")) OBJ_DESCR(objects[i]) = "o'zgaruvchan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black cloak")) OBJ_DESCR(objects[i]) = "qora rido";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blue cloak")) OBJ_DESCR(objects[i]) = "ko'k plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "red cloak")) OBJ_DESCR(objects[i]) = "qizil plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "green cloak")) OBJ_DESCR(objects[i]) = "yashil rido";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mauve cloak")) OBJ_DESCR(objects[i]) = "qizg'ish binafsharang plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple cloak")) OBJ_DESCR(objects[i]) = "safsar plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark cloak")) OBJ_DESCR(objects[i]) = "tushunarsiz plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shell cloak")) OBJ_DESCR(objects[i]) = "qobiq plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chinese cloak")) OBJ_DESCR(objects[i]) = "xitoy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray cloak")) OBJ_DESCR(objects[i]) = "kulrang plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "polyform cloak")) OBJ_DESCR(objects[i]) = "belgigacha bo'lgan poli shakli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "absorbing cloak")) OBJ_DESCR(objects[i]) = "yutucu plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan cloak")) OBJ_DESCR(objects[i]) = "camgoebegi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep cloak")) OBJ_DESCR(objects[i]) = "chuqur plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blinking cloak")) OBJ_DESCR(objects[i]) = "miltillovchi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tone cloak")) OBJ_DESCR(objects[i]) = "ohang plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "running cloak")) OBJ_DESCR(objects[i]) = "ishlayotgan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink cloak")) OBJ_DESCR(objects[i]) = "portlash-pushti plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "birthcloth")) OBJ_DESCR(objects[i]) = "tug'ilgan mato";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colorless cloak")) OBJ_DESCR(objects[i]) = "rangsiz plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frade mantle")) OBJ_DESCR(objects[i]) = "farasingiz mantiya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavy cloak")) OBJ_DESCR(objects[i]) = "og'ir plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grass cloak")) OBJ_DESCR(objects[i]) = "o't plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "contaminated coat")) OBJ_DESCR(objects[i]) = "ifloslangan palto";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "withered cloak")) OBJ_DESCR(objects[i]) = "shol plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white cloak")) OBJ_DESCR(objects[i]) = "oq rido";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ignorant cloak")) OBJ_DESCR(objects[i]) = "johil plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "avenger cloak")) OBJ_DESCR(objects[i]) = "qasoskor plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gravity cloak")) OBJ_DESCR(objects[i]) = "agar tortishish kuchi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wishful cloak")) OBJ_DESCR(objects[i]) = "istalgan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poke mongo cloak")) OBJ_DESCR(objects[i]) = "soktudun mongo plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "levuntation cloak")) OBJ_DESCR(objects[i]) = "havo rido kiygan suzadi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "enduring cloak")) OBJ_DESCR(objects[i]) = "bardoshli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "minded cloak")) OBJ_DESCR(objects[i]) = "fikrlovchi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quicktravel cloak")) OBJ_DESCR(objects[i]) = "tez safar plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "geek cloak")) OBJ_DESCR(objects[i]) = "qani plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "orange cloak")) OBJ_DESCR(objects[i]) = "apelsin plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pastel cloak")) OBJ_DESCR(objects[i]) = "rang soya plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nurse cloak")) OBJ_DESCR(objects[i]) = "hamshira plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "slexual cloak")) OBJ_DESCR(objects[i]) = "jinsiy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "angband cloak")) OBJ_DESCR(objects[i]) = "o'rta yer qal'a plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy-colored cloak")) OBJ_DESCR(objects[i]) = "serjun rangli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "concrete cloak")) OBJ_DESCR(objects[i]) = "aniq plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "anorexia cloak")) OBJ_DESCR(objects[i]) = "eb buzilishi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flash cloak")) OBJ_DESCR(objects[i]) = "bir flesh plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "magenta cloak")) OBJ_DESCR(objects[i]) = "qirmizi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "icy cloak")) OBJ_DESCR(objects[i]) = "muzli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "starwars cloak")) OBJ_DESCR(objects[i]) = "yulduz urushlar plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tunnel cloak")) OBJ_DESCR(objects[i]) = "harakati plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dnethack cloak")) OBJ_DESCR(objects[i]) = "hamzindon va dunyo bo'lmagan doirasi so'yish plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barley cloak")) OBJ_DESCR(objects[i]) = "arpa plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "taiga cloak")) OBJ_DESCR(objects[i]) = "shimoliy o'rmon plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boxing gown")) OBJ_DESCR(objects[i]) = "boks libosi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "team splat cloak")) OBJ_DESCR(objects[i]) = "jamoasi xavfsizlik plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eldritch cloak")) OBJ_DESCR(objects[i]) = "aql bovar qilmaydigan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yellow robe")) OBJ_DESCR(objects[i]) = "sariq to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "purple robe")) OBJ_DESCR(objects[i]) = "safsar to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white robe")) OBJ_DESCR(objects[i]) = "oq to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black robe")) OBJ_DESCR(objects[i]) = "qora to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray robe")) OBJ_DESCR(objects[i]) = "kulrang to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan robe")) OBJ_DESCR(objects[i]) = "feruza rang to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "octarine robe")) OBJ_DESCR(objects[i]) = "sakkizinchi rang to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown robe")) OBJ_DESCR(objects[i]) = "jigarrang to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "camo robe")) OBJ_DESCR(objects[i]) = "kamuflaj to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink robe")) OBJ_DESCR(objects[i]) = "pushti to'n";
 
 	}
 	}

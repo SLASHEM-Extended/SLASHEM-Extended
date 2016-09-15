@@ -38,7 +38,7 @@ STATIC_DCL int FDECL(enhance_skill, (boolean));
 
 static void FDECL(give_may_advance_msg, (int));
 STATIC_PTR int NDECL(practice);
-static int FDECL(get_obj_skill, (struct obj *));
+/*static int FDECL(get_obj_skill, (struct obj *));*/
 
 #ifdef LIGHTSABERS
 static void FDECL(mon_ignite_lightsaber, (struct obj *, struct monst *));
@@ -1528,6 +1528,7 @@ register struct monst *mtmp;
 		case P_CROSSBOW:
 		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, HELO_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, POWER_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, PILE_BUNKER));
 		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
@@ -1543,6 +1544,7 @@ register struct monst *mtmp;
 			if (!propellor) propellor = (oselect(mtmp, FLINTLOCK));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL) {
 			propellor = (oselect(mtmp, AUTO_SHOTGUN));
+			if (!propellor) propellor = (oselect(mtmp, SAWED_OFF_SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, SHOTGUN));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER) {
 			propellor = (oselect(mtmp, ARM_BLASTER));
@@ -3656,7 +3658,6 @@ int type;
 }
 
 /* Try to return an associated skill for the specified object */
-static 
 int get_obj_skill(obj)
 struct obj *obj;
 {

@@ -3163,6 +3163,11 @@ int how;
 	else
 	    be_sad = (mdef->mtame != 0 && !mdef->isspell);
 
+	if (mdef->mtame != 0 && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) {
+		pline("You allowed a pet to die, thereby incurring the wrath of the gods!");
+		u.ugangr += rnd(3);
+	}
+
 	/* no corpses if digested or disintegrated */
 	if(how == AD_DGST || how == -AD_RBRE)
 	    mondead(mdef);
@@ -3171,6 +3176,7 @@ int how;
 
 	if (be_sad && mdef->mhp <= 0)
 	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+
 }
 
 
@@ -3577,7 +3583,7 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
 		}
 
-		if (!rn2(100) && Race_if(PM_ANGBANDER) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
+		if (!rn2(100) && (Race_if(PM_ANGBANDER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") ) ) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
 		if (!rn2(100) && Race_if(PM_ANGBANDER) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
 
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
@@ -3799,6 +3805,12 @@ cleanup:
 		/* your god is mighty displeased... */
 		if (!Hallucination) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 		else You_hear("the studio audience applaud!");
+
+		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) {
+			pline("You killed your pet, thereby incurring the wrath of the gods!");
+			u.ugangr += rnd(3);
+		}
+
 	} else if (mtmp->mpeaceful) {
 		adjalign(-15);
 		if (!Hallucination) pline("The gods will probably not appreciate this...");

@@ -331,11 +331,13 @@ register char oclass;
 	objects[PURPLE_DRAGON_SCALE_SHIELD].oc_oprop = randenchantment();
 
 	objects[RANDOMIZED_HELMET].oc_oprop = randenchantment();
+	objects[ROBE_OF_RANDOMNESS].oc_oprop = randenchantment();
 	objects[HIGH_STILETTOS].oc_oprop = randenchantment();
 	objects[UNKNOWN_GAUNTLETS].oc_oprop = randenchantment();
 	objects[MISSING_CLOAK].oc_oprop = randenchantment();
 
 	objects[RANDOMIZED_HELMET].a_can = rnd(10) ? 0 : rnd(3);
+	objects[ROBE_OF_RANDOMNESS].a_can = rnd(10) ? 0 : rnd(3);
 	objects[HIGH_STILETTOS].a_can = rnd(10) ? 0 : rnd(3);
 	objects[UNKNOWN_GAUNTLETS].a_can = rnd(10) ? 0 : rnd(3);
 	objects[MISSING_CLOAK].a_can = rn2(4);
@@ -360,20 +362,25 @@ register char oclass;
 	while (!rn2(3)) {
 		if (objects[RANDOMIZED_HELMET].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
 	}
+	objects[ROBE_OF_RANDOMNESS].a_ac = 0;
+	if (rn2(10)) objects[ROBE_OF_RANDOMNESS].a_ac = 1;
+	while (!rn2(2)) {
+		if (objects[ROBE_OF_RANDOMNESS].a_ac < 20) objects[ROBE_OF_RANDOMNESS].a_ac++;
+	}
 	objects[HIGH_STILETTOS].a_ac = 0;
 	if (rn2(10)) objects[HIGH_STILETTOS].a_ac = 1;
 	while (!rn2(3)) {
-		if (objects[HIGH_STILETTOS].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+		if (objects[HIGH_STILETTOS].a_ac < 20) objects[HIGH_STILETTOS].a_ac++;
 	}
 	objects[UNKNOWN_GAUNTLETS].a_ac = 0;
 	if (rn2(10)) objects[UNKNOWN_GAUNTLETS].a_ac = 1;
 	while (!rn2(3)) {
-		if (objects[UNKNOWN_GAUNTLETS].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+		if (objects[UNKNOWN_GAUNTLETS].a_ac < 20) objects[UNKNOWN_GAUNTLETS].a_ac++;
 	}
 	objects[MISSING_CLOAK].a_ac = 0;
 	if (rn2(10)) objects[MISSING_CLOAK].a_ac = 1;
 	while (!rn2(3)) {
-		if (objects[MISSING_CLOAK].a_ac < 20) objects[RANDOMIZED_HELMET].a_ac++;
+		if (objects[MISSING_CLOAK].a_ac < 20) objects[MISSING_CLOAK].a_ac++;
 	}
 	objects[SPECIAL_CLOAK].a_ac = 0;
 	if (rn2(10)) objects[SPECIAL_CLOAK].a_ac = 1;
@@ -443,6 +450,7 @@ register char oclass;
 	objects[RIN_DANGER].oc_oprop = randnastyenchantment();
 	objects[AMULET_OF_DANGER].oc_oprop = randnastyenchantment();
 	objects[NASTY_CLOAK].oc_oprop = randnastyenchantment();
+	objects[ROBE_OF_NASTINESS].oc_oprop = randnastyenchantment();
 	objects[UNWANTED_HELMET].oc_oprop = randnastyenchantment();
 	objects[EVIL_GLOVES].oc_oprop = randnastyenchantment();
 	objects[UNFAIR_STILETTOS].oc_oprop = randnastyenchantment();

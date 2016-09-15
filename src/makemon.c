@@ -203,7 +203,7 @@ register struct monst *mtmp;
 		if(strongmonst(ptr))
 		    (void) mongets(mtmp, rn2(20) ? TWO_HANDED_SWORD : QUARTERSTAFF);
 		else if (rn2(2)) {
-		    (void) mongets(mtmp, rn2(20) ? CROSSBOW : !rn2(4) ? (rn2(2) ? PILE_BUNKER : HELO_CROSSBOW) : rn2(50) ? DROVEN_CROSSBOW : DEMON_CROSSBOW);
+		    (void) mongets(mtmp, rn2(20) ? CROSSBOW : !rn2(3) ? POWER_CROSSBOW : !rn2(4) ? (rn2(2) ? PILE_BUNKER : HELO_CROSSBOW) : rn2(50) ? DROVEN_CROSSBOW : DEMON_CROSSBOW);
 		    m_initthrow(mtmp, rn2(20) ? CROSSBOW_BOLT : rn2(5) ? DROVEN_BOLT : KOKKEN, 30);
 		}
 		else {
@@ -288,6 +288,9 @@ register struct monst *mtmp;
 				m_initthrow(mtmp, GAS_GRENADE, 15);
 				break;
 			case 22:
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
 			case 23:
 			case 24:
 			case 25:
@@ -976,7 +979,7 @@ register struct monst *mtmp;
 			case PM_SHOPKEEPER:
 			case PM_PUNISHER:
 #ifdef FIREARMS
-			  (void) mongets(mtmp,SHOTGUN);
+			  (void) mongets(mtmp, rn2(50) ? SHOTGUN : SAWED_OFF_SHOTGUN);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
@@ -11436,6 +11439,11 @@ register int	mmflags;
 
 	}
 
+	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_abomination = 1;
+	}
+
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
@@ -13472,6 +13480,16 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
+	if (!rn2(50) && (mtmp->data->mcolor == CLR_GREEN || mtmp->data->mcolor == CLR_BRIGHT_GREEN) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o't plash") ) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(20) && is_pokemon(mtmp->data) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") )) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
 	if (mtmp->mpeaceful && is_animal(mtmp->data) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER && !rn2(100)) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
@@ -14817,6 +14835,8 @@ register struct permonst *ptr;
 	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(20) && !Role_if(PM_CONVICT) && u.ualign.type == A_LAWFUL) return TRUE;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
+
+	if (is_pokemon(ptr) && rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) return TRUE;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

@@ -5363,6 +5363,11 @@ dopois:
 			pline("You feel a tug on your knapsack"); break;
 		}
 
+		if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinsiy plash") )) {
+			if(could_seduceX(mtmp, &youmonst, mattk) == 1 && !mtmp->mcan)
+			    if (doseduce(mtmp)) return 3;
+		}
+
 		if (!rn2(25)) { /* Nymphs want to have some fun! :-) --Amy */
 
 			if(could_seduceX(mtmp, &youmonst, mattk) == 1 && !mtmp->mcan)
@@ -11823,6 +11828,10 @@ register struct monst *mon;
 	register struct obj *ring, *nring;
 	boolean fem = /*(mon->data == &mons[PM_SUCCUBUS])*/ (mon->female); /* otherwise incubus */
 	char qbuf[QBUFSZ];
+	boolean birthing;
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tug'ilgan mato") )) birthing = 1;
+	else birthing = 0;
 
 	if (mon->mcan || mon->mspec_used) {
 		pline("%s acts as though %s has got a %sheadache.",
@@ -12101,7 +12110,7 @@ register struct monst *mon;
 
 	/* "Disable Pregnancy via foocubus/seducing encounters - Let's not do this, shall we?" In Soviet Russia, people aren't being conceived by sexual intercourse. Rather, they just spawn because God decided to create them from thin air. They're also inexplicably prude, which probably is the reason why they don't want pregnancy in their video games either. I guess they won't touch Elona with a ten-foot pole... --Amy */
 
-	if (!rn2(50) && !issoviet) {
+	if (!rn2(birthing ? 3 : 50) && !issoviet) {
 
 	/* Yes, real-life pregnancy doesn't work like this. But I want to avoid having to make complicated functions,
 	   so the player will just get an egg that immediately hatches and may be tame. --Amy */

@@ -120,6 +120,9 @@ void livelog_achieve_update() {
 	livelog_write_string(strbuf);
 
 	last_achieve_int = achieve_int;
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+
 }
 
 /* Reports wishes */

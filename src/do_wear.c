@@ -16,6 +16,13 @@ static NEARDATA long taking_off = 0L;
 static NEARDATA int todelay;
 static boolean cancelled_don = FALSE;
 
+#define KEEN 		10000	/* memory increase reading the book */
+#define MAX_KNOW 	70000	/* Absolute Max timeout */
+#define spellid(spell)          spl_book[spell].sp_id
+#define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? KEEN \
+				 : ((spl_book[spell].sp_know + KEEN) > MAX_KNOW) ? MAX_KNOW \
+				 : spl_book[spell].sp_know + KEEN)
+
 static NEARDATA const char see_yourself[] = "see yourself";
 static NEARDATA const char unknown_type[] = "Unknown type of %s (%d)";
 static NEARDATA const char c_armor[]  = "armor",
@@ -55,6 +62,8 @@ void
 off_msg(otmp)
 register struct obj *otmp;
 {
+	if (!otmp) return;
+
 	if(flags.verbose)
 	    You("were wearing %s.", doname(otmp));
 }
@@ -64,6 +73,8 @@ STATIC_OVL void
 on_msg(otmp)
 register struct obj *otmp;
 {
+	if (!otmp) return;
+
 	if (flags.verbose) {
 	    char how[BUFSZ];
 
@@ -80,6 +91,8 @@ STATIC_OVL void
 on_msgdel(otmp)
 register struct obj *otmp;
 {
+	if (!otmp) return;
+
 	if (flags.verbose) {
 	    char how[BUFSZ];
 
@@ -132,6 +145,7 @@ Boots_on()
 	case SNEAKERS:
 	case BOOTS_OF_PLUGSUIT:
 	case FIELD_BOOTS:
+	case UGG_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
@@ -401,6 +415,7 @@ Boots_off()
 	case SNEAKERS:
 	case BOOTS_OF_PLUGSUIT:
 	case FIELD_BOOTS:
+	case UGG_BOOTS:
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
 	case HIGH_STILETTOS:
@@ -482,6 +497,43 @@ Cloak_on()
 	case SPECIAL_CLOAK:
 	case PLAIN_CLOAK:
 	case ARCHAIC_CLOAK:
+	case CLOAK_OF_AWAKENING:
+	case CLOAK_OF_STABILITY:
+	case ANTI_DISQUIET_CLOAK:
+	case HUGGING_GOWN:
+	case COCLOAK:
+	case CLOAK_OF_HEALTH:
+	case CLOAK_OF_DISCOVERY:
+	case BIONIC_CLOAK:
+	case CLOAK_OF_PORTATION:
+	case CLOAK_OF_CONTROL:
+	case CLOAK_OF_SHIFTING:
+	case FLOATCLOAK:
+	case CLOAK_OF_PRESCIENCE:
+	case SENSOR_CLOAK:
+	case CLOAK_OF_SPEED:
+	case VAULT_CLOAK:
+	case CLOAK_OF_SPELL_RESISTANCE:
+	case CLOAK_OF_PHYSICAL_RESISTANCE:
+	case OPERATION_CLOAK:
+	case BESTEST_CLOAK:
+	case CLOAK_OF_FREEDOM:
+	case BIKINI:
+	case CLOAK_OF_PERMANENCE:
+	case CLOAK_OF_SLOW_DIGESTION:
+	case CLOAK_OF_INFRAVISION:
+	case CLOAK_OF_BANISHING_FEAR:
+	case CLOAK_OF_MEMORY:
+	case CLOAK_OF_THE_FORCE:
+	case CLOAK_OF_SEEING:
+	case CLOAK_OF_CURSE_CATCHING:
+	case LION_CLOAK:
+	case TIGER_CLOAK:
+	case CLOAK_OF_PRACTICE:
+	case CLOAK_OF_ELEMENTALISM:
+	case PSIONIC_CLOAK:
+	case CLOAK_OF_MAP_AMNESIA:
+	case CLOAK_OF_TRANSFORMATION:
 
 	case CLOAK_OF_AGGRAVATION:
 	case CLOAK_OF_MAGICAL_BREATHING:
@@ -583,6 +635,133 @@ Cloak_on()
 	case OILSKIN_CLOAK:
 		pline("%s very tightly.", Tobjnam(uarmc, "fit"));
 		break;
+
+	case LETHE_CLOAK:
+		forget(ALL_SPELLS|ALL_MAP);
+		pline("You feel dizzy!");
+		break;
+	case CLOAK_OF_POLYMORPH:
+		{
+			register struct obj *polycloak;
+			if (uarmc) polycloak = poly_obj(uarmc, STRANGE_OBJECT);
+			if (polycloak && is_hazy(polycloak)) {
+				stop_timer(UNPOLY_OBJ, (genericptr_t) polycloak);
+				polycloak->oldtyp = STRANGE_OBJECT;
+			}
+			if (uarmc) (void) Cloak_off();
+			You_feel("a little %s.", Hallucination ? "normal" : "strange");
+			if (!Unchanging) polyself(FALSE);
+			return 0;
+			break;
+		}
+	case CLOAK_OF_WATER_SQUIRTING:
+		pline("A gush of water squirts all over your body!");
+		water_damage(invent, FALSE, FALSE);
+		break;
+	case CLOAK_OF_PARALYSIS:
+		pline("You're paralyzed!");
+		if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis");
+		else nomul(-rnd(20), "putting on a cloak of paralysis");
+		break;
+	case CLOAK_OF_SICKNESS:
+		if (Sick_resistance || !rn2(10) ) { /* small chance to not get infected even if not resistant --Amy */
+			You_feel("a slight illness.");
+		} else {
+			make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
+				"cloak of sickness", TRUE, SICK_NONVOMITABLE);
+		}
+
+		break;
+	case CLOAK_OF_SLIMING:
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+		    Slimed = 100L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "cloak of sliming";
+		}
+		break;
+	case CLOAK_OF_STARVING:
+		if (u.uhunger > 0) u.uhunger = -1;
+		else u.uhunger -= rnd(1000);
+		break;
+	case CLOAK_OF_CURSE:
+		attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+		break;
+	case CLOAK_OF_DISENCHANTMENT:
+		{
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+		break;
+	case CLOAK_OF_OUTRIGHT_EVILNESS:
+		{
+			register struct obj *objX;
+
+			for(objX = invent; objX ; objX = objX->nobj)
+				if (!rn2(5) && !stack_too_big(objX))	curse(objX);
+		}
+		break;
+	case CLOAK_OF_STONE:
+		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+				 polymon(PM_STONE_GOLEM)) ) {
+			pline("You start turning to stone!");
+			Stoned = 7;
+			delayed_killer = "cloak of stone";
+		}
+		break;
+	case CLOAK_OF_LYCANTHROPY:
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWOLF;
+			pline("You feel feverish.");
+		}
+		break;
+	case CLOAK_OF_UNLIGHT:
+		pline("Darkness surrounds you.");
+		litroomlite(FALSE);
+		break;
+	case CLOAK_OF_ESCALATION:
+		u.chokhmahdamage += rnd(5);
+		break;
+	case CLOAK_OF_MAGICAL_DRAINAGE:
+		drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
+		break;
+	case CLOAK_OF_ANGRINESS:
+		u.ugangr++;
+	      You("get the feeling that %s is angry...", u_gname());
+		break;
+	case CLOAK_OF_CANCELLATION:
+	      (void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		break;
+	case CLOAK_OF_TURN_LOSS:
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("Bad idea!");
+		}
+		if (moves < 10000000) { /* fail safe just to make sure you can't overflow the number --Amy */
+			moves += 1000;
+			monstermoves += 1000;
+		}
+		break;
+	case CLOAK_OF_ATTRIBUTE_LOSS:
+		adjattrib(A_STR, -1, FALSE);
+		adjattrib(A_DEX, -1, FALSE);
+		adjattrib(A_CON, -1, FALSE);
+		adjattrib(A_INT, -1, FALSE);
+		adjattrib(A_WIS, -1, FALSE);
+		adjattrib(A_CHA, -1, FALSE);
+		break;
+	case CLOAK_OF_TOTTER:
+		pline("You completely lose your sense of direction.");
+		u.totter = 1;
+		break;
+	case CLOAK_OF_DRAIN_LIFE:
+		losexp("a cloak of drain life", FALSE, TRUE);
+		break;
+
 	/* Alchemy smock gives poison _and_ acid resistance */
 #if 0
 	case ALCHEMY_SMOCK:
@@ -597,6 +776,27 @@ Cloak_on()
 			curse(uarmc);
 			uarmc->hvycurse = 1;
 			pline("An aura of evil darkness surrounds your cloak as you put it on!");
+		}
+	}
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") ) ) {
+		if (!uarmc->cursed) {
+			curse(uarmc);
+		}
+		pline("You feel ignorant.");
+	}
+
+	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qani plash") ) ) {
+		int i;
+		for (i = 0; i < MAXSPELL; i++)  {
+			if (spellid(i) == SPE_ALTER_REALITY) break;
+			else if (spellid(i) == NO_SPELL) {
+				spl_book[i].sp_id = SPE_ALTER_REALITY;
+				spl_book[i].sp_lev = objects[SPE_ALTER_REALITY].oc_level;
+				incrnknow(i);
+				pline("You gain the power of Eru Illuvator!");
+				break;
+			}
 		}
 	}
 
@@ -665,6 +865,65 @@ Cloak_off()
 	case CLOAK_OF_QUENCHING:
 	case CLOAK_OF_LEECH:
 	case FILLER_CLOAK:
+
+	case LETHE_CLOAK:
+	case CLOAK_OF_MAP_AMNESIA:
+	case CLOAK_OF_POLYMORPH:
+	case CLOAK_OF_TRANSFORMATION:
+	case CLOAK_OF_WATER_SQUIRTING:
+	case CLOAK_OF_PARALYSIS:
+	case CLOAK_OF_SICKNESS:
+	case CLOAK_OF_SLIMING:
+	case CLOAK_OF_STARVING:
+	case CLOAK_OF_CURSE:
+	case CLOAK_OF_DISENCHANTMENT:
+	case CLOAK_OF_OUTRIGHT_EVILNESS:
+	case CLOAK_OF_STONE:
+	case CLOAK_OF_LYCANTHROPY:
+	case CLOAK_OF_UNLIGHT:
+	case CLOAK_OF_ESCALATION:
+	case CLOAK_OF_MAGICAL_DRAINAGE:
+	case CLOAK_OF_ANGRINESS:
+	case CLOAK_OF_CANCELLATION:
+	case CLOAK_OF_TURN_LOSS:
+	case CLOAK_OF_ATTRIBUTE_LOSS:
+	case CLOAK_OF_TOTTER:
+	case CLOAK_OF_DRAIN_LIFE:
+	case CLOAK_OF_AWAKENING:
+	case CLOAK_OF_STABILITY:
+	case ANTI_DISQUIET_CLOAK:
+	case HUGGING_GOWN:
+	case COCLOAK:
+	case CLOAK_OF_HEALTH:
+	case CLOAK_OF_DISCOVERY:
+	case BIONIC_CLOAK:
+	case CLOAK_OF_PORTATION:
+	case CLOAK_OF_CONTROL:
+	case CLOAK_OF_SHIFTING:
+	case FLOATCLOAK:
+	case CLOAK_OF_PRESCIENCE:
+	case SENSOR_CLOAK:
+	case CLOAK_OF_SPEED:
+	case VAULT_CLOAK:
+	case CLOAK_OF_SPELL_RESISTANCE:
+	case CLOAK_OF_PHYSICAL_RESISTANCE:
+	case OPERATION_CLOAK:
+	case BESTEST_CLOAK:
+	case CLOAK_OF_FREEDOM:
+	case BIKINI:
+	case CLOAK_OF_PERMANENCE:
+	case CLOAK_OF_SLOW_DIGESTION:
+	case CLOAK_OF_INFRAVISION:
+	case CLOAK_OF_BANISHING_FEAR:
+	case CLOAK_OF_MEMORY:
+	case CLOAK_OF_THE_FORCE:
+	case CLOAK_OF_SEEING:
+	case CLOAK_OF_CURSE_CATCHING:
+	case LION_CLOAK:
+	case TIGER_CLOAK:
+	case CLOAK_OF_PRACTICE:
+	case CLOAK_OF_ELEMENTALISM:
+	case PSIONIC_CLOAK:
 
 	case CLOAK_OF_AGGRAVATION:
 	case CLOAK_OF_CONFLICT:
@@ -1573,10 +1832,15 @@ Armor_on()
 	/* KMH -- certain armor is obvious when worn */
 	switch (uarm->otyp) {
 		case ROBE_OF_PROTECTION:
+		case ROBE_OF_DEFENSE:
 		case ROBE_OF_WEAKNESS:
 			makeknown(uarm->otyp);
 			break;
 	}
+	if (uarm && uarm->otyp == ROBE_OF_NASTINESS) {
+		if (!uarm->cursed) curse(uarm);
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -1685,7 +1949,7 @@ Amulet_on()
 	    }
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
-	case AMULET_OF_POLYMORPH:        
+	case AMULET_OF_POLYMORPH:
 		makeknown(AMULET_OF_POLYMORPH);
 		You("feel rather strange.");
 		polyself(FALSE);
@@ -1698,6 +1962,25 @@ Amulet_on()
 		pline("It constricts your throat!");
 		Strangled = 6;
 		break;
+
+	case AMULET_OF_STONE:
+		makeknown(AMULET_OF_STONE);
+		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+				 polymon(PM_STONE_GOLEM)) ) {
+			pline("You start turning to stone!");
+			Stoned = 7;
+			stop_occupation();
+			delayed_killer = "amulet of stone";
+		}
+		break;
+	case AMULET_OF_DEPRESSION:
+		/* don't always give a message, and a vague one if at all --Amy */
+		if (!rn2(3)) pline("You feel down...");
+		if (u.uluck > 0) u.uluck = -u.uluck;
+		if (u.ualign.record > 0) u.ualign.record = -u.ualign.record;
+
+		break;
+
 
 	case AMULET_OF_RESTFUL_SLEEP:
 		if Race_if(PM_KOBOLT) break;
@@ -1720,7 +2003,7 @@ Amulet_on()
 		} else HSleeping = rnd(1000);
 		break;
 	case AMULET_OF_DATA_STORAGE:
-		You("feel full of knowledge.");
+		You_feel("full of knowledge.");
 		break;
 	case AMULET_OF_YENDOR:
 		break;
@@ -1810,7 +2093,7 @@ Amulet_off()
 			HSleeping = 0;
 		return;
 	case AMULET_OF_DATA_STORAGE:
-		You("feel intellectually poor.");
+		You_feel("intellectually poor.");
 		break;
 	/* KMH, balance patch -- added */
 	case AMULET_OF_FLYING:
@@ -3036,6 +3319,16 @@ find_ac()
 		uarm->otyp==ROBE ||
 		uarm->otyp==ROBE_OF_POWER ||
 		uarm->otyp==ROBE_OF_WEAKNESS ||
+		uarm->otyp==ROBE_OF_MAGIC_RESISTANCE ||
+		uarm->otyp==ROBE_OF_PERMANENCE ||
+		uarm->otyp==ROBE_OF_SPELL_POWER ||
+		uarm->otyp==ROBE_OF_FAST_CASTING ||
+		uarm->otyp==ROBE_OF_ENERGY_SUCTION ||
+		uarm->otyp==ROBE_OF_RANDOMNESS ||
+		uarm->otyp==ROBE_OF_DEFENSE ||
+		uarm->otyp==ROBE_OF_SPECIALTY ||
+		uarm->otyp==ROBE_OF_NASTINESS ||
+		uarm->otyp==ROBE_OF_PSIONICS ||
 		uarm->otyp==ROBE_OF_PROTECTION) && !uarms) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
@@ -3125,6 +3418,8 @@ find_ac()
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya")) ) {
 		uac -= 5;
 	}
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) uac += 5;
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;

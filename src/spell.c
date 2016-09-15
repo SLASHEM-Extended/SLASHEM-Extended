@@ -658,6 +658,13 @@ age_spells()
 		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
 
 		if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+
+		if (spellknow(i) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "unutuvchan plash") ) ) {
+			decrnknow(i);
+			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+
+		}
+
 	    }
 	return;
 }
@@ -2200,6 +2207,7 @@ int spell;
 	/* Calculate armor penalties */
 	if (uarm && !(uarm->otyp == ROBE ||
 		      uarm->otyp == ROBE_OF_POWER ||
+		      uarm->otyp == ROBE_OF_SPELL_POWER ||
 		      uarm->otyp == ROBE_OF_PROTECTION)) 
 	    splcaster += 2;
 
@@ -2224,6 +2232,7 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
+	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) splcaster -= 3;
 	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SPELL_POWER) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_SPIDERSILK) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) splcaster -= 3;
@@ -2353,9 +2362,15 @@ int spell;
 
 	if (issoviet) chance -= 30;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
+	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) chance += 20;
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) ) chance -= 20;
+
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
 	if (chance < (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10) ) chance = (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 

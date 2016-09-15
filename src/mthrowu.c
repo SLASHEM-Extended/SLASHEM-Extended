@@ -1323,6 +1323,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 			obj_type != JAPAN_WAX_CANDLE &&
 			obj_type != OIL_CANDLE &&
 			obj_type != NATURAL_CANDLE &&
+			obj_type != UNSPECIFIED_CANDLE &&
 			obj_type != GENERAL_CANDLE &&
 			obj_type != LENSES &&
 			obj_type != TIN_WHISTLE &&

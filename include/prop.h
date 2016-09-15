@@ -290,7 +290,9 @@
 #define MANALEECH 257
 #define DEAC_MANALEECH 258
 
-#define SECOND_CHANCE		259
+#define MAP_AMNESIA 259
+
+#define SECOND_CHANCE		260
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

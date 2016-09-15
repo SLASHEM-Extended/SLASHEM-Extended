@@ -3539,7 +3539,7 @@ newboss:
 			break;
 		case WAN_WISHING:
 			known = TRUE;
-			if(Luck + rn2(5) < 0) {
+			if ((Luck + rn2(5) < 0) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
 				pline("Unfortunately, nothing happens.");
 				break;
 			}
@@ -3549,7 +3549,7 @@ newboss:
 			known = TRUE;
 			int acquireditem;
 			acquireditem = 0;
-			if(Luck + rn2(5) < 0) {
+			if ((Luck + rn2(5) < 0) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
 				pline("Unfortunately, nothing happens.");
 				break;
 			}

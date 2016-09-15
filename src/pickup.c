@@ -1404,6 +1404,13 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		return 1;	/* tried to pick something up and failed, but
 				   don't want to terminate pickup loop yet   */
 	    }
+	} else  if (obj->otyp == SCR_INSTANT_AMNESIA) {
+
+		useupf(obj, obj->quan);
+		forget(ALL_SPELLS|ALL_MAP);
+		pline("If ever I should forget, May God make me more wretched Than ever I have been yet!");
+		return 1;	/* tried to pick something up and failed, but
+				   don't want to terminate pickup loop yet   */
 	}
 
 	if ((res = lift_object(obj, (struct obj *)0, &count, telekinesis)) <= 0)

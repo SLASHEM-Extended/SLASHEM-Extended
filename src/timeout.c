@@ -231,7 +231,7 @@ nh_timeout()
 	if (MCReduction && MCReduction % 5000 == 0) pline("Your magic cancellation seems to work a bit better again.");
 
 	if (u.negativeprotection && !rn2(2500)) u.negativeprotection--;
-	if (u.chokhmahdamage && !rn2(10000)) u.chokhmahdamage--;
+	if (u.chokhmahdamage && !rn2(10000) && !(uarmc && uarmc->otyp == CLOAK_OF_ESCALATION) ) u.chokhmahdamage--;
 
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
@@ -2901,6 +2901,10 @@ nh_timeout()
 			if (!Teleport_control)
 				You("feel a little less in control of yourself.");
 			break;
+		case POLYMORPH_CONTROL:
+			if (!Polymorph_control)
+				You("feel a little less in control of your form.");
+			break;
 		case TELEPAT:
 			if (!HTelepat)
 				You("feel a little less mentally acute.");
@@ -4162,6 +4166,7 @@ long timeout;
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
 	    case NATURAL_CANDLE:
+	    case UNSPECIFIED_CANDLE:
 	    case GENERAL_CANDLE:
 		switch (obj->age) {
 		    case 75:
@@ -4495,6 +4500,7 @@ begin_burn(obj, already_lit)
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
 	    case NATURAL_CANDLE:
+	    case UNSPECIFIED_CANDLE:
 	    case GENERAL_CANDLE:
 		/* magic times are 75, 15, and 0 */
 		if (obj->age > 75L)

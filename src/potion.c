@@ -2088,6 +2088,9 @@ register struct obj *otmp;
 	else if (mcarried(otmp)) m_useup(otmp->ocarry, otmp);
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
 	else dealloc_obj(otmp);		/* Dummy potion */
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levuntation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levitatsii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "havo rido kiygan suzadi") )) badeffect();
+
 	return(1);
 }
 
@@ -3403,6 +3406,9 @@ healup(nhp, nxtra, curesick, cureblind)
 	int nhp, nxtra;
 	register boolean curesick, cureblind;
 {
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") )) nhp *= 2;
+
 	if (nhp) {
 		if (Upolyd) {
 			u.mh += nhp;
@@ -3426,6 +3432,9 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	int nhp, nxtra;
 	register boolean curesick, cureblind;
 {
+
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") ) ) nhp *= 2;
+
 	if (nhp) {
 		mtmp->mhp += nhp;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = (mtmp->mhpmax += nxtra);

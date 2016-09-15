@@ -1432,7 +1432,7 @@ boolean at_stairs, falling, portal;
 
 		}
 
-		if (isangbander) { /* level feelings --Amy */
+		if (isangbander || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
 
 			if (!rn2( (Luck*5) + 200)) {
 				pline("This place seems like murder!");

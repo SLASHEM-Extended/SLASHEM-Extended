@@ -186,7 +186,7 @@ struct obj *objlist, *obj;
 	struct monst *shkp;
 	int save_nocharge;
 
-	if (obj->otyp == SCR_SCARE_MONSTER)	/* punt on these */
+	if (obj->otyp == SCR_SCARE_MONSTER || obj->otyp == SCR_INSTANT_AMNESIA)	/* punt on these */
 	    return (struct obj *)0;
 	/* if this is an item on the shop floor, the attributes it will
 	   have when carried are different from what they are now; prevent
@@ -3204,6 +3204,11 @@ void
 fully_identify_obj(otmp)
 struct obj *otmp;
 {
+	if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") )) {
+		pline("You are too ignorant, and therefore the identification attempt fails.");
+		return;
+	}
+
 	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 	else if (otmp->oclass == RING_CLASS && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
@@ -3224,6 +3229,11 @@ void
 maybe_fully_identify_obj(otmp)
 struct obj *otmp;
 {
+	if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") )) {
+		pline("You are too ignorant, and therefore the identification attempt fails.");
+		return;
+	}
+
 	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 	else if (otmp->oclass == RING_CLASS && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
@@ -4358,7 +4368,7 @@ register struct obj *otmp;
 
 	if (!objects[otmp->otyp].oc_merge) return 0;
 
-	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
+	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == UNSPECIFIED_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
 
 	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_DART) || (objects[otmp->otyp].oc_skill == -P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) return 1;
 
@@ -5354,6 +5364,8 @@ struct obj *obj;
 				pline("Very slow, two-handed, but highly accurate. It fires single bullets."); break;
 			case SHOTGUN: 
 				pline("A short-range firearm that fires highly damaging (and accurate) shotgun shells."); break;
+			case SAWED_OFF_SHOTGUN: 
+				pline("It's a one-handed shotgun with bad to-hit, but its rate of fire is better than the regular shotgun."); break;
 			case AUTO_SHOTGUN: 
 				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat."); break;
 			case ROCKET_LAUNCHER: 
@@ -5388,6 +5400,8 @@ struct obj *obj;
 				pline("The crossbow is a two-handed ranged weapon that fires bolts, doing respectable damage. Put a stack of bolts in your quiver to fire."); break;
 			case DROVEN_CROSSBOW: 
 				pline("A more accurate, one-handed version of the crossbow. Use it to fire bolts at your enemies."); break;
+			case POWER_CROSSBOW: 
+				pline("Two-handed crossbow that can fire more quickly than a regular one."); break;
 			case DEMON_CROSSBOW: 
 				pline("An automatic crossbow that can quiver several bolts in a single turn."); break;
 			case PILE_BUNKER: 
@@ -5619,6 +5633,73 @@ struct obj *obj;
 			pline("Sniper alert! Your beam spells and wands will have bigger range while wearing this pair of gloves, but because the Amy is stupid, she accidentally gave the bonus to monster-caused beams too... :-P");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "janubiy koreyaning kavushlari"))))
 			pline("If you want to turn into a sweet asian amazon, wear these multicolored sweeties. They make you more resistant to fire and also confer weak displacement, but monsters will hit you more often in melee.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "spider boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pauk sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rgimchak chizilmasin"))))
+			pline("Spider webs will not hold you in place as long as you wear this pair of boots.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamuflaj to'n"))))
+			pline("A robe in urban camo colors that makes you more difficult to spot for your enemies.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sakkizinchi rang to'n"))))
+			pline("This robe is imbued with special magic. Sometimes it will send beams back at whoever fired them.");
+
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "unutuvchan plash"))))
+			pline("You will forget your spells more quickly while wearing this cloak.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "changing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "izmeneniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'zgaruvchan plash"))))
+			pline("It causes a weaker form of polymorphitis; wear it at your own risk!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qobiq plash"))))
+			pline("This cloak provides an antimagic shell that can cause you to sometimes fail when trying to cast a spell, but the same applies to spellcasting monsters.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xitoy plash"))))
+			pline("It is labelled 'Arabella's Bank of Crossroads Employee of the Month'.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "polyform cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sopolimer forma plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "belgigacha bo'lgan poli shakli plash"))))
+			pline("Very rarely, you may get a controlled polymorph while wearing this cloak. But beware, occasionally it will be an uncontrolled polymorph instead!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yutucu plash"))))
+			pline("This cloak absorbs light, and will usually cause monsters to be short-sighted.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deep cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "glubokiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chuqur plash"))))
+			pline("While wearing this cloak, you will occasionally be displaced so monsters have a harder time hitting you, and it can also sometimes prevent level drain effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "portlash-pushti plash"))))
+			pline("Yes, it doesn't really make sense, but while wearing this bright pink color, monsters will be reluctant to close in on you.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tug'ilgan mato"))))
+			pline("Do you wanna have children? Then wear this as you're about to have a sexual encounter!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o't plash"))))
+			pline("It's a very green cloak. So green in fact that green-colored monsters may spontaneously become your pets.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "contaminated coat") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zagryaznennoye pal'to") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ifloslangan palto"))))
+			pline("This coat is contaminated with botulism spores! If you wear it, you will become deathly ill every once in a while!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash"))))
+			pline("It's a cloak that shows signs of withering... but strangely enough, that seems to make it much more resilient to damage. After all, if it's already damaged beyond repair, it cannot be damaged any further!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "johil plash"))))
+			pline("You will become an ignorant fool if you put on this cloak. It will autocurse and occasionally cause your item identification attempts to fail.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qasoskor plash"))))
+			pline("Did you watch the 'Avengers' movies? With this cloak, you can become mighty like Thor and do extra damage with hammers, but such power also comes at a cost: you will aggravate monsters and go hungry much more quickly.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gravity cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gravitatsionnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "agar tortishish kuchi plash"))))
+			pline("Gravity will randomly warp around you while wearing this cloak, causing you to be stunned and disoriented.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "istalgan plash"))))
+			pline("Your wishes will work even with negative luck as long as you're wearing this cloak.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soktudun mongo plash"))))
+			pline("It turns you into a smombie, but also causes all pokemon to spawn peaceful most of the time. Sometimes they'll even be generated tame. Beware: if any of your pets dies while you wear it, your deity will get angry!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "levuntation cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "levitatsii plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "havo rido kiygan suzadi"))))
+			pline("There is no actual 'levuntation' effect, but wearing this cloak will make all of your potions unsafe to drink.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tez safar plash"))))
+			pline("A highly dangerous cloak that will prevent multi-turn actions from being interrupted.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qani plash"))))
+			pline("If you're a geek or graduate, you will gain the power of Eru Illuvator (sic) by putting it on!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hamshira plash"))))
+			pline("Effects that heal you will be improved while you wear it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jinsiy plash"))))
+			pline("Wearing it increases the chance of receiving sexual pleasure from nymphs. :-)");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rta yer qal'a plash"))))
+			pline("While you wear this cloak, the game will behave like Angband. Just see for yourself.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleecy-colored cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vorsistyye tsvetnoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "serjun rangli plash"))))
+			pline("The colors are very fleecy! <3 Everyone will like you much more, and therefore your charisma will go way up while you wear it!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eb buzilishi plash"))))
+			pline("You will suffer from a terrible, life-threatening condition if you wear it. DANGER: anorexia exists in real life too and is just as deadly there. The Amy will not be responsible if you stupidly kill yourself by refusing to eat!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "flash cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "flesh-plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bir flesh plash"))))
+			pline("This cloak will occasionally hit you with a flash of light that causes blindness.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash"))))
+			pline("Just in case you felt like SLASH'EM Extended was too easy, this cloak will recalculate a bunch of things to make it harder for you.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks libosi"))))
+			pline("Wearing this cloak will make you a better martial artist. However, if you don't have the martial arts skill, you won't receive a bonus.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jamoasi xavfsizlik plash"))))
+			pline("Gogo junethack team splat! TROPHY GET! :D");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "aql bovar qilmaydigan plash"))))
+			pline("While wearing this cloak, mundane monsters can sometimes turn into dangerous eldritch abominations.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -5739,27 +5820,47 @@ struct obj *obj;
 				pline("Bad AC and medium magic cancellation aren't good enough to make this 'armor' worth using IMHO, plus you'll look like a retard if you wear it."); break;
 			case CURING_UNIFORM: 
 				pline("One of Chris_ANG's overpowered creations, this uniform grants sickness resistance. However, there is a dragon scale mail that gives the same property and much more AC. :D"); break;
-			case HAWAIIAN_SHORTS: 
+			case HAWAIIAN_SHORTS:
 				pline("A totally useless armor that grants absolutely nothing. Bonus points if it is cursed and prevents you from wearing an actual armor."); break;
-			case ROBE: 
+			case ROBE:
 				pline("Robes can be worn instead of armor. This is mainly useful for monks and jedi who are penalized for wearing 'real' armor."); break;
-			case ROBE_OF_PROTECTION: 
+			case ROBE_OF_PROTECTION:
 				pline("If you don't want to wear a real armor, you can use this for some armor class."); break;
-			case ROBE_OF_POWER: 
+			case ROBE_OF_POWER:
 				pline("Wearing this robe improves your spellcasting ability but prevents you from wearing an actual suit of armor."); break;
-			case ROBE_OF_WEAKNESS: 
+			case ROBE_OF_WEAKNESS:
 				pline("If you wear this robe, you will be permanently stunned. They are usually generated cursed."); break;
-			case GRAY_DRAGON_SCALE_MAIL: 
+			case ROBE_OF_MAGIC_RESISTANCE:
+				pline("A robe that provides magic resistance."); break;
+			case ROBE_OF_PERMANENCE:
+				pline("This robe provides several elemental resistances when worn!"); break;
+			case ROBE_OF_SPELL_POWER:
+				pline("Your spells will be much easier to cast while you wear this."); break;
+			case ROBE_OF_FAST_CASTING:
+				pline("Grants energy regeneration when worn."); break;
+			case ROBE_OF_ENERGY_SUCTION:
+				pline("You can wear this robe to become a better caster - every time you kill something, you recover a bit of mana!"); break;
+			case ROBE_OF_RANDOMNESS:
+				pline("A robe with a random enchantment, which happens to be %s. AC is %d, and MC is %d.", enchname(objects[ROBE_OF_RANDOMNESS].oc_oprop), objects[ROBE_OF_RANDOMNESS].a_ac, objects[ROBE_OF_RANDOMNESS].a_can); break;
+			case ROBE_OF_SPECIALTY:
+				pline("This robe is always generated with some special enchantment."); break;
+			case ROBE_OF_DEFENSE:
+				pline("A robe that provides good armor class and maximum magic cancellation."); break;
+			case ROBE_OF_NASTINESS:
+				pline("Wear this robe if you're feeling ballsy, and are ready to suffer from a nasty side effect in exchange for great armor class and magic cancellation."); break;
+			case ROBE_OF_PSIONICS:
+				pline("This robe gives psi resistance."); break;
+			case GRAY_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as magic resistance."); break;
-			case SILVER_DRAGON_SCALE_MAIL: 
+			case SILVER_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as reflection."); break;
-			case MERCURIAL_DRAGON_SCALE_MAIL: 
+			case MERCURIAL_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as extra speed."); break;
-			case SHIMMERING_DRAGON_SCALE_MAIL: 
+			case SHIMMERING_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as displacement."); break;
-			case DEEP_DRAGON_SCALE_MAIL: 
+			case DEEP_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as level-drain resistance."); break;
-			case RED_DRAGON_SCALE_MAIL: 
+			case RED_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as fire resistance."); break;
 			case WHITE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as cold resistance."); break;
@@ -5973,6 +6074,123 @@ struct obj *obj;
 				pline("Very useful cloak that grants maximum magic cancellation and manaleech."); break;
 			case FILLER_CLOAK:
 				pline("This cloak gives maximum magic cancellation and nothing else."); break;
+
+			case LETHE_CLOAK:
+				pline("Maximum magic cancellation, but putting it on causes amnesia once."); break;
+			case CLOAK_OF_MAP_AMNESIA:
+				pline("This cloak provides maximum magic cancellation and prevents you from remembering the map."); break;
+			case CLOAK_OF_POLYMORPH:
+				pline("Trying to wear this cloak will polymorph both you and the cloak!"); break;
+			case CLOAK_OF_TRANSFORMATION:
+				pline("A cloak that causes polymorphitis and is usually generated cursed. It provides maximum magic cancellation."); break;
+			case CLOAK_OF_WATER_SQUIRTING:
+				pline("Putting it on will wet your entire inventory, but once you do actually have it on, it's just a MC3 cloak."); break;
+			case CLOAK_OF_PARALYSIS:
+				pline("If you put on this cloak, you will be paralyzed for a few turns. It doesn't cause more paralysis while worn though, and has maximum magic cancellation."); break;
+			case CLOAK_OF_SICKNESS:
+				pline("You will become deathly sick in a way that cannot be vomited out of your body if you wear this. Cure the sickness and it will act as a standard cloak with maximum magic cancellation."); break;
+			case CLOAK_OF_SLIMING:
+				pline("A cloak that turns you to slime if you put it on. If you can solve that problem, it will then give maximum magic cancellation and nothing else."); break;
+			case CLOAK_OF_STARVING:
+				pline("This cloak makes you very hungry if you wear it, but it only happens during the act of putting it on. Afterwards it's safe to keep on, and gives maximum magic cancellation."); break;
+			case CLOAK_OF_CURSE:
+				pline("You will probably lose some of your intrinsics if you wear this cloak, but once you actually wear it, no more bad stuff will happen. Instead, you get maximum magic cancellation."); break;
+			case CLOAK_OF_DISENCHANTMENT:
+				pline("Wearing this cloak will try to disenchant your open inventory, but as soon as you have it on, it's safe. It also provides maximum magic cancellation."); break;
+			case CLOAK_OF_OUTRIGHT_EVILNESS:
+				pline("The act of putting on this cloak can curse your entire inventory. Afterwards, it will provide a bit of AC and maximum magic cancellation without further curse effects."); break;
+			case CLOAK_OF_STONE:
+				pline("Wear it, and you'll turn to stone! But if you can cure that, it will then act as a standard MC3 cloak."); break;
+			case CLOAK_OF_LYCANTHROPY:
+				pline("Putting this cloak on allows you to acquire lycanthropy, which will always make you a wereWOLF as opposed to another wereform. It also gives more AC than usual and maximum magic cancellation."); break;
+			case CLOAK_OF_UNLIGHT:
+				pline("If you put on this cloak, the area around you will become unlit. But you can walk around in it normally and it won't darken any other areas unless you take it off and put it on again. It also has maximum magic cancellation."); break;
+			case CLOAK_OF_ESCALATION:
+				pline("Putting it on increases the escalation damage amount, and while you wear it, escalation won't time out. It also gives maximum magic cancellation."); break;
+			case CLOAK_OF_MAGICAL_DRAINAGE:
+				pline("Putting it on drains your mana once, then it works as a standard maximum magic cancellation cloak."); break;
+			case CLOAK_OF_ANGRINESS:
+				pline("Wearing this cloak will anger your deity, which is probably not a good idea, but if you don't care about that, it will then provide 3 points of AC and magic cancellation of 3."); break;
+			case CLOAK_OF_CANCELLATION:
+				pline("If you wear it, there is a chance that your items are cancelled once. After that it just gives maximum magic cancellation."); break;
+			case CLOAK_OF_TURN_LOSS:
+				pline("The turn counter will increase by 1000 if you wear it, and this cloak will also heavily autocurse. It provides maximum magic cancellation."); break;
+			case CLOAK_OF_ATTRIBUTE_LOSS:
+				pline("Wearing this cloak will decrease all of your stats by one. It provides maximum magic cancellation."); break;
+			case CLOAK_OF_TOTTER:
+				pline("You probably should not put this on, because if you do, your directional keys will be reversed _permanently_! It also gives 3 points of AC and maximum magic cancellation."); break;
+			case CLOAK_OF_DRAIN_LIFE:
+				pline("If you put it on, this cloak will drain you once. Afterwards it's just a plain cloak with maximum magic cancellation."); break;
+			case CLOAK_OF_AWAKENING:
+				pline("Sleep resistance and maximum magic cancellation."); break;
+			case CLOAK_OF_STABILITY:
+				pline("This cloak provides disintegration resistance and maximum magic cancellation!"); break;
+			case ANTI_DISQUIET_CLOAK:
+				pline("A cloak that makes you resistant to poison, and it also has the required MC3."); break;
+			case HUGGING_GOWN:
+				pline("It's a kind of lab coat, although this one only provides acid resistance. It also has maximum magic cancellation."); break;
+			case COCLOAK:
+				pline("Is its name a pun on the words 'cock' and 'cloak' sounding similar? Anyway, it protects you from cockatrices by making you resistant to stoning, and it has maximum magic cancellation to boot!"); break;
+			case CLOAK_OF_HEALTH:
+				pline("Provides regeneration and MC3."); break;
+			case CLOAK_OF_DISCOVERY:
+				pline("This cloak grants autosearching as well as MC3."); break;
+			case BIONIC_CLOAK:
+				pline("You can see invisible things while wearing this cloak, and will also have maximum magic cancellation."); break;
+			case CLOAK_OF_PORTATION:
+				pline("Teleportitis and MC3 are the effects of wearing this cloak!"); break;
+			case CLOAK_OF_CONTROL:
+				pline("A cloak that allows you to control teleports, and it gives maximum magic cancellation."); break;
+			case CLOAK_OF_SHIFTING:
+				pline("You will have polymorph control while wearing it, and MC3 of course."); break;
+			case FLOATCLOAK:
+				pline("It causes you to levitate, and also provides maximum magic cancellation."); break;
+			case CLOAK_OF_PRESCIENCE:
+				pline("A cloak that provides warning and maximum magic cancellation."); break;
+			case SENSOR_CLOAK:
+				pline("You will have extra-sensory perception as well as maximum magic cancellation while wearing it."); break;
+			case CLOAK_OF_SPEED:
+				pline("Well, if you guessed that wearing it will make you very fast, you're right! And like any other good ascension kit cloak, it provides maximum magic cancellation."); break;
+			case VAULT_CLOAK:
+				pline("A cloak that allows you to jump around while also giving maximum magic cancellation."); break;
+			case CLOAK_OF_SPELL_RESISTANCE:
+				pline("You will resist spell damage by wearing this, and it also has MC3."); break;
+			case CLOAK_OF_PHYSICAL_RESISTANCE:
+				pline("You will resist physical damage by wearing this, and it also has MC3."); break;
+			case OPERATION_CLOAK:
+				pline("This cloak prevents you from becoming deathly sick and also has maximum magic cancellation."); break;
+			case BESTEST_CLOAK:
+				pline("It's the best cloak in existence! Putting it on will reveal the locations of all undead monsters, and of course it has to have MC3 as well!"); break;
+			case CLOAK_OF_FREEDOM:
+				pline("A cloak of free action. You probably expect it to have maximum magic cancellation, and of course it does."); break;
+			case BIKINI:
+				pline("A cloak that allows you to swim in water, but unfortunately it only provides medium magic cancellation."); break;
+			case CLOAK_OF_PERMANENCE:
+				pline("This cloak prevents you from polymorphing, so it should actually be called 'cloak of unchanging'. It also grants maximum magic cancellation."); break;
+			case CLOAK_OF_SLOW_DIGESTION:
+				pline("It slows your metabolism while also granting MC3."); break;
+			case CLOAK_OF_INFRAVISION:
+				pline("If you're not of a race that has intrinsic infravision, you can wear this cloak to get it extrinsically. It also gives MC3 extrinsically, because there is no intrinsic MC. :-P"); break;
+			case CLOAK_OF_BANISHING_FEAR:
+				pline("You cannot be subjected to the detrimental 'Fear' status effect while wearing this cloak, and your magic cancellation will also be maxxed."); break;
+			case CLOAK_OF_MEMORY:
+				pline("Provides keen memory and maximum magic cancellation."); break;
+			case CLOAK_OF_THE_FORCE:
+				pline("While wearing this cloak, the power of the #force command is extended if you use it on monsters. It also grants maximum magic cancellation."); break;
+			case CLOAK_OF_SEEING:
+				pline("Your line of sight will extend to 2 squares while wearing it, and it also gives maximum magic cancellation."); break;
+			case CLOAK_OF_CURSE_CATCHING:
+				pline("This very helpful cloak makes you highly resistant to the obnoxious 'curse items' spell that monsters like to use, and also grants maximum magic cancellation."); break;
+			case LION_CLOAK:
+				pline("A cloak that grants stun resistance; you can still be stunned, but the effect will be less crippling. And of course it provides MC3."); break;
+			case TIGER_CLOAK:
+				pline("This special cloak will lessen the effects of confusion and also provides MC3."); break;
+			case CLOAK_OF_PRACTICE:
+				pline("You can wear this cloak if you want to train your skills more quickly, and it grants MC3 as well!"); break;
+			case CLOAK_OF_ELEMENTALISM:
+				pline("A cloak that makes you resistant to the base elements while also giving you maximum magic cancellation."); break;
+			case PSIONIC_CLOAK:
+				pline("Psi resistance and maximum magic cancellation are what you get by wearing this."); break;
 
 			case AYANAMI_WRAPPING:
 				pline("No defense but low magic cancellation."); break;
@@ -6394,6 +6612,8 @@ struct obj *obj;
 				pline("This footwear causes increased difficulty. They provide mediocre AC and medium magic cancellation."); break;
 			case BOOTS_OF_WEAKNESS:
 				pline("This footwear causes weakness. They provide good AC and medium magic cancellation."); break;
+			case UGG_BOOTS:
+				pline("According to jonadab these things are ugly, and therefore wearing them will reduce your charisma."); break;
 			case BOOTS_OF_FREEDOM:
 				pline("A pair of very comfortable boots that cause attempts to paralyze you to fail."); break;
 			case BOOTS_OF_TOTAL_STABILITY:
@@ -6715,21 +6935,27 @@ struct obj *obj;
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case AMULET_OF_CHANGE: 
+			case AMULET_OF_CHANGE:
 				pline("Wearing this amulet causes you to become female if you were male, and in reverse. The amulet will then disintegrate."); break;
-			case AMULET_OF_POLYMORPH: 
+			case AMULET_OF_POLYMORPH:
 				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
-			case AMULET_OF_DRAIN_RESISTANCE: 
+			case AMULET_OF_STONE:
+				pline("This amulet turns you to stone if you wear it."); break;
+			case AMULET_OF_MAP_AMNESIA:
+				pline("While you have this amulet around your neck, you're unable to remember the current level map."); break;
+			case AMULET_OF_DEPRESSION:
+				pline("Putting on this amulet turns positive luck and alignment record negative."); break;
+			case AMULET_OF_DRAIN_RESISTANCE:
 				pline("This amulet gives level-drain resistance if worn."); break;
-			case AMULET_OF_ESP: 
+			case AMULET_OF_ESP:
 				pline("An amulet of extra-sensory perception, a.k.a. telepathy."); break;
-			case AMULET_OF_UNDEAD_WARNING: 
+			case AMULET_OF_UNDEAD_WARNING:
 				pline("If you wear this amulet, you can detect the presence of undead."); break;
-			case AMULET_OF_OWN_RACE_WARNING: 
+			case AMULET_OF_OWN_RACE_WARNING:
 				pline("If you wear this amulet, you can detect the presence of monsters that are the same race as you."); break;
-			case AMULET_OF_POISON_WARNING: 
+			case AMULET_OF_POISON_WARNING:
 				pline("If you wear this amulet, you can detect the presence of poisonous monsters."); break;
-			case AMULET_OF_COVETOUS_WARNING: 
+			case AMULET_OF_COVETOUS_WARNING:
 				pline("If you wear this amulet, you can detect the presence of covetous monsters."); break;
 			case AMULET_OF_FLYING:
 				pline("Wearing this amulet allows the wearer to fly."); break;
@@ -6897,6 +7123,8 @@ struct obj *obj;
 				pline("This candle is rare but not really different from other types of candle - light it to see in the dark."); break;
 			case NATURAL_CANDLE: 
 				pline("A candle made of 100%% natural materials that you can light."); break;
+			case UNSPECIFIED_CANDLE: 
+				pline("No one really knows what this candle is made of but it can be lit."); break;
 			case MAGIC_CANDLE: 
 				pline("A permanent light source that might be useful in dark areas."); break;
 			case OIL_LAMP: 
@@ -7494,6 +7722,8 @@ struct obj *obj;
 				pline("Your melee attacks have a chance to confuse monsters after reading this scroll. Also, it grants temporary confusion resistance."); break;
 			case SCR_SCARE_MONSTER: 
 				pline("Reading this scroll is a waste. Its real purpose is to lie on the ground, keeping monsters away from it. However, it degrades every time you pick it up."); break;
+			case SCR_INSTANT_AMNESIA: 
+				pline("You somehow managed to get this scroll into your inventory. Congratulations. Why don't you read it then? Maybe you'll think of Maud and forget everything else! :-)"); break;
 			case SCR_ENCHANT_WEAPON: 
 				pline("Your wielded weapon's enchantment goes up if you read this scroll. Beware, if the weapon's enchantment is +6 or higher, the weapon may blow up."); break;
 			case SCR_ENCHANT_ARMOR: 
@@ -7614,6 +7844,8 @@ struct obj *obj;
 				pline("A quirky special version of the identify scroll, this thing prompts you to enter the name or description of an object which is then identified."); break;
 			case SCR_WISHING: 
 				pline("Allows you to wish for an object."); break;
+			case SCR_ARTIFACT_CREATION: 
+				pline("This scroll generates an artifact at your feet. You do want an artifact, right? Read it!"); break;
 			case SCR_CONSECRATION: 
 				pline("You must be standing in a room for this scroll to work. If you do, it will create an altar underneath you."); break;
 			case SCR_ENTHRONIZATION: 

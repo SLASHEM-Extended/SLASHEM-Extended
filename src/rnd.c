@@ -600,7 +600,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(135)) {
+	switch (rnd(136)) {
 
 		case 1:
 		case 2:
@@ -894,6 +894,8 @@ randenchantment()
 			return PSI_RES;
 		case 135:
 			return MANALEECH;
+		case 136:
+			return MAP_AMNESIA;
 		default:
 			return POISON_RES;
 

@@ -728,7 +728,7 @@ doread()
 		    if(known) {
 			makeknown(scroll->otyp);
 			more_experienced(0,10);
-		    } else if(!objects[scroll->otyp].oc_uname)
+		    } else if(!objects[scroll->otyp].oc_uname && (scroll->otyp != SCR_INSTANT_AMNESIA) )
 			docall(scroll);
 		}
 		if (spell_skilltype(scroll->otyp) != P_NONE) {
@@ -4921,6 +4921,23 @@ retry:
 			pline("Thinking of Maud you forget everything else.");
 		exercise(A_WIS, FALSE);
 		break;
+	case SCR_INSTANT_AMNESIA:
+		known = FALSE;
+		/* not known! You forget about this scroll while reading it :D --Amy */
+		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
+			(!confused || sobj->cursed ? ALL_MAP : 0) );
+		if (Hallucination) /* Ommmmmm! */
+			Your("mind releases itself from mundane concerns.");
+		else if (!strncmpi(plname, "Maud", 4))
+			pline("As your mind turns inward on itself, you forget everything else.");
+		else if (rn2(2))
+			pline("Who was that Maud person anyway?");
+		else
+			pline("Thinking of Maud you forget everything else.");
+		exercise(A_WIS, FALSE);
+		known = FALSE;
+		break;
+
 	case SCR_FIRE:
 		/*
 		 * Note: Modifications have been made as of 3.0 to allow for
@@ -5239,14 +5256,49 @@ pline("Don't you date cheat me again! -- Your fault!");
 revid_end:
 		break;
 
-	case SCR_WISHING: 
+	case SCR_WISHING:
 		known = TRUE;
 		pline("You have found a scroll of wishing!");
-		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
+		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
 			pline("Unfortunately, nothing happens.");
 			break;
 		}
 		makewish();
+		break;
+
+	case SCR_ARTIFACT_CREATION:
+		known = TRUE;
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (acqo) {
+		    dropy(acqo);
+
+			if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo));
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+			}
+
+		    discover_artifact(acqo->oartifact);
+
+			/* reading several of these will enable unaligned artifacts, which has to be done by incrementing the
+			 * u.ugifts var; since we don't actually want this scroll to mess with your chances of getting divine
+			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
+			if (!u.ugifts) u.ugifts = 1;
+			pline("An artifact appeared beneath you!");
+		}
+		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
 		break;
 
 	case SCR_ACQUIREMENT: 
@@ -5255,7 +5307,7 @@ revid_end:
 		int acquireditem;
 		acquireditem = 0;
 		pline("You have found a scroll of acquirement!");
-		if (sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) {
+		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
 			pline("Unfortunately, nothing happens.");
 			break;
 		}
