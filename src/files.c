@@ -548,10 +548,12 @@ char errbuf[];
 	/* for failure, return an explanation that our caller can use;
 	   settle for `lock' instead of `fq_lock' because the latter
 	   might end up being too big for nethack's BUFSZ */
-	if (fd < 0 && errbuf)
+	if (fd < 0 && errbuf) {
 	    Sprintf(errbuf,
 		    "Cannot open file \"%s\" for level %d (errno %d).",
 		    lock, lev, errno);
+	    pline("THIS IS A FATAL BUG. DO NOT TRY TO SAVE THE GAME, OR YOUR SAVEGAME FILE MAY BE CORRUPTED. On a public server the problem can sometimes be solved by using a staircase to return to a previously visited level. If nothing works, please contact the admins. --Amy");
+	}
 
 	return fd;
 }
