@@ -7259,7 +7259,7 @@ register int dx,dy;
 	    }
 	    if (abstype == ZT_LIGHTNING && !resists_blnd(&youmonst) && (issoviet || !rn2(3)) ) {
 		You(are_blinded_by_the_flash);
-		make_blinded((long)d(nd,5),FALSE);
+		make_blinded((long)d(nd,2),FALSE);
 		if (!Blind) Your(vision_clears);
 	    }
 	    stop_occupation();
