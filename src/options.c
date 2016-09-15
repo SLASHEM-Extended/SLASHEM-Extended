@@ -194,6 +194,7 @@ static struct Bool_Opt
 #endif
 	{"perm_invent", &flags.perm_invent, FALSE, SET_IN_GAME},
 	{"pickup_thrown", &flags.pickup_thrown, TRUE, SET_IN_GAME},
+	{"pickup_cursed", &flags.pickup_cursed, FALSE, SET_IN_GAME},
 
 	{"pokedex", &flags.pokedex, TRUE, SET_IN_GAME},
 

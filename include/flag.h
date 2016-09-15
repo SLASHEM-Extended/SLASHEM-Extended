@@ -83,6 +83,7 @@ struct flag {
 	boolean  perm_invent;	/* keep full inventories up until dismissed */
 	boolean  pickup;	/* whether you pickup or move and look */
 	boolean  pickup_thrown;		/* auto-pickup items you threw */
+	boolean  pickup_cursed;		/* auto-pickup cursed items you threw */
 
 	boolean  pushweapon;	/* When wielding, push old weapon into second slot */
 	boolean  rest_on_space; /* space means rest */

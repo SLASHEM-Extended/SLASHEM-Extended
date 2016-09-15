@@ -673,10 +673,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) )
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) )
 #else
 	    if ((!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
 #endif
@@ -687,10 +687,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 #ifndef AUTOPICKUP_EXCEPTIONS
 		if (!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ) {
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ) {
 #else
 		if ((!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
 			is_autopickup_exception(curr, TRUE)) &&
 			!is_autopickup_exception(curr, FALSE)) {
 #endif
