@@ -581,6 +581,28 @@ const char *verb;	/* "rub",&c */
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
+
+	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield tools!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return FALSE;
+	}
+
+	if (Race_if(PM_HUMAN_WRAITH)) {
+
+		if (yn("Wielding a tool as a wraith will permanently damage your health. Do it anyway?") == 'y') {
+
+			u.uhp -= 1;
+			u.uhpmax -= 1;
+			if (Upolyd) {
+				u.mh -= 1;
+			u.mhmax -= 1;
+			}
+
+		}
+		else return FALSE;
+
+	}
+
     if (uquiver == obj) setuqwep((struct obj *)0);
     if (uswapwep == obj) {
 	(void) doswapweapon();
