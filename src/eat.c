@@ -4670,12 +4670,41 @@ struct obj *otmp;
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;
 	}
+	if (eating_is_fatal(&mons[mnum])) {
+		Sprintf(buf, "%s like %s could kill you outright! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
 	if (stoneorslime) {
 		Sprintf(buf, "%s like %s could be something very dangerous! %s",
 			foodsmell, it_or_they, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;
 	}
+
+	if (dmgtype(&mons[mnum], AD_DREA)) {
+		Sprintf(buf, "%s like %s could cause nightmares! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_NAST)) {
+		Sprintf(buf, "%s like %s could be rather nasty! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_BADE)) {
+		Sprintf(buf, "%s like %s could be bad for you! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
 	if (otmp->orotten || (cadaver && rotted > 3L)) {
 		/* Rotten */
 		Sprintf(buf, "%s like %s could be rotten! %s",
