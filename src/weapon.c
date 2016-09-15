@@ -3250,6 +3250,8 @@ struct obj *weapon;
 
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
 
+	if (uarmc && weapon && weapon_type(weapon) == P_HAMMER && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) ) bonus += 5;
+
 	if (Role_if(PM_TRANSSYLVANIAN) && weapon && weapon_type(weapon) == P_HAMMER){
 
 		bonus += rnd(2);
