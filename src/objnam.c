@@ -3714,7 +3714,7 @@ register int otyp;
 		} else {
 			Strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				Strcat(buf, (ocl->oc_material == MINERAL) ?
+				Strcat(buf, (ocl->oc_material == MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == SILVER_SLINGSTONE ) ?
 						" stone" : " gem");
 			if(un)
 				Sprintf(eos(buf), " called %s", un);

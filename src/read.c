@@ -621,6 +621,7 @@ doread()
 "Don't worry, be happy! Amy likes all SLEX players! SMILE!!!",
 "I got lobotomized! I'm a member of Amy fan club now!",
 "I participated junethack 2016 -- TROPHY GET!",
+"Hey, my name is Yasdorian - a name telemarketers loooove!",
 
 	    };
 	    char buf[BUFSZ];
