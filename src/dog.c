@@ -374,6 +374,8 @@ makedog()
 	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
 #endif /* CONVICT */
 
+	if (petname && !(strcmp(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
+
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 
 	if(!mtmp) return((struct monst *) 0); /* pets were genocided */
