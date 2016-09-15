@@ -1640,26 +1640,34 @@ boolean want_dump;
 	     */
 	    if (ntypes > 1) {
 		putstr(klwin, 0, "");
+
+		if (program_state.gameover || wizard) {
+			Sprintf(buf, "%ld creatures born.", total_born);
+			putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+			if (want_dump)  dump("  ", buf);
+#endif
+		}
+
 		Sprintf(buf, "%ld creatures vanquished.", total_killed);
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
 #endif
-		if (program_state.gameover || wizard) Sprintf(buf, "%ld creatures born.", total_born);
+
+
+		if (program_state.gameover || wizard) {
+			putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+			if (want_dump)  dump("  ", buf);
+#endif
+		}
+
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
 #endif
-		Sprintf(buf, "%ld boss%s vanquished.", bosses_killed, (bosses_killed==1) ? "" : "es");
-		putstr(klwin, 0, buf);
-#ifdef DUMP_LOG
-		if (want_dump)  dump("  ", buf);
-#endif
-		if (program_state.gameover || wizard) Sprintf(buf, "%ld boss%s born.", bosses_born, (bosses_killed==1) ? "" : "es");
-		putstr(klwin, 0, buf);
-#ifdef DUMP_LOG
-		if (want_dump)  dump("  ", buf);
-#endif
+
 	    }
 	    display_nhwindow(klwin, TRUE);
 	    destroy_nhwindow(klwin);
@@ -1679,7 +1687,7 @@ int
 dolistvanq()
 {
     if (!list_vanquished('y', FALSE))
-        pline("No monsters have yet been killed.");
+        pline("Vanquished monsters listing complete."); /* because dumplog changed that function to a void! --Amy */
     return(0);
 }
     
