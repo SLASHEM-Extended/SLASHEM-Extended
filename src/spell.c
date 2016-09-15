@@ -1869,7 +1869,10 @@ boolean atme;
 		otmp = getobj(all_count, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 		if (otmp) {
-			if (greatest_erosion(otmp) > 0) {
+			if (!(otmp->owornmask & W_ARMOR) ) { /* bug discovered by Heliokopis - did Sporkhack never fix this? */
+	
+				pline("You have a feeling of loss.");
+			} else if (greatest_erosion(otmp) > 0) {
 				if (!Blind) {
 					pline("Your %s glows faintly golden for a moment.",xname(otmp));
 				}
