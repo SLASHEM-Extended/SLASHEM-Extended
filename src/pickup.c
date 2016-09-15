@@ -673,10 +673,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) )
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) )
 #else
 	    if ((!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ||
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
 #endif
@@ -687,10 +687,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 #ifndef AUTOPICKUP_EXCEPTIONS
 		if (!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ) {
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ) {
 #else
 		if ((!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown) ) ||
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
 			is_autopickup_exception(curr, TRUE)) &&
 			!is_autopickup_exception(curr, FALSE)) {
 #endif
@@ -848,19 +848,19 @@ int how;			/* type of query */
 	*pick_list = (menu_item *) 0;
 	if (!olist) return 0;
 	if ((qflags & UNPAID_TYPES) && count_unpaid(olist)) do_unpaid = TRUE;
-	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED)) {
+	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
 	    do_blessed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED)) {
+	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
 	    do_cursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED)) {
+	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
 	    do_uncursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN)) {
+	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
 	    do_buc_unknown = TRUE;
 	    num_buc_types++;
 	}
