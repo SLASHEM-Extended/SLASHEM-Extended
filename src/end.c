@@ -4,6 +4,8 @@
 
 #define NEED_VARARGS	/* comment line for pre-compiled headers */
 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "hack.h"
 #include "eshk.h"
 #ifndef NO_SIGNAL
@@ -155,8 +157,11 @@ dump_init ()
 void
 dump_exit ()
 {
-  if (dump_fp)
+  mode_t dumpmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+  if (dump_fp) {
     fclose (dump_fp);
+    chmod(dump_fp, dumpmode);
+  }
 }
 
 void dump (pre, str)
