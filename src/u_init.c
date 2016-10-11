@@ -7137,6 +7137,7 @@ u_init()
 	u.banishmentbeam = 0;
 	u.levelporting = 0;
 	u.inertia = 0;
+	u.egglayingtimeout = 0;
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);

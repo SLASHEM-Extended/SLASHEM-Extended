@@ -725,6 +725,8 @@ struct you {
 	int bankcashamount; /* for bank trap */
 	int bankcashlimit;
 
+	int egglayingtimeout;	/* otherwise you could just spam them, which would be unbalanced! */
+
 	int dehydrationtime;
 
 	int fakeartifacts;	/* keeping track of how many fake artifacts got generated */
@@ -760,11 +762,11 @@ struct you {
 	struct monst *usteed;
 	long ugallop;
 	int urideturns;
+#endif
 	int uhighheelturns;
 	int ugeneralcombatturns;
 	int utwohandedcombatturns;
 	int ubodyarmorturns;
-#endif
 	int	umortality;		/* how many times you died */
 	int ugrave_arise; /* you die and become something aside from a ghost */
 	time_t	ubirthday;		/* real world time when game began */

@@ -637,6 +637,11 @@ dosit()
 			return 0;
 		}
 
+		if (u.egglayingtimeout) {
+			pline("You need to wait %d turns to lay another egg!", u.egglayingtimeout);
+			return 0;
+		}
+
 		uegg = mksobj(EGG, FALSE, FALSE);
 		if (uegg) {
 			uegg->spe = 1;
@@ -649,6 +654,8 @@ dosit()
 			dropy(uegg);
 			stackobj(uegg);
 			morehungry((int)objects[EGG].oc_nutrition);
+			u.egglayingtimeout = rnz(1000);
+			pline("You will be able to lay another egg in %d turns.", u.egglayingtimeout);
 		}
 	} else if (u.uswallow)
 		There("are no seats in here!");

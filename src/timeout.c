@@ -231,11 +231,19 @@ nh_timeout()
 	if (MCReduction && MCReduction % 5000 == 0) pline("Your magic cancellation seems to work a bit better again.");
 
 	if (u.negativeprotection && !rn2(2500)) u.negativeprotection--;
+	if (u.negativeprotection < 0) u.negativeprotection = 0; /* fail safe */
 	if (u.chokhmahdamage && !rn2(10000) && !(uarmc && uarmc->otyp == CLOAK_OF_ESCALATION) ) u.chokhmahdamage--;
+	if (u.chokhmahdamage < 0) u.chokhmahdamage = 0; /* fail safe */
 
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
 		if (!u.inertia) You_feel("less slow.");
+		if (u.inertia < 0) u.inertia = 0; /* fail safe */
+	}
+
+	if (u.egglayingtimeout) {
+		u.egglayingtimeout--;
+		if (u.egglayingtimeout < 0) u.egglayingtimeout = 0; /* fail safe */
 	}
 
 	if (u.temprecursiontime) {
@@ -260,10 +268,12 @@ nh_timeout()
 	}
 
 	if (u.fumbleduration) u.fumbleduration--;
+	if (u.fumbleduration < 0) u.fumbleduration = 0; /* fail safe */
 	if (u.antimagicshell) {
 		u.antimagicshell--;
 		if (!u.antimagicshell) pline("You no longer produce an anti-magic shell.");
 	}
+	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
 	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
