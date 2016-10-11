@@ -411,6 +411,8 @@ dosit()
 			int acquiredskill;
 			acquiredskill = 0;
 
+			pline("Pick a skill to unrestrict. The prompt will loop until you actually make a choice.");
+
 			while (acquiredskill == 0) { /* ask the player what they want --Amy */
 
 			if (P_RESTRICTED(P_DAGGER) && yn("Do you want to learn the dagger skill?")=='y') {

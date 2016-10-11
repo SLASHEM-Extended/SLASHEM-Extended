@@ -5384,6 +5384,8 @@ revid_end:
 			break;
 		}
 
+		pline("Pick an item type that you want to acquire. The prompt will loop until you actually make a choice.");
+
 		while (acquireditem == 0) { /* ask the player what they want --Amy */
 
 		/* Yeah, I know this is less elegant than DCSS. But hey, it's a scroll of acquirement! */
