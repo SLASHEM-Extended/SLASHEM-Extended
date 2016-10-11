@@ -452,7 +452,7 @@ WEAPON("bec de corbin", "beaked polearm",
 
 /* Spears */
 WEAPON("orcish spear", "crude spear",
-	0, 1, 0, 100, 12,  3,  5,  8, 0, P,   P_SPEAR, IRON, CLR_BLACK),
+	0, 1, 0, 100, 12,  3,  5,  7, 0, P,   P_SPEAR, IRON, CLR_BLACK),
 WEAPON("spear", (char *)0,
 	1, 1, 0, 238, 12,  3,  6,  8, 0, P,   P_SPEAR, IRON, HI_METAL),
 WEAPON("bronze spear", (char *)0,
