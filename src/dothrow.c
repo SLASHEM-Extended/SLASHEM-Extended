@@ -265,7 +265,7 @@ int thrown;
 
 	if ((long)multishot > obj->quan) multishot = (int)obj->quan;
 
-	    if (multishot > 0) 
+	    if (multishot > 0)
 	    	multishot = rnd(multishot); /* Some randomness */
 	    else multishot = 1;
 	       
@@ -324,6 +324,9 @@ int thrown;
 	}
 
 	if (multishot < 1) multishot = 1;
+
+	/* nerf multishot --Amy */
+	if ((multishot > 3) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) && !(launcher && launcher->otyp == DEMON_CROSSBOW)) multishot = 2 + rno(multishot - 2);
 
 	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
@@ -1529,9 +1532,12 @@ int thrown;
 	register int	tmp; /* Base chance to hit */
 	register int	disttmp; /* distance modifier */
 	struct obj *launcher;
+	register struct obj *blocker = (struct obj *)0;
 	
 	int otyp = obj->otyp;
 	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck);
+
+	register int shieldblockrate = 0;
 
 	/* Differences from melee weapons:
 	 *
@@ -1562,6 +1568,126 @@ int thrown;
 	if(!mon->mcanmove) tmp += 4;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+
+	/* certain monsters are capable of deflecting projectiles --Amy */
+	if (verysmall(mon->data) && !rn2(4)) {
+		tmp = -100;
+		pline("%s avoids the projectile!", Monnam(mon));
+	}
+	if (rathersmall(mon->data) && !(verysmall(mon->data)) && !rn2(10)) {
+		tmp = -100;
+		pline("%s avoids the projectile!", Monnam(mon));
+	}
+	if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+		tmp -= 100;
+		pline("%s shrugs off the projectile!", Monnam(mon));
+	}
+
+	if (blocker = which_armor(mon, W_ARMS)) {
+
+		switch (blocker->otyp) {
+
+			case SMALL_SHIELD:
+				shieldblockrate = 20;
+				break;
+			case ELVEN_SHIELD:
+				shieldblockrate = 30;
+				if (is_elf(mon->data)) shieldblockrate += 5;
+				break;
+			case URUK_HAI_SHIELD:
+				shieldblockrate = 32;
+				if (is_orc(mon->data)) shieldblockrate += 5;
+				break;
+			case ORCISH_SHIELD:
+			case ORCISH_GUARD_SHIELD:
+				shieldblockrate = 28;
+				if (is_orc(mon->data)) shieldblockrate += 5;
+				break;
+			case DWARVISH_ROUNDSHIELD:
+				shieldblockrate = 34;
+				if (is_dwarf(mon->data)) shieldblockrate += 5;
+				break;
+			case LARGE_SHIELD:
+			case SHIELD:
+				shieldblockrate = 35;
+				break;
+			case STEEL_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case CRYSTAL_SHIELD:
+			case RAPIRAPI:
+				shieldblockrate = 45;
+				break;
+			case SHIELD_OF_REFLECTION:
+			case SILVER_SHIELD:
+			case MIRROR_SHIELD:
+				shieldblockrate = 35;
+				break;
+			case FLAME_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case ICE_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case LIGHTNING_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case VENOM_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case SHIELD_OF_LIGHT:
+				shieldblockrate = 40;
+				break;
+			case SHIELD_OF_MOBILITY:
+				shieldblockrate = 40;
+				break;
+
+			case GRAY_DRAGON_SCALE_SHIELD:
+			case SILVER_DRAGON_SCALE_SHIELD:
+			case MERCURIAL_DRAGON_SCALE_SHIELD:
+			case SHIMMERING_DRAGON_SCALE_SHIELD:
+			case DEEP_DRAGON_SCALE_SHIELD:
+			case RED_DRAGON_SCALE_SHIELD:
+			case WHITE_DRAGON_SCALE_SHIELD:
+			case ORANGE_DRAGON_SCALE_SHIELD:
+			case BLACK_DRAGON_SCALE_SHIELD:
+			case BLUE_DRAGON_SCALE_SHIELD:
+			case COPPER_DRAGON_SCALE_SHIELD:
+			case PLATINUM_DRAGON_SCALE_SHIELD:
+			case BRASS_DRAGON_SCALE_SHIELD:
+			case AMETHYST_DRAGON_SCALE_SHIELD:
+			case PURPLE_DRAGON_SCALE_SHIELD:
+			case DIAMOND_DRAGON_SCALE_SHIELD:
+			case EMERALD_DRAGON_SCALE_SHIELD:
+			case SAPPHIRE_DRAGON_SCALE_SHIELD:
+			case RUBY_DRAGON_SCALE_SHIELD:
+			case GREEN_DRAGON_SCALE_SHIELD:
+			case GOLDEN_DRAGON_SCALE_SHIELD:
+			case STONE_DRAGON_SCALE_SHIELD:
+			case CYAN_DRAGON_SCALE_SHIELD:
+			case PSYCHIC_DRAGON_SCALE_SHIELD:
+			case RAINBOW_DRAGON_SCALE_SHIELD:
+			case BLOOD_DRAGON_SCALE_SHIELD:
+			case PLAIN_DRAGON_SCALE_SHIELD:
+			case SKY_DRAGON_SCALE_SHIELD:
+			case WATER_DRAGON_SCALE_SHIELD:
+			case YELLOW_DRAGON_SCALE_SHIELD:
+
+				shieldblockrate = 33;
+				break;
+
+			default: impossible("Unknown type of shield (%d)", blocker->otyp);
+
+			}
+
+		if (shieldblockrate && (blocker->spe > 0)) shieldblockrate += (blocker->spe * 2);
+		if (blocker->blessed) shieldblockrate += 5;
+
+		if (rnd(100) < shieldblockrate) {
+			tmp = -100;
+			pline("%s's shield deflects your projectile!", Monnam(mon));
+		}
+	}
 
 	if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
@@ -1747,8 +1873,11 @@ int thrown;
 			else if (chance == 5) chance = 3;
 			else if (chance > 5) chance /= 2;
 			broken = rn2(chance);
-		    } else /* continue to survive longer with better enchantment --Amy */
-			broken = !rn2(/*4*/ 3 + obj->spe - greatest_erosion(obj) );
+		    } else {/* continue to survive longer with better enchantment --Amy */
+			chance = 3 + obj->spe - greatest_erosion(obj);
+			if (chance > 3) chance = 2 + rno(chance - 2);
+			broken = !rn2(chance);
+		    }
 		    if ( objects[otyp].oc_skill == P_DAGGER )
 			broken = !rn2(40);
 		    if ( objects[otyp].oc_skill == P_SPEAR )

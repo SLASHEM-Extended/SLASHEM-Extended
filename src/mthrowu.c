@@ -378,7 +378,12 @@ int x,y;
 		else if (chance == 5) chance = 3;
 		else if (chance > 5) chance /= 2;
 		create = !rn2(chance);
-	    } else create = rn2(3 + obj->spe - greatest_erosion(obj) );
+	    } else {
+		chance = 3 + obj->spe - greatest_erosion(obj);
+		if (chance > 3) chance = 2 + rno(chance - 2);
+
+		create = rn2(chance);
+		}
 
 	    if (obj->blessed && !rnl(6))
 		create = 1;

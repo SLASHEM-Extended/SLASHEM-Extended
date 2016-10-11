@@ -6,7 +6,9 @@
 #define MONDATA_H
 
 #define verysmall(ptr)		((ptr)->msize < MZ_SMALL)
+#define rathersmall(ptr)	((ptr)->msize <= MZ_SMALL)
 #define bigmonst(ptr)		((ptr)->msize >= MZ_LARGE)
+#define hugemonst(ptr)		((ptr)->msize >= MZ_GIGANTIC)
 
 #define pm_resistance(ptr,typ)	(((ptr)->mresists & (typ)) != 0)
 
