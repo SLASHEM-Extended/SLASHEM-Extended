@@ -2136,7 +2136,7 @@ peffects(otmp)
 		wonderpot = mkobj(POTION_CLASS,FALSE);
 		if (wonderpot) otmp->otyp = wonderpot->otyp;
 		if (otmp->otyp == GOLD_PIECE) otmp->otyp = POT_WATER; /* minimalist fix */
-		obfree(wonderpot, (struct obj *)0);
+		if (wonderpot) obfree(wonderpot, (struct obj *)0);
 		unkn++;
 
 	}

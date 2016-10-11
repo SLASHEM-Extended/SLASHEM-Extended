@@ -2241,7 +2241,7 @@ register struct obj	*sobj;
 		wonderscroll = mkobj(SCROLL_CLASS,FALSE);
 		if (wonderscroll) sobj->otyp = wonderscroll->otyp;
 		if (sobj->otyp == GOLD_PIECE) sobj->otyp = SCR_RUMOR; /* minimalist fix */
-		obfree(wonderscroll, (struct obj *)0);
+		if (wonderscroll) obfree(wonderscroll, (struct obj *)0);
 
 	}
 
