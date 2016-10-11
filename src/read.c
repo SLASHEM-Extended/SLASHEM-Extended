@@ -3449,6 +3449,7 @@ register struct obj	*sobj;
 				} else if (mtmp2->mpeaceful) {
 					mtmp2->mpeaceful = 0;
 				} else {
+					if (!rn2(5)) mtmp2->mfrenzied = 1;
 					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
 				}
 			}

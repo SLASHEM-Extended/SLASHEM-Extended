@@ -878,6 +878,7 @@ int spellnum;
 					count++;
 				} else {
 					/*mtmp2->mberserk = 1;*/ /* removed because this attribute doesn't exist in this fork */
+					if (!rn2(5)) mtmp2->mfrenzied = 1; /* but we have something else instead now :D */
 					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
 					count++;
 				}

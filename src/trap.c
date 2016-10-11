@@ -4292,7 +4292,17 @@ newegomon:
 
 		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 
-			mtmp2->mtame = mtmp2->mpeaceful = 0;
+			if (mtmp2->mtame <= rnd(21) ) {
+
+				mtmp2->mtame = mtmp2->mpeaceful = 0;
+
+			} else if (!mtmp2->mtame) {
+
+				mtmp2->mtame = mtmp2->mpeaceful = 0;
+
+			}
+
+			if (!mtmp2->mtame && !rn2(5)) mtmp2->mfrenzied = 1;
 
 		}
 
