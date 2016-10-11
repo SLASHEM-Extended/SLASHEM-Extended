@@ -1515,7 +1515,7 @@ makelevel()
 		    makemaz("");
 		    return;
 
-	    } else if (!rn2(u.randomquestlevels) && (!rn2(10) || depth(&u.uz) > 1) && (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) {
+	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (!rn2(10) || depth(&u.uz) > 1) && (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) {
 
 		    char fillname[16];
 		    switch (rnd(5)) {
@@ -1535,7 +1535,7 @@ makelevel()
 		    makemaz(fillname);
 		    return;
 
-	    } else if (!rn2(u.randomquestlevels) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
+	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
 
 		    char fillname[16];
 		    switch (rnd(5)) {
@@ -1555,7 +1555,7 @@ makelevel()
 		    makemaz(fillname);
 		    return;
 
-	    } else if (dungeons[u.uz.dnum].proto[0] && (rn2(2)) ) {
+	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
 
 		    if (rn2(3)) {
 
