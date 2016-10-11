@@ -171,7 +171,9 @@ struct monst *mon;
 	tmp += objects[otmp->otyp].oc_hitbon;
 	tmp += weapon_hit_bonus(otmp);  /* weapon skill */
 	if (u.twoweap && (otmp == uwep || otmp == uswapwep))
-		tmp += (skill_bonus(P_TWO_WEAPON_COMBAT) * 2) - 5;
+		tmp += (skill_bonus(P_TWO_WEAPON_COMBAT)) - 10;
+	/* Amy note: twoweaponing is supposed to be sacrificing to-hit and defense for more damage output, so I made the
+	 * to-hit malus higher than it used to be. However, the damage bonuses have also been increased. */
 
 /*	Put weapon vs. monster type "to hit" bonuses in below:	*/
 
@@ -3354,7 +3356,7 @@ struct obj *weapon;
     type = wep_type;
     if (type == P_NONE) {
 	bonus = 0;
-    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && !u.twoweap && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
+    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled weapon, edit by Amy: also when dual-wielding */
 	switch (P_SKILL(type)) {
 	    case P_EXPERT:	bonus =  1; break;
 	    case P_MASTER:	bonus =  2; break;
@@ -3363,6 +3365,21 @@ struct obj *weapon;
 	    default: bonus = 0; break;
 	}
     }
+
+	if (u.twoweap) {
+	/* With shields being as strong as they are, and heavy two-handed weapons getting massive skill-dependant damage
+	 * bonuses, we need to make sure that twoweaponing isn't completely useless. --Amy */
+		bonus += 2;
+		switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+
+	    case P_SKILLED:	bonus +=  1; break;
+	    case P_EXPERT:	bonus +=  2; break;
+	    case P_MASTER:	bonus +=  3; break;
+	    case P_GRAND_MASTER:bonus +=  4; break;
+	    case P_SUPREME_MASTER:bonus +=  5; break;
+	    default: bonus += 0; break;
+		}
+	}
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
@@ -3551,7 +3568,7 @@ struct obj *weapon;
     type = wep_type;
     if (type == P_NONE) {
 	bonus = 0;
-    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && !u.twoweap && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
+    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
 	switch (P_SKILL(type)) {
 	    case P_SKILLED:	bonus =  1; break;
 	    case P_EXPERT:	bonus =  1; break;
