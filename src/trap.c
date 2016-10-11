@@ -4294,7 +4294,25 @@ newegomon:
 
 			if (mtmp2->mtame <= rnd(21) ) {
 
-				mtmp2->mtame = mtmp2->mpeaceful = 0;
+				int untamingchance = 10;
+
+				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+					switch (P_SKILL(P_PETKEEPING)) {
+						default: untamingchance = 10; break;
+						case P_BASIC: untamingchance = 9; break;
+						case P_SKILLED: untamingchance = 8; break;
+						case P_EXPERT: untamingchance = 7; break;
+						case P_MASTER: untamingchance = 6; break;
+						case P_GRAND_MASTER: untamingchance = 5; break;
+						case P_SUPREME_MASTER: untamingchance = 4; break;
+					}
+				}
+
+				if (untamingchance > rnd(10)) {
+
+					mtmp2->mtame = mtmp2->mpeaceful = 0;
+
+				}
 
 			} else if (!mtmp2->mtame) {
 

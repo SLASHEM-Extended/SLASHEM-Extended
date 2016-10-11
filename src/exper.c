@@ -22,12 +22,22 @@ STATIC_DCL int FDECL(enermod, (int));
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
 #define PN_HIGH_HEELS		(-15)
-#define PN_MARTIAL_ARTS		(-16)
-#define PN_RIDING		(-17)
-#define PN_TWO_WEAPONS		(-18)
+#define PN_GENERAL_COMBAT		(-16)
+#define PN_SHIELD		(-17)
+#define PN_BODY_ARMOR		(-18)
+#define PN_TWO_HANDED_WEAPON		(-19)
+#define PN_POLYMORPHING		(-20)
+#define PN_DEVICES		(-21)
+#define PN_SEARCHING		(-22)
+#define PN_SPIRITUALITY		(-23)
+#define PN_PETKEEPING		(-24)
+#define PN_MARTIAL_ARTS		(-25)
+#define PN_RIDING		(-26)
+#define PN_TWO_WEAPONS		(-27)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-19)
+#define PN_LIGHTSABER		(-28)
 #endif
+
 
 #ifndef OVLB
 
@@ -53,7 +63,11 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 	PN_HIGH_HEELS,	PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -78,9 +92,18 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "matter spells",
     "bare-handed combat",
     "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
     "martial arts",
     "riding",
-    "two-handed combat",
+    "two-weapon combat",
 #ifdef LIGHTSABERS
     "lightsaber"
 #endif
@@ -690,7 +713,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvl = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(150)) {
+		if (!rn2(3)) { switch (rnd(170)) {
 
 			case 1: 
 			case 2: 
@@ -1032,6 +1055,62 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 142: 
 				if (!tech_known(T_BOOZE)) {    	learntech(T_BOOZE, FROMOUTSIDE, 1);
 			    	You("learn how to perform booze!");
+				}
+				break;
+
+			case 143: 
+			case 144: 
+			case 145: 
+				if (!tech_known(T_IRON_SKIN)) {    	learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
+			    	You("learn how to perform iron skin!");
+				}
+				break;
+			case 146: 
+				if (!tech_known(T_POLYFORM)) {    	learntech(T_POLYFORM, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyform!");
+				}
+				break;
+			case 147: 
+			case 148: 
+			case 149: 
+				if (!tech_known(T_CONCENTRATING)) {    	learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
+			    	You("learn how to perform concentrating!");
+				}
+				break;
+			case 150: 
+				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon pet!");
+				}
+				break;
+			case 151: 
+			case 152: 
+				if (!tech_known(T_DOUBLE_THROWNAGE)) {    	learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform double thrownage!");
+				}
+				break;
+			case 153: 
+			case 154: 
+			case 155: 
+				if (!tech_known(T_SHIELD_BASH)) {    	learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+			    	You("learn how to perform shield bash!");
+				}
+				break;
+			case 156: 
+			case 157: 
+				if (!tech_known(T_RECHARGE)) {    	learntech(T_RECHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform recharge!");
+				}
+				break;
+			case 158: 
+			case 159: 
+			case 160: 
+				if (!tech_known(T_SPIRITUALITY_CHECK)) {    	learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+			    	You("learn how to perform spirituality check!");
+				}
+				break;
+			case 161: 
+				if (!tech_known(T_EDDY_WIND)) {    	learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
+			    	You("learn how to perform eddy wind!");
 				}
 				break;
 
@@ -1404,7 +1483,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlB = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(150)) {
+		if (!rn2(3)) { switch (rnd(170)) {
 
 			case 1: 
 			case 2: 
@@ -1749,6 +1828,61 @@ boolean incr;	/* true iff via incremental experience growth */
 				}
 				break;
 
+			case 143: 
+			case 144: 
+			case 145: 
+				if (!tech_known(T_IRON_SKIN)) {    	learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
+			    	You("learn how to perform iron skin!");
+				}
+				break;
+			case 146: 
+				if (!tech_known(T_POLYFORM)) {    	learntech(T_POLYFORM, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyform!");
+				}
+				break;
+			case 147: 
+			case 148: 
+			case 149: 
+				if (!tech_known(T_CONCENTRATING)) {    	learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
+			    	You("learn how to perform concentrating!");
+				}
+				break;
+			case 150: 
+				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon pet!");
+				}
+				break;
+			case 151: 
+			case 152: 
+				if (!tech_known(T_DOUBLE_THROWNAGE)) {    	learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform double thrownage!");
+				}
+				break;
+			case 153: 
+			case 154: 
+			case 155: 
+				if (!tech_known(T_SHIELD_BASH)) {    	learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+			    	You("learn how to perform shield bash!");
+				}
+				break;
+			case 156: 
+			case 157: 
+				if (!tech_known(T_RECHARGE)) {    	learntech(T_RECHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform recharge!");
+				}
+				break;
+			case 158: 
+			case 159: 
+			case 160: 
+				if (!tech_known(T_SPIRITUALITY_CHECK)) {    	learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+			    	You("learn how to perform spirituality check!");
+				}
+				break;
+			case 161: 
+				if (!tech_known(T_EDDY_WIND)) {    	learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
+			    	You("learn how to perform eddy wind!");
+				}
+				break;
 
 			default:
 				break;
@@ -1763,7 +1897,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlE = u.ulevel;
 
-		if (!rn2(2)) { switch (rnd(150)) {
+		if (!rn2(2)) { switch (rnd(170)) {
 
 			case 1: 
 			case 2: 
@@ -2108,6 +2242,61 @@ boolean incr;	/* true iff via incremental experience growth */
 				}
 				break;
 
+			case 143: 
+			case 144: 
+			case 145: 
+				if (!tech_known(T_IRON_SKIN)) {    	learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
+			    	You("learn how to perform iron skin!");
+				}
+				break;
+			case 146: 
+				if (!tech_known(T_POLYFORM)) {    	learntech(T_POLYFORM, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyform!");
+				}
+				break;
+			case 147: 
+			case 148: 
+			case 149: 
+				if (!tech_known(T_CONCENTRATING)) {    	learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
+			    	You("learn how to perform concentrating!");
+				}
+				break;
+			case 150: 
+				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon pet!");
+				}
+				break;
+			case 151: 
+			case 152: 
+				if (!tech_known(T_DOUBLE_THROWNAGE)) {    	learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform double thrownage!");
+				}
+				break;
+			case 153: 
+			case 154: 
+			case 155: 
+				if (!tech_known(T_SHIELD_BASH)) {    	learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+			    	You("learn how to perform shield bash!");
+				}
+				break;
+			case 156: 
+			case 157: 
+				if (!tech_known(T_RECHARGE)) {    	learntech(T_RECHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform recharge!");
+				}
+				break;
+			case 158: 
+			case 159: 
+			case 160: 
+				if (!tech_known(T_SPIRITUALITY_CHECK)) {    	learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+			    	You("learn how to perform spirituality check!");
+				}
+				break;
+			case 161: 
+				if (!tech_known(T_EDDY_WIND)) {    	learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
+			    	You("learn how to perform eddy wind!");
+				}
+				break;
 
 			default:
 				break;

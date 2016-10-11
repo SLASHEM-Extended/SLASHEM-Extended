@@ -337,10 +337,14 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		There("is %s flash as %s %s the altar.",
 			an(hcolor(obj->blessed ? NH_AMBER : NH_BLACK)),
 			doname(obj), otense(obj, "hit"));
-		if (!Hallucination) obj->bknown = 1;
+		if (!Hallucination) {
+			if (!obj->bknown)	use_skill(P_SPIRITUALITY,1);
+			obj->bknown = 1;
+		}
 	} else {
 		pline("%s %s on the altar.", Doname2(obj),
 			otense(obj, "land"));
+		if (!obj->bknown)	use_skill(P_SPIRITUALITY,1);
 		obj->bknown = 1;
 	}
 }

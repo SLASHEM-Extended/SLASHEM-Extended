@@ -1681,7 +1681,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 
-		if (PlayerInHighHeels) {
+		if (PlayerInHighHeels && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
 			switch (P_SKILL(P_HIGH_HEELS)) {
 				case P_BASIC: tmp += 1; break;

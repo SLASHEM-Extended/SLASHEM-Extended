@@ -3351,25 +3351,12 @@ find_ac()
 		uac += 2; //flat penalty. Something in the code "corrects" ac values >10, this is a kludge.
 	}
 
-	/* A higher-level player will have a small AC boost to compensate for monsters being more dangerous. --Amy */
-	/* In Soviet Russia, the player is just supposed to have no chance. --Amy */
-	if (!issoviet) {
-		if (u.ulevel >= 5) uac -= 1;
-		if (u.ulevel >= 10) uac -= 1;
-		if (u.ulevel >= 14) uac -= 1;
-		if (u.ulevel >= 15) uac -= 1;
-		if (u.ulevel >= 20) uac -= 1;
-		if (u.ulevel >= 25) uac -= 1;
-		if (u.ulevel >= 30) uac -= 1;
-		if (u.menoraget) uac -= 1;
-		if (u.bookofthedeadget) uac -= 1;
-		if (u.silverbellget) uac -= 1;
-		if (u.chaoskeyget && u.neutralkeyget && u.lawfulkeyget) uac -= 1;
-		if (u.medusaremoved) uac -= 1;
-		if (u.luckstoneget && u.sokobanfinished) uac -= 1;
-	}
-
-	/* After all, a couatl or archon can still hit a -40 AC player without any problems... */
+	if (u.menoraget) uac -= 1;
+	if (u.bookofthedeadget) uac -= 1;
+	if (u.silverbellget) uac -= 1;
+	if (u.chaoskeyget && u.neutralkeyget && u.lawfulkeyget) uac -= 1;
+	if (u.medusaremoved) uac -= 1;
+	if (u.luckstoneget && u.sokobanfinished) uac -= 1;
 
 	/* bonus for wearing racial armor */
 
@@ -3401,7 +3388,7 @@ find_ac()
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
 
-	if (PlayerInHighHeels) { /* extra AC --Amy */
+	if (PlayerInHighHeels && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) { /* extra AC --Amy */
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: uac -= 1; break;
@@ -3410,6 +3397,40 @@ find_ac()
 			case P_MASTER: uac -= 4; break;
 			case P_GRAND_MASTER: uac -= 5; break;
 			case P_SUPREME_MASTER: uac -= 7; break;
+
+		}
+
+	}
+
+	if (uarms && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_SHIELD)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 6; break;
+
+		}
+
+	}
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		int armoramount = 0;
+		if (uarms) armoramount++;
+		if (uarm) armoramount++;
+		if (uarmc) armoramount++;
+		if (uarmu) armoramount++;
+		if (uarmh) armoramount++;
+		if (uarmg) armoramount++;
+		if (uarmf) armoramount++;
+		switch (P_SKILL(P_BODY_ARMOR)) {
+			case P_BASIC: uac -= (armoramount / 4); break;
+			case P_SKILLED: uac -= (armoramount / 2); break;
+			case P_EXPERT: uac -= (armoramount * 3 / 4); break;
+			case P_MASTER: uac -= armoramount; break;
+			case P_GRAND_MASTER: uac -= (armoramount * 5 / 4); break;
+			case P_SUPREME_MASTER: uac -= (armoramount * 6 / 4); break;
 
 		}
 
@@ -3436,6 +3457,8 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) uac -= 5;
 
 	if (u.negativeprotection) uac += u.negativeprotection;
+
+	if (tech_inuse(T_IRON_SKIN)) uac -= u.ulevel;
 
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));

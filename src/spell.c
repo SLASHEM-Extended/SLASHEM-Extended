@@ -2208,6 +2208,32 @@ int spell;
 	int chance, splcaster, special, statused;
 	int difficulty;
 	int skill;
+	int armorpenalties = 15;
+	int shieldpenalties = 15;
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_BODY_ARMOR)) {
+			case P_BASIC: armorpenalties = 13; break;
+			case P_SKILLED: armorpenalties = 11; break;
+			case P_EXPERT: armorpenalties = 9; break;
+			case P_MASTER: armorpenalties = 7; break;
+			case P_GRAND_MASTER: armorpenalties = 5; break;
+			case P_SUPREME_MASTER: armorpenalties = 3; break;
+
+		}
+	}
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_SHIELD)) {
+			case P_BASIC: shieldpenalties = 13; break;
+			case P_SKILLED: shieldpenalties = 11; break;
+			case P_EXPERT: shieldpenalties = 9; break;
+			case P_MASTER: shieldpenalties = 7; break;
+			case P_GRAND_MASTER: shieldpenalties = 5; break;
+			case P_SUPREME_MASTER: shieldpenalties = 3; break;
+
+		}
+	}
 
 	splcaster = urole.spelbase;
 	special = urole.spelheal;
@@ -2222,16 +2248,15 @@ int spell;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && is_metallic(uarm))
-	    splcaster += /*(uarmc && uarmc->otyp == ROBE) ?
-		urole.spelarmr/2 : */urole.spelarmr;
-	else if (uarmc && uarmc->otyp == ROBE)
-	    splcaster -= urole.spelarmr;
-	if (uarms) splcaster += urole.spelshld;
+	    splcaster += (urole.spelarmr * armorpenalties / 12);
+	if (uarmc && is_metallic(uarmc))
+	    splcaster += (urole.spelarmr * armorpenalties / 36);
+	if (uarms) splcaster += (urole.spelshld * shieldpenalties / 12);
 
 	if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE)
-		splcaster += uarmhbon;
-	if (uarmg && is_metallic(uarmg)) splcaster += uarmgbon;
-	if (uarmf && is_metallic(uarmf)) splcaster += uarmfbon;
+		splcaster += (uarmhbon * armorpenalties / 12);
+	if (uarmg && is_metallic(uarmg)) splcaster += (uarmgbon * armorpenalties / 12);
+	if (uarmf && is_metallic(uarmf)) splcaster += (uarmfbon * armorpenalties / 12);
 
 	if (spellid(spell) == urole.spelspec)
 		splcaster += urole.spelsbon;

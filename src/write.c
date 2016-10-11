@@ -286,6 +286,19 @@ found:
 	/* we're really going to write now, so calculate cost
 	 */
 	actualcost = rn1(basecost/2,basecost/2);
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: actualcost = (actualcost * 14 / 15); break;
+			case P_SKILLED: actualcost = (actualcost * 13 / 15); break;
+			case P_EXPERT: actualcost = (actualcost * 12 / 15); break;
+			case P_MASTER: actualcost = (actualcost * 11 / 15); break;
+			case P_GRAND_MASTER: actualcost = (actualcost * 10 / 15); break;
+			case P_SUPREME_MASTER: actualcost = (actualcost * 9 / 15); break;
+		}
+	}
+
 	curseval = bcsign(pen) + bcsign(paper);
 	exercise(A_WIS, TRUE);
 	/* dry out marker */
@@ -334,6 +347,7 @@ found:
 
 	/* useup old scroll / spellbook */
 	useup(paper);
+	use_skill(P_DEVICES,10);
 
 	/* success */
 	if (new_obj->oclass == SPBOOK_CLASS) {

@@ -761,6 +761,9 @@ struct you {
 	long ugallop;
 	int urideturns;
 	int uhighheelturns;
+	int ugeneralcombatturns;
+	int utwohandedcombatturns;
+	int ubodyarmorturns;
 #endif
 	int	umortality;		/* how many times you died */
 	int ugrave_arise; /* you die and become something aside from a ghost */

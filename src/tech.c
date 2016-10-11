@@ -36,6 +36,7 @@ static void FDECL(maybe_tameX, (struct monst *));
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 /* 
  * Do try to keep the names <= 25 chars long, or else the
@@ -97,6 +98,15 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"double trouble",
 	"phase door",
 	"secure identify",
+	"iron skin",
+	"polyform",
+	"concentrating",
+	"summon pet",
+	"double thrownage",
+	"shield bash",
+	"recharge",
+	"spirituality check",
+	"eddy wind",
 #ifdef JEDI
 	"jedi jump",
 	"charge saber",
@@ -114,16 +124,25 @@ static const struct innate_tech
 	lad_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
 	fnc_tech[] = { {   1, T_CRIT_STRIKE, 1},
+		       {   1, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	fig_tech[] = { {   1, T_BERSERK, 1},
+		       {   4, T_CONCENTRATING, 1},
+		       {   8, T_IRON_SKIN, 1},
+		       {   10, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
 	sex_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   1, T_POKE_BALL, 1},
+		       {   26, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
+	zoo_tech[] = { {   12, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 	jes_tech[] = { {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	stu_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_JEDI_JUMP, 1},
+		       {   5, T_POLYFORM, 1},
+		       {   15, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	gun_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_SURGERY, 1},
@@ -133,35 +152,51 @@ static const struct innate_tech
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
+		       {   20, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	med_tech[] = { {   1, T_TELEKINESIS, 1},
+		       {   10, T_POLYFORM, 1},
+		       {   15, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	dol_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   7, T_RESEARCH, 1},
 		       {   10, T_POKE_BALL, 1},
+		       {   20, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 	ama_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   5, T_CRIT_STRIKE, 1},
 		       {   15, T_VANISH, 1},
+		       {   18, T_CONCENTRATING, 1},
 		       {   25, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+	art_tech[] = { {   18, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	rin_tech[] = { {   1, T_BLINK, 1},
 		       {   0, 0, 0} },
 
 	bos_tech[] = { {   1, T_FLURRY, 1},
+		       {   1, T_DOUBLE_THROWNAGE, 1},
 		       {   5, T_VANISH, 1},
 		       {   15, T_BLINK, 1},
 		       {   30, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
 
+	bul_tech[] = { {   6, T_IRON_SKIN, 1},
+		       {   0, 0, 0} },
+
 	ord_tech[] = { {   1, T_PRACTICE, 1},
 		       {   1, T_TURN_UNDEAD, 1},
+		       {   5, T_CONCENTRATING, 1},
+		       {   8, T_DOUBLE_THROWNAGE, 1},
 		       {   10, T_TINKER, 1},
+		       {   12, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
 	dun_tech[] = { {   1, T_CUTTHROAT, 1},
+		       {   5, T_CONCENTRATING, 1},
 		       {   10, T_CRIT_STRIKE, 1},
+		       {   15, T_SHIELD_BASH, 1},
 		       {   20, T_RAISE_ZOMBIES, 1},
 		       {   0, 0, 0} },
 
@@ -180,10 +215,12 @@ static const struct innate_tech
 	tha_tech[] = { {   5, T_DAZZLE, 1},
 		       {   10, T_WARD_FIRE, 1},
 		       {   10, T_DRAW_ENERGY, 1},
+		       {   10, T_IRON_SKIN, 1},
 			 {   15, T_LIQUID_LEAP, 1},
 			 {   15, T_WARD_ELEC, 1},
 			 {   20, T_WARD_COLD, 1},
 		       {   20, T_POWER_SURGE, 1},
+		       {   20, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
 	gof_tech[] = { {   1, T_DRAW_BLOOD, 1},
@@ -201,7 +238,21 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	dru_tech[] = { {   1, T_BOOZE, 1},
 		       {   0, 0, 0} },
+	fir_tech[] = { {   12, T_RECHARGE, 1},
+		       {   0, 0, 0} },
+	gam_tech[] = { {   1, T_CONCENTRATING, 1},
+		       {   20, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
+	gla_tech[] = { {   5, T_SHIELD_BASH, 1},
+			 {   10, T_IRON_SKIN, 1},
+		       {   0, 0, 0} },
 	bar_tech[] = { {   1, T_BERSERK, 1},
+		       {   8, T_DOUBLE_THROWNAGE, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   10, T_IRON_SKIN, 1},
+		       {   20, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
+	blo_tech[] = { {   1, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	gol_tech[] = { {   1, T_VANISH, 1},
 		       {   7, T_TINKER, 1},
@@ -216,6 +267,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	spa_tech[] = { {   1, T_REINFORCE, 1},
 			 {   5, T_RESEARCH, 1},
+			 {   6, T_RECHARGE, 1},
 		       {  8, T_WARD_FIRE, 1},
 		       {  10, T_CHARGE_SABER, 1},
 		       {  11, T_WARD_COLD, 1},
@@ -223,6 +275,7 @@ static const struct innate_tech
 		       {  20, T_DRAW_ENERGY, 1},
 		       {   0, 0, 0} },
 	cam_tech[] = { {   12, T_CREATE_AMMO, 1},
+			 {   26, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
@@ -230,15 +283,24 @@ static const struct innate_tech
 		       {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	dea_tech[] = { {   1, T_WORLD_FALL, 1},
+		       {   1, T_RECHARGE, 1},
+		       {   0, 0, 0} },
+	div_tech[] = { {   15, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	cav_tech[] = { {   1, T_PRIMAL_ROAR, 1},
+		       {   10, T_SHIELD_BASH, 1},
+		       {   20, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	sli_tech[] = { {   1, T_LIQUID_LEAP, 1},
+		       {   4, T_SPIRITUALITY_CHECK, 1},
 		       {   6, T_HEAL_HANDS, 1},
 		       {   12, T_WORLD_FALL, 1},
 		       {   15, T_TELEKINESIS, 1},
+		       {   18, T_IRON_SKIN, 1},
 		       {   19, T_SUMMON_TEAM_ANT, 1},
+		       {   23, T_RECHARGE, 1},
 		       {   25, T_VANISH, 1},
+		       {   28, T_POLYFORM, 1},
 		       {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	erd_tech[] = { {   1, T_CRIT_STRIKE, 1},
@@ -275,6 +337,7 @@ static const struct innate_tech
 		       {   1, T_SIGIL_DISCHARGE, 1},
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
+		       {   7, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	hea_tech[] = { {   1, T_SURGERY, 1},
 		       {  20, T_REVIVE, 1},
@@ -289,17 +352,36 @@ static const struct innate_tech
 	jed_tech[] = { {   1, T_JEDI_JUMP, 1},
 		       {   5, T_CHARGE_SABER, 1},
 		       {   8, T_TELEKINESIS, 1},
+		       {   15, T_SHIELD_BASH, 1},
+		       {   25, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0,} },
 #endif
 	kni_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_HEAL_HANDS, 1},
+		       {   1, T_SHIELD_BASH, 1},
+		       {   0, 0, 0} },
+
+	kor_tech[] = { {   1, T_DOUBLE_THROWNAGE, 1},
+		       {   0, 0, 0} },
+
+	jus_tech[] = { {   12, T_CONCENTRATING, 1},
+		       {   16, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
 
 	pal_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_HEAL_HANDS, 1},
+		       {   1, T_SHIELD_BASH, 1},
+		       {   1, T_SPIRITUALITY_CHECK, 1},
+		       {   18, T_CONCENTRATING, 1},
 		       {   0, 0, 0} },
 
-	wan_tech[] = { {   30, T_WORLD_FALL, 1},
+	wan_tech[] = { {   1, T_RECHARGE, 1},
+			 {   30, T_WORLD_FALL, 1},
+		       {   0, 0, 0} },
+
+	war_tech[] = { {   1, T_CONCENTRATING, 1},
+		       {   10, T_SHIELD_BASH, 1},
+		       {   24, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 
 	sci_tech[] = { {   1, T_RESEARCH, 1},
@@ -310,6 +392,10 @@ static const struct innate_tech
 		       {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	sha_tech[] = { {   1, T_LIQUID_LEAP, 1},
+		       {   15, T_POLYFORM, 1},
+		       {   0, 0, 0} },
+
+	sla_tech[] = { {   1, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 
 	mon_tech[] = { {   1, T_PUMMEL, 1},
@@ -335,6 +421,10 @@ static const struct innate_tech
 	  	       {   18, T_E_FIST, 1},
 		       {  18, T_G_SLAM, 1},
 		       {  18, T_SPIRIT_BOMB, 1},
+		       {  18, T_IRON_SKIN, 1},
+		       {  18, T_CONCENTRATING, 1},
+		       {  18, T_DOUBLE_THROWNAGE, 1},
+		       {  18, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
 
 	sai_tech[] = { {   1, T_PUMMEL, 1},
@@ -344,12 +434,14 @@ static const struct innate_tech
 	  	       {   4, T_CHI_HEALING, 1},
 	  	       {   6, T_E_FIST, 1},
 		       {   8, T_DRAW_ENERGY, 1},
+		       {   8, T_CONCENTRATING, 1},
 		       {  10, T_G_SLAM, 1},
 		       {  11, T_WARD_FIRE, 1},
 		       {  13, T_WARD_COLD, 1},
 		       {  15, T_WARD_ELEC, 1},
 		       {  17, T_SPIRIT_BOMB, 1},
 		       {  20, T_POWER_SURGE, 1},
+		       {  24, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
 	psi_tech[] = { {   1, T_PUMMEL, 1},
@@ -369,8 +461,10 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	pok_tech[] = { {   1, T_POKE_BALL, 1},
 		       {   2, T_PUMMEL, 1},
+		       {   3, T_SPIRITUALITY_CHECK, 1},
 		       {   4, T_DASH, 1},
 		       {  5, T_WARD_FIRE, 1},
+		       {   7, T_SHIELD_BASH, 1},
 		       {   8, T_BLITZ, 1},
 		       {  9, T_WARD_COLD, 1},
 		       {  10, T_RAISE_ZOMBIES, 1},
@@ -380,7 +474,10 @@ static const struct innate_tech
 	  	       {   17, T_EGG_BOMB, 1},
 	  	       {   18, T_WORLD_FALL, 1},
 		       {   20, T_DRAW_ENERGY, 1},
+		       {   21, T_RECHARGE, 1},
 		       {   22, T_RESEARCH, 1},
+		       {   23, T_POLYFORM, 1},
+		       {   24, T_EDDY_WIND, 1},
 		       {  25, T_G_SLAM, 1},
 		       {  26, T_SUMMON_TEAM_ANT, 1},
 		       {  27, T_BLESSING, 1},
@@ -393,16 +490,22 @@ static const struct innate_tech
 		       {  10, T_POWER_SURGE, 1},
 		       {  15, T_SIGIL_TEMPEST, 1},
 		       {   0, 0, 0} },
+	abu_tech[] = { {   1, T_CONCENTRATING, 1},
+		       {   1, T_IRON_SKIN, 1},
+		       {   0, 0, 0} },
 	pri_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_BLESSING, 1},
+		       {   1, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	che_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_BLESSING, 1},
 		       {   1, T_HEAL_HANDS, 1},
+		       {   1, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	ran_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	aug_tech[] = { {   1, T_TELEKINESIS, 1},
+		       {   10, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	elp_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
@@ -410,12 +513,20 @@ static const struct innate_tech
 		       {  15, T_CUTTHROAT, 1},
 		       {   0, 0, 0} },
 	sam_tech[] = { {   1, T_KIII, 1},
+		       {   6, T_SHIELD_BASH, 1},
+		       {   18, T_IRON_SKIN, 1},
+		       {   18, T_CONCENTRATING, 1},
+		       {   0, 0, 0} },
+	nin_tech[] = { {   5, T_DOUBLE_THROWNAGE, 1},
+		       {   25, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	tou_tech[] = { /* Put Tech here */
 		       {   0, 0, 0} },
 	tra_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 	trs_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 	act_tech[] = { {   1, T_REINFORCE, 1},
 		       {  5, T_VANISH, 1},
@@ -424,19 +535,31 @@ static const struct innate_tech
 	top_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {  10, T_CREATE_AMMO, 1},
 		       {  20, T_LIQUID_LEAP, 1},
+		       {  30, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	fai_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {  29, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	und_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_PRACTICE, 1},
+		       {   10, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 	unb_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_PRACTICE, 1},
+		       {   3, T_SHIELD_BASH, 1},
+		       {   6, T_IRON_SKIN, 1},
+		       {   6, T_CONCENTRATING, 1},
+		       {   12, T_DOUBLE_THROWNAGE, 1},
+		       {   15, T_RECHARGE, 1},
+		       {   18, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	unt_tech[] = { {   1, T_TURN_UNDEAD, 1},
+		       {   14, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	val_tech[] = { {   1, T_PRACTICE, 1},
+		       {   9, T_CONCENTRATING, 1},
+		       {   14, T_RECHARGE, 1},
+		       {   20, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 	lun_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -449,6 +572,9 @@ static const struct innate_tech
 #ifdef STEED
 		       {   1, T_CALM_STEED, 1},
 #endif
+		       {   8, T_IRON_SKIN, 1},
+		       {   17, T_EDDY_WIND, 1},
+		       {   25, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 #endif
 	wiz_tech[] = { {   1, T_REINFORCE, 1},
@@ -509,13 +635,21 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BOOZE, 1},
+		       {   2, T_SPIRITUALITY_CHECK, 1},
+		       {   4, T_DOUBLE_THROWNAGE, 1},
 		       {   5, T_TINKER, 1},
+		       {   6, T_SHIELD_BASH, 1},
 		       {   7, T_SIGIL_DISCHARGE, 1},
+		       {   8, T_IRON_SKIN, 1},
 		       {   10, T_BLINK, 1},
+		       {   11, T_POLYFORM, 1},
 		       {   12, T_DRAW_ENERGY, 1},
+		       {   13, T_CONCENTRATING, 1},
 		       {   15, T_SIGIL_TEMPEST, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_RECHARGE, 1},
 		       {   23, T_SIGIL_CONTROL, 1},
+		       {   25, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	ogr_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -550,6 +684,16 @@ static const struct innate_tech
 		       {   1, T_BLESSING, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   1, T_SURGERY, 1},
+		       {   1, T_DOUBLE_THROWNAGE, 1},
+		       {   1, T_EDDY_WIND, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   16, T_SPIRITUALITY_CHECK, 1},
+		       {   24, T_POLYFORM, 1},
+		       {   0, 0, 0} },
+	mou_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_POLYFORM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
@@ -566,6 +710,7 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_VANISH, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 
 	alb_tech[] = { {   1, T_DAZZLE, 1},
@@ -585,6 +730,7 @@ static const struct innate_tech
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   8, T_CONCENTRATING, 1},
 		       {   10, T_RAGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
@@ -593,12 +739,14 @@ static const struct innate_tech
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
-	kob_tech[] = { {   10, T_TINKER, 1},
-		       {   1, T_APPRAISAL, 1},
+	kob_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   3, T_DOUBLE_THROWNAGE, 1},
+			 {   10, T_TINKER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	kha_tech[] = { {   1, T_EVISCERATE, 1},
@@ -639,10 +787,13 @@ static const struct innate_tech
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   4, T_SPIRITUALITY_CHECK, 1},
 		       {   5, T_ATTIRE_CHARM, 1},
 		       {   10, T_BLINK, 1},
+		       {   13, T_RECHARGE, 1},
 		       {   15, T_BLESSING, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   18, T_POLYFORM, 1},
 		       {   20, T_LIQUID_LEAP, 1},
 		       {   25, T_DRAW_ENERGY, 1},
 		       {   30, T_SUMMON_TEAM_ANT, 1},
@@ -671,19 +822,23 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_VANISH, 1},
+		       {   5, T_SPIRITUALITY_CHECK, 1},
 		       {   10, T_TELEKINESIS, 1},
 		       {   15, T_EGG_BOMB, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_WORLD_FALL, 1},
+		       {   25, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	cor_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_VANISH, 1},
 		       {   1, T_EGG_BOMB, 1},
+		       {   5, T_SPIRITUALITY_CHECK, 1},
 		       {   10, T_TELEKINESIS, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_WORLD_FALL, 1},
+		       {   25, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	bor_tech[] = { {   3, T_JEDI_JUMP, 1},
 		       {   10, T_CHARGE_SABER, 1},
@@ -700,6 +855,12 @@ static const struct innate_tech
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_POLYFORM, 1},
+		       {   0, 0, 0} },
+	cen_tech[] = { {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   7, T_SHIELD_BASH, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	rod_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -713,6 +874,15 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_SPIRITUALITY_CHECK, 1},
+		       {   12, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   22, T_POLYFORM, 1},
+		       {   0, 0, 0} },
+
+	dry_tech[] = { {   1, T_IRON_SKIN, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_APPRAISAL, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -724,6 +894,7 @@ static const struct innate_tech
 		       {   1, T_BLITZ, 1},
 		       {   2, T_CHI_STRIKE, 1},
 	  	       {   4, T_CHI_HEALING, 1},
+		       {   5, T_DOUBLE_THROWNAGE, 1},
 	  	       {   6, T_E_FIST, 1},
 		       {   8, T_DRAW_ENERGY, 1},
 		       {  10, T_G_SLAM, 1},
@@ -733,6 +904,114 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {  17, T_SPIRIT_BOMB, 1},
 		       {  20, T_POWER_SURGE, 1},
+		       {  25, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
+
+	gri_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	inc_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_RECHARGE, 1},
+		       {   0, 0, 0} },
+
+	mim_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_POLYFORM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	mis_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	nav_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   18, T_CONCENTRATING, 1},
+		       {   0, 0, 0} },
+
+	spi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
+
+	spr_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   6, T_IRON_SKIN, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	trf_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_POLYFORM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	trp_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   11, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   28, T_SPIRITUALITY_CHECK, 1},
+		       {   0, 0, 0} },
+
+	una_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   3, T_SHIELD_BASH, 1},
+		       {   6, T_IRON_SKIN, 1},
+		       {   8, T_DOUBLE_THROWNAGE, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   12, T_SPIRITUALITY_CHECK, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   18, T_POLYFORM, 1},
+		       {   21, T_EDDY_WIND, 1},
+		       {   24, T_RECHARGE, 1},
+		       {   27, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
+
+	uni_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_SUMMON_PET, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	unm_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	vee_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_SPIRITUALITY_CHECK, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	wrp_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_POLYFORM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
@@ -1063,6 +1342,7 @@ dotechmenu(how, tech_no)
 	    add_menu(tmpwin, NO_GLYPH, &any,
 		    techtout(i) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
+	    if (let == 'Z') let = 'a';
 	}
 
 	if (!techs_useable) 
@@ -1390,6 +1670,42 @@ dotech()
 
 		case T_TELEKINESIS:
 			pline("A technique that can be used to interact with dungeon features from far away.");
+			break;
+
+		case T_IRON_SKIN:
+			pline("Using this technique will improve your armor class for a short period of time.");
+			break;
+
+		case T_POLYFORM:
+			pline("You can use this technique for an uncontrolled random polymorph.");
+			break;
+
+		case T_CONCENTRATING:
+			pline("With this technique active, your melee attacks will almost never miss; however, it only lasts for a short time.");
+			break;
+
+		case T_SUMMON_PET:
+			pline("A technique that summons a tame monster.");
+			break;
+
+		case T_DOUBLE_THROWNAGE:
+			pline("Use this technique just before you start throwing darts, daggers or similar throwing weapons, and you can throw many more projectiles per turn!");
+			break;
+
+		case T_SHIELD_BASH:
+			pline("If you use this technique, your one-handed melee attacks will deal more damage as long as you have a shield equipped. The damage bonus depends on the shield's enchantment value.");
+			break;
+
+		case T_RECHARGE:
+			pline("A very useful technique that allows you to recharge wands, tools and similar items. However, blessed scrolls of charging are still better, so you should probably not use this technique on a wand of wishing.");
+			break;
+
+		case T_SPIRITUALITY_CHECK:
+			pline("If you're unsure whether you can safely pray, you can use this technique to communicate with your god. There are no negative effects - it simply tells you whether it's safe to pray now.");
+			break;
+
+		case T_EDDY_WIND:
+			pline("You can invoke this technique to walk right through monsters for a short time. Remember: if you want to attack them in melee, you'll need to prefix your movements with the F command. If you are wielding two weapons at the same time and attack a monster while having the technique active, you will deal extra damage with every hit.");
 			break;
 
 		case T_CHARGE_SABER:
@@ -2823,6 +3139,92 @@ int tech_no;
 	      t_timeout = rnz(2000);
 	      break;
 
+	    case T_IRON_SKIN:
+		num = 1 + techlev(tech_no);
+	    	techt_inuse(tech_no) = num + 1;
+		pline("Your skin becomes harder.");
+
+	      t_timeout = rnz(2000);
+	      break;
+
+	    case T_POLYFORM:
+
+		pline("You feel polyform.");
+	    	techt_inuse(tech_no) = 1;
+		polyself(FALSE);
+	    	techt_inuse(tech_no) = 0;
+	      t_timeout = rnz(10000);
+	      break;
+
+	    case T_CONCENTRATING:
+		num = 1 + (techlev(tech_no) / 2);
+	    	techt_inuse(tech_no) = num + 1;
+
+		pline("You start concentrating.");
+	      t_timeout = rnz(2500);
+	      break;
+
+	    case T_SUMMON_PET:
+		pline("You summon a pet.");
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+
+	      t_timeout = rnz(5000);
+	      break;
+
+	    case T_DOUBLE_THROWNAGE:
+
+            Your("%s %s become blurs as they reach for your throwing weapons!", uarmg ? "gloved" : "bare", makeplural(body_part(HAND)));
+            techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
+            t_timeout = rnz(1500);
+
+	      break;
+
+	    case T_SHIELD_BASH:
+		if (!uarms) {
+			pline("You aren't wearing a shield!");
+			return(0);
+		}
+		num = 1 + techlev(tech_no);
+	    	techt_inuse(tech_no) = num + 1;
+		pline("You ready your shield as an additional weapon.");
+
+	      t_timeout = rnz(2000);
+
+	      break;
+
+	    case T_RECHARGE:
+	    	{struct obj *otmpC = getobj(recharge_type, "charge");
+		if (!otmpC) {
+			return(0);
+		}
+		recharge(otmpC, 0);
+
+	      t_timeout = rnz(7500);
+	      break;
+		}
+
+	    case T_SPIRITUALITY_CHECK:
+		if (can_pray(FALSE) && !u.ugangr) pline("You can safely pray!");
+		else {
+			pline("You can not safely pray.");
+			if (u.ugangr) pline("The gods are angry with you.");
+			if (u.ublesscnt > 0) pline("Your prayer timeout isn't zero.");
+			if ((int)Luck < 0) pline("Your luck is negative.");
+			if (u.ualign.record < 0) pline("Your alignment record is negative.");
+		}
+		u.uconduct.gnostic++;	/* you just communicated with your god */
+
+	      t_timeout = rnz(2000);
+	      break;
+
+	    case T_EDDY_WIND:
+		num = 1 + techlev(tech_no);
+	    	techt_inuse(tech_no) = num + 1;
+		pline("You prepare a powerful axe-and-sword-mill!");
+
+	      t_timeout = rnz(3500);
+	      break;
+
 	    case T_TELEKINESIS:
 	      {
 		coord cc;
@@ -3001,6 +3403,9 @@ tech_timeout()
 		    case T_FLURRY:
 			You("relax.");
 			break;
+		    case T_DOUBLE_THROWNAGE:
+			You("relax.");
+			break;
 		    case T_E_FIST:
 			You_feel("the power dissipate.");
 			break;
@@ -3015,6 +3420,18 @@ tech_timeout()
 			break;
 		    case T_RAGE:
 			Your("anger cools.");
+			break;
+		    case T_CONCENTRATING:
+			You("stop concentrating.");
+			break;
+		    case T_SHIELD_BASH:
+			You("pull back your shield.");
+			break;
+		    case T_EDDY_WIND:
+			You("stop whirling.");
+			break;
+		    case T_IRON_SKIN:
+			Your("skin is no longer hard as iron.");
 			break;
 		    case T_POWER_SURGE:
 			pline_The("awesome power within you fades.");
@@ -3090,14 +3507,20 @@ role_tech()
 	switch (Role_switch) {
 		case PM_ARCHEOLOGIST:	return (arc_tech);
 		case PM_GOFF:	return (gof_tech);
+		case PM_FIREFIGHTER:	return (fir_tech);
+		case PM_GAMER:	return (gam_tech);
+		case PM_GLADIATOR:	return (gla_tech);
 		case PM_AMAZON:	return (ama_tech);
+		case PM_ARTIST:	return (art_tech);
 		case PM_ALTMER:	return (alt_tech);
 		case PM_BOSMER:	return (bos_tech);
+		case PM_BULLY:	return (bul_tech);
 		case PM_DUNMER:	return (dun_tech);
 		case PM_ORDINATOR:	return (ord_tech);
 		case PM_THALMOR:	return (tha_tech);
 		case PM_DRUNK:	return (dru_tech);
 		case PM_BARBARIAN:	return (bar_tech);
+		case PM_BLOODSEEKER:	return (blo_tech);
 		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);
 		case PM_DQ_SLIME:	return (sli_tech);
@@ -3119,15 +3542,19 @@ role_tech()
 		case PM_JEDI:		return (jed_tech);
 #endif
 		case PM_KNIGHT:		return (kni_tech);
+		case PM_KORSAIR:		return (kor_tech);
+		case PM_JUSTICE_KEEPER:		return (jus_tech);
 		case PM_MONK: 		return (mon_tech);
 		case PM_JESTER: 		return (jes_tech);
 		case PM_LADIESMAN: 		return (lad_tech);
 		case PM_SEXYMATE: 		return (sex_tech);
+		case PM_ZOOKEEPER: 		return (zoo_tech);
 		case PM_MEDIUM: 		return (med_tech);
 		case PM_FENCER: 		return (fnc_tech);
 		case PM_FIGHTER: 		return (fig_tech);
 		case PM_SUPERMARKET_CASHIER: 		return (sup_tech);
 		case PM_WANDKEEPER: 		return (wan_tech);
+		case PM_WARRIOR: 		return (war_tech);
 		case PM_PALADIN: 		return (pal_tech);
 		case PM_FEAT_MASTER: 		return (stu_tech);
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
@@ -3141,10 +3568,12 @@ role_tech()
 		case PM_PSION: 		return (psi_tech);
 		case PM_SCIENTIST: 		return (sci_tech);
 		case PM_DEATH_EATER: 		return (dea_tech);
+		case PM_DIVER: 		return (div_tech);
 		case PM_POKEMON: 		return (pok_tech);
 		case PM_GANGSTER: 		return (gan_tech);
 		case PM_ROCKER: 		return (roc_tech);
 		case PM_NECROMANCER:	return (nec_tech);
+		case PM_CRUEL_ABUSER:	return (abu_tech);
 		case PM_PRIEST:		return (pri_tech);
 		case PM_GOLDMINER:		return (gol_tech);
 		case PM_CHEVALIER:		return (che_tech);
@@ -3156,12 +3585,14 @@ role_tech()
 		case PM_CAMPERSTRIKER:		return (cam_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
+		case PM_NINJA:	return (nin_tech);
 #ifdef TOURIST        
 		case PM_TOURIST:	return (tou_tech);
 #endif        
 		case PM_UNDEAD_SLAYER:	return (und_tech);
 		case PM_UNBELIEVER:	return (unb_tech);
 		case PM_SHAPESHIFTER:	return (sha_tech);
+		case PM_SLAVE_MASTER:	return (sla_tech);
 		case PM_RINGSEEKER:		return (rin_tech);
 		case PM_UNDERTAKER:	return (unt_tech);
 		case PM_VALKYRIE:	return (val_tech);
@@ -3195,11 +3626,16 @@ race_tech()
 		case PM_KOBOLT:		return (kob_tech);
 		case PM_OGRO:		return (ogr_tech);
 		case PM_BATMAN:		return (bat_tech);
+		case PM_HUMANOID_CENTAUR:		return (cen_tech);
 		case PM_BORG:		return (bor_tech);
 		case PM_RODNEYAN:		return (rod_tech);
 		case PM_TURTLE:		return (tur_tech);
 		case PM_JELLY:		return (jel_tech);
+		case PM_HUMANOID_DRYAD:		return (dry_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);
+		case PM_PLAYER_UNICORN:		return (uni_tech);
+		case PM_UNMAGIC_FISH:		return (unm_tech);
+		case PM_MOULD:		return (mou_tech);
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
@@ -3215,7 +3651,19 @@ race_tech()
 		case PM_LEVITATOR:	return (lev_tech);
 		case PM_HERBALIST:		return (hrb_tech);
 		case PM_ALCHEMIST: 		return (alc_tech);
+		case PM_WEAPON_BUG: 		return (gri_tech);
 		case PM_HUMANOID_ANGEL:	return (ang_tech);
+		case PM_INCANTIFIER:	return (inc_tech);
+		case PM_PLAYER_MIMIC:	return (mim_tech);
+		case PM_MISSINGNO:	return (mis_tech);
+		case PM_NAVI:	return (nav_tech);
+		case PM_SPIDERMAN:	return (spi_tech);
+		case PM_TRANSFORMER:	return (trf_tech);
+		case PM_WEAPON_TRAPPER:	return (trp_tech);
+		case PM_SPRIGGAN:	return (spr_tech);
+		case PM_VEELA:	return (vee_tech);
+		case PM_WARPER:	return (wrp_tech);
+		case PM_UNALIGNMENT_THING:	return (una_tech);
 		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}
 }

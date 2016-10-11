@@ -279,6 +279,15 @@ int thrown;
 		    You("let fly a volley of %s!", xname(obj));
 	    }
 
+	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && tech_inuse(T_DOUBLE_THROWNAGE)) {
+		multishot += 1; multishot += rnd(multishot); /* Let'em rip! Extra bonus added by Amy. */
+
+		/* more than usual == volley */
+		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
+			(obj->quan >= multishot))
+		    You("throw a hail of %s!", xname(obj));
+	    }
+
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
 

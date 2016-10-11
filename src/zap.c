@@ -2922,11 +2922,25 @@ int
 zappable(wand)
 register struct obj *wand;
 {
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+		if (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS ) nochargechange = 10;
+	}
 	if(wand->spe < 0 || (wand->spe == 0 && rn2(20))) /* make wresting easier --Amy */
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	if (!rn2(2) || !wand->oartifact) wand->spe--;
+	if ((!rn2(2) || !wand->oartifact) && (nochargechange >= rnd(10) ) ) wand->spe--;
+	use_skill(P_DEVICES,1);
 	return 1;
 }
 

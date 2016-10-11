@@ -29,11 +29,20 @@ STATIC_DCL int FDECL(enhance_skill, (boolean));
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
 #define PN_HIGH_HEELS		(-15)
-#define PN_MARTIAL_ARTS		(-16)
-#define PN_RIDING		(-17)
-#define PN_TWO_WEAPONS		(-18)
+#define PN_GENERAL_COMBAT		(-16)
+#define PN_SHIELD		(-17)
+#define PN_BODY_ARMOR		(-18)
+#define PN_TWO_HANDED_WEAPON		(-19)
+#define PN_POLYMORPHING		(-20)
+#define PN_DEVICES		(-21)
+#define PN_SEARCHING		(-22)
+#define PN_SPIRITUALITY		(-23)
+#define PN_PETKEEPING		(-24)
+#define PN_MARTIAL_ARTS		(-25)
+#define PN_RIDING		(-26)
+#define PN_TWO_WEAPONS		(-27)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-19)
+#define PN_LIGHTSABER		(-28)
 #endif
 
 static void FDECL(give_may_advance_msg, (int));
@@ -74,7 +83,11 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 	PN_HIGH_HEELS,	PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -99,9 +112,18 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "matter spells",
     "bare-handed combat",
     "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
     "martial arts",
     "riding",
-    "two-handed combat",
+    "two-weapon combat",
 #ifdef LIGHTSABERS
     "lightsaber"
 #endif
@@ -282,6 +304,20 @@ struct monst *mon;
 	if (otmp->oinvis && !perceives(ptr)) tmp += 3;
 	if (otmp->oinvisreal) tmp += 7;
 #endif
+
+	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
+
+	    case P_BASIC:		tmp +=  1; break;
+	    case P_SKILLED:	tmp +=  2; break;
+	    case P_EXPERT:	tmp +=  3; break;
+	    case P_MASTER:	tmp +=  4; break;
+	    case P_GRAND_MASTER:tmp +=  5; break;
+	    case P_SUPREME_MASTER:tmp +=  6; break;
+	    default: tmp += 0; break;
+		}
+
+	}
 
 	/* Check specially named weapon "to hit" bonuses */
 	if (otmp->oartifact) tmp += spec_abon(otmp, mon);
@@ -2379,6 +2415,33 @@ int skill;
 		case P_HIGH_HEELS:
 			    HManaleech |= FROMOUTSIDE; pline("Got manaleech!"); break;
 		break;
+		case P_GENERAL_COMBAT:
+			    HFire_resistance |= FROMOUTSIDE; pline("Got fire resistance!"); break;
+		break;
+		case P_SHIELD:
+			    HCold_resistance |= FROMOUTSIDE; pline("Got cold resistance!"); break;
+		break;
+		case P_BODY_ARMOR:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_TWO_HANDED_WEAPON:
+			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
+		break;
+		case P_POLYMORPHING:
+			    HPsi_resist |= FROMOUTSIDE; pline("Got psi resistance!"); break;
+		break;
+		case P_DEVICES:
+			    HConf_resist |= FROMOUTSIDE; pline("Got confusion resistance!"); break;
+		break;
+		case P_SEARCHING:
+			    HSleep_resistance |= FROMOUTSIDE; pline("Got sleep resistance!"); break;
+		break;
+		case P_SPIRITUALITY:
+			    HStun_resist |= FROMOUTSIDE; pline("Got stun resistance!"); break;
+		break;
+		case P_PETKEEPING:
+			    HTelepat |= FROMOUTSIDE; pline("Got telepathy!"); break;
+		break;
 
 		default: break;
 
@@ -2599,6 +2662,51 @@ int skill;
 		case P_HIGH_HEELS:
 				if (!tech_known(T_DOUBLE_TROUBLE)) {    	learntech(T_DOUBLE_TROUBLE, FROMOUTSIDE, 1);
 			    	You("learn how to perform double trouble!");
+				}
+		break;
+		case P_GENERAL_COMBAT:
+				if (!tech_known(T_CONCENTRATING)) {    	learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
+			    	You("learn how to perform concentrating!");
+				}
+		break;
+		case P_SHIELD:
+				if (!tech_known(T_SHIELD_BASH)) {    	learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+			    	You("learn how to perform shield bash!");
+				}
+		break;
+		case P_BODY_ARMOR:
+				if (!tech_known(T_IRON_SKIN)) {    	learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
+			    	You("learn how to perform iron skin!");
+				}
+		break;
+		case P_TWO_HANDED_WEAPON:
+				if (!tech_known(T_EDDY_WIND)) {    	learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
+			    	You("learn how to perform eddy wind!");
+				}
+		break;
+		case P_POLYMORPHING:
+				if (!tech_known(T_POLYFORM)) {    	learntech(T_POLYFORM, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyform!");
+				}
+		break;
+		case P_DEVICES:
+				if (!tech_known(T_RECHARGE)) {    	learntech(T_RECHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform recharge!");
+				}
+		break;
+		case P_SEARCHING:
+				if (!tech_known(T_DOUBLE_THROWNAGE)) {    	learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform double thrownage!");
+				}
+		break;
+		case P_SPIRITUALITY:
+				if (!tech_known(T_SPIRITUALITY_CHECK)) {    	learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+			    	You("learn how to perform spirituality check!");
+				}
+		break;
+		case P_PETKEEPING:
+				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
+			    	You("learn how to perform summon pet!");
 				}
 		break;
 
@@ -3262,7 +3370,7 @@ struct obj *weapon;
 	}
 
 	/* high heel skill improves whacking damage, but using them in melee does not train the skill --Amy */
-	if (weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT) ) {
+	if (weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT) ) {
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: bonus += 1; break;
@@ -3309,22 +3417,15 @@ struct obj *weapon;
 
 	}
 
-	/* add a little damage bonus for higher-level characters so the stronger monsters aren't too overpowered --Amy */
-
-	if (u.ulevel >= 10) bonus += 1;
-	if (u.ulevel >= 14) bonus += rn2(2);
-	if (u.ulevel >= 20) bonus += 1;
-	if (u.ulevel >= 30) bonus += 1;
-
-	if (!rn2(5) && u.menoraget) bonus += rnd(5);
-	if (!rn2(5) && u.bookofthedeadget) bonus += rnd(5);
-	if (!rn2(5) && u.silverbellget) bonus += rnd(5);
-	if (!rn2(4) && u.chaoskeyget) bonus += 1;
-	if (!rn2(4) && u.neutralkeyget) bonus += 1;
-	if (!rn2(4) && u.lawfulkeyget) bonus += 1;
-	if (!rn2(2) && u.medusaremoved) bonus += 1;
-	if (!rn2(7) && u.luckstoneget) bonus  += 1;
-	if (!rn2(7) && u.sokobanfinished) bonus += 1;
+	if (!rn2(10) && u.menoraget) bonus += rnd(5);
+	if (!rn2(10) && u.bookofthedeadget) bonus += rnd(5);
+	if (!rn2(10) && u.silverbellget) bonus += rnd(5);
+	if (!rn2(8) && u.chaoskeyget) bonus += 1;
+	if (!rn2(8) && u.neutralkeyget) bonus += 1;
+	if (!rn2(8) && u.lawfulkeyget) bonus += 1;
+	if (!rn2(4) && u.medusaremoved) bonus += 1;
+	if (!rn2(15) && u.luckstoneget) bonus  += 1;
+	if (!rn2(15) && u.sokobanfinished) bonus += 1;
 
 	/* damage bonus for using racial equipment */
 
@@ -3366,7 +3467,7 @@ struct obj *weapon;
 	}
     }
 
-	if (u.twoweap) {
+	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 	/* With shields being as strong as they are, and heavy two-handed weapons getting massive skill-dependant damage
 	 * bonuses, we need to make sure that twoweaponing isn't completely useless. --Amy */
 		bonus += 2;
@@ -3379,6 +3480,48 @@ struct obj *weapon;
 	    case P_SUPREME_MASTER:bonus +=  5; break;
 	    default: bonus += 0; break;
 		}
+	}
+
+	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && tech_inuse(T_EDDY_WIND) ) {
+		switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+
+	    case P_BASIC:		bonus +=  4; break;
+	    case P_SKILLED:	bonus +=  6; break;
+	    case P_EXPERT:	bonus +=  8; break;
+	    case P_MASTER:	bonus +=  10; break;
+	    case P_GRAND_MASTER:bonus +=  12; break;
+	    case P_SUPREME_MASTER:bonus +=  14; break;
+	    default: bonus += 2; break;
+		}
+
+	}
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_GENERAL_COMBAT)) {
+
+	    case P_BASIC:		bonus +=  1; break;
+	    case P_SKILLED:	bonus +=  2; break;
+	    case P_EXPERT:	bonus +=  3; break;
+	    case P_MASTER:	bonus +=  4; break;
+	    case P_GRAND_MASTER:bonus +=  5; break;
+	    case P_SUPREME_MASTER:bonus +=  6; break;
+	    default: bonus += 0; break;
+		}
+
+	}
+
+	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
+
+	    case P_BASIC:		bonus +=  2; break;
+	    case P_SKILLED:	bonus +=  4; break;
+	    case P_EXPERT:	bonus +=  6; break;
+	    case P_MASTER:	bonus +=  8; break;
+	    case P_GRAND_MASTER:bonus +=  10; break;
+	    case P_SUPREME_MASTER:bonus +=  12; break;
+	    default: bonus += 0; break;
+		}
+
 	}
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
@@ -3696,6 +3839,41 @@ struct obj *obj;
 	if (obj->otyp == SADDLE) skill = P_RIDING;
 #endif
 
+	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
+	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
+	if (obj->otyp >= WAN_LIGHT && obj->otyp <= WAN_PSYBEAM) skill = P_DEVICES;
+	if (obj->otyp == SCR_CREATE_FAMILIAR) skill = P_PETKEEPING;
+	if (obj->otyp == SCR_TAMING) skill = P_PETKEEPING;
+	if (obj->otyp == TIN_WHISTLE) skill = P_PETKEEPING;
+	if (obj->otyp == MAGIC_WHISTLE) skill = P_PETKEEPING;
+	if (obj->otyp == FIRE_HORN) skill = P_PETKEEPING;
+	if (obj->otyp == FROST_HORN) skill = P_PETKEEPING;
+	if (obj->otyp == TEMPEST_HORN) skill = P_PETKEEPING;
+	if (obj->otyp == DARK_MAGIC_WHISTLE) skill = P_PETKEEPING;
+	if (obj->otyp == LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == FIGURINE) skill = P_PETKEEPING;
+	if (obj->otyp == WOODEN_FLUTE) skill = P_PETKEEPING;
+	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;
+	if (obj->otyp == WOODEN_HARP) skill = P_PETKEEPING;
+	if (obj->otyp == MAGIC_HARP) skill = P_PETKEEPING;
+	if (obj->otyp == RIN_POLYMORPH) skill = P_POLYMORPHING;
+	if (obj->otyp == RIN_POLYMORPH_CONTROL) skill = P_POLYMORPHING;
+	if (obj->otyp == RIN_PROTECTION_FROM_SHAPE_CHAN) skill = P_POLYMORPHING;
+	if (obj->otyp == AMULET_OF_POLYMORPH) skill = P_POLYMORPHING;
+	if (obj->otyp == AMULET_OF_POLYMORPH_CONTROL) skill = P_POLYMORPHING;
+	if (obj->otyp == AMULET_OF_CHANGE) skill = P_POLYMORPHING;
+	if (obj->otyp == AMULET_OF_UNCHANGING) skill = P_POLYMORPHING;
+	if (obj->otyp == POT_POLYMORPH) skill = P_POLYMORPHING;
+	if (obj->otyp == LENSES) skill = P_SEARCHING;
+	if (obj->otyp == STETHOSCOPE) skill = P_SEARCHING;
+	if (obj->otyp == RIN_SEARCHING) skill = P_SEARCHING;
+	if (obj->otyp == RIN_TRAP_REVEALING) skill = P_SEARCHING;
+	if (obj->otyp == GOD_O_METER) skill = P_SPIRITUALITY;
+	if (obj->otyp == POT_WATER) skill = P_SPIRITUALITY;
+	if (obj->otyp == HOLY_WAFER) skill = P_SPIRITUALITY;
+	if (obj->otyp == SCR_CONSECRATION) skill = P_SPIRITUALITY;
+	if (obj->otyp == SCR_CREATE_ALTAR) skill = P_SPIRITUALITY;
+
 	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS) skill = P_HIGH_HEELS;
 
     	/* Negative skills == not a skill */
@@ -3840,7 +4018,55 @@ const struct def_skill *class_skill;
 			if (P_MAX_SKILL(P_SHURIKEN) == P_EXPERT) P_MAX_SKILL(P_SHURIKEN) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_SHURIKEN) = P_SUPREME_MASTER;
 		}
+		if (P_RESTRICTED(P_PETKEEPING)) {
+			P_SKILL(P_PETKEEPING) = P_BASIC;
+			P_ADVANCE(P_PETKEEPING) = 20;
+			P_MAX_SKILL(P_PETKEEPING) = P_SKILLED;
+		} else {
+			P_SKILL(P_PETKEEPING) = P_BASIC;
+			if (P_MAX_SKILL(P_PETKEEPING) == P_EXPERT) P_MAX_SKILL(P_PETKEEPING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_PETKEEPING) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_DEVICES)) {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			P_ADVANCE(P_DEVICES) = 20;
+			P_MAX_SKILL(P_DEVICES) = P_SKILLED;
+		} else {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			if (P_MAX_SKILL(P_DEVICES) == P_EXPERT) P_MAX_SKILL(P_DEVICES) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_DEVICES) = P_SUPREME_MASTER;
+		}
 
+		if (P_RESTRICTED(P_SEARCHING)) {
+			P_SKILL(P_SEARCHING) = P_UNSKILLED;
+			P_ADVANCE(P_SEARCHING) = 0;
+			P_MAX_SKILL(P_SEARCHING) = P_BASIC;
+		} else {
+			P_SKILL(P_SEARCHING) = P_BASIC;
+			if (P_MAX_SKILL(P_SEARCHING) == P_EXPERT) P_MAX_SKILL(P_SEARCHING) = P_MASTER;
+			else if (P_MAX_SKILL(P_SEARCHING) == P_MASTER) P_MAX_SKILL(P_SEARCHING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_SEARCHING) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_POLYMORPHING)) {
+			P_SKILL(P_POLYMORPHING) = P_UNSKILLED;
+			P_ADVANCE(P_POLYMORPHING) = 0;
+			P_MAX_SKILL(P_POLYMORPHING) = P_BASIC;
+		} else {
+			P_SKILL(P_POLYMORPHING) = P_BASIC;
+			if (P_MAX_SKILL(P_POLYMORPHING) == P_EXPERT) P_MAX_SKILL(P_POLYMORPHING) = P_MASTER;
+			else if (P_MAX_SKILL(P_POLYMORPHING) == P_MASTER) P_MAX_SKILL(P_POLYMORPHING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_POLYMORPHING) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_SPIRITUALITY)) {
+			P_SKILL(P_SPIRITUALITY) = P_UNSKILLED;
+			P_ADVANCE(P_SPIRITUALITY) = 0;
+			P_MAX_SKILL(P_SPIRITUALITY) = P_BASIC;
+		} else {
+			P_SKILL(P_SPIRITUALITY) = P_BASIC;
+			if (P_MAX_SKILL(P_SPIRITUALITY) == P_EXPERT) P_MAX_SKILL(P_SPIRITUALITY) = P_MASTER;
+			else if (P_MAX_SKILL(P_SPIRITUALITY) == P_MASTER) P_MAX_SKILL(P_SPIRITUALITY) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_SPIRITUALITY) = P_SUPREME_MASTER;
+		}
 		if (P_RESTRICTED(P_RIDING)) {
 			P_SKILL(P_RIDING) = P_UNSKILLED;
 			P_ADVANCE(P_RIDING) = 0;

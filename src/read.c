@@ -33,11 +33,20 @@
 #define PN_MATTER_SPELL		(-13)
 #define PN_BARE_HANDED		(-14)
 #define PN_HIGH_HEELS		(-15)
-#define PN_MARTIAL_ARTS		(-16)
-#define PN_RIDING		(-17)
-#define PN_TWO_WEAPONS		(-18)
+#define PN_GENERAL_COMBAT		(-16)
+#define PN_SHIELD		(-17)
+#define PN_BODY_ARMOR		(-18)
+#define PN_TWO_HANDED_WEAPON		(-19)
+#define PN_POLYMORPHING		(-20)
+#define PN_DEVICES		(-21)
+#define PN_SEARCHING		(-22)
+#define PN_SPIRITUALITY		(-23)
+#define PN_PETKEEPING		(-24)
+#define PN_MARTIAL_ARTS		(-25)
+#define PN_RIDING		(-26)
+#define PN_TWO_WEAPONS		(-27)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-19)
+#define PN_LIGHTSABER		(-28)
 #endif
 
 #ifndef OVLB
@@ -64,7 +73,11 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
 	PN_MATTER_SPELL,
-	PN_BARE_HANDED, 	PN_HIGH_HEELS,	PN_MARTIAL_ARTS, 
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 #ifdef STEED
 	PN_RIDING,
@@ -89,9 +102,18 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "matter spells",
     "bare-handed combat",
     "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
     "martial arts",
     "riding",
-    "two-handed combat",
+    "two-weapon combat",
 #ifdef LIGHTSABERS
     "lightsaber"
 #endif
@@ -3443,8 +3465,27 @@ register struct obj	*sobj;
 				if (mtmp2->mtame) {
 					edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
 					if (mtmp2->mtame <= rnd(21) || (edog && edog->abuse >= rn2(6) )) {
-						mtmp2->mtame = mtmp2->mpeaceful = 0;
-						if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+
+						int untamingchance = 10;
+
+						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+							switch (P_SKILL(P_PETKEEPING)) {
+								default: untamingchance = 10; break;
+								case P_BASIC: untamingchance = 9; break;
+								case P_SKILLED: untamingchance = 8; break;
+								case P_EXPERT: untamingchance = 7; break;
+								case P_MASTER: untamingchance = 6; break;
+								case P_GRAND_MASTER: untamingchance = 5; break;
+								case P_SUPREME_MASTER: untamingchance = 4; break;
+							}
+						}
+
+						if (untamingchance > rnd(10)) {
+
+							mtmp2->mtame = mtmp2->mpeaceful = 0;
+							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+
+						}
 					}
 				} else if (mtmp2->mpeaceful) {
 					mtmp2->mpeaceful = 0;

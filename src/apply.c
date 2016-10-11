@@ -78,7 +78,20 @@ use_camera(obj)
 		}
 	}
 
-	consume_obj_charge(obj, TRUE);
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+
+	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
 	if (obj->cursed && !rn2(2)) {
 		(void) zapyourself(obj, TRUE);
@@ -98,6 +111,7 @@ use_camera(obj)
 		(void) flash_hits_mon(mtmp, obj);
 	}
 	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) pline("Your flash scares nearby monsters!");
+	use_skill(P_DEVICES,1);
 
 	return 1;
 }
@@ -1789,7 +1803,21 @@ register struct obj *obj;
 		pline(Hallucination ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
 		return;
 	}
-	consume_obj_charge(obj, TRUE);
+
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+
+	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
 	if ((can = mksobj(TIN, FALSE, FALSE)) != 0) {
 	    static const char you_buy_it[] = "You tin it, you bought it!";
@@ -1836,6 +1864,7 @@ register struct obj *obj;
 	    }
 	    can = hold_another_object(can, "You make, but cannot pick up, %s.",
 				      doname(can), (const char *)0);
+		use_skill(P_DEVICES,1);
 	} else impossible("Tinning failed.");
 }
 
@@ -2298,7 +2327,20 @@ struct obj *obj;
 			return;
 		}
 #endif
-		consume_obj_charge(obj, TRUE);
+		int nochargechange = 10;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_DEVICES)) {
+				default: break;
+				case P_BASIC: nochargechange = 9; break;
+				case P_SKILLED: nochargechange = 8; break;
+				case P_EXPERT: nochargechange = 7; break;
+				case P_MASTER: nochargechange = 6; break;
+				case P_GRAND_MASTER: nochargechange = 5; break;
+				case P_SUPREME_MASTER: nochargechange = 4; break;
+			}
+		}
+
+		if (nochargechange > rnd(10)) consume_obj_charge(obj, TRUE);
 
 		if (stack_too_big(otmp)) {
 			pline("The amount of grease was not enough for your stack of %s!", yname(otmp));
@@ -2315,6 +2357,7 @@ struct obj *obj;
 			    pline("Some of the grease gets all over your %s.",
 				makeplural(body_part(HAND)));
 			}
+			use_skill(P_DEVICES,1);
 		} else {
 			Glib += rnd(15);
 			You("coat your %s with grease.",
@@ -3878,6 +3921,22 @@ use_chemistry_set(struct obj *chemset)
 	}
 	new_obj->hvycurse = new_obj->prmcurse = new_obj->morgcurse = new_obj->evilcurse = new_obj->bbrcurse = FALSE;
 	cost = potion_charge_cost(new_obj);
+
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+	if (nochargechange < rnd(10)) cost -= 1;
+	if (cost < 0) cost = 0; /* fail safe */
+
 	if (cost > chemset->spe) {
 		pline("There is too little material left in your chemistry set!");
 		goto blast_him;
@@ -3897,6 +3956,7 @@ blast_him:
 	if (!(objects[new_obj->otyp].oc_name_known)) makeknown(new_obj->otyp);
 	hold_another_object(new_obj,"Oops! Where did you put that potion?",(const char *) 0,(const char *) 0);
 	You("have done it!");
+	use_skill(P_DEVICES,1);
 }
 
 
@@ -4022,25 +4082,76 @@ doapply()
 		/* Amy edit: because of our design philosophy that says nothing's supposed to be permanent, give a small chance
 		 * of whistles degrading on use. They will never be vaporized, but eventually they'll become cursed. */
 		if (!rn2(50)) {
-			if (obj->blessed) unbless(obj);
-			else curse(obj);
-			pline("Your whistle seems less effective.");
+
+			int cursingchance = 10;
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+				switch (P_SKILL(P_PETKEEPING)) {
+					default: cursingchance = 10; break;
+					case P_BASIC: cursingchance = 9; break;
+					case P_SKILLED: cursingchance = 8; break;
+					case P_EXPERT: cursingchance = 7; break;
+					case P_MASTER: cursingchance = 6; break;
+					case P_GRAND_MASTER: cursingchance = 5; break;
+					case P_SUPREME_MASTER: cursingchance = 4; break;
+				}
+			}
+
+			if (cursingchance > rnd(10)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("Your whistle seems less effective.");
+			}
 		}
 		break;
 	case DARK_MAGIC_WHISTLE:
 		use_dark_magic_whistle(obj);
 		if (!rn2(50)) {
-			if (obj->blessed) unbless(obj);
-			else curse(obj);
-			pline("Your whistle seems less effective.");
+
+			int cursingchance = 10;
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+				switch (P_SKILL(P_PETKEEPING)) {
+					default: cursingchance = 10; break;
+					case P_BASIC: cursingchance = 9; break;
+					case P_SKILLED: cursingchance = 8; break;
+					case P_EXPERT: cursingchance = 7; break;
+					case P_MASTER: cursingchance = 6; break;
+					case P_GRAND_MASTER: cursingchance = 5; break;
+					case P_SUPREME_MASTER: cursingchance = 4; break;
+				}
+			}
+
+			if (cursingchance > rnd(10)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("Your whistle seems less effective.");
+			}
+	
 		}
 		break;
 	case TIN_WHISTLE:
 		use_whistle(obj);
 		if (!rn2(50)) {
-			if (obj->blessed) unbless(obj);
-			else curse(obj);
-			pline("Your whistle seems less effective.");
+			int cursingchance = 10;
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+				switch (P_SKILL(P_PETKEEPING)) {
+					default: cursingchance = 10; break;
+					case P_BASIC: cursingchance = 9; break;
+					case P_SKILLED: cursingchance = 8; break;
+					case P_EXPERT: cursingchance = 7; break;
+					case P_MASTER: cursingchance = 6; break;
+					case P_GRAND_MASTER: cursingchance = 5; break;
+					case P_SUPREME_MASTER: cursingchance = 4; break;
+				}
+			}
+
+			if (cursingchance > rnd(10)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("Your whistle seems less effective.");
+			}
 		}
 		break;
 	case EUCALYPTUS_LEAF:

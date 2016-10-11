@@ -347,14 +347,40 @@ register struct monst *mtmp;
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
 
 	tmp = 1 + ( (Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + u.uhitinc +
-		maybe_polyd(youmonst.data->mlevel, u.ulevel);
+		maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel));
 
 	/* another extra boost --Amy */
 	/* In Soviet Russia, to-hit bonuses generally get trashed. Nobody needs to be able to hit a -40 AC monster anyway,
 	 * and if you do, well, tough luck! Communism isn't prepared to handle such rare situations! --Amy */
-	if (!issoviet && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+	if (!issoviet && !Upolyd && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
 	if (Feared) tmp -= rn2(21); /* being feared reduces to-hit by something between 0 and 20 --Amy */
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_GENERAL_COMBAT)) {
+			default: break;
+			case P_BASIC: tmp += 1; break;
+			case P_SKILLED: tmp += 2; break;
+			case P_EXPERT: tmp += 3; break;
+			case P_MASTER: tmp += 4; break;
+			case P_GRAND_MASTER: tmp += 5; break;
+			case P_SUPREME_MASTER: tmp += 6; break;
+		}
+	}
+
+	if (Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC:	tmp +=  1; break;
+	      	case P_SKILLED:	tmp +=  2; break;
+	      	case P_EXPERT:	tmp +=  3; break;
+	      	case P_MASTER:	tmp +=  4; break;
+	      	case P_GRAND_MASTER:tmp +=  5; break;
+	      	case P_SUPREME_MASTER:tmp +=  6; break;
+	      	default: tmp += 0; break;
+	      }
+
+	}
 
 	check_caitiff(mtmp);
 
@@ -500,6 +526,8 @@ register struct monst *mtmp;
 
 	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
+
+	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
@@ -981,6 +1009,7 @@ int thrown;
 	saved_oname[0] = '\0';
 
 	wakeup(mon);
+
 	if(!thrown && no_obj) {      /* attack with bare hands */
 	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
 		objenchant = u.ulevel/4;
@@ -1667,6 +1696,21 @@ int thrown;
 		    tmp += dbon();
 	}
 
+	if (!thrown && (!Upolyd || !no_obj) && tech_inuse(T_SHIELD_BASH) && uarms && (uarms->spe > -4)) {
+		pline("Schrack!");
+		tmp += (3 + uarms->spe);
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_SHIELD)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 4; break;
+				case P_GRAND_MASTER: tmp += 5; break;
+				case P_SUPREME_MASTER: tmp += 6; break;
+			}
+		}
+	}
+
 	/*
 	 * Ki special ability, see cmd.c in function special_ability.
 	 * In this case, we do twice damage! Wow!
@@ -1698,6 +1742,23 @@ int thrown;
 	    if (!(mon->egotype_flickerer) && !noeffect ) {
 		    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
 		    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
+
+		    if (!thrown) { /* general combat skill is trained by using melee weapons --Amy */
+				u.ugeneralcombatturns++;
+				if (u.ugeneralcombatturns >= 10) {
+					u.ugeneralcombatturns = 0;
+					use_skill(P_GENERAL_COMBAT, 1);
+				}
+				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
+				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !u.usteed) && bimanual(wep)) {
+					u.utwohandedcombatturns++;
+					if (u.utwohandedcombatturns >= 3) {
+						u.utwohandedcombatturns = 0;
+						use_skill(P_TWO_HANDED_WEAPON, 1);
+					}
+				}
+
+			}
 	    }
 	}
 
@@ -3555,6 +3616,20 @@ register struct attack *mattk;
 	}
 
 	if ( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) && Upolyd && tmp) tmp += rnd(u.ulevel); /* come on, werewolves need some love too! --Amy */
+
+	if (Upolyd && tmp && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC:	tmp +=  1; break;
+	      	case P_SKILLED:	tmp +=  2; break;
+	      	case P_EXPERT:	tmp +=  3; break;
+	      	case P_MASTER:	tmp +=  4; break;
+	      	case P_GRAND_MASTER:tmp +=  5; break;
+	      	case P_SUPREME_MASTER:tmp +=  6; break;
+	      	default: tmp += 0; break;
+	      }
+
+	}
 
 	mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
 	if ( (rn2(3) || issoviet) && tmp && noeffect && !DEADMONSTER(mdef)) {

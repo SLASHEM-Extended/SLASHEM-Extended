@@ -1312,6 +1312,7 @@ genericptr_t num;
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
+		use_skill(P_SEARCHING,1);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
@@ -1320,6 +1321,7 @@ genericptr_t num;
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
+		use_skill(P_SEARCHING,1);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
@@ -1362,6 +1364,7 @@ genericptr_t num;
 	if(!rn2(3) && levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
+		use_skill(P_SEARCHING,1);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
@@ -1370,6 +1373,7 @@ genericptr_t num;
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
+		use_skill(P_SEARCHING,1);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
@@ -1522,6 +1526,7 @@ struct trap *trap;
     }
 
     You("find %s.", an(defsyms[trap_to_defsym(tt)].explanation));
+    use_skill(P_SEARCHING,1);
 
     if (cleared) {
 	display_nhwindow(WIN_MAP, TRUE);	/* wait */
@@ -1546,6 +1551,19 @@ register int aflag;
 	register struct trap *trap;
 	register struct monst *mtmp;
 
+	int fundxtrachange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_SEARCHING)) {
+			default: break;
+			case P_BASIC: fundxtrachange = 9; break;
+			case P_SKILLED: fundxtrachange = 8; break;
+			case P_EXPERT: fundxtrachange = 7; break;
+			case P_MASTER: fundxtrachange = 6; break;
+			case P_GRAND_MASTER: fundxtrachange = 5; break;
+			case P_SUPREME_MASTER: fundxtrachange = 4; break;
+		}
+	}
+
 	if(u.uswallow) {
 		if (!aflag)
 			pline(Hallucination ? "There must be some door here, allowing you to get out..." : "What are you looking for?  The exit?");
@@ -1562,23 +1580,25 @@ register int aflag;
 	      for(y = u.uy-1; y < u.uy+2; y++) {
 		if(!isok(x,y)) continue;
 		if(x != u.ux || y != u.uy) {
-		    if (Blind && (!aflag || !rn2(4)) ) feel_location(x,y);
+		    if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) ) feel_location(x,y);
 		    if(levl[x][y].typ == SDOOR) {
-			if(rnl(7-fund) && rn2(5) ) continue; /* better chance --Amy */
+			if(rnl(7-fund) && rn2(fundxtrachange) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
 			You("find a secret door!");
+			use_skill(P_SEARCHING,1);
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0);
-			if (Blind && (!aflag || !rn2(4)) )
+			if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) )
 			    feel_location(x,y);	/* make sure it shows up */
 			else
 			    newsym(x,y);
 		    } else if(levl[x][y].typ == SCORR) {
-			if(rnl(7-fund) && rn2(5) ) continue; /* better chance --Amy */
+			if(rnl(7-fund) && rn2(fundxtrachange) ) continue; /* better chance --Amy */
 			levl[x][y].typ = CORR;
 			unblock_point(x,y);	/* vision */
 			You("find a secret passage!");
+			use_skill(P_SEARCHING,1);
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0);
@@ -1626,7 +1646,7 @@ register int aflag;
 			}
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
-			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(5) ) ) {
+			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(fundxtrachange) ) ) {
 			    nomul(0, 0);
 
 			    if (trap->ttyp == STATUE_TRAP) {

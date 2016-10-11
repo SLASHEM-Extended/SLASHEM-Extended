@@ -74,10 +74,19 @@
 /* Other types of combat */
 #define P_BARE_HANDED_COMBAT 	(P_LAST_SPELL + 1)
 #define P_HIGH_HEELS 	(P_LAST_SPELL + 2) /* idea by yasdorian :-) */
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 3) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 4) /* Finally implemented */
+#define P_GENERAL_COMBAT	(P_LAST_SPELL + 3)
+#define P_SHIELD	(P_LAST_SPELL + 4)
+#define P_BODY_ARMOR	(P_LAST_SPELL + 5)
+#define P_TWO_HANDED_WEAPON	(P_LAST_SPELL + 6)
+#define P_POLYMORPHING	(P_LAST_SPELL + 7)
+#define P_DEVICES	(P_LAST_SPELL + 8)
+#define P_SEARCHING	(P_LAST_SPELL + 9)
+#define P_SPIRITUALITY	(P_LAST_SPELL + 10)
+#define P_PETKEEPING	(P_LAST_SPELL + 11)
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 12) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 13) /* Finally implemented */
 #ifdef STEED
-#define P_RIDING		(P_LAST_SPELL + 5) /* How well you control your steed */
+#define P_RIDING		(P_LAST_SPELL + 14) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #else
 #define P_LAST_H_TO_H		P_TWO_WEAPON_COMBAT

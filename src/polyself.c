@@ -314,6 +314,21 @@ boolean forcecontrol;
 	}
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
+	if (tech_inuse(T_POLYFORM)) {
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		polymon(mntmp);
+
+		if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
+
+		u.wormpolymorph = 0;
+
+		goto made_change;
+	}
+
 	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(MISSINGNORANGE));
 	else if (Race_if(PM_WARPER) && !u.wormpolymorph) {
 		do {
@@ -346,9 +361,16 @@ boolean forcecontrol;
 			else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
+			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
+			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
 
 			else break;
 		} while(++tries < 5);
+
 		if (tries==5) pline(thats_enough_tries);
 		/* allow skin merging, even when polymorph is controlled */
 		if (draconian &&
@@ -384,6 +406,12 @@ boolean forcecontrol;
 				else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
+				else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+					mntmp = LOW_PM - 1; break; /* polymorph failed */
+				}
+				else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+					mntmp = LOW_PM - 1; break; /* polymorph failed */
+				}
 
 				/* Either way, give it a shot */
 				break;
@@ -401,6 +429,12 @@ boolean forcecontrol;
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
+			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
+			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
 
 			else break;
 		} while(++tries < 5);
@@ -585,8 +619,21 @@ int	mntmp;
 		delayed_killer = 0;
 	}
 
-	u.mtimedone = /*rn1(500, 500)*/rnz(1000);
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) u.mtimedone = rnz(400);
+	else switch (P_SKILL(P_POLYMORPHING)) {
+
+      	case P_BASIC:	u.mtimedone = rnz(500); break;
+      	case P_SKILLED:	u.mtimedone = rnz(600); break;
+      	case P_EXPERT:	u.mtimedone = rnz(700); break;
+      	case P_MASTER:	u.mtimedone = rnz(800); break;
+      	case P_GRAND_MASTER:	u.mtimedone = rnz(900); break;
+      	case P_SUPREME_MASTER:	u.mtimedone = rnz(1000); break;
+      	default: u.mtimedone = rnz(400); break;
+		
+	}
+
 	u.umonnum = mntmp;
+	use_skill(P_POLYMORPHING, mons[mntmp].mlevel + 1);
 
 	set_uasmon();
 
@@ -813,6 +860,11 @@ break_armor()
 {
     register struct obj *otmp;
     boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (rnd(10) < P_SKILL(P_POLYMORPHING)) controlled_change = TRUE;
+
+	}
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if ((otmp = uarm) != 0) {

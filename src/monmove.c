@@ -240,31 +240,78 @@ boolean digest_meal;
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
-	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon == u.usteed) && !rn2(10) ) {
-		if (mon->mhp + 1 >= mon->mhpmax)
-		      mon->mhp = mon->mhpmax;
-		else mon->mhp++;
-	}
-	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mon == u.usteed) && !rn2(5) ) {
-		if (mon->mhp + 1 >= mon->mhpmax)
-		      mon->mhp = mon->mhpmax;
-		else mon->mhp++;
-	}
-	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mon == u.usteed) && !rn2(3) ) {
-		if (mon->mhp + 1 >= mon->mhpmax)
-		      mon->mhp = mon->mhpmax;
-		else mon->mhp++;
-	}
-	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mon == u.usteed) ) {
-		if (mon->mhp + 1 >= mon->mhpmax)
-		      mon->mhp = mon->mhpmax;
-		else mon->mhp++;
-	}
-	if (P_SKILL(P_RIDING) == P_SUPREME_MASTER && u.usteed && (mon == u.usteed) ) {
-		if (mon->mhp + 1 >= mon->mhpmax)
-		      mon->mhp = mon->mhpmax;
-		else mon->mhp++;
-	}
+		if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon == u.usteed) && !rn2(10) ) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+		if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mon == u.usteed) && !rn2(5) ) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+		if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mon == u.usteed) && !rn2(3) ) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+		if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mon == u.usteed) ) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+		if (P_SKILL(P_RIDING) == P_SUPREME_MASTER && u.usteed && (mon == u.usteed) ) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+
+		if (mon->mtame) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: 
+					if (!rn2(6)) {
+						if (mon->mhp + 1 >= mon->mhpmax)
+						      mon->mhp = mon->mhpmax;
+						else mon->mhp++;
+					}
+					break;
+				case P_SKILLED:
+					if (!rn2(5)) {
+						if (mon->mhp + 1 >= mon->mhpmax)
+						      mon->mhp = mon->mhpmax;
+						else mon->mhp++;
+					}
+					break;
+				case P_EXPERT:
+					if (!rn2(4)) {
+						if (mon->mhp + 1 >= mon->mhpmax)
+						      mon->mhp = mon->mhpmax;
+						else mon->mhp++;
+					}
+					break;
+				case P_MASTER:
+					if (!rn2(3)) {
+						if (mon->mhp + 1 >= mon->mhpmax)
+						      mon->mhp = mon->mhpmax;
+						else mon->mhp++;
+					}
+					break;
+				case P_GRAND_MASTER:
+					if (!rn2(2)) {
+						if (mon->mhp + 1 >= mon->mhpmax)
+						      mon->mhp = mon->mhpmax;
+						else mon->mhp++;
+					}
+					break;
+				case P_SUPREME_MASTER:
+					if (mon->mhp + 1 >= mon->mhpmax)
+					      mon->mhp = mon->mhpmax;
+					else mon->mhp++;
+					break;
+			}
+
+		}
 
 	}
 

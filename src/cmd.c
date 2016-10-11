@@ -3007,59 +3007,59 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		switch (uarms->otyp) {
 
 		case SMALL_SHIELD:
-			shieldblockrate = 20;
+			shieldblockrate = 10;
 			break;
 		case ELVEN_SHIELD:
-			shieldblockrate = 30;
+			shieldblockrate = 20;
 			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
 			break;
 		case URUK_HAI_SHIELD:
-			shieldblockrate = 32;
+			shieldblockrate = 22;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case ORCISH_SHIELD:
 		case ORCISH_GUARD_SHIELD:
-			shieldblockrate = 28;
+			shieldblockrate = 18;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case DWARVISH_ROUNDSHIELD:
-			shieldblockrate = 34;
+			shieldblockrate = 24;
 			if (Race_if(PM_DWARF)) shieldblockrate += 5;
 			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
 		case SHIELD:
-			shieldblockrate = 35;
+			shieldblockrate = 25;
 			break;
 		case STEEL_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
-			shieldblockrate = 45;
+			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
 		case SILVER_SHIELD:
 		case MIRROR_SHIELD:
-			shieldblockrate = 35;
+			shieldblockrate = 25;
 			break;
 		case FLAME_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case ICE_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case LIGHTNING_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case VENOM_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_LIGHT:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_MOBILITY:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 
 		case GRAY_DRAGON_SCALE_SHIELD:
@@ -3093,10 +3093,22 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case WATER_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
-			shieldblockrate = 33;
+			shieldblockrate = 23;
 			break;
 
 		default: impossible("Unknown type of shield (%d)", uarms->otyp);
+
+		}
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_SHIELD)) {
+				case P_BASIC: shieldblockrate += 2; break;
+				case P_SKILLED: shieldblockrate += 4; break;
+				case P_EXPERT: shieldblockrate += 6; break;
+				case P_MASTER: shieldblockrate += 8; break;
+				case P_GRAND_MASTER: shieldblockrate += 10; break;
+				case P_SUPREME_MASTER: shieldblockrate += 12; break;
+			}
 
 		}
 
@@ -5035,59 +5047,59 @@ int final;
 		switch (uarms->otyp) {
 
 		case SMALL_SHIELD:
-			shieldblockrate = 20;
+			shieldblockrate = 10;
 			break;
 		case ELVEN_SHIELD:
-			shieldblockrate = 30;
+			shieldblockrate = 20;
 			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
 			break;
 		case URUK_HAI_SHIELD:
-			shieldblockrate = 32;
+			shieldblockrate = 22;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case ORCISH_SHIELD:
 		case ORCISH_GUARD_SHIELD:
-			shieldblockrate = 28;
+			shieldblockrate = 18;
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
 			break;
 		case DWARVISH_ROUNDSHIELD:
-			shieldblockrate = 34;
+			shieldblockrate = 24;
 			if (Race_if(PM_DWARF)) shieldblockrate += 5;
 			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
 			break;
 		case LARGE_SHIELD:
 		case SHIELD:
-			shieldblockrate = 35;
+			shieldblockrate = 25;
 			break;
 		case STEEL_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
-			shieldblockrate = 45;
+			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
 		case SILVER_SHIELD:
 		case MIRROR_SHIELD:
-			shieldblockrate = 35;
+			shieldblockrate = 25;
 			break;
 		case FLAME_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case ICE_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case LIGHTNING_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case VENOM_SHIELD:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_LIGHT:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_MOBILITY:
-			shieldblockrate = 40;
+			shieldblockrate = 30;
 			break;
 
 		case GRAY_DRAGON_SCALE_SHIELD:
@@ -5121,10 +5133,22 @@ int final;
 		case WATER_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
-			shieldblockrate = 33;
+			shieldblockrate = 23;
 			break;
 
 		default: shieldblockrate = 0; /* we don't want to call impossible from here --Amy */
+
+		}
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_SHIELD)) {
+				case P_BASIC: shieldblockrate += 2; break;
+				case P_SKILLED: shieldblockrate += 4; break;
+				case P_EXPERT: shieldblockrate += 6; break;
+				case P_MASTER: shieldblockrate += 8; break;
+				case P_GRAND_MASTER: shieldblockrate += 10; break;
+				case P_SUPREME_MASTER: shieldblockrate += 12; break;
+			}
 
 		}
 

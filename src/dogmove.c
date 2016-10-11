@@ -141,6 +141,20 @@ struct obj *obj;
 	    mtmp->meating = obj->owt/20 + 1;
 	    nutrit = 25*(objects[obj->otyp].oc_nutrition + 1); /* factor increased --Amy */
 	}
+	use_skill(P_PETKEEPING,1);
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		switch (P_SKILL(P_PETKEEPING)) {
+			default: break;
+			case P_BASIC: nutrit = (nutrit * 11 / 10); break;
+			case P_SKILLED: nutrit = (nutrit * 12 / 10); break;
+			case P_EXPERT: nutrit = (nutrit * 13 / 10); break;
+			case P_MASTER: nutrit = (nutrit * 14 / 10); break;
+			case P_GRAND_MASTER: nutrit = (nutrit * 15 / 10); break;
+			case P_SUPREME_MASTER: nutrit = (nutrit * 16 / 10); break;
+		}
+	}
+
 	return nutrit;
 }
 
@@ -731,7 +745,19 @@ register int after;	/* this is extra fast monster movement */
 	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) && !rn2(85) && betrayed(mtmp)) return 1;
 
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */
-	if (!rn2(10000) && has_edog && edog->abuse) edog->abuse--;
+	if (!rn2(10000) && has_edog && edog->abuse) {
+		edog->abuse--;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_BASIC) edog->abuse--;
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_SKILLED) edog->abuse--;
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_EXPERT) edog->abuse--;
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_MASTER) edog->abuse--;
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_GRAND_MASTER) edog->abuse--;
+			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_SUPREME_MASTER) edog->abuse--;
+		}
+		if (edog->abuse < 0) edog->abuse = 0; /* fail safe */
+	}
+
 
 	nix = omx;	/* set before newdogpos */
 	niy = omy;

@@ -1697,10 +1697,15 @@ domove()
 		/* Good joke, huh? */
 		if ( (mtmp->data == &mons[PM_DISPLACER_BEAST] || mtmp->data == &mons[PM_SHIMMERING_DRACONIAN] || mtmp->data == &mons[PM_JUMPING_CHAMPION] || mtmp->data->mlet == S_GRUE || mtmp->data == &mons[PM_QUANTUM_MOLD] || mtmp->data == &mons[PM_QUANTUM_GROWTH] || mtmp->data == &mons[PM_QUANTUM_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_PATCH] || mtmp->data == &mons[PM_QUANTUM_STALK] || mtmp->data == &mons[PM_QUANTUM_MUSHROOM] || mtmp->data == &mons[PM_QUANTUM_SPORE] || mtmp->data == &mons[PM_QUANTUM_COLONY] || mtmp->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_FORCE_PATCH] || mtmp->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_WARP_PATCH] || mtmp->egotype_displacer) && !rn2(2))
 		    displacer = TRUE; /* grues can also displace the player to make them more annoying --Amy */
+		else if (tech_inuse(T_EDDY_WIND)) displacer = TRUE;
 		else
 		/* try to attack; note that it might evade */
 		/* also, we don't attack tame when _safepet_ */
 		if(attack(mtmp)) return;
+
+		if (tech_inuse(T_EDDY_WIND) && flags.forcefight) {
+			if(attack(mtmp)) return;
+		}
 	    }
 	}
 	/* specifying 'F' with no monster wastes a turn */
@@ -1730,7 +1735,7 @@ domove()
 	    newsym(x, y);
 	}
 	/* not attacking an animal, so we try to move */
-	if (!displacer) {
+	if (!displacer || tech_inuse(T_EDDY_WIND)) {
 
 #ifdef STEED
 	if (u.usteed && !u.usteed->mcanmove && (u.dx || u.dy)) {
@@ -2096,7 +2101,8 @@ domove()
 	    /* check for displacing it into pools and traps */
 	    switch (minliquid(mtmp) ? 2 : mintrap(mtmp)) {
 		case 0:
-		    You("displaced %s.", pnambuf);
+		    if (tech_inuse(T_EDDY_WIND)) You("whirl past %s.", pnambuf);
+		    else You("displaced %s.", pnambuf);
 		    break;
 		case 1:
 		case 3:

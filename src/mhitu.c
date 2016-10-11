@@ -56,6 +56,7 @@ register struct attack *mattk;
 	int compat;
 	int monsterlev;
 	int armproX = 0;
+	int armprolimitX = 75;
 	int randomkick;
 
 	/* Note: if opposite gender, "seductively" */
@@ -95,9 +96,23 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_BITE:
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
+
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
+				switch (P_SKILL(P_SPIRITUALITY)) {
+					default: armprolimitX = 75; break;
+					case P_BASIC: armprolimitX = 78; break;
+					case P_SKILLED: armprolimitX = 81; break;
+					case P_EXPERT: armprolimitX = 84; break;
+					case P_MASTER: armprolimitX = 87; break;
+					case P_GRAND_MASTER: armprolimitX = 90; break;
+					case P_SUPREME_MASTER: armprolimitX = 93; break;
+				}
+			}
+
 			if (rn2(25) && moves < 1000) break; /* players are getting killed unfairly... --Amy */
 
-			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || !rn2(20)) ) {
+			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || ((rnd(100) > armprolimitX) && ((armproX < 4) || (rnd(armproX) < 4) ) ) ) ) {
 			if (!Drain_resistance || !rn2(4)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
 		      losexp("life drainage", FALSE, TRUE);
@@ -1117,12 +1132,19 @@ register struct attack *mattk;
 		pline("%s just misses!", Monnam(mtmp));
 	    else if (blocker == &zeroobj)
 		pline("%s is stopped by the golden haze.", Monnam(mtmp));
-	    else
+	    else {
 		Your("%s %s%s %s attack.", 
 			simple_typename(blocker->otyp),
 			rn2(2) ? "block" : "deflect",
 			(blocker == uarmg || blocker == uarmf) ? "" : "s",
 			s_suffix(mon_nam(mtmp)));
+		if (blocker == uarms) use_skill(P_SHIELD, 1);
+		u.ubodyarmorturns++;
+		if (u.ubodyarmorturns >= 20) {
+			u.ubodyarmorturns = 0;
+			use_skill(P_BODY_ARMOR, 1);
+		}
+	    }
 
 	    if (MON_WEP(mtmp)) {
 		struct obj *obj = MON_WEP(mtmp);
@@ -3670,6 +3692,7 @@ hitmu(mtmp, mattk)
 	register int uncancelled, ptmp;
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
+	int armprolimit = 75;
 	int	nobj = 0;
 	char	 buf[BUFSZ];
 	struct permonst *olduasmon = youmonst.data;
@@ -3719,7 +3742,21 @@ hitmu(mtmp, mattk)
  *	armor's special magic protection.  Otherwise just use !mtmp->mcan.
  */
 	armpro = magic_negation(&youmonst);
-	uncancelled = !mtmp->mcan && ((rn2(3) >= armpro) || !rn2(20)); /* mc3 no longer protects that much --Amy */
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+
+		switch (P_SKILL(P_SPIRITUALITY)) {
+			default: armprolimit = 75; break;
+			case P_BASIC: armprolimit = 78; break;
+			case P_SKILLED: armprolimit = 81; break;
+			case P_EXPERT: armprolimit = 84; break;
+			case P_MASTER: armprolimit = 87; break;
+			case P_GRAND_MASTER: armprolimit = 90; break;
+			case P_SUPREME_MASTER: armprolimit = 93; break;
+		}
+	}
+
+	uncancelled = !mtmp->mcan && ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ); /* mc3 no longer protects that much --Amy */
 
 	permdmg = 0;
 /*	Now, adjust damages via resistances or specific attacks */
