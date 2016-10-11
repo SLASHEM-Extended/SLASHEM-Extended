@@ -2895,7 +2895,7 @@ register boolean newlev;
 		    if (!issoviet) wake_nearby();
 		    break;
 		case DOUGROOM:
-		    You("feel 42.");
+		    You_feel("42.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case TEMPLE:

@@ -2382,7 +2382,7 @@ int held;
 
 		if (yn("Try to open the container with another part of your body instead?") == 'y') {
 			if (rn2(3)) { 			
-				pline("You feel a wrenching sensation.");
+				You_feel("a wrenching sensation.");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
 				nomul(-rnd(10), "wrenched in a container");

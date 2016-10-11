@@ -306,7 +306,7 @@ boolean dresistance;	/* level drain resistance can protect you */
 		expdrain = rnz(expdrain);
 		if ((u.uexp - expdrain) > newuexp(u.ulevel - 1)) {
 			/* drain some experience, but not enough to make you lose a level */
-			pline("You feel your life draining away!");
+			You_feel("your life draining away!");
 			u.uexp -= expdrain;
 			return;
 		}
@@ -386,7 +386,7 @@ newexplevel()
 	else if (u.uexp >= (1000000 + (100000 * u.xtralevelmult))) {
 	    u.xtralevelmult++;
 	    u.uexp = 1000000;
-	    pline("You feel more experienced.");
+	    You_feel("more experienced.");
 	    pluslvl(TRUE);
 	}
 }

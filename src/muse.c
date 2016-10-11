@@ -3852,7 +3852,7 @@ register struct obj *otmp;
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -3931,7 +3931,7 @@ register struct obj *otmp;
 	/* he wanted it to be a wand of halve max hitpoints, but that would be too evil even for this game. --Amy */
 
 		if (mtmp == &youmonst) {
-			pline("You feel drained...");
+			You_feel("drained...");
 				if (Upolyd) u.mhmax -= rnd(5);
 				else u.uhpmax -= rnd(5);
 				if (u.mhmax < 1) u.mhmax = 1;
@@ -4966,7 +4966,7 @@ struct monst *mtmp;
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
 				if(u.uen < 1) {
@@ -4982,7 +4982,7 @@ struct monst *mtmp;
 				}
 				break;
 			case 3: /* sloth */
-				pline("You feel a little apathetic...");
+				You_feel("a little apathetic...");
 
 				switch(rn2(7)) {
 				    case 0: /* destroy certain things */
@@ -5110,7 +5110,7 @@ struct monst *mtmp;
 				    poisoned("air", rn2(A_MAX), "scroll of sin", 30);
 				}
 				if (!rn2(4)) {
-					pline("You feel drained...");
+					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -5465,7 +5465,7 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		You("feel bad!");
+		You_feel("bad!");
 			if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
 			else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
 			else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
@@ -5886,7 +5886,7 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		pline("You feel very unlucky.");
+		You_feel("very unlucky.");
 		change_luck(-1);
 
 		if (oseen) makeknown(WAN_BAD_LUCK);
@@ -5953,7 +5953,7 @@ newboss:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
 				if(u.uen < 1) {
@@ -5969,7 +5969,7 @@ newboss:
 				}
 				break;
 			case 3: /* sloth */
-				pline("You feel a little apathetic...");
+				You_feel("a little apathetic...");
 
 				switch(rn2(7)) {
 				    case 0: /* destroy certain things */
@@ -6097,7 +6097,7 @@ newboss:
 				    poisoned("air", rn2(A_MAX), "wand of sin", 30);
 				}
 				if (!rn2(4)) {
-					pline("You feel drained...");
+					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6302,7 +6302,7 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		pline("You feel a hole in your %s!", body_part(STOMACH) );
+		You_feel("a hole in your %s!", body_part(STOMACH) );
 		morehungry(rnd(1000));
 
 		if (oseen) makeknown(WAN_STARVATION);
@@ -6366,7 +6366,7 @@ newboss:
 
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
-			pline("You feel feverish.");
+			You_feel("feverish.");
 		}
 
 		if (oseen) makeknown(WAN_LYCANTHROPY);

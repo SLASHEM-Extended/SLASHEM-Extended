@@ -640,7 +640,7 @@ badeffect()
 		case 89:
 		case 90:
 		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
+		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 		break;
@@ -679,7 +679,7 @@ badeffect()
 		case 103:
 
 		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
-		pline("You feel burdened");
+		You_feel("burdened");
 		if (pickup_object(otmp, 1, FALSE) <= 0) {
 		obj_extract_self(otmp);
 		place_object(otmp, u.ux, u.uy);
@@ -930,7 +930,7 @@ badeffect()
 		case 200:
 		case 201:
 		case 202:
-	      pline("You feel out of luck!");
+	      You_feel("out of luck!");
 			change_luck(-1);
 			if (!rn2(10)) change_luck(-5);
 			adjalign(-10);
@@ -1645,7 +1645,7 @@ badeffect()
 		case 329:
 
 			if (!Disint_resistance || !rn2(100) ) {
-				pline("You feel like you're falling apart!");
+				You_feel("like you're falling apart!");
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
@@ -1712,7 +1712,7 @@ badeffect()
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -1827,7 +1827,7 @@ badeffect()
 		case 348:
 		case 349:
 
-		You("feel bad!");
+		You_feel("bad!");
 			if (!rn2(20)) losehp(d(10,8), "a bad damage effect", KILLED_BY);
 			else if (!rn2(5)) losehp(d(6,8), "a bad damage effect", KILLED_BY);
 			else losehp(d(4,6), "a bad damage effect", KILLED_BY);
@@ -1852,7 +1852,7 @@ badeffect()
 		break;
 
 		case 352:
-			pline("You feel a hole in your %s!", body_part(STOMACH) );
+			You_feel("a hole in your %s!", body_part(STOMACH) );
 			morehungry(rnd(1000));
 
 		break;
@@ -2118,7 +2118,7 @@ peffects(otmp)
 
 			case 3:
 				if (Poison_resistance) break;
-				You("feel sick.");
+				You_feel("sick.");
 				losehp(rnd(20),"bad chemical knowledge",KILLED_BY);
 				break;
 
@@ -2205,7 +2205,7 @@ peffects(otmp)
 	case POT_FEAR:
 		if(!Feared) {
 		    if (Hallucination) {
-			pline("You feel like you're dying from the inside! Waaaaah! Where's my Mommy?");
+			You_feel("like you're dying from the inside! Waaaaah! Where's my Mommy?");
 			unkn++;
 		    } else
 			pline("Suddenly, you're trembling in fear!");
@@ -2596,7 +2596,7 @@ peffects(otmp)
 			adjattrib(A_CON,-1,-1);
 			break;
 		}
-		pline("You feel super-powerful!");
+		You_feel("super-powerful!");
 		incr_itimeout(&Invulnerable, 8 + rn2(4) );
 		time = 15 + d(otmp->blessed ? 4 : 2, 8);
 		incr_itimeout(&HFast, time);
@@ -2785,14 +2785,14 @@ peffects(otmp)
 	       if(!(HFire_resistance & FROMOUTSIDE)) {
 		if (Hallucination)
 		   pline("You feel, like, totally cool!");
-		   else You("feel cooler.");
+		   else You_feel("cooler.");
 		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   unkn++;
 		   HFire_resistance |= FROMOUTSIDE;
 		}
 		break;
 	case POT_RESISTANCE:
-		You("feel resistant to elemental attacks!");
+		You_feel("resistant to elemental attacks!");
 		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   HShock_resistance += rn1(100,50 + 25 * bcsign(otmp) );
@@ -2956,7 +2956,7 @@ peffects(otmp)
 			break;
 		}
 		if (Drain_resistance) {
-		    You("feel rejuvenating momentarily.");
+		    You_feel("rejuvenating momentarily.");
 		} else {
 		    You("restore youth!");
 		    losexp("return to the state before being born", FALSE, TRUE);
@@ -3094,7 +3094,7 @@ peffects(otmp)
 				if (HFeared) make_feared(0L, TRUE);
 				if (otmp->blessed) {
 					incr_itimeout(&HFear_resistance, rnd(250) );
-					if (Fear_resistance) pline("You feel more resistant to fear!");
+					if (Fear_resistance) You_feel("more resistant to fear!");
 				}
 			}
 		}
@@ -3233,7 +3233,7 @@ peffects(otmp)
 	case POT_JOLT_COLA:
 		You("are jolted back to your senses.");
 		if (otmp->cursed) {
-			You("feel bad.");
+			You_feel("bad.");
 			u.uhp -= rn2(10);
 			if (u.uhp < 1) u.uhp = 1;	/* can't kill you */
 		} else {
@@ -3263,7 +3263,7 @@ peffects(otmp)
 			u.uhpmax -= x;
 			break;
 		}
-		You("feel %spowerful!",otmp->blessed ? "very " : "");
+		You_feel("%spowerful!",otmp->blessed ? "very " : "");
 		u.uhp += x;
 		u.uhpmax += x;
 	} break;
@@ -3277,7 +3277,7 @@ peffects(otmp)
 		}	
 		if (otmp->blessed) u.uhpmax += rn2(5);
 		u.uhp = u.uhpmax;
-		You("feel much, much better.");
+		You_feel("much, much better.");
 		break;
 
 
@@ -3286,7 +3286,7 @@ peffects(otmp)
 		int time;
 
 		if (otmp->cursed) {
-			You("feel cowardly.");
+			You_feel("cowardly.");
 
 		    set_itimeout(&Invulnerable, 0);
 			break;
@@ -3303,9 +3303,9 @@ peffects(otmp)
 
 	case POT_PORTER:
 		if (Hallucination)
-			pline("You feel like hopping around!");
+			You_feel("like hopping around!");
 		else
-			You("feel very jumpy.");
+			You_feel("very jumpy.");
 		incr_itimeout(&HTeleportation, rnd(500));
 		if (otmp->cursed) {
 
@@ -3324,7 +3324,7 @@ peffects(otmp)
 
 	case POT_KEEN_MEMORY:
 		if (Hallucination)
-			pline("You feel like remembering everything that ever happened to you!");
+			You_feel("like remembering everything that ever happened to you!");
 		else
 			pline("Your memory keens.");
 		incr_itimeout(&HKeen_memory, rnd(500 + 250 * bcsign(otmp) ));
@@ -3342,7 +3342,7 @@ peffects(otmp)
 		break;
 
  	case POT_PAN_GALACTIC_GARGLE_BLASTE:
-		You("feel like having your brain smashed out by a slice of lemon wrapped");
+		You_feel("like having your brain smashed out by a slice of lemon wrapped");
 		pline("around a large gold brick.");
 		if (otmp->cursed || !rn2(4)) {
 			adjattrib(A_INT,-1,-1);
@@ -3351,14 +3351,14 @@ peffects(otmp)
 
 		if (otmp->blessed || !rn2(4) || u.ulycn != -1) {
 			if (u.ulycn != -1 && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
-				You("feel purified.");
+				You_feel("purified.");
 				if (!Unchanging && (u.umonnum == u.ulycn) ) {
 			    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
 					else polyself(FALSE);
 				}
 				u.ulycn = -1;
 			}
-			You("feel remembered of %s.",
+			You_feel("remembered of %s.",
 			Hallucination ? "Zaphod Breeblebrox"
 				      : "very, very strong liquor.");
 			if (u.uhp < u.uhpmax) u.uhp++;
@@ -4153,7 +4153,7 @@ register struct obj *obj;
 			u.uhp /= 5;
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
-		You("feel very, very sick!");
+		You_feel("very, very sick!");
 		break;
 	case POT_URINE:
 		if (u.uhp < 3) {
@@ -4163,12 +4163,12 @@ register struct obj *obj;
 			u.uhp /= 3;
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
-		You("feel very poisoned!");
+		You_feel("very poisoned!");
 		break;
 	case POT_RADIUM:
 		u.uhp /= 4;
 		if (u.uhp < 1) u.uhp = 1;		/* be generous */
-		You("feel very sick!");
+		You_feel("very sick!");
 		break;
 	case POT_HALLUCINATION:
 		You("have a momentary vision.");
@@ -4776,7 +4776,7 @@ boolean amnesia;
 			}
 			obj->otyp = SCR_BLANK_PAPER;
 			if (Role_if(PM_ARTIST)) {
-				pline("You feel guilty for erasing a scroll.");
+				You_feel("guilty for erasing a scroll.");
 			    adjalign(-10);
 			}
 			obj->spe = 0;

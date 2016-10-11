@@ -3728,7 +3728,7 @@ cleanup:
 	/* Batman may not kill women, but you can be a female batman and it would be unfair to only punish males. --Amy */
 	if ( Race_if(PM_BATMAN) && ((!flags.female && mtmp->female) || (flags.female && !mtmp->female)) && humanoid(mtmp->data)) {
 
-	    Hallucination ? You("feel very bad for killing your future %s.", flags.female ? "husband" : "wife") : You("feel very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
+	    Hallucination ? You_feel("very bad for killing your future %s.", flags.female ? "husband" : "wife") : You_feel("very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
 		u.ualign.sins++; 
 		u.alignlim--;

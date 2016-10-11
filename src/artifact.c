@@ -1845,7 +1845,7 @@ arti_invoke(obj)
 	    u.uluck -= 3;
 	    break;
 	case PROT_POLY:
-	    You("feel more observant.");
+	    You_feel("more observant.");
 	    rescham();
 	    break;
 	case SUMMON_FIRE_ELEMENTAL:
@@ -1883,7 +1883,7 @@ arti_invoke(obj)
 	    any.a_void = 0;	/* set all bits to zero */
  #ifdef BLACKMARKET           
 	    if (Is_blackmarket(&u.uz) && *u.ushops) {
-		You("feel very disoriented for a moment.");
+		You_feel("very disoriented for a moment.");
 		break;
 	    }
  #endif

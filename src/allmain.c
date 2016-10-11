@@ -1178,7 +1178,7 @@ moveloop()
 					break;
 				    }
 
-				if (midnight()) pline("You feel a ghastly chill running down your %s!", body_part(SPINE) );
+				if (midnight()) You_feel("a ghastly chill running down your %s!", body_part(SPINE) );
 				else if (!rn2(20)) pline("A monster rises from the grave!");
 				if (!rn2(50)) ttmp->ttyp = SUMMON_UNDEAD_TRAP;
 			}
@@ -1304,7 +1304,7 @@ moveloop()
 				case 16:
 				case 17:
 				case 18: /* paralysis: up to 3 turns with free action, up to 13 without */
-					pline("You feel like a statue!");
+					You_feel("like a statue!");
 					if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse");
 					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse");
 					break;
@@ -1391,7 +1391,7 @@ moveloop()
 				case 18:
 				case 19:
 				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
-					pline("You feel like a statue!");
+					You_feel("like a statue!");
 					if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse");
 					else nomul(-rnd(13), "paralyzed by topi ylinen's curse");
 					break;
@@ -1676,56 +1676,56 @@ newboss:
 	
 				if (!rn2(10000) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(100) && Race_if(PM_JELLY) && !(otmpi->oclass == SPBOOK_CLASS) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(10000) && isangbander && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(10000) && isangbander && !otmpi->known) {
 					otmpi->known = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(10000) && isangbander && !otmpi->bknown) {
 					otmpi->bknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(10000) && isangbander && !otmpi->rknown) {
 					otmpi->rknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(2000) && Race_if(PM_WEAPON_CUBE) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(1000) && Race_if(PM_CORTEX) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(500) && Race_if(PM_VORTEX) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 
 				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->known) {
 					otmpi->known = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->bknown) {
 					otmpi->bknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->rknown) {
 					otmpi->rknown = TRUE;
-					pline("You feel that you know more about the contents of your inventory...");
+					You_feel("that you know more about the contents of your inventory...");
 				}
 
 			    }
@@ -2765,7 +2765,7 @@ newboss:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
-				else pline("You feel very disoriented but decide to move on.");
+				else You_feel("very disoriented but decide to move on.");
 
 			}
 
@@ -2818,7 +2818,7 @@ newboss:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
-				else pline("You feel very disoriented but decide to move on.");
+				else You_feel("very disoriented but decide to move on.");
 
 			}
 
@@ -2827,7 +2827,7 @@ newboss:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
-				else pline("You feel very disoriented but decide to move on.");
+				else You_feel("very disoriented but decide to move on.");
 
 			}
 

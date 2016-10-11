@@ -1483,7 +1483,7 @@ boolean atme;
 		}
 		break;
 	case SPE_FIXING:
-		You("feel revitalized.");
+		You_feel("revitalized.");
 		if (Stoned) fix_petrification();
 		    if (Slimed) {
 			pline("The slime disappears.");
@@ -1609,13 +1609,13 @@ boolean atme;
 		break;
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
-			You("feel healthy ..... for the moment at least.");
+			You_feel("healthy ..... for the moment at least.");
 			incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ANTI_DISINTEGRATION:
 		if(!(HDisint_resistance & INTRINSIC)) {
-			You("feel quite firm for a while.");
+			You_feel("quite firm for a while.");
 			incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1634,7 +1634,7 @@ boolean atme;
 		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
-			You("feel resistant to sickness.");
+			You_feel("resistant to sickness.");
 			incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1691,7 +1691,7 @@ boolean atme;
 		    do_mappingY();
 		    HConfusion = save_Hconf;
 		    HHallucination = save_Hhallu;
-		    pline("You feel knowledgable!");
+		    You_feel("knowledgable!");
 		    object_detect(pseudo, 0);
 		} else
 		    pline("The map refuses to reveal its secrets.");
@@ -1710,7 +1710,7 @@ boolean atme;
 		break;
 	case SPE_RESIST_PETRIFICATION:
 		if(!(HStone_resistance & INTRINSIC)) {
-			You("feel more limber. Let's eat some cockatrice meat!");
+			You_feel("more limber. Let's eat some cockatrice meat!");
 			incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1731,7 +1731,7 @@ boolean atme;
 		break;
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
-			You("feel warmer.");
+			You_feel("warmer.");
 			incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1740,7 +1740,7 @@ boolean atme;
 			if (Hallucination)
 				pline("Excellent! You feel, like, totally cool!");
 			else
-				You("feel colder.");
+				You_feel("colder.");
 			incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
@@ -1759,13 +1759,13 @@ boolean atme;
 			if (Hallucination)
 				pline("Let the casting commence!");
 			else
-				You("feel a sense of spell knowledge.");
+				You_feel("a sense of spell knowledge.");
 			incr_itimeout(&HHalf_spell_damage, rn1(100, 50) +
 				spell_damage_bonus(spellid(spell))*10);
 		}
 		if(!(HHalf_physical_damage & INTRINSIC)) {
 			if (Hallucination)
-				pline("You feel like a tough motherfucker!");
+				You_feel("like a tough motherfucker!");
 			else
 				You("are resistant to normal damage.");
 			incr_itimeout(&HHalf_physical_damage, rn1(100, 50) +
@@ -1782,7 +1782,7 @@ boolean atme;
 		break;
 
 	case SPE_ENLIGHTEN: 
-		You("feel self-knowledgeable...");
+		You_feel("self-knowledgeable...");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		enlightenment(FALSE, FALSE);
 		pline("The feeling subsides.");

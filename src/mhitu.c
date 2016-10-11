@@ -158,7 +158,7 @@ on the first floor, especially when you're playing as something with drain resis
 				pline("%s uses %s stilettos in a very unfair way!", Monnam(mtmp), mhis(mtmp) );
 				if (!rn2(3)) pline("Your %s are scratched to the bone and your %s is squirting everywhere!", makeplural(body_part(LEG)), body_part(BLOOD) );
 				else if (!rn2(2)) pline("Your sensitive sexual organs are squeezed flat and you're gasping for air!");
-				else pline("You feel a vicious impact as the hard heel slams on your %s with full force, and you're seeing asterisks everywhere.", body_part(HEAD) );
+				else You_feel("a vicious impact as the hard heel slams on your %s with full force, and you're seeing asterisks everywhere.", body_part(HEAD) );
 				badeffect();
 				if (!rn2(2)) badeffect();
 				if (!rn2(3)) badeffect();
@@ -956,7 +956,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 25 : (u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
 			    if (Free_action) {
-				You("feel a slight shaking.");            
+				You_feel("a slight shaking.");            
 			    } else {
 				You("flinch!");
 				nomovemsg = 0;	/* default: "you can move again" */
@@ -1880,7 +1880,7 @@ swingweapon:
 						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
 
-						pline("You feel a strange sensation.");
+						You_feel("a strange sensation.");
 						make_confused(HConfusion + rnd(4), FALSE);
 					}
 					else {
@@ -4648,7 +4648,7 @@ dopois:
 		    poisoned(buf, rn2(A_MAX), mdat->mname, 30);
 		}
 		if (!rn2(4)) {
-			pline("You feel drained...");
+			You_feel("drained...");
 			permdmg = 1;
 		}
 		if (!rn2(4)) {
@@ -5314,7 +5314,7 @@ dopois:
 		if (youmonst.data->mlet == mdat->mlet) break;
 		if(mtmp->mcan) break;
 		if (!issoviet && !rn2(3)) {
-			pline("You feel a tug on your purse"); break;
+			You_feel("a tug on your purse"); break;
 		}
 		if (rn2(10)) {stealgold(mtmp);
 		break;
@@ -5360,7 +5360,7 @@ dopois:
 		}
 
 		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
-			pline("You feel a tug on your knapsack"); break;
+			You_feel("a tug on your knapsack"); break;
 		}
 
 		if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinsiy plash") )) {
@@ -5532,7 +5532,7 @@ dopois:
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			u.negativeprotection++;
-			pline("You feel less protected!");
+			You_feel("less protected!");
 		}
 		break;
 
@@ -5665,7 +5665,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {change_luck(-1);
-			pline("You feel unlucky.");
+			You_feel("unlucky.");
 		}
 		break;
 
@@ -5764,7 +5764,7 @@ dopois:
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -6697,7 +6697,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_SPC2:
 			if (Psi_resist && rn2(20) ) break;
 
-			pline("You feel something focusing on your mind!");
+			You_feel("something focusing on your mind!");
 
 			switch (rnd(10)) {
 
@@ -6756,31 +6756,31 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			}
 			break;
 		case AD_DRST:
-				You("feel your strength drain away!");
+				You_feel("your strength drain away!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_STR, "strength drain", 30);
 			}
 			break;
 		case AD_DRDX:
-				You("feel your muscles cramping!");
+				You_feel("your muscles cramping!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_DEX, "dexterity drain", 30);
 			}
 			break;
 		case AD_DRCO:
-				You("feel a lack of force!");
+				You_feel("a lack of force!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_CON, "constitution drain", 30);
 			}
 			break;
 		case AD_WISD:
-				You("feel naive!");
+				You_feel("naive!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_WIS, "wisdom drain", 30);
 			}
 			break;
 		case AD_DRCH:
-				You("feel ugly!");
+				You_feel("ugly!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_CHA, "charisma drain", 30);
 			}
@@ -7289,10 +7289,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 		case AD_NPRO:
-				You("feel unsafe in here...");
+				You_feel("unsafe in here...");
 			if (!rn2(10)) {
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 			}
 			break;
 
@@ -7311,30 +7311,30 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 	      case AD_NUMB:
 			{
-				You("feel your body parts getting numb!");
+				You_feel("your body parts getting numb!");
 			    make_numbed(HNumbed + tmp, TRUE);
 			}
 			break;
 	      case AD_FRZE:
-				You("feel ice cold!");
+				You_feel("ice cold!");
 			if (!rn2(3)) {
 			    make_frozen(HFrozen + tmp, TRUE);
 			}
 			break;
 	      case AD_BURN:
-				You("feel an overwhelming heat!");
+				You_feel("an overwhelming heat!");
 			if (!rn2(2)) {
 			    make_burned(HBurned + tmp, TRUE);
 			}
 			break;
 	      case AD_FEAR:
-				You("feel a tight squeezing!");
+				You_feel("a tight squeezing!");
 			if (!rn2(2)) {
 			    make_feared(HFeared + tmp, TRUE);
 			}
 			break;
 	      case AD_SLOW:
-				You("feel a force field!");
+				You_feel("a force field!");
 			if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
 			    u_slow_down();
 			break;
@@ -7376,7 +7376,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	    case AD_DEPR:
-			pline("You feel manic-depressive...");
+			You_feel("manic-depressive...");
 		if (!rn2(5)) {
 
 		    switch(rnd(20)) {
@@ -7491,7 +7491,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 
 	    case AD_WRAT:
-		pline("You feel the life vanish from within you!");
+		You_feel("the life vanish from within you!");
 
 		if(u.uen < 1) {
 		    You_feel("less energised!");
@@ -7509,10 +7509,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
 		if(!rn2(2)) {
-		    pline("You feel momentarily lethargic.");
+		    You_feel("momentarily lethargic.");
 		    break;
 		}
-		pline("You feel apathetic...");
+		You_feel("apathetic...");
 		switch(rn2(7)) {
 		    case 0: /* destroy certain things */
 			witherarmor();
@@ -7573,14 +7573,14 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 
 	    case AD_DFOO:
-	      pline("You feel physically and mentally weaker!");
+	      You_feel("physically and mentally weaker!");
 		if (!rn2(3)) {
 		    Sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
 		if (!rn2(4)) {
-			pline("You feel drained...");
+			You_feel("drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -7609,7 +7609,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	    case AD_DARK:
 
-			pline("You feel a constricting darkness...");
+			You_feel("a constricting darkness...");
 
 			/* create darkness around the player --Amy */
 			litroomlite(FALSE);
@@ -7677,7 +7677,7 @@ do_stone2:
 		    pline("It shakes you!");
 
 		if (!issoviet && !rn2(3)) {
-			pline("You feel a tug on your purse"); break;
+			You_feel("a tug on your purse"); break;
 		}
 
 		if (rn2(10)) {stealgold(mtmp);
@@ -7692,7 +7692,7 @@ do_stone2:
 		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
 
 		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) ) {
-			pline("You feel a tug on your knapsack"); break;
+			You_feel("a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
@@ -7818,7 +7818,7 @@ do_stone2:
 
 	    case AD_NEXU:
 		if (mtmp->mcan) break;
-		pline("You feel an energy irradiation!");
+		You_feel("an energy irradiation!");
 
 		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
@@ -7900,7 +7900,7 @@ do_stone2:
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -8017,7 +8017,7 @@ do_stone2:
 		break;
 
 	    case AD_SUCK:
-		pline("You feel like being sucked in by a vacuum cleaner!");
+		You_feel("like being sucked in by a vacuum cleaner!");
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) tmp = 0;
 			else{
 				if( has_head(youmonst.data) && !(Role_if(PM_COURIER)) && !uarmh && !rn2(20) && 
@@ -8220,7 +8220,7 @@ do_stone2:
 		    pline("Yuck!");
 		break;
 	    case AD_CALM:	/* KMH -- koala attack */
-		pline("You feel something sapping your energy!");
+		You_feel("something sapping your energy!");
 		    docalm();
 		break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
@@ -8523,7 +8523,7 @@ do_stone2:
 		    }
 		    break;
 		case AD_DISN:
-		    You("feel like a drill is tearing you apart!");
+		    You_feel("like a drill is tearing you apart!");
 		if (!rn2(10))  {
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
@@ -8667,7 +8667,7 @@ common:
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -9908,7 +9908,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
 		if (!rn2(4)) {
-			pline("You feel drained...");
+			You_feel("drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -9933,7 +9933,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("%s uses a telepathic gaze!", Monnam(mtmp));
 		    stop_occupation();
 			if (!issoviet && !rn2(3)) {
-				pline("You feel a tug on your purse"); break;
+				You_feel("a tug on your purse"); break;
 			}
 			if (rn2(10)) stealgold(mtmp);
 			else if( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
@@ -10436,7 +10436,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -12788,7 +12788,7 @@ register struct attack *mattk;
 
 	    case AD_THIR:
 		healup(tmp, 0, FALSE, FALSE);
-		pline("You feel healthier!");
+		You_feel("healthier!");
 		break;
 	    case AD_FRZE:
 		if (!resists_cold(mtmp) && resists_fire(mtmp)) {

@@ -292,9 +292,9 @@ drinkfountain()
 
 			if (Blind) {
 			    if (Invisible) {
-				You("feel transparent.");
+				You_feel("transparent.");
 			    } else {
-			    	You("feel very self-conscious.");
+			    	You_feel("very self-conscious.");
 			    	pline("Then it passes.");
 			    }
 			} else {

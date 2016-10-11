@@ -583,7 +583,7 @@ struct monst *shkp;
 	    total, currency(total));
 	if (!Role_if(PM_ROGUE)) {     /* stealing is unlawful */
 	    adjalign(-sgn(u.ualign.type));
-	    You("feel like an evil rogue.");
+	    You_feel("like an evil rogue.");
 		if(u.ualign.type < 0) u.ualign.sins++;
 		if(u.ualign.type < 0) u.alignlim--;
 	}
@@ -1236,7 +1236,7 @@ register boolean silentkops;
 	eshkp->robbed = 0L;
 	if (guilty && !Role_if(PM_ROGUE)) {
 		adjalign(sgn(u.ualign.type));
-		You("feel your guilt vanish.");        
+		You_feel("your guilt vanish.");        
 	}
 	if(!inhishop(shkp)) {
 		char shk_nam[BUFSZ];

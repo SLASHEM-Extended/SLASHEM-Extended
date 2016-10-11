@@ -594,7 +594,7 @@ Cloak_on()
 		    } else {
 			u.uhpmax -= d(4, 4);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-			You("feel a loss of life.");
+			You_feel("a loss of life.");
 			losehp(d(4, 4),"cloak of death",KILLED_BY_AN);
 		    }
 		} else {
@@ -638,7 +638,7 @@ Cloak_on()
 
 	case LETHE_CLOAK:
 		forget(ALL_SPELLS|ALL_MAP);
-		pline("You feel dizzy!");
+		You_feel("dizzy!");
 		break;
 	case CLOAK_OF_POLYMORPH:
 		{
@@ -715,7 +715,7 @@ Cloak_on()
 	case CLOAK_OF_LYCANTHROPY:
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
-			pline("You feel feverish.");
+			You_feel("feverish.");
 		}
 		break;
 	case CLOAK_OF_UNLIGHT:
@@ -783,7 +783,7 @@ Cloak_on()
 		if (!uarmc->cursed) {
 			curse(uarmc);
 		}
-		pline("You feel ignorant.");
+		You_feel("ignorant.");
 	}
 
 	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qani plash") ) ) {
@@ -1461,7 +1461,7 @@ Gloves_on()
 		if (!tech_known(T_BLESSING)) {
 		    	learntech(T_BLESSING, FROMOUTSIDE, 1);
 		    	pline("Suddenly, you know how to use the blessing technique!");
-		} else pline("You feel that these gloves would have taught you how to use the blessing technique if you didn't already knew it.");
+		} else You_feel("that these gloves would have taught you how to use the blessing technique if you didn't already knew it.");
     }
 
     if (uarmg && uarmg->oartifact == ART_ARABELLA_S_BANK_OF_CROSSRO) {
@@ -1951,7 +1951,7 @@ Amulet_on()
 	/* but re-inserted by Amy */
 	case AMULET_OF_POLYMORPH:
 		makeknown(AMULET_OF_POLYMORPH);
-		You("feel rather strange.");
+		You_feel("rather strange.");
 		polyself(FALSE);
 		flags.botl = 1;
 		pline("The amulet disintegrates!");
@@ -1975,7 +1975,7 @@ Amulet_on()
 		break;
 	case AMULET_OF_DEPRESSION:
 		/* don't always give a message, and a vague one if at all --Amy */
-		if (!rn2(3)) pline("You feel down...");
+		if (!rn2(3)) You_feel("down...");
 		if (u.uluck > 0) u.uluck = -u.uluck;
 		if (u.ualign.record > 0) u.ualign.record = -u.ualign.record;
 

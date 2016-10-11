@@ -3059,7 +3059,7 @@ newboss:
 		case WAN_BAD_LUCK:
 
 			known = TRUE;
-			pline("You feel very unlucky.");
+			You_feel("very unlucky.");
 			change_luck(-1);
 
 		break;
@@ -3104,7 +3104,7 @@ newboss:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
 				if(u.uen < 1) {
@@ -3120,7 +3120,7 @@ newboss:
 				}
 				break;
 			case 3: /* sloth */
-				pline("You feel a little apathetic...");
+				You_feel("a little apathetic...");
 
 				switch(rn2(7)) {
 				    case 0: /* destroy certain things */
@@ -3248,7 +3248,7 @@ newboss:
 				    poisoned("air", rn2(A_MAX), "wand of sin", 30);
 				}
 				if (!rn2(4)) {
-					pline("You feel drained...");
+					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -3471,7 +3471,7 @@ newboss:
 		case WAN_LYCANTHROPY:
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
-			pline("You feel feverish.");
+			You_feel("feverish.");
 		}
 
 		break;
@@ -3728,7 +3728,7 @@ newboss:
 			break;
 		case WAN_MANA:
 			known = TRUE;
-			You("feel full of mystic power!");
+			You_feel("full of mystic power!");
 			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
 			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
 			else u.uen += (d(5,6) + rnz(u.ulevel));
@@ -4838,7 +4838,7 @@ boolean ordinary;
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -4899,7 +4899,7 @@ boolean ordinary;
 
 			break;
 		case WAN_REDUCE_MAX_HITPOINTS:
-			pline("You feel drained...");
+			You_feel("drained...");
 				if (Upolyd) u.mhmax -= rnd(5);
 				else u.uhpmax -= rnd(5);
 				if (u.mhmax < 1) u.mhmax = 1;
@@ -4908,7 +4908,7 @@ boolean ordinary;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 			break;
 		case WAN_INCREASE_MAX_HITPOINTS:
-			pline("You feel powered up!");
+			You_feel("powered up!");
 				if (Upolyd) u.mhmax += rnd(5);
 				else u.uhpmax += rnd(5);
 			break;
@@ -5021,7 +5021,7 @@ boolean ordinary;
 		   makeknown(WAN_HEALING);
 		break;
 		case WAN_EXTRA_HEALING:
-		   You("feel much better.");
+		   You_feel("much better.");
 		   healup(d(6,8) + rnz(u.ulevel),0,0,0);
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
@@ -5029,7 +5029,7 @@ boolean ordinary;
 		   makeknown(WAN_EXTRA_HEALING);
 		break;
 		case WAN_FULL_HEALING:
-		   You("feel restored to health.");
+		   You_feel("restored to health.");
 		   healup(d(10,20) + rnz(u.ulevel),0,0,0);
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
@@ -5047,7 +5047,7 @@ boolean ordinary;
 		case SPE_SLEEP:
 		    if(Sleep_resistance) {
 			if (!rn2(20)) {
-			pline("You feel a little drowsy.");
+			You_feel("a little drowsy.");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(5), TRUE);}
 			else {
@@ -5065,7 +5065,7 @@ boolean ordinary;
 		case SPE_CHLOROFORM:
 		    if(Sleep_resistance) {
 			if (!rn2(20)) {
-			pline("You feel drowsy.");
+			You_feel("drowsy.");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(15), TRUE);}
 			else {

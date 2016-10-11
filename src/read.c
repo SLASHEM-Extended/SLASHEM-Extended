@@ -2500,7 +2500,7 @@ register struct obj	*sobj;
 
 	case SCR_BAD_EFFECT:
 		if(confused) {
-			pline("You feel lucky for some reason!");
+			You_feel("lucky for some reason!");
 			break;
 		}
 		badeffect();
@@ -2674,12 +2674,12 @@ register struct obj	*sobj;
 
 		if (sobj->cursed || (confused && rn2(2) ) ) {
 
-			pline("You feel your abilities draining away...");
+			You_feel("your abilities draining away...");
 			skillcaploss();
 
 		} else {
 
-			pline("You feel like someone has touched your forehead...");
+			You_feel("like someone has touched your forehead...");
 
 			int skillimprove = rnd(P_NUM_SKILLS);
 
@@ -2880,7 +2880,7 @@ register struct obj	*sobj;
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
 				if(u.uen < 1) {
@@ -2896,7 +2896,7 @@ register struct obj	*sobj;
 				}
 				break;
 			case 3: /* sloth */
-				pline("You feel a little apathetic...");
+				You_feel("a little apathetic...");
 
 				switch(rn2(7)) {
 				    case 0: /* destroy certain things */
@@ -3024,7 +3024,7 @@ register struct obj	*sobj;
 				    poisoned("air", rn2(A_MAX), "scroll of sin", 30);
 				}
 				if (!rn2(4)) {
-					pline("You feel drained...");
+					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -3166,7 +3166,7 @@ register struct obj	*sobj;
 
 	case SCR_GIRLINESS:
 
-		pline("You feel a female presence.");
+		You_feel("a female presence.");
 
 	    {
 		int cnt = rnd(9);
@@ -3809,7 +3809,7 @@ newboss:
 	case SCR_SLEEP:
 		known = TRUE;
 		if(confused) {
-			You("feel awake!");
+			You_feel("awake!");
 			if (sobj->cursed) incr_itimeout(&HSleep_resistance, 10);
 			else if (sobj->blessed) incr_itimeout(&HSleep_resistance, 200);
 			else {incr_itimeout(&HSleep_resistance, 100);}
@@ -3942,7 +3942,7 @@ newboss:
 					undo_lockflood, (genericptr_t)&maderoom);
 			if (maderoom) {
 				known = TRUE;
-				You("feel free once again.");
+				You_feel("free once again.");
 			}
 		} else {
 			int madepool = 0;
@@ -4077,7 +4077,7 @@ newboss:
 					undo_treeflood, (genericptr_t)&maderoom);
 			if (maderoom) {
 				known = TRUE;
-				You("feel a lack of greenery.");
+				You_feel("a lack of greenery.");
 			}
 		} else {
 			int madepool = 0;
@@ -4191,7 +4191,7 @@ newboss:
 					undo_cloudflood, (genericptr_t)&maderoom);
 			if (maderoom) {
 				known = TRUE;
-				You("feel the fog disappearing.");
+				You_feel("the fog disappearing.");
 			}
 		} else {
 			int madepool = 0;
@@ -4728,27 +4728,27 @@ retry:
 		return(1);
 	case SCR_HEALING: /* a basic healing item that can be used to - who would have guessed? - cure wounds! --Amy */
 		makeknown(SCR_HEALING);
-		You("feel healthier!");
+		You_feel("healthier!");
 			if (!rn2(20)) healup(400 + rnz(u.ulevel), 0, FALSE, FALSE);
 			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
 			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
 		break;
 	case SCR_POWER_HEALING:
 		makeknown(SCR_POWER_HEALING);
-		You("feel fully healed!");
+		You_feel("fully healed!");
 			u.uhp = u.uhpmax;
 			if (Upolyd) u.mh = u.mhmax;
 		break;
 	case SCR_WOUNDS:
 		makeknown(SCR_WOUNDS);
-		You("feel bad!");
+		You_feel("bad!");
 			if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
 			else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
 			else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
 		break;
 	case SCR_MANA: /* there was no simple mana potion in this game! --Amy */
 		makeknown(SCR_MANA);
-		You("feel full of mystic power!");
+		You_feel("full of mystic power!");
 			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
 			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
 			else u.uen += (d(5,6) + rnz(u.ulevel));
@@ -4756,7 +4756,7 @@ retry:
 		break;
 	case SCR_CURE: /* cures bad effects --Amy */
 		makeknown(SCR_CURE);
-		You("feel revitalized.");
+		You_feel("revitalized.");
 		if (Stoned) fix_petrification();
 		    if (Slimed) {
 			pline("The slime disappears.");
@@ -4826,10 +4826,10 @@ retry:
 			if (sobj->cursed) {
 				HHalf_physical_damage &= ~INTRINSIC;
 				HHalf_physical_damage &= ~TIMEOUT;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 			} else {
 				if (Hallucination)
-					pline("You feel like a tough motherfucker!");
+					You_feel("like a tough motherfucker!");
 				else
 					You("are resistant to normal damage.");
 				incr_itimeout(&HHalf_physical_damage, rnd(500));
@@ -4848,14 +4848,14 @@ retry:
 			if (sobj->cursed) {
 				HHalf_spell_damage &= ~INTRINSIC;
 				HHalf_spell_damage &= ~TIMEOUT;
-				pline("You feel more afraid of magic!");
+				You_feel("more afraid of magic!");
 			} else {
 				incr_itimeout(&HHalf_spell_damage, rnd(500));
 				if (sobj->blessed) incr_itimeout(&HHalf_spell_damage, rnd(500));
 				if (Hallucination)
 					pline("Let the casting commence!");
 				else
-					You("feel a sense of spell knowledge.");
+					You_feel("a sense of spell knowledge.");
 			}
 		}
 		break;
@@ -5379,7 +5379,7 @@ revid_end:
 	case SCR_ENTHRONIZATION:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5391,7 +5391,7 @@ revid_end:
 	case SCR_FOUNTAIN_BUILDING:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5404,7 +5404,7 @@ revid_end:
 	case SCR_CREATE_SINK:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5416,7 +5416,7 @@ revid_end:
 	case SCR_WC:
 
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5438,7 +5438,7 @@ revid_end:
 			break;
 		}
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5475,7 +5475,7 @@ revid_end:
 		u.ualign.record += x;
 		u.ublesscnt += y;
 		if (u.ublesscnt < 0) u.ublesscnt = 0;
-		pline("You feel %s%scomfortable.",(abs(x)>1) ? "very " : "", (x<0) ? "un" : "");
+		You_feel("%s%scomfortable.",(abs(x)>1) ? "very " : "", (x<0) ? "un" : "");
 	} break;
 
 	case SCR_CREATE_ALTAR:
@@ -5486,7 +5486,7 @@ revid_end:
 			break;
 		}
 		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
-			pline("You feel claustrophobic!");
+			You_feel("claustrophobic!");
 			break;
 		}
 		known = TRUE;
@@ -5495,7 +5495,7 @@ revid_end:
 		levl[u.ux][u.uy].altarmask = Align2amask(A_NONE);
 		u.ualign.record -= 50;
 		u.ublesscnt += rnz(300);
-		pline("You feel uncomfortable.");
+		You_feel("uncomfortable.");
 
 		break;
 
@@ -5558,7 +5558,7 @@ revid_end:
 		}
 
 		if (!confused && !sobj->cursed) {
-			You("feel resistant to elemental attacks!");
+			You_feel("resistant to elemental attacks!");
 			known = TRUE;
 			   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 			   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );

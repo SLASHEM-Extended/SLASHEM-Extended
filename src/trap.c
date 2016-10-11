@@ -2670,7 +2670,7 @@ newgirl:
 
 		}
 
-		pline("You feel a very feminine aura!");
+		You_feel("a very feminine aura!");
 
 		deltrap(trap); /* only triggers once */
 		break;
@@ -3074,7 +3074,7 @@ newegomon:
 		      int dmgnum = 0;
 		      dmgnum = d(2, 6) + rnd((monster_difficulty() * 2) + 1);
 			if (Antimagic || (Half_spell_damage && rn2(2)) ) dmgnum /= 2;
-			You("feel drained...");
+			You_feel("drained...");
 			u.uhpmax -= dmgnum/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(dmgnum,"death trap",KILLED_BY_AN);
@@ -3166,7 +3166,7 @@ newegomon:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
-				pline("You feel less protected!");
+				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
 				if(u.uen < 1) {
@@ -3182,7 +3182,7 @@ newegomon:
 				}
 				break;
 			case 3: /* sloth */
-				pline("You feel a little apathetic...");
+				You_feel("a little apathetic...");
 
 				switch(rn2(7)) {
 				    case 0: /* destroy certain things */
@@ -3310,7 +3310,7 @@ newegomon:
 				    poisoned("air", rn2(A_MAX), "sin trap", 30);
 				}
 				if (!rn2(4)) {
-					pline("You feel drained...");
+					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
 					if (u.uhpmax < 0) u.uhpmax = 0;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -3443,7 +3443,7 @@ newegomon:
 		pline("CLICK! You have triggered a trap!");
 
 		if (!Disint_resistance || !rn2(100) ) {
-			pline("You feel like you're falling apart!");
+			You_feel("like you're falling apart!");
 
 			if (uarms) {
 			    /* destroy shield; other possessions are safe */
@@ -3913,7 +3913,7 @@ newegomon:
 
 	    case RELOCATION_TRAP:
 		seetrap(trap);
-		pline("You feel yourself yanked in a direction you didn't know existed!");
+		You_feel("yourself yanked in a direction you didn't know existed!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	      (void) safe_teleds(FALSE);
 		deltrap(trap);
@@ -4042,7 +4042,7 @@ newegomon:
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(10 * (monster_difficulty() + 1) );
 		seetrap(trap);
-		pline("You feel like a whiny Mary-Sue!"); /* yes Anabella Swansteele, I'm looking at you!!! --Amy */
+		You_feel("like a whiny Mary-Sue!"); /* yes Anabella Swansteele, I'm looking at you!!! --Amy */
 		break;
 
 	    case CONFUSE_TRAP:
@@ -4116,7 +4116,7 @@ newegomon:
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -4257,7 +4257,7 @@ newegomon:
 		seetrap(trap);
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
-			pline("You feel feverish.");
+			You_feel("feverish.");
 		}
 		break;
 
@@ -4460,11 +4460,11 @@ newegomon:
 		    You_feel("momentarily lethargic.");
 		} else if (u.uen > ((u.uenmax / 9) + 1)) {
 			u.uen = 0;
-			pline("You feel drained of energy!");
+			You_feel("drained of energy!");
 		}
 		else {
 			u.uen = 0;
-			pline("You feel drained of energy!");
+			You_feel("drained of energy!");
 			drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
 		}
 		break;
@@ -4846,7 +4846,7 @@ newegomon:
 					make_stunned(0L, TRUE);
 
 				} else {
-					pline("You feel so relaxed that you decide to take a nap.");
+					You_feel("so relaxed that you decide to take a nap.");
 					nomul(-5, "relaxed with a smell");
 					nomovemsg = "You are conscious again.";
 
@@ -4971,7 +4971,7 @@ newegomon:
 			if (Hallucination) {
 				You(rn2(2) ? "saw stars!" : "can see stars yet.");
 				if (Confusion)
-					pline("You feel cosmic lifestream.");
+					You_feel("cosmic lifestream.");
 			}
 
 			losehp(rnd(3)+ rnd( (monster_difficulty() / 5) + 1),"falling bathtub",KILLED_BY_AN);
@@ -7206,7 +7206,7 @@ newegomon:
 			if (!rn2(10000)) randsp *= 10;
 			randmonstforspawn = rndmonst();
 
-			if (wizard || !rn2(10)) pline("You feel the arrival of monsters!");
+			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7227,7 +7227,7 @@ newegomon:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-			if (wizard || !rn2(10)) pline("You feel a colorful sensation!");
+			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7247,7 +7247,7 @@ newegomon:
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(296);
 
-			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
+			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7271,7 +7271,7 @@ newegomon:
 				if (u.uhp > 1) u.uhp /= 2;
 				else losehp(100, "cyanide trap", KILLED_BY_AN);
 			}
-			pline("You feel very poisoned...");
+			You_feel("very poisoned...");
 		      poisoned("gas", rn2(A_MAX), "cyanide trap", 5);
 
 		 break;
@@ -7459,7 +7459,7 @@ newegomon:
 			if (!rn2(10000)) randsp *= 10;
 			randmonstforspawn = rndmonst();
 
-			if (wizard || !rn2(10)) pline("You feel the arrival of monsters!");
+			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7480,7 +7480,7 @@ newegomon:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-			if (wizard || !rn2(10)) pline("You feel a colorful sensation!");
+			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7500,7 +7500,7 @@ newegomon:
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(296);
 
-			if (wizard || !rn2(10)) pline("You feel that a group has arrived!");
+			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
 			for (i = 0; i < randsp; i++) {
 

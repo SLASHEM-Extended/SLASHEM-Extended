@@ -461,7 +461,7 @@ register struct obj *food;
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
+		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 	} else if(!rn2(3)) {
@@ -1589,7 +1589,7 @@ register int pm;
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10)) {
-				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+				You_feel("more %s!", flags.female ? "pretty" : "attractive");
 				(void) adjattrib(A_CHA, 1, FALSE);
 				break;
 			}
@@ -1600,7 +1600,7 @@ register int pm;
 	    case PM_CHARISMA_TROVE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
-			pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+			You_feel("more %s!", flags.female ? "pretty" : "attractive");
 			(void) adjattrib(A_CHA, 1, FALSE);
 			}
 		break;
@@ -1609,7 +1609,7 @@ register int pm;
 	    case PM_TOUGH_TROVE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CON) < ATTRMAX(A_CON)) {
-			pline("You feel tougher!");
+			You_feel("tougher!");
 			(void) adjattrib(A_CON, 1, FALSE);
 			}
 
@@ -1826,20 +1826,20 @@ register int pm;
 	    case PM_CLAIRVOYANT_TROVE:
 	    case PM_RANDOM_COCKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
-		    You("feel clairvoyant!");
+		    You_feel("clairvoyant!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
 	    case PM_STONING_SPHERE:
 	    case PM_LEVELING_TROVE:
 	    case PM_DREAMER_COCKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
-	      You("feel that was a smart thing to do.");
+	      You_feel("that was a smart thing to do.");
 		pluslvl(FALSE);
 
 		break;
 
 	    case PM_STONE_BUG:
-		You("feel that was a bad idea.");
+		You_feel("that was a bad idea.");
 		losexp("eating a stone bug corpse", FALSE, TRUE);
 
 		break;
@@ -1853,7 +1853,7 @@ register int pm;
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		switch(rnd(10)) {                
 		case 1:
-		    You("feel that was a bad idea.");
+		    You_feel("that was a bad idea.");
 		    losexp("eating a wraith corpse", FALSE, TRUE);
 		    break;
 		case 2:                        
@@ -1873,10 +1873,10 @@ register int pm;
 		    break;
 		case 3:                        
 		case 4: 
-		    You("feel something strange for a moment.");
+		    You_feel("something strange for a moment.");
 		    break;
 		case 5: 
-		    You("feel physically and mentally stronger!");
+		    You_feel("physically and mentally stronger!");
 		    if (Upolyd) {
 			u.mhmax += 4;
 			u.mh = u.mhmax;
@@ -1892,7 +1892,7 @@ register int pm;
 		case 8:
 		case 9:                        
 		case 10:                
-		    You("feel that was a smart thing to do.");
+		    You_feel("that was a smart thing to do.");
 		pluslvl(FALSE);
 		break;
 		default:            
@@ -1905,10 +1905,10 @@ register int pm;
 	    case PM_PSEUDO_MEDUSA:
 	    case PM____TROVE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
-		pline("You feel appropriately 42!");
+		You_feel("appropriately 42!");
 		switch(rnd(10)) {                
 		case 1:
-		    You("feel that was a bad idea.");
+		    You_feel("that was a bad idea.");
 		    losexp("eating a creeping 42 corpse", FALSE, TRUE);
 			make_hallucinated(HHallucination+rn1(10,50),TRUE,0L);
 		    break;
@@ -1930,11 +1930,11 @@ register int pm;
 		    break;
 		case 3:                        
 		case 4: 
-		    You("feel something strange for a moment.");
+		    You_feel("something strange for a moment.");
 			make_hallucinated(HHallucination+rn1(10,50),TRUE,0L);
 		    break;
 		case 5: 
-		    You("feel physically and mentally stronger!");
+		    You_feel("physically and mentally stronger!");
 		    if (Upolyd) {
 			u.mhmax += 4;
 			u.mh = u.mhmax;
@@ -1951,7 +1951,7 @@ register int pm;
 		case 8:
 		case 9:                        
 		case 10:                
-		    You("feel that was a smart thing to do.");
+		    You_feel("that was a smart thing to do.");
 		pluslvl(FALSE);
 		make_hallucinated(HHallucination+rn1(10,50),TRUE,0L);
 		break;
@@ -2777,7 +2777,7 @@ register int pm;
 		if (ptr->mlet == S_NYMPH) {
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
-				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+				You_feel("more %s!", flags.female ? "pretty" : "attractive");
 				(void) adjattrib(A_CHA, 1, FALSE);
 			}
 		  }
@@ -2788,7 +2788,7 @@ register int pm;
 		if (dmgtype(ptr, AD_SITM) || dmgtype(ptr, AD_SEDU) || dmgtype(ptr, AD_SSEX) ) {
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(dmgtype(ptr, AD_SSEX) ? 3 : 10)  && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
-				pline("You feel more %s!", flags.female ? "pretty" : "attractive");
+				You_feel("more %s!", flags.female ? "pretty" : "attractive");
 				(void) adjattrib(A_CHA, 1, FALSE);
 			}
 		  }
@@ -2797,19 +2797,19 @@ register int pm;
 	/* luck is also harder to get; eating luck-reducing monsters sometimes grants a boost --Amy */
 		if (dmgtype(ptr, AD_LUCK) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 			change_luck(1);
-			pline("You feel lucky.");
+			You_feel("lucky.");
 		}
 
 	/* or rarely, random attack monsters --Amy */
 		if (dmgtype(ptr, AD_RBRE) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 525 : 175) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 			change_luck(1);
-			pline("You feel lucky.");
+			You_feel("lucky.");
 		}
 
 	/* and since mind flayers are so rare, improve INT gain a bit --Amy */
 		if (dmgtype(ptr, AD_DRIN) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
-			pline("You feel smarter!");
+			You_feel("smarter!");
 			(void) adjattrib(A_INT, 1, 2);
 		  }
 		}
@@ -2817,7 +2817,7 @@ register int pm;
 	/* psi-based enemies grant INT too --Amy */
 		if (dmgtype(ptr, AD_SPC2) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
-			pline("You feel smarter!");
+			You_feel("smarter!");
 			(void) adjattrib(A_INT, 1, 2);
 		  }
 		}
@@ -2825,7 +2825,7 @@ register int pm;
 	/* skill cap reducing monsters very rarely grant something good too --Amy */
 		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 1050 : 350) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 
-			pline("You feel the RNG's touch...");
+			You_feel("the RNG's touch...");
 
 			int skillimprove = rnd(P_NUM_SKILLS);
 
@@ -2851,7 +2851,7 @@ register int pm;
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else pline("You feel no different than before.");
+			} else You_feel("no different than before.");
 
 		}
 
@@ -2877,7 +2877,7 @@ register int pm;
 	/* And since I'm nice, do a similar thing for mana --Amy */
 		if (dmgtype(ptr, AD_MANA) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			u.uenmax++;
-			pline("You feel a mild buzz.");
+			You_feel("a mild buzz.");
 		    flags.botl = 1;
 		}
 
@@ -2994,7 +2994,7 @@ gluttonous()
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
+		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 	} else if(!rn2(3)) {
@@ -3081,7 +3081,7 @@ violated_vegetarian()
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
+		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 	} else if(!rn2(3)) {
@@ -3469,7 +3469,7 @@ struct obj *obj;
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
-		else pline("You feel like you're going to throw up.");
+		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 	} else if(!rn2(3)) {
@@ -3787,13 +3787,13 @@ struct obj *otmp;
 						body_part(STOMACH));
 
 		if (otmp && otmp->oartifact == ART_HOE_PA) {
-			if (!Cold_resistance) pline("You feel more resistant to cold!");
+			if (!Cold_resistance) You_feel("more resistant to cold!");
 			incr_itimeout(&HCold_resistance, rnz(10000));
-			if (!Fire_resistance) pline("You feel more resistant to fire!");
+			if (!Fire_resistance) You_feel("more resistant to fire!");
 			incr_itimeout(&HFire_resistance, rnz(10000));
-			if (!Shock_resistance) pline("You feel more resistant to shock!");
+			if (!Shock_resistance) You_feel("more resistant to shock!");
 			incr_itimeout(&HShock_resistance, rnz(10000));
-			if (!Poison_resistance) pline("You feel more resistant to poison!");
+			if (!Poison_resistance) You_feel("more resistant to poison!");
 			incr_itimeout(&HPoison_resistance, rnz(10000));
 		}
 
@@ -3850,7 +3850,7 @@ struct obj *otmp;
 			}
 		   case 1:
 			if(!Poison_resistance) {
-				You("feel your stomach twinge.");
+				You_feel("your stomach twinge.");
 				losestr(rnd(4));
 				losehp(rnd(15), "poisonous pill", KILLED_BY_AN);
 			} else  You("seem unaffected by the poison.");
@@ -3871,7 +3871,7 @@ struct obj *otmp;
 			if(Sleep_resistance) {
 				pline("Hmm. Nothing happens.");
 			} else {
-				pline("You feel drowsy...");
+				You_feel("drowsy...");
 				nomul(-rn2(50), "sleeping from a pink pill");
 				u.usleep = 1;
 				nomovemsg = "You wake up.";
@@ -3893,7 +3893,7 @@ struct obj *otmp;
 		   case 0:
 		   case 1:
 			if(!Poison_resistance) {
-				You("feel rather ill....");
+				You_feel("rather ill....");
 				losestr(rnd(4));
 				losehp(rnd(15), "poisonous mushroom", KILLED_BY_AN);
 			} else  You("burp loudly.");
@@ -4185,7 +4185,7 @@ struct obj *otmp;
 	    case AMULET_OF_POLYMORPH:
 		accessory_has_effect(otmp);
 		makeknown(typ);
-		You("feel rather strange.");
+		You_feel("rather strange.");
 		polyself(FALSE);
 		flags.botl = 1;
 		break;
@@ -4423,7 +4423,7 @@ register struct obj *otmp;
 	    case HOLY_WAFER:            
 		if (u.ualign.type == A_LAWFUL) {
 			if (u.uhp < u.uhpmax) {
-				You("feel warm inside.");
+				You_feel("warm inside.");
 				u.uhp += rn1(20,20);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			} 
@@ -4433,7 +4433,7 @@ register struct obj *otmp;
 		    you_unwere(TRUE);
 		}
 		if (u.ualign.type == A_CHAOTIC) {
-		    You("feel a burning inside!");
+		    You_feel("a burning inside!");
 		    u.uhp -= rn1(10,10);
 		    /* KMH, balance patch 2 -- should not have 0 hp */
 		    if (u.uhp < 1) u.uhp = 1;
@@ -4493,7 +4493,7 @@ register struct obj *otmp;
 	    /* body parts -- now checks for artifact and name*/
 	    case EYEBALL:
 		if (!otmp->oartifact) break;
-		You("feel a burning inside!");
+		You_feel("a burning inside!");
 		u.uhp -= rn1(50,150);
 		if (u.uhp <= 0) {
 		  killer_format = KILLED_BY;
@@ -4512,7 +4512,7 @@ register struct obj *otmp;
 
 	    case SEVERED_HAND:
 		if (!otmp->oartifact) break;
-		You("feel the hand scrabbling around inside of you!");
+		You_feel("the hand scrabbling around inside of you!");
 		u.uhp -= rn1(50,150);
 		if (u.uhp <= 0) {
 		  killer_format = KILLED_BY;
@@ -4524,7 +4524,7 @@ register struct obj *otmp;
 
 		if (rn2(2)) {	/* sometimes change the player's luck --Amy */
 
-			pline("You feel your luck is turning...");
+			You_feel("your luck is turning...");
 	
 			if (bcsign(otmp) == -1)	change_luck(-1);
 			else if (bcsign(otmp) == 0) change_luck(rn2(2) ? -1 : 1);

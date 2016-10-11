@@ -235,7 +235,7 @@ nh_timeout()
 
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
-		if (!u.inertia) pline("You feel less slow.");
+		if (!u.inertia) You_feel("less slow.");
 	}
 
 	if (u.temprecursiontime) {
@@ -2830,23 +2830,23 @@ nh_timeout()
 			break;
 		case FIRE_RES:
 			if (!Fire_resistance)
-				You("feel a little warmer.");
+				You_feel("a little warmer.");
 			break;
 		case FEAR_RES:
 			if (!Fear_resistance)
-				You("feel less resistant to fear.");
+				You_feel("less resistant to fear.");
 			break;
 		case COLD_RES:
 			if (!Cold_resistance)
-				You("feel a little cooler.");
+				You_feel("a little cooler.");
 			break;
 		case SLEEP_RES:
 			if (!Sleep_resistance)
-				You("feel a little sleepy.");
+				You_feel("a little sleepy.");
 			break;
 		case KEEN_MEMORY:
 			if (!Keen_memory)
-				You("feel less able to memorize things.");
+				You_feel("less able to memorize things.");
 			break;
 		case SIGHT_BONUS:
 			if (!Sight_bonus)
@@ -2855,67 +2855,67 @@ nh_timeout()
 			break;
 		case SHOCK_RES:
 			if (!Shock_resistance)
-				You("feel a little static cling.");
+				You_feel("a little static cling.");
 			break;
 		case AGGRAVATE_MONSTER:
 			if (!Aggravate_monster)
-				You("feel less aggravated.");
+				You_feel("less aggravated.");
 			break;
 		case POISON_RES:
 			if (!Poison_resistance)
-				You("feel a little less healthy.");
+				You_feel("a little less healthy.");
 			break;
 		case DISINT_RES:
 			if (!Disint_resistance)
-				You("feel a little less firm.");
+				You_feel("a little less firm.");
 			break;
 		case ACID_RES:
 			if (!Acid_resistance)
-				You("feel more vulnerable to acid.");
+				You_feel("more vulnerable to acid.");
 			break;
 		case STONE_RES:
 			if (!Stone_resistance)
-				You("feel a little less limber.");
+				You_feel("a little less limber.");
 			break;
 		case HALF_PHDAM:
 			if (!Half_physical_damage)
-				You("feel less resistant to damage.");
+				You_feel("less resistant to damage.");
 			break;
 		case HALF_SPDAM:
 			if (!Half_spell_damage)
-				You("feel less resistant to spells.");
+				You_feel("less resistant to spells.");
 			break;
 		case SICK_RES:
 			if (!Sick_resistance)
-				You("feel worried about getting sick.");
+				You_feel("worried about getting sick.");
 			break;
 		case DISPLACED:
 			if (!Displaced)
-				You("feel more exposed.");
+				You_feel("more exposed.");
 			break;
 		case TELEPORT:
 			if (!Teleportation)
-				You("feel a little less jumpy.");
+				You_feel("a little less jumpy.");
 			break;
 		case TELEPORT_CONTROL:
 			if (!Teleport_control)
-				You("feel a little less in control of yourself.");
+				You_feel("a little less in control of yourself.");
 			break;
 		case POLYMORPH_CONTROL:
 			if (!Polymorph_control)
-				You("feel a little less in control of your form.");
+				You_feel("a little less in control of your form.");
 			break;
 		case TELEPAT:
 			if (!HTelepat)
-				You("feel a little less mentally acute.");
+				You_feel("a little less mentally acute.");
 			break;
 		case FREE_ACTION:
 			if (!Free_action)
-				You("feel a little stiffer.");
+				You_feel("a little stiffer.");
 			break;
 		case PASSES_WALLS:
 			if (!Passes_walls)
-				You("feel a little more solid.");
+				You_feel("a little more solid.");
 			break;
 		case INVULNERABLE:
 			if (!Invulnerable)
@@ -3006,7 +3006,7 @@ nh_timeout()
 			break;
 		case FLYING:
 			if (!Flying)
-				pline("You feel less airborne.");
+				You_feel("less airborne.");
 			break;
 		case CONF_RES:
 			if (!Conf_resist)

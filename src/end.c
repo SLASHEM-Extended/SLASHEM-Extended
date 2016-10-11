@@ -1647,14 +1647,14 @@ boolean want_dump;
 		putstr(klwin, 0, "");
 
 		if (program_state.gameover || wizard) {
-			Sprintf(buf, "%ld creatures born.", total_born);
+			Sprintf(buf, "%ld creature%s born.", total_born, total_born == 1 ? "" : "s");
 			putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 			if (want_dump)  dump("  ", buf);
 #endif
 		}
 
-		Sprintf(buf, "%ld creatures vanquished.", total_killed);
+		Sprintf(buf, "%ld creature%s vanquished.", total_killed, total_killed == 1 ? "" : "s");
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);
@@ -1662,14 +1662,14 @@ boolean want_dump;
 
 
 		if (program_state.gameover || wizard) {
-			Sprintf(buf, "%ld boss%s born.", bosses_born, (bosses_killed==1) ? "" : "es");
+			Sprintf(buf, "%ld boss%s born.", bosses_born, bosses_born == 1 ? "" : "es");
 			putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 			if (want_dump)  dump("  ", buf);
 #endif
 		}
 
-		Sprintf(buf, "%ld boss%s vanquished.", bosses_killed, (bosses_killed==1) ? "" : "es");
+		Sprintf(buf, "%ld boss%s vanquished.", bosses_killed, bosses_killed == 1 ? "" : "es");
 		putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		if (want_dump)  dump("  ", buf);

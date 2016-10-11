@@ -656,7 +656,7 @@ register struct monst *mtmp;
 	if (canseemon(mtmp))
 	    pline("%s turns on you!", Monnam(mtmp));
 	else
-	    pline("You feel uneasy about %s.", y_monnam(mtmp));
+	    You_feel("uneasy about %s.", y_monnam(mtmp));
 	mtmp->mpeaceful = 0;
 	mtmp->mtame = 0;
 	mtmp->mtraitor = TRUE;

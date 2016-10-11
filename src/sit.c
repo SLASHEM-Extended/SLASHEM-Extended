@@ -483,7 +483,7 @@ dosit()
 			punishx();
 			break;
 		    case 17:
-			pline("You feel like someone has touched your forehead...");
+			You_feel("like someone has touched your forehead...");
 
 			int skillimprove = rnd(P_NUM_SKILLS);
 

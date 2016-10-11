@@ -2573,7 +2573,7 @@ struct obj *tstone;
 	    obj->oclass == GEM_CLASS && !is_graystone(obj) &&
 	    !obj_resists(obj, 80, 100)) {
 	if (Blind)
-	    pline("You feel something shatter.");
+	    You_feel("something shatter.");
 	else if (Hallucination)
 	    pline("Oh, wow, look at the pretty shards.");
 	else
@@ -3776,7 +3776,7 @@ void use_floppies(struct obj *obj)
 			pline("You shriek in pain!");
 			make_confused(HConfusion+rn2(50)+50,TRUE);
 		} else if (x == 1) {	/* Bill Gates */
-			pline("You feel horrible!");
+			You_feel("horrible!");
 			/* nothing happens (yet ...) */
 		}
 	}
@@ -4491,7 +4491,7 @@ doapply()
 			pline("There's a little badly burned moth in that relay!");
 			makeknown(RELAY);
 			if (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) {
-				You("feel remembered of %s.",Hallucination ? "when the net was flat" : "the old times");
+				You_feel("remembered of %s.",Hallucination ? "when the net was flat" : "the old times");
 				break;
 			}
 		}	/* fall through */
@@ -4623,7 +4623,7 @@ doapply()
 		if (Blind) {
 			pline("Being blind, you cannot see it.");
 		} else if (!obj->blessed) {
-			You("feel uncomfortable.");
+			You_feel("uncomfortable.");
 			if (!ishaxor) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
 			else u.ublesscnt += rn2((obj->cursed) ? 100 : 50);
 		} else {

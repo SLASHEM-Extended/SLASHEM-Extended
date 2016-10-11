@@ -1769,7 +1769,7 @@ int tech_no;
 		}
                 techt_inuse(tech_no) = rn1(10,10) + (techlev(tech_no) * 2);
 		if (!Invisible) pline("In a puff of smoke,  you disappear!");
-		if (!Fast) You("feel more nimble!");
+		if (!Fast) You_feel("more nimble!");
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		newsym(u.ux,u.uy);      /* update position */
@@ -2192,7 +2192,7 @@ int tech_no;
 			You("cannot focus your anger!");
 			return(0);
 		}*/
-	    	You("feel the anger inside you erupt!");
+	    	You_feel("the anger inside you erupt!");
 		num = 50 + (4 * techlev(tech_no));
 	    	techt_inuse(tech_no) = num + 1;
 		if (Upolyd) {
@@ -2204,7 +2204,7 @@ int tech_no;
 		t_timeout = rnz(1500);
 		break;	    
 	    case T_BLINK:
-	    	You("feel the flow of time slow down.");
+	    	You_feel("the flow of time slow down.");
                 techt_inuse(tech_no) = rnd(techlev(tech_no) + 1) + 2;
 		t_timeout = rnz(1500);
 	    	break;
@@ -3002,7 +3002,7 @@ tech_timeout()
 			You("relax.");
 			break;
 		    case T_E_FIST:
-			You("feel the power dissipate.");
+			You_feel("the power dissipate.");
 			break;
 		    case T_SIGIL_TEMPEST:
 			pline_The("sigil of tempest fades.");
@@ -3023,10 +3023,10 @@ tech_timeout()
 			You("sense the flow of time returning to normal.");
 			break;
 		    case T_CHI_STRIKE:
-			You("feel the power in your hands dissipate.");
+			You_feel("the power in your hands dissipate.");
 			break;
 		    case T_CHI_HEALING:
-			You("feel the healing power dissipate.");
+			You_feel("the healing power dissipate.");
 			break;
 	            default:
 	            	break;
@@ -3615,7 +3615,7 @@ blitz_chi_strike()
 		You("are too weak to attempt this! You need at least one point of mana!");
             	return(0);
 	}
-	You("feel energy surge through your hands!");
+	You_feel("energy surge through your hands!");
 	techt_inuse(tech_no) = techlev(tech_no) + 4;
 	return(1);
 }

@@ -1025,10 +1025,10 @@ struct obj *obj;
 		if (obj->otyp == SEXY_LEATHER_PUMP) {
 			if (ACURR(A_INT) >= 6) pline("Klock! You hit yourself with your sexy leather pump, producing a beautiful sound.");
 			else pline("Klock! You hit yourself with your sexy leather pump, producing a hollow sound.");
-		} else if (obj->otyp == BLOCK_HEELED_COMBAT_BOOT) pline("You feel a wonderfully painful sensation as you hit yourself with your fleecy block-heeled combat boot.");
+		} else if (obj->otyp == BLOCK_HEELED_COMBAT_BOOT) You_feel("a wonderfully painful sensation as you hit yourself with your fleecy block-heeled combat boot.");
 		else if (obj->otyp == TORPEDO) pline("You deal yourself a deep gash with your torpedo!");
 		else if (obj->otyp == STEEL_WHIP) {
-			if (flags.female) pline("You feel like a submissive girl as you whip yourself!");
+			if (flags.female) You_feel("like a submissive girl as you whip yourself!");
 			else pline("You enjoy the feeling of pain as the whip hits your bare skin!");
 		}
 		else if (obj->otyp == HIGH_HEELED_SANDAL) pline("Ouch - you hit yourself with a massive high heel! It's very painful!");

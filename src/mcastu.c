@@ -693,11 +693,11 @@ int spellnum;
 				dmg /= 2;
 				u.uhpmax -= dmg/2;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-				You("feel a loss of life.");
+				You_feel("a loss of life.");
 				losehp(dmg,"touch of death",KILLED_BY_AN);
 			}
 			else {
-			You("feel drained...");
+			You_feel("drained...");
 			u.uhpmax -= dmg/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(dmg,"touch of death",KILLED_BY_AN); }
@@ -1259,7 +1259,7 @@ int spellnum;
 	case 25:
 
 		/* petrify - similar to cockatrice hissing --Amy */
-		pline("You feel a massive burden on your chest!");
+		You_feel("a massive burden on your chest!");
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; stop_occupation(); delayed_killer = "petrify spell";}
 		dmg = 0;
@@ -1322,7 +1322,7 @@ int spellnum;
 		u.uhp = oldmp;
 		u.uenmax = oldhpmax;
 		u.uhpmax = oldmpmax;
-		pline("You feel a wraparound!");
+		You_feel("a wraparound!");
 		break;
 
 	default: /*failsafe*/
@@ -1489,7 +1489,7 @@ int spellnum;
 	case 34:
 	case 35:
 	case 36:
-	      pline("You feel pulsating winds!"); /* slow */
+	      You_feel("pulsating winds!"); /* slow */
 		    u_slow_down();
 		dmg = 0;
 		break;
@@ -1502,7 +1502,7 @@ int spellnum;
 		dmg = 0;
 		break;
 	case 38:
-	      pline("You feel burdened"); /* punishment - message is from Castle of the Winds */
+	      You_feel("burdened"); /* punishment - message is from Castle of the Winds */
 			punishx();
 		dmg = 0;
 		break;
@@ -1784,7 +1784,7 @@ int spellnum;
 	    You_feel("less powerful for a moment, but the feeling passes.");
 	} else {
 	    if (issoviet) pline("Pravitel'stvo prinimayet resheniye umen'shit' vashi ochki statusa, potomu chto vy stanovites' opasnost'.");
-	    else You("feel less powerful!");
+	    else You_feel("less powerful!");
 	    dmg = rnd(mtmp->m_lev - 7);
 	    if (issoviet) dmg = mtmp->m_lev - rnd(7);
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;

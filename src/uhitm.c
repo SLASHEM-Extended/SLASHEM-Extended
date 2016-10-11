@@ -322,7 +322,7 @@ struct monst *mtmp;
 
 	if ( Role_if(PM_LADIESMAN) && !flags.female && mtmp->female && humanoid(mtmp->data) ) {
 
-	    You("feel bad for hitting a defenseless woman.");
+	    You_feel("bad for hitting a defenseless woman.");
 	    adjalign(-5);
 
 	}
@@ -330,7 +330,7 @@ struct monst *mtmp;
 	/* Batman may not hit women, but you can be a female batman and it would be unfair to only punish males. --Amy */
 	if ( Race_if(PM_BATMAN) && ((!flags.female && mtmp->female) || (flags.female && !mtmp->female)) && humanoid(mtmp->data) ) {
 
-	    You("feel bad for hitting a defenseless %s.", flags.female ? "man" : "woman");
+	    You_feel("bad for hitting a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-5);
 
 	}
@@ -453,7 +453,7 @@ register struct monst *mtmp;
 		if (uwep && uwep_skill_type() != P_DAGGER && uwep_skill_type() != P_KNIFE && uwep_skill_type() != P_FIREARM) {
 
 	/* Code of Conduct- the gunner may not strike anything with any melee weapon, except daggers and knives. */
-			pline("You feel bad about using such a weapon.");
+			You_feel("bad about using such a weapon.");
 			adjalign(-1);
 		    tmp-=20; // sorry
 
@@ -1025,7 +1025,7 @@ int thrown;
 	    /* WAC - Hand-to-Hand Combat Techniques */
 
 	    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
-		You("feel a surge of force.");
+		You_feel("a surge of force.");
 		tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
 			 (10 + (u.ulevel / 5)) : u.uen);
 		u.uen -= (10 + (u.ulevel / 5));
@@ -5388,7 +5388,7 @@ uchar aatyp;
 			case 3:
 			case 4:
 			case 5:
-				pline("You feel life has clocked back.");
+				You_feel("life has clocked back.");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -5642,7 +5642,7 @@ uchar aatyp;
 		    teleX();
 		break;
 	  case AD_DISP:
-		pline("You feel a strong force!");
+		You_feel("a strong force!");
 			mdamageu(mon, tmp);
 		pushplayer();
 		break;
@@ -5773,7 +5773,7 @@ uchar aatyp;
 				rehumanize();
 				break;
 			    }
-				You("feel a dark void in your head!");
+				You_feel("a dark void in your head!");
 			    attrcurse();
 			}
 			break;
@@ -5922,7 +5922,7 @@ uchar aatyp;
 	    case AD_NPRO:
 		if (!rn2(3)) {
 			u.negativeprotection++;
-			pline("You feel less protected!");
+			You_feel("less protected!");
 		}
 		break;
 
@@ -6092,7 +6092,7 @@ uchar aatyp;
 	      case AD_SSEX:
 
 			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
-				pline("You feel a tug on your backpack!");
+				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf)) {
 			  case -1:
@@ -6110,7 +6110,7 @@ uchar aatyp;
 				((mon->female) && flags.female && !rn2(5) ) || ((!mon->female) && !flags.female && !rn2(5) ) ) )
 	
 			) 		{
-			pline("You feel a tug on your backpack!");
+			You_feel("a tug on your backpack!");
 			buf[0] = '\0';
 				switch (steal(mon, buf)) {
 			  case -1:
@@ -6186,7 +6186,7 @@ uchar aatyp;
 		break;
 
 	    case AD_DEPR:
-		pline("You feel depressed...");
+		You_feel("depressed...");
 		if (!rn2(2)) {
 
 		    switch(rnd(20)) {
@@ -6337,7 +6337,7 @@ uchar aatyp;
 		break;
 
 	    case AD_WRAT:
-		pline("You feel your life draining away!");
+		You_feel("your life draining away!");
 
 		if(u.uen < 1) {
 		    You_feel("less energised!");
@@ -6355,10 +6355,10 @@ uchar aatyp;
 
 	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
 		if(!rn2(2)) {
-		    pline("You feel momentarily lethargic.");
+		    You_feel("momentarily lethargic.");
 		    break;
 		}
-		pline("You feel very apathetic...");
+		You_feel("very apathetic...");
 		switch(rn2(7)) {
 		    case 0: /* destroy certain things */
 
@@ -6431,14 +6431,14 @@ uchar aatyp;
 		break;
 
 	    case AD_DFOO:
-	      pline("You feel physically and mentally weaker!");
+	      You_feel("physically and mentally weaker!");
 		if (!rn2(3)) {
 		    Sprintf(buf, "%s body",
 			    s_suffix(Monnam(mon)));
 		    poisoned(buf, rn2(A_MAX), mon->data->mname, 30);
 		}
 		if (!rn2(4)) {
-			pline("You feel drained...");
+			You_feel("drained...");
 			u.uhpmax -= rn1(10,10);
 			if (u.uhpmax < 0) u.uhpmax = 0;
 			if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6570,7 +6570,7 @@ uchar aatyp;
 		    make_burned(HBurned + (long)tmp, TRUE);
 		break;
 	      case AD_CONF:		
-			 You("feel confused!");
+			 You_feel("confused!");
 		    make_confused(HConfusion + (long)tmp, TRUE);
 		break;
 	      case AD_HALU:		

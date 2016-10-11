@@ -284,7 +284,7 @@ const char *name;	/* if null, then format `obj' */
 		 * only have a 10% chance of actually doing so, because otherwise it would be really unbalanced --Amy */
 		if (obj && obj->otyp == DART_OF_DISINTEGRATION) {
 			if ((!Disint_resistance || !rn2(100) ) && !rn2(10)) {
-				pline("You feel like you're falling apart!");
+				You_feel("like you're falling apart!");
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */

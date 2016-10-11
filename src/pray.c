@@ -1975,7 +1975,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		    You_feel("the power of %s increase.", u_gname());
 		    if (!rn2(2) || rnl(u.ulevel) > 3) { /* higher chance of conversion creating minions --Amy */
 		    	/* KMH -- Only a chance of this happening */
-				You("feel %s is very angry at you!", a_gname());                    
+				You_feel("%s is very angry at you!", a_gname());                    
 				summon_minion(altaralign, FALSE);
 				summon_minion(altaralign, FALSE);
 				if (rn2(u.ulevel)) summon_minion(altaralign, FALSE); /* summon more --Amy */
