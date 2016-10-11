@@ -1502,6 +1502,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("Potion drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.antimusablebias)) {
+		Sprintf(buf, " %d%%", u.antimusablebias);
+		enl_msg("Musable item generation frequency ", "is reduced by", "was reduced by", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance)) {
 		Sprintf(buf, " %d%% of the time only", 100 - u.concealitemchance);
 		enl_msg("Concealing monsters ", "are spawned underneath items", "were spawned underneath items", buf);
@@ -3667,6 +3672,11 @@ int final;
 	if (u.scrollspawnchance) {
 		Sprintf(buf, " %d%%", 100 - u.scrollspawnchance);
 		dump("  Scroll drop chance was reduced to", buf);
+	}
+
+	if (u.antimusablebias) {
+		Sprintf(buf, " %d%%", u.antimusablebias);
+		dump("  Musable item generation frequency was reduced by", buf);
 	}
 
 	if (u.ringspawnchance) {

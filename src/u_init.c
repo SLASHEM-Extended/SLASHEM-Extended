@@ -6502,6 +6502,9 @@ u_init()
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
 
+	u.antimusablebias = 0;
+	if (!rn2(3)) u.antimusablebias = rno(100);
+
 	u.concealitemchance = 0;
 	if (!rn2(3)) u.concealitemchance += rnd(20);
 	if (!rn2(5)) u.concealitemchance += rnd(40);
@@ -23230,6 +23233,9 @@ alter_reality()
 	if (!rn2(600)) u.wandspawnchance += rnd(90);
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
+
+	u.antimusablebias = 0;
+	if (!rn2(3)) u.antimusablebias = rno(100);
 
 	u.concealitemchance = 0;
 	if (!rn2(3)) u.concealitemchance += rnd(20);

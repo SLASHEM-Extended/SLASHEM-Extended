@@ -572,6 +572,8 @@ struct you {
 
 	int usefulitemchance; /* lower spawn chance for miscellaneous useful items */
 
+	int antimusablebias; /* to make it less likely that random scrolls, potions or wands are musable */
+
 	int invisotrap;	/* evil patch idea - trap that's always generated invisible */
 
 	int frequenttrap;		/* evil patch idea by Amy - trap that is generated more often */
