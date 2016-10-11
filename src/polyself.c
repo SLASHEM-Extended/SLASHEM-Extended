@@ -341,6 +341,11 @@ boolean forcecontrol;
 
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
+			/* uncommon forms are difficult to polymorph into, because the usual reason why they're uncommon is
+			 * that they are very powerful, so we need to reduce the player's chance of becoming one --Amy */
+			else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
+				mntmp = LOW_PM - 1; break; /* polymorph failed */
+			}
 
 			else break;
 		} while(++tries < 5);
@@ -372,6 +377,11 @@ boolean forcecontrol;
 				/* lower chance of success even if the form isn't too high-level --Amy */
 				else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
 	
+					mntmp = LOW_PM - 1; break; /* polymorph failed */
+
+				/* lower chance if form is uncommon, see above --Amy */
+				}
+				else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
 
