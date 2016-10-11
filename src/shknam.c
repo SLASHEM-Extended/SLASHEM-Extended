@@ -820,11 +820,11 @@ struct monst *shk;
 	 * 2/15 	Premium ID only
 	 * 8/15 	Basic ID only
 	 */
-	if (!rn2(2)) ESHK(shk)->services |= (SHK_ID_BASIC|SHK_ID_PREMIUM);
-	else if (!rn2(4)) ESHK(shk)->services |= SHK_ID_PREMIUM;
-	else ESHK(shk)->services |= SHK_ID_BASIC;
+	if (!rn2(20)) ESHK(shk)->services |= (SHK_ID_BASIC|SHK_ID_PREMIUM);
+	else if (!rn2(10)) ESHK(shk)->services |= SHK_ID_BASIC;
+	else if (!rn2(10)) ESHK(shk)->services |= SHK_ID_PREMIUM;
 
-	if (!rn2(2)) ESHK(shk)->services |= SHK_UNCURSE;
+	if (!rn2(10)) ESHK(shk)->services |= SHK_UNCURSE;
 
 	if (!rn2(2) && shk_class_match(WEAPON_CLASS, shk))
 		ESHK(shk)->services |= SHK_APPRAISE;

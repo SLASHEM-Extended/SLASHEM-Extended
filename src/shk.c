@@ -1816,7 +1816,10 @@ shk_other_services()
 
 	/* Init the shopkeeper */
 	shkp = shop_keeper(/* roomno= */*u.ushops);
-	if (!ESHK(shkp)->services) return;
+	if (!ESHK(shkp)->services) {
+		verbalize("Sorry. We're all out of services.");
+		return;
+	}
 
 	/*
 	** Figure out what services he offers
@@ -2589,6 +2592,11 @@ register boolean dummy;
 
 	if (ESHK(shkp)->billct == BILLSZ) {
 		You("got that for free!");
+		if (!rn2(5) && shkp->mpeaceful) {
+			verbalize("That's it, thief! I'm calling the kops!");
+			call_kops(shkp, FALSE);
+			hot_pursuit(shkp);
+		}
 		return;
 	}
 
@@ -2706,6 +2714,11 @@ register boolean ininv, dummy, silent;
 
 	if(ESHK(shkp)->billct == BILLSZ) {
 		You("got that for free!");
+		if (!rn2(5) && shkp->mpeaceful) {
+			verbalize("That's it, thief! I'm calling the kops!");
+			call_kops(shkp, FALSE);
+			hot_pursuit(shkp);
+		}
 		return;
 	}
 
@@ -3372,7 +3385,7 @@ boolean shk_buying;
 		if (obj->oeaten) tmp = 0L;
 		break;
 	case WAND_CLASS:
-		if (obj->spe == -1) tmp = 0L;
+		/*if (obj->spe == -1) tmp = 0L;*/ /* he'll try to sell them to you anyway --Amy */
 		break;
 	case POTION_CLASS:
 		if (obj->otyp == POT_WATER && !obj->blessed && !obj->cursed)
@@ -5204,8 +5217,8 @@ shk_identify(slang, shkp)
 
 	/* Here we go */
 	/* KMH -- fixed */
-	if (ESHK(shkp)->services & (SHK_ID_BASIC|SHK_ID_PREMIUM) ==
-			SHK_ID_BASIC|SHK_ID_PREMIUM) {
+	if ((ESHK(shkp)->services & (SHK_ID_BASIC|SHK_ID_PREMIUM)) ==
+			(SHK_ID_BASIC|SHK_ID_PREMIUM)) {
 		ident_type = yn_function("[B]asic service or [P]remier",
 		     ident_chars, '\0');
 		if (ident_type == '\0') return;
@@ -5284,6 +5297,13 @@ shk_identify(slang, shkp)
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
+	/* evil patch idea: buying the same service many times will eventually cause the shk to run out. --Amy */
+
+	if (!rn2(10)) {
+		if (ident_type == 'b') ESHK(shkp)->services &= ~SHK_ID_BASIC;
+		if (ident_type == 'p') ESHK(shkp)->services &= ~SHK_ID_PREMIUM;
+	}
+
 	/* Shopkeeper deviousness */
 	if (ident_type == 'b') {
 	    if (Hallucination) {
@@ -5354,9 +5374,16 @@ shk_uncurse(slang, shkp)
 {
 	struct obj *obj;                /* The object picked            */
 	int charge;                     /* How much to uncurse          */
+	boolean guesswork;              /* Will shkp be guessing?       */
 
 	/* Pick object */
 	if ( !(obj = getobj(identify_types, "uncurse"))) return;
+
+	/* Will shk be guessing? */
+        if ((guesswork = !shk_obj_match(obj, shkp)))
+	{
+		verbalize("I don't handle that sort of item, but I could try...");
+	}
 
 	/* Charge is same as cost */
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
@@ -5370,6 +5397,10 @@ shk_uncurse(slang, shkp)
 
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(5)) { /* curses should not be meaningless --Amy */
+		ESHK(shkp)->services &= ~SHK_UNCURSE;
+	}
 
 	/* Shopkeeper responses */
 	/* KMH -- fixed bknown, curse(), bless(), uncurse() */
@@ -5405,6 +5436,19 @@ shk_uncurse(slang, shkp)
 		else
 		{
 			You("can't see straight and point to the wrong item");
+		}
+	}
+	/* Is shopkeeper guessing? */
+	else if (guesswork) /* ported from identify function by Amy, because it makes no sense that they can uncurse everything */
+	{
+		/*
+		** Uncurse successful 1 out of 5 times.  
+		*/
+		if (!rn2(5)) {
+			verbalize("Success!");
+		} else {
+			verbalize("Sorry.  I guess it's not your lucky day.");
+			return;
 		}
 	}
 	else
@@ -5464,6 +5508,10 @@ shk_appraisal(slang, shkp)
 
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(1000)) {
+		ESHK(shkp)->services &= ~SHK_APPRAISE;
+	}
 
 	/* Shopkeeper deviousness */
 	if (Confusion && !Conf_resist)
@@ -5609,6 +5657,10 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
+		if (!rn2(50)) {
+			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
+		}
+
 	    /* Have some fun, but for this $$$ it better work. */
 	    if (Confusion)
 		You("fall over in appreciation");
@@ -5640,6 +5692,11 @@ struct monst *shkp;
 	    shk_smooth_charge(&charge, 50, NOBOUND);
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+		if (!rn2(200)) {
+			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
+		}
+
 	    /*if (obj->spe+1 > 5) { 
 		verbalize("I can't enchant this any higher!");
 		charge = 0;
@@ -5680,6 +5737,10 @@ struct monst *shkp;
 	    charge = 10 * obj->quan;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+		if (!rn2(100)) {
+			ESHK(shkp)->services &= ~SHK_SPECIAL_C;
+		}
 
 	    obj->opoisoned = TRUE;
 	    break;
@@ -5748,6 +5809,10 @@ shk_armor_works(slang, shkp)
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
+		if (!rn2(50)) {
+			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
+		}
+
 		/* Have some fun, but for this $$$ it better work. */
 		if (Confusion)
 			You("forget how to put your %s back on!", xname(obj));
@@ -5775,6 +5840,11 @@ shk_armor_works(slang, shkp)
 		shk_smooth_charge(&charge, 50, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+		if (!rn2(200)) {
+			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
+		}
+
 		/*if (obj->spe+1 > 3) { 
 			verbalize("I can't enchant this any higher!");
 			charge = 0;
@@ -5890,6 +5960,11 @@ shk_charge(slang, shkp)
 
 	/* Go for it? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(15)) {
+		if (type == 'b') ESHK(shkp)->services &= ~SHK_SPECIAL_A;
+		if (type == 'p') ESHK(shkp)->services &= ~SHK_SPECIAL_B;
+	}
 
 	/* Shopkeeper deviousness */
 	if (( (Confusion && !Conf_resist) || Hallucination) && !no_cheat)
