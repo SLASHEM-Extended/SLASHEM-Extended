@@ -580,7 +580,7 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BEEHIVE:
-			if(!rn2(4)) /* slightly lowered chance --Amy */
+			if(!rn2(5)) /* slightly lowered chance --Amy */
 			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY,
 					     sx, sy, TRUE, FALSE);
 			break;
