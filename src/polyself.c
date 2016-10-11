@@ -864,7 +864,12 @@ break_armor()
 	}
 #ifdef TOURIST
 	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmu) != 0) {
-	    if ((controlled_change/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2) /*&& !otmp->cursed*/ && !uskin) ) {
+
+	    if(otmp->oartifact) {
+		Your("shirt falls off!");
+		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
+		dropx(otmp);
+	    } else if ((controlled_change/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)/* && !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3) /*&& !otmp->cursed*/ && !uskin) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2) /*&& !otmp->cursed*/ && !uskin) ) {
 
 		if (!otmp->cursed) {
 
