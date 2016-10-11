@@ -6124,8 +6124,9 @@ int kind;
 	/* 0,1,2,3,4:  b=80%,5,5,5,5; nc=20%,20,20,20,20; c=5%,5,5,5,80 */
 
 	switch (chance) {
-	case 0 : verbalize("I am in your debt.  I will grant one wish!");
-		makewish();
+	case 0 : verbalize("I am in your debt.  I will grant a boon!");
+		if (!rn2(4)) makewish();
+		else othergreateffect();
 		mongone(mtmp);
 		break;
 	case 1 : verbalize("Thank you for freeing me!");

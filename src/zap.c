@@ -3803,7 +3803,10 @@ newboss:
 				break;
 			case 5 : 
 				pline("Multicolored sparks fly from the wand.");
-				if (!rn2(1000)) makewish();
+				if (!rn2(250)) {
+					if (!rn2(4)) makewish();
+					else othergreateffect();
+				}
 		/* since there is a 1% chance of the wand exploding, this _should_ be okay --Amy */
 				break;
 			case 6 : 
@@ -8085,6 +8088,126 @@ retry:
 	}
 }
 
+/* Some wish sources are less likely to give a wish; make them do other nice things if they don't --Amy */
+void
+othergreateffect()
+{
+	register struct obj *acqo;
+
+	int typeofeffect = rnd(3);
+
+	/* case 1: great item from a predetermined list - can also be an artifact if you're lucky */
+
+	if (typeofeffect == 1) {
+
+		acqo = mksobj(makegreatitem(), TRUE, TRUE);
+		if (acqo) {
+			dropy(acqo);
+			pline("A high-quality item appeared on the ground!");
+		}
+
+	}
+
+	/* case 2: make a random artifact */
+
+	if (typeofeffect == 2) {
+
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (acqo) {
+		    dropy(acqo);
+			if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo));
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+			}
+
+		    discover_artifact(acqo->oartifact);
+
+			if (!u.ugifts) u.ugifts = 1;
+			pline("An artifact appeared beneath you!");
+
+		}	
+
+		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
+	}
+
+	/* case 3: acquirement */
+
+	if (typeofeffect == 3) {
+
+		int acquireditem;
+		acquireditem = 0;
+		pline("You may acquire an item!");
+
+		while (acquireditem == 0) { /* ask the player what they want --Amy */
+
+			if (yn("Do you want to acquire a random item?")=='y') {
+				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a weapon?")=='y') {
+				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an armor?")=='y') {
+				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a ring?")=='y') {
+				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an amulet?")=='y') {
+				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a tool?")=='y') {
+				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire some food?")=='y') {
+				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a potion?")=='y') {
+				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a scroll?")=='y') {
+				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a spellbook?")=='y') {
+				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a wand?")=='y') {
+				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire some coins?")=='y') {
+				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a gem?")=='y') {
+				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
+				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
+				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an iron chain?")=='y') {
+				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire a splash of venom?")=='y') {
+				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+	
+		}
+		if (!acqo) {
+			pline("Unfortunately it failed.");
+			return;
+		}
+
+		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
+
+		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
+		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
+	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
+		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
+	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
+
+		pline("Something appeared on the ground just beneath you!");
+	}
+
+}
 
 /* LSZ/WWA Wizard Patch June '96 Choose location where spell takes effect.*/
 /* WAC made into a void */

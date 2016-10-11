@@ -309,10 +309,17 @@ dosit()
 			break;
 		    case 6:
 /* ------------===========STEPHEN WHITE'S NEW CODE============------------ */                                                
-			if(u.uluck < 7) {
-			    You_feel("your luck is changing.");
-			    change_luck(5);
-			} else	    makewish();
+
+			if (!rn2(4)) {
+
+				if(u.uluck < 7) {
+				    You_feel("your luck is changing.");
+				    change_luck(5);
+				} else	    makewish();
+			} else {
+				othergreateffect();
+			}
+
 			break;
 		    case 7:
 			{

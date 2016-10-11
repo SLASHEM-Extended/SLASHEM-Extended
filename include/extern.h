@@ -1305,6 +1305,7 @@ E struct obj *FDECL(mkobj, (CHAR_P,BOOLEAN_P));
 E int NDECL(rndmonnum);
 E int NDECL(usefulitem);
 E int NDECL(nastymusableitem);
+E int NDECL(makegreatitem);
 E struct obj *FDECL(splitobj, (struct obj *,long));
 E void FDECL(replace_object, (struct obj *,struct obj *));
 E void FDECL(bill_dummy_object, (struct obj *));
@@ -2837,6 +2838,7 @@ E void FDECL(destroy_item, (int,int));
 E int FDECL(destroy_mitem, (struct monst *,int,int));
 E int FDECL(resist, (struct monst *,CHAR_P,int,int));
 E void NDECL(makewish);
+E void NDECL(othergreateffect);
 /* KMH -- xchar to XCHAR_P */
 E void FDECL(zap_strike_fx, (XCHAR_P, XCHAR_P, int));
 E void NDECL(throwspell);

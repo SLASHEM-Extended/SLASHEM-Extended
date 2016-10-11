@@ -3847,8 +3847,9 @@ struct obj *otmp;
 			else {
 
 			/* [Tom] wishing pills are from the Land of Oz */
-			pline ("The pink sugar coating hid a silver wishing pill!");
-			makewish();
+			pline ("The pink sugar coating hid a silver special pill!"); /* wish no longer guaranteed --Amy */
+			if (!rn2(4)) makewish();
+			else othergreateffect();
 			break;
 			}
 		   case 1:

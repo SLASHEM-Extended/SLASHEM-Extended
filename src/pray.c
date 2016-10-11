@@ -1767,8 +1767,9 @@ dosacrifice()
 			       nomovemsg = 0;
 			       break;                
 			  case 4:
-			       pline("Amused, he grants you a wish!");
-			       makewish();
+			       pline("Amused, he grants you a boon!");
+				 if (!rn2(4)) makewish();
+				 else othergreateffect();
 			  break;
 		       }
 		    }

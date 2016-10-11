@@ -55,9 +55,10 @@ dowaterdemon() /* Water demon */
 	/* Give those on low levels a (slightly) better chance of survival */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
 	if (rnd(100) > (60 + 5*level_difficulty())) {
-		pline("Grateful for %s release, %s grants you a wish!",
+		pline("Grateful for %s release, %s grants you a boon!",
 		      mhis(mtmp), mhe(mtmp));
-		makewish();
+		if (!rn2(4)) makewish();
+		else othergreateffect();
 		mongone(mtmp);
 	    } else if (t_at(mtmp->mx, mtmp->my))
 		(void) mintrap(mtmp);
