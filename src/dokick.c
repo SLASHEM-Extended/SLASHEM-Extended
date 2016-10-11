@@ -1128,15 +1128,18 @@ dokick()
 		    } else
 			goto ouch;
 		    }
-		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) &&
-			  (treefruit = rnd_treefruit_at(x, y))) {
+		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) ) {
 
 			if (rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
 				pline("The tree's branches are swinging, but apparently it doesn't bear any fruits.");
 				maploc->looted |= TREE_LOOTED;
 				return(1);
 			} else {
-
+				treefruit = rnd_treefruit_at(x, y);
+				if (!treefruit) {
+					pline("The tree's branches are swinging.");
+					return(1);
+				}
 				long nfruit = 8L-rnl(7), nfall;
 				if (rn2(3)) nfruit /= 2; /* With the high amount of trees in the game, this is necessary --Amy */
 				if (!rn2(4)) nfruit /= 3;
