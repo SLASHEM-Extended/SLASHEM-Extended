@@ -1654,9 +1654,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
-				if (!objects[SCR_TELEPORTATION].oc_name_known &&
-				!objects[SCR_TELEPORTATION].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_TELEPORTATION);
 				}
 			    return 2;
 			}
@@ -1665,9 +1663,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
-				if (!objects[SCR_TELEPORTATION].oc_name_known &&
-				!objects[SCR_TELEPORTATION].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_TELEPORTATION);
 				}
 			    return 2;
 			}
@@ -1705,9 +1701,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
-				if (!objects[SCR_TELE_LEVEL].oc_name_known &&
-				!objects[SCR_TELE_LEVEL].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_TELE_LEVEL);
 				}
 			    return 2;
 			}
@@ -1716,9 +1710,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
-				if (!objects[SCR_TELE_LEVEL].oc_name_known &&
-				!objects[SCR_TELE_LEVEL].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_TELE_LEVEL);
 				}
 			    return 2;
 			}
@@ -1768,10 +1760,10 @@ mon_tele:
 		mreadmsg(mtmp, otmp);
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		if (oseen) makeknown(SCR_WARPING);
 
 		if (u.uevent.udemigod) { (void) rloc(mtmp, FALSE); return 2; }
 		u_teleport_monB(mtmp, TRUE);
-		if (oseen) makeknown(SCR_WARPING);
 
 		return 2;
 	    }
@@ -1792,9 +1784,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s seems very disoriented for a moment.",
 					Monnam(mtmp));
-				if (!objects[SCR_ROOT_PASSWORD_DETECTION].oc_name_known &&
-				!objects[SCR_ROOT_PASSWORD_DETECTION].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_ROOT_PASSWORD_DETECTION);
 				}
 			    return 2;
 			}
@@ -1803,9 +1793,7 @@ mon_tele:
 			    if (vismon) {
 				pline("%s shudders for a moment.",
 								Monnam(mtmp));
-				if (!objects[SCR_ROOT_PASSWORD_DETECTION].oc_name_known &&
-				!objects[SCR_ROOT_PASSWORD_DETECTION].oc_uname)
-				    docall(otmp);
+				if (oseen) makeknown(SCR_ROOT_PASSWORD_DETECTION);
 				}
 			    return 2;
 			}
@@ -1862,7 +1850,7 @@ mon_tele:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
-		cnt = rnd(4) + 10;
+		cnt = rno(14);
 		while(cnt--) {
 			struct monst *mon;
 			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) continue;
@@ -1895,8 +1883,8 @@ mon_tele:
 		struct monst *mon;
 		boolean known = FALSE;
 
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
 		/*else if (is_pool(mtmp->mx, mtmp->my))
 		    fish = &mons[u.uinwater ? PM_GIANT_EEL : PM_CROCODILE];*/
@@ -1929,8 +1917,8 @@ mon_tele:
 		struct monst *mon;
 		boolean known = FALSE;
 
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 		    mon = makemon(pm, 0, 0, NO_MM_FLAGS);
@@ -2042,8 +2030,8 @@ mon_tele:
 		boolean known = FALSE;
 
 		if (rn2(2)) cnt += rnz(2);
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 
@@ -2093,7 +2081,7 @@ mon_tele:
 
 	    {	coord cc;
 		struct permonst *pm = 0;
-		int cnt = rn2(14) + 2;
+		int cnt = rn3(14) + 2;
 		struct monst *mon;
 		boolean known = FALSE;
 		int randmnst;
@@ -2115,7 +2103,7 @@ mon_tele:
 			monstercolor = rnd(296);
 		}
 
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 
 		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -4542,9 +4530,9 @@ struct monst *mtmp;
 	case MUSE_SCR_ELEMENTALISM:
 	    {
 		coord cc;
-		int cnt = rnd(9);
-		if (mtmp->mconf) cnt += rnd(12);
-		if (otmp->cursed) cnt += rnd(5);
+		int cnt = rno(9);
+		if (mtmp->mconf) cnt += rno(12);
+		if (otmp->cursed) cnt += rno(5);
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -4566,9 +4554,9 @@ struct monst *mtmp;
 	case MUSE_SCR_DEMONOLOGY:
 	    {
 		coord cc;
-		int cnt = rnd(9);
-		if (mtmp->mconf) cnt += rnd(12);
-		if (otmp->cursed) cnt += rnd(5);
+		int cnt = rno(9);
+		if (mtmp->mconf) cnt += rno(12);
+		if (otmp->cursed) cnt += rno(5);
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -4591,9 +4579,9 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 
 	    {
-		int cnt = rnd(9);
-		if (otmp->cursed) cnt += rnd(18);
-		if (mtmp->mconf) cnt += rnd(100);
+		int cnt = rno(9);
+		if (otmp->cursed) cnt += rno(18);
+		if (mtmp->mconf) cnt += rno(100);
 		while(cnt--) {
 			makegirlytrap();
 		}
@@ -5251,9 +5239,9 @@ struct monst *mtmp;
 		{
 
 		int monstcnt;
-		monstcnt = 8 + rnd(10);
-		if (otmp->cursed) monstcnt += (8 + rnd(10)) ;
-		if (mtmp->mconf) monstcnt += (12 + rnd(15));
+		monstcnt = 8 + rno(10);
+		if (otmp->cursed) monstcnt += (8 + rno(10));
+		if (mtmp->mconf) monstcnt += (12 + rno(15));
 		int sessileattempts;
 		int sessilemnum;
 
@@ -5279,9 +5267,9 @@ struct monst *mtmp;
 		{
 
 		int monstcnt;
-		monstcnt = rnd(5);
-		if (otmp->cursed) monstcnt += rnd(6);
-		if (mtmp->mconf) monstcnt += rnd(12);
+		monstcnt = rno(5);
+		if (otmp->cursed) monstcnt += rno(6);
+		if (mtmp->mconf) monstcnt += rno(12);
 		int sessileattempts;
 		int sessilemnum;
 
@@ -5822,7 +5810,7 @@ newboss:
 		{
 
 		int monstcnt;
-		monstcnt = 8 + rnd(10);
+		monstcnt = 8 + rno(10);
 		int sessileattempts;
 		int sessilemnum;
 
@@ -5849,7 +5837,7 @@ newboss:
 		{
 
 		int monstcnt;
-		monstcnt = rnd(5);
+		monstcnt = rno(5);
 		int sessileattempts;
 		int sessilemnum;
 
@@ -7723,8 +7711,8 @@ newboss:
 		struct monst *mon;
 		boolean known = FALSE;
 
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
 		/*else if (is_pool(mtmp->mx, mtmp->my))
 		    fish = &mons[u.uinwater ? PM_GIANT_EEL : PM_CROCODILE];*/
@@ -7758,8 +7746,8 @@ newboss:
 		struct monst *mon;
 		boolean known = FALSE;
 
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 		    mon = makemon(pm, 0, 0, NO_MM_FLAGS);
@@ -7870,8 +7858,8 @@ newboss:
 		boolean known = FALSE;
 
 		if (rn2(2)) cnt += rnz(2);
-		if (!rn2(73)) cnt += rnd(4);
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (!rn2(73)) cnt += rno(4);
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 
@@ -7921,7 +7909,7 @@ newboss:
 
 	    {	coord cc;
 		struct permonst *pm = 0;
-		int cnt = rn2(14) + 2;
+		int cnt = rn3(14) + 2;
 		struct monst *mon;
 		boolean known = FALSE;
 		int randmnst;
@@ -7943,7 +7931,7 @@ newboss:
 			monstercolor = rnd(296);
 		}
 
-		if (mtmp->mconf || otmp->cursed) cnt += 12;
+		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 
 		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -8151,7 +8139,7 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
-		cnt = rnd(4) + 10;
+		cnt = rno(14);
 		while(cnt--) {
 			struct monst *mon;
 			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) continue;
