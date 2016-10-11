@@ -1478,9 +1478,9 @@ GLOVES("gauntlets of trap creation", "spiky gloves",
 GLOVES("sado maso gloves", "grey-shaded gloves",
 		0, 1,  SHADES_OF_GREY,	1, 1, 4, 50,  9, 1, LEATHER, CLR_GRAY),
 GLOVES("gauntlets of the force", "spacey gloves",
-		0, 0,  THE_FORCE,       2, 1,  4, 50,  8, 0, PLASTIC, CLR_WHITE),
+		0, 1,  THE_FORCE,       2, 1,  4, 50,  8, 0, PLASTIC, CLR_WHITE),
 GLOVES("gauntlets of leech", "fingerless gloves",
-		0, 0,  MANALEECH,       10, 1,  4, 50,  9, 0, LEATHER, CLR_BROWN),
+		0, 1,  MANALEECH,       10, 1,  4, 50,  9, 0, LEATHER, CLR_BROWN),
 
 GLOVES("banking gloves", "paper gloves",
 		0, 1,  BANKBUG,	1, 1, 4, 50,  6, 7, PAPER, CLR_GREEN),
@@ -1692,7 +1692,7 @@ BOOTS("anti-curse boots", "winter stilettos",
 		0, 1,  VERSUS_CURSES, 2, 2, 8, 50,  9, 0, DRAGON_HIDE, CLR_RED),
 
 BOOTS("multi shoes", "rainbow boots",
-		0, 0,  MULTISHOES, 2, 2, 8, 50,  9, 0, PLASTIC, CLR_WHITE),
+		0, 1,  MULTISHOES, 2, 2, 8, 50,  9, 0, PLASTIC, CLR_WHITE),
 	/* multi shoes also gives FAST,JUMPING,STEALTH, etc. [Sakusha]*/
 	/* Amy edit: hallucination, wounded legs, levitation, fumbling, waterwalking */
 BOOTS("boots of plugsuit", "tightly fitting boots",
