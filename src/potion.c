@@ -3937,6 +3937,7 @@ boolean your_fault;
 		}
 		break;
 	case POT_AMNESIA:
+		if (mon->mfrenzied) mon->mfrenzied = 0;
 		switch (monsndx(mon->data)) {
 		case PM_GREMLIN:
 		    /* Gremlins multiply... */

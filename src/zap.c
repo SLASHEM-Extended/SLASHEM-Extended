@@ -290,10 +290,10 @@ struct obj *otmp;
 		zap_type_text = "gravity beam";
 		reveal_invis = TRUE;
 		if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
-			dmg = d(6,12) + rnz(u.ulevel);
-			if (bigmonst(mtmp->data)) dmg += rnd(12);
-			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(18);
-			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(24);
+			dmg = d(4,12) + rnz(u.ulevel);
+			if (bigmonst(mtmp->data)) dmg += rnd(6);
+			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
+			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(18);
 			if (otyp == WAN_GRAVITY_BEAM) dmg += rnz(u.ulevel * 2);
 			if(dbldam) dmg *= 2;
 			dmg += (skilldmg * 2);
@@ -5753,7 +5753,7 @@ struct obj *obj;
 	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM)
         {
 		buzz(otyp - WAN_MAGIC_MISSILE,
-		     (otyp == WAN_MAGIC_MISSILE) ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
+		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
 			/*} else if (obj->otyp == WAN_ACID) {
 			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
@@ -5930,6 +5930,7 @@ register int booktype;
 		case P_GRAND_MASTER:      tmp +=  4; break;
 		case P_SUPREME_MASTER:      tmp +=  5; break;
 	}
+	if (tmp > 0) tmp = rn2(tmp + 1); /* too high bonuses make spellcaster roles too powerful! --Amy */
 
     return tmp;
 }

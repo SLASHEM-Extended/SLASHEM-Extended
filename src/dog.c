@@ -1177,7 +1177,7 @@ boolean guaranteed;
 	    (is_covetous(mtmp->data) && (issoviet || rn2(50) ) ) || (is_human(mtmp->data) && (issoviet || rn2(4) ) ) ||
 	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && (issoviet || rn2(10) ) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
-	    cannot_be_tamed(mtmp->data) ||
+	    cannot_be_tamed(mtmp->data) || mtmp->mfrenzied ||
 	    (obj && dogfood(mtmp, obj) >= MANFOOD)) {
 
 	/* In Soviet Russia, people only know dogs, cats and maybe horses. Everything else cannot be tamed, and variety
@@ -1193,7 +1193,7 @@ boolean guaranteed;
 		}
 
 	/* failsafe for things that REALLY cannot be tamed --Amy */
-	if (cannot_be_tamed(mtmp->data) || mtmp->mtame || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp)
+	if (cannot_be_tamed(mtmp->data) || mtmp->mfrenzied || mtmp->mtame || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp)
 		return (struct monst *)0;
 
 	if (mtmp->m_id == quest_status.leader_m_id)

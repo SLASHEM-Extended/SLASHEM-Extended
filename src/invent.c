@@ -8040,9 +8040,9 @@ struct obj *obj;
 				pline("Use this spell to make monsters flee from you. Occasionally it backlashes, afflicting you with a standard status effect."); break;
 			case SPE_CHARM_MONSTER:
 #ifdef PHANTOM_CRASH_BUG
-				pline("This powerful spell can sometimes charm adjacent monsters, but they resist often so you may have to cast it repeatedly."); break;
+				pline("This powerful spell can sometimes charm adjacent monsters, but they resist often so you may have to cast it repeatedly. If you're unlucky, the monster will enter a frenzied state instead."); break;
 #else
-				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance prevents this from working sometimes, and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all."); break;
+				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance prevents this from working sometimes, and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all. But even that's not enough, and therefore Amy added another failure effect: if you're unlucky, the monster will be frenzied, which means it cannot be tamed at all anymore."); break;
 #endif
 			case SPE_ENCHANT_WEAPON:
 				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up."); break;
@@ -8063,7 +8063,7 @@ struct obj *obj;
 			case SPE_INSULATE:
 				pline("This spell provides temporary shock resistance when cast."); break;
 			case SPE_REMOVE_CURSE:
-				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only."); break;
+				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only. Occasionally it will backfire."); break;
 			case SPE_TURN_UNDEAD:
 				pline("Fires an invisible beam that makes undead monsters flee and revives dead monsters."); break;
 			case SPE_ANTI_DISINTEGRATION:
@@ -8143,7 +8143,7 @@ struct obj *obj;
 			case SPE_DIG:
 				pline("Casting this can dig through walls and other obstacles."); break;
 			case SPE_CANCELLATION:
-				pline("This spell can be cast at objects and monsters to cancel them."); break;
+				pline("This spell can be cast at objects and monsters to cancel them. However, it occasionally backfires."); break;
 			case SPE_REFLECTION:
 				pline("You can reflect beams and similar attacks for a limited amount of time if you cast this spell."); break;
 			case SPE_REPAIR_ARMOR:

@@ -111,6 +111,7 @@ struct monst {
 	Bitfield(mstun,1);	/* stunned (off balance) */
 	Bitfield(mconf,1);	/* confused */
 	Bitfield(mpeaceful,1);	/* does not attack unprovoked */
+	Bitfield(mfrenzied,1);	/* cannot be tamed anymore */
 	Bitfield(mtrapped,1);	/* trapped in a pit, web or bear trap */
 	Bitfield(mleashed,1);	/* monster is on a leash */
 	Bitfield(isspell,1);	/* is a temporary spell being */

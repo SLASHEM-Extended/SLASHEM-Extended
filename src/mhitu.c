@@ -3712,6 +3712,7 @@ hitmu(mtmp, mattk)
 	dmg = d((int)mattk->damn, (int)mattk->damd);
 	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
+	if (mtmp->mfrenzied) dmg *= 2;
 /*	Next a cancellation factor	*/
 
 /*	Use uncancelled when the cancellation factor takes into account certain

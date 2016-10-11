@@ -2777,8 +2777,22 @@ register struct obj	*sobj;
 			}
 		    }
 		}
+
 		if(Punished && !confused) unpunish();
+
 		update_inventory();
+
+		if (sobj->otyp == SPE_REMOVE_CURSE) {
+			if (!rn2(10)) {
+				pline("The spell backfires!");
+				badeffect();
+			}
+			if (!rn2(100)) {
+				You_feel("as if you need some help.");
+				rndcurse();
+			}
+		}
+
 		break;
 	    }
 	case SPE_CREATE_MONSTER:
@@ -3929,8 +3943,19 @@ newboss:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0)
 			    if (!rn2(4) || ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && mtmp->data == &mons[PM_TOPMODEL]) ) maybe_tame(mtmp, sobj);
+			    else if (!rn2(10) && !mtmp->mfrenzied && !mtmp->mtame) {
+				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
+				mtmp->mpeaceful = 0;
+				mtmp->mfrenzied = 1;
+			    }
 		    }
 		}
+
+		if (!rn2(20)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
+
 	break;
 
 	case SCR_LOCKOUT:

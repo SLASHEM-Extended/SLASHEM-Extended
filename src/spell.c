@@ -940,6 +940,12 @@ boolean atme;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
+	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_INFERNO) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_ICE_BEAM) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_HYPER_BEAM) { energy *= 4; energy /= 3;}
 
 	/* slight mana cost decrease if you're very skilled, to make skill matter more --Amy */
 	if (role_skill == P_SKILLED) { energy *= 19; energy /= 20;}
@@ -1226,7 +1232,7 @@ boolean atme;
 			} else weffects(pseudo);
 		} else weffects(pseudo);
 		update_inventory();	/* spell may modify inventory */
-		if (pseudo->otyp == SPE_TELEPORT_AWAY || pseudo->otyp == SPE_POLYMORPH || pseudo->otyp == SPE_MUTATION) {
+		if (pseudo->otyp == SPE_TELEPORT_AWAY || pseudo->otyp == SPE_POLYMORPH || pseudo->otyp == SPE_MUTATION || pseudo->otyp == SPE_CANCELLATION) {
 			if (!rn2(5)) {
 				pline("The magical energy goes out of control!");
 				badeffect();

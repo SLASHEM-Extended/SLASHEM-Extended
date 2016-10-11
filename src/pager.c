@@ -175,6 +175,7 @@ lookat(x, y, buf, monbuf)
 		    (mtmp->mx != x || mtmp->my != y) ?
 			((mtmp->isshk && accurate)
 				? "tail of " : "tail of a ") : "",
+		    (mtmp->mfrenzied && accurate) ? "frenzied " :
 		    (mtmp->mtame && accurate) ? "tame " :
 		    (mtmp->mpeaceful && accurate) ? "peaceful " : "",
 		    name);
