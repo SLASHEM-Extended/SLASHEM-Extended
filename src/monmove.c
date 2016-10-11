@@ -1207,7 +1207,8 @@ not_special:
 	gx = mtmp->mux;
 	gy = mtmp->muy;
 	appr = mtmp->mflee ? -1 : 1;
-	if (mtmp->mconf || (u.uswallow && mtmp == u.ustuck))
+	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (mtmp->mconf || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
 #ifdef GOLDOBJ
@@ -1253,6 +1254,8 @@ not_special:
 	if (appr == 1 && !rn2(3) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
 
 	if (appr == 1 && !rn2(3) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
+
+	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION

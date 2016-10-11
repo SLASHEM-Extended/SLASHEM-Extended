@@ -4080,6 +4080,10 @@ register struct monst *mtmp;
 			if (mm == PM_SECURITY_BOT) {(void)mongets(mtmp, ASSAULT_RIFLE);
 		  	  m_initthrow(mtmp, BULLET, 25);
 			}
+			if (mm == PM_PROTECTOR_OF_THE_POOR) {(void)mongets(mtmp, BOW);
+		  	  m_initthrow(mtmp, ARROW, 50);
+		  	  m_initthrow(mtmp, ARROW, 50);
+			}
 
 		}
 		break;
@@ -4612,6 +4616,7 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_OLOG_HAI_BERSERKER]) (void) mongets(mtmp, SCR_ENRAGE);
 
 		if(ptr == &mons[PM_ANNOYING_TROLL]) (void) mongets(mtmp, RANSEUR);
+		if(ptr == &mons[PM_OVERSLEPT_TROLL]) (void) mongets(mtmp, HUGGING_BOOT);
 		if(ptr == &mons[PM_MEAN_TROLL]) (void) mongets(mtmp, PARTISAN);
 
 		if (!rn2(2)) switch (rn2(4)) {
@@ -4849,6 +4854,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GENERAL_ZAROFF]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_JACK_THE_RIPPER]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_GENERAL_HEATHERSTONE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
+		if (ptr == &mons[PM_SERBIAN_THIEF]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_RUSSIAN_THIEF]) (void) mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_STUPID_THIEVING_GIRL]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		if (ptr == &mons[PM_TURKISH_BANDIT]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
 		if (ptr == &mons[PM_FOOTPAD]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (ptr == &mons[PM_THIEF]) (void) mongets(mtmp, SCR_TRAP_CREATION);
@@ -4919,6 +4928,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_ELLA_S_WEDGE_SANDAL]) { (void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); (void) mongets(mtmp, WEDGE_SANDALS); }
 		if (ptr == &mons[PM_MELISSA_S_WEDGE_HEELED_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (ptr == &mons[PM_MANUELA_S_WHORE_BOOT]) { (void) mongets(mtmp, SPIKED_BATTLE_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
+		if (ptr == &mons[PM_BLOCK_HEELED_GIRL]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
 		if(is_mercenary(ptr)
 #ifdef YEOMAN
@@ -5601,6 +5611,7 @@ register struct	monst	*mtmp;
 
 	    case S_DOG:
 
+		if (mtmp->data == &mons[PM_HELL_BRIDE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (mtmp->data == &mons[PM_CRAPDOG]) (void) mongets(mtmp, SCR_BULLSHIT);
 		if (mtmp->data == &mons[PM_ELEMENTAL_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_SUE_LYN_S_THICK_WINTER_BOOT]) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
@@ -5620,6 +5631,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_HOMING_THUNDER_CALLER]) (void) mongets(mtmp, WAN_DRAIN_MANA);
 		if (mtmp->data == &mons[PM_ELENA_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT]) { (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS); (void) mongets(mtmp, LEATHER_PEEP_TOES); }
+		if (mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL]) (void) mongets(mtmp, HUGGING_BOOT);
+		if (mtmp->data == &mons[PM_MUM]) (void) mongets(mtmp, SWEET_MOCASSINS);
+		if (mtmp->data == &mons[PM_FINGER_SMASHER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
 		break;
 
@@ -5985,6 +5999,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_SABINE_S_BLOCK_HEELED_SANDAL]) (void)mongets(mtmp, HIGH_HEELED_SANDAL);
+		if (ptr == &mons[PM_BANG_GANG_GIRL]) (void)mongets(mtmp, DANCING_SHOES);
 
 		break;
 
@@ -6214,6 +6229,9 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_BLEACH_GHOST]) m_initthrow(mtmp, CALTROP, 50);
+		if (ptr == &mons[PM_SERBIAN_BOSS]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_SWARMING_GIRL]) (void)mongets(mtmp, HIGH_HEELED_SANDAL);
+		if (ptr == &mons[PM_GENTLE_GIRL]) (void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
 		break;
 
@@ -6716,9 +6734,20 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CZECH_GIRL]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (ptr == &mons[PM_VIETNAMESE_BEAUTY]) (void) mongets(mtmp, HIGH_STILETTOS);
 		if (ptr == &mons[PM_SWEET_SISTER]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_PSEUDO_MERMAID]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_DIZZY_BLONDE]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_FARTING_ASIAN_GIRL]) (void) mongets(mtmp, HUGGING_BOOT);
 		if (ptr == &mons[PM_LOVELY_GIRL]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, HIGH_STILETTOS);
+		}
+		if (ptr == &mons[PM_RUSSIAN_FURY]) {
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void) mongets(mtmp, SWEET_MOCASSINS);
+		}
+		if (ptr == &mons[PM_BLOODCAP_AIMING_GIRL]) {
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void) mongets(mtmp, SWEET_MOCASSINS);
 		}
 
  		break;
@@ -6778,6 +6807,25 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RICHEST_MAN_OF_THE_WORLD]) {
 		    mtmp->mgold += (long)rn1(20, 200);
 		}
+
+		if (ptr == &mons[PM_DANGEROUS_GOOD_LOOKING_CRIMINAL]) (void) mongets(mtmp, GENTLEMAN_S_SUIT);
+		if (ptr == &mons[PM_DETENTION_PHYSICS_TEACHER]) (void) mongets(mtmp, SCR_LOCKOUT);
+		if (ptr == &mons[PM_NICE_DUTCH_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_DUTCH_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_BEAUTIFUL_DUTCH_GIRL]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); }
+		if (ptr == &mons[PM_CZECH_WENCH]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		if (ptr == &mons[PM_BOTTLE_DRAGON]) (void) mongets(mtmp, BOTTLE);
+		if (ptr == &mons[PM_IMPOSSIBLE_CHALLENGER]) (void) mongets(mtmp, SCR_LOCKOUT);
+
+		if (ptr == &mons[PM_SHOEMAKER]) (void) mongets(mtmp, rnd_class(PLASTEEL_BOOTS,LEVITATION_BOOTS));
+		if (ptr == &mons[PM_DANCRESS]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_FULL_SKINNY_BEAUTY]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_POWERFUL_BLONDE_GIRL]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_SUPER_SWEET_GIRL_IN_PLATEAU_BOOTS]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+
+		if (ptr == &mons[PM_VIOLENT_BEAUTY]) { (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS); (void) mongets(mtmp, COMBAT_STILETTOS); }
+		if (ptr == &mons[PM_TEENIE_SWARM]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, HIGH_STILETTOS); }
+		if (mtmp->data == &mons[PM_SWEET_THICK_GIRL]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 
 		if (ptr == &mons[PM_WICKED_WOODS]) (void) mongets(mtmp, SCR_GROWTH);
 		if (ptr == &mons[PM_ARCTIS_INHABITANT]) (void) mongets(mtmp, SCR_ICE);
@@ -8487,6 +8535,37 @@ register struct	monst	*mtmp;
 	if (ptr == &mons[PM_SIMONE]) {
 
 		mtmp->fartbonus = 2;
+
+	}
+
+	if (ptr == &mons[PM_TURKISH_BANDIT]) {
+
+		mtmp->crapbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_SADISTIC_ASIAN_GIRL]) {
+
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_FARTING_ASIAN_GIRL]) {
+
+		mtmp->fartbonus = 7;
+
+	}
+
+	if (ptr == &mons[PM_THICK_FARTING_GIRL]) {
+
+		mtmp->fartbonus = 9;
+		mtmp->crapbonus = 10;
+
+	}
+
+	if (ptr == &mons[PM_LOVING_ASIAN_GIRL]) {
+
+		mtmp->fartbonus = 7;
 
 	}
 
@@ -11314,6 +11393,12 @@ register int	mmflags;
 
 	}
 
+	if (ptr == &mons[PM_LONG_LIVE_THE_GOLDEN]) {
+		mtmp->mhpmax *= 2;
+		mtmp->mhp *= 2;
+
+	}
+
 	if (ptr->geno & G_UNIQ) {
 		if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax);
 		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 2);
@@ -11370,7 +11455,7 @@ register int	mmflags;
 	mtmp->mtraitor  = FALSE;
 
 	/* Everything that can hide under an object will now do so. --Amy */
-      if(x && y && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
+      if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
 	  if (rn2(3) && (rn2(100) > u.concealitemchance))
 		(void) mkobj_at(0, x, y, TRUE);
@@ -11378,23 +11463,29 @@ register int	mmflags;
 		(void) mkobj_at(COIN_CLASS, x, y, TRUE);
 	}
 
+	if (x && y && isok(x, y) && ptr == &mons[PM_BEST_TREASURE_RUSSIAN]) {
+		(void) mkobj_at(0, x, y, TRUE);
+		(void) mkobj_at(0, x, y, TRUE);
+		(void) mkobj_at(0, x, y, TRUE);
+	}
+
 		/* and even lower chance to get extra objects */
-	if (!rn2(200) && allow_special) {
+	if (x && y && isok(x, y) && !rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (!rn2(400) && allow_special) {
+	if (x && y && isok(x, y) && !rn2(400) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (!rn2(800) && allow_special) {
+	if (x && y && isok(x, y) && !rn2(800) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (!rn2(1600) && allow_special) {
+	if (x && y && isok(x, y) && !rn2(1600) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
@@ -14623,7 +14714,10 @@ int type;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
+		case PM_PROTECTOR_OF_THE_POOR: return 72;
 		case PM_SOW_STUPID_GUY: return 72;
+		case PM_MICKEY_MOUSE: return 72;
+		case PM_CAMEROONIE: return 72;
 		case PM_TOWER_STATUE: return 72;
 		case PM_SUPER_WOODEN_STATUE: return 360; /* quite unbalanced; players who can't handle them should run away */
 		case PM_VANISHING_POINT: return 72;
@@ -14640,19 +14734,25 @@ int type;
 		case PM_PLATINUM_GOLEM: return 310;
 		case PM_ANIMATED_ARMOR: return 100;
 		case PM_ANIMATED_BRONZE_STATUE: return 103;
+		case PM_COOL_GUY: return 103;
 		case PM_MAIN_SCHOOL_GRADUATE: return 103;
 		case PM_AKKAD: return 103;
 		case PM_DARK_SAILOR: return 103;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
 		case PM_ANIMATED_IRON_STATUE: return 137;
+		case PM_ELTRA_VANISHING_POINT: return 137;
+		case PM_MEGA_VANISHING_POINT: return 137;
 		case PM_BEST_TEACHER_EVER: return 137;
 		case PM_TGWTG: return 137;
 		case PM_THE_FOREVER_TRAIN: return 137;
 		case PM_AMUSING_THIRTEEN_GRADER: return 137;
 		case PM_SECURITY_BOT: return 137;
 		case PM_ANIMATED_MARBLE_STATUE: return 199;
+		case PM_SUPER_VANISHING_POINT: return 199;
 		case PM_SCHOOL_DIRECTOR: return 199;
+		case PM_EARTH_GAS_PRINCIPAL: return 199;
+		case PM_CASTOR_TRANSPORT: return 199;
 		case PM_ULTRA_STATUE: return 199;
 
 		case PM_DEATH_SWORD: return 250;

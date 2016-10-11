@@ -558,7 +558,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || mtmp->data == &mons[PM_NORTHERN_SHIN_SMASHER]) ) {
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s leather peep-toes against your shins!", Monnam(mtmp), mhis(mtmp) );
@@ -666,7 +666,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "havola etdi chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "havola etdi chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] ) ) {
 				randomkick = rnd(3);
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -703,7 +703,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -835,7 +835,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_CZECH_WENCH] ) ) {
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -1534,6 +1534,17 @@ mattacku(mtmp)
         if((Invis && !perceives(mdat)) || !mtmp->mcansee) tmp -= 2;
 	if(mtmp->mtrapped) tmp -= 2;
 	if(tmp <= 0) tmp = 1;
+	if (mtmp->data == &mons[PM_IVORY_COAST_STAR]) tmp += 30; /* this monster is aiming abnormally well */
+	if (mtmp->data == &mons[PM_HAND_OF_GOD]) tmp += 100; /* God personally is guiding this one's blows */
+
+	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
+	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
+	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += 10;
+	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += 15;
+	if (mtmp->egotype_farter) tmp += 15;
+	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
+	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
+
 	if (!rn2(2) && (tmp > 1)) tmp /= 2; /* don't make high-level monsters automatically hit you --Amy */
 
 	/* make eels visible the moment they hit/miss us */

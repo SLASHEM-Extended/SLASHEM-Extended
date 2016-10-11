@@ -605,6 +605,9 @@
 				  youmonst.data == &mons[PM_IT] ||\
 				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
 				  youmonst.data == &mons[PM_REFLECTION] ||\
+				  youmonst.data == &mons[PM_NICE_GIRL_IN_VELCRO_SHOES] ||\
+				  youmonst.data == &mons[PM_GREEN_LIZARD] ||\
+				  youmonst.data == &mons[PM_GREEN_GATEKEEPER] ||\
 				  youmonst.data == &mons[PM_POISON_CREEPER] ||\
 				  youmonst.data == &mons[PM_PLAGUE_POPPY] ||\
 				  youmonst.data == &mons[PM_CARRION_VINE] ||\

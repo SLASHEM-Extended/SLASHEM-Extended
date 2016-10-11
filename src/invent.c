@@ -986,6 +986,8 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_KARMIC_LIZARD)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GREEN_LIZARD)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_BLACK_LIZARD)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_MONSTER_LIZARD)
