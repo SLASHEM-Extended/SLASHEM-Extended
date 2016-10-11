@@ -1784,7 +1784,7 @@ newboss:
 			Strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
@@ -1973,7 +1973,7 @@ newboss:
 			Strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
@@ -2010,7 +2010,7 @@ newboss:
 			Strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0) {
+			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
