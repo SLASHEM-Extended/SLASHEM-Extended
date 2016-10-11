@@ -549,9 +549,14 @@ typedef unsigned char	uchar;
  * messages be shorter than 256 characters, thereby hopefully preventing the bug
  * from striking. */
 
-#ifdef PUBLIC_SERVER
+/* But the pokedex is actually making very large outputs, and on esm it never
+ * causes any trouble, so the actual PCB was probably caused by something else
+ * back then. Maybe the random stats monsters? Anyway, tentatively disabling
+ * the phantom crash bug define for now. */
+
+/*#ifdef PUBLIC_SERVER
 #define PHANTOM_CRASH_BUG
-#endif
+#endif*/
 
 #define DUMPMSGS 20
 

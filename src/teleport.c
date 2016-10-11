@@ -680,15 +680,14 @@ boolean confused;
 	} while (!teleokX(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 2000 );
 
 	if (tcnt <= 2000) {
-#ifdef PUBLIC_SERVER
-		pline("Phase door destination: %d,%d", nux, nuy); /* more debug information --Amy */
-#endif
+		/*pline("Phase door destination: %d,%d", nux, nuy);*/
+		/* this debug information is no longer needed now --Amy */
+
 		teleds(nux, nuy, 0);
 		return TRUE;
 	} else {
-#ifdef PUBLIC_SERVER
-		pline("Phase door failed. Destination would have been: %d,%d", nux, nuy);
-#endif
+		/*pline("Phase door failed. Destination would have been: %d,%d", nux, nuy);*/
+
 		return FALSE;
 	}
 }
