@@ -5742,6 +5742,9 @@ recursioneffect()
 	pline("You're a %s now!", urace.noun);
 
 	}
+
+	init_uasmon();
+
 }
 
 void
@@ -5783,6 +5786,9 @@ temprecursioneffect()
 		pline("You're temporarily a %s now!", urace.noun);
 
 	}
+
+	init_uasmon();
+
 }
 
 void
