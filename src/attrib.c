@@ -1260,8 +1260,10 @@ init_attr(np)
 		continue;
 	    }
 	    tryct = 0;
-	    ABASE(i)++;
-	    AMAX(i)++;
+	    if (ABASE(i) < 16 || (!rn2(ABASE(i) - 14) ) ) { /* very high initial attributes are more rare --Amy */
+		    ABASE(i)++;
+		    AMAX(i)++;
+	    }
 	    np--;
 	}
 

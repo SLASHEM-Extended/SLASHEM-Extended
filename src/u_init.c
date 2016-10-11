@@ -11930,7 +11930,7 @@ u_init()
 	/* Starting stat point totals will be higher or lower depending on the player character. --Amy */
 
 	rolebounus = racebounus = genderbounus = alignbounus = 0;
-	maxbounus = 90;
+	maxbounus = 60 + rnd(20);
 	if (Role_if(PM_BINDER)) maxbounus += 5;
 	if (Role_if(PM_LUNATIC)) maxbounus += 5;
 	if (Race_if(PM_HUMAN_WEREWOLF)) maxbounus += 5;
