@@ -8558,6 +8558,12 @@ const char *str;
 		makeknown(GAUNTLETS_OF_REFLECTION);
 	    }
 	    return TRUE;
+	} else if ((orefl = which_armor(mon, W_SADDLE)) &&
+				orefl->oartifact == ART_HELLRIDER_S_SADDLE) {
+	    if (str) {
+		pline(str, s_suffix(mon_nam(mon)), "saddle");
+	    }
+	    return TRUE;
 	} else if (mon->data == &mons[PM_NIGHTMARE]) {
 	    pline(str,s_suffix(mon_nam(mon)),"horn");
 	    return TRUE;
