@@ -694,6 +694,13 @@ touch_artifact(obj,mon)
 	if (!yours) return 0;
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
 	dmg = d((Antimagic ? 6 : 8), (self_willed ? 10 : 6));
+	if (u.ulevel < 10) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
+		dmg *= u.ulevel;
+		dmg /= 10;
+	}
+	/* Yes, I know, this probably means you cannot instantly die by having an artifact spawn on your location while
+	 * having autopickup on, unless you're a DQ Slime or something, but still... */
+
 	/*if (wizard) pline("damage calc");*/
 	Sprintf(buf, "touching an artifact (%s)", oart->name);
 	/*if (wizard) pline("sprintf");*/
