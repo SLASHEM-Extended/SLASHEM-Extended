@@ -10,3 +10,6 @@ notifications:
         - "irc.freenode.net#slashemextended"
         - "irc.freenode.net#em.slashem.me"
     skip_join: true
+matrix:
+  - os: linux
+  - os: osx
