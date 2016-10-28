@@ -1,9 +1,6 @@
 language: c
 sudo: false
 script: make -f sys/unix/GNUmakefile install
-compiler:
-  - gcc
-  - clang
 notifications:
   irc:
     channels:
@@ -11,5 +8,14 @@ notifications:
         - "irc.freenode.net#em.slashem.me"
     skip_join: true
 matrix:
-  - os: linux
-  - os: osx
+  include:
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: clang
+    - os: osx
+      compiler: gcc-4.9
+      osx_image: xcode8.0
+    - os: osx
+      compiler: clang
+      osx_image: xcode8.0
