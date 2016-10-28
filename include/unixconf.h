@@ -43,7 +43,7 @@
 #define NETWORK		/* if running on a networked system */
 			/* e.g. Suns sharing a playground through NFS */
 /* #define SUNOS4 */	/* SunOS 4.x */
-#if !defined(BSD)
+#if !defined(BSD) && !defined(__APPLE__)
 #define LINUX		/* Another Unix clone */
 #endif
 /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
