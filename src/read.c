@@ -653,6 +653,13 @@ doread()
 "I got lobotomized! I'm a member of Amy fan club now!",
 "I participated junethack 2016 -- TROPHY GET!",
 "Hey, my name is Yasdorian - a name telemarketers loooove!",
+"You can't. It's cursed.",
+"I participated in 'Apokalyptia's Next Topmodel' and survived!",
+"I confronted Gruff Co-Worker and didn't get my ass kicked!",
+"I punched a black dragon to death with my bare hands!",
+"This shirt is unique! Well, until you go to a shop that prints shirts, and order them to print this exact message on it.",
+"XOR ME HSALS!",
+"XUS MODA!",
 
 	    };
 	    char buf[BUFSZ];

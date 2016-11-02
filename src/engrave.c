@@ -3760,7 +3760,23 @@ static const char *epitaphs[] = {
 "I guess this is the last version of PosChengband!",
 "Well, Hengband was much more fun than this!",
 "Damn that AmyBSOD harlot, she's such a terribly bad Game Master!",
-
+"It breathes--More--",
+"Argh, fire enchanted explosion got me.",
+"That bastard instakilled me!",
+"I got instakilled again!",
+"Gah, the bastard had a gun!",
+"Here lies a snail that got salted to death by Semzov the Cleaner.",
+"I made the mistake to gaze directly at Medusa.",
+"There is no corpse in this grave because the dude died to a black dragon breath.",
+"Go Team Ampersand!",
+"The Three Big S got me - I died of sickness.",
+"The Three Big S got me - I died of stoning.",
+"The Three Big S got me - I died of sliming.",
+"I made the mistake to use a tightrope on myself.",
+"I died by stepping into an iron maiden.",
+"Here lies a victim of the guillotine.",
+"Died of neurofibroma.",
+"Starved to death. Next time I'm playing a race that does not have intrinsic regeneration.",
 
 };
 
