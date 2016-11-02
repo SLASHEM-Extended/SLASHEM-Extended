@@ -2343,6 +2343,13 @@ schar ftyp, btyp;
 	    dix = abs(xx-tx);
 	    diy = abs(yy-ty);
 
+		/* randomization code by jonadab */
+		if ((dix > diy) && diy && !rn2(dix-diy+1)) {
+			dix = 0;
+		} else if ((diy > dix) && dix && !rn2(diy-dix+1)) {
+			diy = 0;
+		}
+
 	    /* do we have to change direction ? */
 	    if(dy && dix > diy) {
 		register int ddx = (xx > tx) ? -1 : 1;
