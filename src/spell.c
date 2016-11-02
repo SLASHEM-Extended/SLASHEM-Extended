@@ -2737,7 +2737,7 @@ boolean atme;
 		}
 		if (!acqo) {
 			pline("Unfortunately it failed.");
-			return;
+			return 0;
 		}
 
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
