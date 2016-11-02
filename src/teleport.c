@@ -5,7 +5,6 @@
 #include "hack.h"
 
 STATIC_DCL boolean FDECL(tele_jump_ok, (int,int,int,int));
-STATIC_DCL boolean FDECL(teleok, (int,int,BOOLEAN_P));
 STATIC_DCL boolean FDECL(teleokX, (int,int,BOOLEAN_P));
 STATIC_DCL boolean FDECL(teleokXconfused, (int,int,BOOLEAN_P));
 STATIC_DCL void NDECL(vault_tele);
@@ -480,7 +479,7 @@ int x1, y1, x2, y2;
 	return TRUE;
 }
 
-STATIC_OVL boolean
+boolean
 teleok(x, y, trapok)
 register int x, y;
 boolean trapok;

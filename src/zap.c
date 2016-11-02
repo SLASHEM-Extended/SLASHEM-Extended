@@ -189,6 +189,39 @@ struct obj *otmp;
 		}
 		break;
 
+	case SPE_VOLT_ROCK:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) break;
+		if (!which_armor(mtmp, W_ARMH)) {
+			pline("Your rock hits %s's %s!", mon_nam(mtmp), mbodypart(mtmp, HEAD));
+			dmg += (10 + rnz(u.ulevel) + skilldmg);
+		}
+		if (!resists_elec(mtmp)) {
+			pline("%s is electrified!", Monnam(mtmp));
+			dmg += (10 + rnz(u.ulevel) + skilldmg);
+		}
+		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		break;
+
+	case SPE_WATER_FLAME:
+
+		dmg = 2;
+		dmg += skilldmg;
+		if (resists_cold(mtmp)) {
+			pline("%s is burned by the watery flame!", Monnam(mtmp));
+			dmg += (rnz(u.ulevel) + skilldmg);
+		}
+		if (resists_fire(mtmp)) {
+			pline("%s is cooled by the watery flame!", Monnam(mtmp));
+			dmg += (rnz(u.ulevel) + skilldmg);
+		}
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		break;
+
 	case WAN_DREAM_EATER:
 	case SPE_DREAM_EATER:
 		if (!(mtmp->mcanmove)) {
@@ -198,6 +231,22 @@ struct obj *otmp;
 			if (canseemon(mtmp)) pline("%s's dream is eaten!", Monnam(mtmp));
 			(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		}
+		break;
+
+	case SPE_MANA_BOLT:
+		dmg = d(2, 4);
+		if(dbldam) dmg *= 2;
+		dmg += skilldmg;
+		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+		break;
+
+	case SPE_ENERGY_BOLT:
+		dmg = d(8, 4);
+		if(dbldam) dmg *= 2;
+		dmg += (skilldmg * 4);
+		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
 	case WAN_CHLOROFORM:
@@ -341,6 +390,94 @@ struct obj *otmp;
 			}
 		}
 		break;
+	case SPE_RANDOM_SPEED:
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+			if (!rn2(2)) {
+				mon_adjust_speed(mtmp, -1, otmp);
+				m_dowear(mtmp, FALSE); /* might want speed boots */
+				if (u.uswallow && (mtmp == u.ustuck) &&
+				    is_whirly(mtmp->data)) {
+					You("disrupt %s!", mon_nam(mtmp));
+					pline("A huge hole opens up...");
+					expels(mtmp, mtmp->data, TRUE);
+				}
+			} else {
+				mon_adjust_speed(mtmp, 1, otmp);
+				m_dowear(mtmp, FALSE); /* might want speed boots */
+			}
+		}
+		break;
+
+	case SPE_CHAOS_BOLT:
+		if (dmgtype(mtmp->data, AD_HALU) ) {
+			shieldeff(mtmp->mx, mtmp->my);
+		    break;
+		}
+		dmg = d(3,10) + rnz(u.ulevel);
+		dmg += skilldmg;
+		hit(zap_type_text, mtmp, exclam(dmg));
+		(void) resist(mtmp, otmp->oclass, dmg, TELL);
+
+		if (mtmp->mhp < 1) break; /* no longer alive */
+
+		if (!rn2(3) && !resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		    if (mtmp->cham == CHAM_ORDINARY && !rn2(25)) {
+			if (canseemon(mtmp)) {
+			    pline("%s shudders!", Monnam(mtmp));
+			}
+			xkilled(mtmp, 3);
+		    } else mon_spec_poly(mtmp, (struct permonst *)0, 0L, 1, canseemon(mtmp), FALSE, TRUE);
+		}
+
+		break;
+
+	case SPE_HELLISH_BOLT:
+		if (dmgtype(mtmp->data, AD_HALU) ) {
+			shieldeff(mtmp->mx, mtmp->my);
+		    break;
+		}
+		dmg = d(6,10) + rnz(u.ulevel) + rnz(u.ulevel);
+		dmg += skilldmg;
+		hit(zap_type_text, mtmp, exclam(dmg));
+		(void) resist(mtmp, otmp->oclass, dmg, TELL);
+
+		if (mtmp->mhp < 1) break; /* no longer alive */
+
+		if (!rn2(3)) {
+
+			if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+				if (mtmp->cham == CHAM_ORDINARY && !rn2(25)) {
+					if (canseemon(mtmp)) {
+						pline("%s shudders!", Monnam(mtmp));
+					}
+				xkilled(mtmp, 3);
+				} else mon_spec_poly(mtmp, (struct permonst *)0, 0L, 1, canseemon(mtmp), FALSE, TRUE);
+			}
+
+		} else if (!rn2(2)) {
+
+			if (resists_drli(mtmp)) {
+				shieldeff(mtmp->mx, mtmp->my);
+				break;
+			} else if (!resist(mtmp, otmp->oclass, dmg, NOTELL) && mtmp->mhp > 0) {
+				mtmp->m_lev--;
+				if (canseemon(mtmp))
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+			}
+
+		} else {
+
+			if (canseemon(mtmp) ) {
+				pline("%s is frozen by the beam.", Monnam(mtmp) );
+			}
+			mtmp->mcanmove = 0;
+			mtmp->mfrozen = rn2(3) ? rnz(5) : rnz(5 + skilldmg);
+			mtmp->mstrategy &= ~STRAT_WAITFORU;
+
+		}
+
+		break;
+
 	case WAN_INERTIA:
 		mtmp->mcanmove = 0;
 		mtmp->mfrozen = rnd(2);
@@ -569,6 +706,27 @@ struct obj *otmp;
 	case SPE_CANCELLATION:
 		(void) cancel_monst(mtmp, otmp, TRUE, TRUE, FALSE);
 		break;
+
+	case SPE_VANISHING:
+
+		if (!rn2(3)) {
+			(void) cancel_monst(mtmp, otmp, TRUE, TRUE, FALSE);
+		} else if (!rn2(2)) {
+			reveal_invis = !u_teleport_mon(mtmp, TRUE);
+		} else {
+			int oldinvis = mtmp->minvis;
+			char nambuf[BUFSZ];
+
+			/* format monster's name before altering its visibility */
+			Strcpy(nambuf, Monnam(mtmp));
+			mon_set_minvis(mtmp);
+			if (!oldinvis && knowninvisible(mtmp)) {
+			    pline("%s turns transparent!", nambuf);
+			}
+		}
+
+		break;
+
 	case WAN_PARALYSIS:
 		if (canseemon(mtmp) ) {
 			pline("%s is frozen by the beam.", Monnam(mtmp) );
@@ -740,6 +898,9 @@ struct obj *otmp;
 		wake = FALSE;
 		reveal_invis = TRUE;
 		break;
+	case SPE_WATER_BOLT:
+		break;
+	case SPE_HORRIFY:
 	case WAN_FEAR:
 		if (!is_undead(mtmp->data) && (!mtmp->egotype_undead) &&
 		    !resist(mtmp, otmp->oclass, 0, NOTELL) &&
@@ -766,6 +927,12 @@ struct obj *otmp;
 		probe_monster(mtmp);
 		makeknown(otyp);
 		break;
+	case SPE_LOCK_MANIPULATION:
+		if (!rn2(2)) {
+			wake = FALSE;
+			reveal_invis = TRUE;
+			break;
+		} /* else fall through */
 	case WAN_OPENING:
 	case SPE_KNOCK:
 		wake = FALSE;	/* don't want immediate counterattack */
@@ -980,6 +1147,7 @@ struct obj *otmp;
 			pline("%s suddenly seems stronger!", Monnam(mtmp));
 		break;
 	case WAN_WIND: /* from Sporkhack */
+	case SPE_WIND:
 		/* Actually distance, not damage */
 		dmg = rnd(2) + (bigmonst(mtmp->data) ? 0 : rnd(3));	
 		hurtlex = sgn(mtmp->mx - u.ux);
@@ -2564,7 +2732,7 @@ struct obj *obj, *otmp;
 	if (obj == uball) {
 		res = 0;
 	} else if (obj == uchain) {
-		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK) {
+		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || (otmp->otyp == SPE_LOCK_MANIPULATION && rn2(2)) ) {
 		    unpunish();
 		    makeknown(otmp->otyp);
 		} else
@@ -2691,6 +2859,7 @@ struct obj *obj, *otmp;
 	case SPE_KNOCK:
 	case WAN_LOCKING:
 	case SPE_WIZARD_LOCK:
+	case SPE_LOCK_MANIPULATION:
 		if(Is_box(obj))
 			res = boxlock(obj, otmp);
 		else
@@ -2698,9 +2867,12 @@ struct obj *obj, *otmp;
 		if (res /* && otmp->oclass == WAND_CLASS */)
 			makeknown(otmp->otyp);
 		break;
+	case SPE_WATER_BOLT:
+		break;
 
 	case WAN_SLOW_MONSTER:		/* no effect on objects */
 	case SPE_SLOW_MONSTER:
+	case SPE_RANDOM_SPEED:
 	case WAN_INERTIA:
 	case SPE_INERTIA:
 	case WAN_STUN_MONSTER:
@@ -2710,6 +2882,7 @@ struct obj *obj, *otmp;
 	case WAN_NOTHING:
 	case WAN_MISFIRE:
 	case SPE_HEALING:
+	case SPE_VANISHING:
 	case SPE_EXTRA_HEALING:
 	case SPE_FULL_HEALING:
 	case WAN_HEALING:
@@ -2719,6 +2892,7 @@ struct obj *obj, *otmp;
 	case WAN_FULL_HEALING:
 	case SPE_FINGER:
 	case WAN_FEAR:
+	case SPE_HORRIFY:
 	case WAN_SHARE_PAIN:
 	case WAN_STONING:
 	case WAN_PARALYSIS:
@@ -2729,7 +2903,11 @@ struct obj *obj, *otmp;
 	case WAN_BUBBLEBEAM:
 	case SPE_BUBBLEBEAM:
 	case WAN_DREAM_EATER:
+	case SPE_MANA_BOLT:
+	case SPE_ENERGY_BOLT:
 	case SPE_DREAM_EATER:
+	case SPE_VOLT_ROCK:
+	case SPE_WATER_FLAME:
 	case WAN_GOOD_NIGHT:
 	case SPE_GOOD_NIGHT:
 	case WAN_INFERNO:
@@ -2748,6 +2926,8 @@ struct obj *obj, *otmp;
 	case SPE_NETHER_BEAM:
 	case WAN_AURORA_BEAM:
 	case SPE_AURORA_BEAM:
+	case SPE_CHAOS_BOLT:
+	case SPE_HELLISH_BOLT:
 		res = 0;
 		break;
 	case SPE_DISINTEGRATION:
@@ -2863,6 +3043,7 @@ smell:
 		newsym(refresh_x, refresh_y);
 		break;
 	case WAN_WIND:
+	case SPE_WIND:
 		refresh_x = obj->ox;
 		refresh_y = obj->oy;
 		scatter(obj->ox,obj->oy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
@@ -4177,6 +4358,9 @@ boolean ordinary;
 	char buf[BUFSZ];
 
 	switch(obj->otyp) {
+		case SPE_LOCK_MANIPULATION:
+			break; /* do nothing */
+
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
 		case SPE_FORCE_BOLT:
@@ -4204,6 +4388,15 @@ boolean ordinary;
 
 			break;
 
+		case SPE_MANA_BOLT:
+			pline("You are irradiated with energy!");
+		      damage = d(2, 4);
+			break;
+		case SPE_ENERGY_BOLT:
+			pline("You are irradiated with energy!");
+		      damage = d(8, 4);
+			break;
+
 		case WAN_DREAM_EATER: /* does not self-identify because it has no effect */
 		case SPE_DREAM_EATER:
 
@@ -4212,6 +4405,32 @@ boolean ordinary;
 			} else {
 				pline("Your dream is eaten!");
 			      damage = d(10, 10);
+			}
+
+			break;
+
+		case SPE_VOLT_ROCK:
+
+			damage = 0;
+			if (!uarmh) {
+				pline("A rock falls on your head! Ouch!");
+				damage += 10;
+			}
+			if (!Shock_resistance) {
+				pline("You are electrocuted!");
+				damage += 10;	
+			}
+			break;
+
+		case SPE_WATER_FLAME:
+			damage = 2;
+			if (Cold_resistance) {
+				pline("You are burned by the watery flame!");
+				damage += rn1(10,10);	
+			}
+			if (Fire_resistance) {
+				pline("You are cooled by the watery flame!");
+				damage += rn1(10,10);	
 			}
 
 			break;
@@ -4488,6 +4707,10 @@ boolean ordinary;
 			You("blast yourself with magical energy!");
 			damage = d(15,10);
 		   break;
+		case SPE_ELEMENTAL_BEAM:
+			You("blast yourself with elemental energy!");
+			damage = d(12,10);
+		   break;
 		case WAN_CHROMATIC_BEAM:
 		    makeknown(WAN_CHROMATIC_BEAM);
 			You("blast yourself with magical energy!");
@@ -4534,6 +4757,7 @@ boolean ordinary;
 			cloneu();
 		   break;
 		case WAN_WIND:
+		case SPE_WIND:
 			 /* This is not usually a bright idea. */
 			 You("are caught up in the winds!");
 			 scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
@@ -4753,6 +4977,65 @@ boolean ordinary;
 		case SPE_CANCELLATION:
 		    (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
 		    break;
+
+		case SPE_CHAOS_BOLT:
+			damage = d(9,9);
+			pline("You are engulfed by raw chaos!");
+			if (!Unchanging && !rn2(3)) {
+				polyself(FALSE);
+			}
+		    break;
+
+		case SPE_HELLISH_BOLT:
+			damage = d(18,9);
+			pline("You are engulfed by raw chaos!");
+
+			if (!rn2(3)) {
+				if (!Unchanging) {
+					polyself(FALSE);
+				}
+			} else if (!rn2(2)) {
+				if (!Drain_resistance || !rn2(4) ) {
+					losexp("life drainage", FALSE, TRUE);
+				} else {
+					shieldeff(u.ux, u.uy);
+					pline("Boing!");
+				}
+			} else {
+				if (!Free_action) {
+				    pline("You are frozen in place!");
+				    nomul(-rnz(20), "frozen by their own spell");
+				    nomovemsg = You_can_move_again;
+				    exercise(A_DEX, FALSE);
+				} else You("stiffen momentarily.");
+			}
+		    break;
+
+		case SPE_VANISHING:
+			if (!rn2(3)) {
+			    (void) cancel_monst(&youmonst, obj, TRUE, FALSE, TRUE);
+			} else if (!rn2(2)) {
+			    int msg = !Invis && !Blind && !BInvis;
+
+			    if (BInvis && uarmc->otyp == MUMMY_WRAPPING) {
+				/* A mummy wrapping absorbs it and protects you */
+			        You_feel("rather itchy under your %s.", xname(uarmc));
+			        break;
+			    }
+			    if (ordinary || !rn2(10)) {	/* permanent */
+				HInvis |= FROMOUTSIDE;
+			    } else {			/* temporary */
+			    	incr_itimeout(&HInvis, d(obj->spe, 250));
+			    }
+			    if (msg) {
+				newsym(u.ux, u.uy);
+				self_invis_message();
+			    }
+			} else {
+			    tele();
+			}
+		    break;
+
 		case WAN_PARALYSIS:
 			makeknown(obj->otyp);
 			if (!Free_action) {
@@ -4764,7 +5047,6 @@ boolean ordinary;
 
 		    break;
 		case SPE_PARALYSIS:
-			makeknown(obj->otyp);
 			if (!Free_action) {
 			    pline("You are frozen in place!");
 			    nomul(-rnz(20), "frozen by their own spell");
@@ -5057,6 +5339,7 @@ boolean ordinary;
 		break;
 
 		case WAN_FEAR:
+		case SPE_HORRIFY:
 			You("suddenly panic!");
 			make_feared(HFeared + rnd(50 + (monster_difficulty() * 5) ),TRUE);
 			break;
@@ -5106,6 +5389,36 @@ boolean ordinary;
 			makeknown(obj->otyp);
 		    }
 		    break;
+
+		case SPE_RANDOM_SPEED:
+			if (!rn2(2)) {
+			    if(HFast & (TIMEOUT | INTRINSIC)) {
+				u_slow_down();
+				makeknown(obj->otyp);
+			    }
+			} else {
+				if(Wounded_legs
+#ifdef STEED
+				   && !u.usteed	/* heal_legs() would heal steeds legs */
+#endif
+					) {
+					heal_legs();
+					break;
+				}
+
+				if (!Very_fast)
+					You("are suddenly moving %sfaster.",
+						Fast ? "" : "much ");
+				else {
+					Your("%s get new energy.",
+						makeplural(body_part(LEG)));
+				}
+				exercise(A_DEX, TRUE);
+				incr_itimeout(&HFast, rn1(10, 20));
+
+			}
+		    break;
+
 		case WAN_INERTIA:
 		case SPE_INERTIA:
 
@@ -5227,6 +5540,7 @@ boolean ordinary;
 		case WAN_MISFIRE:
 		case WAN_LOCKING:
 		case SPE_WIZARD_LOCK:
+		case SPE_WATER_BOLT:
 		    break;
 		case WAN_PROBING:
 		    for (obj = invent; obj; obj = obj->nobj)
@@ -5333,14 +5647,18 @@ struct obj *obj;	/* wand or spell */
 		case SPE_MAKE_VISIBLE:
 		case WAN_CANCELLATION:
 		case SPE_CANCELLATION:
+		case SPE_VANISHING:
 		case WAN_POLYMORPH:
 		case WAN_MUTATION:
 		case SPE_POLYMORPH:
 		case SPE_MUTATION:
 		case WAN_STRIKING:
 		case SPE_FORCE_BOLT:
+		case SPE_CHAOS_BOLT:
+		case SPE_HELLISH_BOLT:
 		case WAN_SLOW_MONSTER:
 		case SPE_SLOW_MONSTER:
+		case SPE_RANDOM_SPEED:
 		case WAN_INERTIA:
 		case SPE_INERTIA:
 		case WAN_SPEED_MONSTER:
@@ -5360,7 +5678,9 @@ struct obj *obj;	/* wand or spell */
 		case SPE_TIME:
 		case WAN_OPENING:
 		case SPE_KNOCK:
+		case SPE_LOCK_MANIPULATION:
 		case WAN_WIND:
+		case SPE_WIND:
 		case WAN_STONING:
 		case WAN_PARALYSIS:
 		case WAN_DISINTEGRATION:
@@ -5371,6 +5691,10 @@ struct obj *obj;	/* wand or spell */
 		case SPE_GRAVITY_BEAM:
 		case WAN_DREAM_EATER:
 		case SPE_DREAM_EATER:
+		case SPE_VOLT_ROCK:
+		case SPE_WATER_FLAME:
+		case SPE_MANA_BOLT:
+		case SPE_ENERGY_BOLT:
 		case WAN_BUBBLEBEAM:
 		case SPE_BUBBLEBEAM:
 		case WAN_GOOD_NIGHT:
@@ -5537,11 +5861,14 @@ struct obj *obj;	/* wand or spell */
 		disclose = TRUE;
 	    }
 	    break;
+	case SPE_WATER_BOLT:
+		break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
 	case WAN_GRAVITY_BEAM:
 	case SPE_GRAVITY_BEAM:
 	case WAN_WIND:
+	case SPE_WIND:
 	    striking = TRUE;
 	    /*FALLTHRU*/
 	case WAN_LOCKING:
@@ -5661,6 +5988,7 @@ struct obj *obj;	/* wand or spell */
 		case WAN_GRAVITY_BEAM:
 		case SPE_GRAVITY_BEAM:
 		case WAN_WIND:
+		case SPE_WIND:
 		    wipe_engr_at(x, y, d(2,4));
 		    break;
 		default:
@@ -5687,6 +6015,14 @@ struct obj *obj;
 	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_CHROMATIC_BEAM)
+		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_ELEMENTAL_BEAM)
+		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_HYPER_BEAM)
+		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_FIRE_BOLT)
+		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp >= SPE_INFERNO && otyp <= SPE_CHLOROFORM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 
 
@@ -5717,6 +6053,9 @@ struct obj *obj;
 		if (obj->otyp == WAN_WIND) {
 			pline("Winds swirl around you!");
 			makeknown(obj->otyp);
+		}
+		if (obj->otyp == SPE_WIND) {
+			pline("Winds swirl around you!");
 		}
 	    if (u.uswallow) {
 		(void) bhitm(u.ustuck, obj);
@@ -5798,6 +6137,12 @@ struct obj *obj;
 
 	    else if (otyp == SPE_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
+		buzz((int)(damagetype), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_ELEMENTAL_BEAM) {
+		int damagetype = !rn2(4) ? 21 : !rn2(3) ? 22 : !rn2(2) ? 25 : 26;
 		buzz((int)(damagetype), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
@@ -6136,11 +6481,32 @@ struct obj **obj_p;			/* object tossed/used */
 			    makeknown(obj->otyp);
 			close_drawbridge(x,y);
 			break;
+
+		    case SPE_LOCK_MANIPULATION:
+
+			if (!rn2(2)) {
+				if (is_db_wall(bhitpos.x, bhitpos.y)) {
+				    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y))
+					makeknown(obj->otyp);
+				    open_drawbridge(x,y);
+				}
+
+			} else {
+				if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y))
+				    && levl[x][y].typ == DRAWBRIDGE_DOWN)
+				    makeknown(obj->otyp);
+				close_drawbridge(x,y);
+
+			}
+
+			break;
+
 		    case WAN_STRIKING:
 		    case SPE_FORCE_BOLT:
 		    case WAN_GRAVITY_BEAM:
 		    case SPE_GRAVITY_BEAM:
 			 case WAN_WIND:
+			 case SPE_WIND:
 			if (typ != DRAWBRIDGE_UP)
 			    destroy_drawbridge(x,y);
 			makeknown(obj->otyp);
@@ -6223,9 +6589,11 @@ struct obj **obj_p;			/* object tossed/used */
 		case WAN_GRAVITY_BEAM:
 		case SPE_GRAVITY_BEAM:
 		case SPE_KNOCK:
+		case SPE_LOCK_MANIPULATION:
 		case SPE_WIZARD_LOCK:
 		case SPE_FORCE_BOLT:
 		case WAN_WIND:
+		case SPE_WIND:
 		    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
 			if (cansee(bhitpos.x, bhitpos.y) ||
 			    (obj->otyp == WAN_STRIKING))
@@ -6251,6 +6619,12 @@ struct obj **obj_p;			/* object tossed/used */
 
 	    if(weapon == ZAPPED_WAND && (obj->otyp == WAN_BUBBLEBEAM || obj->otyp == SPE_BUBBLEBEAM ) ) {
 		if (!rn2(10) && (levl[bhitpos.x][bhitpos.y].typ == ROOM || levl[bhitpos.x][bhitpos.y].typ == CORR) ) {
+			levl[bhitpos.x][bhitpos.y].typ = POOL;
+		}
+	    }
+
+	    if(weapon == ZAPPED_WAND && (obj->otyp == SPE_WATER_BOLT ) ) {
+		if (levl[bhitpos.x][bhitpos.y].typ == ROOM || levl[bhitpos.x][bhitpos.y].typ == CORR) {
 			levl[bhitpos.x][bhitpos.y].typ = POOL;
 		}
 	    }

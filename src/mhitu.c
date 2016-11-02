@@ -1537,13 +1537,15 @@ mattacku(mtmp)
 			mimic_obj_name(&youmonst),
 			!missingnoprotect ? an(mons[u.umonnum].mname) : "a polymorphed missingno",
 			plname);
-	    if (multi < 0) {	/* this should always be the case */
+	    /*if (multi < 0) {*/	/* this should always be the case but is not, due to mimicry spell --Amy */
 		char buf[BUFSZ];
 		Sprintf(buf, "You appear to be %s again.",
 			(Upolyd && !missingnoprotect) ? (const char *) an(youmonst.data->mname) :
 			    (const char *) "yourself");
 		unmul(buf);	/* immediately stop mimicking */
-	    }
+		youmonst.m_ap_type = M_AP_NOTHING;
+		youmonst.mappearance = 0;
+	    /*}*/
 	    return 0;
 	}
 
@@ -1836,7 +1838,7 @@ mattacku(mtmp)
 			 *
 			 * RJ
 			 */
-			if (!range2 && (!rn2(5)) ) { /* greatly reduced chance --Amy */
+			if (!u.sterilized && !range2 && (!rn2(5)) ) { /* greatly reduced chance --Amy */
 
 			    pline("%s multiplies!",Monnam(mtmp) );
 			    clone_mon(mtmp, 0, 0);
@@ -11678,7 +11680,12 @@ register int n;
 	 		 * updated correctly -- Kelly Bailey
 	 		 */
 
-	if (Upolyd) {
+	if (u.disruptionshield && u.uen >= n) {
+		u.uen -= n;
+		pline("Your mana shield takes the damage for you!");
+		flags.botl = 1;
+
+	} else if (Upolyd) {
 		u.mh -= n;
 		if (u.mh < 1) {                
 			if (Polymorph_control || !rn2(3)) {

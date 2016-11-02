@@ -8259,6 +8259,134 @@ struct obj *obj;
 				pline("A spell that fires invisible beams of pure darkness, making areas unlit and doing great damage to lawful-aligned monsters."); break;
 			case SPE_FIXING:
 				pline("The cure-all spell that fixes just about every status condition there is."); break;
+			case SPE_CHAOS_TERRAIN:
+				pline("Creates chaotic terrain around you. This spell is very straining and will damage your maximum mana."); break;
+			case SPE_RANDOM_SPEED:
+				pline("You can cast this spell to fire invisible beams that randomly either speed up or slow down the target."); break;
+			case SPE_VANISHING:
+				pline("A spell that will, with equal chance, teleport the target away, make it invisible or cancel it. Rarely, this spell will backfire."); break;
+			case SPE_WISHING:
+				pline("The ultimate spell, only the best spellcasters will be able to use it, and it will drain 500 max HP and Pw and permanently reduce all of your stats by 5. Decide for yourself if getting a free wish is worth it."); break;
+			case SPE_ACQUIREMENT:
+				pline("A powerful spell that allows you to acquire an item; you can choose the class, but not the exact item. It will drain up to 100 max HP and Pw and permanently reduce all of your stats by 1 though."); break;
+			case SPE_CHAOS_BOLT:
+				pline("Offensive spell that deals damage and has a chance of polymorphing the monster. However, you may be afflicted with hallucination after you cast it."); break;
+			case SPE_HELLISH_BOLT:
+				pline("This very powerful spell not only damages opponents, it will also polymorph, paralyze or level-drain them. However, there is a sizable chance that casting it will cause you to hallucinate for a while."); break;
+			case SPE_EARTHQUAKE:
+				pline("Casting this earth-shaking spell produces lots of pits, but it can also temporarily deactivate your intrinsics."); break;
+			case SPE_LYCANTHROPY:
+				pline("Afflicts you with random lycanthropy."); break;
+			case SPE_BUC_RANDOMIZATION:
+				pline("This spell can affect uncursed items in your inventory, turning them into blessed or cursed ones at random."); break;
+			case SPE_LOCK_MANIPULATION:
+				pline("Cast this spell at doors and chests to manipulate their 'locked' status."); break;
+			case SPE_POLYFORM:
+				pline("A completely random polymorph will affect you if you cast this. It can occasionally backfire, and often the duration of this polymorph is not very long."); break;
+			case SPE_MESSAGE:
+				pline("Displays a random message when cast."); break;
+			case SPE_RUMOR:
+				pline("Displays a random rumor when cast."); break;
+			case SPE_CURE_RANDOM_STATUS:
+				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness or fear."); break;
+			case SPE_RESIST_RANDOM_ELEMENT:
+				pline("Gain a random resistance temporarily by casting this spell!"); break;
+			case SPE_RUSSIAN_ROULETTE:
+				pline("Normally this spell will cause a bad effect, but sometimes it also increases your maximum health. There is a tiny chance to lose a large amount of maximum health and mana though."); break;
+			case SPE_POSSESSION:
+				pline("Requires a corpse, which has to be either in your inventory or at your feet, and which will be used up; you transform into the depicted monster. Occasionally the power can go out of control though, causing you to become another random monster, having your maximum mana reduced or being subjected to other negative effects."); break;
+			case SPE_TOTEM_SUMMONING:
+				pline("Requires a corpse, which has to be either in your inventory or at your feet, and which will be used up; it will come alive, and has a chance of being tame. You will take up to 100 points of damage though, and sometimes it backfires, summoning hostile monsters and reducing your maximum mana."); break;
+			case SPE_MIMICRY:
+				pline("Turns you into a zorkmid or an orange."); break;
+			case SPE_HORRIFY:
+				pline("This spell fires beams that cause monsters to run away from you."); break;
+			case SPE_TERROR:
+				pline("Attempts to make all monsters on the level flee from you for a while. However, this spell may rarely cause backlash."); break;
+			case SPE_PHASE_DOOR:
+				pline("Teleports you over a short distance, but also backlashes occasionally."); break;
+			case SPE_TRAP_DISARMING:
+				pline("This is a powerful spell that removes all traps adjacent to you, but such power comes at a price: you will lose some maximum mana every time and be hit by a random bad effect."); break;
+			case SPE_NEXUS_FIELD:
+				pline("Tries to teleport all monsters adjacent to you away, although they have a chance to resist. It will occasionally backlash by reducing one of your attributes, permanently."); break;
+			case SPE_COMMAND_DEMON:
+				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame!"); break;
+			case SPE_FIRE_GOLEM:
+				pline("This spell requires you to have a torch to create the golem from, which will be used up. The fire golem will then fight alongside you, and you get experience and credit for its kills, but beware: usually it will turn hostile after a while!"); break;
+			case SPE_DISRUPTION_SHIELD:
+				pline("A spell that allows you to use your mana as health for a while: for the duration of the effect, any damage you take will be subtracted from your mana instead - as long as you have enough mana, that is."); break;
+			case SPE_SPELLBINDER:
+				pline("Casting this spell allows you to cast several spells in the same turn, but at double the usual cost. Every spell that you have can only be cast once per turn, and of course you cannot use those extra castings for another spellbinder, because things need to be sane. :-)"); break;
+			case SPE_TRACKER:
+				pline("Teleports you to the last monster that entered the current dungeon level, provided that nothing prevents you from teleporting and there is an empty space next to the monster in question. It will occasionally backfire."); break;
+			case SPE_INERTIA_CONTROL:
+				pline("This spell allows you to choose any of your other known spells, which will be inertia controlled for a while. That way you can automatically cast it while doing other things. Don't move the spell around in your spellcasting menu while inertia control is in effect though, or it will end prematurely!"); break;
+			case SPE_CODE_EDITING:
+				pline("Allows you to edit the code of the game ;), err, not really. It detonates all corpses on the current dungeon level, generating fiery explosions that deal damage depending on the dead monster's level."); break;
+			case SPE_FORGOTTEN_SPELL:
+				pline("Simulates the effects of casting a forgotten spell, so you might e.g. become confused or stunned."); break;
+			case SPE_FLOOD:
+				pline("Creates some water tiles around you, and reduces your maximum mana by up to 10 points."); break;
+			case SPE_LAVA:
+				pline("Casting this spell will create a few lava tiles close to you, and reduce your maximum mana by up to 10 points."); break;
+			case SPE_IRON_PRISON:
+				pline("This spell surrounds you with randomly placed iron bars, and reduces your maximum mana by up to 24 points."); break;
+			case SPE_LOCKOUT:
+				pline("A spell that generates walls and locks doors on random nearby squares, and reduces your maximum mana by up to 30 points."); break;
+			case SPE_CLOUDS:
+				pline("This spell creates some clouds near your current location, and reduces your maximum mana by up to 4 points."); break;
+			case SPE_ICE:
+				pline("Generates some ice tiles in your proximity, and reduces your maximum mana by up to 7 points."); break;
+			case SPE_GROW_TREES:
+				pline("It's a powerful spell that lets trees grow near you, but it also reduces your maximum mana by up to 30 points."); break;
+			case SPE_DRIPPING_TREAD:
+				pline("You can drip the elements for a while if you cast this, although it also costs up to 15 maximum HP. Walking around while the effect is active will generate water, lava, ice or cloud terrain underneath you; at higher skill levels you will be able to control the type of terrain created."); break;
+			case SPE_GEOLYSIS:
+				pline("This spell grants you the ability to eat through solid rock for a while, dealing up to 4 points of damage to your maximum health in the process. Eating a wall this way will occasionally turn it into ice, water or clouds."); break;
+			case SPE_ELEMENTAL_BEAM:
+				pline("Offensive spell that randomly shoots a beam of fire, cold, lightning or poison."); break;
+			case SPE_STERILIZE:
+				pline("It prevents multiplying monsters from doing their thing, and eggs cannot hatch for the duration of this spell. Furthermore, it reduces the monster respawning frequency."); break;
+			case SPE_WIND:
+				pline("You can fire jets of wind with this spell to push monsters away from you. However, you will be pushed around as well and take a bit of damage."); break;
+			case SPE_FIRE:
+				pline("Causes a fiery explosion on top of you."); break;
+			case SPE_ELEMENTAL_MINION:
+				pline("At the cost of some maximum health, this spell tries to create a tame elemental being to fight alongside you."); break;
+			case SPE_WATER_BOLT:
+				pline("The invisible beam fired by this spell does not damage anyone or anything, but creates water tiles that may drown monsters and objects. It will cause you to be confused and stunned, so beware lest you fall into your own pools! And it also backfires occasionally."); break;
+			case SPE_AIR_CURRENT:
+				pline("Air current noises are sexy! :-) This spell will push you around a bit."); break;
+			case SPE_DASHING:
+				pline("Allows you to dash in a direction of your choice. You will always try to move at least 2 squares; at higher skill levels, you will be able to choose the distance."); break;
+			case SPE_MELTDOWN:
+				pline("It's a spell that allows you to melt away iron bars next to you, but you also lose some maximum health and mana."); break;
+			case SPE_POISON_BRAND:
+				pline("You need to be holding a weapon to use this, and the weapon in question must be of a type that can be poisoned, which is what will be done to it. However, you will also be poisoned and may lose attribute points."); break;
+			case SPE_STEAM_VENOM:
+				pline("This spell causes a poisonous explosion centered on you."); break;
+			case SPE_HOLD_AIR:
+				pline("Allows you to survive without air for a while."); break;
+			case SPE_SWIMMING:
+				pline("This spell grants you the ability to swim for a period of time."); break;
+			case SPE_VOLT_ROCK:
+				pline("Attempts to damage a monster adjacent to you. Only monsters that either aren't wearing a helmet or aren't resistant to shock will be damaged by it."); break;
+			case SPE_WATER_FLAME:
+				pline("It fires watery flames that deal extra damage to monsters that are cold or fire resistant. If the target resists both, it will take maximum damage."); break;
+			case SPE_AVALANCHE:
+				pline("This dangerous spells will bury you and monsters adjacent to you in a shower of rocks and boulders. You will lose some maximum health and mana and be paralyzed for a while, so be careful!"); break;
+			case SPE_MANA_BOLT:
+				pline("A low-damage attack spell that cannot be resisted."); break;
+			case SPE_ENERGY_BOLT:
+				pline("A medium-damage attack spell that cannot be resisted."); break;
+			case SPE_ACID_INGESTION:
+				pline("This spell creates acid in your mouth, which you will then swallow, resulting in damage unless you're acid resistant. Use it to cure petrification."); break;
+			case SPE_INDUCE_VOMITING:
+				pline("If you want to vomit for some reason, you can cast this spell."); break;
+			case SPE_REBOOT:
+				pline("Casting this spell recalculates your attributes and may also change your experience level."); break;
+			case SPE_HOLY_SHIELD:
+				pline("For the duration of this spell, your shield has a higher chance of blocking attacks."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 

@@ -107,6 +107,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"recharge",
 	"spirituality check",
 	"eddy wind",
+	"blood ritual",
+	"ent's potion",
+	"lucky gamble",
 #ifdef JEDI
 	"jedi jump",
 	"charge saber",
@@ -120,6 +123,7 @@ static const struct innate_tech
 	arc_tech[] = { {   1, T_RESEARCH, 1},
 		       {   0, 0, 0} },
 	ass_tech[] = { {   1, T_CUTTHROAT, 1},
+		       {   25, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	lad_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
@@ -171,13 +175,16 @@ static const struct innate_tech
 		       {   25, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
 	art_tech[] = { {   18, T_POLYFORM, 1},
+		       {   20, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	rin_tech[] = { {   1, T_BLINK, 1},
+		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
 
 	bos_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_DOUBLE_THROWNAGE, 1},
 		       {   5, T_VANISH, 1},
+		       {   10, T_ENT_S_POTION, 1},
 		       {   15, T_BLINK, 1},
 		       {   30, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
@@ -198,6 +205,7 @@ static const struct innate_tech
 		       {   10, T_CRIT_STRIKE, 1},
 		       {   15, T_SHIELD_BASH, 1},
 		       {   20, T_RAISE_ZOMBIES, 1},
+		       {   25, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 
 	alt_tech[] = { {   1, T_BLESSING, 1},
@@ -229,6 +237,7 @@ static const struct innate_tech
 		       {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_CREATE_AMMO, 1},
 		       {   1, T_ATTIRE_CHARM, 1},
+		       {   1, T_BLOOD_RITUAL, 1},
 		       {   5, T_VANISH, 1},
 		       {   10, T_FLURRY, 1},
 		       {   15, T_REVIVE, 1},
@@ -236,11 +245,15 @@ static const struct innate_tech
 		       {   25, T_BOOZE, 1},
 		       {   30, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
-	dru_tech[] = { {   1, T_BOOZE, 1},
+	dru_tech[] = { {   1, T_BOOZE, 1}, /* drunk */
+			 {   20, T_ENT_S_POTION, 1},
+		       {   0, 0, 0} },
+	drd_tech[] = { {   7, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
 	fir_tech[] = { {   12, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	gam_tech[] = { {   1, T_CONCENTRATING, 1},
+		       {   13, T_LUCKY_GAMBLE, 1},
 		       {   20, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 	gla_tech[] = { {   5, T_SHIELD_BASH, 1},
@@ -253,6 +266,7 @@ static const struct innate_tech
 		       {   20, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	blo_tech[] = { {   1, T_EDDY_WIND, 1},
+		       {   10, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	gol_tech[] = { {   1, T_VANISH, 1},
 		       {   7, T_TINKER, 1},
@@ -262,6 +276,7 @@ static const struct innate_tech
 		       {   1, T_DRAW_BLOOD, 1},
 		       {   10, T_CHI_HEALING, 1},
 		       {   20, T_REVIVE, 1},
+		       {   30, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	mid_tech[] = { {   1, T_RAGE, 1},
 		       {   0, 0, 0} },
@@ -278,12 +293,14 @@ static const struct innate_tech
 			 {   26, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	dea_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_RECHARGE, 1},
+		       {   1, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	div_tech[] = { {   15, T_POLYFORM, 1},
 		       {   0, 0, 0} },
@@ -294,6 +311,7 @@ static const struct innate_tech
 	sli_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   4, T_SPIRITUALITY_CHECK, 1},
 		       {   6, T_HEAL_HANDS, 1},
+		       {   10, T_LUCKY_GAMBLE, 1},
 		       {   12, T_WORLD_FALL, 1},
 		       {   15, T_TELEKINESIS, 1},
 		       {   18, T_IRON_SKIN, 1},
@@ -340,6 +358,7 @@ static const struct innate_tech
 		       {   7, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	hea_tech[] = { {   1, T_SURGERY, 1},
+		       {  10, T_ENT_S_POTION, 1},
 		       {  20, T_REVIVE, 1},
 		       {   0, 0, 0} },
 	ice_tech[] = { {   1, T_REINFORCE, 1},
@@ -396,6 +415,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	sla_tech[] = { {   1, T_SUMMON_PET, 1},
+		       {  12, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
 
 	mon_tech[] = { {   1, T_PUMMEL, 1},
@@ -468,6 +488,7 @@ static const struct innate_tech
 		       {   8, T_BLITZ, 1},
 		       {  9, T_WARD_COLD, 1},
 		       {  10, T_RAISE_ZOMBIES, 1},
+		       {  11, T_LUCKY_GAMBLE, 1},
 		       {  13, T_WARD_ELEC, 1},
 	  	       {   15, T_CREATE_AMMO, 1},
 	  	       {   16, T_E_FIST, 1},
@@ -489,6 +510,7 @@ static const struct innate_tech
 		       {   1, T_RAISE_ZOMBIES, 1},
 		       {  10, T_POWER_SURGE, 1},
 		       {  15, T_SIGIL_TEMPEST, 1},
+		       {  25, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	abu_tech[] = { {   1, T_CONCENTRATING, 1},
 		       {   1, T_IRON_SKIN, 1},
@@ -496,6 +518,7 @@ static const struct innate_tech
 	pri_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_BLESSING, 1},
 		       {   1, T_SPIRITUALITY_CHECK, 1},
+		       {   24, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	che_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_BLESSING, 1},
@@ -516,6 +539,7 @@ static const struct innate_tech
 		       {   6, T_SHIELD_BASH, 1},
 		       {   18, T_IRON_SKIN, 1},
 		       {   18, T_CONCENTRATING, 1},
+		       {   30, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	nin_tech[] = { {   5, T_DOUBLE_THROWNAGE, 1},
 		       {   25, T_EDDY_WIND, 1},
@@ -554,6 +578,7 @@ static const struct innate_tech
 		       {   18, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	unt_tech[] = { {   1, T_TURN_UNDEAD, 1},
+		       {   5, T_BLOOD_RITUAL, 1},
 		       {   14, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	val_tech[] = { {   1, T_PRACTICE, 1},
@@ -648,6 +673,7 @@ static const struct innate_tech
 		       {   15, T_SIGIL_TEMPEST, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_RECHARGE, 1},
+		       {   20, T_ENT_S_POTION, 1},
 		       {   23, T_SIGIL_CONTROL, 1},
 		       {   25, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
@@ -698,6 +724,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -713,11 +740,19 @@ static const struct innate_tech
 		       {   20, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
 
+	ent_tech[] = { {   1, T_ENT_S_POTION, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
 	alb_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_BLOOD_RITUAL, 1},
 		       {   5, T_CHARGE_SABER, 1},
 		       {   10, T_CRIT_STRIKE, 1},
 		       {   15, T_TELEKINESIS, 1},
@@ -732,6 +767,13 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   8, T_CONCENTRATING, 1},
 		       {   10, T_RAGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	lic_tech[] = { {   1, T_BLOOD_RITUAL, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -789,12 +831,14 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   4, T_SPIRITUALITY_CHECK, 1},
 		       {   5, T_ATTIRE_CHARM, 1},
+		       {   8, T_ENT_S_POTION, 1},
 		       {   10, T_BLINK, 1},
 		       {   13, T_RECHARGE, 1},
 		       {   15, T_BLESSING, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   18, T_POLYFORM, 1},
 		       {   20, T_LIQUID_LEAP, 1},
+		       {   22, T_LUCKY_GAMBLE, 1},
 		       {   25, T_DRAW_ENERGY, 1},
 		       {   30, T_SUMMON_TEAM_ANT, 1},
 		       {   0, 0, 0} },
@@ -949,6 +993,13 @@ static const struct innate_tech
 		       {   15, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
+	ven_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_LUCKY_GAMBLE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
 	spr_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -989,6 +1040,7 @@ static const struct innate_tech
 	uni_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   10, T_SUMMON_PET, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
@@ -1706,6 +1758,18 @@ dotech()
 
 		case T_EDDY_WIND:
 			pline("You can invoke this technique to walk right through monsters for a short time. Remember: if you want to attack them in melee, you'll need to prefix your movements with the F command. If you are wielding two weapons at the same time and attack a monster while having the technique active, you will deal extra damage with every hit.");
+			break;
+
+		case T_BLOOD_RITUAL:
+			pline("Requires an athame in your open inventory. If you use this technique, you sacrifice 200 max HP and Pw, and all of your stats are reduced by 2, but you will be granted a wish, an acquirement, a random artifact or a random powerful item.");
+			break;
+
+		case T_ENT_S_POTION:
+			pline("Restores some of your health and also fixes blindness, stunning, confusion, hallucination, numbness, fear, freezing and burns.");
+			break;
+
+		case T_LUCKY_GAMBLE:
+			pline("Randomly increases or decreases your base luck by one, with equal probability.");
 			break;
 
 		case T_CHARGE_SABER:
@@ -3217,6 +3281,94 @@ int tech_no;
 	      t_timeout = rnz(2000);
 	      break;
 
+	    case T_BLOOD_RITUAL:
+
+		if (!(carrying(ATHAME) || carrying(MERCURIAL_ATHAME)) ) {
+			pline("You need an athame to conduct the ritual!");
+			return(0);
+		}
+		if (u.uhpmax < 201) {
+			pline("You don't have enough health to conduct the ritual!");
+			return(0);
+		}
+		if (Upolyd && u.mhmax < 201) {
+			pline("You don't have enough health to conduct the ritual!");
+			return(0);
+		}
+		if (u.uenmax < 201) {
+			pline("You don't have enough mana to conduct the ritual!");
+			return(0);
+		}
+		pline("Using your athame, you mutilate your own body. Don't ask me, I know nothing about those heretical rituals, apart from the fact they exist...");
+
+		u.uhpmax -= 200;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (Upolyd) {
+			u.mhmax -= 200;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+		u.uenmax -= 200;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+		ABASE(A_STR) -= 2;
+		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
+		AMAX(A_STR) = ABASE(A_STR);
+
+		ABASE(A_DEX) -= 2;
+		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
+		AMAX(A_DEX) = ABASE(A_DEX);
+
+		ABASE(A_INT) -= 2;
+		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
+		AMAX(A_INT) = ABASE(A_INT);
+
+		ABASE(A_WIS) -= 2;
+		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
+		AMAX(A_WIS) = ABASE(A_WIS);
+
+		ABASE(A_CON) -= 2;
+		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
+		AMAX(A_CON) = ABASE(A_CON);
+
+		ABASE(A_CHA) -= 2;
+		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
+		AMAX(A_CHA) = ABASE(A_CHA);
+
+		if (!rn2(4)) makewish();
+		else othergreateffect();
+
+	      t_timeout = rnz(25000);
+	      break;
+
+	    case T_ENT_S_POTION:
+		pline("You feel very good.");
+		healup(techlev(tech_no) * 10, 0, FALSE, FALSE);
+		make_blinded(0L,FALSE);
+	      make_stunned(0L,TRUE);
+	      make_confused(0L,TRUE);
+	      (void) make_hallucinated(0L,FALSE,0L);
+	      make_numbed(0L,TRUE);
+	      make_feared(0L,TRUE);
+	      make_frozen(0L,TRUE);
+	      make_burned(0L,TRUE);
+	      u.uhunger += techlev(tech_no) * 10;
+
+	      t_timeout = rnz(10000);
+	      break;
+
+	    case T_LUCKY_GAMBLE:
+
+		if (rn2(2)) {
+			change_luck(1);
+			You_feel("lucky.");
+		} else {
+			change_luck(-1);
+			You_feel("unlucky.");
+		}
+
+	      t_timeout = rnz(2000);
+	      break;
+
 	    case T_EDDY_WIND:
 		num = 1 + techlev(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
@@ -3507,6 +3659,7 @@ role_tech()
 	switch (Role_switch) {
 		case PM_ARCHEOLOGIST:	return (arc_tech);
 		case PM_GOFF:	return (gof_tech);
+		case PM_DRUID:	return (drd_tech);
 		case PM_FIREFIGHTER:	return (fir_tech);
 		case PM_GAMER:	return (gam_tech);
 		case PM_GLADIATOR:	return (gla_tech);
@@ -3618,7 +3771,9 @@ race_tech()
 		case PM_CLOCKWORK_AUTOMATON:		return (clk_tech);
 
 		case PM_FENEK:		return (fen_tech);
+		case PM_LOWER_ENT:		return (ent_tech);
 		case PM_NORD:		return (nor_tech);
+		case PM_LICH_WARRIOR:		return (lic_tech);
 		case PM_ALBAE:		return (alb_tech);
 		case PM_VORTEX:		return (vor_tech);
 		case PM_CORTEX:		return (cor_tech);
@@ -3658,6 +3813,7 @@ race_tech()
 		case PM_MISSINGNO:	return (mis_tech);
 		case PM_NAVI:	return (nav_tech);
 		case PM_SPIDERMAN:	return (spi_tech);
+		case PM_VENTURE_CAPITALIST:	return (ven_tech);
 		case PM_TRANSFORMER:	return (trf_tech);
 		case PM_WEAPON_TRAPPER:	return (trp_tech);
 		case PM_SPRIGGAN:	return (spr_tech);

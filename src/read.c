@@ -30,23 +30,26 @@
 #define PN_ENCHANTMENT_SPELL	(-10)
 #define PN_PROTECTION_SPELL	(-11)
 #define PN_BODY_SPELL		(-12)
-#define PN_MATTER_SPELL		(-13)
-#define PN_BARE_HANDED		(-14)
-#define PN_HIGH_HEELS		(-15)
-#define PN_GENERAL_COMBAT		(-16)
-#define PN_SHIELD		(-17)
-#define PN_BODY_ARMOR		(-18)
-#define PN_TWO_HANDED_WEAPON		(-19)
-#define PN_POLYMORPHING		(-20)
-#define PN_DEVICES		(-21)
-#define PN_SEARCHING		(-22)
-#define PN_SPIRITUALITY		(-23)
-#define PN_PETKEEPING		(-24)
-#define PN_MARTIAL_ARTS		(-25)
-#define PN_RIDING		(-26)
-#define PN_TWO_WEAPONS		(-27)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MARTIAL_ARTS		(-28)
+#define PN_RIDING		(-29)
+#define PN_TWO_WEAPONS		(-30)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-28)
+#define PN_LIGHTSABER		(-31)
 #endif
 
 #ifndef OVLB
@@ -72,6 +75,9 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
 	PN_MATTER_SPELL,
 	PN_BARE_HANDED,	PN_HIGH_HEELS,
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
@@ -99,6 +105,9 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "enchantment spells",
     "protection spells",
     "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
     "matter spells",
     "bare-handed combat",
     "high heels",
@@ -1538,7 +1547,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 
 			levl[randomx][randomy].typ = POOL;
 			del_engr_at(randomx, randomy);
@@ -1618,7 +1627,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 
 			levl[randomx][randomy].typ = LAVAPOOL;
 			del_engr_at(randomx, randomy);
@@ -1681,7 +1690,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 
 			if (rn2(4)) {
 				levl[randomx][randomy].typ = MOAT;
@@ -1778,7 +1787,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
 
 			if (rn2(3)) doorlockX(randomx, randomy);
 			else {
@@ -1869,7 +1878,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = TREE;
 			block_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
@@ -1950,7 +1959,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = ICE;
 			del_engr_at(randomx, randomy);
 	
@@ -2028,7 +2037,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = CLOUD;
 			block_point(randomx,randomy);
 			del_engr_at(randomx, randomy);
@@ -2108,7 +2117,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = IRONBARS;
 			block_point(randomx,randomy);
 			del_engr_at(randomx, randomy);
@@ -2173,7 +2182,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = randomwalltype();
 			block_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
@@ -4392,7 +4401,7 @@ newboss:
 			randomamount--;
 			randomx = rn1(COLNO-3,2);
 			randomy = rn2(ROWNO);
-			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 				levl[randomx][randomy].typ = MOAT;
 				del_engr_at(randomx, randomy);
 		
@@ -4418,7 +4427,7 @@ newboss:
 			randomamount--;
 			randomx = rn1(COLNO-3,2);
 			randomy = rn2(ROWNO);
-			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 				levl[randomx][randomy].typ = ICE;
 				del_engr_at(randomx, randomy);
 		
@@ -4445,7 +4454,7 @@ newboss:
 			randomamount--;
 			randomx = rn1(COLNO-3,2);
 			randomy = rn2(ROWNO);
-			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 
 				terrainfeature = randomwalltype();
 				if (!rn2(50)) terrainfeature = FOUNTAIN;
@@ -4483,7 +4492,7 @@ newboss:
 			randomamount--;
 			randomx = rn1(COLNO-3,2);
 			randomy = rn2(ROWNO);
-			if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == POOL || levl[randomx][randomy].typ == WATER || levl[randomx][randomy].typ == MOAT) ) {
+			if (isok(randomx, randomy) && (levl[randomx][randomy].typ == POOL || levl[randomx][randomy].typ == WATER || levl[randomx][randomy].typ == MOAT) ) {
 				levl[randomx][randomy].typ = ROOM;
 				del_engr_at(randomx, randomy);
 		

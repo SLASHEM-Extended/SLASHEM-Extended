@@ -1785,19 +1785,22 @@ boolean artif;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 120 : 100);
+			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 5);
 					break;
 		case MAGIC_MARKER:
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
 			otmp->spe = rnd(ishaxor ? 120 : 100);
+			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 70 : 35);
-					blessorcurse_on_creation(otmp, 10);
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp, 10);
 					break;
 		/* KMH, balance patch -- removed to prevent abuse
 		case ORB_OF_DESTRUCTION:blessorcurse_on_creation(otmp, 2);
@@ -1812,19 +1815,23 @@ boolean artif;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rn1(10,3);
-					blessorcurse_on_creation(otmp, 2);
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp, 2);
 					break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(30);
+			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 5);
 					break;
- 		case CHEMISTRY_SET:	otmp->spe = rnd(ishaxor ? 80 : 40);
+ 		case CHEMISTRY_SET:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
- 					blessorcurse_on_creation(otmp,4);
+			otmp->spe = rnd(ishaxor ? 80 : 40);
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp,4);
  					break;
 		case FIGURINE:	{	int tryct2 = 0;
 					do
@@ -1849,6 +1856,7 @@ boolean artif;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 30 : 15);
+			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 10);
 					break;
 		default: /* all the other tools --Amy */
@@ -1948,7 +1956,10 @@ boolean artif;
 		break;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
-		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) otmp->spe = rnd(ishaxor ? 10 : 5); 
+		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) {
+			otmp->spe = rnd(ishaxor ? 10 : 5); 
+			if (!rn2(10)) otmp->spe -= rnd(2);
+		}
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);

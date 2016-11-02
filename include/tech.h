@@ -116,14 +116,18 @@ struct blitz_tab {
 #define T_SPIRITUALITY_CHECK	61
 #define T_EDDY_WIND	62
 
+#define T_BLOOD_RITUAL	63
+#define T_ENT_S_POTION	64
+#define T_LUCKY_GAMBLE	65
+
 #ifdef JEDI
-#define T_JEDI_JUMP	63
-#define T_CHARGE_SABER	64
-#define T_TELEKINESIS	65
+#define T_JEDI_JUMP	66
+#define T_CHARGE_SABER	67
+#define T_TELEKINESIS	68
  
-#define MAXTECH 66
+#define MAXTECH 69
 #else /* JEDI */
-#define MAXTECH 63
+#define MAXTECH 66
 #endif /* JEDI */
 
 

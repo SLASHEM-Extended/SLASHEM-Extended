@@ -1190,6 +1190,28 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	    } else			/* silently fix if broken */
 		obj->obroken = 0;
 	    break;
+	case SPE_LOCK_MANIPULATION:
+
+		if (!rn2(2)) {
+		    if (!obj->olocked) {	/* lock it; fix if broken */
+			pline("Klunk!");
+			obj->olocked = 1;
+			obj->obroken = 0;
+			res = 1;
+		    } /* else already closed and locked */
+
+		} else {
+
+		    if (obj->olocked) {		/* unlock; couldn't be broken */
+			pline("Klick!");
+			obj->olocked = 0;
+			res = 1;
+		    } else			/* silently fix if broken */
+			obj->obroken = 0;
+
+		}
+
+	    break;
 	case WAN_POLYMORPH:
 	case WAN_MUTATION:
 	case SPE_POLYMORPH:
@@ -1263,6 +1285,9 @@ int x, y;
 	
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
+
+	    case SPE_LOCK_MANIPULATION:
+			if (rn2(2)) return FALSE; /* fall through */
 	    case WAN_OPENING:
 	    case SPE_KNOCK:
 	    case WAN_STRIKING:
@@ -1278,7 +1303,7 @@ int x, y;
 		}
 		newsym(x,y);
 		if (cansee(x,y)) pline("A door appears in the wall!");
-		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK)
+		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || otmp->otyp == SPE_LOCK_MANIPULATION)
 		    return TRUE;
 		break;		/* striking: continue door handling below */
 	    case WAN_LOCKING:
@@ -1289,6 +1314,16 @@ int x, y;
 	}
 
 	switch(otmp->otyp) {
+
+	case SPE_LOCK_MANIPULATION:
+
+		if (!rn2(2)) {
+		    if (!key && door->doormask & D_LOCKED) {
+			msg = "The door unlocks!";
+			door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		    } else res = FALSE;
+		    break;
+		} /* else fall through */
 	case WAN_LOCKING:
 	case SPE_WIZARD_LOCK:
 #ifdef REINCARNATION
@@ -1368,6 +1403,7 @@ int x, y;
 	case SPE_FORCE_BOLT:
 	case SPE_GRAVITY_BEAM:
 	case WAN_WIND:
+	case SPE_WIND:
 	    if (!key && door->doormask & (D_LOCKED | D_CLOSED)) {
 		if (door->doormask & D_TRAPPED) {
 		    if (MON_AT(x, y))

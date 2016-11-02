@@ -660,10 +660,10 @@ register struct monst *mtmp;
     struct edog *edog = EDOG(mtmp);
     int udist = distu(mtmp->mx, mtmp->my);
 
-    if (udist < 4 && has_edog && !mtmp->isspell && !rn2(3)
-		    && (can_betray(mtmp->data) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->m_lev >= 40) )
+    if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) ) && !rn2(3)
+		    && (can_betray(mtmp->data) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
+		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
 		    && rn2(edog->abuse + rnd(2) )) {
 	/* Treason */
@@ -674,6 +674,8 @@ register struct monst *mtmp;
 	mtmp->mpeaceful = 0;
 	mtmp->mtame = 0;
 	mtmp->mtraitor = TRUE;
+	mtmp->isspell = 0;
+	mtmp->uexp = 0;
 
 	/* Do we need to call newsym() here? */
 	newsym(mtmp->mx, mtmp->my);
@@ -742,6 +744,7 @@ register int after;	/* this is extra fast monster movement */
 	/* Intelligent pets may rebel (apart from minions, spell beings) */
 	/* if it's a species that's supposed to not be tameable, make it happen much more often --Amy */
 	if (!rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
+	if (!rn2(10) && mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM] && betrayed(mtmp)) return 1;
 	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) && !rn2(85) && betrayed(mtmp)) return 1;
 
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */

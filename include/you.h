@@ -778,6 +778,28 @@ struct you {
 	int skilledlimitskill;
 	int expertlimitskill;
 	int earlytrainingskill;
+	int earlytrainingtimer;
+	boolean earlytrainingblown;
+
+	int drippingtread;
+	int drippingtreadtype;
+	int geolysis;
+	int disruptionshield;
+	int spellbinder;
+	int spellbinder1;
+	int spellbinder2;
+	int spellbinder3;
+	int spellbinder4;
+	int spellbinder5;
+	int spellbinder6;
+	int spellbinder7;
+	int inertiacontrol;
+	int inertiacontrolspell;
+	int inertiacontrolspellno;
+	int sterilized;
+	int holyshield;
+
+	int halresdeactivated;
 
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */

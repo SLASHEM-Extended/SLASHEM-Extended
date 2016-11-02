@@ -14841,6 +14841,7 @@ int type;
 		case PM_TELERETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;
+		case PM_SUMMONED_FIRE_GOLEM: return 250;
 		case PM_LAVA_GOLEM: return 250;
 		case PM_AUTO_ROLLER: return 250;
 		case PM_BURNING_BRUTE: return 250;

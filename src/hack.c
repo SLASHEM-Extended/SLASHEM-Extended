@@ -355,7 +355,7 @@ trap_of_walls:
 	randomx = rn1(COLNO-3,2);
 	randomy = rn2(ROWNO);
 
-	if (randomx && randomy && (!rn2(3) || (!In_sokoban(&u.uz)) ) && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+	if ((!rn2(3) || (!In_sokoban(&u.uz)) ) && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
 		count = 0;
 		for (i= -1; i<=1; i++) for(j= -1; j<=1; j++) {
 			if (!i && !j) continue;
@@ -834,8 +834,14 @@ still_chewing(x,y)
 	digtxt = "chew a hole in the wall.";
 	if (level.flags.is_maze_lev) {
 	    lev->typ = ROOM;
+		if (u.geolysis && !rn2(4)) {
+			lev->typ = !rn2(3) ? WATER : !rn2(2) ? ICE : CLOUD;
+		}
 	} else if (level.flags.is_cavernous_lev && !in_town(x, y)) {
 	    lev->typ = CORR;
+		if (u.geolysis && !rn2(4)) {
+			lev->typ = !rn2(3) ? WATER : !rn2(2) ? ICE : CLOUD;
+		}
 	} else {
 	    lev->typ = DOOR;
 	    lev->doormask = D_NODOOR;
@@ -869,6 +875,9 @@ still_chewing(x,y)
     } else { /* STONE or SCORR */
 	digtxt = "chew a passage through the rock.";
 	lev->typ = CORR;
+	if (u.geolysis && !rn2(4)) {
+		lev->typ = !rn2(3) ? WATER : !rn2(2) ? ICE : CLOUD;
+	}
     }
 
     unblock_point(x, y);	/* vision */
@@ -1034,7 +1043,7 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
-	} else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd)) {
+	} else if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	} else if (flags.autodig && !flags.run && !flags.nopick &&
@@ -1167,7 +1176,7 @@ int mode;
 	    return FALSE;
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
-	    if ((tunnels(youmonst.data) && !needspick(youmonst.data) || (Race_if(PM_SCURRIER) && !Upolyd)) &&
+	    if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) &&
 		!In_sokoban(&u.uz)) {
 		if (still_chewing(x,y)) return FALSE;
 	    } else
@@ -3387,7 +3396,12 @@ int k_format; /* WAC k_format is an int */
 
 
 
-	if (Upolyd) {
+	if (u.disruptionshield && u.uen >= n) {
+		u.uen -= n;
+		pline("Your mana shield takes the damage for you!");
+		flags.botl = 1;
+
+	} else if (Upolyd) {
 		u.mh -= n;
 		if (u.mhmax < u.mh) u.mhmax = u.mh;
 		if (u.mh < 1) {

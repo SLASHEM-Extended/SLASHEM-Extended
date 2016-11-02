@@ -2867,6 +2867,14 @@ nh_timeout()
 			if (!Shock_resistance)
 				You_feel("a little static cling.");
 			break;
+		case MAGICAL_BREATHING:
+			if (!Amphibious)
+				You("need to breathe again.");
+			break;
+		case SWIMMING:
+			if (!Swimming)
+				pline("Your water wings disappear.");
+			break;
 		case AGGRAVATE_MONSTER:
 			if (!Aggravate_monster)
 				You_feel("less aggravated.");
@@ -3696,6 +3704,7 @@ long timeout;
 	egg = (struct obj *) arg;
 	/* sterilized while waiting */
 	if (egg->corpsenm == NON_PM) return;
+	if (u.sterilized) return;
 
 	mon = mon2 = (struct monst *)0;
 	mnum = big_to_little(egg->corpsenm);

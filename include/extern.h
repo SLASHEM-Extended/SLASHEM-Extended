@@ -2258,6 +2258,7 @@ E int NDECL(dovspell);
 E void FDECL(learnspell, (struct obj *));
 E boolean NDECL(studyspell);
 E void FDECL(initialspell, (struct obj *));
+E void NDECL(castinertiaspell);
 
 /* ### steal.c ### */
 
@@ -2342,6 +2343,7 @@ E void NDECL(teleX);
 E boolean FDECL(u_teleport_mon, (struct monst *,BOOLEAN_P));
 E boolean FDECL(u_teleport_monB, (struct monst *,BOOLEAN_P));
 E void NDECL(pushplayer);
+E boolean FDECL(teleok, (int,int,BOOLEAN_P));
 
 /* ### tile.c ### */
 #ifdef USE_TILES

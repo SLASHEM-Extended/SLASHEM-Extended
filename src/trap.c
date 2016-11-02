@@ -116,7 +116,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
 
 			if (rn2(3)) doorlockX(randomx, randomy);
 			else {
@@ -189,7 +189,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = TREE;
 			block_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
@@ -254,7 +254,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 
 			if (rn2(4)) {
 				levl[randomx][randomy].typ = MOAT;
@@ -333,7 +333,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = ICE;
 			del_engr_at(randomx, randomy);
 	
@@ -394,7 +394,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = CLOUD;
 			block_point(randomx,randomy);
 			del_engr_at(randomx, randomy);
@@ -457,7 +457,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = randomwalltype();
 			block_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
@@ -522,7 +522,7 @@ genericptr_t poolcnt;
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
 		randomy = rn2(ROWNO);
-		if (randomx && randomy && isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = IRONBARS;
 			block_point(randomx,randomy);
 			del_engr_at(randomx, randomy);

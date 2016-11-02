@@ -26,23 +26,26 @@ STATIC_DCL int FDECL(enhance_skill, (boolean));
 #define PN_ENCHANTMENT_SPELL	(-10)
 #define PN_PROTECTION_SPELL	(-11)
 #define PN_BODY_SPELL		(-12)
-#define PN_MATTER_SPELL		(-13)
-#define PN_BARE_HANDED		(-14)
-#define PN_HIGH_HEELS		(-15)
-#define PN_GENERAL_COMBAT		(-16)
-#define PN_SHIELD		(-17)
-#define PN_BODY_ARMOR		(-18)
-#define PN_TWO_HANDED_WEAPON		(-19)
-#define PN_POLYMORPHING		(-20)
-#define PN_DEVICES		(-21)
-#define PN_SEARCHING		(-22)
-#define PN_SPIRITUALITY		(-23)
-#define PN_PETKEEPING		(-24)
-#define PN_MARTIAL_ARTS		(-25)
-#define PN_RIDING		(-26)
-#define PN_TWO_WEAPONS		(-27)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MARTIAL_ARTS		(-28)
+#define PN_RIDING		(-29)
+#define PN_TWO_WEAPONS		(-30)
 #ifdef LIGHTSABERS
-#define PN_LIGHTSABER		(-28)
+#define PN_LIGHTSABER		(-31)
 #endif
 
 static void FDECL(give_may_advance_msg, (int));
@@ -82,6 +85,9 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
 	PN_MATTER_SPELL,
 	PN_BARE_HANDED,	PN_HIGH_HEELS,
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
@@ -109,6 +115,9 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "enchantment spells",
     "protection spells",
     "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
     "matter spells",
     "bare-handed combat",
     "high heels",
@@ -2400,6 +2409,15 @@ int skill;
 		case P_BODY_SPELL:
 			    HFlying |= FROMOUTSIDE; pline("Got flying!"); break;
 		break;
+		case P_OCCULT_SPELL:
+			    HStun_resist |= FROMOUTSIDE; pline("Got stun resistance!"); break;
+		break;
+		case P_ELEMENTAL_SPELL:
+			    HPoison_resistance |= FROMOUTSIDE; pline("Got poison resistance!"); break;
+		break;
+		case P_CHAOS_SPELL:
+			    HConf_resist |= FROMOUTSIDE; pline("Got confusion resistance!"); break;
+		break;
 		case P_MATTER_SPELL:
 			    HTeleport_control |= FROMOUTSIDE; pline("Got teleport control!"); break;
 		break;
@@ -2637,6 +2655,21 @@ int skill;
 		case P_BODY_SPELL:
 				if (!tech_known(T_RAGE)) {    	learntech(T_RAGE, FROMOUTSIDE, 1);
 			    	You("learn how to perform rage eruption!");
+				}
+		break;
+		case P_OCCULT_SPELL:
+				if (!tech_known(T_BLOOD_RITUAL)) {    	learntech(T_BLOOD_RITUAL, FROMOUTSIDE, 1);
+			    	You("learn how to perform blood ritual!");
+				}
+		break;
+		case P_ELEMENTAL_SPELL:
+				if (!tech_known(T_ENT_S_POTION)) {    	learntech(T_ENT_S_POTION, FROMOUTSIDE, 1);
+			    	You("learn how to perform ent's potion!");
+				}
+		break;
+		case P_CHAOS_SPELL:
+				if (!tech_known(T_LUCKY_GAMBLE)) {    	learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
+			    	You("learn how to perform lucky gamble!");
 				}
 		break;
 		case P_MATTER_SPELL:
@@ -4161,6 +4194,36 @@ const struct def_skill *class_skill;
 			if (P_MAX_SKILL(P_MATTER_SPELL) == P_EXPERT) P_MAX_SKILL(P_MATTER_SPELL) = P_MASTER;
 			else if (P_MAX_SKILL(P_MATTER_SPELL) == P_MASTER) P_MAX_SKILL(P_MATTER_SPELL) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_MATTER_SPELL) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_OCCULT_SPELL)) {
+			P_SKILL(P_OCCULT_SPELL) = P_UNSKILLED;
+			P_ADVANCE(P_OCCULT_SPELL) = 0;
+			P_MAX_SKILL(P_OCCULT_SPELL) = P_BASIC;
+		} else {
+			P_SKILL(P_OCCULT_SPELL) = P_BASIC;
+			if (P_MAX_SKILL(P_OCCULT_SPELL) == P_EXPERT) P_MAX_SKILL(P_OCCULT_SPELL) = P_MASTER;
+			else if (P_MAX_SKILL(P_OCCULT_SPELL) == P_MASTER) P_MAX_SKILL(P_OCCULT_SPELL) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_OCCULT_SPELL) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_ELEMENTAL_SPELL)) {
+			P_SKILL(P_ELEMENTAL_SPELL) = P_UNSKILLED;
+			P_ADVANCE(P_ELEMENTAL_SPELL) = 0;
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
+		} else {
+			P_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
+			if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
+			else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_CHAOS_SPELL)) {
+			P_SKILL(P_CHAOS_SPELL) = P_UNSKILLED;
+			P_ADVANCE(P_CHAOS_SPELL) = 0;
+			P_MAX_SKILL(P_CHAOS_SPELL) = P_BASIC;
+		} else {
+			P_SKILL(P_CHAOS_SPELL) = P_BASIC;
+			if (P_MAX_SKILL(P_CHAOS_SPELL) == P_EXPERT) P_MAX_SKILL(P_CHAOS_SPELL) = P_MASTER;
+			else if (P_MAX_SKILL(P_CHAOS_SPELL) == P_MASTER) P_MAX_SKILL(P_CHAOS_SPELL) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_CHAOS_SPELL) = P_SUPREME_MASTER;
 		}
 
 		P_SKILL(P_HIGH_HEELS) = P_SKILLED;

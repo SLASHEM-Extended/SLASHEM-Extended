@@ -592,7 +592,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		ugolemeffects((int) adtyp, damu);
 
-		if (uhurt == 2) {
+		if (u.disruptionshield && u.uen >= damu) {
+			u.uen -= damu;
+			pline("Your mana shield takes the damage for you!");
+			flags.botl = 1;
+		} else if (uhurt == 2) {
 		    if (Upolyd)
 		    	u.mh  -= damu;
 		    else

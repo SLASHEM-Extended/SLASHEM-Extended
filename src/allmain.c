@@ -175,6 +175,7 @@ moveloop()
 			  */
 
 			monclock = 70;
+
 			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
 				monclock = 15;
 			} else {
@@ -188,6 +189,9 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (monclock < 15) { monclock = 15; }
+
+			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
+
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) monclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4;
@@ -224,6 +228,9 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 12000) { xtraclock = 12000; }
+
+			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
+
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) xtraclock /= 4;
@@ -2139,6 +2146,94 @@ newboss:
 
 		}
 
+		if (u.drippingtread) {
+
+			u.drippingtread--;
+
+			if (isok(u.ux, u.uy) && (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR)) {
+				switch (u.drippingtreadtype) {
+					case 1: levl[u.ux][u.uy].typ = WATER; break;
+					case 2: levl[u.ux][u.uy].typ = LAVAPOOL; break;
+					case 3: levl[u.ux][u.uy].typ = ICE; break;
+					case 4: levl[u.ux][u.uy].typ = CLOUD; break;
+					default: impossible("Dripping tread terrain type uninitialized");
+				}
+			}
+
+			if (u.drippingtread < 0) u.drippingtread = 0;
+			if (!u.drippingtread) {
+				u.drippingtreadtype = 0;
+				pline("You stop dripping elements.");
+			}
+
+		}
+
+		if (u.geolysis) {
+
+			u.geolysis--;
+			if (u.geolysis < 0) u.geolysis = 0;
+			if (!u.geolysis) {
+				pline("You can no longer eat through rock.");
+			}
+
+		}
+
+		if (u.inertiacontrol) {
+
+			castinertiaspell();
+
+			u.inertiacontrol--;
+			if (u.inertiacontrol < 0) u.inertiacontrol = 0;
+			if (!u.inertiacontrol) {
+				pline("Inertia control has timed out.");
+				u.inertiacontrolspell = -1;
+				u.inertiacontrolspellno = -1;
+			}
+
+		}
+
+		if (u.spellbinder) u.spellbinder = 0;
+
+		if (u.halresdeactivated) {
+
+			u.halresdeactivated--;
+			if (u.halresdeactivated < 0) u.halresdeactivated = 0;
+			if (!u.halresdeactivated) {
+				pline("You are no longer prevented from having hallucination resistance.");
+			}
+
+		}
+
+		if (u.sterilized) {
+
+			u.sterilized--;
+			if (u.sterilized < 0) u.sterilized = 0;
+			if (!u.sterilized) {
+				pline("You no longer feel an anti-sexual aura.");
+			}
+
+		}
+
+		if (u.disruptionshield) {
+
+			u.disruptionshield--;
+			if (u.disruptionshield < 0) u.disruptionshield = 0;
+			if (!u.disruptionshield) {
+				pline("Your disruption shield dissipates.");
+			}
+
+		}
+
+		if (u.holyshield) {
+
+			u.holyshield--;
+			if (u.holyshield < 0) u.holyshield = 0;
+			if (!u.holyshield) {
+				pline("Your holy shield dissipates.");
+			}
+
+		}
+
 		if ((u.uprops[CRAP_EFFECT].extrinsic || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
 			pline("You suddenly have to take a shit!");
 			int crapduration = 5;
@@ -2554,6 +2649,81 @@ newboss:
 			flags.botl = 1;
 
 			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SKILLED && !rn2(200))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_EXPERT && !rn2(100))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_MASTER && !rn2(50))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_GRAND_MASTER && !rn2(25))
+			u.uen += 1;
+			if (u.uen > u.uenmax)  u.uen = u.uenmax;
+			flags.botl = 1;
+
+			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
@@ -3486,6 +3656,72 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_GOOD_NIGHT].oc_name = "dobroy nochi";
 	obj_descr[SPE_FIXING].oc_name = "fiksatsiya";
 
+	obj_descr[SPE_CHAOS_TERRAIN].oc_name = "khaos mestnosti";
+	obj_descr[SPE_RANDOM_SPEED].oc_name = "sluchaynaya skorost'";
+	obj_descr[SPE_VANISHING].oc_name = "ischezayushchiy";
+	obj_descr[SPE_WISHING].oc_name = "zhelayushchikh";
+	obj_descr[SPE_ACQUIREMENT].oc_name = "priobreteniye";
+	obj_descr[SPE_CHAOS_BOLT].oc_name = "boltom khaos";
+	obj_descr[SPE_HELLISH_BOLT].oc_name = "adskaya boltom";
+	obj_descr[SPE_EARTHQUAKE].oc_name = "zemletryaseniye";
+	obj_descr[SPE_LYCANTHROPY].oc_name = "likantropiyu";
+	obj_descr[SPE_BUC_RANDOMIZATION].oc_name = "buc randomizatsii";
+	obj_descr[SPE_LOCK_MANIPULATION].oc_name = "manipulyatsiya zamok";
+	obj_descr[SPE_POLYFORM].oc_name = "poliform";
+	obj_descr[SPE_MESSAGE].oc_name = "soobshcheniye";
+	obj_descr[SPE_RUMOR].oc_name = "slukh";
+	obj_descr[SPE_CURE_RANDOM_STATUS].oc_name = "vylechit' sluchaynyy status";
+	obj_descr[SPE_RESIST_RANDOM_ELEMENT].oc_name = "soprotivlyayutsya sluchaynyy element";
+	obj_descr[SPE_RUSSIAN_ROULETTE].oc_name = "russkaya ruletka";
+	obj_descr[SPE_POSSESSION].oc_name = "vladeniye";
+	obj_descr[SPE_TOTEM_SUMMONING].oc_name = "totem vyzova";
+	obj_descr[SPE_MIMICRY].oc_name = "mimikriya";
+	obj_descr[SPE_HORRIFY].oc_name = "shokirovat'";
+	obj_descr[SPE_TERROR].oc_name = "uzhas";
+	obj_descr[SPE_PHASE_DOOR].oc_name = "faza dveri";
+	obj_descr[SPE_TRAP_DISARMING].oc_name = "lovushka snyatiya s okhrany";
+	obj_descr[SPE_NEXUS_FIELD].oc_name = "svyazuyushchey pole";
+	obj_descr[SPE_COMMAND_DEMON].oc_name = "komanda demonov";
+	obj_descr[SPE_FIRE_GOLEM].oc_name = "ogon' golemov";
+	obj_descr[SPE_DISRUPTION_SHIELD].oc_name = "razrusheniye shchita";
+	obj_descr[SPE_SPELLBINDER].oc_name = "orator, uvlekayushchiy svoyu auditoriyu";
+	obj_descr[SPE_TRACKER].oc_name = "treker";
+	obj_descr[SPE_INERTIA_CONTROL].oc_name = "kontrol' inertsii";
+	obj_descr[SPE_CODE_EDITING].oc_name = "redaktirovaniye koda";
+	obj_descr[SPE_FORGOTTEN_SPELL].oc_name = "zabyli zaklinaniye";
+	obj_descr[SPE_FLOOD].oc_name = "navodneniye";
+	obj_descr[SPE_LAVA].oc_name = "lavovyy";
+	obj_descr[SPE_IRON_PRISON].oc_name = "zheleznaya tyur'ma";
+	obj_descr[SPE_LOCKOUT].oc_name = "lokaut";
+	obj_descr[SPE_CLOUDS].oc_name = "oblaka";
+	obj_descr[SPE_ICE].oc_name = "led";
+	obj_descr[SPE_GROW_TREES].oc_name = "rastut derev'ya";
+	obj_descr[SPE_DRIPPING_TREAD].oc_name = "kapayet protektora";
+	obj_descr[SPE_GEOLYSIS].oc_name = "geologicheskoye resheniye";
+	obj_descr[SPE_ELEMENTAL_BEAM].oc_name = "elementarnyy puchok";
+	obj_descr[SPE_STERILIZE].oc_name = "sterilizovat'";
+	obj_descr[SPE_WIND].oc_name = "veter";
+	obj_descr[SPE_FIRE].oc_name = "ogon'";
+	obj_descr[SPE_ELEMENTAL_MINION].oc_name = "elementnyy min'on";
+	obj_descr[SPE_WATER_BOLT].oc_name = "boltov vody";
+	obj_descr[SPE_AIR_CURRENT].oc_name = "potok vozdukha";
+	obj_descr[SPE_DASHING].oc_name = "likhoy";
+	obj_descr[SPE_MELTDOWN].oc_name = "rasplavleniye";
+	obj_descr[SPE_POISON_BRAND].oc_name = "yad brend";
+	obj_descr[SPE_STEAM_VENOM].oc_name = "para otrava";
+	obj_descr[SPE_HOLD_AIR].oc_name = "uderzhivat' vozdukh";
+	obj_descr[SPE_SWIMMING].oc_name = "plavaniye";
+	obj_descr[SPE_VOLT_ROCK].oc_name = "vol'tovyy rok";
+	obj_descr[SPE_WATER_FLAME].oc_name = "plamya vody";
+	obj_descr[SPE_AVALANCHE].oc_name = "lavina";
+	obj_descr[SPE_MANA_BOLT].oc_name = "boltov many";
+	obj_descr[SPE_ENERGY_BOLT].oc_name = "boltov energii";
+	obj_descr[SPE_ACID_INGESTION].oc_name = "kislota proglatyvaniye";
+	obj_descr[SPE_INDUCE_VOMITING].oc_name = "vyzvat' rvotu";
+	obj_descr[SPE_REBOOT].oc_name = "perezagruzhat'";
+	obj_descr[SPE_HOLY_SHIELD].oc_name = "svyatoy shchit";
+
+
 	{
 
 	register int i;
@@ -4107,6 +4343,71 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_BUBBLEBEAM].oc_name = "qabariq nur";
 	obj_descr[SPE_GOOD_NIGHT].oc_name = "xayrli tun";
 	obj_descr[SPE_FIXING].oc_name = "ekranga";
+
+	obj_descr[SPE_CHAOS_TERRAIN].oc_name = "betartiblik yerlarni";
+	obj_descr[SPE_RANDOM_SPEED].oc_name = "tasodifiy tezligi";
+	obj_descr[SPE_VANISHING].oc_name = "barham topish davri";
+	obj_descr[SPE_WISHING].oc_name = "xohlovchi";
+	obj_descr[SPE_ACQUIREMENT].oc_name = "olish";
+	obj_descr[SPE_CHAOS_BOLT].oc_name = "betartiblik murvat";
+	obj_descr[SPE_HELLISH_BOLT].oc_name = "jahannamiy dardning asoratidan murvat";
+	obj_descr[SPE_EARTHQUAKE].oc_name = "zilzila";
+	obj_descr[SPE_LYCANTHROPY].oc_name = "bo'ri inson shakli";
+	obj_descr[SPE_BUC_RANDOMIZATION].oc_name = "buc randomizasyon";
+	obj_descr[SPE_LOCK_MANIPULATION].oc_name = "qulf hiyla";
+	obj_descr[SPE_POLYFORM].oc_name = "belgigacha bo'lgan poli shakli";
+	obj_descr[SPE_MESSAGE].oc_name = "xabar";
+	obj_descr[SPE_RUMOR].oc_name = "mish-mish gaplar";
+	obj_descr[SPE_CURE_RANDOM_STATUS].oc_name = "tasodifiy maqomini davolash";
+	obj_descr[SPE_RESIST_RANDOM_ELEMENT].oc_name = "tasodifiy elementi qarshi";
+	obj_descr[SPE_RUSSIAN_ROULETTE].oc_name = "rus ruletka";
+	obj_descr[SPE_POSSESSION].oc_name = "egalik";
+	obj_descr[SPE_TOTEM_SUMMONING].oc_name = "totemlarga chaqirishni";
+	obj_descr[SPE_MIMICRY].oc_name = "mimika taqlid";
+	obj_descr[SPE_HORRIFY].oc_name = "qo'rqitmoq";
+	obj_descr[SPE_TERROR].oc_name = "kishi terror hujumini";
+	obj_descr[SPE_PHASE_DOOR].oc_name = "bosqichi eshik";
+	obj_descr[SPE_TRAP_DISARMING].oc_name = "qaytsin qurolsizlantirish";
+	obj_descr[SPE_NEXUS_FIELD].oc_name = "aloqa faoliyat";
+	obj_descr[SPE_COMMAND_DEMON].oc_name = "buyrug'i jin";
+	obj_descr[SPE_FIRE_GOLEM].oc_name = "yong'in gol";
+	obj_descr[SPE_DISRUPTION_SHIELD].oc_name = "buzilish qalqon";
+	obj_descr[SPE_SPELLBINDER].oc_name = "majburiy imlo";
+	obj_descr[SPE_TRACKER].oc_name = "kuzatishdan";
+	obj_descr[SPE_INERTIA_CONTROL].oc_name = "inertsiya nazorat";
+	obj_descr[SPE_CODE_EDITING].oc_name = "kodi tahrir";
+	obj_descr[SPE_FORGOTTEN_SPELL].oc_name = "unutilgan afsun";
+	obj_descr[SPE_FLOOD].oc_name = "suv toshqini";
+	obj_descr[SPE_LAVA].oc_name = "lava oqimlarida";
+	obj_descr[SPE_IRON_PRISON].oc_name = "temir qamoqxona";
+	obj_descr[SPE_LOCKOUT].oc_name = "qulflash";
+	obj_descr[SPE_CLOUDS].oc_name = "bulutlar";
+	obj_descr[SPE_ICE].oc_name = "muz";
+	obj_descr[SPE_GROW_TREES].oc_name = "daraxtlar o'sadi";
+	obj_descr[SPE_DRIPPING_TREAD].oc_name = "terlaganda qadam";
+	obj_descr[SPE_GEOLYSIS].oc_name = "geologik hal";
+	obj_descr[SPE_ELEMENTAL_BEAM].oc_name = "tabiiy nur";
+	obj_descr[SPE_STERILIZE].oc_name = "sterillamoq";
+	obj_descr[SPE_WIND].oc_name = "shamol";
+	obj_descr[SPE_FIRE].oc_name = "yong'in";
+	obj_descr[SPE_ELEMENTAL_MINION].oc_name = "asosiy arzanda";
+	obj_descr[SPE_WATER_BOLT].oc_name = "suv murvat";
+	obj_descr[SPE_AIR_CURRENT].oc_name = "havo joriy";
+	obj_descr[SPE_DASHING].oc_name = "qo'li bilan qo'ygan jimjimador";
+	obj_descr[SPE_MELTDOWN].oc_name = "erish";
+	obj_descr[SPE_POISON_BRAND].oc_name = "zahar brendi";
+	obj_descr[SPE_STEAM_VENOM].oc_name = "bug 'zahar";
+	obj_descr[SPE_HOLD_AIR].oc_name = "havo o'tkazadi";
+	obj_descr[SPE_SWIMMING].oc_name = "suzish";
+	obj_descr[SPE_VOLT_ROCK].oc_name = "sarma jinslar";
+	obj_descr[SPE_WATER_FLAME].oc_name = "suv olov";
+	obj_descr[SPE_AVALANCHE].oc_name = "qor ko'chimi";
+	obj_descr[SPE_MANA_BOLT].oc_name = "sehrli murvat";
+	obj_descr[SPE_ENERGY_BOLT].oc_name = "energiya murvat";
+	obj_descr[SPE_ACID_INGESTION].oc_name = "kislota biriktirish";
+	obj_descr[SPE_INDUCE_VOMITING].oc_name = "kusturun";
+	obj_descr[SPE_REBOOT].oc_name = "qayta ishga tushirish";
+	obj_descr[SPE_HOLY_SHIELD].oc_name = "muqaddas qalqon";
 
 	{
 
