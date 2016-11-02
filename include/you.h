@@ -771,6 +771,14 @@ struct you {
 	int ugrave_arise; /* you die and become something aside from a ghost */
 	time_t	ubirthday;		/* real world time when game began */
 
+	int untrainableskill; /* you can't train all skills equally well (evil patch idea) */
+	int halfspeedskill;
+	int fifthspeedskill;
+	int basiclimitskill;
+	int skilledlimitskill;
+	int expertlimitskill;
+	int earlytrainingskill;
+
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */

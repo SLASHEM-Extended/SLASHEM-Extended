@@ -2982,6 +2982,21 @@ int degree;
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
+
+	if (skill == u.untrainableskill) return; /* cannot train this skill at all, no matter what */
+	if ((skill == u.halfspeedskill) && rn2(2)) return;
+	if ((skill == u.fifthspeedskill) && rn2(5)) return;
+	if ((skill == u.basiclimitskill) && P_ADVANCE(skill) >= 20 ) return;
+	if ((skill == u.skilledlimitskill) && P_ADVANCE(skill) >= 160 ) return;
+	if ((skill == u.expertlimitskill) && P_ADVANCE(skill) >= 540 ) return;
+	if (skill == u.earlytrainingskill) {
+		if (u.earlytrainingblown) return;
+		if (moves < u.earlytrainingtimer) {
+			u.earlytrainingblown = TRUE;
+			return;
+		}
+	}
+
 	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) P_ADVANCE(skill) += degree;
 	if (!advance_before && can_advance(skill, FALSE)) {
 	    give_may_advance_msg(skill);

@@ -18,6 +18,114 @@
 
 #define CMD_TRAVEL (char)0x90
 
+/* categories whose names don't come from OBJ_NAME(objects[type]) */
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_MATTER_SPELL		(-13)
+#define PN_BARE_HANDED		(-14)
+#define PN_HIGH_HEELS		(-15)
+#define PN_GENERAL_COMBAT		(-16)
+#define PN_SHIELD		(-17)
+#define PN_BODY_ARMOR		(-18)
+#define PN_TWO_HANDED_WEAPON		(-19)
+#define PN_POLYMORPHING		(-20)
+#define PN_DEVICES		(-21)
+#define PN_SEARCHING		(-22)
+#define PN_SPIRITUALITY		(-23)
+#define PN_PETKEEPING		(-24)
+#define PN_MARTIAL_ARTS		(-25)
+#define PN_RIDING		(-26)
+#define PN_TWO_WEAPONS		(-27)
+#ifdef LIGHTSABERS
+#define PN_LIGHTSABER		(-28)
+#endif
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+#ifdef LIGHTSABERS
+	PN_LIGHTSABER,
+#endif
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+#ifdef STEED
+	PN_RIDING,
+#endif
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "matter spells",
+    "bare-handed combat",
+    "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+#ifdef LIGHTSABERS
+    "lightsaber"
+#endif
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 #ifdef DEBUG
 /*
  * only one "wiz_debug_cmd" routine should be available (in whatever
@@ -1516,6 +1624,46 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		Sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
 		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
 	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		enl_msg("The following skill ", "is trained at half the usual rate:", "was trained at half the usual rate:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		enl_msg("The following skill ", "is trained at one fifth the usual rate:", "was trained at one fifth the usual rate:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		enl_msg("The following skill ", "is limited to basic proficiency:", "was limited to basic proficiency:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		enl_msg("The following skill ", "is limited to skilled proficiency:", "was limited to skilled proficiency:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		enl_msg("The following skill ", "is limited to expert proficiency:", "was limited to expert proficiency:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		Sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
+		if (u.earlytrainingblown) {
+			Sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+			you_have(buf);
+		}
+	}
+
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { Sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
@@ -3719,6 +3867,32 @@ int final;
 	if (u.usefulitemchance) {
 		Sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
 		dump("  Monster death drops spawned with only", buf);
+	}
+
+		Sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		dump("  The following skill could not be trained at all:", buf);
+
+		Sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		dump("  The following skill was trained at half the usual rate:", buf);
+
+		Sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		dump("  The following skill was trained at one fifth the usual rate:", buf);
+
+		Sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		dump("  The following skill was limited to basic proficiency:", buf);
+
+		Sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		dump("  The following skill was limited to skilled proficiency:", buf);
+
+		Sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		dump("  The following skill was limited to expert proficiency:", buf);
+
+		Sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		dump("  The following skill became untrainable if you tried to train it too early:", buf);
+
+	if (u.earlytrainingblown) {
+		Sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+		dump(youhad, buf);
 	}
 
 	Sprintf(buf, " %d", nartifact_exist() );

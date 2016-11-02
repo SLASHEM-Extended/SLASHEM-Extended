@@ -7274,6 +7274,18 @@ u_init()
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
+	u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.earlytrainingtimer = rnz(50);
+	u.earlytrainingtimer = rnd(u.earlytrainingtimer);
+	u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	u.earlytrainingblown = FALSE;
+
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
@@ -24003,6 +24015,18 @@ alter_reality()
 	else if (u.monstertimefinish % 7 == 0) u.eeveelution = PM_JOLTEON;
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
+
+	u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(7)) : (P_BARE_HANDED_COMBAT + rn2(14));
+	u.earlytrainingtimer = rnz(50);
+	u.earlytrainingtimer = rnd(u.earlytrainingtimer);
+	u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	/* don't reset the "blown" variable - if you screw up, it's your fault! --Amy */
 
 	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = 0;
 
