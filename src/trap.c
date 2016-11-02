@@ -1340,6 +1340,7 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
+	ttmp->tdetected = 0;
 	ttmp->madeby_u = 0;
 	ttmp->dst.dnum = -1;
 	ttmp->dst.dlevel = -1;

@@ -21,6 +21,7 @@ struct trap {
 	Bitfield(tseen,1);
 	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
 	Bitfield(once,1);
+	Bitfield(tdetected,1); /* so things like map amnesia don't allow you to farm searching skill --Amy */
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap
 				 them.	Recognizing who made the trap isn't
 				 completely unreasonable, everybody has

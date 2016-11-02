@@ -1526,7 +1526,10 @@ struct trap *trap;
     }
 
     You("find %s.", an(defsyms[trap_to_defsym(tt)].explanation));
-    use_skill(P_SEARCHING,1);
+	if (!trap->tdetected) {
+		use_skill(P_SEARCHING,1);
+		trap->tdetected = TRUE;
+	}
 
     if (cleared) {
 	display_nhwindow(WIN_MAP, TRUE);	/* wait */
