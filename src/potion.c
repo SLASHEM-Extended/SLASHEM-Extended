@@ -2378,6 +2378,7 @@ peffects(otmp)
 			HConfusion |= FROMOUTSIDE;
 			HConfusion |= FROMRACE;
 			HConfusion |= FROMEXPER;
+			u.boomshined = 1;
 			pline("That was very stupid of you, and your body will never be as it used to be...");
 		}
 

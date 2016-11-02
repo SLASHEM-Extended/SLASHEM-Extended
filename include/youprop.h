@@ -123,7 +123,7 @@
 
 #define HConfusion		u.uprops[CONFUSION].intrinsic
 #define EConfusion		u.uprops[CONFUSION].extrinsic
-#define Confusion		(HConfusion || EConfusion || HeavyConfusion || (uamul && uamul->oartifact == ART_CONFUSTICATOR) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || u.uprops[SENSORY_DEPRIVATION].extrinsic || Race_if(PM_ADDICT))
+#define Confusion		(u.boomshined || HConfusion || EConfusion || HeavyConfusion || (uamul && uamul->oartifact == ART_CONFUSTICATOR) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || u.uprops[SENSORY_DEPRIVATION].extrinsic || Race_if(PM_ADDICT))
 #define HeavyConfusion		u.uprops[HEAVY_CONFUSION].intrinsic
 
 #define HNumbed		u.uprops[NUMBED].intrinsic

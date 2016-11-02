@@ -7450,6 +7450,8 @@ u_init()
 	u.sterilized = 0;
 	u.halresdeactivated = 0;
 
+	u.boomshined = 0;
+
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */

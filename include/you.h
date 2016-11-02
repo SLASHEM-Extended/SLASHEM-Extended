@@ -801,6 +801,8 @@ struct you {
 
 	int halresdeactivated;
 
+	boolean boomshined;
+
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */

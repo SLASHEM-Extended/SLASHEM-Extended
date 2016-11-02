@@ -1855,7 +1855,7 @@ register struct monst *mtmp;
 
 	/* without something like the following, invis. and displ.
 	   are too powerful */
-	gotu = notseen ? !rn2(3) : Displaced ? !rn2(4) : FALSE;
+	gotu = notseen ? rn2(3) : Displaced ? rn2(2) : FALSE;
 
 #if 0		/* this never worked as intended & isn't needed anyway */
 	/* If invis but not displaced, staying around gets you 'discovered' */
