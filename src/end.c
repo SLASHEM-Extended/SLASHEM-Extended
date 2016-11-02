@@ -157,10 +157,14 @@ dump_init ()
 void
 dump_exit ()
 {
+#ifdef PUBLIC_SERVER
   mode_t dumpmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+#endif
   if (dump_fp) {
     fclose (dump_fp);
+#ifdef PUBLIC_SERVER
     chmod(dump_fp, dumpmode);
+#endif
   }
 }
 
