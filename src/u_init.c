@@ -22697,6 +22697,10 @@ register struct trobj *trop;
             if (objX->otyp == BLACK_DRAGON_SCALE_MAIL && (Role_if(PM_GOFF)) ) {
                 objX->cursed = TRUE;
             }
+		if (objX->oclass == SPBOOK_CLASS && objX->otyp != SPE_BLANK_PAPER) {
+		    initialspell(objX);
+		}
+
 			if (trop->trspe != UNDEF_SPE)
 			    objX->spe = trop->trspe;
 			if (trop->trbless != UNDEF_BLESS)
