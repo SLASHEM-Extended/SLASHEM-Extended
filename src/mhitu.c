@@ -1144,6 +1144,13 @@ register struct attack *mattk;
 			u.ubodyarmorturns = 0;
 			use_skill(P_BODY_ARMOR, 1);
 		}
+
+		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
+		if (!rn2(250) && blocker->spe > 0 && (!(blocker->oartifact) || !rn2(3))) {
+			blocker->spe--;
+			pline("Your %s dulls.", simple_typename(blocker->otyp));
+		}
+
 	    }
 
 	    if (MON_WEP(mtmp)) {

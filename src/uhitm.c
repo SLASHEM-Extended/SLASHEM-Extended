@@ -4495,6 +4495,15 @@ use_weapon:
 			/* KMH -- Don't accumulate to-hit bonuses */
 			if (uwep) tmp -= hittmp;
 #endif
+
+			if (dhit) {
+				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
+				if (uwep && uwep->spe > 0 && !rn2(500) && (!(uwep->oartifact) || !rn2(2)) ) {
+					uwep->spe--;
+					pline("Your weapon dulls.");
+				}
+			}
+
 			/* Enemy dead, before any special abilities used */
 			if (!known_hitum(mon,mhit,&dhit,mattk)) {
 			    sum[i] = dhit | HIT_FATAL;
@@ -4509,6 +4518,7 @@ use_weapon:
 				&& mattk->adtyp != AD_PHYS )
 			    if (damageum(mon,mattk) == 2)
 				sum[i] |= HIT_FATAL;
+
 			break;
 		case AT_CLAW:
 			/*if (!cantwield(youmonst.data) &&
