@@ -6967,6 +6967,14 @@ typfnd:
 	    pline("For a moment, you feel %s in your %s, but it disappears!",
 		  something,
 		  makeplural(body_part(HAND)));
+
+		/* but you'll get another random artifact instead! --Amy */
+	    otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+	    if (!otmp) return(&zeroobj);
+	    otmp->owt = weight(otmp);
+	    if (!u.ugifts) u.ugifts = 1;
+	    pline("But the RNG decided to grant you another artifact instead!");
+	    return(otmp);
 	}
 
 	if (halfeaten && otmp->oclass == FOOD_CLASS) {
