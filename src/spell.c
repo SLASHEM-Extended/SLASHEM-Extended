@@ -1278,7 +1278,7 @@ spelltypemnemonic(int skill)
 	    case P_ELEMENTAL_SPELL:
 	        return "elemental";
 	    case P_CHAOS_SPELL:
-	        return   "  chaos";
+	        return   "    chaos";
 	    case P_MATTER_SPELL:
 	        return "   matter";
 	    default:
