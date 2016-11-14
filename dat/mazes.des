@@ -1565,6 +1565,13 @@ REGION:(37,11,47,12),lit,"random shop"
 REGION:(49,11,59,12),lit,"random shop"
 REGION:(61,11,71,12),lit,"random shop"
 
+REGION:(01,16,11,17),lit,"random shop"
+REGION:(13,16,23,17),lit,"random shop"
+REGION:(25,16,35,17),lit,"random shop"
+REGION:(37,16,47,17),lit,"random shop"
+REGION:(49,16,59,17),lit,"random shop"
+REGION:(61,16,71,17),lit,"random shop"
+
 DOOR:closed,(11,03)
 DOOR:closed,(11,05)
 DOOR:closed,(11,13)
