@@ -327,14 +327,30 @@ struct permonst *ptr;
 {
     switch (monsndx(ptr)) {
     case PM_LAMB:
+    case PM_KNAPSACK_LAMB:
     case PM_SHEEP:
+    case PM_THEME_SHEEP:
+    case PM_KNAPSACK_SHEEP:
     case PM_GOAT:
+    case PM_KNAPSACK_GOAT:
     case PM_COW:
+    case PM_THEME_COW:
+    case PM_HOLY_COW:
+    case PM_ARMORED_COW:
+    case PM_RABID_COW:
+    case PM_KNAPSACK_COW:
     case PM_BULL:
+    case PM_RABID_BULL:
+    case PM_KNAPSACK_BULL:
     case PM_HORNED_DEVIL:	/* ? "more than one" */
+    case PM_NASTY_HORNED_DEVIL:
+    case PM_HORNED_REAPER:
     case PM_MINOTAUR:
     case PM_ASMODEUS:
     case PM_BALROG:
+    case PM_BLAROG:
+    case PM_ANCIPITAL:
+    case PM_GIANT_HORNED_TOAD:
 	return 2;
     case PM_WHITE_UNICORN:
     case PM_WINGED_WHITE_UNICORN:
@@ -374,6 +390,15 @@ struct permonst *ptr;
     case PM_BEIGE_UNICORN:
     case PM_CONCRETE_UNICORN:
     case PM_ANTHRAZITE_UNICORN:
+    case PM_HORNED_DEMON:
+    case PM_RHYHORN:
+    case PM_BLACKHORN:
+    case PM_RHYDON:
+    case PM_FROST_CHARGER:
+    case PM_RHYPERIOR:
+    case PM_OBSIDIAN_LORD:
+    case PM_HORN_MONSTER:
+    case PM_MUD_RUNNER:
 	return 1;
     default:
 	break;

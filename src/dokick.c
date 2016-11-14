@@ -207,6 +207,11 @@ register boolean clumsy;
 
 	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 
+	if (Race_if(PM_PLAYER_SKELETON) && dmg > 1) {
+		dmg /= 5;
+		if (dmg < 1) dmg = 1;
+	}
+
 	if (dmg > 127) dmg = 127; /* sanity check --Amy */
 
 	if (dmg > 0) {

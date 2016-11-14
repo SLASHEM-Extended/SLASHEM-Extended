@@ -4123,6 +4123,16 @@ dozap()
 
 	check_unpaid(obj);
 
+	if (Race_if(PM_STICKER)) {
+		if (!(uwep && uwep == obj)) {
+			pline("You must wield this item first if you want to zap it!"); 
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "hold");
+			return 1;
+		}
+
+	}
+
 	/* zappable addition done by GAN 11/03/86 */
 	if(!zappable(obj)) {pline(nothing_happens);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4835,15 +4845,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    break;
 
@@ -4863,15 +4873,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 			if (Upolyd && u.mhmax > 1) {
@@ -7019,10 +7029,10 @@ xchar sx, sy;
 		Slimed = 0;
 	    }
 	    burn_away_slime();
-	    if (!rn2(issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
-		if (!rn2(issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
+		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 	    break;
 	case ZT_COLD:
 	    if (Cold_resistance && rn2(20)) {

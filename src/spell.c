@@ -15,7 +15,9 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 #define SPELLMENU_VIEW (-1)
 
 #define KEEN 		10000	/* memory increase reading the book */
+#define DUNADAN_KEEN 	5000	/* memory increase reading the book */
 #define CAST_BOOST 	  500	/* memory increase for successful casting */
+#define DUNADAN_CAST_BOOST 	  250	/* memory increase for successful casting */
 #define MAX_KNOW 	70000	/* Absolute Max timeout */
 #define MAX_CAN_STUDY 	60000	/* Can study while timeout is less than */
 
@@ -28,9 +30,9 @@ static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
-#define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? KEEN \
-				 : ((spl_book[spell].sp_know + KEEN) > MAX_KNOW) ? MAX_KNOW \
-				 : spl_book[spell].sp_know + KEEN)
+#define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) \
+				 : ((spl_book[spell].sp_know + (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) ) > MAX_KNOW) ? MAX_KNOW \
+				 : spl_book[spell].sp_know + (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) )
 #define boostknow(spell,boost)  spl_book[spell].sp_know = ((spl_book[spell].sp_know + boost > MAX_KNOW) ? MAX_KNOW \
 				 : spl_book[spell].sp_know + boost)
 
@@ -1483,6 +1485,11 @@ boolean atme;
 	if (role_skill == P_SUPREME_MASTER) { energy *= 15; energy /= 20;}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
+
+	if (Race_if(PM_MANSTER) && energy > 1) {
+		energy *= 2;
+		energy /= 3;
+	}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { energy *= 9; energy /= 10;}
 
@@ -4150,14 +4157,14 @@ boolean atme;
 	if (!rn2(50)) use_skill(skill, (spellev(spell) * 10) ); /* jackpot! */
 
 	/* WAC successful casting increases solidity of knowledge */
-	boostknow(spell,CAST_BOOST);
-	if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell,CAST_BOOST); /* higher-level spells boost more --Amy */
-	if (!rn2(52 - (spellev(spell) * 2) ) ) { /* jackpot! */
+	boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+	if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST)); /* higher-level spells boost more --Amy */
+	if (!rn2(52 - (spellev(spell) * 2) ) && !Race_if(PM_DUNADAN) ) { /* jackpot! */
 		boostknow(spell, (CAST_BOOST * 5) );
 		boostknow(spell, (CAST_BOOST * spellev(spell) ) );
 	}
 
-	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell,CAST_BOOST);
+	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 
 	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || ((pseudo->otyp == SPE_REBOOT) && !rn2(10)) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
 
@@ -4624,6 +4631,8 @@ int spell;
 	}
 
 	if (issoviet) chance -= 30;
+
+	if (Race_if(PM_PLAYER_SKELETON)) chance -= 50;
 
 	if (spell_skilltype(spellid(spell)) == P_CHAOS_SPELL) { /* more difficult! */
 

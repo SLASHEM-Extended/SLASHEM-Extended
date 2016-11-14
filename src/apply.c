@@ -1273,6 +1273,11 @@ struct obj *obj;
 	char buf[BUFSZ];
 	char qbuf[QBUFSZ];
 
+	if (Race_if(PM_SATRE) && !is_lightsaber(obj)) {
+		pline("As a satre, you are unable to use a light source.");
+		return;
+	}
+
 	if(Underwater) {
 		pline(Hallucination ? "You fumble around with that thing but it won't work." : "This is not a diving lamp.");
 		return;

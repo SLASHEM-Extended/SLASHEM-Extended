@@ -76,7 +76,7 @@ int thrown;
 {
 	struct obj *otmp;
 	struct obj *launcher;
-	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (Double_attack) multishot *= 2;
 	if (Quad_attack) multishot *= 4;
@@ -1118,7 +1118,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || obj->greased || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || obj->greased || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));

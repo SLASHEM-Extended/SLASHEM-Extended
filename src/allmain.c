@@ -200,6 +200,8 @@ moveloop()
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
 			if (issuxxor) monclock *= 2;
 
+			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 5000)) ) monclock /= 3;
+
 			/* here, we really need a fail safe --Amy */
 			if (monclock < 2) monclock = 2;
 
@@ -238,6 +240,8 @@ moveloop()
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
 			if (issuxxor) xtraclock *= 2;
+
+			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 5000)) ) xtraclock /= 3;
 
 			/* new group spawn system by Amy */
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
@@ -901,6 +905,14 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
+			if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* dufflepud wearing boots moves at half speed --Amy */
+			}
+			if (Race_if(PM_WEAPONIZED_DINOSAUR) && uarmf && !PlayerInHighHeels && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2; /* dinosaur wearing non-high-heeled boots moves at half speed --Amy */
+			}
 			if (u.inertia && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* inert characters move at half speed --Amy */
@@ -1230,6 +1242,384 @@ moveloop()
 			done(DIED);
 
 		}
+
+		if (iswindinhabitant && !rn2(1000)) {
+
+			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = 0;
+
+		switch (rnd(85)) {
+
+			case 1: u.nastinator01 = 1; break;
+			case 2: u.nastinator02 = 1; break;
+			case 3: u.nastinator03 = 1; break;
+			case 4: u.nastinator04 = 1; break;
+			case 5: u.nastinator05 = 1; break;
+			case 6: u.nastinator06 = 1; break;
+			case 7: u.nastinator07 = 1; break;
+			case 8: u.nastinator08 = 1; break;
+			case 9: u.nastinator09 = 1; break;
+			case 10: u.nastinator10 = 1; break;
+			case 11: u.nastinator11 = 1; break;
+			case 12: u.nastinator12 = 1; break;
+			case 13: u.nastinator13 = 1; break;
+			case 14: u.nastinator14 = 1; break;
+			case 15: u.nastinator15 = 1; break;
+			case 16: u.nastinator16 = 1; break;
+			case 17: u.nastinator17 = 1; break;
+			case 18: u.nastinator18 = 1; break;
+			case 19: u.nastinator19 = 1; break;
+			case 20: u.nastinator20 = 1; break;
+			case 21: u.nastinator21 = 1; break;
+			case 22: u.nastinator22 = 1; break;
+			case 23: u.nastinator23 = 1; break;
+			case 24: u.nastinator24 = 1; break;
+			case 25: u.nastinator25 = 1; break;
+			case 26: u.nastinator26 = 1; break;
+			case 27: u.nastinator27 = 1; break;
+			case 28: u.nastinator28 = 1; break;
+			case 29: u.nastinator29 = 1; break;
+			case 30: u.nastinator30 = 1; break;
+			case 31: u.nastinator31 = 1; break;
+			case 32: u.nastinator32 = 1; break;
+			case 33: u.nastinator33 = 1; break;
+			case 34: u.nastinator34 = 1; break;
+			case 35: u.nastinator35 = 1; break;
+			case 36: u.nastinator36 = 1; break;
+			case 37: u.nastinator37 = 1; break;
+			case 38: u.nastinator38 = 1; break;
+			case 39: u.nastinator39 = 1; break;
+			case 40: u.nastinator40 = 1; break;
+			case 41: u.nastinator41 = 1; break;
+			case 42: u.nastinator42 = 1; break;
+			case 43: u.nastinator43 = 1; break;
+			case 44: u.nastinator44 = 1; break;
+			case 45: u.nastinator45 = 1; break;
+			case 46: u.nastinator46 = 1; break;
+			case 47: u.nastinator47 = 1; break;
+			case 48: u.nastinator48 = 1; break;
+			case 49: u.nastinator49 = 1; break;
+			case 50: u.nastinator50 = 1; break;
+			case 51: u.nastinator51 = 1; break;
+			case 52: u.nastinator52 = 1; break;
+			case 53: u.nastinator53 = 1; break;
+			case 54: u.nastinator54 = 1; break;
+			case 55: u.nastinator55 = 1; break;
+			case 56: u.nastinator56 = 1; break;
+			case 57: u.nastinator57 = 1; break;
+			case 58: u.nastinator58 = 1; break;
+			case 59: u.nastinator59 = 1; break;
+			case 60: u.nastinator60 = 1; break;
+			case 61: u.nastinator61 = 1; break;
+			case 62: u.nastinator62 = 1; break;
+			case 63: u.nastinator63 = 1; break;
+			case 64: u.nastinator64 = 1; break;
+			case 65: u.nastinator65 = 1; break;
+			case 66: u.nastinator66 = 1; break;
+			case 67: u.nastinator67 = 1; break;
+			case 68: u.nastinator68 = 1; break;
+			case 69: u.nastinator69 = 1; break;
+			case 70: u.nastinator70 = 1; break;
+			case 71: u.nastinator71 = 1; break;
+			case 72: u.nastinator72 = 1; break;
+			case 73: u.nastinator73 = 1; break;
+			case 74: u.nastinator74 = 1; break;
+			case 75: u.nastinator75 = 1; break;
+			case 76: u.nastinator76 = 1; break;
+			case 77: u.nastinator77 = 1; break;
+			case 78: u.nastinator78 = 1; break;
+			case 79: u.nastinator79 = 1; break;
+			case 80: u.nastinator80 = 1; break;
+			case 81: u.nastinator81 = 1; break;
+			case 82: u.nastinator82 = 1; break;
+			case 83: u.nastinator83 = 1; break;
+			case 84: u.nastinator84 = 1; break;
+			case 85: u.nastinator85 = 1; break;
+
+		}
+
+		while (!rn2(3)) {
+
+			switch (rnd(85)) {
+
+				case 1: u.nastinator01 = 1; break;
+				case 2: u.nastinator02 = 1; break;
+				case 3: u.nastinator03 = 1; break;
+				case 4: u.nastinator04 = 1; break;
+				case 5: u.nastinator05 = 1; break;
+				case 6: u.nastinator06 = 1; break;
+				case 7: u.nastinator07 = 1; break;
+				case 8: u.nastinator08 = 1; break;
+				case 9: u.nastinator09 = 1; break;
+				case 10: u.nastinator10 = 1; break;
+				case 11: u.nastinator11 = 1; break;
+				case 12: u.nastinator12 = 1; break;
+				case 13: u.nastinator13 = 1; break;
+				case 14: u.nastinator14 = 1; break;
+				case 15: u.nastinator15 = 1; break;
+				case 16: u.nastinator16 = 1; break;
+				case 17: u.nastinator17 = 1; break;
+				case 18: u.nastinator18 = 1; break;
+				case 19: u.nastinator19 = 1; break;
+				case 20: u.nastinator20 = 1; break;
+				case 21: u.nastinator21 = 1; break;
+				case 22: u.nastinator22 = 1; break;
+				case 23: u.nastinator23 = 1; break;
+				case 24: u.nastinator24 = 1; break;
+				case 25: u.nastinator25 = 1; break;
+				case 26: u.nastinator26 = 1; break;
+				case 27: u.nastinator27 = 1; break;
+				case 28: u.nastinator28 = 1; break;
+				case 29: u.nastinator29 = 1; break;
+				case 30: u.nastinator30 = 1; break;
+				case 31: u.nastinator31 = 1; break;
+				case 32: u.nastinator32 = 1; break;
+				case 33: u.nastinator33 = 1; break;
+				case 34: u.nastinator34 = 1; break;
+				case 35: u.nastinator35 = 1; break;
+				case 36: u.nastinator36 = 1; break;
+				case 37: u.nastinator37 = 1; break;
+				case 38: u.nastinator38 = 1; break;
+				case 39: u.nastinator39 = 1; break;
+				case 40: u.nastinator40 = 1; break;
+				case 41: u.nastinator41 = 1; break;
+				case 42: u.nastinator42 = 1; break;
+				case 43: u.nastinator43 = 1; break;
+				case 44: u.nastinator44 = 1; break;
+				case 45: u.nastinator45 = 1; break;
+				case 46: u.nastinator46 = 1; break;
+				case 47: u.nastinator47 = 1; break;
+				case 48: u.nastinator48 = 1; break;
+				case 49: u.nastinator49 = 1; break;
+				case 50: u.nastinator50 = 1; break;
+				case 51: u.nastinator51 = 1; break;
+				case 52: u.nastinator52 = 1; break;
+				case 53: u.nastinator53 = 1; break;
+				case 54: u.nastinator54 = 1; break;
+				case 55: u.nastinator55 = 1; break;
+				case 56: u.nastinator56 = 1; break;
+				case 57: u.nastinator57 = 1; break;
+				case 58: u.nastinator58 = 1; break;
+				case 59: u.nastinator59 = 1; break;
+				case 60: u.nastinator60 = 1; break;
+				case 61: u.nastinator61 = 1; break;
+				case 62: u.nastinator62 = 1; break;
+				case 63: u.nastinator63 = 1; break;
+				case 64: u.nastinator64 = 1; break;
+				case 65: u.nastinator65 = 1; break;
+				case 66: u.nastinator66 = 1; break;
+				case 67: u.nastinator67 = 1; break;
+				case 68: u.nastinator68 = 1; break;
+				case 69: u.nastinator69 = 1; break;
+				case 70: u.nastinator70 = 1; break;
+				case 71: u.nastinator71 = 1; break;
+				case 72: u.nastinator72 = 1; break;
+				case 73: u.nastinator73 = 1; break;
+				case 74: u.nastinator74 = 1; break;
+				case 75: u.nastinator75 = 1; break;
+				case 76: u.nastinator76 = 1; break;
+				case 77: u.nastinator77 = 1; break;
+				case 78: u.nastinator78 = 1; break;
+				case 79: u.nastinator79 = 1; break;
+				case 80: u.nastinator80 = 1; break;
+				case 81: u.nastinator81 = 1; break;
+				case 82: u.nastinator82 = 1; break;
+				case 83: u.nastinator83 = 1; break;
+				case 84: u.nastinator84 = 1; break;
+				case 85: u.nastinator85 = 1; break;
+
+			}
+
+		}
+
+	if (isnastinator) {
+
+		switch (rnd(85)) {
+
+			case 1: u.nastinator01 = 1; break;
+			case 2: u.nastinator02 = 1; break;
+			case 3: u.nastinator03 = 1; break;
+			case 4: u.nastinator04 = 1; break;
+			case 5: u.nastinator05 = 1; break;
+			case 6: u.nastinator06 = 1; break;
+			case 7: u.nastinator07 = 1; break;
+			case 8: u.nastinator08 = 1; break;
+			case 9: u.nastinator09 = 1; break;
+			case 10: u.nastinator10 = 1; break;
+			case 11: u.nastinator11 = 1; break;
+			case 12: u.nastinator12 = 1; break;
+			case 13: u.nastinator13 = 1; break;
+			case 14: u.nastinator14 = 1; break;
+			case 15: u.nastinator15 = 1; break;
+			case 16: u.nastinator16 = 1; break;
+			case 17: u.nastinator17 = 1; break;
+			case 18: u.nastinator18 = 1; break;
+			case 19: u.nastinator19 = 1; break;
+			case 20: u.nastinator20 = 1; break;
+			case 21: u.nastinator21 = 1; break;
+			case 22: u.nastinator22 = 1; break;
+			case 23: u.nastinator23 = 1; break;
+			case 24: u.nastinator24 = 1; break;
+			case 25: u.nastinator25 = 1; break;
+			case 26: u.nastinator26 = 1; break;
+			case 27: u.nastinator27 = 1; break;
+			case 28: u.nastinator28 = 1; break;
+			case 29: u.nastinator29 = 1; break;
+			case 30: u.nastinator30 = 1; break;
+			case 31: u.nastinator31 = 1; break;
+			case 32: u.nastinator32 = 1; break;
+			case 33: u.nastinator33 = 1; break;
+			case 34: u.nastinator34 = 1; break;
+			case 35: u.nastinator35 = 1; break;
+			case 36: u.nastinator36 = 1; break;
+			case 37: u.nastinator37 = 1; break;
+			case 38: u.nastinator38 = 1; break;
+			case 39: u.nastinator39 = 1; break;
+			case 40: u.nastinator40 = 1; break;
+			case 41: u.nastinator41 = 1; break;
+			case 42: u.nastinator42 = 1; break;
+			case 43: u.nastinator43 = 1; break;
+			case 44: u.nastinator44 = 1; break;
+			case 45: u.nastinator45 = 1; break;
+			case 46: u.nastinator46 = 1; break;
+			case 47: u.nastinator47 = 1; break;
+			case 48: u.nastinator48 = 1; break;
+			case 49: u.nastinator49 = 1; break;
+			case 50: u.nastinator50 = 1; break;
+			case 51: u.nastinator51 = 1; break;
+			case 52: u.nastinator52 = 1; break;
+			case 53: u.nastinator53 = 1; break;
+			case 54: u.nastinator54 = 1; break;
+			case 55: u.nastinator55 = 1; break;
+			case 56: u.nastinator56 = 1; break;
+			case 57: u.nastinator57 = 1; break;
+			case 58: u.nastinator58 = 1; break;
+			case 59: u.nastinator59 = 1; break;
+			case 60: u.nastinator60 = 1; break;
+			case 61: u.nastinator61 = 1; break;
+			case 62: u.nastinator62 = 1; break;
+			case 63: u.nastinator63 = 1; break;
+			case 64: u.nastinator64 = 1; break;
+			case 65: u.nastinator65 = 1; break;
+			case 66: u.nastinator66 = 1; break;
+			case 67: u.nastinator67 = 1; break;
+			case 68: u.nastinator68 = 1; break;
+			case 69: u.nastinator69 = 1; break;
+			case 70: u.nastinator70 = 1; break;
+			case 71: u.nastinator71 = 1; break;
+			case 72: u.nastinator72 = 1; break;
+			case 73: u.nastinator73 = 1; break;
+			case 74: u.nastinator74 = 1; break;
+			case 75: u.nastinator75 = 1; break;
+			case 76: u.nastinator76 = 1; break;
+			case 77: u.nastinator77 = 1; break;
+			case 78: u.nastinator78 = 1; break;
+			case 79: u.nastinator79 = 1; break;
+			case 80: u.nastinator80 = 1; break;
+			case 81: u.nastinator81 = 1; break;
+			case 82: u.nastinator82 = 1; break;
+			case 83: u.nastinator83 = 1; break;
+			case 84: u.nastinator84 = 1; break;
+			case 85: u.nastinator85 = 1; break;
+
+		}
+
+		while ((rnd(7)) < 3) {
+
+			switch (rnd(85)) {
+
+				case 1: u.nastinator01 = 1; break;
+				case 2: u.nastinator02 = 1; break;
+				case 3: u.nastinator03 = 1; break;
+				case 4: u.nastinator04 = 1; break;
+				case 5: u.nastinator05 = 1; break;
+				case 6: u.nastinator06 = 1; break;
+				case 7: u.nastinator07 = 1; break;
+				case 8: u.nastinator08 = 1; break;
+				case 9: u.nastinator09 = 1; break;
+				case 10: u.nastinator10 = 1; break;
+				case 11: u.nastinator11 = 1; break;
+				case 12: u.nastinator12 = 1; break;
+				case 13: u.nastinator13 = 1; break;
+				case 14: u.nastinator14 = 1; break;
+				case 15: u.nastinator15 = 1; break;
+				case 16: u.nastinator16 = 1; break;
+				case 17: u.nastinator17 = 1; break;
+				case 18: u.nastinator18 = 1; break;
+				case 19: u.nastinator19 = 1; break;
+				case 20: u.nastinator20 = 1; break;
+				case 21: u.nastinator21 = 1; break;
+				case 22: u.nastinator22 = 1; break;
+				case 23: u.nastinator23 = 1; break;
+				case 24: u.nastinator24 = 1; break;
+				case 25: u.nastinator25 = 1; break;
+				case 26: u.nastinator26 = 1; break;
+				case 27: u.nastinator27 = 1; break;
+				case 28: u.nastinator28 = 1; break;
+				case 29: u.nastinator29 = 1; break;
+				case 30: u.nastinator30 = 1; break;
+				case 31: u.nastinator31 = 1; break;
+				case 32: u.nastinator32 = 1; break;
+				case 33: u.nastinator33 = 1; break;
+				case 34: u.nastinator34 = 1; break;
+				case 35: u.nastinator35 = 1; break;
+				case 36: u.nastinator36 = 1; break;
+				case 37: u.nastinator37 = 1; break;
+				case 38: u.nastinator38 = 1; break;
+				case 39: u.nastinator39 = 1; break;
+				case 40: u.nastinator40 = 1; break;
+				case 41: u.nastinator41 = 1; break;
+				case 42: u.nastinator42 = 1; break;
+				case 43: u.nastinator43 = 1; break;
+				case 44: u.nastinator44 = 1; break;
+				case 45: u.nastinator45 = 1; break;
+				case 46: u.nastinator46 = 1; break;
+				case 47: u.nastinator47 = 1; break;
+				case 48: u.nastinator48 = 1; break;
+				case 49: u.nastinator49 = 1; break;
+				case 50: u.nastinator50 = 1; break;
+				case 51: u.nastinator51 = 1; break;
+				case 52: u.nastinator52 = 1; break;
+				case 53: u.nastinator53 = 1; break;
+				case 54: u.nastinator54 = 1; break;
+				case 55: u.nastinator55 = 1; break;
+				case 56: u.nastinator56 = 1; break;
+				case 57: u.nastinator57 = 1; break;
+				case 58: u.nastinator58 = 1; break;
+				case 59: u.nastinator59 = 1; break;
+				case 60: u.nastinator60 = 1; break;
+				case 61: u.nastinator61 = 1; break;
+				case 62: u.nastinator62 = 1; break;
+				case 63: u.nastinator63 = 1; break;
+				case 64: u.nastinator64 = 1; break;
+				case 65: u.nastinator65 = 1; break;
+				case 66: u.nastinator66 = 1; break;
+				case 67: u.nastinator67 = 1; break;
+				case 68: u.nastinator68 = 1; break;
+				case 69: u.nastinator69 = 1; break;
+				case 70: u.nastinator70 = 1; break;
+				case 71: u.nastinator71 = 1; break;
+				case 72: u.nastinator72 = 1; break;
+				case 73: u.nastinator73 = 1; break;
+				case 74: u.nastinator74 = 1; break;
+				case 75: u.nastinator75 = 1; break;
+				case 76: u.nastinator76 = 1; break;
+				case 77: u.nastinator77 = 1; break;
+				case 78: u.nastinator78 = 1; break;
+				case 79: u.nastinator79 = 1; break;
+				case 80: u.nastinator80 = 1; break;
+				case 81: u.nastinator81 = 1; break;
+				case 82: u.nastinator82 = 1; break;
+				case 83: u.nastinator83 = 1; break;
+				case 84: u.nastinator84 = 1; break;
+				case 85: u.nastinator85 = 1; break;
+
+			}
+
+		}
+	  }
+
+
+	}
 
 		if ( Itemcursing && !rn2(1000) ) {
 			if (!Blind) 
@@ -2364,7 +2754,7 @@ newboss:
 			else if (Regeneration ||
 				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
-			    if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.mh++;
+			    if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.mh++;
 			}
 
 		/* evil patch idea by b_jonas: slower HP regeneration while standing on Elbereth
@@ -2423,51 +2813,51 @@ newboss:
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-			    if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp += heal;
+			    if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp += heal;
 			    if(u.uhp > u.uhpmax)
 				u.uhp = u.uhpmax;
 			} else if (Regeneration ||
 			     (efflev <= 9 &&
 			      !(moves % ((MAXULEV+12) / (u.ulevel+2) + 1)))) {
 			    flags.botl = 1;
-			    if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp++;
+			    if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp++;
 			}
 		    }
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (u.ulevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (u.ulevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) ) {
 				u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) && Upolyd ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) && Upolyd ) {
 				u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
 				u.uhp += rnz(2 + u.ulevel);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
 				u.mh += rnz(2 + u.ulevel);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) ) {
 				u.uen += rnd(5 + (u.ulevel / 5));
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				flags.botl = 1;
@@ -2497,7 +2887,7 @@ newboss:
 
 		    
 		    /* KMH -- OK to regenerate if you don't move */
-		    if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
+		    if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
 				((Energy_regeneration && !rn2(3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
@@ -2514,14 +2904,14 @@ newboss:
 		    }
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
 
 				u.uen += rnz(2 + u.ulevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
 			}
-			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
 				u.uen += rnz(2 + u.ulevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2529,7 +2919,7 @@ newboss:
 
 			}
 
-			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
 
 				u.uen += rnd(recalc_mana());
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
@@ -2537,20 +2927,20 @@ newboss:
 
 			}
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */
-		    if ( !Burned && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
+		    if ( !Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
 			(u.ulevel >= 5 && !rn2(200)) ||
 			(u.ulevel >= 10 && !rn2(100)) ||
 			(u.ulevel >= 14 && !rn2(100)) ||
@@ -2578,252 +2968,252 @@ newboss:
 
 			if (!(issoviet || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_EXPERT && !rn2(100))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_EXPERT && !rn2(100))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_MASTER && !rn2(50))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_MASTER && !rn2(50))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 
-			if (!Burned && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SUPREME_MASTER && !rn2(15))
+			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SUPREME_MASTER && !rn2(15))
 			u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
@@ -2948,6 +3338,18 @@ newboss:
 			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
+			}
+
+			/* For developer race, Rodney wakes up prematurely after 10000 turns! --Amy */
+			if (Race_if(PM_DEVELOPER) && !u.uevent.udemigod && moves > 10000) {
+				u.uevent.udemigod = TRUE;
+				u.udg_cnt = rn1(250, 50);
+			}
+
+			if (Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit && !rn2(1000)) {
+				if (!Blind) pline("The bright light blinds you!");
+				make_blinded(Blinded+rnz(100),FALSE);
+				if (!rn2(5)) set_itimeout(&HeavyBlind, Blinded);
 			}
 
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
@@ -3475,6 +3877,8 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridsegfaulter) Sprintf(eos(xtrabuf), "segfaulter ");
 	if (flags.hybridironman) Sprintf(eos(xtrabuf), "ironman ");
 	if (flags.hybridamnesiac) Sprintf(eos(xtrabuf), "amnesiac ");
+	if (flags.hybridproblematic) Sprintf(eos(xtrabuf), "problematic ");
+	if (flags.hybridwindinhabitant) Sprintf(eos(xtrabuf), "windinhabitant ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;

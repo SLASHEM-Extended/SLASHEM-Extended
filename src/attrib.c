@@ -531,6 +531,10 @@ const struct innate {
 			{   1, &(HManaleech), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	gre_abil[] = { {	1, &(HFire_resistance), "", "" },
+			{   15, &(HFast), "quick", "slow" },
+		     {	 0, 0, 0, 0 } },
+
 	clk_abil[] = { {	1, &(HPoison_resistance), "", "" },
 		     {	 1, &(HSick_resistance), "", "" },
 		     {	 1, &(HStone_resistance), "", "" },
@@ -579,6 +583,10 @@ const struct innate {
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	anc_abil[] = { {   1, &(HCold_resistance), "", "" },
+		     {	 1, &(HSlow_digestion), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	fen_abil[] = { {   1, &(HSearching), "", "" },
 			{   5, &(HStealth), "stealthy", "noisy" },
 		     {   7, &(HFast), "quick", "slow" },
@@ -588,6 +596,16 @@ const struct innate {
 
 	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
 		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
+		     {   0, 0, 0, 0 } },
+
+	dee_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {	 1, &(HShock_resistance), "", "" },
+		       {   10, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {   0, 0, 0, 0 } },
+
+	sea_abil[] = { {   1, &(HCold_resistance), "", "" },
+		     {	 1, &(HMagical_breathing), "", "" },
+		     {	 1, &(HSwimming), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	spr_abil[] = { {   1, &(HFast), "", "" },
@@ -612,6 +630,9 @@ const struct innate {
 		     {   7, &(HFast), "quick", "slow" },
 		     {   0, 0, 0, 0 } },
 
+	liz_abil[] = { {  1, &(HStone_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	hrb_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {	15, &(HWarning), "sensitive", "careless" },
 		     {	 0, 0, 0, 0 } },
@@ -630,6 +651,16 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	nym_abil[] = { {  1, &(HTeleportation), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	roh_abil[] = { {  1, &(HFast), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	thu_abil[] = { {  1, &(HFire_resistance), "", "" },
+		     {   1, &(HFlying), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	dlg_abil[] = { {  1, &(HDrain_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	gig_abil[] = { {  10, &(HFire_resistance), "cool", "warmer" },
@@ -714,6 +745,14 @@ const struct innate {
 		     {   1, &(HUndead_warning), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	ske_abil[] = { {  1, &(HSick_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {   1, &(HSleep_resistance), "", "" },
+		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HStone_resistance), "", "" },
+		     {   1, &(HMagical_breathing), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	lev_abil[] = { {  1, &(HTelepat), "", "" },
 		     {   1, &(HHallu_party), "", "" },
 		     {   1, &(HDrunken_boxing), "", "" },
@@ -756,6 +795,12 @@ const struct innate {
 	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
 		     {   1, &(HRegeneration), "", "" },
 		     {   1, &(HTeleportation), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	exp_abil[] = { {	 1, &(HPsi_resist), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	rod_abil[] = { {   1, &(HFire_resistance), "", "" },
@@ -1035,6 +1080,12 @@ boolean	inc_or_dec;
 		 *
 		 *	Note: *YES* ACURR is the right one to use.
 		 */
+
+		if (inc_or_dec && Race_if(PM_TRAINER) && rn2(10)) return;
+
+		if (inc_or_dec && Race_if(PM_DUNADAN) && rn2(2)) return;
+
+		if (inc_or_dec && Race_if(PM_PLAYER_SKELETON) && rn2(5)) return;
 
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
@@ -1440,6 +1491,7 @@ int oldlevel, newlevel;
 	case PM_DROW:
 	case PM_ELF:            rabil = elf_abil;	break;
 	case PM_INCANTIFIER:            rabil = inc_abil;	break;
+	case PM_PLAYER_GREMLIN:            rabil = gre_abil;	break;
 	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
 	case PM_KOBOLT:            rabil = kob_abil;	break;
 	case PM_BRETON:            rabil = bre_abil;	break;
@@ -1458,6 +1510,7 @@ int oldlevel, newlevel;
 	case PM_GASTLY:            rabil = gas_abil;	break;
 	case PM_PHANTOM_GHOST:            rabil = gas_abil;	break;
 	case PM_MUMMY:            rabil = mum_abil;	break;
+	case PM_PLAYER_SKELETON:            rabil = ske_abil;	break;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
@@ -1465,11 +1518,17 @@ int oldlevel, newlevel;
 	case PM_RODNEYAN:            rabil = rod_abil;	break;
 	case PM_JELLY:            rabil = jel_abil;	break;
 	case PM_WEAPON_IMP:            rabil = wim_abil;	break;
+	case PM_TRAINER:            rabil = trn_abil;	break;
+	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
+	case PM_PLAYER_DOLGSMAN:            rabil = dlg_abil;	break;
+	case PM_ROHIRRIM:            rabil = roh_abil;	break;
+	case PM_THUNDERLORD:            rabil = thu_abil;	break;
 	case PM_GNOME:		rabil = gno_abil;	break;
 	case PM_BATMAN:		rabil = bat_abil;	break;
 	case PM_HERBALIST:         rabil = hrb_abil;	break;
+	case PM_LIZARDMAN:         rabil = liz_abil;	break;
 	case PM_WEAPON_BUG:         rabil = grd_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
 	case PM_ORC:            rabil = orc_abil;	break;
@@ -1479,6 +1538,8 @@ int oldlevel, newlevel;
 	case PM_MAZKE:	rabil = sed_abil;	break;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
+	case PM_SEA_ELF:	rabil = sea_abil;	break;
+	case PM_DEEP_ELF:	rabil = dee_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
 	case PM_SPRIGGAN:	rabil = spr_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
@@ -1488,6 +1549,7 @@ int oldlevel, newlevel;
 	case PM_LEVITATOR:	rabil = lev_abil;	break;
 	case PM_HUMANOID_ANGEL:	rabil = ang_abil;	break;
 	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;
+	case PM_ANCIPITAL:	rabil = anc_abil;	break;
 	case PM_HUMAN:
 	case PM_VAMPIRE:
 	default:                rabil = 0;		break;
@@ -1641,6 +1703,8 @@ int x;
 		if (Race_if(PM_HUMAN_MONKEY) && tmp < 4) tmp = 4;
 
 		if (Upolyd && strongmonst(youmonst.data) ) tmp += 3;
+
+		if (Race_if(PM_WEAPONIZED_DINOSAUR)) tmp += 5;
 
 		if (uarm && uarm->oartifact == ART_CATHAN_S_NETWORK) tmp += (3 + uarm->spe);
 		if (uarmc && uarmc->oartifact == ART_HOSTES_AD_PULVEREM_FERIRE) tmp += (5 + uarmc->spe);

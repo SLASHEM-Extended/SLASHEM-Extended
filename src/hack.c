@@ -1130,7 +1130,7 @@ int mode;
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;

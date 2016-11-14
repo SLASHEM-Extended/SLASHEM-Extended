@@ -3588,7 +3588,7 @@ xkilled(mtmp, dest)
 		if (!rn2(100) && Race_if(PM_ANGBANDER) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
 
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE);
-		if (!rn2(250) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
+		if (!rn2(Race_if(PM_ROHIRRIM) ? 100 : 250) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 		if (!rn2(100) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_MANA, x, y, TRUE, FALSE);
 		if (!rn2(120) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
 		if (!rn2(40) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEALING, x, y, TRUE, FALSE);

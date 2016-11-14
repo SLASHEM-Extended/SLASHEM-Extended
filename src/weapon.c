@@ -3030,6 +3030,9 @@ int degree;
 		}
 	}
 
+	if (Race_if(PM_DUNADAN) && !rn2(2)) return;
+	if (Race_if(PM_PLAYER_SKELETON) && rn2(3)) return;
+
 	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) P_ADVANCE(skill) += degree;
 	if (!advance_before && can_advance(skill, FALSE)) {
 	    give_may_advance_msg(skill);
@@ -3963,9 +3966,9 @@ const struct def_skill *class_skill;
 	    /* Really high potential in the skill
 	     * Right now only used for H to H skills
 	     */
-	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
+	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
 
-		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
 
 	}
 
@@ -3973,18 +3976,18 @@ const struct def_skill *class_skill;
 	if(!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 
-	if (Role_if(PM_DOOM_MARINE) && (!Race_if(PM_BASTARD) )) {
+	if (Role_if(PM_DOOM_MARINE) && (!Race_if(PM_BASTARD) && !Race_if(PM_YEEK) )) {
 
 		P_SKILL(P_FIREARM) = P_MAX_SKILL(P_FIREARM);
 		P_SKILL(P_BARE_HANDED_COMBAT) = P_MAX_SKILL(P_BARE_HANDED_COMBAT);
@@ -3999,6 +4002,76 @@ const struct def_skill *class_skill;
 			P_ADVANCE(P_BOOMERANG) = 0;
 		}
 		P_MAX_SKILL(P_BOOMERANG) = P_GRAND_MASTER;
+	}
+
+	if (Race_if(PM_STICKER)) {
+
+		if (P_RESTRICTED(P_DEVICES)) {
+			P_SKILL(P_DEVICES) = P_UNSKILLED;
+			P_ADVANCE(P_DEVICES) = 0;
+			P_MAX_SKILL(P_DEVICES) = P_BASIC;
+		} else {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			if (P_MAX_SKILL(P_DEVICES) == P_EXPERT) P_MAX_SKILL(P_DEVICES) = P_MASTER;
+			else if (P_MAX_SKILL(P_DEVICES) == P_MASTER) P_MAX_SKILL(P_DEVICES) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_DEVICES) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_FAWN)) {
+
+		if (P_RESTRICTED(P_DEVICES)) {
+			P_SKILL(P_DEVICES) = P_UNSKILLED;
+			P_ADVANCE(P_DEVICES) = 0;
+			P_MAX_SKILL(P_DEVICES) = P_BASIC;
+		} else {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			if (P_MAX_SKILL(P_DEVICES) == P_EXPERT) P_MAX_SKILL(P_DEVICES) = P_MASTER;
+			else if (P_MAX_SKILL(P_DEVICES) == P_MASTER) P_MAX_SKILL(P_DEVICES) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_DEVICES) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_SATRE)) {
+
+		if (P_RESTRICTED(P_DEVICES)) {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			P_ADVANCE(P_DEVICES) = 20;
+			P_MAX_SKILL(P_DEVICES) = P_SKILLED;
+		} else {
+			P_SKILL(P_DEVICES) = P_BASIC;
+			if (P_MAX_SKILL(P_DEVICES) == P_EXPERT) P_MAX_SKILL(P_DEVICES) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_DEVICES) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_MANSTER)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_BASIC;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_SKILLED;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_DEVELOPER)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_RESTRICTED(skill)) {
+				P_SKILL(skill) = P_UNSKILLED;
+				P_ADVANCE(skill) = 0;
+				P_MAX_SKILL(skill) = P_BASIC;
+			}
+			else if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_MASTER;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_SUPREME_MASTER;
+
+		}
 	}
 
 	if (Race_if(PM_ELONA_SNAIL)) {
@@ -4283,6 +4356,32 @@ const struct def_skill *class_skill;
 		P_ADVANCE(skill) = practice_needed_to_advance(P_SKILL(skill)-1,skill);
 	    }
 	}
+
+	if (Race_if(PM_SKILLOR)) {
+
+		int skillimprove = rnd(P_NUM_SKILLS);
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+		} else if (P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+		} else if (P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+		} else if (P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+		} else if (P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+		} else if (P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+		}
+
+	}
+
+
 }
 
 void
@@ -4296,13 +4395,13 @@ xtraskillinit()
 	if (!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
-		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) ) P_SKILL(skill) = P_BASIC;
+		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 

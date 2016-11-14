@@ -3500,7 +3500,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3559,7 +3559,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3600,7 +3600,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3658,7 +3658,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3703,7 +3703,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -3758,7 +3758,7 @@ newegomon:
 			break;
 			case 4: /* fire */
 			if(Fire_resistance) dmg = 0;
-			if ( /* burnarmor(&youmonst) || */ !rn2(issoviet ? 6 : 33)) /* new calculation -- Amy */ {
+			if ( /* burnarmor(&youmonst) || */ !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
@@ -4804,7 +4804,7 @@ newegomon:
 		boolean youbreath = !breathless(youmonst.data);
 		boolean youghoul = (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY ||
 				u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR ||
-				(Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) );
+				(Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) );
 		trap->once = 1;
 		if (youbreath)
 		    You("smell sweet scent...");
@@ -10020,10 +10020,10 @@ struct obj *box;	/* null for floor trap */
 	burn_away_slime();
 
 	/*if ( burnarmor(&youmonst) || !rn2(33))*/ /* new calculation -- Amy */ {
-	    if (!rn2(issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
-	    if (!rn2(issoviet ? 6 : 33)) destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    if (!rn2(issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(issoviet ? 2 : 33)) burnarmor(&youmonst);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) burnarmor(&youmonst);
 	}
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
@@ -10082,10 +10082,10 @@ struct obj *box;	/* null for floor trap */
 
 	burn_away_slime();
 
-	    if (!rn2(issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
-	    if (!rn2(issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
-	    if (!rn2(issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(issoviet ? 2 : 5)) burnarmor(&youmonst);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) burnarmor(&youmonst);
 
 	if (!box && burn_floor_paper(u.ux, u.uy, see_it, TRUE) && !see_it)
 	    You("smell paper burning.");
@@ -10377,6 +10377,7 @@ register boolean force, here;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 
 		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
@@ -10385,7 +10386,7 @@ register boolean force, here;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
-		} else if (!force && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
+		} else if (!force && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:
 			 *	max luck (full moon):	 5%
 			 *	max luck (elsewhen):	10%
@@ -12383,9 +12384,9 @@ burn_stuff:
 	(void) Boots_off();
 	useup(obj);
     }
-		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SPBOOK_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_FIRE);
     return(FALSE);
 }
 

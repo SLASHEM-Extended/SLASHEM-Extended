@@ -3921,11 +3921,11 @@ hitmu(mtmp, mattk)
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(issoviet ? 6 : 33))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(issoviet ? 6 : 33))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(issoviet ? 10 : 50))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -4079,11 +4079,11 @@ hitmu(mtmp, mattk)
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 4 : 20))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 30))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 30))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		    if (rn2(3)) hurtarmor(AD_LAVA);
@@ -4124,11 +4124,11 @@ hitmu(mtmp, mattk)
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		} /*else dmg = 0;*/
@@ -4847,11 +4847,11 @@ dopois:
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		}
@@ -5887,11 +5887,11 @@ dopois:
 			pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -6520,11 +6520,11 @@ dopois:
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(issoviet ? 6 : 33))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(issoviet ? 6 : 33))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(issoviet ? 10 : 50))
+			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -8022,11 +8022,11 @@ do_stone2:
 			pline("It's extremely hot in here!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);
@@ -10374,11 +10374,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if ((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -10563,11 +10563,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -10610,11 +10610,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 4 : 20))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -10636,11 +10636,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
 		    burn_away_slime();
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 6 : 33))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (Cold_resistance && rn2(20)) {
@@ -11676,6 +11676,11 @@ register int n;
 	if (n == 0) {
 		pline("You are unharmed.");
 		return;
+	}
+
+	if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 1) ) ) {
+		pline("The attack doesn't seem to harm you.");
+		n = 0;
 	}
 
 	/* WAC For consistency...DO be careful using techniques ;B */

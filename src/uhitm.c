@@ -529,6 +529,10 @@ register struct monst *mtmp;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
+	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
+
+	if (Race_if(PM_DEVELOPER)) tmp += 3;
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
 	if (tmp < -127) tmp = -127; /* fail safe */
@@ -1664,6 +1668,9 @@ int thrown;
 			}
 
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
+				tmp += obj->spe;
+			}
+			if (obj && obj->oclass == WAND_CLASS && Race_if(PM_STICKER) && obj->spe > 0) {
 				tmp += obj->spe;
 			}
 
@@ -3088,7 +3095,9 @@ register struct attack *mattk;
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
+
 		if (night() && !rn2(10) && !mdef->mcan && (rnd(100) > mdef->data->mr) ) {
+
 		    if (mdef->data == &mons[PM_CLAY_GOLEM]) {
 			if (!Blind)
 			    pline("Some writing vanishes from %s head!",
@@ -3213,8 +3222,12 @@ register struct attack *mattk;
 		pline("You generate a sinister darkness!");
 		break;
 	    case AD_THIR:
-		healup(tmp, 0, FALSE, FALSE);
+		healup(tmp + (u.ulevel / 2), 0, FALSE, FALSE);
 		pline("You suck %s's %s!", mon_nam(mdef), mbodypart(mdef, BLOOD) );
+		if (Race_if(PM_BURNINATOR)) {
+			u.uen += (tmp + (u.ulevel / 2));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		}
 		break;
 
 	    case AD_FRZE:
@@ -5551,11 +5564,11 @@ uchar aatyp;
 			pline("You are suddenly extremely hot!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(issoviet ? 2 : 5))
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);

@@ -437,6 +437,8 @@ bot1()
 		if (flags.hybridsegfaulter) Sprintf(nb = eos(nb), "F");
 		if (flags.hybridironman) Sprintf(nb = eos(nb), "J");
 		if (flags.hybridamnesiac) Sprintf(nb = eos(nb), "Z");
+		if (flags.hybridproblematic) Sprintf(nb = eos(nb), "B");
+		if (flags.hybridwindinhabitant) Sprintf(nb = eos(nb), "D");
 	}
 
 	if (flags.showscore)

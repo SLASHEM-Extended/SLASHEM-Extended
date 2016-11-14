@@ -9913,7 +9913,7 @@ coord *tm;
 		kind = rnd(TRAPNUM-1);
 
 		/* The trap distribution was, to put it blunt, bullshit. Make it more sane again. --Amy */
-		if (!rn2(issoviet ? 2 : 3)) kind = rnd(ANTI_MAGIC);
+		if (!Race_if(PM_DEVELOPER) && !rn2(issoviet ? 2 : 3)) kind = rnd(ANTI_MAGIC);
 
 		/* reject "too hard" traps */
 		switch (kind) {

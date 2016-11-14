@@ -1686,6 +1686,8 @@ level_difficulty()
 	else
 		retvalue = depth(&u.uz);
 
+	if (Race_if(PM_EXPERT)) retvalue += u.ulevel;
+
 	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
 
 	/* generally increase monster difficulty gradually as the game goes on --Amy */
@@ -1771,6 +1773,8 @@ monster_difficulty()
 	if (tempval < level_difficulty()) tempval = level_difficulty();
 	/* this function is meant to make sure high-level characters don't get stupidly easy monsters at shallow depths,
 	 * yet I also don't want monsters at deep dungeon levels to be of a lower level than they should be. --Amy */
+
+	if (Race_if(PM_DEVELOPER)) tempval += rnd(30);
 
 	if (tempval < 1) tempval = 1;
 	if (tempval > 125) tempval = 125; /* to be on the safe side */

@@ -3474,6 +3474,19 @@ const struct Race races[] = {
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
 },
+{	"ancipital", "ancipital", "ancipitalism", "Acp",
+	{0, 0},
+	PM_ANCIPITAL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  4, 0 }		/* Energy */
+},
 {	"angbander", "angbander", "angband followship", "Agb",
 	{0, 0},
 	PM_ANGBANDER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3591,6 +3604,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"burninator", "burning", "burning forest", "Bur",
+	{0, 0},
+	PM_BURNINATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"centaur", "centaur", "centaurhood", "Cen",
 	{0, 0},
 	PM_HUMANOID_CENTAUR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3680,6 +3706,31 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"deep elf", "deep elven", "deep elvenkind", "Dee",
+	{0, 0},
+	PM_DEEP_ELF, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
+	MH_ELF | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_ELF, MH_ELF, MH_ORC,
+	/*  Str    Int Wis Dex Con Cha */
+	{    3,     3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
+	{  7, 0,  3, 0,  3, 0 }		/* Energy */
+},
+{	"developer", "developer", "DevTeam", "Dvp",
+	{0, 0},
+	PM_DEVELOPER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  6, 0,  0, 8,  12, 0 },	/* Hit points */
+	{  5, 0,  9, 0,  13, 0 }		/* Energy */
+},
 {	"devil", "devilish", "devilhood", "Dev",
 	{0, 0},
 	PM_HUMANOID_DEVIL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -3692,6 +3743,31 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 5,  3, 0 },	/* Hit points */
 	{  3, 0,  5, 0,  5, 0 }		/* Energy */
+},
+{	"dinosaur", "dinosaur", "jurassic park", "Din",
+	{0, 0},
+	PM_WEAPONIZED_DINOSAUR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  10, 0,  0, 10,  10, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"dolgsman", "dolgsman", "dolgskind", "Dol",
+	{0, 0},
+	PM_PLAYER_DOLGSMAN, NON_PM, NON_PM, NON_PM,
+	MH_HOBBIT | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HOBBIT, MH_HOBBIT, MH_GNOME|MH_ORC,
+	/*  Str    Int Wis Dex Con Cha */
+	{   3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  4, 0,  2, 1,  2, 0 }		/* Energy */
 },
 {	"doppelganger", "doppelganger", "doppelganger-kind", "Dop",
 	{0, 0},
@@ -3743,6 +3819,31 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"dufflepud", "dufflepud", "duffling", "Duf",
+	{0, 0},
+	PM_DUFFLEPUD, NON_PM, PM_DWARF_MUMMY, PM_DWARF_ZOMBIE,
+	MH_DWARF | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_DWARF, 0, MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"dunadan", "dunadan", "dunedain", "Dun",
+	{0, 0},
+	PM_DUNADAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  4, 0,  0, 4,  3, 0 },	/* Hit points */
+	{  3, 0,  4, 0,  4, 0 }		/* Energy */
+},
 {	"dwarf", "dwarven", "dwarvenkind", "Dwa",
 	{0, 0},
 	PM_DWARF, NON_PM, PM_DWARF_MUMMY, PM_DWARF_ZOMBIE,
@@ -3792,6 +3893,32 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
+},
+{	"expert", "expert", "expertise", "Exp",
+	{0, 0},
+	PM_EXPERT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"fawn", "fawn", "fawning", "Faw",
+	{0, 0},
+	PM_FAWN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
 {	"fenek", "fenek", "fenekhood", "Fen",
 	{0, 0},
@@ -3880,6 +4007,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"gremlin", "gremlin", "grem county", "Gre",
+	{0, 0},
+	PM_PLAYER_GREMLIN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  3, 0 }		/* Energy */
 },
 {	"grid bug", "gridbug", "gridbughood", "Grd",
 	{0, 0},
@@ -4189,6 +4329,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"lizardman", "lizard", "lizardhood", "Liz",
+	{0, 0},
+	PM_LIZARDMAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 2,  3, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  2, 0 }		/* Energy */
+},
 {	"lycanthrope", "lycanthropic", "lycanthropehood", "Lyc",
 	{0, 0},
 	PM_HUMAN_WEREWOLF, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4277,6 +4430,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"monster", "monster", "monster generator", "Mns",
+	{0, 0},
+	PM_MANSTER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"moon elf", "moonelven", "moonelvenkind", "Moo",
 	{0, 0},
@@ -4456,6 +4622,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"problematic", "problematic", "problems", "Pro",
+	{0, 0},
+	PM_PROBLEMATIC, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"race X", "x-race", "x-race", "Xra",
 	{0, 0},
 	PM_RACE_X, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
@@ -4520,6 +4699,19 @@ const struct Race races[] = {
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
 },
+{	"rohirrim", "rohirrim", "rohan", "Roh",
+	{0, 0},
+	PM_ROHIRRIM, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"rougelike", "rougelike", "angles of satin", "Rog",
 	{0, 0},
 	PM_ROUGELIKE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4533,6 +4725,19 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"satre", "satre", "satredom", "Sat",
+	{0, 0},
+	PM_SATRE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  4, 0,  0, 4,  6, 0 },	/* Hit points */
+	{  4, 0,  6, 0,  9, 0 }		/* Energy */
+},
 {	"scurrier", "scurrier", "scurriership", "Scu",  /* by jonadab */
 	{0, 0},
       PM_SCURRIER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4544,6 +4749,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
       {  1, 0,  0, 1,  1, 0 },	/* Hit points */
       {  1, 0,  2, 0,  2, 0 } 	/* Energy */
+},
+{	"sea elf", "sea elven", "sea elvenkind", "Sea",
+	{0, 0},
+	PM_SEA_ELF, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
+	MH_ELF | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_ELF, MH_ELF, MH_ORC,
+	/*  Str    Int Wis Dex Con Cha */
+	{    3,     3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  6, 0,  3, 0,  3, 0 }		/* Energy */
 },
 {	"segfaulter", "segfaulting", "SIGSEGV", "Seg",
 	{0, 0},
@@ -4583,6 +4800,32 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"skeleton", "skeleton", "skeletal remains", "Ske",
+	{0, 0},
+	PM_PLAYER_SKELETON, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"skillor", "skillor", "pure skill", "Ski",
+	{0, 0},
+	PM_SKILLOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
 {	"snail", "snail", "snailing", "Snl",
 	{0, 0},
@@ -4688,6 +4931,19 @@ const struct Race races[] = {
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  4, 0,  5, 0,  5, 0 }		/* Energy */
 },
+{	"sticker", "sticky", "stickiness", "Sti",
+	{0, 0},
+	PM_STICKER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"sustainer", "sustainer", "sustainability", "Sus",
 	{0, 0},
 	PM_SUSTAINER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4725,6 +4981,32 @@ const struct Race races[] = {
 	{ STR19(25), 25, 25, 25, 25, 25 },
 	{2, 0, 1, 1, 1, 1},        /* Hit points */
 	{2, 0, 3, 0, 2, 2} /* Energy */
+},
+{	"thunderlord", "thunderlord", "pern", "Thu",
+	{0, 0},
+	PM_THUNDERLORD, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  3, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"trainer", "trainer", "training", "Trn",
+	{0, 0},
+	PM_TRAINER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"transformer", "transformer", "transferhood", "Tra",
 	{0, 0},
@@ -4928,6 +5210,32 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"wind inhabitant", "wind", "windy well", "Win",
+	{0, 0},
+	PM_WIND_INHABITANT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"wisp", "wisp", "wisp kingdom", "Wis",
+	{0, 0},
+	PM_WISP, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  8, 0,  8, 0,  8, 0 }		/* Energy */
+},
 {	"worm that walks", "worm", "wormhood", "Wor",
 	{0, 0},
 	PM_WORM_THAT_WALKS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4951,6 +5259,31 @@ const struct Race races[] = {
 	{ STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"xorn", "xorn", "xorndom", "Xor",
+	{0, 0},
+	PM_WEAPON_XORN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"yeek", "yeek", "yeekdom", "Yee",
+	{0, 0},
+	PM_YEEK, NON_PM, PM_ORC_MUMMY, PM_ORC_ZOMBIE,
+	MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_ORC, 0, MH_HUMAN|MH_ELF|MH_DWARF|MH_HOBBIT,
+	/*  Str    Int Wis Dex Con Cha */
+	{   3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
 {	"yokuda", "yokuda", "yokudahood", "Yok",
@@ -5445,7 +5778,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(22)) {
+			switch (rnd(24)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -5491,12 +5824,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridironman = 1; break;
 				case 22:
 					flags.hybridamnesiac = 1; break;
+				case 23:
+					flags.hybridproblematic = 1; break;
+				case 24:
+					flags.hybridwindinhabitant = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(22)) {
+				switch (rnd(24)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -5563,6 +5900,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 22:
 						if (!(flags.hybridamnesiac)) {flags.hybridamnesiac = 1; flags.hybridization++; break;
+						}
+					case 23:
+						if (!(flags.hybridproblematic)) {flags.hybridproblematic = 1; flags.hybridization++; break;
+						}
+					case 24:
+						if (!(flags.hybridwindinhabitant)) {flags.hybridwindinhabitant = 1; flags.hybridization++; break;
 						}
 	
 				}

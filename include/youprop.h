@@ -34,7 +34,7 @@
 #define HFire_resistance	u.uprops[FIRE_RES].intrinsic
 #define EFire_resistance	u.uprops[FIRE_RES].extrinsic
 #define Fire_resistance		((HFire_resistance || EFire_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_AND_YOUR_MORTAL_WORLD_SHAL) || (uwep && uwep->oartifact == ART_FAEAEAEAEAEAU) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_WRATH_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
-				 resists_fire(&youmonst) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && (moves % 3 == 0) ) || is_fire_resistant(youmonst.data)) && !Race_if(PM_TROLLOR) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
+				 resists_fire(&youmonst) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && (moves % 3 == 0) ) || is_fire_resistant(youmonst.data)) && !Race_if(PM_TROLLOR) && !Race_if(PM_ANCIPITAL) && !Race_if(PM_SEA_ELF) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
 #define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
@@ -45,7 +45,7 @@
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
-#define Sleep_resistance	( !( (Thirst || u.uprops[THIRST].extrinsic || have_thirststone()) && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !have_sleepstone() && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || \
+#define Sleep_resistance	( !( (Thirst || u.uprops[THIRST].extrinsic || have_thirststone()) && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !Race_if(PM_DEEP_ELF) && !have_sleepstone() && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || \
 				 resists_sleep(&youmonst) || is_sleep_resistant(youmonst.data)) )
 #define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -143,7 +143,7 @@
 
 #define HBurned		u.uprops[BURNED].intrinsic
 #define EBurned		u.uprops[BURNED].extrinsic
-#define Burned		(HBurned || EBurned || HeavyBurned || (uarms && uarms->oartifact == ART_BURNING_DISK) )
+#define Burned		(HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uarms && uarms->oartifact == ART_BURNING_DISK) )
 #define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic
@@ -151,7 +151,7 @@
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != CONDOME)
 		/* ...means blind because of a cover */
 #define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
-		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_DIMOAK_S_HEW && !flags.blindfox ) && !(uarmh && uarmh->oartifact == ART_BLINDING_FOG && !flags.blindfox ) && !(uarms && uarms->oartifact == ART_SHADOWDISK && !flags.blindfox ) )
+		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ) && !(Race_if(PM_PLAYER_DOLGSMAN) && !flags.blindfox) && !(uwep && uwep->oartifact == ART_DIMOAK_S_HEW && !flags.blindfox ) && !(uarmh && uarmh->oartifact == ART_BLINDING_FOG && !flags.blindfox ) && !(uarms && uarms->oartifact == ART_SHADOWDISK && !flags.blindfox ) )
 		/* ...the Eyes operate even when you really are blind
 		    or don't have any eyes */
 /* added possibility of playing the entire game blind --Amy*/
@@ -306,9 +306,9 @@
 #define HTelepat		u.uprops[TELEPAT].intrinsic
 #define ETelepat		u.uprops[TELEPAT].extrinsic
 
-#define Blind_telepat		( ((HTelepat || ETelepat || telepathic(youmonst.data)) && !NoTelepat && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoTelepat && PlayerInHighHeels ))
+#define Blind_telepat		( ((HTelepat || ETelepat || Race_if(PM_DEVELOPER) || telepathic(youmonst.data)) && !NoTelepat && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoTelepat && PlayerInHighHeels ))
 
-#define Unblind_telepat		(ETelepat && !NoTelepat)
+#define Unblind_telepat		((ETelepat || Race_if(PM_DEVELOPER)) && !NoTelepat)
 #define NoTelepat	( (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0))) || (uarmh && ( (uarmh->otyp == TINFOIL_HELMET) || (OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aluminium helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem iz alyuminiya") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "alyuminiy dubulg'a") ) ) ) ) )
 
 #define HHallu_party	u.uprops[HALLU_PARTY].intrinsic
@@ -426,7 +426,7 @@
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
 #define BStealth		u.uprops[STEALTH].blocked
-#define Stealth			(( (HStealth || EStealth || u.uprops[MULTISHOES].extrinsic || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
+#define Stealth			(( (HStealth || EStealth || u.uprops[MULTISHOES].extrinsic || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
 #define NoStealth	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STEALTH].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
@@ -440,7 +440,7 @@
 /* according to Yasdorian, I love aggravate monster. Indeed, many of my artifacts have it. --Amy */
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
 #define EAggravate_monster	u.uprops[AGGRAVATE_MONSTER].extrinsic
-#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (uwep && uwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
+#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (uwep && uwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
 
 #define HConflict		u.uprops[CONFLICT].intrinsic
 #define EConflict		u.uprops[CONFLICT].extrinsic
@@ -585,8 +585,8 @@
 
 #define HFast			u.uprops[FAST].intrinsic
 #define EFast			u.uprops[FAST].extrinsic
-#define Fast			( (HFast || EFast) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) )
-#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || (uwep && uwep->oartifact == ART_FUMATA_YARI) || (uwep && uwep->oartifact == ART_INGRAM_MAC___) || (uarmc && uarmc->oartifact == ART_SPEEDRUNNER_S_DREAM) || (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL) || (uarmf && uarmf->oartifact == ART_UNTRAINED_HALF_MARATHON) || (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) || (uright && uright->oartifact == ART_CRIMINAL_QUEEN) || (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) || (uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || u.uprops[MULTISHOES].extrinsic ) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && PlayerInHighHeels ))
+#define Fast			( (HFast || EFast) && !NoFast && !Race_if(PM_DEVELOPER) && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) )
+#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || (uwep && uwep->oartifact == ART_FUMATA_YARI) || (uwep && uwep->oartifact == ART_INGRAM_MAC___) || (uarmc && uarmc->oartifact == ART_SPEEDRUNNER_S_DREAM) || (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL) || (uarmf && uarmf->oartifact == ART_UNTRAINED_HALF_MARATHON) || (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) || (uright && uright->oartifact == ART_CRIMINAL_QUEEN) || (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) || (uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || u.uprops[MULTISHOES].extrinsic ) && !Race_if(PM_DEVELOPER) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && !Race_if(PM_DEVELOPER) && PlayerInHighHeels ))
 #define NoFast	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FAST].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic

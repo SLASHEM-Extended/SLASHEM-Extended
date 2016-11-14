@@ -263,6 +263,8 @@ const char *name;	/* if null, then format `obj' */
 		if (is_acid && Acid_resistance) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
+		} else if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && obj && obj->spe < 2) {
+			pline("The attack doesn't seem to harm you.");
 		}
 		else {
 			if (is_acid) {pline("It burns!");

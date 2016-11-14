@@ -415,14 +415,14 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = 0;
+		flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = 0;
 
 		if (yn("Use hybrid races?") == 'y') {
 			if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
 			    if (!rn2(10)) {
 
-				switch (rnd(22)) {
+				switch (rnd(24)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -512,11 +512,19 @@ give_up:	/* Quit */
 						if (!Race_if(PM_AMNESIAC)) {flags.hybridamnesiac = 1; flags.hybridization++;
 						}
 						break;
+					case 23:
+						if (!Race_if(PM_PROBLEMATIC)) {flags.hybridproblematic = 1; flags.hybridization++;
+						}
+						break;
+					case 24:
+						if (!Race_if(PM_WIND_INHABITANT)) {flags.hybridwindinhabitant = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(22)) {
+					switch (rnd(24)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -606,6 +614,14 @@ give_up:	/* Quit */
 							if (!(flags.hybridamnesiac)) {
 								flags.hybridamnesiac = 1; flags.hybridization++; break;
 							}
+						case 23:
+							if (!(flags.hybridproblematic)) {
+								flags.hybridproblematic = 1; flags.hybridization++; break;
+							}
+						case 24:
+							if (!(flags.hybridwindinhabitant)) {
+								flags.hybridwindinhabitant = 1; flags.hybridization++; break;
+							}
 					}
 				}
 
@@ -615,7 +631,7 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				switch (rnd(22)) {
+				switch (rnd(24)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -727,12 +743,20 @@ give_up:	/* Quit */
 						flags.hybridamnesiac = 1; flags.hybridization++;
 						}
 						break;
+					case 23:
+						if (!Race_if(PM_PROBLEMATIC)) {flags.hybridproblematic = 1; flags.hybridization++;
+						}
+						break;
+					case 24:
+						if (!Race_if(PM_WIND_INHABITANT)) {flags.hybridwindinhabitant = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(22)) {
+					switch (rnd(24)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -822,6 +846,14 @@ give_up:	/* Quit */
 							if (!(flags.hybridamnesiac)) {
 								flags.hybridamnesiac = 1; flags.hybridization++; break;
 							}
+						case 23:
+							if (!(flags.hybridproblematic)) {
+								flags.hybridproblematic = 1; flags.hybridization++; break;
+							}
+						case 24:
+							if (!(flags.hybridwindinhabitant)) {
+								flags.hybridwindinhabitant = 1; flags.hybridization++; break;
+							}
 
 					}
 				}
@@ -891,6 +923,12 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_IRONMAN)) {if (yn("Add the ironman hybrid race to your character?") == 'y')
 					{flags.hybridironman = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_PROBLEMATIC)) {if (yn("Add the problematic hybrid race to your character?") == 'y')
+					{flags.hybridproblematic = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_WIND_INHABITANT)) {if (yn("Add the wind inhabitant hybrid race to your character?") == 'y')
+					{flags.hybridwindinhabitant = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_SEGFAULTER)) {if (yn("Add the segfaulter hybrid race to your character (WARNING: NOT RECOMMENDED!)?") == 'y')
 					{flags.hybridsegfaulter = 1; flags.hybridization++;}

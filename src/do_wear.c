@@ -2867,9 +2867,48 @@ boolean noisy;
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
 	}
+
+	if (!is_suit(otmp) && !is_boots(otmp) && Race_if(PM_WEAPONIZED_DINOSAUR) && !Upolyd) {
+		if (noisy) pline("As a dinosaur, the only types of armor you can wear are suits and boots.");
+		return 0;
+	}
+
+	if (is_boots(otmp) && Race_if(PM_FAWN) && !Upolyd) {
+		if (noisy) pline("Fawns cannot wear boots!");
+		return 0;
+	}
+	if (is_boots(otmp) && Race_if(PM_SATRE) && !Upolyd) {
+		if (noisy) pline("Satres cannot wear boots!");
+		return 0;
+	}
+	if (is_cloak(otmp) && Race_if(PM_SATRE) && !Upolyd) {
+		if (noisy) pline("Satres cannot wear cloaks!");
+		return 0;
+	}
+	if (is_shirt(otmp) && Race_if(PM_SATRE) && !Upolyd) {
+		if (noisy) pline("Satres cannot wear shirts!");
+		return 0;
+	}
+	if (is_suit(otmp) && Race_if(PM_SATRE) && !Upolyd) {
+		if (noisy) pline("Satres cannot wear body armor!");
+		return 0;
+	}
+	if (is_suit(otmp) && Race_if(PM_WEAPON_XORN) && !Upolyd) {
+		if (noisy) pline("Xorns are too big to wear body armor!");
+		return 0;
+	}
+
 	if (is_boots(otmp) && noisy && Race_if(PM_ELONA_SNAIL)) {
 		pline("Snails are completely unable to move if they wear boots that aren't high-heeled. If you want to wear these, you should be sure that they are high-heeled because otherwise you're screwed!");
 		if (yn("Are you sure you want to put them on?") != 'y') return 0;
+	}
+
+	if (is_boots(otmp) && noisy && Race_if(PM_WEAPONIZED_DINOSAUR)) {
+		if (yn("As a dinosaur, wearing non-high-heeled boots slows you down to half speed, so you should be sure that the pair you're trying to put on is high-heeled. Do you want to wear them?") != 'y') return 0;
+	}
+
+	if (is_boots(otmp) && noisy && Race_if(PM_DUFFLEPUD)) {
+		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
     if (which && cantweararm(youmonst.data) && !Race_if(PM_TRANSFORMER)  &&
@@ -2924,7 +2963,7 @@ boolean noisy;
 	   let's pretend the courier actually doesn't have one. By the way, Benny is the "some random guy" quest nemesis
 	   in the courier quest, since all Fallout New Vegas NPCs are undistinguishable clones of each other. --Amy */
 
-	} else if (Race_if(PM_ILLITHID)) {
+	} else if (Race_if(PM_ILLITHID) || Race_if(PM_ANCIPITAL)) {
 	    if (noisy)
 		pline("Your tentacles prevent that action!");
 	    err++;
