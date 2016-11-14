@@ -4513,7 +4513,7 @@ use_weapon:
 
 			if (dhit) {
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > 0 && !rn2(500) && (!(uwep->oartifact) || !rn2(2)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 500) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(2)) ) {
 					uwep->spe--;
 					pline("Your weapon dulls.");
 				}

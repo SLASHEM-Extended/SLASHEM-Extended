@@ -1146,7 +1146,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2(250) && blocker->spe > 0 && (!(blocker->oartifact) || !rn2(3))) {
+		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 250) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(3))) {
 			blocker->spe--;
 			pline("Your %s dulls.", simple_typename(blocker->otyp));
 		}
