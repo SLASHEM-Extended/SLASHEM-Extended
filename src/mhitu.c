@@ -1145,8 +1145,23 @@ register struct attack *mattk;
 			use_skill(P_BODY_ARMOR, 1);
 		}
 
+		int savechance = 0;
+
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_BODY_ARMOR)) {
+
+			    case P_BASIC:		savechance = 1; break;
+			    case P_SKILLED:	savechance = 2; break;
+			    case P_EXPERT:	savechance = 3; break;
+			    case P_MASTER:	savechance = 4; break;
+			    case P_GRAND_MASTER:savechance = 5; break;
+			    case P_SUPREME_MASTER:savechance = 6; break;
+			    default: savechance += 0; break;
+			}
+		}
+
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(4))) {
+		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));

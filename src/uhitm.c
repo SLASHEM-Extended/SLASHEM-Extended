@@ -4577,8 +4577,24 @@ use_weapon:
 #endif
 
 			if (dhit) {
+
+				int savechance = 0;
+
+				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+					switch (P_SKILL(P_GENERAL_COMBAT)) {
+
+					    case P_BASIC:		savechance = 1; break;
+					    case P_SKILLED:	savechance = 2; break;
+					    case P_EXPERT:	savechance = 3; break;
+					    case P_MASTER:	savechance = 4; break;
+					    case P_GRAND_MASTER:savechance = 5; break;
+					    case P_SUPREME_MASTER:savechance = 6; break;
+					    default: savechance += 0; break;
+					}
+				}
+
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
