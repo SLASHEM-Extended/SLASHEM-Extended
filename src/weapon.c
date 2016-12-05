@@ -2814,9 +2814,13 @@ int enhance_skill(boolean want_dump)
 	    to_advance = eventually_advance = maxxed_cnt = 0;
 	    for (longest = 0, i = 0; i < P_NUM_SKILLS; i++) {
 		if (P_RESTRICTED(i)) continue;
-		if (i == P_TWO_WEAPON_COMBAT &&
+
+		/* stupidity... If you fucking have the fucking skill and fucking trained it while being fucking polymorphed,
+		 * then there's ZERO FUCKING REASON TO NOT FUCKING SHOW IT IN THE FUCKING DUMP!!! --Amy */
+		/*if (i == P_TWO_WEAPON_COMBAT &&
 			youmonst.data->mattk[1].aatyp != AT_WEAP)
-		    continue;
+		    continue;*/
+
 		if ((len = strlen(P_NAME(i))) > longest)
 		    longest = len;
 		if (can_advance(i, speedy)) to_advance++;
@@ -2898,9 +2902,11 @@ int enhance_skill(boolean want_dump)
 #endif
 
 		if (P_RESTRICTED(i)) continue;
-		if (i == P_TWO_WEAPON_COMBAT &&
+		/* I don't like the idea of hidden skills. They probably won't appear in the endgame dump either! --Amy */
+		/*if (i == P_TWO_WEAPON_COMBAT &&
 			youmonst.data->mattk[1].aatyp != AT_WEAP)
-		    continue;
+		    continue;*/
+		/* And therefore we're showing the two-weapon combat skill at all times now. */
 		/*
 		 * Sigh, this assumes a monospaced font unless
 		 * iflags.menu_tab_sep is set in which case it puts
