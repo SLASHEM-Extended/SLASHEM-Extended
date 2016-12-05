@@ -1672,15 +1672,29 @@ boolean artif;
 		if (otmp->otyp == WONDER_STONE) otmp->oinvis = 1;
 
 		/* KMH, balance patch -- healthstone replaces rotting/health */
-		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE)
-			{ curse_on_creation(otmp); break;}
+		if (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE) {
+			curse_on_creation(otmp);
+			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
+			else otmp->quan = 1L;
+
+			if (artif && !rn2(50))
+			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			else if (artif && !rn2(150)) {
+			    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+				otmp->fakeartifact = 1;
+				u.fakeartifacts++;
+			}
+
+			break;
+		}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
+	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
 		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(5,5);
 		else if (otmp->otyp == SMALL_PIECE_OF_UNREFINED_MITHR && rn2(2) ) otmp->quan = (long) rn1(6,6);
 		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) otmp->quan = (long) rn1(10,10);
-	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
-		else if ((otmp->otyp != LUCKSTONE) && (otmp->otyp != HEALTHSTONE) && (otmp->otyp != STONE_OF_MAGIC_RESISTANCE) && !is_nastygraystone(otmp) &&
-				!rn2(6)) otmp->quan = 2L;
+	/* it's too easy to tell flint etc. apart from dangerous gray stones, so let's allow the latter to spawn
+	 * in bigger stacks occasionally just to troll players who expect stacks to always be flint. --Amy */
+		else if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 		else otmp->quan = 1L;
 		if(!rn2(ishaxor ? 4 : 8)) {
 			otmp->spe = rne(2);
