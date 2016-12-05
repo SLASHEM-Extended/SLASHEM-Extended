@@ -45,6 +45,9 @@ static struct Bool_Opt
 	boolean	*addr, initvalue;
 	int optflags;
 } boolopt[] = {
+
+	{"alphabet_inv", &flags.alphabetinv, FALSE, SET_IN_FILE},
+
 #ifdef AMIGA
 	{"altmeta", &flags.altmeta, TRUE, DISP_IN_GAME},
 #else
@@ -105,7 +108,7 @@ static struct Bool_Opt
 	{"fast_map", (boolean *)0, TRUE, SET_IN_FILE},
 #endif
 	{"female", &flags.female, FALSE, DISP_IN_GAME},
-	{"fixinv", &flags.invlet_constant, TRUE, SET_IN_GAME},
+	{"fixinv", &flags.invlet_constant, TRUE, SET_IN_FILE},
 #ifdef AMIFLUSH
 	{"flush", &flags.amiflush, FALSE, SET_IN_GAME},
 #else

@@ -2571,6 +2571,7 @@ register const char *let,*word;
 	ap = altlets;
 
 	ilet = 'a';
+
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
 	    if (!flags.invlet_constant)
 #ifdef GOLDOBJ
@@ -3665,8 +3666,18 @@ long* out_cnt;
 nextclass:
 	classcount = 0;
 	any.a_void = 0;		/* set all bits to zero */
+
+	/*if (flags.alphabetinv) ilet = 'a'-1;*/
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		ilet = otmp->invlet;
+		/*if (!flags.alphabetinv)*/ ilet = otmp->invlet;
+
+		/*if (flags.alphabetinv) {
+			if(ilet == 'z') ilet = 'A';
+			else if(ilet == 'Z') ilet = 'a';
+			else ilet++;
+		}*/
+
 		if(!lets || !*lets || index(lets, ilet)) {
 			if (!flags.sortpack || otmp->oclass == *invlet) {
 			    if (flags.sortpack && !classcount) {

@@ -15,6 +15,9 @@
  */
 
 struct flag {
+
+	boolean  alphabetinv;	/* alphabetic sorting in inventory */
+
 #ifdef AMIFLUSH
 	boolean  altmeta;	/* use ALT keys as META */
 	boolean  amiflush;	/* kill typeahead */
