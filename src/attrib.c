@@ -980,6 +980,11 @@ boolean parameter; /* So I can't think up of a good name.  So sue me. --KAA */
 
 	if (uarmg && uarmg->otyp == GAUNTLETS_OF_GOOD_FORTUNE && !uarmg->cursed) bonchance += 2;
 
+	/* that sign int long conversion seems to screw over the calculation, discovered by Dikkin.
+	 * This is supposed to be a fix. --Amy */
+	if (bonchance > 50) bonchance = 50;
+	if (bonchance < -50) bonchance = -50;
+
 	u.moreluckpts = bonchance;
 	
 	return sgn((int)bonchance);
