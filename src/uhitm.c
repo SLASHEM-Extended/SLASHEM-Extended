@@ -1044,7 +1044,7 @@ int thrown;
 		if (Race_if(PM_KHAJIIT)) tmp += rnd(4);
 		if (Race_if(PM_FENEK)) tmp += rnd(2);
 
-		if (u.nailpolish && !uarmg) {
+		if (u.nailpolish && (!uarmg || FingerlessGloves) ) {
 			tmp += (u.nailpolish * 2);
 			if (rnd(10) <= u.nailpolish) {
 				u.nailpolish--;
