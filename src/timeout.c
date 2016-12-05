@@ -4271,6 +4271,9 @@ long timeout;
 	    case WAX_CANDLE:
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
+	    case UNAFFECTED_CANDLE:
+	    case SPECIFIC_CANDLE:
+	    case __CANDLE:
 	    case NATURAL_CANDLE:
 	    case UNSPECIFIED_CANDLE:
 	    case GENERAL_CANDLE:
@@ -4605,6 +4608,9 @@ begin_burn(obj, already_lit)
 	    case WAX_CANDLE:
 	    case JAPAN_WAX_CANDLE:
 	    case OIL_CANDLE:
+	    case UNAFFECTED_CANDLE:
+	    case SPECIFIC_CANDLE:
+	    case __CANDLE:
 	    case NATURAL_CANDLE:
 	    case UNSPECIFIED_CANDLE:
 	    case GENERAL_CANDLE:

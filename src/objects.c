@@ -2195,7 +2195,7 @@ TOOL("lock pick", (char *)0,    1, 0, 0, 0, 750,  0,  20, IRON, HI_METAL),
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
-TOOL("tallow candle", "candle", 0, 1, 0, 0, 492,  0, 100, WAX, CLR_WHITE),
+TOOL("tallow candle", "candle", 0, 1, 0, 0, 486,  0, 100, WAX, CLR_WHITE),
 TOOL("wax candle", "candle",    0, 1, 0, 0, 396,  0, 100, WAX, CLR_WHITE),
 TOOL("magic candle",  "candle", 0, 1, 1, 0,  50,  0, 100, WAX, CLR_WHITE),
 TOOL("Japan-wax candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
@@ -2203,6 +2203,9 @@ TOOL("oil candle", "candle",    0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
 TOOL("general candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
 TOOL("natural candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
 TOOL("unspecified candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
+TOOL("unaffected candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
+TOOL("specific candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
+TOOL("0 candle", "candle", 0, 1, 0, 0, 2, 0, 100, WAX, CLR_WHITE),
 TOOL("oil lamp", "lamp",        0, 0, 0, 0, 250, 0,  100, COPPER, CLR_YELLOW),
 TOOL("brass lantern", (char *)0,1, 0, 0, 0,  150, 0,  100, COPPER, CLR_YELLOW),
 TOOL("magic lamp", "lamp",      0, 0, 1, 0,  100, 0,100, COPPER, CLR_YELLOW),

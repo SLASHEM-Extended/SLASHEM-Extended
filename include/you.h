@@ -491,6 +491,9 @@ struct you {
 	int unobtainable5;	
 	int unobtainable6;	
 	int unobtainable7;	
+	int unobtainable8;	
+	int unobtainable9;	
+	int unobtainable10;	
 	int unobtainablegeno;	/* for item genocide */
 	int veryobtainable;	/* nice patch idea - item type that is generated more frequently */
 	int veryobtainableboost;	/* frequency added */
@@ -547,6 +550,9 @@ struct you {
 	int alwayscurseditem5;
 	int alwayscurseditem6;
 	int alwayscurseditem7;
+	int alwayscurseditem8;
+	int alwayscurseditem9;
+	int alwayscurseditem10;
 
 	int menoraget;
 	int bookofthedeadget;

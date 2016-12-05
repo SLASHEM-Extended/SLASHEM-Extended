@@ -1478,6 +1478,18 @@ boolean artif;
 		otyp = GOLD_PIECE;
 	}
 
+	if (otyp == u.unobtainable8) {
+		otyp = GOLD_PIECE;
+	}
+
+	if (otyp == u.unobtainable9) {
+		otyp = GOLD_PIECE;
+	}
+
+	if (otyp == u.unobtainable10) {
+		otyp = GOLD_PIECE;
+	}
+
 	if (otyp == u.unobtainablegeno) {
 		otyp = GOLD_PIECE;
 	}
@@ -1697,8 +1709,11 @@ boolean artif;
 		case WAX_CANDLE:
 		case JAPAN_WAX_CANDLE:
 		case OIL_CANDLE:
-		case NATURAL_CANDLE:
 		case UNSPECIFIED_CANDLE:
+		case SPECIFIC_CANDLE:
+		case __CANDLE:
+		case NATURAL_CANDLE:
+		case UNAFFECTED_CANDLE:
 		case GENERAL_CANDLE:
 			otmp->spe = 1;
 					otmp->age = 20L * /* 400 or 200 */
@@ -2165,6 +2180,9 @@ boolean artif;
 	if (otyp == u.alwayscurseditem5) curse_on_creation(otmp);
 	if (otyp == u.alwayscurseditem6) curse_on_creation(otmp);
 	if (otyp == u.alwayscurseditem7) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem8) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem9) curse_on_creation(otmp);
+	if (otyp == u.alwayscurseditem10) curse_on_creation(otmp);
 
 	/* Some things must get done (timers) even if init = 0 */
 	switch (otmp->otyp) {

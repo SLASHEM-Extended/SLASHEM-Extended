@@ -1963,6 +1963,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && (u.unobtainablegeno != -1) )) {
 		Sprintf(buf, "genocided: %s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		enl_msg("This item ", "is ", "was ", buf );
@@ -2115,6 +2130,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
+		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
@@ -4212,6 +4242,15 @@ int final;
 	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
 	if (u.unobtainablegeno != -1) {
 		Sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
 		dump("  You had genocided this item: ", buf );
@@ -4311,6 +4350,15 @@ int final;
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
+	dump("  The RNG hath decreed that this item was ", buf );
+
+	Sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
 	Sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);

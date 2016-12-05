@@ -539,7 +539,10 @@ struct obj {
 			 (otmp)->otyp == GENERAL_CANDLE || \
 			 (otmp)->otyp == NATURAL_CANDLE || \
 			 (otmp)->otyp == UNSPECIFIED_CANDLE || \
-			 (otmp)->otyp == MAGIC_CANDLE)
+			 (otmp)->otyp == MAGIC_CANDLE || \
+			 (otmp)->otyp == UNAFFECTED_CANDLE || \
+			 (otmp)->otyp == SPECIFIC_CANDLE || \
+			 (otmp)->otyp == __CANDLE)
 /* maximum amount of oil in a potion of oil */
 #define MAX_OIL_IN_FLASK 400
 
@@ -556,6 +559,9 @@ struct obj {
 				|| (otmp)->otyp == GENERAL_CANDLE\
 				|| (otmp)->otyp == NATURAL_CANDLE\
 				|| (otmp)->otyp == UNSPECIFIED_CANDLE\
+				|| (otmp)->otyp == UNAFFECTED_CANDLE\
+				|| (otmp)->otyp == SPECIFIC_CANDLE\
+				|| (otmp)->otyp == __CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 /* object can be ignited */
 #define ignitable(otmp)	((otmp)->otyp == BRASS_LANTERN\
@@ -569,6 +575,9 @@ struct obj {
 				|| (otmp)->otyp == GENERAL_CANDLE\
 				|| (otmp)->otyp == NATURAL_CANDLE\
 				|| (otmp)->otyp == UNSPECIFIED_CANDLE\
+				|| (otmp)->otyp == UNAFFECTED_CANDLE\
+				|| (otmp)->otyp == SPECIFIC_CANDLE\
+				|| (otmp)->otyp == __CANDLE\
 				|| (otmp)->otyp == MAGIC_CANDLE\
 				|| (otmp)->otyp == POT_OIL)
 

@@ -4210,9 +4210,12 @@ doapply()
 	case MAGIC_CANDLE:
 	case TALLOW_CANDLE:
 	case OIL_CANDLE:
+	case UNSPECIFIED_CANDLE:
+	case SPECIFIC_CANDLE:
+	case __CANDLE:
 	case GENERAL_CANDLE:
 	case NATURAL_CANDLE:
-	case UNSPECIFIED_CANDLE:
+	case UNAFFECTED_CANDLE:
 	case JAPAN_WAX_CANDLE:
 		use_candle(&obj);
 		break;

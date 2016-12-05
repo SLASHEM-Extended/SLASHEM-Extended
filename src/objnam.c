@@ -2097,6 +2097,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ WAN_INERTIA_CONTROL, "kontrol' inertsii" },
 	{ SCR_GEOLYSIS, "geologicheskoye resheniye" },
 	{ WAN_STERILIZE, "sterilizovat'" },
+	{ UNAFFECTED_CANDLE, "nezatronutyy svechi" },
+	{ SPECIFIC_CANDLE, "konkretnaya svecha" },
+	{ __CANDLE, "0 svecha" },
 
 	{0, "" }
 };
@@ -3870,6 +3873,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WAN_INERTIA_CONTROL, "inertsiya nazorat" },
 	{ SCR_GEOLYSIS, "geologik hal" },
 	{ WAN_STERILIZE, "sterillamoq" },
+	{ UNAFFECTED_CANDLE, "samimiy sham" },
+	{ SPECIFIC_CANDLE, "muayyan sham" },
+ 	{ __CANDLE, "0 sham" },
 
 	{0, "" }
 };

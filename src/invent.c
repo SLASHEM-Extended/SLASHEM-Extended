@@ -4418,7 +4418,7 @@ register struct obj *otmp;
 
 	if (!objects[otmp->otyp].oc_merge) return 0;
 
-	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == UNSPECIFIED_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
+	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == UNAFFECTED_CANDLE) || (otmp->otyp == SPECIFIC_CANDLE) || (otmp->otyp == __CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == UNSPECIFIED_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
 
 	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_DART) || (objects[otmp->otyp].oc_skill == -P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) return 1;
 
@@ -7165,10 +7165,16 @@ struct obj *obj;
 				pline("A light source that will burn up after a certain amount of time."); break;
 			case WAX_CANDLE: 
 				pline("This candle can be lit to provide some light radius for a while."); break;
-			case JAPAN_WAX_CANDLE: 
+			case JAPAN_WAX_CANDLE:
 				pline("A candle that can be lit."); break;
-			case OIL_CANDLE: 
+			case OIL_CANDLE:
 				pline("Yet another candle that you can light to, well, get light."); break;
+			case UNAFFECTED_CANDLE:
+				pline("It's just a standard candle with a nonstandard name."); break;
+			case SPECIFIC_CANDLE:
+				pline("This candle isn't all that specific actually, and will burn for a while if you light it."); break;
+			case __CANDLE:
+				pline("Don't ask why it's called that. It is functionally identical to the other non-magical candles."); break;
 			case GENERAL_CANDLE: 
 				pline("This candle is rare but not really different from other types of candle - light it to see in the dark."); break;
 			case NATURAL_CANDLE: 
