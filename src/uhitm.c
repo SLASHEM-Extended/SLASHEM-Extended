@@ -4551,9 +4551,14 @@ use_weapon:
 
 			if (dhit) {
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 500) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(2)) ) {
-					uwep->spe--;
-					pline("Your weapon dulls.");
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 500) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(2)) ) {
+					if (uwep->greased) {
+						uwep->greased--;
+						pline("Your weapon loses its grease.");
+					} else {
+						uwep->spe--;
+						pline("Your weapon dulls.");
+					}
 				}
 			}
 
