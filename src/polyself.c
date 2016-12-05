@@ -740,7 +740,7 @@ int	mntmp;
 		skinback(FALSE);
 	break_armor();
 	drop_weapon(1);
-	if (hides_under(youmonst.data))
+	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 		u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_pool(u.ux, u.uy);

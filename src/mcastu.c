@@ -387,7 +387,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5))  ) {
+	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -545,7 +545,12 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_LITE:
 		pline("You're irradiated by light.");
-		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
+
+		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
+			shieldeff(u.ux, u.uy);
+			pline("But you resist the effects.");
+			dmg = 0;
+		} else if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 			dmg *= 2; /* vampires are susceptible to sunlight --Amy */
 			pline("Your pale skin is seared!");
 		}
@@ -2372,7 +2377,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if (mattk->adtyp > AD_SPC2)
 	    return(0);
 
-	if (mtmp->mcan || u.antimagicshell || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5)) ) {
+	if (mtmp->mcan || u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5)) ) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}

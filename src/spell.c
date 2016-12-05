@@ -1327,7 +1327,7 @@ docast()
 {
 	int spell_no;
 
-	if (u.antimagicshell || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) ) {
+	if (u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4338,7 +4338,7 @@ boolean atme;
 
 		break;
 	case SPE_WARPING:
-		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("You're unable to warp!"); break;}
@@ -4923,7 +4923,7 @@ boolean atme;
 				break;
 			}
 
-			if ( (u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			if ( (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 				You_feel("disoriented for a moment.");
 				break;
 			}

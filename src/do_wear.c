@@ -286,6 +286,14 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) {
+		u.kyliemode = 1;
+		if (Role_if(PM_FAILED_EXISTENCE)) {
+			pline("BAD MOVE!!! A failed existence pretending to be Kylie draws the wrath of the gods.");
+			NastinessProblem |= FROMOUTSIDE;
+		}
+    }
+
     if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
 		pline("Your incredibly beautiful footwear speaks:");
 		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected skin to shreds. Keep wearing us if you want to avoid a bloodbath!", plname);
@@ -450,6 +458,10 @@ Cloak_on()
     long oldprop;
 	if (!uarmc) return 0;
 	oldprop = u.uprops[objects[uarmc->otyp].oc_oprop].extrinsic & ~WORN_CLOAK;
+
+	if (uarmc && uarmc->oartifact == ART_DSCHLSCHLSCHLSCHLSCH) {
+		u.uprops[DEAC_ANTIMAGIC].intrinsic += 1;
+	}
 
     switch(uarmc->otyp) {
 	case ELVEN_CLOAK:
@@ -810,6 +822,11 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && uarmc->oartifact == ART_FILTHY_MORTALS_WILL_DIE) {
+		u.negativeprotection += 10;
+		pline("You become more vulnerable, and realize that putting this cloak on was a very bad idea.");
+	}
+
 	if (uarmc && uarmc->oartifact == ART_RITA_S_DECEPTIVE_MANTLE) {
 		if (!uarmc->cursed) curse(uarmc);
 		if (uarmc->spe > -10) uarmc->spe = -10;
@@ -818,6 +835,339 @@ Cloak_on()
 		 * open your inventory 1000 turns later and discover what happened! :-P --Amy
 		 * To clarify: Rita does not actually WEAR this thing.	
 		 * She made it to lure in unsuspecting victims of course! */
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
+		if (!uarmc->cursed) curse(uarmc);
+		uarmc->hvycurse = uarmc->prmcurse = 1;
+		/* Arabella's bait items never give any message. --Amy */
+	}
+
+    if (uarmc && uarmc->oartifact == ART_JEDI_MIND_POWER) {
+		if (!tech_known(T_TELEKINESIS)) {
+			if (yn_function("This cloak allows you to learn telekinesis, but it comes at a price. Do it?", ynchars, 'n') == 'y') {
+			    	learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
+			    	pline("Suddenly, you know how to use the telekinesis technique!");
+
+				int disabling = 3;
+				while (disabling > 0) {
+					disabling--;
+
+		 switch (rnd(121)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				u.uprops[DEAC_FIRE_RES].intrinsic += 1000000;
+				pline("You are prevented from having fire resistance!");
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				u.uprops[DEAC_COLD_RES].intrinsic += 1000000;
+				pline("You are prevented from having cold resistance!");
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				u.uprops[DEAC_SLEEP_RES].intrinsic += 1000000;
+				pline("You are prevented from having sleep resistance!");
+				break;
+			case 16:
+			case 17:
+				u.uprops[DEAC_DISINT_RES].intrinsic += 1000000;
+				pline("You are prevented from having disintegration resistance!");
+				break;
+			case 18:
+			case 19:
+			case 20:
+			case 21:
+			case 22:
+				u.uprops[DEAC_SHOCK_RES].intrinsic += 1000000;
+				pline("You are prevented from having shock resistance!");
+				break;
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+				u.uprops[DEAC_POISON_RES].intrinsic += 1000000;
+				pline("You are prevented from having poison resistance!");
+				break;
+			case 28:
+			case 29:
+			case 30:
+				u.uprops[DEAC_DRAIN_RES].intrinsic += 1000000;
+				pline("You are prevented from having drain resistance!");
+				break;
+			case 31:
+			case 32:
+				u.uprops[DEAC_SICK_RES].intrinsic += 1000000;
+				pline("You are prevented from having sickness resistance!");
+				break;
+			case 33:
+			case 34:
+				u.uprops[DEAC_ANTIMAGIC].intrinsic += 1000000;
+				pline("You are prevented from having magic resistance!");
+				break;
+			case 35:
+			case 36:
+			case 37:
+			case 38:
+				u.uprops[DEAC_ACID_RES].intrinsic += 1000000;
+				pline("You are prevented from having acid resistance!");
+				break;
+			case 39:
+			case 40:
+				u.uprops[DEAC_STONE_RES].intrinsic += 1000000;
+				pline("You are prevented from having petrification resistance!");
+				break;
+			case 41:
+				u.uprops[DEAC_FEAR_RES].intrinsic += 1000000;
+				pline("You are prevented from having fear resistance!");
+				break;
+			case 42:
+			case 43:
+			case 44:
+				u.uprops[DEAC_SEE_INVIS].intrinsic += 1000000;
+				pline("You are prevented from having see invisible!");
+				break;
+			case 45:
+			case 46:
+			case 47:
+				u.uprops[DEAC_TELEPAT].intrinsic += 1000000;
+				pline("You are prevented from having telepathy!");
+				break;
+			case 48:
+			case 49:
+			case 50:
+				u.uprops[DEAC_WARNING].intrinsic += 1000000;
+				pline("You are prevented from having warning!");
+				break;
+			case 51:
+			case 52:
+			case 53:
+				u.uprops[DEAC_SEARCHING].intrinsic += 1000000;
+				pline("You are prevented from having automatic searching!");
+				break;
+			case 54:
+				u.uprops[DEAC_CLAIRVOYANT].intrinsic += 1000000;
+				pline("You are prevented from having clairvoyance!");
+				break;
+			case 55:
+			case 56:
+			case 57:
+			case 58:
+			case 59:
+				u.uprops[DEAC_INFRAVISION].intrinsic += 1000000;
+				pline("You are prevented from having infravision!");
+				break;
+			case 60:
+				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += 1000000;
+				pline("You are prevented from having detect monsters!");
+				break;
+			case 61:
+			case 62:
+			case 63:
+				u.uprops[DEAC_INVIS].intrinsic += 1000000;
+				pline("You are prevented from having invisibility!");
+				break;
+			case 64:
+				u.uprops[DEAC_DISPLACED].intrinsic += 1000000;
+				pline("You are prevented from having displacement!");
+				break;
+			case 65:
+			case 66:
+			case 67:
+				u.uprops[DEAC_STEALTH].intrinsic += 1000000;
+				pline("You are prevented from having stealth!");
+				break;
+			case 68:
+				u.uprops[DEAC_JUMPING].intrinsic += 1000000;
+				pline("You are prevented from having jumping!");
+				break;
+			case 69:
+			case 70:
+			case 71:
+				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += 1000000;
+				pline("You are prevented from having teleport control!");
+				break;
+			case 72:
+				u.uprops[DEAC_FLYING].intrinsic += 1000000;
+				pline("You are prevented from having flying!");
+				break;
+			case 73:
+				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += 1000000;
+				pline("You are prevented from having magical breathing!");
+				break;
+			case 74:
+				u.uprops[DEAC_PASSES_WALLS].intrinsic += 1000000;
+				pline("You are prevented from having phasing!");
+				break;
+			case 75:
+			case 76:
+				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += 1000000;
+				pline("You are prevented from having slow digestion!");
+				break;
+			case 77:
+				u.uprops[DEAC_HALF_SPDAM].intrinsic += 1000000;
+				pline("You are prevented from having half spell damage!");
+				break;
+			case 78:
+				u.uprops[DEAC_HALF_PHDAM].intrinsic += 1000000;
+				pline("You are prevented from having half physical damage!");
+				break;
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+			case 83:
+				u.uprops[DEAC_REGENERATION].intrinsic += 1000000;
+				pline("You are prevented from having regeneration!");
+				break;
+			case 84:
+			case 85:
+				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += 1000000;
+				pline("You are prevented from having mana regeneration!");
+				break;
+			case 86:
+			case 87:
+			case 88:
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1000000;
+				pline("You are prevented from having polymorph control!");
+				break;
+			case 89:
+			case 90:
+			case 91:
+			case 92:
+			case 93:
+				u.uprops[DEAC_FAST].intrinsic += 1000000;
+				pline("You are prevented from having speed!");
+				break;
+			case 94:
+			case 95:
+			case 96:
+				u.uprops[DEAC_REFLECTING].intrinsic += 1000000;
+				pline("You are prevented from having reflection!");
+				break;
+			case 97:
+			case 98:
+			case 99:
+				u.uprops[DEAC_FREE_ACTION].intrinsic += 1000000;
+				pline("You are prevented from having free action!");
+				break;
+			case 100:
+				u.uprops[DEAC_HALLU_PARTY].intrinsic += 1000000;
+				pline("You are prevented from hallu partying!");
+				break;
+			case 101:
+				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += 1000000;
+				pline("You are prevented from drunken boxing!");
+				break;
+			case 102:
+				u.uprops[DEAC_STUNNOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having stunnopathy!");
+				break;
+			case 103:
+				u.uprops[DEAC_NUMBOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having numbopathy!");
+				break;
+			case 104:
+				u.uprops[DEAC_FREEZOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having freezopathy!");
+				break;
+			case 105:
+				u.uprops[DEAC_STONED_CHILLER].intrinsic += 1000000;
+				pline("You are prevented from being a stoned chiller!");
+				break;
+			case 106:
+				u.uprops[DEAC_CORROSIVITY].intrinsic += 1000000;
+				pline("You are prevented from having corrosivity!");
+				break;
+			case 107:
+				u.uprops[DEAC_FEAR_FACTOR].intrinsic += 1000000;
+				pline("You are prevented from having an increased fear factor!");
+				break;
+			case 108:
+				u.uprops[DEAC_BURNOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having burnopathy!");
+				break;
+			case 109:
+				u.uprops[DEAC_SICKOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having sickopathy!");
+				break;
+			case 110:
+				u.uprops[DEAC_KEEN_MEMORY].intrinsic += 1000000;
+				pline("You are prevented from having keen memory!");
+				break;
+			case 111:
+				u.uprops[DEAC_THE_FORCE].intrinsic += 1000000;
+				pline("You are prevented from using the force like a real jedi!");
+				break;
+			case 112:
+				u.uprops[DEAC_SIGHT_BONUS].intrinsic += 1000000;
+				pline("You are prevented from having extra sight!");
+				break;
+			case 113:
+				u.uprops[DEAC_VERSUS_CURSES].intrinsic += 1000000;
+				pline("You are prevented from having curse resistance!");
+				break;
+			case 114:
+				u.uprops[DEAC_STUN_RES].intrinsic += 1000000;
+				pline("You are prevented from having stun resistance!");
+				break;
+			case 115:
+				u.uprops[DEAC_CONF_RES].intrinsic += 1000000;
+				pline("You are prevented from having confusion resistance!");
+				break;
+			case 116:
+				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += 1000000;
+				pline("You are prevented from having double attacks!");
+				break;
+			case 117:
+				u.uprops[DEAC_QUAD_ATTACK].intrinsic += 1000000;
+				pline("You are prevented from having quad attacks!");
+				break;
+			case 118:
+				u.uprops[DEAC_PSI_RES].intrinsic += 1000000;
+				pline("You are prevented from having psi resistance!");
+				break;
+			case 119:
+				u.uprops[DEAC_WONDERLEGS].intrinsic += 1000000;
+				pline("You are prevented from having wonderlegs!");
+				break;
+			case 120:
+				u.uprops[DEAC_GLIB_COMBAT].intrinsic += 1000000;
+				pline("You are prevented from having glib combat!");
+				break;
+			case 121:
+				u.uprops[DEAC_MANALEECH].intrinsic += 1000000;
+				pline("You are prevented from having manaleech!");
+				break;
+		}
+
+				}
+
+			}
+		}
+    }
+
+
+	if (uarmc && uarmc->oartifact == ART_HAHAHA_HA_HAHAHAHAHA) {
+		RespawnProblem |= FROMOUTSIDE;
+		pline("Hahaha hahahahaha, hahahahaha hahahahahahaha, HEHEHEHEHEHEHEE-HEE!!!"); /* Bwarharharharhar! */
+	}
+
+	if (uarmc && uarmc->oartifact == ART_LEA_S_SCHOOL_UNIFORM) {
+		if (!uarmc->cursed) curse(uarmc);
+		if (!uarmc->hvycurse) uarmc->hvycurse = 1;
+		/* For Lea's cloaks, no message is given either; see above. */
 	}
 
 	if (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) {
@@ -1214,6 +1564,23 @@ Helmet_on()
 		/* base item is a "nasty" item, and by definition those give no messages upon cursing themselves --Amy */
     }
 
+    if (uarmh && uarmh->oartifact == ART_WOLF_KING) {
+		if (!uarmh->cursed) curse(uarmh);
+		uarmh->hvycurse = 1;
+		pline("You howl at the moon like a wolf while your helmet is surrounded by a terrible black aura.");
+    }
+
+    if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) {
+		if (!uarmh->cursed) curse(uarmh);
+		uarmh->hvycurse = 1;
+		uarmh->prmcurse = 1;
+		pline("The Crown prime curses itself as you put it on. You knew that would happen, right?");
+    }
+
+    if (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) {
+		if (!uarmh->cursed) curse(uarmh); /* don't tell the poor sap about their horrible fate */
+    }
+
     return 0;
 }
 
@@ -1454,6 +1821,25 @@ Gloves_on()
 			curse(uarmg);
 			pline("afk (ass-fucker)");
 		}
+    }
+
+    if (uarmg && uarmg->oartifact == ART_BURN_OR_NO) {
+		if(!(HBurnopathy & FROMOUTSIDE)) {
+			pline("You feel a soothing fire inside of you!");
+			HBurnopathy |= FROMOUTSIDE;
+		}
+
+    }
+
+    if (uarmg && uarmg->oartifact == ART_OH_LOOK_AT_THAT) {
+		if (P_MAX_SKILL(P_PETKEEPING) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_PETKEEPING);
+			P_MAX_SKILL(P_PETKEEPING) = P_EXPERT;
+			pline("You gain knowledge of the petkeeping skill, but at a price...");
+			curse(uarmg);
+			uarmg->hvycurse = uarmg->prmcurse = 1;
+		}
+
     }
 
     if (uarmg && uarmg->oartifact == ART_FLICTIONLESS_COMBAT) {
@@ -1846,6 +2232,27 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SHRINK_S_AID) {
+		pline("Well done! Your armor is now cursed.");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WATER_SHYNESS) {
+		pline("Your armor is surrounded by an evil black aura.");
+		curse(uarm);
+		uarm->hvycurse = 1;
+	}
+
+	if (uarm && uarm->oartifact == ART_RNG_S_FUN && uarm->spe == 0) {
+		if (!rn2(2)) uarm->spe = rnd(5);
+		else uarm->spe = -(rnd(5));
+	}
+
+	if (uarm && uarm->oartifact == ART_SOFT_GIRL && !flags.female) {
+		pline("You turn into a soft girl!");
+		change_sex();
+	}
+
     return 0;
 }
 
@@ -1876,6 +2283,18 @@ Amulet_on()
     long oldprop;
 	if (!uamul) return;
 	oldprop = u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
+
+    if (uamul && uamul->oartifact == ART_TSCHOECK_KLOECK) { /* needs to be done here because it disintegrates when worn */
+		if (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic < 2000000) {
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1000000;
+			pline("Your polymorph control has been deactivated for a very long time.");
+		}
+    }
+
+    if (uamul && uamul->oartifact == ART_FORMTAKER) { /* ditto */
+		HPolymorph |= FROMOUTSIDE;
+		pline("Your form feels unstable!");
+    }
 
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
@@ -2026,6 +2445,10 @@ Amulet_on()
 		curse(uamul);
 		uamul->hvycurse = 1;
 		pline("Mortal creatures cannot master such a powerful amulet, and are therefore afflicted by a dark, evil curse!");
+    }
+
+    if (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) {
+		if (!uamul->cursed) curse(uamul);
     }
 
 }
@@ -2305,6 +2728,14 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_ABSOLUTE_AUTOCURSE) {
+
+		register struct obj *crsobj;
+		pline("Your entire inventory becomes cursed.");
+		for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
+		if (!stack_too_big(crsobj))	curse(crsobj);
     }
 
     if (obj->oartifact == ART_EAT_MORE_KITTENS) {
@@ -2791,6 +3222,18 @@ register struct obj *otmp;
 			nomovemsg = "You finish taking off your impractical underwear.";
 			afternmv = Shirt_off;
 		     }
+		else if (is_shirt(otmp)) {
+			nomovemsg = "You finish taking off your shirt.";
+			afternmv = Shirt_off;
+		     }
+		else if (is_cloak(otmp)) {
+			nomovemsg = "You finish taking off your cloak.";
+			afternmv = Cloak_off;
+		     }
+		else if (is_shield(otmp)) {
+			nomovemsg = "You finish taking off your shield.";
+			afternmv = Shield_off;
+		     }
 		else {
 			nomovemsg = "You finish taking off your suit.";
 			afternmv = Armor_off;
@@ -2815,6 +3258,10 @@ register struct obj *otmp;
 			(void) Cloak_off();
 		else if(is_shield(otmp))
 			(void) Shield_off();
+		else if(is_boots(otmp))
+			(void) Boots_off();
+		else if(is_shirt(otmp))
+			(void) Shirt_off();
 		else if(is_gloves(otmp)) /* good fortune */
 			(void) Gloves_off();
 		else if (is_helmet(otmp))
@@ -3486,6 +3933,9 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_COW_ENCHANTMENT) uac -= 9;
 	if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_SAINT_KING) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_CASQUESPIRE_TRANSLATE) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_HARD_HAT_AREA) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_STEELSKULL_PROTECTOR) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_DARK_LORD) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;
 	if (uarms && uarms->oartifact == ART_AEAEAEAEAEGIS) uac -= 10;
@@ -3493,11 +3943,26 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) uac -= 5;
 	if (uleft && uleft->oartifact == ART_CRYLOCK) uac -= 10;
 	if (uright && uright->oartifact == ART_CRYLOCK) uac -= 10;
+	if (uleft && uleft->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
+	if (uright && uright->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
 	if (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) uac -= 5;
+	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
+	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
+	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
+	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_YAUI_GAUI_FURS) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
+	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
+	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 
 	if (tech_inuse(T_IRON_SKIN)) uac -= u.ulevel;
+
+	if (!flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) uac -= 10;
 
 	if (u.tunnelized) uac += 20;
 
@@ -3528,7 +3993,7 @@ find_ac()
 		
 	}
 
-	if (u.uprops[NAKEDNESS].extrinsic || Nakedness || have_nakedstone() ) uac = 10;
+	if (u.uprops[NAKEDNESS].extrinsic || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
 
 	if(uac != u.uac){
 		u.uac = uac;

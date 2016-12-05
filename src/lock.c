@@ -754,6 +754,7 @@ doforce()		/* try to force a chest with your weapon */
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
 				if (UseTheForce) dmg += 5;
+				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);
 				boolean trapkilled = FALSE;

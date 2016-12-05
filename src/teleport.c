@@ -578,7 +578,7 @@ boolean allow_drag;
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 
-	if (hides_under(youmonst.data))
+	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_pool(nux, nuy);
@@ -759,7 +759,7 @@ tele()
 #ifdef WIZARD
         (
 #endif
-        (u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
 #ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
 #endif
@@ -818,7 +818,7 @@ teleX()
 	if (!Blinded) make_blinded(0L,FALSE);
 
 	if
-        (u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
 #ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
 #endif
@@ -841,7 +841,7 @@ boolean confused;
 	}
 
 	if
-        (u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
 #ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
 #endif
@@ -972,7 +972,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz))
+	if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz))
 #ifdef STEED
 			|| (u.usteed && mon_has_amulet(u.usteed))
 #endif

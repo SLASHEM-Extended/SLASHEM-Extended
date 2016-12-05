@@ -1932,7 +1932,7 @@ arti_invoke(obj)
 		newlev.dlevel = dungeons[i].entry_lev;
 	    else
 		newlev.dlevel = dungeons[i].dunlev_ureached;
-	    if(u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) || In_endgame(&newlev) ||
+	    if(u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) || In_endgame(&newlev) ||
 	       newlev.dnum == u.uz.dnum) {
 		You_feel("very disoriented for a moment.");
 	    } else {

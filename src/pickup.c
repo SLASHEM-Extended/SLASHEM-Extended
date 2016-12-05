@@ -735,7 +735,7 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	anything any;
 	boolean printed_type_name;
 
-	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -1411,6 +1411,11 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		pline("If ever I should forget, May God make me more wretched Than ever I have been yet!");
 		return 1;	/* tried to pick something up and failed, but
 				   don't want to terminate pickup loop yet   */
+	}
+
+	if (obj && obj->oartifact == ART_HAAAAAAAAAAAAA_LELUJA) {
+		obj->bknown = 1;
+		obj->cursed = obj->hvycurse = obj->prmcurse = obj->evilcurse = obj->morgcurse = obj->bbrcurse = 0;
 	}
 
 	if ((res = lift_object(obj, (struct obj *)0, &count, telekinesis)) <= 0)
@@ -2374,6 +2379,7 @@ int held;
 	long loss = 0L;
 	int cnt = 0, used = 0, lcnt = 0,
 	    menu_on_request;
+	int monsterator = 0;
 
 	emptymsg[0] = '\0';
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
@@ -2430,6 +2436,17 @@ int held;
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
 		if (!rn2(13) && !evades_destruction(curr) && !stack_too_big(curr)) {
+		    if (obj && obj->oartifact == ART_RECYCLER_BIN) {
+			adjalign(1);
+			if (curr->oartifact) {
+				adjalign(50);
+				u.alignlim += 5;
+				pline("Wow, that must have been expensive!");
+			}
+		    }
+		    if (obj && obj->oartifact == ART_MONSTERATOR) {
+			monsterator++;
+		    }
 		    loss += mbag_item_gone(held, curr);
 		    used = 1;
 		}
@@ -2439,6 +2456,17 @@ int held;
 	    for (curr = obj->cobj; curr; curr = otmp) {
 		otmp = curr->nobj;
 		if (!evades_destruction(curr) && !stack_too_big(curr)) {
+		    if (obj && obj->oartifact == ART_RECYCLER_BIN) {
+			adjalign(1);
+			if (curr->oartifact) {
+				adjalign(50);
+				u.alignlim += 5;
+				pline("Wow, that must have been expensive!");
+			}
+		    }
+		    if (obj && obj->oartifact == ART_MONSTERATOR) {
+			monsterator++;
+		    }
 		    loss += mbag_item_gone(held, curr);
 		    used = 1;
 		}
@@ -2452,6 +2480,16 @@ int held;
 	    You("owe %ld %s for lost merchandise.", loss, currency(loss));
 	obj->owt = weight(obj);	/* in case any items were lost */
   
+	if (monsterator > 10) {
+		while (monsterator > 0) {
+
+			(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+			u.ublesscnt += 50;
+			monsterator--;
+			if (monsterator < 0) monsterator = 0; /* fail safe */
+		}
+	}
+
 	if (!cnt)
 	    Sprintf(emptymsg, "%s is %sempty.", Yname2(obj),
 		    quantum_cat ? "now " : "");

@@ -412,7 +412,7 @@ struct obj *instr;
 	case FIRE_HORN:			/* Idem wand of fire */
 	case TEMPEST_HORN:		/* Idem wand of lightning */
 	    if (do_spec && instr->spe > 0) {
-		consume_obj_charge(instr, TRUE);
+		if (!instr->oartifact || !rn2(2) ) consume_obj_charge(instr, TRUE);
 
 		if (!getdir((char *)0)) {
 		    pline("%s.", Tobjnam(instr, "vibrate"));

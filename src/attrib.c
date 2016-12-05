@@ -1711,7 +1711,13 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SLAYING) tmp += (3 + uarmg->spe);
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE) tmp += 5;
+		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
+		if (uleft && uleft->oartifact == ART_UNBELIEVABLY_STRONG_PUNCH) tmp += uleft->spe;
+		if (uright && uright->oartifact == ART_UNBELIEVABLY_STRONG_PUNCH) tmp += uright->spe;
 
+		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
@@ -1737,11 +1743,17 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_BEAUTIFUL_TOPMODEL) tmp += 25;
+		if (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) tmp += 15;
 		if (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
 		if (uright && uright->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
 		if (uamul && uamul->oartifact == ART_OH_COME_ON) tmp += 5;
 		if (uamul && uamul->oartifact == ART_NECKLACE_OF_ADORNMENT) tmp += 10;
 		if (uwep && uwep->oartifact == ART_BUNGA_BUNGA && uwep->spe > 0) tmp += (5 + uwep->spe);
+		if (flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp += 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) tmp += 3;
+		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) tmp += 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -1768,12 +1780,15 @@ int x;
 		/* yes, this may raise int/wis if player is sufficiently
 		 * stupid.  there are lower levels of cognition than "dunce".
 		 */
-		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp -= 5; /* reduce both */
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (uwep && uwep->oartifact == ART_KNOW_YOUR_INTRINSICS) tmp += 5; /* boost both */
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 
+		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
+		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
@@ -1786,7 +1801,13 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SLAYING) tmp += (3 + uarmg->spe);
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE) tmp += 3;
+		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
+		if (uleft && uleft->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uleft->spe;
+		if (uright && uright->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uright->spe;
 
+		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
@@ -1794,6 +1815,8 @@ int x;
 	} else { /* A_CON */
 
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;

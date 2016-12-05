@@ -294,14 +294,14 @@ use_stethoscope(obj)
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
-			if (obj->blessed && !issoviet)
+			if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 			mstatuslinebl(u.ustuck);
 			else
 			mstatusline(u.ustuck);
 
 		} else
 
-			if (obj->blessed && !issoviet)
+			if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
 			else
 			mstatusline(u.usteed);
@@ -320,7 +320,7 @@ use_stethoscope(obj)
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
 
-		if (obj->blessed && !issoviet)
+		if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
 		mstatusline(u.ustuck);
@@ -362,7 +362,7 @@ use_stethoscope(obj)
 		return 0;
 		}
 
-		if (obj->blessed && !issoviet)
+		if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
 		else
 		mstatusline(mtmp);
@@ -944,6 +944,18 @@ struct obj **optr;
 			 invocation_pos(u.ux, u.uy) && !On_stairs(u.ux, u.uy));
 
 	You("ring %s.", the(xname(obj)));
+
+	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
+	    int i, j, bd = 1;
+		struct monst *bimmel;
+
+	    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+		if (!isok(u.ux + i, u.uy + j)) continue;
+		if ((bimmel = m_at(u.ux + i, u.uy + j)) != 0 && bimmel->data->mlet == S_XAN)
+		    if (!resist(bimmel, RING_CLASS, 0, TELL)) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
+	    }
+
+	}
 
 	if (Underwater || (u.uswallow && ordinary)) {
 #ifdef	AMIGA
@@ -3282,8 +3294,14 @@ use_pole (obj)
 	     * an indication of whether it hit.  Not perfect (what if it's a
 	     * non-silver weapon on a shade?)
 	     */
-	    if (mtmp->mhp < oldhp)
+	    if (mtmp->mhp < oldhp) {
 		u.uconduct.weaphit++;
+
+		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
+			obj->spe++;
+			pline("Your weapon seems sharper!");
+		    }
+	    }
 	} else
 	    /* Now you know that nothing is there... */
 	    pline(nothing_happens);
@@ -3818,6 +3836,13 @@ void use_floppies(struct obj *obj)
 		return;
 	}
 
+	if (obj->oartifact == ART_F_PROT && !rn2(7) ) {
+		pline("You see Bandarchor on the disk");
+		pline("All your personal data, documents, photos etc. are encrypted. Please pay 600 euros (approximately 1 bitcoin) to receive the decryption key.");
+		badeffect();
+		return;
+	}
+
 	if (obj->oartifact == ART_NETHACK_SOURCES) {
 		com_pager(9999);
 	} else {
@@ -3952,7 +3977,7 @@ use_chemistry_set(struct obj *chemset)
 	chemset->spe -= cost;
 	useup(bottle);
 
-	if (!chemset->blessed && !rn2(chemset->cursed ? 2 : 10)) {
+	if (!chemset->blessed && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS) && !rn2(chemset->cursed ? 2 : 10)) {
 blast_him:
 		pline("You seem to have made a mistake!");
 		pline("The bottle explodes!");
@@ -4143,6 +4168,11 @@ doapply()
 			}
 	
 		}
+		if (obj->oartifact == ART_GO_AWAY_YOU_BASTARD) {
+			if (!obj->cursed) phase_door(0);
+			if (!rn2(4)) curse(obj);
+		}
+
 		break;
 	case TIN_WHISTLE:
 		use_whistle(obj);
@@ -4417,6 +4447,12 @@ doapply()
 		} else You("seem to be out of medical supplies");
 		break;
 	case HORN_OF_PLENTY:	/* not a musical instrument */
+
+		if (obj && obj->oartifact == ART_PLENTYHORN_OF_FAMINE) {
+			pline("You feel more hungry.");
+			morehungry(rnz(80));
+		}
+
 		if (obj->spe > 0) {
 		    struct obj *otmp;
 		    const char *what;
@@ -4637,10 +4673,14 @@ doapply()
 		if (!Blind) pline("The red status light goes out while the green light starts shining brightly!");
 		pline("The switcher dissolves in your hands...");
 
+		if (obj->oartifact == ART_I_THE_SAGE) {
+		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
+
 		if (obj->cursed && rn2(2)) {
 
-		delobj(obj);
-		break; /* do not call delobj twice or the game will destabilize! */
+			delobj(obj);
+			break; /* do not call delobj twice or the game will destabilize! */
 
 		}
 
@@ -4750,7 +4790,7 @@ doapply()
 
 		if (Blind) {
 			pline("Being blind, you cannot see it.");
-		} else if (!obj->blessed) {
+		} else if (!obj->blessed && !(obj->oartifact == ART_HOYO_HOYO_WOLOLO) ) {
 			You_feel("uncomfortable.");
 			if (!ishaxor) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
 			else u.ublesscnt += rn2((obj->cursed) ? 100 : 50);

@@ -27,27 +27,27 @@
 
 #define FingerlessGloves	(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fingerless gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mitenki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kam qo'lqop barmoq") ))
 
-#define PlayerInHighHeels	(uarmf && ( (uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == HIPPIE_HEELS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (OBJ_DESCR(objects[uarmf->otyp]) && ( (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xanjar chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qish sandal chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qisqa ko'chirish to'piqlarni") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bilagi zo'r chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok-o'tish chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) ) ) )
+#define PlayerInHighHeels	(uarmf && ( (uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (OBJ_DESCR(objects[uarmf->otyp]) && ( (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xanjar chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qish sandal chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qisqa ko'chirish to'piqlarni") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bilagi zo'r chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok-o'tish chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) ) ) )
 
 /*** Resistances to troubles ***/
 /* With intrinsics and extrinsics */
 #define HFire_resistance	u.uprops[FIRE_RES].intrinsic
 #define EFire_resistance	u.uprops[FIRE_RES].extrinsic
-#define Fire_resistance		((HFire_resistance || EFire_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_AND_YOUR_MORTAL_WORLD_SHAL) || (uwep && uwep->oartifact == ART_FAEAEAEAEAEAU) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_WRATH_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
+#define Fire_resistance		((HFire_resistance || EFire_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_AND_YOUR_MORTAL_WORLD_SHAL) || (uwep && uwep->oartifact == ART_PRISMATIC_PROTECTION) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uwep && uwep->oartifact == ART_FAEAEAEAEAEAU) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_WHAT_IT_SAYS_ON_THE_TIN) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER) || (uwep && uwep->oartifact == ART_WRATH_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_fire(&youmonst) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && (moves % 3 == 0) ) || is_fire_resistant(youmonst.data)) && !Race_if(PM_TROLLOR) && !Race_if(PM_ANCIPITAL) && !Race_if(PM_SEA_ELF) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
-#define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
-#define Cold_resistance		((HCold_resistance || ECold_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_COLD_SOUL) || (uwep && uwep->oartifact == ART_RELEASE_FROM_CARE) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
+#define Cold_resistance		((HCold_resistance || ECold_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER) || (uwep && uwep->oartifact == ART_PRISMATIC_PROTECTION) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_COLD_SOUL) || (uwep && uwep->oartifact == ART_RELEASE_FROM_CARE) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_cold(&youmonst) || is_cold_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoCold_resistance )
-#define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || (uleft && uleft->oartifact == ART_DEATHLY_COLD) || (uright && uright->oartifact == ART_DEATHLY_COLD) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
-#define Sleep_resistance	( !( (Thirst || u.uprops[THIRST].extrinsic || have_thirststone()) && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !Race_if(PM_DEEP_ELF) && !have_sleepstone() && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || \
+#define Sleep_resistance	( !( (Thirst || u.uprops[THIRST].extrinsic || have_thirststone()) && (u.uhunger > 2000 ) ) && !Race_if(PM_KOBOLT) && !Race_if(PM_DEEP_ELF) && !have_sleepstone() && !NoSleep_resistance && (HSleep_resistance || ESleep_resistance || (uwep && uwep->oartifact == ART_SLEEPLESS_NIGHTS) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || \
 				 resists_sleep(&youmonst) || is_sleep_resistant(youmonst.data)) )
-#define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) || (uamul && uamul->oartifact == ART_SPELLCASTER_S_DREAM) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HDisint_resistance	u.uprops[DISINT_RES].intrinsic
 #define EDisint_resistance	u.uprops[DISINT_RES].extrinsic
@@ -57,26 +57,26 @@
 
 #define HShock_resistance	u.uprops[SHOCK_RES].intrinsic
 #define EShock_resistance	u.uprops[SHOCK_RES].extrinsic
-#define Shock_resistance	((HShock_resistance || EShock_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmh && uarmh->oartifact == ART_STORMHELM) || (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_FIRE_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
+#define Shock_resistance	((HShock_resistance || EShock_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_PRISMATIC_PROTECTION) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_STORMHELM) || (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN) || (uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_FIRE_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic || \
 				 resists_elec(&youmonst) || is_elec_resistant(youmonst.data)) && !Role_if(PM_ALTMER) && !NoShock_resistance )
-#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uwep && uwep->oartifact == ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HPoison_resistance	u.uprops[POISON_RES].intrinsic
 #define EPoison_resistance	u.uprops[POISON_RES].extrinsic
-#define Poison_resistance	((HPoison_resistance || EPoison_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmu && uarmu->oartifact == ART_GENTLE_SOFT_CLOTHING) || (uarmc && uarmc->oartifact == ART_ACQUIRED_POISON_RESISTANCE) || (uarmh && uarmh->oartifact == ART_BIG_BONNET) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uamul && uamul->oartifact == ART_WARNED_AND_PROTECTED) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_SERPENT_S_TOOTH) || \
+#define Poison_resistance	((HPoison_resistance || EPoison_resistance || (uarmh && uarmh->oartifact == ART_SPECTRAL_RESISTANCE) || (uarmu && uarmu->oartifact == ART_GENTLE_SOFT_CLOTHING) || (uarmc && uarmc->oartifact == ART_ACQUIRED_POISON_RESISTANCE) || (uarmc && uarmc->oartifact == ART_PREMIUM_VISCOSITY) || (uarmh && uarmh->oartifact == ART_BIG_BONNET) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uwep && uwep->oartifact == ART_PRISMATIC_PROTECTION) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_TARI_FEFALAS) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uamul && uamul->oartifact == ART_WARNED_AND_PROTECTED) || (uarmh && uarmh->oartifact == ART_GREEN_STATUS) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_SERPENT_S_TOOTH) || \
 				 resists_poison(&youmonst) || is_poison_resistant(youmonst.data)) && !NoPoison_resistance && !Race_if(PM_POISONER) )
 #define NoPoison_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POISON_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HDrain_resistance	u.uprops[DRAIN_RES].intrinsic
 #define EDrain_resistance	u.uprops[DRAIN_RES].extrinsic
-#define Drain_resistance	((HDrain_resistance || EDrain_resistance || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmh && uarmh->oartifact == ART_LOW_LOCAL_MEMORY) || (uwep && uwep->oartifact == ART_SANDMAN_VOLUME__) || (uwep && uwep->oartifact == ART_ORTHODOX_MANIFEST) || (uwep && uwep->oartifact == ART_UN_DEATH) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || \
+#define Drain_resistance	((HDrain_resistance || EDrain_resistance || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uleft && uleft->oartifact == ART_MAGICAL_SHOCK) || (uright && uright->oartifact == ART_MAGICAL_SHOCK) || (uwep && uwep->oartifact == ART_CUBIC_BONE) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_LOW_LOCAL_MEMORY) || (uwep && uwep->oartifact == ART_SANDMAN_VOLUME__) || (uwep && uwep->oartifact == ART_ORTHODOX_MANIFEST) || (uwep && uwep->oartifact == ART_UN_DEATH) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || \
 				 resists_drli(&youmonst) || is_drain_resistant(youmonst.data) || ((moves % 3 == 0) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deep cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glubokiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chuqur plash") ) ) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vampiric cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vampir plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sindirishi plash") ) && (moves % 10 == 0) ) ) && !NoDrain_resistance)
 #define NoDrain_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DRAIN_RES].intrinsic || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 /* Intrinsics only */
 #define HSick_resistance	u.uprops[SICK_RES].intrinsic
 #define ESick_resistance	u.uprops[SICK_RES].extrinsic
-#define Sick_resistance		((HSick_resistance || ESick_resistance || (uarm && uarm->oartifact == ART_ANTISEPSIS_COAT) || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uarmf && uarmf->oartifact == ART_BASE_FOR_SPEED_ASCENSION) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || \
+#define Sick_resistance		((HSick_resistance || ESick_resistance || (uarm && uarm->oartifact == ART_ANTISEPSIS_COAT) || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || (uarmc && uarmc->oartifact == ART_CLEANLINESS_LAB) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uarmf && uarmf->oartifact == ART_BASE_FOR_SPEED_ASCENSION) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || \
 				 youmonst.data->mlet == S_FUNGUS || \
 				 youmonst.data->mlet == S_MUMMY || \
 				 youmonst.data->mlet == S_ZOMBIE || \
@@ -90,23 +90,23 @@
 /* Extrinsics only */
 #define HAntimagic		u.uprops[ANTIMAGIC].intrinsic
 #define EAntimagic		u.uprops[ANTIMAGIC].extrinsic
-#define Antimagic		((HAntimagic || EAntimagic || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) || u.antimagicshell || Role_if(PM_UNBELIEVER) || have_magicresstone() || \
+#define Antimagic		((HAntimagic || EAntimagic || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) || u.antimagicshell || Role_if(PM_UNBELIEVER) || have_magicresstone() || \
 				 (Upolyd && resists_magm(&youmonst))) && !NoAntimagic_resistance && !Race_if(PM_UNMAGIC_FISH))
 #define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HAcid_resistance	u.uprops[ACID_RES].intrinsic
 #define EAcid_resistance	u.uprops[ACID_RES].extrinsic
-#define Acid_resistance		((HAcid_resistance || EAcid_resistance || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || resists_acid(&youmonst) || is_acid_resistant(youmonst.data)) && !NoAcid_resistance)
+#define Acid_resistance		((HAcid_resistance || EAcid_resistance || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || resists_acid(&youmonst) || is_acid_resistant(youmonst.data)) && !NoAcid_resistance)
 #define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HStone_resistance	u.uprops[STONE_RES].intrinsic
 #define EStone_resistance	u.uprops[STONE_RES].extrinsic
-#define Stone_resistance	((HStone_resistance || EStone_resistance || (uarmh && uarmh->oartifact == ART_STONE_EROSION) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || resists_ston(&youmonst) || is_ston_resistant(youmonst.data) || Role_if(PM_ROCKER) ) && !NoStone_resistance)
+#define Stone_resistance	((HStone_resistance || EStone_resistance || (uarmh && uarmh->oartifact == ART_STONE_EROSION) || (uarmg && uarmg->oartifact == ART_SIGNONS_STEEL_TOTAL) || (uwep && uwep->oartifact == ART_GILRAEN_SEREGON) || (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || resists_ston(&youmonst) || is_ston_resistant(youmonst.data) || Role_if(PM_ROCKER) ) && !NoStone_resistance)
 #define NoStone_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STONE_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HFear_resistance	u.uprops[FEAR_RES].intrinsic
 #define EFear_resistance	u.uprops[FEAR_RES].extrinsic
-#define Fear_resistance		((HFear_resistance || EFear_resistance || (uarmf && uarmf->oartifact == ART_PARANOIA_STRIDE) ) || (uwep && uwep->oartifact == ART_USELESSNESS_OF_PLENTY) && !NoFear_resistance)
+#define Fear_resistance		((HFear_resistance || EFear_resistance || (uarmf && uarmf->oartifact == ART_GRANDPA_S_BROGUES) || (uarmf && uarmf->oartifact == ART_PARANOIA_STRIDE) ) || (uwep && uwep->oartifact == ART_USELESSNESS_OF_PLENTY) && !NoFear_resistance)
 #define NoFear_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FEAR_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 
@@ -123,7 +123,7 @@
 
 #define HConfusion		u.uprops[CONFUSION].intrinsic
 #define EConfusion		u.uprops[CONFUSION].extrinsic
-#define Confusion		(u.boomshined || HConfusion || EConfusion || HeavyConfusion || (uamul && uamul->oartifact == ART_CONFUSTICATOR) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || u.uprops[SENSORY_DEPRIVATION].extrinsic || Race_if(PM_ADDICT))
+#define Confusion		(u.boomshined || HConfusion || EConfusion || HeavyConfusion || (uamul && uamul->oartifact == ART_CONFUSTICATOR) || (uarmh && uarmh->oartifact == ART_NEVER_CLEAN) || (uwep && uwep->oartifact == ART_EAMANE_LUINWE) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || u.uprops[SENSORY_DEPRIVATION].extrinsic || Race_if(PM_ADDICT))
 #define HeavyConfusion		u.uprops[HEAVY_CONFUSION].intrinsic
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
@@ -293,7 +293,7 @@
 
 #define HHunger			u.uprops[HUNGER].intrinsic
 #define EHunger			u.uprops[HUNGER].extrinsic
-#define Hunger			(HHunger || EHunger || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || Race_if(PM_GIGANT))
+#define Hunger			(HHunger || EHunger || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uarmh && uarmh->oartifact == ART_DRINK_COCA_COLA) || (uarmc && uarmc->oartifact == ART_FULLY_LIONIZED) || (uarmc && uarmc->oartifact == ART_FAST_CAMO_PREDATOR) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || Race_if(PM_GIGANT))
 
 
 /*** Vision and senses ***/
@@ -309,7 +309,7 @@
 #define Blind_telepat		( ((HTelepat || ETelepat || Race_if(PM_DEVELOPER) || telepathic(youmonst.data)) && !NoTelepat && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !u.powerfailure && !NoTelepat && PlayerInHighHeels ))
 
 #define Unblind_telepat		((ETelepat || Race_if(PM_DEVELOPER)) && !NoTelepat)
-#define NoTelepat	( (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0))) || (uarmh && ( (uarmh->otyp == TINFOIL_HELMET) || (OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aluminium helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem iz alyuminiya") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "alyuminiy dubulg'a") ) ) ) ) )
+#define NoTelepat	( (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0))) || (uarmc && uarmc->oartifact == ART_GODLESS_VOID) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uarmh && ( (uarmh->otyp == TINFOIL_HELMET) || (OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aluminium helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem iz alyuminiya") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "alyuminiy dubulg'a") ) ) ) ) )
 
 #define HHallu_party	u.uprops[HALLU_PARTY].intrinsic
 #define Hallu_party	(HHallu_party && !NoHallu_party)
@@ -361,7 +361,7 @@
 
 #define HManaleech	u.uprops[MANALEECH].intrinsic
 #define EManaleech	u.uprops[MANALEECH].extrinsic
-#define Manaleech		((HManaleech || EManaleech || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarm && flags.female && uarm->oartifact == ART_PRETTY_LITTLE_MAGICAL_GIRL) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART___TH_NAZGUL) ) && !NoManaleech)
+#define Manaleech		((HManaleech || EManaleech || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarm && flags.female && uarm->oartifact == ART_PRETTY_LITTLE_MAGICAL_GIRL) || (uarmh && uarmh->oartifact == ART_REFUEL_BADLY) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART_MADMAN_S_POWER) || (uamul && uamul->oartifact == ART___TH_NAZGUL) ) && !NoManaleech)
 #define NoManaleech	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MANALEECH].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
@@ -390,7 +390,7 @@
 #define HClairvoyant		u.uprops[CLAIRVOYANT].intrinsic
 #define EClairvoyant		u.uprops[CLAIRVOYANT].extrinsic
 #define BClairvoyant		u.uprops[CLAIRVOYANT].blocked
-#define Clairvoyant		((HClairvoyant || EClairvoyant) &&\
+#define Clairvoyant		((HClairvoyant || EClairvoyant || (uarmh && uarmh->otyp == ART_WSCHIIIIIE_) ) &&\
 				 !BClairvoyant && !NoClairvoyant)
 #define NoClairvoyant	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CLAIRVOYANT].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
@@ -403,7 +403,7 @@
 #define HDetect_monsters	u.uprops[DETECT_MONSTERS].intrinsic
 #define EDetect_monsters	u.uprops[DETECT_MONSTERS].extrinsic
 #define Detect_monsters		((HDetect_monsters || EDetect_monsters || u.uprops[STORM_HELM].extrinsic) && !u.powerfailure && !NoDetect_monsters)
-#define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 
 /*** Appearance and behavior ***/
@@ -412,7 +412,7 @@
 #define HInvis			u.uprops[INVIS].intrinsic
 #define EInvis			u.uprops[INVIS].extrinsic
 #define BInvis			u.uprops[INVIS].blocked
-#define Invis			((HInvis || EInvis || (uarmc && uarmc->oartifact == ART_INVISIBLE_VISIBILITITY) || (uarmc && uarmc->oartifact == ART_CAN_T_KILL_WHAT_YOU_CAN_T_) || (uwep && uwep->oartifact == ART_SECRETS_OF_INVISIBLE_PLEAS) || \
+#define Invis			((HInvis || EInvis || (uwep && uwep->oartifact == ART_MOVE_IN_THE_SHADOWS) || (uarmc && uarmc->oartifact == ART_INVISIBLE_VISIBILITITY) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (uarm && uarm->oartifact == ART_VERY_INVISIBLE) || (uarmc && uarmc->oartifact == ART_CAN_T_KILL_WHAT_YOU_CAN_T_) || (uwep && uwep->oartifact == ART_SECRETS_OF_INVISIBLE_PLEAS) || \
 				 pm_invisible(youmonst.data)) && !BInvis && !Race_if(PM_ELEMENTAL) && !NoInvisible)
 #define Invisible		(Invis && !See_invisible)
 		/* Note: invisibility also hides inventory and steed */
@@ -420,13 +420,13 @@
 
 #define HDisplaced		u.uprops[DISPLACED].intrinsic
 #define EDisplaced		u.uprops[DISPLACED].extrinsic
-#define Displaced		( (EDisplaced || HDisplaced || (uarmc && uarmc->oartifact == ART_IMAGE_PROJECTOR) || (uwep && uwep->oartifact == ART_SKY_RENDER) || (uarmf && uarmf->oartifact == ART_WATER_FLOWERS) || (uwep && uwep->oartifact == ART_BELTHRONDING) || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shrouded cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okutana plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kafan plash") ) && (moves % 10 == 0) ) || ((moves % 3 == 0) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deep cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glubokiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chuqur plash") ) ) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && (moves % 3 == 0) ) ) && !NoDisplaced)
+#define Displaced		( (EDisplaced || HDisplaced || (uarmc && uarmc->oartifact == ART_IMAGE_PROJECTOR) || (uwep && uwep->oartifact == ART_SKY_RENDER) || (uarm && uarm->oartifact == ART_VERY_INVISIBLE) || (uarmf && uarmf->oartifact == ART_WATER_FLOWERS) || (uwep && uwep->oartifact == ART_BELTHRONDING) || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shrouded cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okutana plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kafan plash") ) && (moves % 10 == 0) ) || ((moves % 3 == 0) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deep cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glubokiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chuqur plash") ) ) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && (moves % 3 == 0) ) ) && !NoDisplaced)
 #define NoDisplaced	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DISPLACED].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
 #define BStealth		u.uprops[STEALTH].blocked
-#define Stealth			(( (HStealth || EStealth || u.uprops[MULTISHOES].extrinsic || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
+#define Stealth			(( (HStealth || EStealth || u.uprops[MULTISHOES].extrinsic || (Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !(uwep && uwep->oartifact == ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
 #define NoStealth	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STEALTH].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
@@ -440,29 +440,29 @@
 /* according to Yasdorian, I love aggravate monster. Indeed, many of my artifacts have it. --Amy */
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
 #define EAggravate_monster	u.uprops[AGGRAVATE_MONSTER].extrinsic
-#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (uwep && uwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
+#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (uwep && uwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_ARMORWREAKER) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
 
 #define HConflict		u.uprops[CONFLICT].intrinsic
 #define EConflict		u.uprops[CONFLICT].extrinsic
-#define Conflict		((HConflict || EConflict || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) ) && !Is_blackmarket(&u.uz) )
+#define Conflict		((HConflict || EConflict || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmc && uarmc->oartifact == ART_NOW_IT_S_FOR_REAL) || (uarmh && uarmh->oartifact == ART_CERTAIN_SLOW_DEATH) || (uwep && uwep->oartifact == ART_CIVIL_WAR) || (uarmf && uarmf->oartifact == ART_FATALITY) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) ) && !Is_blackmarket(&u.uz) )
 /* Sorry guys and girls, but you need to find another way to clear out Sam's assistants. --Amy */
 
 /*** Transportation ***/
 #define HJumping		u.uprops[JUMPING].intrinsic
 #define EJumping		u.uprops[JUMPING].extrinsic
-#define Jumping			((HJumping || EJumping || (uamul && uamul->oartifact == ART_ONLY_ONE_ESCAPE) || flags.iwbtg || u.uprops[MULTISHOES].extrinsic ) && !NoJumping)
+#define Jumping			((HJumping || EJumping || (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) || (uarm && uarm->oartifact == ART_LUKE_S_JEDI_POWER) || (uwep && uwep->oartifact == ART_SUPERGIRL_S_JUMP_AND_RUN_F) || (uamul && uamul->oartifact == ART_ONLY_ONE_ESCAPE) || flags.iwbtg || u.uprops[MULTISHOES].extrinsic ) && !NoJumping)
 #define NoJumping	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_JUMPING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HTeleportation		u.uprops[TELEPORT].intrinsic
 #define ETeleportation		u.uprops[TELEPORT].extrinsic
-#define Teleportation		(HTeleportation || ETeleportation || (uarmh && uarmh->oartifact == ART_GO_OTHER_PLACE) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uarms && uarms->oartifact == ART_REFLECTOR_EJECTOR) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) ||  \
+#define Teleportation		(HTeleportation || ETeleportation || (uarmh && uarmh->oartifact == ART_GO_OTHER_PLACE) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uarmh && uarmh->oartifact == ART_DOUBLE_JEOPARDY) || (uarms && uarms->oartifact == ART_REFLECTOR_EJECTOR) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_WARPCHANGE) || (uright && uright->oartifact == ART_WARPCHANGE) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) ||  \
 				 can_teleport(youmonst.data) || Race_if(PM_MAIA) || Race_if(PM_HUMANOID_LEPRECHAUN))
 
 #define HTeleport_control	u.uprops[TELEPORT_CONTROL].intrinsic
 #define ETeleport_control	u.uprops[TELEPORT_CONTROL].extrinsic
 #define Teleport_control	((HTeleport_control || ETeleport_control || \
 				 control_teleport(youmonst.data)) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
-#define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic
 #define ELevitation		u.uprops[LEVITATION].extrinsic
@@ -478,11 +478,11 @@
 #define HFlying			u.uprops[FLYING].intrinsic
 #define EFlying			u.uprops[FLYING].extrinsic
 #ifdef STEED
-# define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (Race_if(PM_MOON_ELF) && flags.moonphase == FULL_MOON) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) || (u.usteed && is_flyer(u.usteed->data))) && !NoFlying && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoFlying && PlayerInHighHeels ))
+# define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) || (Race_if(PM_MOON_ELF) && flags.moonphase == FULL_MOON) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) || (u.usteed && is_flyer(u.usteed->data))) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && PlayerInHighHeels ))
 #define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #else
-# define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) ) && !NoFlying && (!Role_if(PM_TOPMODEL))) || !flags.female) || ( Role_if(PM_TOPMODEL) && !NoFlying && PlayerInHighHeels ))
+# define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) ) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && (!Role_if(PM_TOPMODEL))) || !flags.female) || ( Role_if(PM_TOPMODEL) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && PlayerInHighHeels ))
 #endif
 	/* May touch surface; does not override any others */
 
@@ -494,12 +494,12 @@
 #define HSwimming		u.uprops[SWIMMING].intrinsic
 #define ESwimming		u.uprops[SWIMMING].extrinsic	/* [Tom] */
 #ifdef STEED
-# define Swimming		(HSwimming || ESwimming || \
+# define Swimming		((HSwimming || ESwimming || (uarmc && uarmc->oartifact == ART_WATERFORCE____) || (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || \
 				 is_swimmer(youmonst.data) || \
-				 (u.usteed && is_swimmer(u.usteed->data)))
+				 (u.usteed && is_swimmer(u.usteed->data))) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) )
 #else
-# define Swimming		(HSwimming || ESwimming || \
-				 is_swimmer(youmonst.data))
+# define Swimming		((HSwimming || ESwimming || (uarmc && uarmc->oartifact == ART_WATERFORCE____) || (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || \
+				 is_swimmer(youmonst.data)) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) )
 #endif
 	/* Get wet, don't go under water unless if amphibious */
 
@@ -509,7 +509,7 @@
 				 amphibious(youmonst.data)) && !NoBreathless)
 	/* Get wet, may go under surface */
 
-#define Breathless		( ((HMagical_breathing || EMagical_breathing || (uarmh && uarmh->oartifact == ART_SHPX_GUVF_FUVG) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || breathless(youmonst.data)) && !NoBreathless && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoBreathless && PlayerInHighHeels ))
+#define Breathless		( ((HMagical_breathing || EMagical_breathing || (uarmh && uarmh->oartifact == ART_SHPX_GUVF_FUVG) || (Role_if(PM_ANACHRONIST) && uwep && uwep->oartifact == ART_ANACHRONONONONAUT_PACKAGE) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmc && uarmc->oartifact == ART_WATERFORCE____) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || breathless(youmonst.data)) && !NoBreathless && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !NoBreathless && PlayerInHighHeels ))
 #define NoBreathless	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MAGICAL_BREATHING].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Underwater		(u.uinwater)
@@ -530,7 +530,7 @@
 /*** Physical attributes ***/
 #define HSlow_digestion		u.uprops[SLOW_DIGESTION].intrinsic
 #define ESlow_digestion		u.uprops[SLOW_DIGESTION].extrinsic
-#define Slow_digestion		(!Race_if(PM_GIGANT) && !NoSlow_digestion && (HSlow_digestion || ESlow_digestion) )  /* KMH */
+#define Slow_digestion		(!Race_if(PM_GIGANT) && !NoSlow_digestion && (HSlow_digestion || ESlow_digestion || (uarmh && uarmh->oartifact == ART_NEVEREATER) || (uarmh && uarmh->oartifact == ART_WOLF_KING) ) )  /* KMH */
 #define NoSlow_digestion	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLOW_DIGESTION].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 /* Half spell/physical damage only works 50% of the time, so it's more like three quarter spell/physical damage. --Amy */
@@ -572,12 +572,12 @@
 
 #define HPolymorph		u.uprops[POLYMORPH].intrinsic
 #define EPolymorph		u.uprops[POLYMORPH].extrinsic
-#define Polymorph		(HPolymorph || EPolymorph || ((moves % 10 == 0) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "changing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "izmeneniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'zgaruvchan plash") ) ) || (uarmf && uarmf->oartifact == ART_NOSE_ENCHANTMENT) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) || Race_if(PM_MOULD) || Race_if(PM_PLAYER_MIMIC) || Race_if(PM_TRANSFORMER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_MISSINGNO) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD))
+#define Polymorph		(HPolymorph || EPolymorph || ((moves % 10 == 0) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "changing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "izmeneniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'zgaruvchan plash") ) ) || (uarmf && uarmf->oartifact == ART_NOSE_ENCHANTMENT) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (uarmh && uarmh->oartifact == ART_DOUBLE_JEOPARDY) || (uleft && uleft->oartifact == ART_SEMI_SHAPE_CONTROL) || (uright && uright->oartifact == ART_SEMI_SHAPE_CONTROL) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) || Race_if(PM_MOULD) || Race_if(PM_PLAYER_MIMIC) || Race_if(PM_TRANSFORMER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_MISSINGNO) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD))
 
 #define HPolymorph_control	u.uprops[POLYMORPH_CONTROL].intrinsic
 #define EPolymorph_control	u.uprops[POLYMORPH_CONTROL].extrinsic
 #define Polymorph_control	((HPolymorph_control || EPolymorph_control || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmh && uarmh->oartifact == ART_DICTATORSHIP) ) && !Race_if(PM_MOULD) && !NoPolymorph_control && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && !Race_if(PM_MISSINGNO) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AK_THIEF_IS_DEAD_))
-#define NoPolymorph_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPolymorph_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HUnchanging		u.uprops[UNCHANGING].intrinsic
 #define EUnchanging		u.uprops[UNCHANGING].extrinsic
@@ -586,7 +586,7 @@
 #define HFast			u.uprops[FAST].intrinsic
 #define EFast			u.uprops[FAST].extrinsic
 #define Fast			( (HFast || EFast) && !NoFast && !Race_if(PM_DEVELOPER) && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) )
-#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || (uwep && uwep->oartifact == ART_FUMATA_YARI) || (uwep && uwep->oartifact == ART_INGRAM_MAC___) || (uarmc && uarmc->oartifact == ART_SPEEDRUNNER_S_DREAM) || (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL) || (uarmf && uarmf->oartifact == ART_UNTRAINED_HALF_MARATHON) || (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) || (uright && uright->oartifact == ART_CRIMINAL_QUEEN) || (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) || (uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || u.uprops[MULTISHOES].extrinsic ) && !Race_if(PM_DEVELOPER) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && !Race_if(PM_DEVELOPER) && PlayerInHighHeels ))
+#define Very_fast		(( ( (HFast & ~INTRINSIC) || EFast || (uwep && uwep->oartifact == ART_FUMATA_YARI) || (uwep && uwep->oartifact == ART_INGRAM_MAC___) || (uarmc && uarmc->oartifact == ART_SPEEDRUNNER_S_DREAM) || (uarmh && uarmh->oartifact == ART_REAL_SPEED_DEVIL) || (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) || (uwep && uwep->oartifact == ART_EAMANE_LUINWE) || (uarmc && uarmc->oartifact == ART_FULLY_LIONIZED) || (uarmc && uarmc->oartifact == ART_FAST_CAMO_PREDATOR) || (uarmh && uarmh->oartifact == ART_ELESSAR_ELENDIL) || (uarmf && uarmf->oartifact == ART_UNTRAINED_HALF_MARATHON) || (uleft && uleft->oartifact == ART_REQUIRED_GLADNESS) || (uright && uright->oartifact == ART_REQUIRED_GLADNESS) || (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) || (uright && uright->oartifact == ART_CRIMINAL_QUEEN) || (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) || (uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || u.uprops[MULTISHOES].extrinsic ) && !Race_if(PM_DEVELOPER) && !NoFast && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) ) && !NoFast && !Race_if(PM_DEVELOPER) && PlayerInHighHeels ))
 #define NoFast	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FAST].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic
@@ -662,7 +662,7 @@
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic
 #define EFree_action	u.uprops[FREE_ACTION].extrinsic
-#define Free_action		((HFree_action || EFree_action || (uwep && uwep->oartifact == ART_KARATE_KID) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE) || (uarm && uarm->oartifact == ART_LITTLE_BIG_MIDGET) || (uarmh && uarmh->oartifact == ART_LOW_LOCAL_MEMORY) || (uarms && uarms->oartifact == ART_LURTZ_S_WALL) || (uarms && uarms->oartifact == ART_BRASS_GUARD) || (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) ) && !NoFree_action) /* [Tom] */
+#define Free_action		((HFree_action || EFree_action || (uwep && uwep->oartifact == ART_KARATE_KID) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE) || (uarm && uarm->oartifact == ART_LITTLE_BIG_MIDGET) || (uarmh && uarmh->oartifact == ART_LOW_LOCAL_MEMORY) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || (uarms && uarms->oartifact == ART_LURTZ_S_WALL) || (uarms && uarms->oartifact == ART_BRASS_GUARD) || (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) || (uarmg && uarmg->oartifact == ART_FREE_ACTION_CALLED_FREE_AC) || (uarmc && uarmc->oartifact == ART_PREDATORY_STABILITY) || (uarmf && uarmf->oartifact == ART_FREE_FOR_ENOUGH) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) ) && !NoFree_action) /* [Tom] */
 #define NoFree_action	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FREE_ACTION].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Fixed_abil		u.uprops[FIXED_ABIL].extrinsic	/* KMH */
@@ -671,7 +671,7 @@
 
 #define HKeen_memory		u.uprops[KEEN_MEMORY].intrinsic
 #define EKeen_memory		u.uprops[KEEN_MEMORY].extrinsic
-#define Keen_memory		((HKeen_memory || EKeen_memory || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) || (uarmc && uarmc->oartifact == ART_MEMORY_AID) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uamul && uamul->oartifact == ART_COMPUTER_AMULET) || (youmonst.data->mlet == S_QUADRUPED)) && !NoKeen_memory)
+#define Keen_memory		((HKeen_memory || EKeen_memory || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) || (uarmc && uarmc->oartifact == ART_MEMORY_AID) || (uarmc && uarmc->oartifact == ART_REMEMBERING_THE_BAD_TIMES) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uamul && uamul->oartifact == ART_COMPUTER_AMULET) || (youmonst.data->mlet == S_QUADRUPED)) && !NoKeen_memory)
 #define NoKeen_memory	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_KEEN_MEMORY].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HSight_bonus		u.uprops[SIGHT_BONUS].intrinsic
@@ -691,7 +691,7 @@
 
 #define HConf_resist		u.uprops[CONF_RES].intrinsic
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
-#define Conf_resist		((HConf_resist || EConf_resist || (uarmu && uarmu->oartifact == ART_TOTAL_CONTROL) || (uarmc && uarmc->oartifact == ART_FREQUENT_BUT_WEAK_STATUS) ) && !NoConf_resist)
+#define Conf_resist		((HConf_resist || EConf_resist || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmu && uarmu->oartifact == ART_TOTAL_CONTROL) || (uarmc && uarmc->oartifact == ART_FREQUENT_BUT_WEAK_STATUS) ) && !NoConf_resist)
 #define NoConf_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONF_RES].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HPsi_resist		u.uprops[PSI_RES].intrinsic
@@ -701,7 +701,7 @@
 
 #define HDouble_attack		u.uprops[DOUBLE_ATTACK].intrinsic
 #define EDouble_attack		u.uprops[DOUBLE_ATTACK].extrinsic
-#define Double_attack		((HDouble_attack || EDouble_attack || (uarm && uarm->oartifact == ART_OFFENSE_OWNS_DEFENSE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) ) && !NoDouble_attack)
+#define Double_attack		((HDouble_attack || EDouble_attack || (uarm && uarm->oartifact == ART_OFFENSE_OWNS_DEFENSE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uwep && uwep->oartifact == ART_MELEE_DUALITY) ) && !NoDouble_attack)
 #define NoDouble_attack	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DOUBLE_ATTACK].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HQuad_attack		u.uprops[QUAD_ATTACK].intrinsic
@@ -711,7 +711,7 @@
 
 #define HUseTheForce		u.uprops[THE_FORCE].intrinsic
 #define EUseTheForce		u.uprops[THE_FORCE].extrinsic
-#define UseTheForce		((HUseTheForce || EUseTheForce ) && !NoUseTheForce)
+#define UseTheForce		((HUseTheForce || EUseTheForce || (uarm && uarm->oartifact == ART_LUKE_S_JEDI_POWER) ) && !NoUseTheForce)
 #define NoUseTheForce	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_THE_FORCE].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #endif /* YOUPROP_H */

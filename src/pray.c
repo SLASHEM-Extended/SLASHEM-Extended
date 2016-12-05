@@ -2228,6 +2228,7 @@ can_pray(praying)
 boolean praying;	/* false means no messages should be given */
 {
     int alignment;
+	int maedhrosbonus = (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) ? 250 : 0;
 
     p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(Conf_resist ? 1000 : 100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
@@ -2255,8 +2256,8 @@ boolean praying;	/* false means no messages should be given */
     else alignment = u.ualign.record;
 
 	/* chaotic gods allow you to pray more often, lawfuls allow it least often --Amy */
-    if ((p_trouble > 0) ? (u.ublesscnt > ((u.ualign.type == A_CHAOTIC) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 200) ) : /* big trouble */
-	(p_trouble < 0) ? (u.ublesscnt > ((u.ualign.type == A_CHAOTIC) ? 200 : (u.ualign.type == A_NEUTRAL) ? 125 : 100) ) : /* minor difficulties */
+    if ((p_trouble > 0) ? (u.ublesscnt > ((u.ualign.type == A_CHAOTIC) ? (300 + maedhrosbonus) : (u.ualign.type == A_NEUTRAL) ? (250 + maedhrosbonus) : (200 + maedhrosbonus) ) ) : /* big trouble */
+	(p_trouble < 0) ? (u.ublesscnt > ((u.ualign.type == A_CHAOTIC) ? (200 + maedhrosbonus) : (u.ualign.type == A_NEUTRAL) ? (125 + maedhrosbonus) : (100 + maedhrosbonus) ) ) : /* minor difficulties */
 	(u.ublesscnt > 0))			/* not in trouble */
 	p_type = 0;		/* too soon... */
     else if ((int)Luck < 0 || u.ugangr || alignment < 0)
@@ -2297,7 +2298,7 @@ dopray()
        no deafness attribute this implies that all verbalized messages
        can be heard.  So, in case the player has used the 'O' command
        to toggle this accessible flag off, force it to be on. */
-    if (!Deafness && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1; /* Amy edit: we do have a deafness attribute... :D */
+    if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1; /* Amy edit: we do have a deafness attribute... :D */
 
     if (IS_TOILET(levl[u.ux][u.uy].typ)) {
 	pline("You pray to the Porcelain God.");

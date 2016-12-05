@@ -3458,7 +3458,7 @@ no_opener:
 int
 Hear_again()		/* called when waking up after fainting */
 {
-	if (!Deafness && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
+	if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
 	return 0;
 }
 
@@ -4023,6 +4023,16 @@ struct obj *otmp;
 		}
 		/* Fall through otherwise */
 	    default:
+
+		if (otmp && otmp->oartifact == ART_DOENERTELLER_VERSACE) {
+			if (!Antimagic) You_feel("more resistant to magic!");
+			incr_itimeout(&HAntimagic, rnz(2000));
+			if (!Drain_resistance) You_feel("more resistant to drain life!");
+			incr_itimeout(&HDrain_resistance, rnz(2000));
+			if (!Reflecting) You_feel("reflexive!");
+			incr_itimeout(&HReflecting, rnz(2000));
+		}
+
 		if (otmp->otyp == SLIME_MOLD && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 			&& otmp->spe == current_fruit)
 		    pline("My, that was a %s %s!",

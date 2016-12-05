@@ -24,6 +24,10 @@ STATIC_PTR int NDECL(unfaintX);
 #define spellid(spell)		spl_book[spell].sp_id
 #define spellknow(spell)	spl_book[spell].sp_know
 
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
+static void FDECL(p_glow2,(struct obj *,const char *));
+
 #ifdef OVL0
 
 STATIC_PTR
@@ -33,6 +37,18 @@ unfaintX()
 	(void) Hear_again();
 	stop_occupation();
 	return 0;
+}
+
+static void
+p_glow2(otmp,color)
+register struct obj	*otmp;
+register const char *color;
+{
+	Your("%s %s%s%s for a moment.",
+		xname(otmp),
+		otense(otmp, Blind ? "vibrate" : "glow"),
+		Blind ? "" : " ",
+		Blind ? nul : hcolor(color));
 }
 
 void
@@ -901,9 +917,13 @@ moveloop()
 				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
 				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
 			}
-			if (Frozen && moveamt > 1) {
+			if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
+			}
+			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
 			}
 			if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
@@ -1044,8 +1064,10 @@ moveloop()
 
 		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
 
-		    monstermoves++;
-		    moves++;
+			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
+			    monstermoves++;
+			    moves++;
+			}
 
 		    }
 
@@ -1232,6 +1254,22 @@ moveloop()
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
+		}
+
+		if (uarmc && uarmc->oartifact == ART_LAST_STEELING && !rn2(5000) ) {
+			register struct obj *steeling;
+			pline("You may rustproof an iron object.");
+			steeling = getobj(all_count, "rustproof");
+			if (!steeling) {
+				pline("Oh well, if you don't wanna...");
+			} else {
+				if (!(objects[(steeling)->otyp].oc_material == IRON) ) {
+					pline("That is not made of iron!");
+				} else {
+					steeling->oerodeproof = 1;
+					p_glow2(steeling, NH_PURPLE);
+				}
+			}
 		}
 
 		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
@@ -1628,6 +1666,130 @@ moveloop()
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !rn2(20000) ) {
+			useupall(uwep);
+			pline("Your weapon spontaneously disintegrates!");
+		}
+
+		if (uarmh && uarmh->oartifact == ART_ALLURATION && !rn2(1000) ) {
+			curse(uarmh);
+			if (!rn2(3)) pline("A black glow surrounds your helmet.");
+			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
+		}
+
+		if (uarmc && uarmc->oartifact == ART_MORE_HIGHER && !rn2(2000) ) {
+			u.chokhmahdamage += 1;
+			pline("Escalation!");
+		}
+
+		if (uamul && uamul->oartifact == ART_EIGHTH_DEADLY_SIN && !rn2(10000) ) {
+
+		    int oi, oj, bd = 1;
+		    for (oi = -bd; oi <= bd; oi++) for(oj = -bd; oj <= bd; oj++) {
+				if (!isok(u.ux + oi, u.uy + oj)) continue;
+				if (levl[u.ux + oi][u.uy + oj].typ <= DBWALL) continue;
+				if (t_at(u.ux + oi, u.uy + oj)) continue;
+			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0);
+		    }
+
+		}
+
+		if (uarmg && uarmg->oartifact == ART_GRABBER_MASTER && !rn2(1000) ) {
+			gold_detect(uarmg);
+		}
+
+		if (uarmh && uarmh->oartifact == ART_IF_THE_RIGHT_MOUSE_BUTTON_ && !rn2(2000) ) {
+		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (uarmh && uarmh->oartifact == ART_SOON_THERE_WILL_BE_AN_ERRO && !rn2(5000) ) {
+			NastinessProblem |= FROMOUTSIDE; /* no message */
+		}
+
+		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
+
+		pline("Your morning star takes you back in time...");
+
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				You_feel("life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "being timed", KILLED_BY);
+		}
+
+		stop_occupation();
+
+		}
+
 		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
@@ -1656,7 +1818,15 @@ moveloop()
 
 		}
 
-		if ( have_morgothiancurse() && !rn2(500) ) { /* was 1 in 50 in ToME */
+		if (uarm && uarm->oartifact == ART_WATER_SHYNESS && !rn2(100) && (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) ) {
+			levl[u.ux][u.uy].typ = POOL;
+		}
+
+		if (uwep && uwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+		}
+
+		if ( (have_morgothiancurse() || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -1749,7 +1919,7 @@ moveloop()
 			}
 		}
 
-		if ( have_topiylinencurse() && !rn2(1000) ) { /* was 1 in 100 in ToME */
+		if ( (have_topiylinencurse() || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(1000) ) { /* was 1 in 100 in ToME */
 			switch (rnd(27)) {
 				case 1:
 				case 2:
@@ -1968,6 +2138,11 @@ newboss:
 			forget(1 + rn2(5));
 		}
 
+		if (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION && !rn2(1000)) {
+			pline("You suddenly forget what you were doing. Maybe your thoughts ended up in the realms of Oblivion, who knows?");
+			forget(1 + rn2(5));
+		}
+
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
@@ -2062,7 +2237,7 @@ newboss:
 			break;
 		}
 
-		if (Deafness || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
 
 		/* Let's throw a bone to permablind races. --Amy */
 		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() ) {
@@ -2515,6 +2690,12 @@ newboss:
 			make_blinded(Blinded + rnd(10), TRUE);
 		}
 
+		if (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN && !rn2(100)) {
+
+			make_burned(HBurned + rnd(10), TRUE);
+
+		}
+
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 			if (!rn2(500)) {
 				pline("You receive an electric shock from your cloak!");
@@ -2683,7 +2864,9 @@ newboss:
 
 		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
 
-		    nh_timeout();
+			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
+			    nh_timeout();
+			}
 		    }
 
 		    run_regions();
@@ -3354,7 +3537,34 @@ newboss:
 
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella giggling.");
+					break;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					break;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+				register int newlev = rnd(71);
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				pline("You were banished!");
+
+			}
+
+			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
+
+				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					pline("You can hear Arabella giggling.");
 					break;
@@ -3512,7 +3722,7 @@ newboss:
 		}
 	}
 
-	if ((BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
 
@@ -3655,7 +3865,7 @@ newboss:
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
-		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 			pline("You shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 

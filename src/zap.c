@@ -5729,7 +5729,7 @@ boolean ordinary;
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -5913,7 +5913,7 @@ struct obj *obj;	/* wand or spell */
 
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			pline("For some reason you resist the banishment!"); break;}
 
@@ -7455,11 +7455,15 @@ xchar sx, sy;
 	    break;
 	case ZT_LITE:
 
-		pline_The("irradiation hurts like hell!");
-		dam = d(nd,8);
-		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
-		dam *= 2; /* vampires are susceptible to sunlight --Amy */
-		pline("Your pale skin is seared by the light ray!");
+		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
+			dam = 0;
+		} else {
+			pline_The("irradiation hurts like hell!");
+			dam = d(nd,8);
+			if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
+				dam *= 2; /* vampires are susceptible to sunlight --Amy */
+				pline("Your pale skin is seared by the light ray!");
+			}
 		}
 
 	    break;
@@ -8452,6 +8456,9 @@ register int osym, dmgtyp;
 		case AD_COLD:
 
 		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) {skip++; break;
+			}
+
+		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {skip++; break;
 			}
 
 		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {

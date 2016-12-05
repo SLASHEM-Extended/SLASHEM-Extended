@@ -208,9 +208,15 @@ boolean barehanded;
 
 		if (Blind || (is_pool(mtmp->mx,mtmp->my) && !Underwater))
 		    pline("Wait!  There's a hidden monster there!");
-		else if ((obj = level.objects[mtmp->mx][mtmp->my]) != 0)
-		    pline("Wait!  There's %s hiding under %s!",
-			  an(l_monnam(mtmp)), doname(obj));
+		else if ((obj = level.objects[mtmp->mx][mtmp->my]) != 0) {
+			if (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE && !rn2(100) ) {
+				pline("NETHACK caused a General Protection Fault at address 000D:001D.");
+				killer_format = KILLED_BY;
+				killer = "Jana's devious cloak";
+				done(DIED);
+			} else
+			pline("Wait!  There's %s hiding under %s!", an(l_monnam(mtmp)), doname(obj));
+		}
 		return 0;
 	    }
 	}
@@ -232,7 +238,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -241,7 +247,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -254,7 +260,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -527,6 +533,11 @@ register struct monst *mtmp;
 	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
 
+	if (uarmc && uarmc->oartifact == ART_DEATHCLAW_HIDE) tmp += 10;
+
+	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
@@ -568,9 +579,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -1673,6 +1684,7 @@ int thrown;
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
 				tmp += 10;
 				if (obj->spe > 0) tmp += obj->spe;
+				if (obj->oartifact == ART_DEADLY_GAMBLING) tmp += rnd(30);
 			}
 
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
@@ -1680,6 +1692,19 @@ int thrown;
 			}
 			if (obj && obj->oclass == WAND_CLASS && Race_if(PM_STICKER) && obj->spe > 0) {
 				tmp += obj->spe;
+			}
+
+			if (obj && obj->oartifact == ART_ICE_BLOCK_HARHARHARHARHAR) {
+
+				struct obj *curr;
+				int cnt = 0;
+
+				for (curr = obj->cobj; curr; curr = curr->nobj)
+				    cnt++;
+				if (cnt > 15) cnt = 15;
+				if (cnt < 0) cnt = 0; /* should never happen; fail safe */
+				tmp += (cnt * 2);
+
 			}
 
 			/*
@@ -1701,6 +1726,8 @@ int thrown;
 
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
+		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 		tmp += (Drunken_boxing && Confusion);
 		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
@@ -4551,7 +4578,7 @@ use_weapon:
 
 			if (dhit) {
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 500) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(2)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -4559,6 +4586,11 @@ use_weapon:
 						uwep->spe--;
 						pline("Your weapon dulls.");
 					}
+				}
+
+				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {
+					uwep->spe--;
+					pline("Your ball sustains damage.");
 				}
 			}
 
@@ -5457,7 +5489,7 @@ uchar aatyp;
 		break;
 
 	    case AD_NEXU:
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 		mdamageu(mon, tmp);
 		switch (rnd(7)) {
 
@@ -5500,7 +5532,7 @@ uchar aatyp;
 
 	    case AD_SOUN:
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
-		if (Deafness) tmp /= 2;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -5508,7 +5540,7 @@ uchar aatyp;
 
 	    case AD_GRAV:
 		pline("As you try to hit %s, you're hurled through the air and slam onto the floor with a crash.", mon_nam(mon) );
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 		phase_door(0);
 		pushplayer();
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
@@ -5738,7 +5770,7 @@ uchar aatyp;
 
 	    case AD_BANI:
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 

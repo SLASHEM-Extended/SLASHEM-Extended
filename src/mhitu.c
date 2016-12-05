@@ -1146,7 +1146,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 250) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(3))) {
+		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
@@ -3607,7 +3607,7 @@ struct attack *mattk;
 
 	/* if your cloak/armor is greased, monster slips off; this
 	   protection might fail (33% chance) when the armor is cursed */
-	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK) && rn2(50) && /* low chance to fail anyway --Amy */
+	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || obj->oartifact == ART_PREMIUM_VISCOSITY) && rn2(50) && /* low chance to fail anyway --Amy */
 		(!obj->cursed || rn2(3))) {
 	    pline("%s %s your %s %s!",
 		  Monnam(mtmp),
@@ -5487,6 +5487,9 @@ dopois:
 		break;
 #ifdef SEDUCE
 	    case AD_SSEX:
+
+		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
+
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
 			&& !mtmp->mcan && (issoviet || rn2(2) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
@@ -5537,7 +5540,7 @@ dopois:
 	    case AD_BANI:
 		hitmsg(mtmp, mattk);
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -5743,7 +5746,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -5790,7 +5793,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		pline("Your ears are blasted by hellish noise!");
-		if (Deafness) dmg /= 2;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
 		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -5798,7 +5801,7 @@ dopois:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
 
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
@@ -7884,7 +7887,7 @@ do_stone2:
 		if (mtmp->mcan) break;
 		You_feel("an energy irradiation!");
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -7929,7 +7932,7 @@ do_stone2:
 	    case AD_SOUN:
 		if (mtmp->mcan) break;
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
-		if (Deafness) tmp /= 2;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -7938,7 +7941,7 @@ do_stone2:
 	    case AD_GRAV:
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("You're turned upside down...");
 		phase_door(0);
@@ -8169,7 +8172,7 @@ do_stone2:
 
 	    case AD_BANI:
 		if (!rn2(10)) {
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -10205,7 +10208,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_BANI:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(100))) 		{
 		if (!rn2(3)) {
-			if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -10399,7 +10402,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		int dmg = dmgplus;
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -10449,7 +10452,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
 		    pline("%s sends a deafening wave of sound in your direction!", Monnam(mtmp));
 		    stop_occupation();
-		if (Deafness) dmgplus /= 2;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmgplus /= 2;
 		make_stunned(HStun + dmgplus, TRUE);
 		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -10463,7 +10466,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
 		    stop_occupation();
 
-		if (level.flags.noteleport || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
+		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
 
 		phase_door(0);
 		pushplayer();
@@ -11729,7 +11732,7 @@ register int n;
 	}
 #endif
 
-	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() ) {
 		if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 	}
@@ -12648,6 +12651,16 @@ register struct attack *mattk;
 		if (!rn2(50)) {
 			mtmp->mhp = 0;
 			pline("The poison was deadly...");
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS && !resists_poison(mtmp)) {
+		pline("%s is poisoned!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

@@ -1256,7 +1256,7 @@ not_special:
 	gy = mtmp->muy;
 	appr = mtmp->mflee ? -1 : 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
-	if (mtmp->mconf || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (u.uswallow && mtmp == u.ustuck))
+	if (mtmp->mconf || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
 #ifdef GOLDOBJ
@@ -1477,6 +1477,8 @@ not_special:
 	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(3) ) appr = 1; 
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin") ) && !rn2(3) ) appr = 1; 
+
+		if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) appr = 0;
 
 	    if (is_unicorn(ptr) && level.flags.noteleport) {
 		/* on noteleport levels, perhaps we cannot avoid hero */

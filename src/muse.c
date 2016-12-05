@@ -3603,7 +3603,7 @@ register struct obj *otmp;
 	case WAN_BANISHMENT:
 		if (zap_oseen) makeknown(WAN_BANISHMENT);
 
-		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 		pline("Somehow, the banishment beam doesn't do anything."); break;}
@@ -4485,7 +4485,7 @@ struct monst *mtmp;
 			pline("%s plays a %s!", Monnam(mtmp), xname(otmp));
 		} else
 			You_hear("a horn being played.");
-		if (rn2(2) || !ishaxor) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
@@ -5545,6 +5545,23 @@ struct monst *mtmp;
 				pline(Hallucination ?
 						"Uh... everything is so... green!?" :
 						"You see trees growing out of the ground!" );
+
+		if (otmp && otmp->oartifact == ART_PANIC_IN_GOTHAM_FOREST) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = TREE;
+				block_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Uh-oh... there has been a strange increase in the number of trees lately. This is of course very dangerous :-), because if it turns out that this is the work of Poison Ivy, we'll have a major panic on our hands.");
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 

@@ -911,6 +911,7 @@ E struct obj *FDECL(sobj_at, (int,int,int));
 E struct obj *FDECL(carrying, (int));
 E boolean NDECL(have_lizard);
 E boolean NDECL(have_loadstone);
+E boolean NDECL(have_pokeloadstone);
 E boolean NDECL(have_sleepstone);
 E boolean NDECL(have_magicresstone);
 E boolean NDECL(have_cursedmagicresstone);

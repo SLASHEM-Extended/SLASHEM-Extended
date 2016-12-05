@@ -236,7 +236,7 @@ boolean talk;
 		pline(Hallucination ? "Uhh... the fire's getting a little bit too hot, even for your tastes!" : "You're badly burned!");
 		set_itimeout(&HeavyBurned, xtime);
 	}
-	if (xtime && (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) ) set_itimeout(&HeavyBurned, xtime);
+	if (xtime && (StatusTrapProblem || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) ) set_itimeout(&HeavyBurned, xtime);
 }
 
 void
@@ -3409,6 +3409,10 @@ healup(nhp, nxtra, curesick, cureblind)
 {
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") )) nhp *= 2;
+	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
 
 	if (nhp) {
 		if (Upolyd) {
@@ -3435,6 +3439,10 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 {
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") ) ) nhp *= 2;
+	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
 
 	if (nhp) {
 		mtmp->mhp += nhp;
@@ -4814,6 +4822,21 @@ boolean amnesia;
 		if (obj->otyp == SALT_CHUNK) {
 			pline("The stone dissolves!");
 			makeknown(obj->otyp);
+			if (obj->oartifact == ART_CUBIC_SODIUM_CHLORIDE) {
+				pline("The stone held hidden magical powers, and upon their release, grateful monsters come into existence!");
+				struct monst *familiar;
+				familiar = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+				if (familiar) (void) tamedog(familiar, (struct obj *) 0, TRUE);
+				familiar = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+				if (familiar) (void) tamedog(familiar, (struct obj *) 0, TRUE);
+				familiar = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+				if (familiar) (void) tamedog(familiar, (struct obj *) 0, TRUE);
+				familiar = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+				if (familiar) (void) tamedog(familiar, (struct obj *) 0, TRUE);
+				familiar = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+				if (familiar) (void) tamedog(familiar, (struct obj *) 0, TRUE);
+
+			}
 			useup(obj);
 			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE);
 			if (otmp) {
@@ -5731,8 +5754,8 @@ dodip()
 		/* Mixing potions is dangerous... */
 		pline_The("potions mix...");
 		/* KMH, balance patch -- acid is particularly unstable */
-		if (obj->cursed || obj->otyp == POT_ACID ||
-		    potion->cursed || potion->otyp == POT_ACID || !rn2(10) || (stack_too_big(obj) && stack_too_big(obj)) || (stack_too_big(potion) && stack_too_big(potion) ) ) {
+		if ((obj->cursed || obj->otyp == POT_ACID ||
+		    potion->cursed || potion->otyp == POT_ACID || !rn2(10) || (stack_too_big(obj) && stack_too_big(obj)) || (stack_too_big(potion) && stack_too_big(potion) ) ) && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS && !(obj->otyp == POT_ACID || potion->otyp == POT_ACID) ) ) {
 			pline("BOOM!  They explode!");
 			exercise(A_STR, FALSE);
 			if (!breathless(youmonst.data) || haseyes(youmonst.data))

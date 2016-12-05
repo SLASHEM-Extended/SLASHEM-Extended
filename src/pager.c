@@ -242,6 +242,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
+		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
 		    ways_seen++;
 		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || ((mtmp)->mhp % 2 != 0) ) ) 
@@ -262,13 +264,25 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mtmp)->mhp % 9 == 0)
 		    ways_seen++;
+		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0)
+		    ways_seen++;
 		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
+		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) )
 		    ways_seen++;
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
+		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
+		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
+		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
+		    ways_seen++;
+		if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) )
 		    ways_seen++;
 		if (Race_if(PM_LEVITATOR) && (is_flyer(mtmp->data) || mtmp->egotype_flying) )
 		    ways_seen++;
@@ -326,6 +340,10 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
+		    if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data)) {
+			Strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
 		    if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) ) {
 			Strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
@@ -371,6 +389,10 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
+		    if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0) {
+			Strcat(monbuf, "internet access");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
 		    if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
 			Strcat(monbuf, "numbopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
@@ -379,12 +401,32 @@ lookat(x, y, buf, monbuf)
 			Strcat(monbuf, "freezopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
+		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE ) {
+			Strcat(monbuf, "freezer vision");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
 		    if (Burnopathy && Burned && infravision(mtmp->data) ) {
 			Strcat(monbuf, "burnopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (Sickopathy && Sick && extra_nasty(mtmp->data) ) {
 			Strcat(monbuf, "sickopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
+			Strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) ) {
+			Strcat(monbuf, "bugnose");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) ) {
+			Strcat(monbuf, "FD Deth");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) ) {
+			Strcat(monbuf, "bitchvision");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 
@@ -955,7 +997,7 @@ do_look(quick)
 	}
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !have_rmbstone()) {
+	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !have_rmbstone()) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -974,7 +1016,7 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !have_rmbstone()) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);

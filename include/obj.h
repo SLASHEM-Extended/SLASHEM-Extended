@@ -472,7 +472,7 @@ struct obj {
 #ifdef WALLET_O_P
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
                          ((otmp)->oartifact && \
-                          ( (otmp)->oartifact == ART_WALLET_OF_PERSEUS || (otmp)->oartifact == ART_ONE_SIZE_FITS_EVERYTHING) ) || \
+                          ( (otmp)->oartifact == ART_WALLET_OF_PERSEUS || (otmp)->oartifact == ART_PRIAMOS__TREASURE || (otmp)->oartifact == ART_ONE_SIZE_FITS_EVERYTHING) ) || \
   			             (otmp)->otyp == BAG_OF_TRICKS)
 #else
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \

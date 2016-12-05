@@ -116,6 +116,36 @@ boolean put_away;
 	} else
 		unweapon = TRUE;	/* for "bare hands" message */
 
+	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		pline("A terrible black aura surrounds your sickle...");
+	}
+
+	if (uwep && uwep->oartifact == ART_BANG_BANG && uwep->spe < 2) uwep->spe = 2;
+
+	if (uwep && uwep->oartifact == ART_DEADLY_GAMBLING && !rn2(100) ) {
+		pline("BANG! You die.");
+		killer_format = KILLED_BY;
+		killer = "deadly gambling";
+		done(DIED);
+	}
+
+	if (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS && !uwep->cursed) {
+		curse(uwep);
+		pline("Oh no! Morgoth curses your gun as you wield it!");
+	}
+	
+	if (uwep && uwep->oartifact == ART_OVERHEATER && !uwep->cursed) {
+		curse(uwep);
+		pline("Your weapon becomes cursed!");
+	}
+
+	if (uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) {
+		curse(uwep);
+		uwep->hvycurse = uwep->prmcurse = uwep->evilcurse = 1;
+		pline("You realize that you've made a horrible mistake.");
+	}
 	
 	/* MRKR: Handle any special effects of unwielding a weapon */
 	if (olduwep && olduwep != uwep)

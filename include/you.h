@@ -818,6 +818,7 @@ struct you {
 	int halresdeactivated;
 
 	boolean boomshined;
+	boolean kyliemode;
 
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */

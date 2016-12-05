@@ -177,6 +177,8 @@ const char *name;	/* if null, then format `obj' */
 
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
+		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
@@ -407,6 +409,9 @@ int x,y;
 	    if (objects[obj->otyp].oc_skill == -P_DART && (P_SKILL(P_DART) >= P_BASIC) && rn2(P_SKILL(P_DART)) )
 		create = 1;
 	    if (objects[obj->otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
+		create = 1;
+
+	    if (objects[obj->otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && !create && !rn2(2))
 		create = 1;
 
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;

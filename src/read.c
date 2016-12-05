@@ -2880,6 +2880,9 @@ register struct obj	*sobj;
 		known = TRUE;
 		if (confused) create_critters(rn1(7,6), (struct permonst *)0);
 		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+
+		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+
 		break;
 
 	case SCR_MEGALOAD:
@@ -3980,6 +3983,7 @@ newboss:
 		    maybe_tame(u.ustuck, sobj);
 		} else {
 		    int i, j, bd = confused ? 5 : 1;
+		    if (sobj->oartifact == ART_FOR_THE_GOOD_CAUSE) bd = 5;
 		    struct monst *mtmp;
 
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
@@ -4167,7 +4171,26 @@ newboss:
 
 	case SCR_GROWTH:
 		known = TRUE;
-		if (confused) {
+
+		if (sobj && sobj->oartifact == ART_PANIC_IN_GOTHAM_FOREST) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = TREE;
+				block_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Uh-oh... there has been a strange increase in the number of trees lately. This is of course very dangerous :-), because if it turns out that this is the work of Poison Ivy, we'll have a major panic on our hands.");
+			known = TRUE;
+			break;
+
+		} else if (confused) {
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
@@ -4728,7 +4751,7 @@ retry:
 		break;
 	case SCR_WARPING:
 		known = TRUE;
-		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("You're unable to warp!"); break;}

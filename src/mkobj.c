@@ -389,6 +389,8 @@ struct obj *box;
 
 			}
 
+			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
+
 		    otmp->owt = weight(otmp);
 		} else while (otmp->otyp == ROCK) {
 		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, FLINT);

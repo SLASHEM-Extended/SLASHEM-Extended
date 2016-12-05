@@ -2012,7 +2012,7 @@ doengrave()
 
 	for (sp = ebuf; *sp; sp++) {
 	    if (isspace(*sp)) continue;
-	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD) && (ishaxor ? !rn2(40) : !rn2(30) ) ) ||
+	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) ||
 		    (Blind && (ishaxor ? !rn2(35) : !rn2(25)) ) || 
 			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
 			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||
@@ -2093,7 +2093,7 @@ doengrave()
 			Your("marker dries out.");
 			otmp->spe = 0;
 			multi = -(maxelen/10);
-		    } else
+		    } else if (!(otmp->oartifact == ART_SCRABBLE_BABBLE) || !rn2(10))
 			if (len > 7) otmp->spe -= (len / 8);
 			else otmp->spe -= 1; /* Prevent infinite grafitti */
 		}

@@ -1017,6 +1017,18 @@ have_loadstone()
 }
 
 boolean
+have_pokeloadstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_AUTOMATIC_POKE_BALL)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -2452,6 +2464,7 @@ struct obj *otmp;
 		|| (!strcmp(word, "charge") && !is_chargeable(otmp))
 		|| (!strcmp(word, "randomly enchant") && !is_enchantable(otmp))
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
+		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == IRON)
 		|| (!strcmp(word, "magically enchant") && !(otmp->owornmask & W_ARMOR) )
 		|| ((!strcmp(word, "draw blood with") ||
 			!strcmp(word, "bandage your wounds with")) &&
@@ -3589,7 +3602,7 @@ long* out_cnt;
 	} else
 	    win = WIN_INVEN;
 
-	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -3749,7 +3762,7 @@ display_inventory(lets, want_reply)
 register const char *lets;
 boolean want_reply;
 {
-	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -4622,7 +4635,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && hides_under(youmonst.data))
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -10810,6 +10823,563 @@ struct obj *obj;
 					pline("Artifact specs: half spell damage and magic resistance while carried, lawful, yeoman quest artifact."); break;
 				case ART_LIGHTSABER_PROTOTYPE:
 					pline("Artifact specs: reflection when wielded, +5 to-hit and +5 damage, can be invoked for energy boost, lawful, jedi quest artifact."); break;
+				case ART_SILVER_SNIVER:
+					pline("Artifact specs: warning of demons when wielded."); break;
+				case ART_JESUS_MUST_DIE:
+					pline("Artifact specs: +4 to-hit and +5 damage."); break;
+				case ART_RANDOMISATOR:
+					pline("Artifact specs: +4 to-hit and +5 damage, bad effects when wielded."); break;
+				case ART_MINI_PEOPLE_EATER:
+					pline("Artifact specs: +10 to-hit and double damage versus humanoids, warning of humanoids when wielded."); break;
+				case ART_TIGATOR_S_THORN:
+					pline("Artifact specs: +5 to-hit and double damage to animals, displays all pokemon when wielded."); break;
+				case ART_GIMLI_S_WAR_AXE:
+					pline("Artifact specs: +5 to-hit and +5 damage, fire resistance when wielded, neutral."); break;
+				case ART_RATTLE_BATTLE:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_SLEEPLESS_NIGHTS:
+					pline("Artifact specs: sleep resistance when wielded, chaotic."); break;
+				case ART_SCHRINGELING:
+					pline("Artifact specs: +8 to-hit and +1 damage."); break;
+				case ART_MEMETAL:
+					pline("Artifact specs: +6 to-hit and +8 damage, deafness when wielded, chaotic."); break;
+				case ART_CUBIC_BONE:
+					pline("Artifact specs: +4 to-hit and +2 damage, cold and level-drain resistance when wielded, lawful."); break;
+				case ART_BROOMCHAMBER_ENDURANCE:
+					pline("Artifact specs: regeneration and energy regeneration when wielded, lawful."); break;
+				case ART_PINSELFLINSELING:
+					pline("Artifact specs: +7 to-hit and +1 damage, reflection when wielded, wielding it allows you to engrave without fail unless you're impaired."); break;
+				case ART_TEAMANTBANE:
+					pline("Artifact specs: +5 to-hit and double damage versus ants."); break;
+				case ART_LASER_PALADIN:
+					pline("Artifact specs: wielding it gives extra multishot to all your ranged attacks, lawful."); break;
+				case ART_ARMORWREAKER:
+					pline("Artifact specs: +10 damage, disables stealth and aggravates monsters when wielded."); break;
+				case ART_DESTRUCTION_BALL:
+					pline("Artifact specs: +20 damage, using it in melee can reduce its enchantment unless it's already -20 or worse."); break;
+				case ART_YESTERDAY_ASTERISK:
+					pline("Artifact specs: +5 to-hit and +7 damage, will occasionally time you while wielded."); break;
+				case ART_MELEE_DUALITY:
+					pline("Artifact specs: double attacks while wielded."); break;
+				case ART_SMAAAAAAAAAAAASH:
+					pline("Artifact specs: +10 to-hit and +3 damage."); break;
+				case ART_STROMBRINGER:
+					pline("Artifact specs: +5 to-hit and +1 level-drain damage, drain resistance when wielded, bloodthirsty, chaotic."); break;
+				case ART_BLAZERUNNER:
+					pline("Artifact specs: +8 to-hit and +4 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+				case ART_CIVIL_WAR:
+					pline("Artifact specs: conflict when wielded, chaotic."); break;
+				case ART_HEAVY_THUNDERSTORM:
+					pline("Artifact specs: +5 to-hit and +1 level-drain damage, drain resistance when wielded, bloodthirsty, chaotic."); break;
+				case ART_RIGHTLASH_LEFT:
+					pline("Artifact specs: applying it at a monster can occasionally improve its enchantment value, up to a maximum of +15."); break;
+				case ART_ALASSEA_TELEMNAR:
+					pline("Artifact specs: +5 to-hit and double drain life damage, bloodthirsty, heavily curses itself and displays fleecy-colored glyphs if wielded, wielding it for too long can cause it to disintegrate, chaotic."); break;
+				case ART_GILRAEN_SEREGON:
+					pline("Artifact specs: +5 to-hit and +5 damage, fire and stoning resistance when wielded, neutral."); break;
+				case ART_VAMPIREBANE:
+					pline("Artifact specs: +5 to-hit and double damage to vampires, warns of vampires when wielded."); break;
+				case ART_GOLEMBANE:
+					pline("Artifact specs: +5 to-hit and double damage to golems, warns of golems when wielded."); break;
+				case ART_POINTLESS_JAVELIN:
+					pline("Artifact specs: +2 to-hit and +5 damage."); break;
+				case ART_EELBANE:
+					pline("Artifact specs: +5 to-hit and double damage to sea creatures, warning of semicolons when wielded."); break;
+				case ART_MOVE_IN_THE_SHADOWS:
+					pline("Artifact specs: invisibility and protection when wielded, chaotic."); break;
+				case ART_ANACHRONONONONAUT_PACKAGE:
+					pline("Artifact specs: +8 to-hit and +4 damage to lightning-susceptible monsters, shock resistance when wielded; if you're an anachronist, wielding it also gives unbreathing."); break;
+				case ART_GLASSPOINT:
+					pline("Artifact specs: +8 to-hit and +2 damage."); break;
+				case ART_EAMANE_LUINWE:
+					pline("Artifact specs: +10 to-hit and +6 damage to fire-susceptible monsters, stealth, confusion and very fast speed when wielded, neutral."); break;
+				case ART_GUN_CONTROL_LAWS:
+					pline("Artifact specs: +5 to-hit and +20 damage, autocurses when wielded, carries an ancient Morgothian curse, chaotic."); break;
+				case ART_OVERHEATER:
+					pline("Artifact specs: +5 to-hit and +8 damage to fire-susceptible monsters, fire resistance when wielded, autocurses; while wielding it, fire traps occasionally spawn underneath you."); break;
+				case ART_MAXIMUM_LAUNCH_POWER:
+					pline("Artifact specs: extra multishot."); break;
+				case ART_KILL_THEM_ALL:
+					pline("Artifact specs: +20 to-hit and +20 damage."); break;
+				case ART_PSCHIIIIIIIII:
+					pline("Artifact specs: +5 to-hit and +20 damage."); break;
+				case ART_ELECTROCUTION:
+					pline("Artifact specs: +10 to-hit and +30 damage to shock-susceptible monsters."); break;
+				case ART_POWER_PELLET:
+					pline("Artifact specs: +1 to-hit and double damage."); break;
+				case ART_FIRE_IN_THE_HOLE:
+					pline("Artifact specs: +5 to-hit and +20 damage to fire-susceptible monsters."); break;
+				case ART_POWERED_ARBALEST:
+					pline("Artifact specs: +2 to-hit and +6 damage."); break;
+				case ART_DEMON_BREAKPOINT:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_LITTLE_ANNOYANCE:
+					pline("Artifact specs: +6 to-hit and +1 damage."); break;
+				case ART_OUCHIE_OUCH:
+					pline("Artifact specs: +2 to-hit and +5 damage."); break;
+				case ART_LAG_SPIKE:
+					pline("Artifact specs: +10 to-hit and +3 damage."); break;
+				case ART_PUNISHMENT_FOR_YOU:
+					pline("Artifact specs: +3 damage per rank in your flail skill, lawful."); break;
+				case ART_SHOCKLASH:
+					pline("Artifact specs: +8 to-hit and +6 damage to shock-susceptible monsters, shock resistance when wielded."); break;
+				case ART_EVERYTHING_MUST_BURN:
+					pline("Artifact specs: +2 to-hit and +8 damage to fire-susceptible monsters, fire resistance and ability to survive in lava when wielded, but wielding it will occasionally burn you."); break;
+				case ART_FEMALE_BEAUTY:
+					pline("Artifact specs: magic resistance when worn, +5 charisma if you're female but -5 to all stats if not."); break;
+				case ART_BIENVENIDO_A_MIAMI:
+					pline("Artifact specs: fire and cold resistance and +3 charisma when worn."); break;
+				case ART_THERMAL_BATH:
+					pline("Artifact specs: swimming, sickness resistance, turn limitation and protects your stuff from getting wet while worn."); break;
+				case ART_GIANT_SWINGING_PENIS:
+					pline("Artifact specs: wearing it as a male character improves your AC by 10 points, otherwise it sets your AC to 10 with no way to improve it."); break;
+				case ART_MAEDHROS_SARALONDE:
+					pline("Artifact specs: 5 extra points of AC, +2 melee damage, and you can pray successfully 250 turns earlier while wearing it, neutral."); break;
+				case ART_WATER_SHYNESS:
+					pline("Artifact specs: magic resistance and reflection when worn, disables flying and swimming, heavily autocurses, occasionally spawns pools underneath you (but thankfully those don't autotrigger)."); break;
+				case ART_PRECIOUS_VIRGINITY:
+					pline("Artifact specs: protection when worn, prevents sexual encounters if you're female."); break;
+				case ART_VERY_INVISIBLE:
+					pline("Artifact specs: stealth, invisibility and displacement when worn, neutral."); break;
+				case ART_CHECK_YOUR_ESCAPES:
+					pline("Artifact specs: prevents teleportation and grants sickness resistance and free action when worn."); break;
+				case ART_WOODSTOCK:
+					pline("Artifact specs: improves your chance to block with a shield, reduces the chance that arrows (but not e.g. bolts) break while you're wearing it."); break;
+				case ART_NOPPED_SUIT:
+					pline("Artifact specs: 3 extra points of AC when worn."); break;
+				case ART_LUKE_S_JEDI_POWER:
+					pline("Artifact specs: allows you to jump and use the force when worn, lawful."); break;
+				case ART_GREGOR_S_GANGSTER_GARMENTS:
+					pline("Artifact specs: using the #borrow command is more likely to work while wearing it, can be invoked for object detection, chaotic."); break;
+				case ART_SOFT_GIRL:
+					pline("Artifact specs: regeneration, 5 extra points of AC, changes your gender if you wear it without being female."); break;
+				case ART_SHRINK_S_AID:
+					pline("Artifact specs: acid resistance, half physical damage and 7 extra points of AC when worn, autocurses."); break;
+				case ART_LEA_S_SCHOOL_UNIFORM:
+					pline("Artifact specs: It looks nice and comfortable."); break;
+				case ART_LARIEN_TELRUNYA:
+					pline("Artifact specs: stealth when worn, lawful."); break;
+				case ART_FIREBURN_COLDSHATTER:
+					pline("Artifact specs: fire and cold resistance and 5 extra points of AC when worn."); break;
+				case ART_NO_MORE_EXPLOSIONS:
+					pline("Artifact specs: fire resistance when worn, reduces chance of alchemic blasts and improves your chances of making your own potions with a chemistry set."); break;
+				case ART_PREMIUM_VISCOSITY:
+					pline("Artifact specs: poison resistance when worn, grabbing monsters (e.g. eels) will slip off without actually managing to grab you."); break;
+				case ART_COOKING_COURSE:
+					pline("Artifact specs: fire resistance when worn, stepping on a fire trap can extinguish it, neutral."); break;
+				case ART_ROKKO_CHAN_S_SUIT:
+					pline("Artifact specs: jumping, very fast speed and +5 to-hit for ranged attacks when worn, but disables your ability to score critical hits and caps your strength and dexterity at 12."); break;
+				case ART_FULLY_LIONIZED:
+					pline("Artifact specs: stealth, speed and hunger when worn."); break;
+				case ART_COLD_LIKE_A_CORPSE:
+					pline("Artifact specs: cold resistance when worn."); break;
+				case ART_YAUI_GAUI_FURS:
+					pline("Artifact specs: 5 extra points of AC when worn."); break;
+				case ART_DEATHCLAW_HIDE:
+					pline("Artifact specs: +10 to-hit for your melee attacks when worn."); break;
+				case ART_FAST_CAMO_PREDATOR:
+					pline("Artifact specs: stealth, speed and hunger when worn."); break;
+				case ART_PREDATORY_STABILITY:
+					pline("Artifact specs: free action when worn, neutral."); break;
+				case ART_SPACEWASTE:
+					pline("Artifact specs: 3 extra points of AC when worn."); break;
+				case ART_BUGNOSE:
+					pline("Artifact specs: fire resistance and displays all 'a' and 'x' when worn."); break;
+				case ART_DISBELIEVING_POWERLORD:
+					pline("Artifact specs: adds d5 to your melee damage when worn."); break;
+				case ART_DOUBLE_NEGATION:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_DONALD_TRUMP_S_PRESIDENTIA:
+					pline("Artifact specs: warning and hallucination resistance when worn, chaotic."); break;
+				case ART_GODLESS_VOID:
+					pline("Artifact specs: blocks telepathy when worn."); break;
+				case ART_NUMBER_____:
+					pline("Artifact specs: no specialties."); break;
+				case ART_JANA_S_EXTREME_HIDE_AND_SE:
+					pline("Artifact specs: allows you to conceal underneath items. You do not know if it does anything else though..."); break;
+				case ART_LAST_STEELING:
+					pline("Artifact specs: while wearing it, you may occasionally be able to rustproof an iron object in your inventory. Make sure the object you pick is actually made of iron and not e.g. some other metal, or it won't work!"); break;
+				case ART_NOTHING_REALLY_SPECIAL:
+					pline("Artifact specs: protection when worn."); break;
+				case ART_PRIMITIVE_SHIELDING:
+					pline("Artifact specs: protection when worn."); break;
+				case ART_TARI_FEFALAS:
+					pline("Artifact specs: poison resistance when worn, monsters that attack you will take poison damage, causes radio broadcasts, slippery hands heal in one turn, lawful."); break;
+				case ART_STEELSKULL_PROTECTOR:
+					pline("Artifact specs: 3 extra points of AC when worn."); break;
+				case ART_ELESSAR_ELENDIL:
+					pline("Artifact specs: speed and fumbling when worn, chaotic."); break;
+				case ART_SEXYNESS_HAS_A_NAME:
+					pline("Artifact specs: effects that heal your hit points are doubled in effectiveness, or quadrupled if you're a healer; lawful."); break;
+				case ART_SQUEAKY_TENDERNESS:
+					pline("Artifact specs: while wearing it, monsters that can fart have a certain chance of spawning tame. Because I know that you like to listen to squeaky farting noises. :-) --Amy"); break;
+				case ART_IT_BREATHES_MORE:
+					pline("Artifact specs: can be invoked for dragon breath."); break;
+				case ART_CONESHAPE_HAT:
+					pline("Artifact specs: acid resistance when worn."); break;
+				case ART_HARD_HAT_AREA:
+					pline("Artifact specs: 5 extra points of AC when worn."); break;
+				case ART_DUNCE_POUNCE:
+					pline("Artifact specs: wearing it caps your intelligence and wisdom at 6 but increases strength by 5 and dexterity by 3."); break;
+				case ART_REMOTE_GAMBLE:
+					pline("Artifact specs: +2 damage and accuracy when worn."); break;
+				case ART_HOT_HEADED_HAT:
+					pline("Artifact specs: fire resistance when worn."); break;
+				case ART_GREEN_STATUS:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_ALLURATION:
+					pline("Artifact specs: You feel like having to wear this."); break;
+				case ART_WOLF_KING:
+					pline("Artifact specs: no digestion, weak sight, right mouse button loss and blocks telepathy when worn, heavily autocurses."); break;
+				case ART_WSCHIIIIIE_:
+					pline("Artifact specs: clairvoyance when worn."); break;
+				case ART_NEVER_CLEAN:
+					pline("Artifact specs: confusion when worn."); break;
+				case ART_WEB_RADIO:
+					pline("Artifact specs: internet access when worn."); break;
+				case ART_DULLIFIER:
+					pline("Artifact specs: stealth and invisibility when worn, but disables sleep resistance."); break;
+				case ART_SOON_THERE_WILL_BE_AN_ERRO:
+					pline("Artifact specs: reflection and magic resistance when worn, but the name should be warning enough..."); break;
+				case ART_DOUBLE_JEOPARDY:
+					pline("Artifact specs: teleportitis and polymorphitis when worn, chaotic."); break;
+				case ART_IF_THE_RIGHT_MOUSE_BUTTON_:
+					pline("Artifact specs: energy regeneration when worn. You do not recognize any other effects that this item may have."); break;
+				case ART_IRON_HELM_OF_GORLIM:
+					pline("Artifact specs: +10 to-hit and damage when worn, carries a Topi Ylinen curse, chaotic."); break;
+				case ART_NEVEREATER:
+					pline("Artifact specs: slow digestion when worn."); break;
+				case ART_CERTAIN_SLOW_DEATH:
+					pline("Artifact specs: conflict when worn."); break;
+				case ART_DRINK_COCA_COLA:
+					pline("Artifact specs: regeneration and hunger when worn, lawful."); break;
+				case ART_HAVE_ALL_YOU_NEED:
+					pline("Artifact specs: fire, cold, shock and sleep resistance when worn."); break;
+				case ART_NOSED_BUG:
+					pline("Artifact specs: improves your AC by 7 points when worn."); break;
+				case ART_MASSIVE_IRON_CROWN_OF_MORG:
+					pline("Artifact specs: resist fire, cold, shock, poison and acid and +5 all stats when worn, will prime curse itself and carries an ancient Morgothian curse. Yes, I know in ToME the latter was not the case... but this isn't ToME! :D --Amy"); break;
+				case ART_RANDOMNESS_PREVAILS:
+					pline("Artifact specs: teleportitis and polymorphitis when worn, disables teleport control and polymorph control, neutral."); break;
+				case ART_CASQUESPIRE_TRANSLATE:
+					pline("Artifact specs: 5 extra points of AC when worn."); break;
+				case ART_GOLD_STANDARD:
+					pline("Artifact specs: while wearing it, monsters that drop gold will generally drop more gold than usual."); break;
+				case ART_HELMET_OF_DIGGING:
+					pline("Artifact specs: increases digging speed with pick-axes and such when worn."); break;
+				case ART_ARMY_LEADER:
+					pline("Artifact specs: ESP when worn, soldiers and their higher ranks will occasionally spawn tame."); break;
+				case ART_SECURE_BATHMASTER:
+					pline("Artifact specs: resist fire, cold and light when worn, lawful."); break;
+				case ART_DEEP_INSANITY:
+					pline("Artifact specs: magic resistance, reflection and inventorylessness when worn, autocurses, chaotic."); break;
+				case ART_RADAR_NOT_WORKING:
+					pline("Artifact specs: monsters never approach you on their own if you wear it, but you cannot detect them either and newly spawned ones are completely invisible."); break;
+				case ART_BETTERVISION:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_REFUEL_BADLY:
+					pline("Artifact specs: manaleech when worn, lawful."); break;
+				case ART_BURN_OR_NO:
+					pline("Artifact specs: fire resistance when worn, putting them on for the first time grants intrinsic burnopathy."); break;
+				case ART_FREE_ACTION_CALLED_FREE_AC:
+					pline("Artifact specs: if you guessed that wearing them gives free action, you are right!"); break;
+				case ART_FUMBLEFINGERS_QUEST:
+					pline("Artifact specs: while wearing them, sitting on a throne will always give the fumblefingers effect."); break;
+				case ART_OH_LOOK_AT_THAT:
+					pline("Artifact specs: wearing them while not having the petkeeping skill will unlock it and cap it at expert, but also prime curse the gloves."); break;
+				case ART_LINE_IN_THE_SAND:
+					pline("Artifact specs: fire resistance and trap revealing when worn."); break;
+				case ART_HANDBOXED:
+					pline("Artifact specs: greatly increases your carry capacity when worn."); break;
+				case ART_YES_TO_RANGED_COMBAT:
+					pline("Artifact specs: your ranged attacks do d6 extra damage while you're wearing them."); break;
+				case ART_SPECTRATOR:
+					pline("Artifact specs: 1 out of 5 turns you will resist fire, cold, shock, poison, acid, stone, drain and magic while wearing them, lawful."); break;
+				case ART_USE_THE_FORCE_LUKE:
+					pline("Artifact specs: using the #force command on a monster does much more damage while wielding them, can be invoked for levitation."); break;
+				case ART_EXPERTENGAME_THE_ENTIRE_LE:
+					pline("Artifact specs: shock resistance and flying when worn, but monsters will often create traps for you to stumble into."); break;
+				case ART_WHAT_S_UP_BITCHES:
+					pline("Artifact specs: while wearing them, nymphs are displayed and will almost always spawn peaceful. Sometimes they may even spawn tame. Neutral."); break;
+				case ART_BALLS_FLYING_BACK_AND_FORT:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_WHAT_DO:
+					pline("Artifact specs: hallucination resistance when worn, neutral."); break;
+				case ART_GRABBER_MASTER:
+					pline("Artifact specs: wearing them will occasionally give you a gold detection effect."); break;
+				case ART_DEFENSIVE_MAGIC:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_NON_SOMETHING:
+					pline("Artifact specs: half physical damage when worn."); break;
+				case ART_DOUBLER_GLOVES:
+					pline("Artifact specs: protection when worn."); break;
+				case ART_DWARVEN_BONG:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ABSURD_HEELED_TILESET:
+					pline("Artifact specs: count as high heels."); break;
+				case ART_GRANDPA_S_BROGUES:
+					pline("Artifact specs: fear resistance when worn."); break;
+				case ART_VERA_S_FREEZER:
+					pline("Artifact specs: cold resistance and freezopathy when worn, kicking a monster with them can slow it down and cold attacks cannot shatter your potions. The 'freeze' status effect will slow you down less. However, your fire resistance is deactivated and the 'burn' status effect cannot be cured other by waiting it out. Lawful."); break;
+				case ART_HIGH_HEELED_HUG:
+					pline("Artifact specs: count as high heels, neutral."); break;
+				case ART_FREE_FOR_ENOUGH:
+					pline("Artifact specs: free action when worn, neutral."); break;
+				case ART_DOUBLE_SAFETY:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_LOVELY_GIRLS_WEAR_PLATEAU_:
+					pline("Artifact specs: cold resistance and half physical damage when worn."); break;
+				case ART_FATALITY:
+					pline("Artifact specs: conflict when worn, chaotic."); break;
+				case ART_PORCELAIN_ELEPHANT:
+					pline("Artifact specs: aggravate monster and increased chance of waking up monsters when worn, 5 extra points of AC."); break;
+				case ART_FD_DETH:
+					pline("Artifact specs: displays all 'f' and 'd' when worn."); break;
+				case ART_LOVELY_GIRL_PLATEAUS:
+					pline("Artifact specs: kicking a monster with them will stun and confuse it, aggravate monster when worn, newly spawned monsters are always hostile, chaotic."); break;
+				case ART_KYLIE_LUM_S_SNAKESKIN_BOOT:
+					pline("Artifact specs: If you put them on, all monsters will be spawned hostile for the remaining game. If you kick a monster with them, you do 10 extra points of damage and the kick cannot be clumsy and may sometimes paralyze the target. But wearing them as a non-topmodel causes them to carry an ancient Morgothian curse, and don't even think about putting them on if you're a failed existence!"); break;
+				case ART_SANDRA_S_BEAUTIFUL_FOOTWEA:
+					pline("Artifact specs: confusion resistance, swimming and unbreathing when worn, chaotic."); break;
+				case ART_UNEVEN_STILTS:
+					pline("Artifact specs: +15 charisma when worn, but they can also occasionally cause you to fumble."); break;
+				case ART_NEANDERTHAL_SOCCER_CLUB:
+					pline("Artifact specs: kicking an item with them will exercise strength and dexterity if the item moved. The neanderthals played soccer with them."); break;
+				case ART_SHIN_KICK_OF_LOVE:
+					pline("Artifact specs: kicking a monster with them may very rarely cause it to become peaceful, lawful."); break;
+				case ART_ABSOLUTE_AUTOCURSE:
+					pline("Artifact specs: curses your entire inventory if you put it on."); break;
+				case ART_LUCKY_GADGET:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_CLEARVISION:
+					pline("Artifact specs: hallucination resistance when worn."); break;
+				case ART_GUARANTEED_HIT_POWER:
+					pline("Artifact specs: wearing it improves your dexterity by its enchantment value."); break;
+				case ART_UNBELIEVABLY_STRONG_PUNCH:
+					pline("Artifact specs: wearing it improves your strength by its enchantment value."); break;
+				case ART_DEATHLY_COLD:
+					pline("Artifact specs: fire resistance when worn, but disables cold resistance."); break;
+				case ART_MAGICAL_SHOCK:
+					pline("Artifact specs: magic and level-drain resistance when worn, neutral."); break;
+				case ART_GOOD_THINGS_WILL_HAPPEN_EV:
+					pline("Artifact specs: wearing them causes the turn counter to advance half as fast, lawful."); break;
+				case ART_REQUIRED_GLADNESS:
+					pline("Artifact specs: speed when worn."); break;
+				case ART_NEVER_NEEDED:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_KNOWLEDGEABLE_FAILURE:
+					pline("Artifact specs: ESP when worn, lawful."); break;
+				case ART_SCRAWNY_PIPSQUEAK:
+					pline("Artifact specs: shock resistance and 5 extra points of AC when worn, chaotic."); break;
+				case ART_TSCHOECK_KLOECK:
+					pline("Artifact specs: if you're foolish enough to put it on, your polymorph control will be disabled for 1 million turns. And I can't guarantee that your game will even take that long."); break;
+				case ART_SPELLCASTER_S_DREAM:
+					pline("Artifact specs: energy regeneration and half spell damage when worn, but disables sleep resistance."); break;
+				case ART_LOW_ZERO_NUMBER:
+					pline("Artifact specs: You are not sure what this amulet does. Maybe it allows you to divide by zero?"); break;
+				case ART_DYNAMITUS:
+					pline("Artifact specs: fire resistance when worn, but will cause explosions centered on you every once in a while, chaotic."); break;
+				case ART_I_NEVER_TAKE_DRUGS:
+					pline("Artifact specs: hallucination resistance when worn, lawful."); break;
+				case ART_UOY_OT_KCAB_DNES:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_GOODBYE_TROLLS:
+					pline("Artifact specs: warns of trolls when worn."); break;
+				case ART_PRIAMOS__TREASURE:
+					pline("Artifact specs: It can hold even more stuff than a regular chest of holding."); break;
+				case ART_ICE_BLOCK_HARHARHARHARHAR:
+					pline("Artifact specs: using it as a melee weapon will add 2 points of damage for every corpse in it, up to a maximum of 15 corpses."); break;
+				case ART_RECYCLER_BIN:
+					pline("Artifact specs: you gain 1 point of alignment record for every item it deletes. If it deletes an artifact, you gain 50 points of alignment and +5 to your maximum alignment."); break;
+				case ART_SURFING_FUN:
+					pline("Artifact specs: completely prevents its contents from getting wet, even if it's cursed."); break;
+				case ART_MONSTERATOR:
+					pline("Artifact specs: if it deletes at least 10 items at once, monsters are created proportional to the # of items that were in it, but it will also greatly increase your prayer timeout to thwart the inevitable altar scumming that you want to do."); break;
+				case ART_GO_AWAY_YOU_BASTARD:
+					pline("Artifact specs: if it's not cursed, applying it causes a phase door effect, but it will often curse itself after you used it."); break;
+				case ART_BATTLEHORN_OF_SESCHERON:
+					pline("Artifact specs: Has no special effect beyond its base item."); break;
+				case ART_HELLISH_WARTUBE:
+					pline("Artifact specs: Has no special effect beyond its base item."); break;
+				case ART_HEAVEN_S_CALL_TO_ARMS:
+					pline("Artifact specs: Has no special effect beyond its base item."); break;
+				case ART_BIMMEL_BIMMEL:
+					pline("Artifact specs: applying it tries to tame all 'x' adjacent to you, but they get a resistance roll."); break;
+				case ART_SCRABBLE_BABBLE:
+					pline("Artifact specs: engraving with it will only consume charges 1 out of 10 turns."); break;
+				case ART_I_THE_SAGE:
+					pline("Artifact specs: Well, it's a switcher like every other one..."); break;
+				case ART_F_PROT:
+					pline("Artifact specs: Who knows what the contents of these disks is?"); break;
+				case ART_PANIC_IN_GOTHAM_FOREST:
+					pline("Artifact specs: fills the entire level with trees if you read it."); break;
+				case ART_ENSBADEB_FRAUSED:
+					pline("Artifact specs: Has no special effect beyond its base item, chaotic."); break;
+				case ART_MOVIE_ANALOGY:
+					pline("Artifact specs: Has no special effect beyond its base item."); break;
+				case ART_SUPERGIRL_S_JUMP_AND_RUN_F:
+					pline("Artifact specs: jumping when wielded, lawful."); break;
+				case ART_AUTOMATIC_POKE_BALL:
+					pline("Artifact specs: having it in your inventory gives a low chance of pokemon being spawned tame."); break;
+				case ART_CUBIC_SODIUM_CHLORIDE:
+					pline("Artifact specs: dissolving it will free the monsters contained within, and they will be grateful."); break;
+				case ART_MAGIC_RESISTANCE_GET:
+					pline("Artifact specs: magic resistance when carried. Hooray if you are a giant."); break;
+				case ART_SHOCKING_THERAPY:
+					pline("Artifact specs: +5 to-hit and +7 damage to shock-susceptible monsters, disables shock resistance when wielded, chaotic."); break;
+				case ART_ENIGMATIC_RIDDLE:
+					pline("Artifact specs: +7 to-hit and +1 damage."); break;
+				case ART_DO_YOU_EVEN_LIFT:
+					pline("Artifact specs: double damage, reflection and drain resistance when wielded, magic resistance when carried. But it's actually too heavy to lift, so I wonder, how did you get it in your inventory to be able to read these lines???"); break;
+				case ART_GANGBANGING_LIKE_A_BOSS:
+					pline("Artifact specs: +10 damage, chaotic."); break;
+				case ART_FREEZEMETAL:
+					pline("Artifact specs: +7 to-hit and +5 damage to cold-susceptible monsters."); break;
+				case ART_KINGS_RANSOM_FOR_YOU:
+					pline("Artifact specs: +5 to-hit and +5 stun damage, protection and reflection when wielded but also halves your movement speed and gains a Topi Ylinen curse."); break;
+				case ART_DO_NOT_THROW_ME:
+					pline("Artifact specs: DO NOT throw it. If you do, your savegame will be corrupted beyond any chance of repair, and YOU WILL LOSE YOUR CHARACTER. This is not a joke."); break;
+				case ART_WATERS_OF_OBLIVION:
+					pline("Artifact specs: swimming when worn, demons are almost always spawned peaceful and occasionally tame, but it will repeatedly cause amnesia."); break;
+				case ART_JONADAB_S_WINTER_WEAR:
+					pline("Artifact specs: cold resistance when worn. According to Jonadab they're also hideously ugly."); break;
+				case ART_MADMAN_S_POWER:
+					pline("Artifact specs: manaleech and energy regeneration when worn, chaotic."); break;
+				case ART_REMEMBERING_THE_BAD_TIMES:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_EIGHTH_DEADLY_SIN:
+					pline("Artifact specs: magic resistance when worn, but the Sins will eventually get back at you to exact punishment!"); break;
+				case ART_PERMANENTITIS:
+					pline("Artifact specs: disables polymorph control when worn, and your polymorphs will never time out."); break;
+				case ART_WATERFORCE____:
+					pline("Artifact specs: swimming and unbreathing when worn."); break;
+				case ART_NOW_IT_S_FOR_REAL:
+					pline("Artifact specs: conflict, regeneration and energy regeneration when worn."); break;
+				case ART_BLACK_VEIL_OF_BLACKNESS:
+					pline("Artifact specs: magic resistance when worn, produces an anti-magic shell, carries an ancient Morgothian curse."); break;
+				case ART_CLAPCLAP:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_MORE_HIGHER:
+					pline("Artifact specs: ESP and magic resistance when worn, monsters often spawn with the escalation egotype, and the escalation counter will automatically increase over time."); break;
+				case ART_FILTHY_MORTALS_WILL_DIE:
+					pline("Artifact specs: 10 points of negative protection whenever you put it on (which means they add up, ruining your armor class), so don't do it!!!"); break;
+				case ART_DSCHLSCHLSCHLSCHLSCH:
+					pline("Artifact specs: You should not put this on, because it deactivates your magic resistance for the turn it takes to wear it..."); break;
+				case ART_HAHAHA_HA_HAHAHAHAHA:
+					pline("Artifact specs: It's funny looking."); break;
+				case ART_CLEANLINESS_LAB:
+					pline("Artifact specs: sickness resistance when worn."); break;
+				case ART_FLOATING_FLAME:
+					pline("Artifact specs: fire resistance when worn."); break;
+				case ART_DEMONIC_UNDEAD_RADAR:
+					pline("Artifact specs: warning of demons when worn."); break;
+				case ART_SEXY_STROKING_UNITS:
+					pline("Artifact specs: 10 extra points of AC and +5 charisma when worn. By the way, Amy's roommate has a rainbow-colored one which looks very feminine and incredibly cuddly-fleecy!"); break;
+				case ART_WAR_ME_NEVERTHELESS:
+					pline("Artifact specs: reflection when worn, neutral."); break;
+				case ART_JEDI_MIND_POWER:
+					pline("Artifact specs: reflection when worn. If you wear it, you may learn telekinesis, but if you say yes, three random intrinsics are deactivated for 1 million turns!"); break;
+				case ART_ARABELLA_S_LIGHTNINGROD:
+					pline("Artifact specs: Apparently it's what Arabella uses to be safe from her own cursed items, so she can safely prepare them until they're ready to be used on hapless victims. Neutral."); break;
+				case ART_KA_BLAMMO:
+					pline("Artifact specs: If you trigger a trap while wielding it, its enchantment may go up or down, although it won't go above +10 or below -20. Bless it to increase the chance of the enchantment going up! If it's cursed, the chance of the enchantment going down is increased instead."); break;
+				case ART_RNG_S_FUN:
+					pline("Artifact specs: putting it on while it's +0 will randomize its enchantment value to something between -5 and +5."); break;
+				case ART_YOU_RE_THE_BEST:
+					pline("Artifact specs: hallucination resistance when worn."); break;
+				case ART_ANASTASIA_S_SOFT_CLOTHES:
+					pline("Artifact specs: half physical damage and 10 extra points of AC when worn. It's also made of very soft velvet."); break;
+				case ART_PLENTYHORN_OF_FAMINE:
+					pline("Artifact specs: applying it makes you more hungry."); break;
+				case ART_MARINE_THREAT_NEUTERED:
+					pline("Artifact specs: double damage to monsters that can swim."); break;
+				case ART_BANG_BANG:
+					pline("Artifact specs: +5 to-hit and +10 stun damage, wielding it sets it to +2 if its enchantment was lower, but also causes deafness. Chaotic."); break;
+				case ART_TUNA_CANNON:
+					pline("Artifact specs: +10 damage to cold-susceptible monsters, +1 multishot, neutral."); break;
+				case ART_PFIIIIIIIIET:
+					pline("Artifact specs: No specialties."); break;
+				case ART_DOGWALK:
+					pline("Artifact specs: No specialties."); break;
+				case ART_FRIEND_CALL:
+					pline("Artifact specs: Creates two familiars at once."); break;
+				case ART_FOR_THE_GOOD_CAUSE:
+					pline("Artifact specs: The effect applies to the confused radius even if you're not confused."); break;
+				case ART_WARPCHANGE:
+					pline("Artifact specs: teleportitis when worn."); break;
+				case ART_SEMI_SHAPE_CONTROL:
+					pline("Artifact specs: polymorphitis when worn."); break;
+				case ART_FORMTAKER:
+					pline("Artifact specs: putting it on gives intrinsic polymorphitis, chaotic."); break;
+				case ART_COLORLESS_VARIETY:
+					pline("Artifact specs: shades of grey effect when worn, neutral."); break;
+				case ART_MEDICAL_OPHTHALMOSCOPE:
+					pline("Artifact specs: displays extra information."); break;
+				case ART_SEARCH_AND_YOU_WILL_FIND:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_LOTS_OF_KNOWLEDGE:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_HOYO_HOYO_WOLOLO:
+					pline("Artifact specs: does not need to be blessed in order to work."); break;
+				case ART_HAAAAAAAAAAAAA_LELUJA:
+					pline("Artifact specs: picking it up will bless it and identify its BUC status."); break;
+				case ART_GRUUM_GRUUM:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ANCIENT_SACRIFICE:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ZEN_BUDDHISM:
+					pline("Artifact specs: no specialties."); break;
+				case ART_CHRRRRRRRRRRRRR:
+					pline("Artifact specs: no specialties."); break;
+				case ART_USELESS_ELEMENT:
+					pline("Artifact specs: no specialties."); break;
+				case ART_INVERSION_THERAPY:
+					pline("Artifact specs: no specialties."); break;
+				case ART_MAGICAL_BLINDFOLDING:
+					pline("Artifact specs: no specialties."); break;
+				case ART_TOOL_ASSISTED_MAGIC:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ADD_ACID_TO_WATER:
+					pline("Artifact specs: no specialties."); break;
+				case ART_OHMYGODHELPME:
+					pline("Artifact specs: no specialties."); break;
+				case ART_CURSEBREAKING____:
+					pline("Artifact specs: no specialties."); break;
+				case ART_MALIGNANT_AURA:
+					pline("Artifact specs: no specialties."); break;
+				case ART_COATED_FOR_GOOD:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ARABELLA_S_ESCAPE_ROUTE:
+					pline("Artifact specs: no specialties."); break;
+				case ART_NIGHT_MOVEMENT:
+					pline("Artifact specs: no specialties."); break;
+				case ART_SPAMMING_DEFENSE_MAGIC:
+					pline("Artifact specs: no specialties."); break;
+				case ART_FARTBOLT:
+					pline("Artifact specs: no specialties."); break;
+				case ART_JONADAB_S_EVIL_PATCH_ARTIF:
+					pline("Artifact specs: +1 damage, chaotic."); break;
+				case ART_WHAT_IT_SAYS_ON_THE_TIN:
+					pline("Artifact specs: fire resistance when wielded, +2 to-hit and +10 damage to fire-susceptible monsters."); break;
+				case ART_DEADLY_GAMBLING:
+					pline("Artifact specs: +d30 damage, but wielding it has a small chance of instakilling you."); break;
+				case ART_PRISMATIC_PROTECTION:
+					pline("Artifact specs: resist cold, fire, poison and lightning when wielded."); break;
+				case ART_IRRESISTIBLE_OFFENSE:
+					pline("Artifact specs: no specialties."); break;
+				case ART_EURGH:
+					pline("Artifact specs: no specialties."); break;
+				case ART_QUICK_SLOWNESS:
+					pline("Artifact specs: no specialties."); break;
+				case ART_FINAL_EXPLOSION:
+					pline("Artifact specs: no specialties."); break;
+				case ART_STALWART_BUNKER:
+					pline("Artifact specs: no specialties."); break;
+				case ART_FROZEN_POLAR_BEAR:
+					pline("Artifact specs: no specialties."); break;
+				case ART_DOENERTELLER_VERSACE:
+					pline("Artifact specs: Eating it gives temporary resistance to level drain and magic, as well as reflection."); break;
+
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
 			}

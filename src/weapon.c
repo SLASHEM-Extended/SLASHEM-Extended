@@ -1372,7 +1372,7 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
-	if (!rn2(100 - (Luck*2))) { /* nice patch - critical hits --Amy */
+	if ((!rn2(100 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
 
 		pline("Critical hit!");
 		tmp *= 2;
@@ -3435,6 +3435,20 @@ struct obj *weapon;
 
 	}
 
+	if (weapon && weapon->oartifact == ART_PUNISHMENT_FOR_YOU && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) {
+
+		switch (P_SKILL(P_FLAIL)) {
+			case P_BASIC: bonus += 3; break;
+			case P_SKILLED: bonus += 6; break;
+			case P_EXPERT: bonus += 9; break;
+			case P_MASTER: bonus += 12; break;
+			case P_GRAND_MASTER: bonus += 15; break;
+			case P_SUPREME_MASTER: bonus += 18; break;
+
+		}
+
+	}
+
 	/* boomerang damage bonus for Batman */
 	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == P_BOOMERANG){
 
@@ -3561,6 +3575,8 @@ struct obj *weapon;
 
 	}
 
+	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) bonus += 2;
+
 	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
@@ -3574,6 +3590,8 @@ struct obj *weapon;
 		}
 
 	}
+
+	if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) bonus += rnd(5);
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
 

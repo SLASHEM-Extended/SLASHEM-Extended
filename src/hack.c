@@ -2214,7 +2214,7 @@ domove()
 		    nomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data))
+	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_pool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
@@ -3065,7 +3065,7 @@ dopickup()
 			|| (Flying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) ) {
+	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }
@@ -3445,7 +3445,7 @@ int k_format; /* WAC k_format is an int */
 	}
 #endif
 
-	if (u.uprops[TURNLIMITATION].extrinsic || TurnLimitation || have_limitationstone() ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() ) {
 		if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 	}
@@ -3480,6 +3480,7 @@ weight_cap()
 	if (u.luckstoneget) carrcap += 50;
 	if (u.sokobanfinished) carrcap += 50;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) carrcap -= 250;
+	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;

@@ -282,7 +282,7 @@ dosit()
 	    /* must be WWalking */
 	    You(sit_message, "lava");
 	    burn_away_slime();
-	    if (likes_lava(youmonst.data) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) ) {
+	    if (likes_lava(youmonst.data) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) ) {
 		pline_The("lava feels warm.");
 		return 1;
 	    }
@@ -307,6 +307,20 @@ dosit()
 
 	    You(sit_message, defsyms[S_throne].explanation);
 	    if (rnd(6) > 4)  {
+
+		if (uarmg && uarmg->oartifact == ART_FUMBLEFINGERS_QUEST) {
+
+			{register int cnt = rnd(10);
+			int randmonstforspawn = rnd(68);
+			if (randmonstforspawn == 35) randmonstforspawn = 53;
+
+			while(cnt--)
+			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+			pline("A voice echoes:");
+			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
+			}
+
+		} else
 		switch (rnd(20))  {
 		    case 1:
 			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);

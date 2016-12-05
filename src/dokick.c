@@ -151,6 +151,7 @@ register boolean clumsy;
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "urush chizilmasin") ) ) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
+	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -255,11 +256,46 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) {
+
+		if (!mon->mstun || !mon->mconf) {
+			pline("Wham! Your lovely plateau soles fully kick %s in the ass.", mon_nam(mon) );
+			mon->mstun = mon->mconf = TRUE;
+		}
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !rn2(4) ) {
+
+		pline("Your very elegant snakeskin boots stop %s in its tracks.", mon_nam(mon) );
+		if (Hallucination) pline("You wonder if the PETA activists saw that.");
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {
+		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
+			mon_adjust_speed(mon, -1, (struct obj *)0 );
+			m_dowear(mon, FALSE); /* might want speed boots */
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_KATRIN_S_PARALYSIS && !sticks(mon->data)) {
 	    setustuck(mon); /* it's now stuck to you */
 	    if (rn2(2)) pline("You hold %s in place by stepping on its %s.", mon_nam(mon), makeplural(mbodypart(mon,TOE)));
 	    else pline("The chewing gum clinging to your dancing shoe soles sticks to %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,FOOT)));
 		/* supposed to give both messages to be more logical, but players dislike message spam... --Amy */
+	}
+
+	if (mon->mhp > 0 && !rn2(100) && uarmf && uarmf->oartifact == ART_SHIN_KICK_OF_LOVE) {
+		if (!mon->mpeaceful && !resist(mon, RING_CLASS, 0, NOTELL)) {
+			mon->mpeaceful = 1;
+			pline("%s loves your beautiful sandals and no longer wants to harm you!", Monnam(mon) );
+		}
+
 	}
 
 	(void) passive(mon, TRUE, mon->mhp > 0, AT_KICK);
@@ -368,6 +404,8 @@ register xchar x, y;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) i += 6000;
 
+	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
+
 	if(i < (j*3)/10) {
 		if(!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) {
 			if(martial() && !rn2(2)) goto doit;
@@ -385,6 +423,8 @@ register xchar x, y;
 		clumsy = TRUE;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) clumsy = FALSE;
+
+	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
 
 doit:
 	You("kick %s.", mon_nam(mon));
@@ -752,6 +792,11 @@ xchar x, y;
 	if(range < 2 || (isgold && kickobj->quan > 300L)) {
 	    if(!Is_box(kickobj)) pline("Thump!");
 	    return(!rn2(3) || martial());
+	}
+
+	if (uarmf && uarmf->oartifact == ART_NEANDERTHAL_SOCCER_CLUB) {
+		exercise(A_STR, TRUE);
+		exercise(A_DEX, TRUE);
 	}
 
 	if (kickobj->quan > 1L && !isgold) kickobj = splitobj(kickobj, 1L);

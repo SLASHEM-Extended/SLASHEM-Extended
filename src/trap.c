@@ -1617,7 +1617,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && hides_under(youmonst.data) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -1775,6 +1775,17 @@ unsigned trflags;
 #ifdef STEED
 	if (u.usteed) u.usteed->mtrapseen |= (1 << (ttype-1));
 #endif
+
+	if (uwep && uwep->oartifact == ART_KA_BLAMMO) {
+		boolean goup = rn2(2);
+		if (uwep->blessed && !rn2(4)) goup = 1;
+		if (uwep->cursed && !rn2(4)) goup = 0;
+
+		if (goup && uwep->spe < 10) uwep->spe++;
+		if (!goup && uwep->spe > -20) uwep->spe--;
+
+		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
+	}
 
 	switch(ttype) {
 	    case ARROW_TRAP:
@@ -2195,7 +2206,7 @@ unsigned trflags;
 			}
 			pline("Your ears are blasted by hellish noise!");
 			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
-			if (Deafness) dmg /= 2;
+			if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
 			make_stunned(HStun + dmg, TRUE);
 			if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 	      	if (dmg) losehp(dmg, "noise trap", KILLED_BY_AN);
@@ -2459,6 +2470,13 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		seetrap(trap);
 
 		if (Role_if(PM_COOK) && !rn2(2)) {
+
+			pline("You stomp and extinguish a fire trap.");
+		    deltrap(trap);
+			break;
+		}
+
+		if (uarmc && uarmc->oartifact == ART_COOKING_COURSE && !rn2(2)) {
 
 			pline("You stomp and extinguish a fire trap.");
 		    deltrap(trap);
@@ -3923,7 +3941,7 @@ newegomon:
 	    case WARP_ZONE:
 		deltrap(trap);
 
-		if (u.uevent.udemigod || u.uhave.amulet || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 			pline("For some reason you resist the banishment!"); break;}
@@ -10377,6 +10395,7 @@ register boolean force, here;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 
 		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
@@ -10384,7 +10403,7 @@ register boolean force, here;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
-			(obj->otyp != OILSKIN_SACK || (obj->cursed && !rn2(3)))) {
+			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
 		} else if (!force && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
 			/*  chance per item of sustaining damage:
@@ -12306,6 +12325,7 @@ lava_effects()
 
     if (likes_lava(youmonst.data)) return FALSE;
     if (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) return FALSE;
+    if (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) return FALSE;
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) return FALSE;
 

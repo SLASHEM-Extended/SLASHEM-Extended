@@ -11521,7 +11521,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( (Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
+	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();
@@ -11533,6 +11533,11 @@ register int	mmflags;
 	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;
+	}
+
+	if (!rn2(100) && uarmc && uarmc->oartifact == ART_MORE_HIGHER) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_incrementor = 1;
 	}
 
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
@@ -13438,7 +13443,7 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
-	if (u.uprops[GHOST_WORLD].extrinsic || GhostWorld || have_ghostlystone() ) {
+	if (u.uprops[GHOST_WORLD].extrinsic || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() ) {
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 
@@ -13577,6 +13582,31 @@ register int	mmflags;
 	}
 
 	if (!rn2(20) && is_pokemon(mtmp->data) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") )) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(33) && is_pokemon(mtmp->data) && have_pokeloadstone() ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(4) && uarmh && uarmh->oartifact == ART_SQUEAKY_TENDERNESS && (mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(20) && uarmh && uarmh->oartifact == ART_ARMY_LEADER && (mndx == PM_SOLDIER || mndx == PM_SERGEANT || mndx == PM_LIEUTENANT || mndx == PM_CAPTAIN || mndx == PM_GENERAL) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(50) && uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(5) && uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION && (mtmp->data->mlet == S_DEMON) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
@@ -14715,6 +14745,7 @@ int type;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
 		case PM_PROTECTOR_OF_THE_POOR: return 72;
+		case PM_BURNINATOR: return 80;
 		case PM_SOW_STUPID_GUY: return 72;
 		case PM_MICKEY_MOUSE: return 72;
 		case PM_CAMEROONIE: return 72;
@@ -14924,6 +14955,9 @@ register struct permonst *ptr;
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
+	if (u.kyliemode) return FALSE;
+
+	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "siyosatchi plash") ) ) return FALSE;
 
@@ -14975,6 +15009,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_ANGEL && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angelic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angel'skoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "farishtalarning plash") ) ) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonicheskaya plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinlarning plash") ) ) && rn2(2)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) && rn2(10)) return TRUE;
+	if (ptr->mlet == S_DEMON && (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) && rn2(20)) return TRUE;
 
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
@@ -14983,6 +15018,7 @@ register struct permonst *ptr;
 	if (is_undead(ptr) && !mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (is_undead(ptr) && mindless(ptr) && Race_if(PM_HUMAN_WRAITH) && !Role_if(PM_CONVICT) && rn2(4)) return TRUE;
 	if (is_animal(ptr) && rn2(10) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER) return TRUE;
+	if (ptr->mlet == S_NYMPH && uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && rn2(10)) return TRUE;
 
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)

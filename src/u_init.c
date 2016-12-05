@@ -7492,6 +7492,7 @@ u_init()
 	u.thornspell = 0;
 
 	u.boomshined = 0;
+	u.kyliemode = 0;
 
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */

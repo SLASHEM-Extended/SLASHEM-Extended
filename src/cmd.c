@@ -837,6 +837,11 @@ playersteal()
 			chanch *= 2;
 		}
 
+		if (uarm && uarm->oartifact == ART_GREGOR_S_GANGSTER_GARMENTS) {
+			if (chanch < 5) chanch = 5;
+			chanch *= 2;
+		}
+
 		if (chanch < 5) chanch = 5;
 		if (chanch > 95) chanch = 95;
 		if (rnd(100) < chanch || mdat->mtame) {
@@ -3407,6 +3412,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
+		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		Sprintf(buf, "%d%%", shieldblockrate);
@@ -5588,6 +5595,8 @@ int final;
 		if (uarms->blessed) shieldblockrate += 5;
 
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
+
+		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 

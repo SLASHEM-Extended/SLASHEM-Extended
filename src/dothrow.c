@@ -78,6 +78,7 @@ int thrown;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
+	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (Double_attack) multishot *= 2;
 	if (Quad_attack) multishot *= 4;
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
@@ -200,6 +201,10 @@ int thrown;
 	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
+
+	    if (launcher && launcher->oartifact == ART_MAXIMUM_LAUNCH_POWER) multishot += rnd(2);
+
+	    if (launcher && launcher->oartifact == ART_TUNA_CANNON) multishot += 1;
 
 	    /* 1/3 of object enchantment */
 	    if (launcher && launcher->spe > 1)
@@ -961,10 +966,12 @@ boolean hitsroof;
 	if (breaktest(obj)) {
 		pline("%s hits the %s.", Doname2(obj), ceiling(u.ux, u.uy));
 		breakmsg(obj, !Blind);
-		breakobj(obj, u.ux, u.uy, TRUE, TRUE);
 		if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
 			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
 		}
+		breakobj(obj, u.ux, u.uy, TRUE, TRUE);
 		return FALSE;
 	}
 	almost = "";
@@ -1030,6 +1037,9 @@ boolean hitsroof;
 	}
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
+	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
+	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_YES_TO_RANGED_COMBAT) dmg += rnd(6);
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
 	if (dmg > 0 && uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 
@@ -1413,10 +1423,12 @@ int thrown;
 		    delay_output();
 		    tmp_at(DISP_END, 0);
 		    breakmsg(obj, cansee(bhitpos.x, bhitpos.y));
-		    breakobj(obj, bhitpos.x, bhitpos.y, TRUE, TRUE);
 			if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
  			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+			} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
 			}
+		    breakobj(obj, bhitpos.x, bhitpos.y, TRUE, TRUE);
 		    return;
 		}
 		if(flooreffects(obj,bhitpos.x,bhitpos.y,"fall")) return;
@@ -1559,6 +1571,9 @@ int thrown;
 	tmp = -1 + Luck + find_mac(mon) + u.uhitinc +
 			maybe_polyd(youmonst.data->mlevel, u.ulevel);
 
+	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+
 	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
 	/* let's just add that bonus anyway. --Amy */
@@ -1693,6 +1708,8 @@ int thrown;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
 	else if (ACURR(A_DEX) < 8) tmp -= 1;
 	else if (ACURR(A_DEX) >= 14) tmp += (ACURR(A_DEX) - 14);
+
+	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 
 	/* Modify to-hit depending on distance; but keep it sane.
 	 * Polearms get a distance penalty even when wielded; it's
@@ -1904,6 +1921,9 @@ int thrown;
 		    if (objects[otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
 			broken = 0;
 
+		    if (objects[otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && broken && !rn2(2))
+			broken = 0;
+
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
 		    if (broken) {
@@ -1966,6 +1986,8 @@ int thrown;
 	    (void) hmon(mon, obj, thrown?thrown:3);
 		if (issegfaulter && otyp == SEGFAULT_VENOM) { /* segfault panic! */
  			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
 		}
 
 	    return 1;	/* hmon used it up */
