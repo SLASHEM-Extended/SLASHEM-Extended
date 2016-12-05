@@ -799,6 +799,16 @@ struct you {
 	int sterilized;
 	int holyshield;
 
+	int berserktime;
+	int magicshield;
+	int burrowed;
+	int stasistime;
+	int powerfailure;
+	int tunnelized;
+	int nailpolish;
+	int enchantspell;
+	int thornspell;
+
 	int halresdeactivated;
 
 	boolean boomshined;

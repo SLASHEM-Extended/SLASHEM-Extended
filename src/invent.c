@@ -8388,6 +8388,123 @@ struct obj *obj;
 			case SPE_HOLY_SHIELD:
 				pline("For the duration of this spell, your shield has a higher chance of blocking attacks."); break;
 
+			case SPE_FROST:
+				pline("Tries to slow down all monsters adjacent to you, but they can resist."); break;
+			case SPE_TRUE_SIGHT:
+				pline("A spell that temporarily enables you to see invisible things."); break;
+			case SPE_BERSERK:
+				pline("Allows you to go berserk, which greatly increases your damage output for a while, but after it times out you will be heavily confused and stunned. You also cannot block and have greatly lowered armor class while the spell is active. Do not try to cast it again while it's already active!"); break;
+			case SPE_BLINDING_RAY:
+				pline("Shoots invisible rays that can blind monsters."); break;
+			case SPE_MAGIC_SHIELD:
+				pline("Casting this spell will increase your magic cancellation for a while."); break;
+			case SPE_WORLD_FALL:
+				pline("Cataclysm/apocalypse. It kills all monsters whose level is lower than yours, and can also sometimes kill higher-level ones, but you lose quite a lot of maximum health and mana for casting it and are hit by several bad effects as well as long-lasting nasty trap effects."); break;
+			case SPE_ESP:
+				pline("Temporary ESP (telepathy)."); break;
+			case SPE_RADAR:
+				pline("Turning on your radar allows you to be warned of monsters for a period of time."); break;
+			case SPE_SEARCHING:
+				pline("A spell that grants automatic searching for a while."); break;
+			case SPE_INFRAVISION:
+				pline("Grants infravision if you don't have it already, but it doesn't last very long."); break;
+			case SPE_STEALTH:
+				pline("You will have temporary stealth if you cast this."); break;
+			case SPE_CONFLICT:
+				pline("A spell that allows you to cause conflict; you cannot forcibly turn it off though, but will have to wait until it times out."); break;
+			case SPE_REGENERATION:
+				pline("Your wounds will heal much faster for a period of time after casting this spell."); break;
+			case SPE_FREE_ACTION:
+				pline("Grants temporary free action, i.e. paralysis resistance."); break;
+			case SPE_MULTIBEAM:
+				pline("This spell blasts monsters with cold, fire and lightning."); break;
+			case SPE_NO_EFFECT:
+				pline("Well, if you cast this spell, there will be no effect."); break;
+			case SPE_SELFDESTRUCT:
+				pline("Casting this spell causes you to blow yourself up and die, dealing great damage to monsters in a 7x7 radius. Better be wearing a source of life saving if you do."); break;
+			case SPE_THUNDER_WAVE:
+				pline("Monsters adjacent to you are shocked and may be paralyzed, but they get a resistance check."); break;
+			case SPE_BATTERING_RAM:
+				pline("A very powerful spell that deals huge irresistible damage to a single monster standing right next to you, and will also try to push it back."); break;
+			case SPE_BURROW:
+				pline("Casting this spell causes you to burrow yourself into the ground, becoming immobile until you dig yourself out, but your armor class is also greatly increased as long as you're still burrowed."); break;
+			case SPE_GAIN_CORRUPTION:
+				pline("You will ruin your character with a permanent (well, there are cures, but they're very rare) bad effect if you are foolish enough to cast this."); break;
+			case SPE_SWITCHEROO:
+				pline("Cures all nasty trap effects, but then also causes various bad effects and gives you intrinsic nastiness, meaning the nasty trap effects will come back to haunt you some more after a while!"); break;
+			case SPE_THRONE_GAMBLE:
+				pline("Replicates the effects of sitting on a throne, although it cannot give a wish of course. This spell can occasionally backfire."); break;
+			case SPE_BACKFIRE:
+				pline("Well, you probably should not cast this."); break;
+			case SPE_DEMEMORIZE:
+				pline("Asks for a spell and sets its memory to 0%%."); break;
+			case SPE_CALL_THE_ELEMENTS:
+				pline("A very powerful offensive spell that shoots highly damaging fire, ice and lightning bolts at the enemy, which can also cause a variety of status effects for the target monster."); break;
+			case SPE_NATURE_BEAM:
+				pline("This spell fires powerful rays of fire, cold, lightning or poison (randomly chosen)."); break;
+			case SPE_WHISPERS_FROM_BEYOND:
+				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. There is no 'sanity' stat either, so it permanently reduces your INT and WIS by a large amount instead, and if any of those go below 3, you die instantly!"); break;
+			case SPE_STASIS:
+				pline("Both you and all monsters will be frozen in time until the spell effect ends. Protip: cast it to wait out annoying status effects or regenerate your health without being interrupted."); break;
+			case SPE_CRYOGENICS:
+				pline("This spell lengthens the timeout of decaying/reviving corpses and hatching eggs, so you will have more time to e.g. eat them instead. Don't get your hopes up: it does not elongate the timer that determines whether corpses can still be offered."); break;
+			case SPE_REDEMPTION:
+				pline("Attachs a rot timeout to all corpses on the ground on the current dungeon level. If the corpse in question had a revive timeout, it will be stopped. Guess which monster class suddenly became much easier to get rid of."); break;
+			case SPE_HYPERSPACE_SUMMON:
+				pline("Summons a bunch of vortices, with a high chance of them being tame. It reduces your maximum health and mana a bit, though."); break;
+			case SPE_SATISFY_HUNGER:
+				pline("Fills your stomach a bit. Do not cast it while oversatiated - you will not get a warning!"); break;
+			case SPE_RAIN_CLOUD:
+				pline("Causes rain to pour down from the dungeon's ceiling, hitting all squares adjacent to you. Lava tiles will turn into water, and fire-based monsters will take damage. However, the rain will also slow you down for a while."); break;
+			case SPE_POWER_FAILURE:
+				pline("Causes a power outage in a 5x5 area centered on you, damaging all electrically based monsters and also blinding or stunning them. Very rarely, this spell may also vaporize iron bars. But the power outage effect will apply to you too, so you cannot apply tools or zap wands for a while, and certain methods of monster detection will also no longer work!"); break;
+			case SPE_VAPORIZE:
+				pline("Removes water squares next to you, and monsters that were swimming in there will take quite some damage and may be paralyzed. However, the vapors will also heavily burn you."); break;
+			case SPE_TUNNELIZATION:
+				pline("All monsters on the entire level that are currently in wall tiles will take lots of damage and have their walls removed if possible, but you are also heavily blinded and have your AC greatly reduced for a while, plus every monster that you 'disturb' reduces your alignment by 25 points."); break;
+			case SPE_BOMBING:
+				pline("Summons a tame spell being that will use a kamikaze attack on the first hostile monster it finds. Caution: you are responsible for it, so if it kills a peaceful creature, you might be dinged for murder!"); break;
+			case SPE_DRAGON_BLOOD:
+				pline("This powerful spell temporarily allows you to resist level-draining attacks."); break;
+			case SPE_ANTI_MAGIC_FIELD:
+				pline("Temporary magic resistance. It's not as good as permanent magic resistance from an item, but if you don't have such an item, you can continuously cast this."); break;
+			case SPE_ANTI_MAGIC_SHELL:
+				pline("After casting this spell, neither you nor any monster will be able to cast any spells for a period of time."); break;
+			case SPE_CURE_WOUNDED_LEGS:
+				pline("One of very few methods to cure your legs is this spell."); break;
+			case SPE_ANGER_PEACEFUL_MONSTER:
+				pline("If you want to avoid penalties for angering a monster by attacking it, you can stand next to it and cast this spell."); break;
+			case SPE_UNTAME_MONSTER:
+				pline("Cast this in order to get rid of useless pets, allowing you to kill them! You must stand right next to the pet in question though."); break;
+			case SPE_UNLEVITATE:
+				pline("Probably borderline useless, this spell allows you to stop levitation if it's from a temporary source. It does not get cursed rings or boots of levitation off you, though."); break;
+			case SPE_DETECT_WATER:
+				pline("Tries to detect water sources on the level."); break;
+			case SPE_APPLY_NAIL_POLISH:
+				pline("A spell that allows you to do your nails! Hopefully you're a woman, because then you'll really like this :-). But even if your character is male, it's just as useful. The more nails you do, the more damage your unarmed attacks can cause, but only if you're not wearing gloves. Being polymorphed into something with claw attacks also allows you to do extra damage."); break;
+			case SPE_ENCHANT:
+				pline("A short-duration spell that adds fire damage to your melee weapon. It does not work if you're fighting unarmed."); break;
+			case SPE_DRY_UP_FOUNTAIN:
+				pline("Good luck finding a use for this spell. Yes, the only thing it does is removing fountains that are right next to you, turning them into normal floor tiles."); break;
+			case SPE_TAKE_SELFIE:
+				pline("Causes you to stop for a few turns while you take a selfie. It can sometimes blind you too."); break;
+			case SPE_SNIPER_BEAM:
+				pline("This offensive spell can hit monsters standing very far away, but the damage is rather low. On the bright side, nothing can resist it."); break;
+			case SPE_CURE_GLIB:
+				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands."); break;
+			case SPE_CURE_MONSTER:
+				pline("If there are monsters adjacent to you that are suffering from confusion, paralysis or other status effects, casting this will cure their afflictions."); break;
+			case SPE_MANA_BATTERY:
+				pline("Deletes all wands in your open inventory (so you should make sure you put away all those that you want to keep), and recovers 10 mana for every charge. The idea is from Elona. Yep. Elona introduced this first. What, you say ADOM did? Nope! ADOM stole it from Elona, of course! :P"); break;
+			case SPE_THORNS:
+				pline("This spell makes it so that monsters meleeing you will automatically take damage, however the spell effect times out rather quickly."); break;
+			case SPE_REROLL_ARTIFACT:
+				pline("Read the description slowly before doing anything: It allows you to pick an artifact in your main inventory and rerolls its base item. You can only pick weapons, armors, rings or amulets, and the item in question may not be worn or wielded! For example, an artifact leather armor may become an artifact silver dragon scale mail. And of course there's a bullshit downside, which is in this case a loss of some maximum HP and Pw."); break;
+			case SPE_FINAL_EXPLOSION:
+				pline("Caution: If you cast this spell, you die instantly. However, if you're capable of coming back to life, it might still be worth casting since all monsters in a huge 11x11 radius will take massive damage."); break;
+			case SPE_CUTTING:
+				pline("Eek! Please don't! Forget this spell before you make the mistake of casting it!"); break;
+
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
 			}

@@ -493,6 +493,7 @@ register struct monst *mtmp;
 	mdat = mtmp->data;
 
 	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
+	if (u.stasistime) return 0;	/* stasis does the same --Amy */
 
 	if (mtmp->mstrategy & STRAT_ARRIVE) {
 	    int res = m_arrival(mtmp);

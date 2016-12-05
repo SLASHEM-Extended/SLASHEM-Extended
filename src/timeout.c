@@ -241,9 +241,22 @@ nh_timeout()
 		if (u.inertia < 0) u.inertia = 0; /* fail safe */
 	}
 
+	if (u.powerfailure) {
+		u.powerfailure--;
+		if (u.powerfailure < 0) u.powerfailure = 0; /* fail safe */
+		if (!u.powerfailure) pline("Your power comes back online.");
+	}
+
 	if (u.egglayingtimeout) {
 		u.egglayingtimeout--;
 		if (u.egglayingtimeout < 0) u.egglayingtimeout = 0; /* fail safe */
+		if (!u.egglayingtimeout) pline("You are capable of laying eggs again.");
+	}
+
+	if (u.tunnelized) {
+		u.tunnelized--;
+		if (u.tunnelized< 0) u.tunnelized = 0; /* fail safe */
+		if (!u.tunnelized) pline("You get the tunneling dirt off your clothes.");
 	}
 
 	if (u.temprecursiontime) {
@@ -295,6 +308,48 @@ nh_timeout()
 	if (!rn2(1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 	    attrcurse();
+	}
+
+	if (u.burrowed) {
+		u.burrowed--;
+		if (u.burrowed < 0) u.burrowed = 0;
+		if (!u.utrap || !u.utraptype || (u.utraptype != TT_INFLOOR)) u.burrowed = 0;
+		if (!(u.burrowed)) pline("Your extra armor class from burrowing has timed out.");
+	}
+
+	if (u.magicshield) {
+		u.magicshield--;
+		if (u.magicshield < 0) u.magicshield = 0;
+		if (!(u.magicshield)) pline("Your magic shield dissipates.");
+	}
+
+	if (u.thornspell) {
+		u.thornspell--;
+		if (u.thornspell < 0) u.thornspell = 0;
+		if (!(u.thornspell)) pline("Your thorny skin shatters.");
+	}
+
+	if (u.enchantspell) {
+		u.enchantspell--;
+		if (u.enchantspell < 0) u.enchantspell = 0;
+		if (!(u.enchantspell)) pline("Your weapon is no longer enchanted.");
+	}
+
+	if (u.stasistime) {
+		u.stasistime--;
+		if (u.stasistime < 0) u.stasistime = 0;
+	}
+
+	if (u.berserktime) {
+		u.berserktime--;
+		if (u.berserktime < 0) u.berserktime = 0;
+		if (!(u.berserktime)) {
+			make_confused(HConfusion + rnd(50), FALSE);
+			set_itimeout(&HeavyConfusion, HConfusion);
+			make_stunned(HStun + rnd(50), FALSE);
+			set_itimeout(&HeavyStunned, HStun);
+			pline("You stagger and the world spins as your berserk rage fades.");
+		}
 	}
 
 	if (u.hanguppenalty > 0) {
@@ -2867,6 +2922,14 @@ nh_timeout()
 			if (!Shock_resistance)
 				You_feel("a little static cling.");
 			break;
+		case ANTIMAGIC:
+			if (!Antimagic)
+				You_feel("vulnerable to magic.");
+			break;
+		case DRAIN_RES:
+			if (!Drain_resistance)
+				You_feel("less resistant to drain life.");
+			break;
 		case MAGICAL_BREATHING:
 			if (!Amphibious)
 				You("need to breathe again.");
@@ -2926,6 +2989,30 @@ nh_timeout()
 		case TELEPAT:
 			if (!HTelepat)
 				You_feel("a little less mentally acute.");
+			break;
+		case SEARCHING:
+			if (!HSearching)
+				pline("You are no longer searching for things.");
+			break;
+		case INFRAVISION:
+			if (!Infravision)
+				pline("Your %s are no longer sensitive to infrared radiation.", makeplural(body_part(EYE)));
+			break;
+		case WARNING:
+			if (!HWarning)
+				pline("Your radar goes out.");
+			break;
+		case REGENERATION:
+			if (!HRegeneration)
+				pline("You stop regenerating rapidly.");
+			break;
+		case CONFLICT:
+			if (!HConflict)
+				pline("You stop generating conflict.");
+			break;
+		case STEALTH:
+			if (!HStealth)
+				pline("Your movements are a little less silent.");
 			break;
 		case FREE_ACTION:
 			if (!Free_action)
@@ -4866,6 +4953,25 @@ wiz_timeout_queue()
     destroy_nhwindow(win);
 
     return 0;
+}
+
+void
+cryogenics()
+{
+	timer_element *curr;
+	int number;
+
+	for (curr = timer_base; curr; curr = curr->next) {
+
+		if (curr && curr->kind == TIMER_OBJECT && (curr->func_index == ROT_CORPSE || curr->func_index == MOLDY_CORPSE || curr->func_index == REVIVE_MON || curr->func_index == HATCH_EGG) ) {
+			number++;
+			curr->timeout += rnd(50);
+		}
+	}
+
+	if (number) pline("Corpses and eggs have been cryogenized.");
+	else pline("There's nothing that can be cryogenized.");
+
 }
 
 void

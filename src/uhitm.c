@@ -341,7 +341,7 @@ schar
 find_roll_to_hit(mtmp)
 register struct monst *mtmp;
 {
-	schar tmp;
+	/*schar*/int tmp; /* fail safe at the bottom ensures it returns something valid --Amy */
 	int tmp2;
 
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
@@ -535,8 +535,8 @@ register struct monst *mtmp;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 
-	if (tmp < -127) tmp = -127; /* fail safe */
-	if (tmp > 127) tmp = 127;
+	if (tmp < -127) tmp = -127; /* fail safe, and to ensure that the end result is a schar */
+	if (tmp > 127) tmp = 127; /* however, why is it a schar anyway??? --Amy */
 
 	return tmp;
 }
@@ -1032,6 +1032,14 @@ int thrown;
 
 		if (Race_if(PM_KHAJIIT)) tmp += rnd(4);
 		if (Race_if(PM_FENEK)) tmp += rnd(2);
+
+		if (u.nailpolish && !uarmg) {
+			tmp += (u.nailpolish * 2);
+			if (rnd(10) <= u.nailpolish) {
+				u.nailpolish--;
+				pline(u.nailpolish ? "One of your nails loses its polish." : "Your nail loses its polish.");
+			}
+		}
 
 	    valid_weapon_attack = (tmp > 0);
 
@@ -1728,6 +1736,7 @@ int thrown;
                 (multi-hit, stun/freeze)..- WAC*/
 
 	if (tech_inuse(T_KIII)) tmp *= 2;
+	if (u.berserktime) tmp *= 2;
 	if (tech_inuse(T_BERSERK)) tmp += 4;
 	if (tech_inuse(T_EVISCERATE)) {
 		tmp += rnd((int) (u.ulevel/2 + 1)) + (u.ulevel/2); /* [max] was only + u.ulevel */
@@ -1933,6 +1942,14 @@ int thrown;
 	 * I'm granting him that wish, but the player needs to have burnopathy too. --Amy */
 
 	if (Burnopathy && Burned && !resists_fire(mon) && !thrown ) {
+
+	      pline("%s is burning!", Monnam(mon));
+
+		tmp += rnd(u.ulevel);
+
+	}
+
+	if (u.enchantspell && !resists_fire(mon) && !thrown ) {
 
 	      pline("%s is burning!", Monnam(mon));
 
@@ -2910,6 +2927,14 @@ register struct attack *mattk;
 		&& u.umonnum != PM_PRINTER_DAEMON) {
 	    demonpet();
 	    return(0);
+	}
+
+	if (mattk->aatyp == AT_CLAW && u.nailpolish) {
+		tmp += (u.nailpolish * 2);
+		if (rnd(10) <= u.nailpolish) {
+			u.nailpolish--;
+			pline(u.nailpolish ? "One of your nails loses its polish." : "Your nail loses its polish.");
+		}
 	}
 
 	switch(mattk->adtyp) {

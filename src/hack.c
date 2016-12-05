@@ -3580,6 +3580,9 @@ const char *str;
 	    pline(str);
 	else
 	    You_cant("do that while carrying so much stuff.");
+
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
 	return 1;
     }
     return 0;

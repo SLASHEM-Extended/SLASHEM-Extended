@@ -3679,6 +3679,7 @@ struct monst *mon;
 	    armpro = objects[armor->otyp].a_can;
 #endif
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
+	if (u.magicshield) armpro += 1;
 	if (armpro < 0) armpro = 0;
 
 	return armpro;
@@ -12618,6 +12619,17 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
+	}
+
+	if (u.thornspell) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5 + (u.ulevel / 6)) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
 	}
 
 	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && !resists_poison(mtmp)) {

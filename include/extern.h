@@ -256,6 +256,7 @@ E int FDECL(trap_detect, (struct obj *));
 E int FDECL(trap_detectX, (struct obj *));
 E const char *FDECL(level_distance, (d_level *));
 E void FDECL(use_crystal_ball, (struct obj *));
+E void NDECL(water_detect);
 E void NDECL(do_mapping);
 E void NDECL(do_mappingX);
 E void NDECL(do_mappingY);
@@ -2394,6 +2395,7 @@ E void FDECL(relink_timers, (BOOLEAN_P));
 E int NDECL(wiz_timeout_queue);
 E void NDECL(timer_sanity_check);
 #endif
+E void NDECL(cryogenics);
 
 /* ### topten.c ### */
 

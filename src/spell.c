@@ -60,6 +60,123 @@ STATIC_DCL const char *FDECL(spelltypemnemonic, (int));
 STATIC_DCL int FDECL(isqrt, (int));
 static int NDECL(spell_dash);
 
+/* categories whose names don't come from OBJ_NAME(objects[type]) */
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MARTIAL_ARTS		(-28)
+#define PN_RIDING		(-29)
+#define PN_TWO_WEAPONS		(-30)
+#ifdef LIGHTSABERS
+#define PN_LIGHTSABER		(-31)
+#endif
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+#ifdef LIGHTSABERS
+	PN_LIGHTSABER,
+#endif
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+#ifdef STEED
+	PN_RIDING,
+#endif
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
+    "matter spells",
+    "bare-handed combat",
+    "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+#ifdef LIGHTSABERS
+    "lightsaber"
+#endif
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 boolean
 spell_known(int sbook_id)
 {
@@ -1472,10 +1589,13 @@ boolean atme;
 	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
 	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_MULTIBEAM) { energy *= 6; energy /= 5;}
+	if (spellid(spell) == SPE_CALL_THE_ELEMENTS) { energy *= 7; energy /= 4;}
 	if (spellid(spell) == SPE_INFERNO) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_ICE_BEAM) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HYPER_BEAM) { energy *= 4; energy /= 3;}
 	if (spellid(spell) == SPE_ELEMENTAL_BEAM) { energy *= 6; energy /= 5;}
+	if (spellid(spell) == SPE_NATURE_BEAM) { energy *= 5; energy /= 4;}
 
 	/* slight mana cost decrease if you're very skilled, to make skill matter more --Amy */
 	if (role_skill == P_SKILLED) { energy *= 19; energy /= 20;}
@@ -1493,7 +1613,7 @@ boolean atme;
 
 	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { energy *= 9; energy /= 10;}
 
-	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
+	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER) {
 		You("are too hungry to cast that spell.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
@@ -1520,7 +1640,7 @@ boolean atme;
 	/* Amy edit: but if you're satiated, you always use the standard amount of nutrition. That way, hungerless casting
 	 * does not rob you of the ability to get out of satiated status by repeatedly casting spells. */
 
-		if ((!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) ) || u.uhunger > 2500 ) {
+		if ((!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) && (spellid(spell) != SPE_SATISFY_HUNGER) ) || u.uhunger > 2500 ) {
 		hungr = energy * 2;
 
 			/* If hero is a wizard, their current intelligence
@@ -1710,7 +1830,11 @@ boolean atme;
 	/* these spells are all duplicates of wand effects */
 	case SPE_FORCE_BOLT:
 	case SPE_WATER_BOLT:
+	case SPE_MULTIBEAM:
+	case SPE_CALL_THE_ELEMENTS:
 	case SPE_MANA_BOLT:
+	case SPE_SNIPER_BEAM:
+	case SPE_BLINDING_RAY:
 	case SPE_ENERGY_BOLT:
 	case SPE_GRAVITY_BEAM:
 	case SPE_BUBBLEBEAM:
@@ -1734,6 +1858,7 @@ boolean atme;
 	case SPE_WIZARD_LOCK:
 	case SPE_DIG:
 	case SPE_VOLT_ROCK:
+	case SPE_BATTERING_RAM:
 	case SPE_WATER_FLAME:
 	case SPE_TURN_UNDEAD:
 	case SPE_POLYMORPH:
@@ -1761,6 +1886,7 @@ boolean atme;
 	case SPE_DISINTEGRATION_BEAM:
 	case SPE_CHROMATIC_BEAM:
 	case SPE_ELEMENTAL_BEAM:
+	case SPE_NATURE_BEAM:
 	case SPE_PETRIFY:
 	case SPE_WIND:
 	case SPE_FIRE_BOLT:
@@ -1960,6 +2086,479 @@ boolean atme;
 
 		break;
 
+	case SPE_THRONE_GAMBLE:
+
+	    if (rnd(6) > 4)  {
+		switch (rnd(20))  {
+		    case 1:
+			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
+			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
+			break;
+		    case 2:
+			(void) adjattrib(rn2(A_MAX), 1, FALSE);
+			break;
+		    case 3:
+			pline("A%s electric shock shoots through your body!",
+			      (Shock_resistance) ? "n" : " massive");
+			losehp(Shock_resistance ? rnd(6) : rnd(30),
+			       "electric chair", KILLED_BY_AN);
+			exercise(A_CON, FALSE);
+			break;
+		    case 4:
+			You_feel("much, much better!");
+			if (Upolyd) {
+			    if (u.mh >= (u.mhmax - 5))  u.mhmax += 4;
+			    u.mh = u.mhmax;
+			}
+			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
+			u.uhp = u.uhpmax;
+			make_blinded(0L,TRUE);
+			make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			heal_legs();
+			flags.botl = 1;
+			break;
+		    case 5:
+			take_gold();
+			break;
+		    case 6:
+
+			/* no wishes --Amy */
+			You_feel("your luck is changing.");
+			change_luck(5);
+
+			break;
+		    case 7:
+			{
+			register int cnt = rnd(10);
+
+			pline("A voice echoes:");
+			verbalize("Thy audience hath been summoned, %s!",
+				  flags.female ? "Dame" : "Sire");
+			while(cnt--)
+			    (void) makemon(courtmon(), u.ux, u.uy, NO_MM_FLAGS);
+			break;
+			}
+		    case 8:
+			pline("A voice echoes:");
+			verbalize("By thy Imperious order, %s...",
+				  flags.female ? "Dame" : "Sire");
+			do_genocide(5);	/* REALLY|ONTHRONE, see do_genocide() */
+			break;
+		    case 9:
+			pline("A voice echoes:");
+			verbalize("A curse upon thee for sitting upon this most holy throne!");
+			if (Luck > 0)  {
+			    make_blinded(Blinded + rn1(100,250),TRUE);
+			} else	    rndcurse();
+			break;
+		    case 10:
+			if (Luck < 0 || (HSee_invisible & INTRINSIC))  {
+				if (level.flags.nommap) {
+					pline(
+					"A terrible drone fills your head!");
+					make_confused(HConfusion + rnd(30),
+									FALSE);
+				} else {
+					pline("An image forms in your mind.");
+					do_mapping();
+				}
+			} else  {
+				Your("vision becomes clear.");
+				HSee_invisible |= FROMOUTSIDE;
+				newsym(u.ux, u.uy);
+			}
+			break;
+		    case 11:
+			if (Luck < 0)  {
+			    You_feel("threatened.");
+			    aggravate();
+			} else  {
+
+			    You_feel("a wrenching sensation.");
+			    tele();		/* teleport him */
+			}
+			break;
+		    case 12:
+			You("are granted an insight!");
+			if (invent) {
+			    /* rn2(5) agrees w/seffects() */
+			    identify_pack(rn2(5), 0);
+			}
+			break;
+		    case 13:
+			Your("mind turns into a pretzel!");
+			make_confused(HConfusion + rn1(7,16),FALSE);
+			break;
+		    case 14:
+			You("are granted some new skills!"); /* new effect that unrestricts skills --Amy */
+
+			int acquiredskill;
+			acquiredskill = 0;
+
+			pline("Pick a skill to unrestrict. The prompt will loop until you actually make a choice.");
+
+			while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+			if (P_RESTRICTED(P_DAGGER) && yn("Do you want to learn the dagger skill?")=='y') {
+				    unrestrict_weapon_skill(P_DAGGER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_KNIFE) && yn("Do you want to learn the knife skill?")=='y') {
+				    unrestrict_weapon_skill(P_KNIFE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_AXE) && yn("Do you want to learn the axe skill?")=='y') {
+				    unrestrict_weapon_skill(P_AXE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PICK_AXE) && yn("Do you want to learn the pick-axe skill?")=='y') {
+				    unrestrict_weapon_skill(P_PICK_AXE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHORT_SWORD) && yn("Do you want to learn the short sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHORT_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BROAD_SWORD) && yn("Do you want to learn the broad sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_BROAD_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LONG_SWORD) && yn("Do you want to learn the long sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_LONG_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_HANDED_SWORD) && yn("Do you want to learn the two-handed sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_HANDED_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SCIMITAR) && yn("Do you want to learn the scimitar skill?")=='y') {
+				    unrestrict_weapon_skill(P_SCIMITAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SABER) && yn("Do you want to learn the saber skill?")=='y') {
+				    unrestrict_weapon_skill(P_SABER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CLUB) && yn("Do you want to learn the club skill?")=='y') {
+				    unrestrict_weapon_skill(P_CLUB);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PADDLE) && yn("Do you want to learn the paddle skill?")=='y') {
+				    unrestrict_weapon_skill(P_PADDLE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MACE) && yn("Do you want to learn the mace skill?")=='y') {
+				    unrestrict_weapon_skill(P_MACE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MORNING_STAR) && yn("Do you want to learn the morning star skill?")=='y') {
+				    unrestrict_weapon_skill(P_MORNING_STAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_FLAIL) && yn("Do you want to learn the flail skill?")=='y') {
+				    unrestrict_weapon_skill(P_FLAIL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HAMMER) && yn("Do you want to learn the hammer skill?")=='y') {
+				    unrestrict_weapon_skill(P_HAMMER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_QUARTERSTAFF) && yn("Do you want to learn the quarterstaff skill?")=='y') {
+				    unrestrict_weapon_skill(P_QUARTERSTAFF);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_POLEARMS) && yn("Do you want to learn the polearms skill?")=='y') {
+				    unrestrict_weapon_skill(P_POLEARMS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SPEAR) && yn("Do you want to learn the spear skill?")=='y') {
+				    unrestrict_weapon_skill(P_SPEAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_JAVELIN) && yn("Do you want to learn the javelin skill?")=='y') {
+				    unrestrict_weapon_skill(P_JAVELIN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TRIDENT) && yn("Do you want to learn the trident skill?")=='y') {
+				    unrestrict_weapon_skill(P_TRIDENT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LANCE) && yn("Do you want to learn the lance skill?")=='y') {
+				    unrestrict_weapon_skill(P_LANCE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BOW) && yn("Do you want to learn the bow skill?")=='y') {
+				    unrestrict_weapon_skill(P_BOW);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SLING) && yn("Do you want to learn the sling skill?")=='y') {
+				    unrestrict_weapon_skill(P_SLING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_FIREARM) && yn("Do you want to learn the firearms skill?")=='y') {
+				    unrestrict_weapon_skill(P_FIREARM);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CROSSBOW) && yn("Do you want to learn the crossbow skill?")=='y') {
+				    unrestrict_weapon_skill(P_CROSSBOW);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DART) && yn("Do you want to learn the dart skill?")=='y') {
+				    unrestrict_weapon_skill(P_DART);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHURIKEN) && yn("Do you want to learn the shuriken skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHURIKEN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BOOMERANG) && yn("Do you want to learn the boomerang skill?")=='y') {
+				    unrestrict_weapon_skill(P_BOOMERANG);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_WHIP) && yn("Do you want to learn the whip skill?")=='y') {
+				    unrestrict_weapon_skill(P_WHIP);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_UNICORN_HORN) && yn("Do you want to learn the unicorn horn skill?")=='y') {
+				    unrestrict_weapon_skill(P_UNICORN_HORN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LIGHTSABER) && yn("Do you want to learn the lightsaber skill?")=='y') {
+				    unrestrict_weapon_skill(P_LIGHTSABER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ATTACK_SPELL) && yn("Do you want to learn the attack spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ATTACK_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HEALING_SPELL) && yn("Do you want to learn the healing spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_HEALING_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DIVINATION_SPELL) && yn("Do you want to learn the divination spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_DIVINATION_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ENCHANTMENT_SPELL) && yn("Do you want to learn the enchantment spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ENCHANTMENT_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PROTECTION_SPELL) && yn("Do you want to learn the protection spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_PROTECTION_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BODY_SPELL) && yn("Do you want to learn the body spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_BODY_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_OCCULT_SPELL) && yn("Do you want to learn the occult spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_OCCULT_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ELEMENTAL_SPELL) && yn("Do you want to learn the elemental spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ELEMENTAL_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CHAOS_SPELL) && yn("Do you want to learn the chaos spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_CHAOS_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MATTER_SPELL) && yn("Do you want to learn the matter spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_MATTER_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_RIDING) && yn("Do you want to learn the riding skill?")=='y') {
+				    unrestrict_weapon_skill(P_RIDING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HIGH_HEELS) && yn("Do you want to learn the high heels skill?")=='y') {
+				    unrestrict_weapon_skill(P_HIGH_HEELS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_GENERAL_COMBAT) && yn("Do you want to learn the general combat skill?")=='y') {
+				    unrestrict_weapon_skill(P_GENERAL_COMBAT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHIELD) && yn("Do you want to learn the shield skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHIELD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BODY_ARMOR) && yn("Do you want to learn the body armor skill?")=='y') {
+				    unrestrict_weapon_skill(P_BODY_ARMOR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_HANDED_WEAPON) && yn("Do you want to learn the two-handed weapon skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_HANDED_WEAPON);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_WEAPON_COMBAT) && yn("Do you want to learn the two-weapon combat skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_WEAPON_COMBAT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_POLYMORPHING) && yn("Do you want to learn the polymorphing skill?")=='y') {
+				    unrestrict_weapon_skill(P_POLYMORPHING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DEVICES) && yn("Do you want to learn the devices skill?")=='y') {
+				    unrestrict_weapon_skill(P_DEVICES);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SEARCHING) && yn("Do you want to learn the searching skill?")=='y') {
+				    unrestrict_weapon_skill(P_SEARCHING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SPIRITUALITY) && yn("Do you want to learn the spirituality skill?")=='y') {
+				    unrestrict_weapon_skill(P_SPIRITUALITY);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PETKEEPING) && yn("Do you want to learn the petkeeping skill?")=='y') {
+				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
+			else if (yn("Do you want to learn no new skill at all?")=='y') {
+				    acquiredskill = 1; }
+			}
+			pline("Check out what you got!");
+
+			break;
+		    case 15:
+			pline("A voice echoes:");
+			verbalize("Thou be cursed!");
+			attrcurse();
+			break;
+		    case 16:
+			pline("A voice echoes:");
+			verbalize("Thou shall be punished!");
+			punishx();
+			break;
+		    case 17:
+			You_feel("like someone has touched your forehead...");
+
+			int skillimprove = rnd(P_NUM_SKILLS);
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				break;
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				break;
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else pline("Unfortunately, you feel no different than before.");
+
+			break;
+		    case 18:
+			{register int cnt = rnd(10);
+			struct permonst *randmonstforspawn = rndmonst();
+
+			while(cnt--)
+			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+			pline("A voice echoes:");
+			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
+			break;
+			}
+		    case 19:
+			{register int cnt = rnd(10);
+			int randmonstforspawn = rnd(68);
+			if (randmonstforspawn == 35) randmonstforspawn = 53;
+
+			while(cnt--)
+			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+			pline("A voice echoes:");
+			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
+			break;
+			}
+		    case 20:
+			{
+			pline("You may fully identify an object!");
+			register struct obj *idobj;
+
+			idobj = getobj(all_count, "secure identify");
+
+			if (!idobj) {
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (idobj) {
+				makeknown(idobj->otyp);
+				if (idobj->oartifact) discover_artifact((int)idobj->oartifact);
+				idobj->known = idobj->dknown = idobj->bknown = idobj->rknown = 1;
+				if (idobj->otyp == EGG && idobj->corpsenm != NON_PM)
+				learn_egg_type(idobj->corpsenm);
+				prinv((char *)0, idobj, 0L);
+			}
+			}
+			break;
+
+		    default:	impossible("throne effect");
+				break;
+		}
+	    } else {
+		if (is_prince(youmonst.data))
+		    You_feel("very comfortable here.");
+		else
+		    You_feel("somehow out of place...");
+	    }
+
+		if (!rn2(10)) badeffect();
+
+		break;
+
+	case SPE_REDEMPTION:
+
+		{
+			register struct obj *redeemobj;
+			for (redeemobj = fobj; redeemobj; redeemobj = redeemobj->nobj) {
+				if (redeemobj->otyp == CORPSE) {
+					if (redeemobj->timed) {
+					    (void) stop_timer(MOLDY_CORPSE, (genericptr_t)redeemobj);
+					    (void) stop_timer(REVIVE_MON, (genericptr_t)redeemobj);
+					}
+					if (!(redeemobj->timed)) {
+						(void) start_timer(250, TIMER_OBJECT, ROT_CORPSE, (genericptr_t)redeemobj);
+						pline("A corpse has been redeemed!");
+					}
+				}
+			}
+		}
+
+
+		break;
+
+	case SPE_MAGIC_SHIELD:
+
+		u.magicshield += (u.magicshield ? rnd(10) : 40 + (spell_damage_bonus(spellid(spell)) * 10) );
+		pline("You activate your magic shield!");
+
+		break;
+
+	case SPE_BERSERK:
+
+		if (u.berserktime) {
+			pline("Bad idea - you are already berserk! Things turn into an unrecognizable blur.");
+			make_hallucinated(HHallucination + rnd(50) + HStun + HConfusion, FALSE, 0L);
+			set_itimeout(&HeavyHallu, HHallucination);
+			break;
+		}
+
+		u.berserktime = 7 + spell_damage_bonus(spellid(spell));
+		pline("Raaaaaargh! You fly into a berserk rage!");
+
+		break;
+
+	case SPE_RAIN_CLOUD:
+		{
+			int i, j;
+			struct monst *rainedmon;
+		    for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == LAVAPOOL) {
+				levl[u.ux + i][u.uy + j].typ = WATER;
+				pline("The lava turns into water!");
+			}
+			if ( (rainedmon = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (dmgtype(rainedmon->data, AD_FIRE) || dmgtype(rainedmon->data, AD_BURN) || dmgtype(rainedmon->data, AD_LAVA)) {
+
+					rainedmon->mhp -= rnd(20 + (spell_damage_bonus(spellid(spell)) * 3) );
+					pline("%s is damaged by the raindrops!", Monnam(rainedmon));
+					if (rainedmon->mhp <= 0) {
+						pline("%s is killed!", Monnam(rainedmon));
+						xkilled(rainedmon, 0);
+					}
+
+				}
+			}
+		    }
+		}
+
+		u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 3);
+		pline(u.inertia ? "You slow down even more due to the rain." : "You slow down greatly due to the rain.");
+		u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+
+		(void)doredraw();
+
+		break;
+
+	case SPE_DRY_UP_FOUNTAIN:
+		{
+			int i, j;
+		    for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == FOUNTAIN) {
+				levl[u.ux + i][u.uy + j].typ = CORR;
+				levl[u.ux + i][u.uy + j].looted = 0;
+				levl[u.ux + i][u.uy + j].blessedftn = 0;
+				pline("The fountain dries up!");
+				level.flags.nfountains--;
+			}
+		    }
+		}
+
+		(void)doredraw();
+
+		break;
+
+	case SPE_TAKE_SELFIE:
+
+		pline("You take a selfie.");
+		nomul(-(2 + rn2(4)), "taking a selfie");
+
+		if (!rn2(5)) {
+			make_blinded(Blinded + rnd(50), FALSE);
+			pline("You are blinded by the flash!");
+		}
+
+		break;
+
+	case SPE_VAPORIZE:
+		{
+			int i, j;
+			struct monst *rainedmon;
+
+			if (Is_waterlevel(&u.uz)) {
+				pline("The water foams violently for a moment.");
+				break;
+			}
+
+		    for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == WATER || levl[u.ux + i][u.uy + j].typ == POOL || levl[u.ux + i][u.uy + j].typ == MOAT) {
+				levl[u.ux + i][u.uy + j].typ = ROOM;
+				pline("The water evaporizes!");
+				if ( (rainedmon = m_at(u.ux + i, u.uy + j)) != 0) {
+					rainedmon->mhp /= 2;
+					pline("%s is damaged by the vapors!", Monnam(rainedmon));
+					if (!rn2(3)) {
+						rainedmon->mcanmove = 0;
+						rainedmon->mfrozen = rnd(20);
+						rainedmon->mstrategy &= ~STRAT_WAITFORU;
+						pline("%s is paralyzed!", Monnam(rainedmon));
+					}
+					if (rainedmon->mhp <= 0) {
+						pline("%s is killed!", Monnam(rainedmon));
+						xkilled(rainedmon, 0);
+					}
+				}
+			}
+		    }
+		}
+
+		pline("The vapors burn you!");
+		make_burned(HBurned + rnd(200), FALSE);
+		set_itimeout(&HeavyBurned, HBurned);
+
+		(void)doredraw();
+
+		break;
+
 	case SPE_NEXUS_FIELD:
 		{
 			register struct monst *nexusmon, *nextmon;
@@ -1989,6 +2588,242 @@ boolean atme;
 			pline("You are hit by nexus forces!");
 			poisontell(statloss);
 
+		}
+
+		break;
+
+	case SPE_TUNNELIZATION:
+		{
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= DBWALL) {
+					if ((levl[nexusmon->mx][nexusmon->my].wall_info & W_NONDIGGABLE) == 0) {
+						levl[nexusmon->mx][nexusmon->my].typ = CORR;
+						unblock_point(nexusmon->mx,nexusmon->my);
+						if (!(levl[nexusmon->mx][nexusmon->my].wall_info & W_HARDGROWTH)) levl[nexusmon->mx][nexusmon->my].wall_info |= W_EASYGROWTH;
+						newsym(nexusmon->mx,nexusmon->my);
+
+					}
+					pline("%s wails out in pain!", Monnam(nexusmon));
+					nexusmon->mhp -= rnz(nexusmon->mhp / 2);
+					if (nexusmon->mhp <= 0) {
+						xkilled(nexusmon, 0);
+						pline("%s is killed!", Monnam(nexusmon));
+					}
+					adjalign(-25);
+				}
+			}
+		}
+
+		pline("You feel bad for tunneling, and are also blinded by heaps of earth flying around.");
+		adjalign(-10);
+		u.tunnelized += rnd(100);
+		make_blinded(Blinded + u.tunnelized, FALSE);
+		set_itimeout(&HeavyBlind, Blinded);
+		(void)doredraw();
+
+		break;
+
+	case SPE_APPLY_NAIL_POLISH:
+
+		if (u.nailpolish >= 10) {
+			pline("All of your nails are polished already! Nothing happens.");
+			break;
+		}
+		pline("You begin applying nail polish.");
+		u.nailpolish++;
+		nomul(-(rnd(4)), "applying nail polish");
+		nomovemsg = "You finish polishing your nails.";
+
+		break;
+
+	case SPE_ENCHANT:
+
+		if (!uwep) {
+			pline("You are not holding a weapon!");
+			break;
+		}
+
+		/* enchanting again while it's already active sets a new timeout and does not add to the old one --Amy */
+		u.enchantspell = (5 + spell_damage_bonus(spellid(spell)));
+		pline("You enchant your weapon.");
+
+		break;
+
+	case SPE_FROST:
+		{
+			register struct monst *frostmon, *nxtmon;
+
+			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
+			    nxtmon = frostmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(frostmon)) continue;
+			    if (resist(frostmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+				mon_adjust_speed(frostmon, -1, (struct obj *)0);
+				m_dowear(frostmon, FALSE); /* might want speed boots */
+
+			}
+		}
+
+		break;
+
+	case SPE_THUNDER_WAVE:
+		{
+			register struct monst *frostmon, *nxtmon;
+
+			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
+			    nxtmon = frostmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(frostmon)) continue;
+			    if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
+
+				if (canseemon(frostmon) ) {
+					pline("%s is paralyzed! It might be unable to move!", Monnam(frostmon) );
+				}
+				frostmon->mcanmove = 0;
+				frostmon->mfrozen = rnd(5);
+				frostmon->mstrategy &= ~STRAT_WAITFORU;
+
+			    }
+
+			    if (!resists_elec(frostmon)) {
+
+				frostmon->mhp -= rnd(10 + (spell_damage_bonus(spellid(spell)) * 2) );
+				pline("%s is shocked!", Monnam(frostmon));
+				if (frostmon->mhp <= 0) {
+					pline("%s is killed!", Monnam(frostmon));
+					xkilled(frostmon, 0);
+				}
+
+			    }
+
+			}
+		}
+
+		break;
+
+	case SPE_POWER_FAILURE:
+		{
+
+		    int i, j, bd = 2;
+		    struct monst *mtmp;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (dmgtype(mtmp->data, AD_ELEC) || dmgtype(mtmp->data, AD_MALK)) {
+					mtmp->mhp -= rnd(40 + (spell_damage_bonus(spellid(spell)) * 10) );
+					pline("%s's power is down!", Monnam(mtmp));
+					if (rn2(3) && !mtmp->mstun) {
+						mtmp->mstun = TRUE;
+						pline("%s is numbed!", Monnam(mtmp));
+					}
+					if (rn2(3) && !mtmp->mblinded) {
+						mtmp->mblinded = rnd(10);
+						pline("%s is blinded!", Monnam(mtmp));
+					}
+					if (mtmp->mhp <= 0) {
+						pline("%s is killed!", Monnam(mtmp));
+						xkilled(mtmp, 0);
+					}
+				}
+			}
+
+		    }
+
+		    for (i = -2; i <= 2; i++) for(j = -2; j <= 2; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == IRONBARS && !rn2(1000) ) {
+				levl[u.ux + i][u.uy + j].typ = CLOUD;
+				pline("The iron bars break apart and leave behind a cloud!");
+			}
+		    }
+
+		}
+
+		u.powerfailure += rnd(100);
+		(void)doredraw();
+
+		break;
+
+	case SPE_ANGER_PEACEFUL_MONSTER:
+		{
+			register struct monst *frostmon, *nxtmon;
+
+			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
+			    nxtmon = frostmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(frostmon)) continue;
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+
+			    wakeup(frostmon);
+			}
+		}
+
+		break;
+
+	case SPE_CURE_MONSTER:
+		{
+			register struct monst *frostmon, *nxtmon;
+
+			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
+			    nxtmon = frostmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(frostmon)) continue;
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+				frostmon->mfrozen = 0;
+				frostmon->msleeping = 0;
+				frostmon->mcanmove = 1;
+				frostmon->mflee = 0;
+				frostmon->mcansee = 1;
+				frostmon->mblinded = 0;
+				frostmon->mstun = 0;
+				frostmon->mconf = 0;
+				pline("%s is cured.", Monnam(frostmon));
+			}
+		}
+
+		break;
+
+	case SPE_THORNS:
+
+		pline("You throw up a thorny skin!");
+		u.thornspell = 10 + (spell_damage_bonus(spellid(spell)) * 2);
+		/* casting it repeatedly will not give you a longer duration --Amy */
+
+		break;
+
+	case SPE_MANA_BATTERY:
+		{
+
+		    register struct obj *mbobj, *mbobj2;
+		    for (mbobj = invent; mbobj; mbobj = mbobj2) {
+		      mbobj2 = mbobj->nobj;
+
+			if (mbobj->oclass == WAND_CLASS) {
+				if (mbobj->spe > 1) u.uen += (mbobj->spe * 10);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+				delobj(mbobj);
+			}
+		    }
+		}
+
+		pline("Your wands are consumed to restore your mana.");
+
+		break;
+
+	case SPE_UNTAME_MONSTER:
+		{
+			register struct monst *frostmon, *nxtmon;
+
+			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
+			    nxtmon = frostmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(frostmon)) continue;
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+
+				if (frostmon->mtame) frostmon->mtame = 0;
+			}
 		}
 
 		break;
@@ -2027,13 +2862,71 @@ boolean atme;
 			}
 
 			register struct monst *elemental;
-			elemental = makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, NO_MM_FLAGS);
+			elemental = makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, MM_NOSPECIALS);
 			if (elemental) {
-			    if (!resist(elemental, SPBOOK_CLASS, 0, TELL)) {
+			    if (!resist(elemental, SPBOOK_CLASS, 0, NOTELL)) {
+				elemental = tamedog(elemental, (struct obj *) 0, FALSE);
+				if (elemental) You("dominate %s!", mon_nam(elemental));
+			    } else if (!resist(elemental, SPBOOK_CLASS, 0, NOTELL)) {
+				elemental = tamedog(elemental, (struct obj *) 0, FALSE);
+				if (elemental) You("dominate %s!", mon_nam(elemental));
+			    } else if (!resist(elemental, SPBOOK_CLASS, 0, TELL)) {
 				elemental = tamedog(elemental, (struct obj *) 0, FALSE);
 				if (elemental) You("dominate %s!", mon_nam(elemental));
 			    }
 
+			}
+		}
+
+		break;
+
+	case SPE_HYPERSPACE_SUMMON:
+		{
+
+			pline("You sacrifice some of your %s and magical energy to create vortices.", body_part(BLOOD));
+			u.uhpmax -= rno(8);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.uhp < 1) {
+				killer = "summoning vortices with too little health";
+				killer_format = NO_KILLER_PREFIX;
+				done(DIED);
+			}
+			if (Upolyd) {
+				u.mhmax -= rno(8);
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			if (!rn2(2)) {
+				u.uenmax -= rno(8);
+				if (u.uenmax < 0) u.uenmax = 0;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			}
+
+			int ammount = 1;
+			if (spell_damage_bonus(spellid(spell)) > 0) ammount += spell_damage_bonus(spellid(spell));
+
+			register struct monst *vortex;
+			while (ammount > 0) {
+				vortex = makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_NOSPECIALS);
+				if (vortex) {
+				    if (!resist(vortex, SPBOOK_CLASS, 0, NOTELL)) {
+					vortex = tamedog(vortex, (struct obj *) 0, FALSE);
+					if (vortex) You("dominate %s!", mon_nam(vortex));
+				    } else if (!resist(vortex, SPBOOK_CLASS, 0, NOTELL)) {
+					vortex = tamedog(vortex, (struct obj *) 0, FALSE);
+					if (vortex) You("dominate %s!", mon_nam(vortex));
+				    } else if (!resist(vortex, SPBOOK_CLASS, 0, NOTELL)) {
+					vortex = tamedog(vortex, (struct obj *) 0, FALSE);
+					if (vortex) You("dominate %s!", mon_nam(vortex));
+				    } else if (!resist(vortex, SPBOOK_CLASS, 0, NOTELL)) {
+					vortex = tamedog(vortex, (struct obj *) 0, FALSE);
+					if (vortex) You("dominate %s!", mon_nam(vortex));
+				    } else if (!resist(vortex, SPBOOK_CLASS, 0, TELL)) {
+					vortex = tamedog(vortex, (struct obj *) 0, FALSE);
+					if (vortex) You("dominate %s!", mon_nam(vortex));
+				    }
+	
+				}
+				ammount--;
 			}
 		}
 
@@ -2077,6 +2970,62 @@ boolean atme;
 		youmonst.m_ap_type = M_AP_OBJECT;
 		youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
 		newsym(u.ux,u.uy);
+
+		break;
+
+	case SPE_WHISPERS_FROM_BEYOND:
+
+		identify_pack(0, 0);
+
+		ABASE(A_INT) -= 5;
+		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
+			Your("last thought fades away.");
+			killer = "brainlessness";
+			killer_format = KILLED_BY;
+			done(DIED);
+
+			/* player still alive somehow? kill them again :P */
+
+			pline("Unfortunately your brain is still gone.");
+			killer = "brainlessness";
+			killer_format = KILLED_BY;
+			done(DIED);
+
+			/* if you're still alive then you're either in wizard mode, or you deserve to be able to go on playing. */
+
+			ABASE(A_INT) = ATTRMIN(A_INT);
+			You_feel("like a scarecrow.");
+		}
+		AMAX(A_INT) = ABASE(A_INT);
+
+		ABASE(A_WIS) -= 5;
+		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+
+			You("turn into an unthinkable vegetable and die.");
+			killer = "being turned into a vegetable";
+			killer_format = KILLED_BY;
+			done(DIED);
+
+			/* player still alive somehow? well then, you can go on playing */
+
+			ABASE(A_WIS) = ATTRMIN(A_WIS);
+		}
+		AMAX(A_WIS) = ABASE(A_WIS);
+
+		/* It is not a mistake that INT loss kills you twice while WIS loss only does so once. --Amy */
+
+		break;
+
+	case SPE_STASIS:
+		u.stasistime = rnd(100);
+		pline("You freeze completely.");
+		nomul(-(u.stasistime), "frozen in stasis");
+
+		break;
+
+	case SPE_CRYOGENICS:
+
+		cryogenics();
 
 		break;
 
@@ -2141,6 +3090,301 @@ boolean atme;
 
 		break;
 
+	case SPE_BURROW:
+		u.burrowed = 100;
+		u.utrap = 100;
+		u.utraptype = TT_INFLOOR;
+		pline("You are burrowed into the floor, and gain armor class.");
+
+		break;
+
+	case SPE_SWITCHEROO:
+
+		pline("Click! The red status light goes out while the green light starts shining brightly!");
+
+		RMBLoss = 0L;
+		DisplayLoss = 0L;
+		SpellLoss = 0L;
+		YellowSpells = 0L;
+		AutoDestruct = 0L;
+		MemoryLoss = 0L;
+		InventoryLoss = 0L;
+		BlackNgWalls = 0L;
+		MenuBug = 0L;
+		SpeedBug = 0L;
+		Superscroller = 0L;
+		FreeHandLoss = 0L;
+		Unidentify = 0L;
+		Thirst = 0L;
+		LuckLoss = 0L;
+		ShadesOfGrey = 0L;
+		FaintActive = 0L;
+		Itemcursing = 0L;
+		DifficultyIncreased = 0L;
+		Deafness = 0L;
+		CasterProblem = 0L;
+		WeaknessProblem = 0L;
+		RotThirteen = 0L;
+		BishopGridbug = 0L;
+		ConfusionProblem = 0L;
+		NoDropProblem = 0L;
+		DSTWProblem = 0L;
+		StatusTrapProblem = 0L;
+		AlignmentProblem = 0L;
+		StairsProblem = 0L;
+		UninformationProblem = 0L;
+		IntrinsicLossProblem = 0L;
+		BloodLossProblem = 0L;
+		BadEffectProblem = 0L;
+		TrapCreationProblem = 0L;
+		AutomaticVulnerabilitiy = 0L;
+		TeleportingItems = 0L;
+		/*NastinessProblem = 0L;*/ /* commented out on purpose --Amy */
+		CaptchaProblem = 0L;
+		FarlookProblem = 0L;
+		RespawnProblem = 0L;
+		RecurringAmnesia = 0L;
+		BigscriptEffect = 0L;
+		BankTrapEffect = 0L;
+		MapTrapEffect = 0L;
+		TechTrapEffect = 0L;
+		RecurringDisenchant = 0L;
+		verisiertEffect = 0L;
+		ChaosTerrain = 0L;
+		Muteness = 0L;
+		EngravingDoesntWork = 0L;
+		MagicDeviceEffect = 0L;
+		BookTrapEffect = 0L;
+		LevelTrapEffect = 0L;
+		QuizTrapEffect = 0L;
+
+		FastMetabolismEffect = 0L;
+		NoReturnEffect = 0L;
+		AlwaysEgotypeMonsters = 0L;
+		TimeGoesByFaster = 0L;
+		FoodIsAlwaysRotten = 0L;
+		AllSkillsUnskilled = 0L;
+		AllStatsAreLower = 0L;
+		PlayerCannotTrainSkills = 0L;
+		PlayerCannotExerciseStats = 0L;
+
+		TurnLimitation = 0L;
+		WeakSight = 0L;
+		RandomMessages = 0L;
+
+		Desecration = 0L;
+		StarvationEffect = 0L;
+		NoDropsEffect = 0L;
+		LowEffects = 0L;
+		InvisibleTrapsEffect = 0L;
+		GhostWorld = 0L;
+		Dehydration = 0L;
+		HateTrapEffect = 0L;
+		TotterTrapEffect = 0L;
+		Nonintrinsics = 0L;
+		Dropcurses = 0L;
+		Nakedness = 0L;
+		Antileveling = 0L;
+		ItemStealingEffect = 0L;
+		Rebellions = 0L;
+		CrapEffect = 0L;
+		ProjectilesMisfire = 0L;
+		WallTrapping = 0L;
+
+		pline("But then the green light goes out again and the red one lights up...");
+
+		NastinessProblem += 10000;
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+
+		break;
+
+	case SPE_GAIN_CORRUPTION:
+
+		pline("Okay, if that's really what you want... you feel corrupted.");
+		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
+
+		switch (rnd(85)) {
+
+			case 1: 
+			    SpeedBug |= FROMOUTSIDE; break;
+			case 2: 
+			    MenuBug |= FROMOUTSIDE; break;
+			case 3: 
+			    RMBLoss |= FROMOUTSIDE; break;
+			case 4: 
+			    DisplayLoss |= FROMOUTSIDE; break;
+			case 5: 
+			    SpellLoss |= FROMOUTSIDE; break;
+			case 6: 
+			    YellowSpells |= FROMOUTSIDE; break;
+			case 7: 
+			    AutoDestruct |= FROMOUTSIDE; break;
+			case 8: 
+			    MemoryLoss |= FROMOUTSIDE; break;
+			case 9: 
+			    DisplayLoss |= FROMOUTSIDE; break;
+			case 10: 
+			    BlackNgWalls |= FROMOUTSIDE; break;
+			case 11: 
+			    Superscroller |= FROMOUTSIDE; break;
+			case 12: 
+			    FreeHandLoss |= FROMOUTSIDE; break;
+			case 13: 
+			    Unidentify |= FROMOUTSIDE; break;
+			case 14: 
+			    Thirst |= FROMOUTSIDE; break;
+			case 15: 
+			    LuckLoss |= FROMOUTSIDE; break;
+			case 16: 
+			    ShadesOfGrey |= FROMOUTSIDE; break;
+			case 17: 
+			    FaintActive |= FROMOUTSIDE; break;
+			case 18: 
+			    Itemcursing |= FROMOUTSIDE; break;
+			case 19: 
+			    DifficultyIncreased |= FROMOUTSIDE; break;
+			case 20: 
+			    Deafness |= FROMOUTSIDE; break;
+			case 21: 
+			    CasterProblem |= FROMOUTSIDE; break;
+			case 22: 
+			    WeaknessProblem |= FROMOUTSIDE; break;
+			case 23: 
+			    RotThirteen |= FROMOUTSIDE; break;
+			case 24: 
+			    BishopGridbug |= FROMOUTSIDE; break;
+			case 25: 
+			    ConfusionProblem |= FROMOUTSIDE; break;
+			case 26: 
+			    NoDropProblem |= FROMOUTSIDE; break;
+			case 27: 
+			    DSTWProblem |= FROMOUTSIDE; break;
+			case 28: 
+			    StatusTrapProblem |= FROMOUTSIDE; break;
+			case 29: 
+			    AlignmentProblem |= FROMOUTSIDE; break;
+			case 30: 
+			    StairsProblem |= FROMOUTSIDE; break;
+			case 31: 
+			    UninformationProblem |= FROMOUTSIDE; break;
+			case 32: 
+			    IntrinsicLossProblem |= FROMOUTSIDE; break;
+			case 33: 
+			    BloodLossProblem |= FROMOUTSIDE; break;
+			case 34: 
+			    BadEffectProblem |= FROMOUTSIDE; break;
+			case 35: 
+			    TrapCreationProblem |= FROMOUTSIDE; break;
+			case 36: 
+			    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+			case 37: 
+			    TeleportingItems |= FROMOUTSIDE; break;
+			case 38: 
+			    NastinessProblem |= FROMOUTSIDE; break;
+			case 39: 
+			    RecurringAmnesia |= FROMOUTSIDE; break;
+			case 40: 
+			    BigscriptEffect |= FROMOUTSIDE; break;
+			case 41: 
+			    BankTrapEffect |= FROMOUTSIDE; break;
+			case 42: 
+			    MapTrapEffect |= FROMOUTSIDE; break;
+			case 43: 
+			    TechTrapEffect |= FROMOUTSIDE; break;
+			case 44: 
+			    RecurringDisenchant |= FROMOUTSIDE; break;
+			case 45: 
+			    verisiertEffect |= FROMOUTSIDE; break;
+			case 46: 
+			    ChaosTerrain |= FROMOUTSIDE; break;
+			case 47: 
+			    Muteness |= FROMOUTSIDE; break;
+			case 48: 
+			    EngravingDoesntWork |= FROMOUTSIDE; break;
+			case 49: 
+			    MagicDeviceEffect |= FROMOUTSIDE; break;
+			case 50: 
+			    BookTrapEffect |= FROMOUTSIDE; break;
+			case 51: 
+			    LevelTrapEffect |= FROMOUTSIDE; break;
+			case 52: 
+			    QuizTrapEffect |= FROMOUTSIDE; break;
+			case 53: 
+			    CaptchaProblem |= FROMOUTSIDE; break;
+			case 54: 
+			    FarlookProblem |= FROMOUTSIDE; break;
+			case 55: 
+			    RespawnProblem |= FROMOUTSIDE; break;
+			case 56: 
+			    FastMetabolismEffect |= FROMOUTSIDE; break;
+			case 57: 
+			    NoReturnEffect |= FROMOUTSIDE; break;
+			case 58: 
+			    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+			case 59: 
+			    TimeGoesByFaster |= FROMOUTSIDE; break;
+			case 60: 
+			    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+			case 61: 
+			    AllSkillsUnskilled |= FROMOUTSIDE; break;
+			case 62: 
+			    AllStatsAreLower |= FROMOUTSIDE; break;
+			case 63: 
+			    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+			case 64: 
+			    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+			case 65: 
+			    TurnLimitation |= FROMOUTSIDE; break;
+			case 66: 
+			    WeakSight |= FROMOUTSIDE; break;
+			case 67: 
+			    RandomMessages |= FROMOUTSIDE; break;
+			case 68: 
+			    Desecration |= FROMOUTSIDE; break;
+			case 69: 
+			    StarvationEffect |= FROMOUTSIDE; break;
+			case 70: 
+			    NoDropsEffect |= FROMOUTSIDE; break;
+			case 71: 
+			    LowEffects |= FROMOUTSIDE; break;
+			case 72: 
+			    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+			case 73: 
+			    GhostWorld |= FROMOUTSIDE; break;
+			case 74: 
+			    Dehydration |= FROMOUTSIDE; break;
+			case 75: 
+			    HateTrapEffect |= FROMOUTSIDE; break;
+			case 76: 
+			    TotterTrapEffect |= FROMOUTSIDE; break;
+			case 77: 
+			    Nonintrinsics |= FROMOUTSIDE; break;
+			case 78: 
+			    Dropcurses |= FROMOUTSIDE; break;
+			case 79: 
+			    Nakedness |= FROMOUTSIDE; break;
+			case 80: 
+			    Antileveling |= FROMOUTSIDE; break;
+			case 81: 
+			    ItemStealingEffect |= FROMOUTSIDE; break;
+			case 82: 
+			    Rebellions |= FROMOUTSIDE; break;
+			case 83: 
+			    CrapEffect |= FROMOUTSIDE; break;
+			case 84: 
+			    ProjectilesMisfire |= FROMOUTSIDE; break;
+			case 85: 
+			    WallTrapping |= FROMOUTSIDE; break;
+		}
+
+		break;
+
 	case SPE_COMMAND_DEMON:
 
 		{
@@ -2152,6 +3396,66 @@ boolean atme;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data)))
 				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 		    }
+		}
+
+		break;
+
+	case SPE_SELFDESTRUCT:
+
+		{
+		    int i, j, bd = 3;
+		    struct monst *mtmp;
+
+			pline("%s used SELFDESTRUCT!", plname);
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				mtmp->mhp -= rnd(u.uhpmax * 5);
+				pline("%s is hit by the explosion!", Monnam(mtmp));
+				if (mtmp->mhp <= 0) {
+					pline("%s is killed!", Monnam(mtmp));
+					xkilled(mtmp, 0);
+				}
+			}
+
+		    }
+
+			killer = "selfdestructing";
+			killer_format = NO_KILLER_PREFIX;
+			done(DIED);
+			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
+
+		}
+
+		break;
+
+	case SPE_FINAL_EXPLOSION:
+
+		{
+		    int i, j, bd = 5;
+		    struct monst *mtmp;
+
+			pline("%s used EXPLOSION!", plname);
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				mtmp->mhp -= rnd(u.uhpmax * 10);
+				pline("%s is hit by the explosion!", Monnam(mtmp));
+				if (mtmp->mhp <= 0) {
+					pline("%s is killed!", Monnam(mtmp));
+					xkilled(mtmp, 0);
+				}
+			}
+
+		    }
+
+			killer = "exploding";
+			killer_format = NO_KILLER_PREFIX;
+			done(DIED);
+			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
+
 		}
 
 		break;
@@ -2905,7 +4209,7 @@ boolean atme;
 		    pline_The("air around you erupts in a tower of flame!");
 		    burn_away_slime();
 		}
-		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), 3, SCROLL_CLASS, EXPL_FIERY);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), 3 + (spell_damage_bonus(spellid(spell)) / 2), SCROLL_CLASS, EXPL_FIERY);
 
 		break;
 
@@ -3156,6 +4460,7 @@ boolean atme;
 		u.uenmax -= rnd(10);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 
 		}
 		break;
@@ -3168,6 +4473,7 @@ boolean atme;
 		u.uenmax -= rnd(10);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3180,6 +4486,7 @@ boolean atme;
 		u.uenmax -= rnd(24);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3192,6 +4499,7 @@ boolean atme;
 		u.uenmax -= rnd(4);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3204,6 +4512,7 @@ boolean atme;
 		u.uenmax -= rnd(7);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3216,6 +4525,7 @@ boolean atme;
 		u.uenmax -= rnd(30);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3228,6 +4538,7 @@ boolean atme;
 		u.uenmax -= rnd(30);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
 
 		break;
@@ -3241,7 +4552,47 @@ boolean atme;
 		u.uenmax -= rnd(20);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		pline("Casting this spell is straining for your maximum mana supply.");
 		}
+
+		break;
+
+	case SPE_BOMBING:
+
+		{
+		int attempts = 0;
+		register struct permonst *ptrZ;
+
+			do {
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(attacktype(ptrZ, AT_EXPL)))) && attempts < 50000);
+
+			if (ptrZ && attacktype(ptrZ, AT_EXPL)) {
+
+				register struct monst *bomber;
+
+	/* note by Amy: I can't, for the life of me, remember that converting a permonst to number is done via monsndx.
+	 * Therefore I'm leaving a note here that I can grep for the next 200 times I forget that permonst monster number
+	 * is done via monsndx! */
+				int monnumber = monsndx(ptrZ);
+
+				bomber = make_helper(monnumber, u.ux, u.uy);
+				if (!bomber) break;
+				bomber->mtame = 10;
+				bomber->isspell = bomber->uexp = TRUE;
+
+			}
+
+		}
+
+		break;
+
+	case SPE_ANTI_MAGIC_SHELL:
+			pline("You produce an anti-magic shell.");
+			u.antimagicshell += rnd(100 + (spell_damage_bonus(spellid(spell)) * 5) );
+			/* can't cast it with the shell active, so no need to check for that :D --Amy */
 
 		break;
 
@@ -3449,6 +4800,31 @@ boolean atme;
 				}
 			}
 
+		}
+
+		break;
+
+	case SPE_DEMEMORIZE:
+
+		if (spellid(0) == NO_SPELL)  { /* should never happen, but I put it here just in case --Amy */
+			You("don't know any spells, and therefore you cannot dememorize them either.");
+			break;
+		}
+
+		{
+			int numspells;
+
+			for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
+
+				pline("You know the %s spell.", spellname(numspells));
+				if (yn("Dememorize it?") == 'y') {
+
+					spl_book[numspells].sp_know = 0;
+					pline("Alright, the %s spell is a forgotten spell now.", spellname(numspells));
+
+					break;
+				}
+			}
 		}
 
 		break;
@@ -3684,7 +5060,7 @@ boolean atme;
 		else {
 		    pline_The("air around you explodes in a cloud of noxious gas!");
 		}
-		explode(u.ux, u.uy, ZT_SPELL(ZT_POISON_GAS), 24, SCROLL_CLASS, EXPL_NOXIOUS);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_POISON_GAS), 24 + (spell_damage_bonus(spellid(spell)) * 2), SCROLL_CLASS, EXPL_NOXIOUS);
 
 		break;
 
@@ -3740,12 +5116,168 @@ boolean atme;
 			incr_itimeout(&HDisplaced, Displaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
+	case SPE_TRUE_SIGHT:
+		if(!(HSee_invisible & INTRINSIC)) {
+			pline("You can see invisible things!");
+			incr_itimeout(&HSee_invisible, See_invisible ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(50, 25) + spell_damage_bonus(spellid(spell))*5));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_CONFLICT:
+		if(!(HConflict & INTRINSIC)) {
+			pline("You start generating conflict!");
+			incr_itimeout(&HConflict, Conflict ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(20, 10) + spell_damage_bonus(spellid(spell))*3));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_ESP:
+		if(!(HTelepat & INTRINSIC)) {
+			You_feel("a strange mental acuity.");
+			incr_itimeout(&HTelepat, Blind_telepat ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_RADAR:
+		if(!(HWarning & INTRINSIC)) {
+			pline("You turn on your radar.");
+			incr_itimeout(&HWarning, Warning ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_REGENERATION:
+		if(!(HRegeneration & INTRINSIC)) {
+			pline("You direct your internal energy to closing your wounds.");
+			incr_itimeout(&HRegeneration, Regeneration ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_SEARCHING:
+		if(!(HSearching & INTRINSIC)) {
+			pline("You start searching.");
+			incr_itimeout(&HSearching, Searching ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_FREE_ACTION:
+		if(!(HFree_action & INTRINSIC)) {
+			pline("You are resistant to paralysis.");
+			incr_itimeout(&HFree_action, Free_action ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_STEALTH:
+		if(!(HStealth & INTRINSIC)) {
+			pline("You start moving silently.");
+			incr_itimeout(&HStealth, Stealth ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_INFRAVISION:
+		if(!(HInfravision & INTRINSIC)) {
+			pline("Your %s are suddenly very sensitive!", makeplural(body_part(EYE)));
+			incr_itimeout(&HInfravision, Infravision ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You_feel("resistant to sickness.");
 			incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else pline(nothing_happens);	/* Already have as intrinsic */
 		break;
+	case SPE_DRAGON_BLOOD:
+		if(!(HDrain_resistance & INTRINSIC)) {
+			You_feel("resistant to level drainage.");
+			incr_itimeout(&HDrain_resistance, Drain_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+	case SPE_ANTI_MAGIC_FIELD:
+		if(!(HAntimagic & INTRINSIC)) {
+			You_feel("resistant to magic.");
+			incr_itimeout(&HAntimagic, Antimagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else pline(nothing_happens);	/* Already have as intrinsic */
+		break;
+
+	case SPE_NO_EFFECT:
+
+		pline(nothing_happens);
+
+		break;
+
+	case SPE_CURE_WOUNDED_LEGS:
+
+		if (Wounded_legs) pline("A warm glow spreads through your %s!", makeplural(body_part(LEG)));
+		HWounded_legs = EWounded_legs = 0;
+
+		break;
+
+	case SPE_CURE_GLIB:
+
+		if (Glib) pline("You clean your %s.", makeplural(body_part(HAND)));
+		Glib = 0;
+
+		break;
+
+	case SPE_CUTTING:
+
+		switch (rnd(7)) {
+
+			case 1: pline("You put the knife to your lower %s and cut...", body_part(ARM)); break;
+			case 2: pline("You use a sharp object to cut open your belly..."); break;
+			case 3: pline("You slide your body along a rough surface and sustain terrible skin rashes."); break;
+			case 4: pline("You rip your butt open with a metallic edge."); break;
+			case 5: pline("You scratch up and down your %s with a sexy leather pump until it starts bleeding.", body_part(LEG)); break;
+			case 6: pline("You slit your %s full length with a sharp-edged zipper.", body_part(LEG)); break;
+			case 7: pline("You prick yourself with a needle."); break;
+		}
+
+		if (!rn2(20)) losehp(d(10,8), "cutting", KILLED_BY);
+		else if (!rn2(5)) losehp(d(6,8), "cutting", KILLED_BY);
+		else losehp(d(4,6), "cutting", KILLED_BY);
+
+		break;
+
+	case SPE_UNLEVITATE:
+
+		if (Levitation) pline("You try to unlevitate.");
+		ELevitation &= ~W_ARTI;
+		HLevitation &= ~(I_SPECIAL|TIMEOUT);
+
+		break;
+
+	case SPE_WORLD_FALL:
+
+		You("scream \"EYGOORTS-TOGAAL, JEZEHH!\"");
+		{
+		int num;
+	      register struct monst *wfm, *wfm2;
+		num = 0;
+		for (wfm = fmon; wfm; wfm = wfm2) {
+			wfm2 = wfm->nmon;
+			if ( ((wfm->m_lev < u.ulevel) || (!rn2(4) && wfm->m_lev < (2 * u.ulevel))) && wfm->mnum != quest_info(MS_NEMESIS) && !(wfm->data->geno & G_UNIQ) ) {
+				mondead(wfm);
+				num++;
+			}
+	      }
+		pline("Eliminated %d monster%s.", num, plur(num));
+		}
+
+		pline("Casting such a powerful spell taxes your maximum health, and also causes massive backlash...");
+
+		u.uhpmax -= rnd(25);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhp < 1) {
+			killer = "invoking world fall with too little health";
+			killer_format = NO_KILLER_PREFIX;
+			done(DIED);
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(25);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		NastinessProblem += rnz(1000 * (monster_difficulty() + 1));
+
+		break;
+
 	case SPE_GENOCIDE:
 
 		if (role_skill >= P_SUPREME_MASTER) n = 13;
@@ -3774,6 +5306,25 @@ boolean atme;
 			pluslvl(FALSE);
 		} else
 		    pline("Too bad - it didn't work!");
+		break;
+
+	case SPE_DETECT_WATER:
+
+		water_detect();
+
+		break;
+
+	case SPE_SATISFY_HUNGER:
+
+		pline("Your stomach is filled a bit.");
+		lesshungry(100);
+
+		break;
+
+	case SPE_BACKFIRE:
+
+		badeffect();
+
 		break;
 
 	case SPE_MAP_LEVEL:
@@ -4080,6 +5631,97 @@ boolean atme;
 		}
 		break;
 
+	case SPE_REROLL_ARTIFACT:
+
+		pline("You may choose an artifact in your inventory to reroll. It may not be a worn one though.");
+		otmp = getobj(all_count, "reroll");
+		if (!otmp) {
+			pline("You decide not to reroll anything.");
+			break;
+		}
+		if (!otmp->oartifact) {
+			pline("That is not an artifact, and can therefore not be rerolled!");
+			break;
+		}
+		if (otmp->owornmask) {
+			pline("You cannot reroll an artifact that you're wearing!");
+			break;
+		}
+		if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS || otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS)) {
+			pline("You can only reroll weapons, armors, rings or amulets!");
+			break;
+		}
+
+		switch (otmp->oclass) {
+			case WEAPON_CLASS:
+
+				{
+
+					int wpntype; /* 1 = launcher, 2 = ammo, 3 = melee */
+					if (is_launcher(otmp)) wpntype = 1;
+					else if (is_ammo(otmp) || is_missile(otmp)) wpntype = 2;
+					else wpntype = 3;
+reroll:
+					otmp->otyp = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+					if (wpntype == 1 && !is_launcher(otmp)) goto reroll;
+					if (wpntype == 2 && !is_ammo(otmp) && !is_missile(otmp)) goto reroll;
+					if (wpntype == 3 && (is_launcher(otmp) || is_ammo(otmp) || is_missile(otmp))) goto reroll;
+				}
+
+				break;
+			case ARMOR_CLASS:
+
+				{
+
+					int armortype;
+					/* 1 = shield, 2 = helmet, 3 = boots, 4 = gloves, 5 = cloak, 6 = shirt, 7 = suit */
+					if (is_shield(otmp)) armortype = 1;
+					else if (is_helmet(otmp)) armortype = 2;
+					else if (is_boots(otmp)) armortype = 3;
+					else if (is_gloves(otmp)) armortype = 4;
+					else if (is_cloak(otmp)) armortype = 5;
+					else if (is_shirt(otmp)) armortype = 6;
+					else armortype = 7;
+rerollX:
+					otmp->otyp = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+					if (armortype == 1 && !is_shield(otmp)) goto rerollX;
+					if (armortype == 2 && !is_helmet(otmp)) goto rerollX;
+					if (armortype == 3 && !is_boots(otmp)) goto rerollX;
+					if (armortype == 4 && !is_gloves(otmp)) goto rerollX;
+					if (armortype == 5 && !is_cloak(otmp)) goto rerollX;
+					if (armortype == 6 && !is_shirt(otmp)) goto rerollX;
+					if (armortype == 7 && !is_suit(otmp)) goto rerollX;
+
+				}
+				break;
+			case RING_CLASS:
+				otmp->otyp = rnd_class(RIN_ADORNMENT,RIN_TELEPORT_CONTROL);
+				break;
+			case AMULET_CLASS:
+				otmp->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_DEPRESSION);
+				break;
+		}
+		pline("Your artifact was rerolled to another base item!");
+
+		pline("The strain of casting such a powerful spell damages your maximum health and mana.");
+
+		u.uhpmax -= rnd(10);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhp < 1) {
+			killer = "the strain of casting reroll artifact";
+			killer_format = NO_KILLER_PREFIX;
+			done(DIED);
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+
+		u.uenmax -= rnd(10);
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+		break;
+
 	case SPE_REPAIR_WEAPON:
 		/* removes one level of erosion (both types) for your wielded weapon */
 		if (uwep && stack_too_big(uwep)) {
@@ -4169,6 +5811,20 @@ boolean atme;
 	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || ((pseudo->otyp == SPE_REBOOT) && !rn2(10)) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
 
 		boostknow(spell, -(rnd(20000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && (pseudo->otyp == SPE_THRONE_GAMBLE) && !rn2(20) ) {
+
+		boostknow(spell, -(rnd(50000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && (pseudo->otyp == SPE_REROLL_ARTIFACT) && !rn2(5) ) {
+
+		boostknow(spell, -(rnd(50000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}

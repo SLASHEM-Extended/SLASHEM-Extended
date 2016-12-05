@@ -3974,6 +3974,12 @@ doapply()
 	register boolean can_use = FALSE;
 	char class_list[MAXOCLASSES+2];
 
+	if (u.powerfailure) {
+		pline("Your power's down, and therefore you cannot apply anything.");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if(check_capacity((char *)0)) return (0);
 
 	if (carrying(POT_OIL) || uhave_graystone())

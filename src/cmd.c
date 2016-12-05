@@ -2839,6 +2839,102 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.drippingtread) {
+		Sprintf(buf, "dripping elements.");
+	      Sprintf(eos(buf), " (%d)", u.drippingtread);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.geolysis) {
+		Sprintf(buf, "using geolysis.");
+	      Sprintf(eos(buf), " (%d)", u.geolysis);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.disruptionshield) {
+		Sprintf(buf, "your disruption shield up.");
+	      Sprintf(eos(buf), " (%d)", u.disruptionshield);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.inertiacontrol) {
+		Sprintf(buf, "controlling the flow of a spell.");
+	      Sprintf(eos(buf), " (%d)", u.inertiacontrol);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.sterilized) {
+		Sprintf(buf, "sterilized the air around you.");
+	      Sprintf(eos(buf), " (%d)", u.sterilized);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.holyshield) {
+		Sprintf(buf, "your holy shield up.");
+	      Sprintf(eos(buf), " (%d)", u.holyshield);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.berserktime) {
+		Sprintf(buf, "berserk.");
+	      Sprintf(eos(buf), " (%d)", u.berserktime);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.magicshield) {
+		Sprintf(buf, "your magic shield up.");
+	      Sprintf(eos(buf), " (%d)", u.magicshield);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.burrowed) {
+		Sprintf(buf, "burrowed into the ground.");
+	      Sprintf(eos(buf), " (%d)", u.burrowed);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.stasistime) {
+		Sprintf(buf, "in stasis, and the monsters are too.");
+	      Sprintf(eos(buf), " (%d)", u.stasistime);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.powerfailure) {
+		Sprintf(buf, "experiencing a power failure.");
+	      Sprintf(eos(buf), " (%d)", u.powerfailure);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.tunnelized) {
+		Sprintf(buf, "reduced armor class due to tunneling dirt on your clothes.");
+	      Sprintf(eos(buf), " (%d)", u.tunnelized);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.nailpolish) {
+		Sprintf(buf, "applied nail polish.");
+	      Sprintf(eos(buf), " (%d)", u.nailpolish);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.enchantspell) {
+		Sprintf(buf, "enchanted your weapon with fire.");
+	      Sprintf(eos(buf), " (%d)", u.enchantspell);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.thornspell) {
+		Sprintf(buf, "thorns.");
+	      Sprintf(eos(buf), " (%d)", u.thornspell);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.egglayingtimeout) {
+		Sprintf(buf, "to wait until you can lay eggs again.");
+	      Sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && UseTheForce) {
 		Sprintf(buf, "able to use the force like a true jedi");
 		you_are(buf);
@@ -4907,6 +5003,102 @@ int final;
 	if (TimeStopped) {
 		Sprintf(buf, "stopped the flow of time.");
 	      Sprintf(eos(buf), " (%d)", TimeStopped);
+		dump(youhad, buf);
+	}
+
+	if (u.drippingtread) {
+		Sprintf(buf, "dripping elements.");
+	      Sprintf(eos(buf), " (%d)", u.drippingtread);
+		dump(youwere, buf);
+	}
+
+	if (u.geolysis) {
+		Sprintf(buf, "using geolysis.");
+	      Sprintf(eos(buf), " (%d)", u.geolysis);
+		dump(youwere, buf);
+	}
+
+	if (u.disruptionshield) {
+		Sprintf(buf, "your disruption shield up.");
+	      Sprintf(eos(buf), " (%d)", u.disruptionshield);
+		dump(youhad, buf);
+	}
+
+	if (u.inertiacontrol) {
+		Sprintf(buf, "controlling the flow of a spell.");
+	      Sprintf(eos(buf), " (%d)", u.inertiacontrol);
+		dump(youwere, buf);
+	}
+
+	if (u.sterilized) {
+		Sprintf(buf, "sterilized the air around you.");
+	      Sprintf(eos(buf), " (%d)", u.sterilized);
+		dump(youhad, buf);
+	}
+
+	if (u.holyshield) {
+		Sprintf(buf, "your holy shield up.");
+	      Sprintf(eos(buf), " (%d)", u.holyshield);
+		dump(youhad, buf);
+	}
+
+	if (u.berserktime) {
+		Sprintf(buf, "berserk.");
+	      Sprintf(eos(buf), " (%d)", u.berserktime);
+		dump(youwere, buf);
+	}
+
+	if (u.magicshield) {
+		Sprintf(buf, "your magic shield up.");
+	      Sprintf(eos(buf), " (%d)", u.magicshield);
+		dump(youhad, buf);
+	}
+
+	if (u.burrowed) {
+		Sprintf(buf, "burrowed into the ground.");
+	      Sprintf(eos(buf), " (%d)", u.burrowed);
+		dump(youwere, buf);
+	}
+
+	if (u.stasistime) {
+		Sprintf(buf, "in stasis, and the monsters were too.");
+	      Sprintf(eos(buf), " (%d)", u.stasistime);
+		dump(youwere, buf);
+	}
+
+	if (u.powerfailure) {
+		Sprintf(buf, "experiencing a power failure.");
+	      Sprintf(eos(buf), " (%d)", u.powerfailure);
+		dump(youwere, buf);
+	}
+
+	if (u.tunnelized) {
+		Sprintf(buf, "reduced armor class due to tunneling dirt on your clothes.");
+	      Sprintf(eos(buf), " (%d)", u.tunnelized);
+		dump(youhad, buf);
+	}
+
+	if (u.nailpolish) {
+		Sprintf(buf, "applied nail polish.");
+	      Sprintf(eos(buf), " (%d)", u.nailpolish);
+		dump(youhad, buf);
+	}
+
+	if (u.enchantspell) {
+		Sprintf(buf, "enchanted your weapon with fire.");
+	      Sprintf(eos(buf), " (%d)", u.enchantspell);
+		dump(youhad, buf);
+	}
+
+	if (u.thornspell) {
+		Sprintf(buf, "thorns.");
+	      Sprintf(eos(buf), " (%d)", u.thornspell);
+		dump(youhad, buf);
+	}
+
+	if (u.egglayingtimeout) {
+		Sprintf(buf, "to wait until you can lay eggs again.");
+	      Sprintf(eos(buf), " (%d)", u.egglayingtimeout);
 		dump(youhad, buf);
 	}
 

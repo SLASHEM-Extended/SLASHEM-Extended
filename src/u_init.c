@@ -7463,6 +7463,16 @@ u_init()
 	u.sterilized = 0;
 	u.halresdeactivated = 0;
 
+	u.nailpolish = 0;
+	u.berserktime = 0;
+	u.magicshield = 0;
+	u.burrowed = 0;
+	u.stasistime = 0;
+	u.powerfailure = 0;
+	u.tunnelized = 0;
+	u.enchantspell = 0;
+	u.thornspell = 0;
+
 	u.boomshined = 0;
 
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */

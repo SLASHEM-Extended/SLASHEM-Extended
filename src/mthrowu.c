@@ -179,6 +179,10 @@ const char *name;	/* if null, then format `obj' */
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
+		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
+		   so this line should not be copied over to cmd.c --Amy */
+		if (u.berserktime) shieldblockrate = 0;
+
 	}
 
 	if (!name) {

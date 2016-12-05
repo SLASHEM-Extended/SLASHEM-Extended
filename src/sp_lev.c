@@ -1147,7 +1147,7 @@ chk:
 		if(ymax >= ROWNO) ymax = (ROWNO-1);
 		lev = &levl[x][y];
 		for (; y <= ymax; y++) {
-			if (lev++->typ) {
+			if (lev++->typ && !anywhere) {
 #ifdef DEBUG
 				if(!vault)
 				    debugpline("strange area [%d,%d] in check_room.",x,y);
@@ -1201,6 +1201,8 @@ boolean anywhere;
 	int	trycnt = 0;
 	boolean	vault = FALSE;
 	int	xlim = XLIM, ylim = YLIM;
+
+	/*if (anywhere) pline("anywhere!");*/
 
 	if (!((moves + u.monstertimefinish) % (iswarper ? 7 : 19) )) {
 
@@ -3981,6 +3983,13 @@ dlb *fd;
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
+	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
+
 	return TRUE;
 }
 
@@ -4714,6 +4723,13 @@ dlb *fd;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+
+	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
 
     return TRUE;
 }

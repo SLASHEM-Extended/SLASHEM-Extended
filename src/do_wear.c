@@ -3499,8 +3499,34 @@ find_ac()
 
 	if (tech_inuse(T_IRON_SKIN)) uac -= u.ulevel;
 
+	if (u.tunnelized) uac += 20;
+
+	if (u.burrowed) {
+		uac -= 20;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			switch (P_SKILL(P_ELEMENTAL_SPELL)) {
+				case P_BASIC: uac -= 2; break;
+				case P_SKILLED: uac -= 4; break;
+				case P_EXPERT: uac -= 6; break;
+				case P_MASTER: uac -= 8; break;
+				case P_GRAND_MASTER: uac -= 10; break;
+				case P_SUPREME_MASTER: uac -= 12; break;
+
+			}
+
+		}
+	}
+
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
+
+	if (u.berserktime) {
+		int difference = (-(uac - 10));
+		difference = difference / 5;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+		
+	}
 
 	if (u.uprops[NAKEDNESS].extrinsic || Nakedness || have_nakedstone() ) uac = 10;
 

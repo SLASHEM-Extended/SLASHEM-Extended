@@ -3498,6 +3498,20 @@ newboss:
 
 	}
 
+	if (u.burrowed) {
+		if (!u.utrap || !u.utraptype || (u.utraptype != TT_INFLOOR)) {
+			u.burrowed = 0;
+			pline("You are no longer burrowed.");
+		}
+	}
+
+	if (u.enchantspell) {
+		if (!uwep) {
+			u.enchantspell = 0;
+			pline("You are no longer wielding a weapon, and therefore the enchantment fades.");
+		}
+	}
+
 	if ((BankTrapEffect || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
@@ -4125,6 +4139,64 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_REBOOT].oc_name = "perezagruzhat'";
 	obj_descr[SPE_HOLY_SHIELD].oc_name = "svyatoy shchit";
 
+	obj_descr[SPE_FROST].oc_name = "moroz";
+	obj_descr[SPE_TRUE_SIGHT].oc_name = "istinnoye zreniye";
+	obj_descr[SPE_BERSERK].oc_name = "neistovyy";
+	obj_descr[SPE_BLINDING_RAY].oc_name = "oslepitel'nogo lucha";
+	obj_descr[SPE_MAGIC_SHIELD].oc_name = "zashchita ot magii";
+	obj_descr[SPE_WORLD_FALL].oc_name = "mir osen'yu";
+	obj_descr[SPE_ESP].oc_name = "ekstra-sensornoye vospriyatiye";
+	obj_descr[SPE_RADAR].oc_name = "radiolokatsionnyy";
+	obj_descr[SPE_SEARCHING].oc_name = "poisk";
+	obj_descr[SPE_INFRAVISION].oc_name = "infravideniye";
+	obj_descr[SPE_STEALTH].oc_name = "khitrost'";
+	obj_descr[SPE_CONFLICT].oc_name = "protivorechiye";
+	obj_descr[SPE_REGENERATION].oc_name = "vosstanovleniye";
+	obj_descr[SPE_FREE_ACTION].oc_name = "soprotivleniye paralich";
+	obj_descr[SPE_MULTIBEAM].oc_name = "na neskol'kikh luch";
+	obj_descr[SPE_NO_EFFECT].oc_name = "net effekta";
+	obj_descr[SPE_SELFDESTRUCT].oc_name = "samorazrusheniye";
+	obj_descr[SPE_THUNDER_WAVE].oc_name = "grom volna";
+	obj_descr[SPE_BATTERING_RAM].oc_name = "taran";
+	obj_descr[SPE_BURROW].oc_name = "nora";
+	obj_descr[SPE_GAIN_CORRUPTION].oc_name = "poluchit' korruptsiyu";
+	obj_descr[SPE_SWITCHEROO].oc_name = "obmanchiv razvorot";
+	obj_descr[SPE_THRONE_GAMBLE].oc_name = "tron avantyura";
+	obj_descr[SPE_BACKFIRE].oc_name = "obratnaya vspyshka";
+	obj_descr[SPE_DEMEMORIZE].oc_name = "bol'she ne zapominat'";
+	obj_descr[SPE_CALL_THE_ELEMENTS].oc_name = "nazyvat' elementy";
+	obj_descr[SPE_NATURE_BEAM].oc_name = "priroda sveta";
+	obj_descr[SPE_WHISPERS_FROM_BEYOND].oc_name = "shepoty iz-za";
+	obj_descr[SPE_STASIS].oc_name = "staz";
+	obj_descr[SPE_CRYOGENICS].oc_name = "fizika nizkikh temperatur";
+	obj_descr[SPE_REDEMPTION].oc_name = "vykup";
+	obj_descr[SPE_HYPERSPACE_SUMMON].oc_name = "giperprostranstvo prizvat'";
+	obj_descr[SPE_SATISFY_HUNGER].oc_name = "utolit' golod";
+	obj_descr[SPE_RAIN_CLOUD].oc_name = "dozhdevyye oblaka";
+	obj_descr[SPE_POWER_FAILURE].oc_name = "sboy pitaniya";
+	obj_descr[SPE_VAPORIZE].oc_name = "isparyat'sya";
+	obj_descr[SPE_TUNNELIZATION].oc_name = "tunnel'naya";
+	obj_descr[SPE_BOMBING].oc_name = "bombardirovka";
+	obj_descr[SPE_DRAGON_BLOOD].oc_name = "drakon krovi";
+	obj_descr[SPE_ANTI_MAGIC_FIELD].oc_name = "antimagicheskiy pole";
+	obj_descr[SPE_ANTI_MAGIC_SHELL].oc_name = "antimagicheskiy obolochki";
+	obj_descr[SPE_CURE_WOUNDED_LEGS].oc_name = "vylechit' ranenyye nogi";
+	obj_descr[SPE_ANGER_PEACEFUL_MONSTER].oc_name = "gnev mirnyy monstr";
+	obj_descr[SPE_UNTAME_MONSTER].oc_name = "dikiy monstr";
+	obj_descr[SPE_UNLEVITATE].oc_name = "ostanovit' levitatsiyu";
+	obj_descr[SPE_DETECT_WATER].oc_name = "obnaruzheniya vody";
+	obj_descr[SPE_APPLY_NAIL_POLISH].oc_name = "primenit' lak dlya nogtey";
+	obj_descr[SPE_ENCHANT].oc_name = "ocharovyvat'";
+	obj_descr[SPE_DRY_UP_FOUNTAIN].oc_name = "vysykhayut fontan";
+	obj_descr[SPE_TAKE_SELFIE].oc_name = "prinyat' selfi";
+	obj_descr[SPE_SNIPER_BEAM].oc_name = "snayperskiy luch";
+	obj_descr[SPE_CURE_GLIB].oc_name = "vylechit' boykim";
+	obj_descr[SPE_CURE_MONSTER].oc_name = "vylechit' monstra";
+	obj_descr[SPE_MANA_BATTERY].oc_name = "batareya many";
+	obj_descr[SPE_THORNS].oc_name = "shipy";
+	obj_descr[SPE_REROLL_ARTIFACT].oc_name = "randomizatsii artefakt";
+	obj_descr[SPE_FINAL_EXPLOSION].oc_name = "okonchatel'nyy vzryv";
+	obj_descr[SPE_CUTTING].oc_name = "rezka";
 
 	{
 
@@ -4812,6 +4884,65 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_INDUCE_VOMITING].oc_name = "kusturun";
 	obj_descr[SPE_REBOOT].oc_name = "qayta ishga tushirish";
 	obj_descr[SPE_HOLY_SHIELD].oc_name = "muqaddas qalqon";
+
+	obj_descr[SPE_FROST].oc_name = "ayoz";
+	obj_descr[SPE_TRUE_SIGHT].oc_name = "haqiqiy ko'rish";
+	obj_descr[SPE_BERSERK].oc_name = "g'azablanib";
+	obj_descr[SPE_BLINDING_RAY].oc_name = "ko'r nurlarning";
+	obj_descr[SPE_MAGIC_SHIELD].oc_name = "sehrli qalqon";
+	obj_descr[SPE_WORLD_FALL].oc_name = "qiyomat";
+	obj_descr[SPE_ESP].oc_name = "qo'shimcha hissiy idrok qilish";
+	obj_descr[SPE_RADAR].oc_name = "aniqlovchi asbob";
+	obj_descr[SPE_SEARCHING].oc_name = "puxta";
+	obj_descr[SPE_INFRAVISION].oc_name = "infraqizil ko'rish";
+	obj_descr[SPE_STEALTH].oc_name = "ayyorlik";
+	obj_descr[SPE_CONFLICT].oc_name = "mojaro";
+	obj_descr[SPE_REGENERATION].oc_name = "yangilanishi";
+	obj_descr[SPE_FREE_ACTION].oc_name = "bepul aksiyalar";
+	obj_descr[SPE_MULTIBEAM].oc_name = "ko'p nur";
+	obj_descr[SPE_NO_EFFECT].oc_name = "hech ta'sir";
+	obj_descr[SPE_SELFDESTRUCT].oc_name = "o'zini vayron";
+	obj_descr[SPE_THUNDER_WAVE].oc_name = "momaqaldiroq to'lqin";
+	obj_descr[SPE_BATTERING_RAM].oc_name = "quvvatli qo'chqor";
+	obj_descr[SPE_BURROW].oc_name = "in";
+	obj_descr[SPE_GAIN_CORRUPTION].oc_name = "korruptsiyaga qozonish";
+	obj_descr[SPE_SWITCHEROO].oc_name = "aldamchi bekor qilish";
+	obj_descr[SPE_THRONE_GAMBLE].oc_name = "taxt qimor";
+	obj_descr[SPE_BACKFIRE].oc_name = "o'ziga qarshi ishlay boshlashi";
+	obj_descr[SPE_DEMEMORIZE].oc_name = "endi yod";
+	obj_descr[SPE_CALL_THE_ELEMENTS].oc_name = "elementlarni qo'ng'iroq";
+	obj_descr[SPE_NATURE_BEAM].oc_name = "tabiat nur";
+	obj_descr[SPE_WHISPERS_FROM_BEYOND].oc_name = "narigi vasvasa";
+	obj_descr[SPE_STASIS].oc_name = "staz";
+	obj_descr[SPE_CRYOGENICS].oc_name = "kriyojenikler";
+	obj_descr[SPE_REDEMPTION].oc_name = "sotib";
+	obj_descr[SPE_HYPERSPACE_SUMMON].oc_name = "hiper kosmik chaqirish";
+	obj_descr[SPE_SATISFY_HUNGER].oc_name = "ochlik qondirish";
+	obj_descr[SPE_RAIN_CLOUD].oc_name = "yomg'ir bulut";
+	obj_descr[SPE_POWER_FAILURE].oc_name = "elektr etishmovchiligi";
+	obj_descr[SPE_VAPORIZE].oc_name = "bug'lanmoq";
+	obj_descr[SPE_TUNNELIZATION].oc_name = "harakati";
+	obj_descr[SPE_BOMBING].oc_name = "bombardimon";
+	obj_descr[SPE_DRAGON_BLOOD].oc_name = "ajdaho qon";
+	obj_descr[SPE_ANTI_MAGIC_FIELD].oc_name = "qarshisehrli faoliyat";
+	obj_descr[SPE_ANTI_MAGIC_SHELL].oc_name = "qarshisehrli qobiq";
+	obj_descr[SPE_CURE_WOUNDED_LEGS].oc_name = "yaralangan oyoqlari davolash";
+	obj_descr[SPE_ANGER_PEACEFUL_MONSTER].oc_name = "g'azab tinch maxluq";
+	obj_descr[SPE_UNTAME_MONSTER].oc_name = "dovdirashlariga maxluq";
+	obj_descr[SPE_UNLEVITATE].oc_name = "suzuvchi to'xtatish";
+	obj_descr[SPE_DETECT_WATER].oc_name = "suv aniqlash";
+	obj_descr[SPE_APPLY_NAIL_POLISH].oc_name = "tirnoq jilo amal";
+	obj_descr[SPE_ENCHANT].oc_name = "sehrlamoqchi";
+	obj_descr[SPE_DRY_UP_FOUNTAIN].oc_name = "bulog'ini quritib";
+	obj_descr[SPE_TAKE_SELFIE].oc_name = "o'zingiz rasmini olib";
+	obj_descr[SPE_SNIPER_BEAM].oc_name = "snayper nur";
+	obj_descr[SPE_CURE_GLIB].oc_name = "davolash yengil";
+	obj_descr[SPE_CURE_MONSTER].oc_name = "davolash maxluq";
+	obj_descr[SPE_MANA_BATTERY].oc_name = "sehrli energiya batareya";
+	obj_descr[SPE_THORNS].oc_name = "tikanlar";
+	obj_descr[SPE_REROLL_ARTIFACT].oc_name = "parazit tasodifiy";
+	obj_descr[SPE_FINAL_EXPLOSION].oc_name = "oxirgi portlash";
+	obj_descr[SPE_CUTTING].oc_name = "kesish";
 
 	{
 
