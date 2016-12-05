@@ -2675,7 +2675,7 @@ SCROLL("enchant armor",         "ZELGO MER",            P_ENCHANTMENT_SPELL,  1,
 SCROLL("armor specialization",  "YOU HAVE TO TAKE A CRAP AND THERE IS NO TOILET NEARBY", P_ENCHANTMENT_SPELL,  1,  10, 300, CLR_BROWN),
 SCROLL("random enchantment",         "GODFATHER OF ALL ROGUELIKES",            P_ENCHANTMENT_SPELL,  1,  50, 300, CLR_RED),
 /* Protection */
-SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1, 600, 300, CLR_BRIGHT_MAGENTA),
+SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1, 590, 300, CLR_BRIGHT_MAGENTA),
 /* Body */
 SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  580, 300, CLR_BROWN),
 SCROLL("tele level",         "GON GET YA",      P_BODY_SPELL, 1,  50, 300, CLR_BRIGHT_CYAN),
@@ -2755,6 +2755,9 @@ SCROLL("enthronization",		"XUS MODA",	      P_NONE,  1,  50, 300, CLR_BLACK),
 SCROLL("fountain building",		"XOR ME HSALS",	      P_NONE,  1,  50, 300, CLR_YELLOW),
 SCROLL("sinking",		"SPORKHACK ASCENSION",	      P_NONE,  1,  50, 300, CLR_CYAN),
 SCROLL("WC",		"LETS PLAY NETHACK",	      P_NONE,  1,  50, 300, CLR_WHITE),
+
+SCROLL("geolysis",		"GICCC",	      P_ELEMENTAL_SPELL,  1,  5, 300, CLR_GRAY),
+SCROLL("detect water",		"APOKRAR DONENIGHT",	      P_DIVINATION_SPELL,  1,  5, 300, CLR_BROWN),
 
 /* The terrain-altering scrolls are lava, growth, ice, clouds, barrhing and lockout
  * please keep them in a contiguous block since they're needed in makemon.c --Amy */
@@ -4004,6 +4007,10 @@ WAND("summon sexy girl",   "girly",  10, 500, 1, NODIR,     PLASTIC,     CLR_BRI
 WAND("clone monster",  "radiating", 50, 500, 1, IMMEDIATE, GOLD,    CLR_BRIGHT_GREEN),
 WAND("charging", "buzzing",     50, 500, 1, NODIR,     METAL,     CLR_BRIGHT_CYAN),
 
+WAND("spellbinder", "bound",     5, 500, 1, NODIR,     PAPER,     CLR_CYAN),
+WAND("inertia control", "contro",     5, 500, 1, NODIR,     VEGGY,     CLR_GREEN),
+WAND("sterilize", "sex toy",     5, 500, 1, NODIR,     PLASTIC,     CLR_BRIGHT_MAGENTA),
+
 WAND("deslexification", "soviet", 0, 500, 1, IMMEDIATE, GLASS, CLR_BLACK),
 
 WAND("gravity beam",  "lacquered",   10, 500, 1, IMMEDIATE,       SILVER,     CLR_GRAY),
@@ -4021,11 +4028,11 @@ WAND("chloroform",  "blackthorn",   10, 500, 1, RAY,       WOOD,     CLR_BLACK),
 
 /* Ray wands have to come last, and in this order. */
 /* This is extremely kludgy, but that's what zap.c expects. */
-WAND("digging",        "iron",    480, 500, 1, RAY,       IRON,     HI_METAL),
-WAND("magic missile",  "steel",   490, 500, 1, RAY,       IRON,     HI_METAL),
+WAND("digging",        "iron",    475, 500, 1, RAY,       IRON,     HI_METAL),
+WAND("magic missile",  "steel",   485, 500, 1, RAY,       IRON,     HI_METAL),
 WAND("fire",           "hexagonal",240, 500, 1, RAY,       IRON,     HI_METAL),
 WAND("cold",           "short",    290, 500, 1, RAY,       IRON,     HI_METAL),
-WAND("sleep",          "runed",    470, 500, 1, RAY,       IRON,     HI_METAL),
+WAND("sleep",          "runed",    465, 500, 1, RAY,       IRON,     HI_METAL),
 WAND("death",          "long",      50, 500, 1, RAY,       IRON,     HI_METAL),
 WAND("lightning",      "curved",   190, 500, 1, RAY,       IRON,     HI_METAL),
 WAND("fireball",       "octagonal", 50, 500, 1, RAY,       IRON,     HI_METAL),

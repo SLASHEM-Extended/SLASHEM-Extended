@@ -2092,6 +2092,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_FINAL_EXPLOSION, "okonchatel'nyy vzryv" },
 	{ SPE_CUTTING, "rezka" },
 
+	{ SCR_DETECT_WATER, "obnaruzheniya vody" },
+	{ WAN_SPELLBINDER, "orator, uvlekayushchiy svoyu auditoriyu" },
+	{ WAN_INERTIA_CONTROL, "kontrol' inertsii" },
+	{ SCR_GEOLYSIS, "geologicheskoye resheniye" },
+	{ WAN_STERILIZE, "sterilizovat'" },
+
 	{0, "" }
 };
 
@@ -3858,6 +3864,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_REROLL_ARTIFACT, "parazit tasodifiy" },
 	{ SPE_FINAL_EXPLOSION, "oxirgi portlash" },
 	{ SPE_CUTTING, "kesish" },
+
+	{ SCR_DETECT_WATER, "suv aniqlash" },
+	{ WAN_SPELLBINDER, "majburiy imlo" },
+	{ WAN_INERTIA_CONTROL, "inertsiya nazorat" },
+	{ SCR_GEOLYSIS, "geologik hal" },
+	{ WAN_STERILIZE, "sterillamoq" },
 
 	{0, "" }
 };

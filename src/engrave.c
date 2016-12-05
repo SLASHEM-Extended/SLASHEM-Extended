@@ -1324,6 +1324,9 @@ doengrave()
 		    case WAN_IDENTIFY:
 		    case WAN_LEVITATION:
 		    case WAN_DEBUGGING:
+		    case WAN_SPELLBINDER:
+		    case WAN_INERTIA_CONTROL:
+		    case WAN_STERILIZE:
 		    case WAN_REMOVE_CURSE:
 		    case WAN_PUNISHMENT:
 		    case WAN_WISHING:

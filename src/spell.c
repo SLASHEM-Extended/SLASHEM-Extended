@@ -5310,7 +5310,7 @@ boolean atme;
 
 	case SPE_DETECT_WATER:
 
-		water_detect();
+		water_detectX();
 
 		break;
 

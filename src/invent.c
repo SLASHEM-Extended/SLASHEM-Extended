@@ -7736,6 +7736,10 @@ struct obj *obj;
 				pline("This scroll can be read to cure blindness, as ironic as that may sound."); break;
 			case SCR_SKILL_UP: 
 				pline("Grants the ability to learn new skills if you're lucky."); break;
+			case SCR_GEOLYSIS:
+				pline("Allows you to eat through rock for a while, transforming it into floor but also occasionally other types of terrain."); break;
+			case SCR_DETECT_WATER: 
+				pline("Detects all sources of water on the current dungeon level."); break;
 			case SCR_FROST: 
 				pline("A scroll that creates ice tiles on the level."); break;
 			case SCR_CREATE_ALTAR: 
@@ -8729,6 +8733,12 @@ struct obj *obj;
 				pline("Zapping this wand will restore some of your mana."); break;
 			case WAN_LEVITATION:
 				pline("If anyone zaps this wand, you will levitate, but not at will."); break;
+			case WAN_SPELLBINDER:
+				pline("A wand that allows you to cast up to five spells at once every time you zap it, but those spells will cost twice the usual amount of mana."); break;
+			case WAN_INERTIA_CONTROL:
+				pline("Zapping this wand allows you to control the flow of one of your spells (you can select which one), which will automatically be cast once per turn without taking time."); break;
+			case WAN_STERILIZE:
+				pline("Prevents breeding and egg hatching for a while."); break;
 			case WAN_DEBUGGING:
 				pline("Can be zapped to reboot your character. This means you will unpolymorph if you were polymorphed, and get your stats/level rerolled."); break;
 			case WAN_HYPER_BEAM:

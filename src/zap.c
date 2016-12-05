@@ -48,6 +48,9 @@ STATIC_DCL int FDECL(spell_hit_bonus, (int));
 #define is_mega_spell(type)	(type >= ZT_MEGA(ZT_FIRST) && \
 				 type <= ZT_MEGA(ZT_LAST))
 
+#define spellid(spell)          spl_book[spell].sp_id
+#define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
+
 #ifndef OVLB
 STATIC_VAR const char are_blinded_by_the_flash[];
 extern const char * const flash_types[];
@@ -3977,6 +3980,67 @@ newboss:
 			known = TRUE;
 			incr_itimeout(&HLevitation, rnd(100) );
 			pline("You float up!");
+			break;
+
+		case WAN_SPELLBINDER:
+			known = TRUE;
+			{
+				register int spellbindings = 5;
+
+				u.spellbinder = spellbindings;
+				u.spellbinder1 = -1;
+				u.spellbinder2 = -1;
+				u.spellbinder3 = -1;
+				u.spellbinder4 = -1;
+				u.spellbinder5 = -1;
+				u.spellbinder6 = -1;
+				u.spellbinder7 = -1;
+
+				pline("You may cast %d more spells.", u.spellbinder);
+
+				while (u.spellbinder) {
+					docast();
+					u.spellbinder--;
+				}
+
+			}
+
+			break;
+
+		case WAN_INERTIA_CONTROL:
+			known = TRUE;
+
+			if (spellid(0) == NO_SPELL)  {
+				You("don't know any spells, and therefore inertia control fails.");
+				break;
+			}
+
+			{
+				int numspells;
+
+				for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
+					if (spellid(numspells) == SPE_INERTIA_CONTROL) continue;
+
+					pline("You know the %s spell.", spellname(numspells));
+					if (yn("Control the flow of this spell?") == 'y') {
+						u.inertiacontrolspell = spellid(numspells);
+						u.inertiacontrolspellno = numspells;
+
+						u.inertiacontrol = 50;
+
+						break;
+					}
+				}
+			}
+
+			break;
+
+		case WAN_STERILIZE:
+			known = TRUE;
+
+			You_feel("an anti-sexual aura.");
+			u.sterilized = 20 + rnd(60);
+
 			break;
 
 		case WAN_DEBUGGING:

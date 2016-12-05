@@ -2708,6 +2708,20 @@ register struct obj	*sobj;
 
 	      break;
 
+	case SCR_GEOLYSIS:
+
+		pline("You gain the ability to eat through solid rock.");
+		/* reading another will restart the countdown rather than add to the duration --Amy */
+		u.geolysis = 10 + rnd(20);
+
+	      break;
+
+	case SCR_DETECT_WATER:
+
+		water_detect();
+
+	      break;
+
 	case SCR_SKILL_UP:
 
 		if (sobj->cursed || (confused && rn2(2) ) ) {

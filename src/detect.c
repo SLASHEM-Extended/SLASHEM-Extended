@@ -725,7 +725,28 @@ water_detect()
 
 }
 
+void
+water_detectX()
+{
 
+    register int zx, zy;
+	int detectamount = 0;
+
+    for (zx = 1; zx < COLNO; zx++)
+	for (zy = 0; zy < ROWNO; zy++)
+	    if ((levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) && rn2(2)) {
+			show_map_spot(zx, zy);
+			detectamount++;
+		}
+
+	if (detectamount) pline("You detect some water.");
+	else pline("This dungeon level does not seem watery at all.");
+
+	flush_screen(1);			/* flush temp screen */
+	display_nhwindow(WIN_MAP, TRUE);	/* wait */
+	docrt();
+
+}
 
 /*
  * Used by: crystal balls, potions, fountains

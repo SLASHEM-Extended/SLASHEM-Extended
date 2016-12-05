@@ -79,6 +79,7 @@ register struct obj *otmp;
 	case SCR_ENRAGE:
 	case SCR_FROST:
 	case SCR_CLOUDS:
+	case SCR_DETECT_WATER:
 	case SCR_CHAOS_TERRAIN:
 	case SCR_TELE_LEVEL:
 	case SCR_WARPING:
@@ -103,6 +104,7 @@ register struct obj *otmp;
 	case SCR_ERASURE:
 	case SCR_ANTIMATTER:
 	case SCR_MEGALOAD:
+	case SCR_GEOLYSIS:
 	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:
 		return(24);
