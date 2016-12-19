@@ -1525,14 +1525,12 @@ boolean artif;
 		otmp->dknown = 0;
 	if (!objects[otmp->otyp].oc_uses_known)
 		otmp->known = 1;
-#ifdef INVISIBLE_OBJECTS
 	otmp->oinvis = !always_visible(otmp) && \
 		/*(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && */ !rn2(1250);
 	if (otmp->otyp == BOULDER && In_sokoban(&u.uz) && !((moves + u.monstertimefinish) % 1317) ) otmp->oinvis = 1;
 
 	if (otmp->oinvis && !rn2(!(u.monstertimefinish % 13333) ? 3 : !(u.monstertimefinish % 1333) ? 10 : !(u.monstertimefinish % 133) ? 30 : 100) ) otmp->oinvisreal = 1;
 
-#endif
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
 	case WEAPON_CLASS:
@@ -2067,9 +2065,7 @@ boolean artif;
 		if(otmp->otyp == WAN_WISHING) {                 
 			if (rn2(50)) otmp->spe = rnd(ishaxor ? 3 : 2);
 			else otmp->spe = rnd(ishaxor ? 4 : 3); /* if you get really lucky... --Amy */
-#ifdef INVISIBLE_OBJECTS
 			if (Is_stronghold(&u.uz)) otmp->oinvis = 1;
-#endif
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
 		} else if(otmp->otyp == WAN_GENOCIDE) {                 

@@ -95,10 +95,8 @@ struct obj {
 
 	Bitfield(recharged,3);	/* number of times it's been recharged */
 	Bitfield(lamplit,1);	/* a light-source -- can be lit */
-#ifdef INVISIBLE_OBJECTS
 	Bitfield(oinvis,1);	/* invisible */
 	Bitfield(oinvisreal,1);	/* really invisible - won't be visible even with see invis --Amy */
-#endif
 	Bitfield(greased,2);	/* covered with grease */
 	Bitfield(oattached,2);	/* obj struct has special attachment */
 #define OATTACHED_NOTHING 0
@@ -157,11 +155,9 @@ struct obj {
 			(otmp)->oartifact == ART_KEY_OF_LAW || \
 			(otmp)->oartifact == ART_KEY_OF_NEUTRALITY || \
 			(otmp)->oartifact == ART_KEY_OF_CHAOS)
-#ifdef INVISIBLE_OBJECTS
 #define always_visible(otmp) ( \
 			(otmp)->otyp == MUMMY_WRAPPING || \
 			(otmp)->oclass == COIN_CLASS)
-#endif
 
 /* Weapons and weapon-tools */
 /* KMH -- now based on skill categories.  Formerly:

@@ -1397,10 +1397,8 @@ coord *cc;
 		mtmp2->mfleetim = mtmp->mfleetim;
 		mtmp2->mlstmv = mtmp->mlstmv;
 		mtmp2->m_ap_type = mtmp->m_ap_type;
-#ifdef INVISIBLE_OBJECTS
 		mtmp2->minvis = obj->oinvis;
 		mtmp2->minvisreal = obj->oinvisreal;
-#endif
 		/* set these ones explicitly */
 		mtmp2->mavenge = 0;
 		mtmp2->meating = 0;
@@ -1865,10 +1863,8 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_STANDARD_ID |
 	if (holy) costly_cancel(obj);
 	unbless(obj);
 	uncurse(obj);
-#ifdef INVISIBLE_OBJECTS
 	if (obj->oinvis) obj->oinvis = 0;
 	if (obj->oinvisreal) obj->oinvisreal = 0;
-#endif
 	return;
 }
 
@@ -2902,21 +2898,17 @@ struct obj *obj, *otmp;
 		rloco(obj);
 		break;
 	case WAN_MAKE_INVISIBLE:
-#ifdef INVISIBLE_OBJECTS
 		if (!always_visible(obj) && !stack_too_big(obj) ) {
 		    obj->oinvis = TRUE;
 		    if (!rn2(100)) obj->oinvisreal = TRUE;
 		    newsym(obj->ox,obj->oy);	/* make object disappear */
 		}
-#endif
 		break;
 	case WAN_MAKE_VISIBLE:
 	case SPE_MAKE_VISIBLE:
-#ifdef INVISIBLE_OBJECTS
 		if (!stack_too_big(obj)) obj->oinvis = FALSE;
 		if (obj->oinvisreal) obj->oinvis = TRUE;
 		newsym(obj->ox,obj->oy);	/* make object appear */
-#endif
 		break;
 	case WAN_UNDEAD_TURNING:
 	case SPE_TURN_UNDEAD:

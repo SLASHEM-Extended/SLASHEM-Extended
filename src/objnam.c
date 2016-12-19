@@ -4115,11 +4115,7 @@ register struct obj *obj;
 	 */
 
 	if (!nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
-#ifndef INVISIBLE_OBJECTS
-	if (!Blind) obj->dknown = TRUE;
-#else
 	if (!Blind && ((!obj->oinvis || See_invisible) && !obj->oinvisreal) ) obj->dknown = TRUE;
-#endif
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
@@ -4543,10 +4539,8 @@ register struct obj *obj;
 		Strcat(prefix,"selfmade ");
 	}
 
-#ifdef INVISIBLE_OBJECTS
 	if (obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"hidden ");
 	if (obj->oinvis && !obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"invisible ");
-#endif
 #if defined(WIZARD) && defined(UNPOLYPILE)
 	if (/*wizard && */is_hazy(obj) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
@@ -6003,9 +5997,7 @@ boolean from_user;
 	int cnt, spe, spesgn, typ, very, rechrg;
 	int blessed, uncursed, iscursed, ispoisoned, isgreased, isdrained;
 	int eroded, eroded2, erodeproof;
-#ifdef INVISIBLE_OBJECTS
 	int isinvisible;
-#endif
 	int halfeaten, halfdrained, mntmp, contents;
 	int islit, unlabeled, ishistoric, isdiluted;
 	struct fruit *f;
@@ -6033,9 +6025,7 @@ boolean from_user;
 
 	cnt = spe = spesgn = typ = very = rechrg =
 		blessed = uncursed = iscursed = isdrained = halfdrained =
-#ifdef INVISIBLE_OBJECTS
 		isinvisible =
-#endif
 		ispoisoned = isgreased = eroded = eroded2 = erodeproof =
 		halfeaten = islit = unlabeled = ishistoric = isdiluted = 0;
 	mntmp = NON_PM;
@@ -6090,12 +6080,10 @@ boolean from_user;
 			iscursed = 1;
 		} else if (!strncmpi(bp, "uncursed ", l=9)) {
 			uncursed = 1;
-#ifdef INVISIBLE_OBJECTS
 		} else if (!strncmpi(bp, "visible ", l=8)) {
 			isinvisible = -1;
 		} else if (!strncmpi(bp, "invisible ", l=10)) {
 			isinvisible = 1;
-#endif
 		} else if (!strncmpi(bp, "rustproof ", l=10) ||
 			   !strncmpi(bp, "erodeproof ", l=11) ||
 			   !strncmpi(bp, "corrodeproof ", l=13) ||
@@ -6967,10 +6955,8 @@ typfnd:
 		curse(otmp);
 	}
 
-#ifdef INVISIBLE_OBJECTS
 	if (isinvisible)
 	    otmp->oinvis = isinvisible > 0 && !always_visible(otmp);
-#endif
 
 	/* set eroded */
 	/*if (is_damageable(otmp) || otmp->otyp == CRYSKNIFE) {*/ /* go away unnecessary check! --Amy */

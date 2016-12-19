@@ -269,10 +269,8 @@ found:
 		return(1);
 	}
 	new_obj->bknown = (paper->bknown && pen->bknown);
-#ifdef INVISIBLE_OBJECTS
 	new_obj->oinvis = paper->oinvis;
 	new_obj->oinvisreal = paper->oinvisreal;
-#endif
 
 	/* shk imposes a flat rate per use, not based on actual charges used */
 	check_unpaid(pen);

@@ -191,10 +191,8 @@ doread()
 	    return 0;
 	}
 
-#ifdef INVISIBLE_OBJECTS
 	if ((scroll->oinvis && !See_invisible) || scroll->oinvisreal)
 	    cant_see = TRUE;
-#endif
 
 	/* KMH -- some rings can be read, even while illiterate */
 	if (scroll->oclass == RING_CLASS) {

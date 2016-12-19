@@ -553,11 +553,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 {
 	char buf[BUFSZ];
 
-#ifndef INVISIBLE_OBJECTS
-	if (!Blind) obj->dknown = 1;	/* maximize mergibility */
-#else
 	if (!Blind && ((!obj->oinvis || See_invisible) && !obj->oinvisreal) ) obj->dknown = 1;
-#endif
 	if (obj->oartifact) {
 	    /* place_object may change these */
 	    boolean crysknife = (obj->otyp == CRYSKNIFE);
@@ -626,11 +622,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	char buf[BUFSZ];
 	char qbuf[QBUFSZ];
 
-#ifndef INVISIBLE_OBJECTS
-	if (!Blind) obj->dknown = 1;	/* maximize mergibility */
-#else
 	if (!Blind && ((!obj->oinvis || See_invisible) && !obj->oinvisreal) ) obj->dknown = 1;
-#endif
 	if (obj->oartifact) {
 	    /* place_object may change these */
 	    boolean crysknife = (obj->otyp == CRYSKNIFE);
@@ -4211,9 +4203,7 @@ boolean picked_some;
 	    /* only one object */
 	    if (dfeature) pline(fbuf);
 	    sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
-#ifdef INVISIBLE_OBJECTS
 	    if ((otmp->oinvis && !See_invisible) || otmp->oinvisreal) verb = "feel";
-#endif
 	    You("%s here %s.", verb, doname(otmp));
 	    if (otmp->otyp == CORPSE || otmp->otyp == EGG) feel_cockatrice(otmp, FALSE);
 	} else {
@@ -4328,10 +4318,8 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->otrapped != otmp->otrapped ||
 	    obj->lamplit != otmp->lamplit ||
 	    flags.pickup_thrown && obj->was_thrown != otmp->was_thrown ||
-#ifdef INVISIBLE_OBJECTS
 	    obj->oinvis != otmp->oinvis ||
 	    obj->oinvisreal != otmp->oinvisreal ||
-#endif
 #ifdef UNPOLYPILE
 	    obj->oldtyp != otmp->oldtyp ||
 #endif

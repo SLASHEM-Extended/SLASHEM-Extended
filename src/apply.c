@@ -785,11 +785,7 @@ struct obj *obj;
 {
 	register struct monst *mtmp;
 	register char mlet;
-#ifdef INVISIBLE_OBJECTS
 	boolean vis = !Blind && !obj->oinvisreal && (!obj->oinvis || See_invisible);
-#else
-	boolean vis = !Blind;
-#endif
 
 	if(!getdir((char *)0)) return 0;
 	if(obj->cursed && !rn2(2)) {
@@ -839,9 +835,7 @@ struct obj *obj;
 		return 1;
 	}
 	if(Underwater) {
-#ifdef INVISIBLE_OBJECTS
 		if (!obj->oinvis)
-#endif
 		You(Hallucination ?
 		    "give the fish a chance to fix their makeup." :
 		    "reflect the murky water.");
@@ -869,11 +863,9 @@ struct obj *obj;
 	} else if (!mtmp->mcansee) {
 	    if (vis)
 		pline("%s can't see anything right now.", Monnam(mtmp));
-#ifdef INVISIBLE_OBJECTS
 	} else if ((obj->oinvis && !perceives(mtmp->data)) || obj->oinvisreal) {
 	    if (vis)
 		pline("%s can't see your mirror.", Monnam(mtmp));
-#endif
 	/* some monsters do special things */
 	} else if (is_vampire(mtmp->data) || mlet == S_GHOST) {
 	    if (vis)

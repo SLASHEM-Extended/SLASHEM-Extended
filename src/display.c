@@ -137,7 +137,6 @@ STATIC_DCL int FDECL(back_to_cmap, (XCHAR_P, XCHAR_P));
 
 STATIC_VAR boolean transp;    /* cached transparency flag for current tileset */
 
-#ifdef INVISIBLE_OBJECTS
 /*
  * vobj_at()
  *
@@ -159,7 +158,6 @@ vobj_at(x,y)
     }
     return ((struct obj *) 0);
 }
-#endif	/* else vobj_at() is defined in display.h */
 
 /*
  * magic_map_background()

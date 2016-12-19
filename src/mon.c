@@ -895,11 +895,9 @@ register struct monst *mtmp;
 	 */
 	if (Blind && !sensemon(mtmp)) obj->dknown = 0;
 
-#ifdef INVISIBLE_OBJECTS
 	/* Invisible monster ==> invisible corpse */
 	obj->oinvis = mtmp->perminvis;
 	obj->oinvisreal = mtmp->minvisreal;
-#endif
 
 	stackobj(obj);
 	newsym(x, y);
@@ -1682,9 +1680,7 @@ mpickstuff(mtmp, str)
 		if (!touch_artifact(otmp,mtmp)) continue;
 		if (!can_carry(mtmp,otmp)) continue;
 		if (is_pool(mtmp->mx,mtmp->my)) continue;
-#ifdef INVISIBLE_OBJECTS
 		if ((otmp->oinvis && !perceives(mtmp->data) || otmp->oinvisreal) ) continue;
-#endif
 		if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s picks up %s.", Monnam(mtmp),
 			      (distu(mtmp->mx, mtmp->my) <= 5) ?

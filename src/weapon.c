@@ -308,11 +308,9 @@ struct monst *mon;
            (made_of_rock(ptr))) tmp += 2;
 
 
-#ifdef INVISIBLE_OBJECTS
 	/* invisible weapons against monsters who can't see invisible */
 	if (otmp->oinvis && !perceives(ptr)) tmp += 3;
 	if (otmp->oinvisreal) tmp += 7;
-#endif
 
 	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {

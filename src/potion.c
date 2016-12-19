@@ -5815,7 +5815,6 @@ dodip()
 		useup(potion);
 		return(1);
 	}
-#ifdef INVISIBLE_OBJECTS
 	if (!always_visible(obj)) {
 	    if (potion->otyp == POT_INVISIBILITY && !obj->oinvis && !obj->oinvisreal) {
 		if (!stack_too_big(obj)) {obj->oinvis = TRUE; if (!rn2(100)) obj->oinvisreal = TRUE;
@@ -5838,7 +5837,6 @@ dodip()
 		goto poof;
 	    }
 	}
-#endif
 
 	if(is_poisonable(obj)) {
 	    if( (potion->otyp == POT_SICKNESS || potion->otyp == POT_POISON) && !obj->opoisoned) {

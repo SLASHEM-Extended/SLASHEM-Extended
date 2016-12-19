@@ -776,9 +776,7 @@ static const char *build_opts[] = {
 #ifdef LIGHT_SRC_SPELL
                 "light sourced spell effects",               
 #endif
-#ifdef INVISIBLE_OBJECTS 
                 "invisible objects",               
-#endif
 #ifdef KEEP_SAVE
                 "keep savefiles",
 #endif
