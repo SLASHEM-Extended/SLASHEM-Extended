@@ -367,9 +367,7 @@ E NEARDATA struct mvitals {
 	uchar	born;
 	uchar	died;
 	uchar	mvflags;
-#ifdef EATEN_MEMORY
 	uchar	eaten;		/* WAC -- eaten memory */
-#endif
 } mvitals[NUMMONS];
 
 

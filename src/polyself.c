@@ -408,7 +408,6 @@ boolean forcecontrol;
 			 * want if they specified a human.... */
 			else if (!polyok(&mons[mntmp]) && !your_race(&mons[mntmp]))
 				You("cannot polymorph into that.");
-#ifdef EATEN_MEMORY
 			else if (!mvitals[mntmp].eaten) {
 				You("attempt an unfamiliar polymorph.");
 				if ((rn2(5) + u.ulevel) < mons[mntmp].mlevel)
@@ -434,12 +433,6 @@ boolean forcecontrol;
 				/* Either way, give it a shot */
 				break;
 			}
-#else
-			else if (rn2((u.ulevel + 25)) < 20) {
-				mntmp = LOW_PM - 1;
-				break;
-			}
-#endif
 
 			/* even if you've eaten it, the polymorph can still fail --Amy */
 			else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
@@ -512,9 +505,7 @@ boolean forcecontrol;
         if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
 			((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) ? (
         			((u.ulevel < mons[mntmp].mlevel)
-#ifdef EATEN_MEMORY
         			 || !mvitals[mntmp].eaten
-#endif
         			 ) && !rn2(20)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER)) ? !rn2(20) :
 				   !rn2(5)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
 		newman();
@@ -750,13 +741,11 @@ int	mntmp;
 	if (ishaxor) u.mtimedone *= 2;
 	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
 
-#ifdef EATEN_MEMORY
 	/* WAC Doppelgangers can stay much longer in a form they know well */
 	if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && mvitals[mntmp].eaten) {
 		u.mtimedone *= 2;
 		u.mtimedone += mvitals[mntmp].eaten;
 	}
-#endif
 
 	if (uskin && mntmp != armor_to_dragon(uskin->otyp))
 		skinback(FALSE);
@@ -2480,7 +2469,6 @@ special_poly()
 				Role_if(PM_GNOME) ? !is_gnome(&mons[mntmp]) :
 				!is_human(&mons[mntmp])))
 			You("cannot polymorph into that.");
-#ifdef EATEN_MEMORY
 		else if (!mvitals[mntmp].eaten && (rn2((u.ulevel + 25)) < 20)) {
 			You("don't have the knowledge to polymorph into that.");
 			return;  /* Nice try */
@@ -2488,7 +2476,6 @@ special_poly()
 			You("attempt an unfamiliar polymorph.");
 			break;
 		}
-#endif
 	} while(++tries < 5);
 	if (tries==5) {
 		pline(thats_enough_tries);
