@@ -2859,7 +2859,7 @@ int tech_no;
                	t_timeout = rnz(75);
 	    	break;
 	    case T_BLITZ:
-	    	if (uwep || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && uwep->otyp == TIN_OPENER)) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -2871,7 +2871,7 @@ int tech_no;
                 t_timeout = rnz(1500);
 	    	break;
             case T_PUMMEL:
-	    	if (uwep || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && uwep->otyp == TIN_OPENER)) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -2887,7 +2887,7 @@ int tech_no;
                 t_timeout = rnz(1500);
 		break;
             case T_G_SLAM:
-	    	if (uwep || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && uwep->otyp == TIN_OPENER)) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -2917,7 +2917,7 @@ int tech_no;
 		if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
 		break;            	
             case T_SPIRIT_BOMB:
-	    	if (uwep || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && uwep->otyp == TIN_OPENER)) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {

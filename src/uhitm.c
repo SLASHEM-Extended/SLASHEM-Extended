@@ -1672,6 +1672,102 @@ int thrown;
 
 			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
 
+			if (obj && obj->otyp == TIN_OPENER && Role_if(PM_SUPERMARKET_CASHIER)) {
+				tmp += 2;
+				if (u.ulevel >= 18) tmp += rnd(10);
+				if (u.ulevel >= 24) tmp += rnd(4);
+				if (u.ulevel >= 27) tmp += rnd(2);
+				if (u.ulevel >= 30) tmp += 1;
+
+				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+					switch (P_SKILL(P_MARTIAL_ARTS)) {
+						case P_BASIC: tmp += 2; break;
+						case P_SKILLED: tmp += 4; break;
+						case P_EXPERT: tmp += 6; break;
+						case P_MASTER: tmp += 8; break;
+						case P_GRAND_MASTER: tmp += 10; break;
+						case P_SUPREME_MASTER: tmp += 12; break;
+					}
+				}
+
+			    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
+				You_feel("a surge of force.");
+				tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
+					 (10 + (u.ulevel / 5)) : u.uen);
+				u.uen -= (10 + (u.ulevel / 5));
+				if (u.uen < 0) u.uen = 0;
+			    }
+
+			    if (tech_inuse(T_E_FIST)) {
+			    	int dmgbonus = 0;
+				hittxt = TRUE;
+				dmgbonus = d(2,4);
+				switch (rn2(4)) {
+				    case 0: /* Fire */
+					if (!Blind) pline("%s is on fire!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+					if (noeffect || resists_fire(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("fire doesn't heat %s!", mon_nam(mon));
+					    golemeffects(mon, AD_FIRE, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only potions damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+					break;
+				    case 1: /* Cold */
+				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
+					if (noeffect || resists_cold(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("frost doesn't chill %s!", mon_nam(mon));
+					    golemeffects(mon, AD_COLD, dmgbonus);
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
+					break;
+				    case 2: /* Elec */
+					if (!Blind) pline("%s is zapped!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
+					if (noeffect || resists_elec(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind)
+						pline_The("zap doesn't shock %s!", mon_nam(mon));
+					    golemeffects(mon, AD_ELEC, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only rings damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
+					break;
+				    case 3: /* Acid */
+					if (!Blind)
+					    pline("%s is covered in acid!", Monnam(mon));
+					if (noeffect || resists_acid(mon)) {
+					    if (!Blind)
+						pline_The("acid doesn't burn %s!", Monnam(mon));
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					break;
+				}
+				if (dmgbonus > 0)
+				    tmp += dmgbonus;
+			    } /* Techinuse Elemental Fist */	
+
+			}
+
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
 				tmp += 10;
 				if (obj->spe > 0) tmp += obj->spe;
