@@ -1054,6 +1054,7 @@ E char *FDECL(let_to_name, (CHAR_P,BOOLEAN_P,BOOLEAN_P));
 E void NDECL(free_invbuf);
 E void NDECL(reassign);
 E int NDECL(doorganize);
+E int NDECL(domarkforpet);
 E int FDECL(count_unpaid, (struct obj *));
 E int FDECL(count_buc, (struct obj *,int));
 E void FDECL(carry_obj_effects, (struct monst *, struct obj *));

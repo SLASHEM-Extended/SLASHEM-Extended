@@ -38,6 +38,7 @@ STATIC_DCL int FDECL(itemactions,(struct obj *));
 /* define for getobj() */
 #define FOLLOW(curr, flags) \
     (((flags) & BY_NEXTHERE) ? (curr)->nexthere : (curr)->nobj)
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 #ifdef OVLB
 
@@ -4687,6 +4688,23 @@ reassign()
 
 #endif /* OVLB */
 #ifdef OVL1
+
+int
+domarkforpet()
+{
+	struct obj *obj;
+	pline("Select an item that you don't want to be dropped if your pet is holding it.");
+	if (!(obj = getobj(all_count,"mark"))) return(0);
+	if (obj->petmarked) {
+		pline("The object is no longer marked as undroppable for your pet.");
+		obj->petmarked = 0;
+	} else {
+		pline("The object is now marked, so your pet will hold onto the item if it picks it up.");
+		obj->petmarked = 1;
+	}
+
+	return(0);
+}
 
 int
 doorganize()	/* inventory organizer by Del Lamb */

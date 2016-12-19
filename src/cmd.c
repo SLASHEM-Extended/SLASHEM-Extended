@@ -212,6 +212,7 @@ extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dowieldquiver); /**/
 extern int NDECL(dozap); /**/
 extern int NDECL(doorganize); /**/
+extern int NDECL(domarkforpet); /**/
 extern int NDECL(doremoveimarkers); /**/
 
 #ifdef LIVELOG_SHOUT
@@ -6671,6 +6672,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"jump", "jump to a location", dojump, !IFBURIED, AUTOCOMPLETE},
 	{"loot", "loot a box on the floor", doloot, IFBURIED, AUTOCOMPLETE},
 	{"look", "look at an object", dolook, !IFBURIED, !AUTOCOMPLETE},
+	{"mark", "mark item so pets don't drop it", domarkforpet, IFBURIED, AUTOCOMPLETE},
 	{"monster", "use a monster's special ability", domonability, IFBURIED, AUTOCOMPLETE},
 	{"name", "name an item or type of object", ddocall, IFBURIED},
 	{"offer", "offer a sacrifice to the gods", dosacrifice, !IFBURIED, AUTOCOMPLETE},
