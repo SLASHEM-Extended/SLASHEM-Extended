@@ -10241,6 +10241,8 @@ xchar x, y;
 
 	if (stack_too_big(obj)) continue;
 
+	if (obj->oerodeproof) continue;
+
 	if (Is_container(obj)) {
 	    switch (obj->otyp) {
 	    case ICE_BOX:

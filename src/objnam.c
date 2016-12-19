@@ -4505,7 +4505,7 @@ char *prefix;
 		       iscrys ? "fixed " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
-		       is_flammable(obj) ? "fireproof " : "");
+		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */
 }
 
 char *
@@ -6101,6 +6101,7 @@ boolean from_user;
 			   !strncmpi(bp, "corrodeproof ", l=13) ||
 			   !strncmpi(bp, "fixed ", l=6) ||
 			   !strncmpi(bp, "fireproof ", l=10) ||
+			   !strncmpi(bp, "stainless ", l=10) ||
 			   !strncmpi(bp, "rotproof ", l=9)) {
 			erodeproof = 1;
 		} else if (!strncmpi(bp,"lit ", l=4) ||
@@ -6974,20 +6975,20 @@ typfnd:
 #endif
 
 	/* set eroded */
-	if (is_damageable(otmp) || otmp->otyp == CRYSKNIFE) {
-	    if (eroded && (is_flammable(otmp) || is_rustprone(otmp)))
-		    otmp->oeroded = eroded;
-	    if (eroded2 && (is_corrodeable(otmp) || is_rottable(otmp)))
-		    otmp->oeroded2 = eroded2;
+	/*if (is_damageable(otmp) || otmp->otyp == CRYSKNIFE) {*/ /* go away unnecessary check! --Amy */
+	if (eroded && (is_flammable(otmp) || is_rustprone(otmp)))
+		otmp->oeroded = eroded;
+	if (eroded2 && (is_corrodeable(otmp) || is_rottable(otmp)))
+		otmp->oeroded2 = eroded2;
 
-	    /* set erodeproof */
-	    if (erodeproof && !eroded && !eroded2)
-		    otmp->oerodeproof = (Luck >= 0
+	/* set erodeproof */
+	if (erodeproof && !eroded && !eroded2)
+	    otmp->oerodeproof = (Luck >= 0
 #ifdef WIZARD
-					     || wizard
+	     || wizard
 #endif
-					);
-	}
+		);
+	/*}*/
 
 	/* set otmp->recharged */
 	if (oclass == WAND_CLASS) {

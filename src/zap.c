@@ -8447,6 +8447,7 @@ register int osym, dmgtyp;
 	    if(obj->oclass != osym) continue; /* test only objs of type osym */
 	    if(obj->oartifact) continue; /* don't destroy artifacts */
 	    if(obj->in_use && obj->quan == 1) continue; /* not available */
+	    if (obj->oerodeproof) continue; /* this item is immune --Amy */
 	    xresist = skip = 0;
 #ifdef GCC_WARN
 	    dmg = dindx = 0;
