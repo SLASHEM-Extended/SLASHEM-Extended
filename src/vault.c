@@ -314,9 +314,7 @@ fnd:
 	}
 
 	if (!strcmpi(buf, "Croesus") || !strcmpi(buf, "Kroisos")
-#ifdef TOURIST
 		|| !strcmpi(buf, "Creosote")
-#endif
 	    ) {
 	    if (!mvitals[PM_CROESUS].died) {
 		verbalize("Oh, yes, of course.  Sorry to have disturbed you.");

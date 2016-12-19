@@ -317,11 +317,9 @@ const char *name;	/* if null, then format `obj' */
 				} else if (uarm) {
 				    /* destroy suit */
 				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-#ifdef TOURIST
 				} else if (uarmu) {
 				    /* destroy shirt */
 				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-#endif
 				} else done(DIED);
 	
 			}
@@ -1333,9 +1331,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 	case TOOL_CLASS:
 		hits = (obj_type != SKELETON_KEY &&
 			obj_type != LOCK_PICK &&
-#ifdef TOURIST
 			obj_type != CREDIT_CARD &&
-#endif
 			obj_type != TALLOW_CANDLE &&
 			obj_type != WAX_CANDLE &&
 			obj_type != JAPAN_WAX_CANDLE &&

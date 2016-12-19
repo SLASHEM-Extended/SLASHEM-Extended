@@ -13,9 +13,7 @@ static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 				  WEAPON_CLASS, WAND_CLASS, GEM_CLASS, 0 };
 static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
-#ifdef TOURIST
 STATIC_DCL int FDECL(use_camera, (struct obj *));
-#endif
 STATIC_DCL int FDECL(use_towel, (struct obj *));
 STATIC_DCL boolean FDECL(its_dead, (int,int,int *));
 STATIC_DCL int FDECL(use_stethoscope, (struct obj *));
@@ -52,7 +50,6 @@ void FDECL( amii_speaker, ( struct obj *, char *, int ) );
 
 const char no_elbow_room[] = "don't have enough elbow-room to maneuver.";
 
-#ifdef TOURIST
 STATIC_OVL int
 use_camera(obj)
 	struct obj *obj;
@@ -115,7 +112,6 @@ use_camera(obj)
 
 	return 1;
 }
-#endif
 
 STATIC_OVL int
 use_towel(obj)
@@ -2293,7 +2289,6 @@ struct obj *obj;
 			You(need_to_remove_outer_armor, buf, xname(otmp));
 			return;
 		}
-#ifdef TOURIST
 		if ((otmp->owornmask & WORN_SHIRT) && (uarmc || uarm)) {
 			Strcpy(buf, uarmc ? xname(uarmc) : "");
 			if (uarmc && uarm) Strcat(buf, " and ");
@@ -2301,7 +2296,6 @@ struct obj *obj;
 			You(need_to_remove_outer_armor, buf, xname(otmp));
 			return;
 		}
-#endif
 		int nochargechange = 10;
 		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_DEVICES)) {
@@ -4031,9 +4025,7 @@ doapply()
 	case CAN_OF_GREASE:
 		use_grease(obj);
 		break;
-#ifdef TOURIST
 	case CREDIT_CARD:
-#endif
 	case LOCK_PICK:
 	case SKELETON_KEY:
 		(void) pick_lock(&obj);
@@ -4219,11 +4211,9 @@ doapply()
 	case POT_OIL:
 		light_cocktail(obj);
 		break;
-#ifdef TOURIST
 	case EXPENSIVE_CAMERA:
 		res = use_camera(obj);
 		break;
-#endif
 	case TOWEL:
 		res = use_towel(obj);
 		break;

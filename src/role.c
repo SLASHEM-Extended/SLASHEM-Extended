@@ -2829,7 +2829,6 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_CHARM_MONSTER,   -4
 },
 
-#ifdef TOURIST
 {	{"Tourist", 0}, {
 	{"Rambler",     0},
 	{"Sightseer",   0},
@@ -2859,7 +2858,6 @@ const struct Role roles[] = {
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
 	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
 },
-#endif
 
 {	{"Transsylvanian", 0}, {
 	{"Heel Wearer",    0},
@@ -6593,10 +6591,8 @@ struct monst *mtmp;
 	case PM_PIRATE:
 	case PM_KORSAIR:
 		return ("Ahoy");
-#ifdef TOURIST
 	case PM_TOURIST:
 	    return ("Aloha");       /* Hawaiian */
-#endif
 	case PM_VALKYRIE:
 	    return (
 #ifdef MAIL
@@ -6620,10 +6616,8 @@ Goodbye()
 	case PM_NINJA:
 	case PM_OTAKU:
 	    return ("Sayonara");        /* Japanese */
-#ifdef TOURIST
 	case PM_TOURIST:
 	    return ("Aloha");           /* Hawaiian */
-#endif
 	case PM_VALKYRIE:
 	    return ("Farvel");          /* Norse */
 	default:

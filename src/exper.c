@@ -467,9 +467,7 @@ newexplevel()
 			/*case PM_MAIA: u.uenbase += rnd(4) + 1; break;
 			case PM_GASTLY: u.uenbase += rnd(3) + 1; break;*/
 			case PM_SAMURAI: u.uenbase += rnd(2); break;
-#ifdef TOURIST
 			case PM_TOURIST: u.uenbase += rnd(4) + 1; break;
-#endif
 			case PM_UNDEAD_SLAYER: u.uenbase += rnd(3); break;
 			case PM_VALKYRIE: u.uenbase += rnd(2); break;
 			case PM_WIZARD: u.uenbase += rnd(6) + 2; break;

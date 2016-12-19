@@ -15,9 +15,7 @@ equipname(otmp)
 register struct obj *otmp;
 {
 	return (
-#ifdef TOURIST
 		(otmp == uarmu) ? "shirt" :
-#endif
 		(otmp == uarmf) ? "boots" :
 		(otmp == uarms) ? "shield" :
 		(otmp == uarmg) ? "gloves" :
@@ -199,9 +197,7 @@ boolean unchain_ball;	/* whether to unpunish or just unwield */
 	    else if (obj == uarmg) (void) Gloves_off();
 	    else if (obj == uarmh) (void) Helmet_off();
 	    else if (obj == uarms) (void) Shield_off();
-#ifdef TOURIST
 	    else if (obj == uarmu) (void) Shirt_off();
-#endif
 	    /* catchall -- should never happen */
 	    else setworn((struct obj *)0, obj->owornmask & W_ARMOR);
 	} else if (obj->owornmask & W_AMUL) {
@@ -297,10 +293,8 @@ nothing_to_steal:
 	    otmp = uwep;
 	/* can't steal armor while wearing cloak - so steal the cloak. */
 	else if(otmp == uarm && uarmc) otmp = uarmc;
-#ifdef TOURIST
 	else if(otmp == uarmu && uarmc) otmp = uarmc;
 	else if(otmp == uarmu && uarm) otmp = uarm;
-#endif
 
 gotobj:
 	if (stack_too_big(otmp) && !issoviet) {

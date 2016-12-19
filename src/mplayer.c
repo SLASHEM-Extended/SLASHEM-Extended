@@ -468,11 +468,9 @@ register boolean special;
 		case PM_SAMURAI:
 		    if (rn2(2)) weapon = KATANA;
 		    break;
-#ifdef TOURIST
 		case PM_TOURIST:
 		    /* Defaults are just fine */
 		    break;
-#endif
 		case PM_ROCKER:
 			weapon = HEAVY_HAMMER;
 

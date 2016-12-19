@@ -1803,9 +1803,7 @@ boolean artif;
 			mkbox_cnts(otmp);
 		blessorcurse_on_creation(otmp, 8);
 					break;
-#ifdef TOURIST
 		case EXPENSIVE_CAMERA:
-#endif
 		case TINNING_KIT:
 		case FELT_TIP_MARKER:
 			otmp->recharged = 0;

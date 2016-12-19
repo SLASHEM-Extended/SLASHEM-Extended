@@ -688,7 +688,6 @@ WEAPON("rubber hose", (char *)0,
 #define BOOTS(name,desc,kn,mgc,power,prob,delay,wt,cost,ac,can,metal,c) \
 	ARMOR(name,desc,kn,mgc,0,power,prob,delay,wt,cost,ac,can,ARM_BOOTS,metal,c)
 
-#ifdef TOURIST
 /* Shirts */
 ARMOR("Hawaiian shirt", (char *)0,
 	1, 0, 0, 0,	50, 0,	 2,   3, 10, 0, ARM_SHIRT, CLOTH, CLR_MAGENTA),
@@ -713,7 +712,6 @@ ARMOR("men's underwear", (char *)0,
 ARMOR("swimsuit", (char *)0,
 	1, 0, 0, SWIMMING, 2, 0, 2,  25, 10, 0, ARM_SHIRT, PLASTIC, CLR_WHITE),
 
-#endif /* TOURIST */
 ARMOR("striped shirt", (char *)0,
 	1, 0, 0, 0,	20, 0,	 5,   2, 10, 0, ARM_SHIRT, CLOTH, CLR_GRAY),
 /*Ruffled shirts are little different from other shirts*/
@@ -734,13 +732,8 @@ ARMOR("plasteel armor", (char *)0,
 	1, 0, 1, 0, 50, 5, 50,  80,  4, 0, ARM_SUIT, PLASTIC, CLR_WHITE),
 ARMOR("crystal plate mail", (char *)0,
 	1, 0, 1, 0,	104, 5, 200, 820,  -1, 2, ARM_SUIT, GLASS, CLR_WHITE),
-#ifdef TOURIST
 ARMOR("bronze plate mail", (char *)0,
 	1, 0, 1, 0,	264, 5, 200, 400,  1, 0, ARM_SUIT, COPPER, HI_COPPER),
-#else
-ARMOR("bronze plate mail", (char *)0,
-	1, 0, 1, 0,	364, 5, 200, 400,  1, 0, ARM_SUIT, COPPER, HI_COPPER),
-#endif
 ARMOR("splint mail", (char *)0,
 	1, 0, 1, 0,	560, 5, 160,  80,  2, 1, ARM_SUIT, IRON, HI_METAL),
 ARMOR("oliharcon splint mail", (char *)0,
@@ -2174,12 +2167,8 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 200, 5, 100, CLOTH, HI_CLOTH
 
 /* Unlocking tools */
 TOOL("skeleton key", "key",     0, 0, 0, 0, 750,  0,  10, IRON, HI_METAL),
-#ifdef TOURIST
 TOOL("lock pick", (char *)0,    1, 0, 0, 0, 600,  0,  20, IRON, HI_METAL),
 TOOL("credit card", (char *)0,  1, 0, 0, 0, 150,  0,  10, PLASTIC, CLR_WHITE),
-#else
-TOOL("lock pick", (char *)0,    1, 0, 0, 0, 750,  0,  20, IRON, HI_METAL),
-#endif
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
@@ -2276,13 +2265,9 @@ WEPTOOL("white lightsaber",  "lightsaber",
 #endif
 
 /* Other tools */
-#ifdef TOURIST
 TOOL("expensive camera", (char *)0,
 				1, 0, 0, 1,  100, 0, 200, PLASTIC, CLR_BLACK),
 TOOL("mirror", "looking glass", 0, 0, 0, 0,  300, 0,  10, GLASS, HI_SILVER),
-#else
-TOOL("mirror", "looking glass", 0, 0, 0, 0,  400, 0,  10, GLASS, HI_SILVER),
-#endif
 TOOL("crystal ball", "glass orb",
 								0, 0, 1, 1,  100,0,  60, GLASS, HI_GLASS),
 #if 0

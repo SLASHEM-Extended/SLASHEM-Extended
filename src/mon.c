@@ -175,9 +175,7 @@ int mndx, mode;
 	case PM_HUNTER:      mndx = mode ? PM_RANGER    : PM_HUMAN; break;
 	case PM_THUG:        mndx = mode ? PM_ROGUE     : PM_HUMAN; break;
 	case PM_ROSHI:       mndx = mode ? PM_SAMURAI   : PM_HUMAN; break;
-#ifdef TOURIST
 	case PM_GUIDE:       mndx = mode ? PM_TOURIST   : PM_HUMAN; break;
-#endif
 	case PM_APPRENTICE:  mndx = mode ? PM_WIZARD    : PM_HUMAN; break;
 	case PM_SUPER_WARRIOR:     mndx = mode ? PM_VALKYRIE  : PM_HUMAN; break;
 	default:
@@ -837,11 +835,7 @@ register struct monst *mtmp;
 		num = d(2,2);
 		while (num--)
 			obj = mksobj_at(
-#ifdef TOURIST
 				CREDIT_CARD,
-#else
-				FAKE_AMULET_OF_YENDOR,
-#endif
 					x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;

@@ -212,15 +212,9 @@ A("Deluder",               CLOAK_OF_DISPLACEMENT,
 	(SPFX_RESTR|SPFX_STLTH|SPFX_LUCK), 0, 0,
 	NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_NEUTRAL, PM_WIZARD, NON_PM, 5000L ),
 
-#ifdef TOURIST
 A("Whisperfeet",               SPEED_BOOTS,
 	(SPFX_RESTR|SPFX_STLTH|SPFX_LUCK), 0, 0,
 	NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_NEUTRAL, PM_TOURIST, NON_PM, 5000L ),
-#else
-A("Whisperfeet",               SPEED_BOOTS,
-	(SPFX_RESTR|SPFX_STLTH|SPFX_LUCK), 0, 0,
-	NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
-#endif
 
 /*** Chaotic artifacts ***/
 A("Grimtooth",                  ORCISH_DAGGER,
@@ -5499,13 +5493,11 @@ A("The Fortune Sword",			SHORT_SWORD,
 	PHYS(3,4),	NO_DFNS,	CARY(AD_MAGM),
 	0,	A_NEUTRAL,	PM_FENCER, NON_PM, 10000L ),
 
-# ifdef TOURIST
 A("The Platinum Yendorian Express Card", CREDIT_CARD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN),
 		(SPFX_ESP|SPFX_HSPDAM), 0,
 	NO_ATTK,	NO_DFNS,	CARY(AD_MAGM),
 	CHARGE_OBJ,	A_NEUTRAL, PM_TOURIST, NON_PM, 7000L ),
-# endif
 
 A("Credex Gold", CREDIT_CARD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN),

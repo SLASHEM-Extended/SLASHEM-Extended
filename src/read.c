@@ -244,7 +244,6 @@ doread()
 	    if (carried(scroll)) useup(scroll);
 	    else useupf(scroll, 1L);
 	    return(1);
-#ifdef TOURIST
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == KYRT_SHIRT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
@@ -670,7 +669,6 @@ doread()
 			     scroll->o_id ^ (unsigned)u.ubirthday);
 	    pline("\"%s\"", buf);
 	    return 1;
-#endif	/* TOURIST */
 	} else if (scroll->otyp == PACK_OF_FLOPPIES) {
 		use_floppies(scroll);
 	} else if (scroll->oclass != SCROLL_CLASS
@@ -1007,9 +1005,7 @@ int curse_bless;
 	    case MAGIC_MARKER:
 	    case FELT_TIP_MARKER:
 	    case TINNING_KIT:
-#ifdef TOURIST
 	    case EXPENSIVE_CAMERA:
-#endif
 
 		n = (int)obj->recharged;
 		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
@@ -3034,9 +3030,7 @@ register struct obj	*sobj;
 						    else if (otmpi == uarmg) (void) Gloves_off();
 						    else if (otmpi == uarmh) (void) Helmet_off();
 						    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 						    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 						    /* catchall -- should never happen */
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {

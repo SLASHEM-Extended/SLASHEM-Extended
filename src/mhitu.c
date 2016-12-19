@@ -1081,13 +1081,11 @@ register struct attack *mattk;
 		/* get object responsible 
 		 * Work from the closest to the skin outwards
 		 */
-#ifdef TOURIST
 		/* Try undershirt if tourist */
 		if (uarmu && target <= roll) {
 			target += ARM_BONUS(uarmu);
 			if (target > roll) blocker = uarmu;
 		}
-#endif
 		/* Try body armour */
 		if (uarm && target <= roll) {
 			target += ARM_BONUS(uarm);
@@ -3502,10 +3500,8 @@ int attk;
 		 */
 		if (uarm)
 		    (void)rust_dmg(uarm, xname(uarm), hurt, TRUE, &youmonst);
-#ifdef TOURIST
 		else if (uarmu)
 		    (void)rust_dmg(uarmu, xname(uarmu), hurt, TRUE, &youmonst);
-#endif
 		break;
 	    case 2:
 		if (!uarms || !rust_dmg(uarms, xname(uarms), hurt, FALSE, &youmonst))
@@ -3557,10 +3553,8 @@ witherarmor()
 		 */
 		if (uarm)
 		    (void)wither_dmg(uarm, xname(uarm), rn2(4), TRUE, &youmonst);
-#ifdef TOURIST
 		else if (uarmu)
 		    (void)wither_dmg(uarmu, xname(uarmu), rn2(4), TRUE, &youmonst);
-#endif
 		break;
 	    case 2:
 		if (!uarms || !wither_dmg(uarms, xname(uarms), rn2(4), FALSE, &youmonst))
@@ -3619,9 +3613,7 @@ struct attack *mattk;
 {
 	struct obj *obj = (uarmc ? uarmc : uarm);
 
-#ifdef TOURIST
 	if (!obj) obj = uarmu;
-#endif
 	if (mattk->adtyp == AD_DRIN) obj = uarmh;
 
 	/* if your cloak/armor is greased, monster slips off; this
@@ -3681,11 +3673,9 @@ struct monst *mon;
 
 	/* armor types for shirt, gloves, shoes, and shield don't currently
 	   provide any magic cancellation but we might as well be complete */
-#ifdef TOURIST
 	armor = (mon == &youmonst) ? uarmu : which_armor(mon, W_ARMU);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
-#endif
 	armor = (mon == &youmonst) ? uarmg : which_armor(mon, W_ARMG);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
@@ -4961,9 +4951,7 @@ dopois:
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
@@ -5965,12 +5953,10 @@ dopois:
 		    /* destroy suit */
 		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
-#ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
-#endif
 		}
 	    done(DIED);
 	    return 1; /* lifesaved */
@@ -6000,9 +5986,7 @@ dopois:
 		    break;
 		}
 		if(!uwep
-#ifdef TOURIST
 		   && !uarmu
-#endif
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("%s hits!  (I hope you don't mind.)", Monnam(mtmp));
@@ -8615,12 +8599,10 @@ do_stone2:
 		    /* destroy suit */
 		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
-#ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
-#endif
 		}
 
 	    done(DIED);
@@ -8817,12 +8799,10 @@ common:
 		    /* destroy suit */
 		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
-#ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
-#endif
 		}
 
 	      done(DIED);
@@ -9430,12 +9410,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    /* destroy suit */
 		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
-#ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
-#endif
 		}
 
 	    done(DIED);
@@ -9546,9 +9524,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
@@ -11984,9 +11960,7 @@ register struct monst *mon;
 	}
 
 	if (!uarmc && !uarmf && !uarmg && !uarms && !uarmh
-#ifdef TOURIST
 								&& !uarmu
-#endif
 									)
 		pline("%s murmurs sweet nothings into your ear.",
 			Blind ? (fem ? "She" : "He") : Monnam(mon));
@@ -12009,10 +11983,8 @@ register struct monst *mon;
 
 	if (uarms) mayberem(uarms, "shield");
 	mayberem(uarmh, "helmet");
-#ifdef TOURIST
 	if(!uarmc && !uarm)
 		mayberem(uarmu, "shirt");
-#endif
 
 	if ((uarm && !(uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER)) || uarmc) {
 		verbalize("You're such a %s; I wish...",
@@ -12579,9 +12551,7 @@ const char *str;
 			(obj == uarmc || obj == uarms) ? "it's in the way" :
 			(obj == uarmf) ? "let me rub your feet" :
 			(obj == uarmg) ? "they're too clumsy" :
-#ifdef TOURIST
 			(obj == uarmu) ? "let me massage you" :
-#endif
 			/* obj == uarmh */
 			hairbuf);
 	}

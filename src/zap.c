@@ -843,14 +843,12 @@ struct obj *otmp;
 			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 			    m_useup(mtmp, otmpS);
 			    break;
-#ifdef TOURIST
 			} else if (mtmp->misc_worn_check & W_ARMU) {
 			    /* destroy shirt */
 			    otmpS = which_armor(mtmp, W_ARMU);
 			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 			    m_useup(mtmp, otmpS);
 			    break;
-#endif
 			}
 		    else {
 
@@ -2602,10 +2600,8 @@ poly_obj(obj, id)
 		otmp->owornmask &= ~W_ARMG;
 	    if (otmp->owornmask & W_ARMF && !is_boots(otmp))
 		otmp->owornmask &= ~W_ARMF;
-#ifdef TOURIST
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
-#endif
 	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != CONDOME &&
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES)
 		otmp->owornmask &= ~W_TOOL;
@@ -3432,9 +3428,7 @@ newboss:
 						    else if (otmpi == uarmg) (void) Gloves_off();
 						    else if (otmpi == uarmh) (void) Helmet_off();
 						    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 						    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 						    /* catchall -- should never happen */
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
@@ -5355,12 +5349,10 @@ boolean ordinary;
 			    /* destroy suit */
 			    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 			    break;
-	#ifdef TOURIST
 			} else if (uarmu) {
 			    /* destroy shirt */
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
-	#endif
 			}
 			killer_format = KILLED_BY;
 			killer = "self-disintegration";
@@ -5777,9 +5769,7 @@ boolean ordinary;
 		case WAN_LIGHT:	/* (broken wand) */
 		 /* assert( !ordinary ); */
 		    damage = d(obj->spe, 25);
-#ifdef TOURIST
 		case EXPENSIVE_CAMERA:
-#endif
 		    damage += rnd(25);
 		    if (!resists_blnd(&youmonst)) {
 			You(are_blinded_by_the_flash);
@@ -7170,10 +7160,8 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			tmp = MAGIC_COOKIE;
 			if ((otmp2 = which_armor(mon, W_ARMC)) != 0)
 			    m_useup(mon, otmp2);
-#ifdef TOURIST
 			if ((otmp2 = which_armor(mon, W_ARMU)) != 0)
 			    m_useup(mon, otmp2);
-#endif
 		    }
 		    type = -1;	/* no saving throw wanted */
 		    break;	/* not ordinary damage */
@@ -7357,12 +7345,10 @@ xchar sx, sy;
 		    /* destroy suit */
 		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 		    break;
-#ifdef TOURIST
 		} else if (uarmu) {
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
-#endif
 		}
 	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		shieldeff(sx, sy);

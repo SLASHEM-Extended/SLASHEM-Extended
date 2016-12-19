@@ -1776,9 +1776,7 @@ nh_timeout()
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
@@ -1829,9 +1827,7 @@ nh_timeout()
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
@@ -1882,9 +1878,7 @@ nh_timeout()
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
@@ -1935,9 +1929,7 @@ nh_timeout()
 				    else if (otmpi == uarmg) (void) Gloves_off();
 				    else if (otmpi == uarmh) (void) Helmet_off();
 				    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 				    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 				    /* catchall -- should never happen */
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {

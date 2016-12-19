@@ -260,10 +260,8 @@ worst_cursed_item()
 	otmp = uarmh;
     } else if (uarmf && uarmf->cursed) {		/* boots */
 	otmp = uarmf;
-#ifdef TOURIST
     } else if (uarmu && uarmu->cursed) {		/* shirt */
 	otmp = uarmu;
-#endif
     } else if (uamul && uamul->cursed) {		/* amulet */
 	otmp = uamul;
     } else if (uleft && uleft->cursed) {		/* left ring */
@@ -563,10 +561,8 @@ aligntyp resp_god;
 	    if (uarm && !(EReflecting & W_ARM) &&
 	    		!(EDisint_resistance & W_ARM) && !uarmc)
 		(void) destroy_arm(uarm);
-#ifdef TOURIST
 	    if (uarmu && !uarm && !uarmc && !(EReflecting & W_ARMU) &&
 	    		!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-#endif
 	    if (!Disint_resistance)
 		fry_by_god(resp_god);
 	    else {
@@ -2762,10 +2758,8 @@ aligntyp alignment;
 			    otmp = uarmh;
 		    else if (uarmf && !uarmf->blessed)    /* boots */
 			    otmp = uarmf;
-#ifdef TOURIST
 		    else if (uarmu && !uarmu->blessed)    /* shirt */
 			    otmp = uarmu;
-#endif
 		    /* (perhaps amulet should take precedence over rings?) */
 		    else if (uleft && !uleft->blessed)
 			    otmp = uleft;

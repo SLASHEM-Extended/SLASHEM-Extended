@@ -1254,7 +1254,6 @@ static struct trobj Otaku[] = {
 };
 
 
-#ifdef TOURIST
 static struct trobj Tourist[] = {
 #define T_DARTS		0
 	{ DART, 2, WEAPON_CLASS, 25, UNDEF_BLESS },	/* quan is variable */
@@ -1266,7 +1265,6 @@ static struct trobj Tourist[] = {
 	{ CREDIT_CARD, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
-#endif
 static struct trobj UndeadSlayer[] = {
 #define U_MINOR 1       /* silver spear or whip [Castlevania] 25/25% */
                         /* crossbow 50% [Buffy] */
@@ -2441,7 +2439,6 @@ static struct trobj Xtra_fopod[] = {
 	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 2, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
-#ifdef TOURIST
 static struct trobj Leash[] = {
 	{ LEASH, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -2450,7 +2447,6 @@ static struct trobj Towel[] = {
 	{ TOWEL, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
-#endif	/* TOURIST */
 static struct trobj Wishing[] = {
 	{ WAN_WISHING, 3, WAND_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -5336,7 +5332,6 @@ static const struct def_skill Skill_Ota[] = {
     { P_NONE, 0 }
 };
 
-#ifdef TOURIST
 static const struct def_skill Skill_T[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
     { P_AXE, P_EXPERT },			{ P_PICK_AXE, P_EXPERT },
@@ -5373,7 +5368,6 @@ static const struct def_skill Skill_T[] = {
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
 };
-#endif /* TOURIST */
 
 static const struct def_skill Skill_U[] = {
 /*WAC
@@ -6221,9 +6215,7 @@ u_init()
 #if 0	/* documentation of more zero values as desirable */
 	u.usick_cause[0] = 0;
 	u.uluck  = u.moreluck = 0;
-# ifdef TOURIST
 	uarmu = 0;
-# endif
 	uarm = uarmc = uarmh = uarms = uarmg = uarmf = 0;
 	uwep = uball = uchain = uleft = uright = 0;
 	/* WAC Added uswapwep, uquiver*/
@@ -7767,10 +7759,8 @@ u_init()
 		}
 		ini_inv(Archeologist);
 		if(!rn2(4)) ini_inv(Blindfold);
-#ifdef TOURIST
 		else if(!rn2(4)) ini_inv(Towel);
 		if(!rn2(4)) ini_inv(Leash);
-#endif
 		if(!rn2(4)) ini_inv(Tinopener);
 		else if(!rn2(4))
 		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
@@ -8755,7 +8745,6 @@ u_init()
 		skill_init(Skill_Ota);
 		break;
 
-#ifdef TOURIST
 	case PM_TOURIST:
 		Tourist[T_DARTS].trquan = rn1(20, 21);
 #ifndef GOLDOBJ
@@ -8770,7 +8759,6 @@ u_init()
 		else if(!rn2(25)) ini_inv(Magicmarker);
 		skill_init(Skill_T);
 		break;
-#endif /* TOURIST */
 	case PM_UNDEAD_SLAYER:
 		switch (rn2(100) / 25) {
 		    case 0:	/* Pistol and silver bullets */
@@ -9303,11 +9291,9 @@ u_init()
 		skill_init(Skill_Ota);
 		break;
 
-#ifdef TOURIST
 	case PM_TOURIST:
 		skill_init(Skill_T);
 		break;
-#endif /* TOURIST */
 	case PM_UNDEAD_SLAYER:
 		skill_init(Skill_U);
 		break;
@@ -9354,10 +9340,8 @@ u_init()
 		}
 		ini_inv(Archeologist);
 		if(!rn2(4)) ini_inv(Blindfold);
-#ifdef TOURIST
 		else if(!rn2(4)) ini_inv(Towel);
 		if(!rn2(4)) ini_inv(Leash);
-#endif
 		if(!rn2(4)) ini_inv(Tinopener);
 		else if(!rn2(4))
 		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
@@ -10498,10 +10482,8 @@ u_init()
 		}
 		ini_inv(Archeologist);
 		if(!rn2(4)) ini_inv(Blindfold);
-#ifdef TOURIST
 		else if(!rn2(4)) ini_inv(Towel);
 		if(!rn2(4)) ini_inv(Leash);
-#endif
 		if(!rn2(4)) ini_inv(Tinopener);
 		else if(!rn2(4))
 		  (rn2(100) > 50 ? ini_inv(Lamp) : ini_inv(Torch));
@@ -22266,9 +22248,7 @@ int otyp;
      case PM_BULLY:		skills = Skill_Bul; break;
      case PM_ASSASSIN:		skills = Skill_Ass; break;
      case PM_SAMURAI:		skills = Skill_S; break;
-#ifdef TOURIST
      case PM_TOURIST:		skills = Skill_T; break;
-#endif
      case PM_OTAKU:		skills = Skill_Ota; break;
      case PM_VALKYRIE:		skills = Skill_V; break;
      case PM_WIZARD:		skills = Skill_W; break;
@@ -22968,10 +22948,8 @@ register struct trobj *trop;
 				setworn(obj, W_ARMH);
 			else if (is_gloves(obj) && !uarmg)
 				setworn(obj, W_ARMG);
-#ifdef TOURIST
 			else if (is_shirt(obj) && !uarmu)
 				setworn(obj, W_ARMU);
-#endif
 			else if (is_cloak(obj) && !uarmc)
 				setworn(obj, W_ARMC);
 			else if (is_boots(obj) && !uarmf)

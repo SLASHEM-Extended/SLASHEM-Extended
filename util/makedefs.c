@@ -510,9 +510,7 @@ make_version()
 #endif
 		/* objects (8..15) */
 			| (1L <<  9)
-#ifdef TOURIST
 			| (1L << 10)
-#endif
 			| (1L << 11)
 #ifdef GOLDOBJ
 			| (1L << 12)
@@ -868,9 +866,7 @@ static const char *build_opts[] = {
 		"Jedi",
 # endif
 		"firearms",
-#ifdef TOURIST
 		"tourists",
-#endif
 #ifdef USER_SOUNDS
 # ifdef USER_SOUNDS_REGEX
 		"user sounds via regular expressions",
@@ -2275,11 +2271,9 @@ do_objs()
 
 		if (!strncmp(objnam, "THE_", 4))
 			objnam += 4;
-#ifdef TOURIST
 		/* fudge _platinum_ YENDORIAN EXPRESS CARD */
 		if (!strncmp(objnam, "PLATINUM_", 9))
 			objnam += 9;
-#endif
 		Fprintf(ofp,"#define\tART_%s\t%d\n", limit(objnam, 1), i);
 	}
 

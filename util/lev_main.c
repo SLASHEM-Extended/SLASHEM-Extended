@@ -524,9 +524,7 @@ char **argv;
 				":dat:Rogue.des",
 				":dat:Ranger.des",
 				":dat:Samurai.des",
-#ifdef TOURIST
 				":dat:Tourist.des",
-#endif
 				":dat:Slayer.des",		/* Should be Uslayer */
 				":dat:Valkyrie.des",
 				":dat:Wizard.des",

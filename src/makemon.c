@@ -2879,7 +2879,6 @@ register struct monst *mtmp;
 
 		   break;
 
-#ifdef TOURIST
 		   case PM_TOURIST:
 		   case PM_UNDEAD_TOURIST:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -2906,7 +2905,6 @@ register struct monst *mtmp;
 		     mkmonmoney(mtmp, (long) d(mtmp->m_lev, 20));
 #endif
 		   break;
-#endif
 		   case PM_UNDEAD_SLAYER:
 		   case PM_NON_UNDEAD_SLAYER:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -13094,9 +13092,7 @@ register int	mmflags;
 
       if (mndx == PM_POOKA){
 	        if(!rn2(5)) (void) mongets(mtmp, CARROT);
-#ifdef TOURIST
 		    if (!rn2(8)) (void) mongets(mtmp, HAWAIIAN_SHIRT); 
-#endif
 		    if (!rn2(4)) (void)mongets(mtmp, ELVEN_LEATHER_HELM);
 		    switch (rn2(3)) {
 		case 0:

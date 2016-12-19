@@ -1914,9 +1914,7 @@ struct monst *mtmp;
 		    typ != SLING &&
 		    !is_cloak(obj) && typ != FEDORA &&
 		    !is_gloves(obj) && typ != LEATHER_JACKET &&
-#ifdef TOURIST
 		    typ != CREDIT_CARD && !is_shirt(obj) &&
-#endif
 		    !(typ == CORPSE && verysmall(&mons[obj->corpsenm])) &&
 		    typ != FORTUNE_COOKIE && typ != CANDY_BAR &&
 		    typ != PANCAKE && typ != LEMBAS_WAFER &&

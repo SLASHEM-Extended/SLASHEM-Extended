@@ -570,11 +570,9 @@ struct monst *mon;
 
 	/* armor types for shirt, gloves, shoes, and shield don't currently
 	   provide any magic cancellation but we might as well be complete */
-#ifdef TOURIST
 	armor = (mon == &youmonst) ? uarmu : which_armor(mon, W_ARMU);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
-#endif
 	armor = (mon == &youmonst) ? uarmg : which_armor(mon, W_ARMG);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;

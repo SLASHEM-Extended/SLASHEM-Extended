@@ -1459,9 +1459,7 @@ int oldlevel, newlevel;
 	case PM_ROGUE:          abil = rog_abil;	break;
 	case PM_RINGSEEKER:		abil = rin_abil;	break;
 	case PM_SAMURAI:        abil = sam_abil;	break;
-#ifdef TOURIST
 	case PM_TOURIST:        abil = tou_abil;	break;
-#endif
 	case PM_UNDEAD_SLAYER:	abil = und_abil;	break;
 	case PM_MIDGET:		abil = mid_abil;	break;
 	case PM_UNDERTAKER:	abil = unt_abil;	break;

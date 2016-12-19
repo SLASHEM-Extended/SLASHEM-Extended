@@ -5592,9 +5592,7 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 	{ "boots",	ARMOR_CLASS,  LOW_BOOTS,      LEVITATION_BOOTS },
 	{ "shoes",	ARMOR_CLASS,  LOW_BOOTS,      IRON_SHOES },
 	{ "cloak",	ARMOR_CLASS,  MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT },
-#ifdef TOURIST
 	{ "shirt",	ARMOR_CLASS,  HAWAIIAN_SHIRT, T_SHIRT },
-#endif
 	{ "dragon scales",
 			ARMOR_CLASS,  GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES },
 	{ "dragon scale",
@@ -5946,11 +5944,9 @@ struct alt_spellings {
     { "HoT",  HELM_OF_TELEPATHY},
     { "SoR",  SHIELD_OF_REFLECTION},
 #endif
-#ifdef TOURIST
 	{ "camera", EXPENSIVE_CAMERA },
 	{ "T shirt", T_SHIRT },
 	{ "tee shirt", T_SHIRT },
-#endif
 	{ (const char *)0, 0 },
 };
 

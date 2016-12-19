@@ -309,9 +309,7 @@ E const int shield_static[];
 #include "obj.h"
 
 E NEARDATA struct obj *invent, *uarm, *uarmc, *uarmh, *uarms, *uarmg, *uarmf,
-#ifdef TOURIST
 	*uarmu,				/* under-wear, so to speak */
-#endif
 	*usaddle,
 	*uskin, *uamul, *uleft, *uright, *ublindf,
 	*uwep, *uswapwep, *uquiver;

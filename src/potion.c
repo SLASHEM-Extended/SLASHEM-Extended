@@ -1657,12 +1657,10 @@ badeffect()
 				    /* destroy suit */
 				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 				    break;
-	#ifdef TOURIST
 				} else if (uarmu) {
 				    /* destroy shirt */
 				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 				    break;
-	#endif
 				} else done(DIED);
 	
 			}
@@ -5288,7 +5286,6 @@ register struct obj *obj;
 		case ICE_BOX_OF_WATERPROOFING:
 			obj->otyp = ICE_BOX;
 			break;
-#ifdef TOURIST
 		case TOWEL:
 			obj->otyp = BLINDFOLD;
 			break;
@@ -5296,7 +5293,6 @@ register struct obj *obj;
 			obj->otyp = TOWEL;
 			break;
 		case CREDIT_CARD:
-#endif
 		case LOCK_PICK:
 			obj->otyp = SKELETON_KEY;
 			break;
@@ -5487,10 +5483,8 @@ register struct obj *obj;
 		owornmask &= ~W_ARMG;
 	    if (owornmask & W_ARMF && !is_boots(obj))
 		owornmask &= ~W_ARMF;
-#ifdef TOURIST
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
-#endif
 	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CONDOME &&
 	      obj->otyp != TOWEL && obj->otyp != LENSES)
 		owornmask &= ~W_TOOL;

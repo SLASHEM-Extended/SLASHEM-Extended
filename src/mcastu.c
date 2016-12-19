@@ -954,10 +954,8 @@ int spellnum;
 		 */
 		if (uarm)
 		    (void)wither_dmg(uarm, xname(uarm), rn2(4), TRUE, &youmonst);
-#ifdef TOURIST
 		else if (uarmu)
 		    (void)wither_dmg(uarmu, xname(uarmu), rn2(4), TRUE, &youmonst);
-#endif
 		break;
 	    case 2:
 		if (!uarms || !wither_dmg(uarms, xname(uarms), rn2(4), FALSE, &youmonst))
@@ -1002,10 +1000,8 @@ int spellnum;
 		 */
 		if (uarm)
 		    (void)rust_dmg(uarm, xname(uarm), rn2(4), TRUE, &youmonst);
-#ifdef TOURIST
 		else if (uarmu)
 		    (void)rust_dmg(uarmu, xname(uarmu), rn2(4), TRUE, &youmonst);
-#endif
 		break;
 	    case 2:
 		if (!uarms || !rust_dmg(uarms, xname(uarms), rn2(4), FALSE, &youmonst))

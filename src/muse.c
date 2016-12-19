@@ -2895,9 +2895,7 @@ struct monst *mtmp;
 	if (u.uswallow) return FALSE;
 	if (in_your_sanctuary(mtmp, 0, 0)) return FALSE;
 	if (dmgtype(mtmp->data, AD_HEAL) && !uwep
-#ifdef TOURIST
 	    && !uarmu
-#endif
 	    && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf)
 		return FALSE;
 
@@ -3697,12 +3695,10 @@ register struct obj *otmp;
 			    /* destroy suit */
 			    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
 			    break;
-#ifdef TOURIST
 			} else if (uarmu) {
 			    /* destroy shirt */
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
-#endif
 			}
 
 			killer_format = KILLED_BY_AN;
@@ -3736,14 +3732,12 @@ register struct obj *otmp;
 			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 			    m_useup(mtmp, otmpS);
 			    break;
-#ifdef TOURIST
 			} else if (mtmp->misc_worn_check & W_ARMU) {
 			    /* destroy shirt */
 			    otmpS = which_armor(mtmp, W_ARMU);
 			    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 			    m_useup(mtmp, otmpS);
 			    break;
-#endif
 			}
 		    else {
 
@@ -5053,9 +5047,7 @@ struct monst *mtmp;
 						    else if (otmpi == uarmg) (void) Gloves_off();
 						    else if (otmpi == uarmh) (void) Helmet_off();
 						    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 						    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 						    /* catchall -- should never happen */
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
@@ -6076,9 +6068,7 @@ newboss:
 						    else if (otmpi == uarmg) (void) Gloves_off();
 						    else if (otmpi == uarmh) (void) Helmet_off();
 						    else if (otmpi == uarms) (void) Shield_off();
-#ifdef TOURIST
 						    else if (otmpi == uarmu) (void) Shirt_off();
-#endif
 						    /* catchall -- should never happen */
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {

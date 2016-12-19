@@ -422,9 +422,7 @@ E int NDECL(Cloak_on);
 E int NDECL(Helmet_on);
 E int NDECL(Gloves_on);
 E int NDECL(Shield_on);
-#ifdef TOURIST
 E int NDECL(Shirt_on);
-#endif
 E void NDECL(Amulet_on);
 #ifdef USE_TRAMPOLI
 E int FDECL(select_off, (struct obj *));
@@ -441,9 +439,7 @@ E int NDECL(Gloves_off);
 E int NDECL(Boots_off);
 E int NDECL(Cloak_off);
 E int NDECL(Shield_off);
-#ifdef TOURIST
 E int NDECL(Shirt_off);
-#endif
 E void NDECL(Amulet_off);
 E void FDECL(Ring_on, (struct obj *));
 E void FDECL(Ring_off, (struct obj *));

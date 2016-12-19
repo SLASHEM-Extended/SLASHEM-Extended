@@ -3832,9 +3832,7 @@ role_tech()
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
 		case PM_NINJA:	return (nin_tech);
-#ifdef TOURIST        
 		case PM_TOURIST:	return (tou_tech);
-#endif        
 		case PM_UNDEAD_SLAYER:	return (und_tech);
 		case PM_UNBELIEVER:	return (unb_tech);
 		case PM_SHAPESHIFTER:	return (sha_tech);

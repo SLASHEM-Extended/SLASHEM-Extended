@@ -64,10 +64,8 @@ lock_action()
 	/* otherwise we're trying to unlock it */
 	else if (xlock.picktyp == LOCK_PICK)
 		return actions[3];	/* "picking the lock" */
-#ifdef TOURIST
 	else if (xlock.picktyp == CREDIT_CARD)
 		return actions[3];	/* same as lock_pick */
-#endif
 	else if (xlock.door)
 		return actions[0];	/* "unlocking the door" */
 	else
@@ -325,9 +323,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 	    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		const char *what = (picktyp == LOCK_PICK) ? "pick" : "key";
-#ifdef TOURIST
 		if (picktyp == CREDIT_CARD) what = "card";
-#endif
 		pline(no_longer, "hold the", what);
 		reset_pick();
 		return 0;
@@ -350,9 +346,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	}
 
 	if((picktyp != LOCK_PICK &&
-#ifdef TOURIST
 	    picktyp != CREDIT_CARD &&
-#endif
 	    picktyp != SKELETON_KEY)) {
 		impossible("picking lock with object %d?", picktyp);
 		return(0);
@@ -410,15 +404,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 			You_cant("fix its broken lock with %s.", doname(pick));
 			return 0;
 		    }
-#ifdef TOURIST
 		    else if (picktyp == CREDIT_CARD && !otmp->olocked) {
 			/* credit cards are only good for unlocking */
 			You_cant("do that with %s.", doname(pick));
 			return 0;
 		    }
-#endif
 		    switch(picktyp) {
-#ifdef TOURIST
 			case CREDIT_CARD:
 			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
@@ -428,7 +419,6 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
-#endif
 			case LOCK_PICK:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60: Role_if(PM_ROGUE) ? 40 : 30) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
@@ -474,12 +464,10 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    if ((mtmp = m_at(cc.x, cc.y)) && canseemon(mtmp)
 			&& mtmp->m_ap_type != M_AP_FURNITURE
 			&& mtmp->m_ap_type != M_AP_OBJECT) {
-#ifdef TOURIST
 		if (picktyp == CREDIT_CARD &&
 		    (mtmp->isshk || mtmp->data == &mons[PM_ORACLE]))
 		    verbalize("No checks, no credit, no problem.");
 		else
-#endif
 		    pline("I don't think %s would appreciate that.", mon_nam(mtmp));
 		return(0);
 	    }
@@ -503,13 +491,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    pline("This door is broken.");
 		    return(0);
 		default:
-#ifdef TOURIST
 		    /* credit cards are only good for unlocking */
 		    if(picktyp == CREDIT_CARD && !(door->doormask & D_LOCKED)) {
 			You_cant("lock a door with a credit card.");
 			return(0);
 		    }
-#endif
 		    /* ALI - Artifact doors */
 		    key = artifact_door(cc.x, cc.y);
 
@@ -520,7 +506,6 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    if(c == 'n') return(0);
 
 		    switch(picktyp) {
-#ifdef TOURIST
 			case CREDIT_CARD:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
@@ -531,7 +516,6 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
-#endif
 			case LOCK_PICK:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60 : Role_if(PM_ROGUE) ? 40 : 30) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
@@ -617,9 +601,7 @@ doforce()		/* try to force a chest with your weapon */
 		return(0);
 	    }
 	} else if(uwep->otyp == LOCK_PICK ||
-#ifdef TOURIST
 	    uwep->otyp == CREDIT_CARD ||
-#endif
 	    uwep->otyp == SKELETON_KEY) {
 	    	return pick_lock(&uwep);
 	/* not a lightsaber or lockpicking device*/
