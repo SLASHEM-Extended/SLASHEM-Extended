@@ -95,6 +95,7 @@ struct Role {
 	      ldrnum,		/* PM_ of quest leader (questpgr.c) */
 	      guardnum,		/* PM_ of quest guardians (questpgr.c) */
 	      neminum,		/* PM_ of quest nemesis (questpgr.c) */
+		nemesnum,		/* PM_ of corresponding nemese (makemon.c) --Amy */
 	      enemy1num,	/* specific quest enemies (NON_PM == random) */
 	      enemy2num;
 	char  enemy1sym,	/* quest enemies by class (S_) */

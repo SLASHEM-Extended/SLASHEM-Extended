@@ -14028,6 +14028,8 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies19)) ct += u.freqspeciesbonus9;
 		if (ct > 0 && (mndx == u.frequentspecies20)) ct += u.freqspeciesbonus10;
 
+		if (ct > 0 && (mndx == urole.nemesnum)) ct += 100;
+
 		if (ct > 0 && (urole.enemy1num != NON_PM) && (mndx == urole.enemy1num)) ct += 125;
 		if (ct > 0 && (urole.enemy2num != NON_PM) && (mndx == urole.enemy2num)) ct += 25;
 
@@ -14284,6 +14286,8 @@ int     spc;
 		if (last == u.frequentspecies20) num += u.freqspeciesbonus10;
 		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
 
+		if (last == urole.nemesnum) num += 100;
+
 		if ((urole.enemy1num != NON_PM) && (last == urole.enemy1num)) num += 125;
 		if ((urole.enemy2num != NON_PM) && (last == urole.enemy2num)) num += 25;
 
@@ -14339,6 +14343,8 @@ int     spc;
 		if (first == u.frequentspecies20) num -= u.freqspeciesbonus10;
 		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
 		
+		if (first == urole.nemesnum) num -= 100;
+
 		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;
 		if ((urole.enemy2num != NON_PM) && (first == urole.enemy2num)) num -= 25;
 
