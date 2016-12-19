@@ -411,7 +411,6 @@ register struct monst *mtmp;
 		u.alignlim--;
 	    adjalign(-5);
 	}
-#ifdef JEDI
 /* as well as for the way of the Jedi */
 	if (Role_if(PM_JEDI) && mtmp->mpeaceful &&
 	    u.ualign.record > -10) {
@@ -427,7 +426,6 @@ register struct monst *mtmp;
 		u.alignlim--;
 	    adjalign(-5);
 	}
-#endif
 
 /*	Adjust vs. (and possibly modify) monster state.		*/
 
@@ -506,7 +504,6 @@ register struct monst *mtmp;
 
 	}
 
-#ifdef JEDI
 	if( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
@@ -517,7 +514,6 @@ register struct monst *mtmp;
 		    tmp-=20; // sorry
 		}
 	}
-#endif
 	/* special class effect uses... */
 	if (tech_inuse(T_KIII)) tmp += 4;
 	if (tech_inuse(T_BERSERK)) tmp += 2;
@@ -1318,7 +1314,6 @@ int thrown;
 			hittxt = TRUE;
 		    }
 
-#ifdef JEDI
 		    else if (obj == uwep &&
 			  ( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && is_lightsaber(obj)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE &&
@@ -1342,7 +1337,6 @@ int thrown;
 			}
 			hittxt = TRUE;
 		    }
-#endif
 		    if (obj->oartifact &&
 			artifact_hit(&youmonst, mon, obj, &tmp, dieroll)) {
 			if(mon->mhp <= 0) /* artifact killed monster */

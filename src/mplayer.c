@@ -500,7 +500,6 @@ register boolean special;
 		    if (rn2(4)) helm = HELM_OF_BRILLIANCE;
 		    shield = STRANGE_OBJECT;
 		    break;
-#ifdef JEDI
 		case PM_JEDI:
 		case PM_PADAWAN:
 		    switch(rnd(3)){
@@ -513,7 +512,6 @@ register boolean special;
 		    helm = STRANGE_OBJECT;
 		    shield = STRANGE_OBJECT;
 		    break;
-#endif
 		default: impossible("bad mplayer monster");
 		    weapon = 0;
 		    break;

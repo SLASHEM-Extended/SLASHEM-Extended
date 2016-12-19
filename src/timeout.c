@@ -5143,12 +5143,10 @@ begin_burn(obj, already_lit)
 	    case GREEN_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
-#ifdef JEDI
 		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
 			do_timer = FALSE;
 			obj->lamplit = 1;
 		}
-#endif
 		break;
 	    case POT_OIL:
 		turns = obj->age;
@@ -5252,9 +5250,7 @@ end_burn(obj, timer_attached)
 	}
 
 	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE ||
-#ifdef JEDI
 		obj->oartifact == ART_LIGHTSABER_PROTOTYPE ||
-#endif
 		artifact_light(obj))
 	    timer_attached = FALSE;
 

@@ -870,9 +870,7 @@ static const char *build_opts[] = {
 		"timed wait for display effects",
 #endif
 		"lightsabers",
-# ifdef JEDI
 		"Jedi",
-# endif
 #ifdef FIREARMS
 		"firearms",
 #endif

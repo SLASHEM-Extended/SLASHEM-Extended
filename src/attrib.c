@@ -317,13 +317,11 @@ const struct innate {
 		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
 		     {   0, 0, 0, 0 } },
 
-#ifdef JEDI
 	jed_abil[] = { {   1, &(HStealth), "", ""},
 		       {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
 		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
 		       {   7, &(HFast), "quick", "slow" },
 		       { 0, 0, 0, 0 } },
-#endif
 			
 	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	 0, 0, 0, 0 } },
@@ -1432,9 +1430,7 @@ int oldlevel, newlevel;
 	case PM_ELECTRIC_MAGE:	abil = ele_abil;	break;
 	case PM_POISON_MAGE:	abil = psn_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
-#ifdef JEDI
 	case PM_JEDI:		abil = jed_abil;	break;
-#endif
 	case PM_KNIGHT:         abil = kni_abil;	break;
 	case PM_WARRIOR:         abil = war_abil;	break;
 	case PM_AUGURER:         abil = aug_abil;	break;

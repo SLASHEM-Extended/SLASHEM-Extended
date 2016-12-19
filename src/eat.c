@@ -4849,13 +4849,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-#ifdef JEDI
 	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_NO_DIGESTION || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 		pline("The %s covers your whole face.", xname(uarmh));
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-#endif
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 

@@ -1936,13 +1936,11 @@ dodrink()
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-#ifdef JEDI
 	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 		pline("The %s covers your whole face.", xname(uarmh));
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-#endif
 
 	*qp++ = ALLOW_FLOOROBJ;
 	if (!u.uswallow && (IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||

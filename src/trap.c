@@ -11136,10 +11136,8 @@ boolean force_failure;
 	boolean under_u = (!u.dx && !u.dy);
 	boolean holdingtrap = (ttype == BEAR_TRAP || ttype == WEB);
 
-#ifdef JEDI
 	if (tech_inuse(T_TELEKINESIS) && !force_failure)
 		return 2;
-#endif
 	
 	/* Test for monster first, monsters are displayed instead of trap. */
 	if (mtmp && (!mtmp->mtrapped || !holdingtrap)) {

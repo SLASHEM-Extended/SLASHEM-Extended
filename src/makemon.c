@@ -729,9 +729,7 @@ register struct monst *mtmp;
 #ifdef YEOMAN
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER
 #endif
-#ifdef JEDI
 				|| mm == PM_JEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
-#endif
 				|| mm == PM_ENEMY_TROOPER || mm == PM_INFANTRYMAN || mm == PM_CUNTGUN_TROOPER
 				|| mm == PM_GI_TROOPER || mm == PM_HEAVY_WEAPON_DUDE || mm == PM_RIFLEMAN
 				|| mm == PM_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
@@ -873,7 +871,6 @@ register struct monst *mtmp;
 #endif
 			  w1 = rn2(2) ? BROADSWORD : LONG_SWORD;
 			  break;
-#ifdef JEDI
 			case PM_PADAWAN:
 			case PM_JEDI:
 			  switch(rnd(3)){
@@ -903,7 +900,6 @@ register struct monst *mtmp;
 			  mongets(mtmp, PLASTEEL_HELM);
 			  break;
 #endif // FIREARMS
-#endif // JEDI
 
 #ifdef FIREARMS
 			case PM_HEAVY_WEAPON_DUDE:

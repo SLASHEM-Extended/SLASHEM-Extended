@@ -233,7 +233,6 @@ const char *name;	/* if null, then format `obj' */
 			use_skill(P_SHIELD, 1);
 			return(0);
 
-#ifdef JEDI
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
 		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
@@ -241,7 +240,6 @@ const char *name;	/* if null, then format `obj' */
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
-#endif
 	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
 		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&

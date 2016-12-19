@@ -17,9 +17,7 @@ static int FDECL(techeffects, (int));
 static void FDECL(hurtmon, (struct monst *,int));
 static int FDECL(mon_to_zombie, (int));
 STATIC_PTR int NDECL(tinker);
-#ifdef JEDI
 STATIC_PTR int NDECL(charge_saber);
-#endif
 STATIC_PTR int NDECL(draw_energy);
 static const struct innate_tech * NDECL(role_tech);
 static const struct innate_tech * NDECL(race_tech);
@@ -110,11 +108,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"blood ritual",
 	"ent's potion",
 	"lucky gamble",
-#ifdef JEDI
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
-#endif
 	""
 };
 
@@ -367,14 +363,12 @@ static const struct innate_tech
 		       {  12, T_POWER_SURGE, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
-#ifdef JEDI
 	jed_tech[] = { {   1, T_JEDI_JUMP, 1},
 		       {   5, T_CHARGE_SABER, 1},
 		       {   8, T_TELEKINESIS, 1},
 		       {   15, T_SHIELD_BASH, 1},
 		       {   25, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0,} },
-#endif
 	kni_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_HEAL_HANDS, 1},
 		       {   1, T_SHIELD_BASH, 1},
@@ -2985,7 +2979,6 @@ int tech_no;
 		}
 		t_timeout = rnz(1500);
 		break;
-#ifdef JEDI
 	    case T_JEDI_JUMP:
 		if (u.uen < 25){
 			You("can't channel the force around you. Jedi jumps require 25 points of mana!");
@@ -3580,7 +3573,6 @@ int tech_no;
 	      set_occupation(charge_saber, "charging", 0);
 	      t_timeout = rnz(500);
 	      break;
-#endif
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
 		return(0);
@@ -3798,9 +3790,7 @@ role_tech()
 		case PM_POISON_MAGE:	return (psn_tech);
 		case PM_HEALER:		return (hea_tech);
 		case PM_ICE_MAGE:	return (ice_tech);
-#ifdef JEDI
 		case PM_JEDI:		return (jed_tech);
-#endif
 		case PM_KNIGHT:		return (kni_tech);
 		case PM_KORSAIR:		return (kor_tech);
 		case PM_JUSTICE_KEEPER:		return (jus_tech);
@@ -4000,7 +3990,6 @@ int monnum;
 	else return PM_GHOUL;
 }
 
-#ifdef JEDI
 STATIC_PTR int
 charge_saber()
 {
@@ -4028,7 +4017,6 @@ charge_saber()
 	flags.botl=1;
 	return(0);
 }
-#endif
 
 /*WAC tinker code*/
 STATIC_PTR int

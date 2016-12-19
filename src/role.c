@@ -1539,7 +1539,6 @@ const struct Role roles[] = {
 	2, 10, A_INT, SPE_CHARGING,        -4 /* From old role.c */
 },
 
-#ifdef JEDI
 {	{"Jedi", 0}, {
 	{"Youngling",     0},
 	//{"Padawan",       0},
@@ -1555,9 +1554,6 @@ const struct Role roles[] = {
 	PM_JEDI, NON_PM, PM_UNDEAD_JEDI, NON_PM, PM_LITTLE_DOG,
 	PM_THE_JEDI_MASTER, PM_PADAWAN, PM_LORD_SIDIOUS,
 	PM_STORMTROOPER, PM_STORMTROOPER, S_HUMAN, S_HUMAN,
-#if 0
-	???
-#endif
 	ART_LIGHTSABER_PROTOTYPE,
 	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
 	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
@@ -1571,7 +1567,6 @@ const struct Role roles[] = {
 	0, 12 , -1, 
 	2, 10, A_INT, SPE_CHARM_MONSTER,    -4
 },
-#endif
 
 {	{"Jester", 0}, {
 	{"Little Fool",     0},

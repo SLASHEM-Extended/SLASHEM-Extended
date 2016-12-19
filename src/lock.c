@@ -729,11 +729,9 @@ doforce()		/* try to force a chest with your weapon */
 			&& mtmp->m_ap_type != M_AP_OBJECT) {
 
 		if (mtmp->isshk || mtmp->data == &mons[PM_ORACLE])		
-#ifdef JEDI
 		  if (Role_if(PM_JEDI))
 		    verbalize("Your puny Jedi tricks won't work on me!"); /* Return of the Jedi */
 		  else
-#endif
 
 		    verbalize("What do you think you are, a Jedi?"); /* Phantom Menace */
 		else {

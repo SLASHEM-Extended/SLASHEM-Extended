@@ -2296,7 +2296,6 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if(mdef->data == &mons[PM_AUROR] && magr->data == &mons[PM_FELLOW_DEATH_EATER])
 		return ALLOW_M|ALLOW_TM;
 
-#ifdef JEDI
 	/* Stormtroopers vs. Padawans */
 	if(magr->data == &mons[PM_STORMTROOPER] && mdef->data == &mons[PM_PADAWAN])
 		return ALLOW_M|ALLOW_TM;
@@ -2321,7 +2320,6 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	/* and vice versa */
 	if(mdef->data == &mons[PM_LORD_SIDIOUS] && magr->data == &mons[PM_JEDI])
 		return ALLOW_M|ALLOW_TM;
-#endif
 
 	return 0L;
 }

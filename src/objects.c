@@ -734,10 +734,8 @@ ARMOR("full plate mail", (char *)0,
 	1, 0, 1, 0,	 50, 5, 250, 600, -2, 2, ARM_SUIT, IRON, HI_METAL),
 ARMOR("droven plate mail", "crested black plate",
 	0, 0, 1, 0,	2, 5, 50, 	2000,  0, 1, ARM_SUIT, MINERAL, CLR_BLACK),
-#ifdef JEDI
 ARMOR("plasteel armor", (char *)0,
 	1, 0, 1, 0, 50, 5, 50,  80,  4, 0, ARM_SUIT, PLASTIC, CLR_WHITE),
-#endif
 ARMOR("crystal plate mail", (char *)0,
 	1, 0, 1, 0,	104, 5, 200, 820,  -1, 2, ARM_SUIT, GLASS, CLR_WHITE),
 #ifdef TOURIST
@@ -1269,10 +1267,8 @@ HELM("antenna", (char *)0,
 HELM("chain coif", (char *)0,
 		1, 0,  0,			2, 0,  6,  20, 9, 0, IRON, HI_METAL),
 
-#ifdef JEDI
 HELM("plasteel helm", (char *)0,
 		1, 0, 0,                 10, 1,  2,  20, 7, 9, PLASTIC, CLR_WHITE),
-#endif
 /* ...with shuffled appearances */
 HELM("helmet", "plumed helmet",
 		0, 0, 0,		   52, 1, 20,  50, 9, 0, IRON, HI_METAL),
@@ -1411,10 +1407,8 @@ HELM("helm of telepathy", "visored helmet",
 /* these have their color but not material shuffled, so the IRON must stay
  * CLR_BROWN (== HI_LEATHER)
  */
-#ifdef JEDI
 GLOVES("plasteel gloves", "white gloves",
 		0, 0,  0,                        8, 1,  2, 25,  8, 0, PLASTIC, CLR_WHITE),
-#endif
 GLOVES("leather gloves", "old gloves",
 		0, 0,  0,			118, 1, 4,  50,  9, 0, LEATHER, HI_LEATHER),
 GLOVES("orihalcyon gauntlets", "fighting gloves",
@@ -1613,10 +1607,8 @@ SHIELD("shield of reflection", "polished silver shield",
 		0, 1, 0, REFLECTING, 30, 0, 20, 50,  6, 0, SILVER, HI_SILVER),
 
 /* Boots */
-#ifdef JEDI
 BOOTS("plasteel boots", "white boots", /* these things were crashing the game for binders and certain other chars! */
 		0, 0,  0,         10, 2, 2,  25,  8, 9, PLASTIC, CLR_WHITE),
-#endif
 BOOTS("low boots", "walking shoes",
 		0, 0,  0,	  168, 2, 4,  8,  9, 0, LEATHER, HI_LEATHER),
 BOOTS("iron shoes", "hard shoes",

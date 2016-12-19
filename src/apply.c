@@ -1310,12 +1310,10 @@ struct obj *obj;
 		end_burn(obj, TRUE);
 		return;
 	}
-#ifdef JEDI
 	// for some reason, the lightsaber prototype is created with
 	// age == 0
 	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
 		obj->age = 300L;
-#endif
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {

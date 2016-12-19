@@ -120,9 +120,7 @@ Boots_on()
     oldprop = u.uprops[objects[uarmf->otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
     switch(uarmf->otyp) {
-#ifdef JEDI
 	case PLASTEEL_BOOTS:
-#endif
 	case LOW_BOOTS:
 	case IRON_SHOES:
 	case HIGH_BOOTS:
@@ -795,9 +793,7 @@ Boots_off()
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
-#ifdef JEDI
 	case PLASTEEL_BOOTS:
-#endif
 		break;
 	case HIPPIE_HEELS:
 
@@ -1787,9 +1783,7 @@ Helmet_on()
 		set_moreluck();
 		flags.botl = 1;
 		break;
-#ifdef JEDI
 	case PLASTEEL_HELM:
-#endif
 	case HELMET:
 
 	case NURSE_CAP:
@@ -2047,9 +2041,7 @@ Helmet_off()
 	    set_moreluck();
 	    flags.botl = 1;
 	    return 0;
-#ifdef JEDI
 	case PLASTEEL_HELM:
-#endif
 	case HELMET:
 
 	case NURSE_CAP:
@@ -2181,9 +2173,7 @@ Gloves_on()
     oldprop = u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
 
     switch(uarmg->otyp) {
-#ifdef JEDI
 	case PLASTEEL_GLOVES:
-#endif
 	case LEATHER_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
@@ -2393,9 +2383,7 @@ Gloves_off()
     takeoff_mask &= ~W_ARMG;
 
     switch(uarmg->otyp) {
-#ifdef JEDI
 	case PLASTEEL_GLOVES:
-#endif
 	case LEATHER_GLOVES:
 	case OILSKIN_GLOVES:
 	case GAUNTLETS_OF_STEEL:
@@ -4032,13 +4020,11 @@ boolean noisy;
 		pline("Your tentacles prevent that action!");
 	    err++;
 
-#ifdef JEDI
 	/* mind flayers cannot wear helmets at all --Amy */
 	} else if (Upolyd && (is_mind_flayer(youmonst.data))) {
 		if (noisy)
 			pline_The("%s won't fit over your tentacles.", xname(otmp));
 		err++;
-#endif
 	} else
 	    *mask = W_ARMH;
     } else if (is_shield(otmp)) {
@@ -4365,13 +4351,11 @@ doputon()
 		}
 		if (otmp->oartifact && !touch_artifact(otmp, &youmonst))
 		    return 1;
-#ifdef JEDI
 		if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 			pline("The %s covers your whole face. You need to remove it first.", xname(uarmh));
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		}
-#endif
 		Blindf_on(otmp);
 		return(1);
 	}

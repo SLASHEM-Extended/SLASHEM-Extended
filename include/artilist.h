@@ -5574,13 +5574,10 @@ A("The Crown of Saint Edward", HELM_OF_TELEPATHY,
 	0,  A_LAWFUL, PM_YEOMAN, NON_PM, 5000L ),
 #endif
 
-#ifdef JEDI
 A("The Lightsaber Prototype", RED_LIGHTSABER,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
 	PHYS(5, 5),	NO_DFNS, NO_CARY,
 	ENERGY_BOOST,	A_LAWFUL, PM_JEDI, NON_PM, 3500L ),
-#endif
-
 
 /*
  *  terminator; otyp must be zero

@@ -1910,12 +1910,10 @@ struct monst * mon;
 	/* No obj or not lightsaber */
 	if (!obj || !is_lightsaber(obj)) return;
 
-#ifdef JEDI
 	// for some reason, the lightsaber prototype is created with
 	// age == 0
 	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
 		obj->age = 300L;
-#endif
 	/* WAC - Check lightsaber is on */
 	if (!obj->lamplit) {
 	    if (obj->cursed && !rn2(2)) {
@@ -3321,7 +3319,6 @@ struct obj *weapon;
 	}
 #endif
 
-#ifdef JEDI
 	/* Jedi are simply better */
 	if (Role_if(PM_JEDI) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
@@ -3349,7 +3346,6 @@ struct obj *weapon;
 			default: impossible("unknown lightsaber skill for a borg"); break;
 		}
 	}
-#endif
 
 	/* Ogres are supposed to have a use for that weak starting club of theirs after all --Amy */
 	if (Race_if(PM_OGRO) && weapon && weapon_type(weapon) == P_CLUB){

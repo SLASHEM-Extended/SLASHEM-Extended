@@ -1191,7 +1191,6 @@ int thrown;
             else setuqwep(obj);*/
 		return;
 	    }
-#ifdef JEDI
 	    if (u.dz < 0 && Role_if(PM_JEDI) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
 			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
@@ -1204,7 +1203,6 @@ int thrown;
 		u.twoweap = twoweap;
 		return;
 	    }
-#endif
 #ifdef FIREARMS
 	    /* [ALI]
 	     * Grenades are armed but are then processed by toss_up/hitfloor
@@ -1368,11 +1366,6 @@ int thrown;
 		if (obj != uball) (void) mpickobj(u.ustuck,obj,FALSE);
 	} else {
 		/* the code following might become part of dropy() */
-#ifndef JEDI
-		if (obj->oartifact == ART_MJOLLNIR &&
-			Role_if(PM_VALKYRIE) && rn2(100)) {
-		    /* we must be wearing Gauntlets of Power to get here */
-#else
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
 		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
@@ -1385,7 +1378,6 @@ int thrown;
 		    } else {
 		      if (Role_if(PM_JEDI))
 			u.uen -= 5;
-#endif
 		    sho_obj_return_to_u(obj);	    /* display its flight */
 
 		    if (!impaired && rn2(100)) {
@@ -1423,9 +1415,7 @@ int thrown;
 		    }
 		    thrownobj = (struct obj*)0;
 		    return;
-#ifdef JEDI
 		    }
-#endif
 		}
 
 		if (!IS_SOFT(levl[bhitpos.x][bhitpos.y].typ) &&

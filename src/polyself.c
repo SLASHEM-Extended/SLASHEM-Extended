@@ -1000,7 +1000,6 @@ break_armor()
 	    }
 	}
     }
-#ifdef JEDI
     if ((otmp = uarmh) != 0 && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
 	    if (!otmp->cursed){
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
@@ -1010,7 +1009,6 @@ break_armor()
 	      useup(uarmh);
 	    }
     }
-#endif
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
 	if ((otmp = uarmg) != 0) {
 	    if (donning(otmp)) cancel_don();

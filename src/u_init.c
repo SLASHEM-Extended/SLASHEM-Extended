@@ -751,7 +751,6 @@ static struct trobj Ice_Mage[] = {
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ 0, 0, 0, 0, 0 }
 };
-#ifdef JEDI
 static struct trobj Jedi[] = {
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
@@ -784,7 +783,6 @@ static struct trobj PeacemakerItems[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
-#endif
 static struct trobj Knight[] = {
 	{ LONG_SWORD, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ LANCE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
@@ -4317,7 +4315,6 @@ static const struct def_skill Skill_I[] = {
     { P_NONE, 0 }
 };
 
-#ifdef JEDI
 static const struct def_skill Skill_J[] = {
     { P_LIGHTSABER, P_GRAND_MASTER },
     { P_SHORT_SWORD, P_EXPERT }, { P_BROAD_SWORD, P_EXPERT },
@@ -4344,7 +4341,6 @@ static const struct def_skill Skill_J[] = {
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
 };
-#endif
 
 static const struct def_skill Skill_Fox[] = {
 
@@ -8413,7 +8409,6 @@ u_init()
 		knows_classX(POTION_CLASS);
 		break;
 
-#ifdef JEDI
 	case PM_JEDI:
 		ini_inv(Jedi);
 		switch(rnd(3)) {
@@ -8427,7 +8422,6 @@ u_init()
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		break;
-#endif
 	case PM_KNIGHT:
 		ini_inv(Knight);
 		knows_class(WEAPON_CLASS);
@@ -9280,11 +9274,9 @@ u_init()
 		skill_init(Skill_Sci);
 		break;
 
-#ifdef JEDI
 	case PM_JEDI:
 		skill_init(Skill_J);
 		break;
-#endif
 	case PM_KNIGHT:
 		skill_init(Skill_K);
 		break;
@@ -22692,7 +22684,6 @@ register struct trobj *trop;
 				otyp = objX->otyp;
 			}
 			}
-#ifdef JEDI
 			if (is_lightsaber(obj))
 				obj->age = 1500;
 			if (Race_if(PM_HAXOR)) {
@@ -22702,7 +22693,6 @@ register struct trobj *trop;
 			/* start with maxed lightsaber
 			only Jedi start with one, so no need to check
 			Role_if here */
-#endif
 
 			/* Don't start with +0 or negative rings */
 			if (objects[otyp].oc_charged && obj->spe </*=*/ 0)

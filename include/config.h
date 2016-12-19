@@ -428,7 +428,7 @@ typedef unsigned char	uchar;
 #define INVISIBLE_OBJECTS /* Not yet fully implemented (but still unconditionally enabled by Amy) */
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph (unconditionally enabled by Amy) */
 #define LIGHTSABERS	/* unconditionally enabled by Amy */
-#define JEDI
+#define JEDI		/* unconditionally enabled by Amy */
 #define CONVICT		/* Convict player with heavy iron ball */
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets */
