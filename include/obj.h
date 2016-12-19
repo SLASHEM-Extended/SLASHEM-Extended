@@ -25,9 +25,7 @@ struct obj {
 	unsigned o_id;
 	xchar ox,oy;
 	/*short*/long otyp;		/* object class number */
-#ifdef UNPOLYPILE
 	/*short*/long oldtyp;	/* WAC for unpolymorph */
-#endif
 	unsigned owt;
 	long quan;		/* number of items */
 
@@ -139,9 +137,7 @@ struct obj {
 #define ONAME(otmp)	(((char *)(otmp)->oextra) + (otmp)->oxlth)
 
 /* All objects */
-#ifdef UNPOLYPILE
 #define is_hazy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
-#endif
 /* [ALI] None of the objects listed here can be picked up by normal monsters.
  * If any such objects need to be marked as indestructible then consideration
  * will need to be given to what happens when such a monster disappears

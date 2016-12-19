@@ -4320,9 +4320,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    flags.pickup_thrown && obj->was_thrown != otmp->was_thrown ||
 	    obj->oinvis != otmp->oinvis ||
 	    obj->oinvisreal != otmp->oinvisreal ||
-#ifdef UNPOLYPILE
 	    obj->oldtyp != otmp->oldtyp ||
-#endif
 	    obj->greased != otmp->greased ||
 	    obj->oeroded != otmp->oeroded ||
 	    obj->oeroded2 != otmp->oeroded2 ||

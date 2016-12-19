@@ -5436,9 +5436,7 @@ register struct obj *obj;
 	}
 
 	if ((!carried(obj) || obj->unpaid) &&
-#ifdef UNPOLYPILE
 		!is_hazy(obj) &&
-#endif
 		get_obj_location(obj, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
 	    char objroom = *in_rooms(ox, oy, SHOPBASE);
@@ -5741,7 +5739,6 @@ dodip()
 	    }
 	    potion->in_use = FALSE;	/* didn't go poof */
 	    return(1);
-#ifdef UNPOLYPILE
 	} else if (potion->otyp == POT_RESTORE_ABILITY && is_hazy(obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
 		if (!stack_too_big(obj)) {stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
@@ -5751,7 +5748,6 @@ dodip()
 		}
 		useup(potion);
 		return (1);
-#endif
 	} else if(obj->oclass == POTION_CLASS && obj->otyp != potion->otyp) {
 		/* Mixing potions is dangerous... */
 		pline_The("potions mix...");

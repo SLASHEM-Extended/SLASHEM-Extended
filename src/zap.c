@@ -2323,9 +2323,7 @@ poly_obj(obj, id)
 	int obj_location = obj->where;
 	int old_nutrit, new_nutrit;
 
-#ifdef UNPOLYPILE
 	boolean unpoly = (id == STRANGE_OBJECT);
-#endif
 
 	if (stack_too_big(obj)) return obj;
 
@@ -2398,44 +2396,32 @@ poly_obj(obj, id)
 	if (obj->otyp == SCR_MAIL) {
 		otmp->otyp = SCR_MAIL;
 		otmp->spe = 1;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 #endif
 
 	if (obj->otyp == SCR_HEALING) {
 		otmp->otyp = SCR_HEALING;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 
 	if (obj->otyp == SCR_STANDARD_ID) {
 		otmp->otyp = SCR_STANDARD_ID;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 	
 	if (obj->otyp == SCR_MANA) {
 		otmp->otyp = SCR_MANA;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 	
 	if (obj->otyp == SCR_CURE) {
 		otmp->otyp = SCR_CURE;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 	if (obj->otyp == SCR_PHASE_DOOR) {
 		otmp->otyp = SCR_PHASE_DOOR;
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC -- no change! */
-#endif
 	}
 	
 
@@ -2445,9 +2431,7 @@ poly_obj(obj, id)
 		int mnum, tryct = 100;
 
 
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC no unpolying eggs */
-#endif
 		/* first, turn into a generic egg */
 		if (otmp->otyp == EGG)
 		    kill_egg(otmp);
@@ -2501,9 +2485,7 @@ poly_obj(obj, id)
 		otmp->opoisoned = TRUE;
 
 	if (id == STRANGE_OBJECT && obj->otyp == CORPSE) {
-#ifdef UNPOLYPILE
 		unpoly = FALSE;	/* WAC - don't bother */
-#endif
 	/* turn crocodile corpses into shoes */
 	    if (obj->corpsenm == PM_CROCODILE) {
 		otmp->otyp = LOW_BOOTS;
@@ -2530,18 +2512,14 @@ poly_obj(obj, id)
 	    if(otmp->otyp == MAGIC_LAMP) {
 		otmp->otyp = OIL_LAMP;
 		otmp->age = 1500L;	/* "best" oil lamp possible */
-#ifdef UNPOLYPILE
 		unpoly = FALSE;
-#endif
 	    } else if (otmp->otyp == MAGIC_MARKER) {
 		otmp->recharged = 1;	/* degraded quality */
 	    }
-#ifdef UNPOLYPILE
 	    else if (otmp->otyp == LAND_MINE || otmp->otyp == BEARTRAP) {
 		/* Avoid awkward questions about traps set using hazy objs */
 		unpoly = FALSE;
 	    }
-#endif
 	    /* don't care about the recharge count of other tools */
 	    break;
 
@@ -2678,14 +2656,12 @@ poly_obj(obj, id)
 		otmp->otyp != BOULDER)
 	    unblock_point(obj->ox, obj->oy);
 
-#ifdef UNPOLYPILE
 	/* WAC -- Attach unpoly timer if this is a standard poly */
 	if (unpoly /* && !rn2(20) */) {
 		set_obj_poly(otmp, obj);
 		if (is_hazy(otmp) && !Blind && carried(obj))
 			pline("%s seems hazy.", Yname2(otmp));
 	}
-#endif
 
 	/* ** we are now done adjusting the object ** */
 
@@ -2710,9 +2686,7 @@ poly_obj(obj, id)
 	}
 
 	if ((!carried(otmp) || obj->unpaid) &&
-#if defined(UNPOLYPILE)
 		!is_hazy(obj) &&
-#endif
 		get_obj_location(otmp, &ox, &oy, BURIED_TOO|CONTAINED_TOO) &&
 		costly_spot(ox, oy)) {
 	    char objroom = *in_rooms(ox, oy, SHOPBASE);

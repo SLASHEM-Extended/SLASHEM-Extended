@@ -4541,10 +4541,8 @@ register struct obj *obj;
 
 	if (obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"hidden ");
 	if (obj->oinvis && !obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"invisible ");
-#if defined(WIZARD) && defined(UNPOLYPILE)
 	if (/*wizard && */is_hazy(obj) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) Strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
-#endif
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
 	    obj->bknown && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY)  &&

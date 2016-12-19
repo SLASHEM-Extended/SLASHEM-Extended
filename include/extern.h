@@ -2420,10 +2420,8 @@ E void FDECL(substitute_tiles, (d_level *));
 E void NDECL(burn_away_slime);
 E void NDECL(nh_timeout);
 E void FDECL(fall_asleep, (int, BOOLEAN_P));
-#ifdef UNPOLYPILE
 E void FDECL(set_obj_poly, (struct obj *, struct obj *));
 E void FDECL(unpoly_obj, (genericptr_t, long));
-#endif
 E int FDECL(mon_poly, (struct monst *, BOOLEAN_P, const char *));
 E int FDECL(mon_spec_poly, (struct monst *, struct permonst *, long,
 			    BOOLEAN_P, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P));

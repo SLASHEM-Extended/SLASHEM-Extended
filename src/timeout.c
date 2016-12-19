@@ -3961,7 +3961,6 @@ boolean wakeup_msg;
 }
 
 
-#ifdef UNPOLYPILE
 /* WAC polymorph an object
  * Unlike monsters,  this function is called after the polymorph
  */
@@ -4031,11 +4030,9 @@ unpoly_obj(arg, timeout)
 	}	
 	return;
 }
-#endif /* UNPOLYPILE */
 #endif /* OVL1 */
 #ifdef OVL0
 
-#ifdef UNPOLYPILE
 /*
  * Cleanup a hazy object if timer stopped.
  */
@@ -4055,7 +4052,6 @@ cleanup_unpoly(arg, timeout)
 	update_inventory();
 #endif
 }
-#endif /* UNPOLYPILE */
 
 #endif /* OVL0 */
 #ifdef OVL1
@@ -5472,9 +5468,7 @@ static const ttable timeout_funcs[NUM_TIME_FUNCS] = {
 #ifdef FIREARMS
     TTAB(bomb_blow,     (timeout_proc)0,	"bomb_blow"),
 #endif
-#ifdef UNPOLYPILE
     TTAB(unpoly_obj,    cleanup_unpoly,		"unpoly_obj"),
-#endif
 };
 #undef TTAB
 

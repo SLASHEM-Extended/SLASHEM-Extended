@@ -426,7 +426,7 @@ typedef unsigned char	uchar;
 /* monsters & objects */
 #define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM (unconditionally enabled by Amy) */
 #define INVISIBLE_OBJECTS /* Not yet fully implemented (but still unconditionally enabled by Amy) */
-#define UNPOLYPILE	/* WAC -- Items can unpolymorph */
+#define UNPOLYPILE	/* WAC -- Items can unpolymorph (unconditionally enabled by Amy) */
 #define LIGHTSABERS
 #define JEDI
 #define CONVICT		/* Convict player with heavy iron ball */

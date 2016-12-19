@@ -32,19 +32,11 @@ typedef void FDECL((*timeout_proc), (genericptr_t, long));
 #define UNPOLY_MON      7
 # ifdef FIREARMS
 #define BOMB_BLOW	8
-#  ifdef UNPOLYPILE
 #define UNPOLY_OBJ      9
 #define NUM_TIME_FUNCS  10
-#  else
-#define NUM_TIME_FUNCS  9
-#  endif
 # else /* FIREARMS */
-#  ifdef UNPOLYPILE
 #define UNPOLY_OBJ      8
 #define NUM_TIME_FUNCS  9
-#  else
-#define NUM_TIME_FUNCS  8
-#  endif
 # endif /* FIREARMS */
 
 /* used in timeout.c */
