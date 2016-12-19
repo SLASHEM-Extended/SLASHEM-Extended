@@ -415,7 +415,7 @@ typedef unsigned char	uchar;
  */
 
 /* dungeon features */
-/*#define SINKS*/		/* Kitchen sinks - Janet Walz (unconditionally enabled by Amy) */
+#define SINKS		/* Kitchen sinks - Janet Walz (unconditionally enabled by Amy) */
 #define LIGHT_SRC_SPELL /* WAC Light sourced spells (wac@intergate.bc.ca)*/
 
 /* dungeon levels */
@@ -424,7 +424,7 @@ typedef unsigned char	uchar;
 #define BLACKMARKET     /* Massimo Campostrini (campo@sunthpi3.difi.unipi.it) */
 
 /* monsters & objects */
-#define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM */
+#define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM (unconditionally enabled by Amy) */
 #define INVISIBLE_OBJECTS /* Not yet fully implemented */
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph */
 #define LIGHTSABERS

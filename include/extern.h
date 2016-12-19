@@ -1228,9 +1228,7 @@ E int FDECL(gazemu, (struct monst *,struct attack *));
 E void FDECL(mdamageu, (struct monst *,int));
 E int FDECL(could_seduce, (struct monst *,struct monst *,struct attack *));
 E int FDECL(could_seduceX, (struct monst *,struct monst *,struct attack *));
-#ifdef SEDUCE
 E int FDECL(doseduce, (struct monst *));
-#endif
 
 /* ### minion.c ### */
 

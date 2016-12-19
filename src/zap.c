@@ -1412,9 +1412,7 @@ coord *cc;
 		/* most cancelled monsters return to normal,
 		   but some need to stay cancelled */
 		if (!dmgtype(mtmp2->data, AD_SEDU)
-#ifdef SEDUCE
 			&& !dmgtype(mtmp2->data, AD_SSEX)
-#endif
 			&& mtmp2->mnum != PM_GYPSY
 			/* Gypsies use mcan to enforce the rule that they only
 			* ever grant one wish.
