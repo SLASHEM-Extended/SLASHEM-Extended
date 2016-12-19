@@ -3179,9 +3179,9 @@ newboss:
  * +2 blessed) for the basis of regeneration calculations.
  */
 
-
- 			int efflev = u.ulevel + (u.uhealbonus);
- 			int effcon = ACURR(A_CON) + (u.uhealbonus);
+			/* adjustments by Amy - make it slower, because otherwise intrinsic regeneration is useless later on */
+ 			int efflev = rnd(u.ulevel) + (u.uhealbonus);
+ 			int effcon = rnd(ACURR(A_CON)) + (u.uhealbonus);
 
 			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
