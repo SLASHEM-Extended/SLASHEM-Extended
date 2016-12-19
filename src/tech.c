@@ -3855,9 +3855,7 @@ race_tech()
 {
 	switch (Race_switch) {
 		case PM_DOPPELGANGER:	return (dop_tech);
-#ifdef DWARF
 		case PM_DWARF:		return (dwa_tech);
-#endif
 		case PM_ELF:
 		case PM_DROW:		return (elf_tech);
 		case PM_CURSER:		return (cur_tech);

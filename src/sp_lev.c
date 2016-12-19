@@ -1713,20 +1713,16 @@ struct mkroom	*croom;
 	       orcs, ogres, & zombies (because gnomes & dwarves are friendly...
 	       the mines would be hella easy otherwise) */
 		if (In_mines(&u.uz) && (
-#ifdef DWARF
 			Race_if(PM_DWARF) ||
-#endif
 			Race_if(PM_GNOME))) {
 		switch (m->id) {
 		  case PM_GNOME: m->id = PM_GNOME_ZOMBIE; break;
 		  case PM_GNOMISH_WIZARD: m->id = PM_ORC_SHAMAN; break;
 		  case PM_GNOME_LORD: m->id = PM_GNOME_MUMMY; break;
 		  case PM_GNOME_KING: m->id = PM_OGRE; break;
-#ifdef DWARF
 		  case PM_DWARF: m->id = PM_DWARF_ZOMBIE; break;
 		  case PM_DWARF_LORD: m->id = PM_DWARF_MUMMY; break;
 		  case PM_DWARF_KING: m->id = PM_WAR_ORC; break;
-#endif
 		}
 	    }
 	    pm = &mons[m->id];
