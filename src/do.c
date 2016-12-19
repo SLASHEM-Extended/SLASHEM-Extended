@@ -261,12 +261,10 @@ const char *verb;
 				The(xname(obj)), otense(obj, "tumble"),
 				the_your[t->madeby_u]);
 	}
-#ifdef LIGHTSABERS
 	if (is_lightsaber(obj) && obj->lamplit) {
 		if (cansee(x, y)) You("see %s deactivate.", an(xname(obj)));
 		lightsaber_deactivate(obj, TRUE);
 	}
-#endif
 	return FALSE;
 }
 

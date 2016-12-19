@@ -4971,7 +4971,6 @@ long timeout;
 
 		break;
 
-#ifdef LIGHTSABERS
 	    case RED_DOUBLE_LIGHTSABER:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
 		    obj->altmode = FALSE;
@@ -5029,7 +5028,6 @@ long timeout;
 		if (obj && obj->age && obj->lamplit) /* might be deactivated */
 		    begin_burn(obj, TRUE);
 		break;
-#endif
 
 #ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
@@ -5044,7 +5042,6 @@ long timeout;
 	if (need_newsym) newsym(x, y);
 }
 
-#ifdef LIGHTSABERS
 /* lightsabers deactivate when they hit the ground/not wielded */
 /* assumes caller checks for correct conditions */
 void
@@ -5076,7 +5073,6 @@ lightsaber_deactivate (obj, timer_attached)
 	if ((obj == uwep) || (u.twoweap && obj != uswapwep)) unweapon = TRUE;
 	end_burn(obj, timer_attached);
 }
-#endif
 
 /*
  * Start a burn timeout on the given object. If not "already lit" then
@@ -5133,7 +5129,6 @@ begin_burn(obj, already_lit)
 		do_timer = FALSE;
 		if (obj->otyp == MAGIC_CANDLE) obj->age = 300L;
 		break;
-#ifdef LIGHTSABERS
 	    case RED_DOUBLE_LIGHTSABER:
 	    	if (obj->altmode && obj->age > 1) 
 		    obj->age--; /* Double power usage */
@@ -5155,7 +5150,6 @@ begin_burn(obj, already_lit)
 		}
 #endif
 		break;
-#endif
 	    case POT_OIL:
 		turns = obj->age;
 		radius = 1;	/* very dim light */

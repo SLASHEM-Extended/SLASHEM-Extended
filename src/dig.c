@@ -139,28 +139,20 @@ xchar x, y;
 {
 	boolean ispick = is_pick(otmp);
 	boolean isantibar = is_antibar(otmp);
-#ifdef LIGHTSABERS
 	boolean issaber = is_lightsaber(otmp);
-#endif
 
 	return ((ispick
-#ifdef LIGHTSABERS
 		|| issaber
-#endif
 		) && sobj_at(STATUE, x, y) ? DIGTYP_STATUE :
 		(isantibar && IS_IRONBAR(levl[x][y].typ)) ? DIGTYP_IRONBAR :
 		(ispick
-#ifdef LIGHTSABERS
 		|| issaber
-#endif
 		) && sobj_at(BOULDER, x, y) ? DIGTYP_BOULDER :
 		closed_door(x, y) ? DIGTYP_DOOR :
 		IS_TREE(levl[x][y].typ) ?
 			(ispick ? DIGTYP_UNDIGGABLE : DIGTYP_TREE) :
 		(ispick
-#ifdef LIGHTSABERS
 		 || issaber
-#endif
 		) && IS_ROCK(levl[x][y].typ) &&
 			(!level.flags.arboreal || IS_WALL(levl[x][y].typ)) ?
 			DIGTYP_ROCK : DIGTYP_UNDIGGABLE);
@@ -187,9 +179,7 @@ dig_check(madeby, verbose, x, y)
 	struct trap *ttmp = t_at(x, y);
 	const char *verb =
 	    (madeby != BY_YOU || !uwep || is_pick(uwep)) ? "dig in" :
-#ifdef LIGHTSABERS
 	    is_lightsaber(uwep) ? "cut" :
-#endif
 	    "chop";
 
 	if (On_stairs(x, y)) {
@@ -243,9 +233,7 @@ dig()
 	register boolean ispick = uwep && is_pick(uwep);
 	const char *verb =
 	    (!uwep || is_pick(uwep)) ? "dig into" :
-#ifdef LIGHTSABERS
 	    is_lightsaber(uwep) ? "cut through" :
-#endif
 	    "chop through";
 	int bonus;
 
@@ -254,9 +242,7 @@ dig()
 	/* or perhaps you teleported away */
 	/* WAC allow lightsabers */
 	if (u.uswallow || !uwep || (!ispick &&
-#ifdef LIGHTSABERS
 		(!is_lightsaber(uwep) || !uwep->lamplit) &&
-#endif
 		!is_axe(uwep) && !is_antibar(uwep)) ||
 	    !on_level(&digging.level, &u.uz) ||
 	    ((digging.down ? (dpx != u.ux || dpy != u.uy)
@@ -281,10 +267,8 @@ dig()
 	    }
 	}
 	if(Fumbling &&
-#ifdef LIGHTSABERS
 		/* Can't exactly miss holding a lightsaber to the wall */
 		!is_lightsaber(uwep) &&
-#endif
 		!rn2(3)) {
 	    switch(rn2(3)) {
 	    case 0:
@@ -321,10 +305,8 @@ dig()
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
-#ifdef LIGHTSABERS
 	if (is_lightsaber(uwep))
 	    bonus -= rn2(20); /* Melting a hole takes longer */
-#endif
 
 	digging.effort += bonus;
 
@@ -338,9 +320,7 @@ dig()
 		}
 
 		if (digging.effort <= 50 ||
-#ifdef LIGHTSABERS
 		    is_lightsaber(uwep) ||
-#endif
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
 			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == SHAFT_TRAP ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
@@ -503,11 +483,9 @@ cleanup:
 		} else if (!IS_ROCK(lev->typ) && dig_target == DIGTYP_ROCK)
 		    return(0); /* statue or boulder got taken */
 		if(!did_dig_msg) {
-#ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep)) You("burn steadily through %s.",
 			the(d_target[dig_target]));
 		    else
-#endif
 		    You("hit the %s with all your might.",
 			d_target[dig_target]);
 		    did_dig_msg = TRUE;
@@ -989,16 +967,12 @@ struct obj *obj;
 	int dig_target, digtyp;
 	boolean ispick = is_pick(obj);
 	const char *verbing = ispick ? "digging" :
-#ifdef LIGHTSABERS
 		is_lightsaber(uwep) ? "cutting" :
-#endif
 		"chopping";
 
 	/* 0 = pick, 1 = lightsaber, 2 = axe */
 	digtyp = (is_pick(uwep) ? 0 :
-#ifdef LIGHTSABERS
 		is_lightsaber(uwep) ? 1 :
-#endif
 		2);
 
 	if (u.uswallow && attack(u.ustuck)) {

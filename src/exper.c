@@ -37,10 +37,7 @@ STATIC_DCL int FDECL(enermod, (int));
 #define PN_MARTIAL_ARTS		(-28)
 #define PN_RIDING		(-29)
 #define PN_TWO_WEAPONS		(-30)
-#ifdef LIGHTSABERS
 #define PN_LIGHTSABER		(-31)
-#endif
-
 
 #ifndef OVLB
 
@@ -59,9 +56,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	JAVELIN,          TRIDENT,        LANCE,        BOW,
 	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
 	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-#ifdef LIGHTSABERS
 	PN_LIGHTSABER,
-#endif
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
@@ -113,9 +108,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "martial arts",
     "riding",
     "two-weapon combat",
-#ifdef LIGHTSABERS
     "lightsaber"
-#endif
 };
 
 #endif	/* OVLB */

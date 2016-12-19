@@ -228,9 +228,7 @@ struct obj {
 			  (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#ifdef LIGHTSABERS
 #define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER)
-#endif
 
 #ifdef FIREARMS
 #define is_firearm(otmp) \

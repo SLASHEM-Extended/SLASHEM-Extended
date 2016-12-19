@@ -48,9 +48,7 @@
 #define PN_MARTIAL_ARTS		(-28)
 #define PN_RIDING		(-29)
 #define PN_TWO_WEAPONS		(-30)
-#ifdef LIGHTSABERS
 #define PN_LIGHTSABER		(-31)
-#endif
 
 #ifndef OVLB
 
@@ -69,9 +67,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	JAVELIN,          TRIDENT,        LANCE,        BOW,
 	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
 	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-#ifdef LIGHTSABERS
 	PN_LIGHTSABER,
-#endif
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
@@ -123,9 +119,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "martial arts",
     "riding",
     "two-weapon combat",
-#ifdef LIGHTSABERS
     "lightsaber"
-#endif
 };
 
 #endif	/* OVLB */
@@ -829,10 +823,8 @@ struct obj *obj;
 	if (obj->oclass == RING_CLASS)
 	    return (boolean)(objects[obj->otyp].oc_charged &&
 			(obj->known || objects[obj->otyp].oc_uname));
-#ifdef LIGHTSABERS
 	if (is_lightsaber(obj))
 	    return TRUE;
-#endif
 	if (is_weptool(obj))	/* specific check before general tools */
 	    return FALSE;
 	if (obj->oclass == TOOL_CLASS)
@@ -1088,7 +1080,6 @@ int curse_bless;
 		    p_glow1(obj);
 		}
 		break;
-#ifdef LIGHTSABERS
 	    case GREEN_LIGHTSABER:
 	    case BLUE_LIGHTSABER:
 #if 0
@@ -1124,7 +1115,6 @@ int curse_bless;
 		    p_glow1(obj);
 		}
 		break;
-#endif
 	    case CRYSTAL_BALL:
 
 		n = (int)obj->recharged;

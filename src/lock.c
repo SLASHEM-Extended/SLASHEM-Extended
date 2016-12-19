@@ -610,14 +610,12 @@ doforce()		/* try to force a chest with your weapon */
 	    You("are entangled in a web!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
-#ifdef LIGHTSABERS
 	} else if (uwep && is_lightsaber(uwep)) {
 	    if (!uwep->lamplit) {
 		Your("lightsaber is deactivated!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	    }
-#endif
 	} else if(uwep->otyp == LOCK_PICK ||
 #ifdef TOURIST
 	    uwep->otyp == CREDIT_CARD ||
@@ -639,11 +637,9 @@ doforce()		/* try to force a chest with your weapon */
 	    return(0);
 	}
 
-#ifdef LIGHTSABERS
 	if (is_lightsaber(uwep))
 	    picktyp = 2;
 	else
-#endif
 	picktyp = is_blade(uwep) ? 1 : 0;
 	if(xlock.usedtime && picktyp == xlock.picktyp) {
 	    if (xlock.box) {
@@ -703,21 +699,17 @@ doforce()		/* try to force a chest with your weapon */
 		if(c == 'q') return(0);
 		if(c == 'n') continue;
 
-#ifdef LIGHTSABERS
 		if(picktyp == 2)
 		    You("begin melting it with your %s.", xname(uwep));
 		else
-#endif
 		if(picktyp)
 		    You("force your %s into a crack and pry.", xname(uwep));
 		else
 		    You("start bashing it with your %s.", xname(uwep));
 		xlock.box = otmp;
-#ifdef LIGHTSABERS
 		if (is_lightsaber(uwep))
 		    xlock.chance = uwep->spe * 2 + 75;
 		else
-#endif
 		    xlock.chance = (uwep->spe + objects[uwep->otyp].oc_wldam) * 2;
 		xlock.picktyp = picktyp;
 		xlock.usedtime = 0;
@@ -873,9 +865,7 @@ doforce()		/* try to force a chest with your weapon */
 	    }
 	    /* Lightsabers dig through doors and walls via dig.c */
 	    if (is_pick(uwep) || is_antibar(uwep) ||
-#ifdef LIGHTSABERS
 		    is_lightsaber(uwep) ||
-#endif
 		    is_axe(uwep)) 
 	    	return use_pick_axe2(uwep);
 
@@ -910,11 +900,9 @@ doforce()		/* try to force a chest with your weapon */
 			You("force your %s into a crack and pry.", xname(uwep));
 		    else
 			You("start bashing it with your %s.", xname(uwep));
-#ifdef LIGHTSABERS
 		    if (is_lightsaber(uwep))
 			xlock.chance = uwep->spe + 38;
 		    else
-#endif
 			xlock.chance = uwep->spe + objects[uwep->otyp].oc_wldam;
 		    xlock.picktyp = picktyp;
 		    xlock.usedtime = 0;    

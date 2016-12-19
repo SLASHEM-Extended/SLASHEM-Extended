@@ -4611,9 +4611,7 @@ plus:
 		}
 #ifdef FIREARMS
 		if (
-# ifdef LIGHTSABERS
 			is_lightsaber(obj) ||
-# endif
 			obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) Strcat(bp, " (lit)");
 #  ifdef DEBUG
@@ -4622,14 +4620,12 @@ plus:
 		} else if (is_grenade(obj))
 		    if (obj->oarmed) Strcat(bp, " (armed)");
 #else	/* FIREARMS */
-# ifdef LIGHTSABERS
 		if (is_lightsaber(obj)) {
 		    if (obj->lamplit) Strcat(bp, " (lit)");
 #  ifdef DEBUG
 		    Sprintf(eos(bp), " (%d)", obj->age);		
 #  endif
 		}
-# endif
 #endif	/* FIREARMS */
 		break;
 	case ARMOR_CLASS:
@@ -5624,9 +5620,7 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",      WEAPON_CLASS, ORCISH_SHORT_SWORD,    TSURUGI },
 	{ "polearm",    WEAPON_CLASS, PARTISAN, LANCE },
-#ifdef LIGHTSABERS
 	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, RED_DOUBLE_LIGHTSABER },
-#endif
 #ifdef FIREARMS
 	{ "firearm", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "gun", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },

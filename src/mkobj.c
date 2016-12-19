@@ -1762,7 +1762,6 @@ boolean artif;
 					otmp->lamplit = 0;
 					blessorcurse_on_creation(otmp, 2);
 					break;
-#ifdef LIGHTSABERS
 		case RED_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
 		case GREEN_LIGHTSABER:
@@ -1791,7 +1790,6 @@ boolean artif;
 			} else	blessorcurse_on_creation(otmp, 10);
 
 		break;
-#endif
 		case CHEST:
 		case CHEST_OF_HOLDING:
 		case LARGE_BOX:

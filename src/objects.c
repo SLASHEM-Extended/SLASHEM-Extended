@@ -2240,13 +2240,8 @@ TOOL("beartrap", (char *)0,     1, 0, 0, 0,  10,20,  60, IRON, HI_METAL),
 /* KMH -- Not randomly generated (no damage!) */
 WEPTOOL("spoon", (char *)0,
 	1, 0, 0, 0,  10,  1, 5000,  0,  0, 0, WHACK,  -P_DART, PLATINUM, HI_METAL),
-#ifdef LIGHTSABERS
 WEPTOOL("pick-axe", (char *)0,
 	1, 0, 0, 0, 350, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
-#else	/* LIGHTSABERS */
-WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 0, 390, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, IRON, HI_METAL),
-#endif
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0, 50,  12,  50,  2,  6, 0, WHACK,  P_POLEARMS, METAL, HI_METAL),
 WEPTOOL("grappling hook", "iron hook",
@@ -2262,7 +2257,6 @@ OBJECT(OBJ("torch", (char *)0),
 	0, TOOL_CLASS, 250, 0,
 	20, 8, 2, 5, WHACK, 0, 20, HI_WOOD ),
 
-#ifdef LIGHTSABERS
 /* [WAC]
  * Lightsabers are -3 to hit 
  * Double lightsaber is -4 to hit (only red)
@@ -2292,7 +2286,6 @@ WEPTOOL("violet lightsaber",  "lightsaber",
 WEPTOOL("white lightsaber",  "lightsaber",
 	0, 0, 1, 0,  0, 60, 500, 5,  7, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
 #endif
-#endif	/* LIGHTSABERS */
 
 /* Other tools */
 #ifdef TOURIST

@@ -2402,9 +2402,7 @@ struct obj *otmp;
 		     otyp != AMULET_OF_YENDOR && otyp != FAKE_AMULET_OF_YENDOR))
 		|| (!strcmp(word, "write with") &&
 		    (otmp->oclass == TOOL_CLASS &&
-#ifdef LIGHTSABERS
 		     (!is_lightsaber(otmp) || !otmp->lamplit) &&
-#endif
 		     otyp != MAGIC_MARKER && otyp != FELT_TIP_MARKER && otyp != TOWEL))
 		|| (!strcmp(word, "tin") &&
 		    (otyp != CORPSE || !tinnable(otmp)))

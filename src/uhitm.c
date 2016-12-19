@@ -1174,9 +1174,7 @@ int thrown;
 	    if (obj->oartifact == ART_MAGICBANE) objenchant = 4;
 	    else if (obj->oartifact) objenchant += 2;
 
-#ifdef LIGHTSABERS
 	    if (is_lightsaber(obj)) objenchant = 4;
-#endif
 
 	    if (is_poisonable(obj) && obj->opoisoned)
 		ispoisoned = TRUE;
@@ -1206,10 +1204,8 @@ int thrown;
 		     !u.usteed &&
 #endif
 		     is_pole(obj)) ||
-#ifdef LIGHTSABERS
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
-#endif
 		    /* or throw a missile without the proper bow... */
 		    (thrown == 1 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher)) || 

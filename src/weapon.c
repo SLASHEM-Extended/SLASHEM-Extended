@@ -44,17 +44,13 @@ STATIC_DCL int FDECL(enhance_skill, (boolean));
 #define PN_MARTIAL_ARTS		(-28)
 #define PN_RIDING		(-29)
 #define PN_TWO_WEAPONS		(-30)
-#ifdef LIGHTSABERS
 #define PN_LIGHTSABER		(-31)
-#endif
 
 static void FDECL(give_may_advance_msg, (int));
 STATIC_PTR int NDECL(practice);
 /*static int FDECL(get_obj_skill, (struct obj *));*/
 
-#ifdef LIGHTSABERS
 static void FDECL(mon_ignite_lightsaber, (struct obj *, struct monst *));
-#endif
 
 /*WAC practicing needs a delay counter*/
 static NEARDATA schar delay;            /* moves left for practice */
@@ -79,9 +75,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	JAVELIN,          TRIDENT,        LANCE,        BOW,
 	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
 	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-#ifdef LIGHTSABERS
 	PN_LIGHTSABER,
-#endif
 	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
 	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
 	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
@@ -133,9 +127,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "martial arts",
     "riding",
     "two-weapon combat",
-#ifdef LIGHTSABERS
     "lightsaber"
-#endif
 };
 
 
@@ -426,7 +418,6 @@ struct monst *mon;
 		case SCIMITAR:
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 
-#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
 		case BLUE_LIGHTSABER:   tmp +=12; break;
 #if 0
@@ -438,7 +429,6 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(11);
 					/* fallthrough */
 		case RED_LIGHTSABER:    tmp +=10; break;
-#endif
 	    }
 	} else {
 	    if (objects[otyp].oc_wsdam)
@@ -489,7 +479,6 @@ struct monst *mon;
 		case WHITE_FLOWER_SWORD:
 						tmp += rnd(2); break;
 
-#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=9; break;
 		case BLUE_LIGHTSABER:   tmp +=8; break;
 #if 0
@@ -501,7 +490,6 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(9);
 					/* fallthrough */
 		case RED_LIGHTSABER: 	tmp +=6; break;
-#endif
 
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
@@ -749,7 +737,6 @@ struct monst *mon;
 		case SCIMITAR:
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 
-#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=13; break;
 		case BLUE_LIGHTSABER:   tmp +=12; break;
 #if 0
@@ -761,7 +748,6 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(11);
 					/* fallthrough */
 		case RED_LIGHTSABER:    tmp +=10; break;
-#endif
 	    }
 	} else {
 	    if (objects[otyp].oc_wsdam)
@@ -812,7 +798,6 @@ struct monst *mon;
 		case WHITE_FLOWER_SWORD:
 						tmp += rnd(2); break;
 
-#ifdef LIGHTSABERS
 		case GREEN_LIGHTSABER:  tmp +=9; break;
 		case BLUE_LIGHTSABER:   tmp +=8; break;
 #if 0
@@ -824,7 +809,6 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(9);
 					/* fallthrough */
 		case RED_LIGHTSABER: 	tmp +=6; break;
-#endif
 
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
@@ -1400,9 +1384,7 @@ int x;
 		    /* never select non-cockatrice corpses */
 		    !((x == CORPSE || x == EGG) &&
 			!touch_petrifies(&mons[otmp->corpsenm])) &&
-#ifdef LIGHTSABERS
                     (!is_lightsaber(otmp) || otmp->age) &&
-#endif
 		    (!otmp->oartifact || touch_artifact(otmp,mtmp)))
 		return otmp;
 	}
@@ -1658,7 +1640,6 @@ static const NEARDATA short hwep[] = {
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, TORPEDO,
 	  DWARVISH_MATTOCK, BENT_SABLE, 
 	  LASER_SWATTER,
-#ifdef LIGHTSABERS
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
 	  BLUE_LIGHTSABER,
 #if 0
@@ -1667,7 +1648,6 @@ static const NEARDATA short hwep[] = {
 		case YELLOW_LIGHTSABER:
 #endif
 	  GREEN_LIGHTSABER,
-#endif
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, BLOCK_HEELED_COMBAT_BOOT,
 	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB,
 	  GOLDEN_SABER, TWO_HANDED_FLAIL, BOAT_OAR, BATTLE_STAFF, REINFORCED_MACE, 
@@ -1855,10 +1835,8 @@ register struct monst *mon;
 		
 		if (mw_tmp && mw_tmp->otyp == obj->otyp) {
 		/* already wielding it */
-#ifdef LIGHTSABERS
 			if (is_lightsaber(obj))
 			    mon_ignite_lightsaber(obj, mon);
-#endif
 			mon->weapon_check = NEED_WEAPON;
 			return 0;
 		}
@@ -1916,17 +1894,14 @@ register struct monst *mon;
 			    s_suffix(mon_nam(mon)), mbodypart(mon,HAND));
 		}
 		obj->owornmask = W_WEP;
-#ifdef LIGHTSABERS
 		if (is_lightsaber(obj))
 		    mon_ignite_lightsaber(obj, mon);
-#endif
 		return /*1*/0;
 	}
 	mon->weapon_check = NEED_WEAPON;
 	return 0;
 }
 
-#ifdef LIGHTSABERS
 static void
 mon_ignite_lightsaber(obj, mon)
 struct obj * obj;
@@ -1970,7 +1945,6 @@ struct monst * mon;
 		return;
 	}
 }
-#endif
 
 /* STEPHEN WHITE'S NEW CODE */
 int
@@ -3223,11 +3197,6 @@ struct obj *weapon;
 		}
 		if (type == P_LANCE) bonus++;
 	}
-#endif
-#ifdef JEDI
-	/* Jedi are trained in lightsabers, no to-hit penalty for them */
-	if (Role_if(PM_JEDI) && is_lightsaber(weapon))
-		bonus-=objects[weapon->otyp].oc_hitbon;
 #endif
 
     return bonus;

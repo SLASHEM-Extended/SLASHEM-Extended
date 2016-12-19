@@ -427,12 +427,10 @@ typedef unsigned char	uchar;
 #define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM (unconditionally enabled by Amy) */
 #define INVISIBLE_OBJECTS /* Not yet fully implemented (but still unconditionally enabled by Amy) */
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph (unconditionally enabled by Amy) */
-#define LIGHTSABERS
+#define LIGHTSABERS	/* unconditionally enabled by Amy */
 #define JEDI
 #define CONVICT		/* Convict player with heavy iron ball */
-#ifdef LIGHTSABERS
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
-#endif
 #define FIREARMS	/* KMH -- Guns and bullets */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten */
 #define STEED		/* The ability to ride monsters */
