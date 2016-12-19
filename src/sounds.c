@@ -380,7 +380,7 @@ dosounds()
 	    }
 
 	    if (level.flags.has_insideroom && !rn2(200)) {
-		static const char *insideroom_msg[19] = {
+		static const char *insideroom_msg[21] = {
 			"have a weird feeling of chills and excitement.",
 			"sense that something isn't right here...",
 			"shudder in expectation.",
@@ -400,8 +400,10 @@ dosounds()
 			"see an error message pop up: Do you want your possessions identified? DYWYPI?",
 			"see an error message pop up: Windows Subsystem service has stopped unexpectedly.",
 			"see an error message pop up: nv4_disp.dll device driver is stuck in an infinite loop.",
+			"see an error message pop up: The win16 subsystem has insufficient resources to continue running. Click on OK, close your application and restart your machine.",
+			"see an error message pop up: System resources depleted. Please restart your computer.",
 		};
-		You(insideroom_msg[rn2(3+hallu*16)]);
+		You(insideroom_msg[rn2(3+hallu*18)]);
 		return;
 	    }
 

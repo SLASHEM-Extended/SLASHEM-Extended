@@ -4677,6 +4677,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ludgera'. It reads: 'If you want to encounter the mermaids, you have to swim out into the ocean and dive!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kafir, Allah beni tuvalete bok sesleri ueretmek icin izin! Eger o saygi yoksa sonsuza aci olacaktir!'",
 	"Incoming message for Player 1. The message is from '<illegible>'. It reads: ''",
+	"The win16 subsystem has insufficient resources to continue running. Click on OK, close your application and restart your machine.",
+	"System resources depleted. Please restart your computer.",
 
 };
 

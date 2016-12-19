@@ -2016,7 +2016,7 @@ int thrown;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5)) {
 
-			switch (rnd(273)) {
+			switch (rnd(274)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -2291,6 +2291,7 @@ int thrown;
 			case 271: pline("You poke a sharp weapon into %s's ass.", mon_nam(mon));
 			case 272: pline("Your furious attack damages %s's underwear!", mon_nam(mon));
 			case 273: pline("Klock! You hit %s's %s with the heel of your sexy leather pump.", mon_nam(mon), mbodypart(mon, HEAD));
+			case 274: pline("The hit connected!"); break;
 
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
@@ -4034,7 +4035,7 @@ register int roll;
 		You("pretend to be friendly to %s.", mon_nam(mdef));
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(358)) {
+		switch (rnd(367)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -4394,8 +4395,17 @@ register int roll;
 		case 356: pline("%s mocks you by producing farting noises with its butt.", Monnam(mdef)); break;
 		case 357: pline("You break off one of your nails while trying to fight %s!", mon_nam(mdef)); break;
 		case 358: pline("Klock! %s slammed a sexy leather pump on your %s, producing a beautiful sound.", Monnam(mdef), body_part(HEAD)); break;
+		case 359: pline("You're lucky you didn't trip over your own sword."); break;
+		case 360: pline("Your cumbersome armour gets in the way of the attack."); break;
+		case 361: pline("You clumsily miss with the unweildy weapon"); break;
+		case 362: pline("The small creature nimbly dodges out of the way of your strike."); break;
+		case 363: pline("Your half assed attack failed to hit %s!", mon_nam(mdef)); break;
+		case 364: pline("Your fancy footwork did not fool %s!", mon_nam(mdef)); break;
+		case 365: pline("You could not hit the broadside of a barn with that pathetic attempt."); break;
+		case 366: pline("You perform a decent attack but was perfectly parried by %s!", mon_nam(mdef)); break;
+		case 367: pline("Your fumbled attack completely missed %s!"); break;
 
-		default: pline("You missed %s!", mon_nam(mdef)); break;
+		default: pline("You missed %s!", mon_nam(mdef), mon_nam(mdef)); break;
 
 		}
 

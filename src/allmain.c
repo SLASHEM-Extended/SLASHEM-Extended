@@ -3715,6 +3715,8 @@ newboss:
 			else if (!rn2(25)) pline("Do you want your possessions identified? DYWYPI?");
 			else if (!rn2(25)) pline("Windows Subsystem service has stopped unexpectedly.");
 			else if (!rn2(25)) pline("nv4_disp.dll device driver is stuck in an infinite loop.");
+			else if (!rn2(25)) pline("The win16 subsystem has insufficient resources to continue running. Click on OK, close your application and restart your machine.");
+			else if (!rn2(25)) pline("System resources depleted. Please restart your computer.");
 
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
