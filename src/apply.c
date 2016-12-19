@@ -79,7 +79,7 @@ use_camera(obj)
 	}
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -1822,7 +1822,7 @@ register struct obj *obj;
 	}
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -2345,7 +2345,7 @@ struct obj *obj;
 		}
 #endif
 		int nochargechange = 10;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_DEVICES)) {
 				default: break;
 				case P_BASIC: nochargechange = 9; break;
@@ -2791,7 +2791,7 @@ struct obj *otmp;
 	/*[fumbling and/or confusion and/or cursed object check(s)
 	   should be incorporated here instead of in set_trap]*/
 #ifdef STEED
-	if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
+	if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 	    boolean chance;
 
 	    if (Fumbling || otmp->cursed) chance = (rnl(10) > 3);
@@ -3159,7 +3159,7 @@ use_pole (obj)
 #ifdef WEAPON_SKILLS
 	/* Calculate range */
 	typ = weapon_type(obj);
-	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 	else max_range = 8;
 #else
@@ -3376,7 +3376,7 @@ use_grapple (obj)
 
 	/* Calculate range */
 	typ = uwep_skill_type();
-	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) == P_SKILLED) max_range = 5;
 	else max_range = 8;
 	if (distu(cc.x, cc.y) > max_range) {
@@ -3389,7 +3389,7 @@ use_grapple (obj)
 
 	/* What do you want to hit? */
 	tohit = rn2(5);
-	if (typ != P_NONE && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(typ) >= P_SKILLED) {
+	if (typ != P_NONE && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(typ) >= P_SKILLED) {
 	    winid tmpwin = create_nhwindow(NHW_MENU);
 	    anything any;
 	    char buf[BUFSZ];
@@ -3459,7 +3459,7 @@ use_grapple (obj)
 	    }
 	    return (1);
 	default:	/* Yourself (oops!) */
-	    if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) {
+	    if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) {
 		You("hook yourself!");
 		losehp(rn1(10,10), "a grappling hook", KILLED_BY);
 		return (1);
@@ -3956,7 +3956,7 @@ use_chemistry_set(struct obj *chemset)
 	cost = potion_charge_cost(new_obj);
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -4024,7 +4024,7 @@ doapply()
 	    return 1;	/* evading your grasp costs a turn; just be
 			   grateful that you don't drop it as well */
 
-	if (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || have_freehandbugstone() ) {
+	if (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SEXY_GIRL_BUTT) || have_freehandbugstone() ) {
 		if (!(uwep && uwep == obj)) {
 			pline("You must wield this item first if you want to apply it!"); 
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4124,7 +4124,7 @@ doapply()
 
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;
@@ -4149,7 +4149,7 @@ doapply()
 
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;
@@ -4179,7 +4179,7 @@ doapply()
 		if (!rn2(50)) {
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;

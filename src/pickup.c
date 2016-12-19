@@ -673,10 +673,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) )
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) )
 #else
 	    if ((!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
 #endif
@@ -687,10 +687,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 #ifndef AUTOPICKUP_EXCEPTIONS
 		if (!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ) {
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ) {
 #else
 		if ((!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) ) ||
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ||
 			is_autopickup_exception(curr, TRUE)) &&
 			!is_autopickup_exception(curr, FALSE)) {
 #endif
@@ -735,7 +735,7 @@ boolean FDECL((*allow), (OBJ_P));/* allow function */
 	anything any;
 	boolean printed_type_name;
 
-	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
+	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
  		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
@@ -848,19 +848,19 @@ int how;			/* type of query */
 	*pick_list = (menu_item *) 0;
 	if (!olist) return 0;
 	if ((qflags & UNPAID_TYPES) && count_unpaid(olist)) do_unpaid = TRUE;
-	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
+	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_blessed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
+	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_cursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
+	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_uncursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() ) ) {
+	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_buc_unknown = TRUE;
 	    num_buc_types++;
 	}
@@ -1547,7 +1547,7 @@ int x, y;
 {
 	if (!can_reach_floor()) {
 #ifdef STEED
-		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 #endif

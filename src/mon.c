@@ -2792,7 +2792,7 @@ register struct monst *mtmp;
 	    }
 	}
 
-	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || have_respawnstone() ) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() ) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
 		case 2:
@@ -2996,7 +2996,7 @@ boolean was_swallowed;			/* digestion */
 	if (LEVEL_SPECIFIC_NOCORPSE(mdat))
 		return FALSE;
 
-	if ( (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || have_starvationstone() ) && STARVATION_SPECIFIC_NOCORPSE(mdat))
+	if ( (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) && STARVATION_SPECIFIC_NOCORPSE(mdat))
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
@@ -4034,6 +4034,10 @@ register struct monst *mtmp;
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
@@ -4041,17 +4045,29 @@ register struct monst *mtmp;
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
 		badeffect();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
 		if (mtmp->butthurt) mtmp->butthurt--;
 		badeffect();
     }
     if (mtmp->egotype_farter) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
 		badeffect();
     }
 

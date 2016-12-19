@@ -1601,7 +1601,7 @@ register int aflag;
 	register struct monst *mtmp;
 
 	int fundxtrachange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_SEARCHING)) {
 			default: break;
 			case P_BASIC: fundxtrachange = 9; break;

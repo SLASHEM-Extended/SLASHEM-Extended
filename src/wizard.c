@@ -1565,6 +1565,12 @@ register struct monst	*mtmp;
 	}
 }
 
+void
+randomcuss()
+{
+	verbalize("%s", random_your_mother[rn2(SIZE(random_your_mother))]);
+}
+
 #endif /* OVLB */
 
 /*wizard.c*/

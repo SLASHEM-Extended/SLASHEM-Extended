@@ -2242,7 +2242,7 @@ register struct obj	*sobj;
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
 
-	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
+	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || (uarmc && uarmc->oartifact == ART_WINDS_OF_CHANGE) || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
 
 	    pline("Suddenly you're very confused!");
 	    make_confused(HConfusion + 2, FALSE);
@@ -3501,7 +3501,7 @@ register struct obj	*sobj;
 
 						int untamingchance = 10;
 
-						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 							switch (P_SKILL(P_PETKEEPING)) {
 								default: untamingchance = 10; break;
 								case P_BASIC: untamingchance = 9; break;

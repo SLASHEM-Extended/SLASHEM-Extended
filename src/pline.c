@@ -101,7 +101,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -109,7 +109,7 @@ pline VA_DECL(const char *, line)
 
 ) line = fauxmessage();
 
-	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 
 /* buildfix by EternalEye: sinfo.exiting only exists on win32 */
 #if defined(WIN32)
@@ -152,7 +152,7 @@ pline VA_DECL(const char *, line)
 		line = replace(line,"y","L");
 		line = replace(line,"z","M");
 
-	  }  else if ( (BigscriptEffect || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+	  }  else if ( (BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
 		line = replace(line,"a","A");
 		line = replace(line,"b","B");

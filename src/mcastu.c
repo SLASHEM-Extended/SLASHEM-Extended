@@ -387,7 +387,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5))  ) {
+	if (mtmp->mcan || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -877,7 +877,7 @@ int spellnum;
 
 						int untamingchance = 10;
 
-						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 							switch (P_SKILL(P_PETKEEPING)) {
 								default: untamingchance = 10; break;
 								case P_BASIC: untamingchance = 9; break;
@@ -1159,7 +1159,7 @@ newboss:
 			goto newboss;
 		}
 
-		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 
 	    }
 	    pline("A boss monster appears from nowhere!");
@@ -1882,7 +1882,7 @@ newboss:
 			goto newboss;
 		}
 
-		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 
 	    }
 	    pline("A boss monster appears from nowhere!");
@@ -2377,7 +2377,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if (mattk->adtyp > AD_SPC2)
 	    return(0);
 
-	if (mtmp->mcan || u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5)) ) {
+	if (mtmp->mcan || u.antimagicshell || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5)) ) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}

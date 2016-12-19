@@ -2101,7 +2101,7 @@ peffects(otmp)
 {
 	register int i, ii, lim;
 
-	if ( (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || have_dstwstone() ) && !rn2(5)) {
+	if ( (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_UNIMPLEMENTED_FEATURE) || have_dstwstone() ) && !rn2(5)) {
 
 		pline("The potion doesn't seem to work!"); /* DSTW = abbreviation for "doesn't seem to work" --Amy */
 		return(-1);
@@ -2706,7 +2706,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
+			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
 			    poisontell(typ);
 			    (void) adjattrib(typ,
 			    		Poison_resistance ? -1 : -rn1(4,3),
@@ -2807,7 +2807,7 @@ peffects(otmp)
 		if(otmp->cursed) {
 		    pline("Ulch!  That potion tasted foul!");
 		    unkn++;
-		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
+		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
 		    nothing++;
 		} else {      /* If blessed, increase all; if not, try up to */
 		    int itmp; /* 6 times to find one which can be increased. */
@@ -4701,6 +4701,12 @@ boolean amnesia;
 		return(FALSE);
 	}
 
+	if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+		pline("The liquid destroys your footwear instantly.");
+		useup(obj);
+		return(TRUE);
+	}
+
 	if (snuff_lit(obj)) return(TRUE);
 
 	if (obj->greased) {
@@ -5571,7 +5577,7 @@ dodip()
 			floating_above(tmp);
 #ifdef STEED
 		    } else if (u.usteed && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
-			    (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
+			    (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 #endif
 		    } else {

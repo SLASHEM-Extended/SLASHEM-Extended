@@ -314,7 +314,7 @@ struct monst *mon;
 	if (otmp->oinvisreal) tmp += 7;
 #endif
 
-	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
 	    case P_BASIC:		tmp +=  1; break;
@@ -916,7 +916,7 @@ struct monst *mon;
 	    if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
 	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
@@ -1024,7 +1024,7 @@ struct monst *mon;
 	    if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(15);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
@@ -1074,7 +1074,7 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 2;
@@ -1206,7 +1206,7 @@ struct monst *mon;
 	    /* blunt weapons versus undead (Diablo 2) */
 	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += rnd(2);
 	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(4);
@@ -1219,7 +1219,7 @@ struct monst *mon;
 	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED)) bonus += rnd(5);
 	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT)) bonus += rnd(10);
@@ -1238,7 +1238,7 @@ struct monst *mon;
 	    /* as well as silver bullets */
 	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) bonus += 8;
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += 8;
 	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += 16;
@@ -1252,7 +1252,7 @@ struct monst *mon;
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) bonus += rnd(2);
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr)) bonus += rnd(2);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_EXPERT)) bonus += rnd(3);
@@ -1286,7 +1286,7 @@ struct monst *mon;
 	    /* polearms versus golems */
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(4);
@@ -1298,7 +1298,7 @@ struct monst *mon;
 
 	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(8);
 	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(16);
@@ -1310,7 +1310,7 @@ struct monst *mon;
 	    /* electric sword versus quantum mechanic */
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_SKILLED)) bonus += rnd(8);
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_EXPERT)) bonus += rnd(16);
@@ -1322,7 +1322,7 @@ struct monst *mon;
 	    /* shotgun versus bears or other quadrupeds */
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(10);
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(22);
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(36);
@@ -1333,7 +1333,7 @@ struct monst *mon;
 	    /* axes versus umber hulks */
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) bonus += rnd(2);
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_SKILLED)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_EXPERT)) bonus += rnd(5);
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_MASTER)) bonus += rnd(10);
@@ -1344,7 +1344,7 @@ struct monst *mon;
 	    /* whips for lashing people's asses :P */
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) bonus += 1;
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SKILLED)) bonus += 1;
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_EXPERT)) bonus += 2;
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_MASTER)) bonus += 3;
@@ -3160,7 +3160,7 @@ struct obj *weapon;
 	bonus = 0;
     } else if (type <= P_LAST_WEAPON) {
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) bonus -= 4;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) bonus -= 4;
 	else switch (P_SKILL(type)) {
 	    default: impossible(bad_skill, P_SKILL(type)); /* fall through */
 	    case P_ISRESTRICTED:
@@ -3177,7 +3177,7 @@ struct obj *weapon;
     } else if (type == P_TWO_WEAPON_COMBAT) {
 	skill = P_SKILL(P_TWO_WEAPON_COMBAT);
 	if (P_SKILL(wep_type) < skill) skill = P_SKILL(wep_type);
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) skill = P_ISRESTRICTED;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) skill = P_ISRESTRICTED;
 	switch (skill) {
 	    default: impossible(bad_skill, skill); /* fall through */
 	    case P_ISRESTRICTED:
@@ -3203,7 +3203,7 @@ struct obj *weapon;
 	 *	mastr:	+3    +6
 	 *	grand:	+3    +7
 	 */
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) bonus = P_SKILL(type);
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	bonus = ((bonus + 2) * (martial_bonus() ? 2 : 1)) / 2;
     }
@@ -3212,7 +3212,7 @@ struct obj *weapon;
 	/* KMH -- It's harder to hit while you are riding */
 	if (u.usteed) {
 
-		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) bonus -= 2;
+		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) bonus -= 2;
 		else switch (P_SKILL(P_RIDING)) {
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:   bonus -= 2; break;
@@ -3259,7 +3259,7 @@ struct obj *weapon;
 	bonus = 0;
     } else if (type <= P_LAST_WEAPON) {
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) bonus -= 2;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) bonus -= 2;
 	else switch (P_SKILL(type)) {
 	    default: impossible("weapon_dam_bonus: bad skill %d",P_SKILL(type));
 		     /* fall through */
@@ -3296,11 +3296,11 @@ struct obj *weapon;
 	 *	mastr:	+2    +7
 	 *	grand:	+3    +9
 	 */
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) bonus = P_SKILL(type);
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	bonus = ((bonus + 1) * (martial_bonus() ? 3 : 1)) / 2;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type == P_MARTIAL_ARTS) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && type == P_MARTIAL_ARTS) {
 
 		switch (P_SKILL(P_MARTIAL_ARTS)) {
 		    default:
@@ -3314,7 +3314,7 @@ struct obj *weapon;
 		    case P_SUPREME_MASTER:	bonus += rnd(30); break;
 		}
 
-	} else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type == P_BARE_HANDED_COMBAT) {
+	} else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && type == P_BARE_HANDED_COMBAT) {
 
 		switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
 		    default:
@@ -3340,7 +3340,7 @@ struct obj *weapon;
 
 #ifdef STEED
 	/* KMH -- Riding gives some thrusting damage */
-	if (u.usteed && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) {
+	if (u.usteed && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
 		switch (P_SKILL(P_RIDING)) {
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:   break;
@@ -3356,7 +3356,7 @@ struct obj *weapon;
 
 #ifdef JEDI
 	/* Jedi are simply better */
-	if (Role_if(PM_JEDI) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && is_lightsaber(weapon)){
+	if (Role_if(PM_JEDI) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
 			case P_SUPREME_MASTER: bonus +=15; break; /* fall through removed by Amy */
 			case P_GRAND_MASTER: bonus +=10; break; /* fall through removed by Amy */
@@ -3369,7 +3369,7 @@ struct obj *weapon;
 			default: impossible("unknown lightsaber skill for a jedi"); break;
 		}
 	}
-	else if (Race_if(PM_BORG) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && is_lightsaber(weapon)){
+	else if (Race_if(PM_BORG) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
 			case P_SUPREME_MASTER: bonus +=6; break; /* fall through removed by Amy */
 			case P_GRAND_MASTER: bonus +=5; break; /* fall through removed by Amy */
@@ -3427,7 +3427,7 @@ struct obj *weapon;
 	}
 
 	/* high heel skill improves whacking damage, but using them in melee does not train the skill --Amy */
-	if (weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT) ) {
+	if (weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT) ) {
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: bonus += 1; break;
@@ -3441,7 +3441,7 @@ struct obj *weapon;
 
 	}
 
-	if (weapon && weapon->oartifact == ART_PUNISHMENT_FOR_YOU && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) {
+	if (weapon && weapon->oartifact == ART_PUNISHMENT_FOR_YOU && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
 
 		switch (P_SKILL(P_FLAIL)) {
 			case P_BASIC: bonus += 3; break;
@@ -3450,6 +3450,20 @@ struct obj *weapon;
 			case P_MASTER: bonus += 12; break;
 			case P_GRAND_MASTER: bonus += 15; break;
 			case P_SUPREME_MASTER: bonus += 18; break;
+
+		}
+
+	}
+
+	if (weapon && weapon->oartifact == ART_NEVER_WILL_THIS_BE_USEFUL && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
+
+		switch (P_SKILL(P_TRIDENT)) {
+			case P_BASIC: bonus += 4; break;
+			case P_SKILLED: bonus += 8; break;
+			case P_EXPERT: bonus += 12; break;
+			case P_MASTER: bonus += 16; break;
+			case P_GRAND_MASTER: bonus += 20; break;
+			case P_SUPREME_MASTER: bonus += 24; break;
 
 		}
 
@@ -3472,7 +3486,7 @@ struct obj *weapon;
 
 	/* more boomerang damage bonus */
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(4);
 	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(10);
@@ -3528,7 +3542,7 @@ struct obj *weapon;
     type = wep_type;
     if (type == P_NONE) {
 	bonus = 0;
-    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled weapon, edit by Amy: also when dual-wielding */
+    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled weapon, edit by Amy: also when dual-wielding */
 	switch (P_SKILL(type)) {
 	    case P_EXPERT:	bonus =  1; break;
 	    case P_MASTER:	bonus =  2; break;
@@ -3538,7 +3552,7 @@ struct obj *weapon;
 	}
     }
 
-	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 	/* With shields being as strong as they are, and heavy two-handed weapons getting massive skill-dependant damage
 	 * bonuses, we need to make sure that twoweaponing isn't completely useless. --Amy */
 		bonus += 2;
@@ -3553,7 +3567,7 @@ struct obj *weapon;
 		}
 	}
 
-	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && tech_inuse(T_EDDY_WIND) ) {
+	if (u.twoweap && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && tech_inuse(T_EDDY_WIND) ) {
 		switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
 
 	    case P_BASIC:		bonus +=  4; break;
@@ -3567,7 +3581,7 @@ struct obj *weapon;
 
 	}
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_GENERAL_COMBAT)) {
 
 	    case P_BASIC:		bonus +=  1; break;
@@ -3583,7 +3597,7 @@ struct obj *weapon;
 
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) bonus += 2;
 
-	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
 	    case P_BASIC:		bonus +=  2; break;
@@ -3599,7 +3613,7 @@ struct obj *weapon;
 
 	if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) bonus += rnd(5);
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_SKILLED) ) bonus += 1;
 	if (weapon && weapon_type(weapon) == P_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
@@ -3786,7 +3800,7 @@ struct obj *weapon;
     type = wep_type;
     if (type == P_NONE) {
 	bonus = 0;
-    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
+    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && type <= P_LAST_WEAPON) {	/* bonus for highly skilled, non-dual-wielded weapon */
 	switch (P_SKILL(type)) {
 	    case P_SKILLED:	bonus =  1; break;
 	    case P_EXPERT:	bonus =  1; break;
@@ -3800,7 +3814,7 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == DART_OF_DISINTEGRATION) {
 		bonus += rnd(20);
 	}
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_MASTER) ) bonus += rnd(6);
@@ -3859,7 +3873,7 @@ int type;
 		bonus = 0;
     } else if (type <= P_LAST_WEAPON) {
 
-		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) bonus = -2;
+		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) bonus = -2;
 		else switch (P_SKILL(type)) {
 		    default: impossible("skill_bonus: bad skill %d",P_SKILL(type));
 			     /* fall through */
@@ -3872,11 +3886,11 @@ int type;
 		    case P_GRAND_MASTER:	bonus =  4; break;
 		    case P_SUPREME_MASTER:	bonus =  5; break;
 		}
-    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (type == P_BARE_HANDED_COMBAT || type == P_MARTIAL_ARTS) ) {
+    } else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (type == P_BARE_HANDED_COMBAT || type == P_MARTIAL_ARTS) ) {
 		bonus = (P_SKILL(type) * (martial_bonus() ? 2 : 1)) / 2;
     } else {
     		/* Misc. */
-		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) bonus = -2;
+		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) bonus = -2;
 		else switch (P_SKILL(type)) {
 		    default: impossible("skill_bonus: bad skill %d",P_SKILL(type));
 			     /* fall through */

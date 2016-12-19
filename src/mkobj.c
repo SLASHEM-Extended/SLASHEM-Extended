@@ -390,6 +390,7 @@ struct obj *box;
 			}
 
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
+			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
 
 		    otmp->owt = weight(otmp);
 		} else while (otmp->otyp == ROCK) {
@@ -2271,7 +2272,7 @@ start_corpse_timeout(body)
 			break;
 		    }
 
-		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || have_starvationstone() ) {
+		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
 			if (rn2(10)) {
 				action = REVIVE_MON;
 				when = 1;
@@ -2296,7 +2297,7 @@ start_corpse_timeout(body)
 			break;
 		    }
 
-		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || have_starvationstone() ) {
+		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
 			if (rn2(10)) {
 				action = REVIVE_MON;
 				when = 1;

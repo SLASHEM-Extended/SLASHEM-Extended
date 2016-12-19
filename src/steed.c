@@ -127,7 +127,7 @@ use_saddle(otmp)
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
 	    chance += 50;
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) chance -= 20;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) chance -= 20;
 	else {
 
 	switch (P_SKILL(P_RIDING)) {

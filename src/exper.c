@@ -303,9 +303,10 @@ void
 more_experienced(exp, rexp)
 	register int exp, rexp;
 {
-	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() ) return;
+	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || have_antilevelstone() ) return;
 
 	if ((exp > 0) && Race_if(PM_YEEK)) exp *= 2;
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && (exp > 1)) exp /= 2;
 
 	u.uexp += exp;
 	u.urexp += 4*exp + rexp;

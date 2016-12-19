@@ -1436,6 +1436,35 @@ boolean at_stairs, falling, portal;
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_T_O_M_E) {
+
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			register int cnt = rnd(10);
+
+			if (rn2(2)) {
+
+				register int randmonstforFF = rnd(68);
+				if (randmonstforFF == 35) randmonstforFF = 53;
+
+				while(cnt--)
+				    (void) makemon(mkclass(randmonstforFF,0), u.ux, u.uy, NO_MM_FLAGS);
+				pline("A voice echoes:");
+				verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforFF]);
+
+			} else {
+
+				randmonstforspawn = rndmonst();
+
+				while(cnt--)
+				    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+				pline("A voice echoes:");
+				verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
+
+			}
+
+		}
+
 		if (isangbander || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
 
 			if (!rn2( (Luck*5) + 200)) {
@@ -2957,7 +2986,7 @@ boolean at_stairs, falling, portal;
 		else if (u.dz &&
 #ifdef CONVICT
 		    (near_capacity() > UNENCUMBERED || (Punished &&
-		    ((uwep != uball) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()  || ((P_SKILL(P_FLAIL) < P_BASIC))
+		    ((uwep != uball) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()  || ((P_SKILL(P_FLAIL) < P_BASIC))
             || !Role_if(PM_CONVICT)))
 		     || Fumbling)) {
 #else

@@ -696,6 +696,10 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+				pline("The farting gas destroys your footwear instantly.");
+			      useup(uarmf);
+			}
 			badeffect();
 			return 1;
 		}
@@ -706,6 +710,10 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+				pline("The farting gas destroys your footwear instantly.");
+			      useup(uarmf);
+			}
 			badeffect();
 			return 1;
 		}
@@ -716,6 +724,10 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+				pline("The farting gas destroys your footwear instantly.");
+			      useup(uarmf);
+			}
 			badeffect();
 			return 1;
 		}
@@ -3388,7 +3400,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -3401,6 +3413,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
@@ -3687,7 +3700,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
-	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) )) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) )) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if ((guaranteed || !rn2(10)) && Lifesaved)
@@ -5572,7 +5585,7 @@ int final;
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -5585,6 +5598,7 @@ int final;
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
@@ -5835,7 +5849,7 @@ int final;
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, "reflection");
 	if (Free_action) dump(youhad, "free action");
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) dump(youhad, "fixed abilities");
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
 	if (Lifesaved)

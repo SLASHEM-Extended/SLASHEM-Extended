@@ -164,6 +164,13 @@ boolean barehanded;
 		    !glyph_is_warning(glyph_at(u.ux+u.dx,u.uy+u.dy)) &&
 		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
 		    !(!Blind && mtmp->mundetected && hides_under(mtmp->data))) {
+
+		if (uarmc && uarmc->oartifact == ART_JANA_S_SECRET_CAR && !rn2(100) ) {
+			pline("NETHACK caused a General Protection Fault at address 0003:0CED.");
+			killer_format = KILLED_BY;
+			killer = "Jana's secret car";
+			done(DIED);
+		} else
 		pline("Wait!  There's %s there you can't see!",
 			something);
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -190,6 +197,12 @@ boolean barehanded;
 		    seemimic(mtmp);
 		    return retval;
 		}
+		if (uarmc && uarmc->oartifact == ART_JANA_S_GRAVE_WALL && !rn2(100) ) {
+			pline("NETHACK caused a General Protection Fault at address 000B:0122.");
+			killer_format = KILLED_BY;
+			killer = "Jana's grave wall";
+			done(DIED);
+		} else
 		stumble_onto_mimic(mtmp);
 		return 0;
 	}
@@ -238,7 +251,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -247,7 +260,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -260,7 +273,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -362,7 +375,7 @@ register struct monst *mtmp;
 
 	if (Feared) tmp -= rn2(21); /* being feared reduces to-hit by something between 0 and 20 --Amy */
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_GENERAL_COMBAT)) {
 			default: break;
 			case P_BASIC: tmp += 1; break;
@@ -374,7 +387,7 @@ register struct monst *mtmp;
 		}
 	}
 
-	if (Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 
 	      	case P_BASIC:	tmp +=  1; break;
@@ -527,6 +540,8 @@ register struct monst *mtmp;
 	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
 
 	if (uarmh && uarmh->oartifact == ART_DARK_NADIR) tmp += 5;
+	if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) tmp += 5;
+	if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) tmp += 5;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") ) ) tmp -= 5;
 
@@ -538,6 +553,8 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 
+	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
+
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
@@ -545,6 +562,7 @@ register struct monst *mtmp;
 	if (Race_if(PM_DEVELOPER)) tmp += 3;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
 	if (tmp < -127) tmp = -127; /* fail safe, and to ensure that the end result is a schar */
 	if (tmp > 127) tmp = 127; /* however, why is it a schar anyway??? --Amy */
@@ -579,9 +597,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -647,7 +665,7 @@ register struct monst *mtmp;
 		else if (tech_inuse(T_EVISCERATE))
 		    You("begin slashing monsters with your claws.");
 		else if (!cantwield(youmonst.data)) {
-		    if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
+		    if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
 			You("assume a martial arts stance.");
 		    else You("begin %sing monsters with your %s %s.",
 			Role_if(PM_MONK) ? "strik" : "bash",
@@ -881,10 +899,10 @@ martial_dmg()
                              5 if Basic  (1d4)
          */
 
-        if ((Role_if(PM_MONK) && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) )
+        if ((Role_if(PM_MONK) && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
                 && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
-        else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+        else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
                 damage = d((int) ((u.ulevel+2)/3),2);
@@ -1164,6 +1182,7 @@ int thrown;
 		ispoisoned = TRUE;
 
 		if (Race_if(PM_POISONER)) ispoisoned = TRUE;
+		if (obj->oartifact == ART_ASBESTOS_MATERIAL) ispoisoned = TRUE;
 
 	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
 
@@ -1210,7 +1229,7 @@ int thrown;
 
 		    if ((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SKILLED) tmp += rnd(2);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
@@ -1274,7 +1293,7 @@ int thrown;
 			  (bimanual(obj) ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE && 
-				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
@@ -1307,7 +1326,7 @@ int thrown;
 		    else if (obj == uwep &&
 			  ( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && is_lightsaber(obj)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE &&
-				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+				!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_lightsaber(monwep) && // no cutting other lightsabers :)
@@ -1741,7 +1760,7 @@ int thrown;
 	if (!thrown && (!Upolyd || !no_obj) && tech_inuse(T_SHIELD_BASH) && uarms && (uarms->spe > -4)) {
 		pline("Schrack!");
 		tmp += (3 + uarms->spe);
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: tmp += 1; break;
 				case P_SKILLED: tmp += 2; break;
@@ -1872,7 +1891,7 @@ int thrown;
 #endif
 
 	/* VERY small chance of stunning opponent if unarmed. */
-	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) {
+	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
 	    if (rnd(100) < P_SKILL(P_BARE_HANDED_COMBAT) &&
 			!bigmonst(mdat) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
@@ -1909,7 +1928,7 @@ int thrown;
         /* fixed stupid mistake - check that obj exists before comparing...*/
         if (obj && (obj->otyp == WOODEN_STAKE || obj->oartifact == ART_VAMPIRE_KILLER) && is_vampire(mdat)) {
             if (Role_if(PM_UNDEAD_SLAYER) 
-              || (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (P_SKILL(weapon_type(obj)) >= P_EXPERT))
+              || (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (P_SKILL(weapon_type(obj)) >= P_EXPERT))
               || obj->oartifact == ART_STAKE_OF_VAN_HELSING) {
                 if (!rn2(10)) {
                     You("plunge your stake into the heart of %s.",
@@ -2780,7 +2799,7 @@ struct obj *obj;	/* weapon */
     skill_rating = P_SKILL(weapon_type(obj));	/* lance skill */
     if (u.twoweap && P_SKILL(P_TWO_WEAPON_COMBAT) < skill_rating)
 	skill_rating = P_SKILL(P_TWO_WEAPON_COMBAT);
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) skill_rating = P_UNSKILLED;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) skill_rating = P_UNSKILLED;
     if (skill_rating == P_ISRESTRICTED) skill_rating = P_UNSKILLED; /* 0=>1 */
 
     /* odds to joust are expert:80%, skilled:60%, basic:40%, unskilled:20% */
@@ -3691,7 +3710,7 @@ register struct attack *mattk;
 
 	if ( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) && Upolyd && tmp) tmp += rnd(u.ulevel); /* come on, werewolves need some love too! --Amy */
 
-	if (Upolyd && tmp && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (Upolyd && tmp && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 
 	      	case P_BASIC:	tmp +=  1; break;
@@ -4580,7 +4599,7 @@ use_weapon:
 
 				int savechance = 0;
 
-				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 					switch (P_SKILL(P_GENERAL_COMBAT)) {
 
 					    case P_BASIC:		savechance = 1; break;
@@ -4607,6 +4626,10 @@ use_weapon:
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your ball sustains damage.");
+				}
+				if (uwep && uwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uwep->spe > -20) {
+					uwep->spe--;
+					pline("Your weapon sustains damage.");
 				}
 			}
 
@@ -6282,7 +6305,7 @@ uchar aatyp;
 	      case AD_SEDU:
 	      case AD_SSEX:
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() ) {
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf)) {

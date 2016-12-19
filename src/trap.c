@@ -1787,6 +1787,35 @@ unsigned trflags;
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
 	}
 
+	if (uwep && uwep->oartifact == ART_BANGCOCK) {
+		boolean goup = rn2(2);
+		if (uwep->blessed && !rn2(4)) goup = 1;
+		if (uwep->cursed && !rn2(4)) goup = 0;
+
+		if (goup && uwep->spe < 10) uwep->spe++;
+		if (!goup && uwep->spe > -20) uwep->spe--;
+
+		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
+	}
+
+	if (uwep && uwep->oartifact == ART_INTELLIGENT_POPE) {
+		boolean goup = rn2(2);
+		if (uwep->blessed && !rn2(4)) goup = 1;
+		if (uwep->cursed && !rn2(4)) goup = 0;
+
+		if (goup && uwep->spe < 10) uwep->spe++;
+		if (!goup && uwep->spe > -20) uwep->spe--;
+
+		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
+	}
+
+	if (uarmc && uarmc->oartifact == ART_JANA_S_FAIRNESS_CUP && !rn2(100)) {
+		pline("NETHACK caused a General Protection Fault at address 0001:0001.");
+		killer_format = KILLED_BY;
+		killer = "Jana's (un)fairness";
+		done(DIED);
+	}
+
 	switch(ttype) {
 	    case ARROW_TRAP:
 		if (trap->once && !rn2(15)) {
@@ -1945,6 +1974,12 @@ unsigned trflags;
 		if (trap->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
 		else if (trap->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
+
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
+
 		badeffect();
 
 		break;
@@ -3798,7 +3833,7 @@ newegomon:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -3809,7 +3844,7 @@ newegomon:
 
 		seetrap(trap);
 		doshittrap((struct obj *)0);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) || (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) ) deltrap(trap);
 		break;
 
 	    case PIT:
@@ -3874,7 +3909,10 @@ newegomon:
 		}
 		if (!Passes_walls)
 		    u.utrap = rn1(6,2);
-		    if (ttype == SHIT_PIT) u.utrap += rnd((rnd(6)) );
+		    if (ttype == SHIT_PIT) {
+				u.utrap += rnd((rnd(6)) );
+				if (trap && uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) trap->ttyp = PIT;
+			}
 		    if (ttype == GIANT_CHASM) u.utrap += rnd(75);
 		u.utraptype = TT_PIT;
 #ifdef STEED
@@ -4315,7 +4353,7 @@ newegomon:
 
 				int untamingchance = 10;
 
-				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 					switch (P_SKILL(P_PETKEEPING)) {
 						default: untamingchance = 10; break;
 						case P_BASIC: untamingchance = 9; break;
@@ -4563,7 +4601,11 @@ newegomon:
 		    deltrap(trap);	/* delete trap before polymorph */
 		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		    You_feel("a change coming over you.");
-			u.wormpolymorph = rn2(NUMMONS);
+
+			do {
+				u.wormpolymorph = rn2(NUMMONS);
+			} while(( (notake(&mons[u.wormpolymorph]) && rn2(4) ) || ((mons[u.wormpolymorph].mlet == S_BAT) && rn2(2)) || ((mons[u.wormpolymorph].mlet == S_EYE) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 1) && rn2(4) ) || ((mons[u.wormpolymorph].mmove == 2) && rn2(3) ) || ((mons[u.wormpolymorph].mmove == 3) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 4) && !rn2(3) ) || ( (mons[u.wormpolymorph].mlevel < 10) && ((mons[u.wormpolymorph].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[u.wormpolymorph]) && rn2(2) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(20) ) || ( uncommon2(&mons[u.wormpolymorph]) && !rn2(4) ) || ( uncommon3(&mons[u.wormpolymorph]) && !rn2(3) ) || ( uncommon5(&mons[u.wormpolymorph]) && !rn2(2) ) || ( uncommon7(&mons[u.wormpolymorph]) && rn2(3) ) || ( uncommon10(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(20) ) ) );
+
 		    polyself(FALSE);
 		}
 
@@ -9925,6 +9967,12 @@ struct obj *box;        /* at the moment only for floor traps */
         }
 
         pline("You stepped into a heap of shit!");
+
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("But your footwear is unaffected.");
+			return;
+		}
+
         if (Acid_resistance) { /* let's just assume the stuff is acidic or corrosive --Amy */
                 shieldeff(u.ux, u.uy);
                 num = d(2, 2)+ rnd((monster_difficulty() / 4) + 1);
@@ -10400,7 +10448,13 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 
-		else if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
+		if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The liquid destroys your footwear instantly.");
+			delobj(obj);
+			continue;
+		}
+
+		if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
@@ -11113,7 +11167,7 @@ boolean force_failure;
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
 #ifdef STEED
-		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -11869,7 +11923,7 @@ boolean force;
 			case 'n': continue;
 		    }
 #ifdef STEED
-		    if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);
@@ -12329,6 +12383,7 @@ lava_effects()
     if (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) return FALSE;
     if (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) return FALSE;
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
+    if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
     if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) return FALSE;
 
     if (!Fire_resistance) {

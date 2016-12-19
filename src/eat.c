@@ -5293,6 +5293,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		/* and a lot of it because conflict is so overpowered --Amy */
 	    if (HConflict || EConflict) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
 	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) u.uhunger -= 10;
 	    if (uwep && uwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
 	    /* Slow digestion still uses ring hunger */
@@ -5516,7 +5517,7 @@ boolean incr;
 	if(newhs != u.uhs) {
 		if(newhs >= WEAK && u.uhs < WEAK) {
 			losestr(1);	/* this may kill you -- see below */
-			if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) u.weakcheat++; /* cheater! */
+			if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) u.weakcheat++; /* cheater! */
 			}
 		else if(newhs < WEAK && u.uhs >= WEAK) {
 			if (!u.weakcheat) losestr(-1); /* otherwise this could be exploited until you have 25 str --Amy */

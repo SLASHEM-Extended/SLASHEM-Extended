@@ -1317,7 +1317,7 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
+	return dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
 			   SPELLMENU_CAST, spell_no);
 }
 
@@ -1327,7 +1327,7 @@ docast()
 {
 	int spell_no;
 
-	if (u.antimagicshell || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || Role_if(PM_UNBELIEVER) ) {
+	if (u.antimagicshell || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1465,7 +1465,7 @@ cast_protection()
 	    }
 	    u.uspellprot += gain;
 	    u.uspmtime =
-		(!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
+		(!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
 	    if (!u.usptime)
 		u.usptime = u.uspmtime;
 	    find_ac();
@@ -1551,7 +1551,7 @@ boolean atme;
 	 */
 	skill = spell_skilltype(spellid(spell));
 	role_skill = P_SKILL(skill);
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) role_skill = P_ISRESTRICTED;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) role_skill = P_ISRESTRICTED;
 
 	/*
 	 * Spell casting no longer affects knowledge of the spell. A
@@ -4632,7 +4632,11 @@ boolean atme;
 		break;
 
 	case SPE_POLYFORM:
-		u.wormpolymorph = rn2(NUMMONS);
+
+		do {
+			u.wormpolymorph = rn2(NUMMONS);
+		} while(( (notake(&mons[u.wormpolymorph]) && rn2(4) ) || ((mons[u.wormpolymorph].mlet == S_BAT) && rn2(2)) || ((mons[u.wormpolymorph].mlet == S_EYE) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 1) && rn2(4) ) || ((mons[u.wormpolymorph].mmove == 2) && rn2(3) ) || ((mons[u.wormpolymorph].mmove == 3) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 4) && !rn2(3) ) || ( (mons[u.wormpolymorph].mlevel < 10) && ((mons[u.wormpolymorph].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[u.wormpolymorph]) && rn2(2) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(20) ) || ( uncommon2(&mons[u.wormpolymorph]) && !rn2(4) ) || ( uncommon3(&mons[u.wormpolymorph]) && !rn2(3) ) || ( uncommon5(&mons[u.wormpolymorph]) && !rn2(2) ) || ( uncommon7(&mons[u.wormpolymorph]) && rn2(3) ) || ( uncommon10(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(20) ) ) );
+
 		pline("You feel polyform.");
 		polyself(FALSE);
 		if (!rn2(10)) {
@@ -4849,7 +4853,7 @@ boolean atme;
 
 					u.inertiacontrol = 20;
 
-					if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
+					if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
 
 						switch (P_SKILL(P_OCCULT_SPELL)) {
 							case P_BASIC: u.inertiacontrol = 23; break;
@@ -4879,7 +4883,7 @@ boolean atme;
 		{
 			register int spellbindings = 2;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_SKILLED) {
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_SKILLED) {
 
 				switch (P_SKILL(P_OCCULT_SPELL)) {
 					case P_SKILLED: spellbindings = 3; break;
@@ -4995,7 +4999,7 @@ boolean atme;
 		u.drippingtreadtype = rnd(4);
 		/* 1 = water, 2 = lava, 3 = ice, 4 = clouds */
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
 			pline("Choose a terrain type to generate. You can create water, lava, ice or clouds.");
 			if (yn("Generate water?") == 'y') {
 				u.drippingtreadtype = 1;
@@ -5844,7 +5848,7 @@ rerollX:
 	}
 
 	if (spell_skilltype(spellid(spell)) == P_OCCULT_SPELL) { /* dangerous realm... */
-		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) {
+		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) {
 			if (!rn2(5)) badeffect();
 		} else switch (role_skill) {
 			default:
@@ -6103,7 +6107,7 @@ int spell;
 	int armorpenalties = 15;
 	int shieldpenalties = 15;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_BODY_ARMOR)) {
 			case P_BASIC: armorpenalties = 13; break;
 			case P_SKILLED: armorpenalties = 11; break;
@@ -6115,7 +6119,7 @@ int spell;
 		}
 	}
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: shieldpenalties = 13; break;
 			case P_SKILLED: shieldpenalties = 11; break;
@@ -6180,7 +6184,7 @@ int spell;
 	 * in that spell type.
 	 */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) skill = P_ISRESTRICTED;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) skill = P_ISRESTRICTED;
 
 	/* come on, you should be able to cast better if your skill is higher! --Amy */
 	if ( skill == P_BASIC) splcaster -= 3;
@@ -6257,7 +6261,7 @@ int spell;
 	 */
 	chance = chance * (30-splcaster) / 10;
 
-	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) ) && chance > 0) {
+	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && uarmc->oartifact == ART_HERETICAL_FIGURE) || (uarm && uarm->oartifact == ART_SHIVANHUNTER_S_UNUSED_PRIZ) ) && chance > 0) {
 
 		chance = (chance / u.uhpmax * u.uhp);
 
@@ -6324,7 +6328,11 @@ int spell;
 	}
 
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
+	if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB) chance += 10;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) chance += 20;
+	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
+	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
 
@@ -6334,6 +6342,10 @@ int spell;
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) ) chance -= 20;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY) {
+		chance *= 5;
+		chance /= 6;
+	}
 	if (chance < (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10) ) chance = (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;
@@ -6402,7 +6414,7 @@ spell_dash()
 {
 	register int dashrange = 2;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
 		switch (P_SKILL(P_ELEMENTAL_SPELL)) {
 			default: break;
 			case P_SKILLED: dashrange = 3; break;

@@ -387,6 +387,16 @@ nh_timeout()
 		litroomlite(FALSE);
 	}
 
+	if (uarmh && (uarmh->oartifact == ART_RUTH_S_DARK_FORCE) && !rn2(200) ) {
+		pline("Darkness surrounds you.");
+		litroomlite(FALSE);
+	}
+
+	if (uarmh && (uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) && !rn2(200) ) {
+		pline("Darkness surrounds you.");
+		litroomlite(FALSE);
+	}
+
 	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
 
 	    struct trap *t;
@@ -426,6 +436,19 @@ nh_timeout()
 
 	}
 
+	if (uarmh && uarmh->oartifact == ART____DOT__ALIEN_RADIO) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 
 	    struct trap *t;
@@ -439,7 +462,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) ) {
+	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -491,7 +514,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -546,6 +569,10 @@ nh_timeout()
 
 	if (!rn2(200) && uwep && uwep->oartifact == ART_RANDOMISATOR) badeffect();
 
+	if (!rn2(200) && uwep && uwep->oartifact == ART_MASTER_BALL) badeffect();
+
+	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) badeffect();
+
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {
@@ -579,6 +606,12 @@ nh_timeout()
 	}
 
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+
+		makerandomtrap();
+
+	}
+
+	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
 		makerandomtrap();
 
@@ -1736,7 +1769,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1776,7 +1809,7 @@ nh_timeout()
 				}
 
 				dropx(otmpi);
-			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
 		    }
 		}
@@ -1789,7 +1822,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1829,7 +1862,7 @@ nh_timeout()
 				}
 
 				dropx(otmpi);
-			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
 		    }
 		}
@@ -1842,7 +1875,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1882,7 +1915,60 @@ nh_timeout()
 				}
 
 				dropx(otmpi);
-			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+		    }
+		}
+
+	}
+
+	if (uamul && uamul->oartifact == ART_SCHWUEU ) {
+
+		if (invent) {
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+
+				if (otmpi->owornmask & W_ARMOR) {
+				    if (otmpi == uskin) {
+					skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+				    }
+				    if (otmpi == uarm) (void) Armor_off();
+				    else if (otmpi == uarmc) (void) Cloak_off();
+				    else if (otmpi == uarmf) (void) Boots_off();
+				    else if (otmpi == uarmg) (void) Gloves_off();
+				    else if (otmpi == uarmh) (void) Helmet_off();
+				    else if (otmpi == uarms) (void) Shield_off();
+#ifdef TOURIST
+				    else if (otmpi == uarmu) (void) Shirt_off();
+#endif
+				    /* catchall -- should never happen */
+				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+				} else if (otmpi ->owornmask & W_AMUL) {
+				    Amulet_off();
+				} else if (otmpi ->owornmask & W_RING) {
+				    Ring_gone(otmpi);
+				} else if (otmpi ->owornmask & W_TOOL) {
+				    Blindf_off(otmpi);
+				} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+				    if (otmpi == uwep)
+					uwepgone();
+				    if (otmpi == uswapwep)
+					uswapwepgone();
+				    if (otmpi == uquiver)
+					uqwepgone();
+				}
+
+				if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+				    unpunish();
+				} else if (otmpi->owornmask) {
+				/* catchall */
+				    setnotworn(otmpi);
+				}
+
+				dropx(otmpi);
+			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
 			}
 		    }
 		}
@@ -2181,6 +2267,381 @@ nh_timeout()
 	}
 
 	if (!rn2(1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(85)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 68: Desecration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 69: StarvationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 70: NoDropsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 71: LowEffects += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 72: InvisibleTrapsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 73: GhostWorld += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 74: Dehydration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 75: HateTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 76: TotterTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 77: Nonintrinsics += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 78: Dropcurses += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 79: Nakedness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 80: Antileveling += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 81: ItemStealingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 82: Rebellions += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+		}
+
+	}
+
+	if (!rn2(1000) && uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(85)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 68: Desecration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 69: StarvationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 70: NoDropsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 71: LowEffects += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 72: InvisibleTrapsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 73: GhostWorld += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 74: Dehydration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 75: HateTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 76: TotterTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 77: Nonintrinsics += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 78: Dropcurses += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 79: Nakedness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 80: Antileveling += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 81: ItemStealingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 82: Rebellions += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+		}
+
+	}
+
+	if (!rn2(1000) && uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		switch (rnd(85)) {
+
+			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 3: DSTWProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 4: StatusTrapProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 7: FreeHandLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 8: Unidentify += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 9: Thirst += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 10: LuckLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 11: ShadesOfGrey += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 12: FaintActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 13: Itemcursing += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 14: DifficultyIncreased += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 15: Deafness += rnz(nastytrapdur * (monster_difficulty() + 1)); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 17: WeaknessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 18: RotThirteen += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 19: BishopGridbug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 20: UninformationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 21: StairsProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 22: AlignmentProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 23: ConfusionProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 24: SpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 25: DisplayLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 26: SpellLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 27: YellowSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 28: AutoDestruct += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 29: MemoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 30: InventoryLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 33: BloodLossProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 34: BadEffectProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 35: TrapCreationProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 36: AutomaticVulnerabilitiy += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 37: TeleportingItems += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 38: NastinessProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 39: CaptchaProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 40: FarlookProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 41: RespawnProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 42: RecurringAmnesia += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 44: {
+				BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 46: TechTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 47: RecurringDisenchant += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 48: verisiertEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 49: ChaosTerrain += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 50: Muteness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 51: EngravingDoesntWork += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 52: MagicDeviceEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 53: BookTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 54: LevelTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 55: QuizTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 56: FastMetabolismEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 57: NoReturnEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 58: AlwaysEgotypeMonsters += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 59: TimeGoesByFaster += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 60: FoodIsAlwaysRotten += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 61: AllSkillsUnskilled += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 62: AllStatsAreLower += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 63: PlayerCannotTrainSkills += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 64: PlayerCannotExerciseStats += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 65: TurnLimitation += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 66: WeakSight += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 67: RandomMessages += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 68: Desecration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 69: StarvationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 70: NoDropsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 71: LowEffects += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 72: InvisibleTrapsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 73: GhostWorld += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 74: Dehydration += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 75: HateTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 76: TotterTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 77: Nonintrinsics += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 78: Dropcurses += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 79: Nakedness += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 80: Antileveling += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 81: ItemStealingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 82: Rebellions += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+		}
+
+	}
+
+	if (!rn2(1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2717,6 +3178,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_NEW_FOOTWEAR) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 	if (!rn2(500) && uwep && uwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
@@ -2747,7 +3212,7 @@ nh_timeout()
 		pline("Rattle/clink! Everyone in your vicinity woke up due to the loud sound.");
 	}
 
-	if ( (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || have_weaknessstone() ) && u.uhunger < 201) {
+	if ( (WeaknessProblem || u.uprops[WEAKNESS_PROBLEM].extrinsic || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uarmf && uarmf->oartifact == ART_WEAK_FROM_HUNGER) || have_weaknessstone() ) && u.uhunger < 201) {
 
 		if (!rn2(20)) {
 
@@ -2783,6 +3248,19 @@ nh_timeout()
 			pline("Tensa Zangetsu sapped your last bit of life and you die. Goodbye.");
 			killer_format = KILLED_BY;
 			killer = "wielding Tensa Zangetsu for too long";
+			done(DIED);
+		}
+	}
+
+	if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) {
+		u.uhp--;
+		if (!rn2(2)) u.uhp--;
+		if (u.uhp < 10) pline("Die tumin! Die tumin all.");
+		if (u.uhp < 3) pline("Bi sheng, pliya.");
+		if (u.uhp < 1) {
+			pline("Tschingtsching-tschingesswey!");
+			killer_format = KILLED_BY;
+			killer = "wielding a life-sapping artifact for too long";
 			done(DIED);
 		}
 	}
@@ -2910,7 +3388,8 @@ nh_timeout()
 		if (Sickopathy) pline("You have %d turns to live.", Sick);
 	}
 	if(u.mtimedone && !--u.mtimedone) {
-		if (Unchanging || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || Race_if(PM_UNGENOMOLD) )
+		if (!Race_if(PM_UNGENOMOLD) && u.polyformed) rehumanize();
+		else if (Unchanging || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || Race_if(PM_UNGENOMOLD) )
 			u.mtimedone = rnd(100*youmonst.data->mlevel + 1);
 		else
 			rehumanize();
@@ -3238,7 +3717,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && (!PlayerInHighHeels || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && (!PlayerInHighHeels || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

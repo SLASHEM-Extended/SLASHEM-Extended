@@ -41,7 +41,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == STOMPING_BOOTS)
 	    dmg += 7;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
@@ -60,7 +60,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == WEDGE_SANDALS && Race_if(PM_NAVI) )
 	    dmg += 5;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && Race_if(PM_NAVI) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
@@ -73,7 +73,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == WEDGE_SANDALS)
 	    dmg += 2;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
 	if (uarmf && (uarmf->otyp == WEDGE_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
@@ -86,7 +86,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == STAIRWELL_STOMPING_BOOTS)
 	    dmg += 2;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
 	if (uarmf && (uarmf->otyp == STAIRWELL_STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
@@ -99,7 +99,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
 	    dmg += 5;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
@@ -112,7 +112,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == LEATHER_PEEP_TOES)
 	    dmg += 4;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
@@ -125,7 +125,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == HIPPIE_HEELS)
 	    dmg += 7;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 5;
 	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 10;
@@ -138,7 +138,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_SKILLED) dmg += uarmf->spe;
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT) dmg += uarmf->spe;
@@ -152,6 +152,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
+	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -213,7 +214,9 @@ register boolean clumsy;
 		if (dmg < 1) dmg = 1;
 	}
 
-	if (dmg > 127) dmg = 127; /* sanity check --Amy */
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) dmg *= 2;
+
+	/*if (dmg > 127) dmg = 127;*/ /* sanity check... but not actually needed --Amy */
 
 	if (dmg > 0) {
 		mon->mhp -= dmg;
@@ -262,6 +265,25 @@ register boolean clumsy;
 			pline("Wham! Your lovely plateau soles fully kick %s in the ass.", mon_nam(mon) );
 			mon->mstun = mon->mconf = TRUE;
 		}
+
+	}
+
+	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT && !rn2(10) ) {
+
+		pline("You place an incredibly strong kick at %s's body, who staggers and can't fight back for now.", mon_nam(mon) );
+		mon->mstun = TRUE;
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+
+		pline("You smash %s's shins with a powerful kick.", mon_nam(mon) );
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
 
 	}
 

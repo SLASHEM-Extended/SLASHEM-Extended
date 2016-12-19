@@ -726,7 +726,7 @@ long nmv;		/* number of moves */
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mtmp == u.usteed) && !rn2(10) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
@@ -1095,7 +1095,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 		}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || have_hatestone() ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}

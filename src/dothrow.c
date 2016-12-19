@@ -79,6 +79,7 @@ int thrown;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
+	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
 	if (Double_attack) multishot *= 2;
 	if (Quad_attack) multishot *= 4;
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
@@ -178,7 +179,7 @@ int thrown;
 		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    switch (P_SKILL(weapon_type(obj))) {
 	    default:	break; /* No bonus */
@@ -204,7 +205,15 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_MAXIMUM_LAUNCH_POWER) multishot += rnd(2);
 
+	    if (launcher && launcher->oartifact == ART_WINSETT_S_BIG_DADDY) multishot += rnd(2);
+
 	    if (launcher && launcher->oartifact == ART_TUNA_CANNON) multishot += 1;
+
+	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
+
+	    if (uarmg && uarmg->oartifact == ART_PEEPING_GROOVE && launcher && (launcher->otyp == SHOTGUN || launcher->otyp == SAWED_OFF_SHOTGUN || launcher->otyp == AUTO_SHOTGUN)) multishot += rnd(7);
+
+	    if (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 5;
 
 	    /* 1/3 of object enchantment */
 	    if (launcher && launcher->spe > 1)
@@ -224,7 +233,7 @@ int thrown;
 	    case PM_ROCKER:
 		if (skill == P_SLING) {multishot++;
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
@@ -1128,7 +1137,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || obj->greased || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1185,7 +1194,7 @@ int thrown;
 #ifdef JEDI
 	    if (u.dz < 0 && Role_if(PM_JEDI) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
-			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
 		pline("%s the %s and returns to your hand!",
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
@@ -1247,6 +1256,9 @@ int thrown;
 		}
 	} else {
 		urange = (int)(ACURRSTR)/2;
+
+		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) urange += 5;
+
 		/* balls are easy to throw or at least roll */
 		/* also, this insures the maximum range of a ball is greater
 		 * than 1, so the effects from throwing attached balls are
@@ -1364,7 +1376,7 @@ int thrown;
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
 		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
-			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */
 		    /* or a Jedi with a lightsaber */
@@ -1573,6 +1585,7 @@ int thrown;
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 
 	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
@@ -1583,6 +1596,7 @@ int thrown;
 	if(!mon->mcanmove) tmp += 4;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
 	/* certain monsters are capable of deflecting projectiles --Amy */
 	if (verysmall(mon->data) && !rn2(4)) {
@@ -1922,6 +1936,8 @@ int thrown;
 			broken = 0;
 
 		    if (objects[otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && broken && !rn2(2))
+			broken = 0;
+		    if (objects[otyp].oc_material == MINERAL && uarm && uarm->oartifact == ART_QUARRY && broken && !rn2(2))
 			broken = 0;
 
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;

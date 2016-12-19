@@ -1959,6 +1959,16 @@ int tech_no;
 
 	}
 
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) {
+
+		pline("Unfortunately, nothing happens.");
+		techtout(tech_no) = rnz(1000);
+		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		/*By default,  action should take a turn*/
+		return(1);
+
+	}
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) {
 
 		pline("Unfortunately, nothing happens.");
@@ -2707,7 +2717,7 @@ int tech_no;
 	    		You("aren't wielding a proper weapon!");
 	    		return(0);
 	    	}
-	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone() || (Blind)) {
+	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || (Blind)) {
 	    		You("aren't capable of doing this!");
 	    		return(0);
 	    	}
@@ -2747,6 +2757,11 @@ int tech_no;
 		}
 		num = ((rn2(techlev(tech_no) + 15)) 
 			* (P_SKILL(weapon_type(uwep)) - P_SKILLED + 1)) / 10;
+
+		if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {
+			if (num < 0) num = 0;
+			num += 20;
+		}
 
 		You("attempt to disarm %s...",mon_nam(mtmp));
 		/* WAC can't yank out cursed items */
@@ -3712,6 +3727,10 @@ tech_timeout()
 
 	    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
 	    if (techtout(i) > 0) techtout(i)--;
+	    if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && techtout(i) > 0) {
+		if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
+		techtout(i)--;
+	    }
         }
 }
 

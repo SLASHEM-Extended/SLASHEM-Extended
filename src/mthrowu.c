@@ -153,7 +153,7 @@ const char *name;	/* if null, then format `obj' */
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -166,6 +166,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
@@ -235,7 +236,7 @@ const char *name;	/* if null, then format `obj' */
 #ifdef JEDI
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 		rn2(5)){ /* dodge four of five missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
@@ -243,7 +244,7 @@ const char *name;	/* if null, then format `obj' */
 #endif
 	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) &&
+		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
 		rn2(2)){ /* dodge half of all missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
@@ -412,6 +413,8 @@ int x,y;
 		create = 1;
 
 	    if (objects[obj->otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && !create && !rn2(2))
+		create = 1;
+	    if (objects[obj->otyp].oc_material == MINERAL && uarm && uarm->oartifact == ART_QUARRY && !create && !rn2(2))
 		create = 1;
 
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;

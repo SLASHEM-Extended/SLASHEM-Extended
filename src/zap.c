@@ -3180,7 +3180,7 @@ zappable(wand)
 register struct obj *wand;
 {
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -3267,7 +3267,7 @@ newboss:
 			goto newboss;
 		}
 
-		(void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 	    }
 
 		break;
@@ -5240,11 +5240,37 @@ boolean ordinary;
 		case WAN_POLYMORPH:
 		    if (!Unchanging) {
 		    	makeknown(WAN_POLYMORPH);
+
+			if (obj->oartifact == ART_DIKKIN_S_DEADLIGHT) {
+				HPolymorph_control += 1;
+				if (yn("Do a completely random polymorph?") == 'y') {
+
+					do {
+						u.wormpolymorph = rn2(NUMMONS);
+					} while(( (notake(&mons[u.wormpolymorph]) && rn2(4) ) || ((mons[u.wormpolymorph].mlet == S_BAT) && rn2(2)) || ((mons[u.wormpolymorph].mlet == S_EYE) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 1) && rn2(4) ) || ((mons[u.wormpolymorph].mmove == 2) && rn2(3) ) || ((mons[u.wormpolymorph].mmove == 3) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 4) && !rn2(3) ) || ( (mons[u.wormpolymorph].mlevel < 10) && ((mons[u.wormpolymorph].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[u.wormpolymorph]) && rn2(2) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(20) ) || ( uncommon2(&mons[u.wormpolymorph]) && !rn2(4) ) || ( uncommon3(&mons[u.wormpolymorph]) && !rn2(3) ) || ( uncommon5(&mons[u.wormpolymorph]) && !rn2(2) ) || ( uncommon7(&mons[u.wormpolymorph]) && rn2(3) ) || ( uncommon10(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(20) ) ) );
+
+				}
+			}
+
 		    	polyself(FALSE);
 		    }
 		    break;
 		case SPE_POLYMORPH:
 		    if (!Unchanging) {
+
+			if (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) {
+
+				if (yn("Do a completely random polymorph?") == 'y') {
+
+					do {
+						u.wormpolymorph = rn2(NUMMONS);
+					} while(( (notake(&mons[u.wormpolymorph]) && rn2(4) ) || ((mons[u.wormpolymorph].mlet == S_BAT) && rn2(2)) || ((mons[u.wormpolymorph].mlet == S_EYE) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 1) && rn2(4) ) || ((mons[u.wormpolymorph].mmove == 2) && rn2(3) ) || ((mons[u.wormpolymorph].mmove == 3) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 4) && !rn2(3) ) || ( (mons[u.wormpolymorph].mlevel < 10) && ((mons[u.wormpolymorph].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[u.wormpolymorph]) && rn2(2) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(20) ) || ( uncommon2(&mons[u.wormpolymorph]) && !rn2(4) ) || ( uncommon3(&mons[u.wormpolymorph]) && !rn2(3) ) || ( uncommon5(&mons[u.wormpolymorph]) && !rn2(2) ) || ( uncommon7(&mons[u.wormpolymorph]) && rn2(3) ) || ( uncommon10(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(20) ) ) );
+
+				}
+				YellowSpells += rnz(10 * (monster_difficulty() + 1));
+
+			}
+
 		    	polyself(FALSE);
 			if (!rn2(3)) { /* nerf by Amy */
 				pline("The spell backfires!");
@@ -6307,6 +6333,8 @@ struct obj *obj;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
 	int skilldmg = 0; /*WAC - Skills damage bonus*/
 
+	if (obj->oartifact == ART_DIKKIN_S_DEADLIGHT) YellowSpells += rnz(10 * (monster_difficulty() + 1));
+
 	if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_CHROMATIC_BEAM)
@@ -6601,7 +6629,7 @@ register int booktype;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) tmp -= 1;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) tmp -= 1;
 	else switch (P_SKILL(spell_skilltype(booktype))) {
 		case P_ISRESTRICTED:
 		case P_UNSKILLED:   tmp -= 1; break;
@@ -6628,7 +6656,7 @@ int skill;
     int hit_bon = 0;
     int dex = ACURR(A_DEX);
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) hit_bon = -4;
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) hit_bon = -4;
     else switch (P_SKILL(spell_skilltype(skill))) {
 	case P_ISRESTRICTED:
 	case P_UNSKILLED:   hit_bon = -4; break;
@@ -7947,12 +7975,53 @@ register int dx,dy;
 				dy = 0;
 			    }
 
+			} else if (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
+			} else if (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
 			} else if (uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/
 			    dy = rn1(3, -1);	/*-1, 0, 1*/
 
 			} else if (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) {
+
+			    dx = rn1(3, -1);	/*-1, 0, 1*/
+			    dy = rn1(3, -1);	/*-1, 0, 1*/
+
+			} else if (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/
 			    dy = rn1(3, -1);	/*-1, 0, 1*/
@@ -8462,6 +8531,9 @@ register int osym, dmgtyp;
 		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {skip++; break;
 			}
 
+		    if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {skip++; break;
+			}
+
 		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {
 			quan = obj->quan;
 			dindx = 0;
@@ -8709,7 +8781,7 @@ int damage, tell;
 	    default:		alev = rnd(u.ulevel); break;	/* spell */
 	}
 
-	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || have_loweffectstone() ) alev = 1;
+	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || (uamul && uamul->oartifact == ART_MYSTERIOUS_MAGIC) || have_loweffectstone() ) alev = 1;
 
 	/* defense level */
 	dlev = (int)mtmp->m_lev;

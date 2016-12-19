@@ -7491,6 +7491,8 @@ u_init()
 	u.enchantspell = 0;
 	u.thornspell = 0;
 
+	u.polyformed = 0;
+
 	u.boomshined = 0;
 	u.kyliemode = 0;
 

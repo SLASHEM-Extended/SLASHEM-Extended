@@ -289,7 +289,7 @@ found:
 	 */
 	actualcost = rn1(basecost/2,basecost/2);
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: actualcost = (actualcost * 14 / 15); break;

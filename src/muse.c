@@ -2315,7 +2315,7 @@ newboss:
 			goto newboss;
 		}
 
-		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 	      if (mon && canspotmon(mon)) known = TRUE;
 
 		if (known)
@@ -5306,7 +5306,7 @@ struct monst *mtmp;
 
 						int untamingchance = 10;
 
-						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+						if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 							switch (P_SKILL(P_PETKEEPING)) {
 								default: untamingchance = 10; break;
 								case P_BASIC: untamingchance = 9; break;
@@ -5740,7 +5740,7 @@ newboss:
 			goto newboss;
 		}
 
-		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 	      if (mon && canspotmon(mon)) known = TRUE;
 		if (known) makeknown(otmp->otyp);
 
@@ -7323,6 +7323,7 @@ skipmsg:
 	case MUSE_WAN_POLYMORPH:
 		mzapmsg(mtmp, otmp, TRUE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		if (otmp->oartifact == ART_DIKKIN_S_DEADLIGHT) YellowSpells += rnz(10 * (monster_difficulty() + 1));
 		if (mtmp->mhp < mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 #if 0
 		(void) newcham(mtmp, muse_newcham_mon(), TRUE, vismon);
@@ -7690,7 +7691,7 @@ newboss:
 			goto newboss;
 		}
 
-		mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
+		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 	      if (mon && canspotmon(mon)) known = TRUE;
 
 		if (known)

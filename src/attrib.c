@@ -846,7 +846,7 @@ adjattrib(ndx, incr, msgflg)
 	int	msgflg;	    /* 2 => no message at all, 1 => no message */
 			    /* except encumber, zero => message, and */
 {			    /* negative => conditional (msg if change made) */
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || !incr) return FALSE;
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || !incr) return FALSE;
 
 	if ((ndx == A_INT || ndx == A_WIS)
 				&& uarmh && uarmh->otyp == DUNCE_CAP) {
@@ -1717,10 +1717,14 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uleft && uleft->oartifact == ART_UNBELIEVABLY_STRONG_PUNCH) tmp += uleft->spe;
 		if (uright && uright->oartifact == ART_UNBELIEVABLY_STRONG_PUNCH) tmp += uright->spe;
+		if (uleft && uleft->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uleft->spe);
+		if (uright && uright->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uright->spe);
+		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
@@ -1747,15 +1751,21 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_BEAUTIFUL_TOPMODEL) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) tmp += 15;
+		if (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY) tmp += 20;
 		if (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
 		if (uright && uright->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
+		if (uleft && uleft->oartifact == ART_SCARAB_OF_ADORNMENT) tmp += 10;
+		if (uright && uright->oartifact == ART_SCARAB_OF_ADORNMENT) tmp += 10;
 		if (uamul && uamul->oartifact == ART_OH_COME_ON) tmp += 5;
 		if (uamul && uamul->oartifact == ART_NECKLACE_OF_ADORNMENT) tmp += 10;
 		if (uwep && uwep->oartifact == ART_BUNGA_BUNGA && uwep->spe > 0) tmp += (5 + uwep->spe);
 		if (flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp += 5;
+		if (flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp += 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) tmp += 5;
@@ -1764,7 +1774,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 
-		if (PlayerInHighHeels && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (PlayerInHighHeels && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 			switch (P_SKILL(P_HIGH_HEELS)) {
 				case P_BASIC: tmp += 1; break;
@@ -1790,7 +1800,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (uwep && uwep->oartifact == ART_KNOW_YOUR_INTRINSICS) tmp += 5; /* boost both */
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
+		if (x == A_INT && uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) tmp += 8;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
@@ -1807,10 +1819,12 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uleft && uleft->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uleft->spe;
 		if (uright && uright->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uright->spe;
+		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
@@ -1821,6 +1835,7 @@ int x;
 
 		if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) tmp -= 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
+		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 
 		if (AllStatsAreLower) tmp -= 10;

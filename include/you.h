@@ -817,6 +817,8 @@ struct you {
 
 	int halresdeactivated;
 
+	boolean polyformed;
+
 	boolean boomshined;
 	boolean kyliemode;
 

@@ -1199,7 +1199,6 @@ unsigned int *stuckid, *steedid;	/* STEED */
 				sizeof(struct spell) * (MAXSPELL + 1));
 	mread(fd, (genericptr_t) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
-	restore_artifacts(fd);
 	restore_oracles(fd);
 	if (u.ustuck)
 		mread(fd, (genericptr_t) stuckid, sizeof (*stuckid));
@@ -1215,6 +1214,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	ffruit = loadfruitchn(fd);
 
 	restnames(fd);
+	restore_artifacts(fd); /* fix by Chris; again, thanks a lot for figuring this out! --Amy */
 	restore_waterlevel(fd);
 
 #ifdef RECORD_ACHIEVE

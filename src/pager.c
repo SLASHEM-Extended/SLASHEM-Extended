@@ -163,7 +163,7 @@ lookat(x, y, buf, monbuf)
 	    char *name, monnambuf[BUFSZ];
 	    boolean accurate = !Hallucination;
 
-		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) wakeup(mtmp);
+		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone()) wakeup(mtmp);
 
 	    if ( (mtmp->data == &mons[PM_COYOTE] || mtmp->data == &mons[PM_STALKING_COYOTE]) && accurate)
 		name = coyotename(mtmp, monnambuf);
@@ -277,6 +277,8 @@ lookat(x, y, buf, monbuf)
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
+		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mtmp->data) )
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
@@ -414,6 +416,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
+			Strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mtmp->data) ) {
 			Strcat(monbuf, "pokemon vision");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
@@ -997,7 +1003,7 @@ do_look(quick)
 	}
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !have_rmbstone()) {
+	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -1016,7 +1022,7 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);

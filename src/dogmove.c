@@ -143,7 +143,7 @@ struct obj *obj;
 	}
 	use_skill(P_PETKEEPING,1);
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		switch (P_SKILL(P_PETKEEPING)) {
 			default: break;
 			case P_BASIC: nutrit = (nutrit * 11 / 10); break;
@@ -661,9 +661,9 @@ register struct monst *mtmp;
     int udist = distu(mtmp->mx, mtmp->my);
 
     if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) ) && !rn2(3)
-		    && (can_betray(mtmp->data) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->m_lev >= 40) )
+		    && (can_betray(mtmp->data) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
+		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
 		    && rn2(edog->abuse + rnd(2) )) {
 	/* Treason */
@@ -750,7 +750,7 @@ register int after;	/* this is extra fast monster movement */
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */
 	if (!rn2(10000) && has_edog && edog->abuse) {
 		edog->abuse--;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_BASIC) edog->abuse--;
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_SKILLED) edog->abuse--;
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_EXPERT) edog->abuse--;

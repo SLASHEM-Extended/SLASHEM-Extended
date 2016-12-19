@@ -1129,7 +1129,7 @@ boolean	at_stairs;
 		/* Taking a down dungeon branch. */
 		goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
 
-		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) {
+		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
@@ -1165,7 +1165,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel + 1;
 		goto_level(&newlevel, at_stairs, !at_stairs, FALSE);
 
-		if (at_stairs && (!rn2(ishaxor ? 250 : 500) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) ) {
+		if (at_stairs && (!rn2(ishaxor ? 250 : 500) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
@@ -1209,7 +1209,7 @@ boolean	at_stairs;
 		else { 
 
 			goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
-			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) {
+			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
 				pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 				NoStaircase = 10 + rnz(monster_difficulty() + 1);
@@ -1245,7 +1245,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel - 1;
 		goto_level(&newlevel, at_stairs, FALSE, FALSE);
 
-		if (at_stairs && (!rn2(ishaxor ? 50 : 100) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || have_stairstrapstone() ) ) {
+		if (at_stairs && (!rn2(ishaxor ? 50 : 100) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 
 			pline(Hallucination ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
@@ -1749,8 +1749,10 @@ level_difficulty()
 
 	if (retvalue < 1) retvalue = 1;
 
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) ) retvalue += 10;
+	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
+
+	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;

@@ -999,6 +999,275 @@ randnastyenchantment()
 
 }
 
+int
+randartmeleeweapon()
+{
+	int result;
+reroll:
+	result = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+	if (objects[result].oc_skill >= P_BOW && objects[result].oc_skill <= P_CROSSBOW) goto reroll;
+	if (objects[result].oc_skill >= -P_CROSSBOW && objects[result].oc_skill <= -P_BOW) goto reroll;
+	if (objects[result].oc_skill >= -P_BOOMERANG && objects[result].oc_skill <= -P_DART) goto reroll;
+	return result;
+}
+
+int
+randartlauncher()
+{
+	int result;
+reroll:
+	result = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+	if (!(objects[result].oc_skill >= P_BOW && objects[result].oc_skill <= P_CROSSBOW) ) goto reroll;
+	return result;
+}
+
+int
+randartmissile()
+{
+	int result;
+reroll:
+	result = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+	if (!(objects[result].oc_skill >= -P_CROSSBOW && objects[result].oc_skill <= -P_BOW) && !(objects[result].oc_skill >= -P_BOOMERANG && objects[result].oc_skill <= -P_DART) ) goto reroll;
+	return result;
+}
+
+int
+randartsuit()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_SUIT)) goto reroll;
+	return result;
+}
+
+int
+randartshirt()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_SHIRT)) goto reroll;
+	return result;
+}
+
+int
+randartcloak()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_CLOAK)) goto reroll;
+	return result;
+}
+
+int
+randarthelm()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_HELM)) goto reroll;
+	return result;
+}
+
+int
+randartgloves()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_GLOVES)) goto reroll;
+	return result;
+}
+
+int
+randartshield()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_SHIELD)) goto reroll;
+	return result;
+}
+
+int
+randartboots()
+{
+	int result;
+reroll:
+	result = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+	if (!(objects[result].oc_armcat == ARM_BOOTS)) goto reroll;
+	return result;
+}
+
+int
+randartring()
+{
+	int result;
+	result = rnd_class(RIN_ADORNMENT,RIN_TELEPORT_CONTROL);
+	return result;
+}
+
+int
+randartamulet()
+{
+	int result;
+	result = rnd_class(AMULET_OF_CHANGE,AMULET_OF_DEPRESSION);
+	return result;
+}
+
+int
+randartwand()
+{
+	int result;
+	result = rnd_class(WAN_LIGHT,WAN_PSYBEAM);
+	return result;
+}
+
+int
+randartspellbook()
+{
+	int result;
+	result = rnd_class(SPE_FORCE_BOLT,SPE_PSYBEAM);
+	return result;
+}
+
+int
+randartmeleeweaponX()
+{
+	int result;
+reroll:
+	result = ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER);
+	if (objects[result].oc_skill >= P_BOW && objects[result].oc_skill <= P_CROSSBOW) goto reroll;
+	if (objects[result].oc_skill >= -P_CROSSBOW && objects[result].oc_skill <= -P_BOW) goto reroll;
+	if (objects[result].oc_skill >= -P_BOOMERANG && objects[result].oc_skill <= -P_DART) goto reroll;
+	return result;
+}
+
+int
+randartlauncherX()
+{
+	int result;
+reroll:
+	result = ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER);
+	if (!(objects[result].oc_skill >= P_BOW && objects[result].oc_skill <= P_CROSSBOW) ) goto reroll;
+	return result;
+}
+
+int
+randartmissileX()
+{
+	int result;
+reroll:
+	result = ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER);
+	if (!(objects[result].oc_skill >= -P_CROSSBOW && objects[result].oc_skill <= -P_BOW) && !(objects[result].oc_skill >= -P_BOOMERANG && objects[result].oc_skill <= -P_DART) ) goto reroll;
+	return result;
+}
+
+int
+randartsuitX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_SUIT)) goto reroll;
+	return result;
+}
+
+int
+randartshirtX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_SHIRT)) goto reroll;
+	return result;
+}
+
+int
+randartcloakX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_CLOAK)) goto reroll;
+	return result;
+}
+
+int
+randarthelmX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_HELM)) goto reroll;
+	return result;
+}
+
+int
+randartglovesX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_GLOVES)) goto reroll;
+	return result;
+}
+
+int
+randartshieldX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_SHIELD)) goto reroll;
+	return result;
+}
+
+int
+randartbootsX()
+{
+	int result;
+reroll:
+	result = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+	if (!(objects[result].oc_armcat == ARM_BOOTS)) goto reroll;
+	return result;
+}
+
+int
+randartringX()
+{
+	int result;
+	result = RIN_ADORNMENT + rn2((RIN_TELEPORT_CONTROL + 1) - RIN_ADORNMENT);
+	return result;
+}
+
+int
+randartamuletX()
+{
+	int result;
+	result = AMULET_OF_CHANGE + rn2((AMULET_OF_DEPRESSION + 1) - AMULET_OF_CHANGE);
+	return result;
+}
+
+int
+randartwandX()
+{
+	int result;
+	result = WAN_LIGHT + rn2((WAN_PSYBEAM + 1) - WAN_LIGHT);
+	return result;
+}
+
+int
+randartspellbookX()
+{
+	int result;
+	result = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+	return result;
+}
+
+
 #endif /* OVLB */
 
 /*rnd.c*/

@@ -274,6 +274,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 	polyman("feel like a new %s!",
 		(flags.female && urace.individual.f) ? urace.individual.f :
 		(urace.individual.m) ? urace.individual.m : urace.noun);
+	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
 		Slimed = 100L;
@@ -320,7 +321,24 @@ boolean forcecontrol;
 			mntmp = rn2(NUMMONS);
 		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
-		polymon(mntmp);
+		if (polymon(mntmp)) u.polyformed = 1;
+
+		if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
+
+		u.wormpolymorph = 0;
+
+		goto made_change;
+	}
+
+	if (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && (yn("Do a completely random polymorph?") == 'y') ) {
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		if (polymon(mntmp)) u.polyformed = 1;
+
+		u.polyformed = 1;
 
 		if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
 
@@ -338,7 +356,7 @@ boolean forcecontrol;
 
 	}
 	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
-	else if ((Polymorph_control || forcecontrol) && rn2(5)) {
+	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(5)) {
 		do {
 			getlin("Become what kind of monster? [type the name]",
 				buf);
@@ -361,10 +379,10 @@ boolean forcecontrol;
 			else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -406,10 +424,10 @@ boolean forcecontrol;
 				else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+				else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+				else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
 
@@ -429,10 +447,10 @@ boolean forcecontrol;
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
-			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > 3) ) {
+			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -470,7 +488,10 @@ boolean forcecontrol;
 		else (void) polymon(mntmp);
 		goto made_change;    /* maybe not, but this is right anyway */
 	}
-	if (u.wormpolymorph) mntmp = u.wormpolymorph;
+	if (u.wormpolymorph) {
+		mntmp = u.wormpolymorph;
+		u.polyformed = 1;
+	}
 
 	if (!u.wormpolymorph && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
 		tries = 0;
@@ -619,7 +640,7 @@ int	mntmp;
 		delayed_killer = 0;
 	}
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone()) u.mtimedone = rnz(400);
+	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) u.mtimedone = rnz(400);
 	else switch (P_SKILL(P_POLYMORPHING)) {
 
       	case P_BASIC:	u.mtimedone = rnz(500); break;
@@ -724,9 +745,10 @@ int	mntmp;
 	u.mtimedone = u.mtimedone * 2;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_LONG_LASTING_JOY) u.mtimedone *= (2 + rn2(2));
+
 	if (ishaxor) u.mtimedone *= 2;
 	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
-
 
 #ifdef EATEN_MEMORY
 	/* WAC Doppelgangers can stay much longer in a form they know well */
@@ -861,7 +883,7 @@ break_armor()
     register struct obj *otmp;
     boolean controlled_change = (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || have_unskilledstone())) {
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 		if (rnd(10) < P_SKILL(P_POLYMORPHING)) controlled_change = TRUE;
 
 	}
@@ -1073,6 +1095,7 @@ rehumanize()
 	if (emits_light(youmonst.data))
 	    del_light_source(LS_MONSTER, (genericptr_t)&youmonst);
 	polyman("return to %s form!", urace.adj);
+	u.polyformed = 0;
 
 	u.ughmemory = 0;
 

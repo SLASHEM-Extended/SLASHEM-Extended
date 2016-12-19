@@ -122,6 +122,21 @@ boolean put_away;
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
+	    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+	}
+
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_WARDING_HOE) {
+		curse(uwep);
+		uwep->hvycurse = uwep->prmcurse = uwep->evilcurse = 1;
+	}
+
+	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		pline("A terrible black aura surrounds your weapon...");
+	}
+
 	if (uwep && uwep->oartifact == ART_BANG_BANG && uwep->spe < 2) uwep->spe = 2;
 
 	if (uwep && uwep->oartifact == ART_DEADLY_GAMBLING && !rn2(100) ) {

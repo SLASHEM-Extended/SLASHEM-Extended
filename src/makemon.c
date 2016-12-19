@@ -11521,7 +11521,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
+	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();
@@ -11533,6 +11533,12 @@ register int	mmflags;
 	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;
+	}
+
+	if (uarmh && uarmh->oartifact == ART_NUCLEAR_BOMB && ptr->mlet == S_GOLEM) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_bomber = 1;
+		mtmp->egotype_exploder = 1;
 	}
 
 	if (!rn2(100) && uarmc && uarmc->oartifact == ART_MORE_HIGHER) {
@@ -13443,7 +13449,7 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
-	if (u.uprops[GHOST_WORLD].extrinsic || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() ) {
+	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() ) {
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 
@@ -14954,6 +14960,8 @@ register struct permonst *ptr;
 	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 	if (u.kyliemode) return FALSE;
 

@@ -836,6 +836,21 @@ int how;
 
 	}
 
+	if (uarmf && how < GENOCIDED && uarmf->oartifact == ART_PRINCE_OF_PERSIA && !rn2(2) ) {
+		pline("But wait...");
+		pline("You respawn because you're the Prince of Persia!");
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		return;
+
+	}
+
 	/* Troll characters have a chance of reviving. --Amy */
 	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
 		pline("But wait...");
