@@ -89,9 +89,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
-#ifdef STEED
 	PN_RIDING,
-#endif
 };
 
 
@@ -3172,7 +3170,6 @@ struct obj *weapon;
 	bonus = ((bonus + 2) * (martial_bonus() ? 2 : 1)) / 2;
     }
 
-#ifdef STEED
 	/* KMH -- It's harder to hit while you are riding */
 	if (u.usteed) {
 
@@ -3189,7 +3186,6 @@ struct obj *weapon;
 		}
 		if (type == P_LANCE) bonus++;
 	}
-#endif
 
     return bonus;
 }
@@ -3297,7 +3293,6 @@ struct obj *weapon;
 
     } /* Misc skills aren't usually called by weapons */
 
-#ifdef STEED
 	/* KMH -- Riding gives some thrusting damage */
 	if (u.usteed && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
 		switch (P_SKILL(P_RIDING)) {
@@ -3311,7 +3306,6 @@ struct obj *weapon;
 		    case P_SUPREME_MASTER:      bonus += 15; break;
 		}
 	}
-#endif
 
 	/* Jedi are simply better */
 	if (Role_if(PM_JEDI) && weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && is_lightsaber(weapon)){
@@ -3881,9 +3875,7 @@ struct obj *obj;
 	/* Should be integrated into oc_subtyp as soon as more skills are 
 	 * invented 
 	 */
-#ifdef STEED
 	if (obj->otyp == SADDLE) skill = P_RIDING;
-#endif
 
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
 	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
@@ -4333,10 +4325,8 @@ const struct def_skill *class_skill;
 #endif
 
 	/* Roles that start with a horse know how to ride it */
-#ifdef STEED
 	if (urole.petnum == PM_PONY)
 	    P_SKILL(P_RIDING) = P_BASIC;
-#endif
 
 	/*
 	 * Make sure we haven't missed setting the max on a skill

@@ -163,9 +163,7 @@ NEARDATA struct obj *invent = (struct obj *)0,
 	*uright = (struct obj *)0,
 	*uleft = (struct obj *)0,
 	*ublindf = (struct obj *)0,
-#ifdef STEED
 	*usaddle = (struct obj *)0,
-#endif
 	*uchain = (struct obj *)0,
 	*uball = (struct obj *)0;
 

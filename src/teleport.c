@@ -37,9 +37,7 @@ unsigned gpflags;
 	 * oh well.
 	 */
 	if (mtmp != &youmonst && x == u.ux && y == u.uy
-#ifdef STEED
 			&& (!u.usteed || mtmp != u.usteed)
-#endif
 			)
 	    is_badpos = 1;
 
@@ -620,13 +618,11 @@ boolean allow_drag;
 	}
 	initrack(); /* teleports mess up tracking monsters without this */
 	update_player_regions();
-#ifdef STEED
 	/* Move your steed, too */
 	if (u.usteed) {
 		u.usteed->mx = nux;
 		u.usteed->my = nuy;
 	}
-#endif
 
 	/*
 	 *  Make sure the hero disappears from the old location.  This will
@@ -711,10 +707,8 @@ boolean force_it;
 {
 	register struct obj *otmp;
 
-#ifdef STEED
 	if (mtmp == u.usteed)
 		return (FALSE);
-#endif
 
 	if (mtmp->mleashed) {
 	    otmp = get_mleash(mtmp);
@@ -760,9 +754,7 @@ tele()
         (
 #endif
         (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
-#ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
-#endif
 	)
 #ifdef WIZARD
         && (!wizard) )
@@ -779,14 +771,10 @@ tele()
 	    if (unconscious()) {
 		pline("Being unconscious, you cannot control your teleport.");
 	    } else {
-#ifdef STEED
 		    char buf[BUFSZ];
 		    if (u.usteed) Sprintf(buf," and %s", mon_nam(u.usteed));
-#endif
 		    pline("To what position do you%s want to be teleported?",
-#ifdef STEED
 				u.usteed ? buf :
-#endif
 			   "");
 		    cc.x = u.ux;
 		    cc.y = u.uy;
@@ -819,9 +807,7 @@ teleX()
 
 	if
         (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
-#ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
-#endif
 	)
 	{
 	    You_feel("disoriented for a moment.");
@@ -842,9 +828,7 @@ boolean confused;
 
 	if
         (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
-#ifdef STEED
 	|| (u.usteed && mon_has_amulet(u.usteed))
-#endif
 	)
 	{
 	    You_feel("disoriented for a moment.");
@@ -973,9 +957,7 @@ level_tele()
 	boolean force_dest = FALSE;
 
 	if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz))
-#ifdef STEED
 			|| (u.usteed && mon_has_amulet(u.usteed))
-#endif
 	   )
 #ifdef WIZARD
 						&& !wizard
@@ -1448,12 +1430,10 @@ boolean suppress_impossible;
 {
 	register int x, y, trycount;
 
-#ifdef STEED
 	if (mtmp == u.usteed) {
 	    tele();
 	    return TRUE;
 	}
-#endif
 
 	if (mtmp->iswiz && mtmp->mx) {	/* Wizard, not just arriving */
 	    if (!In_W_tower(u.ux, u.uy, &u.uz))

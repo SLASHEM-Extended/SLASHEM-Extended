@@ -312,9 +312,7 @@ E NEARDATA struct obj *invent, *uarm, *uarmc, *uarmh, *uarms, *uarmg, *uarmf,
 #ifdef TOURIST
 	*uarmu,				/* under-wear, so to speak */
 #endif
-#ifdef STEED
 	*usaddle,
-#endif
 	*uskin, *uamul, *uleft, *uright, *ublindf,
 	*uwep, *uswapwep, *uquiver;
 

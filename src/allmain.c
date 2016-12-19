@@ -875,12 +875,10 @@ moveloop()
 	/* still keeping the old monstermaking routine up, but drastically reducing their spawn rate. --Amy */
 
 		    /* calculate how much time passed. */
-#ifdef STEED
 		    if (u.usteed && u.umoved) {
 			/* your speed doesn't augment steed's speed */
 			moveamt = mcalcmove(u.usteed);
 		    } else
-#endif
 		    {
 			moveamt = youmonst.data->mmove;
 			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1; /* be lenient if an ungenomold player is unlucky 		 * enough to poly into a red mold or something like that. Otherwise they would simply die with no chance.

@@ -120,7 +120,6 @@ lookat(x, y, buf, monbuf)
 #endif
 
 
-#ifdef STEED
 	if (u.usteed) {
 	    char steedbuf[BUFSZ];
 
@@ -128,7 +127,6 @@ lookat(x, y, buf, monbuf)
 	    /* assert((sizeof buf >= strlen(buf)+strlen(steedbuf)+1); */
 	    Strcat(buf, steedbuf);
 	}
-#endif
 	/* When you see yourself normally, no explanation is appended
 	   (even if you could also see yourself via other means).
 	   Sensing self while blind or swallowed is treated as if it

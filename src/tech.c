@@ -588,9 +588,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 #ifdef YEOMAN
 	yeo_tech[] = {
-#ifdef STEED
 		       {   1, T_CALM_STEED, 1},
-#endif
 		       {   8, T_IRON_SKIN, 1},
 		       {   17, T_EDDY_WIND, 1},
 		       {   25, T_SUMMON_PET, 1},
@@ -2209,7 +2207,6 @@ int tech_no;
                 techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/2 + 1)) + 2;
                 t_timeout = rnz(1500);
 		break;
-#ifdef STEED
 	    case T_CALM_STEED:
 
 		if (u.usteed) pline("You calm your steed.");
@@ -2234,7 +2231,6 @@ int tech_no;
                 } else
                         Your("technique is only effective when riding a monster.");
                 break;
-#endif
             case T_TURN_UNDEAD:
                 return(turn_undead());
 	    case T_VANISH:

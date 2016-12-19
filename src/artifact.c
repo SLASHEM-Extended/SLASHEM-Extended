@@ -1591,12 +1591,10 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			/* make a special x_monnam() call that never omits
 			   the saddle, and save it for later messages */
 			Strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
-#ifdef STEED
 			if (u.usteed == mdef &&
 					obj == which_armor(mdef, W_SADDLE))
 				/* "You can no longer ride <steed>." */
 				dismount_steed(DISMOUNT_POLY);
-#endif
 			obj_extract_self(obj);
 			if (obj->owornmask) {
 				mdef->misc_worn_check &= ~obj->owornmask;

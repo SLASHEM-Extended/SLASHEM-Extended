@@ -477,13 +477,9 @@
 
 #define HFlying			u.uprops[FLYING].intrinsic
 #define EFlying			u.uprops[FLYING].extrinsic
-#ifdef STEED
 # define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uarmh && uarmh->oartifact == ART_GIRLFUL_FARTING_NOISES) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uarmc && uarmc->oartifact == ART_JANA_S_FAIRNESS_CUP) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH) || (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) || (uarmg && uarmg->oartifact == ART_DIFFICULTY__) || (Race_if(PM_MOON_ELF) && flags.moonphase == FULL_MOON) || (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) || (uarmh && uarmh->oartifact == ART_FLUE_FLUE_FLUEFLUE_FLUE) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) || (u.usteed && is_flyer(u.usteed->data))) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && (!Role_if(PM_TOPMODEL) || !flags.female)) || ( Role_if(PM_TOPMODEL) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && PlayerInHighHeels ))
 #define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#else
-# define Flying			(( (HFlying || EFlying || (uwep && uwep->oartifact == ART_PENGUIN_S_THRUSTING_SWORD) || (uarm && uarm->oartifact == ART_FLY_LIKE_AN_EAGLE) || (uarmc && uarmc->oartifact == ART_FULL_WINGS) || (uarmc && uarmc->oartifact == ART_DARK_ANGELS) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || is_flyer(youmonst.data) || (is_floater(youmonst.data) && Race_if(PM_TRANSFORMER) ) ) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && (!Role_if(PM_TOPMODEL))) || !flags.female) || ( Role_if(PM_TOPMODEL) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && PlayerInHighHeels ))
-#endif
 	/* May touch surface; does not override any others */
 
 #define Wwalking		( (u.uprops[WWALKING].extrinsic || u.uprops[MULTISHOES].extrinsic) && \
@@ -493,14 +489,9 @@
 
 #define HSwimming		u.uprops[SWIMMING].intrinsic
 #define ESwimming		u.uprops[SWIMMING].extrinsic	/* [Tom] */
-#ifdef STEED
 # define Swimming		((HSwimming || ESwimming || (uarmc && uarmc->oartifact == ART_WATERFORCE____) || (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) || (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || \
 				 is_swimmer(youmonst.data) || \
 				 (u.usteed && is_swimmer(u.usteed->data))) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) )
-#else
-# define Swimming		((HSwimming || ESwimming || (uarmc && uarmc->oartifact == ART_WATERFORCE____) || (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || \
-				 is_swimmer(youmonst.data)) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) )
-#endif
 	/* Get wet, don't go under water unless if amphibious */
 
 #define HMagical_breathing	u.uprops[MAGICAL_BREATHING].intrinsic

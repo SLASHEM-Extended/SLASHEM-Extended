@@ -10,9 +10,7 @@ STATIC_DCL void FDECL(steal_it, (struct monst *, struct attack *));
 STATIC_DCL boolean FDECL(hitum, (struct monst *,int,int,struct attack *));
 #endif
 STATIC_DCL boolean FDECL(hmon_hitmon, (struct monst *,struct obj *,int));
-#ifdef STEED
 STATIC_DCL int FDECL(joust, (struct monst *,struct obj *));
-#endif
 STATIC_DCL void NDECL(demonpet);
 STATIC_DCL boolean FDECL(m_slips_free, (struct monst *mtmp,struct attack *mattk));
 STATIC_DCL int FDECL(explum, (struct monst *,struct attack *));
@@ -989,9 +987,7 @@ int thrown;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
 	boolean unarmed = !uwep && !uarm && !uarms;
-#ifdef STEED
 	int jousting = 0;
-#endif
 	boolean vapekilled = FALSE; /* WAC added boolean for vamps vaporize */
 	boolean burnmsg = FALSE;
 	boolean no_obj = !obj;	/* since !obj can change if weapon breaks, etc. */
@@ -1190,9 +1186,7 @@ int thrown;
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
 		    (!thrown &&
-#ifdef STEED
 		     !u.usteed &&
-#endif
 		     is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
@@ -1342,14 +1336,12 @@ int thrown;
 				&& hates_silver(mdat)) {
 			silvermsg = TRUE; silverobj = TRUE;
 		    }
-#ifdef STEED
 		    if (u.usteed && !thrown && tmp > 0 &&
 			    weapon_type(obj) == P_LANCE && mon != u.ustuck) {
 			jousting = joust(mon, obj);
 			/* exercise skill even for minimal damage hits */
 			if (jousting) valid_weapon_attack = TRUE;
 		    }
-#endif
 		    if (thrown && (is_ammo(obj) || is_missile(obj))) {
 			if (obj->oartifact == ART_HOUCHOU) {
 			    pline("There is a bright flash as it hits %s.",
@@ -1850,7 +1842,6 @@ int thrown;
 	    }
 	}
 
-#ifdef STEED
 	if (jousting) {
 	    tmp += d(2, (obj == uwep) ? 10 : 2);        /* [was in dmgval()] */
 	    You("joust %s%s",
@@ -1872,7 +1863,6 @@ int thrown;
 	    }
 	    hittxt = TRUE;
 	} else
-#endif
 
 	/* VERY small chance of stunning opponent if unarmed. */
 	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) {
@@ -6047,12 +6037,10 @@ uchar aatyp;
 			if (ttmp2) {
 				pline("You're caught in a web!");
 				dotrap(ttmp2, NOWEBMSG);
-#ifdef STEED
 				if (u.usteed && u.utrap) {
 				/* you, not steed, are trapped */
 				dismount_steed(DISMOUNT_FELL);
 				}
-#endif
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */

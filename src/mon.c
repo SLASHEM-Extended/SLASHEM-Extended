@@ -959,12 +959,10 @@ register struct monst *mtmp;
 	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     infountain = IS_FOUNTAIN(levl[mtmp->mx][mtmp->my].typ);
 
-#ifdef STEED
 	/* Flying and levitation keeps our steed out of the liquid */
 	/* (but not water-walking or swimming) */
 	if (mtmp == u.usteed && (Flying || Levitation))
 		return (0);
-#endif
 
     if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
@@ -1103,14 +1101,12 @@ struct monst *mon;
     else if (mon->mspeed == MFAST)
 	mmove = (4 * mmove + 2) / 3;
 
-#ifdef STEED
     if (mon == u.usteed) {
 	if (u.ugallop && flags.mv) {
 	    /* average movement is 1.50 times normal */
 	    mmove = ((rn2(2) ? 4 : 5) * mmove) / 3;
 	}
     }
-#endif
 
     if (mon->egotype_speedster) mmove += 6;
     if (mon->egotype_racer) mmove += 12;
@@ -1766,10 +1762,8 @@ struct obj *otmp;
 		(otyp != BELL_OF_OPENING || !is_covetous(mdat)))
 	    return FALSE;
 
-#ifdef STEED
 	/* Steeds don't pick up stuff (to avoid shop abuse) */
 	if (mtmp == u.usteed) return (FALSE);
-#endif
 	if (mtmp->isshk) return(TRUE); /* no limit */
 	if (mtmp->mpeaceful && !mtmp->mtame) return(FALSE);
 	/* otherwise players might find themselves obligated to violate
@@ -2383,9 +2377,7 @@ register struct monst *mtmp, *mtmp2;
     relmon(mtmp);
 
     /* finish adding its replacement */
-#ifdef STEED
     if (mtmp == u.usteed) ; else	/* don't place steed onto the map */
-#endif
     place_monster(mtmp2, mtmp2->mx, mtmp2->my);
     if (mtmp2->wormno)	    /* update level.monsters[wseg->wx][wseg->wy] */
 	place_wsegs(mtmp2); /* locations to mtmp2 not mtmp. */
@@ -2405,9 +2397,7 @@ register struct monst *mtmp, *mtmp2;
     mtmp2->nmon = fmon;
     fmon = mtmp2;
     if (u.ustuck == mtmp) setustuck(mtmp2);
-#ifdef STEED
     if (u.usteed == mtmp) u.usteed = mtmp2;
-#endif
     if (mtmp2->isshk) replshk(mtmp,mtmp2);
 
     /* discard the old monster */
@@ -2614,11 +2604,9 @@ register struct monst *mtmp;
 	lifesaved_monster(mtmp);
 	if (mtmp->mhp > 0) return;
 
-#ifdef STEED
 	/* Player is thrown from his steed when it dies */
 	if (mtmp == u.usteed)
 		dismount_steed(DISMOUNT_GENERIC);
-#endif
 
 	mptr = mtmp->data;		/* save this for m_detach() */
 	/* restore chameleon, lycanthropes to true form at death */
@@ -3031,11 +3019,9 @@ mongone(mdef)
 register struct monst *mdef;
 {
 	mdef->mhp = 0;	/* can skip some inventory bookkeeping */
-#ifdef STEED
 	/* Player is thrown from his steed when it disappears */
 	if (mdef == u.usteed)
 		dismount_steed(DISMOUNT_GENERIC);
-#endif
 
 	/* drop special items like the Amulet so that a dismissed Kop or nurse
 	   can't remove them from the game */
@@ -3851,14 +3837,12 @@ mnexto(mtmp)	/* Make monster mtmp next to you (if possible) */
 {
 	coord mm;
 
-#ifdef STEED
 	if (mtmp == u.usteed) {
 		/* Keep your steed in sync with you instead */
 		mtmp->mx = u.ux;
 		mtmp->my = u.uy;
 		return;
 	}
-#endif
 
 	if(!enexto(&mm, u.ux, u.uy, mtmp->data)) return;
 	rloc_to(mtmp, mm.x, mm.y);
@@ -4622,7 +4606,6 @@ boolean msg;
 	if (!(hides_under(mdat) && OBJ_AT(mtmp->mx, mtmp->my)) &&
 			!(mdat->mlet == S_EEL && is_pool(mtmp->mx, mtmp->my)))
 		mtmp->mundetected = 0;
-#ifdef STEED
 	if (u.usteed) {
 	    if (touch_petrifies(u.usteed->data) &&
 	    		!Stone_resistance && rnl(3)) {
@@ -4634,7 +4617,6 @@ boolean msg;
  	    }
 	    if (!can_ride(u.usteed)) dismount_steed(DISMOUNT_POLY);
 	}
-#endif
 
 #ifndef DCC30_BUG
 	if (mdat == &mons[PM_LONG_WORM] && (mtmp->wormno = get_wormno()) != 0) {

@@ -276,14 +276,12 @@ dig()
 		    You("fumble and drop your %s.", xname(uwep));
 		    dropx(uwep);
 		} else {
-#ifdef STEED
 		    if (u.usteed)
 			Your("%s %s and %s %s!",
 			     xname(uwep),
 			     otense(uwep, "bounce"), otense(uwep, "hit"),
 			     mon_nam(u.usteed));
 		    else
-#endif
 			pline("Ouch!  Your %s %s and %s you!",
 			      xname(uwep),
 			      otense(uwep, "bounce"), otense(uwep, "hit"));
@@ -1508,10 +1506,8 @@ bury_an_obj(otmp)
 	if (otmp->otyp == LEASH && otmp->leashmon != 0)
 		o_unleash(otmp);
 
-#ifdef STEED
 	if (otmp == usaddle)
 		dismount_steed(DISMOUNT_GENERIC);
-#endif
 
 	if (otmp->lamplit && otmp->otyp != POT_OIL)
 		end_burn(otmp, TRUE);

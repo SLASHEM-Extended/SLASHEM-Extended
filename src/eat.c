@@ -76,9 +76,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
-#ifdef STEED
 	PN_RIDING,
-#endif
 };
 
 
@@ -501,9 +499,7 @@ register struct obj *food;
 		    what = "you lose control of",  where = "yourself";
 		else
 		    what = "you slap against the", where =
-#ifdef STEED
 			   (u.usteed) ? "saddle" :
-#endif
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
@@ -2132,10 +2128,8 @@ register int pm;
 		    char buf[BUFSZ];
 		    You_cant("resist the temptation to mimic %s.",
 			Hallucination ? "an orange" : "a pile of gold");
-#ifdef STEED
                     /* A pile of gold can't ride. */
 		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-#endif
 		    nomul(-tmp, "pretending to be a pile of gold");
 		    Sprintf(buf, Hallucination ?
 			"You suddenly dread being peeled and mimic %s again!" :
@@ -2161,10 +2155,8 @@ register int pm;
 		    char buf[BUFSZ];
 		    You_cant("resist the temptation to mimic %s.",
 			Hallucination ? "an orange" : "a pile of gold");
-#ifdef STEED
                     /* A pile of gold can't ride. */
 		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-#endif
 		    nomul(-tmp, "pretending to be a pile of gold");
 		    Sprintf(buf, Hallucination ?
 			"You suddenly dread being peeled and mimic %s again!" :
@@ -2489,10 +2481,8 @@ register int pm;
 		    char buf[BUFSZ];
 		    You_cant("resist the temptation to mimic %s.",
 			Hallucination ? "an orange" : "a pile of gold");
-#ifdef STEED
                     /* A pile of gold can't ride. */
 		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-#endif
 		    nomul(-tmp, "pretending to be a pile of gold");
 		    Sprintf(buf, Hallucination ?
 			"You suddenly dread being peeled and mimic %s again!" :
@@ -2586,10 +2576,8 @@ register int pm;
 		    char buf[BUFSZ];
 		    You_cant("resist the temptation to mimic %s.",
 			Hallucination ? "an orange" : "a pile of gold");
-#ifdef STEED
                     /* A pile of gold can't ride. */
 		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-#endif
 		    nomul(-tmp, "pretending to be a pile of gold");
 		    Sprintf(buf, Hallucination ?
 			"You suddenly dread being peeled and mimic %s again!" :
@@ -3037,9 +3025,7 @@ gluttonous()
 		    what = "you lose control of",  where = "yourself";
 		else
 		    what = "you slap against the", where =
-#ifdef STEED
 			   (u.usteed) ? "saddle" :
-#endif
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
@@ -3124,9 +3110,7 @@ violated_vegetarian()
 		    what = "you lose control of",  where = "yourself";
 		else
 		    what = "you slap against the", where =
-#ifdef STEED
 			   (u.usteed) ? "saddle" :
-#endif
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
@@ -3501,9 +3485,7 @@ struct obj *obj;
 		    what = "you lose control of",  where = "yourself";
 		else
 		    what = "you slap against the", where =
-#ifdef STEED
 			   (u.usteed) ? "saddle" :
-#endif
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
@@ -4858,9 +4840,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    You("cannot eat that!");
 	    return 0;
 	} else if ((otmp->owornmask & (W_ARMOR|W_TOOL|W_AMUL
-#ifdef STEED
 			|W_SADDLE
-#endif
 			)) != 0) {
 	    /* let them eat rings */
 	    You_cant("eat %s you're wearing.", something);
@@ -5565,11 +5545,9 @@ floorfood(verb)		/* get food from floor or pack */
 	char qbuf[QBUFSZ];
 	char c;
 
-#ifdef STEED
 	if (u.usteed)	/* can't eat off floor while riding */
 	    edibles++;
 	else
-#endif
 	if (metallivorous(youmonst.data)) {
 	    struct trap *ttmp = t_at(u.ux, u.uy);
 

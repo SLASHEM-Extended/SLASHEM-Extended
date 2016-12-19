@@ -686,14 +686,12 @@ register const char *word;
 			pline("You can't %s such a powerful item.", word);
 		return(FALSE);
 	}
-#ifdef STEED
 	if (obj->owornmask & W_SADDLE) {
 		if (*word)
 			You("cannot %s %s you are sitting on.", word,
 				something);
 		return (FALSE);
 	}
-#endif
 	return(TRUE);
 }
 
@@ -1029,7 +1027,6 @@ dodown()
 		return (0);
 	}
 
-#ifdef STEED
 	if (u.usteed && !u.usteed->mcanmove) {
 		pline("%s won't move!", Monnam(u.usteed));
 		return(0);
@@ -1037,7 +1034,6 @@ dodown()
 		pline("%s is still eating.", Monnam(u.usteed));
 		return(0);
 	} else
-#endif
 
 	if (Levitation && !Race_if(PM_LEVITATOR) ) { /* levitators are hard enough already --Amy */
 	    if ((HLevitation & I_SPECIAL) || (ELevitation & W_ARTI)) {
@@ -1136,7 +1132,6 @@ doup()
 	}
 
 
-#ifdef STEED
 	if (u.usteed && !u.usteed->mcanmove) {
 		pline("%s won't move!", Monnam(u.usteed));
 		return(0);
@@ -1144,7 +1139,6 @@ doup()
 		pline("%s is still eating.", Monnam(u.usteed));
 		return(0);
 	} else
-#endif
 	if(u.ustuck) {
 		You("are %s, and cannot go up.",
 			!u.uswallow ? "being held" : is_animal(u.ustuck->data) ?
@@ -3010,12 +3004,10 @@ boolean at_stairs, falling, portal;
 			    freeinv(uball);
 			}
 		    }
-#ifdef STEED
 		    /* falling off steed has its own losehp() call */
 		    if (u.usteed)
 			dismount_steed(DISMOUNT_FELL);
 		    else
-#endif
 			losehp(rnd(3), "falling downstairs", KILLED_BY);
 		    selftouch("Falling, you");
 		} else if (u.dz && at_ladder)
@@ -3060,9 +3052,7 @@ boolean at_stairs, falling, portal;
 	initrack();
 
 	if ((mtmp = m_at(u.ux, u.uy)) != 0
-#ifdef STEED
 		&& mtmp != u.usteed
-#endif
 		) {
 	    /* There's a monster at your target destination; it might be one
 	       which accompanied you--see mon_arrive(dogmove.c)--or perhaps
@@ -3643,9 +3633,7 @@ heal_legs()
 			flags.botl = 1;
 		}
 
-#ifdef STEED
 		if (!u.usteed)
-#endif
 		{
 			/* KMH, intrinsics patch */
 			if((EWounded_legs & BOTH_SIDES) == BOTH_SIDES) {

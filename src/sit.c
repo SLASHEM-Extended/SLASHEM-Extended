@@ -71,9 +71,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
-#ifdef STEED
 	PN_RIDING,
-#endif
 };
 
 
@@ -165,12 +163,10 @@ dosit()
 	register int typ = levl[u.ux][u.uy].typ;
 
 
-#ifdef STEED
 	if (u.usteed) {
 	    You("are already sitting on %s.", mon_nam(u.usteed));
 	    return (0);
 	}
-#endif
 
 	if(!can_reach_floor())	{
 	    if (Levitation)
@@ -825,7 +821,6 @@ rndcurse()			/* curse a few inventory items at random! */
 	    update_inventory();
 	}
 
-#ifdef STEED
 	/* treat steed's saddle as extended part of hero's inventory */
 	if (u.usteed && !rn2(50) &&
 		(otmp = which_armor(u.usteed, W_SADDLE)) != 0) {
@@ -841,7 +836,6 @@ rndcurse()			/* curse a few inventory items at random! */
 		otmp->bknown = TRUE;
 	    }
 	}
-#endif	/*STEED*/
 }
 
 void

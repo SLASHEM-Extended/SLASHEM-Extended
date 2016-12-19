@@ -82,9 +82,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
-#ifdef STEED
 	PN_RIDING,
-#endif
 };
 
 
@@ -1115,7 +1113,6 @@ specialpower()      /* Special class abilites [modified by Tom] */
 		break;
 #ifdef YEOMAN
 		case 'Y':
-#ifdef STEED
 			if (u.usteed) {
 				pline("%s gets tamer.", Monnam(u.usteed));
 				tamedog(u.usteed, (struct obj *) 0, FALSE);
@@ -1123,10 +1120,6 @@ specialpower()      /* Special class abilites [modified by Tom] */
 			} else
 				Your("special ability is only effective when riding a monster.");
 			break;
-#else
-			You("don't have a special ability!");
-			return(0);
-#endif
 #endif
 	    default:
 		break;
@@ -3427,15 +3420,13 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && Fumbling) enl_msg("You fumble", "", "d", "");
 	if ((guaranteed || !rn2(10)) && (Wounded_legs
-#ifdef STEED
 	    && !u.usteed
-#endif
 			  )) {
 		Sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HWounded_legs);
 		you_have(buf);
 	}
-#if defined(WIZARD) && defined(STEED) /*randomly tell this to the player outside of wizard mode too --Amy */
+#if defined(WIZARD) /*randomly tell this to the player outside of wizard mode too --Amy */
 	if ((guaranteed || !rn2(10)) && (Wounded_legs && u.usteed && (wizard || !rn2(10) || final >= 1 ))) {
 	    Strcpy(buf, x_monnam(u.usteed, ARTICLE_YOUR, (char *)0, 
 		    SUPPRESS_SADDLE | SUPPRESS_HALLUCINATION, FALSE));
@@ -3611,7 +3602,6 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && Breathless) you_can("survive without air");
 	else if ((guaranteed || !rn2(10)) && Amphibious) you_can("breathe water");
 	if ((guaranteed || !rn2(10)) && Passes_walls) you_can("walk through walls");
-#ifdef STEED
 	/* If you die while dismounting, u.usteed is still set.  Since several
 	 * places in the done() sequence depend on u.usteed, just detect this
 	 * special case. */
@@ -3619,7 +3609,6 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    Sprintf(buf, "riding %s", y_monnam(u.usteed));
 	    you_are(buf);
 	}
-#endif
 	if ((guaranteed || !rn2(10)) && u.uswallow) {
 	    Sprintf(buf, "swallowed by %s", a_monnam(u.ustuck));
 #ifdef WIZARD
@@ -5612,15 +5601,12 @@ int final;
 
 	if (Fumbling) dump("  ", "You fumbled");
 	if (Wounded_legs
-#ifdef STEED
 	    && !u.usteed
-#endif
 			  ) {
 		Sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	      Sprintf(eos(buf), " (%d)", HWounded_legs);
 		dump(youhad, buf);
 	}
-#ifdef STEED
 	if (Wounded_legs && u.usteed) {
 	    Strcpy(buf, x_monnam(u.usteed, ARTICLE_YOUR, (char *)0, 
 		    SUPPRESS_SADDLE | SUPPRESS_HALLUCINATION, FALSE));
@@ -5628,7 +5614,6 @@ int final;
 	    Strcat(buf, " had wounded legs");
 	    dump("  ", buf);
 	}
-#endif
 	if (Sleeping) dump("  ", "You fell asleep");
 	if (Hunger) dump("  ", "You hungered rapidly");
 
@@ -5759,12 +5744,10 @@ int final;
 	if (Breathless) dump(youcould, "survive without air");
 	else if (Amphibious) dump(youcould, "breathe water");
 	if (Passes_walls) dump(youcould, "walk through walls");
-#ifdef STEED
 	if (u.usteed && (final < 2 || strcmp(killer, "riding accident"))) {
 	    Sprintf(buf, "riding %s", y_monnam(u.usteed));
 	    dump(youwere, buf);
 	}
-#endif
 	if (u.uswallow) {
 	    Sprintf(buf, "swallowed by %s", a_monnam(u.ustuck));
 #ifdef WIZARD
@@ -6767,9 +6750,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"wear", "wear a piece of armor", dowear, !IFBURIED},
 	{"zap", "zap a wand", dozap, !IFBURIED},
 
-#ifdef STEED
 	{"ride", "ride (or stop riding) a monster", doride, !IFBURIED, AUTOCOMPLETE},
-#endif
 	{"rub", "rub a lamp or a stone", dorub, !IFBURIED, AUTOCOMPLETE},
 #ifdef LIVELOG_SHOUT
 	{"shout", "shout something", doshout, !IFBURIED, AUTOCOMPLETE},

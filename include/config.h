@@ -433,7 +433,7 @@ typedef unsigned char	uchar;
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets (unconditionally enabled by Amy) */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten (unconditionally enabled by Amy) */
-#define STEED		/* The ability to ride monsters */
+#define STEED		/* The ability to ride monsters (unconditionally enabled by Amy) */
 
 /* Roles */
 #define DWARF		/* Dwarf Patch, Osku Salerma (osku@iki.fi) */

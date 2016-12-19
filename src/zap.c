@@ -30,9 +30,7 @@ STATIC_DCL int FDECL(zhitm, (struct monst *,int,int, struct obj **));
 STATIC_DCL void FDECL(zhitu, (int,int,const char *,XCHAR_P,XCHAR_P));
 STATIC_DCL void FDECL(revive_egg, (struct obj *));
 STATIC_DCL void FDECL(throwstorm, (struct obj *, int, int, int));
-#ifdef STEED
 STATIC_DCL boolean FDECL(zap_steed, (struct obj *));
-#endif
 
 #ifdef OVLB
 STATIC_DCL int FDECL(zap_hit, (int,int));
@@ -1014,7 +1012,6 @@ struct obj *otmp;
 				else pline("%s opens its mouth!", Monnam(mtmp));
 			}
 			expels(mtmp, mtmp->data, TRUE);
-#ifdef STEED
 		} else if (!!(obj = which_armor(mtmp, W_SADDLE))) {
 			mtmp->misc_worn_check &= ~obj->owornmask;
 			update_mon_intrinsics(mtmp, obj, FALSE, FALSE);
@@ -1023,7 +1020,6 @@ struct obj *otmp;
 			place_object(obj, mtmp->mx, mtmp->my);
 			/* call stackobj() if we ever drop anything that can merge */
 			newsym(mtmp->mx, mtmp->my);
-#endif
 		}
 		break;
 	case WAN_HEALING:
@@ -2634,7 +2630,6 @@ poly_obj(obj, id)
 	else {
 	/* preserve the mask in case being used by something else */
 	otmp->owornmask = obj->owornmask;
-#ifdef STEED
 	    if (otmp->owornmask & W_SADDLE && otmp->otyp != SADDLE) {
 		struct monst *mtmp = obj->ocarry;
 		dismount_steed(DISMOUNT_THROWN);
@@ -2649,7 +2644,6 @@ poly_obj(obj, id)
 		newsym(mtmp->mx, mtmp->my);
 		obj_location = OBJ_FLOOR;
 	    }
-#endif
 	}
 
 	if (obj_location == OBJ_FLOOR && obj->otyp == BOULDER &&
@@ -5579,9 +5573,7 @@ boolean ordinary;
 		makeknown(WAN_HASTE_MONSTER);
 
 		if(Wounded_legs
-#ifdef STEED
 		   && !u.usteed	/* heal_legs() would heal steeds legs */
-#endif
 						) {
 			heal_legs();
 			break;
@@ -5681,9 +5673,7 @@ boolean ordinary;
 			    }
 			} else {
 				if(Wounded_legs
-#ifdef STEED
 				   && !u.usteed	/* heal_legs() would heal steeds legs */
-#endif
 					) {
 					heal_legs();
 					break;
@@ -5868,7 +5858,6 @@ boolean ordinary;
 	return(damage);
 }
 
-#ifdef STEED
 /* you've zapped a wand downwards while riding
  * Return TRUE if the steed was hit by the wand.
  * Return FALSE if the steed was not hit by the wand.
@@ -5994,8 +5983,6 @@ struct obj *obj;	/* wand or spell */
 	}
 	return steedhit;
 }
-#endif
-
 
 #endif /*OVL0*/
 #ifdef OVL3
@@ -6320,12 +6307,10 @@ struct obj *obj;
 
 
 	exercise(A_WIS, TRUE);
-#ifdef STEED
 	if (u.usteed && (objects[otyp].oc_dir != NODIR) &&
 	    !u.dx && !u.dy && (u.dz > 0) && zap_steed(obj)) {
 		disclose = TRUE;
 	} else
-#endif
 
 	/* Some wands are supposed to have both IMMEDIATE and RAY effects --Amy */
 	if (obj->otyp == WAN_INFERNO || obj->otyp == SPE_INFERNO || obj->otyp == SPE_CALL_THE_ELEMENTS || obj->otyp == WAN_ICE_BEAM || obj->otyp == SPE_ICE_BEAM || obj->otyp == WAN_THUNDER || obj->otyp == SPE_THUNDER || obj->otyp == WAN_TOXIC || obj->otyp == SPE_TOXIC || obj->otyp == WAN_SLUDGE || obj->otyp == SPE_SLUDGE || obj->otyp == WAN_CHLOROFORM || obj->otyp == SPE_CHLOROFORM || obj->otyp == WAN_NETHER_BEAM || obj->otyp == SPE_NETHER_BEAM || obj->otyp == WAN_AURORA_BEAM || obj->otyp == SPE_AURORA_BEAM) {
@@ -7762,9 +7747,7 @@ register int dx,dy;
         /* WAC Player/Monster Fireball */
             if (abs(type) == ZT_SPELL(ZT_FIRE)) break;
 	    if (type >= 0) mon->mstrategy &= ~STRAT_WAITMASK;
-#ifdef STEED
 	    buzzmonst:
-#endif
 	    if (zap_hit(find_mac(mon), spell_type)) {
 		if (mon_reflects(mon, (char *)0)) {
 		    if(cansee(mon->mx,mon->my)) {
@@ -7881,12 +7864,10 @@ register int dx,dy;
 	    }
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
 	    nomul(0, 0);
-#ifdef STEED
 	    if (u.usteed && !rn2(3) && !mon_reflects(u.usteed, (char *)0)) {
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else
-#endif
 	    if (zap_hit((int) u.uac, 0)) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));

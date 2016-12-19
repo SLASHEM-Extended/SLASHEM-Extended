@@ -320,9 +320,7 @@ register struct edog *edog;
 	    } else if (monstermoves > edog->hungrytime + 750 || mtmp->mhp < 1) {
  dog_died:
 		if (mtmp->mleashed
-#ifdef STEED
 		    && mtmp != u.usteed
-#endif
 		    )
 		    Your("leash goes slack.");
 		else if (cansee(mtmp->mx, mtmp->my))
@@ -476,11 +474,9 @@ int after, udist, whappr;
 	xchar otyp;
 	int appr;
 
-#ifdef STEED
 	/* Steeds don't move on their own will */
 	if (mtmp == u.usteed)
 		return (-2);
-#endif
 
 	omx = mtmp->mx;
 	omy = mtmp->my;
@@ -727,7 +723,6 @@ register int after;	/* this is extra fast monster movement */
 	if (has_edog && !is_spell && dog_hunger(mtmp, edog)) return(2);      /* starved */
 
 	udist = distu(omx,omy);
-#ifdef STEED
 	/* Let steeds eat and maybe throw rider during Conflict */
 	if (mtmp == u.usteed) {
 	    if (Conflict && (issoviet || !rn2(100)) && !resist(mtmp, RING_CLASS, 0, 0)) {
@@ -737,7 +732,6 @@ register int after;	/* this is extra fast monster movement */
 	    }
 	    udist = 1;
 	} else
-#endif
 	/* maybe we tamed him while being swallowed --jgm */
 	if (!udist) return(0);
 

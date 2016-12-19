@@ -1176,9 +1176,7 @@ exerper()
 		if( (Confusion && !Conf_resist) || Hallucination || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
 		if((Wounded_legs 
-#ifdef STEED
 		    && !u.usteed
-#endif
 			    ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
 	}
 }

@@ -2668,9 +2668,7 @@ static const struct def_skill Skill_A[] = {
 
     /*WAC- 'A' knows of all spells from studying,  but only really good
     at divination class*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -2686,9 +2684,7 @@ static const struct def_skill Skill_Ana[] = {
     { P_WHIP, P_EXPERT },  
     { P_ATTACK_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },  
     { P_DIVINATION_SPELL, P_EXPERT },	{ P_MATTER_SPELL, P_EXPERT },  
-#ifdef STEED  
     { P_RIDING, P_EXPERT },  
-#endif  
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -2864,9 +2860,7 @@ static const struct def_skill Skill_B[] = {
     { P_ATTACK_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_EXPERT },
 /*WAC - 'B' is good at attack spells and body manipulation spells
         -both combat oriented */
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_MASTER },
@@ -3065,9 +3059,7 @@ static const struct def_skill Skill_F[] = {
     { P_MATTER_SPELL, P_MASTER },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
@@ -3169,9 +3161,7 @@ static const struct def_skill Skill_Sha[] = {
     { P_MATTER_SPELL, P_MASTER },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_POLYMORPHING, P_GRAND_MASTER },
 
@@ -3204,9 +3194,7 @@ static const struct def_skill Skill_Fir[] = {
     { P_MATTER_SPELL, P_EXPERT },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -3251,9 +3239,7 @@ static const struct def_skill Skill_Zyb[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -3298,9 +3284,7 @@ static const struct def_skill Skill_Tha[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_MASTER },
     { P_BODY_ARMOR, P_MASTER },
@@ -3344,9 +3328,7 @@ static const struct def_skill Skill_Lun[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_MASTER },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_GRAND_MASTER },
-#endif
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_EXPERT },
@@ -3428,9 +3410,7 @@ static const struct def_skill Skill_Bin[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -3545,9 +3525,7 @@ static const struct def_skill Skill_Mys[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -3591,9 +3569,7 @@ static const struct def_skill Skill_Ble[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_MASTER },
     { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_GRAND_MASTER },
@@ -3714,9 +3690,7 @@ static const struct def_skill Skill_Ele[] = {
     { P_MATTER_SPELL, P_EXPERT },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
 
@@ -3752,9 +3726,7 @@ static const struct def_skill Skill_Poi[] = {
     { P_MATTER_SPELL, P_EXPERT },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_EXPERT },
@@ -3792,9 +3764,7 @@ static const struct def_skill Skill_Aci[] = {
     { P_MATTER_SPELL, P_MASTER },
 /*  Added expert matter spell (elements), skilled in attack, basic in rest
         He is a mage,  so knows the types.*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
 
@@ -4092,9 +4062,7 @@ static const struct def_skill Skill_Gan[] = {
     { P_FIREARM, P_MASTER },
     { P_ATTACK_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_EXPERT },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_BODY_ARMOR, P_EXPERT },
@@ -4119,9 +4087,7 @@ static const struct def_skill Skill_Sci[] = {
     { P_MATTER_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },
 	{ P_DIVINATION_SPELL, P_MASTER },
     { P_MARTIAL_ARTS, P_MASTER },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_HIGH_HEELS, P_EXPERT },
 
@@ -4152,9 +4118,7 @@ static const struct def_skill Skill_G[] = {
     { P_MATTER_SPELL, P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -4192,9 +4156,7 @@ static const struct def_skill Skill_Gra[] = {
     { P_MATTER_SPELL, P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -4230,9 +4192,7 @@ static const struct def_skill Skill_H[] = {
     { P_DIVINATION_SPELL, P_EXPERT },    { P_ENCHANTMENT_SPELL, P_EXPERT },
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_DEVICES, P_EXPERT },
     { P_PETKEEPING, P_MASTER },
@@ -4264,9 +4224,7 @@ static const struct def_skill Skill_I[] = {
     { P_PROTECTION_SPELL, P_EXPERT },  { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
     /*WAC - same as Flame Mage*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
@@ -4287,9 +4245,7 @@ static const struct def_skill Skill_J[] = {
     { P_HEALING_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_MASTER },    { P_MATTER_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_MASTER },
@@ -4422,9 +4378,7 @@ static const struct def_skill Skill_K[] = {
 /*WAC - removed the attack spells - no good having knights summoning
         undead!  Replaced with skilled body spells*/
 
-#ifdef STEED
     { P_RIDING, P_MASTER },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -4457,9 +4411,7 @@ static const struct def_skill Skill_Jus[] = {
     { P_ATTACK_SPELL, P_EXPERT },
     { P_PROTECTION_SPELL, P_EXPERT },      { P_BODY_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_MASTER },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -4547,9 +4499,7 @@ static const struct def_skill Skill_War[] = { /*master of all weapons*/
     { P_WHIP, P_MASTER },			{ P_UNICORN_HORN, P_MASTER },
     { P_LIGHTSABER, P_MASTER },
 /* no magic skills at all*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
 
     { P_GENERAL_COMBAT, P_MASTER },
@@ -4580,9 +4530,7 @@ static const struct def_skill Skill_Ord[] = { /*master of all weapons*/
     { P_SHURIKEN, P_GRAND_MASTER},			{ P_BOOMERANG, P_GRAND_MASTER},
     { P_WHIP, P_GRAND_MASTER},			{ P_UNICORN_HORN, P_GRAND_MASTER},
     { P_LIGHTSABER, P_GRAND_MASTER},
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_GRAND_MASTER },
     { P_TWO_HANDED_WEAPON, P_GRAND_MASTER },
@@ -4611,9 +4559,7 @@ static const struct def_skill Skill_Off[] = { /*master of all weapons*/
     { P_WHIP, P_EXPERT },			{ P_UNICORN_HORN, P_EXPERT },
     { P_LIGHTSABER, P_EXPERT },
 /* no magic skills at all*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -4722,9 +4668,7 @@ static const struct def_skill Skill_Nob[] = {
 
     { P_ATTACK_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },	{ P_ENCHANTMENT_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_EXPERT },
@@ -4960,9 +4904,7 @@ static const struct def_skill Skill_Gof[] = {
     { P_DIVINATION_SPELL, P_EXPERT },  { P_ENCHANTMENT_SPELL, P_EXPERT },
     { P_PROTECTION_SPELL, P_EXPERT },  { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_POLYMORPHING, P_EXPERT },
@@ -4990,9 +4932,7 @@ static const struct def_skill Skill_R[] = {
     { P_DIVINATION_SPELL, P_EXPERT },        { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 /*WAC Left as is*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_HIGH_HEELS, P_EXPERT },
     { P_TWO_WEAPON_COMBAT, P_EXPERT },  { P_BARE_HANDED_COMBAT, P_EXPERT },
 
@@ -5023,9 +4963,7 @@ static const struct def_skill Skill_Dun[] = {
     { P_DIVINATION_SPELL, P_EXPERT },        { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 /*WAC Left as is*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_TWO_HANDED_WEAPON, P_EXPERT },
@@ -5054,9 +4992,7 @@ static const struct def_skill Skill_Loc[] = {
     { P_DIVINATION_SPELL, P_EXPERT },        { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
 /*WAC Left as is*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_HIGH_HEELS, P_EXPERT },
 
     { P_POLYMORPHING, P_EXPERT },
@@ -5086,9 +5022,7 @@ static const struct def_skill Skill_Nin[] = {
     { P_HIGH_HEELS, P_MASTER },
 
 /*WAC Left as is*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_GRAND_MASTER },
     { P_BODY_ARMOR, P_MASTER },
@@ -5115,9 +5049,7 @@ static const struct def_skill Skill_Ran[] = {
     { P_HEALING_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
@@ -5151,9 +5083,7 @@ static const struct def_skill Skill_Elp[] = {
     { P_HEALING_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_MASTER },
@@ -5181,9 +5111,7 @@ static const struct def_skill Skill_Mid[] = {
     { P_SPEAR, P_EXPERT },
     { P_ATTACK_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
 
@@ -5245,9 +5173,7 @@ static const struct def_skill Skill_Bos[] = {
     { P_HEALING_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_SHIELD, P_EXPERT },
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_EXPERT },
@@ -5282,9 +5208,7 @@ static const struct def_skill Skill_Mus[] = {
     { P_MATTER_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_GRAND_MASTER },
     { P_SEARCHING, P_EXPERT },
@@ -5311,9 +5235,7 @@ static const struct def_skill Skill_S[] = {
     { P_HIGH_HEELS, P_EXPERT },
 
 /* WAC - removed the attack spells, replace with body.  clairvoyance, meditate*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -5354,9 +5276,7 @@ static const struct def_skill Skill_Ama[] = {
 
     { P_PROTECTION_SPELL, P_EXPERT },      { P_BODY_SPELL, P_EXPERT },{ P_ATTACK_SPELL, P_EXPERT },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5437,9 +5357,7 @@ static const struct def_skill Skill_T[] = {
     { P_DIVINATION_SPELL, P_GRAND_MASTER },	{ P_ENCHANTMENT_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
 /*WAC left alone*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -5489,9 +5407,7 @@ static const struct def_skill Skill_U[] = {
     { P_MATTER_SPELL, P_EXPERT },    { P_ATTACK_SPELL, P_EXPERT },
 /*WAC - added PROTECTION spells,  body spells as skilled, basic
         matter spells - for the fire vs undead*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_SHIELD, P_EXPERT },
@@ -5525,9 +5441,7 @@ static const struct def_skill Skill_Unb[] = {
     { P_TRIDENT, P_EXPERT },      { P_LANCE, P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
 
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -5562,9 +5476,7 @@ static const struct def_skill Skill_Unt[] = {
     { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_GRAND_MASTER },    { P_ATTACK_SPELL, P_EXPERT },
     { P_ENCHANTMENT_SPELL, P_EXPERT },    { P_DIVINATION_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
@@ -5597,9 +5509,7 @@ static const struct def_skill Skill_V[] = {
 /*  replace attack spell with matter spell - cone of cold, lightning
  *  Boosted to Expert
  */
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_MASTER },
@@ -5659,9 +5569,7 @@ static const struct def_skill Skill_W[] = {
     { P_MATTER_SPELL, P_EXPERT },
 /*      added matter spell skilled,  as fireball and cone of cold are
         matter spells, but now specialty of F/I Mages*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
 
     { P_OCCULT_SPELL, P_EXPERT },
 
@@ -5688,9 +5596,7 @@ static const struct def_skill Skill_Alt[] = {
     { P_MATTER_SPELL, P_GRAND_MASTER},
 /*      added matter spell skilled,  as fireball and cone of cold are
         matter spells, but now specialty of F/I Mages*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_ELEMENTAL_SPELL, P_GRAND_MASTER },
     { P_CHAOS_SPELL, P_GRAND_MASTER },
@@ -5707,9 +5613,7 @@ static const struct def_skill Skill_Pok[] = {
     { P_MATTER_SPELL, P_MASTER },
 /*      added matter spell skilled,  as fireball and cone of cold are
         matter spells, but now specialty of F/I Mages*/
-#ifdef STEED
     { P_RIDING, P_GRAND_MASTER },
-#endif
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_HIGH_HEELS, P_EXPERT },
 
@@ -5741,9 +5645,7 @@ static const struct def_skill Skill_Zoo[] = {
     { P_MATTER_SPELL, P_EXPERT },
 /*      added matter spell skilled,  as fireball and cone of cold are
         matter spells, but now specialty of F/I Mages*/
-#ifdef STEED
     { P_RIDING, P_GRAND_MASTER },
-#endif
     { P_MARTIAL_ARTS, P_MASTER },
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
 
@@ -5778,9 +5680,7 @@ static const struct def_skill Skill_Dea[] = {
     { P_MATTER_SPELL, P_MASTER },
 /*      added matter spell skilled,  as fireball and cone of cold are
         matter spells, but now specialty of F/I Mages*/
-#ifdef STEED
     { P_RIDING, P_EXPERT },
-#endif
     { P_MARTIAL_ARTS, P_MASTER },
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5806,9 +5706,7 @@ static const struct def_skill Skill_Y[] = {
 
     { P_ENCHANTMENT_SPELL, P_EXPERT }, { P_PROTECTION_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
-#ifdef STEED
     { P_RIDING, P_GRAND_MASTER },
-#endif
     { P_HIGH_HEELS, P_EXPERT },
 
     { P_GENERAL_COMBAT, P_MASTER },

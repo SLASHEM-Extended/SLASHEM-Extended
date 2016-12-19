@@ -4631,9 +4631,7 @@ plus:
 		if (Hallucination)
 			break;
 		if(obj->owornmask & (W_TOOL /* blindfold */
-#ifdef STEED
 				| W_SADDLE
-#endif
 				)) {
 			Strcat(bp, " (being worn)");
 			break;

@@ -289,7 +289,6 @@ use_stethoscope(obj)
 	last_used_movement = youmonst.movement;
 	if (u.stethocheat == moves) res = 1; /* just restored the game and trying to cheat? Nice try. --Amy */
 
-#ifdef STEED
 	if (u.usteed && u.dz > 0) {
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
@@ -309,7 +308,6 @@ use_stethoscope(obj)
 
 		return res;
 	} else
-#endif
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
 		if (obj->blessed && !issoviet)
@@ -574,13 +572,11 @@ struct obj *obj;
 	if(!get_adjacent_loc((char *)0, (char *)0, u.ux, u.uy, &cc)) return;
 
 	if((cc.x == u.ux) && (cc.y == u.uy)) {
-#ifdef STEED
 		if (u.usteed && u.dz > 0) {
 		    mtmp = u.usteed;
 		    spotmon = 1;
 		    goto got_target;
 		}
-#endif
 		pline(Hallucination ? "Wow, now is that a string-tanga or a leather belt? Hard to see with those colors..." : "Leash yourself?  Very funny...");
 		return;
 	}
@@ -591,9 +587,7 @@ struct obj *obj;
 	}
 
 	spotmon = canspotmon(mtmp);
-#ifdef STEED
  got_target:
-#endif
 
 	/* KMH, balance patch -- This doesn't work properly.
 	 * Pets need extra memory for their edog structure.
@@ -704,10 +698,8 @@ next_to_u()
 			}
 		}
 	}
-#ifdef STEED
 	/* no pack mules for the Amulet */
 	if (u.usteed && mon_has_amulet(u.usteed)) return FALSE;
-#endif
 	return(TRUE);
 }
 
@@ -1609,11 +1601,9 @@ int magic; /* 0=Physical, otherwise skill level */
 		const char *bp = body_part(LEG);
 
 		if (wl == BOTH_SIDES) bp = makeplural(bp);
-#ifdef STEED
 		if (u.usteed)
 		    pline("%s is in no shape for jumping.", Monnam(u.usteed));
 		else
-#endif
 		Your("%s%s %s in no shape for jumping.",
 		     (wl == LEFT_SIDE) ? "left " :
 			(wl == RIGHT_SIDE) ? "right " : "",
@@ -1621,13 +1611,11 @@ int magic; /* 0=Physical, otherwise skill level */
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-#ifdef STEED
 	else if (u.usteed && u.utrap) {
 		pline("%s is stuck in a trap.", Monnam(u.usteed));
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
-#endif
 
 	pline("Where do you want to jump?");
 	cc.x = u.ux;
@@ -1659,9 +1647,7 @@ int magic; /* 0=Physical, otherwise skill level */
 		case TT_BEARTRAP: {
 		    register long side = rn2(3) ? LEFT_SIDE : RIGHT_SIDE;
 		    You("rip yourself free of the bear trap!  Ouch!");
-#ifdef STEED
 			if (!u.usteed)
-#endif
 		    losehp(rnd(10), "jumping out of a bear trap", KILLED_BY);
 		    set_wounded_legs(side, HWounded_legs + rn1(1000,500));
 		    break;
@@ -2758,7 +2744,6 @@ struct obj *otmp;
 	    trapinfo.time_needed += (tmp > 12) ? 1 : (tmp > 7) ? 2 : 4;
 	/*[fumbling and/or confusion and/or cursed object check(s)
 	   should be incorporated here instead of in set_trap]*/
-#ifdef STEED
 	if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 	    boolean chance;
 
@@ -2788,7 +2773,6 @@ struct obj *otmp;
 		return;
 	    }
 	}
-#endif
 	You("begin setting %s %s.",
 	    shk_your(buf, otmp),
 	    defsyms[trap_to_defsym(what_trap(ttyp))].explanation);
@@ -2888,18 +2872,14 @@ struct obj *obj;
     } else if ((!u.dx && !u.dy) || (u.dz > 0)) {
 	int dam;
 
-#ifdef STEED
 	/* Sometimes you hit your steed by mistake */
 	if (u.usteed && !rn2(proficient + 2)) {
 	    You("whip %s!", mon_nam(u.usteed));
 	    kick_steed();
 	    return 1;
 	}
-#endif
 	if (Levitation || Flying
-#ifdef STEED
 			|| u.usteed
-#endif
 		) {
 	    /* Have a shot at snaring something on the floor */
 	    otmp = level.objects[u.ux][u.uy];
@@ -4077,11 +4057,9 @@ doapply()
 	case LEASH:
 		use_leash(obj);
 		break;
-#ifdef STEED
 	case SADDLE:
 		res = use_saddle(obj);
 		break;
-#endif
 	case MAGIC_WHISTLE:
 		use_magic_whistle(obj);
 		/* Amy edit: because of our design philosophy that says nothing's supposed to be permanent, give a small chance
@@ -4811,9 +4789,7 @@ unfixable_trouble_count(is_horn)
 	if (Stoned) unfixable_trbl++;
 	if (Strangled) unfixable_trbl++;
 	if (Wounded_legs
-#ifdef STEED
 		    && !u.usteed
-#endif
 				) unfixable_trbl++;
 	if (Slimed) unfixable_trbl++;
 	/* lycanthropy is not desirable, but it doesn't actually make you feel

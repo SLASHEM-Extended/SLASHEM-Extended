@@ -761,10 +761,8 @@ boolean
 can_reach_floor()
 {
 	return (boolean)(!u.uswallow &&
-#ifdef STEED
 			/* Restricted/unskilled riders can't reach the floor */
 			!(u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) &&
-#endif
 			 (!Levitation ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }

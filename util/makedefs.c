@@ -513,9 +513,7 @@ make_version()
 #ifdef TOURIST
 			| (1L << 10)
 #endif
-#ifdef STEED
 			| (1L << 11)
-#endif
 #ifdef GOLDOBJ
 			| (1L << 12)
 #endif
@@ -812,9 +810,7 @@ static const char *build_opts[] = {
 #ifdef REINCARNATION
 		"rogue level",
 #endif
-#ifdef STEED
 		"saddles and riding",
-#endif
 #ifdef DISPLAY_LAYERS
 		"display layers",
 #endif

@@ -716,13 +716,11 @@ register char *enterstring;
 			  "Leave the %s%s outside.",
 			  tool, plur(cnt));
 		should_block = TRUE;
-#ifdef STEED
 	    } else if (u.usteed) {
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave %s outside?" :
 			  "Leave %s outside.", y_monnam(u.usteed));
 		should_block = TRUE;
-#endif
 	    } else if (eshkp->pbanned && !(Is_blackmarket(&u.uz)) ) {
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
@@ -947,9 +945,7 @@ register struct obj *obj, *merge;
 	register struct bill_x *bpm;
 	register struct monst *shkp;
 
-#ifdef STEED
 	if (obj == usaddle) dismount_steed(DISMOUNT_GENERIC);
-#endif
 
 	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
@@ -4028,15 +4024,11 @@ register struct monst *shkp;
 		 mons[u.umonnum].mlet != S_HUMAN) ||
                 /* WAC Let you out if you're stuck inside */                
                 (!Is_blackmarket(&u.uz) && (Invis 
-#ifdef STEED
 			|| u.usteed
-#endif
 			                          ) && !inside_shop(u.ux, u.uy)))
 #else /* BLACKMARKET */
 		if(Invis
-#ifdef STEED
 			|| u.usteed
-#endif
 		        )
 #endif /* BLACKMARKET */
 		{
@@ -5094,9 +5086,7 @@ register xchar x, y;
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
 		&& (Invis || carrying(PICK_AXE) || carrying(DWARVISH_MATTOCK)
-#ifdef STEED
 			|| u.usteed
-#endif
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");

@@ -342,10 +342,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 		}
 
 		mtmp = m_at(xi, yi);
-#ifdef STEED
 		if (!mtmp && xi == u.ux && yi == u.uy)
 			mtmp = u.usteed;
-#endif
 		if (mtmp) {
 		    switch(adtyp) {
 			case AD_PHYS:                        
@@ -472,10 +470,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    (void)zap_over_floor(xi, yi, type, &shopdamage);
 
 		mtmp = m_at(xi, yi);
-#ifdef STEED
 		if (!mtmp && xi == u.ux && yi == u.uy)
 			mtmp = u.usteed;
-#endif
 		if (!mtmp) continue;
 		if (DEADMONSTER(mtmp)) continue;
 		if (u.uswallow && mtmp == u.ustuck) {
@@ -968,10 +964,8 @@ boolean isyou;
 	if (redraw) newsym(x, y);
     }
     mon = m_at(x, y);
-#ifdef STEED
     if (!mon && x == u.ux && y == u.uy)
 	mon = u.usteed;
-#endif
     if (mon && !DEADMONSTER(mon))
 	if (resists_fire(mon))
 	    shielded = TRUE;

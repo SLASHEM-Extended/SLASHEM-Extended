@@ -921,7 +921,6 @@ dokick()
 		    return 1;}
 		}
 		else {no_kick = TRUE;}
-#ifdef STEED
 	} else if (u.usteed) {
 		if (yn_function("Kick your steed?", ynchars, 'n') == 'y') {
 		    You("kick %s.", mon_nam(u.usteed));
@@ -931,7 +930,6 @@ dokick()
 		    return 0;
 		}*/
 	/* your legs are not fucking welded to the horse, so you should be able to kick monsters too!!! --Amy */
-#endif
 	} else if (Wounded_legs) {
 		/* note: jump() has similar code */
 		long wl = (EWounded_legs & BOTH_SIDES);

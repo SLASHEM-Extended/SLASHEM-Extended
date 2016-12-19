@@ -2299,12 +2299,8 @@ TOOL("lenses", (char *)0,	1, 0, 0, 0,   50,  0,  80, GLASS, HI_GLASS),
 TOOL("blindfold", (char *)0,    1, 0, 0, 0, 480,  0,  20, CLOTH, CLR_BLACK),
 TOOL("towel", (char *)0,        1, 0, 0, 0, 200,  0,  50, CLOTH, CLR_MAGENTA),
 TOOL("condome", (char *)0,      1, 0, 0, 0,  20,  0,   5, CLOTH, CLR_WHITE),
-#ifdef STEED
 TOOL("saddle", (char *)0,       1, 0, 0, 0, 350,0, 150, LEATHER, HI_LEATHER),
 TOOL("leash", (char *)0,        1, 0, 0, 0, 130, 0,  20, LEATHER, HI_LEATHER),
-#else
-TOOL("leash", (char *)0,        1, 0, 0, 0, 480, 0,  20, LEATHER, HI_LEATHER),
-#endif
 TOOL("stethoscope", (char *)0,  1, 0, 0, 0, 250,  0,  75, IRON, HI_METAL),
 TOOL("tinning kit", (char *)0,  1, 0, 0, 1, 150, 0,  30, IRON, HI_METAL),
 CONTAINER("medical kit", "leather bag",

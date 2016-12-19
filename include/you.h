@@ -764,11 +764,9 @@ struct you {
 	long	usleep;		/* sleeping; monstermove you last started */
 	int uinvault;
 	struct monst *ustuck;
-#ifdef STEED
 	struct monst *usteed;
 	long ugallop;
 	int urideturns;
-#endif
 	int uhighheelturns;
 	int ugeneralcombatturns;
 	int utwohandedcombatturns;
