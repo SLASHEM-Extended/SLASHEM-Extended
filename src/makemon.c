@@ -726,9 +726,7 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_LECTURER]) {(void) mongets(mtmp, POT_SLEEPING); (void) mongets(mtmp, POT_SLEEPING); (void) mongets(mtmp, POT_SLEEPING);}
 
 		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER || mm == PM_PUNISHER
-#ifdef YEOMAN
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER
-#endif
 				|| mm == PM_JEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
 				|| mm == PM_ENEMY_TROOPER || mm == PM_INFANTRYMAN || mm == PM_CUNTGUN_TROOPER
 				|| mm == PM_GI_TROOPER || mm == PM_HEAVY_WEAPON_DUDE || mm == PM_RIFLEMAN
@@ -822,9 +820,7 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  }
 			  break;
-#ifdef YEOMAN
 			case PM_YEOMAN_WARDER:
-#endif
 			  w1 = rn2(2) ? FLAIL : MACE;
 			  break;
 			case PM_PRISON_GUARD:
@@ -856,9 +852,7 @@ register struct monst *mtmp;
 				  w2 = rn2(2) ? SILVER_SABER : DAGGER;
 			  }
 			  break;
-#ifdef YEOMAN
 			case PM_CHIEF_YEOMAN_WARDER:
-#endif
 			  w1 = rn2(2) ? BROADSWORD : LONG_SWORD;
 			  break;
 			case PM_PADAWAN:
@@ -2139,9 +2133,7 @@ register struct monst *mtmp;
 		     mkmonmoney(mtmp, (long) d(mtmp->m_lev, 15));
 #endif
 		   break;
-#ifdef YEOMAN
 		   case PM_YEOMAN:
-#endif
 		   case PM_UNDEAD_YEOMAN:
 		   case PM_KNIGHT:
 		   case PM_UNDEAD_KNIGHT:
@@ -4895,10 +4887,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_BLOCK_HEELED_GIRL]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
 		if(is_mercenary(ptr)
-#ifdef YEOMAN
 				|| ptr == &mons[PM_CHIEF_YEOMAN_WARDER]
 				|| ptr == &mons[PM_YEOMAN_WARDER]
-#endif
 		) {
 		    register int mac;
 
@@ -4911,15 +4901,11 @@ register struct	monst	*mtmp;
 			case PM_LIEUTENANT: mac = -2; break;
 			case PM_CAPTAIN: mac = -3; break;
 			case PM_GENERAL: mac = -3; break;
-#ifdef YEOMAN
 			case PM_YEOMAN_WARDER:
-#endif
 			case PM_WATCHMAN: mac = 3; break;
 			case PM_ANGRY_WATCHMAN: mac = 3; break;
-#ifdef YEOMAN
 			case PM_CHIEF_YEOMAN_WARDER:
 				mongets(mtmp, TALLOW_CANDLE);
-#endif
 			case PM_WATCH_CAPTAIN: mac = -2; break;
 			case PM_WATCH_LIEUTENANT: mac = -2; break;
 			case PM_WATCH_LEADER: mac = -2; break;

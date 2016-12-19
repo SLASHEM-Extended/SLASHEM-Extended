@@ -1324,7 +1324,6 @@ static struct trobj Sage[] = {
 };
 
 
-#ifdef YEOMAN
 static struct trobj Yeoman[] = {
 	{ SHORT_SWORD, 2, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ PARTISAN, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
@@ -1337,7 +1336,6 @@ static struct trobj Yeoman[] = {
 	{ FISHING_POLE, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
-#endif
 
 /*
  *	Optional extra inventory items.
@@ -5683,7 +5681,6 @@ static const struct def_skill Skill_Dea[] = {
     { P_NONE, 0 }
 };
 
-#ifdef YEOMAN
 static const struct def_skill Skill_Y[] = {
     { P_DAGGER, P_EXPERT },            { P_KNIFE, P_EXPERT },
     { P_AXE, P_EXPERT },               { P_SHORT_SWORD, P_EXPERT },
@@ -5716,8 +5713,6 @@ static const struct def_skill Skill_Y[] = {
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_MARTIAL_ARTS, P_MASTER },
     { P_NONE, 0 }
 };
-#endif
-
 
 STATIC_OVL void
 knows_object(obj)
@@ -8848,14 +8843,12 @@ u_init()
 		skill_init(Skill_Sag);
 		break;
 
-#ifdef YEOMAN
 	case PM_YEOMAN:
 		ini_inv(Yeoman);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_Y);
 		break;
-#endif
 
 	default:	/* impossible */
 		break;
@@ -9311,11 +9304,9 @@ u_init()
 		skill_init(Skill_Sag);
 		break;
 
-#ifdef YEOMAN
 	case PM_YEOMAN:
 		skill_init(Skill_Y);
 		break;
-#endif
 
 	case PM_ANACHRONIST:
 		skill_init(Skill_Ana);

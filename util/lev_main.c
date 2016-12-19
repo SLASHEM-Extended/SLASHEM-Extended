@@ -528,9 +528,7 @@ char **argv;
 				":dat:Slayer.des",		/* Should be Uslayer */
 				":dat:Valkyrie.des",
 				":dat:Wizard.des",
-#ifdef YEOMAN
 				":dat:Yeoman.des",
-#endif
 #ifdef ZOUTHERN
 				":dat:Zouthern.des"
 #endif

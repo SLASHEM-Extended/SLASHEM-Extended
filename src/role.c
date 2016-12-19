@@ -3185,10 +3185,6 @@ const struct Role roles[] = {
 	0, 1, 0, 3, 10, A_INT, SPE_MAGIC_MISSILE,   -4
 },
 
-
-
-
-#ifdef YEOMAN
 {	{"Yeoman", 0}, {
 	/* Landowner titles, naval ranks and positions */
 	/* We intentionally avoid Lieutenant and Captain */
@@ -3279,8 +3275,6 @@ const struct Role roles[] = {
 	10, 5, 0, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
 },
 
-
-
 {	{"Zyborg", 0}, {
 	{"Tin Can",     0},
 	{"Artificial Stupidity",     0},
@@ -3309,11 +3303,6 @@ const struct Role roles[] = {
 	0, 5, 0, 2, 10, A_INT, SPE_SOLAR_BEAM,   -4
 },
 
-
-
-
-
-#endif
 /* Array terminator */
 {{0, 0}}
 };

@@ -453,9 +453,7 @@ newexplevel()
 			case PM_HEALER: u.uenbase += rnd(6) + 2; break;
 			case PM_ICE_MAGE: u.uenbase += rnd(6) + 2; break;
 			case PM_ELECTRIC_MAGE: u.uenbase += rnd(6) + 2; break;
-#ifdef YEOMAN
 			case PM_YEOMAN:
-#endif
 			case PM_KNIGHT: u.uenbase += rnd(3); break;
 			/*case PM_HUMAN_WEREWOLF: u.uenbase += rnd(5) + 1; break;*/
 			case PM_MONK: u.uenbase += rnd(5) + 1; break;

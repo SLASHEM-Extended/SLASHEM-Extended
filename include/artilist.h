@@ -104,14 +104,12 @@ A("Snickersnee",                KATANA,
 	SPFX_RESTR, 0, 0,
 	PHYS(0,4),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, PM_SAMURAI, NON_PM, 1200L ),
 
-#ifdef YEOMAN
 /* KMH -- Renamed from Holy Sword of Law (Stephen White)
  * This is an actual sword used in British coronations!
  */
 A("Sword of Justice",           LONG_SWORD,
 	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
 	PHYS(5,6),     NO_DFNS,        NO_CARY,        0, A_LAWFUL, PM_YEOMAN, NON_PM, 1500L ),
-#endif
 
 A("Demonbane",			LONG_SWORD,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_DEMON,
@@ -137,11 +135,9 @@ A("Ogresmasher",		WAR_HAMMER,
 	(SPFX_RESTR|SPFX_DCLAS), 0, S_OGRE,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 200L ),
 
-#ifdef YEOMAN
 A("Reaper",                     HALBERD,
 	SPFX_RESTR, 0, 0,
 	PHYS(5,10),      NO_DFNS,        NO_CARY,        0, A_LAWFUL, PM_YEOMAN, NON_PM, 1000L ),
-#endif
 
 A("Holy Spear of Light",        SILVER_SPEAR,
        (SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2), 0, M2_UNDEAD,
@@ -5555,12 +5551,10 @@ A("The Slime Crown", HELM_OF_STORMS,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	LEV_TELE,  A_CHAOTIC, PM_DQ_SLIME, NON_PM, 5000L ),
 
-#ifdef YEOMAN
 A("The Crown of Saint Edward", HELM_OF_TELEPATHY,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM), 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	0,  A_LAWFUL, PM_YEOMAN, NON_PM, 5000L ),
-#endif
 
 A("The Lightsaber Prototype", RED_LIGHTSABER,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,

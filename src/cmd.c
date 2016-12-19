@@ -1111,7 +1111,6 @@ specialpower()      /* Special class abilites [modified by Tom] */
 		u.unextuse = rn1(1000,500);
 		return(0);
 		break;
-#ifdef YEOMAN
 		case 'Y':
 			if (u.usteed) {
 				pline("%s gets tamer.", Monnam(u.usteed));
@@ -1120,7 +1119,6 @@ specialpower()      /* Special class abilites [modified by Tom] */
 			} else
 				Your("special ability is only effective when riding a monster.");
 			break;
-#endif
 	    default:
 		break;
 	  }

@@ -586,14 +586,12 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
-#ifdef YEOMAN
 	yeo_tech[] = {
 		       {   1, T_CALM_STEED, 1},
 		       {   8, T_IRON_SKIN, 1},
 		       {   17, T_EDDY_WIND, 1},
 		       {   25, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
-#endif
 	wiz_tech[] = { {   1, T_REINFORCE, 1},
 		       {   3, T_DRAW_ENERGY, 1},
 		       {   5, T_POWER_SURGE, 1},
@@ -3841,9 +3839,7 @@ role_tech()
 		case PM_UNDERTAKER:	return (unt_tech);
 		case PM_VALKYRIE:	return (val_tech);
 		case PM_WIZARD:		return (wiz_tech);
-#ifdef YEOMAN
 		case PM_YEOMAN:		return (yeo_tech);
-#endif
 		default: 		return ((struct innate_tech *) 0);
 	}
 }

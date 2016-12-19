@@ -883,9 +883,7 @@ static const char *build_opts[] = {
 #ifdef WALLIFIED_MAZE
 		"walled mazes",
 #endif
-#ifdef YEOMAN
 		"yeomen",
-#endif
 #ifdef ZEROCOMP
 		"zero-compressed save files",
 #endif

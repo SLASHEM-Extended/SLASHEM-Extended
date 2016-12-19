@@ -475,12 +475,10 @@ const struct innate {
 			{  10, &(HFire_resistance), "cool", "warmer" },
 			{   0, 0, 0, 0 } },
 
-#ifdef YEOMAN
 	yeo_abil[] = {
 		     {   7, &(HFast), "quick", "slow" },
 		     {  15, &(HSwimming), "ready to swim","afraid of the water" },
 		     {   0, 0, 0, 0 } },
-#endif
 
 	wiz_abil[] = { {   1, &(HManaleech), "", "" },
 			 {	15, &(HWarning), "sensitive", "careless" },
@@ -1468,9 +1466,7 @@ int oldlevel, newlevel;
 	case PM_OFFICER:       abil = off_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;
 	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
-#ifdef YEOMAN
 	case PM_YEOMAN:		abil = yeo_abil;	break;
-#endif
 	default:                abil = 0;		break;
 	}
 

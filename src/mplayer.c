@@ -351,9 +351,7 @@ register boolean special;
 		    if (rn2(4)) helm = rn2(2) ? HELM_OF_BRILLIANCE : HELM_OF_TELEPATHY;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
-#ifdef YEOMAN
 		case PM_YEOMAN:
-#endif
 		case PM_KNIGHT:
 		    if (rn2(4)) weapon = LONG_SWORD;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
