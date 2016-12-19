@@ -1566,6 +1566,10 @@ boolean atme;
 	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone()) energy *= 2;
 	if (u.spellbinder) energy *= 2;
 
+	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
+	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
+	if (spellid(spell) == urole.spelspec) { energy *= 4; energy /= 5; }
+
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
 	if (spellid(spell) == SPE_TIME_STOP) energy *= 2;
