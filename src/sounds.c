@@ -1142,7 +1142,6 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_BRIBE:
-#ifdef CONVICT        
         if (monsndx(ptr) == PM_PRISON_GUARD) {
             long gdemand = 500 * u.ulevel;
             long goffer = 0;
@@ -1164,7 +1163,6 @@ register struct monst *mtmp;
                 verbl_msg = "Out of my way, scum!"; /* still a jerk */
             }
         } else
-#endif /* CONVICT */
 	    if (mtmp->mpeaceful && !mtmp->mtame) {
 		(void) demon_talk(mtmp);
 		break;
@@ -1607,7 +1605,6 @@ dochat()
 	return (0);
     }
 
-#ifdef CONVICT
     if (Role_if(PM_CONVICT) && is_rat(mtmp->data) && !mtmp->mpeaceful &&
      !mtmp->mtame) {
         You("attempt to soothe the %s with chittering sounds.",
@@ -1625,7 +1622,6 @@ dochat()
         }
         return 0;
     }
-#endif /* CONVICT */
 
     if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 

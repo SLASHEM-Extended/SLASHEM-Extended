@@ -448,7 +448,6 @@ register struct monst *mtmp;
 			Race_if(PM_ELF)))
 	    tmp++;
 
-#ifdef CONVICT
     /* Adding iron ball as a weapon skill gives a -4 penalty for
     unskilled vs no penalty for non-weapon objects.  Add 4 to
     compensate. */
@@ -467,7 +466,6 @@ register struct monst *mtmp;
 	/* mini-nerf outside of soviet mode too, because some of these things are possibly overpowered */
     if (uwep && (uwep->oclass == CHAIN_CLASS || uwep->oclass == BALL_CLASS)) tmp -= rnd(5);
 
-#endif /* CONVICT */
 #if 0
 	if(Role_if(PM_MONK) && !Upolyd) {
 	    if (uarm) {
@@ -1182,11 +1180,7 @@ int thrown;
 
 	    Strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
-#ifdef CONVICT
 	       obj->oclass == GEM_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) {
-#else
-	       obj->oclass == GEM_CLASS) {
-#endif /* CONVICT */
 
 		/* is it not a melee weapon? */
 		/* KMH, balance patch -- new macros */

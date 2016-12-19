@@ -833,9 +833,7 @@ register struct monst *mtmp;
 #endif
 			  w1 = rn2(2) ? FLAIL : MACE;
 			  break;
-#ifdef CONVICT
 			case PM_PRISON_GUARD:
-#endif /* CONVICT */
 			case PM_CAPTAIN:
 			case PM_GENERAL:
 #ifdef FIREARMS
@@ -3933,7 +3931,6 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, LEATHER_GLOVES);
 		}
 
-#ifdef CONVICT
 		else if (mm == PM_MINER) {
 
 		    (void)mongets(mtmp, PICK_AXE);
@@ -3941,7 +3938,6 @@ register struct monst *mtmp;
 			if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
 	            /*begin_burn(otmp, FALSE);*/
 		}
-#endif /* CONVICT */
 
 		break;
 
@@ -4936,9 +4932,7 @@ register struct	monst	*mtmp;
 
 		    switch(monsndx(ptr)) {
 			case PM_GUARD: mac = -1; break;
-#ifdef CONVICT
 			case PM_PRISON_GUARD: mac = -2; break;
-#endif /* CONVICT */
 			case PM_SOLDIER: mac = 3; break;
 			case PM_ILLUSIONARY_SOLDIER: mac = 3; break;
 			case PM_SERGEANT: mac = 0; break;
@@ -4995,9 +4989,7 @@ register struct	monst	*mtmp;
 			mac += 1 + mongets(mtmp, LEATHER_CLOAK);
 
 		    if(ptr != &mons[PM_GUARD] &&
-#ifdef CONVICT
 			ptr != &mons[PM_PRISON_GUARD] &&
-#endif /* CONVICT */
 			ptr != &mons[PM_WATCHMAN] &&
 			ptr != &mons[PM_ANGRY_WATCHMAN] &&
 			ptr != &mons[PM_ANGRY_WATCH_LIEUTENANT] &&

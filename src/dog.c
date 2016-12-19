@@ -256,10 +256,8 @@ makedog()
 		petname = ghoulname;
 	else if (pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE)
 		petname = horsename;
-#ifdef CONVICT
 	else if (pettype == PM_SEWER_RAT)
 		petname = ratname;
-#endif /* CONVICT */
 #if 0
 	else if (petsym == S_BAT)
 		petname = batname;
@@ -287,7 +285,6 @@ makedog()
 	    if(Role_if(PM_BARBARIAN)) petname = "Idefix";  /* Obelix */
 	    if(Role_if(PM_RANGER)) petname = "Sirius";     /* Orion's dog */
 	}
-#ifdef CONVICT
 	if (!*petname && pettype == PM_SEWER_RAT) {
 	    if(Role_if(PM_CONVICT)) petname = "Nicodemus"; /* Rats of NIMH */
     }
@@ -372,7 +369,6 @@ makedog()
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 
 	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
-#endif /* CONVICT */
 
 	if (petname && !(strcmp(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
 
@@ -1110,14 +1106,11 @@ boolean guaranteed;
 		return((struct monst *)0);
 
 		}
-#ifdef CONVICT
     if ( (Role_if(PM_CONVICT) || Role_if(PM_MURDERER)) && (is_domestic(mtmp->data) && obj)) {
         /* Domestic animals are wary of the Convict */
         pline("%s still looks wary of you.", Monnam(mtmp));
         return((struct monst *)0);
         }
-#endif
-
 
 	/* If we cannot tame it, at least it's no longer afraid. */
 	mtmp->mflee = 0;

@@ -243,9 +243,7 @@ E NEARDATA char dogname[];
 E NEARDATA char catname[];
 E NEARDATA char ghoulname[];
 E NEARDATA char horsename[];
-#ifdef CONVICT
 E NEARDATA char ratname[];
-#endif /* CONVICT */
 /*E NEARDATA char coinsname[];
 E NEARDATA char lichenname[];
 E NEARDATA char rothename[];*/

@@ -3842,18 +3842,14 @@ struct obj *otmp;
 			  "Mmm, tripe... not bad!");
 		else {
 		    pline("Yak - dog food!");
-#ifdef CONVICT
 		    if (Role_if(PM_CONVICT))
 			pline("At least it's not prison food.");
-#endif /* CONVICT */
 		    more_experienced(1,0);
 		    newexplevel();
 		    /* not cannibalism, but we use similar criteria
 		       for deciding whether to be sickened by this meal */
 		    if (rn2(2) && !CANNIBAL_ALLOWED())
-#ifdef CONVICT
 		    if (!Role_if(PM_CONVICT))
-#endif /* CONVICT */
 			{ make_vomiting((long)rn1(victual.reqtime, 14), FALSE);
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 			}
@@ -4053,11 +4049,9 @@ struct obj *otmp;
 #endif
 		if (otmp->otyp == EGG && stale_egg(otmp)) {
 		    pline(Hallucination ? "Uaaah! That tasted like hydrogen sulfide!" : "Ugh.  Rotten egg.");	/* perhaps others like it */
-#ifdef CONVICT
 		if (Role_if(PM_CONVICT) && (rn2(8) > u.ulevel)) {
 		    You_feel("a slight stomach ache.");	/* prisoners are used to bad food */
 		} else
-#endif /* CONVICT */
 		    {make_vomiting(Vomiting+d(10,4), TRUE);
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 			}
@@ -5240,10 +5234,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 
 	if ((!u.usleep || !rn2(10))	/* slow metabolic rate while asleep */
 		&& (carnivorous(youmonst.data) || herbivorous(youmonst.data) || metallivorous(youmonst.data) || lithivorous(youmonst.data))
-#ifdef CONVICT
         /* Convicts can last twice as long at hungry and below */
         && (!Role_if(PM_CONVICT) || (moves % 2) || (u.uhs < HUNGRY))
-#endif /* CONVICT */
 		&& !Slow_digestion)
 	    u.uhunger--;		/* ordinary food consumption */
 

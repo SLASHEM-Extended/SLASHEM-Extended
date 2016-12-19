@@ -521,9 +521,7 @@
 #define EPasses_walls		u.uprops[PASSES_WALLS].extrinsic
 #define Passes_walls		((HPasses_walls || EPasses_walls || \
 				 passes_walls(youmonst.data)) && !NoPasses_walls)
-#ifdef CONVICT
 # define Phasing            u.uprops[PASSES_WALLS].intrinsic
-#endif /* CONVICT */
 #define NoPasses_walls	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PASSES_WALLS].intrinsic || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 

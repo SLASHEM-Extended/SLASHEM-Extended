@@ -663,13 +663,11 @@ register char *enterstring;
 	}
 #endif /* BLACKMARKET */
 
-#ifdef CONVICT
 	/* Visible striped prison shirt */
 	if ((uarmu && (uarmu->otyp == STRIPED_SHIRT)) && !uarm && !uarmc) {
 	    eshkp->pbanned = TRUE;
 	}
 	if (Race_if(PM_ALBAE) && !Upolyd) eshkp->pbanned = TRUE;
-#endif /* CONVICT */
 
 	rt = rooms[*enterstring - ROOMOFFSET].rtype;
 
@@ -681,9 +679,7 @@ register char *enterstring;
 	} else if (eshkp->robbed) {
 	    pline("%s mutters imprecations against shoplifters.", shkname(shkp));
 	} else {
-#ifdef CONVICT
         if (!eshkp->pbanned || inside_shop(u.ux, u.uy))
-#endif /* CONVICT */
 	    verbalize("%s, %s!  Welcome%s to %s %s!",
 		      Hello(shkp), plname,
 		      eshkp->visitct++ ? " again" : "",
@@ -727,11 +723,9 @@ register char *enterstring;
 			  "Leave %s outside.", y_monnam(u.usteed));
 		should_block = TRUE;
 #endif
-#ifdef CONVICT
 	    } else if (eshkp->pbanned && !(Is_blackmarket(&u.uz)) ) {
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
-#endif
 	    } else {
 		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) ||
 				      sobj_at(DWARVISH_MATTOCK, u.ux, u.uy)));
@@ -2073,9 +2067,7 @@ int croaked;	/* -1: escaped dungeon; 0: quit; 1: died */
 		else {
 		    numsk++;
 		    taken |= inherits(mtmp, numsk, croaked);
-#ifdef CONVICT
 		    ESHK(mtmp)->pbanned = FALSE; /* Un-ban for bones levels */
-#endif /* CONVICT */
 		}
 	    }
 	}
@@ -4055,9 +4047,7 @@ register struct monst *shkp;
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
 			badinv = (carrying(PICK_AXE) || carrying(DWARVISH_MATTOCK) ||
-#ifdef CONVICT
             eshkp->pbanned ||
-#endif /* CONVICT */
 				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv)

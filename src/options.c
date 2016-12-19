@@ -404,10 +404,8 @@ static struct Comp_Opt
 						12, DISP_IN_GAME },
 	{ "race",     "your starting race (e.g., Human, Elf)",
 						PL_CSIZ, DISP_IN_GAME },
-#ifdef CONVICT
 	{ "ratname",  "the name of your (first) rat (e.g., ratname:Squeak)",
 						PL_PSIZ, DISP_IN_GAME },
-#endif /* CONVICT */
 	{ "role",     "your starting role (e.g., Barbarian, Valkyrie)",
 						PL_CSIZ, DISP_IN_GAME },
 /*	{ "rothename",  "the name of your (first) rothe (e.g., rothename:Badger)",
@@ -1599,7 +1597,6 @@ boolean tinitial, tfrom_file;
  		return;
  	}
 
-#ifdef CONVICT
 	fullname = "ratname";
 	if (match_optname(opts, fullname, 3, TRUE)) {
 		if (negated) bad_negation(fullname, FALSE);
@@ -1607,7 +1604,6 @@ boolean tinitial, tfrom_file;
 			nmcpy(ratname, op, PL_PSIZ);
 		return;
 	}
-#endif /* CONVICT */
 
 /*	fullname = "lichenname";
 	if (match_optname(opts, fullname, 3, TRUE)) {
@@ -3879,10 +3875,8 @@ char *buf;
 		Sprintf(buf, "%s", rolestring(flags.initrace, races, noun));
 	else if (!strcmp(optname, "role"))
 		Sprintf(buf, "%s", rolestring(flags.initrole, roles, name.m));
-#ifdef CONVICT
 	else if (!strcmp(optname, "ratname")) 
 		Sprintf(buf, "%s", ratname[0] ? ratname : none );
-#endif /* CONVICT */
 /*	else if (!strcmp(optname, "rothename")) 
 		Sprintf(buf, "%s", rothename[0] ? rothename : none );*/
 	else if (!strcmp(optname, "runmode"))

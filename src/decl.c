@@ -220,9 +220,7 @@ NEARDATA char dogname[PL_PSIZ] = DUMMY;
 NEARDATA char catname[PL_PSIZ] = DUMMY;
 NEARDATA char ghoulname[PL_PSIZ] = DUMMY;
 NEARDATA char horsename[PL_PSIZ] = DUMMY;
-#ifdef CONVICT
 NEARDATA char ratname[PL_PSIZ] = DUMMY;
-#endif /* CONVICT */
 NEARDATA char wolfname[PL_PSIZ] = DUMMY;
 /*NEARDATA char lichenname[PL_PSIZ] = DUMMY;
 NEARDATA char coinsname[PL_PSIZ] = DUMMY;

@@ -2069,10 +2069,8 @@ char		*tmp_levels;
 	    (void) strncpy(dogname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "CATNAME", 3)) {
 	    (void) strncpy(catname, bufp, PL_PSIZ-1);
-#ifdef CONVICT
 	} else if (match_varname(buf, "RATNAME", 3)) {
 	    (void) strncpy(ratname, bufp, PL_PSIZ-1);
-#endif /* CONVICT */
 /*	} else if (match_varname(buf, "LICHENNAME", 3)) {
 	    (void) strncpy(lichenname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "COINSNAME", 3)) {

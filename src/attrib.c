@@ -79,12 +79,10 @@ const struct innate {
 		     {	15, &(HWarning), "sensitive", "careless" },
 		     {	 0, 0, 0, 0 } },
 
-#ifdef CONVICT
 	con_abil[] = { {   1, &(HSick_resistance), "", "" },
 	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
 		     {  20, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
-#endif	/* CONVICT */
 	mur_abil[] = { {   1, &(HAggravate_monster), "", "" },
 	           {	 2, &(HSearching), "", "" },
 	           {	 3, &(HSearching), "", "" },
@@ -1413,9 +1411,7 @@ int oldlevel, newlevel;
 	case PM_DOLL_MISTRESS:           abil = dol_abil;	break;
 	case PM_GAMER:           abil = gam_abil;	break;
 	case PM_CAVEMAN:        abil = cav_abil;	break;
-#ifdef CONVICT
 	case PM_CONVICT:        abil = con_abil;	break;
-#endif	/* CONVICT */
 	case PM_MURDERER:        abil = mur_abil;	break;
 	case PM_FAILED_EXISTENCE:        abil = fai_abil;	break;
 	case PM_TRANSSYLVANIAN:        abil = trs_abil;	break;

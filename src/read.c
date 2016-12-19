@@ -6448,9 +6448,7 @@ punish(sobj)
 register struct obj	*sobj;
 {
 
-#ifdef CONVICT
     struct obj *otmp;
-#endif /* CONVICT */
 	/* KMH -- Punishment is still okay when you are riding */
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
@@ -6469,7 +6467,6 @@ register struct obj	*sobj;
 		return;
 	}
 	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
-#ifdef CONVICT
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
      ART_IRON_BALL_OF_LIBERATION)) {
         setworn(otmp, W_BALL);
@@ -6477,9 +6474,6 @@ register struct obj	*sobj;
     } else {
 	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
     }
-#else
-	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
-#endif /* CONVICT */
 	/*uball->spe = 1;*/		/* special ball (see save) */
 
 	/*
@@ -6497,9 +6491,7 @@ void
 punishx()
 {
 
-#ifdef CONVICT
     struct obj *otmp;
-#endif /* CONVICT */
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
 
@@ -6516,7 +6508,6 @@ punishx()
 		return;
 	}
 	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
-#ifdef CONVICT
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
      ART_IRON_BALL_OF_LIBERATION)) {
         setworn(otmp, W_BALL);
@@ -6524,9 +6515,6 @@ punishx()
     } else {
 	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
     }
-#else
-	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
-#endif /* CONVICT */
 	/*uball->spe = 1;*/		/* special ball (see save) */
 
 	/*

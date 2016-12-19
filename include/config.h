@@ -429,7 +429,7 @@ typedef unsigned char	uchar;
 #define UNPOLYPILE	/* WAC -- Items can unpolymorph (unconditionally enabled by Amy) */
 #define LIGHTSABERS	/* unconditionally enabled by Amy */
 #define JEDI		/* unconditionally enabled by Amy */
-#define CONVICT		/* Convict player with heavy iron ball */
+#define CONVICT		/* Convict player with heavy iron ball (unconditionally enabled by Amy) */
 # define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten */

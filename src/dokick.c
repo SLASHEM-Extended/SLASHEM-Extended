@@ -567,10 +567,8 @@ register struct obj *gold;
 			   goldreqd = 750L;
 			else if (mtmp->data == &mons[PM_GENERAL])
 			   goldreqd = 1000L;
-#ifdef CONVICT
 			else if (mtmp->data == &mons[PM_PRISON_GUARD])
 			   goldreqd = 200L;
-#endif /* CONVICT */
 
 			if (goldreqd) {
 #ifndef GOLDOBJ

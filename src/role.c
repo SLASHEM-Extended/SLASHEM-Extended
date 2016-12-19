@@ -580,7 +580,6 @@ const struct Role roles[] = {
 },
 
 
-#ifdef CONVICT
 {	{"Convict", 0}, {
 	{"Detainee",     0},
 	{"Inmate",   0},
@@ -608,7 +607,6 @@ const struct Role roles[] = {
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
 	-50, 5, 0, 2, 10, A_INT, SPE_TELEPORT_AWAY,   -4
 },
-#endif	/* CONVICT */
 
 {	{"Cook", 0}, {
 	{"one who forgot the salt",     0},

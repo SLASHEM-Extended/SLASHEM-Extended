@@ -2312,11 +2312,9 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 		
-#ifdef CONVICT
         if ((guaranteed || !rn2(10)) && Punished) {
             you_are("punished");
         }
-#endif /* CONVICT */
 
         if ((guaranteed || !rn2(10)) && u.totter) {
             you_have("inverted directional keys");

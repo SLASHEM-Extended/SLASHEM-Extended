@@ -716,10 +716,8 @@ ARMOR("swimsuit", (char *)0,
 	1, 0, 0, SWIMMING, 2, 0, 2,  25, 10, 0, ARM_SHIRT, PLASTIC, CLR_WHITE),
 
 #endif /* TOURIST */
-# ifdef CONVICT
 ARMOR("striped shirt", (char *)0,
 	1, 0, 0, 0,	20, 0,	 5,   2, 10, 0, ARM_SHIRT, CLOTH, CLR_GRAY),
-# endif /* CONVICT */
 /*Ruffled shirts are little different from other shirts*/
 ARMOR("ruffled shirt", (char *)0,
 	1, 0, 0, 0,	20, 0,	 5,   2, 10, 0, ARM_SHIRT, CLOTH, CLR_WHITE),

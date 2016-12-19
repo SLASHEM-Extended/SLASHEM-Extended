@@ -460,13 +460,11 @@ static struct trobj Flame_Mage[] = {
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
   	{ 0, 0, 0, 0, 0 }
 };
-#ifdef CONVICT
 static struct trobj Convict[] = {
 	{ ROCK, 0, GEM_CLASS, 1, 0 },
 	{ STRIPED_SHIRT, 0, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
-#endif  /* CONVICT */
 
 static struct trobj Murderer[] = {
 #define M_ITEM_ONE          6
@@ -3816,7 +3814,6 @@ static const struct def_skill Skill_Aci[] = {
     { P_NONE, 0 }
 };
 
-#ifdef CONVICT
 static const struct def_skill Skill_Con[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
     { P_HAMMER, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
@@ -3838,7 +3835,6 @@ static const struct def_skill Skill_Con[] = {
 
     { P_NONE, 0 }
 };
-#endif  /* CONVICT */
 
 static const struct def_skill Skill_Mur[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
@@ -8178,7 +8174,6 @@ u_init()
 
 		break;
 
-#ifdef CONVICT
 	case PM_CONVICT:
         ini_inv(Convict);
         knows_object(SKELETON_KEY);
@@ -8193,7 +8188,6 @@ u_init()
         urace.lovemask = 0; /* Convicts are pariahs of their race */
 	    change_luck(-1); /* both their alignment and luck start out negative */
         break;
-#endif	/* CONVICT */
 
 	case PM_MURDERER:
 
@@ -9178,11 +9172,9 @@ u_init()
             skill_init(Skill_Lun);
 		break;
 
-#ifdef CONVICT
 	case PM_CONVICT:
             skill_init(Skill_Con);
             break;
-#endif	/* CONVICT */
 
 	case PM_MURDERER:
             skill_init(Skill_Mur);
@@ -11811,9 +11803,7 @@ u_init()
 	    if (!no_extra_food && !Role_if(PM_WIZARD) &&
 		    !Role_if(PM_FLAME_MAGE) && !Role_if(PM_ICE_MAGE) &&
 		    !Role_if(PM_NECROMANCER))
-#ifdef CONVICT
         if (!Role_if(PM_CONVICT) && !Role_if(PM_MURDERER))
-#endif /* CONVICT */
 		ini_inv(Xtra_food);
 	    /* Orcs can recognize all orcish objects */
 	    knows_object(ORCISH_SHORT_SWORD);
@@ -22392,9 +22382,7 @@ int otyp;
      case PM_BLEEDER:			skills = Skill_Ble; break;
      case PM_COOK:			skills = Skill_Coo; break;
      case PM_CAVEMAN:		skills = Skill_C; break;
-#ifdef CONVICT
      case PM_CONVICT:		skills = Skill_Con; break;
-#endif  /* CONVICT */
      case PM_MURDERER:		skills = Skill_Mur; break;
      case PM_COURIER:		skills = Skill_Cou; break;
      case PM_SPACEWARS_FIGHTER:		skills = Skill_Spa; break;
@@ -22769,14 +22757,12 @@ register struct trobj *trop;
 			    objX->quan = 1L;
 			}
 
-#ifdef CONVICT
             if (objX->otyp == STRIPED_SHIRT ) {
                 objX->cursed = TRUE;
             }
 
 	/* "Shirts for roles shouldn't be cursed in init. The only shirt that should be cursed is the striped shirt." In Soviet Russia, tourists want to be able to take off their shirt because they got kind of annoyed at shopkeepers overcharging them. Apparently, they always want things to be as easy as they can be. All the other tourists will have to find another way to deal with the shirt though. --Amy */
 
-#endif /* CONVICT */
             if (objX->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -22960,11 +22946,9 @@ register struct trobj *trop;
 
 
 
-#ifdef CONVICT
             if (obj->otyp == STRIPED_SHIRT ) {
                 obj->cursed = TRUE;
             }
-#endif /* CONVICT */
             if (obj->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
                 obj->cursed = TRUE;
             }
