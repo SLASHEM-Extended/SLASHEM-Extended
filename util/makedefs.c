@@ -528,9 +528,7 @@ make_version()
 #ifdef INSURANCE
 			| (1L << 18)
 #endif
-#ifdef ELBERETH
 			| (1L << 19)
-#endif
 		/* data format [COMPRESS excluded] (27..31) */
 #ifdef ZEROCOMP
 			| (1L << 27)
@@ -752,9 +750,7 @@ static const char *build_opts[] = {
 #ifdef REALTIME_ON_BOTL
                 "elapsed time on status line",
 #endif
-#ifdef ELBERETH
 		"Elbereth",
-#endif
 #ifdef MFLOPPY
 		"floppy drive support",
 #endif
@@ -862,9 +858,7 @@ static const char *build_opts[] = {
 		"timed wait for display effects",
 #endif
 		"lightsabers",
-# ifdef JEDI
 		"Jedi",
-# endif
 		"firearms",
 		"tourists",
 #ifdef USER_SOUNDS
@@ -1170,9 +1164,6 @@ h_filter(line)
     if (*line == '#') return TRUE;	/* ignore comment lines */
     if (sscanf(line, "----- %s", tag) == 1) {
 	skip = FALSE;
-#ifndef ELBERETH
-	if (!strcmp(tag, "ELBERETH")) skip = TRUE;
-#endif
     } else if (skip && !strncmp(line, "-----", 5))
 	skip = FALSE;
     return skip;

@@ -653,9 +653,7 @@ E boolean NDECL(can_reach_floor);
 E const char *FDECL(surface, (int,int));
 E const char *FDECL(ceiling, (int,int));
 E struct engr *FDECL(engr_at, (XCHAR_P,XCHAR_P));
-#ifdef ELBERETH
 E int FDECL(sengr_at, (const char *,XCHAR_P,XCHAR_P));
-#endif
 E void FDECL(u_wipe_engr, (int));
 E void FDECL(wipe_engr_at, (XCHAR_P,XCHAR_P,XCHAR_P));
 E boolean FDECL(sense_engr_at, (int,int,BOOLEAN_P));
