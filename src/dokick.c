@@ -887,10 +887,8 @@ char *buf;
 	else if (IS_THRONE(maploc->typ)) what = "a throne";
 	else if (IS_FOUNTAIN(maploc->typ)) what = "a fountain";
 	else if (IS_GRAVE(maploc->typ)) what = "a headstone";
-#ifdef SINKS
 	else if (IS_SINK(maploc->typ)) what = "a sink";
         else if (IS_TOILET(maploc->typ)) what = "a toilet";        
-#endif
 	else if (IS_ALTAR(maploc->typ)) what = "an altar";
 	else if (IS_DRAWBRIDGE(maploc->typ)) what = "a drawbridge";
 	else if (maploc->typ == STAIRS) what = "the stairs";
@@ -1264,7 +1262,6 @@ dokick()
 		    } else
 		    goto ouch;
 		}
-#ifdef SINKS
 		if(IS_TOILET(maploc->typ)) {
 		   if(Levitation) goto dumb;
 		   pline("Klunk!");
@@ -1326,7 +1323,6 @@ dokick()
 		    }
 		    goto ouch;
 		}
-#endif
 		if (maploc->typ == STAIRS || maploc->typ == LADDER ||
 						    IS_STWALL(maploc->typ)) {
 		    if(!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)

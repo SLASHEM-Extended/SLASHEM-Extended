@@ -9,9 +9,7 @@ STATIC_DCL void NDECL(maybe_wail);
 #endif*/ /*OVL1*/
 STATIC_DCL int NDECL(moverock);
 STATIC_DCL int FDECL(still_chewing,(XCHAR_P,XCHAR_P));
-#ifdef SINKS
 STATIC_DCL void NDECL(dosinkfall);
-#endif
 STATIC_DCL boolean FDECL(findtravelpath, (BOOLEAN_P));
 STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
 
@@ -904,7 +902,6 @@ register xchar ox, oy;
 	newsym(ox, oy);
 }
 
-#ifdef SINKS
 static NEARDATA const char fell_on_sink[] = "fell onto a sink";
 
 STATIC_OVL void
@@ -957,7 +954,6 @@ dosinkfall()
 	}
 	HLevitation--;
 }
-#endif
 
 boolean
 may_dig(x,y)
@@ -2449,10 +2445,8 @@ stillinwater:;
 	    }
 	}
 	check_special_room(FALSE);
-#ifdef SINKS
 	if(IS_SINK(levl[u.ux][u.uy].typ) && Levitation)
 		dosinkfall();
-#endif
 	if (!in_steed_dismounting) { /* if dismounting, we'll check again later */
 		struct trap *trap = t_at(u.ux, u.uy);
 		boolean pit;

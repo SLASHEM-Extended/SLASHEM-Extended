@@ -1946,10 +1946,8 @@ dodrink()
 
 	*qp++ = ALLOW_FLOOROBJ;
 	if (!u.uswallow && (IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
-#ifdef SINKS
 			    IS_SINK(levl[u.ux][u.uy].typ) ||
 			    IS_TOILET(levl[u.ux][u.uy].typ) ||
-#endif
 			    Underwater || IS_POOL(levl[u.ux][u.uy].typ)))
 	    *qp++ = ALLOW_THISPLACE;
 	Strcpy(qp, beverages);
@@ -1968,7 +1966,6 @@ dodrink()
 
 		return 1;
 	    }
-#ifdef SINKS
 	    else if (IS_SINK(levl[u.ux][u.uy].typ)) {
 		drinksink();
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
@@ -1993,7 +1990,6 @@ dodrink()
 
 		return 1;
 	    }
-#endif
 	    pline(Hallucination ? "This water seems especially clean. In fact, it's the cleanest water you've ever seen." : "Do you know what lives in this water!");
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;

@@ -2518,9 +2518,7 @@ struct obj *stone, *obj;
 	} else
 #endif
 	if (!is_pool(u.ux, u.uy) && !IS_FOUNTAIN(levl[u.ux][u.uy].typ)
-#ifdef SINKS
 	    && !IS_SINK(levl[u.ux][u.uy].typ) && !IS_TOILET(levl[u.ux][u.uy].typ)
-#endif
 	    ) {
 	    if (carrying(POT_WATER) && objects[POT_WATER].oc_name_known) {
 		pline(Hallucination ? "You'd probably just spill it everywhere." : "Better not waste bottled water for that.");
@@ -2581,10 +2579,8 @@ struct obj *stone, *obj;
 		You("start %s %s.", occutext, yname(obj));
 		set_occupation(set_whetstone, occutext, 0);
 		if (IS_FOUNTAIN(levl[u.ux][u.uy].typ)) whetstone_fountain_effects(obj);
-#ifdef SINKS
 		else if (IS_SINK(levl[u.ux][u.uy].typ)) whetstone_sink_effects(obj);
 		else if (IS_TOILET(levl[u.ux][u.uy].typ)) whetstone_toilet_effects(obj);
-#endif
 	    }
 	} else You("wave %s in the %s.", the(xname(stone)),
 	    (IS_POOL(levl[u.ux][u.uy].typ) && Underwater) ? "water" : "air");
@@ -3236,7 +3232,6 @@ use_pole (obj)
 			}
 			return 1;
 		    }
-#ifdef SINKS
 		    /* Or a rat in the sink/toilet */
 		    if (!(mvitals[PM_SEWER_RAT].mvflags & G_GONE) &&
 			    (IS_SINK(levl[cc.x][cc.y].typ) ||
@@ -3247,7 +3242,6 @@ use_pole (obj)
 				Blind ? "something squirmy" : a_monnam(mtmp));
 			return 1;
 		    }
-#endif
 		    break;
 		case 5:
 		    /* Catch your dinner */

@@ -778,7 +778,6 @@ E void FDECL(dryup, (XCHAR_P,XCHAR_P, BOOLEAN_P));
 E void NDECL(drinkfountain);
 E void FDECL(dipfountain, (struct obj *));
 E void FDECL(whetstone_fountain_effects, (struct obj *));
-#ifdef SINKS
 E void FDECL(diptoilet, (struct obj *));
 E void FDECL(breaksink, (int,int));
 E void FDECL(breaktoilet, (int,int));
@@ -786,7 +785,6 @@ E void NDECL(drinksink);
 E void NDECL(drinktoilet);
 E void FDECL(whetstone_sink_effects, (struct obj *));
 E void FDECL(whetstone_toilet_effects, (struct obj *));
-#endif
 
 /* ### gypsy.c ### */
 

@@ -19,10 +19,8 @@
 
 
 STATIC_DCL void FDECL(mkfount,(int,struct mkroom *));
-#ifdef SINKS
 STATIC_DCL void FDECL(mksink,(struct mkroom *));
 STATIC_DCL void FDECL(mktoilet,(struct mkroom *));
-#endif
 STATIC_DCL void FDECL(mkaltar,(struct mkroom *));
 STATIC_DCL void FDECL(mkgrave,(struct mkroom *));
 STATIC_DCL void FDECL(mkthrone,(struct mkroom *));
@@ -8521,7 +8519,6 @@ skip0:
 		if(!rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 		if(ishaxor && !rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 
-#ifdef SINKS
 		if(!rn2(60)) {
 		    mksink(croom);
 		    if(!rn2(3)) mktoilet(croom);
@@ -8531,7 +8528,6 @@ skip0:
 		    mksink(croom);
 		    if(!rn2(3)) mktoilet(croom);
 		}
-#endif
 		if(!rn2(50)) {
 		    mkstone(croom);
 		    if(!rn2(3)) mkstone(croom);
@@ -10627,7 +10623,6 @@ register struct mkroom *croom;
 
 }
 
-#ifdef SINKS
 STATIC_OVL void
 mksink(croom)
 register struct mkroom *croom;
@@ -10666,7 +10661,6 @@ register struct mkroom *croom;
 
 	level.flags.nsinks++; /* counted as a sink for sounds.c */
 }
-#endif /* SINKS */
 
 STATIC_OVL void
 mkaltar(croom)

@@ -4085,12 +4085,10 @@ char *buf;
 	    cmap = S_ice;				/* "ice" */
 	else if (is_pool(x,y))
 	    dfeature = "pool of water";
-#ifdef SINKS
 	else if (IS_SINK(ltyp))
 	    cmap = S_sink;				/* "sink" */
 	else if (IS_TOILET(ltyp))
 	    cmap = S_toilet;
-#endif
 	else if (IS_ALTAR(ltyp)) {
 	    Sprintf(altbuf, "altar to %s (%s)", a_gname(),
 		    align_str(Amask2align(lev->altarmask & ~AM_SHRINE)));
@@ -4188,10 +4186,8 @@ boolean picked_some;
 		Sprintf(fbuf, "There is %s here.", an(dfeature));
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) &&
 			(IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
-#ifdef SINKS
 			 IS_SINK(levl[u.ux][u.uy].typ) ||
 			 IS_TOILET(levl[u.ux][u.uy].typ)
-#endif
 			))
 		    Strcat(fbuf, "  Use \"q.\" to drink from it.");
 	}

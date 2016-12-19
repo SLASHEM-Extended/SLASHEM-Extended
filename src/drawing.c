@@ -250,13 +250,8 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'_', "altar",		C(CLR_GRAY)},	/* altar */
 	{'|', "grave",      C(CLR_GRAY)},   /* grave */
 	{'\\', "opulent throne",C(HI_GOLD)},	/* throne */
-#ifdef SINKS
 	{'{', "sink",		C(CLR_ORANGE)},	/* sink */
 /*30*/	{'{', "toilet",         C(CLR_YELLOW)},  /* toilet */
-#else
-	{'#', "",		C(CLR_GRAY)},	/* sink */
-/*30*/	{'\\', "",              C(CLR_YELLOW)},  /* toilet */
-#endif
 	{'{', "fountain",       C(CLR_BRIGHT_BLUE)},   /* fountain */
 	{'}', "water",		C(CLR_BRIGHT_BLUE)},	/* pool */
 	{'.', "ice",		C(CLR_CYAN)},	/* ice */
