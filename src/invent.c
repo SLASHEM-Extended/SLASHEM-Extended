@@ -2418,7 +2418,6 @@ struct obj *otmp;
 			!strcmp(word, "untrap with")) &&
 		     /* Picks, axes, pole-weapons, bullwhips */
 		    ((otmp->oclass == WEAPON_CLASS && !is_pick(otmp) &&
-#ifdef FIREARMS
 		      otyp != SUBMACHINE_GUN &&
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
@@ -2426,7 +2425,6 @@ struct obj *otmp;
 		      otyp != FRAG_GRENADE &&
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
-#endif
 		      !is_axe(otmp) && !is_antibar(otmp) && !is_pole(otmp) && otyp != BULLWHIP) ||
 		    (otmp->oclass == POTION_CLASS &&
 		     /* only applicable potion is oil, and it will only

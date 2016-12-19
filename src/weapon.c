@@ -1420,10 +1420,8 @@ static NEARDATA const int rwep[] =
 	STONE_OF_VULNERABILITY, ITEM_TELEPORTING_STONE, NASTY_STONE,
 
 	SPOON,
-#ifdef FIREARMS
 	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET,
 	LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT, ANTIMATTER_BULLET, SILVER_BULLET, BULLET, SHOTGUN_SHELL,
-#endif
 	LOADBOULDER, STARLIGHTSTONE, TORPEDO, SPIRIT_THROWER, DROVEN_SPEAR, DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR,
 	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SPEAR, ORCISH_SPEAR,
 	JAVELIN, NEEDLE, SHURIKEN, DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, 
@@ -1559,7 +1557,6 @@ register struct monst *mtmp;
 		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, PILE_BUNKER));
 		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
-#ifdef FIREARMS
 		case P_FIREARM:
 		  if ((objects[rwep[i]].w_ammotyp) == WP_BULLET) {
 			propellor = (oselect(mtmp, HEAVY_MACHINE_GUN));
@@ -1587,7 +1584,6 @@ register struct monst *mtmp;
 			if (!propellor) propellor = &zeroobj;  /* can toss grenades */
 		  }
 		  break;
-#endif
 		}
 		if ((otmp = MON_WEP(mtmp)) && otmp->cursed && otmp != propellor
 				&& mtmp->weapon_check == NO_WEAPON_WANTED)

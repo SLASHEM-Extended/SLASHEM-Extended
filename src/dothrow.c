@@ -305,7 +305,6 @@ int thrown;
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
 
-#ifdef FIREARMS
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode
 	     * Only for valid launchers 
@@ -334,7 +333,6 @@ int thrown;
 	    }
 
 	    if ((long)multishot > obj->quan) multishot = (int)obj->quan;
-#endif
 	}
 
 	if (multishot < 1) multishot = 1;
@@ -1203,7 +1201,6 @@ int thrown;
 		u.twoweap = twoweap;
 		return;
 	    }
-#ifdef FIREARMS
 	    /* [ALI]
 	     * Grenades are armed but are then processed by toss_up/hitfloor
 	     * as normal.
@@ -1227,7 +1224,6 @@ int thrown;
 		obfree(obj, (struct obj *)0);
 		return;
 	    }
-#endif
 	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
 		    !Underwater && !Is_waterlevel(&u.uz)) {
 		(void) toss_up(obj, rn2(5));
@@ -1275,12 +1271,10 @@ int thrown;
 		/* KMH, balance patch -- new macros */
 		if (is_ammo(obj)) {
 		    if (ammo_and_launcher(obj, launcher)) {
-#ifdef FIREARMS
 			if (is_launcher(launcher) && 
 					objects[(launcher->otyp)].oc_range) 
 				range = objects[(launcher->otyp)].oc_range;
 		    else
-#endif
 			range++;
 		    } else if (obj->oclass != GEM_CLASS)
 			range /= 2;
@@ -1341,7 +1335,6 @@ int thrown;
 		if (obj_gone) return;
 	}
 
-#ifdef FIREARMS
 	/* Handle grenades or rockets */
 	if (is_grenade(obj)) {
 	    arm_bomb(obj, TRUE);
@@ -1359,7 +1352,6 @@ int thrown;
 	    obfree(obj, (struct obj *)0);
 	    return;
 	}
-#endif
 
 	if (u.uswallow) {
 		/* ball is not picked up by monster */
@@ -1935,7 +1927,6 @@ int thrown;
 		    if (broken) {
 			if (*u.ushops)
 			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-#ifdef FIREARMS
 			/*
 			 * Thrown grenades and explosive ammo used with the
 			 * relevant launcher explode rather than simply
@@ -1953,7 +1944,6 @@ int thrown;
 				    d(3,8), WEAPON_CLASS, EXPL_FIERY);
 			    obfree(obj, (struct obj *)0);
 			} else
-#endif
 			obfree(obj, (struct obj *)0);
 			return 1;
 		    }

@@ -41,9 +41,7 @@
 #define P_LANCE				22
 #define P_BOW				23
 #define P_SLING				24
-#ifdef FIREARMS
 #define P_FIREARM			25	/* KMH */
-#endif
 #define P_CROSSBOW			26
 #define P_DART				27
 #define P_SHURIKEN			28

@@ -519,9 +519,7 @@ make_version()
 #ifdef GOLDOBJ
 			| (1L << 12)
 #endif
-#ifdef FIREARMS
 			| (1L << 13)
-#endif
 			| (1L << 14)
 			| (1L << 15)
 		/* flag bits and/or other global variables (16..26) */
@@ -870,10 +868,10 @@ static const char *build_opts[] = {
 		"timed wait for display effects",
 #endif
 		"lightsabers",
+# ifdef JEDI
 		"Jedi",
-#ifdef FIREARMS
+# endif
 		"firearms",
-#endif
 #ifdef TOURIST
 		"tourists",
 #endif

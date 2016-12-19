@@ -1413,11 +1413,7 @@ light_cocktail(obj)
 {
 	char buf[BUFSZ];
 	const char *objnam =
-#ifdef FIREARMS
 	    obj->otyp == POT_OIL ? "potion" : "stick";
-#else
-	    "potion";
-#endif
 
 	if (u.uswallow) {
 	    You(no_elbow_room);
@@ -1451,23 +1447,17 @@ light_cocktail(obj)
 	    /* Normally, we shouldn't both partially and fully charge
 	     * for an item, but (Yendorian Fuel) Taxes are inevitable...
 	     */
-#ifdef FIREARMS
 	    if (obj->otyp != STICK_OF_DYNAMITE) {
-#endif
 	    check_unpaid(obj);
 	    verbalize("That's in addition to the cost of the potion, of course.");
-#ifdef FIREARMS
 	    } else {
 		const char *ithem = obj->quan > 1L ? "them" : "it";
 		verbalize("You burn %s, you bought %s!", ithem, ithem);
 	    }
-#endif
 	    bill_dummy_object(obj);
 	}
 	makeknown(obj->otyp);
-#ifdef FIREARMS
 	if (obj->otyp == STICK_OF_DYNAMITE) obj->yours=TRUE;
-#endif
 
 	if (obj->quan > 1L) {
 	    obj = splitobj(obj, 1L);
@@ -4579,7 +4569,6 @@ doapply()
 	case SMALL_PIECE_OF_UNREFINED_MITHR:
 		use_stone(obj);
 		break;
-#ifdef FIREARMS
 	case ASSAULT_RIFLE:
 		/* Switch between WP_MODE_SINGLE, WP_MODE_BURST and WP_MODE_AUTO */
 
@@ -4614,7 +4603,6 @@ doapply()
 	case STICK_OF_DYNAMITE:
 		light_cocktail(obj);
 		break;
-#endif
 
 	case HITCHHIKER_S_GUIDE_TO_THE_GALA:
 		if (HHallucination) {

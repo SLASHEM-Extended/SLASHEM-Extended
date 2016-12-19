@@ -201,12 +201,8 @@ struct obj {
 			 objects[(otmp)->otyp].oc_skill <= -P_BOW)
 #define is_lower_multigen(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 (objects[(otmp)->otyp].oc_skill == -P_BOOMERANG || objects[(otmp)->otyp].oc_skill == P_BOOMERANG || objects[(otmp)->otyp].oc_skill == P_SPEAR || objects[(otmp)->otyp].oc_skill == P_DAGGER || objects[(otmp)->otyp].oc_skill == P_KNIFE || objects[(otmp)->otyp].oc_skill == P_JAVELIN ) )
-#ifdef FIREARMS
 #define is_unpoisonable_firearm_ammo(otmp)	\
 			 (is_bullet(otmp) || (otmp)->otyp == STICK_OF_DYNAMITE)
-#else
-#define is_unpoisonable_firearm_ammo(otmp)	0
-#endif
 #define is_poisonable(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 (objects[(otmp)->otyp].oc_skill <= P_SABER || \
 			 (objects[(otmp)->otyp].oc_skill >= P_POLEARMS && \
@@ -230,13 +226,11 @@ struct obj {
 
 #define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER)
 
-#ifdef FIREARMS
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill == P_FIREARM)
 #define is_bullet(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill == -P_FIREARM)
-#endif
 
 /* Armor */
 #define is_shield(otmp) ((otmp)->oclass == ARMOR_CLASS && \

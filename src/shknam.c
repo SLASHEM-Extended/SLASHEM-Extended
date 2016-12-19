@@ -227,13 +227,8 @@ const struct shclass shtypes[] = {
 	    {{90, SCROLL_CLASS}, {10, SPBOOK_CLASS}, {0, 0}}, shkbooks},
 	{"liquor emporium", POTION_CLASS, 4, D_SHOP,
 	    {{100, POTION_CLASS}, {0, 0}, {0, 0}}, shkliquors},
-#ifdef FIREARMS	/* KMH -- no longer "antique" */
 	{"weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
 	    {80, WEAPON_CLASS}, {6, -BULLET}, {3, -BULLET}, {1, -SILVER_BULLET},
-#else
-	{"antique weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
-	    {90, WEAPON_CLASS},
-#endif
 	    {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
 	{"delicatessen", FOOD_CLASS, 4, D_SHOP,
 	    {{83, FOOD_CLASS}, {5, -POT_FRUIT_JUICE}, {4, -POT_BOOZE},
@@ -268,7 +263,6 @@ const struct shclass shtypes[] = {
 	    {{90, SPBOOK_CLASS}, {10, SCROLL_CLASS}, {0, 0}}, shkbooks},
 	{"fresh food store", FOOD_CLASS, 1, D_SHOP,
 		{{90, -CORPSE}, {5, -TIN}, {5, FOOD_CLASS}, {0, 0}}, shkfoods},
-#ifdef FIREARMS	/* KMH -- no longer "antique" */
 
 	{"gun shop", WEAPON_CLASS, 1, D_SHOP, {
 {16, -PISTOL}, {17, -SUBMACHINE_GUN}, {17, -HEAVY_MACHINE_GUN}, {16, -RIFLE}, {17, -ASSAULT_RIFLE}, {17, -SNIPER_RIFLE},
@@ -279,12 +273,6 @@ const struct shclass shtypes[] = {
 
 	{"ammo shop", WEAPON_CLASS, 1, D_SHOP, {
 {15, -BULLET}, {15, -SILVER_BULLET}, {14, -SHOTGUN_SHELL}, {14, -ROCKET}, {14, -FRAG_GRENADE}, {14, -GAS_GRENADE}, {14, -STICK_OF_DYNAMITE} }, shkweapons},
-
-
-#else
-	{"crappy weapons outlet", WEAPON_CLASS, 3, D_SHOP, {
-	    {90, WEAPON_CLASS}, {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
-#endif
 
 	{"lightning store", TOOL_CLASS, 1, D_SHOP,
 	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},

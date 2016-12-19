@@ -672,10 +672,8 @@ struct monst *magr, *mdef;
 	/* Some randomness */
 	if (multishot > 1)
 	    multishot = rnd(multishot);
-#ifdef FIREARMS
 	if (mwep && objects[mwep->otyp].oc_rof && is_launcher(mwep))
 	    multishot += objects[mwep->otyp].oc_rof;
-#endif
 
 	switch (monsndx(magr->data)) {
 	case PM_RANGER:
@@ -726,12 +724,8 @@ struct monst *magr, *mdef;
 	}
 	m_shot.s = ammo_and_launcher(obj,mwep) ? TRUE : FALSE;
 	pline("%s %s %s!", Monnam(magr),
-#ifdef FIREARMS
 	      m_shot.s ? is_bullet(obj) ? "fires" : "shoots" : "throws",
 	      onm);
-#else
-	      m_shot.s ? "shoots" : "throws", onm);
-#endif
 	m_shot.o = obj->otyp;
     } else {
 	m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */

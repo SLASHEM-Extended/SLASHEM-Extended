@@ -690,10 +690,8 @@ E long FDECL(rndexp, (BOOLEAN_P));
 E void FDECL(explode, (int,int,int,int,CHAR_P,int));
 E long FDECL(scatter, (int, int, int, unsigned int, struct obj *));
 E void FDECL(splatter_burning_oil, (int, int));
-#ifdef FIREARMS
 E void FDECL(grenade_explode, (struct obj *, int, int, BOOLEAN_P, int));
 E void FDECL(arm_bomb, (struct obj *, BOOLEAN_P));
-#endif
 
 /* ### extralev.c ### */
 

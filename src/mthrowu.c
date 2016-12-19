@@ -368,11 +368,9 @@ int x,y;
 	if (!issegfaulter && (obj->otyp == CREAM_PIE || obj->oclass == VENOM_CLASS ||
 /* WAC added Spoon throw code */
                     (obj->oartifact == ART_HOUCHOU) ||
-#ifdef FIREARMS
 		    /* WAC -- assume monsters don't throw without 
 		    	using the right propellor */
                     (is_bullet(obj)) ||
-#endif
 		    (ohit && obj->otyp == EGG)))
 		create = 0;
 	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
@@ -421,7 +419,6 @@ int x,y;
 
 	if (obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
 
-#ifdef FIREARMS
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
 		if (!ohit) {
@@ -438,7 +435,6 @@ int x,y;
 		explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE), d(3,8),
 		    WEAPON_CLASS, EXPL_FIERY);
 	}
-#endif
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
 	if (ohit && mwep && mwep->oartifact == ART_HELLFIRE
@@ -985,10 +981,8 @@ struct monst *mtmp;
 	    /* Some randomness */
 	    if (multishot > 1)
 		multishot = rnd(multishot);
-#ifdef FIREARMS
 	    if (mwep && objects[mwep->otyp].oc_rof && is_launcher(mwep))
 		multishot += objects[mwep->otyp].oc_rof;
-#endif
 
 	    switch (monsndx(mtmp->data)) {
 	    case PM_RANGER:
@@ -1048,12 +1042,8 @@ struct monst *mtmp;
 	    }
 	    m_shot.s = ammo_and_launcher(otmp,mwep) ? TRUE : FALSE;
 	    pline("%s %s %s!", Monnam(mtmp),
-#ifdef FIREARMS
 		  m_shot.s ? is_bullet(otmp) ? "fires" : "shoots" : "throws",
 		  onm);
-#else
-		  m_shot.s ? "shoots" : "throws", onm);
-#endif
 	    m_shot.o = otmp->otyp;
 	} else {
 	    if (flags.soundok && !issoviet) You_hear("a flinging sound."); /* at least tell the player that something's happening --Amy */
@@ -1332,9 +1322,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 
 		hits = (oskill != -P_BOW  && oskill != -P_CROSSBOW &&
 			oskill != -P_DART && oskill != -P_SHURIKEN &&
-#ifdef FIREARMS
 			(oskill != -P_FIREARM || obj_type == ROCKET) &&
-#endif
 			oskill != P_SPEAR && oskill != P_JAVELIN &&
 			oskill != P_KNIFE);	/* but not dagger */
 		break;

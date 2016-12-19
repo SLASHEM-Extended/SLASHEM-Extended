@@ -4185,7 +4185,6 @@ unpoly_mon(arg, timeout)
 	return;
 }
 
-#ifdef FIREARMS
 /* Attach an explosion timeout to a given explosive device */
 void
 attach_bomb_blow_timeout(bomb, fuse, yours)
@@ -4311,7 +4310,6 @@ free_bomb:
 	obj_extract_self(bomb);
 	obfree(bomb, (struct obj *)0);
 }
-#endif
 
 /* Attach an egg hatch timeout to the given egg. */
 void
@@ -4707,11 +4705,9 @@ long timeout;
 		    obj_extract_self(obj);
 		    obfree(obj, (struct obj *)0);
 		    obj = (struct obj *) 0;
-#ifdef FIREARMS
 		} else if (obj->otyp == STICK_OF_DYNAMITE) {
 			bomb_blow((genericptr_t) obj, timeout);
 			return;
-#endif
 		}
 
 	    } else {
@@ -5022,12 +5018,10 @@ long timeout;
 		    begin_burn(obj, TRUE);
 		break;
 
-#ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
 		end_burn(obj, FALSE);
 		bomb_blow((genericptr_t) obj, timeout);
 		return;
-#endif
 	    default:
 		impossible("burn_object: unexpeced obj %s", xname(obj));
 		break;
@@ -5145,12 +5139,10 @@ begin_burn(obj, already_lit)
 		turns = obj->age;
 		radius = 1;	/* very dim light */
 		break;
-#ifdef FIREARMS
 	    case STICK_OF_DYNAMITE:
 		turns = obj->age;
 		radius = 1;     /* very dim light */
 		break;
-#endif
 
 	    case BRASS_LANTERN:
 	    case OIL_LAMP:
@@ -5448,9 +5440,7 @@ static const ttable timeout_funcs[NUM_TIME_FUNCS] = {
     TTAB(hatch_egg,	(timeout_proc)0,	"hatch_egg"),
     TTAB(fig_transform, (timeout_proc)0,	"fig_transform"),
     TTAB(unpoly_mon,    (timeout_proc)0,	"unpoly_mon"),
-#ifdef FIREARMS
     TTAB(bomb_blow,     (timeout_proc)0,	"bomb_blow"),
-#endif
     TTAB(unpoly_obj,    cleanup_unpoly,		"unpoly_obj"),
 };
 #undef TTAB

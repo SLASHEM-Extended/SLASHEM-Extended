@@ -1582,12 +1582,10 @@ boolean artif;
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;
 			}
-#ifdef FIREARMS
 		if (otmp->otyp == STICK_OF_DYNAMITE) {
 			otmp->age = (otmp->cursed ? rn2(15) + 2 : 
 					(otmp->blessed ? 15 : rn2(10) + 10));
 		}
-#endif
 		break;
 	case FOOD_CLASS:
 	    otmp->odrained = 0;

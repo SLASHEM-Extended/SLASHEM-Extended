@@ -861,8 +861,6 @@ splatter_burning_oil(x, y)
     explode(x, y, ZT_SPELL(ZT_FIRE), d(4,4), BURNING_OIL, EXPL_FIERY);
 }
 
-#ifdef FIREARMS
-
 #define BY_OBJECT       ((struct monst *)0)
 
 STATIC_DCL int
@@ -1108,8 +1106,6 @@ boolean yours;
 	}
 	/* Otherwise, do nothing */
 }
-
-#endif /* FIREARMS */
 
 #endif /* OVL1 */
 

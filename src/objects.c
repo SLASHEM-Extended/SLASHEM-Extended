@@ -548,7 +548,6 @@ BOW("sling", (char *)0,		1, 0, 390,  2, 20, 2, WOOD, P_SLING, HI_LEATHER),
 BOW("catapult", (char *)0,	1, 0,  10,  2, 250, 5, METAL, P_SLING, CLR_BLACK),
 
 /* Firearms */
-#ifdef FIREARMS
 GUN("pistol", (char *)0,	   1,  0, 10,  8,  100, 15,  0,  4, WP_BULLET, IRON, P_FIREARM, HI_METAL),
 GUN("flintlock", (char *)0,	    1,  0, 10,  10,   50,  8, -2,  0, WP_BULLET, IRON, P_FIREARM, HI_METAL),
 GUN("submachine gun", (char *)0,   1,  0, 10,  8,  250, 10,  3, 3, WP_BULLET, IRON, P_FIREARM, HI_METAL),
@@ -590,7 +589,6 @@ BULLET("gas grenade", (char *)0,
 	1,  10,  0, 30, 0, 0, 2,  WP_GRENADE, B|E,   IRON, -P_FIREARM, CLR_ORANGE),
 BULLET("stick of dynamite", "red stick",
 	0,  10,  0, 150, 0, 0, 2,  WP_GENERIC,   B,   PLASTIC, P_NONE, CLR_RED),
-#endif
 
 /* Crossbows (and bolts) */
 /* Crossbow range is now independant of strength */

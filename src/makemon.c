@@ -758,14 +758,12 @@ register struct monst *mtmp;
 				/* fall through */
 
 			case PM_SOLDIER:
-#ifdef FIREARMS
 			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
 		  	  m_initthrow(mtmp, BULLET, 25);
 		  	  m_initthrow(mtmp, BULLET, 25);
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
-#endif
 			case PM_WATCHMAN:
 			case PM_ANGRY_WATCHMAN:
 			  if (!rn2(3)) {
@@ -786,7 +784,6 @@ register struct monst *mtmp;
 			  w1 = rn2(2) ? LONG_SWORD : SILVER_SABER;
 			  break;
 			case PM_LIEUTENANT:
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	w1 = HEAVY_MACHINE_GUN;
 			  	m_initthrow(mtmp, BULLET, 50);
@@ -806,9 +803,7 @@ register struct monst *mtmp;
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
 			  break;
-#endif
 			case PM_SERGEANT:
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	w1 = AUTO_SHOTGUN;
 			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
@@ -827,7 +822,6 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  }
 			  break;
-#endif
 #ifdef YEOMAN
 			case PM_YEOMAN_WARDER:
 #endif
@@ -836,7 +830,6 @@ register struct monst *mtmp;
 			case PM_PRISON_GUARD:
 			case PM_CAPTAIN:
 			case PM_GENERAL:
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	w1 = AUTO_SHOTGUN;
 			  	m_initthrow(mtmp, SHOTGUN_SHELL, 20);
@@ -863,7 +856,6 @@ register struct monst *mtmp;
 				  w2 = rn2(2) ? SILVER_SABER : DAGGER;
 			  }
 			  break;
-#endif
 #ifdef YEOMAN
 			case PM_CHIEF_YEOMAN_WARDER:
 #endif
@@ -884,7 +876,6 @@ register struct monst *mtmp;
 			  mongets(mtmp, AMULET_OF_REFLECTION);
 			  break;
 			case PM_STORMTROOPER:
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	w1 = HEAVY_MACHINE_GUN;
 			  	m_initthrow(mtmp, BULLET, 50);
@@ -897,9 +888,7 @@ register struct monst *mtmp;
 			  mongets(mtmp, PLASTEEL_BOOTS);
 			  mongets(mtmp, PLASTEEL_HELM);
 			  break;
-#endif // FIREARMS
 
-#ifdef FIREARMS
 			case PM_HEAVY_WEAPON_DUDE:
 			case PM_EVASIVE_HEAVY_WEAPON_DUDE:
 			  	w1 = HEAVY_MACHINE_GUN;
@@ -969,10 +958,8 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, ROCKET, 7);
 			  mongets(mtmp, CHAIN_MAIL);
 			  break;
-#endif
 			case PM_SHOPKEEPER:
 			case PM_PUNISHER:
-#ifdef FIREARMS
 			  (void) mongets(mtmp, rn2(50) ? SHOTGUN : SAWED_OFF_SHOTGUN);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
@@ -981,7 +968,6 @@ register struct monst *mtmp;
 			/* evil patch idea by jonadab: 5% chance for shopkeepers to be generated invisible */
 			  if (!rn2(20)) (void) mongets(mtmp, CLOAK_OF_INVISIBILITY);
 
-#endif
 			  /* Fallthrough */
 			default:
 			  if (!rn2(4)) w1 = DAGGER;
@@ -4087,19 +4073,14 @@ register struct monst *mtmp;
 
 
 
-#ifdef FIREARMS
 			  (void) mongets(mtmp, rn2(2) ? RIFLE : SUBMACHINE_GUN);
 		  	  m_initthrow(mtmp, BULLET, 25);
 		  	  m_initthrow(mtmp, BULLET, 25);
 			  (void) mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
-#endif
 			case PM_LEGION_DEVIL_SOLDIER:
 
-
-
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	(void) mongets(mtmp, HEAVY_MACHINE_GUN);
 			  	m_initthrow(mtmp, BULLET, 50);
@@ -4119,12 +4100,8 @@ register struct monst *mtmp;
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
 			  break;
-#endif
 			case PM_LEGION_DEVIL_SERGEANT:
 
-
-
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	(void) mongets(mtmp, AUTO_SHOTGUN);
 			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
@@ -4143,11 +4120,9 @@ register struct monst *mtmp;
 			  	if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			  }
 			  break;
-#endif
 			case PM_LEGION_DEVIL_CAPTAIN:
 			case PM_LEGION_DEVIL_GENERAL:
 
-#ifdef FIREARMS
 			  if (rn2(2)) {
 			  	(void) mongets(mtmp, AUTO_SHOTGUN);
 			  	m_initthrow(mtmp, SHOTGUN_SHELL, 20);
@@ -4174,7 +4149,6 @@ register struct monst *mtmp;
 				  (void) mongets(mtmp, rn2(2) ? SILVER_SABER : DAGGER);
 			  }
 			  break;
-#endif
 		    default:
 			/*m_initweap_normal(mtmp);*/
 			break;
@@ -5019,15 +4993,6 @@ register struct	monst	*mtmp;
 		     * "Were here to pump *clap* YOU up!"  -Hans and Frans
 		     *                                      Saterday Night Live
 		     */
-#ifndef FIREARMS
-		    switch (rn2(4)) {
-		    /* MAJOR fall through ... */
-		    case 0: (void) mongets(mtmp, WAN_MAGIC_MISSILE);
-		    case 1: (void) mongets(mtmp, POT_EXTRA_HEALING);
-		    case 2: (void) mongets(mtmp, POT_HEALING);
-		    case 3: (void) mongets(mtmp, WAN_STRIKING);
-		    }
-#endif
 		    switch (rnd(4)) {
 			/* MAJOR fall through ... */
 			case 1: (void) mongets(mtmp,POT_HEALING);
