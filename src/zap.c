@@ -7938,6 +7938,24 @@ register int dx,dy;
 				dy = 0;
 			    }
 
+			} else if (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
 			} else if (uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/

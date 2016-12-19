@@ -7825,6 +7825,8 @@ struct obj *obj;
 				pline("You will summon a player ghost by reading this, which can be extremely dangerous."); break;
 			case SCR_MEGALOAD: 
 				pline("A nasty scroll that puts a loadstone in your inventory if anyone reads it."); break;
+			case SCR_VILENESS: 
+				pline("If this is scroll is read, regardless of who is doing the reading, an evil artifact will be put into your inventory. You will then automatically equip it, and if the artifact didn't autocurse anyway, it will get cursed."); break;
 			case SCR_ENRAGE: 
 				pline("Peaceful monsters become hostile, and sometimes your tame pets too, should anyone read this scroll."); break;
 			case SCR_ANTIMATTER: 

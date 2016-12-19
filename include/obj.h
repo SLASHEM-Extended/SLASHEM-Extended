@@ -401,6 +401,7 @@ struct obj {
 || (otmp)->otyp == WAN_STUN_MONSTER\
 || (otmp)->otyp == SCR_SUMMON_GHOST\
 || (otmp)->otyp == SCR_MEGALOAD\
+|| (otmp)->otyp == SCR_VILENESS\
 || (otmp)->otyp == SCR_ENRAGE\
 || (otmp)->otyp == WAN_TIDAL_WAVE\
 || (otmp)->otyp == SCR_ANTIMATTER\

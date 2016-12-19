@@ -2892,6 +2892,13 @@ register struct obj	*sobj;
 
 		break;
 
+	case SCR_VILENESS:
+		known = TRUE;
+
+		bad_artifact();
+
+		break;
+
 	case SCR_ANTIMATTER:
 		known = TRUE;
 

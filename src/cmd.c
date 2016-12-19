@@ -1141,6 +1141,7 @@ wiz_identify()
 STATIC_PTR int
 wiz_map()
 {
+
 	if (wizard) {
 	    struct trap *t;
 	    long save_Hconf = HConfusion,

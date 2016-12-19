@@ -131,6 +131,7 @@ register struct obj *otmp;
 	case SCR_CREATE_ALTAR:
 	case SCR_WARDING:
 	case SCR_RELOCATION:
+	case SCR_VILENESS:
 	case SCR_CREATE_FAMILIAR:
 	case SCR_ITEM_GENOCIDE:
 	case SCR_POWER_HEALING:

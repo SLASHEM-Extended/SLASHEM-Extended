@@ -545,6 +545,135 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	return otmp;
 }
 
+/* Make an evil artifact and automatically equip it for the player --Amy */
+void
+bad_artifact()
+{
+	const struct artifact *a;
+	int n, m;
+	int eligible[NROFARTIFACTS];
+	register struct obj *otmp;
+
+	/* gather eligible artifacts */
+	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !artiexist[m]) {
+
+		    eligible[n++] = m;
+	    }
+
+	if (n) {		/* found at least one candidate */
+	    m = eligible[rn2(n)];	/* [0..n-1] */
+	    a = &artilist[m];
+
+	    /* make an appropriate object if necessary, then christen it */
+	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
+	    otmp = oname(otmp, a->name);
+	    otmp->oartifact = m;
+	    artiexist[m] = TRUE;
+	} else {
+		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
+	}
+
+	if (otmp) {
+		(void) pickup_object(otmp, 1L, TRUE);
+	}
+
+	/* try to equip it! */
+
+	if (otmp) {
+
+		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp)) {
+			if (uwep) setnotworn(uwep);
+			if (bimanual(otmp)) {
+				if (uswapwep) uswapwepgone();
+				if (uarms) remove_worn_item(uarms, TRUE);
+			}
+			if (!uwep) setuwep(otmp, FALSE);
+			if (otmp) curse(otmp);
+		}
+
+		else if (otmp->otyp == BLINDFOLD) {
+			if (ublindf) remove_worn_item(ublindf, TRUE);
+			Blindf_on(otmp);
+			if (otmp) curse(otmp);
+		}
+
+		else if (otmp->oclass == RING_CLASS) {
+			boolean righthand = rn2(2);
+			if (righthand) {
+				if (uright) remove_worn_item(uright, TRUE);
+				setworn(otmp, RIGHT_RING);
+				Ring_on(otmp);
+				if (otmp) curse(otmp);
+			} else {
+				if (uleft) remove_worn_item(uleft, TRUE);
+				setworn(otmp, LEFT_RING);
+				Ring_on(otmp);
+				if (otmp) curse(otmp);
+			}
+		}
+
+		else if (otmp->oclass == AMULET_CLASS) {
+			if (uamul) remove_worn_item(uamul, TRUE);
+			setworn(otmp, W_AMUL);
+			Amulet_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_boots(otmp)) {
+			if (uarmf) remove_worn_item(uarmf, TRUE);
+			setworn(otmp, W_ARMF);
+			Boots_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_gloves(otmp)) {
+			if (uarmg) remove_worn_item(uarmg, TRUE);
+			setworn(otmp, W_ARMG);
+			Gloves_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_helmet(otmp)) {
+			if (uarmh) remove_worn_item(uarmh, TRUE);
+			setworn(otmp, W_ARMH);
+			Helmet_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_cloak(otmp)) {
+			if (uarmc) remove_worn_item(uarmc, TRUE);
+			setworn(otmp, W_ARMC);
+			Cloak_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_shield(otmp)) {
+			if (uarms) remove_worn_item(uarms, TRUE);
+			setworn(otmp, W_ARMS);
+			Shield_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_shirt(otmp)) {
+			if (uarmu) remove_worn_item(uarmu, TRUE);
+			setworn(otmp, W_ARMU);
+			Shirt_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_suit(otmp)) {
+			if (uskin) skinback(FALSE);
+			if (uarm) remove_worn_item(uarm, TRUE);
+			setworn(otmp, W_ARM);
+			Armor_on();
+			if (otmp) curse(otmp);
+		}
+
+	}
+
+}
+
 /*
  * Returns the full name (with articles and correct capitalization) of an
  * artifact named "name" if one exists, or NULL, it not.
@@ -648,6 +777,14 @@ unsigned long abil;
 	const struct artifact *arti = get_artifact(otmp);
 
 	return((boolean)(arti && (arti->spfx & abil)));
+}
+
+/* determine if a given artifact is "evil" (used in pickup.c) --Amy */
+boolean
+arti_is_evil(obj)
+struct obj *obj;
+{
+    return (obj->oartifact && spec_ability(obj, SPFX_EVIL));
 }
 
 /* used so that callers don't need to known about SPFX_ codes */

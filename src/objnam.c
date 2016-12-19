@@ -2101,6 +2101,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPECIFIC_CANDLE, "konkretnaya svecha" },
 	{ __CANDLE, "0 svecha" },
 
+	{ SCR_VILENESS, "podlost'" },
+
 	{0, "" }
 };
 
@@ -3876,6 +3878,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ UNAFFECTED_CANDLE, "samimiy sham" },
 	{ SPECIFIC_CANDLE, "muayyan sham" },
  	{ __CANDLE, "0 sham" },
+
+	{ SCR_VILENESS, "razil bo'lgan" },
 
 	{0, "" }
 };
@@ -5726,6 +5730,7 @@ const char *oldstr;
                            !BSTRCMPI(bp, p-7, "sandals") ||
                            !BSTRCMPI(bp, p-9, "mocassins") ||
                            !BSTRCMPI(bp, p-8, "sneakers") ||
+                           !BSTRCMPI(bp, p-8, "vileness") ||
                            !BSTRCMPI(bp, p-8, "psionics") ||
                            !BSTRCMPI(bp, p-8, "elements") ||
                            !BSTRCMPI(bp, p-10, "cryogenics") ||
