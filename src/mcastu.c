@@ -2370,7 +2370,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 {
 	/* don't print constant stream of curse messages for 'normal'
 	   spellcasting monsters at range */
-	if (mattk->adtyp > AD_SPC2)
+	if ((mattk->adtyp > AD_SPC2) || (mattk->adtyp < AD_MAGM))
 	    return(0);
 
 	if (mtmp->mcan || u.antimagicshell || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "haqiqiy emas plash") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) && !rn2(5)) ) {
