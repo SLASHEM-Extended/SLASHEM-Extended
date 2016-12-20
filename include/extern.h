@@ -2076,6 +2076,7 @@ E int FDECL(rnz, (int));
 E int NDECL(randattack);
 E int NDECL(randenchantment);
 E int NDECL(randnastyenchantment);
+E int NDECL(randomdisableproperty);
 E int NDECL(randartmeleeweapon);
 E int NDECL(randartlauncher);
 E int NDECL(randartmissile);

@@ -736,6 +736,10 @@ struct you {
 
 	int fakeartifacts;	/* keeping track of how many fake artifacts got generated */
 
+	int impossibleproperty;	/* evil patch idea by jonadab - a property that you simply cannot get in this game */
+	int nonextrinsicproperty;
+	int nonintrinsicproperty;
+
 	boolean temprecursion; /* temporary recursion trap */
 	int oldrecursionrole;
 	int oldrecursionrace;

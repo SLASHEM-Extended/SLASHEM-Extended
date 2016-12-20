@@ -7115,6 +7115,10 @@ u_init()
 	u.inertia = 0;
 	u.egglayingtimeout = 0;
 
+	u.impossibleproperty = randomdisableproperty();
+	u.nonextrinsicproperty = randomdisableproperty();
+	u.nonintrinsicproperty = randomdisableproperty();
+
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);
 	if (!rn2(50)) u.idscrollpenalty += rnz(200);
@@ -24085,6 +24089,10 @@ alter_reality()
 	u.frequenttrap = rnd(TRAPNUM-1);
 	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
+
+	u.impossibleproperty = randomdisableproperty();
+	u.nonextrinsicproperty = randomdisableproperty();
+	u.nonintrinsicproperty = randomdisableproperty();
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);

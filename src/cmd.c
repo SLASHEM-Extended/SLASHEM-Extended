@@ -1536,6 +1536,21 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		enl_msg("You ", "carry", "carried", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+		Sprintf(buf, " %s", enchname(u.impossibleproperty) );
+		enl_msg("You ", "cannot have this property at all:", "could not have this property at all:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+		Sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
+		enl_msg("You ", "cannot have this property extrinsically:", "could not have this property extrinsically:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+		Sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
+		enl_msg("You ", "cannot have this property intrinsically:", "could not have this property intrinsically:", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100)) {
 		Sprintf(buf, " %d", u.idscrollpenalty);
 		enl_msg("Scroll identification only ", "works 100 times out of", "worked 100 times out of", buf);
@@ -3902,6 +3917,15 @@ int final;
 
 	Sprintf(buf, " %d sins", u.ualign.sins);
 	dump("  You carried ", buf);
+
+	Sprintf(buf, " %s", enchname(u.impossibleproperty) );
+	dump("  You could not have this property at all:", buf);
+
+	Sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
+	dump("  You could nothave this property extrinsically:", buf);
+
+	Sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
+	dump("  You could not have this property intrinsically:", buf);
 
 	if (u.idscrollpenalty > 100) {
 		Sprintf(buf, " %d", u.idscrollpenalty);

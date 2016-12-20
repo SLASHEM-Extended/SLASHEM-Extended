@@ -1000,6 +1000,132 @@ randnastyenchantment()
 }
 
 int
+randomdisableproperty()
+{
+	switch (rnd(58)) {
+
+		case 1:
+			return FIRE_RES;
+		case 2:
+			return COLD_RES;
+		case 3:
+			return SLEEP_RES;
+		case 4:
+			return DISINT_RES;
+		case 5:
+			return SHOCK_RES;
+		case 6:
+			return POISON_RES;
+		case 7:
+			return DRAIN_RES;
+		case 8:
+			return SICK_RES;
+		case 9:
+			return ANTIMAGIC;
+		case 10:
+			return ACID_RES;
+		case 11:
+			return STONE_RES;
+		case 12:
+			return FEAR_RES;
+		case 13:
+			return SEE_INVIS;
+		case 14:
+			return TELEPAT;
+		case 15:
+			return WARNING;
+		case 16:
+			return SEARCHING;
+		case 17:
+			return CLAIRVOYANT;
+		case 18:
+			return INFRAVISION;
+		case 19:
+			return DETECT_MONSTERS;
+		case 20:
+			return INVIS;
+		case 21:
+			return DISPLACED;
+		case 22:
+			return STEALTH;
+		case 23:
+			return JUMPING;
+		case 24:
+			return TELEPORT_CONTROL;
+		case 25:
+			return FLYING;
+		case 26:
+			return MAGICAL_BREATHING;
+		case 27:
+			return PASSES_WALLS;
+		case 28:
+			return SLOW_DIGESTION;
+		case 29:
+			return HALF_SPDAM;
+		case 30:
+			return HALF_PHDAM;
+		case 31:
+			return REGENERATION;
+		case 32:
+			return ENERGY_REGENERATION;
+		case 33:
+			return POLYMORPH_CONTROL;
+		case 34:
+			return FAST;
+		case 35:
+			return REFLECTING;
+		case 36:
+			return FREE_ACTION;
+		case 37:
+			return HALLU_PARTY;
+		case 38:
+			return DRUNKEN_BOXING;
+		case 39:
+			return STUNNOPATHY;
+		case 40:
+			return NUMBOPATHY;
+		case 41:
+			return FREEZOPATHY;
+		case 42:
+			return STONED_CHILLER;
+		case 43:
+			return CORROSIVITY;
+		case 44:
+			return FEAR_FACTOR;
+		case 45:
+			return BURNOPATHY;
+		case 46:
+			return SICKOPATHY;
+		case 47:
+			return KEEN_MEMORY;
+		case 48:
+			return THE_FORCE;
+		case 49:
+			return SIGHT_BONUS;
+		case 50:
+			return VERSUS_CURSES;
+		case 51:
+			return STUN_RES;
+		case 52:
+			return CONF_RES;
+		case 53:
+			return DOUBLE_ATTACK;
+		case 54:
+			return QUAD_ATTACK;
+		case 55:
+			return PSI_RES;
+		case 56:
+			return WONDERLEGS;
+		case 57:
+			return GLIB_COMBAT;
+		case 58:
+			return MANALEECH;
+		default:
+			return POISON_RES;
+	}		
+}
+
+int
 randartmeleeweapon()
 {
 	int result;

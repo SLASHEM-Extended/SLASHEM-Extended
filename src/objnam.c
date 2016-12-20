@@ -161,6 +161,34 @@ int prop;
 			return "manaleech";
 		case MAP_AMNESIA:
 			return "map amnesia";
+		case DETECT_MONSTERS:
+			return "detect monsters";
+		case JUMPING:
+			return "jumping";
+		case HALLU_PARTY:
+			return "hallu party";
+		case DRUNKEN_BOXING:
+			return "drunken boxing";
+		case STUNNOPATHY:
+			return "stunnopathy";
+		case NUMBOPATHY:
+			return "numbopathy";
+		case FREEZOPATHY:
+			return "freezopathy";
+		case STONED_CHILLER:
+			return "stoned chilling";
+		case CORROSIVITY:
+			return "corrosivity";
+		case FEAR_FACTOR:
+			return "fear factor";
+		case BURNOPATHY:
+			return "burnopathy";
+		case SICKOPATHY:
+			return "sickopathy";
+		case WONDERLEGS:
+			return "wonderlegs";
+		case GLIB_COMBAT:
+			return "glib combat";
 		default:
 			return "Team Nastytrap";
 
