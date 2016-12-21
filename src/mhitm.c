@@ -1108,12 +1108,14 @@ mdamagem(magr, mdef, mattk)
 		    pline("%s %s for a moment.", Monnam(mdef),
 			  makeplural(stagger(mdef->data, "stagger")));
 		mdef->mstun = 1;
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		goto physical;
 	    case AD_LEGS:
 		if (magr->mcan) {
 		    tmp = 0;
 		    break;
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		goto physical;
 	    case AD_WERE:
 	    case AD_HEAL:
@@ -1361,6 +1363,7 @@ physical:
 		}
 		hurtmarmor(mdef, AD_RUST);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		if (pd == &mons[PM_IRON_GOLEM]) tmp = 0;
 		break;
 	    case AD_LITE:
@@ -1374,6 +1377,7 @@ physical:
 		if (magr->mcan) break;
 		hurtmarmor(mdef, AD_CORR);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		/*tmp = 0;*/
 		break;
 	    case AD_DCAY:
@@ -1389,6 +1393,7 @@ physical:
 							0 : MM_AGR_DIED));
 		}
 		hurtmarmor(mdef, AD_DCAY);
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		if (pd == &mons[PM_WOOD_GOLEM] || pd == &mons[PM_LEATHER_GOLEM]) tmp = 0;
 		break;
 	    case AD_STON:
@@ -1569,6 +1574,7 @@ physical:
 		    if (mdef->mspeed != oldspeed && vis)
 			pline("%s is numbed.", Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_DARK:
 		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
@@ -1588,6 +1594,7 @@ physical:
 			tmp *= 2;
 			if (vis) pline("%s is freezing!", Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 
 		break;
 
@@ -1625,6 +1632,7 @@ physical:
 			mdef->mhpmax--;
 			if (vis) pline("%s feels bad!", Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 
 	    case AD_HODS:
@@ -1636,6 +1644,7 @@ physical:
 			tmp *= 2;
 			if (vis) pline("%s is burning!", Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 
 		break;
 
@@ -1691,6 +1700,7 @@ physical:
 		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
 			if (vis) pline("%s screams in fear!",Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 
 		break;
 
@@ -1714,6 +1724,7 @@ physical:
 		    mdef->mconf = 1;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_WRAT:
 	    case AD_MANA:
@@ -1731,6 +1742,7 @@ physical:
 	    	    mon_drain_en(mdef, 
 				((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1);
 	    	}	    
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_BLND:
 		if (nohit) break;                
@@ -1746,7 +1758,8 @@ physical:
 		    mdef->mcansee = 0;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
-		tmp = 0;
+		/*tmp = 0;*/
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_HALU:
 	    case AD_DEPR:
@@ -1757,6 +1770,7 @@ physical:
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
 		/*tmp = 0;*/
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
