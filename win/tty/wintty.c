@@ -341,6 +341,7 @@ tty_player_selection()
 	tty_putstr(BASE_WINDOW, 0, "Sorry. This is an outdated version that is only kept on the server");
 	tty_putstr(BASE_WINDOW, 0, "to allow players to finish their old games. No new games can be started.");
 	tty_putstr(BASE_WINDOW, 0, "Please start a new game under version 1.8.6. Thank you! --Amy");
+	yn("Hit y or n to continue");
 	goto give_up;
 #endif	
 	/* prevent an unnecessary prompt */
