@@ -3828,6 +3828,7 @@ register struct monst *mdef;
 register struct attack *mattk;
 {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
+	register struct permonst *pd = mdef->data;
 
 	You("explode!");
 	switch(mattk->adtyp) {
@@ -3840,19 +3841,413 @@ register struct attack *mattk;
 		    mdef->mcansee = 0;
 		}
 		break;
+	    case AD_STUN:
+	    case AD_FUMB:
+		if (haseyes(mdef->data) && mdef->mcansee) {
+		    pline("%s is stunned by your flash of light!", Monnam(mdef));
+		    mdef->mstun = 1;
+		}
+		break;
+	    case AD_SOUN:
+		pline("%s is stunned by the concussion!", Monnam(mdef));
+		mdef->mstun = 1;
+		goto common;
+
+	    case AD_LEGS: /* no effect at all, this is by design --Amy */
+		break;
+
 	    case AD_HALU:
+	    case AD_CONF:
 		if (haseyes(mdef->data) && mdef->mcansee) {
 		    pline("%s is affected by your flash of light!",
 			  Monnam(mdef));
 		    mdef->mconf = 1;
 		}
 		break;
+	    case AD_DEPR:
+		if (haseyes(mdef->data) && mdef->mcansee) {
+		    pline("%s is affected by your flash of light!",
+			  Monnam(mdef));
+		    mdef->mconf = 1;
+		}
+		goto common;
+	    case AD_POLY:
+		if (!rn2(4)) {
+		    if (resists_magm(mdef) || (rn2(100) < mdef->data->mr) ) { /* no easy taming Death or Famine! --Amy */
+			/* magic resistance protects from polymorph traps,
+			 * so make it guard against involuntary polymorph
+			 * attacks too... */
+			shieldeff(mdef->mx, mdef->my);
+		    } else mon_poly(mdef, TRUE, "%s undergoes a freakish metamorphosis!");
+		}
+		break;
+	    case AD_DETH:
+		if (rn2(16)) {
+		    /* Just damage */
+		    goto common;
+		}
+		if (is_undead(mdef->data) || mdef->egotype_undead) {
+		    if (!Blind) pline("%s looks no deader than before.", Monnam(mdef));
+		    break;
+		} else if (resists_magm(mdef)) {
+		    if (!Blind)
+			pline("%s shudders momentarily...", Monnam(mdef));
+		} else {
+		    tmp = mdef->mhp;
+		}
+		goto common;
+	    case AD_WRAT:
+	    case AD_MANA:
+	    	mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
+    	      mon_drain_en(mdef, tmp);
+		goto common;
+	    case AD_DREN:
+	    	if (resists_magm(mdef)) {
+		    if (!Blind) {
+			shieldeff(mdef->mx,mdef->my);
+			pline("%s is unaffected.", Monnam(mdef));
+		    }
+	    	} else {
+	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1);
+	    	    mon_drain_en(mdef, tmp);
+	    	}
+		break;
+	    case AD_CALM:
+		/* Certain monsters aren't even made peaceful. */
+		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
+				!(mdef->data->mflags3 & M3_COVETOUS) &&
+				!(mdef->data->geno & G_UNIQ)) {
+		    pline("You calm %s.", mon_nam(mdef));
+		    mdef->mpeaceful = 1;
+		    mdef->mtame = 0;
+		}
+		break;
+	    case AD_STON:
+		if (!munstone(mdef, TRUE) && !rn2(4)) {
+		    minstapetrify(mdef, TRUE);
+		}
+		break;
+	    case AD_TLPT:
+	    case AD_NEXU:
+	    case AD_BANI:
+	    case AD_ABDC:
+		if (!rn2(4)) {
+		    if (u_teleport_mon(mdef, FALSE))
+			pline("Your opponent suddenly disappears!"); /* I'm lazy. Sue me. --Amy */
+		}
+		break;
+	    case AD_CURS:
+	    case AD_ICUR:
+		if (night() && !rn2(10) && !mdef->mcan && (rnd(100) > mdef->data->mr) ) {
+
+		    if (mdef->data == &mons[PM_CLAY_GOLEM]) {
+			if (!Blind)
+			    pline("Some writing vanishes from %s head!",
+				s_suffix(mon_nam(mdef)));
+			xkilled(mdef, 0);
+			/* Don't return yet; keep hp<1 and tmp=0 for pet msg */
+		    } else {
+			mdef->mcan = 1;
+			You("chuckle.");
+		    }
+		}
+		break;
+	    case AD_DRLI:
+	    case AD_TIME:
+	    case AD_DFOO:
+	    case AD_WEEP:
+	    case AD_VAMP:
+		resistance = resists_drli(mdef);
+		if (!resistance) {
+			pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= rnd(12);
+			if (mdef->mhp <= 0 || !mdef->m_lev) {
+				pline("%s dies!", Monnam(mdef));
+				xkilled(mdef,0);
+			} else
+				mdef->m_lev--;
+
+		}
+		goto common;
+	    case AD_RUST:
+		if (pd == &mons[PM_IRON_GOLEM]) {
+			pline("%s falls to pieces!", Monnam(mdef));
+			xkilled(mdef,0);
+		}
+		hurtmarmor(mdef, AD_RUST);
+		break;
+	    case AD_CORR:
+		hurtmarmor(mdef, AD_CORR);
+		break;
+	    case AD_DCAY:
+		if (pd == &mons[PM_WOOD_GOLEM] ||
+		    pd == &mons[PM_LEATHER_GOLEM]) {
+			pline("%s falls to pieces!", Monnam(mdef));
+			xkilled(mdef,0);
+		}
+		hurtmarmor(mdef, AD_DCAY);
+		break;
+	    case AD_DRST:
+	    case AD_DRDX:
+	    case AD_DRCO:
+	    case AD_POIS:
+	    case AD_WISD:
+	    case AD_DRCH:
+		resistance = resists_poison(mdef);
+		if (resistance)
+			pline_The("poison doesn't seem to affect %s.", mon_nam(mdef));
+		else {
+			if (!rn2(100)) {
+			    Your("poison was deadly...");
+			    tmp = mdef->mhp;
+			}
+		}
+		goto common;
+	    case AD_VENO:
+		if (resists_poison(mdef))
+			pline_The("poison doesn't seem to affect %s.", mon_nam(mdef));
+		else {
+			pline("%s is badly poisoned!", Monnam(mdef));
+			if (!rn2(10)) {
+			    Your("poison was deadly...");
+			    tmp = mdef->mhp;
+			} else tmp *= 2;
+		}
+		goto common;
+	    case AD_LITE:
+		if (is_vampire(mdef->data)) {
+			tmp *= 2; /* vampires take more damage from sunlight --Amy */
+			pline("%s is irradiated!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_DARK:
+		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
+		pline("You generate a sinister darkness!");
+		break;
+	    case AD_THIR:
+		healup(tmp + (u.ulevel / 2), 0, FALSE, FALSE);
+		pline("You suck %s's %s!", mon_nam(mdef), mbodypart(mdef, BLOOD) );
+		if (Race_if(PM_BURNINATOR)) {
+			u.uen += (tmp + (u.ulevel / 2));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		goto common;
+	    case AD_CHKH:
+		if (u.ulevel > mdef->m_lev) tmp += (u.ulevel - mdef->m_lev);
+		goto common;
+	    case AD_HODS:
+		tmp += mdef->m_lev;
+		goto common;
 	    case AD_COLD:
 		resistance = resists_cold(mdef);
+		goto common;
+	    case AD_ACID:
+		resistance = resists_acid(mdef);
 		goto common;
 	    case AD_FIRE:
 		resistance = resists_fire(mdef);
 		goto common;
+	    case AD_MALK:
+		if (!resists_elec(mdef)) {
+			tmp *= 2;
+			pline("%s is shocked!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_CHRN:
+	    case AD_BURN:
+	    case AD_FRZE:
+		if (mdef->mhpmax > 1) {
+			mdef->mhpmax--;
+			pline("%s feels bad!", Monnam(mdef));
+		}
+		break;
+	    case AD_UVUU:
+		if (has_head(mdef->data)) {
+			tmp *= 2;
+			if (!rn2(1000)) {
+				tmp *= 100;
+				pline("Your explosion rips off %s's %s completely!", mon_nam(mdef), mbodypart(mdef, HEAD));
+			} else pline("You spike %s's %s!", mon_nam(mdef), mbodypart(mdef, HEAD));
+		}
+		goto common;
+	    case AD_GRAV:
+		if (!is_flyer(mdef->data)) {
+			tmp *= 2;
+			pline("Your explosion slams %s into the ground!", mon_nam(mdef));
+		}
+		goto common;
+	    case AD_PLAS:
+		if (!resists_fire(mdef)) {
+			tmp *= 2;
+			pline("%s is enveloped by searing plasma radiation!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_SLUD:
+		if (!resists_acid(mdef)) {
+			tmp *= 2;
+			pline("%s is covered with sludge!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_LAVA:
+		if (resists_cold(mdef) && !resists_fire(mdef)) {
+			tmp *= 4;
+			pline("%s is scorched!", Monnam(mdef));
+		} else if (!resists_fire(mdef)) {
+			tmp *= 2;
+			pline("%s is severely burned!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_FAKE:
+		pline(fauxmessage());
+		if (!rn2(3)) pline(fauxmessage());
+		goto common;
+	    case AD_WEBS:
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		goto common;
+	    case AD_CNCL:
+		if (rnd(100) > mdef->data->mr) {
+			mdef->mcan = 1;
+			pline("%s is covered in sparkling lights!", Monnam(mdef));
+		}
+		goto common;
+	    case AD_FEAR:
+		if (rnd(100) > mdef->data->mr) {
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+			pline("%s screams in fear!",Monnam(mdef));
+		}
+		break;
+	    case AD_DREA:
+		if (!mdef->mcanmove) {
+			tmp *= 4;
+			pline("You eat %s's dream!", mon_nam(mdef));
+			u.uconduct.food++;
+			morehungry(-rnd(10)); /* cannot choke */
+		}
+		goto common;
+
+	    case AD_DRIN:
+		if (!has_head(mdef->data)) {
+		    pline("%s doesn't seem harmed.", Monnam(mdef));
+		    tmp = 0;
+		    break;
+		}
+		if (m_slips_free(mdef, mattk)) break;
+
+		if ((mdef->misc_worn_check & W_ARMH) && rn2(3)) {
+		    pline("%s helmet blocks your attack to %s head.",
+			  s_suffix(Monnam(mdef)), mhis(mdef));
+		    break;
+		}
+		You("eat %s brain!", s_suffix(mon_nam(mdef)));
+		u.uconduct.food++;
+		if (touch_petrifies(mdef->data) && !Stone_resistance && !Stoned) {
+		    Stoned = 7;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = mdef->data->mname;
+		}
+		if (!vegan(mdef->data))
+		    u.uconduct.unvegan++;
+		if (!vegetarian(mdef->data))
+		    violated_vegetarian();
+		if (mindless(mdef->data) || mdef->egotype_undead) {
+		    pline("%s doesn't notice.", Monnam(mdef));
+		    break;
+		}
+		tmp += rnd(10);
+		morehungry(-rnd(30)); /* cannot choke */
+		if (ABASE(A_INT) < AMAX(A_INT)) {
+			ABASE(A_INT) += rnd(4);
+			if (ABASE(A_INT) > AMAX(A_INT))
+				ABASE(A_INT) = AMAX(A_INT);
+			flags.botl = 1;
+		}
+		exercise(A_WIS, TRUE);
+		goto common;
+
+	    case AD_SPC2:
+		if (!mdef->mconf) {
+		    if (canseemon(mdef))
+			pline("%s looks confused.", Monnam(mdef));
+		    mdef->mconf = 1;
+		}
+		else
+		{
+		    if (canseemon(mdef))
+			pline("%s is getting more and more confused.",
+				Monnam(mdef));
+		    mdef->mconf++;
+		}
+		break;
+
+	    case AD_PLYS:
+	    case AD_TCKL:
+		if (mdef->mcanmove) {
+		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
+		    mdef->mcanmove = 0;
+		    mdef->mfrozen = rnd(10);
+		}
+		break;
+
+	    case AD_SLEE:
+		if (!mdef->msleeping && sleep_monst(mdef, rnd(10), -1)) {
+		    if (!Blind)
+			pline("%s is put to sleep by you!", Monnam(mdef));
+		    slept_monst(mdef);
+		}
+		break;
+	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
+		if ((rn2(100) < mdef->data->mr) ) goto common;	/* physical damage only */
+		if (!rn2(400) && !flaming(mdef->data) && !slime_on_touch(mdef->data) ) {
+		    You("turn %s into slime.", mon_nam(mdef));
+		    (void) newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, !Blind);
+		    tmp = 0;
+		    break;
+		}
+		goto common;
+	    case AD_SLOW:
+		if (mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s slows down.", Monnam(mdef));
+		}
+		break;
+	    case AD_INER:
+		if (mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s slows down.", Monnam(mdef));
+		}
+		goto common;
+
+	    case AD_LAZY:
+		if (mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s slows down.", Monnam(mdef));
+		}
+		if (mdef->mcanmove) {
+		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
+		    mdef->mcanmove = 0;
+		    mdef->mfrozen = rnd(10);
+		}
+		goto common;
+	    case AD_NUMB:
+		if (!rn2(3) && mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s is numbed.", Monnam(mdef));
+		}
+		break;
+
 	    case AD_ELEC:
 		resistance = resists_elec(mdef);
 common:
