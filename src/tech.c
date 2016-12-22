@@ -2512,6 +2512,7 @@ int tech_no;
 		You("invoke the sigil of tempest!");
                 techt_inuse(tech_no) = d(1,6) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
+	                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_CONTROL:
@@ -2527,6 +2528,7 @@ int tech_no;
 		You("invoke the sigil of control!");
                 techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
+	                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_DISCHARGE:
@@ -2542,6 +2544,7 @@ int tech_no;
 		You("invoke the sigil of discharge!");
                 techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
+	                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_RAISE_ZOMBIES:
@@ -2822,6 +2825,7 @@ int tech_no;
 		    mtmp->mcanmove = 1;
 		    mtmp->mfrozen = 0;
 		}
+	                t_timeout = rnz(50);
 		break;
 	    case T_DAZZLE:
 	    	/* Short range stun attack */
