@@ -466,7 +466,7 @@ doread()
 "How To Keep An Idiot In Suspense - See Other Side",
 "I <3 Dungeon of Doom",
 "I <3 Maud",
-"I Am Not a Pack Rat – I Am a Collector",
+"I Am Not a Pack Rat Â– I Am a Collector",
 "I Support Single Succubi",
 "I am a Demigod, oh yes...",
 "I am a Valkyrie. If you see me running, try to keep up.",
@@ -5670,11 +5670,11 @@ revid_end:
 		if (!confused && !sobj->cursed) {
 			You_feel("resistant to elemental attacks!");
 			known = TRUE;
-			   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
-			   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );
-			   HShock_resistance += rn1(100,50 + 25 * bcsign(otmp) );
-			   HSleep_resistance += rn1(100,50 + 25 * bcsign(otmp) );
-			   HAcid_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+			   HFire_resistance += rn1(100,50 + 25 * bcsign(sobj) );
+			   HCold_resistance += rn1(100,50 + 25 * bcsign(sobj) );
+			   HShock_resistance += rn1(100,50 + 25 * bcsign(sobj) );
+			   HSleep_resistance += rn1(100,50 + 25 * bcsign(sobj) );
+			   HAcid_resistance += rn1(100,50 + 25 * bcsign(sobj) );
 		}
 
 		break;
