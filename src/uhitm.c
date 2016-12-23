@@ -6768,6 +6768,7 @@ uchar aatyp;
 	      case AD_SEDU:
 	      case AD_SSEX:
 
+			if (!malive) break;
 			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
