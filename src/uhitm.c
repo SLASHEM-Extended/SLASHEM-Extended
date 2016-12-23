@@ -2382,11 +2382,11 @@ int thrown;
 			case 266: pline("You smash a heavy object into %s's upper body.", mon_nam(mon)); break;
 			case 267: pline("You throw a chair at %s and hit!", mon_nam(mon)); break;
 			case 268: pline("You grab %s's %s and smash it against a wall!", mon_nam(mon), mbodypart(mon, HEAD)); break;
-			case 269: pline("You cause a bit of pain to %s.", mon_nam(mon));
-			case 270: pline("You spit %s in the %s.", mon_nam(mon), mbodypart(mon, FACE));
-			case 271: pline("You poke a sharp weapon into %s's ass.", mon_nam(mon));
-			case 272: pline("Your furious attack damages %s's underwear!", mon_nam(mon));
-			case 273: pline("Klock! You hit %s's %s with the heel of your sexy leather pump.", mon_nam(mon), mbodypart(mon, HEAD));
+			case 269: pline("You cause a bit of pain to %s.", mon_nam(mon)); break;
+			case 270: pline("You spit %s in the %s.", mon_nam(mon), mbodypart(mon, FACE)); break;
+			case 271: pline("You poke a sharp weapon into %s's ass.", mon_nam(mon)); break;
+			case 272: pline("Your furious attack damages %s's underwear!", mon_nam(mon)); break;
+			case 273: pline("Klock! You hit %s's %s with the heel of your sexy leather pump.", mon_nam(mon), mbodypart(mon, HEAD)); break;
 			case 274: pline("The hit connected!"); break;
 
 
@@ -2754,11 +2754,11 @@ int thrown;
 				case 274: pline("You put a mine into %s's trouser pocket and wait for it to explode.", mon_nam(mon)); break;
 				case 275: pline("%s fails to block your finishing move!", Monnam(mon)); break;
 				case 276: pline("As it turns out, %s is the biggest weaking of this dungeon.", mon_nam(mon)); break;
-				case 277: pline("You transform %s into several pieces of meat.", mon_nam(mon));
-				case 278: pline("You mince %s.", mon_nam(mon));
-				case 279: pline("%s will no longer stand in your way!", Monnam(mon));
-				case 280: pline("%s's evil schemes have been thwarted by you!", Monnam(mon));
-				case 281: pline("You use your lovely plateau boots to bludgeon %s to death.", mon_nam(mon));
+				case 277: pline("You transform %s into several pieces of meat.", mon_nam(mon)); break;
+				case 278: pline("You mince %s.", mon_nam(mon)); break;
+				case 279: pline("%s will no longer stand in your way!", Monnam(mon)); break;
+				case 280: pline("%s's evil schemes have been thwarted by you!", Monnam(mon)); break;
+				case 281: pline("You use your lovely plateau boots to bludgeon %s to death.", mon_nam(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
