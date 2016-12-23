@@ -1798,6 +1798,7 @@ dosacrifice()
 		    You_feel("appropriately %s.", align_str(u.ualign.type));
 		else You_feel("you are thoroughly on the right path.");
 		adjalign(5);
+		u.alignlim += 1;
 #ifdef NOARTIFACTWISH
 		u.usacrifice += 5;
 #endif
