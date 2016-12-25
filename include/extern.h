@@ -2359,6 +2359,7 @@ E void FDECL(place_monster, (struct monst *,int,int));
 
 E void FDECL(adjtech, (int,int));
 E int NDECL(dotech);
+E int NDECL(dotechwiz);
 E void NDECL(docalm);
 E int FDECL(tech_inuse, (int));
 E void NDECL(tech_timeout);
