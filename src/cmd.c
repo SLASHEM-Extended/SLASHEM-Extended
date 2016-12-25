@@ -191,6 +191,7 @@ extern int NDECL(dosacrifice); /**/
 extern int NDECL(dopray); /**/
 extern int NDECL(doturn); /**/
 extern int NDECL(dotech); /**/
+extern int NDECL(dotechwiz); /**/
 extern int NDECL(doredraw); /**/
 extern int NDECL(doread); /**/
 extern int NDECL(dosave); /**/
@@ -6821,6 +6822,7 @@ struct ext_func_tab extcmdlist[] = {
 	{(char *)0, (char *)0, donull, TRUE}, /* #genesis */
 	{(char *)0, (char *)0, donull, TRUE}, /* #identify */
 	{(char *)0, (char *)0, donull, TRUE}, /* #levelport */
+	{(char *)0, (char *)0, donull, TRUE}, /* #dotechwiz */
 	{(char *)0, (char *)0, donull, TRUE}, /* #wish */
 	{(char *)0, (char *)0, donull, TRUE}, /* #gainac */
 	{(char *)0, (char *)0, donull, TRUE}, /* #gainlevel */
@@ -6860,6 +6862,7 @@ static struct ext_func_tab debug_extcmdlist[] = {
 	{"genesis", "create monster", wiz_genesis, IFBURIED},
 	{"identify", "identify items in pack", wiz_identify, IFBURIED},
 	{"levelport", "to trans-level teleport", wiz_level_tele, IFBURIED},
+	{"twiz", "reload techniques", dotechwiz, IFBURIED, AUTOCOMPLETE},
 	{"wish", "make wish", wiz_wish, IFBURIED},
 	{"gainac", "gain ac", wiz_gain_ac, IFBURIED},
 	{"gainlevel", "gain level", wiz_gain_level, IFBURIED},
