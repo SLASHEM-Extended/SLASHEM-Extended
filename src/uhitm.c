@@ -2954,6 +2954,16 @@ struct attack *mattk;
 	while ((otmp = mdef->minvent) != 0) {
 	    if (!Upolyd && !Race_if(PM_NYMPH) && (!Race_if(PM_HUMAN_MONKEY) || rn2(3) ) && !Role_if(PM_BULLY) ) break;		/* no longer have ability to steal, unless nymph or bully --Amy */
 	    /* take the object away from the monster */
+
+	    if (MON_WEP(mdef) && (MON_WEP(mdef) == otmp) ) {
+		mdef->misc_worn_check &= ~W_WEP;
+		setmnotwielded(mdef,otmp);
+		MON_NOWEP(mdef);
+		otmp->owornmask = 0L;
+		update_mon_intrinsics(mdef, otmp, FALSE, FALSE);
+
+	    }
+
 	    obj_extract_self(otmp);
 	    if ((unwornmask = otmp->owornmask) != 0L) {
 		mdef->misc_worn_check &= ~unwornmask;
@@ -6767,8 +6777,8 @@ uchar aatyp;
 	      case AD_SITM:	/* for now these are the same */
 	      case AD_SEDU:
 	      case AD_SSEX:
-
 			if (!malive) break;
+
 			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
