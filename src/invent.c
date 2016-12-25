@@ -4695,6 +4695,12 @@ domarkforpet()
 	struct obj *obj;
 	pline("Select an item that you don't want to be dropped if your pet is holding it.");
 	if (!(obj = getobj(all_count,"mark"))) return(0);
+
+	if (obj->unpaid) {
+		pline("You don't own it yet!");
+		return(0);
+	}
+
 	if (obj->petmarked) {
 		pline("The object is no longer marked as undroppable for your pet.");
 		obj->petmarked = 0;
