@@ -1573,6 +1573,23 @@ int tech;
 	return (-1);
 }
 
+
+
+int
+dotechwiz()
+{
+	int i;
+
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
+	    if (techtout(i)) techtout(i) = 0;
+	}
+	pline("The timeout on all your techniques has been set to zero.");
+
+	dotech();
+}
+
 int
 dotech()
 {
@@ -2512,7 +2529,7 @@ int tech_no;
 		You("invoke the sigil of tempest!");
                 techt_inuse(tech_no) = d(1,6) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
-	                t_timeout = rnz(50);
+                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_CONTROL:
@@ -2528,7 +2545,7 @@ int tech_no;
 		You("invoke the sigil of control!");
                 techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
-	                t_timeout = rnz(50);
+                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_DISCHARGE:
@@ -2544,7 +2561,7 @@ int tech_no;
 		You("invoke the sigil of discharge!");
                 techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
-	                t_timeout = rnz(50);
+                t_timeout = rnz(50);
 		return(0);
 		break;
             case T_RAISE_ZOMBIES:
@@ -2761,6 +2778,14 @@ int tech_no;
 		    setmnotwielded(mtmp, obj);
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
+
+		    if (obj && obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(50);
+				break;
+		    }
+
 		    switch (roll) {
 			case 2:
 			default:
@@ -2825,7 +2850,7 @@ int tech_no;
 		    mtmp->mcanmove = 1;
 		    mtmp->mfrozen = 0;
 		}
-	                t_timeout = rnz(50);
+                t_timeout = rnz(50);
 		break;
 	    case T_DAZZLE:
 	    	/* Short range stun attack */
