@@ -223,6 +223,13 @@ const char *name;	/* if null, then format `obj' */
 		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);
+
+		u.ubodyarmorturns++;
+		if (u.ubodyarmorturns >= 10) {
+			u.ubodyarmorturns = 0;
+			use_skill(P_BODY_ARMOR, 1);
+		}
+
 		return(0);
 
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
@@ -231,6 +238,13 @@ const char *name;	/* if null, then format `obj' */
 			if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
 			else You("block %s with your shield.", onm);
 			use_skill(P_SHIELD, 1);
+
+			u.ubodyarmorturns++;
+			if (u.ubodyarmorturns >= 10) {
+				u.ubodyarmorturns = 0;
+				use_skill(P_BODY_ARMOR, 1);
+			}
+
 			return(0);
 
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&

@@ -1144,7 +1144,7 @@ register struct attack *mattk;
 			s_suffix(mon_nam(mtmp)));
 		if (blocker == uarms) use_skill(P_SHIELD, 1);
 		u.ubodyarmorturns++;
-		if (u.ubodyarmorturns >= 20) {
+		if (u.ubodyarmorturns >= 10) {
 			u.ubodyarmorturns = 0;
 			use_skill(P_BODY_ARMOR, 1);
 		}

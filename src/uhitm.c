@@ -1889,6 +1889,17 @@ int thrown;
 				}
 
 			}
+
+		/* but general combat was training so slowly... ranged attacks may also train it --Amy */
+		    if (thrown) {
+				u.ugeneralcombatturns++;
+				if (u.ugeneralcombatturns >= 10) {
+					u.ugeneralcombatturns = 0;
+					use_skill(P_GENERAL_COMBAT, 1);
+				}
+
+			}
+
 	    }
 	}
 
