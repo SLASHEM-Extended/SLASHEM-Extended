@@ -270,6 +270,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		case 2: str = "ball of cold";
 			adtyp = AD_COLD;
 			break;
+		case 3: str = "ball of sleep";
+			adtyp = AD_SLEE;
+			break;
 /* Assume that wands are death, others are disintegration */
 		case 4: str =  (olet == WAND_CLASS) ? "death field" :
 							"disintegration field";
@@ -321,6 +324,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 			case AD_COLD:
 				explmask = !!Cold_resistance;
 				break;
+			case AD_SLEE:
+				explmask = !!Sleep_resistance;
+				break;
 			case AD_DISN:
 				explmask = (olet == WAND_CLASS) ?
 						!!(nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) :
@@ -358,6 +364,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 				break;
 			case AD_COLD:
 				explmask |= resists_cold(mtmp);
+				break;
+			case AD_SLEE:
+				explmask |= resists_sleep(mtmp);
 				break;
 			case AD_DISN:
 				explmask |= (olet == WAND_CLASS) ?
