@@ -31,7 +31,7 @@ d_level *lev;
 		|| (Is_botlevel(lev) && In_V_tower(lev) ) || (Is_branchlev(lev) && lev->dlevel > 1 && !In_sokoban(lev) && !In_towndungeon(lev) )
 		|| (lev->dlevel < 2 && In_V_tower(lev) )  /* no bones on 1st level */
 		   /* no bones in the invocation level               */
-		|| (In_hell(lev) && lev->dlevel == dunlevs_in_dungeon(lev) - 1)
+		|| (In_gehennom(lev) && lev->dlevel == dunlevs_in_dungeon(lev) - 1)
 		);
 }
 
