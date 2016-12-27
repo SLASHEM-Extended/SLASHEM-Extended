@@ -98,6 +98,7 @@ OBJECT:'[',"crystal plate mail",place[8]
 OBJECT:'+',"invisibility",place[9]
 # Walls in the tower are non diggable
 NON_DIGGABLE:(00,00,14,10)
+NON_PASSWALL:(00,00,14,10)
 
 
 # Bottom most stage of Vlad's tower
@@ -153,3 +154,4 @@ OBJECT:'(',"blindfold",place[3]
 TRAP:random,place[3]
 # Walls in the tower are non diggable
 NON_DIGGABLE:(00,00,18,12)
+NON_PASSWALL:(00,00,18,12)
