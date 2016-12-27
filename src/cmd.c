@@ -1501,6 +1501,14 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");
 	putstr(en_win, 0, "");
 
+	if (flags.lostsoul && !flags.uberlostsoul) you_are("playing in lost soul mode");
+	if (flags.uberlostsoul) you_are("playing in uber lost soul mode");
+	if (flags.gehenna) you_are("playing in gehenna mode");
+	if (flags.dudley) you_are("playing in dudley mode");
+	if (flags.iwbtg) you_are("playing in IWBTG mode");
+	if (flags.blindfox) you_are("playing in blindfox mode");
+	if (flags.hippie) you_are("playing in hippie mode");
+
 	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
 				"the Hand of Elbereth",
@@ -3881,6 +3889,14 @@ int final;
 	struct permonst *ptr;
 
 	dump("", "Final attributes");
+
+	if (flags.lostsoul && !flags.uberlostsoul) dump(youwere, "playing in lost soul mode");
+	if (flags.uberlostsoul) dump(youwere, "playing in uber lost soul mode");
+	if (flags.gehenna) dump(youwere, "playing in gehenna mode");
+	if (flags.dudley) dump(youwere, "playing in dudley mode");
+	if (flags.iwbtg) dump(youwere, "playing in IWBTG mode");
+	if (flags.blindfox) dump(youwere, "playing in blindfox mode");
+	if (flags.hippie) dump(youwere, "playing in hippie mode");
 
 	if (u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
