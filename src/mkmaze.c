@@ -2111,6 +2111,8 @@ water_friction()
 	register int x, y, dx, dy;
 	register boolean eff = FALSE;
 
+	if (Race_if(PM_SEA_ELF)) return; /* idea by Elronnd: they are at home in the sea, and therefore unaffected */
+
 	if (Swimming && rn2(4))
 		return;		/* natural swimmers have advantage */
 
