@@ -2674,7 +2674,8 @@ boolean atme;
 			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
 			    nxtmon = frostmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(frostmon)) continue;
-			    if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+				if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
 
 				if (canseemon(frostmon) ) {
 					pline("%s is paralyzed! It might be unable to move!", Monnam(frostmon) );
