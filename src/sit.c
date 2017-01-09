@@ -183,7 +183,7 @@ dosit()
 
 	    obj = level.objects[u.ux][u.uy];
 	    You("sit on %s.", the(xname(obj)));
-	    if (!(Is_box(obj) || objects[obj->otyp].oc_material == CLOTH))
+	    if (!(Is_box(obj) || objects[obj->otyp].oc_material == CLOTH || objects[obj->otyp].oc_material == SILK || objects[obj->otyp].oc_material == INKA))
 		pline("It's not very comfortable...");
 
 	} else if ((trap = t_at(u.ux, u.uy)) != 0 ||

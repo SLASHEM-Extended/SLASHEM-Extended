@@ -61,18 +61,28 @@ struct objclass {
 #define GLASS		19
 #define GEMSTONE	20
 #define MINERAL		21
+/* new materials by Amy - some of them are obviously fictional */
+#define VIVA		22	/* vivardoradorium: a highly unstable, radioactive chemical element */
+#define INKA		23	/* extraordinarily durable form of leather */
+#define TAR		24	/* actually bitumen */
+#define SILK		25
+#define ARCANIUM		26	/* completely nondescript material */
+#define SECREE		27	/* "secretion" would sound too icky, I think */
+#define POURPOOR		28	/* the "poor man's" version of iron */
+#define COMPOST		29	/* organic material that's not flammable (too wet or humid to catch fire) */
+/* if the last material changes, update randommaterials() in o_init.c accordingly --Amy */
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE)
-#define is_metallic(otmp)	(objects[(otmp)->otyp].oc_material >= IRON && \
-				 objects[(otmp)->otyp].oc_material <= MITHRIL)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL  )
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == SILK || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == COMPOST)
+#define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= IRON && \
+				 objects[(otmp)->otyp].oc_material <= MITHRIL) || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == POURPOOR)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL || objects[(otmp)->otyp].oc_material == TAR)
 
 /* primary damage: fire/rust/--- */
 /* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
-#define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON)
+#define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR)
 
 /* secondary damage: rot/acid/acid */
-#define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON)
+#define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
 				is_rottable(otmp) || is_corrodeable(otmp))

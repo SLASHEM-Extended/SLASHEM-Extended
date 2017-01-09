@@ -627,6 +627,12 @@ struct monst *magr, *mdef;
 		else
 		    pline("%s flesh is seared!", s_suffix(Monnam(mdef)));
 	    }
+	    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdef->data) && canseemon(mdef)) {
+		    pline("%s is severely hurt by the radiation!", s_suffix(Monnam(mdef)));
+	    }
+	    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdef->data) && canseemon(mdef)) {
+		    pline("%s is hurt by the inka string!", s_suffix(Monnam(mdef)));
+	    }
 	    mdef->mhp -= dam;
 	    if (mdef->mhp < 1) {
 		if (canseemon(mdef))
@@ -1203,6 +1209,14 @@ physical:
                           (hates_silver(pd))) {
                                 tmp += 8;
                                 if (vis) pline("The silver sears %s!", mon_nam(mdef));
+                        }
+                        if(otmp && objects[otmp->otyp].oc_material == VIVA && (hates_viva(pd))) { 
+                                tmp += 20;
+                                if (vis) pline("The radiation damages %s!", mon_nam(mdef));
+                        }
+                        if(otmp && objects[otmp->otyp].oc_material == INKA && (hates_inka(pd))) { 
+                                tmp += 5;
+                                if (vis) pline("The inka string damages %s!", mon_nam(mdef));
                         }
                         /* Stakes do extra dmg agains vamps */
                         if (otmp && (otmp->otyp == WOODEN_STAKE || otmp->oartifact == ART_VAMPIRE_KILLER) && is_vampire(pd)) {

@@ -3050,6 +3050,12 @@ Amulet_off()
     long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_AMUL;
     takeoff_mask &= ~W_AMUL;
 
+	if (uamul && objects[(uamul)->otyp].oc_material == INKA) {
+		pline("The inka amulet tries to resist being taken off, and severely strangulates you before you can finally slip it from your %s!", body_part(NECK));
+		if (Upolyd) losehp( (u.mhmax / 2) + 2, "inka amulet", KILLED_BY_AN);
+		else losehp( (u.uhpmax / 2) + 2, "inka amulet", KILLED_BY_AN);
+	}
+
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
 		/* need to update ability before calling see_monsters() */
@@ -4540,6 +4546,55 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 
+	if (uarmc && objects[(uarmc)->otyp].oc_material == VIVA) {
+		uac -= (uarmc->oeroded * 2);
+		uac -= (uarmc->oeroded2 * 2);
+	}
+	if (uarm && objects[(uarm)->otyp].oc_material == VIVA) {
+		uac -= (uarm->oeroded * 2);
+		uac -= (uarm->oeroded2 * 2);
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == VIVA) {
+		uac -= (uarmu->oeroded * 2);
+		uac -= (uarmu->oeroded2 * 2);
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == VIVA) {
+		uac -= (uarms->oeroded * 2);
+		uac -= (uarms->oeroded2 * 2);
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == VIVA) {
+		uac -= (uarmh->oeroded * 2);
+		uac -= (uarmh->oeroded2 * 2);
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == VIVA) {
+		uac -= (uarmf->oeroded * 2);
+		uac -= (uarmf->oeroded2 * 2);
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == VIVA) {
+		uac -= (uarmg->oeroded * 2);
+		uac -= (uarmg->oeroded2 * 2);
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == VIVA) {
+		uac -= 3;
+		uac -= (uamul->oeroded * 2);
+		uac -= (uamul->oeroded2 * 2);
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == VIVA) {
+		uac -= 2;
+		uac -= (uleft->oeroded);
+		uac -= (uleft->oeroded2);
+	}
+	if (uright && objects[(uright)->otyp].oc_material == VIVA) {
+		uac -= 2;
+		uac -= (uright->oeroded);
+		uac -= (uright->oeroded2);
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == VIVA) {
+		uac -= 4;
+		uac -= (ublindf->oeroded * 3);
+		uac -= (ublindf->oeroded2 * 3);
+	}
+
 	if (u.negativeprotection) uac += u.negativeprotection;
 
 	if (tech_inuse(T_IRON_SKIN)) uac -= u.ulevel;
@@ -4736,6 +4791,10 @@ register struct obj *otmp;
 	if (otmp == uright || otmp == uleft) {
 	    if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		pline_The("ring is stuck.");
+		return 0;
+	    }
+	    if (objects[(otmp)->otyp].oc_material == INKA && !(youmonst.data->msound == MS_FART_QUIET || youmonst.data->msound == MS_FART_NORMAL || youmonst.data->msound == MS_FART_LOUD) ) {
+		pline("Inka rings cannot be taken off. You need to chat to a farting monster to have it removed.");
 		return 0;
 	    }
 	    why = 0;	/* the item which prevents ring removal */

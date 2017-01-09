@@ -4531,6 +4531,11 @@ char *prefix;
 	if (obj->rknown && obj->oerodeproof)
 		Strcat(prefix,
 		       iscrys ? "fixed " :
+			(objects[(obj)->otyp].oc_material == VIVA) ? "fissionproof" :
+			(objects[(obj)->otyp].oc_material == INKA) ? "beautified" :
+			(objects[(obj)->otyp].oc_material == SECREE) ? "coagulated" :
+			(objects[(obj)->otyp].oc_material == ARCANIUM) ? "erosionproof" :
+			(objects[(obj)->otyp].oc_material == COMPOST) ? "preserved" :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */

@@ -1344,6 +1344,8 @@ moveloop()
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (objects[(steeling)->otyp].oc_material == PLASTIC)
 					pline("That is erodable, and therefore it doesn't work!");
+				else if (objects[(steeling)->otyp].oc_material >= VIVA && objects[(steeling)->otyp].oc_material <= COMPOST) 
+					pline("That is erodable, and therefore it doesn't work!");
 				else {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
@@ -4203,6 +4205,8 @@ newgame()
 		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;
 
 	init_objects();		/* must be before u_init() */
+
+	randommaterials();	/* only done here - do not call this during a running game! --Amy */
 
 	flags.pantheon = -1;	/* role_init() will reset this */
 	role_init();		/* must be before init_dungeons(), u_init(),

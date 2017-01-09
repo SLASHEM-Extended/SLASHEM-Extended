@@ -510,6 +510,35 @@ badeffect()
 	int nastytrapdur;
 	int blackngdur;
 
+	if (uarm && objects[(uarm)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka armor, you averted misfortune!");
+		return;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka footwear, you averted misfortune!");
+		return;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka gloves, you averted misfortune!");
+		return;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka helmet, you averted misfortune!");
+		return;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka shield, you averted misfortune!");
+		return;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka cloak, you averted misfortune!");
+		return;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka shirt, you averted misfortune!");
+		return;
+	}
+
 	switch (rnd(375)) {
 
 		case 1:

@@ -983,6 +983,8 @@ int thrown;
 	boolean get_dmg_bonus = TRUE;
 	boolean ispoisoned = FALSE, needpoismsg = FALSE, poiskilled = FALSE;
 	boolean silvermsg = FALSE, silverobj = FALSE;
+	boolean vivaobj = FALSE;
+	boolean inkaobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
 	boolean unarmed = !uwep && !uarm && !uarms;
 	int jousting = 0;
@@ -1276,7 +1278,7 @@ int thrown;
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep,
-				 50 + 15 * greatest_erosion(obj), 100))) {
+				 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
 			 * 2.5% chance of shattering defender's weapon when
 			 * using a two-handed weapon; less if uwep is rusted.
@@ -1309,7 +1311,7 @@ int thrown;
 			   !is_lightsaber(monwep) && // no cutting other lightsabers :)
 			   !monwep->oartifact && !stack_too_big(monwep) && // no cutting artifacts either
 			   !obj_resists(monwep,
-				 50 + 15 * greatest_erosion(obj), 100))) {
+				 50 + 15 * greatest_erosionX(obj), 100))) {
 			setmnotwielded(mon,monwep);
 			MON_NOWEP(mon);
 			mon->weapon_check = NEED_WEAPON;
@@ -1333,6 +1335,12 @@ int thrown;
 		    if (objects[obj->otyp].oc_material == SILVER
 				&& hates_silver(mdat)) {
 			silvermsg = TRUE; silverobj = TRUE;
+		    }
+		    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
+			vivaobj = TRUE;
+		    }
+		    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
+			inkaobj = TRUE;
 		    }
 		    if (u.usteed && !thrown && tmp > 0 &&
 			    weapon_type(obj) == P_LANCE && mon != u.ustuck) {
@@ -1802,6 +1810,14 @@ int thrown;
 						&& hates_silver(mdat)) {
 				tmp += rnd(20);
 				silvermsg = TRUE; silverobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
+				tmp += 20;
+				vivaobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
+				tmp += 5;
+				inkaobj = TRUE;
 			}
 		    }
 		}
@@ -2467,6 +2483,9 @@ int thrown;
 		    whom = strcat(s_suffix(whom), " flesh");
 		pline(fmt, whom);
 	}
+
+	if (vivaobj) pline("The irradiation severely hurts %s!", mon_nam(mon));
+	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
 
 	if (needpoismsg) {
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
@@ -5101,7 +5120,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && !(objects[uwep->otyp].oc_material == SECREE || objects[uwep->otyp].oc_material == ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");

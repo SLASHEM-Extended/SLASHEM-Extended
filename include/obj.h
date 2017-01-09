@@ -79,6 +79,9 @@ struct obj {
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */
 #define greatest_erosion(otmp) (int)((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2)
+
+#define greatest_erosionX(otmp) (int) (objects[(otmp)->otyp].oc_material == COMPOST ? (otmp)->oeroded : ((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2))
+
 #define MAX_ERODE 3
 #define orotten oeroded		/* rotten food */
 #define odiluted oeroded	/* diluted potions */
@@ -590,8 +593,9 @@ struct obj {
 
 
 /* misc */
-#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER || \
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == SILK || \
 				 (otmp)->otyp == RUBBER_HOSE)
+/* note by Amy: it is intentional that secree and compost don't appear here */
 
 /* helpers, simple enough to be macros */
 #define is_plural(o)	((o)->quan > 1 || \

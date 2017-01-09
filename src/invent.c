@@ -7121,9 +7121,9 @@ struct obj *obj;
 
 		case TOOL_CLASS:
 #ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #else
-		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -8812,9 +8812,9 @@ struct obj *obj;
 
 		case GEM_CLASS:
 #ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #else
-		pline("%s - This is a gem. Color: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - This is a gem. Color: %s. Material: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {

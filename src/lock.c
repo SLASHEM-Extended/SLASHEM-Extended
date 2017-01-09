@@ -146,7 +146,7 @@ forcelock()	/* try to force a locked chest */
 
 	if(xlock.picktyp == 1) {     /* blade */
 
-	    if(rn2(1000-(int)uwep->spe) > (992-greatest_erosion(uwep)*10) &&
+	    if(rn2(1000-(int)uwep->spe) > (992-greatest_erosionX(uwep)*10) &&
 	       !uwep->cursed && !obj_resists(uwep, 0, 99)) {
 		/* for a +0 weapon, probability that it survives an unsuccessful
 		 * attempt to force the lock is (.992)^50 = .67
@@ -1446,7 +1446,13 @@ struct obj *otmp;
 		break;
 	case FLESH:	disposition = "is mashed";
 		break;
+	case TAR:	disposition = "breaks apart";
+		break;
 	case GLASS:	disposition = "shatters";
+		break;
+	case VIVA:	disposition = "disintegrates";
+		break;
+	case SECREE:	disposition = "decomposes";
 		break;
 	case WOOD:	disposition = "splinters to fragments";
 		break;

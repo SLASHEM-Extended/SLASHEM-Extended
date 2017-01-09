@@ -703,6 +703,16 @@ register struct monst *mtmp;
     char verbuf[BUFSZ];
 
     if (mtmp->egotype_farter) {
+
+		if (uleft && objects[(uleft)->otyp].oc_material == INKA) {
+			verbalize("Let me take off that ring for you.");
+			remove_worn_item(uleft, TRUE);
+		}
+		if (uright && objects[(uright)->otyp].oc_material == INKA) {
+			verbalize("Let me take off that ring for you.");
+			remove_worn_item(uright, TRUE);
+		}
+
 		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 		if (mtmp->mtame) {
 			pline("%s seems to love you even more than before.", Monnam(mtmp) );
@@ -944,6 +954,16 @@ register struct monst *mtmp;
 	case MS_FART_QUIET:
 	case MS_FART_NORMAL:
 	case MS_FART_LOUD:
+
+		if (uleft && objects[(uleft)->otyp].oc_material == INKA) {
+			verbalize("Let me take off that ring for you.");
+			remove_worn_item(uleft, TRUE);
+		}
+		if (uright && objects[(uright)->otyp].oc_material == INKA) {
+			verbalize("Let me take off that ring for you.");
+			remove_worn_item(uright, TRUE);
+		}
+
 		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 		if (mtmp->mtame) {
 			pline("%s seems to love you even more than before.", Monnam(mtmp) );

@@ -283,7 +283,7 @@ register struct obj *obj;
 		return (boolean)(obj->oclass == FOOD_CLASS && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
      /* return((boolean)(!!index(comestibles, obj->oclass))); */
-	return (boolean)((obj->oclass == FOOD_CLASS) || (objects[(obj)->otyp].oc_material == VEGGY) || (objects[(obj)->otyp].oc_material == FLESH) ) ;
+	return (boolean)((obj->oclass == FOOD_CLASS) || (objects[(obj)->otyp].oc_material == VEGGY) || (objects[(obj)->otyp].oc_material == SECREE) || (objects[(obj)->otyp].oc_material == FLESH) ) ;
 }
 
 #endif /* OVL1 */
@@ -4071,7 +4071,7 @@ struct obj *otmp;
 	    if (u.uhp <= 0) return; /* died from sink fall */
 	}
 	otmp->known = otmp->dknown = 1; /* by taste */
-	if (!rn2(otmp->oclass == RING_CLASS ? 5 : 10)) { /* lower chance, due to existence of sickness resistance etc --Amy */
+	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : 10)) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
 	  switch (otmp->otyp) {
 	    default:
 	        if (!objects[typ].oc_oprop) break; /* should never happen */
@@ -4368,7 +4368,9 @@ static const char *foodwords[] = {
 	"meal", "liquid", "wax", "food", "meat",
 	"paper", "cloth", "leather", "wood", "bone", "scale",
 	"iron", "metal", "copper", "silver", "gold", "platinum", "mithril",
-	"plastic", "glass", "rich food", "stone"
+	"plastic", "glass", "rich food", "stone",
+	"fissile metal", "elasthan", "bitumen", "silk",
+	"arcanium", "secretion", "poor food", "compost"
 };
 
 STATIC_OVL const char *
@@ -4976,6 +4978,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			u.uconduct.unvegan++;
 	    u.uconduct.food++;
 		gluttonous();
+
 	    
 	    if (otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 		(void) rottenfood(otmp);
@@ -4987,10 +4990,37 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
-	    } else if (!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
+	    } else if (!otmp->cursed && material != SECREE && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
 		pline("This %s is delicious!",
 		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
+	    }
+
+	    if (material == SECREE) {
+			pline("Ulch - this %s tastes like secretion!", otmp->oclass == COIN_CLASS ? foodword(otmp) : singular(otmp, xname));
+			badeffect();
+	    }
+	    if (material == VIVA) {
+			pline("Eating radioactive metal is a bad idea.");
+			ABASE(A_STR)--;
+			ABASE(A_DEX)--;
+			ABASE(A_CON)--;
+			ABASE(A_WIS)--;
+			ABASE(A_INT)--;
+			ABASE(A_CHA)--;
+			if(ABASE(A_STR) < ATTRMIN(A_STR)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_STR) = ATTRMIN(A_STR);}
+			if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_DEX) = ATTRMIN(A_DEX);}
+			if(ABASE(A_CON) < ATTRMIN(A_CON)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CON) = ATTRMIN(A_CON);}
+			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_WIS) = ATTRMIN(A_WIS);}
+			if(ABASE(A_INT) < ATTRMIN(A_INT)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_INT) = ATTRMIN(A_INT);}
+			if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRMIN(A_CHA);}
+	    }
+
+	    if (material == INKA) {
+			pline("Urgh... your %s is turning as it's having difficulties digesting inka leather.", body_part(STOMACH));
+			nomul(-20, "trying to digest an inka object");
+			/* This ignores free action. --Amy */
+	    }
 
 	    eatspecial();
 	    return 1;

@@ -1020,6 +1020,12 @@ register struct obj *obj;
 	    if (hates_silver(mon->data) &&
 		objects[obj->otyp].oc_material == SILVER)
 		return(TABU);
+	    if (hates_viva(mon->data) &&
+		objects[obj->otyp].oc_material == VIVA)
+		return(TABU);
+	    if (hates_inka(mon->data) &&
+		objects[obj->otyp].oc_material == INKA)
+		return(TABU);
 		/* KMH -- Taz likes organics, too! */
 	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
 		mon->data == &mons[PM_FLYING_GELATINOUS_CUBE] ||

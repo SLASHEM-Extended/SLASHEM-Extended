@@ -1800,13 +1800,13 @@ register struct obj *obj;
 	    can->blessed = obj->blessed;
 
 		/* evil patch idea by hackedhead: eroded tinning kits are less reliable */
-		if ( (obj->oeroded == 3 || obj->oeroded2 == 3) && !rn2(2) ) {
+		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(2) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 2 || obj->oeroded2 == 2) && !rn2(5) ) {
+		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 1 || obj->oeroded2 == 1) && !rn2(10) ) {
+		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(10) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
 	    if (obj && obj->oartifact == ART_YASDORIAN_S_TROPHY_GETTER) {
@@ -2636,6 +2636,15 @@ struct obj *tstone;
 	case CLOTH:
 	    pline("%s a little more polished now.", Tobjnam(tstone, "look"));
 	    return;
+	case SILK:
+	    pline("%s a little softer now.", Tobjnam(tstone, "look"));
+	    return;
+	case COMPOST:
+	    pline("%s a little dirtier now.", Tobjnam(tstone, "look"));
+	    return;
+	case SECREE:
+	    pline("%s has gunk on it now.", Tobjnam(tstone, "look"));
+	    return;
 	case LIQUID:
 	    if (!obj->known)		/* note: not "whetstone" */
 		You("must think this is a wetstone, do you?");
@@ -2655,6 +2664,14 @@ struct obj *tstone;
 	case SILVER:
 	    do_scratch = TRUE;	/* scratching and streaks */
 	    streak_color = "silvery";
+	    break;
+	case TAR:
+	    do_scratch = TRUE;	/* scratching and streaks */
+	    streak_color = "inky black";
+	    break;
+	case VIVA:
+	    do_scratch = TRUE;	/* scratching and streaks */
+	    streak_color = "radiating";
 	    break;
 	default:
 	    /* Objects passing the is_flimsy() test will not

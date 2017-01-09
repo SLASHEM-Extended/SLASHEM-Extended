@@ -1798,7 +1798,7 @@ int thrown;
 		if (!ammo_and_launcher(obj, launcher)) {
 		    tmp -= 4;
 		} else {
-		    tmp += launcher->spe - greatest_erosion(launcher);
+		    tmp += launcher->spe - greatest_erosionX(launcher);
 		    tmp += weapon_hit_bonus(launcher);
 		    if (launcher->oartifact) tmp += spec_abon(launcher, mon);
 		    /*
@@ -1878,7 +1878,7 @@ int thrown;
 		     * but we need ammo to stay around longer on average.
 		     */
 		    int broken, chance;
-		    chance = greatest_erosion(obj) - obj->spe;	/* base chance increased --Amy */
+		    chance = greatest_erosionX(obj) - obj->spe;	/* base chance increased --Amy */
 		    chance -= rnd(2);
 		    if (chance > 1) {
 			if (chance == 3) chance = 2;
@@ -1887,7 +1887,7 @@ int thrown;
 			else if (chance > 5) chance /= 2;
 			broken = rn2(chance);
 		    } else {/* continue to survive longer with better enchantment --Amy */
-			chance = 3 + obj->spe - greatest_erosion(obj);
+			chance = 3 + obj->spe - greatest_erosionX(obj);
 			if (chance > 3) chance = 2 + rno(chance - 2);
 			broken = !rn2(chance);
 		    }

@@ -289,7 +289,9 @@ const char *materialnm[] = {
 	"mysterious", "liquid", "wax", "organic", "flesh",
 	"paper", "cloth", "leather", "wooden", "bone", "dragonhide",
 	"iron", "metal", "copper", "silver", "gold", "platinum", "mithril",
-	"plastic", "glass", "gemstone", "stone"
+	"plastic", "glass", "gemstone", "stone",
+	"vivardoradorium", "elasthan", "tar", "silk",
+	"arcanium", "secree", "pourpoor", "compost"
 };
 
 /* Vision */

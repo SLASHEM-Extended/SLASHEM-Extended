@@ -1165,7 +1165,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && (!(blocker->oartifact) || !rn2(4))) {
+		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && !(objects[blocker->otyp].oc_material == SECREE || objects[blocker->otyp].oc_material == ARCANIUM) && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
@@ -3871,6 +3871,12 @@ hitmu(mtmp, mattk)
 				hates_silver(youmonst.data)) {
 			    pline("The silver sears your flesh!");
 			}
+			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+			    pline("The irradiation severely hurts you!");
+			}
+			if (objects[otmp->otyp].oc_material == INKA) { /* you are always vulnerable to inka, no matter what --Amy */
+			    pline("The inka string hurts you!");
+			}
 			/* Stakes do extra dmg agains vamps */
 			if ((otmp->otyp == WOODEN_STAKE || otmp->oartifact == ART_VAMPIRE_KILLER) &&
 				is_vampire(youmonst.data)) {
@@ -6456,6 +6462,12 @@ dopois:
 			if (objects[otmp->otyp].oc_material == SILVER &&
 				hates_silver(youmonst.data)) {
 			    pline("The silver sears your flesh!");
+			}
+			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+			    pline("The irradiation severely hurts you!");
+			}
+			if (objects[otmp->otyp].oc_material == INKA) {
+			    pline("The inka string severely hurts you!");
 			}
 			/* Stakes do extra dmg agains vamps */
 			if ((otmp->otyp == WOODEN_STAKE || otmp->oartifact == ART_VAMPIRE_KILLER) &&

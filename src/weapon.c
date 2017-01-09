@@ -503,7 +503,7 @@ struct monst *mon;
 		if (tmp < 0) tmp = 0;
 	}
 
-	if (objects[otyp].oc_material <= LEATHER && thick_skinned(ptr) && tmp > 0)
+	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
 	if (ptr == &mons[PM_SHADE] && objects[otyp].oc_material != SILVER)
@@ -531,6 +531,10 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
 		bonus += rnd(20);
+	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
+		bonus += 20;
+	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
+		bonus += 5;
 
 	    /* Ralf Engels - added more special cases*/
 	    /* You can kill a eye with a needle */
@@ -658,7 +662,7 @@ struct monst *mon;
 		   it will hit with essentially the same impact, but
 		   there ought to some penalty for using damaged gear
 		   so always subtract erosion even for blunt weapons. */
-		tmp -= greatest_erosion(otmp);
+		tmp -= greatest_erosionX(otmp);
 		if (tmp < 1) tmp = 1;
 	}
 
@@ -822,7 +826,7 @@ struct monst *mon;
 		if (tmp < 0) tmp = 0;
 	}
 
-	if (objects[otyp].oc_material <= LEATHER && thick_skinned(ptr) && tmp > 0)
+	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
 	if (ptr == &mons[PM_SHADE] && objects[otyp].oc_material != SILVER)
@@ -850,6 +854,10 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
 		bonus += rnd(20);
+	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
+		bonus += 20;
+	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
+		bonus += 5;
 
 	    /* Ralf Engels - added more special cases*/
 	    /* You can kill a eye with a needle */
@@ -1348,7 +1356,7 @@ struct monst *mon;
 		   it will hit with essentially the same impact, but
 		   there ought to some penalty for using damaged gear
 		   so always subtract erosion even for blunt weapons. */
-		tmp -= greatest_erosion(otmp);
+		tmp -= greatest_erosionX(otmp);
 		if (tmp < 1) tmp = 1;
 	}
 

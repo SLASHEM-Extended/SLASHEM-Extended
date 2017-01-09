@@ -286,7 +286,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define plur(x) (((x) == 1) ? "" : "s")
 
 #define ARM_BONUS(obj)	(objects[(obj)->otyp].a_ac + (obj)->spe \
-			 - min((int)greatest_erosion(obj),objects[(obj)->otyp].a_ac))
+			 - min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac))
 
 #define makeknown(x)	discover_object((x),TRUE,TRUE)
 #define distu(xx,yy)	dist2((int)(xx),(int)(yy),(int)u.ux,(int)u.uy)

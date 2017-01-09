@@ -279,6 +279,16 @@ const char *name;	/* if null, then format `obj' */
 			pline_The("silver sears your flesh!");
 			exercise(A_CON, FALSE);
 		}
+		if (obj && objects[obj->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+			dam += 20;
+			pline_The("irradiation severely hurts you!");
+			exercise(A_CON, FALSE);
+		}
+		if (obj && objects[obj->otyp].oc_material == INKA) {
+			dam += 5;
+			pline_The("inka string hurts you!");
+			exercise(A_CON, FALSE);
+		}
 		if (is_acid && Acid_resistance) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
@@ -388,7 +398,7 @@ int x,y;
 	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
 
 		/* copying over the dothrow.c code, because it makes no sense for blessed +10 ammo to break 2 out of 3 times --Amy */
-	    chance = greatest_erosion(obj) - obj->spe;
+	    chance = greatest_erosionX(obj) - obj->spe;
 	    chance -= rnd(2);
 
 	    if (chance > 1) {
@@ -398,7 +408,7 @@ int x,y;
 		else if (chance > 5) chance /= 2;
 		create = !rn2(chance);
 	    } else {
-		chance = 3 + obj->spe - greatest_erosion(obj);
+		chance = 3 + obj->spe - greatest_erosionX(obj);
 		if (chance > 3) chance = 2 + rno(chance - 2);
 
 		create = rn2(chance);
@@ -571,6 +581,12 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		if (vis) pline_The("silver sears %s flesh!",
 				s_suffix(mon_nam(mtmp)));
 		else if (verbose) pline("Its flesh is seared!");
+	    }
+	    if (objects[otmp->otyp].oc_material == VIVA && hates_viva(mtmp->data)) {
+		if (verbose) pline("It is irradiated!");
+	    }
+	    if (objects[otmp->otyp].oc_material == INKA && hates_inka(mtmp->data)) {
+		if (verbose) pline("It is hurt!");
 	    }
 	    if (otmp->otyp == ACID_VENOM && cansee(mtmp->mx,mtmp->my)) {
 		if (resists_acid(mtmp)) {

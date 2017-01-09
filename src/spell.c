@@ -2674,8 +2674,7 @@ boolean atme;
 			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
 			    nxtmon = frostmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(frostmon)) continue;
-			    if (!monnear(frostmon, u.ux, u.uy)) continue;
-				if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
+			    if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
 
 				if (canseemon(frostmon) ) {
 					pline("%s is paralyzed! It might be unable to move!", Monnam(frostmon) );
@@ -6140,16 +6139,110 @@ int spell;
 	    splcaster += 2;
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && is_metallic(uarm))
-	    splcaster += (urole.spelarmr * armorpenalties / 12);
-	if (uarmc && is_metallic(uarmc))
-	    splcaster += (urole.spelarmr * armorpenalties / 36);
-	if (uarms) splcaster += (urole.spelshld * shieldpenalties / 12);
+	if (uarm && is_metallic(uarm)) {
+		armorpenalties = 15;
 
-	if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE)
+		switch (objects[(uarm)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		splcaster += (urole.spelarmr * armorpenalties / 12);
+	}
+	if (uarmc && is_metallic(uarmc)) {
+		armorpenalties = 15;
+
+		switch (objects[(uarmc)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		splcaster += (urole.spelarmr * armorpenalties / 36);
+	}
+	if (uarms) {
+		shieldpenalties = 15;
+		if (!is_metallic(uarms)) shieldpenalties /= 3;
+
+		switch (objects[(uarms)->otyp].oc_material) {
+			default: break;
+			case METAL: shieldpenalties = 16; break;
+			case COPPER: shieldpenalties = 21; break;
+			case SILVER: shieldpenalties = 17; break;
+			case GOLD: shieldpenalties = 8; break;
+			case PLATINUM: shieldpenalties = 18; break;
+			case MITHRIL: shieldpenalties = 13; break;
+			case VIVA: shieldpenalties = 12; break;
+			case POURPOOR: shieldpenalties = 20; break;
+		}
+
+		splcaster += (urole.spelshld * shieldpenalties / 12);
+	}
+
+	if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+		armorpenalties = 15;
+
+		switch (objects[(uarmh)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
 		splcaster += (uarmhbon * armorpenalties / 12);
-	if (uarmg && is_metallic(uarmg)) splcaster += (uarmgbon * armorpenalties / 12);
-	if (uarmf && is_metallic(uarmf)) splcaster += (uarmfbon * armorpenalties / 12);
+	}
+	if (uarmg && is_metallic(uarmg)) {
+		armorpenalties = 15;
+
+		switch (objects[(uarmg)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		splcaster += (uarmgbon * armorpenalties / 12);
+	}
+	if (uarmf && is_metallic(uarmf)) {
+		armorpenalties = 15;
+
+		switch (objects[(uarmf)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		splcaster += (uarmfbon * armorpenalties / 12);
+	}
 
 	if (spellid(spell) == urole.spelspec)
 		splcaster += urole.spelsbon;

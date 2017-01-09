@@ -1618,6 +1618,7 @@ E void NDECL(synch_cursor);
 /* ### o_init.c ### */
 
 E void NDECL(init_objects);
+E void NDECL(randommaterials);
 E int NDECL(find_skates);
 E int NDECL(find_skates2);
 E int NDECL(find_skates3);

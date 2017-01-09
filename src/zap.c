@@ -2976,7 +2976,7 @@ struct obj *obj, *otmp;
 		break;
 	case SPE_STONE_TO_FLESH:
 		refresh_x = obj->ox; refresh_y = obj->oy;
-		if (objects[obj->otyp].oc_material != MINERAL &&
+		if (objects[obj->otyp].oc_material != MINERAL && objects[obj->otyp].oc_material != TAR &&
 			objects[obj->otyp].oc_material != GEMSTONE) {
 		    res = 0;
 		    break;
@@ -3150,8 +3150,9 @@ register struct obj *wand;
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	if ((!rn2(2) || !wand->oartifact) && (nochargechange >= rnd(10) ) ) wand->spe--;
+	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 	use_skill(P_DEVICES,1);
+	if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
 	return 1;
 }
 
@@ -4247,19 +4248,19 @@ dozap()
 	}
 
 	/* evil patch idea by jonadab: eroded wands have a chance of exploding */
-	else if ( (obj->oeroded > 2 || obj->oeroded2 > 2) && !rn2(5) ) {
+	else if ( (obj->oeroded > 2 || (obj->oeroded2 > 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
 
 	}
-	else if ( (obj->oeroded > 1 || obj->oeroded2 > 1) && !rn2(20) ) {
+	else if ( (obj->oeroded > 1 || (obj->oeroded2 > 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(20) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
 
 	}
-	else if ( (obj->oeroded > 0 || obj->oeroded2 > 0) && !rn2(80) ) {
+	else if ( (obj->oeroded > 0 || (obj->oeroded2 > 0 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(80) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
