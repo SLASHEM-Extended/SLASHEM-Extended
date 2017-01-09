@@ -208,23 +208,30 @@ struct monst *mon;
 	/* iron chains give bonus versus thick-skinned monsters --Amy */
 	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr)) tmp += 4;
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == GLASS_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) tmp += 8;
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) tmp += 15;
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 
 	/* KMH -- Paddles are effective against insects */
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		tmp += 5;
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		tmp += 5;
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		tmp += 12;
@@ -232,11 +239,12 @@ struct monst *mon;
 		tmp += 15;
 
 	if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
+	if (otmp->otyp == VERMIN_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
 	if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 50;
 	if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 75;
 
 	/* blunt weapons versus undead (Diablo 2) */
-	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
+	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
 	if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) tmp += 8;
 	if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) tmp += 8;
 
@@ -270,12 +278,22 @@ struct monst *mon;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
 	}
 
+	if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
+	   if (is_pool(mon->mx, mon->my)) tmp += 4;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
+	}
+
 	if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
 	   if (is_pool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
+	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
+	}
+
+	if (otmp->otyp == PLOW && is_swimmer(ptr)) {
 	   if (is_pool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
@@ -535,6 +553,8 @@ struct monst *mon;
 		bonus += 20;
 	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
 		bonus += 5;
+	    if (otyp == ODOR_SHOT && hates_odor(ptr))
+		bonus += rnd(10);
 
 	    /* Ralf Engels - added more special cases*/
 	    /* You can kill a eye with a needle */
@@ -566,23 +586,30 @@ struct monst *mon;
 	    /* iron chains give bonus versus thick-skinned monsters --Amy */
 	    if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
+	    if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == GLASS_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+	    if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+	    if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+	    if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+	    if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 
 	    /* KMH -- Paddles are effective against insects */
 	    if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(5);
+	    if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(5);
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
@@ -590,11 +617,17 @@ struct monst *mon;
 		bonus += 15;
 
 	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
+	    if (otmp->otyp == VERMIN_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
 	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
 	    if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(75);
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -614,13 +647,18 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
 	    /* blunt weapons versus undead (Diablo 2) */
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
@@ -856,8 +894,8 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
 		bonus += 20;
-	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
-		bonus += 5;
+	    if (otyp == ODOR_SHOT && hates_odor(ptr))
+		bonus += rnd(10);
 
 	    /* Ralf Engels - added more special cases*/
 	    /* You can kill a eye with a needle */
@@ -889,20 +927,25 @@ struct monst *mon;
 	    /* iron chains give bonus versus thick-skinned monsters --Amy */
 	    if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
+	    if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == GLASS_CHAIN && thick_skinned(ptr)) bonus += rnd(4) ;
 	    if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+	    if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 	    if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+	    if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
 	    if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+	    if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(24);
 	    if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 	    if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+	    if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 
 		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
@@ -917,6 +960,12 @@ struct monst *mon;
 	if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
 	if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
 	if (otmp->otyp == STONE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
+
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (otmp->otyp == HEAVY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
 	if (otmp->otyp == GLASS_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
 	if (otmp->otyp == GLASS_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
@@ -942,6 +991,12 @@ struct monst *mon;
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(8);
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(2);
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(4);
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(6);
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(10);
+
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(3);
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(6);
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(9);
@@ -960,6 +1015,12 @@ struct monst *mon;
 	if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(3);
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(6);
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(9);
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
 	if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(4);
 	if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(8);
 	if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
@@ -977,6 +1038,12 @@ struct monst *mon;
 	if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
 	if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(16);
 	if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(20);
+
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(4);
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(8);
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(16);
+	if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(20);
 
 	if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(5);
 	if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(10);
@@ -1002,10 +1069,18 @@ struct monst *mon;
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(20);
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(25);
 
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(5);
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(10);
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(15);
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(20);
+	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(25);
+
 	}
 
 	    /* KMH -- Paddles are effective against insects */
 	    if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
+		bonus += rnd(5);
+	    if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(5);
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
@@ -1019,6 +1094,11 @@ struct monst *mon;
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(15);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(4);
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(8);
 	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(12);
@@ -1033,11 +1113,17 @@ struct monst *mon;
 		}
 
 	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
+	    if (otmp->otyp == VERMIN_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
 	    if (otmp->otyp == INSECT_SQUASHER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(50);
 	    if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(75);
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -1057,6 +1143,11 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
@@ -1065,6 +1156,11 @@ struct monst *mon;
 		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 2;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
@@ -1084,12 +1180,22 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 6;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 3;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -1109,12 +1215,22 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
@@ -1134,12 +1250,22 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 24;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 12;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
@@ -1159,12 +1285,22 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 48;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 24;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 20;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+	    }
+
+	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 20;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
 	    }
@@ -1184,6 +1320,11 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
 	    }
 
+	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
+		   if (is_pool(mon->mx, mon->my)) bonus += 40;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
+	    }
+
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
 		   if (is_pool(mon->mx, mon->my)) bonus += 60;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 30;
@@ -1192,15 +1333,15 @@ struct monst *mon;
 		}
 
 	    /* blunt weapons versus undead (Diablo 2) */
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
 
 		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += rnd(2);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(4);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(5);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(7);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(10);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += rnd(2);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(4);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(5);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(7);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == RIDING_CROP || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
 		}
 
@@ -1428,26 +1569,32 @@ static NEARDATA const int rwep[] =
 	SPOON,
 	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET,
 	LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT, ANTIMATTER_BULLET, SILVER_BULLET, BULLET, SHOTGUN_SHELL,
-	LOADBOULDER, STARLIGHTSTONE, TORPEDO, SPIRIT_THROWER, DROVEN_SPEAR, DWARVISH_SPEAR, SILVER_SPEAR, ELVEN_SPEAR,
-	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SPEAR, ORCISH_SPEAR,
-	JAVELIN, NEEDLE, SHURIKEN, DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, 
-	YA, SILVER_ARROW, DROVEN_DAGGER, ELVEN_ARROW, DARK_ELVEN_ARROW, 
-	ARROW, ORCISH_ARROW, DROVEN_BOLT, KOKKEN, CROSSBOW_BOLT, GREAT_DAGGER, SILVER_DAGGER, ELVEN_DAGGER, 
-	DARK_ELVEN_DAGGER, DAGGER, ORCISH_DAGGER, SURVIVAL_KNIFE, STILETTO, KNIFE,
+	LOADBOULDER, STARLIGHTSTONE, HOMING_TORPEDO, COURSE_JAVELIN, SPIRIT_THROWER, DROVEN_SPEAR, DRAGON_SPEAR, 
+	DWARVISH_SPEAR, SILVER_SPEAR, INKA_SPEAR, ELVEN_SPEAR, ASBESTOS_JAVELIN,
+	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SILK_SPEAR, SPEAR, ORCISH_SPEAR,
+	JAVELIN, NEEDLE, TAR_STAR, SHURIKEN, DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, BRONZE_ARROW,
+	YA, SILVER_ARROW, DROVEN_DAGGER, ELVEN_ARROW, DARK_ELVEN_ARROW, ODOR_SHOT, FORBIDDEN_ARROW,
+	ARROW, ORCISH_ARROW, PAPER_ARROW, DROVEN_BOLT, KOKKEN, MINERAL_BOLT,
+	CROSSBOW_BOLT, FLEECE_BOLT, PIN_BOLT, GREAT_DAGGER, SILVER_DAGGER, ELVEN_DAGGER, 
+	RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, SOFT_STAR,
+	DARK_ELVEN_DAGGER, DAGGER, ORCISH_DAGGER, SURVIVAL_KNIFE, COLLUSION_KNIFE, BITUKNIFE, MEASURER, STILETTO, KNIFE,
 	LOADSTONE, SILVER_SLINGSTONE, VOLCANIC_GLASS_FRAGMENT, FLINT, 
 	SMALL_PIECE_OF_UNREFINED_MITHR, TALC, GRAPHITE, ROCK, 
 	STONE_OF_MAGIC_RESISTANCE, 
 
 	SLEEPSTONE, MANASTONE,
-	SALT_CHUNK, TOUCHSTONE, HEALTHSTONE, WHETSTONE, LUCKSTONE, DART, SPIKE, CALTROP,
+	SALT_CHUNK, TOUCHSTONE, HEALTHSTONE, WHETSTONE, LUCKSTONE, INKA_STINGER, FLIMSY_DART, DART, SPIKE, CALTROP,
 	/* BOOMERANG, */ CREAM_PIE
 	/* note: CREAM_PIE should NOT be #ifdef KOPS */
 };
 
 static NEARDATA const int pwep[] =
-{	FORCE_PIKE, DROVEN_LANCE, COURSE_LANCE, HALBERD, BARDICHE, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
-	BLACK_HALBERD, PITCHFORK,
-	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, LANCE,
+{	TRAFFIC_LIGHT, GIANT_SCYTHE, THRESHER, FORCE_PIKE, DROVEN_LANCE,
+	HELMET_BEARD, POKER_STICK, COURSE_LANCE, HALBERD, BARDICHE, 
+	PHYSICIAN_BAR, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
+	BLACK_HALBERD, GARDEN_FORK, PITCHFORK,
+	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PENIS_POLE, PIKE,
+	PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, BRONZE_LANCE, LANCE,
 	PARASOL, UMBRELLA
 };
 
@@ -1508,6 +1655,8 @@ register struct monst *mtmp;
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj) {
 			if (is_nastygraystone(otmp)) {
 				propellor = m_carrying(mtmp, CATAPULT);
+				if (!propellor) propellor = m_carrying(mtmp, INKA_SLING);
+				if (!propellor) propellor = m_carrying(mtmp, METAL_SLING);
 				if (!propellor) propellor = m_carrying(mtmp, SLING);
 				return otmp;
 			}
@@ -1516,13 +1665,15 @@ register struct monst *mtmp;
 	    /* shooting gems from slings; this goes just before the darts */
 	    /* (shooting rocks is already handled via the rwep[] ordering) */
 	    if ( (rwep[i] == DART || rwep[i] == SPIKE) && !likes_gems(mtmp->data) &&
-		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
+		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, METAL_SLING) || m_carrying(mtmp, INKA_SLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
 		    if (otmp->oclass == GEM_CLASS /*&&
 			    (otmp->otyp != LOADSTONE || !otmp->cursed)*/) {
 			/* I'll allow monsters to fire loadstones even if they are cursed.
 			 * Yes, monsters are cheating bastards. --Amy */
 			propellor = m_carrying(mtmp, CATAPULT);
+			if (!propellor) propellor = m_carrying(mtmp, INKA_SLING);
+			if (!propellor) propellor = m_carrying(mtmp, METAL_SLING);
 			if (!propellor) propellor = m_carrying(mtmp, SLING);
 			return otmp;
 		    }
@@ -1544,20 +1695,26 @@ register struct monst *mtmp;
 			 */
 		case P_BOW:
 		  propellor = (oselect(mtmp, DROVEN_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, WILDHILD_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, HYDRA_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, YUMI));
 		  if (!propellor) propellor = (oselect(mtmp, ELVEN_BOW));
 		  /* WAC added dark elven bow */
 		  if (!propellor) propellor = (oselect(mtmp, DARK_ELVEN_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, COMPOST_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, BOW));
 		  if (!propellor) propellor = (oselect(mtmp, ORCISH_BOW));
 		  break;
 		case P_SLING:
 		  propellor = (oselect(mtmp, CATAPULT));
+		  if (!propellor) propellor = (oselect(mtmp, INKA_SLING));
+		  if (!propellor) propellor = (oselect(mtmp, METAL_SLING));
 		  if (!propellor) propellor = (oselect(mtmp, SLING));
 		  break;
 		case P_CROSSBOW:
 		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, ZOOM_SHOT_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, BALLISTA));
 		  if (!propellor) propellor = (oselect(mtmp, HELO_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, POWER_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
@@ -1569,6 +1726,7 @@ register struct monst *mtmp;
 			if (!propellor) propellor = (oselect(mtmp, ASSAULT_RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, SUBMACHINE_GUN));
 			if (!propellor) propellor = (oselect(mtmp, SNIPER_RIFLE));
+			if (!propellor) propellor = (oselect(mtmp, HUNTING_RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, PISTOL));
 			if (!propellor) propellor = (oselect(mtmp, FLINTLOCK));
@@ -1576,8 +1734,10 @@ register struct monst *mtmp;
 			propellor = (oselect(mtmp, AUTO_SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, SAWED_OFF_SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, SHOTGUN));
+			if (!propellor) propellor = (oselect(mtmp, PAPER_SHOTGUN));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER) {
 			propellor = (oselect(mtmp, ARM_BLASTER));
+			if (!propellor) propellor = (oselect(mtmp, PROCESS_CARD));
 			if (!propellor) propellor = (oselect(mtmp, RAYGUN));
 			if (!propellor) propellor = (oselect(mtmp, HAND_BLASTER));
 			if (!propellor) propellor = (oselect(mtmp, CUTTING_LASER));
@@ -1630,17 +1790,18 @@ register struct monst *mtmp;
 /* WAC -- removed polearms */
 static const NEARDATA short hwep[] = {
 	  CORPSE,  /* cockatrice corpse */
-	IMPOSSIBLY_HEAVY_IRON_BALL, IMPOSSIBLY_HEAVY_MINERAL_BALL, IMPOSSIBLY_HEAVY_GLASS_BALL, IMPOSSIBLY_HEAVY_ELYSIUM_BALL, EXTREMELY_HEAVY_IRON_BALL, HEAVY_CONCRETE_BALL, HEAVY_CONUNDRUM_BALL, REALLY_HEAVY_IRON_BALL, HEAVY_ELYSIUM_BALL, HEAVY_GRANITE_BALL, QUITE_HEAVY_IRON_BALL, HEAVY_GOLD_BALL, HEAVY_CLAY_BALL, HEAVY_IRON_BALL, HEAVY_GLASS_BALL, HEAVY_STONE_BALL,
+	IMPOSSIBLY_HEAVY_IRON_BALL, IMPOSSIBLY_HEAVY_MINERAL_BALL, IMPOSSIBLY_HEAVY_GLASS_BALL, IMPOSSIBLY_HEAVY_NUCLEAR_BALL, IMPOSSIBLY_HEAVY_ELYSIUM_BALL, EXTREMELY_HEAVY_IRON_BALL, HEAVY_ELASTHAN_BALL, HEAVY_CONCRETE_BALL, HEAVY_CONUNDRUM_BALL, REALLY_HEAVY_IRON_BALL, DISGUSTING_BALL, HEAVY_ELYSIUM_BALL, HEAVY_GRANITE_BALL, QUITE_HEAVY_IRON_BALL, HEAVY_COMPOST_BALL, HEAVY_GOLD_BALL, HEAVY_CLAY_BALL, HEAVY_IRON_BALL, VERY_HEAVY_BALL, HEAVY_GLASS_BALL, HEAVY_STONE_BALL,
 
-	  ELYSIUM_HOSTAGE_CHAIN, MINERAL_HOSTAGE_CHAIN, GLASS_HOSTAGE_CHAIN, HOSTAGE_CHAIN,
+	  NUCLEAR_HOSTAGE_CHAIN, ELYSIUM_HOSTAGE_CHAIN, MINERAL_HOSTAGE_CHAIN, GLASS_HOSTAGE_CHAIN, HOSTAGE_CHAIN,
 
-	  CONCRETE_NUNCHIAKU, CONUNDRUM_NUNCHIAKU, NUNCHIAKU,
+	  ELASTHAN_CHAIN, CONCRETE_NUNCHIAKU, CONUNDRUM_NUNCHIAKU, NUNCHIAKU,
 
+	  COLOSSUS_BLADE, THUNDER_HAMMER, STEEL_CAPPED_SANDAL,
 	  BASTERD_SWORD, CHAINSWORD, TSURUGI, DROVEN_GREATSWORD, DWARVISH_BATTLE_AXE, TWO_HANDED_TRIDENT,
-	  MANCATCHER, STYGIAN_PIKE, MARE_TRIDENT,
-	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, 
-	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, TORPEDO,
-	  DWARVISH_MATTOCK, BENT_SABLE, 
+	  MANCATCHER, STYGIAN_PIKE, MARE_TRIDENT, PLOW,
+	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, BRIDGE_MUZZLE,
+	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, HOMING_TORPEDO,
+	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, BENT_SABLE, HOE_SABLE, INKA_BOOT, SOFT_LADY_SHOE,
 	  LASER_SWATTER,
 	  RED_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
 	  BLUE_LIGHTSABER,
@@ -1649,33 +1810,43 @@ static const NEARDATA short hwep[] = {
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
 #endif
-	  GREEN_LIGHTSABER,
-	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, BLOCK_HEELED_COMBAT_BOOT,
-	  TWO_HANDED_SWORD, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB,
-	  GOLDEN_SABER, TWO_HANDED_FLAIL, BOAT_OAR, BATTLE_STAFF, REINFORCED_MACE, 
-	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, TRIDENT, CRYSTAL_SWORD, LONG_SWORD, OBSID, SPIRIT_THROWER,
-	  DROVEN_SPEAR, 
+	  GREEN_LIGHTSABER, PIANO,
+	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
+	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR,
+	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
+	  GOLDEN_SABER, TWO_HANDED_FLAIL, BOAT_OAR, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF,
+	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER,
+	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, FOURDENT, TRIDENT, CRYSTAL_SWORD, ICKY_BLADE, WILD_BLADE,
+	  LONG_SWORD, OBSID, COURSE_JAVELIN, SPIRIT_THROWER, IMPACT_STAFF, WALKING_STICK,
+	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER,
 
-	  GRANITE_SCOURGE, ELYSIUM_SCOURGE, SCOURGE,
-	  CLAY_CHAIN, GOLD_CHAIN, ROTATING_CHAIN,
-	  GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN,
+	  DISGUSTING_CHAIN, GRANITE_SCOURGE, ELYSIUM_SCOURGE, SCOURGE,
+	  COMPOST_CHAIN, CLAY_CHAIN, GOLD_CHAIN, ROTATING_CHAIN,
+	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, INKUTLASS,
 
+	  RAPIER, ARCANE_RAPIER, LEATHER_SABER, DOGSHIT_BOOT,
 	  PLATINUM_FIRE_HOOK, FIRE_HOOK, DROVEN_DAGGER, ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
-	  FLANGED_MACE, BRONZE_MORNING_STAR, SPINED_BALL, JAGGED_STAR, STEEL_WHIP,
-	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, IRON_SABER, VIBROBLADE, DROVEN_SHORT_SWORD, SILVER_MACE,
+	  MILL_PAIL, FLANGED_MACE, BRONZE_MORNING_STAR, SPINED_BALL, RHYTHMIC_STAR, JAGGED_STAR, STEEL_WHIP,
+	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, IRON_SABER, VIBROBLADE, INKA_BLADE, ETERNIUM_BLADE,
+	  DROVEN_SHORT_SWORD, SILVER_MACE, ASTERISK,
   	  MORNING_STAR, GREAT_HOUCHOU, DARK_ELVEN_SHORT_SWORD, HIGH_ELVEN_WARSWORD, ELVEN_SHORT_SWORD, 
-  	  DWARVISH_SHORT_SWORD, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, IRON_BAR,
-	  ORCISH_SHORT_SWORD, ELVEN_MACE, MACE, MOON_AXE, AXE, DWARVISH_SPEAR, SILVER_SPEAR,
-	  ELVEN_SPEAR, FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SPEAR, ORCISH_SPEAR,
-	  STAR_ROD, RUNED_ROD, FLAIL, CHAIN_AND_SICKLE, BULLWHIP, QUARTERSTAFF, SPECIAL_MOP, SILVER_KHAKKHARA, 
-	  INSECT_SQUASHER, SPIKED_CLUB, BASEBALL_BAT,
-	  GREAT_DAGGER, JAVELIN, AKLYS, BONE_CLUB, CLUB, PICK_AXE, FLY_SWATTER, 
+  	  DWARVISH_SHORT_SWORD, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, RIDING_CROP, IRON_BAR, TUBING_PLIERS,
+	  ORCISH_SHORT_SWORD, ELVEN_MACE, PLASTIC_MACE, BRONZE_MACE,
+	  MACE, MOON_AXE, OBSIDIAN_AXE, SPIRIT_AXE, AXE, DRAGON_SPEAR, DWARVISH_SPEAR, SILVER_SPEAR,
+	  INKA_SPEAR, ELVEN_SPEAR, FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, SILK_SPEAR, SPEAR, ORCISH_SPEAR,
+	  STAR_ROD, RUNED_ROD, FLAIL, FLOGGER, CHAIN_AND_SICKLE, BULLWHIP, ASBESTOS_JAVELIN,
+	  FIRE_STICK, TROUTSTAFF, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, 
+	  INSECT_SQUASHER, SPIKED_CLUB, BASEBALL_BAT, PAPER_SWORD,
+	  GREAT_DAGGER, JAVELIN, AKLYS, POURED_CLUB, NATURAL_STICK, BONE_CLUB, CLUB, 
+	  BRONZE_PICK, CONGLOMERATE_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, 
+	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR,
 	  FUTON_SWATTER, MAGICAL_PAINTBRUSH, BROOM, MOP,
 
-	  RUBBER_HOSE,
+	  BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
 	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, DAGGER, 
-	  ORCISH_DAGGER,
-	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN
+	  ORCISH_DAGGER, NOVICE_HAMMER,
+	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, 
+	  COLLUSION_KNIFE, BITUKNIFE, MEASURER, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN
 };
 
 struct obj *
@@ -1802,29 +1973,43 @@ register struct monst *mon;
 			break;
 		case NEED_PICK_AXE:
 			obj = m_carrying(mon, PICK_AXE);
+			if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
+			if (!obj) obj = m_carrying(mon, BRONZE_PICK);
 			/* KMH -- allow other picks */
 			if (!obj && !which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, DWARVISH_MATTOCK);
+			if (!obj && !which_armor(mon, W_ARMS))
+			    obj = m_carrying(mon, SOFT_MATTOCK);
 			break;
 		case NEED_AXE:
 			/* currently, only 2 types of axe */
 			obj = m_carrying(mon, DWARVISH_BATTLE_AXE);
-			if (!obj)
+			if (!obj || which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, BATTLE_AXE);
+			if (!obj || which_armor(mon, W_ARMS))
+			    obj = m_carrying(mon, CHEMISTRY_SPACE_AXE);
 			if (!obj || which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, MOON_AXE);
 			if (!obj) obj = m_carrying(mon, OBSIDIAN_AXE);
+			if (!obj) obj = m_carrying(mon, SPIRIT_AXE);
+			if (!obj) obj = m_carrying(mon, TUBING_PLIERS);
 			if (!obj) obj = m_carrying(mon, AXE);
 			break;
 		case NEED_PICK_OR_AXE:
 			/* prefer pick for fewer switches on most levels */
 			obj = m_carrying(mon, DWARVISH_MATTOCK);
+			if (!obj) obj = m_carrying(mon, SOFT_MATTOCK);
 			if (!obj) obj = m_carrying(mon, DWARVISH_BATTLE_AXE);
 			if (!obj) obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS)) {
 			    obj = m_carrying(mon, PICK_AXE);
+			    if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
+			    if (!obj) obj = m_carrying(mon, BRONZE_PICK);
 			    if (!obj) obj = m_carrying(mon, MOON_AXE);
+			    if (!obj) obj = m_carrying(mon, CHEMISTRY_SPACE_AXE);
 			    if (!obj) obj = m_carrying(mon, OBSIDIAN_AXE);
+			    if (!obj) obj = m_carrying(mon, SPIRIT_AXE);
+			    if (!obj) obj = m_carrying(mon, TUBING_PLIERS);
 			    if (!obj) obj = m_carrying(mon, AXE);
 			}
 			break;
@@ -3374,6 +3559,9 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (Role_if(PM_BARD) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 10;
+	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 5;
+
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
 
 	if (uarmc && weapon && weapon_type(weapon) == P_HAMMER && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) ) bonus += 5;
@@ -3386,7 +3574,7 @@ struct obj *weapon;
 	}
 
 	/* high heel skill improves whacking damage, but using them in melee does not train the skill --Amy */
-	if (weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT) ) {
+	if (weapon && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == HUGGING_BOOT || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == SPIKED_BATTLE_BOOT || weapon->otyp == INKA_BOOT || weapon->otyp == SOFT_LADY_SHOE || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == DOGSHIT_BOOT) ) {
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: bonus += 1; break;
@@ -3478,7 +3666,7 @@ struct obj *weapon;
 	if (Race_if(PM_ORC) && weapon && (weapon->otyp == ORCISH_DAGGER || weapon->otyp == ORCISH_BOW || weapon->otyp == ORCISH_ARROW || weapon->otyp == ORCISH_SPEAR || weapon->otyp == ORCISH_SHORT_SWORD ) ) bonus += 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && weapon && (weapon->otyp == AKLYS || weapon->otyp == CROSSBOW || weapon->otyp == CROSSBOW_BOLT) ) bonus += 1;
-	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && (weapon->otyp == SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
+	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && (weapon->otyp == SLING || weapon->otyp == INKA_SLING || weapon->otyp == METAL_SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
 	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && weapon->otyp == CATAPULT) bonus += 2;
 
     return bonus;
@@ -3610,11 +3798,23 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(38);
 	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(50);
 
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(38);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(50);
+
 	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(8);
 	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(14);
 	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(20);
 	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(30);
 	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(40);
+
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(40);
 
 	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(8);
 	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(14);
@@ -3652,6 +3852,18 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(18);
 	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(25);
 
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(18);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(25);
+
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(18);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(25);
+
 	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
 	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
 	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
@@ -3669,6 +3881,24 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
 	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(34);
 	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(44);
+
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(34);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(44);
+
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(34);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(44);
+
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(32);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(48);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(68);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(88);
 
 	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(8);
 	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(16);
@@ -3688,11 +3918,23 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
 	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
 	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(4);
 	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(7);
 	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(10);
 	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(8);
 	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(16);
@@ -3706,11 +3948,29 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(30);
 	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(40);
 
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(40);
+
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(40);
+
 	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(6);
 	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(20);
 	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(30);
 	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(40);
+
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(40);
 
 	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_SKILLED) ) bonus += 1;
 	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_EXPERT) ) bonus += rnd(2);
@@ -3811,6 +4071,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(50);
 	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(70);
 
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(36);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(50);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(70);
+
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += 2;
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += 3;
@@ -3883,7 +4149,8 @@ struct obj *obj;
 	/* Should be integrated into oc_subtyp as soon as more skills are 
 	 * invented 
 	 */
-	if (obj->otyp == SADDLE) skill = P_RIDING;
+	if (obj->otyp == LEATHER_SADDLE) skill = P_RIDING;
+	if (obj->otyp == INKA_SADDLE) skill = P_RIDING;
 
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
 	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
@@ -3891,12 +4158,14 @@ struct obj *obj;
 	if (obj->otyp == SCR_CREATE_FAMILIAR) skill = P_PETKEEPING;
 	if (obj->otyp == SCR_TAMING) skill = P_PETKEEPING;
 	if (obj->otyp == TIN_WHISTLE) skill = P_PETKEEPING;
+	if (obj->otyp == GRASS_WHISTLE) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_WHISTLE) skill = P_PETKEEPING;
 	if (obj->otyp == FIRE_HORN) skill = P_PETKEEPING;
 	if (obj->otyp == FROST_HORN) skill = P_PETKEEPING;
 	if (obj->otyp == TEMPEST_HORN) skill = P_PETKEEPING;
 	if (obj->otyp == DARK_MAGIC_WHISTLE) skill = P_PETKEEPING;
-	if (obj->otyp == LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == LEATHER_LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == INKA_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == FIGURINE) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_FLUTE) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;
@@ -3911,6 +4180,8 @@ struct obj *obj;
 	if (obj->otyp == AMULET_OF_UNCHANGING) skill = P_POLYMORPHING;
 	if (obj->otyp == POT_POLYMORPH) skill = P_POLYMORPHING;
 	if (obj->otyp == LENSES) skill = P_SEARCHING;
+	if (obj->otyp == RADIOGLASSES) skill = P_SEARCHING;
+	if (obj->otyp == BOSS_VISOR) skill = P_SEARCHING;
 	if (obj->otyp == STETHOSCOPE) skill = P_SEARCHING;
 	if (obj->otyp == RIN_SEARCHING) skill = P_SEARCHING;
 	if (obj->otyp == RIN_TRAP_REVEALING) skill = P_SEARCHING;

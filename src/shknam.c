@@ -247,7 +247,7 @@ const struct shclass shtypes[] = {
 	 */
 	/* STEPHEN WHITE'S NEW CODE */
 	{"pet store", FOOD_CLASS, 4, D_SHOP, {
-	    {67, -FIGURINE}, {5, -LEASH},{10, -TRIPE_RATION}, {5, -SADDLE},
+	    {67, -FIGURINE}, {5, -LEATHER_LEASH},{10, -TRIPE_RATION}, {5, -LEATHER_SADDLE},
 	    {10, -TIN_WHISTLE}, {3, -MAGIC_WHISTLE}}, shkpet},
 	/* Robin Johnson -- 4% taken from pet store */
 	{"frozen food store", FOOD_CLASS, 4, D_SHOP,

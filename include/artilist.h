@@ -1561,15 +1561,15 @@ A("Penis Safety",			CONDOME,
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Knight's Aid",			SADDLE, /* artifact saddles exist just so that deities can sometimes unrestrict your riding skill */
+A("Knight's Aid",			LEATHER_SADDLE, /* artifact saddles exist just so that deities can sometimes unrestrict your riding skill */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
-A("Vroom Vroom",			SADDLE,
+A("Vroom Vroom",			LEATHER_SADDLE,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
 
-A("Motorcycle Race",			SADDLE,
+A("Motorcycle Race",			LEATHER_SADDLE,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
@@ -2259,7 +2259,7 @@ A("Stormhelm",		HELM_OF_BRILLIANCE, /* elec resistance */
 	NO_ATTK,	COLD(0,0),	NO_CARY, //needs quote
 	0, A_CHAOTIC, NON_PM, NON_PM, 3000L), 
 
-A("Hellrider's Saddle",			SADDLE,
+A("Hellrider's Saddle",			LEATHER_SADDLE,
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_NONE, NON_PM, NON_PM, 4000L), 
@@ -3599,7 +3599,7 @@ A("Pfiiiiiiiiet",				TIN_WHISTLE, /* no specialty - just to unlock petkeeping sk
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
-A("Dogwalk",				LEASH, /* ditto */
+A("Dogwalk",				LEATHER_LEASH, /* ditto */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 

@@ -45,7 +45,7 @@ register struct monst *mon;
 	if (!tunnels(mon->data) || !needspick(mon->data))
 		item1 = TRUE;
 	for(obj = mon->minvent; obj; obj = obj->nobj) {
-		if (!item1 && is_pick(obj) && (obj->otyp != DWARVISH_MATTOCK
+		if (!item1 && is_pick(obj) && ((obj->otyp != DWARVISH_MATTOCK && obj->otyp != SOFT_MATTOCK)
 						|| !which_armor(mon, W_ARMS))) {
 			item1 = TRUE;
 			continue;
@@ -840,6 +840,7 @@ register int after;	/* this is extra fast monster movement */
 	if (!nohands(mtmp->data) && !verysmall(mtmp->data)) {
 		allowflags |= OPENDOOR;
 		if (m_carrying(mtmp, SKELETON_KEY)) allowflags |= BUSTDOOR;
+		if (m_carrying(mtmp, SECRET_KEY)) allowflags |= BUSTDOOR;
 	}
 	if (is_giant(mtmp->data)) allowflags |= BUSTDOOR;
 	if (tunnels(mtmp->data)) allowflags |= ALLOW_DIG;

@@ -527,6 +527,9 @@ giveback:
 	      case RIN_CURSE:
 		    pline("A malignant aura seems to surround the sink...");
 		    break;
+	      case RIN_DIMNESS:
+		    pline("The sink's color appears to be less saturated.");
+		    break;
 
 	      case RIN_DOOM:
 		    pline("You behold the unspeakable visage of the sink!");
@@ -675,7 +678,13 @@ register const char *word;
 		obj->bknown = 1;
 		return(FALSE);
 	}
-	if (obj->otyp == LEASH && obj->leashmon != 0) {
+	if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
+		if (*word)
+			pline_The("leash is tied around your %s.",
+					body_part(HAND));
+		return(FALSE);
+	}
+	if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 		if (*word)
 			pline_The("leash is tied around your %s.",
 					body_part(HAND));

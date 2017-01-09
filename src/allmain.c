@@ -927,6 +927,10 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
+			if ((uwep && uwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
 			if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* dufflepud wearing boots moves at half speed --Amy */
@@ -4643,6 +4647,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_REROLL_ARTIFACT].oc_name = "randomizatsii artefakt";
 	obj_descr[SPE_FINAL_EXPLOSION].oc_name = "okonchatel'nyy vzryv";
 	obj_descr[SPE_CUTTING].oc_name = "rezka";
+	obj_descr[SPE_CURE_DIM].oc_name = "lecheniye tusklost'";
 
 	{
 
@@ -5119,6 +5124,10 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown robe")) OBJ_DESCR(objects[i]) = "korichnevyy khalat";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "camo robe")) OBJ_DESCR(objects[i]) = "kamuflyazhnaya roba";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink robe")) OBJ_DESCR(objects[i]) = "rozovyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inka cloak")) OBJ_DESCR(objects[i]) = "inka plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "viva cloak")) OBJ_DESCR(objects[i]) = "vivat plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "saddle")) OBJ_DESCR(objects[i]) = "yezda instrument";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leash")) OBJ_DESCR(objects[i]) = "instrument domashneye zhivotnoye";
 
 	}
 	}
@@ -5389,6 +5398,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_REROLL_ARTIFACT].oc_name = "parazit tasodifiy";
 	obj_descr[SPE_FINAL_EXPLOSION].oc_name = "oxirgi portlash";
 	obj_descr[SPE_CUTTING].oc_name = "kesish";
+	obj_descr[SPE_CURE_DIM].oc_name = "qattiqlashishi xira";
 
 	{
 
@@ -5864,6 +5874,10 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown robe")) OBJ_DESCR(objects[i]) = "jigarrang to'n";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "camo robe")) OBJ_DESCR(objects[i]) = "kamuflaj to'n";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pink robe")) OBJ_DESCR(objects[i]) = "pushti to'n";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inka cloak")) OBJ_DESCR(objects[i]) = "inka plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "viva cloak")) OBJ_DESCR(objects[i]) = "viva plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "saddle")) OBJ_DESCR(objects[i]) = "binicilik vositasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leash")) OBJ_DESCR(objects[i]) = "uyda oziqlangan vositasi";
 
 	}
 	}

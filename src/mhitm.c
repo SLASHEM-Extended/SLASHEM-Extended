@@ -633,6 +633,9 @@ struct monst *magr, *mdef;
 	    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdef->data) && canseemon(mdef)) {
 		    pline("%s is hurt by the inka string!", s_suffix(Monnam(mdef)));
 	    }
+	    if (obj->otyp == ODOR_SHOT && hates_odor(mdef->data) && canseemon(mdef)) {
+		    pline("%s groans at the odor!", s_suffix(Monnam(mdef)));
+	    }
 	    mdef->mhp -= dam;
 	    if (mdef->mhp < 1) {
 		if (canseemon(mdef))
@@ -1217,6 +1220,10 @@ physical:
                         if(otmp && objects[otmp->otyp].oc_material == INKA && (hates_inka(pd))) { 
                                 tmp += 5;
                                 if (vis) pline("The inka string damages %s!", mon_nam(mdef));
+                        }
+                        if(otmp && otmp->otyp == ODOR_SHOT && (hates_odor(pd))) { 
+                                tmp += rnd(10);
+                                if (vis) pline("The odor beguils %s!", mon_nam(mdef));
                         }
                         /* Stakes do extra dmg agains vamps */
                         if (otmp && (otmp->otyp == WOODEN_STAKE || otmp->oartifact == ART_VAMPIRE_KILLER) && is_vampire(pd)) {

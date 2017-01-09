@@ -1622,6 +1622,10 @@ register int aflag;
 		    uwep->spe : 0;
 	    if (ublindf && ublindf->otyp == LENSES && !Blind)
 		    fund += 2; /* JDS: lenses help searching */
+	    if (ublindf && ublindf->otyp == RADIOGLASSES && !Blind)
+		    fund += 2;
+	    if (ublindf && ublindf->otyp == BOSS_VISOR && !Blind)
+		    fund += 2;
 	    if (uarmh && uarmh->otyp == HELM_OF_DISCOVERY && !Blind)
 		    fund += 1; /* Amy: helm of discovery also helps a bit */
 	    if (fund > 5) fund = 5;

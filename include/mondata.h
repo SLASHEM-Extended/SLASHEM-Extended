@@ -291,6 +291,7 @@
 				 ((ptr)->mlet==S_IMP && (ptr) != &mons[PM_TENGU]))
 #define hates_viva(ptr)		(is_golem(ptr))
 #define hates_inka(ptr)		(is_animal(ptr))
+#define hates_odor(ptr)		(is_animal(ptr) || humanoid(ptr))
 /* Used for conduct with corpses, tins, and digestion attacks */
 /* G_NOCORPSE monsters might still be swallowed as a purple worm */
 /* Maybe someday this could be in mflags... */

@@ -964,6 +964,10 @@ learn()
 	/* JDS: lenses give 50% faster reading; 33% smaller read time */
 	if (delay < end_delay && ublindf && ublindf->otyp == LENSES && rn2(2))
 	    delay++;
+	if (delay < end_delay && ublindf && ublindf->otyp == RADIOGLASSES && rn2(2))
+	    delay++;
+	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
+	    delay++;
 	if (Confusion && !Conf_resist && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {		/* became confused while learning */
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -1114,7 +1118,7 @@ register struct obj *spellbook;
 			/* uncursed - chance to fail */
 			int read_ability = ACURR(A_INT) + 4 + u.ulevel/2
 			    - 2*objects[booktype].oc_level
-			    + ((ublindf && ublindf->otyp == LENSES) ? 2 : 0);
+			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
 			if (Role_if(PM_WIZARD) && read_ability < 20 &&
 			    !confused && !spellbook->spe) {
@@ -2676,6 +2680,8 @@ boolean atme;
 			for(frostmon = fmon; frostmon; frostmon = nxtmon) {
 			    nxtmon = frostmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(frostmon)) continue;
+			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+
 			    if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
 
 				if (canseemon(frostmon) ) {
@@ -3855,7 +3861,7 @@ boolean atme;
 			     objC->otyp == SLEEPSTONE ||
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
-			     (objC->otyp == LEASH && objC->leashmon)) && !stack_too_big(objC) ) {
+			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) ) && !stack_too_big(objC) ) {
 			    	blessorcurse(objC, 2);
 			}
 		}
@@ -4125,6 +4131,9 @@ boolean atme;
 		break;
 	case SPE_CURE_STUN:
 		make_stunned(0L,TRUE);
+		break;
+	case SPE_CURE_DIM:
+		make_dimmed(0L,TRUE);
 		break;
 	case SPE_CURE_BURN:
 		make_burned(0L,TRUE);
@@ -6441,6 +6450,7 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
+	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
 

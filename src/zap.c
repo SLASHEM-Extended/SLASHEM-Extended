@@ -2602,10 +2602,11 @@ poly_obj(obj, id)
 		otmp->owornmask &= ~W_ARMF;
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
-	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != CONDOME &&
-	      otmp->otyp != TOWEL && otmp->otyp != LENSES)
+	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != SOFT_CHASTITY_BELT &&
+	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR)
 		otmp->owornmask &= ~W_TOOL;
-	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj_location == OBJ_INVENT) {
 		remove_worn_item(obj, TRUE);
 		setworn(otmp, otmp->owornmask);
@@ -2626,7 +2627,7 @@ poly_obj(obj, id)
 	else {
 	/* preserve the mask in case being used by something else */
 	otmp->owornmask = obj->owornmask;
-	    if (otmp->owornmask & W_SADDLE && otmp->otyp != SADDLE) {
+	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE) {
 		struct monst *mtmp = obj->ocarry;
 		dismount_steed(DISMOUNT_THROWN);
 		otmp->owornmask &= ~W_SADDLE;

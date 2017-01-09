@@ -238,6 +238,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
+		if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
+		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
@@ -335,6 +337,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
+			Strcat(monbuf, "warned of covetous monsters");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
 			Strcat(monbuf, "warned of covetous monsters");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }

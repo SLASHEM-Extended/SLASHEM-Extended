@@ -358,7 +358,11 @@ gotobj:
 	    }
 	}
 
-	if (otmp->otyp == LEASH && otmp->leashmon) {
+	if (otmp->otyp == LEATHER_LEASH && otmp->leashmon) {
+	    if (monkey_business && otmp->cursed) goto cant_take;
+	    o_unleash(otmp);
+	}
+	if (otmp->otyp == INKA_LEASH && otmp->leashmon) {
 	    if (monkey_business && otmp->cursed) goto cant_take;
 	    o_unleash(otmp);
 	}

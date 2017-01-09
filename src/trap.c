@@ -4610,7 +4610,8 @@ newegomon:
 		    recursive_mine = TRUE;
 		    (void) steedintrap(trap, (struct obj *)0);
 		    recursive_mine = FALSE;
-		    saddle = sobj_at(SADDLE,u.ux, u.uy);
+		    saddle = sobj_at(LEATHER_SADDLE,u.ux, u.uy);
+		    if (!saddle) saddle = sobj_at(INKA_SADDLE,u.ux, u.uy);
 		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
 		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
 		    exercise(A_DEX, FALSE);
@@ -10393,6 +10394,8 @@ register boolean force, here;
 
 		if(obj->otyp == CAN_OF_GREASE && obj->spe > 0) {
 			continue;
+		} else if(obj->otyp == LUBRICANT_CAN && obj->spe > 0) {
+			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
 		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
@@ -11547,13 +11550,15 @@ struct trap *ttmp;
 
 	bad_tool = (obj->cursed ||
 			((obj->otyp != POT_OIL || obj->lamplit) &&
-			 (obj->otyp != CAN_OF_GREASE || !obj->spe)));
+			 ((obj->otyp != CAN_OF_GREASE && obj->otyp != LUBRICANT_CAN) || !obj->spe)));
 
 	fails = try_disarm(ttmp, bad_tool);
 	if (fails < 2) return fails;
 
 	/* successfully used oil or grease to fix squeaky board */
 	if (obj->otyp == CAN_OF_GREASE) {
+	    consume_obj_charge(obj, TRUE);
+	} else if (obj->otyp == LUBRICANT_CAN) {
 	    consume_obj_charge(obj, TRUE);
 	} else {
 	    useup(obj);	/* oil */

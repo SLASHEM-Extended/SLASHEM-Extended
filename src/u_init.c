@@ -290,8 +290,8 @@ static struct trobj Abuser[] = {
 	{ LEATHER_JACKET, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ KICKING_BOOTS, 3, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ AMULET_OF_POWER, 0, AMULET_CLASS, 1, UNDEF_BLESS },
-	{ LEASH, 0, TOOL_CLASS, 1, UNDEF_BLESS },
-	{ SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_LEASH, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ CAN_OF_GREASE, 50, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ SCR_PUNISHMENT, 0, SCROLL_CLASS, 1, 0 },
 	{ SPE_GODMODE, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
@@ -426,8 +426,8 @@ static struct trobj SlaveMaster[] = {
 	{ APPLE, 0, FOOD_CLASS, 3, 0 },
 	{ ORANGE, 0, FOOD_CLASS, 1, 0 },
 	{ TIN, 1, FOOD_CLASS, 2, 0 },
-	{ LEASH, 2, TOOL_CLASS, 1, 0 },
-	{ SADDLE, 0, TOOL_CLASS, 1, 0 },
+	{ LEATHER_LEASH, 2, TOOL_CLASS, 1, 0 },
+	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, 0 },
 	{ MAGIC_WHISTLE, 0, TOOL_CLASS, 1, 0 },
 
   	{ 0, 0, 0, 0, 0 }
@@ -603,7 +603,7 @@ static struct trobj Zookeeper[] = {
 	{ BULLWHIP, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ TRIPE_RATION, 0, TOOL_CLASS, 5, UNDEF_BLESS },
 	{ SCR_TAMING, UNDEF_SPE, SCROLL_CLASS, 3, 1 },
-	{ LEASH, 0, TOOL_CLASS, 3, 0 },
+	{ LEATHER_LEASH, 0, TOOL_CLASS, 3, 0 },
 	{ 0, 0, 0, 0, 0, }
 };
 static struct trobj Firefighter[] = {
@@ -1082,7 +1082,7 @@ static struct trobj Chevalier[] = {
 	{ SPRIG_OF_WOLFSBANE, 0, FOOD_CLASS, 1, 1 },
 	{ SPE_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, 1 },
-	{ SADDLE, 0, TOOL_CLASS, 1, 1 },
+	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, 1 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1201,7 +1201,7 @@ static struct trobj Samurai[] = {
 static struct trobj Transvestite[] = {
 	{ WEDGED_LITTLE_GIRL_SANDAL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ WEDGE_SANDALS, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1223,7 +1223,7 @@ static struct trobj Topmodel[] = {
 	{ RIFLE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_PEEP_TOES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -2438,7 +2438,7 @@ static struct trobj Xtra_fopod[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj Leash[] = {
-	{ LEASH, 0, TOOL_CLASS, 1, 0 },
+	{ LEATHER_LEASH, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj Towel[] = {
@@ -22557,6 +22557,15 @@ register struct trobj *trop;
             if (objX->otyp == BODYGLOVE && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == BEAUTIFUL_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == RADIOACTIVE_UNDERGARMENT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == KYRT_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -22741,6 +22750,15 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == BODYGLOVE && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == BEAUTIFUL_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == RADIOACTIVE_UNDERGARMENT && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == KYRT_SHIRT && !issoviet ) {

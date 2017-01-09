@@ -3398,6 +3398,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 	} else if(uwep) {
 		switch(uwep->otyp) {
 		case TIN_OPENER:
+		case BUDO_NO_SASU:
 			tmp = 1;
 			break;
 		case DAGGER:
@@ -3409,10 +3410,14 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case CRYSKNIFE:
 		case DARK_ELVEN_DAGGER:
 		case GREAT_DAGGER:
+		case RADIOACTIVE_DAGGER:
+		case SECRETION_DAGGER:
 		case DROVEN_DAGGER:
 			tmp = 3;
 			break;
 		case PICK_AXE:
+		case CONGLOMERATE_PICK:
+		case BRONZE_PICK:
 		case AXE:
 			tmp = 6;
 			break;
@@ -4327,7 +4332,9 @@ eatspecial() /* called after eating non-food */
 	}
 	if (otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS)
 		eataccessory(otmp);
-	else if (otmp->otyp == LEASH && otmp->leashmon)
+	else if (otmp->otyp == LEATHER_LEASH && otmp->leashmon)
+		o_unleash(otmp);
+	else if (otmp->otyp == INKA_LEASH && otmp->leashmon)
 		o_unleash(otmp);
 
 	/* KMH -- idea by "Tommy the Terrorist" */

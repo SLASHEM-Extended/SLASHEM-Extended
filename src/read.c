@@ -246,6 +246,7 @@ doread()
 	    return(1);
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == KYRT_SHIRT
+	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == RADIOACTIVE_UNDERGARMENT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
@@ -1006,6 +1007,7 @@ int curse_bless;
 	    case MAGIC_MARKER:
 	    case FELT_TIP_MARKER:
 	    case TINNING_KIT:
+	    case BINNING_KIT:
 	    case EXPENSIVE_CAMERA:
 
 		n = (int)obj->recharged;
@@ -1133,6 +1135,7 @@ int curse_bless;
 	    case HORN_OF_PLENTY:
 	    case BAG_OF_TRICKS:
 	    case CAN_OF_GREASE:
+	    case LUBRICANT_CAN:
 	    case CHEMISTRY_SET:
 
 		n = (int)obj->recharged;
@@ -2808,7 +2811,7 @@ register struct obj	*sobj;
 			     obj->otyp == SLEEPSTONE ||
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
-			     (obj->otyp == LEASH && obj->leashmon)) && !stack_too_big(obj) ) {
+			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
 			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj);
 			}

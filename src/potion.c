@@ -2295,6 +2295,19 @@ peffects(otmp)
 					    rn1(100, 100 - 25 * bcsign(otmp))), FALSE);
 
 		break;
+	case POT_DIMNESS:
+		if(!Dimmed) {
+		    if (Hallucination) {
+			pline("It's antidepressiva - no, wait, it's the opposite of it... oh no! Your life is worthless and you want to jump off a bridge!");
+			unkn++;
+		    } else
+			pline("This tastes like bitter medicine, and your senses are dulled!");
+		} else	nothing++;
+
+		make_dimmed(itimeout_incr(HDimmed,
+					    rn1(100, 100 - 25 * bcsign(otmp))), FALSE);
+
+		break;
 	case POT_STUNNING:
 		if(!Stunned) {
 		    if (Hallucination) {
@@ -3735,6 +3748,7 @@ boolean your_fault;
 		}
 		break;
 
+	case POT_DIMNESS:
 	case POT_FEAR: /* monster flees --Amy */
 		if(!is_undead(mon->data) && (!mon->egotype_undead) && !resist(mon, POTION_CLASS, 0, NOTELL))  {
 		     monflee(mon, rnd(10), FALSE, TRUE);
@@ -4270,6 +4284,11 @@ register struct obj *obj;
 		if(!Burned)
 			pline("You caught fire!");
 		make_burned(itimeout_incr(HBurned, rnd(30)), FALSE);
+		break;
+	case POT_DIMNESS:
+		if(!Dimmed)
+			pline("You are dimmed!");
+		make_dimmed(itimeout_incr(HDimmed, rnd(30)), FALSE);
 		break;
 	case POT_STUNNING:
 		if(!Stunned)
@@ -5420,11 +5439,17 @@ register struct obj *obj;
 		case MAGIC_HARP:
 			obj->otyp = WOODEN_HARP;
 			break;
-		case LEASH:
-			obj->otyp = SADDLE;
+		case LEATHER_LEASH:
+			obj->otyp = LEATHER_SADDLE;
 			break;
-		case SADDLE:
-			obj->otyp = LEASH;
+		case LEATHER_SADDLE:
+			obj->otyp = LEATHER_LEASH;
+			break;
+		case INKA_LEASH:
+			obj->otyp = INKA_SADDLE;
+			break;
+		case INKA_SADDLE:
+			obj->otyp = INKA_LEASH;
 			break;
 		case TIN_OPENER:
 			obj->otyp = TINNING_KIT;
@@ -5562,12 +5587,13 @@ register struct obj *obj;
 		owornmask &= ~W_ARMF;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
-	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CONDOME &&
-	      obj->otyp != TOWEL && obj->otyp != LENSES)
+	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
+	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
 	    obj->otyp = otyp;
-	    if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	    remove_worn_item(obj, TRUE);
 	    obj->otyp = otyp2;
 	    obj->owornmask = owornmask;

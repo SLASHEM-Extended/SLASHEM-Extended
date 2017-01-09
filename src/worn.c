@@ -353,7 +353,9 @@ boolean on, silently;
 	break;
     }
 
-	if (!on && mon == u.usteed && obj->otyp == SADDLE)
+	if (!on && mon == u.usteed && obj->otyp == LEATHER_SADDLE)
+	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == INKA_SADDLE)
 	    dismount_steed(DISMOUNT_FELL);
 
     /* if couldn't see it but now can, or vice versa, update display */

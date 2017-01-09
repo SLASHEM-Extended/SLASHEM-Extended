@@ -64,7 +64,11 @@ lock_action()
 	/* otherwise we're trying to unlock it */
 	else if (xlock.picktyp == LOCK_PICK)
 		return actions[3];	/* "picking the lock" */
+	else if (xlock.picktyp == HAIRCLIP)
+		return actions[3];	/* "picking the lock" */
 	else if (xlock.picktyp == CREDIT_CARD)
+		return actions[3];	/* same as lock_pick */
+	else if (xlock.picktyp == DATA_CHIP)
 		return actions[3];	/* same as lock_pick */
 	else if (xlock.door)
 		return actions[0];	/* "unlocking the door" */
@@ -322,8 +326,9 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    static char no_longer[] = "Unfortunately, you can no longer %s %s.";
 
 	    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
-		const char *what = (picktyp == LOCK_PICK) ? "pick" : "key";
+		const char *what = (picktyp == LOCK_PICK) ? "pick" : (picktyp == HAIRCLIP) ? "hairclip" : "key";
 		if (picktyp == CREDIT_CARD) what = "card";
+		if (picktyp == DATA_CHIP) what = "chip";
 		pline(no_longer, "hold the", what);
 		reset_pick();
 		return 0;
@@ -346,7 +351,10 @@ pick_lock(pickp) /* pick a lock with a given object */
 	}
 
 	if((picktyp != LOCK_PICK &&
+	    picktyp != HAIRCLIP &&
 	    picktyp != CREDIT_CARD &&
+	    picktyp != DATA_CHIP &&
+	    picktyp != SECRET_KEY &&
 	    picktyp != SKELETON_KEY)) {
 		impossible("picking lock with object %d?", picktyp);
 		return(0);
@@ -384,7 +392,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    it = 0;
 		    if (otmp->obroken) verb = "fix";
 		    else if (!otmp->olocked) verb = "lock", it = 1;
-		    else if (picktyp != LOCK_PICK) verb = "unlock", it = 1;
+		    else if (picktyp != LOCK_PICK && picktyp != HAIRCLIP) verb = "unlock", it = 1;
 		    else verb = "pick";
 		    Sprintf(qbuf, "There is %s here, %s %s?",
 		    	    safe_qbuf("", sizeof("There is  here, unlock its lock?"),
@@ -409,6 +417,10 @@ pick_lock(pickp) /* pick a lock with a given object */
 			You_cant("do that with %s.", doname(pick));
 			return 0;
 		    }
+		    else if (picktyp == DATA_CHIP && !otmp->olocked) {
+			You_cant("do that with %s.", doname(pick));
+			return 0;
+		    }
 		    switch(picktyp) {
 			case CREDIT_CARD:
 			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
@@ -419,7 +431,17 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
+			case DATA_CHIP:
+			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+				Your("data chip breaks in half!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(1);
+			    }
+			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    break;
 			case LOCK_PICK:
+			case HAIRCLIP:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60: Role_if(PM_ROGUE) ? 40 : 30) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
@@ -430,6 +452,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH);
 			    break;
 			case SKELETON_KEY:
+			case SECRET_KEY:
 			    if(!rn2(15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
@@ -496,6 +519,10 @@ pick_lock(pickp) /* pick a lock with a given object */
 			You_cant("lock a door with a credit card.");
 			return(0);
 		    }
+		    if(picktyp == DATA_CHIP && !(door->doormask & D_LOCKED)) {
+			You_cant("lock a door with a data chip.");
+			return(0);
+		    }
 		    /* ALI - Artifact doors */
 		    key = artifact_door(cc.x, cc.y);
 
@@ -516,7 +543,18 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
+			case DATA_CHIP:
+			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
+				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+				You("break your chip off in the door!");
+				useup(pick);
+				*pickp = (struct obj *)0;
+				return(0);
+			    }
+			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    break;
 			case LOCK_PICK:
+			case HAIRCLIP:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60 : Role_if(PM_ROGUE) ? 40 : 30) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
@@ -527,6 +565,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH);
 			    break;
 			case SKELETON_KEY:
+			case SECRET_KEY:
 			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
@@ -543,7 +582,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    /* ALI - Artifact doors */
 		    xlock.key = pick->oartifact;
 		    if (key && xlock.key != key) {
-			if (picktyp == SKELETON_KEY) {
+			if (picktyp == SKELETON_KEY || picktyp == SECRET_KEY) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
 			}
@@ -601,7 +640,10 @@ doforce()		/* try to force a chest with your weapon */
 		return(0);
 	    }
 	} else if(uwep->otyp == LOCK_PICK ||
+	    uwep->otyp == HAIRCLIP ||
 	    uwep->otyp == CREDIT_CARD ||
+	    uwep->otyp == DATA_CHIP ||
+	    uwep->otyp == SECRET_KEY ||
 	    uwep->otyp == SKELETON_KEY) {
 	    	return pick_lock(&uwep);
 	/* not a lightsaber or lockpicking device*/

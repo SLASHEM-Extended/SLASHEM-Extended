@@ -205,7 +205,8 @@ in_trouble()
 	if (worst_cursed_item()) return TROUBLE_CURSED_ITEMS;
 	if (u.usteed) {	/* can't voluntarily dismount from a cursed saddle */
 	    otmp = which_armor(u.usteed, W_SADDLE);
-	    if (Cursed_obj(otmp, SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, LEATHER_SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, INKA_SADDLE)) return TROUBLE_SADDLE;
 	}
 
 	if (Blinded > 1 && haseyes(youmonst.data)) return(TROUBLE_BLIND);

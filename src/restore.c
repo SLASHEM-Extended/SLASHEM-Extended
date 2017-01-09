@@ -1185,7 +1185,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	uwep = 0;	/* clear it and have setuwep() reinit */
 	setuwep(otmp,FALSE);	/* (don't need any null check here) */
 	/* KMH, balance patch -- added fishing pole */
-	if (!uwep || uwep->otyp == PICK_AXE || uwep->otyp == GRAPPLING_HOOK ||
+	if (!uwep || uwep->otyp == PICK_AXE || uwep->otyp == CONGLOMERATE_PICK || uwep->otyp == BRONZE_PICK || uwep->otyp == GRAPPLING_HOOK ||
 		     uwep->otyp == FISHING_POLE)
 	    unweapon = TRUE;
 

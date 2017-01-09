@@ -859,6 +859,8 @@ Cloak_on()
 	case DUMMY_WINGS:
 	case FUR:
 	case HIDE:
+	case CLOAK_OF_PEACE:
+	case CLOAK_OF_DIMNESS:
 	case DISPLACER_BEAST_HIDE:
 	case THE_NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
@@ -1742,6 +1744,8 @@ Cloak_off()
 	case DUMMY_WINGS:
 	case FUR:
 	case HIDE:
+	case CLOAK_OF_PEACE:
+	case CLOAK_OF_DIMNESS:
 	case DISPLACER_BEAST_HIDE:
 	case THE_NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
@@ -2512,6 +2516,13 @@ Shield_on()
 	case SILVER_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
+	case PAPER_SHIELD:
+	case ICKY_SHIELD:
+	case HEAVY_SHIELD:
+	case BARRIER_SHIELD:
+	case TROLL_SHIELD:
+	case TARRIER:
+	case SHIELD_OF_PEACE:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
 	case VENOM_SHIELD:
@@ -2663,6 +2674,13 @@ Shield_off()
 	case SILVER_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
+	case PAPER_SHIELD:
+	case ICKY_SHIELD:
+	case HEAVY_SHIELD:
+	case BARRIER_SHIELD:
+	case TROLL_SHIELD:
+	case TARRIER:
+	case SHIELD_OF_PEACE:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
 	case VENOM_SHIELD:
@@ -3587,7 +3605,7 @@ register struct obj *otmp;
 	    if (was_blind) {
 		/* "still cannot see" makes no sense when removing lenses
 		   since they can't have been the cause of your blindness */
-		if (otmp->otyp != LENSES)
+		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR)
 		    You("still cannot see.");
 	    } else {
 		changed = TRUE;	/* !was_blind */
@@ -4237,7 +4255,7 @@ doputon()
 		Your("%s%s are full, and you're already wearing an amulet and %s.",
 			humanoid(youmonst.data) ? "ring-" : "",
 			makeplural(body_part(FINGER)),
-			ublindf->otyp==LENSES ? "some lenses" : ublindf->otyp==CONDOME ? "a condome" : "a blindfold");
+			ublindf->otyp==LENSES ? "some lenses" : ublindf->otyp==RADIOGLASSES ? "some lenses" : ublindf->otyp==BOSS_VISOR ? "some lenses" : ublindf->otyp==CONDOME ? "a condome" : ublindf->otyp==SOFT_CHASTITY_BELT ? "a condome" : "a blindfold");
 		return(0);
 	}
 	otmp = getobj(accessories, "put on");
@@ -4329,13 +4347,15 @@ doputon()
 					body_part(FACE));
 			else if (ublindf->otyp == CONDOME)
 					already_wearing("a condome");
-			else if (ublindf->otyp == BLINDFOLD) {
-				if (otmp->otyp == LENSES)
+			else if (ublindf->otyp == SOFT_CHASTITY_BELT)
+					already_wearing("a condome");
+			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
+				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == BOSS_VISOR)
 					already_wearing2("lenses", "a blindfold");
 				else
 					already_wearing("a blindfold");
-			} else if (ublindf->otyp == LENSES) {
-				if (otmp->otyp == BLINDFOLD)
+			} else if (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR) {
+				if (otmp->otyp == BLINDFOLD || otmp->otyp == EYECLOSER || otmp->otyp == DRAGON_EYEPATCH)
 					already_wearing2("a blindfold", "some lenses");
 				else
 					already_wearing("some lenses");
@@ -4343,7 +4363,7 @@ doputon()
 				already_wearing(something); /* ??? */
 			return(0);
 		}
-		if (otmp->otyp != BLINDFOLD && otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != CONDOME) {
+		if (otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != CONDOME && otmp->otyp != SOFT_CHASTITY_BELT) {
 			You_cant("wear that!");
 			return(0);
 		}

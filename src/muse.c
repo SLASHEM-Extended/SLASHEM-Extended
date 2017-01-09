@@ -2872,6 +2872,7 @@ struct monst *mtmp;
 #define MUSE_WAN_BUBBLEBEAM 115
 #define MUSE_WAN_GOOD_NIGHT 116
 #define MUSE_SCR_VILENESS 117
+#define MUSE_POT_DIMNESS 118
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -3141,6 +3142,11 @@ struct monst *mtmp;
 		if(obj->otyp == POT_FIRE) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_FIRE;
+		}
+		nomore(MUSE_POT_DIMNESS);
+		if(obj->otyp == POT_DIMNESS) {
+			m.offensive = obj;
+			m.has_offense = MUSE_POT_DIMNESS;
 		}
 		nomore(MUSE_POT_NUMBNESS);
 		if(obj->otyp == POT_NUMBNESS) {
@@ -6637,6 +6643,7 @@ newboss:
 	case MUSE_POT_ICE:
 	case MUSE_POT_FEAR:
 	case MUSE_POT_FIRE:
+	case MUSE_POT_DIMNESS:
 	case MUSE_POT_NUMBNESS:
 	case MUSE_POT_URINE:
 	case MUSE_POT_SLIME:
@@ -6715,7 +6722,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(215)) {
+	switch (rn2(222)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -6932,6 +6939,13 @@ struct monst *mtmp;
 		case 212: return WAN_BUBBLEBEAM;
 		case 213: return WAN_GOOD_NIGHT;
 		case 214: return SCR_VILENESS;
+		case 215: return POT_DIMNESS;
+		case 216: return POT_DIMNESS;
+		case 217: return POT_DIMNESS;
+		case 218: return POT_DIMNESS;
+		case 219: return POT_DIMNESS;
+		case 220: return POT_DIMNESS;
+		case 221: return POT_DIMNESS;
 
 	}
 	/*NOTREACHED*/
@@ -8483,6 +8497,7 @@ struct obj *obj;
 		    typ == POT_ICE ||
 		    typ == POT_FEAR ||
 		    typ == POT_FIRE ||
+		    typ == POT_DIMNESS ||
 		    typ == POT_CURE_WOUNDS ||
 		    typ == POT_CURE_SERIOUS_WOUNDS ||
 		    typ == POT_CURE_CRITICAL_WOUNDS ||
@@ -8513,6 +8528,10 @@ struct obj *obj;
 
 	case TOOL_CLASS:
 	    if (typ == PICK_AXE)
+		return (boolean)needspick(mon->data);
+	    if (typ == CONGLOMERATE_PICK)
+		return (boolean)needspick(mon->data);
+	    if (typ == BRONZE_PICK)
 		return (boolean)needspick(mon->data);
 	    if (typ == UNICORN_HORN)
 		return (boolean)(!obj->cursed && !is_unicorn(mon->data));

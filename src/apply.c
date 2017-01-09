@@ -29,6 +29,7 @@ STATIC_DCL void FDECL(use_lamp, (struct obj *));
 STATIC_DCL int FDECL(use_torch, (struct obj *));
 STATIC_DCL void FDECL(light_cocktail, (struct obj *));
 STATIC_DCL void FDECL(use_tinning_kit, (struct obj *));
+STATIC_DCL void FDECL(use_binning_kit, (struct obj *));
 STATIC_DCL void FDECL(use_figurine, (struct obj **));
 STATIC_DCL void FDECL(use_grease, (struct obj *));
 STATIC_DCL void FDECL(use_trap, (struct obj *));
@@ -140,7 +141,7 @@ use_towel(obj)
 			      (old ? "has more" : "now has"));
 			make_blinded(Blinded + (long)u.ucreamed - old, TRUE);
 		    } else {
-			const char *what = (ublindf->otyp == LENSES) ?
+			const char *what = (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR) ?
 					    "lenses" : "blindfold";
 			if (ublindf->cursed) {
 			    You("push your %s %s.", what,
@@ -289,14 +290,14 @@ use_stethoscope(obj)
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
-			if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+			if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 			mstatuslinebl(u.ustuck);
 			else
 			mstatusline(u.ustuck);
 
 		} else
 
-			if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+			if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
 			else
 			mstatusline(u.usteed);
@@ -306,7 +307,7 @@ use_stethoscope(obj)
 	} else
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
-		if (obj->blessed && !issoviet)
+		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
 		mstatusline(u.ustuck);
@@ -314,7 +315,7 @@ use_stethoscope(obj)
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
 
-		if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
 		mstatusline(u.ustuck);
@@ -333,7 +334,17 @@ use_stethoscope(obj)
 		    pline_The("%s seems healthy enough.", surface(u.ux,u.uy));
 		return res;
 	} else if (obj->cursed && !rn2(2)) {
-		You_hear("your heart beat.");
+		if (obj->otyp == STETHOSCOPE) You_hear("your heart beat.");
+		else {
+			pline_The("stethoscope pierces your heart!");
+			if (u.uhpmax > 0) u.uhpmax--;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (Upolyd) {
+				u.mhmax--;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			losehp(rnd(u.ulevel * 5), "evil stethoscope", KILLED_BY_AN);
+		}
 		return res;
 	}
 	if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
@@ -356,7 +367,7 @@ use_stethoscope(obj)
 		return 0;
 		}
 
-		if ((obj->blessed || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
 		else
 		mstatusline(mtmp);
@@ -501,7 +512,7 @@ number_leashed()
 	register struct obj *obj;
 
 	for(obj = invent; obj; obj = obj->nobj)
-		if(obj->otyp == LEASH && obj->leashmon != 0) i++;
+		if((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH) && obj->leashmon != 0) i++;
 	return(i);
 }
 
@@ -531,7 +542,7 @@ boolean feedback;
 		Your("leash falls slack.");
 	}
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == LEASH &&
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) &&
 				otmp->leashmon == (int)mtmp->m_id)
 			otmp->leashmon = 0;
 	mtmp->mleashed = 0;
@@ -544,7 +555,7 @@ unleash_all()		/* player is about to die (for bones) */
 	register struct monst *mtmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == LEASH) otmp->leashmon = 0;
+		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) otmp->leashmon = 0;
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		mtmp->mleashed = 0;
 }
@@ -661,7 +672,7 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if(otmp->otyp == LEASH && otmp->leashmon == (int)mtmp->m_id)
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) && otmp->leashmon == (int)mtmp->m_id)
 			return(otmp);
 		otmp = otmp->nobj;
 	}
@@ -683,7 +694,7 @@ next_to_u()
 			if (distu(mtmp->mx,mtmp->my) > 2) mnexto(mtmp);
 			if (distu(mtmp->mx,mtmp->my) > 2) {
 			    for(otmp = invent; otmp; otmp = otmp->nobj)
-				if(otmp->otyp == LEASH &&
+				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) &&
 					otmp->leashmon == (int)mtmp->m_id) {
 				    if(otmp->cursed) return(FALSE);
 				    You_feel("%s leash go slack.",
@@ -710,7 +721,7 @@ register xchar x, y;
 	register struct monst *mtmp;
 
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if (otmp->otyp != LEASH || otmp->leashmon == 0) continue;
+	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != INKA_LEASH) || otmp->leashmon == 0) continue;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		if ((int)mtmp->m_id == otmp->leashmon) break; 
@@ -726,7 +737,7 @@ register xchar x, y;
 		    ;	/* still close enough */
 		} else if (otmp->cursed && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
 		    if (um_dist(mtmp->mx, mtmp->my, 5) ||
-			    (mtmp->mhp -= rnd(2)) <= 0) {
+			    (mtmp->mhp -= rnd((otmp->otyp == LEATHER_LEASH ? 2 : 20))) <= 0) {
 			long save_pacifism = u.uconduct.killer;
 
 			Your("leash chokes %s to death!", mon_nam(mtmp));
@@ -744,8 +755,13 @@ register xchar x, y;
 		    }
 		} else {
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
-			pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
-			m_unleash(mtmp, FALSE);
+			if (otmp->otyp == LEATHER_LEASH) {
+				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
+				m_unleash(mtmp, FALSE);
+			} else {
+				pline("%s warps to you!", Monnam(mtmp));
+				mnexto(mtmp);
+			}
 		    } else {
 			You("pull on the leash.");
 			if (mtmp->data->msound != MS_SILENT)
@@ -1695,7 +1711,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		killer = "a sharp-edged sword";		/* the thing that killed you */
 		killer_format = KILLED_BY;
@@ -1820,6 +1836,114 @@ register struct obj *obj;
 	    /* WAC You know the type of tinned corpses */
 	    if (mvitals[corpse->corpsenm].eaten < 255) 
 	    	mvitals[corpse->corpsenm].eaten++;
+	    can->spe = -1;  /* Mark tinned tins. No spinach allowed... */
+	    can->selfmade = TRUE;
+	    if (carried(corpse)) {
+		if (corpse->unpaid)
+		    verbalize(you_buy_it);
+		useup(corpse);
+	    } else if (mcarried(corpse)) {
+		m_useup(corpse->ocarry, corpse);
+	    } else {
+		if (costly_spot(corpse->ox, corpse->oy) && !corpse->no_charge)
+		    verbalize(you_buy_it);
+		useupf(corpse, 1L);
+	    }
+	    can = hold_another_object(can, "You make, but cannot pick up, %s.",
+				      doname(can), (const char *)0);
+		use_skill(P_DEVICES,1);
+	} else impossible("Tinning failed.");
+}
+
+STATIC_OVL void
+use_binning_kit(obj)
+register struct obj *obj;
+{
+	register struct obj *corpse, *can;
+/*
+	char *badmove;
+ */
+	/* This takes only 1 move.  If this is to be changed to take many
+	 * moves, we've got to deal with decaying corpses...
+	 */
+	if (obj->spe <= 0) {
+		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		return;
+	}
+	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;
+	if (corpse->otyp == CORPSE && (corpse->oeaten || corpse->odrained)) {
+		You("cannot tin %s which is partly eaten.",something);
+		return;
+	}
+	if (!tinnable(corpse)) {
+		You_cant("tin that!");
+		return;
+	}
+	if (touch_petrifies(&mons[corpse->corpsenm])
+		&& !Stone_resistance && (!uarmg || FingerlessGloves) ) {
+	    char kbuf[BUFSZ];
+
+	    if (poly_when_stoned(youmonst.data))
+		You("tin %s without wearing gloves.",
+			an(mons[corpse->corpsenm].mname));
+	    else {
+		pline("Tinning %s without wearing gloves is a fatal mistake...",
+			an(mons[corpse->corpsenm].mname));
+		Sprintf(kbuf, "trying to tin %s without gloves",
+			an(mons[corpse->corpsenm].mname));
+	    }
+	    instapetrify(kbuf);
+	}
+	if (is_rider(&mons[corpse->corpsenm])) {
+		(void) revive_corpse(corpse, FALSE);
+		verbalize("Yes...  But War does not preserve its enemies...");
+		return;
+	}
+	if (is_deadlysin(&mons[corpse->corpsenm])) {
+		(void) revive_corpse(corpse, FALSE);
+		verbalize("Sealing such a powerful evil in a can is never a good idea.");
+		return;
+	}
+	if (mons[corpse->corpsenm].cnutrit == 0) {
+		pline(Hallucination ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
+		return;
+	}
+
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+
+	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
+
+	if ((can = mksobj(TIN, FALSE, FALSE)) != 0) {
+	    static const char you_buy_it[] = "You tin it, you bought it!";
+
+	    can->corpsenm = NON_PM;
+	    can->cursed = obj->cursed;
+	    can->blessed = obj->blessed;
+
+		/* evil patch idea by hackedhead: eroded tinning kits are less reliable */
+		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(2) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(10) ) {
+			can->cursed = 1; can->blessed = 0;
+		}
+
+	    can->owt = weight(can);
+	    can->known = 1;
 	    can->spe = -1;  /* Mark tinned tins. No spinach allowed... */
 	    can->selfmade = TRUE;
 	    if (carried(corpse)) {
@@ -2326,8 +2450,10 @@ struct obj *obj;
 		if (otmp != &zeroobj) {
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
+			if (obj && obj->otyp == LUBRICANT_CAN) otmp->greased += rn2(3);
 			if (otmp->greased < 3) otmp->greased += 1;
 			if (obj && obj->oartifact == ART_VIBE_LUBE) otmp->greased = 3;
+			if (otmp->greased > 3) otmp->greased = 3; /* fail safe */
 			if (obj->cursed && !nohands(youmonst.data)) {
 			    incr_itimeout(&Glib, rnd(15));
 			    pline("Some of the grease gets all over your %s.",
@@ -4003,8 +4129,13 @@ doapply()
 
 	switch(obj->otyp){
 	case BLINDFOLD:
+	case EYECLOSER:
+	case DRAGON_EYEPATCH:
 	case LENSES:
+	case RADIOGLASSES:
+	case BOSS_VISOR:
 	case CONDOME:
+	case SOFT_CHASTITY_BELT:
 		if (obj == ublindf) {
 		    if (!cursed(obj)) Blindf_off(obj);
 		} else if (!ublindf)
@@ -4012,7 +4143,10 @@ doapply()
 		else You("are already %s.",
 			ublindf->otyp == TOWEL ?     "covered by a towel" :
 			ublindf->otyp == BLINDFOLD ? "wearing a blindfold" :
+			ublindf->otyp == EYECLOSER ? "wearing a blindfold" :
+			ublindf->otyp == DRAGON_EYEPATCH ? "wearing a blindfold" :
 			ublindf->otyp == CONDOME ? "wearing a condome" :
+			ublindf->otyp == SOFT_CHASTITY_BELT ? "wearing a condome" :
 						     "wearing lenses");
 		break;
 	case CREAM_PIE:
@@ -4050,12 +4184,25 @@ doapply()
 	case CAN_OF_GREASE:
 		use_grease(obj);
 		break;
+	case LUBRICANT_CAN:
+		use_grease(obj);
+		if (!rn2(4)) {
+			pline("Klack! The lid slides over your %s, and %s is shooting out.", body_part(HAND), body_part(BLOOD));
+			losehp(rnd(30), "mis-applying a lubricant can", KILLED_BY);
+		}
+		break;
 	case CREDIT_CARD:
+	case DATA_CHIP:
 	case LOCK_PICK:
+	case HAIRCLIP:
 	case SKELETON_KEY:
+	case SECRET_KEY:
 		(void) pick_lock(&obj);
 		break;
 	case PICK_AXE:
+	case CONGLOMERATE_PICK:
+	case BRONZE_PICK:
+	case SOFT_MATTOCK:
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
 		if (uwep && uwep == obj) res = use_pick_axe(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
@@ -4071,10 +4218,15 @@ doapply()
 	case TINNING_KIT:
 		use_tinning_kit(obj);
 		break;
-	case LEASH:
+	case BINNING_KIT:
+		use_binning_kit(obj);
+		break;
+	case LEATHER_LEASH:
+	case INKA_LEASH:
 		use_leash(obj);
 		break;
-	case SADDLE:
+	case LEATHER_SADDLE:
+	case INKA_SADDLE:
 		res = use_saddle(obj);
 		break;
 	case MAGIC_WHISTLE:
@@ -4136,6 +4288,7 @@ doapply()
 
 		break;
 	case TIN_WHISTLE:
+	case GRASS_WHISTLE:
 		use_whistle(obj);
 		if (!rn2(50)) {
 			int cursingchance = 10;
@@ -4181,6 +4334,7 @@ doapply()
 		}
 		break;
 	case STETHOSCOPE:
+	case UNSTABLE_STETHOSCOPE:
 		res = use_stethoscope(obj);
 		break;
 	case MIRROR:
@@ -4301,6 +4455,7 @@ doapply()
 		res = dowrite(obj);
 		break;
 	case TIN_OPENER:
+	case BUDO_NO_SASU:
 		if(!carrying(TIN)) {
 			You("have no tin to open.");
 			goto xit;
@@ -4321,6 +4476,9 @@ doapply()
 	case WOODEN_FLUTE:
 	case MAGIC_FLUTE:
 	case TOOLED_HORN:
+	case FOG_HORN:
+	case GUITAR:
+	case PIANO:
 	case FROST_HORN:
 	case TEMPEST_HORN:
 	case FIRE_HORN:

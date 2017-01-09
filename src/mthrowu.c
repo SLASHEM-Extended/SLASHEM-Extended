@@ -64,6 +64,27 @@ const char *name;	/* if null, then format `obj' */
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case PAPER_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case ICKY_SHIELD:
+			shieldblockrate = 0;
+			break;
+		case HEAVY_SHIELD:
+			shieldblockrate = 10;
+			break;
+		case BARRIER_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case TROLL_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case TARRIER:
+			shieldblockrate = 25;
+			break;
+		case SHIELD_OF_PEACE:
+			shieldblockrate = 20;
+			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 20;
 			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
@@ -225,7 +246,7 @@ const char *name;	/* if null, then format `obj' */
 		else You("deflect %s with your armor.", onm);
 
 		u.ubodyarmorturns++;
-		if (u.ubodyarmorturns >= 10) {
+		if (u.ubodyarmorturns >= 5) {
 			u.ubodyarmorturns = 0;
 			use_skill(P_BODY_ARMOR, 1);
 		}
@@ -240,7 +261,7 @@ const char *name;	/* if null, then format `obj' */
 			use_skill(P_SHIELD, 1);
 
 			u.ubodyarmorturns++;
-			if (u.ubodyarmorturns >= 10) {
+			if (u.ubodyarmorturns >= 5) {
 				u.ubodyarmorturns = 0;
 				use_skill(P_BODY_ARMOR, 1);
 			}
@@ -287,6 +308,11 @@ const char *name;	/* if null, then format `obj' */
 		if (obj && objects[obj->otyp].oc_material == INKA) {
 			dam += 5;
 			pline_The("inka string hurts you!");
+			exercise(A_CON, FALSE);
+		}
+		if (obj && obj->otyp == ODOR_SHOT) {
+			dam += rnd(10);
+			pline("You inhale the horrific odor!");
 			exercise(A_CON, FALSE);
 		}
 		if (is_acid && Acid_resistance) {
@@ -588,6 +614,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    if (objects[otmp->otyp].oc_material == INKA && hates_inka(mtmp->data)) {
 		if (verbose) pline("It is hurt!");
 	    }
+	    if (otmp->otyp == ODOR_SHOT && hates_odor(mtmp->data)) {
+		if (verbose) pline("It is beguiled!");
+	    }
 	    if (otmp->otyp == ACID_VENOM && cansee(mtmp->mx,mtmp->my)) {
 		if (resists_acid(mtmp)) {
 		    if (vis || verbose)
@@ -822,6 +851,11 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    losexp("a sweet ring of faerie floss", TRUE, FALSE);
 		    } /* This ignores level-drain resistance (not a bug). --Amy */
 
+		    if (hitu && singleobj->otyp == COLLUSION_KNIFE) {
+				pline("Collusion!");
+				litroomlite(FALSE);
+		    }
+
 		    if (hitu && singleobj->otyp == EGG) {
 			if (!Stone_resistance
 			    && !(poly_when_stoned(youmonst.data) &&
@@ -999,9 +1033,13 @@ struct monst *mtmp;
 		multishot++;
 	    if (mwep && mwep->otyp == ELVEN_BOW && !mwep->cursed) multishot++;
 
+	    if (mwep && mwep->otyp == WILDHILD_BOW && otmp->otyp == ODOR_SHOT) multishot++;
+	    if (mwep && mwep->otyp == COMPOST_BOW && otmp->otyp == FORBIDDEN_ARROW) multishot++;
+
 	    if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
 
 	    if (mwep && mwep->otyp == HYDRA_BOW) multishot += 2;
+	    if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
 
 	    /* 1/3 of object enchantment */
 	    if (mwep && mwep->spe > 1)
@@ -1360,8 +1398,11 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 		break;
 	case TOOL_CLASS:
 		hits = (obj_type != SKELETON_KEY &&
+			obj_type != SECRET_KEY &&
 			obj_type != LOCK_PICK &&
+			obj_type != HAIRCLIP &&
 			obj_type != CREDIT_CARD &&
+			obj_type != DATA_CHIP &&
 			obj_type != TALLOW_CANDLE &&
 			obj_type != WAX_CANDLE &&
 			obj_type != JAPAN_WAX_CANDLE &&
@@ -1373,7 +1414,10 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 			obj_type != UNSPECIFIED_CANDLE &&
 			obj_type != GENERAL_CANDLE &&
 			obj_type != LENSES &&
+			obj_type != RADIOGLASSES &&
+			obj_type != BOSS_VISOR &&
 			obj_type != TIN_WHISTLE &&
+			obj_type != GRASS_WHISTLE &&
 			obj_type != MAGIC_WHISTLE);
 		break;
 	case ROCK_CLASS:	/* includes boulder */

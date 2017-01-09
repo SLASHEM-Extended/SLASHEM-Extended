@@ -998,6 +998,13 @@ struct obj *obj;
 			else pline("Klock! You hit yourself with your sexy leather pump, producing a hollow sound.");
 		} else if (obj->otyp == BLOCK_HEELED_COMBAT_BOOT) You_feel("a wonderfully painful sensation as you hit yourself with your fleecy block-heeled combat boot.");
 		else if (obj->otyp == TORPEDO) pline("You deal yourself a deep gash with your torpedo!");
+		else if (obj->otyp == YATAGAN) pline("You terribly hurt yourself with your blade!");
+		else if (obj->otyp == DIAMOND_SMASHER) pline("You see lots of little asterisks as the diamond club hits you!");
+		else if (obj->otyp == HOMING_TORPEDO) pline("The torpedo strikes right into your vital organs!");
+		else if (obj->otyp == RADIOACTIVE_DAGGER) pline("You irradiate yourself with your dagger!");
+		else if (obj->otyp == IMPACT_STAFF) pline("Dock! You hit yourself with your staff!");
+		else if (obj->otyp == INKA_BOOT) pline("You come right as the lovely, soft boot heel hits you.");
+		else if (obj->otyp == SOFT_LADY_SHOE) pline("You feel wonderful intense pain as the incredibly soft lady shoe hits you.");
 		else if (obj->otyp == STEEL_WHIP) {
 			if (flags.female) You_feel("like a submissive girl as you whip yourself!");
 			else pline("You enjoy the feeling of pain as the whip hits your bare skin!");
@@ -1503,7 +1510,10 @@ bury_an_obj(otmp)
 	if (otmp == uchain || obj_resists(otmp, 0, 0))
 		return(otmp2);
 
-	if (otmp->otyp == LEASH && otmp->leashmon != 0)
+	if (otmp->otyp == LEATHER_LEASH && otmp->leashmon != 0)
+		o_unleash(otmp);
+
+	if (otmp->otyp == INKA_LEASH && otmp->leashmon != 0)
 		o_unleash(otmp);
 
 	if (otmp == usaddle)

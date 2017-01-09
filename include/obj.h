@@ -218,7 +218,7 @@ struct obj {
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_skill == P_PICK_AXE)
-#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == OBSID  || (otmp)->otyp == MALLET  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
+#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER || (otmp)->otyp == PLATINUM_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == RADIOACTIVE_DAGGER  || (otmp)->otyp == ETERNIUM_BLADE  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == OBSID  || (otmp)->otyp == IMPACT_STAFF  || (otmp)->otyp == SOFT_LADY_SHOE  || (otmp)->otyp == INKA_BOOT  || (otmp)->otyp == BRIDGE_MUZZLE  || (otmp)->otyp == MALLET  || (otmp)->otyp == YATAGAN  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == DIAMOND_SMASHER  || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == HOMING_TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
 
 #define ammo_and_launcher(otmp,ltmp) \
 			(is_ammo(otmp) && (ltmp) && \
@@ -254,6 +254,7 @@ struct obj {
 #define is_droven_armor(otmp)	((otmp)->otyp == DROVEN_HELM\
 				|| (otmp)->otyp == DROVEN_PLATE_MAIL\
 				|| (otmp)->otyp == DROVEN_CHAIN_MAIL\
+				|| (otmp)->otyp == DROVEN_MITHRIL_COAT\
 				|| (otmp)->otyp == DROVEN_CLOAK)
 #define is_elven_armor(otmp)	((otmp)->otyp == ELVEN_LEATHER_HELM\
 				|| (otmp)->otyp == ELVEN_MITHRIL_COAT\
@@ -352,6 +353,7 @@ struct obj {
 || (otmp)->otyp == SCR_BAD_EFFECT\
 || (otmp)->otyp == WAN_BAD_EFFECT\
 || (otmp)->otyp == POT_FIRE\
+|| (otmp)->otyp == POT_DIMNESS\
 || (otmp)->otyp == WAN_SLOW_MONSTER\
 || (otmp)->otyp == WAN_FEAR\
 || (otmp)->otyp == POT_FEAR\

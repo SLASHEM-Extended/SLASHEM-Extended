@@ -579,6 +579,15 @@ nh_timeout()
 		pline("%s", line);
 	}
 
+	if (!rn2(100) && ublindf && ublindf->otyp == RADIOGLASSES) {
+		const char *line;
+		char buflin[BUFSZ];
+		if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+		else line = getrumor(0, buflin, TRUE);
+		if (!*line) line = "Slash'EM rumors file closed for renovation.";
+		pline("%s", line);
+	}
+
 	if (!rn2(100) && uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 		const char *line;
 		char buflin[BUFSZ];

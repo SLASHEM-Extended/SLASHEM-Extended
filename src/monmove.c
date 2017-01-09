@@ -1157,7 +1157,7 @@ register int after;
 #endif
 	    can_tunnel = tunnels(ptr);
 	can_open = !(nohands(ptr) || verysmall(ptr));
-	can_unlock = ((can_open && m_carrying(mtmp, SKELETON_KEY)) ||
+	can_unlock = ((can_open && m_carrying(mtmp, SKELETON_KEY)) || (can_open && m_carrying(mtmp, SECRET_KEY)) ||
 		      mtmp->iswiz || is_rider(ptr) || is_deadlysin(ptr));
 /*        doorbuster = is_giant(ptr);*/
 
@@ -1912,7 +1912,7 @@ struct monst *mtmp;
 		    typ != SLING &&
 		    !is_cloak(obj) && typ != FEDORA &&
 		    !is_gloves(obj) && typ != LEATHER_JACKET &&
-		    typ != CREDIT_CARD && !is_shirt(obj) &&
+		    typ != CREDIT_CARD && typ != DATA_CHIP && !is_shirt(obj) &&
 		    !(typ == CORPSE && verysmall(&mons[obj->corpsenm])) &&
 		    typ != FORTUNE_COOKIE && typ != CANDY_BAR &&
 		    typ != PANCAKE && typ != LEMBAS_WAFER &&
@@ -1924,11 +1924,11 @@ struct monst *mtmp;
 #endif
 		    typ != SACK && typ != BAG_OF_HOLDING &&
 		    typ != BAG_OF_TRICKS && !Is_candle(obj) &&
-		    typ != OILSKIN_SACK && typ != LEASH &&
-		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != TOWEL &&
-		    typ != TIN_WHISTLE && typ != MAGIC_WHISTLE &&
-		    typ != MAGIC_MARKER && typ != TIN_OPENER &&
-		    typ != SKELETON_KEY && typ != LOCK_PICK
+		    typ != OILSKIN_SACK && typ != LEATHER_LEASH && typ != INKA_LEASH &&
+		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != EYECLOSER && typ != DRAGON_EYEPATCH && typ != TOWEL &&
+		    typ != TIN_WHISTLE && typ != GRASS_WHISTLE && typ != MAGIC_WHISTLE &&
+		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU &&
+		    typ != SKELETON_KEY && typ != SECRET_KEY && typ != LOCK_PICK && typ != HAIRCLIP
 		) return FALSE;
 		if (Is_container(obj) && obj->cobj) return FALSE;
 		    

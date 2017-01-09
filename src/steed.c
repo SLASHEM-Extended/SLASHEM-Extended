@@ -125,6 +125,8 @@ use_saddle(otmp)
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
 	    chance += 50;
 
+	if (otmp && otmp->otyp == INKA_SADDLE) chance += 100;
+
 	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) chance -= 20;
 	else {
 
@@ -161,7 +163,7 @@ use_saddle(otmp)
 		( !strcmp(s, "riding boots") || !strcmp(s, "sapogi dlya verkhovoy yezdy") || !strcmp(s, "kopgina chizilmasin") ) )
 	    /* ... or for "riding boots" */
 	    chance += 10; /* Amy edit: allowed those bonuses to stack. */
-	if (otmp->cursed)
+	if (otmp->cursed && otmp->otyp == LEATHER_SADDLE)
 	    chance -= 50;
 
 	/* Make the attempt */
@@ -322,7 +324,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (!force && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && !(--mtmp->mtame)) {
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && !(--mtmp->mtame)) {
 	    /* no longer tame */
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),
@@ -346,14 +348,14 @@ mount_steed(mtmp, force)
 	    You("cannot reach %s.", mon_nam(mtmp));
 	    return (FALSE);
 	}
-	if (!force && uarm && is_metallic(uarm) &&
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && uarm && is_metallic(uarm) &&
 			greatest_erosionX(uarm)) {
 	    Your("%s armor is too stiff to be able to mount %s.",
 			uarm->oeroded ? "rusty" : "corroded",
 			mon_nam(mtmp));
 	    return (FALSE);
 	}
-	if (!force && ((Confusion && !Conf_resist) || Fumbling || IsGlib || Wounded_legs ||
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && ((Confusion && !Conf_resist) || Fumbling || IsGlib || Wounded_legs ||
 		otmp->cursed || (u.ulevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
 	    if (Levitation) {
 		pline("%s slips away from you.", Monnam(mtmp));
@@ -562,6 +564,13 @@ dismount_steed(reason)
 		} else
 			You("dismount %s.", mon_nam(mtmp));
 	}
+	if (otmp && otmp->otyp == INKA_SADDLE) {
+		pline("The inka saddle tries unsuccessfully to prevent you from getting off your steed, and rips off your skin in the process...");
+		pline("You and your steed are severely hurt!");
+		losehp(rnd(u.ulevel * 5), "inka saddle", KILLED_BY_AN);
+		if (mtmp && mtmp->mhp > 1) mtmp->mhp /= 2;
+	}
+
 	/* While riding these refer to the steed's legs
 	 * so after dismounting they refer to the player's
 	 * legs once again.

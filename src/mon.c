@@ -1822,11 +1822,17 @@ mfndpos(mon, poss, info, flag)
 		       mon->weapon_check == NO_WEAPON_WANTED) {
 		rockok = is_pick(mw_tmp);
 	    } else {
-		rockok = (m_carrying(mon, PICK_AXE) ||
+		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, BRONZE_PICK) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
-			   !which_armor(mon, W_ARMS)));
-		treeok = (m_carrying(mon, AXE) || m_carrying(mon, MOON_AXE) || m_carrying(mon, OBSIDIAN_AXE) ||
+			   !which_armor(mon, W_ARMS)) || 
+			  (m_carrying(mon, SOFT_MATTOCK) &&
+			   !which_armor(mon, W_ARMS)) );
+		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, TUBING_PLIERS) ||
 			  (m_carrying(mon, BATTLE_AXE) &&
+			   !which_armor(mon, W_ARMS)) ||
+			  (m_carrying(mon, MOON_AXE) &&
+			   !which_armor(mon, W_ARMS)) ||
+			  (m_carrying(mon, CHEMISTRY_SPACE_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, DWARVISH_BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)));
@@ -3665,7 +3671,8 @@ xkilled(mtmp, dest)
 			/* Don't create large objects from small monsters */
 			/*if (otmp) typ = otmp->otyp;*/
 			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION 
-			    && typ != LEASH
+			    && typ != LEATHER_LEASH
+			    && typ != INKA_LEASH
 			    && typ != FIGURINE
 			    && (otmp->owt > 3 ||
 				objects[typ].oc_big oc_bimanual/oc_bulky ||

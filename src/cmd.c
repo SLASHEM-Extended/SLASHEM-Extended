@@ -3334,6 +3334,27 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case PAPER_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case ICKY_SHIELD:
+			shieldblockrate = 0;
+			break;
+		case HEAVY_SHIELD:
+			shieldblockrate = 10;
+			break;
+		case BARRIER_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case TROLL_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case TARRIER:
+			shieldblockrate = 25;
+			break;
+		case SHIELD_OF_PEACE:
+			shieldblockrate = 20;
+			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 20;
 			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
@@ -3547,6 +3568,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_POISON_WARNING )) you_are("aware of the presence of poisonous monsters");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING )) you_are("aware of the presence of same-race monsters");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING )) you_are("aware of the presence of covetous monsters");
+	if ((guaranteed || !rn2(10)) && (ublindf && ublindf->otyp == BOSS_VISOR )) you_are("aware of the presence of covetous monsters");
 	if ((guaranteed || !rn2(10)) && Role_if(PM_PALADIN) ) you_are("aware of the presence of demons");
 	if ((guaranteed || !rn2(10)) && Race_if(PM_VORTEX) ) you_are("aware of the presence of unsolid creatures");
 	if ((guaranteed || !rn2(10)) && Race_if(PM_VORTEX) ) you_are("aware of the presence of creatures without limbs");
@@ -3959,7 +3981,7 @@ int final;
 	dump("  You could not have this property at all:", buf);
 
 	Sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
-	dump("  You could nothave this property extrinsically:", buf);
+	dump("  You could not have this property extrinsically:", buf);
 
 	Sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
 	dump("  You could not have this property intrinsically:", buf);
@@ -5550,6 +5572,27 @@ int final;
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case PAPER_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case ICKY_SHIELD:
+			shieldblockrate = 0;
+			break;
+		case HEAVY_SHIELD:
+			shieldblockrate = 10;
+			break;
+		case BARRIER_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case TROLL_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case TARRIER:
+			shieldblockrate = 25;
+			break;
+		case SHIELD_OF_PEACE:
+			shieldblockrate = 20;
+			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 20;
 			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
@@ -5733,6 +5776,7 @@ int final;
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING ) dump(youwere, "aware of the presence of poisonous monsters");
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING ) dump(youwere, "aware of the presence of same-race monsters");
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING ) dump(youwere, "aware of the presence of covetous monsters");
+	if (ublindf && ublindf->otyp == BOSS_VISOR ) dump(youwere, "aware of the presence of covetous monsters");
 	if (Role_if(PM_PALADIN) ) dump(youwere, "aware of the presence of demons");
 	if (Race_if(PM_VORTEX) ) dump(youwere, "aware of the presence of unsolid creatures");
 	if (Race_if(PM_VORTEX) ) dump(youwere, "aware of the presence of creatures without limbs");

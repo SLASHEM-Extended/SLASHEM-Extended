@@ -985,6 +985,7 @@ int thrown;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean vivaobj = FALSE;
 	boolean inkaobj = FALSE;
+	boolean odorobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
 	boolean unarmed = !uwep && !uarm && !uarms;
 	int jousting = 0;
@@ -1171,6 +1172,7 @@ int thrown;
 
 		if (Race_if(PM_POISONER)) ispoisoned = TRUE;
 		if (obj->oartifact == ART_ASBESTOS_MATERIAL) ispoisoned = TRUE;
+		if (obj->otyp == ASBESTOS_JAVELIN) ispoisoned = TRUE;
 
 	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
 
@@ -1342,6 +1344,9 @@ int thrown;
 		    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
 			inkaobj = TRUE;
 		    }
+		    if (obj->otyp == ODOR_SHOT && hates_odor(mdat)) {
+			odorobj = TRUE;
+		    }
 		    if (u.usteed && !thrown && tmp > 0 &&
 			    weapon_type(obj) == P_LANCE && mon != u.ustuck) {
 			jousting = joust(mon, obj);
@@ -1369,7 +1374,7 @@ int thrown;
 			    if (Role_if(PM_SAMURAI) &&
 				    obj->otyp == YA && launcher->otyp == YUMI)
 				tmp++;
-			    /*else */
+
 				if (Race_if(PM_ELF)) {
 				if (obj->otyp == ELVEN_ARROW &&
 					launcher->otyp == ELVEN_BOW) {
@@ -1380,7 +1385,7 @@ int thrown;
 					&& tech_inuse(T_FLURRY)) {
 				tmp++;
 				}
-			    } /*else */
+			    }
 				if (Role_if(PM_ELPH)) {
 				if (obj->otyp == ELVEN_ARROW &&
 					launcher->otyp == ELVEN_BOW) {
@@ -1391,7 +1396,7 @@ int thrown;
 					&& tech_inuse(T_FLURRY)) {
 				tmp++;
 				}
-			    } /*else */
+			    }
 
 				if (Role_if(PM_TWELPH)) {
 				if (obj->otyp == DARK_ELVEN_ARROW &&
@@ -1403,14 +1408,16 @@ int thrown;
 					&& tech_inuse(T_FLURRY)) {
 				tmp++;
 				}
-			    } /*else */
+			    }
 
 			      if (Role_if(PM_ROCKER)) {
 				if ((obj->otyp == SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == INKA_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == METAL_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
 				tmp++;
 				
-			    } /*else */
+			    }
 				if (Race_if(PM_DROW)) {
 				if (obj->otyp == DARK_ELVEN_ARROW &&
 					launcher->otyp == DARK_ELVEN_BOW) {
@@ -1502,6 +1509,16 @@ int thrown;
 		    case GLASS_HOSTAGE_CHAIN:		/* 1d4+1 */
 		    case MINERAL_HOSTAGE_CHAIN:		/* 1d4+1 */
 		    case ELYSIUM_HOSTAGE_CHAIN:		/* 1d4+1 */
+		    case VERY_HEAVY_BALL:
+		    case HEAVY_CHAIN:
+		    case HEAVY_COMPOST_BALL:
+		    case COMPOST_CHAIN:
+		    case DISGUSTING_BALL:
+		    case DISGUSTING_CHAIN:
+		    case HEAVY_ELASTHAN_BALL:
+		    case ELASTHAN_CHAIN:
+		    case IMPOSSIBLY_HEAVY_NUCLEAR_BALL:
+		    case NUCLEAR_HOSTAGE_CHAIN:
 			tmp = dmgvalX(obj, mon);
 			break;
 		    case MIRROR:
@@ -1680,7 +1697,8 @@ int thrown;
 
 			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
 
-			if (obj && obj->otyp == TIN_OPENER && Role_if(PM_SUPERMARKET_CASHIER)) {
+			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
+				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
 				if (u.ulevel >= 18) tmp += rnd(10);
 				if (u.ulevel >= 24) tmp += rnd(4);
@@ -1819,6 +1837,10 @@ int thrown;
 				tmp += 5;
 				inkaobj = TRUE;
 			}
+			if (obj->otyp == ODOR_SHOT && hates_odor(mdat)) {
+				tmp += rnd(10);
+				odorobj = TRUE;
+			}
 		    }
 		}
 	    }
@@ -1882,6 +1904,11 @@ int thrown;
 	    tmp += weapon_dam_bonus(wep);
 	    if (!thrown) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 	    if (thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+
+		if (wep && wep->otyp == COLLUSION_KNIFE) {
+			pline("Collusion!");
+			litroomlite(FALSE);
+		}
 
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
@@ -2486,6 +2513,7 @@ int thrown;
 
 	if (vivaobj) pline("The irradiation severely hurts %s!", mon_nam(mon));
 	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
+	if (odorobj) pline("The odor beguils %s!", mon_nam(mon));
 
 	if (needpoismsg) {
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
@@ -5145,6 +5173,15 @@ use_weapon:
 				if (uwep && uwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
+				}
+				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(30)) {
+					uwep->spe--;
+					pline("Your steel-capped sandal degrades.");
+					if (uwep->spe < -15) {
+						useupall(uwep);
+						pline("Your steel-capped sandal is destroyed.");
+						return FALSE;
+					}
 				}
 			}
 

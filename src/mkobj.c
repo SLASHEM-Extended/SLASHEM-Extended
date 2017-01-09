@@ -231,7 +231,7 @@ boolean artif;
 	if(!OBJ_NAME(objects[i]))
 		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
 
-	if ( (i == SCR_TELEPORTATION || i == POT_HEALING || i == POT_CURE_WOUNDS || i == POT_CURE_SERIOUS_WOUNDS || i == POT_CURE_CRITICAL_WOUNDS || i == POT_EXTRA_HEALING || i == WAN_DIGGING || i == WAN_CREATE_MONSTER || i == SCR_CREATE_MONSTER || i == SCR_CREATE_VICTIM || i == WAN_TELEPORTATION || i == POT_FULL_HEALING || i == WAN_HEALING || i == WAN_EXTRA_HEALING || i == WAN_CREATE_HORDE || i == POT_VAMPIRE_BLOOD || i == WAN_FULL_HEALING || i == SCR_TELE_LEVEL || i == WAN_TELE_LEVEL || i == SCR_ROOT_PASSWORD_DETECTION || i == RIN_TIMELY_BACKUP || i == SCR_SUMMON_UNDEAD || i == WAN_SUMMON_UNDEAD || i == SCR_HEALING || i == SCR_POWER_HEALING || i == SCR_WARPING || i == WAN_DEATH || i == WAN_SLEEP || i == WAN_FIREBALL || i == WAN_FIRE || i == WAN_COLD || i == WAN_LIGHTNING || i == WAN_MAGIC_MISSILE || i == WAN_STRIKING || i == SCR_FIRE || i == POT_PARALYSIS || i == POT_BLINDNESS || i == POT_CONFUSION || i == POT_SLEEPING || i == POT_ACID || i == FROST_HORN || i == FIRE_HORN || i == TEMPEST_HORN || i == WAN_DRAINING || i == WAN_INCREASE_MAX_HITPOINTS || i == WAN_REDUCE_MAX_HITPOINTS || i == SCR_EARTH || i == POT_AMNESIA || i == WAN_CANCELLATION || i == POT_CYANIDE || i == POT_RADIUM || i == WAN_ACID || i == SCR_TRAP_CREATION || i == SCR_CREATE_TRAP || i == WAN_TRAP_CREATION || i == SCR_FLOOD || i == SCR_LAVA || i == SCR_GROWTH || i == SCR_ICE || i == SCR_CLOUDS || i == SCR_BARRHING || i == WAN_SOLAR_BEAM || i == WAN_POISON || i == SCR_LOCKOUT || i == WAN_BANISHMENT || i == POT_HALLUCINATION || i == POT_ICE || i == POT_STUNNING || i == POT_NUMBNESS || i == POT_URINE || i == POT_CANCELLATION || i == POT_SLIME || i == SCR_BAD_EFFECT || i == WAN_BAD_EFFECT || i == POT_FIRE || i == WAN_SLOW_MONSTER || i == WAN_FEAR || i == POT_FEAR || i == POT_GAIN_LEVEL || i == WAN_GAIN_LEVEL || i == WAN_MAKE_INVISIBLE || i == POT_INVISIBILITY || i == WAN_POLYMORPH || i == WAN_MUTATION || i == POT_SPEED || i == WAN_SPEED_MONSTER || i == POT_POLYMORPH || i == POT_MUTATION || i == WAN_CLONE_MONSTER || i == SCR_DESTROY_ARMOR || i == SCR_DESTROY_WEAPON || i == SCR_STONING || i == SCR_AMNESIA || i == BAG_OF_TRICKS || i == WAN_STONING || i == WAN_DISINTEGRATION || i == WAN_PARALYSIS || i == WAN_CURSE_ITEMS || i == WAN_AMNESIA || i == WAN_LEVITATION || i == WAN_PSYBEAM || i == WAN_HYPER_BEAM || i == WAN_BAD_LUCK || i == WAN_REMOVE_RESISTANCE || i == WAN_CORROSION || i == WAN_STARVATION || i == WAN_CONFUSION || i == WAN_SLIMING || i == WAN_LYCANTHROPY || i == WAN_FUMBLING || i == WAN_PUNISHMENT || i == SCR_PUNISHMENT || i == WAN_MAKE_VISIBLE || i == SCR_SUMMON_BOSS || i == SCR_WOUNDS || i == SCR_BULLSHIT || i == SCR_CHAOS_TERRAIN || i == SCR_NASTINESS || i == SCR_DEMONOLOGY || i == SCR_ELEMENTALISM || i == SCR_GIRLINESS || i == WAN_SUMMON_SEXY_GIRL || i == WAN_DISINTEGRATION_BEAM || i == SCR_GROUP_SUMMONING || i == WAN_CHROMATIC_BEAM || i == WAN_STUN_MONSTER || i == SCR_SUMMON_GHOST || i == SCR_MEGALOAD || i == SCR_VILENESS || i == SCR_ENRAGE || i == WAN_TIDAL_WAVE || i == SCR_ANTIMATTER || i == SCR_SUMMON_ELM || i == WAN_SUMMON_ELM || i == SCR_RELOCATION || i == WAN_DRAIN_MANA || i == WAN_FINGER_BENDING || i == SCR_IMMOBILITY || i == WAN_IMMOBILITY || i == SCR_FLOODING || i == SCR_EGOISM || i == WAN_EGOISM || i == SCR_RUMOR || i == SCR_MESSAGE || i == SCR_SIN || i == WAN_SIN || i == WAN_INERTIA || i == WAN_TIME || i == WAN_DESLEXIFICATION || i == WAN_INFERNO || i == WAN_ICE_BEAM || i == WAN_THUNDER || i == WAN_SLUDGE || i == WAN_TOXIC || i == WAN_NETHER_BEAM || i == WAN_AURORA_BEAM || i == WAN_GRAVITY_BEAM || i == WAN_CHLOROFORM || i == WAN_DREAM_EATER || i == WAN_BUBBLEBEAM || i == WAN_GOOD_NIGHT || i == WAN_HASTE_MONSTER) && (u.antimusablebias > rn2(100) ) ) {
+	if ( (i == SCR_TELEPORTATION || i == POT_HEALING || i == POT_CURE_WOUNDS || i == POT_CURE_SERIOUS_WOUNDS || i == POT_CURE_CRITICAL_WOUNDS || i == POT_EXTRA_HEALING || i == WAN_DIGGING || i == WAN_CREATE_MONSTER || i == SCR_CREATE_MONSTER || i == SCR_CREATE_VICTIM || i == WAN_TELEPORTATION || i == POT_FULL_HEALING || i == WAN_HEALING || i == WAN_EXTRA_HEALING || i == WAN_CREATE_HORDE || i == POT_VAMPIRE_BLOOD || i == WAN_FULL_HEALING || i == SCR_TELE_LEVEL || i == WAN_TELE_LEVEL || i == SCR_ROOT_PASSWORD_DETECTION || i == RIN_TIMELY_BACKUP || i == SCR_SUMMON_UNDEAD || i == WAN_SUMMON_UNDEAD || i == SCR_HEALING || i == SCR_POWER_HEALING || i == SCR_WARPING || i == WAN_DEATH || i == WAN_SLEEP || i == WAN_FIREBALL || i == WAN_FIRE || i == WAN_COLD || i == WAN_LIGHTNING || i == WAN_MAGIC_MISSILE || i == WAN_STRIKING || i == SCR_FIRE || i == POT_PARALYSIS || i == POT_BLINDNESS || i == POT_CONFUSION || i == POT_SLEEPING || i == POT_ACID || i == FROST_HORN || i == FIRE_HORN || i == TEMPEST_HORN || i == WAN_DRAINING || i == WAN_INCREASE_MAX_HITPOINTS || i == WAN_REDUCE_MAX_HITPOINTS || i == SCR_EARTH || i == POT_AMNESIA || i == WAN_CANCELLATION || i == POT_CYANIDE || i == POT_RADIUM || i == WAN_ACID || i == SCR_TRAP_CREATION || i == SCR_CREATE_TRAP || i == WAN_TRAP_CREATION || i == SCR_FLOOD || i == SCR_LAVA || i == SCR_GROWTH || i == SCR_ICE || i == SCR_CLOUDS || i == SCR_BARRHING || i == WAN_SOLAR_BEAM || i == WAN_POISON || i == SCR_LOCKOUT || i == WAN_BANISHMENT || i == POT_HALLUCINATION || i == POT_ICE || i == POT_STUNNING || i == POT_NUMBNESS || i == POT_URINE || i == POT_CANCELLATION || i == POT_SLIME || i == SCR_BAD_EFFECT || i == WAN_BAD_EFFECT || i == POT_FIRE || i == POT_DIMNESS || i == WAN_SLOW_MONSTER || i == WAN_FEAR || i == POT_FEAR || i == POT_GAIN_LEVEL || i == WAN_GAIN_LEVEL || i == WAN_MAKE_INVISIBLE || i == POT_INVISIBILITY || i == WAN_POLYMORPH || i == WAN_MUTATION || i == POT_SPEED || i == WAN_SPEED_MONSTER || i == POT_POLYMORPH || i == POT_MUTATION || i == WAN_CLONE_MONSTER || i == SCR_DESTROY_ARMOR || i == SCR_DESTROY_WEAPON || i == SCR_STONING || i == SCR_AMNESIA || i == BAG_OF_TRICKS || i == WAN_STONING || i == WAN_DISINTEGRATION || i == WAN_PARALYSIS || i == WAN_CURSE_ITEMS || i == WAN_AMNESIA || i == WAN_LEVITATION || i == WAN_PSYBEAM || i == WAN_HYPER_BEAM || i == WAN_BAD_LUCK || i == WAN_REMOVE_RESISTANCE || i == WAN_CORROSION || i == WAN_STARVATION || i == WAN_CONFUSION || i == WAN_SLIMING || i == WAN_LYCANTHROPY || i == WAN_FUMBLING || i == WAN_PUNISHMENT || i == SCR_PUNISHMENT || i == WAN_MAKE_VISIBLE || i == SCR_SUMMON_BOSS || i == SCR_WOUNDS || i == SCR_BULLSHIT || i == SCR_CHAOS_TERRAIN || i == SCR_NASTINESS || i == SCR_DEMONOLOGY || i == SCR_ELEMENTALISM || i == SCR_GIRLINESS || i == WAN_SUMMON_SEXY_GIRL || i == WAN_DISINTEGRATION_BEAM || i == SCR_GROUP_SUMMONING || i == WAN_CHROMATIC_BEAM || i == WAN_STUN_MONSTER || i == SCR_SUMMON_GHOST || i == SCR_MEGALOAD || i == SCR_VILENESS || i == SCR_ENRAGE || i == WAN_TIDAL_WAVE || i == SCR_ANTIMATTER || i == SCR_SUMMON_ELM || i == WAN_SUMMON_ELM || i == SCR_RELOCATION || i == WAN_DRAIN_MANA || i == WAN_FINGER_BENDING || i == SCR_IMMOBILITY || i == WAN_IMMOBILITY || i == SCR_FLOODING || i == SCR_EGOISM || i == WAN_EGOISM || i == SCR_RUMOR || i == SCR_MESSAGE || i == SCR_SIN || i == WAN_SIN || i == WAN_INERTIA || i == WAN_TIME || i == WAN_DESLEXIFICATION || i == WAN_INFERNO || i == WAN_ICE_BEAM || i == WAN_THUNDER || i == WAN_SLUDGE || i == WAN_TOXIC || i == WAN_NETHER_BEAM || i == WAN_AURORA_BEAM || i == WAN_GRAVITY_BEAM || i == WAN_CHLOROFORM || i == WAN_DREAM_EATER || i == WAN_BUBBLEBEAM || i == WAN_GOOD_NIGHT || i == WAN_HASTE_MONSTER) && (u.antimusablebias > rn2(100) ) ) {
 
 		prob = rnd(10000);
 		i = bases[(int)oclass];
@@ -675,7 +675,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(171)) {
+	switch (rnd(178)) {
 
 		case 1:
 		case 2:
@@ -935,6 +935,14 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return WAN_LEVITATION;
 		case 171:
 			return SCR_VILENESS;
+		case 172:
+		case 173:
+		case 174:
+		case 175:
+		case 176:
+		case 177:
+		case 178:
+			return POT_DIMNESS;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}
@@ -1547,9 +1555,11 @@ boolean artif;
 		if (otmp->otyp == LASER_BEAM) otmp->quan += rnd(30);
 		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
-		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT || otmp->otyp == KOKKEN) otmp->quan += rnd(10);
+		if (otmp->otyp == CROSSBOW_BOLT || otmp->otyp == DROVEN_BOLT || otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(10);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
+		if (otmp->otyp == TAR_STAR) otmp->quan += rnd(100);
 		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
+		if (otmp->otyp == SOFT_STAR) otmp->quan += rnd(200);
 		if (otmp->otyp == CALTROP) otmp->quan += rnd(400);
 		if (otmp->otyp == BFG_AMMO) {
 			otmp->quan = 40;
@@ -1808,6 +1818,7 @@ boolean artif;
 					break;
 		case EXPENSIVE_CAMERA:
 		case TINNING_KIT:
+		case BINNING_KIT:
 		case FELT_TIP_MARKER:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
@@ -1823,6 +1834,7 @@ boolean artif;
 			blessorcurse_on_creation(otmp, 5);
 					break;
 		case CAN_OF_GREASE:
+		case LUBRICANT_CAN:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 70 : 35);
@@ -2009,6 +2021,7 @@ boolean artif;
 		   otmp->otyp == HIPPIE_HEELS ||
 		   otmp->otyp == CLOAK_OF_CONFUSION ||
 		   otmp->otyp == CLOAK_OF_FUMBLING ||
+		   otmp->otyp == CLOAK_OF_DIMNESS ||
 		   otmp->otyp == CLOAK_OF_TRANSFORMATION ||
 		   otmp->otyp == CLOAK_OF_AGGRAVATION ||
 		   otmp->otyp == CLOAK_OF_CONFLICT ||
@@ -2128,6 +2141,7 @@ boolean artif;
 			  otmp->otyp == RIN_DISARMING ||
 			  otmp->otyp == RIN_NUMBNESS ||
 			  otmp->otyp == RIN_CURSE ||
+			  otmp->otyp == RIN_DIMNESS ||
 			  otmp->otyp == RIN_HALLUCINATION ||
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
 			curse_on_creation(otmp);

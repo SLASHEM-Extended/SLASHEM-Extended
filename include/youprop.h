@@ -96,7 +96,7 @@
 
 #define HAcid_resistance	u.uprops[ACID_RES].intrinsic
 #define EAcid_resistance	u.uprops[ACID_RES].extrinsic
-#define Acid_resistance		(((HAcid_resistance && !(u.nonintrinsicproperty == ACID_RES)) || EAcid_resistance || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (resists_acid(&youmonst) && !(u.nonintrinsicproperty == ACID_RES)) || (is_acid_resistant(youmonst.data) && !(u.nonintrinsicproperty == ACID_RES)) ) && !NoAcid_resistance)
+#define Acid_resistance		(((HAcid_resistance && !(u.nonintrinsicproperty == ACID_RES)) || EAcid_resistance || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uwep && uwep->otyp == CHEMISTRY_SPACE_AXE) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (resists_acid(&youmonst) && !(u.nonintrinsicproperty == ACID_RES)) || (is_acid_resistant(youmonst.data) && !(u.nonintrinsicproperty == ACID_RES)) ) && !NoAcid_resistance)
 #define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || (u.nonextrinsicproperty == ACID_RES && !HAcid_resistance && !resists_acid(&youmonst) && !is_acid_resistant(youmonst.data) ) || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HStone_resistance	u.uprops[STONE_RES].intrinsic
@@ -148,12 +148,12 @@
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
-#define Dimmed		(HDimmed || EDimmed || HeavyDimmed)
+#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || (uwep && uwep->otyp == TRAFFIC_LIGHT) )
 #define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic
 #define EBlinded			u.uprops[BLINDED].extrinsic
-#define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != CONDOME)
+#define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != RADIOGLASSES && ublindf->otyp != BOSS_VISOR && ublindf->otyp != CONDOME && ublindf->otyp != SOFT_CHASTITY_BELT)
 		/* ...means blind because of a cover */
 #define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
 		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ) && !(Race_if(PM_PLAYER_DOLGSMAN) && !flags.blindfox) && !(uwep && uwep->oartifact == ART_DUMBOAK_S_HEW) && !(uwep && uwep->oartifact == ART_DIMOAK_S_HEW && !flags.blindfox ) && !(uarmh && uarmh->oartifact == ART_BLINDING_FOG && !flags.blindfox ) && !(uarms && uarms->oartifact == ART_SHADOWDISK && !flags.blindfox ) )
@@ -278,7 +278,7 @@
 #define EHallucination		u.uprops[HALLUC].extrinsic
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
 #define Halluc_resistance	((EHalluc_resistance || \
-				 (Upolyd && dmgtype(youmonst.data, AD_HALU)) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == SPIKED_BATTLE_BOOT) ) ) && !u.halresdeactivated)
+				 (Upolyd && dmgtype(youmonst.data, AD_HALU)) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == SPIKED_BATTLE_BOOT || uwep->otyp == INKA_BOOT || uwep->otyp == SOFT_LADY_SHOE || uwep->otyp == STEEL_CAPPED_SANDAL || uwep->otyp == DOGSHIT_BOOT) ) ) && !u.halresdeactivated)
 #define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || (uwep && uwep->oartifact == ART_SCHWANZUS_LANGUS) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
@@ -453,7 +453,7 @@
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
 #define BStealth		u.uprops[STEALTH].blocked
-#define Stealth			(( ((HStealth && !(u.nonintrinsicproperty == STEALTH)) || EStealth || u.uprops[MULTISHOES].extrinsic || ((Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) && !(u.nonintrinsicproperty == STEALTH)) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !(uwep && uwep->oartifact == ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
+#define Stealth			(( ((HStealth && !(u.nonintrinsicproperty == STEALTH)) || EStealth || u.uprops[MULTISHOES].extrinsic || (ublindf && ublindf->otyp == EYECLOSER) || ((Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) && !(u.nonintrinsicproperty == STEALTH)) ) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !(uwep && uwep->oartifact == ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && (!Role_if(PM_TOPMODEL) || !flags.female) ) || ( Role_if(PM_TOPMODEL) && !NoStealth && PlayerInHighHeels ))
 #define NoStealth	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STEALTH].intrinsic || (u.nonextrinsicproperty == STEALTH && !HStealth && !(Race_if(PM_MOON_ELF) && ((flags.moonphase >= 1 && flags.moonphase <= 3) || (flags.moonphase >= 5 && flags.moonphase <= 7) ) ) ) || (u.impossibleproperty == STEALTH) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
@@ -482,14 +482,14 @@
 
 #define HTeleportation		u.uprops[TELEPORT].intrinsic
 #define ETeleportation		u.uprops[TELEPORT].extrinsic
-#define Teleportation		(HTeleportation || ETeleportation || (uarmh && uarmh->oartifact == ART_GO_OTHER_PLACE) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uarmh && uarmh->oartifact == ART_DOUBLE_JEOPARDY) || (uarms && uarms->oartifact == ART_REFLECTOR_EJECTOR) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uleft && uleft->oartifact == ART_WARPCHANGE) || (uright && uright->oartifact == ART_WARPCHANGE) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) ||  \
+#define Teleportation		(HTeleportation || ETeleportation || (uarmh && uarmh->oartifact == ART_GO_OTHER_PLACE) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uarmh && uarmh->oartifact == ART_DOUBLE_JEOPARDY) || (uarms && uarms->oartifact == ART_REFLECTOR_EJECTOR) || (uwep && uwep->otyp == POKER_STICK) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uleft && uleft->oartifact == ART_WARPCHANGE) || (uright && uright->oartifact == ART_WARPCHANGE) || (uamul && uamul->oartifact == ART_SPACE_CYCLE) ||  \
 				 can_teleport(youmonst.data) || Race_if(PM_MAIA) || Race_if(PM_HUMANOID_LEPRECHAUN))
 
 #define HTeleport_control	u.uprops[TELEPORT_CONTROL].intrinsic
 #define ETeleport_control	u.uprops[TELEPORT_CONTROL].extrinsic
 #define Teleport_control	(((HTeleport_control && !(u.nonintrinsicproperty == TELEPORT_CONTROL)) || ETeleport_control || \
 				 (control_teleport(youmonst.data) && !(u.nonintrinsicproperty == TELEPORT_CONTROL)) ) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
-#define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.nonextrinsicproperty == TELEPORT_CONTROL && !HTeleport_control && !control_teleport(youmonst.data) ) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.nonextrinsicproperty == TELEPORT_CONTROL && !HTeleport_control && !control_teleport(youmonst.data) ) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uwep && uwep->otyp == POKER_STICK) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic
 #define ELevitation		u.uprops[LEVITATION].extrinsic
@@ -558,7 +558,7 @@
 
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
-#define Half_physical_damage	(((HHalf_physical_damage && !(u.nonintrinsicproperty == HALF_PHDAM)) || EHalf_physical_damage) && !NoHalf_physical_damage)
+#define Half_physical_damage	(((HHalf_physical_damage && !(u.nonintrinsicproperty == HALF_PHDAM)) || EHalf_physical_damage || (uwep && uwep->otyp == SECRET_WHIP) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) ) && !NoHalf_physical_damage)
 #define NoHalf_physical_damage	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALF_PHDAM].intrinsic || (u.nonextrinsicproperty == HALF_PHDAM && !HHalf_physical_damage) || (u.impossibleproperty == HALF_PHDAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Second_chance		u.uprops[SECOND_CHANCE].extrinsic
@@ -607,7 +607,7 @@
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic
 #define EReflecting		u.uprops[REFLECTING].extrinsic
-#define Reflecting		((EReflecting || (HReflecting && !(u.nonintrinsicproperty == REFLECTING)) || (moves % 2 == 0 && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "sakkizinchi rang to'n") )) ) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) || \
+#define Reflecting		((EReflecting || (HReflecting && !(u.nonintrinsicproperty == REFLECTING)) || (moves % 2 == 0 && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "sakkizinchi rang to'n") )) ) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (ublindf && ublindf->otyp == DRAGON_EYEPATCH) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) || \
 				 ((youmonst.data == &mons[PM_SILVER_DRAGON] ||\
 				  youmonst.data == &mons[PM_CRYSTAL_GOLEM] ||\
 				  youmonst.data == &mons[PM_SAPPHIRE_GOLEM] ||\
@@ -757,7 +757,7 @@
 
 #define HSight_bonus		u.uprops[SIGHT_BONUS].intrinsic
 #define ESight_bonus		u.uprops[SIGHT_BONUS].extrinsic
-#define Sight_bonus		(((HSight_bonus && !(u.nonintrinsicproperty == SIGHT_BONUS)) || ESight_bonus || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT) || (uwep && uwep->oartifact == ART_AXE_OF_THE_DWARVISH_LORDS) || (uarms && uarms->oartifact == ART_SOLAR_POWER) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_HAT_OF_THE_ARCHMAGI) ) && !NoSight_bonus)
+#define Sight_bonus		(((HSight_bonus && !(u.nonintrinsicproperty == SIGHT_BONUS)) || ESight_bonus || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT) || (uwep && uwep->otyp == FIRE_STICK) || (uwep && uwep->otyp == ZOOM_SHOT_CROSSBOW) || (uwep && uwep->oartifact == ART_AXE_OF_THE_DWARVISH_LORDS) || (uarms && uarms->oartifact == ART_SOLAR_POWER) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_HAT_OF_THE_ARCHMAGI) ) && !NoSight_bonus)
 #define NoSight_bonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SIGHT_BONUS].intrinsic || (u.nonextrinsicproperty == SIGHT_BONUS && !HSight_bonus) || (u.impossibleproperty == SIGHT_BONUS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HVersus_curses		u.uprops[VERSUS_CURSES].intrinsic

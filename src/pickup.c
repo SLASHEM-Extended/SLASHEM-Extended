@@ -2008,7 +2008,10 @@ boolean invobj;
 	 */
 	    pline("%s cannot be confined in such trappings.", The(xname(obj)));
 	    return 0;
-	} else if (obj->otyp == LEASH && obj->leashmon != 0) {
+	} else if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
+		pline("%s attached to your pet.", Tobjnam(obj, "are"));
+		return 0;
+	} else if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 		pline("%s attached to your pet.", Tobjnam(obj, "are"));
 		return 0;
 	} else if (obj == uwep) {

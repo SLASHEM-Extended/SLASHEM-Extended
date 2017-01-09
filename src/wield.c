@@ -62,7 +62,7 @@ STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
 /* used by welded(), and also while wielding */
 #define will_weld(optr)		((optr)->cursed \
 				&& (erodeable_wep(optr) \
-				   || (optr)->otyp == TIN_OPENER))
+				   || (optr)->otyp == TIN_OPENER || (optr)->otyp == BUDO_NO_SASU))
 
 
 /*** Functions that place a given item in a slot ***/

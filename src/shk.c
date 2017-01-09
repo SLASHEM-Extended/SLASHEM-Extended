@@ -692,9 +692,12 @@ register char *enterstring;
 	    int cnt;
 	    const char *tool;
 	    struct obj *pick = carrying(PICK_AXE),
-		       *mattock = carrying(DWARVISH_MATTOCK);
+			 *pickB = carrying(CONGLOMERATE_PICK),
+			 *pickC = carrying(BRONZE_PICK),
+		       *mattock = carrying(DWARVISH_MATTOCK),
+			 *mattockB = carrying(SOFT_MATTOCK);
 
-	    if (pick || mattock) {
+	    if (pick || pickB || pickC || mattock || mattockB) {
 		cnt = 1;
 		if (pick && mattock) {	/* carrying both types */
 		    tool = "digging tool";
@@ -704,12 +707,24 @@ register char *enterstring;
 		    /* hack: `pick' already points somewhere into inventory */
 		    while ((pick = pick->nobj) != 0)
 			if (pick->otyp == PICK_AXE) ++cnt;
-		} else {	/* assert(mattock != 0) */
+		} else if (pickB) {
+		    tool = "conglomerate pick";
+		    while ((pickB = pickB->nobj) != 0)
+			if (pickB->otyp == CONGLOMERATE_PICK) ++cnt;
+		} else if (pickC) {
+		    tool = "bronze pick";
+		    while ((pickC = pickC->nobj) != 0)
+			if (pickC->otyp == BRONZE_PICK) ++cnt;
+		} else if (mattock) {
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
 			if (mattock->otyp == DWARVISH_MATTOCK) ++cnt;
 		    /* [ALI] Shopkeeper indicates mattock(s) */
 		    if (!Blind) makeknown(DWARVISH_MATTOCK);
+		} else { /* mattockB */
+		    tool = "mattock";
+		    while ((mattockB = mattockB->nobj) != 0)
+			if (mattockB->otyp == SOFT_MATTOCK) ++cnt;
 		}
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave your %s%s outside?" :
@@ -725,7 +740,7 @@ register char *enterstring;
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
 	    } else {
-		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) ||
+		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) ||
 				      sobj_at(DWARVISH_MATTOCK, u.ux, u.uy)));
 	    }
 	    if (should_block) (void) dochug(shkp);  /* shk gets extra move */
@@ -947,7 +962,8 @@ register struct obj *obj, *merge;
 
 	if (obj == usaddle) dismount_steed(DISMOUNT_GENERIC);
 
-	if (obj->otyp == LEASH && obj->leashmon) o_unleash(obj);
+	if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
+	if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
 	if (obj->oclass == SPBOOK_CLASS) book_disappears(obj);
 	if (obj->oclass == FOOD_CLASS) food_disappears(obj);
 	/* [ALI] Enforce new rules: Containers must have their contents
@@ -4032,9 +4048,9 @@ register struct monst *shkp;
 		} else {
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
-			badinv = (carrying(PICK_AXE) || carrying(DWARVISH_MATTOCK) ||
+			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) ||
             eshkp->pbanned ||
-				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) ||
+				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv)
 			    return(0);
@@ -4166,7 +4182,7 @@ register int fall;
 		obj2 = obj->nobj;
 		if ((obj->owornmask & ~(W_SWAPWEP|W_QUIVER)) != 0 ||
 			(obj == uswapwep && u.twoweap) ||
-			(obj->otyp == LEASH && obj->leashmon)) continue;
+			(obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) continue;
 		if (obj == current_wand) continue;
 		setnotworn(obj);
 		freeinv(obj);
@@ -4914,8 +4930,8 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 		/* Normal use is studying. Alternate use is using up a charge */
 		if (altusage) tmp /= 10L;		 /* 2 - 4 */
 		else tmp -= tmp / 5L;
-	} else if (otmp->otyp == CAN_OF_GREASE ||
-		   otmp->otyp == TINNING_KIT
+	} else if (otmp->otyp == CAN_OF_GREASE || otmp->otyp == LUBRICANT_CAN ||
+		   otmp->otyp == TINNING_KIT || otmp->otyp == BINNING_KIT
 		   || otmp->otyp == EXPENSIVE_CAMERA
 		   ) {
 		tmp /= 10L;
@@ -5079,7 +5095,7 @@ register xchar x, y;
 	if(shkp->mx == sx && shkp->my == sy
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(DWARVISH_MATTOCK)
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK)
 			|| u.usteed
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),

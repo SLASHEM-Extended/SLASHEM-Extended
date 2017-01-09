@@ -198,10 +198,13 @@ int thrown;
 	    if (launcher && launcher->otyp == ELVEN_BOW &&
 	      !launcher->cursed && !rn2(3))
 		multishot++;
+	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
+	    if (launcher && launcher->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
 
 	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
+	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
 
 	    if (launcher && launcher->oartifact == ART_MAXIMUM_LAUNCH_POWER) multishot += rnd(2);
 
@@ -211,7 +214,7 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
 
-	    if (uarmg && uarmg->oartifact == ART_PEEPING_GROOVE && launcher && (launcher->otyp == SHOTGUN || launcher->otyp == SAWED_OFF_SHOTGUN || launcher->otyp == AUTO_SHOTGUN)) multishot += rnd(7);
+	    if (uarmg && uarmg->oartifact == ART_PEEPING_GROOVE && launcher && (launcher->otyp == SHOTGUN || launcher->otyp == PAPER_SHOTGUN || launcher->otyp == SAWED_OFF_SHOTGUN || launcher->otyp == AUTO_SHOTGUN)) multishot += rnd(7);
 
 	    if (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 5;
 
@@ -1135,7 +1138,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1600,6 +1603,27 @@ int thrown;
 
 			case SMALL_SHIELD:
 				shieldblockrate = 20;
+				break;
+			case PAPER_SHIELD:
+				shieldblockrate = 50;
+				break;
+			case ICKY_SHIELD:
+				shieldblockrate = 10;
+				break;
+			case HEAVY_SHIELD:
+				shieldblockrate = 20;
+				break;
+			case BARRIER_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case TROLL_SHIELD:
+				shieldblockrate = 30;
+				break;
+			case TARRIER:
+				shieldblockrate = 35;
+				break;
+			case SHIELD_OF_PEACE:
+				shieldblockrate = 30;
 				break;
 			case ELVEN_SHIELD:
 				shieldblockrate = 30;

@@ -428,6 +428,7 @@ struct obj *instr;
 		makeknown(instr->otyp);
 		break;
 	    } /* else FALLTHRU */
+	case FOG_HORN:
 	case TOOLED_HORN:		/* Awaken or scare monsters */
 	    You("produce a frightful, grave sound.");
 
@@ -474,6 +475,8 @@ struct obj *instr;
 
 	    exercise(A_WIS, FALSE);
 	    break;
+	case PIANO:
+	case GUITAR:
 	case BUGLE:			/* Awaken & attract soldiers */
 	    You("extract a loud noise from %s.", the(xname(instr)));
 	    awaken_soldiers();
@@ -768,6 +771,7 @@ char	*buf;
 	    (void) write(fd, ">ol", 1); /* up one octave & lock */
 	    break;
 	case TOOLED_HORN:
+	case FOG_HORN:
 	case FROST_HORN:
 	case TEMPEST_HORN:
 	case FIRE_HORN:
@@ -839,6 +843,7 @@ char	*buf;
 	    playstring(">ol", 1); /* up one octave & lock */
 	    break;
 	case TOOLED_HORN:
+	case FOG_HORN:
 	case FROST_HORN:
 	case TEMPEST_HORN:
 	case FIRE_HORN:
