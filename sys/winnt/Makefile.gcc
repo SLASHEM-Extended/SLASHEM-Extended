@@ -202,7 +202,7 @@ TERMLIB =
 #CFLAGS = -pg -c -I../include $(DLBFLG) -DSUPPRESS_GRAPHICS
 #LFLAGS = -pg
 
-CFLAGS = -c -O -I../include $(DLBFLG) -DSUPPRESS_GRAPHICS
+CFLAGS = -c -g -O -I../include $(DLBFLG) -DSUPPRESS_GRAPHICS
 LFLAGS =
 
 else
@@ -212,7 +212,7 @@ else
 #LFLAGS = -pg
 
 #    Normal
-CFLAGS = -c -O -I../include $(DLBFLG)
+CFLAGS = -c -g -O -I../include $(DLBFLG)
 LFLAGS =
 
 # Comment out this line if you have also commented out TTY_GRAPHICS in config.h
