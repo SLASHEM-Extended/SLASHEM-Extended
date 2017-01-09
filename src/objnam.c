@@ -129,6 +129,8 @@ int prop;
 			return "hallucination";
 		case BURNED:
 			return "burning";
+		case DIMMED:
+			return "dimness";
 		case WOUNDED_LEGS:
 			return "legscratching";
 		case NUMBED:
@@ -159,6 +161,8 @@ int prop;
 			return "quad attacks";
 		case MANALEECH:
 			return "manaleech";
+		case PEACEVISION:
+			return "peacevision";
 		case MAP_AMNESIA:
 			return "map amnesia";
 		case DETECT_MONSTERS:
@@ -173,6 +177,8 @@ int prop;
 			return "stunnopathy";
 		case NUMBOPATHY:
 			return "numbopathy";
+		case DIMMOPATHY:
+			return "dimmopathy";
 		case FREEZOPATHY:
 			return "freezopathy";
 		case STONED_CHILLER:

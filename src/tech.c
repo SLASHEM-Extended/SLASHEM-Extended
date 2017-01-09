@@ -1862,7 +1862,7 @@ dotech()
 			break;
 
 		case T_ENT_S_POTION:
-			pline("Restores some of your health and also fixes blindness, stunning, confusion, hallucination, numbness, fear, freezing and burns.");
+			pline("Restores some of your health and also fixes blindness, stunning, confusion, hallucination, numbness, fear, freezing, dimness and burns.");
 			break;
 
 		case T_LUCKY_GAMBLE:
@@ -3470,6 +3470,7 @@ int tech_no;
 	      make_feared(0L,TRUE);
 	      make_frozen(0L,TRUE);
 	      make_burned(0L,TRUE);
+	      make_dimmed(0L,TRUE);
 	      u.uhunger += techlev(tech_no) * 10;
 
 	      t_timeout = rnz(10000);

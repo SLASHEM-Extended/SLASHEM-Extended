@@ -2100,7 +2100,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(296);
+			monstercolor = rnd(297);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -4619,6 +4619,7 @@ struct monst *mtmp;
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -7969,7 +7970,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(296);
+			monstercolor = rnd(297);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);

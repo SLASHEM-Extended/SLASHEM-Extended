@@ -272,6 +272,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) )
 		    ways_seen++;
+		if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel )
+		    ways_seen++;
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
@@ -407,6 +409,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Burnopathy && Burned && infravision(mtmp->data) ) {
 			Strcat(monbuf, "burnopathy");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel ) {
+			Strcat(monbuf, "dimmopathy");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (Sickopathy && Sick && extra_nasty(mtmp->data) ) {
@@ -1553,6 +1559,7 @@ get_description_of_damage_type(uchar id)
 		case AD_NUMB: return "numbness";
 		case AD_FRZE: return "freezes you solid";
 		case AD_BURN: return "burns you";
+		case AD_DIMN: return "dims you";
 		case AD_FEAR: return "causes fear";
 		case AD_DISP: return "pushes you away";
 

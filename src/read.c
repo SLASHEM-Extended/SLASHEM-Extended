@@ -466,7 +466,7 @@ doread()
 "How To Keep An Idiot In Suspense - See Other Side",
 "I <3 Dungeon of Doom",
 "I <3 Maud",
-"I Am Not a Pack Rat Â– I Am a Collector",
+"I Am Not a Pack Rat – I Am a Collector",
 "I Support Single Succubi",
 "I am a Demigod, oh yes...",
 "I am a Valkyrie. If you see me running, try to keep up.",
@@ -2609,7 +2609,7 @@ register struct obj	*sobj;
 
 			pline("The spell effect backlashes!");
 
-		    switch (rn2(16)) {
+		    switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -2637,6 +2637,8 @@ register struct obj	*sobj;
 		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
 			    break;
 		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    case 16: make_dimmed(HDimmed + 12, FALSE);			/* 10% */
 			    break;
 		    }
 
@@ -3272,6 +3274,7 @@ register struct obj	*sobj;
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -3547,7 +3550,7 @@ register struct obj	*sobj;
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(296);
+			monstercolor = rnd(297);
 		}
 
 		while(cnt--) {
@@ -4879,6 +4882,7 @@ retry:
 		    make_feared(0L,TRUE);
 		    make_frozen(0L,TRUE);
 		    make_burned(0L,TRUE);
+		    make_dimmed(0L,TRUE);
 
 		break;
 	case SPE_CHARGING:

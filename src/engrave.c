@@ -2011,6 +2011,7 @@ doengrave()
 			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
 			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||
 			(Numbed && (ishaxor ? !rn2(38) : !rn2(28)) ) ||
+			(Dimmed && (ishaxor ? !rn2(35) : !rn2(25)) ) ||
 			(Feared && (ishaxor ? !rn2(40) : !rn2(30)) ) ||
 		    (Stunned && (ishaxor ? !rn2(25) : !rn2(15)) ) ||
 			(Frozen && (ishaxor ? !rn2(20) : !rn2(10)) ) ||

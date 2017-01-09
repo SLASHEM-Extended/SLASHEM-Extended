@@ -238,6 +238,32 @@ boolean talk;
 }
 
 void
+make_dimmed(xtime,talk)
+long xtime;
+boolean talk;
+{
+	long old = HDimmed;
+
+	if (!xtime && old) {
+		if (talk && (HeavyDimmed < 2) )
+		    pline(Hallucination ? "Whew, your marriage might be saved after all." : "You are no longer dimmed.");
+	}
+	if (xtime && !old) {
+		if (talk) {
+			pline(Hallucination ? "You feel worried about your marriage!" : "You were dimmed!");
+		}
+	}
+	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
+
+	set_itimeout(&HDimmed, xtime);
+	if (xtime && !rn2(1000)) {
+		pline(Hallucination ? "Life has no more meaning. Your wife has run away, your children are dead and people are setting fire to your home right now." : "You're badly dimmed!");
+		set_itimeout(&HeavyDimmed, xtime);
+	}
+	if (xtime && (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) ) set_itimeout(&HeavyDimmed, xtime);
+}
+
+void
 make_sick(xtime, cause, talk, type)
 long xtime;
 const char *cause;	/* sickness cause */
@@ -539,7 +565,7 @@ badeffect()
 		return;
 	}
 
-	switch (rnd(375)) {
+	switch (rnd(380)) {
 
 		case 1:
 		case 2:
@@ -1086,7 +1112,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(121)) {
+		switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -1382,6 +1408,14 @@ badeffect()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 		break;
@@ -1944,6 +1978,16 @@ badeffect()
 
 		case 375:
 			bad_artifact();
+		break;
+
+		case 376:
+		case 377:
+		case 378:
+		case 379:
+		case 380:
+		if (Hallucination) You_feel("totally bad! Your wife is going to abandon you...");
+		else pline("You're dimmed!");
+		make_dimmed(HDimmed + rnz(150),FALSE);
 		break;
 
 		default:

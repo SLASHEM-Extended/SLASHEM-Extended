@@ -854,7 +854,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(121)) {
+		switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -1150,13 +1150,21 @@ nh_timeout()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(121)) {
+		switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -1452,13 +1460,21 @@ nh_timeout()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(121)) {
+		switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -1754,6 +1770,14 @@ nh_timeout()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 	}
@@ -2022,6 +2046,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2149,6 +2174,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2274,6 +2300,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2399,6 +2426,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2524,6 +2552,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2649,6 +2678,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2774,6 +2804,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -2899,6 +2930,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -3017,6 +3049,7 @@ nh_timeout()
 				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 				break;
@@ -3633,6 +3666,11 @@ nh_timeout()
 			make_burned(0L, TRUE);
 			stop_occupation();
 			break;
+		case DIMMED:
+			HDimmed = 1;
+			make_dimmed(0L, TRUE);
+			stop_occupation();
+			break;
 		case BLINDED:
 			Blinded = 1;
 			make_blinded(0L, TRUE);
@@ -3887,6 +3925,9 @@ nh_timeout()
 		case DEAC_NUMBOPATHY:
 			pline("You are no longer prevented from having numbopathy.");
 			break;
+		case DEAC_DIMMOPATHY:
+			pline("You are no longer prevented from having dimmopathy.");
+			break;
 		case DEAC_FREEZOPATHY:
 			pline("You are no longer prevented from having freezopathy.");
 			break;
@@ -3913,6 +3954,9 @@ nh_timeout()
 			break;
 		case DEAC_MANALEECH:
 			pline("You are no longer prevented from having manaleech.");
+			break;
+		case DEAC_PEACEVISION:
+			pline("You are no longer prevented from having peacevision.");
 			break;
 
 		}

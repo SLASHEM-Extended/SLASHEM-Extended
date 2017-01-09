@@ -1895,7 +1895,7 @@ degradeagain:
 	if (obj && obj->cursed) {
 	    long lcount = (long) rnd(100);
 
-	    switch (rn2(10)) {
+	    switch (rn2(11)) {
 	    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 			xname(obj), TRUE, SICK_NONVOMITABLE);
 		    break;
@@ -1919,6 +1919,8 @@ degradeagain:
 	    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 		    break;
 	    case 9: make_feared(HFeared + lcount, TRUE);
+		    break;
+	    case 10: make_dimmed(HDimmed + lcount, TRUE);
 		    break;
 	    }
 	    return;
@@ -1947,6 +1949,7 @@ degradeagain:
 	if (HFrozen) prop_trouble(FROZEN);
 	if (HBurned) prop_trouble(BURNED);
 	if (HFeared) prop_trouble(FEARED);
+	if (HDimmed) prop_trouble(DIMMED);
 
 	unfixable_trbl = unfixable_trouble_count(TRUE);
 
@@ -2050,6 +2053,10 @@ degradeagain:
 		break;
 	    case prop2trbl(BURNED):
 		make_burned(0L, TRUE);
+		did_prop++;
+		break;
+	    case prop2trbl(DIMMED):
+		make_dimmed(0L, TRUE);
 		did_prop++;
 		break;
 	    default:
@@ -2396,6 +2403,7 @@ set_whetstone()
 	    if (Feared) adj--;
 	    if (Frozen) adj--;
 	    if (Burned) adj--;
+	    if (Dimmed) adj--;
 	    if (Hallucination) adj--;
 	    if (adj > 0)
 		whetstoneinfo.time_needed -= adj;
@@ -4377,6 +4385,7 @@ doapply()
 			    else if (HFrozen) make_frozen(0L, TRUE);
 			    else if (HBurned) make_burned(0L, TRUE);
 			    else if (HFeared) make_feared(0L, TRUE);
+			    else if (HDimmed) make_dimmed(0L, TRUE);
 			    else if (u.uhp < u.uhpmax) {
 				u.uhp += rn1(10,10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -4810,6 +4819,7 @@ unfixable_trouble_count(is_horn)
 	    if (Feared) unfixable_trbl++;
 	    if (Frozen) unfixable_trbl++;
 	    if (Burned) unfixable_trbl++;
+	    if (Dimmed) unfixable_trbl++;
 	    if (Sick) unfixable_trbl++;
 	    if (HHallucination) unfixable_trbl++;
 	    if (Vomiting) unfixable_trbl++;

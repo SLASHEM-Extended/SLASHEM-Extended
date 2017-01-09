@@ -1908,7 +1908,7 @@ newboss:
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(121)) {
+	switch (rnd(123)) {
 
 		case 1:
 		case 2:
@@ -2204,6 +2204,14 @@ newboss:
 		case 121:
 			u.uprops[DEAC_MANALEECH].intrinsic += rnz(dmg);
 			pline("You are prevented from having manaleech!");
+			break;
+		case 122:
+			u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(dmg);
+			pline("You are prevented from having dimmopathy!");
+			break;
+		case 123:
+			u.uprops[DEAC_PEACEVISION].intrinsic += rnz(dmg);
+			pline("You are prevented from having peacevision!");
 			break;
 	}
 	dmg = 0;

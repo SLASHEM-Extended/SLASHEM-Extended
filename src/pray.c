@@ -103,7 +103,8 @@ static int p_type; /* (-1)-3: (-1)=really naughty, 3=really good */
 #define TROUBLE_FROZEN		(-13)
 #define TROUBLE_BURNED		(-14)
 #define TROUBLE_FEARED		(-15)
-#define TROUBLE_LOW_ENERGY		(-16)
+#define TROUBLE_DIMMED		(-16)
+#define TROUBLE_LOW_ENERGY		(-17)
 
 /* We could force rehumanize of polyselfed people, but we can't tell
    unintentional shape changes from the other kind. Oh well.
@@ -220,6 +221,7 @@ in_trouble()
 	if(HNumbed) return (TROUBLE_NUMBED);
 	if(HFrozen) return (TROUBLE_FROZEN);
 	if(HBurned) return (TROUBLE_BURNED);
+	if(HDimmed) return (TROUBLE_DIMMED);
 	if(HFeared) return (TROUBLE_FEARED);
         if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax)) 
         	return(TROUBLE_LOW_ENERGY);
@@ -478,6 +480,9 @@ decurse:
 		    break;
 	    case TROUBLE_BURNED:
 		    make_burned(0L,TRUE);
+		    break;
+	    case TROUBLE_DIMMED:
+		    make_dimmed(0L,TRUE);
 		    break;
 	    case TROUBLE_FEARED:
 		    make_feared(0L,TRUE);

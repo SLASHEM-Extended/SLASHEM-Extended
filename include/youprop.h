@@ -146,6 +146,11 @@
 #define Burned		(HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uarms && uarms->oartifact == ART_BURNING_DISK) )
 #define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
 
+#define HDimmed		u.uprops[DIMMED].intrinsic
+#define EDimmed		u.uprops[DIMMED].extrinsic
+#define Dimmed		(HDimmed || EDimmed || HeavyDimmed)
+#define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
+
 #define Blinded			u.uprops[BLINDED].intrinsic
 #define EBlinded			u.uprops[BLINDED].extrinsic
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != CONDOME)
@@ -331,6 +336,11 @@
 #define Numbopathy	(((HNumbopathy && !(u.nonintrinsicproperty == NUMBOPATHY)) || ENumbopathy) && !NoNumbopathy)
 #define NoNumbopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_NUMBOPATHY].intrinsic || (u.nonextrinsicproperty == NUMBOPATHY && !HNumbopathy) || (u.impossibleproperty == NUMBOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HDimmopathy	u.uprops[DIMMOPATHY].intrinsic
+#define EDimmopathy	u.uprops[DIMMOPATHY].extrinsic
+#define Dimmopathy	(((HDimmopathy && !(u.nonintrinsicproperty == DIMMOPATHY)) || EDimmopathy) && !NoDimmopathy)
+#define NoDimmopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DIMMOPATHY].intrinsic || (u.nonextrinsicproperty == DIMMOPATHY && !HDimmopathy) || (u.impossibleproperty == DIMMOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #define HFreezopathy	u.uprops[FREEZOPATHY].intrinsic
 #define EFreezopathy	u.uprops[FREEZOPATHY].extrinsic
 #define Freezopathy	(((HFreezopathy && !(u.nonintrinsicproperty == FREEZOPATHY)) || EFreezopathy) && !NoFreezopathy)
@@ -375,6 +385,11 @@
 #define EManaleech	u.uprops[MANALEECH].extrinsic
 #define Manaleech		(((HManaleech && !(u.nonintrinsicproperty == MANALEECH)) || EManaleech || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmu && uarmu->oartifact == ART_NATALIA_IS_LOVELY_BUT_DANG) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarm && flags.female && uarm->oartifact == ART_PRETTY_LITTLE_MAGICAL_GIRL) || (uarmh && uarmh->oartifact == ART_REFUEL_BADLY) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART_MADMAN_S_POWER) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) ) && !NoManaleech)
 #define NoManaleech	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MANALEECH].intrinsic || (u.nonextrinsicproperty == MANALEECH && !HManaleech) || (u.impossibleproperty == MANALEECH) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HPeacevision	u.uprops[PEACEVISION].intrinsic
+#define EPeacevision	u.uprops[PEACEVISION].extrinsic
+#define Peacevision		(((HPeacevision && !(u.nonintrinsicproperty == PEACEVISION)) || EPeacevision) && !NoPeacevision)
+#define NoPeacevision	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PEACEVISION].intrinsic || (u.nonextrinsicproperty == PEACEVISION && !HPeacevision) || (u.impossibleproperty == PEACEVISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic

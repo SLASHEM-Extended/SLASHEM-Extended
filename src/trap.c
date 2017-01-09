@@ -4186,7 +4186,7 @@ newegomon:
 	    case NEGATIVE_TRAP:
 		pline("You stepped on a trigger!");
 		seetrap(trap);
-		switch (rnd(10)) {
+		switch (rnd(11)) {
 			case 1:
 				make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 				break;
@@ -4217,6 +4217,9 @@ newegomon:
 				break;
 			case 10:
 				make_sick(rn1(25,25), "negative food poisoning", TRUE, SICK_VOMITABLE);
+				break;
+			case 11:
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 				break;
 		}
 		break;
@@ -5283,6 +5286,7 @@ newegomon:
 			if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 			if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 			if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+			if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 			if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 			if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 
@@ -5946,7 +5950,7 @@ newegomon:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(121)) {
+				 switch (rnd(123)) {
 
 					case 1:
 					case 2:
@@ -6243,6 +6247,14 @@ newegomon:
 						u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having manaleech!");
 						break;
+					case 122:
+						u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having dimmopathy!");
+						break;
+					case 123:
+						u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having peacevision!");
+						break;
 				}
 
 			}
@@ -6275,6 +6287,7 @@ newegomon:
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -6426,7 +6439,7 @@ newegomon:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -6722,6 +6735,14 @@ newegomon:
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 
@@ -7264,7 +7285,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(296);
+			monstercolor = rnd(297);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -7517,7 +7538,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(296);
+			monstercolor = rnd(297);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 

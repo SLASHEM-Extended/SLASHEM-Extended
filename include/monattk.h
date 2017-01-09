@@ -155,7 +155,9 @@
 #define AD_VULN		98	/* temporarily deactivate the player's positive intrinsics */
 #define AD_FUMB		99	/* fumbling-inducing attack */
 
-#define AD_ENDS		100	/* placeholder */
+#define AD_DIMN		100	/* dimness */
+
+#define AD_ENDS		101	/* placeholder */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

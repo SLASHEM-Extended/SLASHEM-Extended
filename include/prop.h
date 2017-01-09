@@ -292,7 +292,16 @@
 
 #define MAP_AMNESIA 259
 
-#define SECOND_CHANCE		260
+#define DIMMED 260
+
+#define PEACEVISION 261
+#define DEAC_PEACEVISION 262
+#define DIMMOPATHY 263
+#define DEAC_DIMMOPATHY 264
+
+#define HEAVY_DIMMED 265
+
+#define SECOND_CHANCE		266
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

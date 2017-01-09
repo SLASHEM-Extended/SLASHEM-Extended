@@ -7396,7 +7396,7 @@ struct obj *obj;
 			case LUMP_OF_ROYAL_JELLY: 
 				pline("Eating this vegetarian food item can increase your strength."); break;
 			case CREAM_PIE: 
-				pline("A vegetarian type of food that cures burns. It can also be thrown to blind enemies."); break;
+				pline("A vegetarian type of food that cures burns and dimness. It can also be thrown to blind enemies."); break;
 			case SANDWICH: 
 				pline("A meaty food item that provides moderate amounts of nutrition."); break;
 			case CANDY_BAR: 
@@ -7832,7 +7832,7 @@ struct obj *obj;
 			case SCR_MANA: 
 				pline("A standard mana scroll that behaves similar to mana potions in other role-playing games by restoring some of your mana."); break;
 			case SCR_CURE: 
-				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear and hallucination."); break;
+				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination."); break;
 			case SCR_PHASE_DOOR: 
 				pline("Using this scroll will teleport you over a short distance."); break;
 			case SCR_TRAP_DISARMING: 
@@ -8310,7 +8310,7 @@ struct obj *obj;
 			case SPE_RUMOR:
 				pline("Displays a random rumor when cast."); break;
 			case SPE_CURE_RANDOM_STATUS:
-				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness or fear."); break;
+				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness, dimness or fear."); break;
 			case SPE_RESIST_RANDOM_ELEMENT:
 				pline("Gain a random resistance temporarily by casting this spell!"); break;
 			case SPE_RUSSIAN_ROULETTE:

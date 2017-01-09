@@ -208,7 +208,7 @@ int
 randattack()
 {
 
-	switch (rnd(283)) {
+	switch (rnd(288)) {
 
 		case 1:
 		case 2:
@@ -589,6 +589,12 @@ randattack()
 			return AD_VULN;
 		case 283:
 			return AD_FUMB;
+		case 284:
+		case 285:
+		case 286:
+		case 287:
+		case 288:
+			return AD_DIMN;
 		default:
 			return AD_PHYS;
 
@@ -600,7 +606,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(136)) {
+	switch (rnd(138)) {
 
 		case 1:
 		case 2:
@@ -896,6 +902,10 @@ randenchantment()
 			return MANALEECH;
 		case 136:
 			return MAP_AMNESIA;
+		case 137:
+			return DIMMED;
+		case 138:
+			return PEACEVISION;
 		default:
 			return POISON_RES;
 
@@ -1002,7 +1012,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(58)) {
+	switch (rnd(60)) {
 
 		case 1:
 			return FIRE_RES;
@@ -1120,6 +1130,10 @@ randomdisableproperty()
 			return GLIB_COMBAT;
 		case 58:
 			return MANALEECH;
+		case 59:
+			return DIMMOPATHY;
+		case 60:
+			return PEACEVISION;
 		default:
 			return POISON_RES;
 	}		

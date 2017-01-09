@@ -481,6 +481,10 @@ register struct obj *food;
 		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
+	} else if(!rn2(20)) {
+		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		else pline("You're dimmed.");
+		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
@@ -1228,6 +1232,8 @@ register struct permonst *ptr;
 		return(dmgtype(ptr, AD_STUN) );
 	    case NUMBOPATHY:
 		return(dmgtype(ptr, AD_NUMB) );
+	    case DIMMOPATHY:
+		return(dmgtype(ptr, AD_DIMN) );
 	    case FREEZOPATHY:
 		return(dmgtype(ptr, AD_FRZE) );
 	    case STONED_CHILLER:
@@ -1499,6 +1505,14 @@ register struct permonst *ptr;
 			    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
 			    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
 			HNumbopathy |= FROMOUTSIDE;
+		}
+		break;
+	    case DIMMOPATHY:
+		if(!(HDimmopathy & FROMOUTSIDE)) {
+			You_feel(Hallucination ?
+			    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
+			    "a little down. But then, good feelings overcome you.");
+			HDimmopathy |= FROMOUTSIDE;
 		}
 		break;
 	    case FREEZOPATHY:
@@ -3007,6 +3021,10 @@ gluttonous()
 		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
+	} else if(!rn2(20)) {
+		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		else pline("You're dimmed.");
+		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
@@ -3092,6 +3110,10 @@ violated_vegetarian()
 		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
+	} else if(!rn2(20)) {
+		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		else pline("You're dimmed.");
+		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
@@ -3467,6 +3489,10 @@ struct obj *obj;
 		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
+	} else if(!rn2(20)) {
+		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		else pline("You're dimmed.");
+		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
 		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
@@ -4474,6 +4500,7 @@ register struct obj *otmp;
 
 	    case CREAM_PIE:
 		make_burned(0L, TRUE);
+		make_dimmed(0L, TRUE);
 		break;
 
 	    case PEAR:
@@ -4489,6 +4516,7 @@ register struct obj *otmp;
 		make_confused(0L, TRUE);
 		make_stunned(0L, TRUE);
 		make_burned(0L, TRUE);
+		make_dimmed(0L, TRUE);
 		make_feared(0L, TRUE);
 		make_numbed(0L, TRUE);
 		make_frozen(0L, TRUE);

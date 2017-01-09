@@ -1124,7 +1124,7 @@ int thrown;
 	register int range, urange;
 	struct obj *launcher = (struct obj*) 0;
 	boolean impaired = ( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) || Blind ||
-			   Hallucination || Fumbling || Frozen || Burned || Numbed || Feared);
+			   Hallucination || Fumbling || Frozen || Burned || Dimmed || Numbed || Feared);
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;

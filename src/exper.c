@@ -830,7 +830,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvl = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(51)) {
+		if (!rn2(3)) { switch (rnd(52)) {
 
 			case 1: 
 			case 2: 
@@ -910,6 +910,8 @@ boolean incr;	/* true iff via incremental experience growth */
 			    HInvis |= FROMOUTSIDE; pline("Got invisibility!"); break;
 			case 49: 
 			    HManaleech |= FROMOUTSIDE; pline("Got manaleech!"); break;
+			case 50: 
+			    HPeacevision |= FROMOUTSIDE; pline("Got peacevision!"); break;
 
 			default:
 				break;

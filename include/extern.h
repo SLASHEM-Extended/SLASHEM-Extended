@@ -1900,6 +1900,7 @@ E void FDECL(make_numbed, (long,BOOLEAN_P));
 E void FDECL(make_feared, (long,BOOLEAN_P));
 E void FDECL(make_frozen, (long,BOOLEAN_P));
 E void FDECL(make_burned, (long,BOOLEAN_P));
+E void FDECL(make_dimmed, (long,BOOLEAN_P));
 E void FDECL(make_blinded, (long,BOOLEAN_P));
 E void FDECL(make_sick, (long, const char *, BOOLEAN_P,int));
 E void FDECL(make_vomiting, (long,BOOLEAN_P));

@@ -1022,6 +1022,9 @@ unsigned *ospecial;
 
 		mtmp = m_at(x, y);
 		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) special |= MG_EGOTYPE;
+
+		if (mtmp && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_STAIRS;
+
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
 	    if (x == u.ux && y == u.uy)

@@ -317,7 +317,7 @@ Boots_on()
 		while (extraabilities > 0) {
 			extraabilities--;
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -613,6 +613,14 @@ Boots_on()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += 1000000;
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += 1000000;
+				pline("You are prevented from having peacevision!");
 				break;
 			}
 
@@ -1238,7 +1246,7 @@ Cloak_on()
 				while (disabling > 0) {
 					disabling--;
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -1534,6 +1542,14 @@ Cloak_on()
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += 1000000;
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += 1000000;
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += 1000000;
+				pline("You are prevented from having peacevision!");
 				break;
 		}
 
@@ -4625,6 +4641,14 @@ find_ac()
 	if (u.berserktime) {
 		int difference = (-(uac - 10));
 		difference = difference / 5;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+		
+	}
+
+	if (Dimmed) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
 		else uac = 10;
 		

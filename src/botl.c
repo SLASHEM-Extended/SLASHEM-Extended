@@ -853,6 +853,18 @@ bot2str(char *newbot2)
 #else
 		Strcat(nb = eos(nb), flags.showlongstats ? " XBurn" : " XBrn");
 #endif
+	if(Dimmed && !HeavyDimmed)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("Dim", newbot2);
+#else
+		Strcat(nb = eos(nb), " Dim");
+#endif
+	if(Dimmed && HeavyDimmed)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text("XDim", newbot2);
+#else
+		Strcat(nb = eos(nb), " XDim");
+#endif
 	if(Stunned && !HeavyStunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Stun" : "Stn", newbot2);
@@ -1046,6 +1058,7 @@ boolean reconfig;
 	(Feared ? RAW_STAT_FEARED : 0) |
 	(Frozen ? RAW_STAT_FROZEN : 0) |
 	(Burned ? RAW_STAT_BURNED : 0) |
+	(Dimmed ? RAW_STAT_DIMMED : 0) |
 	(Hallucination ? RAW_STAT_HALLUCINATION : 0) |
 	(Slimed ? RAW_STAT_SLIMED : 0)), flgs);
     (*raw_handler)(reconfig, rv - botl_raw_values, botl_raw_values);

@@ -456,6 +456,12 @@ const struct innate {
 			{   24, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
+	act_abil[] = { {   1, &(HPeacevision), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	jus_abil[] = { {   1, &(HPeacevision), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
 		     {	 1, &(HStealth), "", "" },
 		     {   7, &(HFast), "quick", "slow" },
@@ -750,6 +756,7 @@ const struct innate {
 		     {   1, &(HDrunken_boxing), "", "" },
 		     {   1, &(HStunnopathy), "", "" },
 		     {   1, &(HNumbopathy), "", "" },
+		     {   1, &(HDimmopathy), "", "" },
 		     {   1, &(HFreezopathy), "", "" },
 		     {   1, &(HStoned_chiller), "", "" },
 		     {   1, &(HCorrosivity), "", "" },
@@ -1169,7 +1176,7 @@ exerper()
 		if (HRegeneration)			exercise(A_STR, TRUE);
 
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
-		if( (Confusion && !Conf_resist) || Hallucination || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
+		if( (Confusion && !Conf_resist) || Hallucination || Dimmed || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
 		if((Wounded_legs 
 		    && !u.usteed
@@ -1399,6 +1406,7 @@ int oldlevel, newlevel;
 	case PM_ASSASSIN:           abil = ass_abil;	break;
 	case PM_WANDKEEPER:           abil = wan_abil;	break;
 	case PM_PALADIN:           abil = pal_abil;	break;
+	case PM_ACTIVISTOR:           abil = act_abil;	break;
 	case PM_INTEL_SCRIBE:           abil = scr_abil;	break;
 	case PM_FOXHOUND_AGENT:           abil = fox_abil;	break;
 	case PM_FEAT_MASTER:           abil = stu_abil;	break;
@@ -1467,6 +1475,7 @@ int oldlevel, newlevel;
 	case PM_WIZARD:         abil = wiz_abil;	break;
 	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
 	case PM_YEOMAN:		abil = yeo_abil;	break;
+	case PM_JUSTICE_KEEPER:		abil = jus_abil;	break;
 	default:                abil = 0;		break;
 	}
 

@@ -439,7 +439,7 @@ struct obj *instr;
 
 	    awaken_monsters(u.ulevel * 30);
 
-	    switch (rn2(16)) {
+	    switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -467,6 +467,8 @@ struct obj *instr;
 		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
 			    break;
 		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    case 16: make_dimmed(HDimmed + 12, FALSE);			/* 10% */
 			    break;
 	    }
 
@@ -536,7 +538,7 @@ struct obj *instr;
 	    Deafness += (u.ulevel * 40);
 	    flags.soundok = 0;
 
-	    switch (rn2(48)) {
+	    switch (rn2(52)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -564,6 +566,8 @@ struct obj *instr;
 		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
 			    break;
 		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    case 16: make_dimmed(HDimmed + 12, FALSE);			/* 10% */
 			    break;
 		    default: break;
 	    }

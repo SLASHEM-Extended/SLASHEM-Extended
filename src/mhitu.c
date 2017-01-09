@@ -308,6 +308,7 @@ on the first floor, especially when you're playing as something with drain resis
 						if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 						if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 						if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+						if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 						if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 						if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 						break;
@@ -4227,7 +4228,7 @@ hitmu(mtmp, mattk)
 	    case AD_VULN:
 		hitmsg(mtmp, mattk);
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -4524,6 +4525,14 @@ hitmu(mtmp, mattk)
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (dmg * rnd(30) ) + 1);
 				pline("You are prevented from having manaleech!");
 				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (dmg * rnd(30) ) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (dmg * rnd(30) ) + 1);
+				pline("You are prevented from having peacevision!");
+				break;
 		}
 
 		break;
@@ -4569,6 +4578,7 @@ hitmu(mtmp, mattk)
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -6149,6 +6159,13 @@ dopois:
 		    dmg /= 2;
 		}
 		break;
+	    case AD_DIMN:
+		hitmsg(mtmp, mattk);
+		if(!mtmp->mcan && uncancelled) {
+		    make_dimmed(HDimmed + dmg, TRUE);
+		    dmg /= 2;
+		}
+		break;
 	    case AD_FEAR:
 		hitmsg(mtmp, mattk);
 		if(!mtmp->mcan && !rn2(3)) {
@@ -6160,7 +6177,7 @@ dopois:
 	    case AD_CHRN:
 		hitmsg(mtmp, mattk);
 
-		    switch (rn2(10)) {
+		    switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + dmg, TRUE);
@@ -6183,6 +6200,8 @@ dopois:
 		    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
 			    break;
 		    case 9: make_feared(HFeared + dmg, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + dmg, TRUE);
 			    break;
 		    }
 
@@ -6881,7 +6900,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_VULN:
 				pline("You are covered with aggressive bacteria!");
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -7178,6 +7197,14 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having manaleech!");
 				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having peacevision!");
+				break;
 		}
 
 			break;
@@ -7223,6 +7250,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -7391,6 +7419,12 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You_feel("an overwhelming heat!");
 			if (!rn2(2)) {
 			    make_burned(HBurned + tmp, TRUE);
+			}
+			break;
+	      case AD_DIMN:
+				You_feel("some dimness inside!");
+			if (!rn2(2)) {
+			    make_dimmed(HDimmed + tmp, TRUE);
 			}
 			break;
 	      case AD_FEAR:
@@ -8387,7 +8421,7 @@ do_stone2:
 	    case AD_CHRN:
 		pline("You are surrounded by a black glow.");
 		if (rn2(4)) break;
-		    switch (rn2(10)) {
+		    switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -8410,6 +8444,8 @@ do_stone2:
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
 		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
 			    break;
 		    }
 
@@ -9107,7 +9143,7 @@ common:
 
 	    case AD_CHRN:
 
-	      switch (rn2(10)) {
+	      switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -9130,6 +9166,8 @@ common:
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
 		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
 			    break;
 		}
 
@@ -9306,6 +9344,7 @@ common:
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -9414,7 +9453,7 @@ common:
 
 	    case AD_VULN:
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -9710,6 +9749,14 @@ common:
 			case 121:
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having manaleech!");
+				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having peacevision!");
 				break;
 		}
 
@@ -10477,6 +10524,15 @@ common:
 			if (!Hallucination) You("are burned by a blast of light!");
 			else pline("%s BURNED",urole.name.m);
 			make_burned(HBurned + (long)tmp, FALSE);
+		}
+		break;
+
+	    case AD_DIMN:
+		not_affected = (Blind && !rn2(3));
+		if (!not_affected) {
+			if (!Hallucination) You("are dimmed by a blast of light!");
+			else pline("%s DISPIRITED",urole.name.m);
+			make_dimmed(HDimmed + (long)tmp, FALSE);
 		}
 		break;
 
@@ -11784,6 +11840,20 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	    case AD_DIMN:
+		if(!mtmp->mcan && canseemon(mtmp) &&
+		   couldsee(mtmp->mx, mtmp->my) &&
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(3))) {
+		    int dimming = d(2,6);
+
+		    mtmp->mspec_used = mtmp->mspec_used + (dimming + rn2(6));
+		    pline("%s stares dimmingly at you!", Monnam(mtmp));
+		    make_burned(HDimmed + dimming, TRUE);
+		    if (!rn2(4)) make_dimmed(HDimmed + dmgplus, FALSE);
+		    stop_occupation();
+		}
+		break;
+
 	    case AD_FEAR:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
@@ -12481,7 +12551,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s laughs devilishly!", Monnam(mtmp));
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -12778,6 +12848,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
 				pline("You are prevented from having manaleech!");
 				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
+				pline("You are prevented from having peacevision!");
+				break;
 		}
 		}
 
@@ -12829,6 +12907,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -13013,7 +13092,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                pline("%s gazes at you and curses horribly.", Monnam(mtmp));
 		    stop_occupation();
 
-		    switch (rn2(10)) {
+		    switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + dmgplus, TRUE);
@@ -13036,6 +13115,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
 			    break;
 		    case 9: make_feared(HFeared + dmgplus, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + dmgplus, TRUE);
 			    break;
 		    }
 
@@ -13711,6 +13792,7 @@ register struct monst *mon;
 		u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
@@ -13729,6 +13811,7 @@ register struct monst *mon;
 		u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 	}
 
 	if (!rn2(250) && !(ublindf && ublindf->otyp == CONDOME) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
@@ -13767,6 +13850,12 @@ register struct monst *mon;
 		pline("Ulch - you contracted swamp fever from having unprotected intercourse with your lover!");
 		make_burned(HBurned + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBurned, HBurned);
+	}
+
+	if (!rn2(100) && !(ublindf && ublindf->otyp == CONDOME) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted depression from having unprotected intercourse with your lover!");
+		make_dimmed(HDimmed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
+		set_itimeout(&HeavyDimmed, HDimmed);
 	}
 
 	if (!rn2(500) && !(ublindf && ublindf->otyp == CONDOME) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
@@ -14374,6 +14463,9 @@ register struct attack *mattk;
 		break;
 	    case AD_HODS:
 		tmp += mtmp->m_lev;
+		break;
+	    case AD_DIMN:
+		tmp += u.ulevel;
 		break;
 	    case AD_BURN:
 		if (resists_cold(mtmp) && !resists_fire(mtmp)) {

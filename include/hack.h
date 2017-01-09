@@ -386,6 +386,7 @@ extern int repeat_hit;
 #define RAW_STAT_FROZEN		0x00000200
 #define RAW_STAT_BURNED		0x00000400
 #define RAW_STAT_FEARED		0x00000800
+#define RAW_STAT_DIMMED		0x00001000
 
 /* The function argument to qsort() requires a particular
  * calling convention under WINCE which is not the default

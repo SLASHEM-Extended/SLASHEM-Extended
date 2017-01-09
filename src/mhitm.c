@@ -1653,6 +1653,11 @@ physical:
 		tmp += mdef->m_lev;
 		break;
 
+	    case AD_DIMN:
+		tmp += magr->m_lev;
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
+		break;
+
 	    case AD_BURN:
 		if (resists_cold(mdef) && !resists_fire(mdef)) {
 			tmp *= 2;
@@ -2477,6 +2482,9 @@ int mdead;
 		break;
 	    case AD_HODS:
 		tmp += magr->m_lev;
+		break;
+	    case AD_DIMN:
+		tmp += mdef->m_lev;
 		break;
 	    case AD_BURN:
 		if (resists_cold(magr) && !resists_fire(magr)) {

@@ -2327,6 +2327,13 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_are(buf);
 	}
 		
+	if ((guaranteed || !rn2(10)) && Dimmed) {
+		if (HeavyDimmed) Sprintf(buf, "badly dimmed");
+		else Sprintf(buf, "dimmed");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HDimmed);
+		you_are(buf);
+	}
+		
         if ((guaranteed || !rn2(10)) && Punished) {
             you_are("punished");
         }
@@ -3069,6 +3076,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MANALEECH].intrinsic);
 		you_are(buf);
 	}
+	if ((guaranteed || !rn2(10)) && NoPeacevision) {
+		Sprintf(buf, "prevented from having peacevision");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PEACEVISION].intrinsic);
+		you_are(buf);
+	}
 	if ((guaranteed || !rn2(10)) && NoTelepat) {
 		Sprintf(buf, "prevented from having telepathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
@@ -3250,6 +3262,12 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && NoNumbopathy) {
 		Sprintf(buf, "prevented from having numbopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_NUMBOPATHY].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoDimmopathy) {
+		Sprintf(buf, "prevented from having dimmopathy");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DIMMOPATHY].intrinsic);
 		you_are(buf);
 	}
 
@@ -3465,6 +3483,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	/*** Vision and senses ***/
 	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
 	if ((guaranteed || !rn2(10)) && Manaleech) enl_msg(You_, "leech", "leeched", " mana");
+	if ((guaranteed || !rn2(10)) && Peacevision) enl_msg(You_, "recognize", "recognized", " peaceful creatures");
 	if ((guaranteed || !rn2(10)) && Blind_telepat) you_are("telepathic");
 	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", " map amnesia");
 
@@ -3472,6 +3491,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are("a drunken boxer");
 	if ((guaranteed || !rn2(10)) && Stunnopathy) you_are("stunnopathic");
 	if ((guaranteed || !rn2(10)) && Numbopathy) you_are("numbopathic");
+	if ((guaranteed || !rn2(10)) && Dimmopathy) you_are("dimmopathic");
 	if ((guaranteed || !rn2(10)) && Freezopathy) you_are("freezopathic");
 	if ((guaranteed || !rn2(10)) && Stoned_chiller) you_are("a stoned chiller");
 	if ((guaranteed || !rn2(10)) && Corrosivity) you_are("extremely corrosive");
@@ -4536,6 +4556,13 @@ int final;
 		dump(youwere, buf);
 	}
 		
+	if (Dimmed) {
+		if (HeavyDimmed) Sprintf(buf, "badly dimmed");
+		else Sprintf(buf, "dimmed");
+	      Sprintf(eos(buf), " (%d)", HDimmed);
+		dump(youwere, buf);
+	}
+		
       if (Punished) dump(youwere, "punished");
 
       if (u.totter) dump(youhad, "inverted directional keys");
@@ -5268,6 +5295,11 @@ int final;
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MANALEECH].intrinsic);
 		dump(youwere, buf);
 	}
+	if (NoPeacevision) {
+		Sprintf(buf, "prevented from having peacevision");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PEACEVISION].intrinsic);
+		dump(youwere, buf);
+	}
 	if (NoTelepat) {
 		Sprintf(buf, "prevented from having telepathy");
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
@@ -5447,6 +5479,12 @@ int final;
 	if (NoNumbopathy) {
 		Sprintf(buf, "prevented from having numbopathy");
 	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_NUMBOPATHY].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoDimmopathy) {
+		Sprintf(buf, "prevented from having dimmopathy");
+	      Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DIMMOPATHY].intrinsic);
 		dump(youwere, buf);
 	}
 
@@ -5660,6 +5698,7 @@ int final;
 	/*** Vision and senses ***/
 	if (See_invisible) dump("  ", "You saw invisible");
 	if (Manaleech) dump("  ", "You leeched mana");
+	if (Peacevision) dump("  ", "You recognized peaceful creatures");
 	if (Map_amnesia) dump("  ", "You had map amnesia");
 	if (Blind_telepat) dump(youwere, "telepathic");
 
@@ -5667,6 +5706,7 @@ int final;
 	if (Drunken_boxing) dump(youwere, "a drunken boxer");
 	if (Stunnopathy) dump(youwere, "stunnopathic");
 	if (Numbopathy) dump(youwere, "numbopathic");
+	if (Dimmopathy) dump(youwere, "dimmopathic");
 	if (Freezopathy) dump(youwere, "freezopathic");
 	if (Stoned_chiller) dump(youwere, "a stoned chiller");
 	if (Corrosivity) dump(youwere, "extremely corrosive");
@@ -6006,6 +6046,8 @@ minimal_enlightenment()
 		else if (Frozen) Sprintf(eos(statline), "freeze, ");
 		if (HeavyBurned) Sprintf(eos(statline), "xtraburn, ");
 		else if (Burned) Sprintf(eos(statline), "burn, ");
+		if (HeavyDimmed) Sprintf(eos(statline), "xtradim, ");
+		else if (Dimmed) Sprintf(eos(statline), "dim, ");
 		if (HeavyStunned) Sprintf(eos(statline), "xtrastun, ");
 		else if (Stunned) Sprintf(eos(statline), "stun, ");
 		if (HeavyHallu) Sprintf(eos(statline), "xtrahallucination, ");

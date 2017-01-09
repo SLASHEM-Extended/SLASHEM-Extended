@@ -841,7 +841,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(191)) {
+	switch(rnd(192)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1509,6 +1509,15 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HMap_amnesia & TIMEOUT) {
 			HMap_amnesia &= ~TIMEOUT;
 			You_feel("less forgetful!");
+		}
+		break;
+	case 190: if (HPeacevision & INTRINSIC) {
+			HPeacevision &= ~INTRINSIC;
+			You_feel("less peaceful!");
+		}
+		if (HPeacevision & TIMEOUT) {
+			HPeacevision &= ~TIMEOUT;
+			You_feel("less peaceful!");
 		}
 		break;
 	default: break;

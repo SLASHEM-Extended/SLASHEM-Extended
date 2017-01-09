@@ -1492,7 +1492,7 @@ int spell;
     long duration = (long)((spellev(spell) + 1) * 3);	 /* 6..24 */
 
     /* prior to 3.4.1, the only effect was confusion; it still predominates */
-    switch (rn2(16)) {
+    switch (rn2(17)) {
     case 0:
     case 1:
     case 2:
@@ -1520,6 +1520,8 @@ int spell;
     case 14: make_blinded(Blinded + duration, FALSE);			/* 10% */
 	    break;
     case 15: make_hallucinated(HHallucination + duration, FALSE, 0L);			/* 10% */
+	    break;
+    case 16: make_dimmed(HDimmed + duration, FALSE);			/* 10% */
 	    break;
     }
     return;
@@ -3031,7 +3033,7 @@ boolean atme;
 
 			pline("The spell effect backlashes!");
 
-		    switch (rn2(16)) {
+		    switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -3059,6 +3061,8 @@ boolean atme;
 		    case 14: make_blinded(Blinded + 12, FALSE);			/* 10% */
 			    break;
 		    case 15: make_hallucinated(HHallucination + 12, FALSE, 0L);			/* 10% */
+			    break;
+		    case 16: make_dimmed(HDimmed + 12, FALSE);			/* 10% */
 			    break;
 		    }
 
@@ -3463,7 +3467,7 @@ boolean atme;
 			int disableamount = rnd(3);
 			while (disableamount) {
 
-				 switch (rnd(121)) {
+				 switch (rnd(123)) {
 
 					case 1:
 					case 2:
@@ -3759,6 +3763,14 @@ boolean atme;
 					case 121:
 						u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having manaleech!");
+						break;
+					case 122:
+						u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having dimmopathy!");
+						break;
+					case 123:
+						u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having peacevision!");
 						break;
 				}
 
@@ -4124,7 +4136,7 @@ boolean atme;
 		make_numbed(0L,TRUE);
 		break;
 	case SPE_CURE_RANDOM_STATUS:
-		switch (rnd(9)) {
+		switch (rnd(10)) {
 			case 1:
 				if (Sick) You("are no longer ill.");
 				if (Slimed) {
@@ -4156,6 +4168,9 @@ boolean atme;
 				break;
 			case 9:
 				make_feared(0L,FALSE);
+				break;
+			case 10:
+				make_dimmed(0L,FALSE);
 				break;
 		}
 		break;
@@ -4195,6 +4210,7 @@ boolean atme;
 		    make_feared(0L,TRUE);
 		    make_frozen(0L,TRUE);
 		    make_burned(0L,TRUE);
+		    make_dimmed(0L,TRUE);
 		break;
 
 	case SPE_FIRE:
@@ -4283,7 +4299,7 @@ boolean atme;
 
 		int duration = rn1(25,25);
 
-		switch (rn2(16)) {
+		switch (rn2(17)) {
 		case 0:
 		case 1:
 		case 2:
@@ -4311,6 +4327,8 @@ boolean atme;
 		case 14: make_blinded(Blinded + duration, FALSE);			/* 10% */
 			break;
 		case 15: make_hallucinated(HHallucination + duration, FALSE, 0L);			/* 10% */
+			break;
+		case 16: make_dimmed(HDimmed + duration, FALSE);			/* 10% */
 			break;
 		}
 

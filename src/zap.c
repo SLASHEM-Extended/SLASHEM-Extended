@@ -4298,6 +4298,11 @@ dozap()
 		exercise(A_STR, FALSE);
 		return(1);
 	}
+	else if ( Dimmed && !rn2(1000) ) {
+		backfire(obj);
+		exercise(A_STR, FALSE);
+		return(1);
+	}
 	else if ( Blind && !rn2(200) ) {
 		backfire(obj);
 		exercise(A_STR, FALSE);

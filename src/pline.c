@@ -1049,6 +1049,7 @@ ustatusline()
 	if (Feared)		Strcat(info, ", stricken with fear");
 	if (Frozen)		Strcat(info, ", frozen solid");
 	if (Burned)		Strcat(info, ", burned");
+	if (Dimmed)		Strcat(info, ", dimmed");
 	if (!u.usteed)
 	if (Wounded_legs) {
 	    const char *what = body_part(LEG);

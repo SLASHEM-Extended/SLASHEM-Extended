@@ -3420,6 +3420,10 @@ register struct attack *mattk;
 		tmp += mdef->m_lev;
 		break;
 
+	    case AD_DIMN:
+		tmp += u.ulevel;
+		break;
+
 	    case AD_MALK:
 		if (!resists_elec(mdef)) {
 			tmp *= 2;
@@ -4077,6 +4081,10 @@ register struct attack *mattk;
 		goto common;
 	    case AD_HODS:
 		tmp += mdef->m_lev;
+		goto common;
+	    case AD_DIMN:
+		tmp /= 20;
+		tmp += u.ulevel;
 		goto common;
 	    case AD_COLD:
 		resistance = resists_cold(mdef);
@@ -5491,7 +5499,7 @@ uchar aatyp;
 
 	    case AD_VULN:
 
-		 switch (rnd(121)) {
+		 switch (rnd(123)) {
 
 			case 1:
 			case 2:
@@ -5788,6 +5796,14 @@ uchar aatyp;
 				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having manaleech!");
 				break;
+			case 122:
+				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having dimmopathy!");
+				break;
+			case 123:
+				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having peacevision!");
+				break;
 		}
 
 		break;
@@ -5827,6 +5843,7 @@ uchar aatyp;
 					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
 					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
 					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
 					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
 					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
 					break;
@@ -5983,7 +6000,7 @@ uchar aatyp;
 	    case AD_CHRN:
 		pline("That was a bad idea.");
 
-		    switch (rn2(10)) {
+		    switch (rn2(11)) {
 		    case 0: difeasemu(mon->data);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -6006,6 +6023,8 @@ uchar aatyp;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
 		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
 			    break;
 		    }
 
@@ -7282,6 +7301,9 @@ uchar aatyp;
 		break;
 	      case AD_BURN:		
 		    make_burned(HBurned + (long)tmp, TRUE);
+		break;
+	      case AD_DIMN:		
+		    make_dimmed(HDimmed + (long)tmp, TRUE);
 		break;
 	      case AD_CONF:		
 			 You_feel("confused!");
