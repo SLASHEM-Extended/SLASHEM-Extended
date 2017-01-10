@@ -13908,7 +13908,7 @@ register struct monst *mon;
 	}
 
 	if (!rn2(500) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
-		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
+		pline("Ulch - you contracted voracious hunger from having unprotected intercourse with your lover!");
 	      HHunger |= FROMOUTSIDE;
 	}
 
