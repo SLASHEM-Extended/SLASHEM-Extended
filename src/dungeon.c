@@ -1747,7 +1747,7 @@ level_difficulty()
 
 	if (retvalue < 1) retvalue = 1;
 
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
+	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 
 	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);

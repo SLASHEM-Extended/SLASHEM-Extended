@@ -1138,7 +1138,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));

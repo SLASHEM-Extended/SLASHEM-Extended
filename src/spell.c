@@ -1313,7 +1313,7 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
+	return dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
 			   SPELLMENU_CAST, spell_no);
 }
 

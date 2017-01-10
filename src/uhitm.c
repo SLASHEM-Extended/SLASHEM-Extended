@@ -5183,6 +5183,35 @@ use_weapon:
 						return FALSE;
 					}
 				}
+
+				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uswapwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == GOLD)) && !(objects[uswapwep->otyp].oc_material == SECREE || objects[uswapwep->otyp].oc_material == ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+					if (uswapwep->greased) {
+						uswapwep->greased--;
+						pline("Your weapon loses its grease.");
+					} else {
+						uswapwep->spe--;
+						pline("Your weapon dulls.");
+					}
+				}
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uswapwep->spe > -20) {
+					uswapwep->spe--;
+					pline("Your ball sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
+					uswapwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->otyp == STEEL_CAPPED_SANDAL && !rn2(30)) {
+					uswapwep->spe--;
+					pline("Your steel-capped sandal degrades.");
+					if (uswapwep->spe < -15) {
+						useupall(uswapwep);
+						pline("Your steel-capped sandal is destroyed.");
+						return FALSE;
+					}
+				}
+
 			}
 
 			/* Enemy dead, before any special abilities used */
@@ -6132,7 +6161,7 @@ uchar aatyp;
 
 	    case AD_SOUN:
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();

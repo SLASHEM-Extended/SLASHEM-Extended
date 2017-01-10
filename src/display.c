@@ -1631,7 +1631,7 @@ void
 cls()
 {
 
-	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) return;
+	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) return;
 
     display_nhwindow(WIN_MESSAGE, FALSE); /* flush messages */
     flags.botlx = 1;		/* force update of botl window */

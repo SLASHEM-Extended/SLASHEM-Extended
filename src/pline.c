@@ -101,7 +101,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting

@@ -427,7 +427,7 @@ trap_of_walls:
 
    }
 
-   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
 }
 
 /* catch up with growths when returning to a previously visited level */
@@ -3422,6 +3422,7 @@ weight_cap()
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) carrcap -= 250;
 	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;

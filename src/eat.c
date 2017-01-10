@@ -3451,7 +3451,7 @@ no_opener:
 int
 Hear_again()		/* called when waking up after fainting */
 {
-	if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
+	if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
 	return 0;
 }
 
@@ -5310,6 +5310,9 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
 	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) u.uhunger -= 10;
 	    if (uwep && uwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
 	    /* Slow digestion still uses ring hunger */
 	    switch ((int)(moves % 20)) {	/* note: use even cases only */

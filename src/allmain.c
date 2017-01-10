@@ -927,7 +927,15 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
+			if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
 			if ((uwep && uwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -968,6 +976,10 @@ moveloop()
 				moveamt /= 2;
 			}
 			if (uwep && uwep->oartifact == ART_ARABELLA_S_WARDING_HOE && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_WARDING_HOE && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -1768,9 +1780,18 @@ moveloop()
 			useupall(uwep);
 			pline("Your weapon spontaneously disintegrates!");
 		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR && !rn2(20000) ) {
+			useupall(uswapwep);
+			pline("Your weapon spontaneously disintegrates!");
+		}
 
 		if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !rn2(20000) ) {
 			useupall(uwep);
+			pline("Your weapon spontaneously disintegrates!");
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !rn2(20000) ) {
+			useupall(uswapwep);
 			pline("Your weapon spontaneously disintegrates!");
 		}
 
@@ -1851,6 +1872,9 @@ newbossY:
 		if (uwep && uwep->oartifact == ART_POISON_PEN_LETTER) {
 		    poisoned("letter", rn2(6), "wielding a poisoned weapon", 30);
 		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_POISON_PEN_LETTER) {
+		    poisoned("letter", rn2(6), "wielding a poisoned weapon", 30);
+		}
 
 		if (uarmc && uarmc->oartifact == ART_MORE_HIGHER && !rn2(2000) ) {
 			u.chokhmahdamage += 1;
@@ -1880,12 +1904,92 @@ newbossY:
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER && !rn2(1000) ) {
 		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
 		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_MELEE_POWER && !rn2(1000) ) {
+		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
 
 		if (uarmh && uarmh->oartifact == ART_SOON_THERE_WILL_BE_AN_ERRO && !rn2(5000) ) {
 			NastinessProblem |= FROMOUTSIDE; /* no message */
 		}
 
 		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
+
+		pline("Your morning star takes you back in time...");
+
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				You_feel("life has clocked back.");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "being timed", KILLED_BY);
+		}
+
+		stop_occupation();
+
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
 
 		pline("Your morning star takes you back in time...");
 
@@ -2004,6 +2108,9 @@ newbossY:
 		if (uwep && uwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
 			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
 		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
 			int tryct = 0;
@@ -2020,7 +2127,7 @@ newbossY:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
+		if ( (have_morgothiancurse() || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -2229,7 +2336,25 @@ newboss:
 			pline("Your equipment seems less effective.");
 		}
 
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -2331,6 +2456,21 @@ newboss:
 
 		}
 
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROZACELF_S_POOPDECK && !rn2(5)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
+				block_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
 		if (RecurringAmnesia && !rn2(1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
@@ -2361,7 +2501,17 @@ newboss:
 			forget(1 + rn2(5));
 		}
 
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
+			pline("Your evil female battle boot drills into your mind with its spikes!");
+			forget(1 + rn2(5));
+		}
+
 		if ((uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
+			pline("Your mind clears unexpectedly!");
+			forget(1 + rn2(5));
+		}
+
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
 			pline("Your mind clears unexpectedly!");
 			forget(1 + rn2(5));
 		}
@@ -2385,7 +2535,21 @@ newboss:
 
 		}
 
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
+			if (!Blind) 
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			rndcurse();
+
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
 			if (!Blind) 
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 			rndcurse();
@@ -2470,7 +2634,7 @@ newboss:
 			break;
 		}
 
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
+		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
 
 		/* Let's throw a bone to permablind races. --Amy */
 		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() ) {
@@ -2929,6 +3093,12 @@ newboss:
 
 		}
 
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EVERYTHING_MUST_BURN && !rn2(100)) {
+
+			make_burned(HBurned + rnd(10), TRUE);
+
+		}
+
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 			if (!rn2(500)) {
 				pline("You receive an electric shock from your cloak!");
@@ -3038,7 +3208,7 @@ newboss:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
 			pline("You suddenly have to take a shit!");
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {

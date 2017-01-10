@@ -2287,7 +2287,7 @@ dopray()
        no deafness attribute this implies that all verbalized messages
        can be heard.  So, in case the player has used the 'O' command
        to toggle this accessible flag off, force it to be on. */
-    if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1; /* Amy edit: we do have a deafness attribute... :D */
+    if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1; /* Amy edit: we do have a deafness attribute... :D */
 
     if (IS_TOILET(levl[u.ux][u.uy].typ)) {
 	pline("You pray to the Porcelain God.");

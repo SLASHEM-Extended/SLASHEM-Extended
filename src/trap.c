@@ -2219,7 +2219,7 @@ unsigned trflags;
 			}
 			pline("Your ears are blasted by hellish noise!");
 			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
-			if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
+			if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
 			make_stunned(HStun + dmg, TRUE);
 			if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 	      	if (dmg) losehp(dmg, "noise trap", KILLED_BY_AN);

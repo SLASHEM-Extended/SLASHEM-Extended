@@ -1522,7 +1522,7 @@ dotalk()
 
     int result;
     boolean save_soundok = flags.soundok;
-    if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;	/* always allow sounds while chatting */
+    if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;	/* always allow sounds while chatting */
     result = dochat();
     flags.soundok = save_soundok;
     return result;
