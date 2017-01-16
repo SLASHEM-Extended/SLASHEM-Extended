@@ -1108,7 +1108,7 @@ int mode;
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;
@@ -3322,6 +3322,7 @@ int k_format; /* WAC k_format is an int */
 	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
 
+	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
 
@@ -3426,6 +3427,7 @@ weight_cap()
 
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
+	if (Race_if(PM_CHIROPTERAN)) carrcap += 2000;
 
 	if (carrcap < 500) carrcap = 500;
 

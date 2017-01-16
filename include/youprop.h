@@ -148,7 +148,7 @@
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
-#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || (uwep && uwep->otyp == TRAFFIC_LIGHT) )
+#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || Race_if(PM_INKA) || (uwep && uwep->otyp == TRAFFIC_LIGHT) )
 #define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic

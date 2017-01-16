@@ -6452,6 +6452,9 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
 	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
 
+	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
+		chance += 100;
+
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
 
 	/* Clamp to percentile */

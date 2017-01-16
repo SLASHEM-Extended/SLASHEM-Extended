@@ -453,6 +453,10 @@ register struct monst *mtmp;
                     weapon objects.
     } */
 
+	if (Race_if(PM_INKA) && uwep && objects[uwep->otyp].oc_material == INKA) {
+		tmp += 5;
+	}
+
 	/* In Soviet Russia, convicts are treated with disdain and indifference. They are intentionally chained to
 	 * special "unwieldy" balls and chains, which don't make good weapons and are therefore less likely to be used
 	 * by the convicts in an attempt to break out of prison and/or kill the guards. Or, in other words, the convict

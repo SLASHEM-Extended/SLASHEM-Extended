@@ -802,6 +802,24 @@ static const struct innate_tech
 		       {   10, T_POLYFORM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	oct_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_LIQUID_LEAP, 1},
+		       {   1, T_DAZZLE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_ENT_S_POTION, 1},
+		       {   0, 0, 0} },
+	ink_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_ENT_S_POTION, 1},
+		       {   10, T_RESEARCH, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_SPIRITUALITY_CHECK, 1},
+		       {   20, T_HEAL_HANDS, 1},
+		       {   30, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
@@ -3918,6 +3936,8 @@ race_tech()
 		case PM_PLAYER_UNICORN:		return (uni_tech);
 		case PM_UNMAGIC_FISH:		return (unm_tech);
 		case PM_MOULD:		return (mou_tech);
+		case PM_OCTOPODE:		return (oct_tech);
+		case PM_INKA:		return (ink_tech);
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);

@@ -3559,6 +3559,10 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (Race_if(PM_INKA) && weapon && objects[weapon->otyp].oc_material == INKA) {
+		bonus += 5;
+	}
+
 	if (Role_if(PM_BARD) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 10;
 	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 5;
 
@@ -4337,6 +4341,23 @@ const struct def_skill *class_skill;
 			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
 			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_SUPREME_MASTER;
 
+		}
+	}
+
+	if (Race_if(PM_INKA)) {
+		if (P_RESTRICTED(P_OCCULT_SPELL)) {
+			P_SKILL(P_OCCULT_SPELL) = P_UNSKILLED;
+			P_ADVANCE(P_OCCULT_SPELL) = 0;
+			P_MAX_SKILL(P_OCCULT_SPELL) = P_EXPERT;
+		} else {
+			if (P_MAX_SKILL(P_OCCULT_SPELL) == P_EXPERT) P_MAX_SKILL(P_OCCULT_SPELL) = P_MASTER;
+			else if (P_MAX_SKILL(P_OCCULT_SPELL) == P_MASTER) P_MAX_SKILL(P_OCCULT_SPELL) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_OCCULT_SPELL) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_SPIRITUALITY)) {
+			P_SKILL(P_SPIRITUALITY) = P_UNSKILLED;
+			P_ADVANCE(P_SPIRITUALITY) = 0;
+			P_MAX_SKILL(P_SPIRITUALITY) = P_BASIC;
 		}
 	}
 

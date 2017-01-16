@@ -3932,6 +3932,11 @@ boolean noisy;
 	    is_shirt(otmp) ? c_shirt :
 	    is_suit(otmp) ? c_suit : 0;
 
+	if (Race_if(PM_OCTOPODE) && (is_boots(otmp) || is_gloves(otmp) || is_shield(otmp) || is_shield(otmp) || is_helmet(otmp) || is_suit(otmp) || is_shirt(otmp))) {
+		if (noisy) pline("Octopodes are completely unable to wear any armor pieces.");
+		return 0;
+	}
+
 	if (!is_cloak(otmp) && !is_boots(otmp) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
@@ -3985,7 +3990,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && cantweararm(youmonst.data) && !Race_if(PM_TRANSFORMER)  &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {
@@ -4474,6 +4479,17 @@ find_ac()
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmg && uarmg->otyp == ELVEN_GAUNTLETS) uac -= 1;
+
+	if (Race_if(PM_INKA) && uarmg && objects[(uarmg)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmc && objects[(uarmc)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmu && objects[(uarmu)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarm && objects[(uarm)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarms && objects[(uarms)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmh && objects[(uarmh)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmf && objects[(uarmf)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uleft && objects[(uleft)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uright && objects[(uright)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uamul && objects[(uamul)->otyp].oc_material == INKA) uac -= 6;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_HELM) uac -= 1;

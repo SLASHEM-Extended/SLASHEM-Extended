@@ -580,6 +580,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (!rn2(20) && damu >= 1 && u.ulevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
 		if (!rn2(50) && damu >= 1 && u.ulevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
 
+		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
 

@@ -3610,6 +3610,18 @@ const struct Race races[] = {
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  3, 0 }		/* Energy */
 },
+{	"chiropteran", "chiropteric", "chiropteran-hood", "Chi",
+	{0, 0},
+	PM_CHIROPTERAN, NON_PM, PM_CHIROPTERAN_MUMMY, PM_CHIROPTERAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_CHAOTIC|ROLE_NEUTRAL,
+	MH_HUMAN, 0, MH_GNOME|MH_DWARF,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  1, 0,  0, 1 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
 {	"clockwork automaton", "automatic", "clockwork-kind", "Clk",
 	{0, 0},
 	PM_CLOCKWORK_AUTOMATON, NON_PM, NON_PM, NON_PM,
@@ -4193,6 +4205,18 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  0, 2 },	/* Hit points */
 	{  0, 0,  10, 0, 10, 0 },		/* Energy */
 },
+{	"inka", "inka", "inka civilization", "Ink",
+	{0, 0},
+	PM_INKA, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_ELF | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_ELF, MH_ELF, 0,
+	/*  Str    Int Wis Dex Con Cha */
+	{    3,     3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 2,  3, 0 },	/* Hit points */
+	{  4, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"insectoid", "insectoid", "insecthood", "Ins",
 	{0, 0},
 	PM_INSECTOID, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4538,6 +4562,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
+},
+{	"octopode", "octopode", "octopussy", "Oct",
+	{0, 0},
+	PM_OCTOPODE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
 {	"ogre", "ogrotic", "ogrohood", "Ogr",
 	{0, 0},
@@ -5278,6 +5315,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  3, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"yuki-onna", "yuki-onnic", "feyhood", "Yuk",
+	{0, 0},
+	PM_YUKI_PLAYA, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  3, 0 }		/* Energy */
 },
 /* Array terminator */
 { 0, 0, 0, 0 }};

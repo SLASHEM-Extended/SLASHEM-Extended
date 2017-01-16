@@ -10992,7 +10992,7 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	    return (struct monst *)0;
 
 	/* may be too weak or have been extinguished for population control */
-	if (mon->mhp <= 1 || ((mvitals[monsndx(mon->data)].mvflags & G_EXTINCT) && !(mon->data == &mons[PM_JUBILEX]) && !(mon->data == &mons[PM_SCHRUMPEL]) ) )
+	if (mon->mhp <= 1 || ((mvitals[monsndx(mon->data)].mvflags & G_EXTINCT) && !(mon->data == &mons[PM_JUBILEX]) && !(mon->data == &mons[PM_BIRTH]) && !(mon->data == &mons[PM_SCHRUMPEL]) ) )
 	    return (struct monst *)0;
 
 	if (x == 0) {
@@ -14715,6 +14715,7 @@ int type;
 		case PM_ALLOY_GOLEM: return 180;
 		case PM_MIRROR_GOLEM: return 210;
 		case PM_TITANIUM_GOLEM: return 230;
+		case PM_DANCING_BLADE: return 230;
 		case PM_BRONZE_COLOSSUS: return 270;
 		case PM_SILVER_GOLEM: return 290;
 		case PM_BANPEI_KUN: return 290;

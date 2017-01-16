@@ -2425,6 +2425,10 @@ static struct trobj Blindfold[] = {
 	{ BLINDFOLD, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
+static struct trobj Inka_spellbook[] = {
+	{ SPE_NATURE_BEAM, 0, SPBOOK_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
 static struct trobj Instrument[] = {
 	{ WOODEN_FLUTE, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -2605,6 +2609,23 @@ static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_VAMGOYLE,	FOOD_RATION,		POT_VAMPIRE_BLOOD     },
     { PM_GASTLY,	FOOD_RATION,		CORPSE     },
     { PM_PHANTOM_GHOST,	FOOD_RATION,		CORPSE     },
+    { PM_INKA,	SHORT_SWORD,	INKA_BLADE},
+    { PM_INKA,	SCIMITAR,	INKUTLASS},
+    { PM_INKA,	CLUB,	NATURAL_STICK},
+    { PM_INKA,	FLY_SWATTER,	VERMIN_SWATTER},
+    { PM_INKA,	SPEAR,	INKA_SPEAR},
+    { PM_INKA,	SLING,	INKA_SLING},
+    { PM_INKA,	DART,	INKA_STINGER},
+    { PM_INKA,	BULLWHIP,	INKA_SHACKLE},
+    { PM_INKA,	T_SHIRT,	BEAUTIFUL_SHIRT},
+    { PM_INKA,	HAWAIIAN_SHIRT,	BEAUTIFUL_SHIRT},
+    { PM_INKA,	ELVEN_MITHRIL_COAT,	INKA_MITHRIL_COAT},
+    { PM_INKA,	DWARVISH_MITHRIL_COAT,	INKA_MITHRIL_COAT},
+    { PM_INKA,	DROVEN_MITHRIL_COAT,	INKA_MITHRIL_COAT},
+    { PM_INKA,	DARK_ELVEN_MITHRIL_COAT,	INKA_MITHRIL_COAT},
+    { PM_INKA,	BLINDFOLD,	EYECLOSER},
+    { PM_INKA,	LEATHER_SADDLE,	INKA_SADDLE},
+    { PM_INKA,	LEATHER_LEASH,	INKA_LEASH},
 
     /* for weight reasons, don't give scurriers heavy items */  
     {PM_SCURRIER, FOOD_RATION, SLIME_MOLD},  
@@ -11462,6 +11483,10 @@ u_init()
 	    /* Nothing special */
 	    break;
 
+	case PM_INKA:
+		ini_inv(Inka_spellbook);
+	    break;
+
 	case PM_ELF:
 	    /*
 	     * Elves are people of music and song, or they are warriors.
@@ -12197,6 +12222,7 @@ u_init()
 	case PM_BASTARD: racebounus = rnz(7); break;
 	case PM_SOVIET: racebounus = rnd(5); break; /* note the rnd instead of rnz! */
 	case PM_FAWN: racebounus = rnz(8); break;
+	case PM_YUKI_PLAYA: racebounus = 0; break;
 	case PM_YEEK: racebounus = 0; break;
 	case PM_HUMANOID_DRYAD: racebounus = rnz(8); break;
 	default:	racebounus = rnz(10); break;

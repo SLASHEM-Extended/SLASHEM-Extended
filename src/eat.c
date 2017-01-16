@@ -171,7 +171,7 @@ char msgbuf[BUFSZ];
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || Race_if(PM_YEEK) || \
 Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || Race_if(PM_WEAPON_TRAPPER) || \
  Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_CUBE) || Race_if(PM_WEAPON_IMP) || Race_if(PM_DRYAD) || Race_if(PM_AUREAL) || Race_if(PM_MAZKE) || Race_if(PM_PLAYER_GREMLIN) || Race_if(PM_BORG) || Race_if(PM_ELONA_SNAIL) || Race_if(PM_PLAYER_UNICORN) || Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_ANCIPITAL) || Race_if(PM_FAWN) || Race_if(PM_SATRE) || Race_if(PM_WISP) || Race_if(PM_PLAYER_SKELETON) || Race_if(PM_WEAPON_XORN) || Race_if(PM_PLAYER_DOLGSMAN) )
+ Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_CUBE) || Race_if(PM_WEAPON_IMP) || Race_if(PM_DRYAD) || Race_if(PM_AUREAL) || Race_if(PM_MAZKE) || Race_if(PM_PLAYER_GREMLIN) || Race_if(PM_BORG) || Race_if(PM_ELONA_SNAIL) || Race_if(PM_PLAYER_UNICORN) || Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_ANCIPITAL) || Race_if(PM_FAWN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_YUKI_PLAYA) || Race_if(PM_OCTOPODE) || Race_if(PM_INKA) || Race_if(PM_SATRE) || Race_if(PM_WISP) || Race_if(PM_PLAYER_SKELETON) || Race_if(PM_WEAPON_XORN) || Race_if(PM_PLAYER_DOLGSMAN) )
 
 #ifndef OVLB
 
@@ -227,6 +227,8 @@ register struct obj *obj;
 
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
+
+	if (Race_if(PM_OCTOPODE) && obj->oclass == RING_CLASS) return 1;
 
 	/* Incantifier only eats stone and metal --Amy */
 	if (Race_if(PM_INCANTIFIER) && !Upolyd) return (boolean) (is_metallic(obj) || is_lithic(obj));
@@ -973,6 +975,7 @@ register int pm;
 		break;
 	    case PM_DEATH:
 	    case PM_PESTILENCE:
+	    case PM_WAR:
 	    case PM_FRUSTRATION:
 	    case PM_BLACK_HOLE_BLOB:
 	    case PM_FAMINE:
@@ -1061,6 +1064,7 @@ struct monst *mon;
 
 	case PM_DEATH:
 	case PM_PESTILENCE:
+	case PM_WAR:
 	case PM_FRUSTRATION:
 	case PM_BLACK_HOLE_BLOB:
 	case PM_FAMINE:
@@ -4102,7 +4106,7 @@ struct obj *otmp;
 	    if (u.uhp <= 0) return; /* died from sink fall */
 	}
 	otmp->known = otmp->dknown = 1; /* by taste */
-	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : 10)) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
+	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
 	  switch (otmp->otyp) {
 	    default:
 	        if (!objects[typ].oc_oprop) break; /* should never happen */

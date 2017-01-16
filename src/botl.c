@@ -589,6 +589,7 @@ struct monst *mon;
 	    armpro = objects[armor->otyp].a_can;
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro++;
+	if (Race_if(PM_INKA)) armpro++;
 	if (armpro < 0) armpro = 0;
 
 	return armpro;

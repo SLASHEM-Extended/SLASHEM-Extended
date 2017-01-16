@@ -3730,6 +3730,7 @@ struct monst *mon;
 	    armpro = objects[armor->otyp].a_can;
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro += 1;
+	if (Race_if(PM_INKA)) armpro++;
 	if (armpro < 0) armpro = 0;
 
 	return armpro;
@@ -13260,6 +13261,7 @@ register int n;
 	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
 
+	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
 

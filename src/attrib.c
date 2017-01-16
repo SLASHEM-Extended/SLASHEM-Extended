@@ -828,6 +828,9 @@ const struct innate {
 	aur_abil[] = { {   1, &(HReflecting), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	ink_abil[] = { {   1, &(HPeacevision), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	sed_abil[] = { {   1, &(HAntimagic), "", "" },
 		     {   0, 0, 0, 0 } },
 
@@ -1529,6 +1532,7 @@ int oldlevel, newlevel;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
 	case PM_FENEK:	rabil = fen_abil;	break;
 	case PM_AUREAL:	rabil = aur_abil;	break;
+	case PM_INKA:	rabil = ink_abil;	break;
 	case PM_MAZKE:	rabil = sed_abil;	break;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
