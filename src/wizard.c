@@ -1535,9 +1535,30 @@ register struct monst	*mtmp;
 	int armpro, armprolimit;
 
 	if (mtmp->iswiz) {
-	    if (!rn2(5))  /* typical bad guy action */
+	    if (!rn2(5)) { /* typical bad guy action */
 		pline("%s laughs fiendishly.", Monnam(mtmp));
-	    else
+		verbalize("%s", random_your_mother[rn2(SIZE(random_your_mother))]);
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		}
+
+	    } else {
 		if (u.uhave.amulet && !rn2(SIZE(random_insult)))
 		    verbalize("Relinquish the amulet, %s!",
 			  random_insult[rn2(SIZE(random_insult))]);
@@ -1554,9 +1575,52 @@ register struct monst	*mtmp;
 		    verbalize("%s %s!",
 			  random_malediction[rn2(SIZE(random_malediction))],
 			  random_insult[rn2(SIZE(random_insult))]);
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		}
+	    }
+
 	} else if(/*is_lminion(mtmp)*/mtmp->data->mlet == S_ANGEL || mtmp->mnum == PM_CHRISTMAS_CHILD || mtmp->mnum == PM_HELLS_ANGEL) /* give angelic maledictions to all angels --Amy */ {
 		com_pager(rn2(QTN_ANGELIC - 1 + (Hallucination ? 1 : 0)) +
 			      QT_ANGELIC);
+
+		if (!rn2(5)) {
+			armpro = magic_negation(&youmonst);
+			armprolimit = 75;
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+
+				switch (P_SKILL(P_SPIRITUALITY)) {
+					default: armprolimit = 75; break;
+					case P_BASIC: armprolimit = 78; break;
+					case P_SKILLED: armprolimit = 81; break;
+					case P_EXPERT: armprolimit = 84; break;
+					case P_MASTER: armprolimit = 87; break;
+					case P_GRAND_MASTER: armprolimit = 90; break;
+					case P_SUPREME_MASTER: armprolimit = 93; break;
+				}
+			}
+
+			if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+			}
+		}
+
 	} else {
 	    if (!rn2(5)) {
 		pline("%s casts aspersions on your ancestry.", Monnam(mtmp));
@@ -1582,8 +1646,31 @@ register struct monst	*mtmp;
 		}
 
 	    }
-	    else
-	        com_pager(rn2(QTN_DEMONIC) + QT_DEMONIC);
+	    else {
+	      com_pager(rn2(QTN_DEMONIC) + QT_DEMONIC);
+
+		if (!rn2(5)) {
+			armpro = magic_negation(&youmonst);
+			armprolimit = 75;
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+
+				switch (P_SKILL(P_SPIRITUALITY)) {
+					default: armprolimit = 75; break;
+					case P_BASIC: armprolimit = 78; break;
+					case P_SKILLED: armprolimit = 81; break;
+					case P_EXPERT: armprolimit = 84; break;
+					case P_MASTER: armprolimit = 87; break;
+					case P_GRAND_MASTER: armprolimit = 90; break;
+					case P_SUPREME_MASTER: armprolimit = 93; break;
+				}
+			}
+
+			if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+			}
+		}
+
+	    }
 	}
 }
 
