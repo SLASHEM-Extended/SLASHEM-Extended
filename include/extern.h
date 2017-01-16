@@ -2009,6 +2009,7 @@ E void FDECL(forget_objects, (int));
 E void FDECL(forget_levels, (int));
 E void NDECL(forget_traps);
 E void FDECL(forget_map, (int));
+E void NDECL(maprot);
 E int FDECL(seffects, (struct obj *));
 #ifdef USE_TRAMPOLI
 E void FDECL(set_lit, (int,int,genericptr_t));

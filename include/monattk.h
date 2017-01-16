@@ -156,8 +156,9 @@
 #define AD_FUMB		99	/* fumbling-inducing attack */
 
 #define AD_DIMN		100	/* dimness */
+#define AD_AMNE		101	/* map amnesia (inspired by deepy), re-obscures random amount of tiles on current level */
 
-#define AD_ENDS		101	/* placeholder */
+#define AD_ENDS		102	/* placeholder */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

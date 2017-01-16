@@ -2351,6 +2351,8 @@ register int pm;
 	    case PM_MIMIC_MUMMY:
 	    case PM_MIMIC_NYMPH:
 	    case PM_MIMIC_ANT:
+	    case PM_CLOAKED_XORN:
+	    case PM_EVERCLOAKED_XORN:
 	    case PM_MIMICRY_RUBBER:
 	    case PM_UNKNOWN_ESCALATION_RUBBER:
 	    case PM_CAMO_FISH:
@@ -2469,6 +2471,8 @@ register int pm;
 	    case PM_MASTER_INTRINSIC_EATING_PERMAMIMIC:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
+	    case PM_AMNESIA_MIMIC:
+	    case PM_AMNESIA_PERMAMIMIC:
 	    case PM_GIANT_GROUP_MIMIC:
 	    case PM_GIANT_SPAWN_MIMIC:
 	    case PM_GIANT_PERMAMIMIC:
@@ -2923,6 +2927,13 @@ register int pm;
 		    pline("Suddenly you have a nightmare!");
 		    nomul(-5, "scared by a nightmare");
 		    nomovemsg = 0;
+		}
+
+	/* If you really think maprot monsters are good to eat... --Amy */
+		if (dmgtype(ptr, AD_AMNE)) {
+		    pline("The taste reminds you of Maud... oh wait, how come you can't remember anything?!");
+		    maprot();
+		    if (!rn2(3)) forget(1 + rn2(5));
 		}
 
 	/* Nastiness monsters are definitely not good to eat either. --Amy */

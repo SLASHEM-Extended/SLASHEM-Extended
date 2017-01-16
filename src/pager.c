@@ -1575,6 +1575,7 @@ get_description_of_damage_type(uchar id)
 		case AD_LAVA: return "lava";
 		case AD_FAKE: return "plines";
 		case AD_LETH: return "lethe";
+		case AD_AMNE: return "map amnesia";
 		case AD_CNCL: return "cancellation";
 		case AD_BANI: return "banishment";
 		case AD_WISD: return "drains wisdom";

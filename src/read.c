@@ -1369,6 +1369,28 @@ forget_map(howmuch)
 	    }
 }
 
+/* for AD_AMNE: forget random percentage of current map --Amy */
+void
+maprot()
+{
+	register int zx, zy;
+	register int percentage = rnd(100);
+
+	if (Keen_memory && rn2(20)) {
+		percentage /= 10;
+		if (percentage < 1) return;
+	}
+
+	for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++)
+	    if (rn2(100) < percentage) {
+		/* Zonk all memory of this location. */
+		levl[zx][zy].seenv = 0;
+		levl[zx][zy].waslit = 0;
+		clear_memory_glyph(zx, zy, S_stone);
+	    }
+	docrt();		/* this correctly will reset vision */
+}
+
 /* Forget all traps on the level. */
 void
 forget_traps()
@@ -3553,7 +3575,7 @@ register struct obj	*sobj;
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(297);
+			monstercolor = rnd(298);
 		}
 
 		while(cnt--) {

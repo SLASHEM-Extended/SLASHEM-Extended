@@ -5768,6 +5768,14 @@ dopois:
 		}
 		break;
 
+	    case AD_AMNE:
+
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("You feel reminded of Maud.");
+		maprot();
+		break;
+
 	    case AD_LETH:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
@@ -8146,6 +8154,12 @@ do_stone2:
 		if (!rn2(3)) pline(fauxmessage());
 		break;
 
+	    case AD_AMNE:
+		pline("You can't remember seeing anything like this before.");
+		if (Hallucination) pline("You also can't remember ever suffering from amnesia.");
+		maprot();
+		break;
+
 	    case AD_LETH:
 		pline("Sparkling water washes all around you!");
 		if (mtmp->mcan) break;
@@ -9964,6 +9978,12 @@ common:
 
 		break;
 
+	    case AD_AMNE:
+
+		maprot();
+
+		break;
+
 	    case AD_WET:
 
 		pline("Water washes over you!");
@@ -11641,6 +11661,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		hurtarmor(AD_RUST);
 		}
+		break;
+
+	    case AD_AMNE:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) {
+			pline("%s yells 'MAUD MAUD MAUD MAUD!'", Monnam(mtmp));
+			maprot();
+		}
+
 		break;
 
 	    case AD_LETH:

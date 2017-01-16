@@ -6299,6 +6299,12 @@ uchar aatyp;
 		}
 		break;
 
+	    case AD_AMNE:
+
+		pline("Suddenly you realize that you forgot to think about Maud recently.");
+		maprot();
+		break;
+
 	    case AD_LETH:
 		if (!rn2(3)) {
 			pline("Sparkling water splashes over you!");
