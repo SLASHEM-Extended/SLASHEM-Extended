@@ -419,8 +419,9 @@ aligntyp atyp;
 	int	tryct;
 	struct	permonst *ptr;
 
-	for (tryct = 0; tryct < 20; tryct++) {
-	    ptr = mkclass(S_DEMON, 0);
+	for (tryct = 0; tryct < 10000; tryct++) {
+
+	    ptr = rndmonst();
 	    if (ptr && is_ndemon(ptr) &&
 		    (atyp == A_NONE || sgn(ptr->maligntyp) == sgn(atyp)))
 		return(monsndx(ptr));
