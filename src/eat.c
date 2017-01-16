@@ -1659,6 +1659,11 @@ register int pm;
 
 		break;
 
+	    case PM_PORTBEAMTRICE:
+
+		pushplayer();
+		break;
+
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
 	    case PM_ENERGY_TROVE:
@@ -2108,6 +2113,10 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESOLDIERANT;
 		break;
+	    case PM_HUMAN_WERETROLL:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERETROLL;
+		break;
 	    case PM_HUMAN_WEREBAT:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBAT;
@@ -2471,6 +2480,8 @@ register int pm;
 	    case PM_MASTER_INTRINSIC_EATING_PERMAMIMIC:
 		tmp += 10;
 	    case PM_GIANT_MIMIC:
+	    case PM_DEPRESSION_MIMIC:
+	    case PM_DEPRESSION_PERMAMIMIC:
 	    case PM_AMNESIA_MIMIC:
 	    case PM_AMNESIA_PERMAMIMIC:
 	    case PM_GIANT_GROUP_MIMIC:
@@ -2694,6 +2705,7 @@ register int pm;
 	    case PM_GREATER_DIMMER:
 	    case PM_TERRIBLE_ORB:
 	    case PM_PSYCH_ORB:
+	    case PM_MIND_IMP:
 	    case PM_MASTER_BLASTER:
 	    case PM_NECROMORB:
 	    case PM_EVIL_ORB:
@@ -2735,8 +2747,10 @@ register int pm;
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:
+	    case PM_ARMY_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:
 	    case PM_ELDRITCH_MIND_FLAYER:
+	    case PM_SOPHISTICATED_MIND_FLAYER:
 	    case PM_GIGANTIC_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
 	    case PM_NASTY_MASTER_MIND_FLAYER:
@@ -2746,6 +2760,7 @@ register int pm;
 		case PM_PETTY_COCKATRICE:
 		case PM_BASILISK:
 		case PM_PETTY_MIND_FLAYER:
+		case PM_SENIOR_MIND_FLAYER:
 		case PM_ICKY_FACE:
 		case PM_BRAIN_EATER:
 		case PM_LARGE_BRAIN_EATER:
@@ -2758,7 +2773,9 @@ register int pm;
 		case PM_REGENERATING_MIND_FLAYER:
 		case PM_PSYCHO_MIND_FLAYER:
 		case PM_PSYCH_FLAYER:
+		case PM_CHIEF_MIND_FLAYER:
 		case PM_PASSIVE_MIND_FLAYER:
+		case PM_MINDFLAY_WRAITH:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 #if 0

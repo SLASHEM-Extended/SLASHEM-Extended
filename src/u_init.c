@@ -6060,6 +6060,10 @@ u_init()
 	struct permonst* randomturret = &mons[PM_UNKNOWN_TURRET];
 	struct permonst* randomdragon = &mons[PM_RAINBOW_MODE_DRAGON];
 
+	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
+	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
+	struct permonst* randomlightB = &mons[PM_RNG_LASER];
+
 	struct permonst* shadowwarrior = &mons[PM_SHADOW_WARRIOR];
 	struct permonst* shadowwarriorX = &mons[PM_ROBOT];
 
@@ -17604,6 +17608,36 @@ u_init()
 
 	}
 
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomsphere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomlight->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomlightB->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	for (i = 1; i < 2; i++) {
 		attkptr = &shadowwarrior->mattk[i];
 
@@ -23180,6 +23214,10 @@ alter_reality()
 	struct permonst* randomflyfish = &mons[PM_RAZORFIN_FISH];
 	struct permonst* randomturret = &mons[PM_UNKNOWN_TURRET];
 	struct permonst* randomdragon = &mons[PM_RAINBOW_MODE_DRAGON];
+
+	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
+	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
+	struct permonst* randomlightB = &mons[PM_RNG_LASER];
 
 	struct permonst* shadowwarrior = &mons[PM_SHADOW_WARRIOR];
 	struct permonst* shadowwarriorX = &mons[PM_ROBOT];
@@ -29982,6 +30020,36 @@ alter_reality()
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomdragon->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomsphere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomlight->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randomlightB->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {

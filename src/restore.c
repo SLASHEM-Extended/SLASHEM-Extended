@@ -772,6 +772,16 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
 	mons[PM_RAINBOW_MODE_DRAGON].mname = tname;
 
+	tname = mons[PM_RNG_SPHERE].mname;
+	mread(fd, (genericptr_t) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
+	mons[PM_RNG_SPHERE].mname = tname;
+	tname = mons[PM_RNG_LIGHT].mname;
+	mread(fd, (genericptr_t) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
+	mons[PM_RNG_LIGHT].mname = tname;
+	tname = mons[PM_RNG_LASER].mname;
+	mread(fd, (genericptr_t) &mons[PM_RNG_LASER], sizeof(struct permonst));
+	mons[PM_RNG_LASER].mname = tname;
+
 	tname = mons[PM_SHADOW_WARRIOR].mname;
 	mread(fd, (genericptr_t) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
 	mons[PM_SHADOW_WARRIOR].mname = tname;

@@ -523,6 +523,10 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
 
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_LASER], sizeof(struct permonst));
+
 	bwrite(fd, (genericptr_t) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_ROBOT], sizeof(struct permonst));
 

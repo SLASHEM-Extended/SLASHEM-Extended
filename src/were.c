@@ -85,6 +85,8 @@ int pm;
 	    case PM_HUMAN_WEREBEAR: return(PM_WEREBEAR);
 	    case PM_WERESOLDIERANT:       return(PM_HUMAN_WERESOLDIERANT);
 	    case PM_HUMAN_WERESOLDIERANT: return(PM_WERESOLDIERANT);
+	    case PM_WERETROLL:       return(PM_HUMAN_WERETROLL);
+	    case PM_HUMAN_WERETROLL: return(PM_WERETROLL);
 	    case PM_WEREBAT:       return(PM_HUMAN_WEREBAT);
 	    case PM_HUMAN_WEREBAT: return(PM_WEREBAT);
 	    case PM_WERECOCKATRICE:       return(PM_HUMAN_WERECOCKATRICE);
@@ -306,6 +308,11 @@ char *genbuf;
 		case PM_HUMAN_WERESOLDIERANT:
 			typ = rn2(5) ? PM_SOLDIER_ANT : PM_GIANT_RED_ANT ;
 			if (genbuf) Strcpy(genbuf, "ant");
+			break;
+		case PM_WERETROLL:
+		case PM_HUMAN_WERETROLL:
+			typ = rn2(5) ? PM_TROLL : PM_ICE_TROLL ;
+			if (genbuf) Strcpy(genbuf, "troll");
 			break;
 		case PM_WEREBAT:
 		case PM_HUMAN_WEREBAT:

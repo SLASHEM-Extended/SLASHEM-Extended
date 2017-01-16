@@ -2660,6 +2660,8 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOCKATRICE], -1);
 	else if (mtmp->data == &mons[PM_WERESOLDIERANT])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESOLDIERANT], -1);
+	else if (mtmp->data == &mons[PM_WERETROLL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERETROLL], -1);
 	else if (mtmp->data == &mons[PM_WEREBAT])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBAT], -1);
 	else if (mtmp->data == &mons[PM_WEREMINDFLAYER])

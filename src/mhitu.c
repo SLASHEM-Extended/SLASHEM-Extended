@@ -5425,6 +5425,7 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREMINDFLAYER) u.ulycn = PM_WEREMINDFLAYER;
 			if (u.ulycn == PM_HUMAN_WERECOCKATRICE) u.ulycn = PM_WERECOCKATRICE;
 			if (u.ulycn == PM_HUMAN_WERESOLDIERANT) u.ulycn = PM_WERESOLDIERANT;
+			if (u.ulycn == PM_HUMAN_WERETROLL) u.ulycn = PM_WERETROLL;
 			if (u.ulycn == PM_HUMAN_WEREBAT) u.ulycn = PM_WEREBAT;
 			if (u.ulycn == PM_HUMAN_WEREPIRANHA) u.ulycn = PM_WEREPIRANHA;
 			if (u.ulycn == PM_HUMAN_WEREEEL) u.ulycn = PM_WEREEEL;
@@ -8781,7 +8782,17 @@ boolean ufound;
 
 	hitmsg(mtmp, mattk);
 
-	switch (mattk->adtyp) {
+	uchar atttypC;
+	/* Monsters with AD_RBRE can use any random explosion. --Amy */
+
+	atttypC = mattk->adtyp;
+
+	if (atttypC == AD_RBRE) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_SPC2 || atttypC == AD_WERE) {
+			atttypC = randattack(); }
+	}
+
+	switch (atttypC) {
 	    case AD_CONF:
 		    if (mon_visible(mtmp) || (rnd(tmp /= 2) > u.ulevel)) {
 			if (!Hallucination) You("are confused by a blast of light!");

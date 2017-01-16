@@ -4348,6 +4348,7 @@ common:
 		}
 		break;
 	    default:
+		tmp /= 20; /* fail safe */
 		    pline("%s gets blasted!", Monnam(mdef));
 		    mdef->mhp -= tmp;
 		    if (mdef->mhp <= 0) {

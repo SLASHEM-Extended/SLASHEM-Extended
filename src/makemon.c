@@ -7261,6 +7261,15 @@ register struct	monst	*mtmp;
 
 	}
 
+	if (ptr == &mons[PM_DONALD_TRUMP]) {
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		(void) mongets(mtmp, SCR_LOCKOUT);
+		mtmp->mgold += rn1(5000,5000);
+	}
+
 	if (ptr == &mons[PM_CHASKA]) {
 		(void) mongets(mtmp, FEMININE_PUMPS);
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -15295,6 +15304,7 @@ int type;
 
 		case PM_DEATH_SWORD: return 250;
 		case PM_CLOCK_GOLEM: return 250;
+		case PM_NEXUS_GOLEM: return 250;
 		case PM_WHIRLING_HATCHET: return 250;
 		case PM_HELLBLADE: return 320;
 		case PM_BLADE_BARRIER: return 550;

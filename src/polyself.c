@@ -1673,6 +1673,7 @@ dosummon()
 	if (u.ulycn == PM_WERECOW) somanymana = 20;
 	if (u.ulycn == PM_WEREBEAR) somanymana = 75;
 	if (u.ulycn == PM_WEREVORTEX) somanymana = 50;
+	if (u.ulycn == PM_WERETROLL) somanymana = 50;
 	if (u.ulycn == PM_WEREGIANT) somanymana = 50;
 	if (u.ulycn == PM_WEREGHOST) somanymana = 30;
 	if (u.ulycn == PM_WERECOCKATRICE) somanymana = 60;

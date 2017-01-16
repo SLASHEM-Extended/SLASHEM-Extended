@@ -2068,6 +2068,7 @@ physical:
 		}
 		break;
 	    default:	/*tmp = 0;*/ 
+			if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1; /* fail safe */
 			break; /* necessary change to make pets more viable --Amy */
 	}
 	if(!tmp) return(MM_MISS);
