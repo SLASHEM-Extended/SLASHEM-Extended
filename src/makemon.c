@@ -9700,6 +9700,546 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, QUARTERSTAFF);
 	}
 
+	if (ptr == &mons[PM_STUTTERING_TEACHER]) {
+		if (!rn2(5)) (void) mongets(mtmp, POT_ACID);
+		if (!rn2(5)) (void) mongets(mtmp, POT_ACID);
+		if (!rn2(5)) (void) mongets(mtmp, WAN_ACID);
+		if (!rn2(5)) (void) mongets(mtmp, SWEET_MOCASSINS);
+		if (!rn2(5)) (void) mongets(mtmp, QUARTERSTAFF);
+	}
+
+	if (ptr == &mons[PM_WOMAN_WHO_IS_DISLIKED_BY_EVERYONE]) {
+		if (!rn2(5)) mongets(mtmp, WAN_REMOVE_RESISTANCE);
+		if (!rn2(5)) mongets(mtmp, BULLWHIP);
+		if (!rn2(5)) mongets(mtmp, RIN_TIMELY_BACKUP);
+	}
+
+	if (ptr == &mons[PM_SWARM_SOFT_LADY]) {
+		if (!rn2(5)) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		if (!rn2(5)) mongets(mtmp, HIPPIE_HEELS);
+		if (!rn2(5)) mongets(mtmp, WAN_STRIKING);
+		if (!rn2(5)) mongets(mtmp, LEATHER_ARMOR);
+		if (!rn2(5)) mongets(mtmp, LEATHER_CLOAK);
+		if (!rn2(5)) mongets(mtmp, BUGLE);
+		if (!rn2(5)) mongets(mtmp, SCR_RELOCATION);
+	}
+
+	if (ptr == &mons[PM_MASTER_FARTING_LADY]) {
+		if (!rn2(5)) mongets(mtmp, SCR_LAVA);
+		if (!rn2(5)) mongets(mtmp, SCR_BARRHING);
+		if (!rn2(5)) mongets(mtmp, SCR_CHAOS_TERRAIN);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		if (!rn2(5)) mongets(mtmp, HIPPIE_HEELS);
+	}
+
+	if (ptr == &mons[PM_FALSE_BITCH]) {
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+		if (!rn2(5)) mongets(mtmp, BULLWHIP);
+		if (!rn2(5)) mongets(mtmp, RING_MAIL);
+		if (!rn2(5)) mongets(mtmp, HELMET);
+		if (!rn2(5)) mongets(mtmp, WAN_DRAIN_MANA);
+		if (!rn2(5)) mongets(mtmp, POT_EXTRA_HEALING);
+		if (!rn2(5)) mongets(mtmp, SILVER_SPEAR);
+	}
+
+	if (ptr == &mons[PM_BIOLOGICAL_CRONE]) {
+		if (!rn2(5)) mongets(mtmp, POT_ACID);
+		if (!rn2(5)) mongets(mtmp, FLY_SWATTER);
+		if (!rn2(5)) mongets(mtmp, POISONOUS_CLOAK);
+		if (!rn2(5)) mongets(mtmp, GREEN_DRAGON_SCALES);
+		if (!rn2(5)) mongets(mtmp, BOOTS_OF_ACID_RESISTANCE);
+		if (!rn2(5)) mongets(mtmp, POT_RADIUM);
+	}
+
+	if (ptr == &mons[PM_UNKNOWN_WOMAN]) {
+		if (!rn2(5)) mongets(mtmp, WAN_FEAR);
+	}
+
+	if (ptr == &mons[PM_DEAR_DEER_LADY]) {
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+		if (!rn2(5)) mongets(mtmp, STEEL_WHIP);
+		if (!rn2(5)) mongets(mtmp, SHIELD_OF_REFLECTION);
+		if (!rn2(5)) mongets(mtmp, WAN_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, WAN_STONING);
+		if (!rn2(5)) m_initthrow(mtmp, SILVER_SPEAR, 3);
+	}
+
+	if (ptr == &mons[PM_FLAX_WOMAN]) {
+		if (!rn2(5)) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		if (!rn2(5)) mongets(mtmp, POT_STUNNING);
+		if (!rn2(5)) mongets(mtmp, RUBBER_HOSE);
+	}
+
+	if (ptr == &mons[PM_US_PRESIDENTIAL_ELECTION_LOSER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_SUMMON_BOSS);
+	}
+
+	if (ptr == &mons[PM_AMY_S_BROTHER_HIS_SECRET_LOVE]) {
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+	}
+
+	if (ptr == &mons[PM_HISTORY_DRAGON]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CURSE_ITEMS);
+		if (!rn2(5)) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+	}
+
+	if (ptr == &mons[PM_SILVER_HEELED_BITCH]) {
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, SEXY_LEATHER_PUMP);
+		if (!rn2(5)) mongets(mtmp, PISTOL);
+		if (!rn2(5)) mongets(mtmp, BOW);
+		if (!rn2(5)) mongets(mtmp, SILVER_DRAGON_SCALES);
+		if (!rn2(5)) mongets(mtmp, SCR_BAD_EFFECT);
+		if (!rn2(5)) m_initthrow(mtmp, SILVER_SPEAR, 10);
+		if (!rn2(5)) m_initthrow(mtmp, SILVER_BULLET, 50);
+		if (!rn2(5)) m_initthrow(mtmp, SILVER_DAGGER, 10);
+		if (!rn2(5)) m_initthrow(mtmp, SILVER_ARROW, 50);
+	}
+
+	if (ptr == &mons[PM_COMBAT_BOOT_WEARING_AMAZON]) {
+		if (!rn2(5)) mongets(mtmp, COMBAT_STILETTOS);
+		if (!rn2(5)) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+	}
+
+	if (ptr == &mons[PM_STRICT_OLD_WOMAN]) {
+		if (!rn2(5)) mongets(mtmp, WAN_MAGIC_MISSILE);
+	}
+
+	if (ptr == &mons[PM_SEXY_SPORTS_LADY]) {
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, SPIKED_BATTLE_BOOT);
+		if (!rn2(5)) mongets(mtmp, LANCE);
+		if (!rn2(5)) mongets(mtmp, POT_FIRE);
+		if (!rn2(5)) mongets(mtmp, POT_PARALYSIS);
+		if (!rn2(5)) mongets(mtmp, SCR_ICE);
+		if (!rn2(5)) mongets(mtmp, WAN_HEALING);
+		if (!rn2(5)) m_initthrow(mtmp, GAS_GRENADE, 5);
+	}
+
+	if (ptr == &mons[PM_SECRETARY_IN_CHARGE]) {
+		if (!rn2(5)) mongets(mtmp, WAN_PARALYSIS);
+	}
+
+	if (ptr == &mons[PM_BITCH_OF_YOUNG]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CURSE_ITEMS);
+		if (!rn2(5)) mongets(mtmp, WAN_BAD_EFFECT);
+		if (!rn2(5)) mongets(mtmp, GRAY_DRAGON_SCALE_MAIL);
+		if (!rn2(5)) mongets(mtmp, ORCISH_BOW);
+		if (!rn2(5)) m_initthrow(mtmp, DARK_ELVEN_ARROW, 50);
+		if (!rn2(5)) mongets(mtmp, SCR_VILENESS);
+	}
+
+	if (ptr == &mons[PM_SNAPPY_WOMAN]) {
+		if (!rn2(5)) mongets(mtmp, SCR_TELEPORTATION);
+	}
+
+	if (ptr == &mons[PM_OIL_VILLAGE]) {
+		if (!rn2(5)) mongets(mtmp, SEXY_LEATHER_PUMP);
+		if (!rn2(5)) mongets(mtmp, COMBAT_STILETTOS);
+		if (!rn2(5)) mongets(mtmp, POT_ACID);
+		if (!rn2(5)) mongets(mtmp, WAN_ACID);
+	}
+
+	if (ptr == &mons[PM_WORK_HOUSES]) {
+		if (!rn2(5)) mongets(mtmp, SCR_BAD_EFFECT);
+	}
+
+	if (ptr == &mons[PM_DUALITY_NAME_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, UNICORN_HORN);
+		if (!rn2(5)) m_initthrow(mtmp, DART, 20);
+	}
+
+	if (ptr == &mons[PM_ICE_HEEL_LADY]) {
+		if (!rn2(5)) mongets(mtmp, SEXY_LEATHER_PUMP);
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, WAN_HEALING);
+		if (!rn2(5)) mongets(mtmp, WAN_EXTRA_HEALING);
+		if (!rn2(5)) mongets(mtmp, WAN_FULL_HEALING);
+		if (!rn2(5)) mongets(mtmp, WAN_CONFUSION);
+		if (!rn2(5)) mongets(mtmp, SCR_SUMMON_ELM);
+		if (!rn2(5)) mongets(mtmp, POT_CONFUSION);
+	}
+
+	if (ptr == &mons[PM_WORST_JUNIOR_LAWYER]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, T_SHIRT);
+	}
+
+	if (ptr == &mons[PM_WOMAN_WHO_CAN_T_SPELL_HER_OWN_NAME]) {
+		if (!rn2(5)) mongets(mtmp, POT_BLINDNESS);
+		if (!rn2(5)) mongets(mtmp, POT_ICE);
+		if (!rn2(5)) mongets(mtmp, POT_FEAR);
+	}
+
+	if (ptr == &mons[PM_CANCER_RESEARCH_LADY]) {
+		if (!rn2(5)) mongets(mtmp, WAN_COLD);
+		if (!rn2(5)) mongets(mtmp, WAN_LIGHTNING);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		if (!rn2(5)) mongets(mtmp, RIN_TIMELY_BACKUP);
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+	}
+
+	if (ptr == &mons[PM_CHEEKY_PUPIL_BITER]) {
+		if (!rn2(5)) mongets(mtmp, POT_RADIUM);
+		if (!rn2(5)) mongets(mtmp, POT_RADIUM);
+		if (!rn2(5)) mongets(mtmp, POT_RADIUM);
+	}
+
+	if (ptr == &mons[PM_BRIGHT_STAR]) {
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+		if (!rn2(5)) mongets(mtmp, SCR_FLOOD);
+		if (!rn2(5)) mongets(mtmp, ELVEN_CLOAK);
+		if (!rn2(5)) mongets(mtmp, LEATHER_JACKET);
+	}
+
+	if (ptr == &mons[PM_TOMORROW]) {
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+	}
+
+	if (ptr == &mons[PM_MUDDY_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_CHAOS_TERRAIN);
+	}
+
+	if (ptr == &mons[PM_CONFUSED_BITCH]) {
+		if (!rn2(5)) mongets(mtmp, POT_FIRE);
+		if (!rn2(5)) mongets(mtmp, SCR_LAVA);
+		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
+	}
+
+	if (ptr == &mons[PM_ALL_ROCKING_WOMAN]) {
+		if (!rn2(5)) mongets(mtmp, SCR_GROWTH);
+		if (!rn2(5)) mongets(mtmp, SCR_GROWTH);
+		if (!rn2(5)) mongets(mtmp, SCR_GROWTH);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+	}
+
+	if (ptr == &mons[PM_BIOLOGY_BITCH]) {
+		if (!rn2(5)) mongets(mtmp, POT_POLYMORPH);
+		if (!rn2(5)) mongets(mtmp, WAN_STRIKING);
+		if (!rn2(5)) mongets(mtmp, STEEL_WHIP);
+	}
+
+	if (ptr == &mons[PM_COOL_DIRIGENT]) {
+		if (!rn2(5)) mongets(mtmp, BUGLE);
+		if (!rn2(5)) mongets(mtmp, BLACK_DRAGON_SCALE_MAIL);
+		if (!rn2(5)) mongets(mtmp, ORCISH_SHORT_SWORD);
+		if (!rn2(5)) mongets(mtmp, ORCISH_HELM);
+		if (!rn2(5)) mongets(mtmp, ORCISH_CHAIN_MAIL);
+	}
+
+	if (ptr == &mons[PM_BEARDED_MATH_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, RUBBER_HOSE);
+	}
+
+	if (ptr == &mons[PM_DRIVER]) {
+		if (!rn2(5)) mongets(mtmp, POT_SPEED);
+		if (!rn2(5)) mongets(mtmp, SCR_BAD_EFFECT);
+	}
+
+	if (ptr == &mons[PM_TWITCHER]) {
+		if (!rn2(5)) mongets(mtmp, MALLET);
+		if (!rn2(5)) mongets(mtmp, LEATHER_JACKET);
+		if (!rn2(5)) mongets(mtmp, POT_EXTRA_HEALING);
+	}
+
+	if (ptr == &mons[PM_INCOMPETENT_PSEUDO_PRINCIPAL]) {
+		if (!rn2(5)) mongets(mtmp, POT_BLINDNESS);
+		if (!rn2(5)) mongets(mtmp, KNOUT);
+		if (!rn2(5)) mongets(mtmp, SCR_IMMOBILITY);
+		if (!rn2(5)) mongets(mtmp, POT_CYANIDE);
+		if (!rn2(5)) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		if (!rn2(5)) m_initthrow(mtmp, CREAM_PIE, 4);
+	}
+
+	if (ptr == &mons[PM_TEACHER_WITH_YELLOW_TEETH]) {
+		if (!rn2(5)) mongets(mtmp, POT_SLIME);
+		if (!rn2(5)) mongets(mtmp, POISONOUS_CLOAK);
+	}
+
+	if (ptr == &mons[PM_MONEY_STEALER]) {
+		if (!rn2(5)) mongets(mtmp, LACQUERED_DANCING_SHOE);
+		if (!rn2(5)) mongets(mtmp, LEATHER_JACKET);
+		if (!rn2(5)) mongets(mtmp, SLING);
+		if (!rn2(5)) mongets(mtmp, SCR_GROUP_SUMMONING);
+		if (!rn2(5)) m_initthrow(mtmp, INVENTORY_LOSS_STONE, 1);
+		if (!rn2(5)) m_initthrow(mtmp, DROPBUG_STONE, 1);
+		if (!rn2(5)) m_initthrow(mtmp, BAD_EFFECT_STONE, 1);
+	}
+
+	if (ptr == &mons[PM_BRAIN_RUPTURED_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, BUGLE);
+		if (!rn2(5)) mongets(mtmp, POT_AMNESIA);
+	}
+
+	if (ptr == &mons[PM_ADMONISHER_TYPE]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CANCELLATION);
+	}
+
+	if (ptr == &mons[PM_DISTURBANCE_HEAD]) {
+		if (!rn2(5)) mongets(mtmp, POT_SPEED);
+		if (!rn2(5)) mongets(mtmp, BASEBALL_BAT);
+	}
+
+	if (ptr == &mons[PM_EVIL_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, TWO_HANDED_SWORD);
+		if (!rn2(5)) mongets(mtmp, PLATE_MAIL);
+		if (!rn2(5)) mongets(mtmp, SCR_PUNISHMENT);
+		if (!rn2(5)) mongets(mtmp, POT_STUNNING);
+		if (!rn2(5)) mongets(mtmp, WAN_FINGER_BENDING);
+	}
+
+	if (ptr == &mons[PM_ASSLEFT_DOG]) {
+		if (!rn2(5)) mongets(mtmp, WAN_DRAINING);
+		if (!rn2(5)) mongets(mtmp, SCR_MEGALOAD);
+		if (!rn2(5)) mongets(mtmp, WAN_STARVATION);
+		if (!rn2(5)) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		if (!rn2(5)) mongets(mtmp, GOLD_CHAIN);
+	}
+
+	if (ptr == &mons[PM_STRIP_MINE_HAWK]) {
+		if (!rn2(5)) mongets(mtmp, WAN_DIGGING);
+		if (!rn2(5)) mongets(mtmp, DWARVISH_MATTOCK);
+		if (!rn2(5)) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+	}
+
+	if (ptr == &mons[PM_GEOLOGY_TORTURER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_EARTH);
+		if (!rn2(5)) mongets(mtmp, SCR_EARTH);
+		if (!rn2(5)) mongets(mtmp, SCR_EARTH);
+		if (!rn2(5)) mongets(mtmp, WAN_STRIKING);
+	}
+
+	if (ptr == &mons[PM_UNCLE_OF_CARLO_SANTANA]) {
+		if (!rn2(5)) mongets(mtmp, BUGLE);
+		if (!rn2(5)) mongets(mtmp, POT_PARALYSIS);
+	}
+
+	if (ptr == &mons[PM_PIOUS_DAD]) {
+		if (!rn2(5)) mongets(mtmp, MACE);
+		if (!rn2(5)) mongets(mtmp, WAN_HEALING);
+	}
+
+	if (ptr == &mons[PM_DESERT_MOUNTAIN]) {
+		if (!rn2(5)) mongets(mtmp, FLAIL);
+		if (!rn2(5)) mongets(mtmp, WAN_STRIKING);
+		if (!rn2(5)) mongets(mtmp, LEATHER_JACKET);
+	}
+
+	if (ptr == &mons[PM_HACKER_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		if (!rn2(5)) mongets(mtmp, RIN_TIMELY_BACKUP);
+		if (!rn2(5)) mongets(mtmp, ELECTRIC_SWORD);
+	}
+
+	if (ptr == &mons[PM_CANNON_SADIST]) {
+		if (!rn2(5)) mongets(mtmp, PISTOL);
+		if (!rn2(5)) mongets(mtmp, LEATHER_JACKET);
+		if (!rn2(5)) mongets(mtmp, ELVEN_CLOAK);
+		if (!rn2(5)) mongets(mtmp, WAN_TELEPORTATION);
+		if (!rn2(5)) m_initthrow(mtmp, BULLET, 50);
+	}
+
+	if (ptr == &mons[PM_OLD_RUNNER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_CHAOS_TERRAIN);
+	}
+
+	if (ptr == &mons[PM_CHEMISTRY_NERD]) {
+		if (!rn2(5)) mongets(mtmp, POT_ACID);
+		if (!rn2(5)) mongets(mtmp, POT_RADIUM);
+		if (!rn2(5)) mongets(mtmp, POT_CYANIDE);
+		if (!rn2(5)) mongets(mtmp, POT_HALLUCINATION);
+		if (!rn2(5)) mongets(mtmp, POT_HALLUCINATION);
+		if (!rn2(5)) mongets(mtmp, LEATHER_GLOVES);
+	}
+
+	if (ptr == &mons[PM_CHEMISTRY_WATCHER]) {
+		if (!rn2(5)) mongets(mtmp, WAN_FIREBALL);
+		if (!rn2(5)) mongets(mtmp, LAB_COAT);
+	}
+
+	if (ptr == &mons[PM_TERRIBLE_GARBAGE_HOUSES]) {
+		if (!rn2(5)) mongets(mtmp, SLING);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		if (!rn2(5)) m_initthrow(mtmp, CAPTCHA_STONE, 1);
+		if (!rn2(5)) m_initthrow(mtmp, QUIZ_STONE, 1);
+	}
+
+	if (ptr == &mons[PM_ASSHOLE_TEACHER_WITHOUT_OWN_HOUSE]) {
+		if (!rn2(5)) mongets(mtmp, SCR_BULLSHIT);
+		if (!rn2(5)) mongets(mtmp, MUMMY_WRAPPING);
+		if (!rn2(5)) mongets(mtmp, IRON_CHAIN);
+		if (!rn2(5)) mongets(mtmp, WAN_SIN);
+		if (!rn2(5)) mongets(mtmp, HEAVY_IRON_BALL);
+	}
+
+	if (ptr == &mons[PM_CORRECT_BULL]) {
+		if (!rn2(5)) mongets(mtmp, RUBBER_HOSE);
+		if (!rn2(5)) mongets(mtmp, PISTOL);
+		if (!rn2(5)) mongets(mtmp, WAN_STUN_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) m_initthrow(mtmp, CREAM_PIE, 4);
+		if (!rn2(5)) m_initthrow(mtmp, BULLET, 20);
+	}
+
+	if (ptr == &mons[PM_LONG_DICK]) {
+		if (!rn2(5)) mongets(mtmp, POT_PARALYSIS);
+	}
+
+	if (ptr == &mons[PM_BIGOTED_MATH_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, WAR_HAMMER);
+		if (!rn2(5)) mongets(mtmp, CHAIN_MAIL);
+		if (!rn2(5)) mongets(mtmp, POT_ICE);
+		if (!rn2(5)) mongets(mtmp, POT_FIRE);
+	}
+
+	if (ptr == &mons[PM_DEPUTY_PRINCIPAL]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SCR_LOCKOUT);
+		if (!rn2(5)) mongets(mtmp, SCR_LOCKOUT);
+		if (!rn2(5)) mongets(mtmp, WAN_SUMMON_ELM);
+		if (!rn2(5)) mongets(mtmp, SCR_SUMMON_ELM);
+		if (!rn2(5)) mongets(mtmp, POT_GAIN_LEVEL);
+		if (!rn2(5)) mongets(mtmp, RIN_TIMELY_BACKUP);
+		if (!rn2(5)) mongets(mtmp, CLOAK_OF_INVISIBILITY);
+		if (!rn2(5)) mongets(mtmp, ELVEN_MITHRIL_COAT);
+		if (!rn2(5)) mongets(mtmp, ELYSIUM_SCOURGE);
+	}
+
+	if (ptr == &mons[PM_POLITE_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, POT_SLEEPING);
+	}
+
+	if (ptr == &mons[PM_ART_AND_CRAFT_ANNOYER]) {
+		if (!rn2(5)) mongets(mtmp, BUGLE);
+		if (!rn2(5)) mongets(mtmp, MACE);
+		if (!rn2(5)) m_initthrow(mtmp, DART, 50);
+		if (!rn2(5)) m_initthrow(mtmp, DART, 50);
+	}
+
+	if (ptr == &mons[PM_WIZENED_OLD_BAG]) {
+		if (!rn2(5)) mongets(mtmp, WAN_CLONE_MONSTER);
+	}
+
+	if (ptr == &mons[PM_BEST_HIGH_SCHOOL_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, WAN_FIRE);
+		if (!rn2(5)) mongets(mtmp, WAN_COLD);
+		if (!rn2(5)) mongets(mtmp, CLOAK_OF_REFLECTION);
+		if (!rn2(5)) mongets(mtmp, SCR_HEALING);
+		if (!rn2(5)) mongets(mtmp, POT_POLYMORPH);
+	}
+
+	if (ptr == &mons[PM_SUPER_OLD_ASSHOLE_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, KNOUT);
+		if (!rn2(5)) mongets(mtmp, POT_SPEED);
+	}
+
+	if (ptr == &mons[PM_IN_THE_NET]) {
+		if (!rn2(5)) mongets(mtmp, SCR_TELEPORTATION);
+		if (!rn2(5)) mongets(mtmp, SCR_WARPING);
+		if (!rn2(5)) mongets(mtmp, SCR_CREATE_MONSTER);
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+	}
+
+	if (ptr == &mons[PM_HOUSE_MASTER]) {
+		if (!rn2(5)) mongets(mtmp, CONCRETE_NUNCHIAKU);
+		if (!rn2(5)) mongets(mtmp, HEAVY_CONCRETE_BALL);
+		if (!rn2(5)) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+	}
+
+	if (ptr == &mons[PM_CARTHAGINIAN_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, WAN_POLYMORPH);
+	}
+
+	if (ptr == &mons[PM_SIR]) {
+		if (!rn2(5)) mongets(mtmp, PISTOL);
+		if (!rn2(5)) mongets(mtmp, SCR_ENRAGE);
+		if (!rn2(5)) mongets(mtmp, PLASTEEL_CLOAK);
+		if (!rn2(5)) mongets(mtmp, WAN_SLOW_MONSTER);
+		if (!rn2(5)) mongets(mtmp, POT_EXTRA_HEALING);
+		if (!rn2(5)) m_initthrow(mtmp, BULLET, 20);
+	}
+
+	if (ptr == &mons[PM_BANISHER_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, WAN_BANISHMENT);
+	}
+
+	if (ptr == &mons[PM_OLD_REGIMENT_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, POT_MUTATION);
+	}
+
+	if (ptr == &mons[PM_PEACE_MINDED_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, BULLWHIP);
+	}
+
+	if (ptr == &mons[PM_MOTORCYCLE_CHAIN_SWINGER]) {
+		if (!rn2(5)) mongets(mtmp, POT_SPEED);
+		if (!rn2(5)) mongets(mtmp, WAN_FEAR);
+		if (!rn2(5)) mongets(mtmp, IRON_CHAIN);
+	}
+
+	if (ptr == &mons[PM_HAIR_BEARD]) {
+		if (!rn2(5)) mongets(mtmp, SCR_BAD_EFFECT);
+		if (!rn2(5)) mongets(mtmp, WAN_FIRE);
+	}
+
+	if (ptr == &mons[PM_WHEATER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_GROWTH);
+	}
+
+	if (ptr == &mons[PM_BAD_TEACHER_GRANDPA]) {
+		if (!rn2(5)) mongets(mtmp, POT_SLEEPING);
+		if (!rn2(5)) mongets(mtmp, WAN_SLEEP);
+		if (!rn2(5)) mongets(mtmp, CLAY_CHAIN);
+	}
+
+	if (ptr == &mons[PM_IT_TEACHER]) {
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (!rn2(5)) mongets(mtmp, GAUNTLETS_OF_TYPING);
+	}
+
+	if (ptr == &mons[PM_WHO]) {
+		if (!rn2(5)) mongets(mtmp, POT_CONFUSION);
+	}
+
+	if (ptr == &mons[PM_THREE_ATE_GUY]) {
+		if (!rn2(5)) mongets(mtmp, KATANA);
+		if (!rn2(5)) mongets(mtmp, SCR_SUMMON_BOSS);
+	}
+
+	if (ptr == &mons[PM_REAL_AND_TRUE_PRINCIPAL]) {
+		if (!rn2(5)) mongets(mtmp, DROVEN_BOW);
+		if (!rn2(5)) mongets(mtmp, MALLET);
+		if (!rn2(5)) mongets(mtmp, FULL_PLATE_MAIL);
+		if (!rn2(5)) mongets(mtmp, AMULET_OF_DATA_STORAGE);
+		if (!rn2(5)) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+		if (!rn2(5)) mongets(mtmp, HELM_OF_STEEL);
+		if (!rn2(5)) mongets(mtmp, PLASTEEL_GLOVES);
+		if (!rn2(5)) mongets(mtmp, STEEL_SHIELD);
+		if (!rn2(5)) mongets(mtmp, SCR_SUMMON_GHOST);
+		if (!rn2(5)) mongets(mtmp, SCR_RELOCATION);
+		if (!rn2(5)) mongets(mtmp, SCR_EGOISM);
+		if (!rn2(5)) mongets(mtmp, SPEED_BOOTS);
+		if (!rn2(5)) mongets(mtmp, WAN_DISINTEGRATION);
+		if (!rn2(5)) mongets(mtmp, WAN_TIME);
+		if (!rn2(5)) mongets(mtmp, WAN_CREATE_HORDE);
+		if (!rn2(5)) m_initthrow(mtmp, DROVEN_ARROW, 50);
+		if (!rn2(5)) m_initthrow(mtmp, DROVEN_ARROW, 50);
+		if (!rn2(5)) m_initthrow(mtmp, DROVEN_ARROW, 50);
+		if (!rn2(5)) m_initthrow(mtmp, DROVEN_ARROW, 50);
+	}
+
+
 	if (ptr == &mons[PM_JUTTA_FLAX]) {
 		(void) mongets(mtmp, SCR_BAD_EFFECT);
 		(void) mongets(mtmp, SCR_SIN);
@@ -9708,6 +10248,16 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, LACQUERED_DANCING_SHOE);
 		(void) mongets(mtmp, POT_CONFUSION);
 		(void) mongets(mtmp, POT_STUNNING);
+	}
+
+	if (ptr == &mons[PM_IRRESISTIBLE_THICK_LADY]) {
+		if (!rn2(5)) (void) mongets(mtmp, SCR_BAD_EFFECT);
+		if (!rn2(5)) (void) mongets(mtmp, SCR_SIN);
+		if (!rn2(5)) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (!rn2(5)) (void) mongets(mtmp, SWEET_MOCASSINS);
+		if (!rn2(5)) (void) mongets(mtmp, LACQUERED_DANCING_SHOE);
+		if (!rn2(5)) (void) mongets(mtmp, POT_CONFUSION);
+		if (!rn2(5)) (void) mongets(mtmp, POT_STUNNING);
 	}
 
 	if (ptr == &mons[PM_ANNIE]) {
