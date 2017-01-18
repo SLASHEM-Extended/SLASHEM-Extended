@@ -3084,7 +3084,7 @@ Amulet_off()
     long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_AMUL;
     takeoff_mask &= ~W_AMUL;
 
-	if (uamul && objects[(uamul)->otyp].oc_material == INKA) {
+	if (uamul && !(Race_if(PM_INKA)) && objects[(uamul)->otyp].oc_material == INKA) {
 		pline("The inka amulet tries to resist being taken off, and severely strangulates you before you can finally slip it from your %s!", body_part(NECK));
 		if (Upolyd) losehp( (u.mhmax / 2) + 2, "inka amulet", KILLED_BY_AN);
 		else losehp( (u.uhpmax / 2) + 2, "inka amulet", KILLED_BY_AN);
@@ -4853,7 +4853,7 @@ register struct obj *otmp;
 		pline_The("ring is stuck.");
 		return 0;
 	    }
-	    if (objects[(otmp)->otyp].oc_material == INKA && !(youmonst.data->msound == MS_FART_QUIET || youmonst.data->msound == MS_FART_NORMAL || youmonst.data->msound == MS_FART_LOUD) ) {
+	    if (objects[(otmp)->otyp].oc_material == INKA && !(Race_if(PM_INKA))  && !(youmonst.data->msound == MS_FART_QUIET || youmonst.data->msound == MS_FART_NORMAL || youmonst.data->msound == MS_FART_LOUD) ) {
 		pline("Inka rings cannot be taken off. You need to chat to a farting monster to have it removed.");
 		return 0;
 	    }

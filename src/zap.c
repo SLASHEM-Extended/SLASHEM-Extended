@@ -3154,6 +3154,12 @@ register struct obj *wand;
 	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 	use_skill(P_DEVICES,1);
 	if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
+
+	if (Race_if(PM_INKA)) {
+		use_skill(P_DEVICES,1);
+		if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
+	}
+
 	return 1;
 }
 
