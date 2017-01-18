@@ -5161,7 +5161,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && !(objects[uwep->otyp].oc_material == SECREE || objects[uwep->otyp].oc_material == ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == SECREE || objects[uwep->otyp].oc_material == ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -5189,7 +5189,7 @@ use_weapon:
 					}
 				}
 
-				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uswapwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == GOLD)) && !(objects[uswapwep->otyp].oc_material == SECREE || objects[uswapwep->otyp].oc_material == ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == PLATINUM) ? 1 : 0) && !rn2((objects[uswapwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == SECREE || objects[uswapwep->otyp].oc_material == ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
 					if (uswapwep->greased) {
 						uswapwep->greased--;
 						pline("Your weapon loses its grease.");

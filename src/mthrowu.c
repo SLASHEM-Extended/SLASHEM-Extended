@@ -436,6 +436,7 @@ int x,y;
 	    } else {
 		chance = 3 + obj->spe - greatest_erosionX(obj);
 		if (chance > 3) chance = 2 + rno(chance - 2);
+		if (chance < 1) chance = 1; /* fail safe */
 
 		create = rn2(chance);
 		}

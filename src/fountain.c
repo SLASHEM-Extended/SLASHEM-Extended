@@ -44,6 +44,8 @@ void
 dowaterdemon() /* Water demon */
 {
     register struct monst *mtmp;
+	register int wishchance = issoviet ? (60 + 5*level_difficulty()) : 97;
+	/* In Soviet Russia, deep fountains may not give wishes. After all, digging too deep into the ground in such a cold country would endanger the groundwater supplies and is therefore strictly forbidden. --Amy */
 
     if(!(mvitals[PM_WATER_DEMON].mvflags & G_GONE)) {
 	if((mtmp = makemon(&mons[PM_WATER_DEMON],u.ux,u.uy, NO_MM_FLAGS))) {
@@ -54,7 +56,7 @@ dowaterdemon() /* Water demon */
 /* ------------===========STEPHEN WHITE'S NEW CODE============------------ */
 	/* Give those on low levels a (slightly) better chance of survival */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
-	if (rnd(100) > (60 + 5*level_difficulty())) {
+	if (rnd(100) > wishchance) {
 		pline("Grateful for %s release, %s grants you a boon!",
 		      mhis(mtmp), mhe(mtmp));
 		if (!rn2(4)) makewish();
@@ -62,6 +64,8 @@ dowaterdemon() /* Water demon */
 		mongone(mtmp);
 	    } else if (t_at(mtmp->mx, mtmp->my))
 		(void) mintrap(mtmp);
+	} else if (issoviet) {
+		pline("Kha-kha-kha, tip bloka l'da ne khochet, chtoby vy, chtoby imet' krasivyy slavyanskiy zhenshchinu. Vmesto etogo, vy poluchayete vrazhdebnogo demona.");
 	}
     } else
 	pline_The("fountain bubbles furiously for a moment, then calms.");

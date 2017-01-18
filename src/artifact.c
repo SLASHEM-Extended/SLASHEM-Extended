@@ -1102,12 +1102,16 @@ touch_artifact(obj,mon)
 	if (!yours) return 0;
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
 	dmg = d((Antimagic ? 6 : 8), (self_willed ? 10 : 6));
-	if (u.ulevel < 10) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
+	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;
 		dmg /= 10;
 	}
+
 	/* Yes, I know, this probably means you cannot instantly die by having an artifact spawn on your location while
 	 * having autopickup on, unless you're a DQ Slime or something, but still... */
+
+	/* In Soviet Russia, artifacts are not meant to be used by little children. Parents who want to get rid of their kids place Excaliburs and Stormbringers in their house on purpose, hoping that their offspring will make the mistake of touching  it and get killed instantly. --Amy */
+	if (issoviet) pline("Bum, vy tol'ko chto vzorvali dlya massivnogo povrezhdeniya. Kha-kha-kha, tip bloka l'da smeyetsya nad vami.");
 
 	/*if (wizard) pline("damage calc");*/
 	Sprintf(buf, "touching an artifact (%s)", oart->name);

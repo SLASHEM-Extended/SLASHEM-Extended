@@ -1913,6 +1913,7 @@ int thrown;
 		    } else {/* continue to survive longer with better enchantment --Amy */
 			chance = 3 + obj->spe - greatest_erosionX(obj);
 			if (chance > 3) chance = 2 + rno(chance - 2);
+			if (chance < 1) chance = 1; /* fail safe */
 			broken = !rn2(chance);
 		    }
 		    if ( objects[otyp].oc_skill == P_DAGGER )

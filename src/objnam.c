@@ -7420,12 +7420,18 @@ typfnd:
 		  makeplural(body_part(HAND)));
 
 		/* but you'll get another random artifact instead! --Amy */
-	    otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
-	    if (!otmp) return(&zeroobj);
-	    otmp->owt = weight(otmp);
-	    if (!u.ugifts) u.ugifts = 1;
-	    pline("But the RNG decided to grant you another artifact instead!");
-	    return(otmp);
+		if (!issoviet) {
+			otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+			if (!otmp) return(&zeroobj);
+			otmp->owt = weight(otmp);
+			if (!u.ugifts) u.ugifts = 1;
+			pline("But the RNG decided to grant you another artifact instead!");
+			return(otmp);
+		} else {
+		/* In Soviet Russia, consolation prizes don't exist. After all, only hard work counts in communism, and no one is ever allowed to get anything for free. --Amy */
+
+			pline("Kha kha kha KHAR KHAR zhelaniye ne udalas', poskol'ku Sovetskiy Pyat' Lo nenavidit vsekh zhivykh sushchestv i osobenno vas.");
+		}
 	}
 
 	if (halfeaten && otmp->oclass == FOOD_CLASS) {

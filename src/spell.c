@@ -968,10 +968,18 @@ learn()
 	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
-	if (Confusion && !Conf_resist && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !Conf_resist && !rn2(Role_if(PM_LIBRARIAN) ? 100 : 10) ) {		/* became confused while learning */
+
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
-	    if ((delay - end_delay) < 0) nomul((-(rno(-(delay - end_delay)))), "reading a confusing book");	/* remaining delay is uninterrupted */
+	    if ((delay - end_delay) < 0) {
+			if (!issoviet) nomul((-(rno(-(delay - end_delay)))), "reading a confusing book");	/* remaining delay is uninterrupted */
+			else {
+				nomul((delay - end_delay), "reading a confusing book");
+				pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
+
+			}
+	    }
 	    delay = end_delay;
 	    return(0);
 	}
@@ -1141,7 +1149,14 @@ register struct obj *spellbook;
 		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || (!(spellbook->spe) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
 		    boolean gone = cursed_book(spellbook);
 
-		    if (delay < 0) nomul(-(rno(-(delay))), "reading a cursed book");			/* study time */
+		    if (delay < 0) {
+				if (!issoviet) nomul(-(rno(-(delay))), "reading a cursed book");			/* study time */
+				else {
+					nomul((delay), "reading a cursed book");
+					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
+				}
+
+		    }
 		    delay = 0;
 		    if(gone || !rn2(3)) {
 			if (!gone) pline_The("spellbook crumbles to dust!");
@@ -1153,11 +1168,17 @@ register struct obj *spellbook;
 		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
-		} else if (confused) {
+		} else if (confused && !Conf_resist && !rn2(Role_if(PM_LIBRARIAN) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
-		    if (delay < 0) nomul(-(rno(-(delay))), "reading a book while confused");
+		    if (delay < 0) {
+				if (!issoviet) nomul(-(rno(-(delay))), "reading a book while confused");
+				else {
+					nomul((delay), "reading a book while confused");
+					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
+				}
+		    }
 		    delay = 0;
 		    return(1);
 		}
@@ -6480,9 +6501,22 @@ struct obj *obj;
 	int i;
 
 	for (i = 0; i < MAXSPELL; i++) {
-	    if (spellid(i) == obj->otyp) {
-	         pline("Error: Spell %s already known.",
-	         		OBJ_NAME(objects[obj->otyp]));
+	    if (spellid(i) == obj->otyp) { /* not a bug - after all, you might e.g. play a haxor --Amy */
+	    	/* pline("Error: Spell %s already known.", OBJ_NAME(objects[obj->otyp])); */
+
+		/* In Soviet Russia, enhancements aren't a thing. In fact, they don't even know how to spell the word 'enhancement'. Therefore, if someone goes ahead and suggests an enhancement that consists of double spellbooks giving twice the starting spellcasting memory, they say NOPE THAT IS INCOMPATIBLE WITH COMMUNISM and refuse to implement it. --Amy */
+		if (!issoviet) {
+			incrnknow(i);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+
+			if (spl_book[i].sp_lev == 3) incrnknow(i);
+			if (spl_book[i].sp_lev == 4) { incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 5) { incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 6) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 7) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 8) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+		}
+
 	         return;
 	    }
 	    if (spellid(i) == NO_SPELL)  {

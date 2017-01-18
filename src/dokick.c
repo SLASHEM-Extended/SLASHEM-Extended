@@ -1196,7 +1196,7 @@ dokick()
 		    }
 		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) ) {
 
-			if (rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
+			if (!issoviet && rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
 				pline("The tree's branches are swinging, but apparently it doesn't bear any fruits.");
 				maploc->looted |= TREE_LOOTED;
 				return(1);
