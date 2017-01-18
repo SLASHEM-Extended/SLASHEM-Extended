@@ -4975,7 +4975,7 @@ register int roll;
 		case 364: pline("Your fancy footwork did not fool %s!", mon_nam(mdef)); break;
 		case 365: pline("You could not hit the broadside of a barn with that pathetic attempt."); break;
 		case 366: pline("You perform a decent attack but was perfectly parried by %s!", mon_nam(mdef)); break;
-		case 367: pline("Your fumbled attack completely missed %s!"); break;
+		case 367: pline("Your fumbled attack completely missed %s!", mon_nam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef), mon_nam(mdef)); break;
 
