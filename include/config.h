@@ -436,7 +436,6 @@ typedef unsigned char	uchar;
 #define STEED		/* The ability to ride monsters (unconditionally enabled by Amy) */
 
 /* Roles */
-#define DWARF		/* Dwarf Patch, Osku Salerma (osku@iki.fi) (unconditionally enabled by Amy) */
 #define TOURIST		/* Tourist players with cameras and Hawaiian shirts (unconditionally enabled by Amy) */
 #define YEOMAN		/* KMH -- Yeoman class (unconditionally enabled by Amy) */
 /* #define ZOUTHERN */	/* KMH -- Zoutherner class and its animals */
