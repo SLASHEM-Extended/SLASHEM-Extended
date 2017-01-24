@@ -1244,9 +1244,7 @@ register xchar x, y;
 }
 */
 
-#ifdef BLACKMARKET
 d_level new_dlevel = {0, 0};
-#endif
 
 void
 goto_level(newlevel, at_stairs, falling, portal)
@@ -1289,9 +1287,7 @@ boolean at_stairs, falling, portal;
 	if (new_ledger <= 0)
 		done(ESCAPED);	/* in fact < 0 is impossible */
 
-#ifdef BLACKMARKET
 	assign_level(&new_dlevel, newlevel);
-#endif
 
 	/* If you have the amulet and are trying to get out of Gehennom, going
 	 * up a set of stairs sometimes does some very strange things!

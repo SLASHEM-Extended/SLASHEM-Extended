@@ -487,7 +487,6 @@ dosounds()
 	}
 	return;
     }
-#ifdef BLACKMARKET
     if (!Is_blackmarket(&u.uz) && at_dgn_entrance("One-eyed Sam's Market") &&
         !rn2(200)) {
       static const char *blkmar_msg[4] = {
@@ -498,7 +497,6 @@ dosounds()
       };
       pline(blkmar_msg[rn2(2+hallu*2)]);
     }
-#endif /* BLACKMARKET */
 
 	/* finding alignment quests is way too hard, so the player will get some help. --Amy */
     if ( (at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") ) &&

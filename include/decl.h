@@ -92,9 +92,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_chaotic_quest_level;
     d_level	d_qstart_level, d_qlocate_level, d_nemesis_level;
     d_level	d_knox_level;
-#ifdef BLACKMARKET
     d_level     d_blackmarket_level;
-#endif /* BLACKMARKET */
 #ifdef RECORD_ACHIEVE
     /*d_level     d_mineend_level;*/ /* already added above */
     d_level     d_sokoend_level;
@@ -150,9 +148,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define lawful_quest_level	(dungeon_topology.d_lawful_quest_level)
 #define neutral_quest_level	(dungeon_topology.d_neutral_quest_level)
 #define chaotic_quest_level	(dungeon_topology.d_chaotic_quest_level)
-#ifdef BLACKMARKET
 #define blackmarket_level	(dungeon_topology.d_blackmarket_level)
-#endif /* BLACKMARKET */
 #ifdef RECORD_ACHIEVE
 #define mineend_level           (dungeon_topology.d_mineend_level)
 #define sokoend_level           (dungeon_topology.d_sokoend_level)

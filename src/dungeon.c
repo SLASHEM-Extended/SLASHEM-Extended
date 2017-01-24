@@ -619,9 +619,7 @@ struct level_map {
 	{ "fire",	&fire_level },
 	{ "juibl",	&juiblex_level },
 	{ "knox",	&knox_level },
-#ifdef BLACKMARKET        
 	{ "blkmar",     &blackmarket_level },
-#endif /* BLACKMARKET */
 	{ "medus",	&medusa_level },
 	{ "mtemple",	&mtemple_level },
 	{ "nymph",   &nymph_level },        
@@ -935,9 +933,7 @@ init_dungeons()
 	town_dnum = dname_to_dnum("Town");
 	gehennom_dnum = dname_to_dnum("Gehennom");
 /*
-#ifdef BLACKMARKET
 	blackmarket_dnum = dname_to_dnum("The Black Market");
-#endif
 */
 
 	/* one special fixup for dummy surface level */

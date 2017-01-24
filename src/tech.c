@@ -2633,11 +2633,9 @@ int tech_no;
             	if (!obj) return (0);
             	mtmp = revive(obj);
             	if (mtmp) {
-#ifdef BLACKMARKET
 		    if (Is_blackmarket(&u.uz))
 			setmangry(mtmp);
 		    else
-#endif
 		    if (mtmp->isshk)
 			make_happy_shk(mtmp, FALSE);
 		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL))

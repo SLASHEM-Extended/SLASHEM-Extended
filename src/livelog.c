@@ -217,9 +217,7 @@ struct monst *mtmp;
 				mtmp->data->mname); 
 		livelog_write_string(strbuf); 
 	} else if ((mtmp->data->geno & G_UNIQ) 
-#ifdef BLACKMARKET 
 	           || (mtmp->data == &mons[PM_BLACK_MARKETEER]) 
-#endif 
 		  ) { 
 		char *n = noit_mon_nam(mtmp); 
 		/* $player killed a uniq monster */ 

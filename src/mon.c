@@ -4077,13 +4077,11 @@ setmangry(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->mstrategy &= ~STRAT_WAITMASK;
-#ifdef BLACKMARKET
 	/* Even if the black marketeer is already angry he may not have called
 	 * for his assistants if he or his staff have not been assaulted yet.
 	 */
 	if (Is_blackmarket(&u.uz) && !mtmp->mpeaceful && mtmp->isshk)
 	    blkmar_guards(mtmp);
-#endif /* BLACKMARKET */
 	if(!mtmp->mpeaceful) return;
 	if(mtmp->mtame) return;
 	mtmp->mpeaceful = 0;
@@ -4120,7 +4118,6 @@ register struct monst *mtmp;
 		else if (flags.verbose && flags.soundok) growl(mtmp);
 	}
 
-#ifdef BLACKMARKET
 	/* Don't misbehave in the Black Market or else... */
 	if (Is_blackmarket(&u.uz)) {
 	    if (mtmp->isshk)
@@ -4133,7 +4130,6 @@ register struct monst *mtmp;
 		if (shkp)  wakeup(shkp);
 	    }
 	}
-#endif /* BLACKMARKET */
 
 	/* attacking your own quest leader will anger his or her guardians */
 	if (!flags.mon_moving &&	/* should always be the case here */

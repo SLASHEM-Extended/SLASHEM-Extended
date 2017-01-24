@@ -41,9 +41,6 @@ struct conditionals {
 	{ MON_GLYPH, PM_BLACK_LIGHT, "zruty" },
 
 
-#ifndef BLACKMARKET
-	{ MON_GLYPH, PM_SHOPKEEPER, "black marketeer" },
-#endif
 
 #ifndef CHARON /* not supported yet */
 	{ MON_GLYPH, PM_CROESUS, "Charon" },

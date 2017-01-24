@@ -2011,9 +2011,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    otmp->oartifact == ART_DEMONBANE ||
 	    otmp->oartifact == ART_WEREBANE ||
 	    otmp->oartifact == ART_TROLLSBANE ||
-#ifdef BLACKMARKET
 	    otmp->oartifact == ART_THIEFBANE ||
-#endif
 	    otmp->oartifact == ART_OGRESMASHER ||
 	    otmp->oartifact == ART_ELFRIST) {
 		if (dieroll < 4) {
@@ -2296,12 +2294,10 @@ arti_invoke(obj)
 	    anything any;
 
 	    any.a_void = 0;	/* set all bits to zero */
- #ifdef BLACKMARKET           
 	    if (Is_blackmarket(&u.uz) && *u.ushops) {
 		You_feel("very disoriented for a moment.");
 		break;
 	    }
- #endif
 	    start_menu(tmpwin);
 	    /* use index+1 (cant use 0) as identifier */
 	    for (i = num_ok_dungeons = 0; i < n_dgns; i++) {

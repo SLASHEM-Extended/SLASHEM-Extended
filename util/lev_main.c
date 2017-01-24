@@ -445,9 +445,7 @@ static struct {
 	{ "zorkmid shop",	 ZORKSHOP },
 	{ "random shop",	 RANDOMSHOP },
 	{ "candle shop", CANDLESHOP },
-#ifdef BLACKMARKET
 	{ "black market", BLACKSHOP },
-#endif /* BLACKMARKET */
 	{ 0, 0 }
 };
 

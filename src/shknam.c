@@ -16,10 +16,9 @@ STATIC_DCL void FDECL(mkshobj_at, (const struct shclass *,int,int));
 STATIC_DCL void FDECL(nameshk, (struct monst *,const char * const *));
 STATIC_DCL int  FDECL(shkinit, (const struct shclass *,struct mkroom *));
 
-#ifdef BLACKMARKET
 STATIC_DCL void FDECL(stock_blkmar, 
 		  (const struct shclass *, struct mkroom *, int));
-#endif /* BLACKMARKET */
+
 /* WAC init shk services */
 static void FDECL(init_shk_services, (struct monst *));
 
@@ -174,7 +173,6 @@ static const char * const shkgeneral[] = {
     0
 };
 
-#ifdef BLACKMARKET
 static const char *shkblack[] = {
   "One-eyed Sam", "One-eyed Sam", "One-eyed Sam",
   "One-eyed Sam", "One-eyed Sam", "One-eyed Sam",
@@ -189,7 +187,6 @@ static const char *shkblack[] = {
   "One-eyed Sam", "One-eyed Sam", "One-eyed Sam",
   0
 };
-#endif /* BLACKMARKET */
 
 /* STEPHEN WHITE'S NEW CODE */
 static const char *shkpet[] = {
@@ -296,10 +293,8 @@ const struct shclass shtypes[] = {
 	{"lighting store", TOOL_CLASS, 0, D_SHOP,
 	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},
 	    {16, -OIL_LAMP}, {3, -MAGIC_LAMP}, {5, -MAGIC_CANDLE}}, shklight},
-#ifdef BLACKMARKET
 	{"black market", RANDOM_CLASS, 0, D_SHOP,
 	   {{100, RANDOM_CLASS}, {0, 0}, {0, 0}}, shkblack},
-#endif /* BLACKMARKET */
 	{(char *)0, 0, 0, 0, {{0, 0}, {0, 0}, {0, 0}}, 0}
 };
 
@@ -379,12 +374,10 @@ const char * const *nlp;
 	    /* special-case minetown lighting shk */
 	    shname = "Izchak";
 	    shk->female = FALSE;
-#ifdef BLACKMARKET
 	} else if (nlp == shkblack) {
 	    /* special-case black marketeer */
 	    shname = "One-eyed Sam";
 	    shk->female = shk->data->mflags2 & M2_MALE ? FALSE : TRUE;
-#endif /* BLACKMARKET */
 	} else {
 	    /* We want variation from game to game, without needing the save
 	       and restore support which would be necessary for randomization;
@@ -489,7 +482,6 @@ struct mkroom	*sroom;
 
 	/* now initialize the shopkeeper monster structure */
 	  
-#ifdef BLACKMARKET
 	shk = 0;
 	if (Is_blackmarket(&u.uz)) {
 	  shk = makemon(&mons[PM_BLACK_MARKETEER], sx, sy, NO_MM_FLAGS);
@@ -499,10 +491,6 @@ struct mkroom	*sroom;
 	  if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
 		return(-1);
 	}        
-#else  /* BLACKMARKET */
-	if(!(shk = makemon(&mons[PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
-		return(-1);
-#endif /* BLACKMARKET */
   
 	shk->isshk = shk->mpeaceful = 1;
 	if (Race_if(PM_VENTURE_CAPITALIST)) shk->mpeaceful = 0;
@@ -536,10 +524,8 @@ struct mkroom	*sroom;
 	    (void) mongets(shk, TOUCHSTONE);
 	nameshk(shk, shp->shknms);
 
-#ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz))
     shkmoney = 7*shkmoney + rn2(3*shkmoney);
-#endif
 
 #ifndef GOLDOBJ
 	shk->mgold = shkmoney;	
@@ -547,7 +533,6 @@ struct mkroom	*sroom;
   mkmonmoney(shk, shkmoney);
 #endif
 
-#ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz)) {
 	  register struct obj *otmp;
 /* make sure black marketeer can wield Thiefbane */
@@ -585,7 +570,6 @@ struct mkroom	*sroom;
 		  mpickobj(shk, otmp, TRUE);
 	  }
 	}
-#endif /* BLACKMARKET */
 
 	if (Race_if(PM_VENTURE_CAPITALIST)) hot_pursuit(shk);
 
@@ -640,13 +624,11 @@ register struct mkroom *sroom;
 	    make_engr_at(m, n, buf, 0L, DUST);
     }
 
-#ifdef BLACKMARKET
     if (Is_blackmarket(&u.uz)) {
       stock_blkmar(shp, sroom, sh);
       level.flags.has_shop = TRUE;
       return;
     }
-#endif /* BLACKMARKET */
 
     for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
@@ -669,7 +651,6 @@ register struct mkroom *sroom;
     level.flags.has_shop = TRUE;
 }
 
-#ifdef BLACKMARKET
 /* stock a newly-created black market with objects */
 static void
 stock_blkmar(shp, sroom, sh)
@@ -778,7 +759,6 @@ register int sh;
      * monsters will sit on top of objects and not the other way around.
      */
 }
-#endif /* BLACKMARKET */
 
 
 static void
@@ -790,14 +770,12 @@ struct monst *shk;
 	/* KMH, balance patch 2 -- Increase probability of shopkeeper services.
 	 * Requested by Dave <mitch45678@aol.com>
 	 */
-#ifdef BLACKMARKET
 	if (Is_blackmarket(&u.uz)) {
 		ESHK(shk)->services = 
 		    SHK_ID_BASIC|SHK_ID_PREMIUM|SHK_UNCURSE|SHK_APPRAISE|
 		    SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C;
 		return;
 	}
-#endif
 
 	/* Guarantee some form of identification
 	 * 1/3 		both Basic and Premium ID

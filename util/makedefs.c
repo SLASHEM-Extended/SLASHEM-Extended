@@ -500,9 +500,6 @@ make_version()
 			| (1L <<  1)
 #endif
 			| (1L <<  2)
-#ifdef BLACKMARKET
-			| (1L <<  3)
-#endif
 		/* monsters (4..7) */
 			| (1L <<  6)
 #ifdef MAIL
@@ -721,9 +718,6 @@ static const char *build_opts[] = {
 #endif
 #ifdef ANSI_DEFAULT
 		"ANSI default terminal",
-#endif
-#ifdef BLACKMARKET
-		"blackmarket level",
 #endif
 /*WAC added for borg,  invisible objects, keep_save,noartifactwish */
 #ifdef BORG

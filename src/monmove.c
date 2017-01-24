@@ -814,9 +814,7 @@ toofar:
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
 	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && !mtmp->iswiz
-#ifdef BLACKMARKET
 	   && !Is_blackmarket(&u.uz)
-#endif
 	   ) ||
 	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 4)) || mtmp->mpeaceful) {
 		/* Possibly cast an undirected spell if not attacking you */
@@ -891,9 +889,7 @@ toofar:
 
 	if (!mtmp->mpeaceful ||
 	    (Conflict && !resist(mtmp, RING_CLASS, 0, 0)
-#ifdef BLACKMARKET
 		&& !Is_blackmarket(&u.uz)
-#endif
 	)) {
 	    if(/*inrange && */ /* !noattacks(mdat) && */ u.uhp > 0 && !scared && tmp != 3)
 		/* noattacks check removed, since now there's things like egotype shriekers... --Amy */

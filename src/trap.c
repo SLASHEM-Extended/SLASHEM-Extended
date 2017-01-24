@@ -4661,13 +4661,11 @@ newegomon:
 	    }
 	    case MAGIC_PORTAL:
 		seetrap(trap);
-#if defined(BLACKMARKET)
 		if (u.usteed &&
 			(Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz)))
 		    pline("%s seems to shimmer for a moment.",
 			  Monnam(u.usteed));
 		else
-#endif
 
 		/* In Soviet Russia, magic portals have to always work. The government does not tolerate faulty portals.
 		 * And of course the government does not think portal-hopping (which is analogous to stairdancing, but that

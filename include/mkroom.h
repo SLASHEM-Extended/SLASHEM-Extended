@@ -123,12 +123,8 @@ extern NEARDATA struct door doors[DOORMAX];
 #define RANDOMSHOP       (SHOPBASE+21)
 #define UNIQUESHOP      (SHOPBASE+22)      /* shops here & above not randomly gen'd. */
 #define CANDLESHOP      (UNIQUESHOP)
-#ifdef BLACKMARKET
 #define BLACKSHOP       (UNIQUESHOP+1)
 #define MAXRTYPE        (UNIQUESHOP+1)      /* maximum valid room type */
-#else /* BLACKMARKET */
-#define MAXRTYPE        (UNIQUESHOP)      /* maximum valid room type */
-#endif /* BLACKMARKET */
 
 /* Special type for search_special() */
 #define ANY_TYPE	(-1)

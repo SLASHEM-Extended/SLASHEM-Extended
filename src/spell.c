@@ -4760,11 +4760,9 @@ boolean atme;
             	posmon = revive(poss);
 
             	if (posmon) {
-#ifdef BLACKMARKET
 			    if (Is_blackmarket(&u.uz))
 				setmangry(posmon);
 			    else
-#endif
 			    if (posmon->isshk)
 				make_happy_shk(posmon, FALSE);
 			    else if (!resist(posmon, SPBOOK_CLASS, 0, NOTELL))

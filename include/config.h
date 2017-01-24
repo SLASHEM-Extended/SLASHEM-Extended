@@ -421,7 +421,6 @@ typedef unsigned char	uchar;
 /* dungeon levels */
 #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
 #define REINCARNATION   /* Special Rogue-like levels */
-#define BLACKMARKET     /* Massimo Campostrini (campo@sunthpi3.difi.unipi.it) */
 
 /* monsters & objects */
 #define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM (unconditionally enabled by Amy) */
