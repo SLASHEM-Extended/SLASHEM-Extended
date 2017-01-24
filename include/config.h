@@ -430,7 +430,6 @@ typedef unsigned char	uchar;
 #define LIGHTSABERS	/* unconditionally enabled by Amy */
 #define JEDI		/* unconditionally enabled by Amy */
 #define CONVICT		/* Convict player with heavy iron ball (unconditionally enabled by Amy) */
-# define D_SABER	/* Enable WEAPON(dimsaber), and all related code (tsanth@iname.com)*/
 #define FIREARMS	/* KMH -- Guns and bullets (unconditionally enabled by Amy) */
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten (unconditionally enabled by Amy) */
 #define STEED		/* The ability to ride monsters (unconditionally enabled by Amy) */
