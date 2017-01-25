@@ -5502,7 +5502,8 @@ end_burn(obj, timer_attached)
 	boolean timer_attached;
 {
 	if (!obj->lamplit) {
-	    impossible("end_burn: obj %s not lit", xname(obj));
+	    if (obj) impossible("end_burn: obj %s not lit", xname(obj));
+	    else impossible("end_burn: nondefined object not lit");
 	    return;
 	}
 
@@ -5518,7 +5519,8 @@ end_burn(obj, timer_attached)
 	    if (obj->where == OBJ_INVENT)
 		update_inventory();
 	} else if (!stop_timer(BURN_OBJECT, (genericptr_t) obj))
-	    impossible("end_burn: obj %s not timed!", xname(obj));
+	    if (obj) impossible("end_burn: obj %s not timed!", xname(obj));
+	    else impossible("end_burn: nondefined object not timed!", xname(obj));
 }
 
 #endif /* OVL1 */

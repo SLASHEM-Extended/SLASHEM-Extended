@@ -130,7 +130,7 @@ boolean restore;
 			}
 			else if (is_lightsaber(otmp)){
 				if (otmp->lamplit)
-					end_burn(otmp, FALSE);
+					end_burn(otmp, /*FALSE*/TRUE);
 			}
 		}
 	}
