@@ -1132,6 +1132,11 @@ int spellnum;
 
 	if (!rn2(400 - (mtmp->m_lev * 2) )) { /* summon boss */
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	    {	coord cc;
 		struct permonst *pm = 0;
 		struct monst *mon;
@@ -1143,6 +1148,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
@@ -1159,6 +1165,8 @@ newboss:
 
 	    }
 	    pline("A boss monster appears from nowhere!");
+
+		u.aggravation = 0;
 
 	break;
 	}
@@ -1649,6 +1657,12 @@ int spellnum;
 	if (rn2(3)) quan = (quan / 2);
 	if (quan < 1) quan = 1;
 	success = pm ? TRUE : FALSE;
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	for (i = 0; i <= quan; i++) {
 	    if (!enexto(&bypos, mtmp->mux, mtmp->muy, mtmp->data))
 		break;
@@ -1659,6 +1673,9 @@ int spellnum;
 		set_malign(mtmp2);
 	    }
 	}
+
+	u.aggravation = 0;
+
 	/* Not quite right:
          * -- message doesn't always make sense for unseen caster (particularly
 	 *    the first message)
@@ -1855,6 +1872,11 @@ int spellnum;
 
 	if (!rn2(400 - (mtmp->m_lev * 2) )) { /* summon boss */
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	    {	coord cc;
 		struct permonst *pm = 0;
 		struct monst *mon;
@@ -1866,6 +1888,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
@@ -1882,6 +1905,8 @@ newboss:
 
 	    }
 	    pline("A boss monster appears from nowhere!");
+
+		u.aggravation = 0;
 
 	break;
 	}

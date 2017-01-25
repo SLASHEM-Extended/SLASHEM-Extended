@@ -302,8 +302,16 @@ dosit()
 			int randmonstforspawn = rnd(68);
 			if (randmonstforspawn == 35) randmonstforspawn = 53;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
 			}
@@ -313,8 +321,16 @@ dosit()
 			{register int cnt = rnd(10);
 			struct permonst *randmonstforspawn = rndmonst();
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
 			}
@@ -370,11 +386,19 @@ dosit()
 			{
 			register int cnt = rnd(10);
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			pline("A voice echoes:");
 			verbalize("Thy audience hath been summoned, %s!",
 				  flags.female ? "Dame" : "Sire");
 			while(cnt--)
 			    (void) makemon(courtmon(), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			break;
 			}
 		    case 8:
@@ -598,8 +622,16 @@ dosit()
 			{register int cnt = rnd(10);
 			struct permonst *randmonstforspawn = rndmonst();
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
 			break;
@@ -609,8 +641,16 @@ dosit()
 			int randmonstforspawn = rnd(68);
 			if (randmonstforspawn == 35) randmonstforspawn = 53;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
 			break;

@@ -11718,6 +11718,8 @@ register int	mmflags;
 	int i;
 	coord cc;
 
+	if (!rn2(5)) reset_rndmonst(NON_PM);
+
 	/* if caller wants random location, do it here */
 	if(x == 0 && y == 0) {
 		int tryct = 0;	/* careful with bigrooms */
@@ -14213,6 +14215,11 @@ struct permonst *mptr;		/* usually null; used for confused reading */
 	boolean ask = wizard;
 #endif
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	while (cnt--) {
 #ifdef WIZARD
 	    if (ask) {
@@ -14232,6 +14239,9 @@ struct permonst *mptr;		/* usually null; used for confused reading */
 	    mon = makemon(mptr, x, y, NO_MM_FLAGS);
 	    if (mon && canspotmon(mon)) known = TRUE;
 	}
+
+	u.aggravation = 0;
+
 	return known;
 }
 
@@ -14243,7 +14253,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(20) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.aggravation ? 10 : 20) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -14545,11 +14555,20 @@ rndmonst()
 	    minmlev = /*zlevel / 6*/0;
 	    /* determine the level of the strongest monster to make. */
 	    maxmlev = (zlevel + u.ulevel + 1)>>1;
+
 	    if (!rn2(100)) maxmlev *= 2;
 	    if (!rn2(1000)) maxmlev *= 4;
 	    if (!rn2(10000)) maxmlev = 127;
 		if (maxmlev > 127) maxmlev = 127; /* maxmlev is an int, but better safe than sorry. --Amy */
 	    if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+
+		if (u.aggravation && rn2(2)) {
+			minmlev += u.ulevel;
+			if (minmlev > 126) minmlev = 126;
+			if (minmlev >= maxmlev) maxmlev = minmlev + 1;
+			if (maxmlev > 127) maxmlev = 127;
+		}
+
 		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
 		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
 #ifdef REINCARNATION
@@ -14745,7 +14764,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(20) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(u.aggravation ? 10 : 20) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -14767,6 +14786,12 @@ int     spc;
 		uncommonten = rn2(5) ? 1 : 0;
 	}
 
+	if (u.aggravation && rn2(3)) uncommontwo = 0;
+	if (u.aggravation && !rn2(2)) uncommonthree = 0;
+	if (u.aggravation && !rn2(3)) uncommonfive = 0;
+	if (u.aggravation && !rn2(4)) uncommonseven = 0;
+	if (u.aggravation && !rn2(5)) uncommonten = 0;
+
 	int uncommonnewten = !rn2(10) ? 1 : 0;
 	int uncommonnewfifteen = !rn2(5) ? 1 : 0;
 	int uncommonnewtwenty = (rnd(10) > 3) ? 1 : 0;
@@ -14778,6 +14803,18 @@ int     spc;
 	int uncommonnewfifty = rn2(10) ? 1 : 0;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
+
+	if (u.aggravation && rn2(10)) uncommonnewten = 0;
+	if (u.aggravation && rn2(9)) uncommonnewfifteen = 0;
+	if (u.aggravation && rn2(8)) uncommonnewtwenty = 0;
+	if (u.aggravation && rn2(7)) uncommonnewtwentyfive = 0;
+	if (u.aggravation && rn2(6)) uncommonnewthirty = 0;
+	if (u.aggravation && rn2(5)) uncommonnewthirtyfive = 0;
+	if (u.aggravation && rn2(4)) uncommonnewforty = 0;
+	if (u.aggravation && rn2(3)) uncommonnewfortyfive = 0;
+	if (u.aggravation && rn2(2)) uncommonnewfifty = 0;
+	if (u.aggravation && !rn2(3)) uncommonnewsixty = 0;
+	if (u.aggravation && !rn2(4)) uncommonnewseventy = 0;
 
 	int bonuslevel;
 	boolean calctype;
@@ -15502,6 +15539,7 @@ register struct permonst *ptr;
 	if (u.kyliemode) return FALSE;
 	if (RngeUnlikability) return FALSE;
 	if (RngeBloodlust) return FALSE;
+	if (Aggravate_monster && !rn2(10)) return FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
@@ -15985,6 +16023,11 @@ struct obj *bag;
 
 	consume_obj_charge(bag, TRUE);
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	if (!rn2(23)) cnt += rn1(7, 1);
 	if (bag && bag->oartifact == ART_VERY_TRICKY_INDEED) cnt *= 2;
 
@@ -15993,6 +16036,9 @@ struct obj *bag;
 		gotone = TRUE;
 	}
 	if (gotone) makeknown(BAG_OF_TRICKS);
+
+	u.aggravation = 0;
+
     }
 }
 

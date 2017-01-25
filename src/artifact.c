@@ -2235,6 +2235,12 @@ arti_invoke(obj)
 	    }
 	    summon_loop = rn2(4) + 4;
 	    pline("Creatures from the grave surround you!");
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	    do {
 		switch (rn2(6) + 1) {
 		    case 1:
@@ -2260,6 +2266,9 @@ arti_invoke(obj)
 		mtmp->mtame = 30;
 		summon_loop--;
 	    } while (summon_loop);
+
+		u.aggravation = 0;
+
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
 	    u.uluck -= 3;

@@ -284,6 +284,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 
 	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!rn2(5)) badeffect();
 		if (!rn2(3)) (void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(5)) (void) makemon(mkclass(S_MIMIC,0), u.ux, u.uy, MM_ANGRY);
@@ -300,6 +305,8 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		if (!rn2(15)) (void) makemon(mkclass(S_NYMPH,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
+
+		u.aggravation = 0;
 
 	}
 
@@ -1415,12 +1422,19 @@ boolean at_stairs, falling, portal;
 
 		if (u.gottenbones) { /* evil patch idea by jonadab - spawn monsters if a bones file loads */
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while (rn2(10 + (monster_difficulty() / 3)) && (enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) ) {
 				(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 				if (wizard) pline("made bones monster");
 				}
 
 			u.gottenbones = 0;
+
+			u.aggravation = 0;
 
 		/* Actually, this is supposed to spawn more monsters the longer the deceased player has been dead already,
 		   but coding that to properly work would be hell... --Amy */
@@ -1438,12 +1452,24 @@ boolean at_stairs, falling, portal;
 				register int randmonstforFF = rnd(68);
 				if (randmonstforFF == 35) randmonstforFF = 53;
 
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
 				while(cnt--)
 				    (void) makemon(mkclass(randmonstforFF,0), u.ux, u.uy, NO_MM_FLAGS);
 				pline("A voice echoes:");
 				verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforFF]);
 
+				u.aggravation = 0;
+
 			} else {
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
 
 				randmonstforspawn = rndmonst();
 
@@ -1452,11 +1478,18 @@ boolean at_stairs, falling, portal;
 				pline("A voice echoes:");
 				verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
 
+				u.aggravation = 0;
+
 			}
 
 		}
 
 		if (isangbander || RngeAngband || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
 
 			if (!rn2( (Luck*5) + 200)) {
 				pline("This place seems like murder!");
@@ -2347,6 +2380,7 @@ boolean at_stairs, falling, portal;
 					}
 				}
 			}
+			u.aggravation = 0;
 		}
 
 		/* very rarely, spawn a group of typed monsters --Amy */

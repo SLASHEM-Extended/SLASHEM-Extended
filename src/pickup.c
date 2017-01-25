@@ -2478,6 +2478,12 @@ int held;
 	obj->owt = weight(obj);	/* in case any items were lost */
   
 	if (monsterator > 10) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while (monsterator > 0) {
 
 			(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
@@ -2485,6 +2491,9 @@ int held;
 			monsterator--;
 			if (monsterator < 0) monsterator = 0; /* fail safe */
 		}
+
+		u.aggravation = 0;
+
 	}
 
 	if (!cnt)

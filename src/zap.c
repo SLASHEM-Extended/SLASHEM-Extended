@@ -3209,6 +3209,11 @@ register struct obj *obj;
 		case WAN_SUMMON_SEXY_GIRL:
 		known = TRUE;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	    {	coord cc;
 		struct permonst *pm = 0;
 		int attempts = 0;
@@ -3231,6 +3236,8 @@ newboss:
 
 		if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 	    }
+
+		u.aggravation = 0;
 
 		break;
 
@@ -3610,6 +3617,11 @@ newboss:
 			known = TRUE;
 			{
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			int monstcnt;
 			monstcnt = 8 + rnd(10);
 			int sessileattempts;
@@ -3623,6 +3635,8 @@ newboss:
 				if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
 			}
 
+			u.aggravation = 0;
+
 			}
 
 		break;
@@ -3630,6 +3644,11 @@ newboss:
 		case WAN_EGOISM:
 			known = TRUE;
 			{
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
 
 			int monstcnt;
 			monstcnt = rnd(5);
@@ -3643,6 +3662,8 @@ newboss:
 				}
 				if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
 			}
+
+			u.aggravation = 0;
 
 			}
 

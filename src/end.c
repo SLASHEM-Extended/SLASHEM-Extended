@@ -948,6 +948,11 @@ int how;
 			    spellid(n) = NO_SPELL;
 				}
 
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
 				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
@@ -956,6 +961,9 @@ int how;
 				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+
 			    (void) safe_teleds(FALSE);
 
 #ifdef LIVELOGFILE
@@ -1002,6 +1010,11 @@ int how;
 			    spellid(n) = NO_SPELL;
 				}
 
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
 				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
@@ -1010,6 +1023,9 @@ int how;
 				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
 				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+
 			    (void) safe_teleds(FALSE);
 
 #ifdef LIVELOGFILE

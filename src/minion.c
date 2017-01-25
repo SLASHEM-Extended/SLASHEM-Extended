@@ -91,6 +91,11 @@ boolean talk;
     register struct monst *mon;
     int mnum;
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
     switch ((int)alignment) {
 	case A_LAWFUL:
 	    mnum = lminion();
@@ -134,6 +139,9 @@ boolean talk;
 	mon->mpeaceful = FALSE;
 	/* don't call set_malign(); player was naughty */
     }
+
+	u.aggravation = 0;
+
 }
 #define Athome	(Inhell && !mtmp->cham)
 
@@ -420,6 +428,8 @@ aligntyp atyp;
 	struct	permonst *ptr;
 
 	for (tryct = 0; tryct < 10000; tryct++) {
+
+		if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 	    ptr = rndmonst();
 	    if (ptr && is_ndemon(ptr) &&

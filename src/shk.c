@@ -450,7 +450,6 @@ register struct monst *shkp;
     rlock = FALSE;
 }
 
-
 /* x,y is strictly inside shop */
 char
 inside_shop(x, y)
@@ -4010,7 +4009,9 @@ register struct monst *shkp;
 	    if ((Is_blackmarket(&u.uz) && u.umonnum>0 &&
 		 mons[u.umonnum].mlet != S_HUMAN) ||
                 /* WAC Let you out if you're stuck inside */                
-                (!Is_blackmarket(&u.uz) && (Invis || u.usteed) && !inside_shop(u.ux, u.uy)))
+                (!Is_blackmarket(&u.uz) && (Invis 
+			|| u.usteed
+			                          ) && !inside_shop(u.ux, u.uy)))
 		{
 		    avoid = FALSE;
 		} else {
@@ -4221,6 +4222,11 @@ coord *mm;
 		kop_cnt[3] = ( kop_cnt[3] / 2) + 1;
 		kop_cnt[4] = ( kop_cnt[4] / 2) + 1;
 		kop_cnt[5] = ( kop_cnt[5] / 2) + 1;
+	}
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
 	}
 
 	mc = (coord *)alloc(cnt * sizeof(coord));
@@ -4473,6 +4479,9 @@ coord *mm;
 
 	/*}*/
 	}
+
+	u.aggravation = 0;
+
 	free((genericptr_t)mc);
 }
 

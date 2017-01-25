@@ -871,12 +871,30 @@ dig_up_grave()
 	case 2:
 	    if (!Blind) pline(Hallucination ? "Dude!  The living dead!" :
  			"The grave's owner is very upset!");
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
  	    (void) makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, NO_MM_FLAGS);
+
+		u.aggravation = 0;
+
 	    break;
 	case 3:
 	    if (!Blind) pline(Hallucination ? "I want my mummy!" :
  			"You've disturbed a tomb!");
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
  	    (void) makemon(mkclass(S_MUMMY,0), u.ux, u.uy, NO_MM_FLAGS);
+
+		u.aggravation = 0;
+
 	    break;
 	default:
 	    /* No corpse */

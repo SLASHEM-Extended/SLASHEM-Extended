@@ -739,6 +739,7 @@ register int after;	/* this is extra fast monster movement */
 	/* Intelligent pets may rebel (apart from minions, spell beings) */
 	/* if it's a species that's supposed to not be tameable, make it happen much more often --Amy */
 	if (!rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
+	if (Aggravate_monster && !rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
 	if (!rn2(10) && mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM] && betrayed(mtmp)) return 1;
 	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() ) && !rn2(85) && betrayed(mtmp)) return 1;
 

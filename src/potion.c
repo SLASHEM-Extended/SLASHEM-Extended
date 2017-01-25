@@ -1029,9 +1029,16 @@ badeffect()
 			copcnt = (copcnt / 2) + 1;
 		}
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 		} /* while */
+
+		u.aggravation = 0;
 
 		}
 		break;

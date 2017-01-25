@@ -1697,6 +1697,11 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -1752,6 +1757,8 @@ genericptr_t poolcnt;
 	} else if ((x == u.ux) && (y == u.uy)) {
 		(*(int *)poolcnt)--;
 	}
+
+	u.aggravation = 0;
 
 }
 
@@ -2855,8 +2862,16 @@ register struct obj	*sobj;
 	    }
 	case SPE_CREATE_MONSTER:
 		if (confused) break;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
 		if (!rn2(4)) makerandomtrap();
+
+		u.aggravation = 0;
 
 		break;
 	case SCR_CREATE_MONSTER:
@@ -2875,9 +2890,17 @@ register struct obj	*sobj;
 		int cnt = rnd(9);
 		if (confused) cnt += rnd(12);
 		if (sobj->cursed) cnt += rnd(5);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while(cnt--) {
 			makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 	    }
 
 	    break;
@@ -3237,9 +3260,18 @@ register struct obj	*sobj;
 		int cnt = rnd(9);
 		if (confused) cnt += rnd(12);
 		if (sobj->cursed) cnt += rnd(5);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while(cnt--) {
 			makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
+
 	    }
 		pline("You summon the denizens of Gehennom!");
 		break;
@@ -3266,9 +3298,17 @@ register struct obj	*sobj;
 		int cnt = rnd(9);
 		if (confused) cnt += rnd(12);
 		if (sobj->cursed) cnt += rnd(5);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while(cnt--) {
 			makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 	    }
 		pline("You summon inhabitants of the elemental planes!");
 		break;
@@ -3410,6 +3450,11 @@ register struct obj	*sobj;
                 struct monst *mtmp;
 		multi = 0;
   
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if(!rn2(73) && !sobj->blessed) cnt += rnd(4);
 		if(confused || sobj->cursed) cnt += 12;
 		while(cnt--) {
@@ -3468,6 +3513,9 @@ register struct obj	*sobj;
 			    You("don't seem to have the spell command undead memorized!");
 		    } else You("don't know how to command undead...");
 		}
+
+		u.aggravation = 0;
+
 		/* flush monsters before asking for identification */
 		flush_screen(0);
 		break;
@@ -3559,6 +3607,11 @@ register struct obj	*sobj;
 		int monstercolor;
 
 		int spawntype = rnd(4);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if(confused || sobj->cursed) cnt += 12;
 
@@ -3738,12 +3791,20 @@ register struct obj	*sobj;
 		    if (mon && canspotmon(mon)) known = TRUE;
 		}
 
+		u.aggravation = 0;
+
 		break;
 
 		}
 
 	case SCR_SUMMON_BOSS:
 		known = TRUE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		{
 			int attempts = 0;
 			register struct permonst *ptrZ;
@@ -3752,6 +3813,7 @@ newboss:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
 
@@ -3771,6 +3833,8 @@ newboss:
 
 		}
 
+		u.aggravation = 0;
+
 		break;
 
 	case SCR_IMMOBILITY:
@@ -3784,6 +3848,11 @@ newboss:
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -3793,6 +3862,8 @@ newboss:
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		break;
 
@@ -3807,6 +3878,11 @@ newboss:
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -3816,6 +3892,8 @@ newboss:
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		break;
 
@@ -4685,6 +4763,11 @@ retry:
 
 		if (confused) {
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			badeffect();
 			badeffect();
 			badeffect();
@@ -4694,6 +4777,8 @@ retry:
 			badeffect();
 			while (rn2(100)) (void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 			NastinessProblem += rnz(1000 * (monster_difficulty() + 1));
+
+			u.aggravation = 0;
 
 			break;
 

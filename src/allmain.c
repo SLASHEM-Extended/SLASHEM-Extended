@@ -144,6 +144,13 @@ moveloop()
 
 	didmove = flags.move;
 	if(didmove) {
+
+		u.aggravation = 0;
+		/* note by Amy: It is not a bug that we're setting this variable to zero regardless of whether you currently
+		 * have aggravate monster. The variable is used in several other places to ensure that summoned monsters are
+		 * more dangerous, but we do not want aggravate monster to become a crippling status effect, and therefore
+		 * randomly spawned monsters aren't supposed to be higher level only because you aggravate. */
+
 	    /* actual time passed */
 	    youmonst.movement -= NORMAL_SPEED;
 
@@ -1265,13 +1272,24 @@ moveloop()
 
 			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(50)) {
 				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
 				(void) makemon((struct permonst *)0, ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+				u.aggravation = 0;
 				if (!rn2(20)) pline("Chaeaet!");
 				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
 			}
 
 			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(50)) {
 				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
 				    switch (rnd(10)) {
 				    case 1:
 					(void) makemon(mkclass(S_VAMPIRE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
@@ -1294,6 +1312,8 @@ moveloop()
 					(void) makemon(mkclass(S_WRAITH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
 					break;
 				    }
+
+				u.aggravation = 0;
 
 				if (midnight()) You_feel("a ghastly chill running down your %s!", body_part(SPINE) );
 				else if (!rn2(20)) pline("A monster rises from the grave!");
@@ -1824,13 +1844,37 @@ moveloop()
 			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
 		}
 
+		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
+
+		if (Aggravate_monster && !rn2(Stealth ? 10000 : 2000)) {
+
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Several monsters come out of a portal.");
+		}
+
 		if (RngeBossEncounters && !rn2(10000) ) {
 			int attempts = 0;
 			register struct permonst *ptrZ;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 newbossA:
 			do {
 				ptrZ = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
 
@@ -1842,6 +1886,9 @@ newbossA:
 				attempts = 0;
 				goto newbossA;
 			}
+
+			u.aggravation = 0;
+
 		}
 
 		if (RngeImmobility && !rn2(5000) ) {
@@ -1850,6 +1897,11 @@ newbossA:
 			monstcnt = 8 + rnd(10);
 			int sessileattempts;
 			int sessilemnum;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
 
 		      while(--monstcnt >= 0) {
 				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
@@ -1860,6 +1912,8 @@ newbossA:
 			}
 			pline("You're immobilized by stationary monsters!");
 
+			u.aggravation = 0;
+
 		}
 
 		if (RngePunishment && !rn2(1000) && !Punished) {
@@ -1867,21 +1921,37 @@ newbossA:
 		}
 
 		if (RngeVortices && !rn2(2000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(3)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(5)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(15)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+
+			u.aggravation = 0;
 		}
 
 		if (RngeExplosions && !rn2(2000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(3)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(5)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 	 	    if (!rn2(15)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+
+			u.aggravation = 0;
 		}
 
 		if (uarmc && uarmc->oartifact == ART_PROZACELF_S_AUTOHEALER && !rn2(1000) ) {
@@ -1906,10 +1976,16 @@ newbossA:
 			struct permonst *pm = 0;
 			int attempts = 0;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 newbossX:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
 
@@ -1924,16 +2000,24 @@ newbossX:
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 
+			u.aggravation = 0;
+
 		}
 
 		if (uarmc && uarmc->oartifact == ART_GREEB && !rn2(2000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 newbossY:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->mcolor == CLR_GREEN || pm->mcolor == CLR_BRIGHT_GREEN ))) && attempts < 50000);
 
@@ -1949,6 +2033,8 @@ newbossY:
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 
 			if (rn2(3)) goto newbossY;
+
+			u.aggravation = 0;
 
 		}
 
@@ -2281,6 +2367,11 @@ newbossY:
 					}
 					break;
 				case 28: /* summon "thunderlords" */
+
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
@@ -2289,6 +2380,9 @@ newbossY:
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ANGRY);
+
+					u.aggravation = 0;
+
 					pline("You suddenly have company.");
 					break;
 				case 29:
@@ -2322,6 +2416,10 @@ newbossY:
 				case 10:
 				case 11:
 				case 12: /* summon vortices */
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
 			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
@@ -2330,6 +2428,7 @@ newbossY:
 			 	    if (!rn2(5)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 			 	    if (!rn2(12)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
 			 	    if (!rn2(27)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+					u.aggravation = 0;
 					break;
 				case 13:
 				case 14:
@@ -2358,11 +2457,17 @@ newbossY:
 					{
 					int attempts = 0;
 					register struct permonst *ptrZ;
+
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
 newboss:
 					do {
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
 
@@ -2377,6 +2482,7 @@ newboss:
 					pline("Boss monsters appear from nowhere!");
 
 					}
+					u.aggravation = 0;
 					break;
 				case 26:
 				case 27: /* drain random stats by one, 50% chance for each of being affected */
@@ -3306,9 +3412,17 @@ newboss:
 			pline("Bugs are alerted to your position.");
 			int ammount;
 			ammount = rnd(15);
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while (ammount--) {
 		 	    (void) makemon(mkclass(S_XAN,0), u.ux, u.uy, NO_MM_FLAGS);
 			}
+
+			u.aggravation = 0;
 
 		}
 

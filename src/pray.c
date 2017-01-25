@@ -658,9 +658,16 @@ aligntyp resp_god;
 		copcnt = (copcnt / 2) + 1;
 	}
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
       while(--copcnt >= 0) {
 		(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 	} /* while */
+
+	u.aggravation = 0;
 
 	if( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) resp_god = A_NONE;
 	u.ublessed = 0;
@@ -1393,6 +1400,11 @@ water_prayer(bless_water)
 
 		if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			if (!rn2(5)) badeffect();
 			if (!rn2(3)) (void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
 			if (!rn2(5)) (void) makemon(mkclass(S_MIMIC,0), u.ux, u.uy, MM_ANGRY);
@@ -1409,6 +1421,8 @@ water_prayer(bless_water)
 			if (!rn2(15)) (void) makemon(mkclass(S_NYMPH,0), u.ux, u.uy, MM_ANGRY);
 			if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
 			if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
+
+			u.aggravation = 0;
 
 		}
 
@@ -2045,6 +2059,11 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
 	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!rn2(5)) badeffect();
 		if (!rn2(3)) (void) makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(5)) (void) makemon(mkclass(S_MIMIC,0), u.ux, u.uy, MM_ANGRY);
@@ -2061,6 +2080,8 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		if (!rn2(15)) (void) makemon(mkclass(S_NYMPH,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(15)) (void) makemon(mkclass(S_RUSTMONST,0), u.ux, u.uy, MM_ANGRY);
 		if (!rn2(50)) (void) makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY);
+
+		u.aggravation = 0;
 
 	}
 

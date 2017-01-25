@@ -4008,6 +4008,12 @@ register struct monst *mtmp;
 	    pline("%s shrieks.", Monnam(mtmp));
 	    stop_occupation();
 	}
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	/* [Tom] took out the weird purple worm thing and lowered prob from 10 */        
 	if (!rn2(8)) {
 /*          if (!rn2(13))
@@ -4016,6 +4022,9 @@ register struct monst *mtmp;
 		(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 
 	}
+
+	u.aggravation = 0;
+
 	aggravate();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {

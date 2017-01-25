@@ -2160,11 +2160,19 @@ boolean atme;
 			{
 			register int cnt = rnd(10);
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			pline("A voice echoes:");
 			verbalize("Thy audience hath been summoned, %s!",
 				  flags.female ? "Dame" : "Sire");
 			while(cnt--)
 			    (void) makemon(courtmon(), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			break;
 			}
 		    case 8:
@@ -2388,8 +2396,16 @@ boolean atme;
 			{register int cnt = rnd(10);
 			struct permonst *randmonstforspawn = rndmonst();
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
 			break;
@@ -2399,8 +2415,16 @@ boolean atme;
 			int randmonstforspawn = rnd(68);
 			if (randmonstforspawn == 35) randmonstforspawn = 53;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			while(cnt--)
 			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
 			pline("A voice echoes:");
 			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
 			break;
@@ -5820,6 +5844,11 @@ rerollX:
 			    spellid(n) = NO_SPELL;
 			}
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
 			(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
 			(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
@@ -5828,6 +5857,8 @@ rerollX:
 			(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
 			(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
 
 			(void) safe_teleds(FALSE);
 

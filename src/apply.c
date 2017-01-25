@@ -1828,7 +1828,13 @@ register struct obj *obj;
 	    if (obj && obj->oartifact == ART_YASDORIAN_S_TROPHY_GETTER) {
 		can->cursed = 0;
 		can->blessed = 1;
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		u.aggravation = 0;
+
 	    }
 
 	    can->owt = weight(can);
@@ -3831,7 +3837,16 @@ wand_explode(obj, hero_broke)
 	} else if(obj->otyp == WAN_CREATE_MONSTER
                 || obj->otyp == WAN_CREATE_HORDE) {
 	    /* u.ux,u.uy creates it near you--x,y might create it in rock */
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	    (void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+
+		u.aggravation = 0;
+
 	    continue;
 	} else {
 	    if (x == u.ux && y == u.uy) {

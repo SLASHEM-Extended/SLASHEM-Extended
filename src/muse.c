@@ -200,6 +200,11 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -255,6 +260,8 @@ genericptr_t poolcnt;
 	} else if ((x == u.ux) && (y == u.uy)) {
 		(*(int *)poolcnt)--;
 	}
+
+	u.aggravation = 0;
 
 }
 
@@ -1851,12 +1858,21 @@ mon_tele:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_CREATE_HORDE);
 		cnt = rno(14);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while(cnt--) {
 			struct monst *mon;
 			if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) continue;
 			mon = makemon(rndmonst(), cc.x, cc.y, NO_MM_FLAGS);
 			if (mon) newsym(mon->mx,mon->my);
 		}
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1866,12 +1882,20 @@ mon_tele:
 		struct permonst *pm = 0;
 		struct monst *mon;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1882,6 +1906,11 @@ mon_tele:
 		int cnt = 1;
 		struct monst *mon;
 		boolean known = FALSE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -1906,6 +1935,9 @@ mon_tele:
 		else if (!objects[SCR_CREATE_MONSTER].oc_name_known
 			&& !objects[SCR_CREATE_MONSTER].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1916,6 +1948,11 @@ mon_tele:
 		int cnt = 1;
 		struct monst *mon;
 		boolean known = FALSE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -1934,6 +1971,9 @@ mon_tele:
 		else if (!objects[SCR_CREATE_VICTIM].oc_name_known
 			&& !objects[SCR_CREATE_VICTIM].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1950,6 +1990,11 @@ mon_tele:
 		mzapmsg(mtmp, otmp, FALSE);
 		if (rn2(2) || !ishaxor) otmp->spe--;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(BAG_OF_TRICKS);
@@ -1961,6 +2006,8 @@ mon_tele:
 			    makeknown(BAG_OF_TRICKS);
 		}
 
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -1970,6 +2017,11 @@ mon_tele:
 
 		struct permonst *pm = 0;
 		struct monst *mon;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
@@ -2001,6 +2053,9 @@ mon_tele:
 		/*mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);*/
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_SUMMON_UNDEAD);
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -2028,6 +2083,11 @@ mon_tele:
 		int cnt = 1;
 		struct monst *mon;
 		boolean known = FALSE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (rn2(2)) cnt += rnz(2);
 		if (!rn2(73)) cnt += rno(4);
@@ -2073,6 +2133,9 @@ mon_tele:
 		else if (!objects[SCR_SUMMON_UNDEAD].oc_name_known
 			&& !objects[SCR_SUMMON_UNDEAD].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -2088,6 +2151,11 @@ mon_tele:
 		int randmnsx;
 		struct permonst *randmonstforspawn;
 		int monstercolor;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		int spawntype = rnd(4);
 
@@ -2278,6 +2346,9 @@ mon_tele:
 		 * what type it is.  For teleport scrolls, you have to see
 		 * the monster to know it teleported.
 		 */
+
+		u.aggravation = 0;
+
 		if (known)
 		    makeknown(SCR_GROUP_SUMMONING);
 		else if (!objects[SCR_GROUP_SUMMONING].oc_name_known
@@ -2297,12 +2368,18 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mreadmsg(mtmp, otmp);
 
 newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
@@ -2323,6 +2400,9 @@ newboss:
 		else if (!objects[SCR_SUMMON_BOSS].oc_name_known
 			&& !objects[SCR_SUMMON_BOSS].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -4545,6 +4625,11 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		while(cnt--) {
 			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -4552,6 +4637,8 @@ struct monst *mtmp;
 		}
 	    }
 		pline("The inhabitants of the elemental planes appear!");
+
+		u.aggravation = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -4566,6 +4653,11 @@ struct monst *mtmp;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
@@ -4576,6 +4668,8 @@ struct monst *mtmp;
 		}
 	    }
 		pline("The denizens of Gehennom appear!");
+
+		u.aggravation = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -5261,6 +5355,11 @@ struct monst *mtmp;
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -5270,6 +5369,8 @@ struct monst *mtmp;
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -5289,6 +5390,11 @@ struct monst *mtmp;
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -5298,6 +5404,8 @@ struct monst *mtmp;
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -5737,6 +5845,11 @@ struct monst *mtmp;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
@@ -5744,6 +5857,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
 
@@ -5759,6 +5873,8 @@ newboss:
 		if (pm) mon = makemon(pm, cc.x, cc.y, NO_MM_FLAGS);
 	      if (mon && canspotmon(mon)) known = TRUE;
 		if (known) makeknown(otmp->otyp);
+
+		u.aggravation = 0;
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 
@@ -5866,6 +5982,11 @@ newboss:
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -5875,6 +5996,8 @@ newboss:
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		if (oseen) makeknown(WAN_IMMOBILITY);
 
@@ -5893,6 +6016,11 @@ newboss:
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 10000; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -5902,6 +6030,8 @@ newboss:
 		}
 
 		}
+
+		u.aggravation = 0;
 
 		if (oseen) makeknown(WAN_EGOISM);
 
@@ -7692,12 +7822,18 @@ skipmsg:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mreadmsg(mtmp, otmp);
 
 newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
 
@@ -7718,6 +7854,9 @@ newboss:
 		else if (!objects[SCR_SUMMON_BOSS].oc_name_known
 			&& !objects[SCR_SUMMON_BOSS].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7767,6 +7906,11 @@ newboss:
 		struct monst *mon;
 		boolean known = FALSE;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
 		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
@@ -7790,6 +7934,9 @@ newboss:
 		else if (!objects[SCR_CREATE_MONSTER].oc_name_known
 			&& !objects[SCR_CREATE_MONSTER].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7801,6 +7948,11 @@ newboss:
 		int cnt = 1;
 		struct monst *mon;
 		boolean known = FALSE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -7819,6 +7971,9 @@ newboss:
 		else if (!objects[SCR_CREATE_VICTIM].oc_name_known
 			&& !objects[SCR_CREATE_VICTIM].oc_uname)
 		    docall(otmp);
+
+		u.aggravation = 0;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7830,6 +7985,11 @@ newboss:
 
 		struct permonst *pm = 0;
 		struct monst *mon;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
@@ -7845,6 +8005,8 @@ newboss:
 			    makeknown(BAG_OF_TRICKS);
 		}
 
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7854,6 +8016,11 @@ newboss:
 
 		struct permonst *pm = 0;
 		struct monst *mon;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
@@ -7885,6 +8052,9 @@ newboss:
 		/*mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);*/
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_SUMMON_UNDEAD);
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -7912,6 +8082,11 @@ newboss:
 		int cnt = 1;
 		struct monst *mon;
 		boolean known = FALSE;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		if (rn2(2)) cnt += rnz(2);
 		if (!rn2(73)) cnt += rno(4);
@@ -7952,6 +8127,9 @@ newboss:
 		 * what type it is.  For teleport scrolls, you have to see
 		 * the monster to know it teleported.
 		 */
+
+		u.aggravation = 0;
+
 		if (known)
 		    makeknown(SCR_SUMMON_UNDEAD);
 		else if (!objects[SCR_SUMMON_UNDEAD].oc_name_known
@@ -7972,6 +8150,11 @@ newboss:
 		int randmnsx;
 		struct permonst *randmonstforspawn;
 		int monstercolor;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		int spawntype = rnd(4);
 
@@ -8162,6 +8345,9 @@ newboss:
 		 * what type it is.  For teleport scrolls, you have to see
 		 * the monster to know it teleported.
 		 */
+
+		u.aggravation = 0;
+
 		if (known)
 		    makeknown(SCR_GROUP_SUMMONING);
 		else if (!objects[SCR_GROUP_SUMMONING].oc_name_known
@@ -8177,12 +8363,20 @@ newboss:
 		struct permonst *pm = 0;
 		struct monst *mon;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }
@@ -8191,6 +8385,12 @@ newboss:
 	    {   coord cc;
 		struct permonst *pm=rndmonst();
 		int cnt = 1;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
@@ -8202,6 +8402,9 @@ newboss:
 			mon = makemon(rndmonst(), cc.x, cc.y, NO_MM_FLAGS);
 			if (mon) newsym(mon->mx,mon->my);
 		}
+
+		u.aggravation = 0;
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	    }

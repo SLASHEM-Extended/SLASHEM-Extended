@@ -1748,6 +1748,11 @@ level_difficulty()
 
 	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);
 
+	if (u.aggravation) {
+		retvalue *= 2;
+		retvalue += u.ulevel;
+	}
+
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 

@@ -1081,6 +1081,16 @@ boolean guaranteed;
 		return((struct monst *)0);
 		}
 
+	if (Aggravate_monster && !rn2(20)) {
+		if (mtmp->mpeaceful && !mtmp->mtame) {
+	        	pline("%s is aggravated!", Monnam(mtmp));
+			mtmp->mpeaceful = 0;
+		} else if (!mtmp->mpeaceful && !mtmp->mtame) {
+	        	pline("%s is frenzied!", Monnam(mtmp));
+			mtmp->mfrenzied = 1;
+		}
+	}
+
 	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);

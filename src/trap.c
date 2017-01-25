@@ -248,6 +248,11 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -303,6 +308,8 @@ genericptr_t poolcnt;
 	} else if ((x == u.ux) && (y == u.uy)) {
 		(*(int *)poolcnt)--;
 	}
+
+	u.aggravation = 0;
 
 }
 
@@ -2556,9 +2563,16 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		if (!rn2(125)) monstcnt += 3;
 		if (!rn2(725)) monstcnt += rnd(20);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 	pline("es come to life!"); /* garbled string from Castle of the Winds. This trap summons random monsters. --Amy */
 
@@ -2572,6 +2586,11 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		if (!rn2(10)) monstcnt += rnd(5);
 		if (!rn2(50)) monstcnt += rnd(10);
 		if (!rn2(200)) monstcnt += rnd(20);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 	      while(--monstcnt >= 0) {
 
@@ -2599,6 +2618,8 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		    }
 		}
 
+		u.aggravation = 0;
+
 		pline("ge broadcast by Arabella to confuse unwary players.");
 
 		deltrap(trap); /* only triggers once */
@@ -2612,9 +2633,16 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		if (!rn2(125)) monstcnt += rnd(20);
 		if (!rn2(725)) monstcnt += rnd(50);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 		pline("e Pale Wraith with a lightning stroke.");
 
@@ -2630,6 +2658,11 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		int sessileattempts;
 		int sessilemnum;
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 			for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
 				sessilemnum = rndmonnum();
@@ -2640,12 +2673,19 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		}
 
+		u.aggravation = 0;
+
 		pline("vailable, exit anyway?");
 
 		deltrap(trap); /* only triggers once */
 		break;
 
 	    case BOSS_TRAP:
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		{
 			int attempts = 0;
@@ -2655,6 +2695,7 @@ newboss:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
 
@@ -2669,12 +2710,19 @@ newboss:
 
 		}
 
+		u.aggravation = 0;
+
 		pline("A boss monster suddenly appears!");
 
 		deltrap(trap); /* only triggers once */
 		break;
 
 	    case GIRLINESS_TRAP:
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		{
 			int attempts = 0;
@@ -2685,6 +2733,7 @@ newgirl:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_FART_LOUD || ptrZ->msound == MS_FART_NORMAL || ptrZ->msound == MS_FART_QUIET))) && attempts < 50000);
 
@@ -2703,12 +2752,19 @@ newgirl:
 
 		}
 
+		u.aggravation = 0;
+
 		You_feel("a very feminine aura!");
 
 		deltrap(trap); /* only triggers once */
 		break;
 
 	    case EGOMONSTER_TRAP:
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
 
 		{
 			int attempts = 0;
@@ -2719,6 +2775,7 @@ newegomon:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(always_egotype(ptrZ)))) && attempts < 50000);
 
@@ -2736,6 +2793,8 @@ newegomon:
 			}
 
 		}
+
+		u.aggravation = 0;
 
 		pline("hwer!");
 
@@ -2872,9 +2931,16 @@ newegomon:
 		if (!rn2(125)) monstcnt += rnd(15);
 		if (!rn2(725)) monstcnt += rnd(50);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 		pline(Hallucination ? "And she's buying a stairway to heaven... er, hell." : "From the dark stairway to hell, demons appear to surround you!");
 
@@ -2889,9 +2955,16 @@ newegomon:
 		if (!rn2(125)) monstcnt += rnd(15);
 		if (!rn2(725)) monstcnt += rnd(50);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 		pline(Hallucination ? "Alien alert! I will kick you in the god damn ass! Shit these alien creeps are hot!" : "The barriers between the dungeon and the elemental planes have been breached!");
 
@@ -3648,9 +3721,16 @@ newegomon:
 		if (!rn2(125)) monstcnt += rnd(20);
 		if (!rn2(725)) monstcnt += rnd(50);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 		pline("e Pale Wraith with a lightning stroke.");
 
@@ -3748,9 +3828,16 @@ newegomon:
 		if (!rn2(125)) monstcnt += 3;
 		if (!rn2(725)) monstcnt += rnd(20);
 
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 	      while(--monstcnt >= 0) {
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 		}
+
+		u.aggravation = 0;
 
 		pline("es come to life!");
 
@@ -7087,6 +7174,11 @@ newegomon:
 
 			    coord cc;
 
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			if (!rn2(4)) {
 
 			randsp = (rn2(14) + 2);
@@ -7312,6 +7404,8 @@ newegomon:
 
 			}
 
+			u.aggravation = 0;
+
 		 break;
 
 		 case CYANIDE_TRAP:
@@ -7333,6 +7427,11 @@ newegomon:
 		 case NEST_TRAP:
 
 			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
 
 			    coord dd;
 			    int cx,cy;
@@ -7564,6 +7663,8 @@ newegomon:
 			}
 
 			}
+
+			u.aggravation = 0;
 
 		 break;
 
@@ -10121,6 +10222,11 @@ domagictrap()
 	  /* Most of the time, it creates some monsters. */
 	  register int cnt = rnd(4);
 
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	  if (!resists_blnd(&youmonst)) {
 		You("are momentarily blinded by a flash of light!");
 		make_blinded((long)rn1(5,10),FALSE);
@@ -10131,6 +10237,9 @@ domagictrap()
 		You_hear("a deafening roar!");
 	  while(cnt--)
 		(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
+
+	u.aggravation = 0;
+
 	}
 	else
 	  switch (fate) {
