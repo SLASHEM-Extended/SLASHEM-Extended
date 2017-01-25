@@ -1251,6 +1251,108 @@ randomdisableproperty()
 }
 
 int
+randominsidetrap()
+{
+	if (!rn2(7)) return TRAP_PERCENTS;
+	else if (!rn2(9)) return UNKNOWN_TRAP;
+	else if (!rn2(20)) return SPACEWARS_TRAP;
+	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
+	else switch (rnd(87)) {
+		case 1: return RMB_LOSS_TRAP;
+		case 2: return UNINFORMATION_TRAP;
+		case 3: return BIGSCRIPT_TRAP;
+		case 4: return BAD_EFFECT_TRAP;
+		case 5: return CAPTCHA_TRAP;
+		case 6: return WEAKNESS_TRAP;
+		case 7: return TRAINING_TRAP;
+		case 8: return ALIGNMENT_TRAP;
+		case 9: return DISPLAY_TRAP;
+		case 10: return SPELL_LOSS_TRAP;
+		case 11: return STEALER_TRAP;
+		case 12: return REBELLION_TRAP;
+		case 13: return EXERCISE_TRAP;
+		case 14: return NUPESELL_TRAP;
+		case 15: return CASTER_TRAP;
+		case 16: return QUIZ_TRAP;
+		case 17: return INTRINSIC_LOSS_TRAP;
+		case 18: return NONINTRINSICAL_TRAP;
+		case 19: return LOW_STATS_TRAP;
+		case 20: return CRAP_TRAP;
+		case 21: return YELLOW_SPELL_TRAP;
+		case 22: return MISFIRE_TRAP;
+		case 23: return SOUND_TRAP;
+		case 24: return LOW_EFFECT_TRAP;
+		case 25: return EGOTRAP;
+		case 26: return LEVEL_TRAP;
+		case 27: return WEAK_SIGHT_TRAP;
+		case 28: return DEHYDRATION_TRAP;
+		case 29: return RANDOM_MESSAGE_TRAP;
+		case 30: return MULTIPLY_TRAP;
+		case 31: return TRAP_OF_ROTTENNESS;
+		case 32: return DSTW_TRAP;
+		case 33: return STATUS_TRAP;
+		case 34: return MENU_TRAP;
+		case 35: return AUTO_DESTRUCT_TRAP;
+		case 36: return DIFFICULTY_TRAP;
+		case 37: return BANK_TRAP;
+		case 38: return STAIRS_TRAP;
+		case 39: return FREE_HAND_TRAP;
+		case 40: return AUTO_VULN_TRAP;
+		case 41: return STARVATION_TRAP;
+		case 42: return HATE_TRAP;
+		case 43: return UNSKILLED_TRAP;
+		case 44: return MAGIC_DEVICE_TRAP;
+		case 45: return DROPCURSE_TRAP;
+		case 46: return ROT_THIRTEEN_TRAP;
+		case 47: return TRAP_OF_NO_RETURN;
+		case 48: return GHOST_WORLD_TRAP;
+		case 49: return DROP_TRAP;
+		case 50: return ENGRAVING_TRAP;
+		case 51: return BLOOD_LOSS_TRAP;
+		case 52: return BOOK_TRAP;
+		case 53: return MEMORY_TRAP;
+		case 54: return RESPAWN_TRAP;
+		case 55: return MAP_TRAP;
+		case 56: return METABOLIC_TRAP;
+		case 57: return UNIDENTIFY_TRAP;
+		case 58: return NTLL_TRAP;
+		case 59: return INVENTORY_TRAP;
+		case 60: return THIRST_TRAP;
+		case 61: return VERISIERT;
+		case 62: return DROPLESS_TRAP;
+		case 63: return NAKEDNESS_TRAP;
+		case 64: return FAINT_TRAP;
+		case 65: return MUTENESS_TRAP;
+		case 66: return TRAP_OF_WALLS;
+		case 67: return CURSE_TRAP;
+		case 68: return CHAOS_TRAP;
+		case 69: return FARLOOK_TRAP;
+		case 70: return SHADES_OF_GREY_TRAP;
+		case 71: return TELE_ITEMS_TRAP;
+		case 72: return TECH_TRAP;
+		case 73: return FAST_FORWARD_TRAP;
+		case 74: return LIMITATION_TRAP;
+		case 75: return DESECRATION_TRAP;
+		case 76: return BISHOP_TRAP;
+		case 77: return SPEED_TRAP;
+		case 78: return CONFUSION_TRAP;
+		case 79: return INVISIBLE_TRAP;
+		case 80: return LUCK_TRAP;
+		case 81: return ONLY_TRAP;
+		case 82: return DISENCHANT_TRAP;
+		case 83: return BLACK_NG_WALL_TRAP;
+		case 84: return ANTILEVEL_TRAP;
+		case 85: return SUPERSCROLLER_TRAP;
+		case 86: return TOTTER_TRAP;
+		case 87: return NASTINESS_TRAP;
+
+	}
+
+	return TRAP_PERCENTS; /* fail safe, should never happen */
+
+}
+
+int
 randartmeleeweapon()
 {
 	int result;

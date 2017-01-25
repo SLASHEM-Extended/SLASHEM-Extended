@@ -2080,6 +2080,7 @@ E int NDECL(randattack);
 E int NDECL(randenchantment);
 E int NDECL(randnastyenchantment);
 E int NDECL(randomdisableproperty);
+E int NDECL(randominsidetrap);
 E int NDECL(randartmeleeweapon);
 E int NDECL(randartlauncher);
 E int NDECL(randartmissile);
