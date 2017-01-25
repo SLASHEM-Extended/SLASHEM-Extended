@@ -1456,7 +1456,7 @@ not_special:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yutucu plash") ) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yutucu plash") ) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

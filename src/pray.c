@@ -654,6 +654,10 @@ aligntyp resp_god;
 		copcnt = (copcnt / 2) + 1;
 	}
 
+	if (RngeAntiGovernment) {
+		copcnt = (copcnt / 2) + 1;
+	}
+
       while(--copcnt >= 0) {
 		(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 	} /* while */
@@ -2380,6 +2384,11 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
 
 	angrygods(u.ualign.type);
 	return(0);
+	}
+
+	if (RngeAngryGods && !rn2(10)) {
+		angrygods(u.ualign.type);
+		return(0);
 	}
 
 	/* praying as a unicorn can just randomly fail, because the race is too powerful --Amy */

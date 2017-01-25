@@ -1025,6 +1025,10 @@ badeffect()
 			copcnt = (copcnt / 2) + 1;
 		}
 
+		if (RngeAntiGovernment) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 		} /* while */
@@ -2035,6 +2039,10 @@ dodrink()
 			morehungry(-10);
 		}
 
+		if (RngeLiquidDiet) {
+			morehungry(-10);
+		}
+
 		return 1;
 	    }
 	    else if (IS_SINK(levl[u.ux][u.uy].typ)) {
@@ -2044,6 +2052,10 @@ dodrink()
 		}
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
+		if (RngeLiquidDiet) {
 			morehungry(-10);
 		}
 
@@ -2059,6 +2071,10 @@ dodrink()
 			morehungry(-10);
 		}
 
+		if (RngeLiquidDiet) {
+			morehungry(-10);
+		}
+
 		return 1;
 	    }
 	    pline(Hallucination ? "This water seems especially clean. In fact, it's the cleanest water you've ever seen." : "Do you know what lives in this water!");
@@ -2067,6 +2083,10 @@ dodrink()
 		}
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+			morehungry(-10);
+		}
+
+		if (RngeLiquidDiet) {
 			morehungry(-10);
 		}
 
@@ -2136,6 +2156,10 @@ register struct obj *otmp;
 		morehungry(-10);
 	}
 
+	if (RngeLiquidDiet) {
+		morehungry(-10);
+	}
+
 	if((retval = peffects(otmp)) >= 0) return(retval);
 
 	if(nothing) {
@@ -2196,6 +2220,8 @@ peffects(otmp)
 		}
 		return(-1);
 	}
+
+	if (RngeLevuntation) badeffect();
 
 	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
 
@@ -3489,6 +3515,7 @@ healup(nhp, nxtra, curesick, cureblind)
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
+	if (RngeNursery) nhp *= 2;
 
 	if (nhp) {
 		if (Upolyd) {
@@ -3519,6 +3546,7 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
+	if (RngeNursery) nhp *= 2;
 
 	if (nhp) {
 		mtmp->mhp += nhp;

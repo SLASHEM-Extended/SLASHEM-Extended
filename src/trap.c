@@ -2268,6 +2268,11 @@ unsigned trflags;
 		    break;
 		}
 
+		if (RngeGasFiltering && !rn2(2)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
 		if(Sleep_resistance || breathless(youmonst.data)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
@@ -2297,6 +2302,11 @@ unsigned trflags;
 		    break;
 		}
 
+		if (RngeGasFiltering && !rn2(2)) {
+		    pline("A cloud of gas surrounds you!");
+		    break;
+		}
+
 		if(breathless(youmonst.data)) {
 		    pline("A cloud of gas surrounds you!");
 		    break;
@@ -2312,6 +2322,11 @@ unsigned trflags;
 		seetrap(trap);
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		    pline("A cloud of foggy gas shoots out at you!");
+		    break;
+		}
+
+		if (RngeGasFiltering && !rn2(2)) {
 		    pline("A cloud of foggy gas shoots out at you!");
 		    break;
 		}
@@ -2746,7 +2761,7 @@ newegomon:
 
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
 		pline("You stepped on a trap of wishing!");
-		if ((Luck+rn2(5) < 0) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+		if ((Luck+rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
 			pline("Unfortunately, nothing happens.");
 			break;
 		}

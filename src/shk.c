@@ -4214,6 +4214,15 @@ coord *mm;
 		kop_cnt[5] = ( kop_cnt[5] / 2) + 1;
 	}
 
+	if (RngeAntiGovernment) {
+		kop_cnt[0] = ( kop_cnt[0] / 2) + 1;
+		kop_cnt[1] = ( kop_cnt[1] / 2) + 1;
+		kop_cnt[2] = ( kop_cnt[2] / 2) + 1;
+		kop_cnt[3] = ( kop_cnt[3] / 2) + 1;
+		kop_cnt[4] = ( kop_cnt[4] / 2) + 1;
+		kop_cnt[5] = ( kop_cnt[5] / 2) + 1;
+	}
+
 	mc = (coord *)alloc(cnt * sizeof(coord));
 	for (ik=0; kop_pm[ik]; ik++) {
 	  /*if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {*/

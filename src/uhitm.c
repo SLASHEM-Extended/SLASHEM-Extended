@@ -538,9 +538,14 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) tmp += 5;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") ) ) tmp -= 5;
+	if (RngeDnethack) tmp -= 5;
+	if (RngeUnnethack) tmp -= 10;
+	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
 
 	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
+
+	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && RngeMaritalArts) tmp += 5;
 
 	if (uarmc && uarmc->oartifact == ART_DEATHCLAW_HIDE) tmp += 10;
 
@@ -911,6 +916,7 @@ martial_dmg()
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
+	if (RngeMaritalArts) damage += 5;
 
 	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
 	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */
@@ -1858,6 +1864,7 @@ int thrown;
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 		tmp += (Drunken_boxing && Confusion);
+		if (RngeBloodlust) tmp += 1;
 		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
@@ -2126,6 +2133,8 @@ int thrown;
 		tmp += rnd(u.ulevel);
 
 	}
+
+	if (RngeWeakness && tmp > 1) tmp /= 2;
 
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
@@ -3877,6 +3886,8 @@ register struct attack *mattk;
 	      return 1;
 	}
 
+	if (RngeWeakness && tmp > 1) tmp /= 2;
+
 #ifdef SHOW_DMG
 	if (tmp < mdef->mhp) showdmg(tmp);
 #endif
@@ -5484,6 +5495,11 @@ uchar aatyp;
 	/*int randattackC = 0;*/
 	uchar atttypC;
 
+	if (RngeIronMaiden) {
+		pline("Ouch - you hurt yourself!");
+		losehp(rnd(u.ulevel), "the iron maiden curse", KILLED_BY);
+	}
+
 	if (mhit && aatyp == AT_BITE && is_vampire(youmonst.data)) {
 	    if (bite_monster(mon))
 		return 2;			/* lifesaved */
@@ -6795,6 +6811,8 @@ uchar aatyp;
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
 
+		if (RngeGasFiltering && !rn2(2)) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_STR, "spore cloud", 30);
@@ -6806,6 +6824,8 @@ uchar aatyp;
 	      case AD_DRDX:
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
+		if (RngeGasFiltering && !rn2(2)) break;
 
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
@@ -6819,6 +6839,8 @@ uchar aatyp;
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
 
+		if (RngeGasFiltering && !rn2(2)) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_CON, "spore cloud", 30);
@@ -6830,6 +6852,8 @@ uchar aatyp;
 	      case AD_WISD:
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+
+		if (RngeGasFiltering && !rn2(2)) break;
 
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
@@ -6843,6 +6867,8 @@ uchar aatyp;
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
 
+		if (RngeGasFiltering && !rn2(2)) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", A_CHA, "spore cloud", 30);
@@ -6855,6 +6881,8 @@ uchar aatyp;
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
 
+		if (RngeGasFiltering && !rn2(2)) break;
+
 	       if (!Strangled && !Breathless) {
 		 pline("You inhale a cloud of spores!");
 		 poisoned("spores", rn2(A_MAX), "spore cloud", 30);
@@ -6865,6 +6893,8 @@ uchar aatyp;
 	      break;
 	    case AD_VENO:
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(3) ) break;
+
+		if (RngeGasFiltering && !rn2(3)) break;
 
 	       if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of superpoisonous gas!");

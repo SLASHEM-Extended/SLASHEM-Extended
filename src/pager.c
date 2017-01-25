@@ -266,6 +266,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0)
 		    ways_seen++;
+		if (RngeInternetAccess && (mtmp)->mhp % 9 == 0)
+		    ways_seen++;
 		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
@@ -398,6 +400,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }
 		    if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0) {
+			Strcat(monbuf, "internet access");
+			if (ways_seen-- > 1) Strcat(monbuf, ", ");
+		    }
+		    if (RngeInternetAccess && (mtmp)->mhp % 9 == 0) {
 			Strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) Strcat(monbuf, ", ");
 		    }

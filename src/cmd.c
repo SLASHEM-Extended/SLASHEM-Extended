@@ -843,6 +843,11 @@ playersteal()
 			chanch *= 2;
 		}
 
+		if (RngePoland) {
+			if (chanch < 5) chanch = 5;
+			chanch *= 2;
+		}
+
 		if (uarm && uarm->oartifact == ART_GREGOR_S_GANGSTER_GARMENTS) {
 			if (chanch < 5) chanch = 5;
 			chanch *= 2;

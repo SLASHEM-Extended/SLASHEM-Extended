@@ -195,6 +195,158 @@ int prop;
 			return "wonderlegs";
 		case GLIB_COMBAT:
 			return "glib combat";
+
+		case RNGE_IRREGULARITY:
+			return "irregularity";
+		case RNGE_INTERNET_ACCESS:
+			return "internet access";
+		case RNGE_ANTI_GOVERNMENT:
+			return "anti-government";
+		case RNGE_GAS_FILTERING:
+			return "gas filtering";
+		case RNGE_VAMPIRIC_DRAIN:
+			return "vampiric drain";
+		case RNGE_PSEUDO_IDENTIFICATION:
+			return "pseudo identification";
+		case RNGE_GHOST_SUMMONING:
+			return "ghost summoning";
+		case RNGE_PRAYER:
+			return "prayer";
+		case RNGE_ANTI_BEHEADING:
+			return "anti-beheading";
+		case RNGE_POLAND:
+			return "Poland";
+		case RNGE_KICKING:
+			return "kicking";
+		case RNGE_TOESTOMPING:
+			return "toestomping";
+		case RNGE_JUNGLE_ACTION:
+			return "jungle action";
+		case RNGE_UNLIKABILITY:
+			return "unlikability";
+		case RNGE_SPELL_DISRUPTION:
+			return "spell disruption";
+		case RNGE_BDSM:
+			return "BDSM";
+		case RNGE_SLIPPING:
+			return "slipping";
+		case RNGE_MIRRORING:
+			return "mirroring";
+		case RNGE_TRUE_SIGHT:
+			return "true sight";
+		case RNGE_LIQUID_DIET:
+			return "liquid diet";
+		case RNGE_ANGRY_GODS:
+			return "angry gods";
+		case RNGE_RADIO_BROADCASTS:
+			return "radio broadcasts";
+		case RNGE_OCCASIONAL_DAMAGE:
+			return "occasional damage";
+		case RNGE_NOISE:
+			return "noise";
+		case RNGE_VORTICES:
+			return "vortices";
+		case RNGE_EXPLOSIONS:
+			return "explosions";
+		case RNGE_FATAL_ATTRACTION:
+			return "fatal attraction";
+		case RNGE_VOLTAGE:
+			return "voltage";
+		case RNGE_WEEPING:
+			return "weeping";
+		case RNGE_CASTLEVANIA:
+			return "Castlevania";
+		case RNGE_ENGLAND:
+			return "England";
+		case RNGE_FORGETTING:
+			return "forgetting";
+		case RNGE_ANTIMAGIC_A:
+			return "antimagic (10%)";
+		case RNGE_ANTIMAGIC_B:
+			return "antimagic (20%)";
+		case RNGE_ANTIMAGIC_C:
+			return "antimagic (50%)";
+		case RNGE_ANTIMAGIC_D:
+			return "antimagic (100%)";
+		case RNGE_CHINA:
+			return "China";
+		case RNGE_LIGHT_ABSORPTION:
+			return "light absorption";
+		case RNGE_CHILDBIRTH:
+			return "childbirth";
+		case RNGE_RED_ATTUNEMENT:
+			return "red attunement";
+		case RNGE_POLAR_OPPOSITES:
+			return "polar opposites";
+		case RNGE_SICKNESS:
+			return "sickness";
+		case RNGE_COQUETRY:
+			return "coquetry";
+		case RNGE_IGNORANCE:
+			return "ignorance";
+		case RNGE_VENGEANCE:
+			return "vengeance";
+		case RNGE_HIGH_HEELING:
+			return "high heeling";
+		case RNGE_GRAVITY:
+			return "gravity";
+		case RNGE_WISH_IMPROVEMENT:
+			return "wish improvement";
+		case RNGE_POCKET_MONSTERS:
+			return "pocket monsters";
+		case RNGE_LEVUNTATION:
+			return "levuntation";
+		case RNGE_PERMANENT_OCCUPATION:
+			return "permanent occupation";
+		case RNGE_NURSERY:
+			return "nursery";
+		case RNGE_SLEXUALITY:
+			return "slexuality";
+		case RNGE_ANGBAND:
+			return "Angband";
+		case RNGE_ANOREXIA:
+			return "anorexia";
+		case RNGE_DNETHACK:
+			return "dnethack";
+		case RNGE_UNNETHACK:
+			return "unnethack";
+		case RNGE_NETHACK_FOURK:
+			return "nethack fourk";
+		case RNGE_MARITAL_ARTS:
+			return "marital arts";
+		case RNGE_TEAM_SPLAT:
+			return "Team Splat";
+		case RNGE_ABOMINATIONS:
+			return "abominations";
+		case RNGE_PUNISHMENT:
+			return "punishment";
+		case RNGE_BLOODLUST:
+			return "bloodlust";
+		case RNGE_IMMOBILITY:
+			return "immobility";
+		case RNGE_BOSS_ENCOUNTERS:
+			return "boss encounters";
+		case RNGE_IRONMAN_MODE:
+			return "ironman mode";
+		case RNGE_RIVERS:
+			return "rivers";
+		case RNGE_LOUDSPEAKERS:
+			return "loudspeakers";
+		case RNGE_ARMOR_PRESERVATION:
+			return "armor preservation";
+		case RNGE_WEAKNESS:
+			return "weakness";
+		case RNGE_FRAILNESS:
+			return "frailness";
+		case RNGE_IRON_MAIDEN:
+			return "iron maiden";
+		case RNGE_DONORS:
+			return "donors";
+		case RNGE_AIDS:
+			return "AIDS";
+		case RNGE_TRAP_ALERT:
+			return "trap alert";
+
 		default:
 			return "Team Nastytrap";
 

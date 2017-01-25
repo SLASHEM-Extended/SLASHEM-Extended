@@ -3245,6 +3245,11 @@ struct obj *otmp;
 		return;
 	}
 
+	if (!rn2(3) && RngeIgnorance) {
+		pline("You are too ignorant, and therefore the identification attempt fails.");
+		return;
+	}
+
 	if (otmp->oclass == SCROLL_CLASS && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 	else if (otmp->oclass == RING_CLASS && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
@@ -3266,6 +3271,11 @@ maybe_fully_identify_obj(otmp)
 struct obj *otmp;
 {
 	if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") )) {
+		pline("You are too ignorant, and therefore the identification attempt fails.");
+		return;
+	}
+
+	if (!rn2(3) && RngeIgnorance) {
 		pline("You are too ignorant, and therefore the identification attempt fails.");
 		return;
 	}

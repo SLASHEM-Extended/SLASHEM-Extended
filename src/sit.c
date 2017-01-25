@@ -841,7 +841,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(192)) {
+	switch(rnd(205)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1518,6 +1518,123 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HPeacevision & TIMEOUT) {
 			HPeacevision &= ~TIMEOUT;
 			You_feel("less peaceful!");
+		}
+		break;
+	case 191: if (HHallu_party & INTRINSIC) {
+			HHallu_party &= ~INTRINSIC;
+			You_feel("that the party is over!");
+		}
+		if (HHallu_party & TIMEOUT) {
+			HHallu_party &= ~TIMEOUT;
+			You_feel("that the party is over!");
+		}
+		break;
+	case 192: if (HDrunken_boxing & INTRINSIC) {
+			HDrunken_boxing &= ~INTRINSIC;
+			You_feel("a little drunk!");
+		}
+		if (HDrunken_boxing & TIMEOUT) {
+			HDrunken_boxing &= ~TIMEOUT;
+			You_feel("a little drunk!");
+		}
+		break;
+	case 193: if (HStunnopathy & INTRINSIC) {
+			HStunnopathy &= ~INTRINSIC;
+			You_feel("an uncontrolled stunning!");
+		}
+		if (HStunnopathy & TIMEOUT) {
+			HStunnopathy &= ~TIMEOUT;
+			You_feel("an uncontrolled stunning!");
+		}
+		break;
+	case 194: if (HNumbopathy & INTRINSIC) {
+			HNumbopathy &= ~INTRINSIC;
+			You_feel("numbness spreading through your body!");
+		}
+		if (HNumbopathy & TIMEOUT) {
+			HNumbopathy &= ~TIMEOUT;
+			You_feel("numbness spreading through your body!");
+		}
+		break;
+	case 195: if (HDimmopathy & INTRINSIC) {
+			HDimmopathy &= ~INTRINSIC;
+			You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+		}
+		if (HDimmopathy & TIMEOUT) {
+			HDimmopathy &= ~TIMEOUT;
+			You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+		}
+		break;
+	case 196: if (HFreezopathy & INTRINSIC) {
+			HFreezopathy &= ~INTRINSIC;
+			You_feel("ice-cold!");
+		}
+		if (HFreezopathy & TIMEOUT) {
+			HFreezopathy &= ~TIMEOUT;
+			You_feel("ice-cold!");
+		}
+		break;
+	case 197: if (HStoned_chiller & INTRINSIC) {
+			HStoned_chiller &= ~INTRINSIC;
+			You_feel("that you ain't gonna get time for relaxing anymore!");
+		}
+		if (HStoned_chiller & TIMEOUT) {
+			HStoned_chiller &= ~TIMEOUT;
+			You_feel("that you ain't gonna get time for relaxing anymore!");
+		}
+		break;
+	case 198: if (HCorrosivity & INTRINSIC) {
+			HCorrosivity &= ~INTRINSIC;
+			You_feel("the protective layer on your skin disappearing!");
+		}
+		if (HCorrosivity & TIMEOUT) {
+			HCorrosivity &= ~TIMEOUT;
+			You_feel("the protective layer on your skin disappearing!");
+		}
+		break;
+	case 199: if (HFear_factor & INTRINSIC) {
+			HFear_factor &= ~INTRINSIC;
+			You_feel("fearful!");
+		}
+		if (HFear_factor & TIMEOUT) {
+			HFear_factor &= ~TIMEOUT;
+			You_feel("fearful!");
+		}
+		break;
+	case 200: if (HBurnopathy & INTRINSIC) {
+			HBurnopathy &= ~INTRINSIC;
+			You_feel("red-hot!");
+		}
+		if (HBurnopathy & TIMEOUT) {
+			HBurnopathy &= ~TIMEOUT;
+			You_feel("red-hot!");
+		}
+		break;
+	case 201: if (HSickopathy & INTRINSIC) {
+			HSickopathy &= ~INTRINSIC;
+			You_feel("a loss of medical knowledge!");
+		}
+		if (HSickopathy & TIMEOUT) {
+			HSickopathy &= ~TIMEOUT;
+			You_feel("a loss of medical knowledge!");
+		}
+		break;
+	case 202: if (HWonderlegs & INTRINSIC) {
+			HWonderlegs &= ~INTRINSIC;
+			You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+		}
+		if (HWonderlegs & TIMEOUT) {
+			HWonderlegs &= ~TIMEOUT;
+			You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+		}
+		break;
+	case 203: if (HGlib_combat & INTRINSIC) {
+			HGlib_combat &= ~INTRINSIC;
+			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+		}
+		if (HGlib_combat & TIMEOUT) {
+			HGlib_combat &= ~TIMEOUT;
+			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
 		}
 		break;
 	default: break;

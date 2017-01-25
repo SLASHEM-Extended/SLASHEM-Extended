@@ -2507,7 +2507,7 @@ boolean prefilled;
 	register int tryct = 0;
 	register struct obj *otmp;
 
-	if (croom && croom->rtype == OROOM && !rn2( (isironman && depth(&u.uz) > 1) ? 1 : (isironman && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
+	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 		switch (rnd(57)) {
 
@@ -3236,7 +3236,7 @@ room *r, *pr;
 		 * DLC - this can fail if corridors are added to this room
 		 * at a later point.  Currently no good way to fix this.
 		 */
-		if( (aroom->rtype != OROOM || !rn2( (isironman && depth(&u.uz) > 1) ? 1 : (isironman && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
+		if( (aroom->rtype != OROOM || !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
 	}
 }
 
@@ -3968,6 +3968,7 @@ dlb *fd;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
@@ -3978,6 +3979,7 @@ dlb *fd;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
 	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
 	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
@@ -4302,7 +4304,7 @@ dlb *fd;
 		troom = &rooms[nroom];
 
 		/* mark rooms that must be filled, but do it later */
-		if (tmpregion.rtype != OROOM || !rn2( (isironman && depth(&u.uz) > 1) ? 1 : (isironman && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
+		if (tmpregion.rtype != OROOM || !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
 		    mustfill[nroom] = (prefilled ? 2 : 1);
 
 		if(tmpregion.rirreg) {
@@ -4709,6 +4711,7 @@ dlb *fd;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
@@ -4719,6 +4722,7 @@ dlb *fd;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
 
 	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
 	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);

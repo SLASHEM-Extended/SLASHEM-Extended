@@ -12040,6 +12040,11 @@ register int	mmflags;
 		mtmp->egotype_abomination = 1;
 	}
 
+	if (!rn2(100) && RngeAbominations) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_abomination = 1;
+	}
+
 	if (uarmh && uarmh->oartifact == ART_NUCLEAR_BOMB && ptr->mlet == S_GOLEM) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_bomber = 1;
@@ -14085,12 +14090,32 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
-	if (!rn2(50) && (mtmp->data->mcolor == CLR_GREEN || mtmp->data->mcolor == CLR_BRIGHT_GREEN) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o't plash") ) ) {
+	if (!rn2(50) && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o't plash") ) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(10) && (mtmp->data->mcolor == CLR_RED) && RngeRedAttunement) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(50) && (mtmp->data->mcolor == CLR_ORANGE) && RngeRedAttunement) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(33) && RngePolarOpposites && (resists_elec(mtmp) || resists_acid(mtmp)) && !(resists_elec(mtmp) && resists_acid(mtmp)) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
 
 	if (!rn2(20) && is_pokemon(mtmp->data) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") )) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(100) && is_pokemon(mtmp->data) && RngePocketMonsters) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
@@ -15475,6 +15500,8 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 	if (u.kyliemode) return FALSE;
+	if (RngeUnlikability) return FALSE;
+	if (RngeBloodlust) return FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
@@ -15496,6 +15523,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DEMON && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (is_demon(ptr) && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
+	if (rn2(10) && RngePolarOpposites && (is_elec_resistant(ptr) || is_acid_resistant(ptr)) && !(is_elec_resistant(ptr) && is_acid_resistant(ptr)) ) return TRUE;
 
 	if (ptr->mlet == S_KOBOLD && Race_if(PM_KOBOLT) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_OGRE && Race_if(PM_OGRO) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

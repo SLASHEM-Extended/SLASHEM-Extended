@@ -642,6 +642,10 @@ moveloop()
 					copcnt = (copcnt / 2) + 1;
 				}
 
+				if (RngeAntiGovernment) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
 			      while(--copcnt >= 0) {
 					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, MM_ANGRY|MM_ADJACENTOK);
 					else (void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
@@ -1103,8 +1107,10 @@ moveloop()
 		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
-			    monstermoves++;
-			    moves++;
+				if (!rn2(2) || !RngeIrregularity) {
+				    monstermoves++;
+				    moves++;
+				}
 			}
 
 		    }
@@ -1224,6 +1230,11 @@ moveloop()
 
 		}
 
+		if (RngeLoudspeakers && !rn2(100)) {
+			pline(fauxmessage());
+			if (!rn2(3)) pline(fauxmessage());
+		}
+
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
 			if (ttmp && ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
 				pline(fauxmessage());
@@ -1233,6 +1244,8 @@ moveloop()
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
 
 				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+					 pline("A cloud of spores surrounds you!");
+				} else if (RngeGasFiltering && !rn2(2)) {
 					 pline("A cloud of spores surrounds you!");
 
 				 } else if (!Strangled && !Breathless) {
@@ -1294,6 +1307,16 @@ moveloop()
 			pline("You faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (RngeCoquetry && !rn2(1000) && multi >= 0) {
+
+			pline("You faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnd(10) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1799,6 +1822,66 @@ moveloop()
 			curse(uarmh);
 			if (!rn2(3)) pline("A black glow surrounds your helmet.");
 			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
+		}
+
+		if (RngeBossEncounters && !rn2(10000) ) {
+			int attempts = 0;
+			register struct permonst *ptrZ;
+newbossA:
+			do {
+				ptrZ = rndmonst();
+				attempts++;
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", ptrZ->mname);
+				(void) makemon(ptrZ, 0, 0, NO_MM_FLAGS);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossA;
+			}
+		}
+
+		if (RngeImmobility && !rn2(5000) ) {
+
+			int monstcnt;
+			monstcnt = 8 + rnd(10);
+			int sessileattempts;
+			int sessilemnum;
+
+		      while(--monstcnt >= 0) {
+				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+					sessilemnum = rndmonnum();
+					if (sessilemnum != -1 && (mons[sessilemnum].mlet != S_TROVE) && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+				}
+				if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], u.ux, u.uy, NO_MM_FLAGS);
+			}
+			pline("You're immobilized by stationary monsters!");
+
+		}
+
+		if (RngePunishment && !rn2(1000) && !Punished) {
+			punish((struct obj *)0);
+		}
+
+		if (RngeVortices && !rn2(2000)) {
+	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+	 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(3)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(5)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(15)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY);
+		}
+
+		if (RngeExplosions && !rn2(2000)) {
+	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+	 	    (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(3)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(5)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
+	 	    if (!rn2(15)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 		}
 
 		if (uarmc && uarmc->oartifact == ART_PROZACELF_S_AUTOHEALER && !rn2(1000) ) {
@@ -2612,8 +2695,68 @@ newboss:
 
 		}
 
+		if (RngeFatalAttraction && !rn2(10000)) {
+			pline("Fatal attraction!");
+
+		{
+			for(otmpii = otmpi =invent; otmpii ; otmpi = otmpii) {
+				otmpii = otmpi->nobj;
+				if (objects[(otmpi)->otyp].oc_material == IRON ) {
+
+					if (otmpi->owornmask & W_ARMOR) {
+					    if (otmpi == uskin) {
+						skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+					    }
+					    if (otmpi == uarm) (void) Armor_off();
+					    else if (otmpi == uarmc) (void) Cloak_off();
+					    else if (otmpi == uarmf) (void) Boots_off();
+					    else if (otmpi == uarmg) (void) Gloves_off();
+					    else if (otmpi == uarmh) (void) Helmet_off();
+					    else if (otmpi == uarms) (void) Shield_off();
+					    else if (otmpi == uarmu) (void) Shirt_off();
+					    /* catchall -- should never happen */
+					    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+					} else if (otmpi ->owornmask & W_AMUL) {
+					    Amulet_off();
+					} else if (otmpi ->owornmask & W_RING) {
+					    Ring_gone(otmpi);
+					} else if (otmpi ->owornmask & W_TOOL) {
+					    Blindf_off(otmpi);
+					} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+					    if (otmpi == uwep)
+						uwepgone();
+					    if (otmpi == uswapwep)
+						uswapwepgone();
+					    if (otmpi == uquiver)
+						uqwepgone();
+					}
+	
+					if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+					    unpunish();
+					} else if (otmpi->owornmask) {
+					/* catchall */
+					    setnotworn(otmpi);
+					}
+
+				dropx(otmpi);
+
+				}
+			}
+		}
+			scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+
+		}
+
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sindirishi qo'lqop") ) && (u.uexp > 100) && !rn2(1000) ) {
 			pline("Your vampiric gloves drain your experience!");
+			u.uexp -= (u.uexp / 100);
+			if (u.uexp < newuexp(u.ulevel - 1)) {
+			      losexp("vampiric experience drain", TRUE, FALSE);
+			}
+		}
+
+		if (RngeVampiricDrain && (u.uexp > 100) && !rn2(1000) ) {
+			pline("Your experience is drained!");
 			u.uexp -= (u.uexp / 100);
 			if (u.uexp < newuexp(u.ulevel - 1)) {
 			      losexp("vampiric experience drain", TRUE, FALSE);
@@ -2631,6 +2774,7 @@ newboss:
 
 			BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
 			(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+			pline("Blackness..."); /* otherwise players would just have no chance --Amy */
 			break;
 		}
 
@@ -2693,6 +2837,22 @@ newboss:
 					You_feel("that you know more about the contents of your inventory...");
 				}
 				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->rknown) {
+					otmpi->rknown = TRUE;
+					You_feel("that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && RngePseudoIdentification && !otmpi->dknown) {
+					otmpi->dknown = TRUE;
+					You_feel("that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && RngePseudoIdentification && !otmpi->known) {
+					otmpi->known = TRUE;
+					You_feel("that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && RngePseudoIdentification && !otmpi->bknown) {
+					otmpi->bknown = TRUE;
+					You_feel("that you know more about the contents of your inventory...");
+				}
+				if (!rn2(100000) && RngePseudoIdentification && !otmpi->rknown) {
 					otmpi->rknown = TRUE;
 					You_feel("that you know more about the contents of your inventory...");
 				}
@@ -3067,6 +3227,19 @@ newboss:
 		    nomovemsg = "You regain your composure.";
 		}
 
+		if (!rn2(10000) && RngeGhostSummoning) {
+			coord mm;   
+			mm.x = u.ux;   
+			mm.y = u.uy;   
+
+			tt_mname(&mm, FALSE, 0);
+			pline("An enormous ghost appears next to you!");
+			You("are frightened to death, and unable to move.");
+		    nomul(-3, "frightened to death");
+			make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
+		    nomovemsg = "You regain your composure.";
+		}
+
 		if (!rn2(1000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chilling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pugayushchim plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovutgichli plash") ) ) {
 			make_frozen(HFrozen + rnd(50),TRUE);
 		}
@@ -3076,6 +3249,14 @@ newboss:
 		}
 
 		if (!rn2(2000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravity cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravitatsionnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "agar tortishish kuchi plash") ) ) {
+			pline("Gravity warps around you...");
+			phase_door(0);
+			pushplayer();
+			u.uprops[DEAC_FAST].intrinsic += rnd(10);
+			make_stunned(HStun + rnd(10), TRUE);
+		}
+
+		if (!rn2(1000) && RngeGravity) {
 			pline("Gravity warps around you...");
 			phase_door(0);
 			pushplayer();
@@ -3106,6 +3287,17 @@ newboss:
 			}
 			if (!rn2(500)) {
 				pline("You receive a static shock from your cloak!");
+				make_numbed(HNumbed + rnd(10),TRUE);
+			}
+		}
+
+		if (RngeVoltage) {
+			if (!rn2(500)) {
+				pline("You receive an electric shock out of nowhere!");
+				make_confused(HConfusion + rnd(10),TRUE);
+			}
+			if (!rn2(500)) {
+				pline("You receive a static shock out of nowhere!");
 				make_numbed(HNumbed + rnd(10),TRUE);
 			}
 		}
@@ -3268,7 +3460,9 @@ newboss:
 		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
-			    nh_timeout();
+				if (!rn2(2) || !RngeIrregularity) {
+				    nh_timeout();
+				}
 			}
 		    }
 
@@ -3283,6 +3477,8 @@ newboss:
 
 		if (uarmg && u.ublesscnt && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
 
+		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
+
 		if (u.ublesscnt && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
 			if ((P_SKILL(P_SPIRITUALITY) >= P_BASIC) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
@@ -3293,6 +3489,8 @@ newboss:
 			if ((P_SKILL(P_SPIRITUALITY) >= P_SUPREME_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
 
 		}
+
+		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 		    
 		    if(flags.time && !flags.run)
 			flags.botl = 1;
@@ -3967,6 +4165,33 @@ newboss:
 
 			}
 
+			if (!rn2(10000) && RngeChina) {
+
+				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella giggling.");
+					break;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+					NastinessProblem += rnd(1000);
+					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					break;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+				register int newlev = rnd(71);
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				pline("You were banished!");
+
+			}
+
 			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
 
 				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
@@ -4011,7 +4236,27 @@ newboss:
 
 			}
 
+			if (!rn2(2000) && RngeSickness) {
+				if (Sick_resistance) {
+					You_feel("a slight illness.");
+				} else {
+					make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
+				"cursed sickness", TRUE, SICK_NONVOMITABLE);
+				}
+			    stop_occupation();
+
+			}
+
 			if (uarmh && !rn2(1000) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+				else You_feel("very disoriented but decide to move on.");
+
+			}
+
+			if (RngeWeeping && !rn2(1000)) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
@@ -4120,6 +4365,10 @@ newboss:
 			clear_memory_glyph(zx, zy, S_stone);
 		}
 
+	}
+
+	if (RngeTrapAlert && t_at(u.ux, u.uy)) {
+		pline("Alert! You are standing on a trap!");
 	}
 
 	if (u.burrowed) {
@@ -4318,6 +4567,8 @@ stop_occupation()
 {
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tez safar plash") ) ) return;
+
+	if (RngePermanentOccupation) return;
 
 	if(occupation) {
 		if (!maybe_finished_meal(TRUE))

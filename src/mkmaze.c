@@ -1190,6 +1190,7 @@ register const char *s;
 	}
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversY();
 
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
@@ -1207,6 +1208,7 @@ register const char *s;
 	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
 
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversY();
 
 }
 

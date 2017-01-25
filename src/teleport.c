@@ -972,6 +972,13 @@ level_tele()
 
 		}
 
+		if (RngeWeeping) {
+
+			You_hear("faint weeping...");
+			losexp("weeping", TRUE, FALSE);
+
+		}
+
 	    return;
 	}
 	if ((Teleport_control && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */
@@ -1075,7 +1082,9 @@ level_tele()
 	     * we let negative values requests fall into the "heaven" loop.
 	     * [ALI] Add other single level dungeons entered via portal.
 	     */
-	    if ((Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz)) && newlev > 0) {
+	    if ((Is_knox(&u.uz) ||
+		    Is_blackmarket(&u.uz) ||
+		    Is_aligned_quest(&u.uz)) && newlev > 0) {
 		You(shudder_for_moment);
 		return;
 	    }
@@ -1574,7 +1583,8 @@ int in_sight;
 		     seetrap(trap);
 	          }
 	          return 0;
-	        } else {
+	        }
+		  else {
 		    assign_level(&tolevel, &trap->dst);
 		    migrate_typ = MIGR_PORTAL;
 		}
@@ -1666,7 +1676,9 @@ random_teleport_level()
 	int nlev, max_depth, min_depth,
 	    cur_depth = (int)depth(&u.uz);
 
-	if (!rn2(5) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz))
+	if (!rn2(5) || Is_knox(&u.uz) ||
+		Is_blackmarket(&u.uz) ||
+		Is_aligned_quest(&u.uz))
 	    return cur_depth;
 
 	/* What I really want to do is as follows:
@@ -1728,7 +1740,9 @@ random_banish_level()
 	int nlev, max_depth, min_depth, cur_depth = (int)depth(&u.uz);
 ;
 
-	if (Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz))
+	if (Is_knox(&u.uz) ||
+		Is_blackmarket(&u.uz) ||
+		Is_aligned_quest(&u.uz))
 	    return cur_depth;
 
 	min_depth = In_quest(&u.uz) ? dungeons[u.uz.dnum].depth_start : 1;

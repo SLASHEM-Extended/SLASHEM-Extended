@@ -377,6 +377,11 @@ nh_timeout()
 		litroomlite(FALSE);
 	}
 
+	if (RngeCastlevania && !rn2(1000)) {
+		pline("You hear a dark orchestral melody, and all the lights go out...");
+		litroomlite(FALSE);
+	}
+
 	if (uarmh && (uarmh->oartifact == ART_DARK_NADIR) && !rn2(200) ) {
 		pline("Darkness surrounds you.");
 		litroomlite(FALSE);
@@ -444,6 +449,19 @@ nh_timeout()
 
 	}
 
+	if (RngeRadioBroadcasts) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 
 	    struct trap *t;
@@ -458,6 +476,32 @@ nh_timeout()
 	}
 
 	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) ) {
+			    slip_or_trip();
+
+			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling");
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
+	if (u.umoved && RngeIrregularity && !rn2(100) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -575,6 +619,15 @@ nh_timeout()
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {
+		const char *line;
+		char buflin[BUFSZ];
+		if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+		else line = getrumor(0, buflin, TRUE);
+		if (!*line) line = "Slash'EM rumors file closed for renovation.";
+		pline("%s", line);
+	}
+
+	if (!rn2(100) && RngeRadioBroadcasts) {
 		const char *line;
 		char buflin[BUFSZ];
 		if (rn2(2)) line = getrumor(-1, buflin, TRUE);
@@ -3362,11 +3415,21 @@ nh_timeout()
 		pline("Your deadly cloak saps your life!");
 		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
 	}
+	if (RngeOccasionalDamage && !rn2(1000) ) {
+		pline("Your life is sapped!");
+		losehp(rnd(u.ulevel), "occasional damage", KILLED_BY);
+	}
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jarring cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sotryaseniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "g'azablantiradigan plash") ) && !rn2(1000) ) {
 		wake_nearby();
 		aggravate();
 		pline("Your cloak emits a grating, annoying sound.");
+	}
+
+	if (RngeNoise && !rn2(1000)) {
+		wake_nearby();
+		aggravate();
+		pline("You emit a grating, annoying sound.");
 	}
 
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT && !rn2(100) ) {

@@ -8336,7 +8336,7 @@ makelevel()
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
 
-		if (isironman && (!rn2(10) || u_depth > 1) ) {
+		if ((isironman || RngeIronmanMode) && (!rn2(10) || u_depth > 1) ) {
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -8446,6 +8446,7 @@ makelevel()
 		}
 
 		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrivers();
+		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrivers();
 
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
@@ -8456,6 +8457,7 @@ makelevel()
 		}
 
 		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrandrivers();
+		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrandrivers();
 
 	/*}*/
 

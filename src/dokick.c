@@ -40,6 +40,7 @@ register boolean clumsy;
 	    dmg += 5;
 	if (uarmf && uarmf->otyp == STOMPING_BOOTS)
 	    dmg += 7;
+	if (RngeKicking) dmg += 5;
 
 	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
 
@@ -205,6 +206,7 @@ register boolean clumsy;
 	if (uarmf) dmg += uarmf->spe;
 	dmg += u.udaminc;	/* add ring(s) of increase damage */
 	dmg += (Drunken_boxing && Confusion);
+	if (RngeBloodlust) dmg += 1;
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 
 	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
@@ -249,6 +251,17 @@ register boolean clumsy;
 			else pline("You stomp %s's %s with your lovely boots!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
 		}
 		mon->mstun = TRUE;
+	}
+
+	if (RngeToestomping && !rn2(5) && !mon->mstun) {
+		pline("You stomp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+		mon->mstun = TRUE;
+
+	}
+
+	if (RngeCoquetry && !rn2(5) && !mon->mconf) {
+		pline("Your coquetry demoralizes %s!", mon_nam(mon) );
+		mon->mconf = TRUE;
 	}
 
     if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) ) {
@@ -1191,6 +1204,9 @@ dokick()
 		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
 			pline("You kick the tree. Nothing happens.");
 			return(1);
+		    } else if (RngeJungleAction) {
+			pline("You kick the tree. Nothing happens.");
+			return(1);
 		    } else
 			goto ouch;
 		    }
@@ -1253,6 +1269,9 @@ dokick()
 			return(1);
 		    }
 		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
+			pline("You kick the tree. Nothing happens.");
+			return(1);
+		    } else if (RngeJungleAction) {
 			pline("You kick the tree. Nothing happens.");
 			return(1);
 		    } else

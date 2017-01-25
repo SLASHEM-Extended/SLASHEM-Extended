@@ -608,7 +608,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(138)) {
+	switch (rnd(156)) {
 
 		case 1:
 		case 2:
@@ -765,11 +765,10 @@ randenchantment()
 		case 110:
 			return THE_FORCE;
 		case 111:
-			return STUNNED;
 		case 112:
-			return CONFUSION;
 		case 113:
 		case 114:
+		case 115:
 			switch (rnd(87)) {
 
 			case 1: return SPELLS_LOST;
@@ -860,8 +859,6 @@ randenchantment()
 			case 86: return TURNLIMITATION;
 			case 87: return WEAKSIGHT;
 			}
-		case 115:
-			return FEARED;
 		case 116:
 			return FROZEN;
 		case 117:
@@ -908,6 +905,118 @@ randenchantment()
 			return DIMMED;
 		case 138:
 			return PEACEVISION;
+		case 139:
+		case 140:
+		case 141:
+		case 142:
+		case 143:
+		case 144:
+		case 145:
+		case 146:
+		case 147:
+		case 148:
+		case 149:
+		case 150:
+		case 151:
+		case 152:
+		case 153:
+			switch (rnd(88)) {
+			case 1: return HALLU_PARTY;
+			case 2: return DRUNKEN_BOXING;
+			case 3: return STUNNOPATHY;
+			case 4: return NUMBOPATHY;
+			case 5: return FREEZOPATHY;
+			case 6: return STONED_CHILLER;
+			case 7: return CORROSIVITY;
+			case 8: return FEAR_FACTOR;
+			case 9: return BURNOPATHY;
+			case 10: return SICKOPATHY;
+			case 11: return WONDERLEGS;
+			case 12: return GLIB_COMBAT;
+			case 13: return DIMMOPATHY;
+			case 14: return RNGE_IRREGULARITY; 
+			case 15: return RNGE_INTERNET_ACCESS;
+			case 16: return RNGE_ANTI_GOVERNMENT;
+			case 17: return RNGE_GAS_FILTERING;
+			case 18: return RNGE_VAMPIRIC_DRAIN;
+			case 19: return RNGE_PSEUDO_IDENTIFICATION;
+			case 20: return RNGE_GHOST_SUMMONING;
+			case 21: return RNGE_PRAYER;
+			case 22: return RNGE_ANTI_BEHEADING;
+			case 23: return RNGE_POLAND;
+			case 24: return RNGE_KICKING;
+			case 25: return RNGE_TOESTOMPING;
+			case 26: return RNGE_JUNGLE_ACTION;
+			case 27: return RNGE_UNLIKABILITY;
+			case 28: return RNGE_SPELL_DISRUPTION;
+			case 29: return RNGE_BDSM;
+			case 30: return RNGE_SLIPPING;
+			case 31: return RNGE_MIRRORING;
+			case 32: return RNGE_TRUE_SIGHT;
+			case 33: return RNGE_LIQUID_DIET;
+			case 34: return RNGE_ANGRY_GODS;
+			case 35: return RNGE_RADIO_BROADCASTS;
+			case 36: return RNGE_OCCASIONAL_DAMAGE;
+			case 37: return RNGE_NOISE;
+			case 38: return RNGE_VORTICES;
+			case 39: return RNGE_EXPLOSIONS;
+			case 40: return RNGE_FATAL_ATTRACTION;
+			case 41: return RNGE_VOLTAGE;
+			case 42: return RNGE_WEEPING;
+			case 43: return RNGE_CASTLEVANIA;
+			case 44: return RNGE_ENGLAND;
+			case 45: return RNGE_FORGETTING;
+			case 46: return RNGE_ANTIMAGIC_A;
+			case 47: return RNGE_ANTIMAGIC_B;
+			case 48: return RNGE_ANTIMAGIC_C;
+			case 49: return RNGE_ANTIMAGIC_D;
+			case 50: return RNGE_CHINA;
+			case 51: return RNGE_LIGHT_ABSORPTION;
+			case 52: return RNGE_CHILDBIRTH;
+			case 53: return RNGE_RED_ATTUNEMENT;
+			case 54: return RNGE_POLAR_OPPOSITES;
+			case 55: return RNGE_SICKNESS;
+			case 56: return RNGE_COQUETRY;
+			case 57: return RNGE_IGNORANCE;
+			case 58: return RNGE_VENGEANCE;
+			case 59: return RNGE_HIGH_HEELING;
+			case 60: return RNGE_GRAVITY;
+			case 61: return RNGE_WISH_IMPROVEMENT;
+			case 62: return RNGE_POCKET_MONSTERS;
+			case 63: return RNGE_LEVUNTATION;
+			case 64: return RNGE_PERMANENT_OCCUPATION;
+			case 65: return RNGE_NURSERY;
+			case 66: return RNGE_SLEXUALITY;
+			case 67: return RNGE_ANGBAND;
+			case 68: return RNGE_ANOREXIA;
+			case 69: return RNGE_DNETHACK;
+			case 70: return RNGE_UNNETHACK;
+			case 71: return RNGE_NETHACK_FOURK;
+			case 72: return RNGE_MARITAL_ARTS;
+			case 73: return RNGE_TEAM_SPLAT;
+			case 74: return RNGE_ABOMINATIONS;
+			case 75: return RNGE_PUNISHMENT;
+			case 76: return RNGE_BLOODLUST;
+			case 77: return RNGE_IMMOBILITY;
+			case 78: return RNGE_BOSS_ENCOUNTERS;
+			case 79: return RNGE_IRONMAN_MODE;
+			case 80: return RNGE_RIVERS;
+			case 81: return RNGE_LOUDSPEAKERS;
+			case 82: return RNGE_ARMOR_PRESERVATION;
+			case 83: return RNGE_WEAKNESS;
+			case 84: return RNGE_FRAILNESS;
+			case 85: return RNGE_IRON_MAIDEN;
+			case 86: return RNGE_DONORS;
+			case 87: return RNGE_AIDS;
+			case 88: return RNGE_TRAP_ALERT;
+			}
+		case 154:
+			return STUNNED;
+		case 155:
+			return CONFUSION;
+		case 156:
+			return FEARED;
+
 		default:
 			return POISON_RES;
 

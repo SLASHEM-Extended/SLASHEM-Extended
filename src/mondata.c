@@ -235,6 +235,8 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 		    return FALSE;
 	}
 
+	if (RngeTrueSight && (mdef == &youmonst)) return FALSE;
+
 	return TRUE;
 }
 

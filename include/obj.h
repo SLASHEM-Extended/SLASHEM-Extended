@@ -122,7 +122,7 @@ struct obj {
 #ifdef RECORD_ACHIEVE
 #define record_achieve_special corpsenm
 #endif
-	uchar enchantment;	/* in case of armors, special property --Amy */
+	int enchantment;	/* in case of armors, special property --Amy */
 
 	unsigned oeaten;	/* nutrition left in food, if partly eaten */
 	long age;		/* creation date */
