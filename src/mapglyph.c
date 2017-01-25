@@ -940,9 +940,9 @@ unsigned *ospecial;
 	    int hilitecnt = 0;
 
 	    for (ptr = level.objects[x][y]; ptr; ptr = ptr->nexthere) {
-	        if (ptr->otyp == STATUE) continue;
-	        if (ptr->oinvis) continue;
-	        if (ptr->oinvisreal) continue;
+	        if (ptr && ptr->otyp && ptr->otyp == STATUE) continue;
+	        if (ptr && ptr->oinvis) continue;
+	        if (ptr && ptr->oinvisreal) continue;
 	        hilitecnt += 1;
 	        if (hilitecnt >= 2) break;
 	    }
