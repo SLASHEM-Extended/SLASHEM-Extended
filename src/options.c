@@ -1473,6 +1473,10 @@ boolean tinitial, tfrom_file;
 
 	if (match_optname(opts, "colour", 5, FALSE))
 		Strcpy(opts, "color");	/* fortunately this isn't longer */
+	if (match_optname(opts, "menucolours", 11, FALSE))
+		Strcpy(opts, "menucolors");	/* fortunately this isn't longer */
+	if (match_optname(opts, "statuscolours", 13, FALSE))
+		Strcpy(opts, "statuscolors");	/* fortunately this isn't longer */
 
 	if (!match_optname(opts, "subkeyvalue", 11, TRUE)) /* allow multiple */
 	duplicate_opt_detection(opts, 1);	/* 1 means compound opts */

@@ -2099,7 +2099,7 @@ char		*tmp_levels;
 	} else if (match_varname(buf, "BOULDER", 3)) {
 	    (void) get_uchars(fp, buf, bufp, &iflags.bouldersym, TRUE,
 			      1, "BOULDER");
-	} else if (match_varname(buf, "MENUCOLOR", 9)) {
+	} else if (match_varname(buf, "MENUCOLOR", 9) || match_varname(buf, "MENUCOLOUR", 10)) {
 #ifdef MENU_COLOR
 	   add_menu_coloring(bufp);
 #endif
@@ -2108,7 +2108,7 @@ char		*tmp_levels;
 			     MAXPCHARS, "GRAPHICS");
 	    assign_graphics(translate, len, MAXPCHARS, 0);
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	} else if (match_varname(buf, "STATUSCOLOR", 11)) {
+	} else if (match_varname(buf, "STATUSCOLOR", 11) || match_varname(buf, "STATUSCOLOUR", 12)) {
 	    (void) parse_status_color_options(bufp);
 #endif
 	} else if (match_varname(buf, "DUNGEON", 4)) {
