@@ -136,10 +136,8 @@ struct conditionals {
 #endif
 
 #ifndef TOURIST
-
 	{ OBJ_GLYPH, BULLWHIP, "Hawaiian shirt" },
 	{ OBJ_GLYPH, BULLWHIP, "T-shirt" },
-#endif
 	{ OBJ_GLYPH, LOCK_PICK, "credit card" },
 #endif
 
