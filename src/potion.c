@@ -3735,24 +3735,24 @@ boolean your_fault;
 		    break;
 		}
  do_illness:
+		if (canseemon(mon))
+		    pline("%s looks rather ill.", Monnam(mon));
 		if((mon->mhpmax > 3) && !resist(mon, POTION_CLASS, 0, NOTELL))
 			mon->mhpmax /= 2;
 		if((mon->mhp > 2) && !resist(mon, POTION_CLASS, 0, NOTELL))
 			mon->mhp /= 2;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
-		if (canseemon(mon))
-		    pline("%s looks rather ill.", Monnam(mon));
 		break;
 	case POT_CYANIDE:
 		if (!resist(mon,POTION_CLASS,0,NOTELL)) {
+			if (canseemon(mon)) {
+				pline("%s looks deathly sick.", Monnam(mon));
+			}
 			if (mon->mhp < 10) {
 				killed(mon);
 			} else {
 				mon->mhp /= 5;
 				if (mon->mhp < 1) killed(mon);
-			}
-			if (canseemon(mon)) {
-				pline("%s looks deathly sick.", Monnam(mon));
 			}
 
 		}
@@ -3760,9 +3760,9 @@ boolean your_fault;
 	case POT_RADIUM:
 	case POT_SLIME:	/* too lazy to code something else :D --Amy */
 		if (!resist(mon,POTION_CLASS,0,NOTELL)) {
+			if (canseemon(mon)) pline("%s looks very sick.",Monnam(mon));
 			mon->mhp /= 4;
 			if (mon->mhp < 1) killed(mon);
-			if (canseemon(mon)) pline("%s looks very sick.",Monnam(mon));
 		}
 		break;
 	case POT_STUNNING:
