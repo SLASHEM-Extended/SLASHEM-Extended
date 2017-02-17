@@ -377,6 +377,33 @@ static const struct innate_tech
 	kor_tech[] = { {   1, T_DOUBLE_THROWNAGE, 1},
 		       {   0, 0, 0} },
 
+	occ_tech[] = { {   1, T_SIGIL_DISCHARGE, 1},
+			 {   8, T_RECHARGE, 1},
+			 {   12, T_REINFORCE, 1},
+			 {   16, T_RESEARCH, 1},
+			 {   18, T_SPIRITUALITY_CHECK, 1},
+			 {   20, T_BLOOD_RITUAL, 1},
+			 {   24, T_POWER_SURGE, 1},
+		       {   0, 0, 0} },
+
+	emn_tech[] = { {   1, T_E_FIST, 1},
+			 {   1, T_SIGIL_CONTROL, 1},
+			 {   5, T_WARD_COLD, 1},
+			 {   8, T_REINFORCE, 1},
+			 {   10, T_WARD_ELEC, 1},
+			 {   15, T_WARD_FIRE, 1},
+			 {   20, T_ENT_S_POTION, 1},
+		       {   0, 0, 0} },
+
+	cha_tech[] = { {   1, T_SIGIL_TEMPEST, 1},
+			 {   4, T_REINFORCE, 1},
+			 {   10, T_LUCKY_GAMBLE, 1},
+		       {   18, T_EDDY_WIND, 1},
+		       {   20, T_WORLD_FALL, 1},
+		       {   22, T_EVISCERATE, 1},
+		       {   24, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
+
 	jus_tech[] = { {   12, T_CONCENTRATING, 1},
 		       {   16, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
@@ -3835,6 +3862,9 @@ role_tech()
 		case PM_KORSAIR:		return (kor_tech);
 		case PM_JUSTICE_KEEPER:		return (jus_tech);
 		case PM_MONK: 		return (mon_tech);
+		case PM_OCCULT_MASTER: 		return (occ_tech);
+		case PM_ELEMENTALIST: 		return (emn_tech);
+		case PM_CHAOS_SORCEROR: 		return (cha_tech);
 		case PM_JESTER: 		return (jes_tech);
 		case PM_LADIESMAN: 		return (lad_tech);
 		case PM_SEXYMATE: 		return (sex_tech);

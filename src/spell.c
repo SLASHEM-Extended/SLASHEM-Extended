@@ -1641,6 +1641,8 @@ boolean atme;
 
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
 
+	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {energy *= 3; energy /= 4;}
+
 	if (Race_if(PM_MANSTER) && energy > 1) {
 		energy *= 2;
 		energy /= 3;
@@ -5939,43 +5941,43 @@ rerollX:
 			default:
 			case P_ISRESTRICTED:
 			case P_UNSKILLED:
-				if (!rn2(5)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 12 : 5)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_BASIC:
-				if (!rn2(6)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 14 : 6)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_SKILLED:
-				if (!rn2(7)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 16 : 7)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_EXPERT:
-				if (!rn2(8)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 20 : 8)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_MASTER:
-				if (!rn2(9)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 22 : 9)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_GRAND_MASTER:
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 25 : 10)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
 				break;
 			case P_SUPREME_MASTER:
-				if (!rn2(11)) {
+				if (!rn2(Role_if(PM_OCCULT_MASTER) ? 30 : 11)) {
 					pline("You fail to control the occult powers and are hit with backlash!");
 					badeffect();
 				}
@@ -6478,28 +6480,36 @@ int spell;
 	switch (spellev(spell)) {
 
 			case 1:
-				chance -= 10;
+				chance -= 5;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 5;
 				break;
 			case 2:
-				chance -= 20;
+				chance -= 10;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 10;
 				break;
 			case 3:
-				chance -= 30;
+				chance -= 15;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 15;
 				break;
 			case 4:
-				chance -= 50;
+				chance -= 25;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 25;
 				break;
 			case 5:
-				chance -= 80;
+				chance -= 40;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 40;
 				break;
 			case 6:
-				chance -= 120;
+				chance -= 60;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 60;
 				break;
 			case 7:
-				chance -= 160;
+				chance -= 80;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 80;
 				break;
 			case 8:
-				chance -= 200;
+				chance -= 100;
+				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 100;
 				break;
 
 		}

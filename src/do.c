@@ -1484,6 +1484,85 @@ boolean at_stairs, falling, portal;
 
 		}
 
+		if (Role_if(PM_ELEMENTALIST) && In_quest(&u.uz)) {
+			register int tryct;
+			register int booktype;
+newelembook:
+			tryct = 0;
+			booktype = 0;
+			while ( ((objects[booktype].oc_skill && objects[booktype].oc_skill != P_ELEMENTAL_SPELL) || !objects[booktype].oc_skill) && tryct < 10000) {
+ 				booktype = SPE_FORCE_BOLT + rn2(SPE_PSYBEAM - SPE_FORCE_BOLT + 1);
+				tryct++;
+			}
+
+			if (objects[booktype].oc_skill && objects[booktype].oc_skill == P_ELEMENTAL_SPELL) {
+
+rerollelemloc:
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+
+				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+				} else if (rn2(1000)) goto rerollelemloc;
+
+			}
+			if (rn2(5)) goto newelembook;
+
+		}
+
+		if (Role_if(PM_OCCULT_MASTER) && In_quest(&u.uz)) {
+			register int tryct;
+			register int booktype;
+newoccbook:
+			tryct = 0;
+			booktype = 0;
+			while ( ((objects[booktype].oc_skill && objects[booktype].oc_skill != P_OCCULT_SPELL) || !objects[booktype].oc_skill) && tryct < 10000) {
+ 				booktype = SPE_FORCE_BOLT + rn2(SPE_PSYBEAM - SPE_FORCE_BOLT + 1);
+				tryct++;
+			}
+			if (objects[booktype].oc_skill && objects[booktype].oc_skill == P_OCCULT_SPELL) {
+
+rerolloccloc:
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+
+				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+				} else if (rn2(1000)) goto rerolloccloc;
+
+			}
+			if (rn2(5)) goto newoccbook;
+
+		}
+
+		if (Role_if(PM_CHAOS_SORCEROR) && In_quest(&u.uz)) {
+			register int tryct;
+			register int booktype;
+newchabook:
+			tryct = 0;
+			booktype = 0;
+			while ( ((objects[booktype].oc_skill && objects[booktype].oc_skill != P_CHAOS_SPELL) || !objects[booktype].oc_skill) && tryct < 10000) {
+ 				booktype = SPE_FORCE_BOLT + rn2(SPE_PSYBEAM - SPE_FORCE_BOLT + 1);
+				tryct++;
+			}
+			if (objects[booktype].oc_skill && objects[booktype].oc_skill == P_CHAOS_SPELL) {
+
+rerollchaloc:
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+
+				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
+
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+				} else if (rn2(1000)) goto rerollchaloc;
+
+			}
+			if (rn2(5)) goto newchabook;
+
+		}
+
 		if (isangbander || RngeAngband || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
 
 			if (Aggravate_monster) {

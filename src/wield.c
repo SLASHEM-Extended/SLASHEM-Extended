@@ -120,6 +120,12 @@ boolean put_away;
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_BLADE_OF_GOTHMOG && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		pline("A terrible black aura surrounds your sword...");
+	}
+
 	if (uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
 	    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
 	}

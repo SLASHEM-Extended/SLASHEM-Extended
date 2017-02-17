@@ -12223,6 +12223,14 @@ struct obj *obj;
 					pline("Artifact specs: if (trophy_get == TRUE) increase_player_stats :-) Seriously, getting a trophy while wearing it improves your maximum HP and Pw. Now go ahead and win the Junethack tournament, we're all counting on you!"); break;
 				case ART_YOG_SOTHOTH_HELP_ME:
 					pline("Artifact specs: psi resistance when worn. By the way, Adeon really loves to update Pinobot for the new SLEX monsters because Yog-Sothoth actually is one of them! :-)"); break;
+				case ART_WHISTLE_OF_PROTECTION:
+					pline("Artifact specs: energy regeneration and magic resistance while carried, can be invoked for energy boost, chaotic, occult master quest artifact."); break;
+				case ART_BLADE_OF_GOTHMOG:
+					pline("Artifact specs: +13 to-hit and +7 damage to fire-susceptible monsters, fire resistance while wielded, heavily autocurses, can be invoked to summon a fire elemental, chaotic, chaos sorceror quest artifact."); break;
+				case ART_BEAM_MULTIPLIER:
+					pline("Artifact specs: fire, cold and shock resistance when worn, increases the average range of all beams, neutral, elementalist quest artifact."); break;
+				case ART_ELLI_S_PSEUDOBAND_OF_POS:
+					pline("Artifact specs: reflection when wielded, +8 to-hit and +4 drain life damage, chaotic, wild talent quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

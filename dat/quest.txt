@@ -318,6 +318,663 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#       Occult Master
+#
+%Cc Occ 00001
+You enter %H, the place where your career as a spellcaster
+has begun. If %l needs your help then something bad must have
+happened. There are also a bunch of hostile creatures around...
+%E
+%Cp Occ 00002
+Once again, you are back at %H.
+%E
+%Cp Occ 00003
+You are back at %H, and get the feeling that %l
+needs your help urgently.
+%E
+%Cp Occ 00005
+"I hope you've trained your spellcasting!"
+%E
+%Cp Occ 00006
+"%l says that %n has stolen a valuable artifact!"
+%E
+%Cp Occ 00007
+"%o has been taken away from us! We need it back!"
+%E
+%Cp Occ 00008
+"Keep looking for more spellbooks!"
+%E
+%Cp Occ 00009
+"Quick, you need to save %H!"
+%E
+%Cp Occ 00010
+"You're really good at spellcasting, %p!"
+%E
+%Cp Occ 00011
+"You should put your new artifact to good use!"
+%E
+%Cp Occ 00012
+"I'm grateful that you freed us from %n's evil influence."
+%E
+%Cp Occ 00013
+"Did you find more spellbooks?"
+%E
+%Cp Occ 00014
+"So I guess you're a master magician now?"
+%E
+%Cc Occ 00015
+"%p! Thank %d you're here!
+I'm in need of your assistance, because my evil twin %n
+from the parallel dimension has invaded %H.
+If you're ready, your task will be to eliminate that threat!"
+%E
+%Cp Occ 00016
+"%p, we really need your help! I hope you're ready now!"
+%E
+%Cp Occ 00017
+"This is the last chance, %p! If you can't fight for us,
+%n will kill us all!"
+%E
+%Cc Occ 00018
+"You have completely failed in your magical training, %p.
+Remove yourself from my sight at once."
+%E
+%Cc Occ 00019
+"Your spellcasting abilities are not good enough yet to defeat
+the mighty %n! Keep training and come back as soon as you're ready!"
+%E
+%Cc Occ 00020
+"You are not faithful to your own deity, %p! Go away until you
+have done some good deeds and then we'll talk again."
+%E
+%Cc Occ 00021
+"Yes %p, you are ready to face %n. That evil person dared to steal
+%o, our most prized artifact.
+
+If you can kill %n, that artifact will be yours to keep. For me,
+the important thing is that such a mean thief gets killed for that
+crime. You will venture to %i and recover %o!"
+%E
+%Cp Occ 00025
+"%n is a very powerful spellcaster. I hope you're really ready."
+%E
+%Cp Occ 00026
+"Many of our valuable spellbooks have been stolen too."
+%E
+%Cp Occ 00027
+"If you reach %i, you may find powerful spellbooks. Use them if you can."
+%E
+%Cp Occ 00028
+"You can do it! %o will be yours if you succeed!"
+%E
+%Cp Occ 00029
+"Kill my evil twin!"
+%E
+%Cp Occ 00030
+"%n does not deserve to live!"
+%E
+%Cp Occ 00031
+"Now is the time to put your magical abilities to good use!"
+%E
+%Cp Occ 00032
+"On your path, you may find useful spellbooks that we had to leave behind!"
+%E
+%Cp Occ 00033
+"Good luck!"
+%E
+%Cp Occ 00034
+"Don't forget the reward you'll get for completing your task!"
+%E
+%Cc Occ 00035
+You are getting closer to %i.
+%E
+%Cp Occ 00036
+You're still not at %i yet.
+%E
+%Cc Occ 00040
+%n is here! Now is the time to claim %o!
+%E
+%Cp Occ 00041
+You still need to defeat %n and take %o!
+%E
+%Cc Occ 00050
+"Ah, %p. I see you're running errands for %l.
+Does that old loser and his entourage want %o back?
+Because you can't have it back. You will die at my hands now,
+and then I'll come for %l and everyone else who dares to
+stand against my might. No one can stop me."
+%E
+%Cp Occ 00051
+"As I said, you will not get %o back.
+The only thing you will get is your own destruction."
+%E
+%Cc Occ 00052
+"Now die already, I can't wait to exact revenge on %l after
+you met your inevitable demise!"
+%E
+%Cc Occ 00053
+"That was the last straw. Fear my wrath, for I will steal
+your magic resistance first and then cast touch of death!"
+%E
+%Cp Occ 00060
+"%l's life is forfeit!"
+%E
+%Cp Occ 00061
+"Your life is forfeit as well!"
+%E
+%Cp Occ 00062
+"%o is mine and always will be!"
+%E
+%Cp Occ 00063
+"So %l is calling me a thief. But that will end soon, for
+a corpse won't be calling me anything anymore!"
+%E
+%Cp Occ 00064
+"You will die now!"
+%E
+%Cp Occ 00065
+"Puny 'spellcaster', you can do nothing right!"
+%E
+%Cp Occ 00066
+"Go ahead, pray to %d, loser, and hope I won't come for you anyway!"
+%E
+%Cp Occ 00067
+"Are you running out of mana yet? You should know that unlike you,
+I've learned to cast without mana. I will easily outlast you forever."
+%E
+%Cp Occ 00068
+"You and your friends are dead, you just don't know it yet!"
+%E
+%Cp Occ 00069
+"The spells that you have learned are all useless against me!"
+%E
+%Cc Occ 00070
+%o is yours! Now hurry back to %l!
+%E
+%Cc Occ 00080
+Dying, %n gasps:
+"This is impossible. I had such big plans. I wanted world domination,
+and I had already dug a grave for %l too... and you come along
+and ruin everything.
+Beware, for I shall return one day and be stronger than ever,
+and that day will be your last..."
+%E
+%Cc Occ 00081
+%l greets you:
+
+"Congratulations! You are the new owner of %o now.
+Your next task is to venture down to Gehennom, the Under World,
+and retrieve two more powerful artifacts. Only then you can
+truly save our world."
+%E
+%Cc Occ 00082
+"As I said, %o is yours for the keeping. Use it for a good purpose!"
+%E
+%Cp Occ 00090
+"%p, if you have all three powerful artifacts - Bell, Book and Candle -
+then you can open the way to the place where the Amulet of Yendor is kept!"
+%E
+%Cc Occ 00091
+"Well done, %p! You need to take that amulet out of the dungeon now.
+Then find a high altar to %d and offer it there!"
+%E
+%Cc Occ 00095
+"You filthy heretic! We will tolerate your existence no longer.
+Leave our camp and never come back. If I ever see you again, I will kill you."
+%E
+%Cp Occ 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Occ 00101
+You again sense %l pleading for help.
+%E
+%Cp Occ 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#       Chaos Sorceror
+#
+%Cc Cha 00001
+You enter %H, the place where your career as a spellcaster
+has begun. If %l needs your help then something bad must have
+happened. There are also a bunch of hostile creatures around...
+%E
+%Cp Cha 00002
+Once again, you are back at %H.
+%E
+%Cp Cha 00003
+You are back at %H, and get the feeling that %l
+needs your help urgently.
+%E
+%Cp Cha 00005
+"I hope you've trained your spellcasting!"
+%E
+%Cp Cha 00006
+"%l says that %n has stolen a valuable artifact!"
+%E
+%Cp Cha 00007
+"%o has been taken away from us! We need it back!"
+%E
+%Cp Cha 00008
+"Keep looking for more spellbooks!"
+%E
+%Cp Cha 00009
+"Quick, you need to save %H!"
+%E
+%Cp Cha 00010
+"You're really good at spellcasting, %p!"
+%E
+%Cp Cha 00011
+"You should put your new artifact to good use!"
+%E
+%Cp Cha 00012
+"I'm grateful that you freed us from %n's evil influence."
+%E
+%Cp Cha 00013
+"Did you find more spellbooks?"
+%E
+%Cp Cha 00014
+"So I guess you're a master magician now?"
+%E
+%Cc Cha 00015
+"%p! Thank %d you're here!
+I'm in need of your assistance, because my evil twin %n
+from the parallel dimension has invaded %H.
+If you're ready, your task will be to eliminate that threat!"
+%E
+%Cp Cha 00016
+"%p, we really need your help! I hope you're ready now!"
+%E
+%Cp Cha 00017
+"This is the last chance, %p! If you can't fight for us,
+%n will kill us all!"
+%E
+%Cc Cha 00018
+"You have completely failed in your magical training, %p.
+Remove yourself from my sight at once."
+%E
+%Cc Cha 00019
+"Your spellcasting abilities are not good enough yet to defeat
+the mighty %n! Keep training and come back as soon as you're ready!"
+%E
+%Cc Cha 00020
+"You are not faithful to your own deity, %p! Go away until you
+have done some good deeds and then we'll talk again."
+%E
+%Cc Cha 00021
+"Yes %p, you are ready to face %n. That evil person dared to steal
+%o, our most prized artifact.
+
+If you can kill %n, that artifact will be yours to keep. For me,
+the important thing is that such a mean thief gets killed for that
+crime. You will venture to %i and recover %o!"
+%E
+%Cp Cha 00025
+"%n is a very powerful spellcaster. I hope you're really ready."
+%E
+%Cp Cha 00026
+"Many of our valuable spellbooks have been stolen too."
+%E
+%Cp Cha 00027
+"If you reach %i, you may find powerful spellbooks. Use them if you can."
+%E
+%Cp Cha 00028
+"You can do it! %o will be yours if you succeed!"
+%E
+%Cp Cha 00029
+"Kill my evil twin!"
+%E
+%Cp Cha 00030
+"%n does not deserve to live!"
+%E
+%Cp Cha 00031
+"Now is the time to put your magical abilities to good use!"
+%E
+%Cp Cha 00032
+"On your path, you may find useful spellbooks that we had to leave behind!"
+%E
+%Cp Cha 00033
+"Good luck!"
+%E
+%Cp Cha 00034
+"Don't forget the reward you'll get for completing your task!"
+%E
+%Cc Cha 00035
+You are getting closer to %i.
+%E
+%Cp Cha 00036
+You're still not at %i yet.
+%E
+%Cc Cha 00040
+%n is here! Now is the time to claim %o!
+%E
+%Cp Cha 00041
+You still need to defeat %n and take %o!
+%E
+%Cc Cha 00050
+"Ah, %p. I see you're running errands for %l.
+Does that old loser and his entourage want %o back?
+Because you can't have it back. You will die at my hands now,
+and then I'll come for %l and everyone else who dares to
+stand against my might. No one can stop me."
+%E
+%Cp Cha 00051
+"As I said, you will not get %o back.
+The only thing you will get is your own destruction."
+%E
+%Cc Cha 00052
+"Now die already, I can't wait to exact revenge on %l after
+you met your inevitable demise!"
+%E
+%Cc Cha 00053
+"That was the last straw. Fear my wrath, for I will steal
+your magic resistance first and then cast touch of death!"
+%E
+%Cp Cha 00060
+"%l's life is forfeit!"
+%E
+%Cp Cha 00061
+"Your life is forfeit as well!"
+%E
+%Cp Cha 00062
+"%o is mine and always will be!"
+%E
+%Cp Cha 00063
+"So %l is calling me a thief. But that will end soon, for
+a corpse won't be calling me anything anymore!"
+%E
+%Cp Cha 00064
+"You will die now!"
+%E
+%Cp Cha 00065
+"Puny 'spellcaster', you can do nothing right!"
+%E
+%Cp Cha 00066
+"Go ahead, pray to %d, loser, and hope I won't come for you anyway!"
+%E
+%Cp Cha 00067
+"Are you running out of mana yet? You should know that unlike you,
+I've learned to cast without mana. I will easily outlast you forever."
+%E
+%Cp Cha 00068
+"You and your friends are dead, you just don't know it yet!"
+%E
+%Cp Cha 00069
+"The spells that you have learned are all useless against me!"
+%E
+%Cc Cha 00070
+%o is yours! Now hurry back to %l!
+%E
+%Cc Cha 00080
+Dying, %n gasps:
+"This is impossible. I had such big plans. I wanted world domination,
+and I had already dug a grave for %l too... and you come along
+and ruin everything.
+Beware, for I shall return one day and be stronger than ever,
+and that day will be your last..."
+%E
+%Cc Cha 00081
+%l greets you:
+
+"Congratulations! You are the new owner of %o now.
+Your next task is to venture down to Gehennom, the Under World,
+and retrieve two more powerful artifacts. Only then you can
+truly save our world."
+%E
+%Cc Cha 00082
+"As I said, %o is yours for the keeping. Use it for a good purpose!"
+%E
+%Cp Cha 00090
+"%p, if you have all three powerful artifacts - Bell, Book and Candle -
+then you can open the way to the place where the Amulet of Yendor is kept!"
+%E
+%Cc Cha 00091
+"Well done, %p! You need to take that amulet out of the dungeon now.
+Then find a high altar to %d and offer it there!"
+%E
+%Cc Cha 00095
+"You filthy heretic! We will tolerate your existence no longer.
+Leave our camp and never come back. If I ever see you again, I will kill you."
+%E
+%Cp Cha 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Cha 00101
+You again sense %l pleading for help.
+%E
+%Cp Cha 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#       Elementalist
+#
+%Cc Elm 00001
+You enter %H, the place where your career as a spellcaster
+has begun. If %l needs your help then something bad must have
+happened. There are also a bunch of hostile creatures around...
+%E
+%Cp Elm 00002
+Once again, you are back at %H.
+%E
+%Cp Elm 00003
+You are back at %H, and get the feeling that %l
+needs your help urgently.
+%E
+%Cp Elm 00005
+"I hope you've trained your spellcasting!"
+%E
+%Cp Elm 00006
+"%l says that %n has stolen a valuable artifact!"
+%E
+%Cp Elm 00007
+"%o has been taken away from us! We need it back!"
+%E
+%Cp Elm 00008
+"Keep looking for more spellbooks!"
+%E
+%Cp Elm 00009
+"Quick, you need to save %H!"
+%E
+%Cp Elm 00010
+"You're really good at spellcasting, %p!"
+%E
+%Cp Elm 00011
+"You should put your new artifact to good use!"
+%E
+%Cp Elm 00012
+"I'm grateful that you freed us from %n's evil influence."
+%E
+%Cp Elm 00013
+"Did you find more spellbooks?"
+%E
+%Cp Elm 00014
+"So I guess you're a master magician now?"
+%E
+%Cc Elm 00015
+"%p! Thank %d you're here!
+I'm in need of your assistance, because my evil twin %n
+from the parallel dimension has invaded %H.
+If you're ready, your task will be to eliminate that threat!"
+%E
+%Cp Elm 00016
+"%p, we really need your help! I hope you're ready now!"
+%E
+%Cp Elm 00017
+"This is the last chance, %p! If you can't fight for us,
+%n will kill us all!"
+%E
+%Cc Elm 00018
+"You have completely failed in your magical training, %p.
+Remove yourself from my sight at once."
+%E
+%Cc Elm 00019
+"Your spellcasting abilities are not good enough yet to defeat
+the mighty %n! Keep training and come back as soon as you're ready!"
+%E
+%Cc Elm 00020
+"You are not faithful to your own deity, %p! Go away until you
+have done some good deeds and then we'll talk again."
+%E
+%Cc Elm 00021
+"Yes %p, you are ready to face %n. That evil person dared to steal
+%o, our most prized artifact.
+
+If you can kill %n, that artifact will be yours to keep. For me,
+the important thing is that such a mean thief gets killed for that
+crime. You will venture to %i and recover %o!"
+%E
+%Cp Elm 00025
+"%n is a very powerful spellcaster. I hope you're really ready."
+%E
+%Cp Elm 00026
+"Many of our valuable spellbooks have been stolen too."
+%E
+%Cp Elm 00027
+"If you reach %i, you may find powerful spellbooks. Use them if you can."
+%E
+%Cp Elm 00028
+"You can do it! %o will be yours if you succeed!"
+%E
+%Cp Elm 00029
+"Kill my evil twin!"
+%E
+%Cp Elm 00030
+"%n does not deserve to live!"
+%E
+%Cp Elm 00031
+"Now is the time to put your magical abilities to good use!"
+%E
+%Cp Elm 00032
+"On your path, you may find useful spellbooks that we had to leave behind!"
+%E
+%Cp Elm 00033
+"Good luck!"
+%E
+%Cp Elm 00034
+"Don't forget the reward you'll get for completing your task!"
+%E
+%Cc Elm 00035
+You are getting closer to %i.
+%E
+%Cp Elm 00036
+You're still not at %i yet.
+%E
+%Cc Elm 00040
+%n is here! Now is the time to claim %o!
+%E
+%Cp Elm 00041
+You still need to defeat %n and take %o!
+%E
+%Cc Elm 00050
+"Ah, %p. I see you're running errands for %l.
+Does that old loser and his entourage want %o back?
+Because you can't have it back. You will die at my hands now,
+and then I'll come for %l and everyone else who dares to
+stand against my might. No one can stop me."
+%E
+%Cp Elm 00051
+"As I said, you will not get %o back.
+The only thing you will get is your own destruction."
+%E
+%Cc Elm 00052
+"Now die already, I can't wait to exact revenge on %l after
+you met your inevitable demise!"
+%E
+%Cc Elm 00053
+"That was the last straw. Fear my wrath, for I will steal
+your magic resistance first and then cast touch of death!"
+%E
+%Cp Elm 00060
+"%l's life is forfeit!"
+%E
+%Cp Elm 00061
+"Your life is forfeit as well!"
+%E
+%Cp Elm 00062
+"%o is mine and always will be!"
+%E
+%Cp Elm 00063
+"So %l is calling me a thief. But that will end soon, for
+a corpse won't be calling me anything anymore!"
+%E
+%Cp Elm 00064
+"You will die now!"
+%E
+%Cp Elm 00065
+"Puny 'spellcaster', you can do nothing right!"
+%E
+%Cp Elm 00066
+"Go ahead, pray to %d, loser, and hope I won't come for you anyway!"
+%E
+%Cp Elm 00067
+"Are you running out of mana yet? You should know that unlike you,
+I've learned to cast without mana. I will easily outlast you forever."
+%E
+%Cp Elm 00068
+"You and your friends are dead, you just don't know it yet!"
+%E
+%Cp Elm 00069
+"The spells that you have learned are all useless against me!"
+%E
+%Cc Elm 00070
+%o is yours! Now hurry back to %l!
+%E
+%Cc Elm 00080
+Dying, %n gasps:
+"This is impossible. I had such big plans. I wanted world domination,
+and I had already dug a grave for %l too... and you come along
+and ruin everything.
+Beware, for I shall return one day and be stronger than ever,
+and that day will be your last..."
+%E
+%Cc Elm 00081
+%l greets you:
+
+"Congratulations! You are the new owner of %o now.
+Your next task is to venture down to Gehennom, the Under World,
+and retrieve two more powerful artifacts. Only then you can
+truly save our world."
+%E
+%Cc Elm 00082
+"As I said, %o is yours for the keeping. Use it for a good purpose!"
+%E
+%Cp Elm 00090
+"%p, if you have all three powerful artifacts - Bell, Book and Candle -
+then you can open the way to the place where the Amulet of Yendor is kept!"
+%E
+%Cc Elm 00091
+"Well done, %p! You need to take that amulet out of the dungeon now.
+Then find a high altar to %d and offer it there!"
+%E
+%Cc Elm 00095
+"You filthy heretic! We will tolerate your existence no longer.
+Leave our camp and never come back. If I ever see you again, I will kill you."
+%E
+%Cp Elm 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Elm 00101
+You again sense %l pleading for help.
+%E
+%Cp Elm 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #       Goldminer
 #
 %Cc Gol 00001
@@ -24275,6 +24932,282 @@ You couldn't quite make out that last message.
 You again sense %l pleading for help.
 %E
 %Cp Tou 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#       Wild Talent
+#
+%Cc Wil 00001
+You breathe a sigh of relief as you find yourself back in the familiar
+surroundings of %H.
+
+You quickly notice that things do not appear the way they did when you
+left.  The town is dark and quiet.  There are no sounds coming from
+behind the town walls, and no campfires burning in the fields.  As a
+matter of fact, you do not %x any movement in the fields at all, and
+the crops look as though they have been untended for many weeks.
+%E
+%Cp Wil 00002
+Once again, you are back at %H.
+%E
+%Cp Wil 00003
+You are back at %H.
+Things appear to have become so bad that you fear that soon
+%H will not be here to return to.
+%E
+%Cp Wil 00005
+"Gehennom on 5 zorkmids a day -- more like 500 a day if you ask me."
+%E
+%Cp Wil 00006
+"Do you know where I could find some nice postcards of The Gnomish Mines?"
+%E
+%Cp Wil 00007
+"Have you tried the weird toilets?"
+%E
+%Cp Wil 00008
+"Don't stay at the Inn, I hear the food is terrible and it has rats."
+%E
+%Cp Wil 00009
+"They told me that this was the off season!"
+%E
+%Cp Wil 00010
+"Gehennom on 5 zorkmids a day -- more like 500 a day if you ask me."
+%E
+%Cp Wil 00011
+"Do you know where I could find some nice postcards of The Gnomish Mines?"
+%E
+%Cp Wil 00012
+"Have you tried the weird toilets?"
+%E
+%Cp Wil 00013
+"If you stick around, I'll show you the pictures from my latest trip."
+%E
+%Cp Wil 00014
+"Did you bring me back any souvenirs?"
+%E
+%Cc Wil 00015
+"Is it really you, %p!  I had given up hope for your return.
+As you can %x, we are desperately in need of your talents.  Someone must
+defeat %n if our town is become what it once was.
+
+"Let me see if you are ready to be that someone."
+%E
+%Cp Wil 00016
+"Things are getting worse, %p.
+I hope that this time you are ready."
+%E
+%Cp Wil 00017
+"I hope that for the sake of %H you have prepared
+yourself this time."
+%E
+%Cc Wil 00018
+"It is too late, %p.  You are not even worthy to die amongst us.
+Leave %H and never return."
+%E
+%Cc Wil 00019
+"There is still too much that you have to learn before you can undertake
+the next step.  Return to us as a proven %R, and perhaps then
+you will be ready.
+
+"Go back now, and may the teachings of %d serve you well."
+%E
+%Cc Wil 00020
+"It would be an affront to %d to have one not true to the
+%a path undertake her bidding.
+
+"You must not return to us until you have purified yourself of these
+bad influences on your actions.  Remember, only by following the %a
+path can you hope to overcome the obstacles you will face."
+%E
+%Cc Wil 00021
+"You have indeed proven yourself a worthy %c, %p.
+
+"But now your kinfolk and I must ask you to put aside your travels and
+help us in our time of need.  After you left us we elected a new mayor,
+%n.  He proved to be a most heinous and vile creature.
+
+"Soon after taking office he absconded with %o
+and fled town, leaving behind his henchmen to rule over us.  In order
+for us to regain control of our town, you must enter %i
+and recover %o.
+
+"Do not be distracted on your quest.  If you do not return quickly I fear
+that all will be lost.  Let us both pray now that %d will guide you
+and keep you safe."
+%E
+%Cp Wil 00025
+"Do not be fooled by the false promises of %n."
+%E
+%Cp Wil 00026
+"To enter %i you must pass many traps."
+%E
+%Cp Wil 00027
+"If you do not return with %o, your quest
+will be in vain."
+%E
+%Cp Wil 00028
+"Do not be afraid to call upon %d if you truly need help."
+%E
+%Cp Wil 00029
+"If you do not destroy %n, he will follow you back here!"
+%E
+%Cp Wil 00030
+"Take %o from %n
+and you may be able to defeat him."
+%E
+%Cp Wil 00031
+"You must hurry, %p!"
+%E
+%Cp Wil 00032
+"You are like %Sa to me, %p.  Do not let me down."
+%E
+%Cp Wil 00033
+"If you are %a at all times you may succeed, %p."
+%E
+%Cp Wil 00034
+"Let all who meet you on your journey know that you are on an quest for
+%l and grant safe passage."
+%E
+%Cc Wil 00035
+Only your faith in %d keeps you from trembling.  You %x
+the handiwork of %ns henchlings everywhere.
+%E
+%Cp Wil 00036
+You know that this time you must find and destroy %n.
+%E
+%Cc Wil 00040
+You sense the presence of %o.
+%E
+%Cp Wil 00041
+You gain confidence, knowing that you may soon be united with
+%o.
+%E
+%Cc Wil 00050
+"So, %p, %l thinks that you can wrest
+%o from me!
+
+"It only proves how desperate he has become that he sends %ra to
+try and defeat me.  When this day is over, I will have you enslaved
+in the mines where you will rue the day that you ever entered
+%i."
+%E
+%Cp Wil 00051
+"I let you live the last time because it gave me pleasure.
+This time I will destroy you, %p."
+%E
+%Cc Wil 00052
+"These meetings come to bore me.  You disturb my workings with
+%o.
+
+"If you do not run away now, I will inflict so much suffering on you that
+%l will feel guilty for ever having sent his %S to me!"
+%E
+%Cc Wil 00053
+"You fool.  You do not know how to call upon the powers of
+%o.
+
+"Return it to me and I will teach you how to use it, and together we
+will rule %H.  But do so now, as my patience
+grows thin."
+%E
+%Cp Wil 00060
+"I defeated %l and I will defeat you, %p."
+%E
+%Cp Wil 00061
+"Where is %d now!  You must realize no one can help you here."
+%E
+%Cp Wil 00062
+"Beg for mercy now and I may be lenient on you."
+%E
+%Cp Wil 00063
+"If you were not so %a, you might have stood a chance."
+%E
+%Cp Wil 00064
+"Vengeance is mine at last, %p."
+%E
+%Cp Wil 00065
+"I only wish that %l had a more worthy %r to send against me."
+%E
+%Cp Wil 00066
+"With %o in my possession you cannot
+hope to defeat me."
+%E
+%Cp Wil 00067
+"%nC has never been defeated, NEVER!"
+%E
+%Cp Wil 00068
+"Are you truly the best %H has to send against me?
+I pity %l."
+%E
+%Cp Wil 00069
+"How do you spell %p?  I want to ensure the marker on your grave is
+correct as a warning to your %sp."
+%E
+%Cc Wil 00070
+As you pick up %o, you feel a great
+weight has been lifted from your shoulders.  Your only thoughts are
+to quickly return to %H and find %l.
+%E
+%Cc Wil 00080
+You turn in the direction of %n.  As his earthly body begins
+to vanish before your eyes, you hear him curse:
+
+    You shall never be rid of me, %p!
+    I will find you where ever you go and regain what is rightly mine.
+%E
+%Cc Wil 00081
+As %l detects the presence of %o,
+he almost smiles for the first time in many a full moon.
+
+As he looks up from %o he says:
+
+    You have recovered %o.  You are its
+    owner now, but not its master.  Let it work with you as you continue
+    your journey.  With its help, and %d to guide you on the
+    %a path, you may yet recover the Amulet of Yendor.
+%E
+%Cc Wil 00082
+"%oC is yours now.  %Z await your
+return through the magic portal that brought you here."
+%E
+%Cp Wil 00090
+"I could not be more proud than if you were my own %S, %p!
+Tell me of your adventures in quest of the Amulet of Yendor."
+%E
+%Cc Wil 00091
+"Stand back and let me look at you, %p.
+Now that you have recovered the Amulet of Yendor, I'm afraid living
+out your days in %H would seem pretty tame.
+
+"You have come too far to stop now, for there are still more tasks that
+our oral history foretells for you.  Forever more, though, your name shall
+be spoken by the %gP with awe.  You are truly an inspiration to your
+%sp!"
+%E
+%Cc Wil 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Wil 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Wil 00101
+You again sense %l pleading for help.
+%E
+%Cp Wil 00102
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E

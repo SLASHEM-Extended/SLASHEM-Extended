@@ -282,6 +282,105 @@ static struct trobj Poison_Mage[] = {
   	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj OccultMaster[] = {
+#define O_BOOK1         0
+#define O_BOOK2         1
+#define O_BOOK3         2
+#define O_BOOK4         3
+#define O_WAND         4
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },       
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },       
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, 1 },       
+	{ COLLUSION_KNIFE, 3, WEAPON_CLASS, 1, 1 },
+	{ BLACK_DRESS, 0, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ K_RATION, 0, FOOD_CLASS, 5, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ SCR_STINKING_CLOUD, 0, SCROLL_CLASS, 1, 1 },
+  	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Elementalist[] = {
+#define E_BOOK1         0
+#define E_BOOK2         1
+#define E_BOOK3         2
+#define E_BOOK4         3
+#define E_WAND         4
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, 1 },        
+	{ FIRE_STICK, 2, WEAPON_CLASS, 1, 1 },
+	{ ROBE_OF_PERMANENCE, 0, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
+  	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj ChaosSorceror[] = {
+#define C_BOOK1         0
+#define C_BOOK2         1
+#define C_BOOK3         2
+#define C_BOOK4         3
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },       
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },       
+	{ UNDEF_TYP, 0, WEAPON_CLASS, 1, 0 },
+	{ ROBE_OF_RANDOMNESS, 3, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
+	{ SCR_RUMOR, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ SCR_MESSAGE, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 2, UNDEF_BLESS },
+	{ HACKER_S_FOOD, 0, FOOD_CLASS, 1, 0 },
+	{ SILVER_SLINGSTONE, 0, GEM_CLASS, 10, UNDEF_BLESS },
+  	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj WildTalent[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, TOOL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
+
+  	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj Abuser[] = {
 	{ BULLWHIP, 8, WEAPON_CLASS, 1, 1 },
 	{ KNOUT, 2, WEAPON_CLASS, 1, 1 },
@@ -4374,6 +4473,59 @@ static const struct def_skill Skill_Wan[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Elm[] = {
+    { P_DAGGER, P_EXPERT },		    { P_KNIFE, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_SCIMITAR, P_EXPERT },
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },		{ P_FLAIL, P_EXPERT },
+    { P_QUARTERSTAFF, P_MASTER },		{ P_POLEARMS, P_EXPERT },
+    { P_TRIDENT, P_MASTER },		{ P_WHIP, P_EXPERT },
+    { P_LIGHTSABER, P_EXPERT },		{ P_BODY_SPELL, P_EXPERT },
+    { P_ELEMENTAL_SPELL, P_GRAND_MASTER },		{ P_MATTER_SPELL, P_MASTER },
+    { P_BARE_HANDED_COMBAT, P_MASTER },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_DEVICES, P_MASTER },
+    { P_SPIRITUALITY, P_EXPERT },
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Occ[] = {
+    { P_DAGGER, P_MASTER },		{ P_KNIFE, P_MASTER },
+    { P_AXE, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },		{ P_SABER, P_EXPERT },
+    { P_PADDLE, P_MASTER },		{ P_MORNING_STAR, P_MASTER },
+    { P_HAMMER, P_EXPERT },		{ P_QUARTERSTAFF, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_JAVELIN, P_EXPERT },
+    { P_LANCE, P_EXPERT },		{ P_SLING, P_EXPERT },
+    { P_FIREARM, P_EXPERT },		{ P_CROSSBOW, P_EXPERT },
+    { P_WHIP, P_MASTER },		{ P_ATTACK_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_MASTER },		{ P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_OCCULT_SPELL, P_GRAND_MASTER },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_BODY_ARMOR, P_EXPERT },
+    { P_POLYMORPHING, P_EXPERT },		{ P_DEVICES, P_MASTER },
+    { P_SPIRITUALITY, P_EXPERT },		{ P_MARTIAL_ARTS, P_EXPERT },
+    { P_RIDING, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Cha[] = {
+    { P_AXE, P_EXPERT },		{ P_LONG_SWORD, P_EXPERT },
+    { P_TWO_HANDED_SWORD, P_EXPERT },		{ P_POLEARMS, P_MASTER },
+    { P_LANCE, P_EXPERT },		{ P_SLING, P_GRAND_MASTER },
+    { P_FIREARM, P_MASTER },		{ P_SHURIKEN, P_EXPERT },
+    { P_LIGHTSABER, P_MASTER },		{ P_BODY_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_GRAND_MASTER },		{ P_HIGH_HEELS, P_MASTER },
+    { P_SHIELD, P_EXPERT },		{ P_TWO_HANDED_WEAPON, P_EXPERT },
+    { P_POLYMORPHING, P_MASTER },		{ P_DEVICES, P_EXPERT },
+    { P_MARTIAL_ARTS, P_EXPERT },
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Wil[] = {
+
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_K[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
     { P_AXE, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
@@ -5903,19 +6055,19 @@ static const char * const hereticgods[] = {
 /* pantheons for priests etc. These contain all the roles pantheons; they need to be aligned so that if we pick a random number and apply that to all three, a consistent role's pantheon is created! It also contains made-up pantheons that don't belong to an actual role. --Amy */
 static const char * const lawfulgods[] = {
 
-"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", 
+"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", 
 
 };
 
 static const char * const neutralgods[] = {
 
-"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "_Crueltrainer Cindy", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", 
+"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "_Crueltrainer Cindy", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", 
 
 };
 
 static const char * const chaoticgods[] = {
 
-"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", 
+"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", 
 
 };
 
@@ -7331,6 +7483,7 @@ u_init()
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
 	u.urmaxlvlD = 1; /* will go up if a bard role player levels up */
 	u.urmaxlvlE = 1; /* will go up if an american gladiator player levels up */
+	u.urmaxlvlF = 1; /* will go up if a wild talent role player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
 
@@ -8864,6 +9017,152 @@ u_init()
 		skill_init(Skill_W);
 		break;
 
+	case PM_OCCULT_MASTER:
+
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
+		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK2].trotyp = SPE_SPELLBINDER; break;
+		    case 2: OccultMaster[O_BOOK2].trotyp = SPE_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_BOOK2].trotyp = SPE_TRACKER; break;
+		    case 4: OccultMaster[O_BOOK2].trotyp = SPE_TOTEM_SUMMONING; break;
+		    case 5: OccultMaster[O_BOOK2].trotyp = SPE_POSSESSION; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK3].trotyp = SPE_CODE_EDITING; break;
+		    case 2: OccultMaster[O_BOOK3].trotyp = SPE_SATISFY_HUNGER; break;
+		    case 3: OccultMaster[O_BOOK3].trotyp = SPE_FIRE_GOLEM; break;
+		    case 4: OccultMaster[O_BOOK3].trotyp = SPE_DISRUPTION_SHIELD; break;
+		    case 5: OccultMaster[O_BOOK3].trotyp = SPE_BLINDING_RAY; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK4].trotyp = SPE_COMMAND_DEMON; break;
+		    case 2: OccultMaster[O_BOOK4].trotyp = SPE_REDEMPTION; break;
+		    case 3: OccultMaster[O_BOOK4].trotyp = SPE_NEXUS_FIELD; break;
+		    case 4: OccultMaster[O_BOOK4].trotyp = SPE_PHASE_DOOR; break;
+		    case 5: OccultMaster[O_BOOK4].trotyp = SPE_HORRIFY; break;
+		    default: break;
+		}
+		switch (rnd(3)) {                
+		    case 1: OccultMaster[O_WAND].trotyp = WAN_SPELLBINDER; break;
+		    case 2: OccultMaster[O_WAND].trotyp = WAN_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_WAND].trotyp = WAN_STERILIZE; break;
+		    default: break;
+		}
+
+		ini_inv(OccultMaster);
+		skill_init(Skill_Occ);
+
+		break;
+
+	case PM_ELEMENTALIST:
+
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK1].trotyp = SPE_WATER_BOLT; break;
+		    case 2: Elementalist[E_BOOK1].trotyp = SPE_VOLT_ROCK; break;
+		    case 3: Elementalist[E_BOOK1].trotyp = SPE_WATER_FLAME; break;
+		    case 4: Elementalist[E_BOOK1].trotyp = SPE_FIRE; break;
+		    case 5: Elementalist[E_BOOK1].trotyp = SPE_STEAM_VENOM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK2].trotyp = SPE_AIR_CURRENT; break;
+		    case 2: Elementalist[E_BOOK2].trotyp = SPE_WIND; break;
+		    case 3: Elementalist[E_BOOK2].trotyp = SPE_RAIN_CLOUD; break;
+		    case 4: Elementalist[E_BOOK2].trotyp = SPE_FROST; break;
+		    case 5: Elementalist[E_BOOK2].trotyp = SPE_DASHING; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK3].trotyp = SPE_POISON_BRAND; break;
+		    case 2: Elementalist[E_BOOK3].trotyp = SPE_THUNDER_WAVE; break;
+		    case 3: Elementalist[E_BOOK3].trotyp = SPE_ELEMENTAL_BEAM; break;
+		    case 4: Elementalist[E_BOOK3].trotyp = SPE_BATTERING_RAM; break;
+		    case 5: Elementalist[E_BOOK3].trotyp = SPE_POWER_FAILURE; break;
+		    case 6: Elementalist[E_BOOK3].trotyp = SPE_VAPORIZE; break;
+		    case 7: Elementalist[E_BOOK3].trotyp = SPE_BURROW; break;
+		    case 8: Elementalist[E_BOOK3].trotyp = SPE_MELTDOWN; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK4].trotyp = SPE_CLOUDS; break;
+		    case 2: Elementalist[E_BOOK4].trotyp = SPE_ICE; break;
+		    case 3: Elementalist[E_BOOK4].trotyp = SPE_FLOOD; break;
+		    case 4: Elementalist[E_BOOK4].trotyp = SPE_DRIPPING_TREAD; break;
+		    case 5: Elementalist[E_BOOK4].trotyp = SPE_GEOLYSIS; break;
+		    case 6: Elementalist[E_BOOK4].trotyp = SPE_LAVA; break;
+		    case 7: Elementalist[E_BOOK4].trotyp = SPE_IRON_PRISON; break;
+		    case 8: Elementalist[E_BOOK4].trotyp = SPE_LOCKOUT; break;
+		    case 9: Elementalist[E_BOOK4].trotyp = SPE_GROW_TREES; break;
+		    default: break;
+		}
+		switch (rnd(4)) {                
+		    case 1: Elementalist[E_WAND].trotyp = WAN_FIRE; break;
+		    case 2: Elementalist[E_WAND].trotyp = WAN_COLD; break;
+		    case 3: Elementalist[E_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 4: Elementalist[E_WAND].trotyp = WAN_POISON; break;
+		    default: break;
+		}
+
+		ini_inv(Elementalist);
+		skill_init(Skill_Elm);
+
+		break;
+
+	case PM_CHAOS_SORCEROR:
+
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
+		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
+		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK2].trotyp = SPE_LOCK_MANIPULATION; break;
+		    case 2: ChaosSorceror[C_BOOK2].trotyp = SPE_RANDOM_SPEED; break;
+		    case 3: ChaosSorceror[C_BOOK2].trotyp = SPE_CHAOS_BOLT; break;
+		    case 4: ChaosSorceror[C_BOOK2].trotyp = SPE_BUC_RANDOMIZATION; break;
+		    case 5: ChaosSorceror[C_BOOK2].trotyp = SPE_RUSSIAN_ROULETTE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK3].trotyp = SPE_LYCANTHROPY; break;
+		    case 2: ChaosSorceror[C_BOOK3].trotyp = SPE_BOMBING; break;
+		    case 3: ChaosSorceror[C_BOOK3].trotyp = SPE_VANISHING; break;
+		    case 4: ChaosSorceror[C_BOOK3].trotyp = SPE_EARTHQUAKE; break;
+		    case 5: ChaosSorceror[C_BOOK3].trotyp = SPE_POLYFORM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK4].trotyp = SPE_SELFDESTRUCT; break;
+		    case 2: ChaosSorceror[C_BOOK4].trotyp = SPE_THRONE_GAMBLE; break;
+		    case 3: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION; break;
+		    case 4: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION_BEAM; break;
+		    case 5: ChaosSorceror[C_BOOK4].trotyp = SPE_REROLL_ARTIFACT; break;
+		    default: break;
+		}
+
+		ini_inv(ChaosSorceror);
+		skill_init(Skill_Cha);
+
+		break;
+
+	case PM_WILD_TALENT:
+		ini_inv(WildTalent);
+		skill_init(Skill_Wil);
+
+		break;
+
 	case PM_SAGE:
 
 		ini_inv(Sage);
@@ -9328,6 +9627,22 @@ u_init()
 		skill_init(Skill_W);
 		break;
 
+	case PM_ELEMENTALIST:
+		skill_init(Skill_Elm);
+		break;
+
+	case PM_OCCULT_MASTER:
+		skill_init(Skill_Occ);
+		break;
+
+	case PM_CHAOS_SORCEROR:
+		skill_init(Skill_Cha);
+		break;
+
+	case PM_WILD_TALENT:
+		skill_init(Skill_Wil);
+		break;
+
 	case PM_SAGE:
 
 		skill_init(Skill_Sag);
@@ -9348,7 +9663,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(112)) {
+	switch (rnd(116)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -10333,6 +10648,140 @@ u_init()
 		ini_inv(Unbeliever);
 		break;
 
+	case 113:
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK1].trotyp = SPE_WATER_BOLT; break;
+		    case 2: Elementalist[E_BOOK1].trotyp = SPE_VOLT_ROCK; break;
+		    case 3: Elementalist[E_BOOK1].trotyp = SPE_WATER_FLAME; break;
+		    case 4: Elementalist[E_BOOK1].trotyp = SPE_FIRE; break;
+		    case 5: Elementalist[E_BOOK1].trotyp = SPE_STEAM_VENOM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK2].trotyp = SPE_AIR_CURRENT; break;
+		    case 2: Elementalist[E_BOOK2].trotyp = SPE_WIND; break;
+		    case 3: Elementalist[E_BOOK2].trotyp = SPE_RAIN_CLOUD; break;
+		    case 4: Elementalist[E_BOOK2].trotyp = SPE_FROST; break;
+		    case 5: Elementalist[E_BOOK2].trotyp = SPE_DASHING; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK3].trotyp = SPE_POISON_BRAND; break;
+		    case 2: Elementalist[E_BOOK3].trotyp = SPE_THUNDER_WAVE; break;
+		    case 3: Elementalist[E_BOOK3].trotyp = SPE_ELEMENTAL_BEAM; break;
+		    case 4: Elementalist[E_BOOK3].trotyp = SPE_BATTERING_RAM; break;
+		    case 5: Elementalist[E_BOOK3].trotyp = SPE_POWER_FAILURE; break;
+		    case 6: Elementalist[E_BOOK3].trotyp = SPE_VAPORIZE; break;
+		    case 7: Elementalist[E_BOOK3].trotyp = SPE_BURROW; break;
+		    case 8: Elementalist[E_BOOK3].trotyp = SPE_MELTDOWN; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK4].trotyp = SPE_CLOUDS; break;
+		    case 2: Elementalist[E_BOOK4].trotyp = SPE_ICE; break;
+		    case 3: Elementalist[E_BOOK4].trotyp = SPE_FLOOD; break;
+		    case 4: Elementalist[E_BOOK4].trotyp = SPE_DRIPPING_TREAD; break;
+		    case 5: Elementalist[E_BOOK4].trotyp = SPE_GEOLYSIS; break;
+		    case 6: Elementalist[E_BOOK4].trotyp = SPE_LAVA; break;
+		    case 7: Elementalist[E_BOOK4].trotyp = SPE_IRON_PRISON; break;
+		    case 8: Elementalist[E_BOOK4].trotyp = SPE_LOCKOUT; break;
+		    case 9: Elementalist[E_BOOK4].trotyp = SPE_GROW_TREES; break;
+		    default: break;
+		}
+		switch (rnd(4)) {                
+		    case 1: Elementalist[E_WAND].trotyp = WAN_FIRE; break;
+		    case 2: Elementalist[E_WAND].trotyp = WAN_COLD; break;
+		    case 3: Elementalist[E_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 4: Elementalist[E_WAND].trotyp = WAN_POISON; break;
+		    default: break;
+		}
+
+		ini_inv(Elementalist);
+		break;
+
+	case 114:
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
+		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
+		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK2].trotyp = SPE_LOCK_MANIPULATION; break;
+		    case 2: ChaosSorceror[C_BOOK2].trotyp = SPE_RANDOM_SPEED; break;
+		    case 3: ChaosSorceror[C_BOOK2].trotyp = SPE_CHAOS_BOLT; break;
+		    case 4: ChaosSorceror[C_BOOK2].trotyp = SPE_BUC_RANDOMIZATION; break;
+		    case 5: ChaosSorceror[C_BOOK2].trotyp = SPE_RUSSIAN_ROULETTE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK3].trotyp = SPE_LYCANTHROPY; break;
+		    case 2: ChaosSorceror[C_BOOK3].trotyp = SPE_BOMBING; break;
+		    case 3: ChaosSorceror[C_BOOK3].trotyp = SPE_VANISHING; break;
+		    case 4: ChaosSorceror[C_BOOK3].trotyp = SPE_EARTHQUAKE; break;
+		    case 5: ChaosSorceror[C_BOOK3].trotyp = SPE_POLYFORM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK4].trotyp = SPE_SELFDESTRUCT; break;
+		    case 2: ChaosSorceror[C_BOOK4].trotyp = SPE_THRONE_GAMBLE; break;
+		    case 3: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION; break;
+		    case 4: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION_BEAM; break;
+		    case 5: ChaosSorceror[C_BOOK4].trotyp = SPE_REROLL_ARTIFACT; break;
+		    default: break;
+		}
+
+		ini_inv(ChaosSorceror);
+		break;
+
+	case 115:
+		ini_inv(WildTalent);
+		break;
+
+	case 116:
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
+		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK2].trotyp = SPE_SPELLBINDER; break;
+		    case 2: OccultMaster[O_BOOK2].trotyp = SPE_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_BOOK2].trotyp = SPE_TRACKER; break;
+		    case 4: OccultMaster[O_BOOK2].trotyp = SPE_TOTEM_SUMMONING; break;
+		    case 5: OccultMaster[O_BOOK2].trotyp = SPE_POSSESSION; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK3].trotyp = SPE_CODE_EDITING; break;
+		    case 2: OccultMaster[O_BOOK3].trotyp = SPE_SATISFY_HUNGER; break;
+		    case 3: OccultMaster[O_BOOK3].trotyp = SPE_FIRE_GOLEM; break;
+		    case 4: OccultMaster[O_BOOK3].trotyp = SPE_DISRUPTION_SHIELD; break;
+		    case 5: OccultMaster[O_BOOK3].trotyp = SPE_BLINDING_RAY; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK4].trotyp = SPE_COMMAND_DEMON; break;
+		    case 2: OccultMaster[O_BOOK4].trotyp = SPE_REDEMPTION; break;
+		    case 3: OccultMaster[O_BOOK4].trotyp = SPE_NEXUS_FIELD; break;
+		    case 4: OccultMaster[O_BOOK4].trotyp = SPE_PHASE_DOOR; break;
+		    case 5: OccultMaster[O_BOOK4].trotyp = SPE_HORRIFY; break;
+		    default: break;
+		}
+		switch (rnd(3)) {                
+		    case 1: OccultMaster[O_WAND].trotyp = WAN_SPELLBINDER; break;
+		    case 2: OccultMaster[O_WAND].trotyp = WAN_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_WAND].trotyp = WAN_STERILIZE; break;
+		    default: break;
+		}
+
+		ini_inv(OccultMaster);
+		break;
 
 	default:	/* impossible */
 		break;
@@ -10490,7 +10939,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(112)) {
+	switch (rnd(116)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -11473,6 +11922,141 @@ u_init()
 
 	case 112:
 		ini_inv(Unbeliever);
+		break;
+
+	case 113:
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK1].trotyp = SPE_WATER_BOLT; break;
+		    case 2: Elementalist[E_BOOK1].trotyp = SPE_VOLT_ROCK; break;
+		    case 3: Elementalist[E_BOOK1].trotyp = SPE_WATER_FLAME; break;
+		    case 4: Elementalist[E_BOOK1].trotyp = SPE_FIRE; break;
+		    case 5: Elementalist[E_BOOK1].trotyp = SPE_STEAM_VENOM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: Elementalist[E_BOOK2].trotyp = SPE_AIR_CURRENT; break;
+		    case 2: Elementalist[E_BOOK2].trotyp = SPE_WIND; break;
+		    case 3: Elementalist[E_BOOK2].trotyp = SPE_RAIN_CLOUD; break;
+		    case 4: Elementalist[E_BOOK2].trotyp = SPE_FROST; break;
+		    case 5: Elementalist[E_BOOK2].trotyp = SPE_DASHING; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK3].trotyp = SPE_POISON_BRAND; break;
+		    case 2: Elementalist[E_BOOK3].trotyp = SPE_THUNDER_WAVE; break;
+		    case 3: Elementalist[E_BOOK3].trotyp = SPE_ELEMENTAL_BEAM; break;
+		    case 4: Elementalist[E_BOOK3].trotyp = SPE_BATTERING_RAM; break;
+		    case 5: Elementalist[E_BOOK3].trotyp = SPE_POWER_FAILURE; break;
+		    case 6: Elementalist[E_BOOK3].trotyp = SPE_VAPORIZE; break;
+		    case 7: Elementalist[E_BOOK3].trotyp = SPE_BURROW; break;
+		    case 8: Elementalist[E_BOOK3].trotyp = SPE_MELTDOWN; break;
+		    default: break;
+		}
+		switch (rnd(8)) {                
+		    case 1: Elementalist[E_BOOK4].trotyp = SPE_CLOUDS; break;
+		    case 2: Elementalist[E_BOOK4].trotyp = SPE_ICE; break;
+		    case 3: Elementalist[E_BOOK4].trotyp = SPE_FLOOD; break;
+		    case 4: Elementalist[E_BOOK4].trotyp = SPE_DRIPPING_TREAD; break;
+		    case 5: Elementalist[E_BOOK4].trotyp = SPE_GEOLYSIS; break;
+		    case 6: Elementalist[E_BOOK4].trotyp = SPE_LAVA; break;
+		    case 7: Elementalist[E_BOOK4].trotyp = SPE_IRON_PRISON; break;
+		    case 8: Elementalist[E_BOOK4].trotyp = SPE_LOCKOUT; break;
+		    case 9: Elementalist[E_BOOK4].trotyp = SPE_GROW_TREES; break;
+		    default: break;
+		}
+		switch (rnd(4)) {                
+		    case 1: Elementalist[E_WAND].trotyp = WAN_FIRE; break;
+		    case 2: Elementalist[E_WAND].trotyp = WAN_COLD; break;
+		    case 3: Elementalist[E_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 4: Elementalist[E_WAND].trotyp = WAN_POISON; break;
+		    default: break;
+		}
+
+		ini_inv(Elementalist);
+		break;
+
+	case 114:
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
+		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
+		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK2].trotyp = SPE_LOCK_MANIPULATION; break;
+		    case 2: ChaosSorceror[C_BOOK2].trotyp = SPE_RANDOM_SPEED; break;
+		    case 3: ChaosSorceror[C_BOOK2].trotyp = SPE_CHAOS_BOLT; break;
+		    case 4: ChaosSorceror[C_BOOK2].trotyp = SPE_BUC_RANDOMIZATION; break;
+		    case 5: ChaosSorceror[C_BOOK2].trotyp = SPE_RUSSIAN_ROULETTE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK3].trotyp = SPE_LYCANTHROPY; break;
+		    case 2: ChaosSorceror[C_BOOK3].trotyp = SPE_BOMBING; break;
+		    case 3: ChaosSorceror[C_BOOK3].trotyp = SPE_VANISHING; break;
+		    case 4: ChaosSorceror[C_BOOK3].trotyp = SPE_EARTHQUAKE; break;
+		    case 5: ChaosSorceror[C_BOOK3].trotyp = SPE_POLYFORM; break;
+		    default: break;
+		}
+		switch (rnd(5)) {
+		    case 1: ChaosSorceror[C_BOOK4].trotyp = SPE_SELFDESTRUCT; break;
+		    case 2: ChaosSorceror[C_BOOK4].trotyp = SPE_THRONE_GAMBLE; break;
+		    case 3: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION; break;
+		    case 4: ChaosSorceror[C_BOOK4].trotyp = SPE_DISINTEGRATION_BEAM; break;
+		    case 5: ChaosSorceror[C_BOOK4].trotyp = SPE_REROLL_ARTIFACT; break;
+		    default: break;
+		}
+
+		ini_inv(ChaosSorceror);
+		break;
+
+	case 115:
+		ini_inv(WildTalent);
+		break;
+
+	case 116:
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
+		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK2].trotyp = SPE_SPELLBINDER; break;
+		    case 2: OccultMaster[O_BOOK2].trotyp = SPE_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_BOOK2].trotyp = SPE_TRACKER; break;
+		    case 4: OccultMaster[O_BOOK2].trotyp = SPE_TOTEM_SUMMONING; break;
+		    case 5: OccultMaster[O_BOOK2].trotyp = SPE_POSSESSION; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK3].trotyp = SPE_CODE_EDITING; break;
+		    case 2: OccultMaster[O_BOOK3].trotyp = SPE_SATISFY_HUNGER; break;
+		    case 3: OccultMaster[O_BOOK3].trotyp = SPE_FIRE_GOLEM; break;
+		    case 4: OccultMaster[O_BOOK3].trotyp = SPE_DISRUPTION_SHIELD; break;
+		    case 5: OccultMaster[O_BOOK3].trotyp = SPE_BLINDING_RAY; break;
+		    default: break;
+		}
+		switch (rnd(5)) {                
+		    case 1: OccultMaster[O_BOOK4].trotyp = SPE_COMMAND_DEMON; break;
+		    case 2: OccultMaster[O_BOOK4].trotyp = SPE_REDEMPTION; break;
+		    case 3: OccultMaster[O_BOOK4].trotyp = SPE_NEXUS_FIELD; break;
+		    case 4: OccultMaster[O_BOOK4].trotyp = SPE_PHASE_DOOR; break;
+		    case 5: OccultMaster[O_BOOK4].trotyp = SPE_HORRIFY; break;
+		    default: break;
+		}
+		switch (rnd(3)) {                
+		    case 1: OccultMaster[O_WAND].trotyp = WAN_SPELLBINDER; break;
+		    case 2: OccultMaster[O_WAND].trotyp = WAN_INERTIA_CONTROL; break;
+		    case 3: OccultMaster[O_WAND].trotyp = WAN_STERILIZE; break;
+		    default: break;
+		}
+
+		ini_inv(OccultMaster);
 		break;
 
 	default:	/* impossible */
@@ -22308,6 +22892,10 @@ int otyp;
      case PM_VALKYRIE:		skills = Skill_V; break;
      case PM_WIZARD:		skills = Skill_W; break;
      case PM_SAGE:		skills = Skill_Sag; break;
+     case PM_ELEMENTALIST:		skills = Skill_Elm; break;
+     case PM_OCCULT_MASTER:		skills = Skill_Occ; break;
+     case PM_CHAOS_SORCEROR:		skills = Skill_Cha; break;
+     case PM_WILD_TALENT:		skills = Skill_Wil; break;
 
      case PM_DRUNK:		skills = Skill_Dru; break;
      case PM_MUSICIAN:		skills = Skill_Mus; break;

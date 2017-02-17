@@ -98,6 +98,7 @@ E long FDECL(spec_m2, (struct obj *));
 E boolean FDECL(artifact_has_invprop, (struct obj *,int));
 E long FDECL(arti_cost, (struct obj *));
 E void FDECL(arti_poly_contents, (struct obj *));
+E int NDECL(find_wildtalentartifact);
 
 /* ### attrib.c ### */
 

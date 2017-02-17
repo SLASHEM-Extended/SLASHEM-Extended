@@ -1,0 +1,424 @@
+MAZE: "Occ-strt",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                 |-----| |------|                              
+                                ||.....| |......|                              
+                               ||......--|.....||               |---|       |--
+                              ||..............||              |-|...--|    ||..
+                             ||..............||      |---|   ||.......-|---|...
+                            ||..............|||--|  ||...-#  |.........|.......
+      |---|                ||..............|| |..||-|....HHH#S.........+.......
+      |...|               ||..............|| ||..||......|# ##.........|.......
+      |...|    |-|       ||..............|||-|...-|......|#  #........||---|...
+      |...-|   |.-|     ||..............-||......H|......|H  ##-|...|-|    -|..
+      |....-|  |..-|   ||...............#.+......#S.....-|#  ## -#--|       -#-
+      |.....|--|...-| ||..............|---|......||......|#  ##  H           H 
+      |.....+.#H....-||..............||   ---|...||......|H ##HHH#|----------# 
+      |.....|--|.....-..............||       -|..||......-###    #+..........HH
+      |....||  |......|---|+|-------|         |..||-|....H####   #|..........| 
+      |...||   |......|   |.|                 -#-|  -|...||+-|---+|---|------| 
+      |...|    -|.....|   |.|                  H     -|..||..|........|        
+      |...|     -|....|---|+|---|              #      -|.||..|........|        
+      ----|      -|...+.........|                      --||..|........|        
+                  -|..||........|                         ---|........|        
+                   -|.||........|                            ---------|        
+ENDMAP
+STAIR:random,down
+BRANCH:(01,01,78,20),(0,0,0,0)
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MONSTER:'c',"Nadja the Occultist",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+MONSTER:'@',"attendant",random
+
+MAZE: "Occ-loca",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+      |-|                |-----------|  |---|                                  
+     ||.|                |...........|  |...|  ##               ##             
+    ||..|  |-----|       |...........|  |...--  ##--------------#-|            
+   ||..||  |.....-|      |...........|  |....#H# #................------------|
+ # |..||   -|.....-|     |...........|  |....####|............................|
+ ##-..|     -|.....-|    -----|+|----|  |...|- ##-................|...........|
+  ##..|      -|.....|         |.|       |...|   ##................|--|.....|--|
+   #..-|      ||||S||        ||.-|      --|-|------|-------##-----|  -|...||   
+   |...-------||||.-|---- ---|...----     |........-      ##          |...|    
+   --|.H#...............HH#.........#HH#HH+........H#-----H-----|     |...|    
+     ---|...............| |.........|     |........||...........|     -...|    
+        --------|-+-|---| ||--|||||-|     |........||...........|    ###--|    
+                |...|    |||..-||||.-|    -H------|||...........|    #         
+                |...|  # -......||...|     H      |||...........--|  #         
+               ||...-|###H......+....|   |-S-|    |...............-##          
+              ||.....-|  |......|-|.||   |...|    |...............##           
+             ||...|...-| --|..|-| |+|    |...|    |...............#            
+            ||...|||...-|  ---|  ||.|   ||...-|   |...............|            
+           ||...|| -|...-|      ||..-|--|.....--| |...............|            
+          ||...||   -|...-|     |....+..........| |...............|            
+          |...||     -|...|     -|..|||.........| |...............|            
+ENDMAP
+
+STAIR:random,down
+STAIR:random,up
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Occ-goal",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+   |--|                                                                        
+   |..-|     |--|                     |---|  |--|                              
+   |...| |---|..|--|     |--|         |...-| |}}|  |--|    |--|   |--|--|      
+   -|..-||......-..| |---|..-|        |....-||}}-| |..|    |..|---|..-..|      
+   ||-..-..........|||...-...|  |---| -|...}-|-..--|..|    |..-.........--|    
+   |..............-||........||-|...|--|-..}}}}.......|    |..............-|   
+   |................-.......-||.....-..-..}}}}}......-|--| |...............|   
+   |..........................-............}}}...........--|-..............--| 
+  ||.......................................}}}}..............................| 
+  |.......................................}}}}}..............................| 
+ ||........................................}}}}.............................|| 
+ |........................................}}}}.............................-|| 
+ |.................................|.....}}}}}...............................-|
+ -|................................|....}}}}..................................|
+  ---|..............|..............|-|}}}}.......|............................|
+   |-|..........|..|||.....|....-|-| |}.....|..|-|...|......................|-|
+   |...|-|......|--| ------|..|..|   |.....||--| ----|..|-...........|..|...|  
+   |...| |...|--|          |..|}}|   -|..|-|         ---|...........||--|..||  
+   ----| ----|             ---|--|    ---|              |..|--------|   ---|   
+                                                        ---|                   
+ENDMAP
+
+STAIR:random,up
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'c',"Vilja the Bitch",random
+OBJECT:'(',"dark magic whistle",random,blessed,0,"Whistle of Protection"
+
+MAZE: "Occ-fila",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+         |---------------------|                                      
+########||.....................|                                      
+########+......................|                            ##        
+##      |......................|  |--------------------|    ###       
+ ##     |{....................-+##+....................|-+### #       
+  ##    |-----------S---------|   |......................|  # ###     
+   ##               #             |......................|  #   ##    
+    ##              ##            |...L..................|  #    ##   
+     ##              ##           |--....................|  #     #   
+      ##              ##           ++-------------#------|  #     ##  
+       ##              #           ## |-----------+---------+------|##
+|--------+--------------S----|     ## |............................+##
+|............................|     ###+.........|--------|.........|  
+|............................+########+.........|        |.........|  
+|............................|        |.........|        |.........|  
+|L................L..........|####    |.........|        |.........+##
+|...........................L+########|---------|--------|---------| #
+|----------------------------|       #                               #
+                                     #                               #
+                                     #################################
+ENDMAP
+
+STAIR:random,down
+STAIR:random,up
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Occ-filb",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+       #                   ##                                                  
+ ------+-------------------.+--------                                          
+ |........||........+.....|.........|                                          
+ |........||.......||.....|..|......| #########################################
+ |........||.......|-------..|------- #                                        
+ |........||.......|       ..|--------+--------       -----------              
+ |........||.......|       ...|.....||........|       |.........|              
+ |........||.......|       ...|.....||........|       |.........|              
+ -....----------+---       .--|.....+.........|       |.........|              
+ -....-----     #       ---+--|.....||........|-------|.........|------------  
+ |........|     ########.....||.....||.........+.....||.........||..........|  
+ |........|             |....||.....||........||.....||.........||..........|  
+ |........|             ----------------.---------------------+------+-------  
+ |........|         -------   -------   #                     #  ----.-------  
+ |........|         |.....|   |.....|   #                     #  |..........|  
+ |........|       ##+.....|   |.....+####                     #  |..........|  
+#+........|       # |.....|   |.....|                         #  |..........|  
+ |........|       # |.....|   |.....|                         #  |..........|  
+ ----------       # -------   -------                         #  ---------+--  
+                  #                                           #           #    
+                  #                                           #           #    
+ENDMAP
+
+STAIR:random,down
+STAIR:random,up
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random

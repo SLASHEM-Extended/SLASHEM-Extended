@@ -496,6 +496,23 @@ register boolean special;
 		    if (rn2(4)) helm = HELM_OF_BRILLIANCE;
 		    shield = STRANGE_OBJECT;
 		    break;
+
+		case PM_OCCULT_MASTER:
+		    weapon = COLLUSION_KNIFE;
+		    break;
+
+		case PM_ELEMENTALIST:
+		    weapon = FIRE_STICK;
+		    break;
+
+		case PM_CHAOS_SORCEROR:
+		    weapon = IMPACT_STAFF;
+		    break;
+
+		case PM_WILD_TALENT:
+		    weapon = HEAVY_IRON_BALL;
+		    break;
+
 		case PM_JEDI:
 		case PM_PADAWAN:
 		    switch(rnd(3)){

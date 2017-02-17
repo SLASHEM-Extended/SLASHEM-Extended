@@ -2074,6 +2074,90 @@ register struct monst *mtmp;
 #endif
 		   break;
 
+		   case PM_OCCULT_MASTER:
+		   case PM_UNDEAD_OCCULT_MASTER:
+			(void) mongets(mtmp, COLLUSION_KNIFE);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			if (!rn2(10)) (void) mongets(mtmp, WAN_TIDAL_WAVE);
+			if (!rn2(10)) (void) mongets(mtmp, WAN_INERTIA);
+			if (!rn2(10)) (void) mongets(mtmp, WAN_TIME);
+
+		   break;
+
+		   case PM_ELEMENTALIST:
+		   case PM_UNDEAD_ELEMENTALIST:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			if (!rn2(5)) (void) mongets(mtmp, WAN_FIRE);
+			if (!rn2(5)) (void) mongets(mtmp, WAN_COLD);
+			if (!rn2(5)) (void) mongets(mtmp, WAN_LIGHTNING);
+			if (!rn2(5)) (void) mongets(mtmp, WAN_POISON);
+			if (!rn2(50)) (void) mongets(mtmp, WAN_CHROMATIC_BEAM);
+			(void) mongets(mtmp, FIRE_STICK);
+
+		   break;
+
+		   case PM_CHAOS_SORCEROR:
+		   case PM_UNDEAD_CHAOS_SORCEROR:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			(void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			(void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			(void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			(void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+
+		   break;
+
+		   case PM_WILD_TALENT:
+		   case PM_UNDEAD_WILD_TALENT:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+
+		   break;
+
 		   case PM_POISON_MAGE:
 		   case PM_UNDEAD_POISON_MAGE:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -6843,6 +6927,22 @@ register struct	monst	*mtmp;
 
 	/* inventory initialization for bosses --Amy */
 
+	if (ptr == &mons[PM_CHRIS_CHENG]) {
+
+		int artilistentry = find_wildtalentartifact(); /*&artilist[ART_ELLI_S_PSEUDOBAND_OF_POS];*/
+
+		otmp = mksobj(artilistentry, FALSE, FALSE);
+
+		if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_ELLI_S_PSEUDOBAND_OF_POS));
+
+		}
+
+		if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
+
+	}
+	
 	if (ptr == &mons[PM_CRISTI]) {
 		(void) mongets(mtmp, QUARTERSTAFF);
 		(void) mongets(mtmp, WAN_GAIN_LEVEL);

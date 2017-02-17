@@ -556,6 +556,10 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_POKEMON:
 	    case PM_UNDEAD_ELECTRIC_MAGE:
 	    case PM_UNDEAD_POISON_MAGE:
+	    case PM_UNDEAD_OCCULT_MASTER:
+	    case PM_UNDEAD_CHAOS_SORCEROR:
+	    case PM_UNDEAD_ELEMENTALIST:
+	    case PM_UNDEAD_WILD_TALENT:
 	    case PM_UNDEAD_ACID_MAGE:
 	    case PM_UNDEAD_FLAME_MAGE:
 	    case PM_UNDEAD_CONVICT:

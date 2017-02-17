@@ -300,6 +300,8 @@ hack_artifacts()
 	artilist[ART_PEEK].otyp = randartmeleeweaponX();
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
 
+	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
+
 	artilist[ART_PHANTOM_OF_THE_OPERA].otyp = find_opera_cloak();
 	artilist[ART_HIGH_DESIRE_OF_FATALITY].otyp = find_explosive_boots();
 	artilist[ART_CHOICE_OF_MATTER].otyp = find_irregular_boots();
@@ -2623,6 +2625,12 @@ arti_poly_contents(obj)
 	}
 }
 
+int
+find_wildtalentartifact()
+{
+	int artifactnumber = artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp;
+	return artifactnumber;
+}
 
 #endif /* OVLB */
 

@@ -11953,7 +11953,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    mtmp->mspec_used = mtmp->mspec_used + (dimming + rn2(6));
 		    pline("%s stares dimmingly at you!", Monnam(mtmp));
-		    make_burned(HDimmed + dimming, TRUE);
+		    make_dimmed(HDimmed + dimming, TRUE);
 		    if (!rn2(4)) make_dimmed(HDimmed + dmgplus, FALSE);
 		    stop_occupation();
 		}

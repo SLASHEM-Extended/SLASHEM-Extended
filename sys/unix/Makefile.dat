@@ -344,6 +344,7 @@ quest_levs: ../util/lev_comp \
 	Yeoman.des Zooke.des Murderer.des Failed.des Camper.des	\
 	Suser.des Sexy.des Justice.des Fencer.des Fighter.des	\
 	Slime.des Erdrick.des Anachr.des Druid.des Marine.des \
+	Occult.des Element.des Chaos.des Wildtal.des \
 	Medium.des Poison.des Transs.des Unbel.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -382,6 +383,10 @@ quest_levs: ../util/lev_comp \
 	../util/lev_comp Dunmer.des
 	../util/lev_comp Electric.des
 	../util/lev_comp Poison.des
+	../util/lev_comp Occult.des
+	../util/lev_comp Element.des
+	../util/lev_comp Chaos.des
+	../util/lev_comp Wildtal.des
 	../util/lev_comp Elf.des
 	../util/lev_comp Elfreal.des
 	../util/lev_comp Erdrick.des

@@ -311,6 +311,15 @@ const struct innate {
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
+	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind"},
+		     {   0, 0, 0, 0 } },
+
+	emn_abil[] = { {   15, &(HPsi_resist), "psionic", "less psionic"},
+		     {   0, 0, 0, 0 } },
+
+	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana"},
+		     {   0, 0, 0, 0 } },
+
 	zoo_abil[] = { {   1, &(HWarning), "", "" },
 		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
 		     {   0, 0, 0, 0 } },
@@ -1430,6 +1439,9 @@ int oldlevel, newlevel;
 	case PM_HEALER:         abil = hea_abil;	break;
 	case PM_ELECTRIC_MAGE:	abil = ele_abil;	break;
 	case PM_POISON_MAGE:	abil = psn_abil;	break;
+	case PM_OCCULT_MASTER:	abil = occ_abil;	break;
+	case PM_CHAOS_SORCEROR:	abil = cha_abil;	break;
+	case PM_ELEMENTALIST:	abil = emn_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
 	case PM_JEDI:		abil = jed_abil;	break;
 	case PM_KNIGHT:         abil = kni_abil;	break;

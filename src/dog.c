@@ -299,6 +299,7 @@ makedog()
 	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
 
 	if (pettype == PM_GRIMER) petname = "BADEB";
+	if (pettype == PM_DARK_NIGHTMARE) petname = "Opel Manta";
 
 	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
 
@@ -335,9 +336,11 @@ makedog()
 	if (pettype == PM_ANTIMATTER_VORTEX) petname = "Expensive Special Effect";
 
 	if (pettype == PM_DARK_GRUE) petname = "ZORK!";
+	if (pettype == PM_FRY) petname = "Perry";
 
 	if (pettype == PM_CLEFAIRY) petname = "Thief Pokemon";
 	if (pettype == PM_CHAMELEON) petname = "The RNG";
+	if (pettype == PM_CHAOS_POLYMORPHER) petname = "Mr. X";
 
 	if (pettype == PM_PANTHER) petname = "Tomcat Karlo";
 	if (pettype == PM_TIGER) petname = "Simba";

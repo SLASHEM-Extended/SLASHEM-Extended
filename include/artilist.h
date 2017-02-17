@@ -5124,6 +5124,26 @@ A("The Thunder Whistle",          MAGIC_WHISTLE,
 	NO_ATTK,        NO_DFNS,        CARY(AD_ELEC),
 	0,         A_CHAOTIC, PM_ELECTRIC_MAGE, NON_PM, 1000L ),
 
+A("Whistle of Protection",          DARK_MAGIC_WHISTLE,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_EREGEN), 0,
+	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
+	ENERGY_BOOST,         A_CHAOTIC, PM_OCCULT_MASTER, NON_PM, 2000L ),
+
+A("Blade of Gothmog",          GRANITE_IMPALER, /* heavily autocurses */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	FIRE(13,7),        DFNS(AD_FIRE),        NO_CARY,
+	SUMMON_FIRE_ELEMENTAL,         A_CHAOTIC, PM_CHAOS_SORCEROR, NON_PM, 10000L ),
+
+A("Beam Multiplier",          T_SHIRT, /* england mode when worn, resist fire/cold/shock */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK,        NO_DFNS,        NO_CARY,
+	0,         A_NEUTRAL, PM_ELEMENTALIST, NON_PM, 6000L ),
+
+A("Elli's Pseudoband of Pos",          LONG_SWORD, /* randart */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_REFLECT), 0, 0,
+	DRLI(8,4),        NO_DFNS,        NO_CARY,
+	0,         A_CHAOTIC, PM_WILD_TALENT, NON_PM, 6000L ),
+
 A("Immunity Ring",          RIN_SICKNESS_RESISTANCE,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), (SPFX_ESP), 0,
 	NO_ATTK,        DFNS(AD_MAGM),        CARY(AD_DRLI),

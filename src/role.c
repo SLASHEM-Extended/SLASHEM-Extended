@@ -551,6 +551,34 @@ const struct Role roles[] = {
 	0, 12, 0, 1,  8, A_INT, SPE_DIG,             -4
 },
 
+{	{"Chaos Sorceror", 0}, {
+	{"Chaotic Dweller",         0},
+	{"Enemy of Order",         0},
+	{"Madman",         "Madwoman"},
+	{"Vicious Diceroller",         0},
+	{"Russian Roulette Player",         0},
+	{"Spell Randomizer",         0},
+	{"Effect Warper",         0},
+	{"Cool Calculator",         0},
+	{"Master of Entropy",  0} },
+	"_Arle Nadja", "_Celine Jules", "_Miki Onimaru", /* anime */
+	"Cha", "Motherfucker's Den", "Robber's Crib",
+	PM_CHAOS_SORCEROR, NON_PM, PM_UNDEAD_CHAOS_SORCEROR, NON_PM, PM_CHAOS_POLYMORPHER,
+	PM_H__THE_MOTHERFUCKER, PM_ATTENDANT, PM_CRISTI_THE_ROBBER, PM_SIGMUND_FROM_DCSS,
+	PM_CHANGING_LASER, PM_RNG_LASER, S_LIGHT, S_EYE,
+	ART_BLADE_OF_GOTHMOG,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 20, 15, 10, 25, 10 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 1,  10, 0 },	/* Hit points */
+	{ 17, 4,  0, 6,  0, 1 }, 16,	/* Energy */
+	-10, 0, 2, 
+	3, 12, A_INT, SPE_HELLISH_BOLT,        -4 /* From old role.c */
+},
+
 {	{"Chevalier", 0}, {
 	{"Basher",    0},
 	{"Undefiler",     0},
@@ -950,6 +978,35 @@ const struct Role roles[] = {
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
 	2, 10, A_INT, SPE_LIGHTNING,        -4 /* From old role.c */
+},
+
+{	{"Elementalist", 0}, {
+	{"Fire Fingers",         0},
+	{"Icicle Hands",         0},
+	{"Air Current Lover",         0},
+	{"Earth Digger",         0},
+	{"Inferno Strider",         0},
+	{"Hurricane Center",         0},
+	{"Glacial Avalanche",         0},
+	{"Migmatite Carver",         0},
+	{"Astral Controller",  0} },
+	"Amon Ra", "Hersifon", "Mor Havoc", /* Age of Empires */
+	"Elm", "Greenery Grove", "Astral Depths",
+	PM_ELEMENTALIST, NON_PM, PM_UNDEAD_ELEMENTALIST, NON_PM, PM_FRY,
+	PM_LAURA_THE_ELEMENTAL_LADY, PM_ATTENDANT, PM_LAHIRA_THE_EVIL_ELEMENTALIST, PM_WATER_CONTROL_GIRL,
+	PM_THEMATIC_ASTRAL_ELEMENTAL, PM_LAURA_S_HUGGING_BOOT, S_ELEMENTAL, S_ELEMENTAL,
+	ART_BEAM_MULTIPLIER,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{   5, 25, 20, 25, 15, 10 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 4,  2, 0 },	/* Hit points */
+	{ 20, 5,  0, 3,  0, 1 },13,	/* Energy */
+	10, 0, -2, 
+	5, 20, A_INT, SPE_CALL_THE_ELEMENTS,        -4 /* From old role.c */
 },
 
 {	{"Elph", 0}, {
@@ -2084,6 +2141,34 @@ const struct Role roles[] = {
 	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24
 },
 
+{	{"Occult Master", 0}, {
+	{"Risky Apprentice",         0},
+	{"Dark Magician",         0},
+	{"Venture Caster",         0},
+	{"Tome Mage",         0},
+	{"Arcane Arts Student",         0},
+	{"Promising Scholar",         0},
+	{"Controller of Dark Arts",         0},
+	{"Occult Library Owner",         0},
+	{"Backlash Master",  0} },
+	"Fate", "Unlimited Blade Works", "Heaven's Feel", /* suggestion on gamefaqs IIRC? */
+	"Occ", "Occultist Cave", "Spell Dungeons",
+	PM_OCCULT_MASTER, NON_PM, PM_UNDEAD_OCCULT_MASTER, NON_PM, PM_DARK_NIGHTMARE,
+	PM_NADJA_THE_OCCULTIST, PM_ATTENDANT, PM_VILJA_THE_BITCH, PM_IRON_GIRL,
+	PM_FLAMING_SKULL, PM_OCTARINE_GRUE, S_ZOMBIE, S_GRUE,
+	ART_WHISTLE_OF_PROTECTION,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 30, 10, 10, 10 },
+	/* Init   Lower  Higher */
+	{  6, 0,  0, 2,  2, 0 },	/* Hit points */
+	{ 30, 5,  0, 6,  0, 8 }, 8,	/* Energy */
+	0, 0, 0, 
+	1, 6, A_INT, SPE_GOOD_NIGHT,        -4 /* From old role.c */
+},
+
 {	{"Officer", 0}, {
 	{"Street Cop",     0},
 	{"Traffic Officer",   0},
@@ -3152,6 +3237,34 @@ const struct Role roles[] = {
 	{ 19, 0,  0, 15,  5, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },10,	/* Energy */
 	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+},
+
+{	{"Wild Talent", 		 0}, {
+	{"Poschengband Noob",        0},
+	{"Camelot Explorer",        0},
+	{"Ambush Avoider",        0},
+	{"Morivant Merchant",        0},
+	{"Angband Diver",        0},
+	{"Ocean Traveler",        0},
+	{"666 Delver",        0},
+	{"555 Survivor",        0},
+	{"One Who Killed The Serpent",        0}},
+	0, 0, 0,	/* chosen randomly from among the other roles */
+	"Wil", "Source Code Base", "Closed Source Quarters",
+	PM_WILD_TALENT, NON_PM, PM_UNDEAD_WILD_TALENT, NON_PM, PM_CHAMELEON,
+	PM_ELLI_PSEUDO, PM_STUDENT, PM_CHRIS_CHENG, PM_POS_RECURSIVE,
+	PM_RANDOM_HORROR, PM_GAZER_HORROR, S_UMBER, S_BAD_COINS,
+	ART_ELLI_S_PSEUDOBAND_OF_POS,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  6,  6,  6,  6,  6,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  16,  17,  17, 17, 16,  17 },
+	/* Init   Lower  Higher */
+	{  8, 0,  0, 4,  4, 0 },	/* Hit points */
+	{  8, 0,  4, 0,  4, 0 }, 12,	/* Energy */
+	5, 8, 0,  5, 10, A_WIS, SPE_RUSSIAN_ROULETTE,             -4
 },
 
 {	{"Wizard", 0}, {

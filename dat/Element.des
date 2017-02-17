@@ -1,0 +1,307 @@
+#	SCCS Id: @(#)Barb.des	3.4	1991/12/22
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Pelias,
+#	and receive your quest assignment.
+#
+MAZE: "Elm-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------------------------
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII|
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+|...IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(39,05,39,05),random,"ordinary"
+# Stairs
+STAIR:(73,16),down
+# Portal arrival point
+BRANCH:(01,01,01,01),(0,0,0,0)
+# Elder
+MONSTER:'E',"Laura the Elemental Lady",(40,08)
+# The treasure of Pelias
+OBJECT:'(',"chest",(40,08)
+# chieftain guards for the audience chamber
+MONSTER:'@',"attendant",(40,09)
+MONSTER:'@',"attendant",(39,09)
+MONSTER:'@',"attendant",(39,08)
+MONSTER:'@',"attendant",(38,09)
+MONSTER:'@',"attendant",(38,08)
+MONSTER:'@',"attendant",(41,09)
+MONSTER:'@',"attendant",(41,08)
+MONSTER:'@',"attendant",(42,09)
+MONSTER:'@',"attendant",(42,08)
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Duali Oasis to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Elm-loca",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+MAP
+---------------------------------------------------------------------------
+|.CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC.|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC|
+|.CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC.|
+---------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,73,16),lit,"ordinary"
+# Stairs
+STAIR:(01,01),up
+STAIR:(73,16),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Thoth Amon, your nemesis monster.  You have to
+#	defeat Thoth Amon in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Elm-goal", ' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------------------------
+|.F...F.............F........F................FFFF...F......F.........F...|
+|.F.F.F.FFFFFFFFFFF.F.FFFFFF.F.FFFFFFFFFFF.FF...F..F.F.F.FF.F.FF.FFFF.F.F.|
+|.F.F.F.F.........F.F........F.F............F.F.FF...F.F..F.F.F..F....F.F.|
+|...F...F.FFFFF.F.F.FFFFFFF.FF.F.FFFFFFFFFF.F....F.FFF.FF.F.F.F.FF.FF.F.F.|
+|.F...F.F.F.....F.F.......................F.F.FF........F.F.F....F....F.F.|
+|.F.F.F...F.FFFFF.F.FF.F.FFFFFFF.FFFFFFFF.F.F..FFFFFF.F.F...F.FF.F.FF.F.F.|
+|.FFFFFFFFF.F.......FF.F.F...F.F..........F.FF........F.F.F.F.FFFF.FF...F.|
+|...F.......F.F.F.F..F.F.F.F.F.F.F.FFFFFFFF.F..FFFFFF.F.F.F.F......F..F.F.|
+|FF.F.FFFFFFF.F.F.FF.F.F.F.F.F...F........F.F.FF...FF.F.F.F.F.FFFF.F.FFFF.|
+|...F.......F.F.F..F.F.F.F.F.F.F.FFFFFFFF.F.F....F..F.F.F.F........F....F.|
+|.FFF.FFFFFFF.F.FF.F.F.F.F.F.F.F..........F.F.FFFFFFF.F.F.FFFFFFFF.FFFF.F.|
+|...........F.F.F..F.F.F.F.F.F.FF.FFFFF.F.............F...F...F.........F.|
+|FFFFFFFFFF.F.F.FF.F.F.F.F.F.F.FF.....F.FFFFFFFFFFF.FFF.FFF.F.F.F.F.FFFFF.|
+|.............F..F.F...F.F.F......FFF.F.....F...F...........F...F.F.......|
+|.FFFFFFFFFFFFFFFFFFFF.F.F.F.FFFF.....F.F.F.F.F.F.F.F.F.F.F.F.F.F.FFFFFFF.|
+|......................F.F......F.FFF.....F...F...F.F.F.F.F.F.F.F.........|
+---------------------------------------------------------------------------
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,73,16),unlit,"ordinary"
+# Stairs
+STAIR:random,up
+NON_DIGGABLE:(00,00,73,17)
+# Objects
+OBJECT:'[',"T-shirt",random,blessed,0,"Beam Multiplier"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'E',"Lahira the Evil Elementalist",random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Elm-fila" , random
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+MAP
+---------------------------------------------------------------------------
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}|
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+|...}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}...|
+---------------------------------------------------------------------------
+ENDMAP
+#
+STAIR:(01,01),up
+STAIR:(73,16),down
+#
+
+REGION:(00,00,73,16),lit,"ordinary"
+
+MAZE: "Elm-filb" , random
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+MAP
+---------------------------------------------------------------------------
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+---------------------------------------------------------------------------
+ENDMAP
+#
+STAIR:(01,01),up
+STAIR:(73,16),down
+#
+
+REGION:(00,00,73,16),lit,"ordinary"

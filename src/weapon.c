@@ -4249,7 +4249,7 @@ const struct def_skill *class_skill;
 	}
 
 	/* Set skill for all objects in inventory to be basic */
-	if(!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
+	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
@@ -4269,6 +4269,72 @@ const struct def_skill *class_skill;
 		P_SKILL(P_BARE_HANDED_COMBAT) = P_MAX_SKILL(P_BARE_HANDED_COMBAT);
 		P_SKILL(P_TWO_HANDED_SWORD) = P_BASIC;
 
+	}
+
+	if (Role_if(PM_WILD_TALENT)) {
+		register int skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_MASTER;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_MASTER;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_MASTER;
+		skilltochange = rnd(P_NUM_SKILLS-1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_GRAND_MASTER;
 	}
 
 	/* Batman obviously has legendary boomerang abilities --Amy */
@@ -4683,7 +4749,7 @@ xtraskillinit()
 	int skill;
 
 	/* Set skill for all objects in inventory to be basic */
-	if (!Role_if(PM_POLITICIAN) && !isamerican && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
+	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
