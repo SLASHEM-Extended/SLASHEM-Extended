@@ -2270,7 +2270,10 @@ peffects(otmp)
 			if (ABASE(i) < lim) {
 			    if (otmp->otyp == SPE_RESTORE_ABILITY) {
 					if (rn2(8)) ABASE(i)++;
-					else pline("It actually didn't work though...");
+					else {
+						pline("It actually didn't work though...");
+						AMAX(i) -= 1;
+					}
 			    }
 			    else ABASE(i) = lim;
 			    flags.botl = 1;
