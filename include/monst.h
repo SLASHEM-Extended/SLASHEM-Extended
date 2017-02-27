@@ -144,7 +144,14 @@ struct monst {
 #define STRAT_GOALX(s)	((xchar)((s & STRAT_XMASK) >> 16))
 #define STRAT_GOALY(s)	((xchar)((s & STRAT_YMASK) >> 8))
 
-	long mtrapseen;		/* bitmap of traps we've been trapped in */
+	/*long mtrapseen;*/		/* bitmap of traps we've been trapped in */
+
+	/* Amy edit: mtrapseen gets the axe. Sakusha (FHS dev) told me about a potential problem with it because we have
+	 * more than 32 trap types, and the bitfield cannot handle that many. This bitfield may or may not have been
+	 * the reason for some of the savegame errors and random crashes in the game, but the original implementation of it
+	 * has never been very good anyway; why would a monster suddenly know about the location of all dart traps in the
+	 * entire dungeon just because it triggered one once??? It doesn't make sense! */
+
 	long mlstmv;		/* for catching up with lost time */
 #ifndef GOLDOBJ
 	long mgold;

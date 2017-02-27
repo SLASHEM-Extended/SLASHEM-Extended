@@ -207,7 +207,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		EPRI(priest)->shrpos.x = sx;
 		EPRI(priest)->shrpos.y = sy;
 		assign_level(&(EPRI(priest)->shrlevel), lvl);
-		priest->mtrapseen = ~0;	/* traps are known */
+		/*priest->mtrapseen = ~0;*/	/* traps are known */
 		priest->mpeaceful = 1;
 		priest->ispriest = 1;
 		priest->msleeping = 0;
@@ -582,7 +582,7 @@ boolean peaceful;
 		EPRI(roamer)->renegade = TRUE;
 	/* roamer->ispriest == FALSE naturally */
 	roamer->isminion = TRUE;	/* borrowing this bit */
-	roamer->mtrapseen = ~0;		/* traps are known */
+	/*roamer->mtrapseen = ~0;*/		/* traps are known */
 	roamer->mpeaceful = peaceful;
 	roamer->msleeping = 0;
 	set_malign(roamer); /* peaceful may have changed */

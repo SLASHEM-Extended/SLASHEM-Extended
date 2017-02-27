@@ -1773,7 +1773,7 @@ unsigned trflags;
 	    }
 	}
 
-	if (u.usteed) u.usteed->mtrapseen |= (1 << (ttype-1));
+	/*if (u.usteed) u.usteed->mtrapseen |= (1 << (ttype-1));*/
 
 	if (uwep && uwep->oartifact == ART_KA_BLAMMO) {
 		boolean goup = rn2(2);
@@ -8437,13 +8437,14 @@ register struct monst *mtmp;
 	    /* true when called from dotrap, inescapable is not an option */
 	    if (mtmp == u.usteed) inescapable = TRUE;
 	    if (!inescapable &&
-		    ((mtmp->mtrapseen & (1 << (tt-1))) != 0 ||
+		    (/*(mtmp->mtrapseen & (1 << (tt-1))) != 0 ||*/ !rn2(3) ||
 			(tt == HOLE && !mindless(mtmp->data)))) {
 		/* it has been in such a trap - perhaps it escapes */
+		/* Amy edit: mtrapseen does no longer exist, so just generally have a chance of the monster escaping */
 		if(rn2(4)) return(0);
-	    } else {
+	    } /*else {
 		mtmp->mtrapseen |= (1 << (tt-1));
-	    }
+	    }*/
 	    /* Monster is aggravated by being trapped by you.
 	       Recognizing who made the trap isn't completely
 	       unreasonable; everybody has their own style. */

@@ -798,7 +798,7 @@ gypsy_init (mtmp)
 	mtmp->isgyp = TRUE;
 	mtmp->mpeaceful = TRUE;
 	mtmp->msleeping = 0;
-	mtmp->mtrapseen = ~0;	/* traps are known */
+	/*mtmp->mtrapseen = ~0;*/	/* traps are known */
 	EGYP(mtmp)->credit = 0L;
 	EGYP(mtmp)->top = 0;
 	return;

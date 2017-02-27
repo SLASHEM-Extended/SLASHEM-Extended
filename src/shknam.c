@@ -496,7 +496,7 @@ struct mkroom	*sroom;
 	if (Race_if(PM_VENTURE_CAPITALIST)) shk->mpeaceful = 0;
 	set_malign(shk);
 	shk->msleeping = 0;
-	shk->mtrapseen = ~0;	/* we know all the traps already */
+	/*shk->mtrapseen = ~0;*/	/* we know all the traps already */
 	ESHK(shk)->shoproom = (sroom - rooms) + ROOMOFFSET;
 	sroom->resident = shk;
 	ESHK(shk)->shoptype = sroom->rtype;

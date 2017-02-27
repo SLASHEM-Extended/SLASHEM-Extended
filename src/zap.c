@@ -1384,7 +1384,7 @@ coord *cc;
 		mtmp2->wormno = mtmp->wormno;
 		mtmp2->misc_worn_check = mtmp->misc_worn_check;
 		mtmp2->weapon_check = mtmp->weapon_check;
-		mtmp2->mtrapseen = mtmp->mtrapseen;
+		/*mtmp2->mtrapseen = mtmp->mtrapseen;*/
 		mtmp2->mflee = mtmp->mflee;
 		mtmp2->mburied = mtmp->mburied;
 		mtmp2->mundetected = mtmp->mundetected;

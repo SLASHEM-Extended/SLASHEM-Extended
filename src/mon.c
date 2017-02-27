@@ -2219,7 +2219,8 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    !webmaker(mdat) && !dmgtype(mdat, AD_WEBS) ))
 			) {
 			    if (!(flag & ALLOW_TRAPS)) {
-				if (mon->mtrapseen & (1L << (ttmp->ttyp - 1)))
+				/* No more mtrapseen weirdness - just have a random chance of avoiding the trap --Amy */
+				if (/*mon->mtrapseen & (1L << (ttmp->ttyp - 1))*/!rn2(3))
 				    continue;
 			    }
 			    info[cnt] |= ALLOW_TRAPS;
