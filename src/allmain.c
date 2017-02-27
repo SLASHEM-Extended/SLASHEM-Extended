@@ -4479,6 +4479,8 @@ newboss:
 			clear_memory_glyph(zx, zy, S_stone);
 		}
 
+		vision_recalc(0);
+
 	}
 
 	if (RngeTrapAlert && t_at(u.ux, u.uy)) {
