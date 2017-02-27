@@ -1012,8 +1012,10 @@ int mode;
     if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
-	    if (!(Passes_walls || passes_bars(youmonst.data) ))
+	    if (!(Passes_walls || passes_bars(youmonst.data) )) {
+		if (mode == DO_MOVE) pline("There is a set of iron bars in the way!");
 		return FALSE;
+		}
 	    else if (In_sokoban(&u.uz)) {
 		if (mode == DO_MOVE)
 		    pline_The("Sokoban bars resist your ability.");
@@ -1038,6 +1040,11 @@ int mode;
 		    pline_The("drawbridge is up!");
 		if (Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))
 		    pline_The("Sokoban walls resist your ability.");
+
+		if (!(Is_stronghold(&u.uz) && is_db_wall(x,y)) && !(Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))) {
+			if (tmpr->typ == TREE) pline("There is a tree in the way!");
+			else pline("There is a wall in the way!");
+		}
 	    }
 	    return FALSE;
 	}
