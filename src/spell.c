@@ -1774,6 +1774,8 @@ boolean atme;
 	morehungry(hungr);
 
 	chance = percent_success(spell);
+	if (confused) pline("You try to cast a spell in confusion.");
+
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && rn2(10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
